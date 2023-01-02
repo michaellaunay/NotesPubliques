@@ -9,6 +9,9 @@
 [[IA pour coder]]
 [[IA pour créer des Images]]
 
+### Cours
+[[Cours bases de données relationnelles]]
+
 ### Logiciels
 
 #### Osidian
