@@ -18,6 +18,9 @@
 [[Installation Obsidian sur Ubuntu]]
 [[Utilisation Osidian]]
 
+## Programmation
+[[Internationalisation]]
+
 ## Potager
 [[Astuces potager]]
 
