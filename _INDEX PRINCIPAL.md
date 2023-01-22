@@ -8,6 +8,7 @@
 ### IA
 [[IA pour coder]]
 [[IA pour créer des Images]]
+[[Copilot]]
 
 ### Cours
 [[Cours bases de données relationnelles]]
