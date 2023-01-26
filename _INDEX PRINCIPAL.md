@@ -1,17 +1,9 @@
 # Index principal des notes
-## Informatique
-### SSO
-[[OAuth OpenID]]
-[[SAML]]
-[[Athentification web]]
+[[_Cours]]
+[[_Expérimentation]]
+[[_Informatique]]
+[[_Culture]]
 
-### IA
-[[IA pour coder]]
-[[IA pour créer des Images]]
-[[Copilot]]
-
-### Cours
-[[Cours bases de données relationnelles]]
 
 ### Logiciels
 
@@ -32,3 +24,4 @@
 
 ## Posts
 [[Endophasie, voix intérieure]]
+
