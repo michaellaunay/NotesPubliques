@@ -3,6 +3,8 @@
 [[_Expérimentation]]
 [[_Informatique]]
 [[_Culture]]
+[[_Réflexions]]
+[[_Vie]]
 
 
 ### Logiciels
@@ -18,9 +20,7 @@
 [[Astuces potager]]
 
 ## Cantier Maison Fretin
-
-## Caravanne
-[[Entretien chauffage caravane Trumatic]]
+[[ChantierMaisonFretin]]
 
 ## Posts
 [[Endophasie, voix intérieure]]
