@@ -1,5 +1,3 @@
-# Cours Docker
-
 ## Plan
 
 1.  Introduction à Docker : qu'est-ce qu'un conteneur, comment il diffère d'une machine virtuelle, pourquoi utiliser Docker
@@ -225,7 +223,7 @@ L'option -name permet de fixer un nom sans quoi docker met des noms au hazard.
         -   Utilisez les instructions pour construire une image personnalisée
         -   Exécutez un conteneur à partir de l'image personnalisée
 
-## chapitre 5
+## chapitre 5 Utilisation de Docker Compose
 
 5.  Utilisation de Docker Compose pour définir et exécuter des applications multi-conteneurs :
     -   Introduction : Docker Compose est un outil qui permet de définir et de gérer des applications multi-conteneurs en utilisant un fichier de configuration. Il facilite la création, la mise à l'échelle et la gestion des conteneurs d'une application complexe.
