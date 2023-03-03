@@ -1,4 +1,4 @@
-Objectif: Comprendre les 
+Objectif: Comprendre les bases de données relationnelles
 
 Plan :
 
