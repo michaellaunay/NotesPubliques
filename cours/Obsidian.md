@@ -38,7 +38,7 @@ ctrl+f : Recherche d'une chaîne de caractères
 ctrl+maj+f : Ouvre la barre de recherche sur tout Obsidian
 
 ## Synatxe
-C'est celle de markdown [[Cours Markdown]]
+C'est celle de markdown [[Markdown]]
 Lien : doubles crochets
 Tag : dièse collé au tag
 Alias : 

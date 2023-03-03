@@ -11,7 +11,7 @@
 
 #### Osidian
 [[Installation Obsidian sur Ubuntu]]
-[[Cours Obsidian]]
+[[Obsidian]]
 
 ## Programmation
 [[Internationalisation]]
