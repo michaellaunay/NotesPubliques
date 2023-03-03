@@ -1,0 +1,7 @@
+## Combien de livres et documents sont archivés à la bibliothèque nationale de france (BNF) ?
+
+Il est difficile de donner un chiffre précis pour le nombre de livres et de documents archivés à la Bibliothèque nationale de France (BNF) car il varie en fonction des acquisitions et des dons récents. Selon les informations disponibles en 2021, la BNF possède environ 14 millions de livres et de documents imprimés, ainsi que des milliers de manuscrits, de cartes, de gravures, de photographies, de partitions, etc. Cependant, il est important de noter que ces chiffres peuvent être obsolètes et il est préférable de vérifier auprès de la BNF pour des informations plus récentes.
+
+## Combien de livres et documents sont archivés à la bibliothèque du congrès américain ?
+
+La Bibliothèque du Congrès des États-Unis est la plus grande bibliothèque nationale du monde, avec environ 162 millions d'articles en 2021, y compris des livres, des manuscrits, des cartes, des photographies, des partitions musicales, des films, des enregistrements sonores, et plus encore. Elle possède également des documents en plus de 470 langues, y compris des livres rares, des documents historiques importants, et des archives de personnalités célèbres. La bibliothèque est divisée en plusieurs départements spécialisés, chacun ayant une collection spécifique, tels que les manuscrits, les cartes, les estampes et les photographies, les partitions musicales, les enregistrements sonores, les films, les documents de la Bibliothèque de la musique, les documents de la Bibliothèque de l'opéra, etc.
