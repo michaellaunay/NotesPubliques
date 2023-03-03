@@ -1,3 +1,4 @@
+#Linkedin #Réflexion
 L'information nous arrive de toute part, nous obligeant à filtrer et nous condamnant à l'oubli pour ne pas être envahie.
 
 Nous reste-t-il du temps de cerveau pour nous ?

@@ -1,4 +1,4 @@
-#Linkedin
+#Linkedin #Réflexion
 La multiplication des clôtures n'est pas la cause la plus importante de chute de la biodiversité, c'est celle de l'arrachage des haies, de la destruction des bocages et de l'usage des pesticides. Aujourd'hui, les forêts ne sont plus que des ilots alors qu'il y a 40 ans on pouvait encore passer d'une forêt à l'autre à couvert. D'ailleurs, l'impact de l'agriculture intensive est visible sur les cartes de l'IGN. Le remembrement amorcé dans les années 50 a été un vrai crime contre la biodiversité, mais il fallait augmenter le rendement pour nourrir tout le monde. Aujourd'hui que nous avons le ventre plein, il est temps d'imposer un retour des bocages...
 
 En droit actuel, on n'est propriétaire du vivant sauvage que lorsqu'on l'a tué (issu du droit romain) et la propriété privée se doit de rester inviolable (issu de la révolution).  

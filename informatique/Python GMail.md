@@ -1,3 +1,4 @@
+#Expérimentation #Informatique 
 # Python GMail
 ## Donne moi le code python qui permet de se connecter à son compte messagerie gmail, puis de récupérer dans un dossier tous les emails ayant la chaine "RAHEU" en objet et ayant été envoyer le le 16 novembre 2022.
 
