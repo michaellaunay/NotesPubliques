@@ -1,3 +1,6 @@
+## Le biblithèque Assurbanipal (-668 -627)
+On a retrouvé plus de 20 000 tablettes cunéifformes (Première traduction de Gilgamesh en 1872) https://youtu.be/pYkdudibadY
+
 ## Combien de livres et documents sont archivés à la bibliothèque nationale de france (BNF) ?
 
 Il est difficile de donner un chiffre précis pour le nombre de livres et de documents archivés à la Bibliothèque nationale de France (BNF) car il varie en fonction des acquisitions et des dons récents. Selon les informations disponibles en 2021, la BNF possède environ 14 millions de livres et de documents imprimés, ainsi que des milliers de manuscrits, de cartes, de gravures, de photographies, de partitions, etc. Cependant, il est important de noter que ces chiffres peuvent être obsolètes et il est préférable de vérifier auprès de la BNF pour des informations plus récentes.

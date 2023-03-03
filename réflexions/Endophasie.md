@@ -1,4 +1,4 @@
-#Linkedin 
+#Linkedin #Réflexion
 Pour cette année 2021, je ne vais pas vous souhaiter une bonne année, car je vous la souhaite tous les jours.  
 Donc pas plus ou pas moins que chaque jour de l'année je vous souhaite une bonne santé, des proches que vous aimez et qui vous aiment.  
 Par contre ce que je vous souhaite est d'éveiller votre esprit critique, de développer votre imagination, de lire et de comprendre les enjeux du monde et ceux de votre vie.  

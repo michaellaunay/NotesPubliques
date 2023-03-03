@@ -1,3 +1,4 @@
+#Informatique
 Sketch2Code Permet à partir d'une photo d'une maquette de générer le html   
 
 On peut utiliser Copilot pour générer du code à partir du commentaire, mais on peut aussi génrer des comentaires à partir du code.

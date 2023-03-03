@@ -1,3 +1,4 @@
+#Expérimentation #Informatique 
 ## comment en python parcourir des documents pdf contenant du text et le récupérer dans des structure json ?
 
 Il existe plusieurs bibliothèques Python qui peuvent vous aider à parcourir des documents PDF et à extraire leur contenu en tant que texte ou en tant que structure JSON. L'une des bibliothèques les plus populaires pour cette tâche est PyPDF2. Pour utiliser PyPDF2, vous devez d'abord l'installer en utilisant pip:

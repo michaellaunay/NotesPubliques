@@ -5,7 +5,7 @@
 [[_Culture]]
 [[_Réflexions]]
 [[_Vie]]
-
+[[_Bricolage]]
 
 ### Logiciels
 
@@ -17,11 +17,10 @@
 [[Internationalisation]]
 
 ## Potager
-[[Astuces potager]]
+[[Transformer une branche en un arbre]]
 
 ## Cantier Maison Fretin
 [[ChantierMaisonFretin]]
 
 ## Posts
 [[Endophasie, voix intérieure]]
-

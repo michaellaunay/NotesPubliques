@@ -1,3 +1,4 @@
+#Expérimentation #Informatique 
 il est possible de créer un modélisateur UML sous forme de plugin pour Visual Studio Code. Visual Studio Code est un éditeur de code source multiplateforme qui prend en charge l'intégration de plugins écrits dans plusieurs langages, y compris Python. Vous pouvez utiliser le kit de développement de plugins (SDK) de Visual Studio Code pour créer un plugin qui ajoute des fonctionnalités de modélisation UML à l'éditeur.
 
 Pour créer un modélisateur UML sous forme de plugin Visual Studio Code, vous devrez d'abord configurer votre environnement de développement en installant Visual Studio Code et en configurant l'extension Python. Ensuite, vous pouvez utiliser le SDK de Visual Studio Code pour créer votre plugin. Le SDK de Visual Studio Code vous fournit un ensemble d'outils et de bibliothèques qui vous permettent de créer des fonctionnalités personnalisées pour Visual Studio Code, y compris l'ajout de fonctionnalités de modélisation UML.
