@@ -1,4 +1,8 @@
-## Plan
+#Cours #Informatique 
+# Objectif
+Nous allons voir ici comment installer et utiliser Docker. Docker est un système de conteneurisation, c'est-à-dire qu'il permet de crée des images d'une autre distribution très légère qui utilisent ou partagent les ressources de l'ordinateur hôte.
+
+# Plan
 
 1.  Introduction à Docker : qu'est-ce qu'un conteneur, comment il diffère d'une machine virtuelle, pourquoi utiliser Docker
 2.  Installation de Docker sur différentes plateformes (Windows, Mac, Linux)
@@ -11,18 +15,27 @@
 9.  Utilisation de Docker dans les environnements de production
 10.  Conclusion : bénéfices de l'utilisation de Docker, tendances futures.
 
-## Introduction à Docker
-  
-Définition de Docker : Docker est un logiciel qui permet d'empaqueter une application avec toutes ses dépendances, et de les exécuter de manière isolée dans un environnement standardisé.
+# Introduction à Docker
 
-Différence entre les conteneurs et les machines virtuelles : les conteneurs utilisent le système d'exploitation hôte, tandis que les machines virtuelles utilisent leur propre système d'exploitation. Les conteneurs sont donc plus légers et plus rapides à démarrer.
+Docker est un logiciel qui permet d'empaqueter une application avec toutes ses dépendances, et de les exécuter de manière isolée dans un environnement standardisé.
 
-Pourquoi utiliser Docker : Docker permet de faciliter le déploiement d'applications, de les rendre plus portables et de garantir une meilleure reproductibilité des environnements.
+La principale différence entre les conteneurs et les machines virtuelles, est que les conteneurs utilisent le système d'exploitation hôte, tandis que les machines virtuelles utilisent leur propre système d'exploitation.
+Les conteneurs sont donc plus légers et plus rapides à démarrer.
 
-## Définition
+La raison prncipale d'utilisation de Docker est faciliter le déploiement d'applications, de les rendre portables et de garantir une meilleure reproductibilité des environnements.
+Le système hébergeant Docker est appelé l'hote, c'est le système d'exploitation de l'ordinateur qui fera fonctionner docker et les images docker.
+
+Les images sont décrites au format texte dans des fichiers appellés DockerFiles.
+Ces modèles d'images sont partagés sur un dépôt public appelé DockerHUB accessible à l'adresse https://www.docker.com/ .
+Toutefois, il faut faire attention au DockerFile qui y sont, car il y a peu ou pas de vérification de la majorité des images.
+
+Sur windows 11, Docker utilise [[WSL2]] et propose sa configuration lors de son installation, généralement on va chercher le logiciel Docker sur https://docker.com (voir https://www.youtube.com/watch?v=6Wpp6C8cUf0&ab_channel=angleformation )
+Sur Ubuntu ou Debian, soit on utilise les packets de la distribution soit on télécharge la dernière version ( https://youtu.be/AWJG-AbGFik )
+
+# Définition
 Docker est un logiciel open-source qui facilite la création, le déploiement et l'exécution d'applications dans des conteneurs logiciels. Un conteneur est un environnement logiciel qui contient tout ce dont une application a besoin pour fonctionner, comme les bibliothèques, les outils de développement et les fichiers de configuration. Les conteneurs sont similaires aux machines virtuelles, mais ils sont beaucoup plus légers et plus rapides à démarrer, car ils partagent les ressources de l'hôte sur lequel ils sont exécutés.
 
-L'un des avantages clés de Docker est la portabilité. Les conteneurs Docker peuvent être créés sur un ordinateur de développement, testés sur un autre et déployés sur un serveur de production, tout en étant sûrs qu'ils fonctionneront de la même manière dans chaque environnement.
+L'un des avantages clés de Docker est sa portabilité. Les conteneurs Docker peuvent être créés sur un ordinateur de développement, testés sur un autre et déployés sur un serveur de production, tout en étant sûrs qu'ils fonctionneront de la même manière dans chaque environnement.
 
 Docker utilise des images pour construire les conteneurs. Une image est une capture de l'état d'une application, qui comprend tous les fichiers et les configurations nécessaires pour exécuter l'application. Il est possible de créer des images à partir de conteneurs existants ou de construire des images à partir de zéro en utilisant un script de construction appelé "Dockerfile".
 
@@ -31,8 +44,114 @@ Docker permet également de gérer facilement les conteneurs à l'échelle. On p
 En résumé, Docker est un système de virtualisation de conteneurs qui permet de créer, de déployer et d'exécuter des applications de manière efficiente et portable.
 
 
-Chapitre installation
-@TODO
+# Chapitre 2 installation
+Pour installer docker le plus simple est d'utiliser la version des dépôts et donc de faire : :
+```bash
+apt install docker
+``` 
+
+Nous allons chercher notre première image ce qui permettra de vérifier notre installation de docker et notre accès au réseau :
+
+> <root@Luciole>:\~\# docker run hello-world
+> Unable to find image
+> 'hello-world:latest' locally latest: Pulling from
+> library/hello-world 2db29710123e: Pull complete Digest:
+> sha256:2498fce14358aa50ead0cc6c19990fc6ff866ce72aeb5546e1d59caac3d0d60f
+> Status: Downloaded newer image for hello-world:latest
+>
+> Hello from Docker!
+>
+> To generate this message, Docker took the following steps:
+>
+> 1.  The Docker client contacted the Docker daemon.
+> 2.  The Docker daemon pulled the \"hello-world\" image from the Docker Hub.
+> 3.  The Docker daemon created a new container from that image which runs the executable that produces the output you are currently reading.
+> 4. The Docker daemon streamed that output to the Docker client, which sent it  to your terminal.
+>
+> To try something more ambitious, you can run an Ubuntu container with:
+> docker run -it ubuntu bash
+>
+> Share images, automate workflows, and more with a free Docker ID:
+> <https://hub.docker.com/>
+>
+> For more examples and ideas, visit:
+> <https://docs.docker.com/get-started/>
+
+Nous voyons que docker a été chercher l'image sur dockerhub, puis l'a exécuté en suivant les étapes indiquées par l'exécution.
+
+Il est possible de faire les étapes d'exécution individuellement : :
+
+ ```bash
+docker pull hello-world
+docker create --name docker-hello hello-world
+docker start --attach docker-hello
+```
+
+L'exécution terminée le conteneur est détruit : :
+
+```bash
+root@luciole:~# docker ps --all
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+f842b65b9e36   hello-world   "/hello"   5 hours ago   Exited (0) 5 hours ago             funny_hermann
+```
+
+On peut alors supprimer le conteneur puis l'image du disque : :
+
+    root@Caravale:~# docker rm funny_hermann
+    funny_hermann
+    root@Caravale:~# docker rmi hello-world
+    ...
+
+Pour faire le ménage de toutes les images non en cours d'exécution : :
+
+    docker rm $(sudo docker ps -a -q)
+    docker rmi $(sudo docker images -a -q)
+
+Différentes versions d'une image existent, elles sont taguées et il suffit de descendre l'une d'elles pour avoir une image partielle.
+
+Pour tester la future version de python par exemple on peut faire : :
+
+    docker run python:3.11-rc-alpine python -c "from typing import TypeVar; help(TypeVar)"
+
+Qui affichera la doc de TypeVar.
+
+Pour accéder au shell du conteneur en mode interactif, il faut mettre le flag -it Pour effacer le conteneur une fois terminé, mettre le flag \--rm
+
+Pour utiliser le système de fichier du host à la place de celui du Contener, cela pour pouvoir conserver des données entre images il faut utiliser l'option \"-v\" : :
+
+    #lance le conteneur en -d detach -i interactive
+    docker run -tid -p 8080:80 -v /var/host_nginx/:/usr/share/nginx/ --name web nginx:latest
+
+    #permet de se connecter au bash du Contener
+    docker exec -ti web bash
+
+    # voir l'intégralité de la configuration du contener
+    docker inspect web
+
+    # voir l'état des conteners
+    docker ps -a
+
+    # pour arrêter un contener
+    docker stop web
+
+    # pour démarrer le contener
+    docker start web
+
+    # pour passer des variables d'environnement
+    docker run -tid --env MaVariable="ça valeur" --name web nginx:latest
+
+    # pour passer un fichier de Variables
+    docker run -tid --env-file fichier_env --name web nginx:latest
+
+Docker file
+
+> <https://youtu.be/Ik_mC7JSJ-A>
+
+Liens :
+
+> -   <https://docs.docker.com/engine/install/#server>
+> -   <https://www.nextinpact.com/article/48913/docker-et-conteneurisation-par-exemple>
+
 
 ## chapitre 3 Les commandes de bases
 
