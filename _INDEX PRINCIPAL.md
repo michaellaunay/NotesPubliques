@@ -24,3 +24,8 @@
 
 ## Posts
 [[Endophasie, voix intérieure]]
+
+# Idées
+[[_Idées]]
+[[_Concepts]]
+
