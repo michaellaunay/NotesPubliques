@@ -1,3 +1,5 @@
+Transcription audio ; https://youtu.be/3AhOl2q-TW4
+
 22. theresanaiforthat : Une base de données intelligentes qui trouve une IA pour chaque besoin.  
 Lien : [https://lnkd.in/gCb-9QjY](https://lnkd.in/gCb-9QjY)  
   

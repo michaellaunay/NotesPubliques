@@ -1,0 +1,6 @@
+#Post #Linkedin 
+Savez-vous que si vous décidez d'enseigner en université publique il vous faut vous attendre à n'être payé qu'en fin d'année scolaire après un long parcours d'aller-retour avec l'administration pour des demandes du style "Votre avis CFE doit être celui de 2022 et non 2021" alors que vous avez rempli votre dossier en octobre avant émission de l'avis de l'année en cours. Car oui l'administration a 4 mois de retard faisant que vos documents deviennent périmés.  
+Bref, vouloir enseigner dans le public est un sacerdoce digne des 12 travaux d'Astérix !  
+Enseigner l'informatique en fac est non seulement trois fois moins rémunérateur que de faire de la prestation, mais aussi très frustrant et chronophage.  
+Pour en avoir parlé avec plusieurs professeurs, l'explication de cet état de fait serait que les cadres supérieurs administratifs n'ont plus de vision systémique, mais une vision comptable par services.  
+Est-ce que comme pour l’hôpital, la gestion comptable de l'école et de l'Université expliquerait notre dégringolade dans les classements internationaux ?
