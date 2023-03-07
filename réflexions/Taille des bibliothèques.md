@@ -8,3 +8,7 @@ Il est difficile de donner un chiffre précis pour le nombre de livres et de doc
 ## Combien de livres et documents sont archivés à la bibliothèque du congrès américain ?
 
 La Bibliothèque du Congrès des États-Unis est la plus grande bibliothèque nationale du monde, avec environ 162 millions d'articles en 2021, y compris des livres, des manuscrits, des cartes, des photographies, des partitions musicales, des films, des enregistrements sonores, et plus encore. Elle possède également des documents en plus de 470 langues, y compris des livres rares, des documents historiques importants, et des archives de personnalités célèbres. La bibliothèque est divisée en plusieurs départements spécialisés, chacun ayant une collection spécifique, tels que les manuscrits, les cartes, les estampes et les photographies, les partitions musicales, les enregistrements sonores, les films, les documents de la Bibliothèque de la musique, les documents de la Bibliothèque de l'opéra, etc.
+
+## La plus grande bibliothèque privée
+À sa mort Bruno Schröder laisse une bibliothèque d'environ 70 000 livres.
+https://www1.wdr.de/nachrichten/westfalen-lippe/buecher-haus-mettingen-100.html
