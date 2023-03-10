@@ -151,3 +151,27 @@ curl --silent https://packages.gitlab.com/gpg.key | sudo apt-key add -
 apt update
 apt install gitlab
 ```
+# Git sur Android
+Pour utiliser Git sur téléphone Android, suivre les étapes suivantes :
+
+1.  Installer une application de terminal sur le téléphone, comme Termux.
+    
+2.  Ouvrer l'application Termux et installez Git en utilisant la commande suivante :
+    
+    `pkg install git`
+    
+3.  Créer un dossier où cloner le dépôt Git :
+    
+    `mkdir myproject`
+    
+4.  Accéder au dossier :
+    
+    `cd myproject`
+    
+5.  Cloner le dépôt Git en utilisant la commande suivante :
+    
+    `git clone https://github.com/notre_repo`
+    
+6.  Travailler sur les fichiers et les modifier comme souhaité.
+    
+7.  Utiliser les commandes Git en lignes de commandes.
