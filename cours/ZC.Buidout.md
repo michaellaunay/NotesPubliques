@@ -1,4 +1,12 @@
-## Plan du cours zc.buildout
+#Cours #Informatique 
+# Résumé
+Buildout est un système de construction logiciel très bien documenté.  
+Il utilise 'manuel' pour cela [https://pythonhosted.org/manuel/](https://pythonhosted.org/manuel/)  
+Il déconseille de ne documenter son code qu'à travers les tests unitaires.  
+On peut créer sa propre 'receipe', la tester et la documenter.  
+[http://www.buildout.org/en/latest/topics/writing-recipes.html](http://www.buildout.org/en/latest/topics/writing-recipes.html)
+
+# Plan du cours zc.buildout
 
 1.  Introduction à zc.buildout
     -   Qu'est-ce que zc.buildout
@@ -24,9 +32,9 @@
     -   Résumé de ce que nous avons appris
     -   Ressources supplémentaires pour en savoir plus sur zc.buildout.
 
-## Chapitre 1: Introduction à zc.buildout
+# Chapitre 1: Introduction à zc.buildout
 
-### 1.1 Qu'est-ce que zc.buildout
+## 1.1 Qu'est-ce que zc.buildout
 zc.buildout est un outil de construction de logiciels open source pour Python. Il permet de configurer, installer et gérer les dépendances de vos projets Python de manière efficace. Il peut également être utilisé pour créer des environnements de développement et de production séparés pour vos projets.
 
 ## 1.2 Pourquoi utiliser zc.buildout
