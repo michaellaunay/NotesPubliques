@@ -10,6 +10,8 @@
 [[IAs]]
 [[Copilot]]
 [[réflexions/Suis-je une IA ?]]
+[[Pytorch]]
+[[Tensorflow]]
 
 ## VR
 [[Solutions de VR]]
