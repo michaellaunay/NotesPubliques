@@ -6,23 +6,24 @@
 [[_Réflexions]]
 [[_Vie]]
 [[_Bricolage]]
+[[_Sciences]]
 
-### Logiciels
+# Logiciels
 
-#### Osidian
+## Osidian
 [[Installation Obsidian sur Ubuntu]]
 [[Obsidian]]
 
-## Programmation
+# Programmation
 [[Internationalisation]]
 
-## Potager
+# Potager
 [[Transformer une branche en un arbre]]
 
-## Cantier Maison Fretin
+# Cantier Maison Fretin
 [[ChantierMaisonFretin]]
 
-## Posts
+# Posts
 [[Endophasie, voix intérieure]]
 
 # Idées

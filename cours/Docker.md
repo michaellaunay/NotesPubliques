@@ -339,7 +339,7 @@ L'option -name permet de fixer un nom sans quoi docker met des noms au hazard.
         -   Un exemple de Dockerfile qui crée une image de conteneur qui exécute un serveur web Nginx FROM nginx:latest COPY index.html /usr/share/nginx/html CMD ["nginx", "-g", "daemon off;"]
     -   Pratique :
         -   Créez un fichier Dockerfile
-        -   Utilisez les instructions pour construire une image personnalisée
+        -   Utiliser les instructions pour construire une image personnalisée
         -   Exécutez un conteneur à partir de l'image personnalisée
 
 ## chapitre 5 Utilisation de Docker Compose
@@ -355,7 +355,7 @@ L'option -name permet de fixer un nom sans quoi docker met des noms au hazard.
         -   Un exemple de Compose file qui définit une application web qui utilise un service Nginx et un service MySQL version: '3' services: web: build: . ports: - "8000:8000" depends_on: - db db: image: mysql:5.7 environment: MYSQL_ROOT_PASSWORD: example
     -   Pratique :
         -   Créez un fichier Compose file
-        -   Utilisez les instructions pour définir une application multi-conteneurs
+        -   Utiliser les instructions pour définir une application multi-conteneurs
         -   Exécutez l'application en utilisant les commandes de Compose
 
 ## Chapitre 6
@@ -363,9 +363,9 @@ Nous allons aborder les raisons pour lesquelles il peut être nécessaire d'util
 
 Les raisons pour lesquelles vous pourriez vouloir utiliser un système de gestion de clusters incluent :
 
-    La haute disponibilité : en utilisant un cluster, vous pouvez vous assurer que votre application est toujours disponible même si un conteneur ou un noeud échoue.
+    La haute disponibilité : en utilisant un cluster, nous pouvons vous assurer que votre application est toujours disponible même si un conteneur ou un noeud échoue.
     La scalabilité : les clusters permettent de facilement ajouter ou retirer des conteneurs pour répondre aux besoins changeants de votre application.
-    La répartition de charge : en répartissant les conteneurs sur plusieurs noeuds, vous pouvez équilibrer la charge sur votre système pour éviter les surcharges.
+    La répartition de charge : en répartissant les conteneurs sur plusieurs noeuds, nous pouvons équilibrer la charge sur votre système pour éviter les surcharges.
 
 Il y a plusieurs systèmes de gestion de clusters disponibles, tels que Docker Swarm et Kubernetes. Ces systèmes sont utilisés pour gérer des clusters de conteneurs en production. Ils permettent de décrire les déploiements, les services et les volumes de manière déclarative.
 
@@ -398,6 +398,57 @@ Il est important de noter que la gestion de clusters de conteneurs peut être co
 
 mais ces coûts peuvent être considérablement réduits grâce à l'automatisation et à l'optimisation des ressources.
 
-Il est également important de choisir un système de gestion de clusters adapté à vos besoins spécifiques en termes de scalabilité, de disponibilité et de flexibilité. Il existe de nombreux systèmes de gestion de clusters différents, tels que Kubernetes, Docker Swarm, Apache Mesos, etc. chacun ayant ses propres avantages et limites.
+Il est également important de choisir un système de gestion de clusters adapté à nos besoins spécifiques en termes de scalabilité, de disponibilité et de flexibilité. Il existe de nombreux systèmes de gestion de clusters différents, tels que Kubernetes, Docker Swarm, Apache Mesos, etc. chacun ayant ses propres avantages et limites.
 
 En résumé, les systèmes de gestion de clusters de conteneurs peuvent offrir une scalabilité, une disponibilité et une flexibilité accrues pour les applications, mais ils peuvent également être plus complexes à gérer et nécessiter des compétences supplémentaires et des coûts supplémentaires. Il est important de peser les avantages et les limites pour déterminer si l'utilisation d'un système de gestion de clusters est appropriée pour votre environnement.
+
+# Utilisation des utilisateurs dans les images
+Les utilisateurs dans les conteneurs Docker sont importants pour la sécurité et l'isolation. Par défaut, les conteneurs Docker sont exécutés avec l'utilisateur root, ce qui peut poser des problèmes de sécurité, car les applications exécutées dans le conteneur ont un accès complet au système d'exploitation hôte.
+
+Pour résoudre ce problème, il est recommandé de créer un utilisateur non root dans le conteneur et d'exécuter l'application avec cet utilisateur. Cela limite les privilèges de l'application dans le conteneur, réduisant ainsi la surface d'attaque pour les pirates potentiels.
+
+Lorsque nous créons un utilisateur dans un conteneur Docker, nous devons définir les droits d'accès sur les fichiers et les répertoires que l'application utilisera. Cela garantit que l'application ne pourra pas accéder à des fichiers ou des répertoires critiques du système d'exploitation hôte.
+
+Les utilisateurs sont manipulés à travers leur uid, en conséquence s'il y a un volume partagé avec l'hôte, les utilisateurs de l'image auront les mêmes droits que le même uid sur l'hôte.
+Il peut donc être prudent de définir des utilisateurs sur le système hôte n'ayant pas de droit et utiliser ces uid dans l'image.
+
+Lorsque l'on monte un volume dans un conteneur Docker, les fichiers et les répertoires stockés dans le volume sont accessibles dans le conteneur. Si vous exécutez l'application dans le conteneur avec un utilisateur non root, les fichiers et les répertoires stockés dans le volume appartiendront à cet utilisateur.
+
+Cela peut poser des problèmes si l'on essaye d'accéder au même volume depuis le système d'exploitation hôte, car les fichiers et les répertoires dans le volume peuvent appartenir à un utilisateur différent de celui sur le système hôte.
+
+Pour résoudre ce problème, utiliser l'option "-u" lors de la création d'un conteneur Docker pour spécifier l'UID (User ID) et le GID (Group ID) de l'utilisateur dans le conteneur. De cette façon, on peut faire correspondre l'UID et le GID de l'utilisateur dans le conteneur avec ceux de l'utilisateur sur le système d'exploitation hôte.
+
+Par exemple, si nous avons un utilisateur "michaellaunay" avec l'UID 1000 sur le système d'exploitation hôte et que nous voulons que cet utilisateur accède à un volume monté dans un conteneur Docker, nous pouvons créer le conteneur avec l'option "-u 1000" pour que les fichiers et les répertoires dans le volume appartiennent à l'utilisateur "michaellaunay" avec l'UID 1000.
+
+Voir https://youtu.be/SI1mhq-f0rg
+
+# Qu'est ce qu'OCI
+OCI (Open Container Initiative), c'est une initiative de l'industrie qui vise à standardiser la spécification des conteneurs et des images de conteneurs. OCI fournit des spécifications techniques pour les conteneurs et les images de conteneurs, ainsi que des outils pour implémenter ces spécifications. OCI permet une portabilité accrue entre différents outils de conteneurisation et une interopérabilité entre différents fournisseurs de conteneurs. En d'autres termes, OCI fournit un standard commun pour les conteneurs, ce qui facilite la compatibilité et la coopération entre les différentes solutions de conteneurisation.
+
+# Différence entre conteneurs bas niveau et haut niveau
+Un conteneur est une unité logicielle qui permet d'emballer une application avec toutes ses dépendances et de la déployer de manière portable sur différents environnements informatiques. Les conteneurs ont révolutionné l'industrie de la virtualisation en permettant une utilisation plus efficace des ressources système.
+
+Il y a plusieurs niveaux de conteneurs, bas niveau et haut niveau, qui se différencient par leur architecture et leur approche de la virtualisation.
+
+Les conteneurs de bas niveau, tels que LXC (Linux Containers) ou Docker, fonctionnent directement sur le noyau du système d'exploitation hôte. Ils utilisent des fonctionnalités de virtualisation du noyau telles que les namespaces et les cgroup pour isoler les processus et les ressources système. Les conteneurs de bas niveau ont une faible surcharge en termes de performance et de ressources système, car ils partagent le même noyau avec le système hôte.
+
+Les conteneurs de haut niveau, tels que les conteneurs de machine virtuelle (VM), utilisent une couche d'abstraction supplémentaire entre le système d'exploitation hôte et le conteneur. Les VM simulent un environnement complet d'ordinateur, y compris un système d'exploitation invité, ce qui permet une isolation plus forte entre le système hôte et le conteneur. Cependant, cela implique également une surcharge plus importante en termes de performance et de ressources système.
+
+# Rendre compatible les Dockerfiles avec les recommandations OCI
+
+Pour rendre nos Dockerfiles compatibles avec les recommandations OCI, nous pouvons suivre les bonnes pratiques suivantes :
+
+1.  Utiliser une image de base standard : Utiliser une image de base standard telle que Alpine ou Ubuntu qui respecte les spécifications OCI. Éviter d'utiliser des images personnalisées ou non standards qui peuvent ne pas être compatibles avec les spécifications OCI.
+    
+2.  Utiliser des commandes de construction standard : Utiliser des commandes de construction standard telles que "FROM", "RUN", "COPY", "ADD", "EXPOSE", "CMD" et "ENTRYPOINT" dans nos Dockerfiles. Éviter d'utiliser des commandes personnalisées qui peuvent ne pas être compatibles avec les spécifications OCI.
+    
+3.  Utiliser les variables d'environnement : Utiliser les variables d'environnement pour définir les valeurs de configuration dans votre application. Éviter d'utiliser des fichiers de configuration externes qui peuvent ne pas être compatibles avec les spécifications OCI.
+    
+4.  Utiliser un utilisateur non root : Utiliser un utilisateur non root pour exécuter votre application dans le conteneur. Éviter d'utiliser l'utilisateur root car cela peut poser des problèmes de sécurité.
+    
+5.  Nettoyez les fichiers temporaires : Nettoyez les fichiers temporaires et les caches après chaque étape de construction pour réduire la taille de l'image. Utiliser la commande "RUN rm -rf /var/cache/apk/*" pour nettoyer les fichiers temporaires dans une image Alpine.
+    
+6.  Éviter d'utiliser des commandes non standard : Éviter d'utiliser des commandes non standard dans nos Dockerfiles, telles que "wget" ou "curl". Utiliser des commandes standard pour la récupération des fichiers et des paquets, telles que "apt-get" ou "apk add".
+    
+
+En suivant ces bonnes pratiques, nous pouvons rendre nos Dockerfiles compatibles avec les spécifications OCI et améliorer la portabilité et l'interopérabilité de nos conteneurs.
