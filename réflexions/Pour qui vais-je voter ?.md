@@ -14,7 +14,16 @@ En conclusion, je voterai donc pour un programme et non pour un présidentiable,
 J'aurais bien voté blanc, car je lui préfère Quatennens, mais comme cela n'invalide pas les candidats, cela ne sert à rien.  
 En 2017 Macron n'avait que 28% des électeurs derrière lui, et dès l'allocution d'Edouard Philippe c'en était mort de la recherche de consensus national.  
 Comme les mêmes causes produisent les mêmes effets pour que ça change, il faut voter utile !
-Mais pour finir, au second tour j'ai voté blanc, trouvant dangereuse la position de Mélanchon.
-Le temps m'a donné raison, la Nupe est incapable de regarder les enjeux énergétiques en face et l'Enquête parlementaire sur la souveraineté énergétique à montre l'enfermement idéologique des verts et les accords. Cette commission a montré les tractations qui ont fait passer le bien de la nation après les ambitions personnelles, ainsi que l'enfermement idéologique de tous les partis (Sarkozy privatise EDF et met en place la loi Nome alors qu'il sait que l'électricité ne peut suivre les règles d'un marché classique puisqu'elle ne se stocke pas et que production et consommation sont identiques, sans parler du financement).
 
-**Pour conclure être représenté, s'est être trahi.**
+Hélas ! Ce n'était qu'illusion.
+Au second tour j'ai voté blanc.
+Et lors des législatives, j'ai voté à nouveau blanc trouvant dangereuse la position de Mélanchon sur des domaines clés comme l'énergie ou l'industrie.
+
+Au 16/04/23 la Nupes s'avère toujours incapable de regarder les enjeux énergétiques avec lucidité.
+
+L'enquête parlementaire sur la souveraineté énergétique montre l'enfermement idéologique des différents partis, les accords réalisés au détriment du bien être de la nation.
+En plus de 100h, j'y ai vu le vrai visage de nos représentants qui depuis 30 ans, font passer leurs ambitions avant le bien être de la nation, tordent la réalité, ne consultent aucun expert des domaines impactés par leur décision. J'y ai vu l'enfermement idéologique de tous les partis, par exemple Sarkozy privatise EDF au nom du libéralisme et met en place la loi Nome alors qu'il sait que l'électricité ne peut suivre les règles d'un marché classique puisqu'elle ne se stocke pas et que production et consommation doivent être identiques, et cela sans parler de comment financer un outil dont la rentabilité est au-delà de deux décennies. J'y ai vu Jospin qui sacrifie un outil de recherche en prenant une décision "murement réfléchie" en 15 jours!
+
+Finalement, j'y ai vu l'absence de culture scientifique et technologique de nos élus.
+
+**Pour conclure : être représenté, c'est être trahi.**
