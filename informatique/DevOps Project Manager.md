@@ -1,0 +1,3 @@
+# Manager de projet novateur DevOps
+
+Le terme consacré pour un manager de projet novateur DevOps est appelé "DevOps Project Manager". Ce rôle implique de superviser le cycle de vie complet du projet en utilisant les principes et les pratiques de DevOps pour améliorer l'efficacité et la qualité du processus de développement logiciel. Le DevOps Project Manager collabore étroitement avec les équipes de développement et d'exploitation pour assurer une communication et une coordination continues tout au long du processus de développement, de déploiement et de maintenance des applications.

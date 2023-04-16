@@ -91,6 +91,8 @@ git branch # Permet de manipuler les branches
 ```bash
 git merge
 ```
+Une boone vidéo sur le sujet :
+https://youtu.be/75ZuypqdHII
 
 ## Revenir à la troisième version précédente tout en gardant l'historique de la version actuelle
 ```bash
