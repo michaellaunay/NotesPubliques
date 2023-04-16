@@ -12,3 +12,25 @@ La Bibliothèque du Congrès des États-Unis est la plus grande bibliothèque na
 ## La plus grande bibliothèque privée
 À sa mort Bruno Schröder laisse une bibliothèque d'environ 70 000 livres.
 https://www1.wdr.de/nachrichten/westfalen-lippe/buecher-haus-mettingen-100.html
+
+# Bibliothèques remarquables
+## La bibliothèque des Medecis
+Contient plus de 15 000 Livres dont les tout premiers imprimer.
+La partie bibliothèque du bâtiment a été conçue par Michel Ange
+https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_Laurentienne
+Visite virtuelle en 3D du bâtiment.
+https://www.bmlonline.it/
+Directement sur youtube https://youtu.be/vCKsck7doXU
+
+## Bibliothèque Inguimbertine
+Bibliothèque à Carpentras contenant plus de 250 000 volumes.
+https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_Inguimbertine
+(Beaucoup de livres ont été volés par G.Libri https://fr.wikipedia.org/wiki/Guglielmo_Libri_Carucci_dalla_Sommaja)
+
+# Bibliothèque numérique Europeana
+58 Millions de documents. Europeana est un proxy vers les bibliothèques nationales
+https://fr.wikipedia.org/wiki/Europeana
+
+# Bibliothèques "Sulfureuses"
+[[LibGen]]
+[[National Emergency Library]]

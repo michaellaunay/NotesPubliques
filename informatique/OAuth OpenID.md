@@ -6,51 +6,44 @@ https://www.youtube.com/watch?v=IzZF7WdBp4o&ab_channel=PoitouJug
 https://www.youtube.com/watch?v=PhQJKKrV5i0
 
 
-Remarques: 
-Ne pas confondre Authentification (Qui est le membre) et Autorisation (Quels sont les groupes et les permissions du membre)
+## Remarques
+Ne pas confondre Authentification (Qui est le membre) et Autorisation (Quels sont les groupes et les permissions du membre).
 
-AOuth est un framework en version 2 (Protocole en version 1) qui permet la délégation d'autorisation mais n'est pas là pour l'authentification.
+OAuth est un framework en version 2 (Protocole en version 1) qui permet la délégation d'autorisation mais n'est pas conçu pour l'authentification.
 
-OpenID Connect sert à l'authentification.
+OpenID Connect est utilisé pour l'authentification.
 
-Authorization Code Flow : 
-Le client se connecte au AS lui passe l'url sur laquelle il veut des accès.
-L'AS vérifie identité et vérifie s'il fait confiance à l'adresse de redirection (enregistrement préalable des serveurs de ressources) et fait la redirection en passant un code d'authent qui n'est valable que de façon courte.
-Ce code dans l'url de redirection permettra de récupérer le token via un post (comme ça on a plus le problème du token dans l'url qui est dans les historiques et les log).
-Par contre pour vérifier qu'il n'y a pas eu un men in the middle entre le get et le post il y a signature avec PKCE (pixi)
+Authorization Code Flow : Le client se connecte au AS et lui fournit l'URL à laquelle il souhaite accéder. L'AS vérifie l'identité et s'assure qu'il fait confiance à l'adresse de redirection (enregistrement préalable des serveurs de ressources) et effectue la redirection en passant un code d'authentification qui n'est valable que pour une courte période. Ce code dans l'URL de redirection permettra de récupérer le token via un POST (ainsi, on évite le problème du token dans l'URL qui est dans les historiques et les logs). Cependant, pour vérifier qu'il n'y a pas eu d'interception (man-in-the-middle) entre le GET et le POST, il y a signature avec PKCE (pixi).
 
-Authorization code + Pixi est lOAuth2.1 a recommandation de sécurité 2021 
+Authorization code + PKCE est l'OAuth 2.1, recommandation de sécurité en 2021.
 
-Pour des raisons de sécurité et même si OAuth le permet ne pas utiliser les * pour les url et les paramettres de redirection.
+Pour des raisons de sécurité et même si OAuth le permet, ne pas utiliser les * pour les URL et les paramètres de redirection.
 
-IETF propose des biblithèques standards ppour l'implémentation de AOth2.1 dans tous les langages.
+L'IETF propose des bibliothèques standard pour l'implémentation de OAuth 2.1 dans tous les langages.
 
-Les clés ne sont pas unique on a un jeu de clé et le token possède un champ "kid" qui dit quelle clé utiliser. Il y a un Keys End Point qui permet de récupérer les jeux de clés.
+Les clés ne sont pas uniques, on a un jeu de clés et le token possède un champ "kid" qui indique quelle clé utiliser. Il y a un Keys End Point qui permet de récupérer les jeux de clés.
 
-Attention comme le JWT contient les infos client si celui-ci les met à jours sur l'oidc allors celles du jwt ne sont plus à jour le temps de l'expiration du token...
+Attention, comme le JWT contient les infos client, si celui-ci les met à jour sur l'OIDC, alors celles du JWT ne sont plus à jour jusqu'à l'expiration du token.
 
-Il y a deux types de tokens entre le client, Authorization Server et le Ressource Server : Baerer token (jeton au porteur) et jwt token.
-Le Baerer token est juste une chaine qui doit être protégée, et le Ressource Server contacte le Authorization Server pour vérifier le Baerer token. Dans le cas du jwt token, le token contient les données du scope. Il est signé par l'Authorization server avec une clé privée, le Ressource server doit donc vérifier la validité du token en le vérifiant avec la clé publique. La clé publique est accessible sur un endpoint du Serveur d'Authorization.
-Le jwt token est un json encodé, une fois décodé on y trouve une entré "exp" qui est la date d'expiration du token, l'entrée "scp" est le scope (seulement le nom des clés pas les valeurs), l'entrée "sub" représente l'utilisateur ayant fait la demande
+Il y a deux types de tokens entre le client, l'Authorization Server et le Resource Server : Bearer token (jeton au porteur) et JWT token. Le Bearer token est juste une chaîne qui doit être protégée, et le Resource Server contacte l'Authorization Server pour vérifier le Bearer token. Dans le cas du JWT token, le token contient les données du scope. Il est signé par l'Authorization Server avec une clé privée, le Resource Server doit donc vérifier la validité du token en le vérifiant avec la clé publique. La clé publique est accessible sur un endpoint du Serveur d'Authorization. Le JWT token est un JSON encodé, une fois décodé on y trouve une entrée "exp" qui est la date d'expiration du token, l'entrée "scp" est le scope (seulement le nom des clés, pas les valeurs), l'entrée "sub" représente l'utilisateur ayant fait la demande.
 
+Dans OAuth, PKCE (prononcer pixi) Proof Key for Code Exchange remplace les grants pour ne pas passer par le navigateur, il n'y a plus de credentials.
 
+Vocabulaire : en OAuth, on parle de token, tandis qu'en OpenID, on parle d'ID_token.
 
-Dans OAuth ,PKCE (prononcer pixi) Proof Key for code exchange qui remplace les grants pour ne pas passer par le navigateur, il n'y a plus de crédential 
+Les utilisateurs sont enregistrés sur l'OpenID Connect avec le Dynamic Registration End Point, qui permet la création, la consultation et la modification.
 
-Vocab : en OAuth on par de token en OpenId on parle ID_token
+Le Discovery End Point permet de découvrir les données de configuration, les endpoints, les scopes supportés, les algorithmes de chiffrement et les signatures.
 
-On enregistre les utilisateurs sur l'OpenIDConnect avec le Dynamic Registration End Point qui permet la création la consultation et la modification.
+Remarques : Google cherche à décentraliser la gestion des autorisations (ACL), voir le projet Google's Zanzibar.
 
-Discovery EndPoint permet de découvrire les données de configuration, les endpoints, les scopes supportés, les algo de chiffrement et les signatures
+Les SPA (Single Page Applications) gèrent des cookies qui leur permettent, lors de la redirection, de renouveler le token sans donner un token refresh et de rediriger vers l'application sans redemander les credentials.
 
-Remarques :
-Google cherche à décentralisation la gestion des authorisations (ACL) voir le projet Google's Zanzibar
+Voir recommandations OAuth 2 OpenID Connect de l'IETF.
 
-Les SPA gère des Cookies qui leur permettent sur redirection de renouveller le token sans donner un token refresh et de rediriger vers l'appli sans redemander les credentials.
-
-Voir recommandations OAuth 2 OpenId Connect de l'IETF
 
 links :
 https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-17.html
 
 https://www.ssi.gouv.fr/uploads/2020/09/anssi-guide-recommandations_pour_la_securisation_de_la_mise_en_oeuvre_du_protocole_openid_connect-v1.0.pdf
+
