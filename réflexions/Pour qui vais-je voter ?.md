@@ -14,3 +14,7 @@ En conclusion, je voterai donc pour un programme et non pour un présidentiable,
 J'aurais bien voté blanc, car je lui préfère Quatennens, mais comme cela n'invalide pas les candidats, cela ne sert à rien.  
 En 2017 Macron n'avait que 28% des électeurs derrière lui, et dès l'allocution d'Edouard Philippe c'en était mort de la recherche de consensus national.  
 Comme les mêmes causes produisent les mêmes effets pour que ça change, il faut voter utile !
+Mais pour finir, au second tour j'ai voté blanc, trouvant dangereuse la position de Mélanchon.
+Le temps m'a donné raison, la Nupe est incapable de regarder les enjeux énergétiques en face et l'Enquête parlementaire sur la souveraineté énergétique à montre l'enfermement idéologique des verts et les accords. Cette commission a montré les tractations qui ont fait passer le bien de la nation après les ambitions personnelles, ainsi que l'enfermement idéologique de tous les partis (Sarkozy privatise EDF et met en place la loi Nome alors qu'il sait que l'électricité ne peut suivre les règles d'un marché classique puisqu'elle ne se stocke pas et que production et consommation sont identiques, sans parler du financement).
+
+**Pour conclure être représenté, s'est être trahi.**
