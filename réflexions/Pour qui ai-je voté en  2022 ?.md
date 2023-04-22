@@ -1,4 +1,5 @@
 #Linkedin #Personnel #Réflexion
+# Réflexion avant le premier tour de la présidentielle
 Tout d'abord, je suis anarchiste, je pense qu'aucune démocratie représentative n'est légitime, on finit toujours par être trahi par nos représentants. Seule la démocratie participative mérite le nom de démocratie.  
 Mais pour que cela fonctionne, il faudrait que chacun reçoive une éducation lui permettant de comprendre tous les enjeux. Aujourd'hui, seuls les enfants privilégiés des écoles internationales reçoivent une éducation mêlant méthode Montessori et pédagogie basée sur les neurosciences, dispensée par un adulte à seulement 4 élèves pour quelques "centaines" de k€/an, faisant qu'un élève arrive en cp sachant lire, parler, et écrire français, anglais, allemand, sans avoir subi de violences, il paraît que tout se joue dans les 7 premières années de sa vie...  
 N'étant pas encore parvenus au degré de civilisation nécessaire, nous devons composer avec le système démocratique, représentatif et transitoire, que nous avons.  
@@ -15,10 +16,16 @@ J'aurais bien voté blanc, car je lui préfère Quatennens, mais comme cela n'in
 En 2017 Macron n'avait que 28% des électeurs derrière lui, et dès l'allocution d'Edouard Philippe c'en était mort de la recherche de consensus national.  
 Comme les mêmes causes produisent les mêmes effets pour que ça change, il faut voter utile !
 
+# Deuxième tour
+
 Hélas ! Ce n'était qu'illusion.
 Au second tour j'ai voté blanc.
+
+# Législatives
+
 Et lors des législatives, j'ai voté à nouveau blanc trouvant dangereuse la position de Mélanchon sur des domaines clés comme l'énergie ou l'industrie.
 
+# Avec du recul
 Au 16/04/23 la Nupes s'avère toujours incapable de regarder les enjeux énergétiques avec lucidité.
 
 L'enquête parlementaire sur la souveraineté énergétique montre l'enfermement idéologique des différents partis, les accords réalisés au détriment du bien être de la nation.
@@ -26,4 +33,5 @@ En plus de 100h, j'y ai vu le vrai visage de nos représentants qui depuis 30 an
 
 Finalement, j'y ai vu l'absence de culture scientifique et technologique de nos élus.
 
-**Pour conclure : être représenté, c'est être trahi.**
+# Conclusion
+Être représenté, c'est être trahi !
