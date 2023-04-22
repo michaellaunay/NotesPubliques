@@ -2,7 +2,7 @@
 
 ---
 author : Michaël Launay <michaellaunay@ecreall.com>
-version : 1.9.3
+version : 2.0.0
 licence : Cette création est mise à disposition selon le Contrat Paternité 2.0 France disponible en ligne <http://creativecommons.org/licenses/by/2.0/fr/> 
 content : GNU/Linux french training based on https://github.com/michaellaunay/CoursGNULinux
 
@@ -19,116 +19,12 @@ En 1991, l'étudiant finlandais Linus Torvalds publie sur internet l'intégralit
 
 Depuis cette date GNU/Linux ne cesse d'évoluer. Il occupe en 2020 moins de 3,61%[^1] du marché mondial des systèmes d'exploitation pour ordinateur personnel, plus de 60% des serveurs web, prés de 75% du Cloud et plus de 80% des smartphones (Android étant basé sur GNU/Linux) et est en autre utilisé en France par la Gendarmerie (Ubuntu) et par l'Assemblée Nationale (Ubuntu), dans la Freebox, par l'entreprise Google (Android) et la fondation Wikipedia (serveur Ubuntu).
 
-# Historique
+# Histoire
+[[Historique Linux]]
 
-## UNIX (les racines)
+# Propriété intellectuelle et licence 
+[[Droits d'auteur]]
 
-![Histoire des Unix (source
-wikipedia)](HistoriqueUnix.jpg){.align-center}
-
-Ken Thompson, ingénieur d'AT&T travaille en collaboration avec le MIT au Bell Labs sur Multics.
-
-En 1969 il créait un système d'exploitation inspiré de Multics. Brian Kernighan le nommera Unics.
-
-En 1971 Unics devient Unix et est alors récrit en C spécialement développé pour cela par Dennis Ritchie.
-
-1973 AT&T diffuse Unix avec ses sources à ses clients (première licence open source).
-
-1974 l'Université de Californie Berkeley (UCB) commence ses recherches sur UNIX en collaboration étroite avec AT&T.
-
-1977 Bill Joy alors étudiant à l'UCB réalise la première version de BSD (Berkeley Software Distribution).
-
-À partir de là, les éditions se succèdent (SYSTEM III puis V en 1985 et SVR2 à SVR4 pour AT&T, 4.2BSD pour l'UCB en 1983).
-
-La DARPA finance BSD ce qui aboutit à l'intégration de la première pile TCP/IP en 1983 qui sera intégrée telle quel dans Windows en raison de sa licence permissive.
-
-1985 la 4.3 BSD n'est plus livrée avec les sources de AT&T en raison du prix excessif de la licence.
-
-Face à ce problème, l'UCB récrit et nettoie complètement son UNIX qui sort en 1989 sous le nom NetBSD. Le noyau est alors le MACH de l'université de Carnegie-Mellon. L'accès aux sources et à la distribution complète devient gratuit.
-
-1991 Sun Microsystems co-fondé en 1982 par Bill Joy sort SunOS qui deviendra Solaris.
-
-1992 Procès AT&T BSD
-
-FreeBSD apparaît en 1993 comme le portage de NetBSD sur i386
-
-1998 Solaris supporte le 64 bits
-
-1999 Mac OS X (server)
-
-2005 Open Solaris
-
-Octobre 2008 version 4.0.1 de NetBSD
-
-Janvier 2009 version 7.1 de FreeBSD
-
-La Free Software Foundation (FSF), le projet GNU
-
-1983 Richard Stallman (RMS) qui travaillait au laboratoire d'intelligence artificielle du MIT crée le projet GNU.
-
-GNU est un acronyme récursif (GNU's Not Unix).
-
-GNU a pour objectif de fournir un système d'exploitation compatible avec UNIX sans dépendre des ayants droit (AT&T et BSD) dont RMS récuse les licences.
-
-1985 création de la Free Software Foundation (FSF) organisation américaine à but non lucratif pour le soutien du logiciel libre.
-
-1987 Rob Pike, Ken Thompson et Dennis Ritchie débutent les travaux de Plan 9 qui inspirera les UNIX modernes.
-
-1989 écriture de la GNU GPL (GNU Genral Public Licence ou GPL) version 1.
-
-1990 le système GNU possède son propre éditeur (Emacs), d'un compilateur C (GCC), et d'une réécriture de la plupart des bibliothèques système d'UNIX.
-
-1991 le noyau Linux utilise la GPL et GCC.
-
-1997 lancement de GNOME un environnement graphique dont l'objectif était de fournir une alternative libre à l'environnement KDE qui utilisait la bibliothèque Qt alors non libre.
-
-### La licence BSD versus la licence GPL
-
-Il existe presque plusieurs centaines de licences appliquées aux logiciels libres, mais dans la majorité des cas on peut les séparer en deux catégories selon qu'elles sont compatibles avec la licence BSD ou la licence GPL.
-
-### La licence GPL
-
-La licence GPL a pour but de protéger l'auteur et l'utilisateur en garantissant les droits suivants (appelés libertés) :
-
-1.  La liberté d'exécuter le logiciel, pour n'importe quel usage ;
-2.  La liberté d'étudier le fonctionnement d'un programme et de l'adapter à ses besoins, ce qui passe par l'accès aux codes sources ;
-3.  La liberté de redistribuer des copies ;
-4.  La liberté d'améliorer le programme et de rendre publiques les modifications afin que l'ensemble de la communauté en bénéficie.
-
-En contrepartie, l'utilisation du logiciel est au risque et péril de l'utilisateur.
-
-#### Le gauche d'auteur
-
-Le code n'est pas dans le domaine public.
-
-Il est protégé par le droit d'auteur.
-
-L'exécution du logiciel et la diffusion des sources modifiées ne sont possibles qu'à la condition de respecter les obligations de la licence.
-
-Notamment :
-
-> Le droit de redistribuer est garanti seulement si l'utilisateur fournit le code source de la version modifiée. En outre, les copies distribuées, incluant les modifications, doivent être aussi sous les termes de la GPL.
->
-> Cette condition est connue sous le nom de copyleft.
->
-> Puisque le logiciel est protégé par les droits d'auteurs, l'utilisateur ne peut le modifier ou le redistribuer, sauf sous les termes du copyleft. En conséquence l'utilisateur doit à son tour fournir les sources et placer ses modifications sous GPL.
-
-Puisque le copyleft des versions 1 et 2 de la GPL ne s'appliquait pas aux entrées sorties du programme, il était possible dans le cas par exemple d'un service web de contourner l'obligation de diffusion des sources. De même, il suffisait de transformer tout code GPL en
-bibliothèque dynamique pour ne pas propager la GPL aux extensions apportées à un programme existant.
-
-Cette faille a été corrigée avec la version GPL v3 qui accorde aux utilisateurs d'un programme accédé par réseau les mêmes droits que les utilisateurs d'un programme installé localement.
-
-La GPL a été adaptée au droit français par le CEA, CNRS, INRIA sous le nom de CECILL. Sa version 2 est compatible avec la licence publique générale GNU.
-
-Le 28 mars 2007 le tribunal de grande instance de Paris a jugé applicable la licence GPL (v2).
-
-### La licence BSD
-
-La licence BSD permet l'utilisation du logiciel et la réutilisation de n'importe quelle partie de son code source sans restriction. La seule obligation était la mention des auteurs initiaux.
-
-Pour pouvoir utiliser le logiciel écrit sous licence BSD l'utilisateur accepte de ne pas se retourner contre les auteurs en cas de problèmes.
-
-Un logiciel propriétaire peut donc être réalisé à partir du code source d'un logiciel BSD (C.f. pile TCP/IP dans Windows).
 
 ### GNU/Linux
 
@@ -3233,30 +3129,19 @@ Vérification de la conformité pep8 :
 
 ### La séquence de boot
 
-Au démarrage de l'ordinateur, le bios cherche un périphérique d'amorçage selon l'ordre établi par sa séquence de boot.
+La séquence de boot est une étape clé dans le processus de démarrage de l'ordinateur. Lorsque l'ordinateur est allumé, le bios (basic input output system) recherche le périphérique d'amorçage en suivant une séquence de boot préétablie.
 
-Le bios lance le chargeur (loader) qui se trouve dans le MBR (Master Boot Record) et qui ne fait que 512 octets.
+Le bios lance ensuite le chargeur (loader) qui se trouve dans le MBR (Master Boot Record) et qui ne fait que 512 octets. Si le chargeur est GRUB, alors le MBR ne contient que la première partie de GRUB, appelée "stage 1", qui a pour rôle de charger "stage 1.5" et "stage 2".
 
-Si le chargeur est GRUB, alors le MBR ne contient que la 1er partie de GRUB appelée *stage 1* qui à pour unique rôle de charger stage 1\_5 et stage 2.
+"Stage 1.5" contient le code d'accès aux différents systèmes de fichiers. Il est contenu dans les premiers secteurs et peut avoir une taille de 33ko. Ensuite, "stage 2" est chargé, il peut être n'importe où sur le disque.
 
-Stage 1\_5 contient le code d'accès aux différents systèmes de fichiers. Il est contenu dans les premiers secteurs et peut avoir une taille de 33ko.
+Une fois "stage 2" chargé, il propose à l'utilisateur de choisir le système d'exploitation ou la version du noyau à démarrer à travers un menu. L'utilisateur peut également modifier la configuration de démarrage en éditant le menu (en appuyant sur "e").
 
-Puis stage 2 est chargé, il peut être n'importe où sur le disque.
+Ensuite, "stage 2" charge l'image du système d'exploitation choisi. Ce fichier se trouve généralement dans "/boot" et porte un nom du type "vmlinuz-5.10.XXX". "/boot" contient également des fichiers "initrd" qui permettent de gérer les périphériques nécessitant le chargement de modules spécifiques, tels que les systèmes de fichiers non inclus au noyau.
 
-Stage 2 propose à l'utilisateur de choisir le système d'exploitation ou la version du noyau à démarrer à travers un menu.
+Le menu de démarrage passe quelques options à l'image du système, notamment le nom du périphérique contenant la racine, par exemple "root=/dev/sda1". Une fois le noyau lancé, il exécute "/sbin/init" avec 1 comme PID.
 
-L'utilisateur peut aussi modifier la configuration de démarrage en éditant le menu (appuyer sur *e*).
-
-Stage 2 charge alors l'image du système d'exploitation choisi, le fichier se trouve généralement dans */boot* et porte un nom du type *vmlinuz-2.6.XXX*.
-
-*/boot* contient aussi des fichiers *initrd* qui permettent de gérer les périphériques nécessitant le chargement de module spécifique (cas des systèmes de ficher non inclus au noyau).
-
-Le menu de démarrage passe quelques options à l'image du système, notamment le nom du périphérique contenant la racine exemple :
-*root=/dev/sda1*.
-
-Une fois le noyau lancé, il exécute */sbin/init* avec 1 comme PID.
-
-*init* démarre les démons qui vont par exemple configurer les services réseau.
+Enfin, "init" démarre les démons (nom usuel des applications qui tournent en arrière plan) qui vont, par exemple, configurer les services réseau et l'environnement de l'utilisateur.
 
 ### GRUB
 
