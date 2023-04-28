@@ -3067,144 +3067,8 @@ Vérification de la conformité pep8 :
 
 > (qt6\_env) <michaellaunay@luciole>:\~\$ flake8 demo.py
 
-# Initialisation du système et des services
-
-### La séquence de boot
-
-La séquence de boot est une étape clé dans le processus de démarrage de l'ordinateur. Lorsque l'ordinateur est allumé, le bios (basic input output system) recherche le périphérique d'amorçage en suivant une séquence de boot préétablie.
-
-Le bios lance ensuite le chargeur (loader) qui se trouve dans le MBR (Master Boot Record) et qui ne fait que 512 octets. Si le chargeur est GRUB, alors le MBR ne contient que la première partie de GRUB, appelée "stage 1", qui a pour rôle de charger "stage 1.5" et "stage 2".
-
-"Stage 1.5" contient le code d'accès aux différents systèmes de fichiers. Il est contenu dans les premiers secteurs et peut avoir une taille de 33ko. Ensuite, "stage 2" est chargé, il peut être n'importe où sur le disque.
-
-Une fois "stage 2" chargé, il propose à l'utilisateur de choisir le système d'exploitation ou la version du noyau à démarrer à travers un menu. L'utilisateur peut également modifier la configuration de démarrage en éditant le menu (en appuyant sur "e").
-
-Ensuite, "stage 2" charge l'image du système d'exploitation choisi. Ce fichier se trouve généralement dans "/boot" et porte un nom du type "vmlinuz-5.10.XXX". "/boot" contient également des fichiers "initrd" qui permettent de gérer les périphériques nécessitant le chargement de modules spécifiques, tels que les systèmes de fichiers non inclus au noyau.
-
-Le menu de démarrage passe quelques options à l'image du système, notamment le nom du périphérique contenant la racine, par exemple "root=/dev/sda1". Une fois le noyau lancé, il exécute "/sbin/init" avec 1 comme PID.
-
-Enfin, "init" démarre les démons (nom usuel des applications qui tournent en arrière plan) qui vont, par exemple, configurer les services réseau et l'environnement de l'utilisateur.
-
-### GRUB
-
-**GRUB** est l'acronyme de GRand Unified Bootloader.
-C'est un programme GNU de démarrage permettant de choisir le système d'exploitation qui sera chargé.
-
-Le fichier */boot/grub/menu.lst* permet de créer le menu de démarrage, et d'imposer un choix par défaut. + *GRUB* peut charger l'image du noyau depuis le réseau.
-
-La version 2 est celle installée avec Ubuntu 22.04.
-
-La mise à jour du noyau entraine la modification du fichier */boot/grub/grub.cfg*, mais il est possible de la forcer avec la commande **update-grub**.
-
-Pour customiser le bootloader on doit éditer le fichier /etc/grub.d/40\_custom
-
-Lors du démarage de Grub on peut passer des options au kernel en appuyant sur la touche \"e\".
-
-Voir la doc : <https://doc.ubuntu-fr.org/grub-pc>
-
-### Démarrage du noyau
-
-Il est possible de passer des options au noyau lors de son démarrage.
-
-La syntaxe des options est : :
-
-    option1=valeur option2=valeur1,valeur2
-
-### Les arguments ou paramètres du kernel
-
-Les principales options d'amorçage du noyau sont :
-
-> -   root=/dev/sda1 indique la partition système,
-> -   ro Indique que le système de fichier doit être monté en lecture seul,
-> -   init permet de démarrer un autre processus à la place d'*init*,
-> -   single ou emergency permet de passer en mode simple utilisateur et permet par exemple de pouvoir modifier le mot de passe root,
-> -   quiet démarre en mode silencieux,
-> -   nosmp n'utilise qu'un seul processeur,
-> -   noht pas d'hyper threading,
-> -   noapic pas de détection des interruptions,
-> -   nolapic aucune gestion des interruptions,
-> -   apm=off\|on désactive ou active la gestion de l'alimentation en énergie,
-> -   noresume ne réveille pas une hibernation.
-
-### Systemd vs InitV vs upstart
-
-\@TODO Systemd
-
-InitV signifie Init system V.
-
-Ce système est remplacé par **upstart** sur les dernières Ubuntu et Fedora.
-
-Au démarrage, le noyau lance *init*.
-
-L'ancien système était paramétrable via le fichier */etc/inittab* qui est remplacé par la notion de *job*.
-
-**init** lit le répertoire */etc/event.d* qui contient les jobs à lancer.
-
-Chaque job réalise des actions en fonction du niveau d'exécution du noyau.
-
-**init** se charge de maintenir les jobs opérationnels.
-
-La commande **initctl** permet de communiquer avec **init**.
-
-La liste des jobs démarrés est donnés par **initctl list** : :
-
-    root@luciole:~# initctl list
-    control-alt-delete (stop) waiting
-    last-good-boot (stop) waiting
-    logd (stop) waiting
-    rc-default (stop) waiting
-    rc0 (stop) waiting
-    rc1 (stop) waiting
-    rc2 (stop) waiting
-    rc3 (stop) waiting
-    rc4 (stop) waiting
-    rc5 (stop) waiting
-    rc6 (stop) waiting
-    rcS (stop) waiting
-    rcS-sulogin (stop) waiting
-    sulogin (stop) waiting
-    tty1 (start) running, process 10354
-    tty2 (start) running, process 8436
-    tty3 (start) running, process 8437
-    tty4 (start) running, process 8429
-    tty5 (start) running, process 8430
-    tty6 (start) running, process 8439
-
-Le lancement d'un job se fait par *initctl start rc0*, son arrêt par *initctl stop rc0*.
-
-Liens :
-
-> -   <http://www.digitbooks.fr/articles/2-upstart.html>
-
-### Les niveaux d'exécution (Run level)
-
-Signification des niveaux pour Ubuntu : :
-
-    Niveau S : Initialisation du système (le système de fichier est en read only),
-    Niveau 0 : Extinction,
-    Niveau 1 : Mode mono utilisateur,
-    Niveau 2 et 5 : Mode multi-utilisateur avec réseau avec démarrage du serveur X,
-    Niveau 6 : Reboot.
-
-### Le système de démarrage des services
-
-Lors du lancement d'*init* par le noyau, celui-ci transmet l'information de niveau à exécuter.
-
-Ainsi *init* lance les jobs en leur précisant le niveau demandé.
-
-Le job *rc5* lance */etc/init.d/rc 5*, qui à son tour va lancer les scripts contenus dans */etc/rc5.d* selon l'ordre lexicographique.
-
-Les répertoires */etc/rcX.d* contiennent des liens vers les scripts de */etc/init.d*.
-
-Les scripts contenus dans */etc/init.d* permettent de démarrer, arrêter, ou connaître le statut des démons.
-
-### Changement du niveau d'exécution
-
-Il est possible de changer le niveau d'exécution.
-
-Exemple pour arrêter la machine :
-
-> **initctl emit runlevel 0**
+# Initialisation lors du boot
+[[Initialisation système et des services]]
 
 # Modules
 Le noyau Linux est modulaire.
@@ -3882,6 +3746,65 @@ rua l'uri de la ressource à prévenir en cas d'usurpation.
 sp la politique des sous domainkeys.
 
 aspf s'il faut suivre spf à la lettre.
+
+## Créer un postfix de test
+Pour développer il peut être intéressant d'installer un postfix et rediriger tout le traffic dans des boites locales.
+```bash
+sudo apt install postfix mailutils
+# Choisir l'installation "site" et positioner un nom de domaine
+```
+Éditer /etc/postfix/main.cf
+```bash
+vim /etc/postfix/main.cf
+#Ajouter en fin de fichier
+recipient_canonical_maps = regexp:/etc/postfix/recipient_canonical
+mydestination = ecreall.com
+relayhost =
+home_mailbox = Maildir/
+mailbox_command =
+```
+Créer /etc/postfix/recipient_canonical
+```bash
+vim /etc/postfix/recipient_canonical
+#Ajouter
+/.*/    michaellaunay@ecreall.com
+```
+
+Générer la table de correspondances et redémarrer.
+```bash
+postmap /etc/postfix/recipient_canonical
+systemctl restart postfix
+```
+Tester
+```bash
+michaellaunay@leojag:~/workspace$ echo "Un super test d'envoi de mail" | mail -s "Test envoi" michaellaunay@gmail.com
+michaellaunay@leojag:~/workspace$ ls -lh /home/michaellaunay/Maildir/new/
+total 40K
+-rw------- 1 michaellaunay michaellaunay 479 avril 24 20:08 1682359681.V803I12e4dffM19518.leojag
+michaellaunay@leojag:~/workspace$ cat /home/michaellaunay/Maildir/new/1682359681.V803I12e4dffM19518.leojag
+Return-Path: <michaellaunay@leojag>
+X-Original-To: michaellaunay@gmail.com
+Delivered-To: michaellaunay@ecreall.com
+Received: by leojag.home (Postfix, from userid 1000)
+	id 032DFC0BE9; Mon, 24 Apr 2023 20:08:01 +0200 (CEST)
+Subject: Test envoi
+To: <michaellaunay@ecreall.com>
+User-Agent: mail (GNU Mailutils 3.14)
+Date: Mon, 24 Apr 2023 20:08:00 +0200
+Message-Id: <20230424180801.032DFC0BE9@leojag.home>
+From: Michaël Launay <michaellaunay@leojag>
+
+Un super test d'envoi de mail
+```
+De la même façon on peut jouer avec les paramètres :
+```bash
+vim /etc/postfix/main.cf
+#Modifications des mails
+smtpd_recipient_restrictions = reject #Bloque tout envoi
+sender_canonical_maps = regexp:/etc/postfix/sender_canonical #modifie l'émetteur
+sender_bcc_maps = regexp:/etc/postfix/sender_bcc #Modifie le CC
+always_bcc = destinataire_origine@example.com #Ajoute toujours un CC
+```
 
 ## MySQL
 ### Présentation
