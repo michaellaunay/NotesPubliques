@@ -148,7 +148,7 @@ N'oubliez pas que la taille du swap doit être au moins égale à celle de la m�
 
 ## Installation de GNU/Linux Ubuntu en version serveur
 
-La philosophie des distributions serveur est moins il y a de programmes installés plus le système est stable et moins il y a de faille de sécurité.
+La philosophie des distributions serveur est : moins il y a de programmes installés, plus le système est stable et moins il y a de failles de sécurité.
 
 En conséquence, les interfaces graphiques ne sont disponibles qu'en option et le moyen privilégié d'administrer le système est la ligne de commande.
 

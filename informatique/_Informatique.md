@@ -21,12 +21,18 @@
 [[Markdown]]
 [[SQLAchemy]]
 
+# Architecture et conception
+[[UML Ecore EMF Plantuml QVT Mermaid PyEcore]]
+
 # Culture
 [[DevOps Project Manager]]
 [[Émulation jeux d'arcad]]
 
 ## Ressources
 [[Ressources pour le web]]
+
+# Virtualisation
+[[Virtualisation sur Android]]
 
 ## Clients
 [[KuneAgit buildout.cfg]]
