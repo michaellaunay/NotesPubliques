@@ -11,13 +11,13 @@ content : GNU/Linux french training based on https://github.com/michaellaunay/Co
 # Objectif
 Cette formation a pour but de fournir les bases indispensables à l'utilisation et à l'administration des systèmes GNU/Linux.
 
-La formation privilégie la distribution Ubuntu.
+Cette formation privilégie la distribution Ubuntu.
 
 # Introduction
 
 En 1991, l'étudiant finlandais Linus Torvalds publie sur internet l'intégralité du code source d'un noyau Unix qu'il a écrit en C et en assembleur et qui fonctionne sur PC AT 386(486).
 
-Depuis cette date GNU/Linux ne cesse d'évoluer. Il occupe en 2020 moins de 3,61%[^1] du marché mondial des systèmes d'exploitation pour ordinateur personnel, plus de 60% des serveurs web, prés de 75% du Cloud et plus de 80% des smartphones (Android étant basé sur GNU/Linux) et est en autre utilisé en France par la Gendarmerie (Ubuntu) et par l'Assemblée Nationale (Ubuntu), dans la Freebox, par l'entreprise Google (Android) et la fondation Wikipedia (serveur Ubuntu).
+Depuis cette date GNU/Linux ne cesse d'évoluer. Il occupe en 2020 moins de 3,61% du marché mondial des systèmes d'exploitation pour ordinateur personnel, plus de 60% des serveurs web, prés de 75% du Cloud et plus de 80% des smartphones (Android étant basé sur GNU/Linux) et est en autre utilisé en France par la Gendarmerie (Ubuntu) et par l'Assemblée Nationale (Ubuntu), dans la Freebox, par l'entreprise Google (Android) et la fondation Wikipedia (serveur Ubuntu).
 
 # Histoire
 [[Historique Linux]]
