@@ -2,19 +2,6 @@
 # Objectif
 Nous allons voir ici comment installer et utiliser Docker. Docker est un système de conteneurisation, c'est-à-dire qu'il permet de crée des images d'une autre distribution très légère qui utilisent ou partagent les ressources de l'ordinateur hôte.
 
-# Plan
-
-1.  Introduction à Docker : qu'est-ce qu'un conteneur, comment il diffère d'une machine virtuelle, pourquoi utiliser Docker
-2.  Installation de Docker sur différentes plateformes (Windows, Mac, Linux)
-3.  Les commandes de base de Docker : pull, run, stop, start, etc.
-4.  Utilisation de Dockerfiles pour créer des images de conteneurs personnalisées
-5.  Utilisation de Docker Compose pour définir et exécuter des applications multi-conteneurs
-6.  Utilisation de Docker Swarm ou Kubernetes pour gérer des clusters de conteneurs
-7.  Utilisation de Docker dans les pipelines de déploiement continu
-8.  Utilisation de Docker pour les tests et les développements d'applications
-9.  Utilisation de Docker dans les environnements de production
-10.  Conclusion : bénéfices de l'utilisation de Docker, tendances futures.
-
 # Introduction à Docker
 
 Docker est un logiciel qui permet d'empaqueter une application avec toutes ses dépendances, et de les exécuter de manière isolée dans un environnement standardisé.
@@ -29,8 +16,8 @@ Les images sont décrites au format texte dans des fichiers appellés DockerFile
 Ces modèles d'images sont partagés sur un dépôt public appelé DockerHUB accessible à l'adresse https://www.docker.com/ .
 Toutefois, il faut faire attention au DockerFile qui y sont, car il y a peu ou pas de vérification de la majorité des images.
 
-Sur windows 11, Docker utilise [[WSL2]] et propose sa configuration lors de son installation, généralement on va chercher le logiciel Docker sur https://docker.com (voir https://www.youtube.com/watch?v=6Wpp6C8cUf0&ab_channel=angleformation )
-Sur Ubuntu ou Debian, soit on utilise les packets de la distribution soit on télécharge la dernière version ( https://youtu.be/AWJG-AbGFik )
+Sur windows 11, Docker utilise [[WSL2]] et propose sa configuration lors de son installation, généralement nous allons chercher le logiciel Docker sur https://docker.com (voir https://www.youtube.com/watch?v=6Wpp6C8cUf0&ab_channel=angleformation )
+Sur Ubuntu ou Debian, soit nous utilisons les packets de la distribution soit nous téléchargeons la dernière version ( https://youtu.be/AWJG-AbGFik )
 
 # Définition
 Docker est un logiciel open-source qui facilite la création, le déploiement et l'exécution d'applications dans des conteneurs logiciels. Un conteneur est un environnement logiciel qui contient tout ce dont une application a besoin pour fonctionner, comme les bibliothèques, les outils de développement et les fichiers de configuration. Les conteneurs sont similaires aux machines virtuelles, mais ils sont beaucoup plus légers et plus rapides à démarrer, car ils partagent les ressources de l'hôte sur lequel ils sont exécutés.
@@ -39,12 +26,11 @@ L'un des avantages clés de Docker est sa portabilité. Les conteneurs Docker pe
 
 Docker utilise des images pour construire les conteneurs. Une image est une capture de l'état d'une application, qui comprend tous les fichiers et les configurations nécessaires pour exécuter l'application. Il est possible de créer des images à partir de conteneurs existants ou de construire des images à partir de zéro en utilisant un script de construction appelé "Dockerfile".
 
-Docker permet également de gérer facilement les conteneurs à l'échelle. On peut utiliser des outils tels que Docker Compose pour définir des applications multi-conteneurs et les déployer sur plusieurs serveurs, ou utiliser des services tels que Kubernetes pour gérer les conteneurs à l'échelle de production.
+Docker permet également de gérer facilement les conteneurs à l'échelle. Nous pouvons utiliser des outils tels que Docker Compose pour définir des applications multi-conteneurs et les déployer sur plusieurs serveurs, ou utiliser des services tels que Kubernetes pour gérer les conteneurs à l'échelle de production.
 
 En résumé, Docker est un système de virtualisation de conteneurs qui permet de créer, de déployer et d'exécuter des applications de manière efficiente et portable.
 
-
-# Chapitre 2 installation
+# Installation
 Pour installer docker le plus simple est d'utiliser la version des dépôts et donc de faire : :
 ```bash
 apt install docker
@@ -109,7 +95,7 @@ Pour faire le ménage de toutes les images non en cours d'exécution : :
 
 Différentes versions d'une image existent, elles sont taguées et il suffit de descendre l'une d'elles pour avoir une image partielle.
 
-Pour tester la future version de python par exemple on peut faire : :
+Pour tester la future version de python par exemple nous pouvons faire : :
 
     docker run python:3.11-rc-alpine python -c "from typing import TypeVar; help(TypeVar)"
 
@@ -143,47 +129,38 @@ Pour utiliser le système de fichier du host à la place de celui du Contener, c
     # pour passer un fichier de Variables
     docker run -tid --env-file fichier_env --name web nginx:latest
 
-Docker file
+# Les commandes de bases
+Les commandes de base les plus couramment utilisées sont :
+-   `docker pull` : pour télécharger une image de conteneur depuis un registre
+-   `docker run` : pour exécuter un conteneur à partir d'une image
+-   `docker stop` : pour arrêter un conteneur en cours d'exécution
+-   `docker start` : pour démarrer un conteneur qui a été arrêté
+-   `docker rm` : pour supprimer un conteneur
+-   `docker images` : pour lister les images de conteneurs locales
+-   `docker ps` : pour lister les conteneurs en cours d'exécution
 
-> <https://youtu.be/Ik_mC7JSJ-A>
+## Exemples
+-   Télécharger l'image de conteneur `nginx` en utilisant la commande `docker pull nginx`
+-   Exécuter un conteneur à partir de l'image `nginx` en utilisant la commande `docker run --name mynginx -p 80:80 -d nginx`
+-   Arrêter un conteneur en cours d'exécution en utilisant la commande `docker stop mynginx`
+-   Démarrer un conteneur qui a été arrêté en utilisant la commande `docker start mynginx`
+-   Supprimer un conteneur en utilisant la commande `docker rm mynginx`
+-   Lister les images de conteneurs locales en utilisant la commande `docker images`
+-   Lister les conteneurs en cours d'exécution en utilisant la commande `docker ps`
 
-Liens :
+## Mise en pratique
+-   Télécharger une image de conteneur
+-   Exécuter un conteneur à partir de l'image téléchargée
+-   Arrêter et supprimer le conteneur
+-   Lister les images de conteneurs locales et les conteneurs en cours d'exécution
 
-> -   <https://docs.docker.com/engine/install/#server>
-> -   <https://www.nextinpact.com/article/48913/docker-et-conteneurisation-par-exemple>
-
-
-## chapitre 3 Les commandes de bases
-
-3.  Les commandes de base de Docker :
-    -   Introduction : le client Docker permet de gérer les conteneurs sur une machine hôte. Les commandes de base les plus couramment utilisées sont :
-        -   `docker pull` : pour télécharger une image de conteneur depuis un registre
-        -   `docker run` : pour exécuter un conteneur à partir d'une image
-        -   `docker stop` : pour arrêter un conteneur en cours d'exécution
-        -   `docker start` : pour démarrer un conteneur qui a été arrêté
-        -   `docker rm` : pour supprimer un conteneur
-        -   `docker images` : pour lister les images de conteneurs locales
-        -   `docker ps` : pour lister les conteneurs en cours d'exécution
-    -   Exemples :
-        -   Télécharger l'image de conteneur `nginx` en utilisant la commande `docker pull nginx`
-        -   Exécuter un conteneur à partir de l'image `nginx` en utilisant la commande `docker run --name mynginx -p 80:80 -d nginx`
-        -   Arrêter un conteneur en cours d'exécution en utilisant la commande `docker stop mynginx`
-        -   Démarrer un conteneur qui a été arrêté en utilisant la commande `docker start mynginx`
-        -   Supprimer un conteneur en utilisant la commande `docker rm mynginx`
-        -   Lister les images de conteneurs locales en utilisant la commande `docker images`
-        -   Lister les conteneurs en cours d'exécution en utilisant la commande `docker ps`
-    -   Pratique :
-        -   Télécharger une image de conteneur
-        -   Exécuter un conteneur à partir de l'image téléchargée
-        -   Arrêter et supprimer le conteneur
-        -   Lister les images de conteneurs locales et les conteneurs en cours d'exécution
-## Principales commandes
-### Installation
+# Principales commandes
+## Installation
 ```bash
 apt install docker.io
 
 ```
-### Liste des commandes
+## Liste des commandes
 ```
 root@leojag:~# docker
 
@@ -269,33 +246,33 @@ Run 'docker COMMAND --help' for more information on a command.
 To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
 
 ```
-### Commandes les plus couramment utilisées
+## Commandes les plus couramment utilisées
 
--   `docker run` : cette commande permet de lancer un conteneur à partir d'une image. Par exemple, pour lancer un conteneur à partir de l'image Ubuntu, vous pourriez utiliser la commande `docker run ubuntu`.
+-   `docker run` : cette commande permet de lancer un conteneur à partir d'une image. Par exemple, pour lancer un conteneur à partir de l'image Ubuntu, nous pourrions utiliser la commande `docker run ubuntu`.
     
 -   `docker ps` : cette commande permet de voir les conteneurs en cours d'exécution sur le système. Elle affiche des informations telles que l'ID du conteneur, le nom, le statut, etc.
     
--   `docker stop` : cette commande permet d'arrêter un conteneur en cours d'exécution. Par exemple, pour arrêter un conteneur avec l'ID `abc123`, vous pourriez utiliser la commande `docker stop abc123`.
+-   `docker stop` : cette commande permet d'arrêter un conteneur en cours d'exécution. Par exemple, pour arrêter un conteneur avec l'ID `abc123`, nous pourrions utiliser la commande `docker stop abc123`.
     
 -   `docker images` : cette commande permet de voir les images disponibles sur le système. Elle affiche des informations telles que l'ID de l'image, le nom, la taille, etc.
     
--   `docker pull` : cette commande permet de télécharger une image depuis un registre Docker. Par exemple, pour télécharger l'image Ubuntu, vous pourriez utiliser la commande `docker pull ubuntu`.
+-   `docker pull` : cette commande permet de télécharger une image depuis un registre Docker. Par exemple, pour télécharger l'image Ubuntu, nous pourrions utiliser la commande `docker pull ubuntu`.
     
--   `docker build` : cette commande permet de construire une image à partir d'un fichier "Dockerfile". Par exemple, si vous avez un fichier "Dockerfile" dans le répertoire courant, vous pourriez utiliser la commande `docker build .` pour construire une image à partir de ce fichier.
+-   `docker build` : cette commande permet de construire une image à partir d'un fichier "Dockerfile". Par exemple, si nous avons un fichier "Dockerfile" dans le répertoire courant, nous pourrions utiliser la commande `docker build .` pour construire une image à partir de ce fichier.
     
--   `docker push` : cette commande permet de pousser une image vers un registre Docker. Par exemple, si vous avez construit une image et que vous voulez la partager avec d'autres, vous pourriez utiliser la commande `docker push nom_de_l_image`
+-   `docker push` : cette commande permet de pousser une image vers un registre Docker. Par exemple, si nous avons construit une image et que nous voulons la partager avec d'autres, nous pourrions utiliser la commande `docker push nom_de_l_image`
     
--   `docker exec` : cette commande permet d'exécuter une commande dans un conteneur en cours d'exécution. Par exemple, pour ouvrir une session shell dans un conteneur avec l'ID `abc123`, vous pourriez utiliser la commande `docker exec -it abc123 /bin/bash`.
+-   `docker exec` : cette commande permet d'exécuter une commande dans un conteneur en cours d'exécution. Par exemple, pour ouvrir une session shell dans un conteneur avec l'ID `abc123`, nous pourrions utiliser la commande `docker exec -it abc123 /bin/bash`.
 
-### Voir les conteneurs qui tournent
+## Voir les conteneurs qui tournent
 ```bash
 docker ps
 ```
-### Voir tous les conteneurs
+## Voir tous les conteneurs
 ```bash
 docker ps -a
 ```
-### Descendre une image
+## Descendre une image
 ```
 docker pull alpine:latest
 	latest: Pulling from library/alpine
@@ -305,11 +282,12 @@ docker pull alpine:latest
 	docker.io/library/alpine:latest
 ```
 
-### Lancer un conteneur
+## Lancer un conteneur
 ```
 root@leojag:~# docker run alpine
 ```
-### Lancer en mode interactif un conteneur
+
+## Lancer en mode interactif un conteneur
 ```
 root@leojag:~# docker run -di --name mon_instance_d_alpine alpine
 root@leojag:~# docker exec -ti mon_instance sh
@@ -325,86 +303,84 @@ mon_instance
 
 ```
 L'option -name permet de fixer un nom sans quoi docker met des noms au hazard.
-### chapitre 4 Utilisation de Dockerfiles
 
-4.  Utilisation de Dockerfiles pour créer des images de conteneurs personnalisées :
-    -   Introduction : un Dockerfile est un script qui décrit les étapes pour construire une image de conteneur. Il contient des instructions telles que quelles paquets installer, quelles variables d'environnement configurer, quels fichiers copier, etc.
-    -   Les instructions couramment utilisées dans un Dockerfile :
-        -   `FROM` : spécifie l'image de base à utiliser pour construire l'image personnalisée
-        -   `RUN` : exécute une commande pour installer des paquets ou configurer des variables d'environnement
-        -   `COPY` : copie des fichiers de la machine hôte vers le conteneur
-        -   `ENV` : définit des variables d'environnement
-        -   `CMD` : spécifie la commande à exécuter lorsque le conteneur est démarré
-    -   Exemples :
-        -   Un exemple de Dockerfile qui crée une image de conteneur qui exécute un serveur web Nginx FROM nginx:latest COPY index.html /usr/share/nginx/html CMD ["nginx", "-g", "daemon off;"]
-    -   Pratique :
-        -   Créez un fichier Dockerfile
-        -   Utilisez les instructions pour construire une image personnalisée
-        -   Exécutez un conteneur à partir de l'image personnalisée
+# Les Dockerfiles
+Le Dockerfile est le fichier de configuration pour produire des images Docker.
+Il contient une séquences d'instructions indiquant comment construire l'image.
+Ces séquences sont constituées des mots clés : FROM, ARG, ENV, RUN, VOLUME, COPY, USER, ENTRYPOINT, CMD.
 
-## chapitre 5 Utilisation de Docker Compose
+Le mot-clé FROM est utilisé pour savoir sur quelle image source nous baserons l'image en cours de construction. Il est important de choisir une image de base adaptée à notre application, afin de minimiser la taille de l'image finale.
 
-5.  Utilisation de Docker Compose pour définir et exécuter des applications multi-conteneurs :
-    -   Introduction : Docker Compose est un outil qui permet de définir et de gérer des applications multi-conteneurs en utilisant un fichier de configuration. Il facilite la création, la mise à l'échelle et la gestion des conteneurs d'une application complexe.
-    -   Les concepts clés de Docker Compose :
-        -   Services : les conteneurs d'une application qui sont gérés par Compose
-        -   Compose file : le fichier de configuration qui décrit les services, les réseaux et les volumes pour une application
-        -   Réseaux : les réseaux virtuels qui sont créés pour connecter les services entre eux
-        -   Volumes : les données partagées entre les services
-    -   Exemples :
-        -   Un exemple de Compose file qui définit une application web qui utilise un service Nginx et un service MySQL version: '3' services: web: build: . ports: - "8000:8000" depends_on: - db db: image: mysql:5.7 environment: MYSQL_ROOT_PASSWORD: example
-    -   Pratique :
-        -   Créez un fichier Compose file
-        -   Utilisez les instructions pour définir une application multi-conteneurs
-        -   Exécutez l'application en utilisant les commandes de Compose
+Le mot-clé ARG est utilisé pour passer des variables uniquement lors de la construction de l'image. Cela peut être utile pour transmettre des secrets ou des informations sensibles qui ne doivent pas être stockées dans l'image.
 
-## Chapitre 6
-Nous allons aborder les raisons pour lesquelles il peut être nécessaire d'utiliser un système de gestion de clusters et les différentes situations où cela peut être bénéfique.
+Le mot-clé ENV permet de définir des variables qui seront valables lors de l'exécution du conteneur. Par exemple, nous pouvons définir une variable d'environnement pour indiquer le port sur lequel notre application écoute.
 
-Les raisons pour lesquelles vous pourriez vouloir utiliser un système de gestion de clusters incluent :
+Le mot-clé RUN permet d'exécuter des commandes à l'intérieur de l'image en cours de construction. Cela peut être utilisé pour installer des dépendances, configurer des paramètres, etc.
 
-    La haute disponibilité : en utilisant un cluster, vous pouvez vous assurer que votre application est toujours disponible même si un conteneur ou un noeud échoue.
-    La scalabilité : les clusters permettent de facilement ajouter ou retirer des conteneurs pour répondre aux besoins changeants de votre application.
-    La répartition de charge : en répartissant les conteneurs sur plusieurs noeuds, vous pouvez équilibrer la charge sur votre système pour éviter les surcharges.
+Le mot-clé VOLUME permet de définir des points de montage pour des volumes externes. Cela permet de stocker des données en dehors de l'image, afin de pouvoir les partager entre plusieurs conteneurs.
 
-Il y a plusieurs systèmes de gestion de clusters disponibles, tels que Docker Swarm et Kubernetes. Ces systèmes sont utilisés pour gérer des clusters de conteneurs en production. Ils permettent de décrire les déploiements, les services et les volumes de manière déclarative.
+Le mot-clé COPY permet de copier des fichiers ou des répertoires depuis l'hôte vers l'image en cours de construction. Cela peut être utilisé pour ajouter des fichiers de configuration, des scripts, etc.
 
-Il y a aussi des avantages et des limites à utiliser un système de gestion de clusters.
+Le mot-clé USER permet de définir l'utilisateur qui sera utilisé pour exécuter les commandes à l'intérieur de l'image. Cela peut être utile pour renforcer la sécurité en limitant les privilèges d'exécution.
 
-Avantages de l'utilisation de système de gestion de clusters :
+Le mot-clé ENTRYPOINT permet de définir la commande qui sera exécutée lorsque le conteneur est démarré. Cela peut être utilisé pour lancer une application ou un script spécifique.
 
-    Scalabilité : les clusters de conteneurs permettent de facilement ajouter ou retirer des noeuds pour répondre aux besoins changeants de l'application. Cela permet d'optimiser les ressources utilisées et de gérer les pics de charge.
+Enfin, le mot-clé CMD permet de définir les arguments à passer à l'entrée de la commande ENTRYPOINT. Cela peut être utilisé pour paramétrer l'application ou le script lancé.
 
-    Disponibilité : en utilisant des clusters, les applications peuvent être mises à l'échelle pour gérer les échecs de noeuds individuels. Les systèmes de gestion de clusters permettent également de mettre en place des stratégies de tolérance de panne pour maintenir la disponibilité de l'application.
+## Exemples
+Un exemple de Dockerfile qui crée une image de conteneur qui exécute un serveur web Nginx sur une page index.html présente sur la machine hôte.
+```dockerfile
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
+```
 
-    Flexibilité : les systèmes de gestion de clusters permettent de déployer des applications sur différents types de noeuds, y compris des environnements cloud et edge, offrant ainsi plus de flexibilité pour les déploiements.
+## Pratique
+-   Créez un fichier Dockerfile
+-   Utilisez les instructions pour construire une image personnalisée
+-   Exécutez un conteneur à partir de l'image personnalisée
 
-    Automatisation : les systèmes de gestion de clusters automatisent de nombreuses tâches liées à la gestion des clusters, telles que le déploiement, la mise à l'échelle et la surveillance.
+# Utilisation de Docker Compose
 
-Limites de l'utilisation de système de gestion de clusters :
+Utilisation de Docker Compose pour définir et exécuter des applications multi-conteneurs :
+## Introduction
+Docker Compose est un outil qui permet de définir et de gérer des applications multi-conteneurs en utilisant un fichier de configuration. Il facilite la création, la mise à l'échelle et la gestion des conteneurs d'une application complexe.
+## Les concepts clés de Docker Compose
+	-   Services : les conteneurs d'une application qui sont gérés par Compose
+	-   Compose file : le fichier de configuration qui décrit les services, les réseaux et les volumes pour une application
+	-   Réseaux : les réseaux virtuels qui sont créés pour connecter les services entre eux
+	-   Volumes : les données partagées entre les services
+## Exemples
+Un exemple de Compose file qui définit une application web qui utilise un service Nginx :
+``` docker-compose.yml
+    reverseproxy:
+        image: reverseproxy
+        ports:
+            - 8080:8080
+            - 8081:8081
+        restart: always
+ 
+    nginx:
+        depends_on:
+            - reverseproxy
+        image: nginx:alpine
+        restart: always
+ 
+    apache:
+        depends_on:
+            - reverseproxy
+        image: httpd:alpine
+        restart: always
+```
 
-    Complexité : la gestion de clusters peut être complexe et nécessiter des compétences spécifiques pour la mise en place et la maintenance des systèmes.
-
-    Portabilité : Les clusters de conteneurs peuvent être déployés sur différentes plateformes, notamment les clouds publics, privés et hybrides, ce qui permet une portabilité accrue.
-
-Limites :
-
-    La complexité accrue : Gérer un cluster de conteneurs est plus complexe que de gérer un conteneur unique. Il y a plus de composants à surveiller et configurer, et les erreurs peuvent être plus difficiles à identifier et à résoudre.
-    La nécessité de compétences supplémentaires : Les administrateurs de systèmes et les développeurs doivent avoir des compétences supplémentaires pour gérer et déployer efficacement des clusters de conteneurs.
-    Les coûts supplémentaires : Les systèmes de gestion de clusters peuvent avoir des coûts supplémentaires liés à la gestion et à l'exploitation des ressources supplémentaires nécessaires pour gérer le cluster.
-    La consommation de ressources : Les clusters de conteneurs peuvent consommer plus de ressources système que les conteneurs individuels, ce qui peut nécessiter des mises à niveau matérielles coûteuses.
-
-Il est important de noter que la gestion de clusters de conteneurs peut être complexe et nécessiter une expertise technique élevée. Il peut également y avoir des coûts supplémentaires liés à l'utilisation d'un système de gestion de clusters,
-
-mais ces coûts peuvent être considérablement réduits grâce à l'automatisation et à l'optimisation des ressources.
-
-Il est également important de choisir un système de gestion de clusters adapté à vos besoins spécifiques en termes de scalabilité, de disponibilité et de flexibilité. Il existe de nombreux systèmes de gestion de clusters différents, tels que Kubernetes, Docker Swarm, Apache Mesos, etc. chacun ayant ses propres avantages et limites.
-
-En résumé, les systèmes de gestion de clusters de conteneurs peuvent offrir une scalabilité, une disponibilité et une flexibilité accrues pour les applications, mais ils peuvent également être plus complexes à gérer et nécessiter des compétences supplémentaires et des coûts supplémentaires. Il est important de peser les avantages et les limites pour déterminer si l'utilisation d'un système de gestion de clusters est appropriée pour votre environnement.
+## Pratique
+-   Créez un fichier Compose file
+-   Utilisez les instructions pour définir une application multi-conteneurs
+-   Exécutez l'application en utilisant les commandes de Compose
 
 # Les réseaux
 Par défaut docker propose 3 types de réseau Bridget, Host, Aucun. Et il permet d'en créer ce qui remplace l'ancienne commande "--link".
-Pour des conteneurs qui fonctionnent on peut intérogger leur adresse et numéro de port avec les commandes :
+Pour des conteneurs qui fonctionnent nous pouvons intérogger leur adresse et numéro de port avec les commandes :
 ```bash
 michaellaunay@leojag:~$ docker run -d --name c2 nginx:latest
 f3ba0b7b5e5b77656675a146ca2ff677fa67bfab865470ba39814168ada106f4
@@ -511,7 +487,54 @@ root@7b22e62a8086:/# ping C2
 PING C2 (192.168.7.2) 56(84) bytes of data.
 64 bytes from c2.MonReseau0 (192.168.7.2): icmp_seq=1 ttl=64 time=0.095 ms
 ```
-**Attention** à ne pas créer un sous réseau avec les mêmes adresses que votre réseau privé !
+**Attention** à ne pas créer un sous réseau avec les mêmes adresses que notre réseau privé !
 
-## Lien
-https://youtu.be/wQIyczrZNQM
+# Gestion de clusters
+Nous allons aborder les raisons pour lesquelles il peut être nécessaire d'utiliser un système de gestion de clusters et les différentes situations où cela peut être bénéfique.
+
+Les raisons pour lesquelles nous pourrions vouloir utiliser un système de gestion de clusters incluent :
+
+- La haute disponibilité : en utilisant un cluster, nous pouvons nous assurer que notre application est toujours disponible même si un conteneur ou un noeud échoue.
+- La scalabilité : les clusters permettent de facilement ajouter ou retirer des conteneurs pour répondre aux besoins changeants de notre application.
+- La répartition de charge : en répartissant les conteneurs sur plusieurs noeuds, nous pouvons équilibrer la charge sur notre système pour éviter les surcharges.
+
+Il y a plusieurs systèmes de gestion de clusters disponibles, tels que Docker Swarm et Kubernetes. Ces systèmes sont utilisés pour gérer des clusters de conteneurs en production. Ils permettent de décrire les déploiements, les services et les volumes de manière déclarative.
+
+Il y a aussi des avantages et des limites à utiliser un système de gestion de clusters.
+
+## Avantages
+
+Scalabilité : les clusters de conteneurs permettent de facilement ajouter ou retirer des noeuds pour répondre aux besoins changeants de l'application. Cela permet d'optimiser les ressources utilisées et de gérer les pics de charge.
+
+Disponibilité : en utilisant des clusters, les applications peuvent être mises à l'échelle pour gérer les échecs de noeuds individuels. Les systèmes de gestion de clusters permettent également de mettre en place des stratégies de tolérance de panne pour maintenir la disponibilité de l'application.
+
+Flexibilité : les systèmes de gestion de clusters permettent de déployer des applications sur différents types de noeuds, y compris des environnements cloud et edge, offrant ainsi plus de flexibilité pour les déploiements.
+
+Automatisation : les systèmes de gestion de clusters automatisent de nombreuses tâches liées à la gestion des clusters, telles que le déploiement, la mise à l'échelle et la surveillance.
+
+## Limites
+Portabilité : Les clusters de conteneurs peuvent être déployés sur différentes plateformes, notamment les clouds publics, privés et hybrides, ce qui permet une portabilité accrue.
+
+Complexité accrue : Gérer un cluster de conteneurs est plus complexe que de gérer un conteneur unique. Il y a plus de composants à surveiller et configurer, et les erreurs peuvent être plus difficiles à identifier et à résoudre.
+
+La nécessité de compétences supplémentaires : Les administrateurs de systèmes et les développeurs doivent avoir des compétences supplémentaires pour gérer et déployer efficacement des clusters de conteneurs.
+
+Les coûts supplémentaires : Les systèmes de gestion de clusters peuvent avoir des coûts supplémentaires liés à la gestion et à l'exploitation des ressources supplémentaires nécessaires pour gérer le cluster.
+
+La consommation de ressources : Les clusters de conteneurs peuvent consommer plus de ressources système que les conteneurs individuels, ce qui peut nécessiter des mises à niveau matérielles coûteuses.
+
+Il est important de noter que la gestion de clusters de conteneurs peut être complexe et nécessiter une expertise technique élevée. Il peut également y avoir des coûts supplémentaires liés à l'utilisation d'un système de gestion de clusters, mais ces coûts peuvent être considérablement réduits grâce à l'automatisation et à l'optimisation des ressources.
+
+Il est également important de choisir un système de gestion de clusters adapté à nos besoins spécifiques en termes de scalabilité, de disponibilité et de flexibilité. Il existe de nombreux systèmes de gestion de clusters différents, tels que Kubernetes, Docker Swarm, Apache Mesos, etc. chacun ayant ses propres avantages et limites.
+
+# Liens
+> [Premier Pas & Installation](https://youtu.be/AWJG-AbGFik)
+> [Le Dockerfile et ses instructions](https://youtu.be/BUJAI1ptUu8)
+> [Les layers Docker](https://youtu.be/_iUjrWhzx9o)
+> [Les différents types de volumes docker](https://youtu.be/vHGwkA9fsIs)
+> [Les volumes](https://youtu.be/lstTLSM5494)
+> [Le UserID pour les volumes](https://youtu.be/SI1mhq-f0rg)
+> [Docker pour Gitlab](https://youtu.be/Wbaczrx-US0)
+> [Documentation officielle](https://docs.docker.com/engine/install/#server)
+> [Article NextInpact](https://www.nextinpact.com/article/48913/docker-et-conteneurisation-par-exemple)
+> [Network, réseau personnalisé, ip et driver host](https://youtu.be/wQIyczrZNQM)
