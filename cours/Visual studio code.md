@@ -32,6 +32,56 @@ Le plus simple est d'aller sur le site @TODO.
     reStructuredText (pip install snooty-lextudio, pip install sphinx sphinx-autobuild, pip install rstcheck)
     docstrings
 
+# Usage
+## Prévisualisation vs édition
+On peut soit prévisualiser en faisant un simple clic ce qui ouvre temporairement un onglet dont le titre est en italique, soit ouvrir en édition par double clic des fichiers ou des répertoires.
+La prévisualisation n'ouvre pas définitivement l'onglet dont le contenu sera remplacé par la prévisualisation suivante.
+
+## Notification de l'édition d'un fichier
+Un fichier modifié a son titre dans son onglet suivit d'un gros point et non plus de la croix de fermeture.
+
+## Enregistrement automatique
+Il est possible d'enregistrer automatiquement toute modification d'un fichier. Pour cela il suffit d'aller dans le menu **Fichier** puis de cliquer sur **Enregistrement automatique**. Dès lors toute modification du contenu est enregistrée.
+
+## Changer le thème
+Pour modifier l'apparence, il suffit de faire "Ctrl Maj P", saisir Theme et  choisir "Préférences : Thème de couleur". Nous pouvons alors soit faire  défiler les thèmes et appliquer l'un des thèmes embarqués soit en remontant la liste aller en télécharger un en ligne.
+
+## Playground
+VS Code propose un "Terrain de jeux", c'est un bac à sable permettant de tester l'application.
+Il est accessible depuis le menu "Aide".
+
+## Comprendre l'interface
+Pour apprendre à connaître l'interface de VS Code, nous pouvons aller dans le menu **Aide** puis **Bienvenue**, nous avons alors accès à plein de tutoriaux et de documentations. Le plus simple est alors de démarrer un terrain de jeu.
+
+## Les projets
+Pour VS Code un répertoire est un projet qu'il appelle **workspace**. Ainsi pour gérer toutes les parties du code d'un projet (backend et frontend par exemple), il suffit d'ouvrir le dossier parent.
+On peut créer une instance de VS Code dédiée à un projet en faisant les touches Ctrl Maj N.
+Regarder les **Ouvrir les éléments récents** depuis le menu **Fichier** permet de passer de workspace en workspace.
+
+## Le panneau de contrôles
+Le panneau de contrôles accessible avec le raccourci "Ctrl p" permet d'afficher le moteur de recherche des commandes et donc par autocomplétion de trouver rapidement la fonctionnalité que l'on veut excécuter.
+
+## Créer des fichiers
+Pour créer un fichier, il suffit de se placer dans le répertoire voulu d'un workspace (le répertoire racine de votre projet) et de faire "Ctrl n".
+
+## Afficher des "Previews"
+Pour cela il faut installer le module "Live preview" de Microsoft.
+Ensuite, depuis l'explorateur de fichier faire un clic droit et choisir l'action "Afficher l'aperçu".
+
+# Multisélection
+**Ajouter un curseur à plusieurs endroits**: Maintenez la touche `Alt` (Windows/Linux) ou `Option` (Mac) enfoncée et cliquez avec la souris aux endroits où nous souhaitons ajouter des curseurs supplémentaires.
+    
+**Sélectionner toutes les occurrences d'un mot**: Placez votre curseur sur le mot que nous souhaitons sélectionner et appuyez sur `Ctrl+Shift+L` (Windows/Linux) ou `Cmd+Shift+L` (Mac). Cela ajoutera un curseur à chaque occurrence du mot dans le document.
+    
+**Sélectionner toutes les occurrences d'une sélection**: Sélectionnez le texte que nous souhaitons rechercher, puis appuyez sur `Ctrl+Shift+H` (Windows/Linux) ou `Cmd+Shift+H` (Mac). Cela ajoutera un curseur à chaque occurrence de la sélection dans le document.
+    
+**Ajouter un curseur à la ligne suivante ou précédente**: Appuyez sur `Ctrl+Alt+Flèche Haut/Bas` (Windows/Linux) ou `Cmd+Option+Flèche Haut/Bas` (Mac) pour ajouter un curseur à la ligne suivante ou précédente.
+    
+**Ajouter un curseur à chaque ligne d'une sélection**: Sélectionnez plusieurs lignes de texte, puis appuyez sur `Shift+Alt+I` (Windows/Linux) ou `Shift+Option+I` (Mac) pour ajouter un curseur à la fin de chaque ligne sélectionnée.
+
+## Refactoring
+Lorsque l'on sélectionne un morceau de texte puis que l'on appuie sur F2 alors si l'on odifie la zone de texte la modification est reportée sur tous les fichers. C'est ce que l'on appelle le **Refactoring**.
+
 ## Paramétrer son environnement virtuel python
 
 Créer un environnement comme indiqué en fin de section python et installer flake8 et pylint : 
@@ -49,24 +99,21 @@ Liens :
 Ne pas oublier d'installer pytest et pytest-cov :
     pip3 install pytest pytest-cov
 
-Pour lancer les tests, on pourra alors faire :
+Pour lancer les tests, nous pouvons alors faire :
     python3 -m unittest discover # pour unittest
     python3 -m pytest #pour pytest et donc avoir une syntaxe à base de "assert"
     python3 -m pytest --cov=perfect_maze #Pour avoir le taux de couverture des tests
 
-Pour automatiser les tests, par exemple dans une intégration continue (CI), on peut utiliser Tox et le brancher à notre dépôt \"git\" via un hook.
+Pour automatiser les tests, par exemple dans une intégration continue (CI), nous pouvons utiliser Tox et le brancher à notre dépôt \"git\" via un hook.
 > pip3 install tox
 
 Pour le configurer, lancer \"tox-quickstart\" depuis le dossier du projet et répondre aux questions.
 
 ### Ajouter la prévisualisation sphinx pour le format rest
 
-Pour cela il faut d'abord ajouter rest à l'environnement virtuel par défaut et le configurer : :
+Pour cela il faut d'abord ajouter rest à l'environnement virtuel par  défaut et le configurer : :
 
     (venv) michaellaunay@Luciole:~/workspace$ pip install sphinx
     (venv) michaellaunay@Luciole:~/workspace$ sphinx-quickstart
 
-Puis éditer la configuration de l'extension (Ctrl+Shift+P) et y ajouter
-comme chemin celui saisit pour Sphinx c'est-à-dire là où on a dit
-quickstart de travailler et où il a créé le fichier conf.py (le
-workspace est le plus pratique).
+Puis éditer la configuration de l'extension (Ctrl+Shift+P) et y ajouter comme chemin celui saisit pour Sphinx c'est-à-dire là où nous avons dit à quickstart de travailler et où il a créé le fichier conf.py (le workspace est le plus pratique).

@@ -26,7 +26,7 @@
 
 # Culture
 [[DevOps Project Manager]]
-[[Émulation jeux d'arcad]]
+[[Émulation jeux d'arcade]]
 
 ## Ressources
 [[Ressources pour le web]]
