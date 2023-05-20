@@ -26,11 +26,31 @@ Visual Studio Code inclut plusieurs extensions pour FTP, permettant au logiciel 
 Visual Studio Code permet aux utilisateurs de définir la page de code dans laquelle le document actif est enregistré, le caractère de nouvelle ligne et le langage de programmation du document actif. Cela permet de l'utiliser sur
 
 # Installation
-Le plus simple est d'aller sur le site @TODO.
-## Quelques extensions à installer
+Le plus simple est d'aller sur le site dans la section de [téléchargement](https://code.visualstudio.com/download) du site visulacodesution.com.
 
-    reStructuredText (pip install snooty-lextudio, pip install sphinx sphinx-autobuild, pip install rstcheck)
-    docstrings
+
+## Interface en français
+Pour installer le Français taper "french" dans la barre d'extensions (Ctrl Maj X).
+Installer Microsoft French.
+Ctrl+Maj+P
+	Display
+		Configure display language
+			French
+Relancer VS Code.
+
+## Barre d'activités
+Pour faire apparaitre disparaitre la barre d'activités:
+OPEN EDITORS
+	Settings
+		Activity bar :Visible
+			On/Off
+
+# Panneaux
+Pour afficher ou cacher le panneau Ctrl Maj B
+
+## Quelques extensions à installer
+reStructuredText (pip install snooty-lextudio, pip install sphinx sphinx-autobuild, pip install rstcheck)
+docstrings
 
 # Usage
 ## Prévisualisation vs édition
@@ -68,7 +88,7 @@ Pour créer un fichier, il suffit de se placer dans le répertoire voulu d'un wo
 Pour cela il faut installer le module "Live preview" de Microsoft.
 Ensuite, depuis l'explorateur de fichier faire un clic droit et choisir l'action "Afficher l'aperçu".
 
-# Multisélection
+## Multisélection
 **Ajouter un curseur à plusieurs endroits**: Maintenez la touche `Alt` (Windows/Linux) ou `Option` (Mac) enfoncée et cliquez avec la souris aux endroits où nous souhaitons ajouter des curseurs supplémentaires.
     
 **Sélectionner toutes les occurrences d'un mot**: Placez votre curseur sur le mot que nous souhaitons sélectionner et appuyez sur `Ctrl+Shift+L` (Windows/Linux) ou `Cmd+Shift+L` (Mac). Cela ajoutera un curseur à chaque occurrence du mot dans le document.
@@ -81,6 +101,151 @@ Ensuite, depuis l'explorateur de fichier faire un clic droit et choisir l'action
 
 ## Refactoring
 Lorsque l'on sélectionne un morceau de texte puis que l'on appuie sur F2 alors si l'on odifie la zone de texte la modification est reportée sur tous les fichers. C'est ce que l'on appelle le **Refactoring**.
+
+# Paramétrer git et copilot
+Ouvrir son dossier.
+Cliquer droit sur "Contrôle de code source".
+Activer le pannel "Compte"
+Cliquer sur l'icone Compe qui est apparu dans le panneau.
+Choisir le compte ou le créer.
+
+
+# Liste des racourcis clavier
+## Général
+Ctrl+Shift+P, F1 Afficher la palette de commandes
+Ctrl+P Ouverture rapide, Aller au fichier... 
+Ctrl+Shift+N Nouvelle fenêtre/instance
+Ctrl+W Fermer la fenêtre/instance
+Ctrl+, Paramètres utilisateur
+Ctrl+K Ctrl+S Raccourcis clavier 
+
+## Édition basique
+Ctrl+X Couper la ligne (sélection vide)
+Ctrl+C Copier la ligne (sélection vide)
+Alt+ ↓ / ↑ Déplacer la ligne vers le bas/haut
+Ctrl+Shift+K Supprimer la ligne
+Ctrl+Entrée / Ctrl+Shift+Entrée Insérer une ligne en dessous/au-dessus
+Ctrl+Shift+\ Aller à la parenthèse/bracket correspondant
+Ctrl+] / Ctrl+\[ Indentation/Outdentation de la ligne
+
+## Début / Fin Aller au début/fin de la ligne
+Ctrl+ Début / Fin Aller au début/fin du fichier
+Ctrl+ ↑ / ↓ Faire défiler la ligne vers le haut/bas
+Alt+ PgUp / PgDn Faire défiler la page vers le haut/bas
+Ctrl+Shift+ [ / ] Plier/déplier la région
+Ctrl+K Ctrl+ [ / ] Plier/déplier toutes les sous-régions
+Ctrl+K Ctrl+0 / Ctrl+K Ctrl+J Plier/Déplier toutes les régions
+Ctrl+K Ctrl+C Ajouter un commentaire de ligne
+Ctrl+K Ctrl+U Supprimer le commentaire de ligne
+Ctrl+/ Basculer le commentaire de ligne
+Ctrl+Shift+A Basculer le commentaire de bloc
+Alt+Z Activer/désactiver le retour à la ligne
+
+## Édition de langages riches
+Ctrl+Espace, Ctrl+I Déclencher la suggestion
+Ctrl+Shift+Espace Déclencher les indices de paramètres
+Ctrl+Shift+I Formater le document
+Ctrl+K Ctrl+F Formater la sélection
+F12 Aller à la définition
+Ctrl+Shift+F10 Aperçu de la définition
+Ctrl+K F12 Ouvrir la définition sur le côté Ctrl+.
+
+## Correction rapide
+Shift+F12 Afficher les références
+F2 Renommer le symbole
+Ctrl+K Ctrl+X Supprimer les espaces en fin de ligne
+Ctrl+K M Changer la langue du fichier
+
+## Curseur et sélection multiple
+Alt+Clic Insérer un curseur
+Shift+Alt+ ↑ / ↓ Insérer un curseur au-dessus/en dessous
+Ctrl+U Annuler la dernière opération de curseur
+Shift+Alt+I Insérer un curseur à la fin de chaque ligne sélectionnée
+Ctrl+L Sélectionner la ligne actuelle
+Ctrl+Shift+L Sélectionner toutes les occurrences de la sélection actuelle
+Ctrl+F2 Sélectionner toutes les occurrences du mot actuel
+Shift+Alt + → Étendre la sélection
+Shift+Alt + ← Réduire la sélection
+Shift+Alt + glisser la souris Sélection de colonne (boîte)
+
+## Affichage
+F11 Basculer en plein écran
+Shift+Alt+0 Basculer la disposition de l'éditeur (horizontal/vertical)
+Ctrl+ = / - Zoom avant/arrière
+Ctrl+B Afficher/masquer la barre latérale
+Ctrl+Shift+E Afficher l'explorateur / Basculer le focus
+Ctrl+Shift+F Afficher la recherche
+Ctrl+Shift+G Afficher le contrôle de code source
+Ctrl+Shift+D Afficher le débogage
+Ctrl+Shift+X Afficher les extensions
+Ctrl+Shift+H Remplacer dans les fichiers
+Ctrl+Shift+J Basculer les détails de la recherche
+Ctrl+Shift+C Ouvrir une nouvelle invite de commande/terminal
+Ctrl+K Ctrl+H Afficher le panneau de sortie 
+Ctrl+Shift+V Ouvrir l'aperçu Markdown
+Ctrl+K V Ouvrir l'aperçu Markdown sur le côté
+Ctrl+K Z Mode Zen (Échap Échap pour quitter) Recherche et remplacement
+Ctrl+F Rechercher
+Ctrl+H Remplacer
+F3 / Shift+F3 Rechercher suivant/précédent
+Alt+Entrée Sélectionner toutes les occurrences de la correspondance trouvée
+Ctrl+D Ajouter la sélection à la prochaine correspondance trouvée
+Ctrl+K Ctrl+D Déplacer la dernière sélection vers la prochaine correspondance trouvée
+
+## Navigation
+Ctrl+T Afficher tous les symboles
+Ctrl+G Aller à la ligne...
+Ctrl+P Aller au fichier...
+Ctrl+Shift+O Aller au symbole...
+Ctrl+Shift+M Afficher le panneau des problèmes
+F8 Aller à l'erreur ou avertissement suivant
+Shift+F8 Aller à l'erreur ou avertissement précédent
+Ctrl+Shift+Tab Naviguer dans l'historique du groupe d'éditeurs
+Ctrl+Alt+- Revenir en arrière
+Ctrl+Shift+- Avancer
+Ctrl+M Basculer Tab pour déplacer le focus
+
+## Gestion de l'éditeur
+Ctrl+W Fermer l'éditeur
+Ctrl+K F Fermer le dossier
+Ctrl+\\ Diviser l'éditeur
+Ctrl+ 1 / 2 / 3 Mettre le focus sur le 1er, 2ème, 3ème groupe d'éditeurs
+Ctrl+K Ctrl + ← Mettre le focus sur le groupe d'éditeurs précédent
+Ctrl+K Ctrl + → Mettre le focus sur le groupe d'éditeurs suivant
+Ctrl+Shift+PgUp Déplacer l'éditeur à gauche
+Ctrl+Shift+PgDn Déplacer l'éditeur à droite
+Ctrl+K ← Déplacer le groupe d'éditeurs actif vers la gauche/haut
+Ctrl+K → Déplacer le groupe d'éditeurs actif vers la droite/bas
+
+## Gestion des fichiers
+Ctrl+N Nouveau fichier
+Ctrl+O Ouvrir un fichier...
+Ctrl+S Enregistrer
+Ctrl+Shift+S Enregistrer sous..
+Ctrl+W Fermer
+Ctrl+K Ctrl+W Fermer tout
+Ctrl+Shift+T Rouvrir l'éditeur fermé
+Ctrl+K Entrée Conserver l'éditeur en mode d'aperçu ouvert
+Ctrl+Tab Ouvrir le suivant
+Ctrl+Shift+Tab Ouvrir le précédent
+Ctrl+K P Copier le chemin du fichier actif
+Ctrl+K R Révéler le fichier actif dans l'Explorateur
+Ctrl+K O Afficher le fichier actif dans une nouvelle fenêtre/instance
+
+## Débogage 
+F9 Basculer le point d'arrêt
+F5 Démarrer / Continuer
+F11 / Shift+F11 Entrer/sortir
+F10 Passer par-dessus
+Shift+F5 Arrêter
+Ctrl+K Ctrl+I Afficher le survol Terminal intégré
+Ctrl+\` Afficher le terminal intégré
+Ctrl+Shift+\` Créer un nouveau terminal
+Ctrl+Shift+C Copier la sélection
+Ctrl+Shift+V Coller dans le terminal actif
+Ctrl+Shift+ ↑ / ↓ Faire défiler vers le haut/bas
+Shift+ PgUp / PgDn Faire défiler la page vers le haut/bas
+Shift+ Début / Fin Faire défiler jusqu'en haut/bas
 
 ## Paramétrer son environnement virtuel python
 

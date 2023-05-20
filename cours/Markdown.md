@@ -10,35 +10,38 @@ Markdown est un langage de balisage léger qui permet de créer des documents st
 
 Voici quelques exemples de balises courantes utilisées dans Markdown :
 
-    Titres : Utilisez un ou plusieurs # devant votre titre pour indiquer le niveau de titre. Par exemple, # Titre 1 est un titre de niveau 1, ## Titre 2 est un titre de niveau 2, et ainsi de suite.
-    Gras et italique : Utilisez des astérisques ou des soulignements pour mettre en gras ou en italique. Par exemple, texte en gras ou texte en italique.
-    Listes : Utilisez des astérisques, des tirets ou des chiffres suivis d'un point pour créer des listes à puces ou numérotées. Par exemple, * Élément 1, * Élément 2 pour une liste à puces, et 1. Élément 1, 2. Élément 2 pour une liste numérotée.
-    Liens : Utilisez des crochets pour indiquer le texte du lien, suivi de l'URL entre parenthèses. Par exemple, texte du lien
-    Images : Utilisez le même format que pour les liens, mais ajoutez un point d'exclamation devant. Par exemple, texte alternatif
+**Titres** : Utilisons un ou plusieurs # devant notre titre pour indiquer le niveau de titre. Par exemple, # Titre 1 est un titre de niveau 1, ## Titre 2 est un titre de niveau 2, et ainsi de suite.
 
-Il existe de nombreux autres éléments que vous pouvez utiliser dans Markdown, tels que les tableaux, les citations, les codes, etc. Il est également possible de combiner ces éléments pour créer des documents plus riches en contenu.
+**Gras et italique** : Utilisons des astérisques ou des soulignements pour mettre en gras ou en italique. Par exemple, texte en gras ou texte en italique.
+
+**Listes** : Utilisons des astérisques, des tirets ou des chiffres suivis d'un point pour créer des listes à puces ou numérotées. Par exemple, * Élément 1, * Élément 2 pour une liste à puces, et 1. Élément 1, 2. Élément 2 pour une liste numérotée.
+
+**Liens** : Utilisons des crochets pour indiquer le texte du lien, suivi de l'URL entre parenthèses. Par exemple, texte du lien
+
+**Images** : Utilisons le même format que pour les liens, mais ajoutons un point d'exclamation devant. Par exemple, texte alternatif
+
+Il existe de nombreux autres éléments que nous pouvons utiliser dans Markdown, tels que les tableaux, les citations, les codes, etc. Il est également possible de combiner ces éléments pour créer des documents plus riches en contenu.
 
 Il est important de noter que Markdown est un langage de balisage, et non un langage de programmation, donc il ne possède pas de capacités de programmation telles que les boucles ou les conditions. Il est simple à utiliser et à apprendre, et de nombreux éditeurs de texte et plateformes de blogs prennent en charge Markdown.
 
 En résumé, Markdown est un langage de balisage simple qui permet de créer des documents structurés de manière rapide et efficace, il est utilisé principalement pour rédiger des documents sur internet. Il est facile à apprendre et à utiliser, et il est pris en charge par de nombreux éditeurs de texte et plateformes de blogs.
 
 ## Apports de la variante github de markdown
-
 La variante de Markdown utilisée par GitHub, appelée "GitHub Flavored Markdown" (GFM), apporte quelques fonctionnalités supplémentaires par rapport à la version standard de Markdown.
 
 Voici quelques exemples de ces fonctionnalités :
 
-    Tabulations de code : GFM permet de créer des blocs de code en utilisant des tabulations ou des espaces. Cela permet de mettre en évidence le code de manière plus claire, en le séparant du reste du contenu.
+**Tabulations de code** : GFM permet de créer des blocs de code en utilisant des tabulations ou des espaces. Cela permet de mettre en évidence le code de manière plus claire, en le séparant du reste du contenu.
 
-    Mentions d'utilisateur : GFM permet de mentionner des utilisateurs en utilisant le signe @ suivi du nom d'utilisateur. Cela permet de notifier les utilisateurs concernés lorsqu'ils sont mentionnés dans un document.
+**Mentions d'utilisateur** : GFM permet de mentionner des utilisateurs en utilisant le signe @ suivi du nom d'utilisateur. Cela permet de notifier les utilisateurs concernés lorsqu'ils sont mentionnés dans un document.
 
-    Checklists : GFM permet de créer des listes à puces avec des cases à cocher. Cela permet de créer des listes de tâches à effectuer de manière claire et concise.
+**Checklists** : GFM permet de créer des listes à puces avec des cases à cocher. Cela permet de créer des listes de tâches à effectuer de manière claire et concise.
 
-    Emojis : GFM prend en charge l'utilisation d'emoji en utilisant leur nom court entre deux points : :smile:
+**Emojis** : GFM prend en charge l'utilisation d'emoji en utilisant leur nom court entre deux points : :smile:
 
-    Task Lists : GFM permet de créer des listes de tâches avec des cases à cocher, cela permet de créer des listes de tâches à effectuer de manière claire et concise.
+**Task Lists** : GFM permet de créer des listes de tâches avec des cases à cocher, cela permet de créer des listes de tâches à effectuer de manière claire et concise.
 
-Il est important de noter que ces fonctionnalités ne sont pas supportées par tous les éditeurs de markdown, il faut vérifier si ces fonctionnalités sont supportées par l'éditeur que vous utilisez.
+Il est important de noter que ces fonctionnalités ne sont pas supportées par tous les éditeurs de markdown, il faut vérifier si ces fonctionnalités sont supportées par l'éditeur que vous utilisons.
 
 En résumé, la variante GFM de Markdown utilisée par GitHub ajoute des fonctionnalités supplémentaires pour la mise en forme de code, les mentions d'utilisateur, les checklists, les emojis et les listes de tâches, qui peuvent être utiles pour les projets de développement logiciel et les projets collaboratifs en général.
 
@@ -50,37 +53,37 @@ Obsidian utilise sa propre variante de Markdown qui ajoute des fonctionnalités 
 
 Voici quelques exemples de ces fonctionnalités :
 
-    Liens : Obsidian prend en charge la création de liens en utilisant le format standard Markdown, mais il ajoute également la possibilité de créer des liens vers des fichiers et des dossiers locaux en utilisant la syntaxe [[nom_fichier]] ou [[nom_dossier/nom_fichier]].
+**Liens** : Obsidian prend en charge la création de liens en utilisant le format standard Markdown, mais il ajoute également la possibilité de créer des liens vers des fichiers et des dossiers locaux en utilisant la syntaxe [[nom_fichier]] ou [[nom_dossier/nom_fichier]].
 
-    Images : Obsidian prend en charge l'ajout d'images en utilisant la syntaxe standard Markdown, mais il permet également d'insérer des images à partir de fichiers locaux en utilisant la syntaxe ![[nom_fichier]]
+**Images** : Obsidian prend en charge l'ajout d'images en utilisant la syntaxe standard Markdown, mais il permet également d'insérer des images à partir de fichiers locaux en utilisant la syntaxe ![[nom_fichier]]
 
-    Notes de bas de page : Obsidian permet de créer des notes de bas de page en utilisant la syntaxe [^note]. Cela permet d'ajouter des informations supplémentaires ou des références à un document sans perturber la mise en page principale.
+**Notes de bas de page** : Obsidian permet de créer des notes de bas de page en utilisant la syntaxe [^note]. Cela permet d'ajouter des informations supplémentaires ou des références à un document sans perturber la mise en page principale.
 
-    Tags : Obsidian permet d'ajouter des tags à des notes en utilisant la syntaxe #tag. Cela permet de retrouver facilement des notes en utilisant ces tags.
+**Tags** : Obsidian permet d'ajouter des tags à des notes en utilisant la syntaxe #tag. Cela permet de retrouver facilement des notes en utilisant ces tags.
 
-    Liens automatiques : Obsidian permet de créer automatiquement des liens vers les notes qui contiennent des mots ou des phrases identiques en utilisant la syntaxe [[mot ou phrase]].
+**Liens automatiques** : Obsidian permet de créer automatiquement des liens vers les notes qui contiennent des mots ou des phrases identiques en utilisant la syntaxe [[mot ou phrase]].
 
-Ces fonctionnalités supplémentaires permettent une meilleure intégration avec les fonctionnalités de gestion de fichiers et de notes de Obsidian. Il est important de noter que ces fonctionnalités ne sont pas supportées par tous les éditeurs de markdown, il faut vérifier si ces fonctionnalités sont supportées par l'éditeur que vous utilisez.
+Ces fonctionnalités supplémentaires permettent une meilleure intégration avec les fonctionnalités de gestion de fichiers et de notes de Obsidian. Il est important de noter que ces fonctionnalités ne sont pas supportées par tous les éditeurs de markdown, il faut vérifier si ces fonctionnalités sont supportées par l'éditeur que vous utilisons.
 
 En résumé, la variante de Markdown utilisée par Obsidian ajoute des fonctionnalités pour la prise en charge des liens, des images, des notes de bas de page, des tags et des liens automatiques, qui peuvent être utiles pour la gestion de notes et de documents.
 
 ## Extensions
 Il existe plusieurs extensions de Markdown qui permettent d'ajouter des fonctionnalités supplémentaires, comme la couleur sémantique ou les sémantiques de texte. Voici quelques exemples :
 
-    Couleur sémantique : Certaines extensions de Markdown, comme "Emoji Syntax" ou "Emoji-Markdown" permettent d'ajouter des émojis pour indiquer la couleur sémantique d'un texte. Par exemple, vous pourriez utiliser un émoji de coeur rouge pour indiquer que le texte est important, ou un émoji de feu vert pour indiquer que le texte est un appel à l'action.
+**Couleur sémantique** : Certaines extensions de Markdown, comme "Emoji Syntax" ou "Emoji-Markdown" permettent d'ajouter des émojis pour indiquer la couleur sémantique d'un texte. Par exemple, vous pourrions utiliser un émoji de coeur rouge pour indiquer que le texte est important, ou un émoji de feu vert pour indiquer que le texte est un appel à l'action.
 
 ```markdown
 I ❤️ this text is important
 I 🔥 this text is an action
 ```
-Sémantique de texte : Certaines extensions de Markdown, comme "Markdown Extra" ou "Pandoc Markdown" permettent d'ajouter des classes CSS à des éléments de texte pour indiquer une sémantique particulière. Par exemple, vous pourriez utiliser une classe "warning" pour indiquer que le texte est un avertissement, ou une classe "note" pour indiquer que le texte est une note.
 
+**Sémantique de texte** : Certaines extensions de Markdown, comme "Markdown Extra" ou "Pandoc Markdown" permettent d'ajouter des classes CSS à des éléments de texte pour indiquer une sémantique particulière. Par exemple, nous pourrions utiliser une classe "warning" pour indiquer que le texte est un avertissement, ou une classe "note" pour indiquer que le texte est une note.
 ```markdown
 <div class="warning"> This is a warning text</div>
 <div class="note"> This is a note text</div>
 ```
 
-Il est important de noter que ces exemples dépendent des outils et des éditeurs que vous utilisez, il est donc important de vérifier que ces fonctionnalités sont supportées et de consulter la documentation pour savoir comment les utiliser correctement.
+Il est important de noter que ces exemples dépendent des outils et des éditeurs que vous utilisons, il est donc important de vérifier que ces fonctionnalités sont supportées et de consulter la documentation pour savoir comment les utiliser correctement.
 
 En résumé, il existe des extensions de Markdown qui permettent d'ajouter des fonctionnalités supplémentaires telles que la couleur sémantique ou les sémantiques de texte, grâce à l'utilisation d'émojis ou de classes CSS.
 
@@ -97,6 +100,122 @@ Grav est un cms php basé sur une modification de markdown pour ajouter des styl
 [Danger](#){.btn .btn-danger}
 [Link](#){.btn .btn-link}
 ```
+### Alignements
+La syntaxe markdown ne permet pas d’aligner du texte, c'est pourquoi Grav inclus quelques codes courts ("shortcodes") :
+
+```
+[left]Texte aligné à gauche[/left]
+[center]Texte centré[/center]
+[right]Texte aligné à droite[/right]
+```
+
+Il est aussi possible d’utiliser des éléments HTML et des classes CSS de Bootstrap :
+
+```
+<p class="text-center">Texte centré</p>
+```
+
+Les classes de Bootstrap sont : `text-left¦text-center¦text-right¦text-justify`
+
+### Couleurs
+Comme les couleurs ne sont pas disponible en markdown Grav a ajouté les codes courts shortcode :
+
+```
+Texte avec couleur par défaut, [color=#155dcb]texte de couleur bleue[/color], texte avec couleur par défaut.
+```
+
+Le code html  est également permis:
+
+```
+Texte avec couleur par défaut, <span style="color: #155dcb">texte de couleur bleue</span>, texte avec couleur par défaut.
+```
+
+Les classes Bootstrap de couleurs « contextuelles » sont aussi disponibles :
+
+-   text-muted
+-   text-primary
+-   text-info
+-   text-success
+-   text-warning
+-   text-danger
+
+Même chose avec l’arrière plan
+
+-   bg-primary
+-   bg-info
+-   bg-success
+-   bg-warning
+-   bg-danger
+
+Exemple :
+
+```
+Texte normal suivi d’un <span class="bg-info text-success">texte coloré en vert sur fond bleu</span> dans un paragraphe.
+```
+
+## [](https://docs.framasoft.org/fr/grav/markdown.html#icônes)Icônes
+
+La manière la plus simple d’ajouter des [icônes FontAwesome](https://fontawesome.com/v4.7.0/icons/) (version 4) est d’utiliser ces shortcodes :
+
+[Avec un lien](https://www.mozilla.org/fr/firefox/new/)
+
+```
+    [fa=firefox /]
+    [fa=firefox extras=fa-2x /]
+    [[fa=firefox extras=fa-3x /] Avec un lien](https://www.mozilla.org/fr/firefox/new/)
+    [fa=firefox extras=fa-4x,fa-spin /]
+```
+
+Dans les modules et autres composants du thème GravStrap, [la syntaxe est plus détaillée](https://docs.framasoft.org/fr/grav/composants-de-base.html#ic%C3%B4nes).
+
+[Modules de Grav](https://docs.framasoft.org/fr/grav/modules.html)
+[Notice de Framasoft](https://docs.framasoft.org/fr/grav/creation-de-page.html)
 
 liens:
 https://docs.framasoft.org/fr/grav/markdown.html
+
+# Syntaxe étendue
+[**Traduction du markdownguide**](https://www.markdownguide.org/extended-syntax/)
+Fonctionnalités avancées basées sur la syntaxe Markdown de base.
+## Aperçu
+La syntaxe de base décrite dans le document de conception original de Markdown a ajouté de nombreux éléments nécessaires au quotidien, mais cela ne suffisait pas pour certaines personnes. C'est là qu'intervient la syntaxe étendue.
+
+Plusieurs individus et organisations ont pris l'initiative d'étendre la syntaxe de base en ajoutant des éléments supplémentaires tels que des tableaux, des blocs de code, la coloration syntaxique, la création automatique de liens URL et des notes de bas de page. Ces éléments peuvent être activés en utilisant un langage de balisage léger basé sur la syntaxe Markdown de base ou en ajoutant une extension à un processeur Markdown compatible.
+Disponibilité
+
+Toutes les applications Markdown ne prennent pas en charge les éléments de syntaxe étendue. Vous devrez vérifier si le langage de balisage léger utilisé par votre application prend en charge les éléments de syntaxe étendue que vous souhaitez utiliser. Si ce n'est pas le cas, il peut être possible d'activer des extensions dans votre processeur Markdown.
+Langages de balisage léger
+
+Il existe plusieurs langages de balisage léger qui sont des sur-ensembles de Markdown. Ils incluent la syntaxe de base et la complètent en ajoutant des éléments supplémentaires tels que des tableaux, des blocs de code, la coloration syntaxique, la création automatique de liens URL et des notes de bas de page. Beaucoup des applications Markdown les plus populaires utilisent l'un des langages de balisage léger suivants :
+
+    CommonMark
+    GitHub Flavored Markdown (GFM)
+    Markdown Extra
+    MultiMarkdown
+    R Markdown
+
+Processeurs Markdown
+
+Il existe des dizaines de processeurs Markdown disponibles. Beaucoup d'entre eux vous permettent d'ajouter des extensions qui activent des éléments de syntaxe étendue. Consultez la documentation de votre processeur pour plus d'informations.
+Tableaux
+
+Pour ajouter un tableau, utilisez trois traits d'union (---) ou plus pour créer l'en-tête de chaque colonne, et utilisez des barres verticales (|) pour séparer chaque colonne. Pour une meilleure compatibilité, vous devriez également ajouter une barre verticale de chaque côté de la ligne.
+
+```
+| Syntaxe      | Description |
+| ----------- | ----------- |
+| En-tête      | Titre       |
+| Paragraphe   | Texte        |
+```
+
+Le rendu ressemble à ceci :
+| Syntaxe      | Description |
+| ----------- | ----------- |
+| En-tête      | Titre       |
+| Paragraphe   | Texte        |
+
+Les largeurs des cellules peuvent varier, comme indiqué ci-dessous. Le rendu aura la même apparence.
+
+| Syntaxe | Description |
+| --- | ----------- |
+| En-tête | Titre
