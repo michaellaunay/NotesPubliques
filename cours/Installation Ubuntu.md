@@ -19,43 +19,43 @@ Elles conviennent parfaitement à un poste de travail, mais sont à proscrire po
 
 Choisir l'image \"iso\" d'Ubuntu correspondant à sa machine à l'adresse <https://releases.ubuntu.com/22.04/>
 
-La différence entre Desktop et Server est que dans la Desktop vous aurez tout l'environnement graphique, alors que la version Server suppose une utilisation en ligne de commande.
+La différence entre Desktop et Server est que dans la Desktop nous aurons tout l'environnement graphique, alors que la version Server suppose une utilisation en ligne de commande.
 
 Créer un disque d'amorçage en suivant <https://help.ubuntu.com/community/BurningIsoHowto>
 
-Insérer la clé dans votre lecteur usb. Redémarrer votre ordinateur pour pouvoir modifier les paramètres du **bios**.
-Selon la marque de votre ordinateur la touche pour entrer dans le bios lors du démarrage est soit Ech, Entrée, F2, ou Suppr.
-Modifier votre bios pour qu'il démarre sur la clé usb (généralement le menu boot). Enregistrer et quitter le bios.
+Insérer la clé dans notre lecteur usb. Redémarrer notre ordinateur pour pouvoir modifier les paramètres du **bios**.
+Selon la marque de notre ordinateur la touche pour entrer dans le bios lors du démarrage est soit Ech, Entrée, F2, ou Suppr.
+Modifier notre bios pour qu'il démarre sur la clé usb (généralement le menu boot). Enregistrer et quitter le bios.
 L'ordinateur va alors démarrer sur la clé et charger Ubuntu comme système d'exploitation. Ubuntu commence par vérifier qu'il n'y a pas eu de corruption de la clé.
 Puis il affiche différents écrans que nous allons expliquer ici.
 
 ### Étape 01
 ![Choix de la langue du live usb. Et choix entre tester Ubuntu ou lancer l'installation.](./images_ubuntu/00_EssayerOuInstaller.png)
 
-Si vous cliquez sur le bouton \"Essayer Ubuntu\" vous pourrez tester Ubuntu sans rien installer sur votre machine, les logiciels utilisés seront ceux présents sur la clé usb (vous pourrez en installer d'autres). C'est un excellent moyen de dépanner une machine pour par
-exemple accéder à vos disques lorsque votre l'OS de votre machine ne fonctionne plus.
+Si nous cliquons sur le bouton \"Essayer Ubuntu\" nous pourrons tester Ubuntu sans rien installer sur notre machine, les logiciels utilisés seront ceux présents sur la clé usb (nous pourrons en installer d'autres). C'est un excellent moyen de dépanner une machine pour par
+exemple accéder à nos disques lorsque notre l'OS de notre machine ne fonctionne plus.
 
 ### Étape 02
 
 ![Choix de la disposition du clavier.](./images_ubuntu/02_Clavier.png)
 
-Les différents choix déterminent comment vous allez pouvoir saisir les caractères comme œ. Par exemple avec le choix de clavier \"alt.\" il suffira de faire \"Alt Gr\" \"o\", pour avoir œ. Vous pouvez tester les touches du clavier dans la zone de saisie du texte.
+Les différents choix déterminent comment nous allons pouvoir saisir les caractères comme œ. Par exemple avec le choix de clavier \"alt.\" il suffira de faire \"Alt Gr\" \"o\", pour avoir œ. Nous pouvons tester les touches du clavier dans la zone de saisie du texte.
 
 ### Étape 03
 
 ![Type d'installation avec mise à jour ou non.](./images_ubuntu/03_TypeInstall.png)
 
-L'installation minimale n'installe pas les logiciels comme libre office vous laissant le faire par la suite. Demander la mise à jour lors de l'installation suppose d'être relié à internet.
+L'installation minimale n'installe pas les logiciels comme libre office nous laissant le faire par la suite. Demander la mise à jour lors de l'installation suppose d'être relié à internet.
 
 ### Étape 04
 
-![Choix du partitionnement si l'on clique sur \"autre chose\" on pourra créer ses partitions.](./images_ubuntu/03_TypeInstall.png)
+![Choix du partitionnement si l'on clique sur \"autre chose\" nous pourrons créer ses partitions.](./images_ubuntu/03_TypeInstall.png)
 
 Par défaut le disque sera formaté et une partition racine sera créée ainsi qu'une partition swap. La partition de swap est utilisée pour stocker temporairement la mémoire d'un programme qui s'exécutait, mais qui n'est pas celui en cours d'utilisation.
-Par exemple si vous n'avez que très peu de mémoire et que vous lancez plusieurs programmes, celui avec lequel vous interagissez sera en mémoire et les autres
+Par exemple si nous n'avons que très peu de mémoire et que nous lancons plusieurs programmes, celui avec lequel nous interagissons sera en mémoire et les autres
 peuvent être dans le swap.
 
-Si votre swap a la même taille que votre mémoire vive vous pourrez \"hiberner\" votre ordinateur, ainsi toute la mémoire vive sera copiée dans le swap et l'ordinateur sera éteint, lorsqu'il sera rallumé tout le swap sera recopié en mémoire vive et les programmes reprendront là où ils en étaient.
+Si notre swap a la même taille que notre mémoire vive nous pourrons \"hiberner\" notre ordinateur, ainsi toute la mémoire vive sera copiée dans le swap et l'ordinateur sera éteint, lorsqu'il sera rallumé tout le swap sera recopié en mémoire vive et les programmes reprendront là où ils en étaient.
 
 C'est pour cela qu'il est intéressant de créer et paramétrer ses partitions et au minimum de créer une partition \"/home\" pour préserver le contenu de ses données en cas de crash sévère de l'OS, nous allons voir comment partitionner le disque.
 
@@ -65,15 +65,15 @@ Nous détaillerons le partitionnement ci-après.
 
 ![Ubuntu propose d'utiliser LVM.](./images_ubuntu/05_TypePartitionLVM.png)
 
-LVM (Logical Volume Manager) est un gestionnaire de volumes logiques qui vous permettra de créer des partitions virtuelles afin de pouvoir les retailler ou d'en créer de nouvelles. Linux crée alors une couche intermédiaire entre le(s) disque(s) physique(s) et l'OS, c'est dans cette couche virtuelle que vous aurez vos partitions virtuelles qui seront écrites dans la partition réelle.
-Toutefois si la partition physique est abîmée, on perd les partitions virtuelles écrites dessus,
-c'est pourquoi il faut faire des copies de sauvegardes ou avoir des disques montés en raid. Vous pouvez également chiffrer la partition LVM.
+LVM (Logical Volume Manager) est un gestionnaire de volumes logiques qui nous permettra de créer des partitions virtuelles afin de pouvoir les retailler ou d'en créer de nouvelles. Linux crée alors une couche intermédiaire entre le(s) disque(s) physique(s) et l'OS, c'est dans cette couche virtuelle que nous aurons nos partitions virtuelles qui seront écrites dans la partition réelle.
+Toutefois si la partition physique est abîmée, nous perdons les partitions virtuelles écrites dessus,
+c'est pourquoi il faut faire des copies de sauvegardes ou avoir des disques montés en raid. nous pouvons également chiffrer la partition LVM.
 
 ### Étape 06
 
 ![Choix du fuseau horaire.](./images_ubuntu/07_FuseauHoraire.png)
 
-Si vous êtes en France métropolitaine, choisissez le fuseau passant par la France.
+Si nous êtes en France métropolitaine, choisissons le fuseau passant par la France.
 
 ### Étape 07
 
@@ -87,21 +87,21 @@ Ubuntu affiche un récapitulatif des choix réalisés, la confirmation lance alo
 
 ![Une fois les choix confirmés, l'installation commence.](./images_ubuntu/15_User1000.png)
 
-En fin d'installation un écran vous invite à retirer la clé usb et à redémarrer l'ordinateur.
+En fin d'installation un écran nous invite à retirer la clé usb et à redémarrer l'ordinateur.
 
 ![Fin d'installation.](./images_ubuntu/17_FinInstallation.png)
 
-Une fois redémarré saisissez votre identifiant et votre mot de passe (ceux donnés à l'étape 07)
+Une fois redémarré saisissons notre identifiant et notre mot de passe (ceux donnés à l'étape 07)
 
-Vous pouvez alors associer votre machine à vos comptes google et microsoft pour par exemple voir vos agendas et recevoir vos notifications.
+nous pouvons alors associer notre machine à nos comptes google et microsoft pour par exemple voir nos agendas et recevoir nos notifications.
 
 ![Configuration des comptes en lignes.](./images_ubuntu/18_ConfigurationComptesEnLigne.png)
 
-Vous pouvez associer votre machine au mécanisme livepatch de Canonical l'éditeur d'Ubuntu pour faire automatiquement la mise à jour de votre machine.
+nous pouvons associer notre machine au mécanisme livepatch de Canonical l'éditeur d'Ubuntu pour faire automatiquement la mise à jour de notre machine.
 
-![Configuration de votre compte Ubuntu pour le live patch.](./images_ubuntu/19_LivePatch.png)
+![Configuration de notre compte Ubuntu pour le live patch.](./images_ubuntu/19_LivePatch.png)
 
-Vous pouvez aider Canonical à corriger les bogues en autorisant la remontée des incidents.
+nous pouvons aider Canonical à corriger les bogues en autorisant la remontée des incidents.
 
 ![Remonté des informations pour les développeurs.](./images_ubuntu/20_UbuntuWatch.png)
 
@@ -136,13 +136,13 @@ Dans notre cas nous allons créer 3 partitions /, /home et swap.
 
 ![Création de la racine \"/\"](./images_ubuntu/12_TypePartition_Partitioner_sda_NouvelleTable_root.png)
 
-Sur le même principe, on crée \"/home\" On peut cocher la case \"formater\" pour purger le disque de ce qu'il contenait avant.
+Sur le même principe, nous créons \"/home\" Nous pouvons cocher la case \"formater\" pour purger le disque de ce qu'il contenait avant.
 
 Puis vient la partition de \"swap\".
 
 ![Création du swap](./images_ubuntu/13_TypePartition_Partitioner_sda_root_home_swap.png)
 
-N'oubliez pas que la taille du swap doit être au moins égale à celle de la mémoire vive (RAM) pour permettre l'hibernation.
+N'oublions pas que la taille du swap doit être au moins égale à celle de la mémoire vive (RAM) pour permettre l'hibernation.
 
 ![Création des partitions](./images_ubuntu/14_TypePartition_Partitioner_sda_root_home_swap.png)
 

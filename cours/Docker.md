@@ -332,7 +332,22 @@ Un exemple de Dockerfile qui crée une image de conteneur qui exécute un serveu
 ```dockerfile
 FROM nginx:latest
 COPY index.html /usr/share/nginx/html
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx"]
+CMD ["-g", "daemon off;"]
+```
+Le conteneur démarrera nginx, car c'est le point d'entrée tout en lui passant les paramètres définis dans CMD.
+
+Si l'on passe des arguments lors du "docker run", ils seront mis à la place de CMD. CMD joue le rôle de paramètres par défaut.
+
+Toutefois ENTRYPOINT n'est pas surchargeable et sera toujours appelé.
+Si l'on veut pouvoir surcharger alors il ne faut pas utiliser d'ENTRYPOINT.
+Pour savoir si une image a un ENTRYPOINT ou un CMD, il faut alors faire :
+```bash
+docker history MONIMAGE:Version
+```
+ou alors
+```bash
+docker inspect MONIMAGE:Version
 ```
 
 ## Pratique
@@ -343,13 +358,16 @@ CMD ["nginx", "-g", "daemon off;"]
 # Utilisation de Docker Compose
 
 Utilisation de Docker Compose pour définir et exécuter des applications multi-conteneurs :
+
 ## Introduction
 Docker Compose est un outil qui permet de définir et de gérer des applications multi-conteneurs en utilisant un fichier de configuration. Il facilite la création, la mise à l'échelle et la gestion des conteneurs d'une application complexe.
+
 ## Les concepts clés de Docker Compose
 	-   Services : les conteneurs d'une application qui sont gérés par Compose
 	-   Compose file : le fichier de configuration qui décrit les services, les réseaux et les volumes pour une application
 	-   Réseaux : les réseaux virtuels qui sont créés pour connecter les services entre eux
 	-   Volumes : les données partagées entre les services
+
 ## Exemples
 Un exemple de Compose file qui définit une application web qui utilise un service Nginx :
 ``` docker-compose.yml
@@ -503,7 +521,6 @@ Il y a plusieurs systèmes de gestion de clusters disponibles, tels que Docker S
 Il y a aussi des avantages et des limites à utiliser un système de gestion de clusters.
 
 ## Avantages
-
 Scalabilité : les clusters de conteneurs permettent de facilement ajouter ou retirer des noeuds pour répondre aux besoins changeants de l'application. Cela permet d'optimiser les ressources utilisées et de gérer les pics de charge.
 
 Disponibilité : en utilisant des clusters, les applications peuvent être mises à l'échelle pour gérer les échecs de noeuds individuels. Les systèmes de gestion de clusters permettent également de mettre en place des stratégies de tolérance de panne pour maintenir la disponibilité de l'application.
@@ -534,6 +551,7 @@ Il est également important de choisir un système de gestion de clusters adapt�
 > [Les différents types de volumes docker](https://youtu.be/vHGwkA9fsIs)
 > [Les volumes](https://youtu.be/lstTLSM5494)
 > [Le UserID pour les volumes](https://youtu.be/SI1mhq-f0rg)
+> [ENTRYPOINT vs CMD](https://youtu.be/kfyDu5R4VrM)
 > [Docker pour Gitlab](https://youtu.be/Wbaczrx-US0)
 > [Documentation officielle](https://docs.docker.com/engine/install/#server)
 > [Article NextInpact](https://www.nextinpact.com/article/48913/docker-et-conteneurisation-par-exemple)
