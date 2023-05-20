@@ -1,5 +1,3 @@
-# Formation à GNU/Linux
-
 ---
 author : Michaël Launay <michaellaunay@ecreall.com>
 version : 2.0.0
@@ -14,7 +12,6 @@ Cette formation a pour but de fournir les bases indispensables à l'utilisation 
 Cette formation privilégie la distribution Ubuntu.
 
 # Introduction
-
 En 1991, l'étudiant finlandais Linus Torvalds publie sur internet l'intégralité du code source d'un noyau Unix qu'il a écrit en C et en assembleur et qui fonctionne sur PC AT 386(486).
 
 Depuis cette date GNU/Linux ne cesse d'évoluer. Il occupe en 2020 moins de 3,61% du marché mondial des systèmes d'exploitation pour ordinateur personnel, plus de 60% des serveurs web, prés de 75% du Cloud et plus de 80% des smartphones (Android étant basé sur GNU/Linux) et est en autre utilisé en France par la Gendarmerie (Ubuntu) et par l'Assemblée Nationale (Ubuntu), dans la Freebox, par l'entreprise Google (Android) et la fondation Wikipedia (serveur Ubuntu).
@@ -26,12 +23,10 @@ Depuis cette date GNU/Linux ne cesse d'évoluer. Il occupe en 2020 moins de 3,61
 [[Droits d'auteur]]
 
 
-# GNU/Linux
-
-Linux est développé sur internet par des milliers de contributeurs distants de nationalité et de culture différentes. C'est l'un des projets collaboratifs les plus importants.
+# Qu'est ce que GNU/Linux ?
+GNU/Linux est un système d'exploitation libre et open-source, qui est utilisé sur des ordinateurs, des serveurs, des smartphones et d'autres dispositifs électroniques. Il est composé de deux éléments principaux : le système d'exploitation GNU et le noyau Linux.
 
 ## Qu'est-ce qu'un noyau ?
-
 Pour définir le noyau, nous pouvons nous baser sur les services qu'il fournit :
 
     Abstraction du matériel (fourniture d'interface)
@@ -47,16 +42,13 @@ Cette séparation vient de ce que le noyau est censé gérer (kernel space) et d
 
 [[Installation Ubuntu]]
 
-### Utilisation de GNU/Linux
-
+# Utilisation de GNU/Linux
 Présentation interactive du système d'exploitation:
-
 > -   le bureau,
 > -   les fenêtres d'application,
 > -   le tableau de bord.
 
 Administration graphique du système:
-
 > -   Configuration du réseau (Système (Flèche descendante de la barre de menus, à droite) \> Wifi ou Filaire (non) connecté ou Administration (Roue dentée) \> Wifi ou Réseau)
 > -   Synaptic (Pour l'installer <https://doc.ubuntu-fr.org/synaptic> ): l'installation de logiciels (Système \> Administration \>
 >     Gestionnaire de paquets Synaptic)
@@ -70,10 +62,8 @@ Administration graphique du système:
 
 Les logiciels d'administration ne sont que des surcouches graphiques (front-end) qui appellent les commandes en ligne, par conséquent leurs possibilités sont moindres.
 
-# L'aide et la communauté
-
+## L'aide et la communauté
 ### L'aide en ligne
-
 En mode graphique, les applications possèdent un onglet \"Aide\" permettant d'ouvrir un navigateur sur l'aide en ligne. Cette aide est généralement accessible par la touche F1.
 
 ![Aide en ligne d'Ubuntu (appelée avec F1)](AideEnLigneUbuntu.jpg){.align-center}
@@ -123,61 +113,49 @@ Toutefois la base des commandes peut avoir besoin d'être régénérée par **ma
 *whatis NomDeCommande* affichera la description courte de NomDeCommande.
 
 ### Les man pages
-
 Les applications et commandes possèdent toutes un manuel accessible en ligne de commande via la commande man.
 
 Ce manuel est généralement traduit dans la langue de l'utilisateur :
+```bash
+michaellaunay@luciole:~$ man man
+MAN(1)            Utilitaires de l’afficheur des pages de Manuel
+MAN(1)
 
-    michaellaunay@luciole:~$ man man
-    MAN(1)            Utilitaires de l’afficheur des pages de manuel               MAN(1)
+NOM
+	   man - Interface de consultation des manuels de référence en ligne
 
-    NOM
-           man - Interface de consultation des manuels de référence en ligne
+SYNOPSIS
+	   man  [-c|-w|-tZ] [-H[navigateur]] [-T[périphérique]] [-adhu7V] [-i|-I]
+	   [-m système[,...]] [-L langue] [-p chaîne] [-C fichier] [-M chemin]
+	   [-P afficheur] [-r invite] [-S liste] [-e extension] [[section] page ...] ...
+	   man -l [-7] [-tZ] [-H[navigateur]] [-T[périphérique]] [-p chaîne]
+	   [-P afficheur] [-r invite] fichier ...
+	   man -k [apropos options] expression_rationnelle ...
+	   man -f [whatis options] page ...
 
-    SYNOPSIS
-           man  [-c|-w|-tZ] [-H[navigateur]] [-T[périphérique]] [-adhu7V] [-i|-I]
-           [-m système[,...]] [-L langue] [-p chaîne] [-C fichier] [-M chemin]
-           [-P afficheur] [-r invite] [-S liste] [-e extension] [[section] page ...] ...
-           man -l [-7] [-tZ] [-H[navigateur]] [-T[périphérique]] [-p chaîne]
-           [-P afficheur] [-r invite] fichier ...
-           man -k [apropos options] expression_rationnelle ...
-           man -f [whatis options] page ...
+DESCRIPTION
+   man est le programme de visualisation des pages de manuel.  Chacun  des  arguments  page,  indiqué dans la ligne de commande de man, porte, en principe, le nom d’un programme, d’un utilitaire ou d’une fonction. La page de manuel  Correspondant à chaque argument est alors trouvée et affichée. Si une section est précisée alors man limite  la  recherche  à  cette  section.  Par  défaut,  il recherche dans toutes les sections disponibles, suivant un ordre prédéfini. Il n’affiche que la première page de manuel trouvée, même si  d’autres  pages  de manuel existent dans d’autres sections.
 
-    DESCRIPTION
-           man est le programme de visualisation des pages de manuel.  Chacun  des  argu-
-           ments  page,  indiqué dans la ligne de commande de man, porte, en principe, le
-           nom d’un programme, d’un utilitaire ou d’une fonction. La page de manuel  cor-
-           respondant à chaque argument est alors trouvée et affichée. Si une section est
-           précisée alors man limite  la  recherche  à  cette  section.  Par  défaut,  il
-           recherche dans toutes les sections disponibles, suivant un ordre prédéfini. Il
-           n’affiche que la première page de manuel trouvée, même si  d’autres  pages  de
-           manuel existent dans d’autres sections.
+	   Le  tableau  ci-dessous  indique le numéro des sections de manuel ainsi que le
+	   type de pages qu’elles contiennent.
 
-           Le  tableau  ci-dessous  indique le numéro des sections de manuel ainsi que le
-           type de pages qu’elles contiennent.
+	   1   Programmes exécutables ou commandes de l’interpréteur de  commandes (shell) ;
+	   2   Appels système (Fonctions fournies par le noyau) ;
+	   3   Appels  de  bibliothèque  (fonctions  fournies  par  les  bibliothèques des programmes) ;
+	   4   Fichiers spéciaux (situés généralement dans /dev) ;
+	   5   Formats des fichiers et conventions. Par exemple /etc/passwd ;
+	   6   Jeux ;
+	   7   Divers (y compris les macropaquets et les  conventions).   Par exemple, man(7), groff(7) ;
+	   8   Commandes  de  gestion  du  système (généralement réservées au superutilisateur) ;
+	   9   Sous-programmes du noyau [hors standard].
+```
 
-           1   Programmes exécutables ou commandes de l’interpréteur de  com-
-               mandes (shell) ;
-           2   Appels système (Fonctions fournies par le noyau) ;
-           3   Appels  de  bibliothèque  (fonctions  fournies  par  les  bib-
-               liothèques des programmes) ;
-           4   Fichiers spéciaux (situés généralement dans /dev) ;
-           5   Formats des fichiers et conventions. Par exemple /etc/passwd ;
-           6   Jeux ;
-           7   Divers (y compris les macropaquets et les  conventions).   Par
-               exemple, man(7), groff(7) ;
-           8   Commandes  de  gestion  du  système (généralement réservées au
-               superutilisateur) ;
-           9   Sous-programmes du noyau [hors standard].
-
-           Une page de manuel est constituée de plusieurs parties.
-
-           Elles peuvent être libellées NOM, SYNOPSIS,  DESCRIPTION,  OPTIONS,  FICHIERS,
-           VOIR AUSSI, BOGUES et AUTEUR.
+Une page de manuel est constituée de plusieurs parties.
+Elles peuvent être libellées NOM, SYNOPSIS,  DESCRIPTION,  OPTIONS,  FICHIERS, VOIR AUSSI, BOGUES et AUTEUR.
 
 Pour chercher les pages associées à un mot clé:
-
-    michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ man -k manual
+```bash
+michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ man -k manual
     apropos (1)          - search the manual page names and descriptions
     catman (8)           - create or update the pre-formatted manual pages
     esdcompat (1)        - manual page for pulseaudio esd wrapper 0.9.5
@@ -195,9 +173,9 @@ Pour chercher les pages associées à un mot clé:
     whatis (1)           - display manual page descriptions
     whereis (1)          - locate the binary, source, and manual page files for a command
     xman (1)             - Manual page display program for the X Window System
+```
 
 ### Les sites
-
 Le site officiel de Linux <http://www.linux.org>
 
 Un site dédié à Linux (Linux Entre Amis) : <http://www.lea-linux.org>
@@ -207,13 +185,11 @@ Une présentation de Linux <http://fr.wikipedia.org/wiki/Linux>
 La communauté ubuntu française <http://www.ubuntu-fr.org/>
 
 ### Les forums
-
 Le forum de la communauté Ubuntu <http://ubuntuforums.org/>
 
 Le forum de la communauté Debian française <http://forum.debian-fr.org>
 
 ### Les LUGs
-
 Un LUG est un groupe d'utilisateurs de Linux (Linux User Group) réuni généralement au sein d'une association loi 1901.
 
 Dans la région lilloise on compte essentiellement Chtinux <http://www.chtinux.org/> anciennement Campux et CLX <http://clx.asso.fr/spip>
@@ -221,9 +197,7 @@ Dans la région lilloise on compte essentiellement Chtinux <http://www.chtinux.o
 Les LUGs réalisent la promotion de Linux est des logiciels libres. Ils organisent des manifestations telles que des install party.
 
 # Shell & Commandes
-
-### Les terminaux (tty)
-
+## Les terminaux (tty)
 Historiquement, un terminal est une interface homme-machine minimale issue des technologies de communication de la fin XIX et du début XX siècle, le Télétype marque déposée en 1906 est l'ancêtre des claviers numériques des premiers ordinateurs.
 
 L'abréviation tty de Télétype a été utilisée pour décrire l'interface série de communication utilisée au début d'Unix.
@@ -240,12 +214,10 @@ Les six premiers terminaux sont accessibles par la combinaison de touche Ctrl Al
 
 Le terminal graphique est accessible Ctrl Alt F7
 
-### La ligne de commande
-
+## La ligne de commande
 Sous Unix la CLI (Command Line Interface) est la méthode privilégiée pour transmettre au système les ordres à exécuter.
 
-#### Les différents shell
-
+## Les différents shell
 Le shell est un logiciel qui interprète séquentiellement les commandes saisies dans un terminal ou stockées dans un fichier (script) ou provenant d'un pseudo fichier.
 
 La syntaxe et la sémantique de cette interprétation dépendent du shell employé.
@@ -255,138 +227,143 @@ Historiquement la première version est **sh** (1977 écrit par Stephen Bourne) 
 Bash est l'interpréteur de commande par défaut des Unix libres et de Mac OS X.
 
 Pour connaître la version de bash en cours d'utilisation:
-
+```bash
     michaellaunay@luciole:~$ echo $BASH
     /bin/bash
     michaellaunay@luciole:~$ echo $BASH_VERSION
     4.3.39(1)-release
+```
 
-Pour modifier le shell par défaut associé à un utilisateur il faut modifier */etc/passwd* avec la commande **usermod -s /bin/bash login**
-: :
-
-    michaellaunay@luciole:~$ grep michael /etc/passwd
+Pour modifier le shell par défaut associé à un utilisateur il faut modifier */etc/passwd* avec la commande **usermod -s /bin/bash login** :
+```bash
+michaellaunay@luciole:~$ grep michael /etc/passwd
     michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/bash
     michaellaunay@luciole:~$ sudo usermod -s /bin/sh michaellaunay
     michaellaunay@luciole:~$ grep michael /etc/passwd
     michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/sh
-
-Pour créer un compte qui pourra se connecter sans avoir de shell (utilisation de tunnel) : :
-
-    usermod -s /bin/false prestataire
+```
+   
+Pour créer un compte qui pourra se connecter sans avoir de shell (utilisation de tunnel) :
+```bash
+usermod -s /bin/false prestataire
+```
 
 Détails sur le format du fichier passwd
+```bash
+michaellaunay@luciole:\~\$ man 5 passwd
+PASSWD(5)                                                                              Formats et conversions de fich                                                                              PASSWD(5)
 
-> <michaellaunay@luciole>:\~\$ man 5 passwd PASSWD(5) Formats et
-> conversions de fich PASSWD(5)
->
-> NOM
->
-> :   passwd - fichier des mots de passe
->
-> DESCRIPTION
->
-> :   /etc/passwd contient différentes informations sur les comptes
->     utilisateurs. Ces informations consistent en sept champs séparés
->     par des deux-points (« : ») : :
->
->     · nom de connexion de l´utilisateur (« login ») · un mot de passe
->     chiffré optionnel · l´identifiant numérique de l´utilisateur ·
->     l´identifiant numérique du groupe de l´utilisateur · le nom
->     complet de l´utilisateur ou un champ de commentaires · le
->     répertoire personnel de l´utilisateur · l´interpréteur de
->     commandes de l´utilisateur (optionnel)
->
->     Le champ du mot de passe chiffré peut être vide. Dans ce cas,
->     aucun mot de passe n´est nécessaire pour s´authentifier avec le
->     compte donné. Cependant, certaines applications qui lisent le
->     fichier /etc/passwd peuvent décider de ne donner aucun accès si
->     le mot de passe est vide. Si le mot de passe est un « x »
->     minuscule, alors le mot de passe chiffré se trouve dans le fichier
->     shadow(5) ; il doit y avoir une ligne correspondante dans le
->     fichier shadow, sinon le compte de l´utilisateur n´est pas valide.
->     Si le mot de passe est constitué d´une autre chaîne, alors il est
->     considéré comme un mot de passe chiffré, comme indiqué dans
->     crypt(3).
+NOM
+       passwd - fichier des mots de passe
+
+DESCRIPTION
+       /etc/passwd contains one line for each user account, with seven fields delimited by colons (« : »). These fields are:
+
+       •   nom de connexion de l'utilisateur (« login »)
+
+       •   un mot de passe chiffré optionnel
+
+       •   l'identifiant numérique de l'utilisateur
+
+       •   l'identifiant numérique du groupe de l'utilisateur
+
+       •   le nom complet de l'utilisateur ou un champ de commentaires
+
+       •   le répertoire personnel de l'utilisateur
+
+       •   l'interpréteur de commandes de l'utilisateur (optionnel)
+...
+```
 
 Plus d'information : man bash
 
 Lien : <http://fr.wikipedia.org/wiki/Bourne-Again_shell>
 
-#### Les fichiers de ressources et de configuration de bash
+## Les fichiers de ressources et de configuration de bash
 
 Au lancement du shell celui-ci détermine s'il a été appelé de façon interactive ou pour exécuter un script ou en tant que shell de login. En fonction de la nature de son lancement, il exécutera plusieurs fichiers lui permettant de ce paramétrer.
 
-Scripts exécutés lors du lancement d'un shell interactif en ouverture de session (interactive login shell) : :
+Scripts exécutés lors du lancement d'un shell interactif en ouverture de session (interactive login shell) :
+```bash
+/etc/profile
+~/.bash_profile #le ~ désigne le répertoire "home" de l'utilisateur
+~/.bash_login #si ~/.bash_profile n'existe pas
+~/.profile #si ~/.bash_login
+```
 
-    /etc/profile
-    ~/.bash_profile #le ~ désigne le répertoire "home" de l'utilisateur
-    ~/.bash_login #si ~/.bash_profile n'existe pas
-    ~/.profile #si ~/.bash_login
-
-Scripts exécutés lors d'un shell interactif : :
-
-    /etc/bash.bashrc
-    ~/.bashrc
+Scripts exécutés lors d'un shell interactif :
+```bash
+/etc/bash.bashrc
+~/.bashrc
+```
 
 La modification de ces scripts nécessite la commande **source** pour une prise en compte immédiate dans le shell courant.
 
-Scripts exécutés lors d'un script : :
+Scripts exécutés lors d'un script :
+```bash
+$BASH_ENV #BASH_ENV est une variable. Si elle existe alors les scripts lancés essayent d'exécuter le fichier désigné par $BASH_ENV
+```
 
-    $BASH_ENV #BASH_ENV est une variable. Si elle existe alors les scripts lancés essayent d'exécuter le fichier désigné par $BASH_ENV
+Un petit exemple :
+```bash
+michaellaunay@luciole:~$ echo "echo coucou" > /tmp/hello.sh #on crée un fichier hello.sh qui contient echo coucou
 
-Un petit exemple : :
+michaellaunay@luciole:~$ chmod +x /tmp/hello.sh   # on rend exécutable ce fichier
 
-    michaellaunay@luciole:~$ echo "echo coucou" > /tmp/hello.sh #on crée un fichier hello.sh qui contient echo coucou
-    michaellaunay@luciole:~$ chmod +x /tmp/hello.sh   # on rend exécutable ce fichier
-    michaellaunay@luciole:~$ /tmp/hello.sh            # on exécute ce fichier
+michaellaunay@luciole:~$ /tmp/hello.sh            # on exécute ce fichier
     coucou
-    michaellaunay@luciole:~$ echo $BASH_ENV           # on affiche le contenu de la variable BASH_ENV
+michaellaunay@luciole:~$ echo $BASH_ENV           # on affiche le contenu de la variable BASH_ENV
 
-    michaellaunay@luciole:~$ BASH_ENV='/tmp/hello.sh' # on affecte la chaîne /tmp/hello.sh à la variable BASH_ENV
-    michaellaunay@luciole:~$ export BASH_ENV # maintenant BASH_ENV sera accessible à toute commande exécutée depuis le shell courant
-    michaellaunay@luciole:~$ echo "echo cuicui" > /tmp/oiseau.sh
-    michaellaunay@luciole:~$ bash /tmp/oiseau.sh # on exécute oiseau.sh avec bash, car on n'a pas fait le chmod +x dessus
-    coucou
-    cuicui
+michaellaunay@luciole:~$ BASH_ENV='/tmp/hello.sh' # on affecte la chaîne /tmp/hello.sh à la variable BASH_ENV
 
-#### Les variables d'environnement
+michaellaunay@luciole:~$ export BASH_ENV # maintenant BASH_ENV sera accessible à toute commande exécutée depuis le shell courant
 
-Les variables d'environnement sont accessibles en consultation avec la commande **env** : :
+michaellaunay@luciole:~$ echo "echo cuicui" > /tmp/oiseau.sh
 
-    michaellaunay@luciole:~$ env
-    SHELL=/bin/bash
-    TERM=xterm
-    HISTSIZE=1000
-    USERNAME=michaellaunay
-    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-    PWD=/home/michaellaunay
-    EDITOR=vim
-    LANG=fr_FR.UTF-8
-    HOME=/home/michaellaunay
-    LOGNAME=michaellaunay
-    DISPLAY=:0.0
-    OLDPWD=/home/michaellaunay
+michaellaunay@luciole:~$ bash /tmp/oiseau.sh # on exécute oiseau.sh avec bash, car on n'a pas fait le chmod +x dessus
+   coucou
+   cuicui
+```
 
-Signification des variables d'environnement : :
+## Les variables d'environnement
+Les variables d'environnement sont accessibles en consultation avec la commande **env** :
+```bash
+michaellaunay@luciole:~$ env
+SHELL=/bin/bash
+TERM=xterm
+HISTSIZE=1000
+USERNAME=michaellaunay
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/home/michaellaunay
+EDITOR=vim
+LANG=fr_FR.UTF-8
+HOME=/home/michaellaunay
+LOGNAME=michaellaunay
+DISPLAY=:0.0
+OLDPWD=/home/michaellaunay
+```
 
-    BASH      # Le nom du fichier bash
-    DISPLAY   # Le numéro de serveur et de session d'affichage
-    EDITOR    # L'éditeur à utiliser par défaut
-    HISTSIZE  # La taille du fichier historique
-    HOSTNAME  # Le nom de la machine
-    HOME      # Le répertoire personnel de l'utilisateur
-    LANG      # La langue de l'utilisateur et l'encodage utilisé pour afficher cette langue
-    LOGNAME   # Le nom d'utilisateur lors de l'ouverture de la session
-    MAIL      # Le chemin vers la boite mail de l'utilisateur
-    OLDPWD    # Le répertoire où nous étions avant le dernier cd
-    PATH      # Le chemin vers les exécutables
-    PS1       # Permet de constituer l'invite de commande
-    PS2       # Symbole affiché sur les lignes de commande débordant sur plusieurs lignes
-    PROMPT_COMMAND # Le nom d'une commande à exécuter à chaque commande
-    PWD       # Le chemin actuel
-    SHELL     # Le shell de l'utilisateur
-    TERM      # Le type de terminal
-    USERNAME  # Le nom d'utilisateur
+Signification des variables d'environnement :
+```bash
+BASH      # Le nom du fichier bash
+DISPLAY   # Le numéro de serveur et de session d'affichage
+EDITOR    # L'éditeur à utiliser par défaut
+HISTSIZE  # La taille du fichier historique
+HOSTNAME  # Le nom de la machine
+HOME      # Le répertoire personnel de l'utilisateur
+LANG      # La langue de l'utilisateur et l'encodage utilisé pour afficher cette langue
+LOGNAME   # Le nom d'utilisateur lors de l'ouverture de la session
+MAIL      # Le chemin vers la boite mail de l'utilisateur
+OLDPWD    # Le répertoire où nous étions avant le dernier cd
+PATH      # Le chemin vers les exécutables
+PS1       # Permet de constituer l'invite de commande
+PS2       # Symbole affiché sur les lignes de commande débordant sur plusieurs lignes
+PROMPT_COMMAND # Le nom d'une commande à exécuter à chaque commande
+PWD       # Le chemin actuel
+SHELL     # Le shell de l'utilisateur
+TERM      # Le type de terminal
+USERNAME  # Le nom d'utilisateur
+```
 
 Pour accéder au contenu d'une variable, il suffit de la référencer en la précédent de **\$**:
 
@@ -397,247 +374,259 @@ Pour voir l'ensemble des définitions réalisées dans un shell (variable et fon
 
 Pour voir les lignes exécutées dans un script **set -x** en début de script.
 
-#### Les caractères spéciaux
+## Les caractères spéciaux
+Les caractères suivants permettent de déclencher des comportements particuliers qui seront expliqués ci-après :
+```
+# # Mise en commentaire
+> # Indirection vers un fichier
+< # Indirection depuis un fichier
+| # Pipe
+? # Un caractère ou pas
+. # Un caractère
+* # Une chaîne de caractère
+$ # Référencement d'une variable
+\ # Échappement
+/ # Séparateur
+[ # Début d'un ensemble ou d'un test
+] # Fin d'un ensemble ou d'un test
+( # Sous shell ou évaluation
+) # Fin de sous shell ou d'évaluation
+: # Séparateur de groupe
+; # Fin de commande
+^ # Inversion ou début
+@ # Adresse
+` # Début ou fin d'interprétation
+~ # Désigne le répertoire personnel
+```
 
-Les caractères suivants permettent de déclencher des comportements particuliers qui seront expliqués ci-après : :
+Si nous voulons les utiliser pour nommer par exemple un fichier sans que le comportement particulier soit déclenché nous avons l'obligation de les échapper avec **\\** ou de les mettre entre apostrophes **'** ou guillemets **"**:
+```
+\# ou '#' ou "#"
+\> ou '>' ou ">"
+\< ou '<' ou "<"
+\| ou '|' ou "|"
+\? ou '?' ou "?"
+\. ou '.' ou "."
+\* ou '*' ou "*"
+\$ ou '$' ou "$"
+\\ ou '' ou "\"
+\/ ou '/' ou "/"
+\[ ou '[' ou "["
+\] ou ']' ou "]"
+\( ou '(' ou "("
+\) ou ')' ou ")"
+\: ou ':' ou ":"
+\; ou ';' ou ";"
+\^ ou '^' ou "^"
+```
 
-    # # Mise en commentaire
-    > # Indirection vers un fichier
-    < # Indirection depuis un fichier
-    | # Pipe
-    ? # Un caractère ou pas
-    . # Un caractère
-    * # Une chaîne de caractère
-    $ # Référencement d'une variable
-    \ # Échappement
-    / # Séparateur
-    [ # Début d'un ensemble ou d'un test
-    ] # Fin d'un ensemble ou d'un test
-    ( # Sous shell ou évaluation
-    ) # Fin de sous shell ou d'évaluation
-    : # Séparateur de groupe
-    ; # Fin de commande
-    ^ # Inversion ou début
-    @ # Adresse
-    ` # Début ou fin d'interprétation
-    ~ # Désigne le répertoire personnel
+exemple :
+```bash
+michaellaunay@luciole:~$ echo lunettes > /tmp/\[\*\]\^\["*"']'
+michaellaunay@luciole:~$ ls /tmp
+[*]^[*]
+michaellaunay@luciole:~$ cat /tmp/\[\*\]\^\[\*\]
+lunettes
+```
 
-Si vous voulez les utiliser pour nommer par exemple un fichier sans que le comportement particulier soit déclenché vous avez l'obligation de les échapper avec **\*\* ou de les mettre entre apostrophes**'\*\* ou guillemets **\"**:
+## Variables spéciales
+En plus des variables d'environnement vue précédemment nous avons :
+```
+$? # Qui fait référence au code de retour de la dernière commande exécuté.
+$$ # Le pid du programme en cours d'exécution.
+$! # Le pid de la dernière commande lancée en tâche de fond.
+$# # Le nombre de paramètres.
+$0 # Le nom du programme en cours d'exécution.
+$1 # Le premier paramètre passé.
+$2 # Le second paramètre passé.
+...
+$9 # Le neuvième paramètre.
+$*, $@ # L'ensemble des paramètres
+```
 
-    \# ou '#' ou "#"
-    \> ou '>' ou ">"
-    \< ou '<' ou "<"
-    \| ou '|' ou "|"
-    \? ou '?' ou "?"
-    \. ou '.' ou "."
-    \* ou '*' ou "*"
-    \$ ou '$' ou "$"
-    \\ ou '' ou "\"
-    \/ ou '/' ou "/"
-    \[ ou '[' ou "["
-    \] ou ']' ou "]"
-    \( ou '(' ou "("
-    \) ou ')' ou ")"
-    \: ou ':' ou ":"
-    \; ou ';' ou ";"
-    \^ ou '^' ou "^"
+## Création, affectation de variable
+Pour créer une variable ou en modifier sa valeur, il suffit de la définir :
 
-exemple : :
+```bash
+michaellaunay@luciole:~$ VAR='Bonjour tout le monde'
+michaellaunay@luciole:~$ echo $VAR
+Bonjour tout le monde
+michaellaunay@luciole:~$ VAR=Salut
+michaellaunay@luciole:~$ echo $VAR
+Salut
+michaellaunay@luciole:~$ VAR=$VAR' à tous'
+michaellaunay@luciole:~$ echo $VAR
+Salut à tous
+michaellaunay@luciole:~$ PATH=/home/michaellaunay/MesScripts:$PATH
+michaellaunay@luciole:~$ echo $PATH
+/home/michaellaunay/MesScripts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+```
 
-    michaellaunay@luciole:~$ echo lunettes > /tmp/\[\*\]\^\["*"']'
-    michaellaunay@luciole:~$ ls /tmp
-    [*]^[*]
-    michaellaunay@luciole:~$ cat /tmp/\[\*\]\^\[\*\]
-    lunettes
+Pour supprimer une variable, on peut utiliser **unset** :
+```bash
+unset BASH_ENV
+```
 
-#### Variables spéciales
-
-En plus des variables d'environnement vue précédemment nous avons : :
-
-    $? # Qui fait référence au code de retour de la dernière commande exécuté.
-    $$ # Le pid du programme en cours d'exécution.
-    $! # Le pid de la dernière commande lancée en tâche de fond.
-    $# # Le nombre de paramètres.
-    $0 # Le nom du programme en cours d'exécution.
-    $1 # Le premier paramètre passé.
-    $2 # Le second paramètre passé.
-    ...
-    $9 # Le neuvième paramètre.
-    $*, $@ # L'ensemble des paramètres
-
-#### Création, affectation de variable
-
-Pour créer une variable ou en modifier sa valeur, il suffit de la définir : :
-
-    michaellaunay@luciole:~$ VAR='Bonjour tout le monde'
-    michaellaunay@luciole:~$ echo $VAR
-    Bonjour tout le monde
-    michaellaunay@luciole:~$ VAR=Salut
-    michaellaunay@luciole:~$ echo $VAR
-    Salut
-    michaellaunay@luciole:~$ VAR=$VAR' à tous'
-    michaellaunay@luciole:~$ echo $VAR
-    Salut à tous
-    michaellaunay@luciole:~$ PATH=/home/michaellaunay/MesScripts:$PATH
-    michaellaunay@luciole:~$ echo $PATH
-    /home/michaellaunay/MesScripts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-Pour supprimer une variable, on peut utiliser **unset** : :
-
-    michaellaunay@luciole:~$ unset BASH_ENV
-
-#### Protection des espaces des valeurs des variables
-
-Attention bash passe les mots d'une variable en les séparant d'un unique espace. Ainsi : :
-
-    michaellaunay@luciole:~$ VARIABLE="  commence par 2 espaces puis en contient cinq     et finit par deux  "
-    michaellaunay@luciole:~$ echo DEBUT${VARIABLE}FIN #L'abscence de guillemet forcent le bash à passer en paramettre chacuns des mots séparé par un unique espace.
-    DEBUT commence par 2 espaces puis en contient cinq et finit par deux FIN
-    michaellaunay@luciole:~$ echo DEBUT"$VARIABLE"FIN #Les guillemets protègent les espaces !
-    DEBUT  commence par 2 espaces puis en contient cinq     et finit par deux  FIN
+## Protection des espaces des valeurs des variables
+Attention bash passe les mots d'une variable en les séparant d'un unique espace. Ainsi :
+```bash
+michaellaunay@luciole:~$ VARIABLE="  commence par 2 espaces puis en contient cinq     et finit par deux  "
+michaellaunay@luciole:~$ echo DEBUT${VARIABLE}FIN #L'abscence de guillemet forcent le bash à passer en paramettre chacuns des mots séparé par un unique espace.
+DEBUT commence par 2 espaces puis en contient cinq et finit par deux FIN
+michaellaunay@luciole:~$ echo DEBUT"$VARIABLE"FIN #Les guillemets protègent les espaces !
+DEBUT  commence par 2 espaces puis en contient cinq     et finit par deux  FIN
+```
 
 On peut aussi échapper les espaces avec des antislashs lors de l'affectation de la variable.
 
-#### Évaluation d'une variable
+## Évaluation d'une variable
 
-Une variable peut contenir une commande. Son simple appel suffit à provoquer son évaluation : :
+Une variable peut contenir une commande. Son simple appel suffit à provoquer son évaluation :
+```bash
+michaellaunay@luciole:~$ MON_SCRIPT="/tmp/ma_cmd.sh"
+michaellaunay@luciole:~$ $MON_SCRIPT #exécute la commande contenue dans la variable MON_SCRIPT
+Hello
+michaellaunay@luciole:~$ cat  $MON_SCRIPT #Affiche ce qu'il y a dans le script /tmp/ma_cmd.sh
+#! /bin/bash
+echo Hello
+```
 
-    michaellaunay@luciole:~$ MON_SCRIPT="/tmp/ma_cmd.sh"
-    michaellaunay@luciole:~$ $MON_SCRIPT #exécute la commande contenue dans la variable MON_SCRIPT
-    Hello
-    michaellaunay@luciole:~$ cat  $MON_SCRIPT #Affiche ce qu'il y a dans le script /tmp/ma_cmd.sh
-    #! /bin/bash
-    echo Hello
-
-#### Export de variable
+## Export de variable
 
 Toute variable créée dans un shell n'est accessible que dans celui-ci.
 
 Pour la rendre accessible aux commandes et scripts appelés après l'affectation il faut l'exporter :
+```bash
+michaellaunay@luciole:~$ echo "echo \$SALUTATION" > /tmp/cmd.sh
+michaellaunay@luciole:~$ /tmp/cmd.sh
 
-    michaellaunay@luciole:~$ echo "echo \$SALUTATION" > /tmp/cmd.sh
-    michaellaunay@luciole:~$ /tmp/cmd.sh
+michaellaunay@luciole:~$ SALUTATION=coucou
+michaellaunay@luciole:~$ echo $SALUTATION
+coucou
+michaellaunay@luciole:~$ /tmp/cmd.sh
 
-    michaellaunay@luciole:~$ SALUTATION=coucou
-    michaellaunay@luciole:~$ echo $SALUTATION
-    coucou
-    michaellaunay@luciole:~$ /tmp/cmd.sh
+michaellaunay@luciole:~$ export SALUTATION
+michaellaunay@luciole:~$ /tmp/cmd.sh
+coucou
+```
 
-    michaellaunay@luciole:~$ export SALUTATION
-    michaellaunay@luciole:~$ /tmp/cmd.sh
-    coucou
-
-#### Les tests d'expressions et fichier, opérateurs de contrôle
+## Les tests d'expressions et fichier, opérateurs de contrôle
 
 La commande **test** permet de tester une expression et de retourner 0 si le test est vrai et 1 s'il est faux :
+```bash
+michaellaunay@luciole:~$ test 1 = 1
+michaellaunay@luciole:~$ echo $?
+0
+michaellaunay@luciole:~$ test 1 = 2
+michaellaunay@luciole:~$ echo $?
+1
+```
 
-    michaellaunay@luciole:~$ test 1 = 1
-    michaellaunay@luciole:~$ echo $?
-    0
-    michaellaunay@luciole:~$ test 1 = 2
-    michaellaunay@luciole:~$ echo $?
-    1
-
-On peut aussi remplacer **test** par des crochets, mais il faut alors encadrer les crochets par des espaces :
-
-    michaellaunay@luciole:~$ [ 1 = 2 ]
-    michaellaunay@luciole:~$ echo $?
-    1
+Nous pouvons aussi remplacer **test** par des crochets, mais il faut alors encadrer les crochets par des espaces :
+```bash
+michaellaunay@luciole:~$ [ 1 = 2 ]
+michaellaunay@luciole:~$ echo $?
+1
+```
 
 Les options de test sont très nombreuses. Faites man test.
 
 Avec **test** et **if** il est possible d'exécuter conditionnellement des commandes :
+```bash
+michaellaunay@luciole:~$ VAR=2
+michaellaunay@luciole:~$ if [ $VAR = 2 ]; then echo Vrai; else echo Faux;fi
+Vrai
+michaellaunay@luciole:~$ VAR=$HOME
+michaellaunay@luciole:~$ if [ -w $VAR ]
+> then echo écriture possible dans $VAR
+> else echo écriture impossible dans $VAR
+> fi
+écriture possible dans /home/michaellaunay
+```
 
-    michaellaunay@luciole:~$ VAR=2
-    michaellaunay@luciole:~$ if [ $VAR = 2 ]; then echo Vrai; else echo Faux;fi
-    Vrai
-    michaellaunay@luciole:~$ VAR=$HOME
-    michaellaunay@luciole:~$ if [ -w $VAR ]
-    > then echo écriture possible dans $VAR
-    > else echo écriture impossible dans $VAR
-    > fi
-    écriture possible dans /home/michaellaunay
+## Exécution d'opérations arithmétiques
 
-#### Exécution d'opérations arithmétiques
+La construction **$[ nombre1 opérateur nombre2 ]** permet de réaliser le calcul d'expression sur des entiers :
+```bash
+michaellaunay@luciole:~$ echo $[ 10 - 1 ]
+9
+```
 
-La construction **\$\[ nombre1 opérateur nombre2 \]** permet de réaliser le calcul d'expression sur des entiers :
+## La création d'une variable et sa modification
+Comme avec la plupart des langages, c'est l'opérateur égal qui sert à la création et à l'affectation.
+```bash
+michaellaunay@luciole:~$ CMPT=[0] # équivalent à la ligne suivante
+michaellaunay@luciole:~$ let CMPT=0
+michaellaunay@luciole:~$ echo $CMPT
+0
+michaellaunay@luciole:~$ let CMPT+=1
+michaellaunay@luciole:~$ echo $CMPT
+1
+michaellaunay@luciole:~$ let CMPT+=1
+michaellaunay@luciole:~$ echo $CMPT
+2
+```
 
-    michaellaunay@luciole:~$ echo $[ 10 - 1 ]
-    9
-
-La création d'une variable et sa modification :
-
-    michaellaunay@luciole:~$ CMPT=[0] # équivalent à la ligne suivante
-    michaellaunay@luciole:~$ let CMPT=0
-    michaellaunay@luciole:~$ echo $CMPT
-    0
-    michaellaunay@luciole:~$ let CMPT+=1
-    michaellaunay@luciole:~$ echo $CMPT
-    1
-    michaellaunay@luciole:~$ let CMPT+=1
-    michaellaunay@luciole:~$ echo $CMPT
-    2
-
-#### La boucle while et until
-
+## La boucle while et until
 **While** permet d'exécuter des commandes tant que la condition est satisfaite alors que **until** exécute des commandes tant que la condition échoue.
 
 Exemple :
+```bash
+michaellaunay@luciole:~$ VAR=4
+michaellaunay@luciole:~$ while [ $VAR -gt 0 ]
+> do
+> echo itération $VAR;
+> VAR=$[ $VAR - 1 ]
+> done
+itération 4
+itération 3
+itération 2
+itération 1
+```
 
-    michaellaunay@luciole:~$ VAR=4
-    michaellaunay@luciole:~$ while [ $VAR -gt 0 ]
-    > do
-    > echo itération $VAR;
-    > VAR=$[ $VAR - 1 ]
-    > done
-    itération 4
-    itération 3
-    itération 2
-    itération 1
+## La boucle for
+Pour chaque élément d'un ensemble, nous exécutons une commande :
+```bash
+michaellaunay@luciole:~$ NORD="Lille Roubaix"
+michaellaunay@luciole:~$ CENTRE="Paris Chartres"
+michaellaunay@luciole:~$ SUD="Nice Marseille"
+michaellaunay@luciole:~$ for ville in $NORD $CENTRE $SUD
+> do
+> echo Visiter $ville
+> done
+Visiter Lille
+Visiter Roubaix
+Visiter Paris
+Visiter Chartres
+Visiter Nice
+Visiter Marseille
+```
 
-#### La boucle for
-
-Pour chaque élément d'un ensemble, on exécute une commande :
-
-    michaellaunay@luciole:~$ NORD="Lille Roubaix"
-    michaellaunay@luciole:~$ CENTRE="Paris Chartres"
-    michaellaunay@luciole:~$ SUD="Nice Marseille"
-    michaellaunay@luciole:~$ for ville in $NORD $CENTRE $SUD
-    > do
-    > echo Visiter $ville
-    > done
-    Visiter Lille
-    Visiter Roubaix
-    Visiter Paris
-    Visiter Chartres
-    Visiter Nice
-    Visiter Marseille
-
-#### Le choix multiple (case)
-
-Permet de réaliser un branchement. Ne pas oublier les deux points-virgules à la fin d'un cas : :
-
-    michaellaunay@luciole:~$ VAR=Lille
-    michaellaunay@luciole:~$ case $VAR in
-    > 'lille' | 'Lille' | 'LILLE' )
-    >   echo J'y habite
-    > ;;
-    > 'paris' | 'Paris' | 'PARIS' )
-    >   echo J'y ai habité
-    > ;;
-    > * )
-    >   echo Je ne connais pas
-    > ;;
-    > esac
-    J'y habite
-
-#### Les opérateurs && et \|\|
+## Le choix multiple (case)
+Permet de réaliser un branchement. Ne pas oublier les deux points-virgules à la fin d'un cas :
+```bash
+michaellaunay@luciole:~$ VAR=Lille
+michaellaunay@luciole:~$ case $VAR in
+> 'lille' | 'Lille' | 'LILLE' )
+>   echo J'y habite
+> ;;
+> 'paris' | 'Paris' | 'PARIS' )
+>   echo J'y ai habité
+> ;;
+> * )
+>   echo Je ne connais pas
+> ;;
+> esac
+J'y habite
+```
+@TODO Mettre en forme
+## Les opérateurs && et \|\|
 
 L'opérateur **&&** permet d'exécuter la commande suivante si la commande précédente réussit (retourne 0) :
 
     michaellaunay@luciole:~$ grep refusée /var/log/user.log > /tmp/connexion.txt && vim /tmp/connexion.txt
 
-L'opérateur **\|\|** permet d'exécuter la commande suivante si la commande précédente a échoué (retour de 1) : :
+L'opérateur **\|\|** permet d'exécuter la commande suivante si la commande précédente a échoué (retour de 1) :
 
     michaellaunay@luciole:~$ grep refusée /var/log/user.log > /dev/null || echo tout va bien
 
@@ -655,9 +644,9 @@ Elle permet de positionner une fonction qui sera exécutée lors de la réceptio
 
 Elle permet de faire des traitements sur les lignes d'un flux.
 Par exemple elle permet de trouver un motif et de le remplacer.
-On la rencontre dans de nombreux scripts.
+Nous la rencontrons dans de nombreux scripts.
 
-Par exemple dans la ligne suivante : :
+Par exemple dans la ligne suivante :
 
     ls -1 | xargs -i echo mv {} {} | sed -e "s/Ubuntu22.04_//2" | bash
 
@@ -671,7 +660,7 @@ Le résultat est exécuté par bash en transformant la chaîne de caractères re
 
 Ici sed permet de renommer les fichiers de type Ubuntu22.04\_00\_EssayerOuInstaller.png en 00\_EssayerOuInstaller.png.
 
-À cette ligne complexe, on préférera renommer de façon plus élégante et rapide avec la ligne de cmd : :
+À cette ligne complexe, nous préférerons renommer de façon plus élégante et rapide avec la ligne de cmd :
 
     for filename in *; do mv $filename ${filename/Ubuntu22.04_/}; done
 
@@ -781,7 +770,7 @@ Les commandes :
     cd        # Permet de déplacer le répertoire courant
     pwd       # Affiche le chemin du répertoire courant
 
-exemple : :
+exemple :
 
     michaellaunay@luciole:~$ ls -lh /
     total 2,1G
@@ -907,7 +896,7 @@ Les caractères spéciaux et les espaces peuvent être utilisés à la condition
 
 La taille des noms ne doit pas excéder 255 octets.
 
-Si l'on utilise des caractères accentués ou asiatiques, le nombre de caractères maximal est inférieur à 255, car il faut 2 à 4 octets pour représenter un caractère autre que ASCII en
+Si nous utilisons des caractères accentués ou asiatiques, le nombre de caractères maximal est inférieur à 255, car il faut 2 à 4 octets pour représenter un caractère autre que ASCII en
 [utf-8](http://fr.wikipedia.org/wiki/Utf-8).
 
 Tout fichier ou répertoire commençant par un **.** sera caché et accessible uniquement avec l'option **-a** de **ls**.
@@ -930,9 +919,9 @@ Ainsi :
     drwxrwxrwt  19 root root  4096 2009-05-03 11:10 tmp
 
 *lrwxrwxrwx 1 michaellaunay users 11 2009-03-01 21:23* est la liste des
-attributs qui doit être décomposée comme ceci : :
+attributs qui doit être décomposée comme ceci :
 
-    première lettre : ::
+    première lettre ::
 
       l indique que le fichier est un lien symbolique (un raccourci).
       d indique que le fichier est un répertoire
@@ -942,7 +931,7 @@ attributs qui doit être décomposée comme ceci : :
       s socket
       p fifo
 
-    premier groupe de 3 lettres : ::
+    premier groupe de 3 lettres ::
 
       r-- indique que le propriétaire a le droit de lecture
       -w- indique que le propriétaire a le droit d'écriture
@@ -954,7 +943,7 @@ attributs qui doit être décomposée comme ceci : :
       --S (SUID) indique qu'un utilisateur qui exécute le fichier usurpe les droits du propriétaire.
           Le propriétaire n'a pas les droits d'exécuter ou de traverser (--x n'est pas positionné).
 
-    second groupe de 3 lettres : ::
+    second groupe de 3 lettres ::
 
       même signification que précédemment, mais pour les groupes et sauf pour le SUID.
       --s (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les
@@ -962,7 +951,7 @@ attributs qui doit être décomposée comme ceci : :
       --S (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les
           droits du groupe, mais que le groupe n'a pas les droits d'exécuter ou de traverser.
 
-    troisième groupe de 3 lettres : ::
+    troisième groupe de 3 lettres ::
 
       même signification que précédemment mais pour tous les autres utilisateurs et sauf SGID
       --t (Sticky bit) Indique que les utilisateurs ont le droit de modifier le contenu du fichier
@@ -986,7 +975,7 @@ Si les permissions sont suivies d'un + alors des ACL sont positionnées.
 
 Outre les fichiers normaux, les répertoires et les liens, il existe de nombreux fichiers spéciaux sous Unix.
 
-En effet la philosophie d'Unix est de vouloir que tout soit fichier : :
+En effet la philosophie d'Unix est de vouloir que tout soit fichier :
 
     Les périphériques sont manipulés comme s'ils étaient des fichiers.
     Les piles (fifo, lifo), les pipes nommées, sockets sont manipulés comme des fichiers.
@@ -996,7 +985,7 @@ En effet la philosophie d'Unix est de vouloir que tout soit fichier : :
 
 #### /dev
 
-Contient les fichiers de périphériques physiques ou virtuels : :
+Contient les fichiers de périphériques physiques ou virtuels :
 
     /dev/sda    # Premier disk scsi ou sata ou usb
     /dev/sda1   # Première partition de /dev/sda
@@ -1034,7 +1023,7 @@ Cette arborescence offre plusieurs types de classement, une même information pe
 
 Les commandes telles que **lsusb** ou **lspci** vont chercher les informations dont elles ont besoin dans cette arborescence.
 
-**/sys/class/** montre les périphériques regroupés en classes : :
+**/sys/class/** montre les périphériques regroupés en classes :
 
     michaellaunay@luciole:~$ ls /sys/class/
     atm        firmware       ieee1394_protocol  pci_bus        scsi_disk     usb_host
@@ -1057,7 +1046,7 @@ Les commandes telles que **lsusb** ou **lspci** vont chercher les informations d
 
 C'est dans cette arborescence que des commandes comme **ps** vont chercher des informations sur les processus.
 
-Exemple : :
+Exemple :
 
     michaellaunay@luciole:~$ cat /proc/cpuinfo
     processor : 0
@@ -1104,7 +1093,7 @@ Par défaut l'entrée standard est la saisie clavier et les sorties sont l'écra
 
 Les flux standards stdin, stdout et stderr sont numérotés respectivement 0, 1 et 2.
 
-En conséquence on peut utiliser ces numéros pour les désigner lors des redirections.
+En conséquence nous pouvons utiliser ces numéros pour les désigner lors des redirections.
 
 ### Input, Output
 
@@ -1148,7 +1137,7 @@ La commande **screen** est un multiplexeur de terminaux il permet de gérer plus
 
 L'intérêt est de pouvoir réaliser des tâches d'administration longues sans devoir rester connecté, ou si le réseau n'est pas fiable de ne pas perdre le travail accompli en reprenant là ou la connexion s'est rompue.
 
-Les options de bases : :
+Les options de bases :
 
     michaellaunay@luciole:~$ screen -dmS Nom
     michaellaunay@luciole:~$ screen -r Nom # Permet de se rattacher au terminal Nom
@@ -1161,16 +1150,16 @@ Les options de bases : :
 
 La commande **ssh** permet de se connecter à distance sur une machine Unix ceci de façon chiffrée. Elle permet aussi d'ouvrir des tunnels chiffrés.
 
-L'ouverture d'un tunnel entre 2 machines est de la forme : :
+L'ouverture d'un tunnel entre 2 machines est de la forme :
 
     ssh -L ${PORT_SOURCE}:${nom_machine_dest}:${PORT_DEST} ${USER}@${DEST}
 
-où \${PORT\_SOURCE} est le numéro de port d'entrée du tunnel sur la machine où l'on est, \${nom\_machine\_dest} est soit localhost soit le nom de la machine destination soit une adresse du réseau privé derrière le serveur destination, \${PORT\_DEST} est le numéro du port de sortie du tunnel sur la machine cible \${USER} est le nom d'utilisateur
+où \${PORT\_SOURCE} est le numéro de port d'entrée du tunnel sur la machine où nous sommes, \${nom\_machine\_dest} est soit localhost soit le nom de la machine destination soit une adresse du réseau privé derrière le serveur destination, \${PORT\_DEST} est le numéro du port de sortie du tunnel sur la machine cible \${USER} est le nom d'utilisateur
 \${DEST} est le nom complet du serveur de destination
 
-On peut ajouter l'option -i avec un nom de fichier clé à utiliser
+Nous pouvons ajouter l'option -i avec un nom de fichier clé à utiliser
 
-Exemple : :
+Exemple :
 
     ssh -l 9880:localhost:80 michaellaunay@plateforme.test.com
 
@@ -1186,7 +1175,7 @@ Compréhension de ssh :
 > -   <http://web.archive.org/web/20110907084212/http://www.unixgarden.com/index.php/administration-systeme/principes-et-utilisation-de-ssh>
 > -   <https://youtu.be/pLJC96zfwrE>
 
-Si la clé d'une machine à laquelle on se connecte habituellement a changé (cas d'une réinstallation), on peut être amené à supprimer son entrée dans le fichier *\~/.ssh/known\_hosts*.
+Si la clé d'une machine à laquelle nous nous connectons habituellement a changé (cas d'une réinstallation), nous pouvons être amené à supprimer son entrée dans le fichier *\~/.ssh/known\_hosts*.
 
 Le plus simple est alors d'utiliser la commande **ssh-keygen -R NomDeLaMachineDistante**.
 
@@ -1196,7 +1185,7 @@ Pour sécuriser les connexions **ssh**, il faut éditer
 */etc/ssh/sshd\_config* et mettre l'option *PermitRootLogin=no* et
 ajouter en fin de fichier *AllowUsers idUtilisateurAutorise*.
 
-On peut aussi limiter les adresses pouvant se connecter via le paramètre
+Nous pouvons aussi limiter les adresses pouvant se connecter via le paramètre
 *ListenAddress* et les ports avec *PermitOpen host:port*.
 
 Il est possible de créer des sections de configuration par utilisateur :
@@ -1206,13 +1195,12 @@ Il est possible de créer des sections de configuration par utilisateur :
     X11Forwarding yes
     MAtch All
 
-Pour ne permettre la connexion que par clé on positionne
+Pour ne permettre la connexion que par clé nous positionnons
 \"ChallengeResponseAuthentication no\"
 
 Voir vidéo <https://youtu.be/qrS1rSFb-1w>
 
-La commande **screen** est très utilisée avec \"ssh\", elle permet de conserver le **tty** ouvert lors des déconnexions et donc de reprendre là où on en était. Il suffit de la relancer avec l'option \"-r\" pour rattacher une session précédente, de même en début de session on peut
-faire \"Ctrl A\" \"esc\" pour enregistrer les lignes et donc avoir la scroll bar.
+La commande **screen** est très utilisée avec \"ssh\", elle permet de conserver le **tty** ouvert lors des déconnexions et donc de reprendre là où nous en étions. Il suffit de la relancer avec l'option \"-r\" pour rattacher une session précédente, de même en début de session nous pouvons faire \"Ctrl A\" \"esc\" pour enregistrer les lignes et donc avoir la scroll bar.
 
 Créer une clé:
 
@@ -1230,7 +1218,7 @@ Supprimer la clé d'un serveur distant :
 
     ssh-keygen -R NomServeurDistant
 
-On peut utiliser **tar** et **ssh** pour faire des archives à travers un flux sécurisé :
+Nous pouvons utiliser **tar** et **ssh** pour faire des archives à travers un flux sécurisé :
 
     tar cf - RepertoireSource | ssh user@ServeurSauvegarde "cat > nom_archive.tar"
 
@@ -1240,17 +1228,17 @@ La restauration se fera alors comme suit :
 
 Utiliser un Agent ssh
 
-Saisir à chaque fois sa clé ou son mot de passe peut être fastidieux. On a alors la possibilité d'utiliser un agent ssh.
+Saisir à chaque fois sa clé ou son mot de passe peut être fastidieux. Nous avons alors la possibilité d'utiliser un agent ssh.
 
-Vérifiez qu'il est déjà en train de tourner : :
+Vérifiez qu'il est déjà en train de tourner :
 
     ps -p $SSH_AGENT_PID # s'il fonctionne la variable d'environnement contient son PID
 
-Le lancer sinon : :
+Le lancer sinon :
 
     eval `ssh-agent`
 
-Pour ajouter des clés : :
+Pour ajouter des clés :
 
     ssh-add
 
@@ -1258,11 +1246,11 @@ Pour se connecter et continuer à utiliser les clés de l'agent sur la destinati
 
     ssh -A ...
 
-Pour rebondir (embarque l'agent sur les dernières versions de ssh) : :
+Pour rebondir (embarque l'agent sur les dernières versions de ssh) :
 
     ssh -J 192.168.0.3,192.168.0.1 usedest@destination.ecreall.com #Enchaîne les rebonds sur les adresses séparées par la virgule
 
-On peut aussi paramétrer des rebonds en éditant \~/.ssh/config : :
+Nous pouvons aussi paramétrer des rebonds en éditant \~/.ssh/config :
 
     Host machine_intermediaire_ou_alias
 
@@ -1282,7 +1270,7 @@ On peut aussi paramétrer des rebonds en éditant \~/.ssh/config : :
 
 Voir <https://youtu.be/vpbD7xA2wac>
 
-Créer un tunnel entre deux machines en tâche de fond : :
+Créer un tunnel entre deux machines en tâche de fond :
 
     ssh -fNL port_local_sortant:adresse_rebond:port_entrant_distant user@Serveur_Distant # -f pour mettre en fond -N pour ne pas exécuter de commande
 
@@ -1290,13 +1278,13 @@ Créer un tunnel entre deux machines en tâche de fond : :
 
 La commande **iptables** permet de consulter et modifier les règles du firewall.
 
-Le service **ufw** est un \"firewall\" pré-configurer que l'on peut facilement compléter.
+Le service **ufw** est un \"firewall\" pré-configurer que nous pouvons facilement compléter.
 
-Pour l'installer il suffit de faire : :
+Pour l'installer il suffit de faire :
 
     apt install ufw
 
-Pour connaître la liste des applications pouvant être autorisées par ufw à passer le firewall : :
+Pour connaître la liste des applications pouvant être autorisées par ufw à passer le firewall :
 
     root@luciole:~# ufw app list
     Applications disponibles ::
@@ -1314,14 +1302,14 @@ Pour connaître la liste des applications pouvant être autorisées par ufw à p
       Postfix SMTPS
       Postfix Submission
 
-On pourra alors : soit autoriser les ports manuellement, soit autoriser les ports utilisés par une application.
+Nous pourrons alors : soit autoriser les ports manuellement, soit autoriser les ports utilisés par une application.
 
 > ufw allow OpenSSH
 
-Modification du firewall pour permettre en entrée http, https, smtp : :
+Modification du firewall pour permettre en entrée http, https, smtp :
 
     vim /etc/ufw/ufw.conf  # ENABLED=yes #si pas déjà positionné
-    ufw allow 22/tcp # Ouvre le port ssh à tous (on peut restreindre à certaines adresses)
+    ufw allow 22/tcp # Ouvre le port ssh à tous (que nous pouvons restreindre à certaines adresses)
     ufw allow 80/tcp # Ouverture de http
     ufw allow 443/tcp # Ouverture de https
     ufw allow 25/tcp # Ouverture de smtp (envoi des courriels)
@@ -1329,7 +1317,7 @@ Modification du firewall pour permettre en entrée http, https, smtp : :
 
 Ces commandes permettent aussi de gérer ipv6
 
-Vérification : :
+Vérification :
 
     root@luciole:/etc/dovecot# ufw status
     État : actif
@@ -1408,7 +1396,7 @@ Le propriétaire est alors le créateur, et le groupe est généralement le grou
 
 ### Changer le propriétaire ou le groupe propriétaire
 
-La commande **chown** permet de changer le propriétaire et le groupe d'un fichier : :
+La commande **chown** permet de changer le propriétaire et le groupe d'un fichier :
 
     root@luciole:~$ ls -l /tmp/MonFichier
     -rw-rw-rw- 1 michaellaunay michaellaunay 0 2009-05-03 19:08 /tmp/MonFichier
@@ -1418,7 +1406,7 @@ La commande **chown** permet de changer le propriétaire et le groupe d'un fichi
 
 Toutefois pour des raisons de sécurité (gestion des quotas : attaque sushi) la commande peut être réservée au super utilisateur.
 
-On dispose aussi de la commande **chgrp** qui permet de changer le groupe d'un fichier.
+Nous disposons aussi de la commande **chgrp** qui permet de changer le groupe d'un fichier.
 
 ### Valeurs symboliques et octales des permissions
 
@@ -1450,7 +1438,7 @@ Ainsi les permissions *rwx* sont équivalentes à *7* et *rwxr-xr\--* donne *754
 
 Ainsi *rwsr-sr-t* est équivalent à *7755*.
 
-Si l'on a un S ou un T en majuscule, cela signifie que les droits d'exécution n'ont pas été positionnés.
+Si nous avons un S ou un T en majuscule, cela signifie que les droits d'exécution n'ont pas été positionnés.
 
 Ceci n'a pas de sens dans le cas général et indique une suppression du droit d'exécution avec oubli du SUID ou GUID ou Sticky Bit.
 
@@ -1462,7 +1450,7 @@ La commande **chmod** permet de modifier les droits des fichiers.
 
 #### Mode chiffré
 
-Exemple : :
+Exemple :
 
     michaellaunay@luciole:~/tmp$ ls -l MonFichier
     -rw-r--r-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
@@ -1472,7 +1460,7 @@ Exemple : :
 
 #### Notation relative (aux droits existants)
 
-Exemple : :
+Exemple :
 
     michaellaunay@luciole:~/tmp$ ls -l MonFichier
     -rwxr-xr-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
@@ -1480,7 +1468,7 @@ Exemple : :
     michaellaunay@luciole:~/tmp$ ls -l MonFichier
     -rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
 
-Attention aux modifications contradictoires : :
+Attention aux modifications contradictoires :
 
     michaellaunay@luciole:~$ echo coucou > /tmp/hello
     michaellaunay@luciole:~$ ls -l /tmp/hello
@@ -1493,7 +1481,7 @@ Attention aux modifications contradictoires : :
 
 #### Notation absolue
 
-Exemple : :
+Exemple :
 
     michaellaunay@luciole:~/tmp$ ls -l MonFichier
     -rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
@@ -1513,7 +1501,7 @@ Le mécanisme de gestion des droits Unix couvre 95% des usages.
 
 Il reste donc certains cas non couverts comme le fait d'attribuer les droits de modification d'un fichier à un utilisateur sans avoir à demander à l'administrateur de devoir créer un groupe (ce qui manque un peu de souplesse).
 
-On peut aussi vouloir associer de nouveaux attributs aux fichiers pour par exemple gérer des informations de sécurités.
+Nous pouvons aussi vouloir associer de nouveaux attributs aux fichiers pour par exemple gérer des informations de sécurités.
 
 À l'inverse il est très difficile de restreindre les droits d'un utilisateur d'un groupe donné pour un seul fichier.
 
@@ -1537,7 +1525,7 @@ Pour installer le paquet : **apt-get install attr**
 
 Ajouter l'option *user\_xattr* aux partitions dans */etc/fstab*.
 
-Puis utiliser **setfattr** pour positionner les attributs et **getfattr** pour les afficher : :
+Puis utiliser **setfattr** pour positionner les attributs et **getfattr** pour les afficher :
 
     michaellaunay@excalibur:~$ echo test > MonFichier
     michaellaunay@excalibur:~$ setfattr -n user.description -v 'Contient des données de test' MonFichier
@@ -1551,7 +1539,7 @@ Remarque : La présence d'attributs étendus n'est pas signalée par *ls*.
 
 ### Affectation des ACL
 
-Pour vérifier que les ACLs peuvent être activées : :
+Pour vérifier que les ACLs peuvent être activées :
 
     michaellaunay@luciole:~$ grep -i acl /boot/config-`uname -r`
 
@@ -1659,7 +1647,7 @@ Voir : <http://en.wikipedia.org/wiki/Process_states>
 
 ### Les différentes sortes de processus
 
-On distingue les processus classiques des démons qui sont les services unix.
+Nous distinguons les processus classiques des démons qui sont les services unix.
 
 Les démons ou démons fonctionnent en arrière-plan ils ont en général pour père le processus 1.
 
@@ -1697,11 +1685,11 @@ La commande **uptime** affiche les informations de temps de fonctionnement, du n
 
 ### Arrière-plan / Avant-plan / Détachement
 
-Pour lancer un processus en arrière-plan, on peut soit terminer la ligne de commande qui le lance avec **&**, soit le lancer, faire **Ctrl+z** puis **bg**.
+Pour lancer un processus en arrière-plan, nous pouvons soit terminer la ligne de commande qui le lance avec **&**, soit le lancer, faire **Ctrl+z** puis **bg**.
 
 Lors du **Ctrl+z** la commande **fg** ramène le processus au premier plan.
 
-La commande **jobs** permet de lister les processus suspendus, on peut alors les rattacher avec **fg num\_job**.
+La commande **jobs** permet de lister les processus suspendus, nous pouvons alors les rattacher avec **fg num\_job**.
 
 Les processus dont le père meure sans attendre le statut de ses enfants sont raccrochés à *init*.
 
@@ -1715,7 +1703,7 @@ Par défaut un processus est lancé avec la priorité +10.
 
 Seul l'administrateur peut donner des priorités négatives aux processus.
 
-La commande **nice \[COMMAND \[ARG\]\]** permet de lancer une commande en lui donnant la priorité *p* si l'on passe l'option *-n p*.
+La commande **nice \[COMMAND \[ARG\]\]** permet de lancer une commande en lui donnant la priorité *p* si nous passons l'option *-n p*.
 
 La commande **renice** permet de modifier la priorité d'un processus.
 
@@ -1749,7 +1737,7 @@ Le joker \*\*\*\*\* permet d'indiquer que toutes les valeurs sont acceptées.
 
 Pour les fichiers *cron* du système, une colonne *Utilisateur* s'intercale juste avant celle de la *commande*. Elle permet alors d'indiquer sous quel utilisateur doit être lancée la commande.
 
-Exemple : :
+Exemple :
 
     root@serveur:~# crontab -l
     # m h  dom mon dow   command
@@ -1854,7 +1842,7 @@ Avec l'option *-r* cette commande supprimera en plus le répertoire personnel de
 
 #### Désactiver un compte utilisateur
 
-L'une des façons les plus propres d'interdire la connexion à un utilisateur est de lui associer le shell **nologin** : :
+L'une des façons les plus propres d'interdire la connexion à un utilisateur est de lui associer le shell **nologin** :
 
     root@server:~# usermod -s /usr/sbin/nologin indesirable
 
@@ -1862,7 +1850,7 @@ L'une des façons les plus propres d'interdire la connexion à un utilisateur es
 
 La commande **passwd** permet sous *root* de changer le mot de passe d'un utilisateur.
 
-Si l'on est un utilisateur, la commande demandera de saisir l'ancien mot de passe.
+Si nous sommes un utilisateur, la commande demandera de saisir l'ancien mot de passe.
 
 La commande **chpasswd** permet de scripter les changements de mots de passe.
 
@@ -1874,14 +1862,14 @@ La commande **id** permet d'afficher les informations de l'utilisateur
     michaellaunay@serveur:~$ id
     uid=1000(michaellaunay) gid=1000(michaellaunay) groupes=4(adm),20(dialout),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),107(fuse),111(lpadmin),112(admin),1000(michaellaunay)
 
-La commande **groups** permet d'afficher les informations de groupe : :
+La commande **groups** permet d'afficher les informations de groupe :
 
     michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ groups
     michaellaunay adm dialout cdrom plugdev lpadmin admin sambashare
 
 La commande **who** permet de savoir qui est connecté sur la machine.
 
-La commande **whoami** permet de savoir sous quelle identité on est connecté.
+La commande **whoami** permet de savoir sous quelle identité nous sommes connecté.
 
 #### Modifier les informations d'un utilisateur
 
@@ -1911,7 +1899,7 @@ La commande **groups** déjà vu affiche les informations d'appartenance.
 
 #### Ajouter un utilisateur à un groupe
 
-On utilise la commande **usermod** de la façon suivante : :
+Nous utilisons la commande **usermod** de la façon suivante :
 
     root@server~# usermod -a -G cdrom,dev michaellaunay
 
@@ -1952,7 +1940,7 @@ Installation du serveur ldap :
 
     apt install slapd ldap-utils
 
-Modification de la configuration : :
+Modification de la configuration :
 
     dpkg-reconfigure slapd
     # saisie de "ecreall.com" comme domaine
@@ -1961,18 +1949,18 @@ Modification de la configuration : :
 
 Attention ! Configurer LTS pour chiffrer les connexions si elles sont extérieures à la machine, car les mots de passe circulent en clair (voir <https://wiki.debian.org/LDAP/OpenLDAPSetup#Enable_TLS.2FSSL>)!
 
-Activer le service au démarrage : :
+Activer le service au démarrage :
 
     systemctl enable slapd
 
-Rendre \"ldap\" accessible en éditant \"/etc/ldap/ldap.conf\" en ajoutant : :
+Rendre \"ldap\" accessible en éditant \"/etc/ldap/ldap.conf\" en ajoutant :
 
     BASE    dc=ecreall,dc=com
     URI     ldap://127.0.0.1
 
 Ajout d'une entrée LDAP :
 
-> Créer un fichier ecreall.ldif contenant : :
+> Créer un fichier ecreall.ldif contenant :
 >
 >     dn: ou=People,dc=ecreall,dc=com
 >     ou: People
@@ -1990,20 +1978,20 @@ Ajout d'une entrée LDAP :
 >
 > ldapadd -x -D \"cn=admin,dc=ecreall,dc=com\" -W -f ecreall.ldif
 
-Mettre à jour l'index (cache) : :
+Mettre à jour l'index (cache) :
 
     systemctl stop slapd
     slapindex
     chown -R openldap:openldap /var/lib/ldap
     systemctl start slapd
 
-Vérification : :
+Vérification :
 
     ldapsearch -x -b 'dc=ecreall,dc=com' '(objectclass=*)'
 
 Ajout d'une OrganizationUnit :
 
-> Créer un fichier \"e-services.ldif\" et y mettre : :
+> Créer un fichier \"e-services.ldif\" et y mettre :
 >
 >     dn: ou=Études,dc=ereall,dc=com
 >     objectClass: organizationalUnit
@@ -2014,7 +2002,7 @@ Ajout d'une OrganizationUnit :
 Ajouter une personne :
 
 > Exemple pour ajouter Michaël Launay, créer un fichier
-> \"ldif\_files/michaellaunay.ldif\" : :
+> \"ldif\_files/michaellaunay.ldif\" :
 >
 >     dn: cn=Michaël Launay, ou=People, dc=ecreall, dc=com
 >     objectclass: top
@@ -2064,9 +2052,9 @@ La commande **dmesg** permet d'afficher les messages du noyau.
 
 Logrotate possède une configuration par défaut contenue dans \"/etc/logrotate.conf\" puis un répertoire avec les configurations des services pour compléter ou remplacer la configuration par défaut.
 
-Il est fréquent que pour des raisons légales, on doive garder un ou deux ans de logs selon la nature des utilisateurs et des services. Souvent on garde 104 semaines de connexions et 52 semaines de navigation et 14 semaines pour les autres services.
+Il est fréquent que pour des raisons légales, nous devons garder un ou deux ans de logs selon la nature des utilisateurs et des services. Souvent nous gardons 104 semaines de connexions et 52 semaines de navigation et 14 semaines pour les autres services.
 
-Pour modifier la conf par défaut à 14 semaines on édite \"/etc/logrotate.conf\" :
+Pour modifier la conf par défaut à 14 semaines nous éditons \"/etc/logrotate.conf\" :
 
 > -   Remplacer \"rotate 4\" par \"rotate 14\" pour garder 3 mois de log
 >     par défaut
@@ -2074,15 +2062,15 @@ Pour modifier la conf par défaut à 14 semaines on édite \"/etc/logrotate.conf
 > -   Ajouter delaycompress chaque vieux fichier de log
 > -   Limiter la taille d'un fichier de log à 100M
 
-On doit donc avoir dans /etc/logrotate.conf : :
+Nous devons donc avoir dans /etc/logrotate.conf :
 
     rotate 14
     compress
     delaycompress
     size 100M
 
-Puis on change \"rotate X\" à \"rotate 104\" dans les fichiers des services concernés se trouvant dans le répertoire \"/etc/logrotate.d/\".
-Par exemple, on va modifier \"/etc/logrotate.d/apache2\" pour mettre rotate à 104, et modifier le fichier \"/etc/logrotate.d/rsyslog\" modifier les logs des services d'authentifications.
+Puis nous changeons \"rotate X\" à \"rotate 104\" dans les fichiers des services concernés se trouvant dans le répertoire \"/etc/logrotate.d/\".
+Par exemple, nous allons modifier \"/etc/logrotate.d/apache2\" pour mettre rotate à 104, et modifier le fichier \"/etc/logrotate.d/rsyslog\" modifier les logs des services d'authentifications.
 
 # Périphérique disque et système de fichiers
 
@@ -2137,17 +2125,17 @@ Historiquement la commande permettant de créer les partitions était **fdisk**,
 
 Elle est remplacée par la commande **parted** et par sa version graphique **gparted** qui permet de créer et retailler des partitions déjà existantes, mais il faut descendre le paquet.
 
-La commande **partprobe** permet d'avertir le système que l'on a modifié la table des partitions.
+La commande **partprobe** permet d'avertir le système que l'nous avons modifié la table des partitions.
 
 ### Arborescence standard et organisation du FHS
 
 Le Filesystem Hierachy Standard est l'organisation standard Unix utilisée par Linux
 
-Tout est fichier. Les périphériques (scanner, imprimante, etc) sont manipulés sous forme de fichier dans lequel on va lire et écrire.
+Tout est fichier. Les périphériques (scanner, imprimante, etc) sont manipulés sous forme de fichier dans lequel nous alons lire et écrire.
 
 #### Arborescence de /
 
-/ est la racine, elle a pour contenu : :
+/ est la racine, elle a pour contenu :
 
     * /bin contient les exécutables du système d'exploitation,
     * /boot les fichiers de démarrage,
@@ -2245,7 +2233,7 @@ Repérer la partition contenant les fichiers à restaurer avec la commande lsblk
 
     sudo extundelete /dev/sda6 --restore-directory /home/michaellaunay/Maildir/cur/ --after 1636239600
 
-Où \--restore-directory permet de dire dans quel répertoire on cherche à récupérer les  fichiers. Et \--after permet de dire à partir de quelle date de suppression on souhaite récupérer les fichiers. La date est en seconde à partir du 1er janvier 1970 (On peut utiliser datetime.
+Où \--restore-directory permet de dire dans quel répertoire nous cherchons à récupérer les  fichiers. Et \--after permet de dire à partir de quelle date de suppression nous souhaitons récupérer les fichiers. La date est en seconde à partir du 1er janvier 1970 (nous pouvons utiliser datetime).
 
 ### Contrôle des systèmes de fichiers
 
@@ -2277,7 +2265,7 @@ Le démon HAL (Hardware Abstraction Layer) **hald** est notifié par **udev** de
 
 **HAL** identifie alors le type des périphériques connectés, du système de fichiers, et en fonction des informations comme *VendorId* ou *ProductId* d'associer le contenu avec un type d'application.
 
-La base de données des périphériques est située dans le répertoire */usr/share/hal/fdi/* : :
+La base de données des périphériques est située dans le répertoire */usr/share/hal/fdi/* :
 
     michaellaunay@luciole:~$ grep -rl ipod /usr/share/hal/fdi/*
     /usr/share/hal/fdi/information/10freedesktop/10-usb-music-players.fdi
@@ -2354,7 +2342,7 @@ Lorsque les disques utilisés supportent les informations d'état **smart**, il 
 
 Le contrôle se fait au détriment d'une légère perte de performance.
 
-Installation : :
+Installation :
 
     root@luciole:~# apt-get install smartmontools
 
@@ -2420,7 +2408,7 @@ Consultation de l'état d'un disque :
     203 Run_Out_Cancel          0x0002   100   100   000    Old_age   Always       -       3732309344292
     240 Head_Flying_Hours       0x003e   200   200   000    Old_age   Always       -       0
 
-Lecture du résultat : :
+Lecture du résultat :
 
     TYPE :
 
@@ -2441,13 +2429,13 @@ Lecture du résultat : :
 
     RAW VALUE : est la conversion de VALUE dans les unités utilisées par le  constructeur.
 
-Il existe plusieurs types de tests pour mettre à jour les valeurs : :
+Il existe plusieurs types de tests pour mettre à jour les valeurs :
 
     offline : le disque ne doit pas être monté.
     short : test court sur les performances, les problèmes électriques et lectures/écritures physiques.
     long : version longue du précédent.
 
-Lancement d'un test : :
+Lancement d'un test :
 
     root@luciole:~# smartctl -t long /dev/sda
     smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
@@ -2462,7 +2450,7 @@ Lancement d'un test : :
 
     Use smartctl -X to abort test.
 
-Pour voir le résultat il faut soit consulter les *logs* soit : :
+Pour voir le résultat il faut soit consulter les *logs* soit :
 
     smartctl -c /dev/sda
     smartctl -l selftest /dev/sda
@@ -2479,7 +2467,7 @@ Informations :
 
 ### Les montages en raid
 
-Le RAID (Redundant Array of Independant Disk) permet d'augmenter la tolérance aux pannes ou d'avoir un espace de stockage plus rapide ou plus grand que ce que l'on obtiendrait avec un seul disque.
+Le RAID (Redundant Array of Independant Disk) permet d'augmenter la tolérance aux pannes ou d'avoir un espace de stockage plus rapide ou plus grand que ce que nous obtiendrions avec un seul disque.
 
 La tolérance est obtenue soit par mirroring, soit par calcul de parité.
 
@@ -2491,7 +2479,7 @@ Voir : <http://fr.wikipedia.org/wiki/RAID_(informatique)>
 
 #### Le RAID 0
 
-On cherche les performances sans tolérance aux pannes.
+Nous cherchons les performances sans tolérance aux pannes.
 
 #### Le RAID 1
 
@@ -2525,7 +2513,7 @@ La commande **mdadm \--detail \--scan \--verbose** permet de récupérer la conf
 
 Lien : <http://doc.ubuntu-fr.org/raid_logiciel>
 
-Exemple création d'un disque : :
+Exemple création d'un disque :
 
     fdisk /dev/sda #Pour la création de /dev/sda1
     fdisk /dev/sdb #Pour la création de /dev/sdb1
@@ -2571,326 +2559,14 @@ volume.
 
 La commande **lvcreate** permet de créer le volume logique.
 
-Il ne faut pas oublier de formater un volume logique pour pouvoir s'en servir, on utilise alors *mkfs* classiquement.
+Il ne faut pas oublier de formater un volume logique pour pouvoir s'en servir, nous utilisons alors *mkfs* classiquement.
 
 La commande **lvextend** permet de modifier la taille d'un *LV*.
 
-Pour retailler le système de fichier, on utilisera la commande **resize2fs** après avoir démonté le système de fichier.
+Pour retailler le système de fichier, nous utiliserons la commande **resize2fs** après avoir démonté le système de fichier.
 
 # Python
-Le scripting bash peut vite s'apparenter à du développement, alors pourquoi ne pas utiliser un vrai langage de programmation ?
-
-## Historique
-
-Python a été créé fin 1986 par Guido van Rossum au CWI (Institut de recherche en mathématique et informatique de Hollande), à partir de la version 1.2 en 1995 le CNRI (Corporation of Nationnal Research Initiative) finance le projet.
-
-En 2000 Python passe en version 2.0 au sein de Be.open, puis l'équipe rejoint Digitial Creation (Futur Zope Corporation) en 2001. En mars 2001 création de la python fondation et libération complète du code.
-
-### La notion d'objet
-
-Tout est objet.
-
-### La notion de classe
-
-Tous les objets appartiennent à une classe.
-
-### L'instruction print
-
-Exemple : :
-
-    print(1)
-    print("Hello world")
-    print('coucou')
-
-### Les primitives d'accès aux informations de type
-
-**id()** renvoie l'identifiant d'un objet.
-
-**type()** renvoie le type de l'objet.
-
-**dir()** liste les attributs des objets.
-
-### Les commentaires
-
-Le caractère **\#** marque le début d'un commentaire.
-
-### Les chaînes de caractères
-
-En python 3 l'encodage par défaut est UTF-8 qui est une représentation des types unicode.
-
-On passe d'unicode au str en appelant la fonction encode (u\"C'est la fête\".encode('ISO-8859-15').
-
-On passe du str au unicode par la fonction decode.
-
-Les délimiteurs et types de chaînes :
-
-> -   Les guillemets **\"** et **\"\"\"**,
-> -   Les apostrophes **'**,
-> -   Les chaînes raw **r''**,
-> -   Les chaînes formatable **f''**,
-
-### Les numériques
-
-Les entiers (0 à 2\^32) pour le type **int** et pour les entiers longs de type **long** on suffixe par un L ou l, la représentation octale commence par un 0 et l'hexadécimale par 0x.
-
-Le type **bool** (True, False)
-
-Les valeurs à virgule flottante (0.1 et 1e100) leur type est **float**.
-
-Les nombres complexes (1 + 3j) leur type est **complex**.
-
-### Les types à valeur unique
-
-None
-
-NotImplemented
-
-### Les séquences
-
-Les tuples ()
-
-Les listes \[\]
-
-Les dictionnaires {}
-
-### Les opérateurs
-
-L'affectation =
-
-La division / (Attention identique au C donc 5/6 = 0, mais 5.0/6 =
-0.83333\....)
-
-La division entière //
-
-Le modulo % ou divmod(5,3) = (1,2)
-
-La négation -
-
-L'inversion bit à bit \~ (complément à un)
-
-La puissance \*\*
-
-Appartenance in
-
-### Opérateurs binaires
-
-Le et **&**
-
-Le ou **\|**
-
-Le ou exclusif **\^**
-
-### Opérateurs de comparaison
-
-Inférieur **\<**
-
-Supérieur **\>**
-
-Inférieur égal **\<=**
-
-Supérieur égal **\>=**
-
-égalité **==** différence **!=** ou **\<\>**
-
-le est **is**
-
-le n'est pas **is not**
-
-### Ordre de traitement des opérations
-
-Parenthèses, Exposants, Division, Multiplication, Addition, Soustraction
-
-### L'instruction pass
-
-### L'indentation
-
-La création de block de code se fait par indentation.
-
-### Les structures conditionnelles
-
-L'instruction if (else et elif)
-
-L'instruction for in
-
-L'instruction while
-
-### Les fonctions
-
-La définition des fonctions se fait à l'aide de l'instruction « def ».
-
-La fonction est un objet.
-
-Le code doit être indenté.
-
-Les paramètres ne sont pas typés.
-
-Les paramètres peuvent recevoir une valeur par défaut *p1 = 0*.
-
-Les paramètres non explicites (ex: def f(\*\*dict)) sont placés dans un dictionnaire.
-
-Les paramètres arbitraires (ex : def f(\*pars))sont placé dans un tuple.
-
-Combinaison paramètres implicites et arbitraires (ex: def f(\*pars, \*\*dict)).
-
-La directive return
-
-La directive lambda
-
-### Les docstrings
-
-Les fonctions du code peuvent être documentées, ce qui permet lors de l'exécution d'un code d'interroger une fonction pour savoir comment elle fonctionne.
-
-### Les décorateurs
-
-On peut en python définir des fonctions qui compléteront d'autres fonctions sur le principe de la composition mathématique.
-
-Exemple : :
-
-    def mondecorateur(fonction) :
-      def nouvellefonction() :
-         print('execution de %s'%fonction .__name__)
-         return fonction()
-      return nouvellefonction
-
-    @mondecorateur
-    def f() :
-      print('coucou')
-
-    f()
-    >>execution de f
-    >>coucou
-
-Utile pour tester les préconditions des fonctions.
-
-### Les Classes
-
-Les classes regroupent à la fois des données et des fonctions travaillant sur ces données.
-
-Elles sont définies par l'instruction class
-
-Les classes peuvent hériter d'autres classes.
-
-Exemple : :
-
-    class Animal(object):
-      def __init__(self):
-        self.age = 0
-        self.poids = 0
-
-    class Chat(Animal):
-       def __init__(self, nom):
-         super(Chat, self).__init__() # Permet de construire la partie Animal
-         self.nom = nom
-
-La notion de constructeur **\_\_init\_\_**
-
-La notion de destructeur **\_\_del\_\_**
-
-Les attributs privés
-
-### Les exceptions
-
-Les erreurs sont signalées par le mécanisme des exceptions : :
-
-    >>> try:
-    ...    PasDefinie = None
-    ... except NameError:
-    ...    print("Variable non définie")
-    ...
-    Variable non définie
-
-### Les modules
-
-Les bibliothèques de programmation en python s'appellent des modules.
-
-Primitive import
-
-Primitive reload
-
-### Les paquets
-
-Les modules sont généralement découpés en paquets qui se traduisent par des dossiers sur le disque.
-
-### Les principaux modules
-
-------------------------------------------------------------------------
-
-Contient les primitives
-
-#### sys
-
-Contient les informations relative à l'exécution en cours
-
-#### os
-
-Permet de gérer le système
-
-#### gzip, zipfile
-
-Permettent de gérer les fichiers compressés.
-
-#### socket
-
-Pour gérer les connexions TCP ou UDP
-
-#### urllib2
-
-Pour gérer les connexions http
-
-Liens :
-
-> -   <http://diveintopython.adrahon.org/>
-> -   <http://docs.python.org/>
-> -   <http://www.afpy.org/>
-
-#### Environnement virtuel
-
-Les environnements virtuels python permettent de créer des environnements de développements ou d'exécutions isolés les uns des autres. C'est à dire que l'on va pouvoir y installer des bibliothèques sans contaminer les autres environnements python. Et l'on va pouvoir lister précisément les dépendances dont notre programme a besoin.
-Fini la livraison où il manque des bibliothèques parce que dans un autre projet on a installé une bibliothèque que l'on utilise sans rendre compte. Installer le paquet de la distribution :
-
-    pip3 install virtualenv virtualenvwrapper
-
-Éditer notre .bashrc et ajouter les lignes suivantes :
-
-    # virtualenv
-    export WORKON_HOME=$HOME/.virtualenvs
-    VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
-    source /usr/local/bin/virtualenvwrapper.sh
-
-Pour céer un environnement virtuel :
-
-    mkvirtualenv my_venv -p python3
-
-Par exemple pour installer QT6 dans un environnement vituel :
-
-    mkvirtualenv qt6_env -p python3
-
-    (qt6_env) michaellaunay@luciole:~$ pip install numpy matplotlib PyQT6 # pour installer QT
-    (qt6_env) michaellaunay@luciole:~$ pip install flake8 pylint # pour installer flake8 qui vérifie le respect de la pep8 et Pylint pour la vérification du code
-
-Depuis python3.6, il existe un outil qui fusionne pip et virtual env :
-**pipenv**
-
-Installation de pipenv : :
-
-    pip3 install pipenv
-
-Création d'un vitual env lors de l'installation d'un module
-
-> cd \$MY\_WORKING\_DIR \# Aller dans votre espace de travail pipenv
-> install pyside6 \--python=python3.9 \# Attention si python 3.9 n'est pas installé sur la machine ne pas oublier de faire \"apt install python3.9\"
-
-Pour voir son virtualenv : :
-
-    pipenv --venv #Indique les virtual env associés avec le chemin courant
-
-Pour activer le virtual env créé : :
-
-    pipenv shell #Depuis le répertoire de travail
-
-Vérification de la conformité pep8 :
-
-> (qt6\_env) <michaellaunay@luciole>:\~\$ flake8 demo.py
+[[Python]]
 
 # Initialisation lors du boot
 [[Initialisation système et des services]]
@@ -3005,7 +2681,7 @@ La commande **ifdown** permet de l'arrêter. Remplacée par **ip link set NOM\_P
 
 ### route (déprécié)
 
-La commande **route** permet de consulter et de fixer l'adresse de la passerelle : :
+La commande **route** permet de consulter et de fixer l'adresse de la passerelle :
 
     root@luciole:~# route add default gw 192.168.0.1
 
@@ -3017,27 +2693,27 @@ En consultation elle est identique à **netstat -nr**
 
 La commande ip est le couteau suisse de la configuration réseau, son paquet **iproute2** remplace les commandes du paquet **net-tools** :
 
-    Attribuer une adresse : ::
+    Attribuer une adresse ::
 
       ip addr add 192.168.0.54/24 dev eth0
 
-    Connaître son adresse : ::
+    Connaître son adresse ::
 
       ip -4c addr show #-4 affiche uniquement les IPv4, -c pour l'affichage couleur
 
-    Activer une interface réseau : ::
+    Activer une interface réseau ::
 
       ip link set eth0 update
 
-    Désactiver une interface réseau : ::
+    Désactiver une interface réseau ::
 
       ip link set eth0 down
 
-    Supprimer une adresse d'une interface : ::
+    Supprimer une adresse d'une interface ::
 
       ip addr del 192.168.0.54 dev eth0
 
-    Ajouter une gateway : ::
+    Ajouter une gateway ::
 
       ip route add default via 192.168.0.1
 
@@ -3047,7 +2723,7 @@ La création d'interfaces virtuelles permet de donner plusieurs adresses IP à u
 
 Cela permet par exemple de créer une adresse ip fixe pour une entrée DNS tout en la redirigeant via l'interface du datacenter vers une autre ip.
 
-La ligne de commande est du type : :
+La ligne de commande est du type :
 
     ip link add link DEVICE name NAME type vlan
 
@@ -3098,7 +2774,7 @@ On y trouve au minimum la définition du loopback et de la machine.
 
 Les valeurs qui y sont priment sur la résolution DNS.
 
-Exemple : :
+Exemple :
 
     michaellaunay@griffon:~$ cat /etc/hosts
     127.0.0.1 localhost griffon griffon.ecreall.com
@@ -3126,7 +2802,7 @@ La commande **netstat** permet de connaître le statut des connexions réseaux.
 
 **netstat -tp** permet de voir les connexions restées ouvertes et les processus associés.
 
-Exemple : :
+Exemple :
 
     root@luciole:~# netstat -taupe
     Connexions Internet actives (serveurs et établies)
@@ -3137,7 +2813,7 @@ Exemple : :
     tcp        1      0 luciole.local:35515     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 50135       11400/gvfsd-http
     tcp        0      0 luciole.local:34979     ecs.amazonaws.com:www   ESTABLISHED michaellaunay 53668       11400/gvfsd-http
 
-Permet de voir des connexions en direction du cloud d'Amazon, un *cat /proc/11400/cmd* donne : :
+Permet de voir des connexions en direction du cloud d'Amazon, un *cat /proc/11400/cmd* donne :
 
     root@luciole:~# cat /proc/11400/cmd
     /usr/lib/gvfs/gvfsd-http--spawner:1.82/org/gtk/gvfs/exec_spaw/0
@@ -3184,11 +2860,11 @@ Nous avons vu précédemment la gestion graphique des dépôts.
 
 Nous pouvons éditer le fichier */etc/apt/sources.list* et ajouter des dépôts.
 
-Exemple : :
+Exemple :
 
     echo "deb http://packages.medibuntu.org/ karmic free non-free" >> /etc/apt/sources.list*
 
-Toutefois il faudra télécharger la clé d'authentification du nouveau dépôt et l'ajouter avec : :
+Toutefois il faudra télécharger la clé d'authentification du nouveau dépôt et l'ajouter avec :
 
     wget -q http://fr.packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
 
@@ -3196,7 +2872,7 @@ Puis mettre à jour le cache avec **apt update**
 
 ### Installation de paquets
 
-La commande **apt install \$NOM\_PAQUET** permet d'installer des paquets : :
+La commande **apt install \$NOM\_PAQUET** permet d'installer des paquets :
 
     apt install libdvdread7 mkisofs dvdbackup dvdauthor oggvideotools ffmpeg
     apt install libavcodec-58 libavdevice58 libavformat58
@@ -3215,7 +2891,7 @@ La commande **apt search \$MOT\_CLE** permet de chercher un paquet à partir d'u
 
 ### Mise à jour des paquetages
 
-Pour mettre à jour la distribution : :
+Pour mettre à jour la distribution :
 
     apt update
     apt upgrade
@@ -3224,7 +2900,7 @@ Pour mettre à jour la distribution : :
 
 Pour installer un paquet en fournissant les réponses aux questions interactives et donc pourvoir scripter l'installation, il faut utiliser **debconf**.
 
-Par exemple pour connaître les paramètres du paquet **postfix** : :
+Par exemple pour connaître les paramètres du paquet **postfix** :
 
     root@luciole:~# apt install debconf 
     root@luciole:~# debconf-show postfix
@@ -3254,7 +2930,7 @@ Par exemple pour connaître les paramètres du paquet **postfix** : :
       postfix/destinations: $myhostname, luciole.ecreall.com, localhost
       postfix/relayhost:
 
-Puis pour fixer les valeurs : ::
+Puis pour fixer les valeurs ::
 
 :   debconf-set-selections
 
@@ -3373,7 +3049,7 @@ RFC en français <https://www.bortzmeyer.org/7208.html>
 
 Les variables d'opendkim <http://www.opendkim.org/opendkim.8.html>
 
-Pour envoyer un mail avec le From correctement rempli : :
+Pour envoyer un mail avec le From correctement rempli :
 
     echo test | mail -s "Test postfix" -aFROM:michaellaunay@ecreall.com michaellaunay@ecreall.com
 
@@ -3406,7 +3082,7 @@ Le fichier de configuration est */etc/postfix/main.cf*
 
 Selon que le serveur est la destination ou seulement un relai on précisera *mydestination* ou non.
 
-Exemple pour un serveur destinataire : :
+Exemple pour un serveur destinataire :
 
     michaellaunay@monserveur:~$ cat /etc/postfix/main.cf
     biff = no
@@ -3455,7 +3131,7 @@ Exemple pour un serveur destinataire : :
 
 #### Configuration de spf
 
-Ajouter une entrée spf à vos entrées DNS sur votre Registrar.
+Ajouter une entrée spf à vos entrées DNS sur notre Registrar.
 
 Par exemple, le registrar de **ecreall.com** est OVH et il faut ajouter une entrée SPF et la remplir comme suit :
 
@@ -3503,22 +3179,24 @@ Génération de la clé de signature des mails :
 L'attribut \"-s dkim\" permet de préciser de signer différemment chaque mail selon son domaine dans le cas où le serveur gère plusieurs domaines.
 
 On a alors :
-
-    root@luciole:/etc/dkimkeys# ls -lh
-    total 12K
-    -rw-rw---- 1 root opendkim 1,7K févr. 11 16:09 dkim.private
-    -rw------- 1 root root      508 févr. 11 16:09 dkim.txt
-    -rw-r--r-- 1 root root      664 déc.  27  2019 README.PrivateKeys
+```bash
+root@luciole:/etc/dkimkeys# ls -lh
+total 12K
+-rw-rw---- 1 root opendkim 1,7K févr. 11 16:09 dkim.private
+-rw------- 1 root root      508 févr. 11 16:09 dkim.txt
+-rw-r--r-- 1 root root      664 déc.  27  2019 README.PrivateKeys
+```
 
 Vérifier la clé :
-
-    root@luciole:/# opendkim-testkey -d ecreall.com -s dkim -vvv
-    opendkim-testkey: using default configfile /etc/opendkim.conf
-    opendkim-testkey: /etc/dkimkeys/dkim.private: WARNING: unsafe permissions
-    opendkim-testkey: key loaded from /etc/dkimkeys/dkim.private
-    opendkim-testkey: checking key 'dkim._domainkey.ecreall.com'
-    opendkim-testkey: key not secure
-    opendkim-testkey: key OK
+```bash
+root@luciole:/# opendkim-testkey -d ecreall.com -s dkim -vvv
+opendkim-testkey: using default configfile /etc/opendkim.conf
+opendkim-testkey: /etc/dkimkeys/dkim.private: WARNING: unsafe permissions
+opendkim-testkey: key loaded from /etc/dkimkeys/dkim.private
+opendkim-testkey: checking key 'dkim._domainkey.ecreall.com'
+opendkim-testkey: key not secure
+opendkim-testkey: key OK
+```
 
 La ligne \"opendkim-testkey: key not secure\" est due au fait que DNSSEC n'a pas été activé sur le dns.
 
@@ -3534,7 +3212,7 @@ Afficher le contenu de dkim.txt
 >         \"EDR3fSMYQmMQfBc2hR8nLArbCQj3HdJD5LITNQ9HlnM8dX56/MonWyavIKKWp3CV9IQZz0syG6i3XoxqdwdFvKh1daF+wnbYxS7ug9OlvWUo+6p4up6zFoEgT6PXo/cnjbYHA+FQIDAQAB\"
 >         ) ; \-\-\-\-- DKIM key dkim for ecreall.com
 
-Configurer votre registrar :
+Configurer notre registrar :
 
 - Se connecter à la zone DNS de son domaine, par exemple pour Ecreall dans OVH, on ajoute une entrée DKIM en remplissant les champs comme suit ::
 
@@ -3661,7 +3339,7 @@ Ils sont délivrés par une autorité de certification et sont liés à une adre
 
 Si l'autorité de certification est connue du navigateur, la connexion se fera sans alerter l'utilisateur. Dans le cas contraire, il sera prévenu que le site n'est pas de confiance.
 
-Toutefois, il est possible de disposer des avantages du chiffrement sans passer par une autorité *de confiance*, en utilisant un certificat *auto-signé* : :
+Toutefois, il est possible de disposer des avantages du chiffrement sans passer par une autorité *de confiance*, en utilisant un certificat *auto-signé* :
 
     root@monserveur:~# make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/ssl/apache2/ssl/ssl.monsite.com.pem
     root@monserveur:~# vim /etc/apache2/sites-available/ssl.monsite.com
@@ -3739,9 +3417,9 @@ Il est possible de le lancer en ligne avec par exemple un délai avant enregistr
 > gnome-screenshot -d 30 -f /tmp/capture.png \#Dans 30s prend une
 > capture et l'enregistre au format png
 
-Par défaut le temps de capture de screencast est positionné à 30s pour le changer : :
+Par défaut le temps de capture de screencast est positionné à 30s pour le changer :
 
-    gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 240 #remplacer 240s par ce que vous voulez
+    gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 240 #remplacer 240s par ce que nous voulons
 
 ### Formats de fichier de configuration
 
