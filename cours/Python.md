@@ -313,7 +313,6 @@ chaine_minuscules = chaine.lower()  # Donne "bonjour le monde"
 ```
 
 ## Chaînes de caractères et immutabilité
-
 Les chaînes de caractères en Python sont immuables. Cela signifie que nous ne pouvons pas changer un caractère d'une chaîne de caractères une fois qu'elle a été créée. Si nous essayons de le faire, Python nous donnera une erreur. Si nous devons modifier une chaîne de caractères, nous devons créer une nouvelle chaîne de caractères avec les modifications.
 
 ```python
