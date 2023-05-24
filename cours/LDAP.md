@@ -264,6 +264,17 @@ Décortiquons cette commande :
 
 Après avoir exécuté cette commande, elle vous demandera d'entrer le nouveau mot de passe deux fois pour confirmation. Si tout se passe bien, le mot de passe de l'utilisateur sera changé.
 
+# Stockage des mots de passe dans OpenLDAP
+OpenLDAP stocke les mots de passe en utilisant des hachages plutôt qu'en clair, conformément aux exigences de sécurité et de confidentialité, y compris celles du Règlement Général sur la Protection des Données (RGPD).
+
+Lorsqu'un mot de passe est fourni à OpenLDAP (par exemple, lors de la création ou de la modification d'un compte utilisateur), le serveur LDAP ne stocke pas le mot de passe lui-même. Au lieu de cela, il utilise une fonction de hachage pour transformer le mot de passe en une "empreinte" de hachage, qui est ce qui est réellement stocké. Lorsque l'utilisateur se connecte, le mot de passe qu'il fournit est à nouveau haché et comparé à l'empreinte de hachage stockée.
+
+Ce processus de hachage est unidirectionnel, ce qui signifie qu'il n'est pas possible de retrouver le mot de passe original à partir de l'empreinte de hachage. Ainsi, même si quelqu'un parvenait à accéder aux données stockées par le serveur LDAP, il ne pourrait pas retrouver les mots de passe des utilisateurs.
+
+OpenLDAP supporte plusieurs schémas de hachage, y compris SHA-2, SHA-1, et MD5. Il est recommandé d'utiliser le schéma de hachage le plus fort possible pour améliorer la sécurité. À partir de la version 2.4, OpenLDAP utilise par défaut SSHA (Salted SHA), une variante de SHA qui inclut un "sel" pour rendre les attaques par force brute ou par table de hachage plus difficiles.
+
+Le hachage des mots de passe ne dispense pas de l'importance de l'utilisation du chiffrement (par exemple, TLS) pour les connexions au serveur LDAP. Le hachage protège les mots de passe stockés, mais sans chiffrement, les mots de passe peuvent être interceptés en clair lors de leur transmission au serveur.
+
 # Liens
 > <https://wiki.debian.org/LDAP/OpenLDAPSetup>
 > <https://guide.ubuntu-fr.org/server/openldap-server.html>

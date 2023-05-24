@@ -75,32 +75,78 @@ Pour apprendre à connaître l'interface de VS Code, nous pouvons aller dans le 
 
 ## Les projets
 Pour VS Code un répertoire est un projet qu'il appelle **workspace**. Ainsi pour gérer toutes les parties du code d'un projet (backend et frontend par exemple), il suffit d'ouvrir le dossier parent.
-On peut créer une instance de VS Code dédiée à un projet en faisant les touches Ctrl Maj N.
+Nous pouvons créer une instance de VS Code dédiée à un projet en faisant les touches `Ctrl+Maj+N`.
 Regarder les **Ouvrir les éléments récents** depuis le menu **Fichier** permet de passer de workspace en workspace.
 
 ## Le panneau de contrôles
-Le panneau de contrôles accessible avec le raccourci "Ctrl p" permet d'afficher le moteur de recherche des commandes et donc par autocomplétion de trouver rapidement la fonctionnalité que l'on veut excécuter.
+Le panneau de contrôles accessible avec le raccourci `Ctrl+p` permet d'afficher le moteur de recherche des commandes et donc par autocomplétion de trouver rapidement la fonctionnalité que nous voulons exécuter.
+
+Si nous faisons un `Ctrl+Maj+P`, le panneau s’ouvre en affichant alors un `>` (le chevron droit) , ce qui indique que nous cherchons une configuration. Nous pouvons supprimer le `>`, ce qui met la palette de commande dans le même mode que `Ctrl+p` et permet de chercher les commandes.
+
+Si nous mettons un `@`, nous cherchons alors un symbole (titre, fonction, classe et autres) dans les fichiers.
+
+Si nous mettons `:`, alors nous nous déplaçons à la ligne du numéro saisie.
+
+Chapitre : La gestion des fichiers, les prévisualisations et la navigation entre les onglets dans Visual Studio Code
 
 ## Créer des fichiers
-Pour créer un fichier, il suffit de se placer dans le répertoire voulu d'un workspace (le répertoire racine de votre projet) et de faire "Ctrl n".
+Pour créer un fichier dans Visual Studio Code, nous devons nous positionner dans le répertoire souhaité de notre espace de travail (le répertoire racine de notre projet). Ensuite, nous pouvons utiliser le raccourci clavier `Ctrl+n`.
 
-## Afficher des "Previews"
-Pour cela il faut installer le module "Live preview" de Microsoft.
-Ensuite, depuis l'explorateur de fichier faire un clic droit et choisir l'action "Afficher l'aperçu".
+Ce raccourci ouvrira une nouvelle fenêtre ou un nouvel onglet dans laquelle nous pourrons commencer à écrire notre fichier. Nous pouvons également choisir le type de fichier à créer en sélectionnant l'option appropriée dans le menu contextuel qui apparaît après avoir utilisé le raccourci.
+
+## Prévisualisation
+Pour prévisualiser nos fichiers, nous pouvons utiliser le module "Live Preview" de Microsoft que nous devons installer.
+
+Nous pouvons utiliser l'explorateur de fichiers intégré à Visual Studio Code, en faisant un clic droit sur le fichier et choisissant l'action "Afficher l'aperçu" dans le menu contextuel ou avec le raccourci `Ctrl+Maj+V`.
+
+Cela lancera un serveur local qui affichera une prévisualisation du fichier dans notre navigateur par défaut. Toute modification apportée au fichier sera automatiquement actualisée dans la prévisualisation, nous permettant de voir les changements en temps réel.
+
+## Naviguer entre les onglets
+Visual Studio Code propose des raccourcis clavier pour naviguer rapidement entre les différents onglets ouverts dans l'éditeur.
+
+Pour passer à l'onglet suivant vers la droite, nous pouvons utiliser la combinaison de touches `Ctrl+tab`. Chaque fois que nous appuyons sur cette combinaison, nous passons à l'onglet suivant dans la séquence.
+
+Inversement, pour passer à l'onglet précédent vers la gauche, nous pouvons utiliser la combinaison de touches `Maj+tab`. Chaque fois que nous appuyons sur cette combinaison, nous passons à l'onglet précédent dans la séquence.
+
+Ces raccourcis clavier nous permettent de naviguer facilement entre les différents fichiers que nous avons ouverts dans Visual Studio Code, ce qui facilite le passage d'un fichier à un autre pendant notre travail.
+
+## Breadcrum
+Le Breadcrumb, en référence aux miettes de pain d'Hansel et Gretel, est un outil qui nous permet de savoir où nous nous trouvons dans un fichier lorsque nous naviguons à travers les différentes structures du code. En partant du répertoire source, en passant par les classes, les méthodes ou les fonctions, le Breadcrumb affiche une indication visuelle de notre position actuelle à l'endroit où se trouve notre curseur.
+
+Pour accéder à cette fonctionnalité, nous pouvons utiliser le panneau de commandes de Visual Studio Code ("Ctrl+Maj+P"). Il suffit de saisir "Breadcrumb" dans le panneau de commande pour accéder aux paramètres du Breadcrumb.
+
+Une fois activé, le Breadcrumb apparaîtra généralement dans la partie supérieure de l'éditeur d'un onglet. Il peut être présenté sous la forme d'une barre horizontale ou d'une liste déroulante, en fonction de nos préférences et de la configuration de l'éditeur.
+
+Le Breadcrumb est divisé en plusieurs sections, représentant les différentes étapes de la hiérarchie du code. Par exemple, si nous travaillons dans une classe appelée "MaClasse" et que nous nous trouvons à l'intérieur d'une méthode nommée "maMethode", le Breadcrumb affichera ces informations comme suit :
+
+Répertoire source > MaClasse > maMethode
+
+Cette indication permet de connaître notre emplacement dans le fichier, ce qui est particulièrement utile lorsque nous travaillons sur des projets complexes contenant de nombreux fichiers et structures imbriquées.
+
+De plus, le Breadcrumb est interactif. Nous pouvons cliquer sur chaque élément du Breadcrumb pour accéder directement à cette partie spécifique du code. Cela facilite la navigation et la recherche d'informations précises dans nos fichiers.
 
 ## Multisélection
-**Ajouter un curseur à plusieurs endroits**: Maintenez la touche `Alt` (Windows/Linux) ou `Option` (Mac) enfoncée et cliquez avec la souris aux endroits où nous souhaitons ajouter des curseurs supplémentaires.
+### Ajouter un curseur à plusieurs endroits
+Maintenons la touche `Alt` (Windows/Linux) ou `Option` (Mac) enfoncée et cliquons avec la souris aux endroits où nous souhaitons ajouter des curseurs supplémentaires.
     
-**Sélectionner toutes les occurrences d'un mot**: Placez votre curseur sur le mot que nous souhaitons sélectionner et appuyez sur `Ctrl+Shift+L` (Windows/Linux) ou `Cmd+Shift+L` (Mac). Cela ajoutera un curseur à chaque occurrence du mot dans le document.
+### Sélectionner toutes les occurrences d'un mot
+Plaçons votre curseur sur le mot que nous souhaitons sélectionner et appuyez sur `Ctrl+Maj+L` (Windows/Linux) ou `Cmd+Maj+L` (Mac). Cela ajoutera un curseur à chaque occurrence du mot dans le document.
     
-**Sélectionner toutes les occurrences d'une sélection**: Sélectionnez le texte que nous souhaitons rechercher, puis appuyez sur `Ctrl+Shift+H` (Windows/Linux) ou `Cmd+Shift+H` (Mac). Cela ajoutera un curseur à chaque occurrence de la sélection dans le document.
+### Sélectionner toutes les occurrences d'une sélection
+Sélectionnons le texte que nous souhaitons rechercher, puis appuyons sur `Ctrl+Maj+H` (Windows/Linux) ou `Cmd+Maj+H` (Mac). Cela ajoutera un curseur à chaque occurrence de la sélection dans le document.
+
+### Ajouter un curseur à la ligne suivante ou précédente
+Appuyons sur `Ctrl+Alt+Flèche Haut/Bas` (Windows/Linux) ou `Cmd+Option+Flèche Haut/Bas` (Mac) pour ajouter un curseur à la ligne suivante ou précédente.
     
-**Ajouter un curseur à la ligne suivante ou précédente**: Appuyez sur `Ctrl+Alt+Flèche Haut/Bas` (Windows/Linux) ou `Cmd+Option+Flèche Haut/Bas` (Mac) pour ajouter un curseur à la ligne suivante ou précédente.
-    
-**Ajouter un curseur à chaque ligne d'une sélection**: Sélectionnez plusieurs lignes de texte, puis appuyez sur `Shift+Alt+I` (Windows/Linux) ou `Shift+Option+I` (Mac) pour ajouter un curseur à la fin de chaque ligne sélectionnée.
+### Ajouter un curseur à chaque ligne d'une sélection
+Sélectionnons plusieurs lignes de texte, puis appuyons sur `Maj+Alt+I` (Windows/Linux) ou `Maj+Option+I` (Mac) pour ajouter un curseur à la fin de chaque ligne sélectionnée.
+
+## Naviguer entre fichier
+Pour passer rapidement d'un fichier ouvert à l'autre `Ctrl Tab`.
+Pour revenir à la position précédente du curseur `Alt <-` que l'on peut enchaîner pour remonter dans le temps, et l'on peut descendre dans le temps avec `Atl ->` pour revenir à la dernière position du curseur.
 
 ## Refactoring
-Lorsque l'on sélectionne un morceau de texte puis que l'on appuie sur F2 alors si l'on odifie la zone de texte la modification est reportée sur tous les fichers. C'est ce que l'on appelle le **Refactoring**.
+Lorsque nous sélectionnons un morceau de texte puis que nous appuions sur F2 alors si nous modifions la zone de texte la modification est reportée sur tous les fichers. C'est ce que nous appellons le **Refactoring**.
 
 # Paramétrer git et copilot
 Ouvrir son dossier.
@@ -112,9 +158,9 @@ Choisir le compte ou le créer.
 
 # Liste des racourcis clavier
 ## Général
-Ctrl+Shift+P, F1 Afficher la palette de commandes
+Ctrl+Maj+P, F1 Afficher la palette de commandes
 Ctrl+P Ouverture rapide, Aller au fichier... 
-Ctrl+Shift+N Nouvelle fenêtre/instance
+Ctrl+Maj+N Nouvelle fenêtre/instance
 Ctrl+W Fermer la fenêtre/instance
 Ctrl+, Paramètres utilisateur
 Ctrl+K Ctrl+S Raccourcis clavier 
@@ -123,71 +169,71 @@ Ctrl+K Ctrl+S Raccourcis clavier
 Ctrl+X Couper la ligne (sélection vide)
 Ctrl+C Copier la ligne (sélection vide)
 Alt+ ↓ / ↑ Déplacer la ligne vers le bas/haut
-Ctrl+Shift+K Supprimer la ligne
-Ctrl+Entrée / Ctrl+Shift+Entrée Insérer une ligne en dessous/au-dessus
-Ctrl+Shift+\ Aller à la parenthèse/bracket correspondant
+Ctrl+Maj+K Supprimer la ligne
+Ctrl+Entrée / Ctrl+Maj+Entrée Insérer une ligne en dessous/au-dessus
+Ctrl+Maj+\ Aller à la parenthèse/bracket correspondant
 Ctrl+] / Ctrl+\[ Indentation/Outdentation de la ligne
 
 ## Début / Fin Aller au début/fin de la ligne
 Ctrl+ Début / Fin Aller au début/fin du fichier
 Ctrl+ ↑ / ↓ Faire défiler la ligne vers le haut/bas
 Alt+ PgUp / PgDn Faire défiler la page vers le haut/bas
-Ctrl+Shift+ [ / ] Plier/déplier la région
+Ctrl+Maj+ [ / ] Plier/déplier la région
 Ctrl+K Ctrl+ [ / ] Plier/déplier toutes les sous-régions
 Ctrl+K Ctrl+0 / Ctrl+K Ctrl+J Plier/Déplier toutes les régions
 Ctrl+K Ctrl+C Ajouter un commentaire de ligne
 Ctrl+K Ctrl+U Supprimer le commentaire de ligne
 Ctrl+/ Basculer le commentaire de ligne
-Ctrl+Shift+A Basculer le commentaire de bloc
+Ctrl+Maj+A Basculer le commentaire de bloc
 Alt+Z Activer/désactiver le retour à la ligne
 
 ## Édition de langages riches
 Ctrl+Espace, Ctrl+I Déclencher la suggestion
-Ctrl+Shift+Espace Déclencher les indices de paramètres
-Ctrl+Shift+I Formater le document
+Ctrl+Maj+Espace Déclencher les indices de paramètres
+Ctrl+Maj+I Formater le document
 Ctrl+K Ctrl+F Formater la sélection
 F12 Aller à la définition
-Ctrl+Shift+F10 Aperçu de la définition
+Ctrl+Maj+F10 Aperçu de la définition
 Ctrl+K F12 Ouvrir la définition sur le côté Ctrl+.
 
 ## Correction rapide
-Shift+F12 Afficher les références
+Maj+F12 Afficher les références
 F2 Renommer le symbole
 Ctrl+K Ctrl+X Supprimer les espaces en fin de ligne
 Ctrl+K M Changer la langue du fichier
 
 ## Curseur et sélection multiple
 Alt+Clic Insérer un curseur
-Shift+Alt+ ↑ / ↓ Insérer un curseur au-dessus/en dessous
+Maj+Alt+ ↑ / ↓ Insérer un curseur au-dessus/en dessous
 Ctrl+U Annuler la dernière opération de curseur
-Shift+Alt+I Insérer un curseur à la fin de chaque ligne sélectionnée
+Maj+Alt+I Insérer un curseur à la fin de chaque ligne sélectionnée
 Ctrl+L Sélectionner la ligne actuelle
-Ctrl+Shift+L Sélectionner toutes les occurrences de la sélection actuelle
+Ctrl+Maj+L Sélectionner toutes les occurrences de la sélection actuelle
 Ctrl+F2 Sélectionner toutes les occurrences du mot actuel
-Shift+Alt + → Étendre la sélection
-Shift+Alt + ← Réduire la sélection
-Shift+Alt + glisser la souris Sélection de colonne (boîte)
+Maj+Alt + → Étendre la sélection
+Maj+Alt + ← Réduire la sélection
+Maj+Alt + glisser la souris Sélection de colonne (boîte)
 
 ## Affichage
 F11 Basculer en plein écran
-Shift+Alt+0 Basculer la disposition de l'éditeur (horizontal/vertical)
+Maj+Alt+0 Basculer la disposition de l'éditeur (horizontal/vertical)
 Ctrl+ = / - Zoom avant/arrière
 Ctrl+B Afficher/masquer la barre latérale
-Ctrl+Shift+E Afficher l'explorateur / Basculer le focus
-Ctrl+Shift+F Afficher la recherche
-Ctrl+Shift+G Afficher le contrôle de code source
-Ctrl+Shift+D Afficher le débogage
-Ctrl+Shift+X Afficher les extensions
-Ctrl+Shift+H Remplacer dans les fichiers
-Ctrl+Shift+J Basculer les détails de la recherche
-Ctrl+Shift+C Ouvrir une nouvelle invite de commande/terminal
+Ctrl+Maj+E Afficher l'explorateur / Basculer le focus
+Ctrl+Maj+F Afficher la recherche
+Ctrl+Maj+G Afficher le contrôle de code source
+Ctrl+Maj+D Afficher le débogage
+Ctrl+Maj+X Afficher les extensions
+Ctrl+Maj+H Remplacer dans les fichiers
+Ctrl+Maj+J Basculer les détails de la recherche
+Ctrl+Maj+C Ouvrir une nouvelle invite de commande/terminal
 Ctrl+K Ctrl+H Afficher le panneau de sortie 
-Ctrl+Shift+V Ouvrir l'aperçu Markdown
+Ctrl+Maj+V Ouvrir l'aperçu Markdown
 Ctrl+K V Ouvrir l'aperçu Markdown sur le côté
 Ctrl+K Z Mode Zen (Échap Échap pour quitter) Recherche et remplacement
 Ctrl+F Rechercher
 Ctrl+H Remplacer
-F3 / Shift+F3 Rechercher suivant/précédent
+F3 / Maj+F3 Rechercher suivant/précédent
 Alt+Entrée Sélectionner toutes les occurrences de la correspondance trouvée
 Ctrl+D Ajouter la sélection à la prochaine correspondance trouvée
 Ctrl+K Ctrl+D Déplacer la dernière sélection vers la prochaine correspondance trouvée
@@ -196,13 +242,13 @@ Ctrl+K Ctrl+D Déplacer la dernière sélection vers la prochaine correspondance
 Ctrl+T Afficher tous les symboles
 Ctrl+G Aller à la ligne...
 Ctrl+P Aller au fichier...
-Ctrl+Shift+O Aller au symbole...
-Ctrl+Shift+M Afficher le panneau des problèmes
+Ctrl+Maj+O Aller au symbole...
+Ctrl+Maj+M Afficher le panneau des problèmes
 F8 Aller à l'erreur ou avertissement suivant
-Shift+F8 Aller à l'erreur ou avertissement précédent
-Ctrl+Shift+Tab Naviguer dans l'historique du groupe d'éditeurs
+Maj+F8 Aller à l'erreur ou avertissement précédent
+Ctrl+Maj+Tab Naviguer dans l'historique du groupe d'éditeurs
 Ctrl+Alt+- Revenir en arrière
-Ctrl+Shift+- Avancer
+Ctrl+Maj+- Avancer
 Ctrl+M Basculer Tab pour déplacer le focus
 
 ## Gestion de l'éditeur
@@ -212,8 +258,8 @@ Ctrl+\\ Diviser l'éditeur
 Ctrl+ 1 / 2 / 3 Mettre le focus sur le 1er, 2ème, 3ème groupe d'éditeurs
 Ctrl+K Ctrl + ← Mettre le focus sur le groupe d'éditeurs précédent
 Ctrl+K Ctrl + → Mettre le focus sur le groupe d'éditeurs suivant
-Ctrl+Shift+PgUp Déplacer l'éditeur à gauche
-Ctrl+Shift+PgDn Déplacer l'éditeur à droite
+Ctrl+Maj+PgUp Déplacer l'éditeur à gauche
+Ctrl+Maj+PgDn Déplacer l'éditeur à droite
 Ctrl+K ← Déplacer le groupe d'éditeurs actif vers la gauche/haut
 Ctrl+K → Déplacer le groupe d'éditeurs actif vers la droite/bas
 
@@ -221,13 +267,13 @@ Ctrl+K → Déplacer le groupe d'éditeurs actif vers la droite/bas
 Ctrl+N Nouveau fichier
 Ctrl+O Ouvrir un fichier...
 Ctrl+S Enregistrer
-Ctrl+Shift+S Enregistrer sous..
+Ctrl+Maj+S Enregistrer sous..
 Ctrl+W Fermer
 Ctrl+K Ctrl+W Fermer tout
-Ctrl+Shift+T Rouvrir l'éditeur fermé
+Ctrl+Maj+T Rouvrir l'éditeur fermé
 Ctrl+K Entrée Conserver l'éditeur en mode d'aperçu ouvert
 Ctrl+Tab Ouvrir le suivant
-Ctrl+Shift+Tab Ouvrir le précédent
+Ctrl+Maj+Tab Ouvrir le précédent
 Ctrl+K P Copier le chemin du fichier actif
 Ctrl+K R Révéler le fichier actif dans l'Explorateur
 Ctrl+K O Afficher le fichier actif dans une nouvelle fenêtre/instance
@@ -235,17 +281,17 @@ Ctrl+K O Afficher le fichier actif dans une nouvelle fenêtre/instance
 ## Débogage 
 F9 Basculer le point d'arrêt
 F5 Démarrer / Continuer
-F11 / Shift+F11 Entrer/sortir
+F11 / Maj+F11 Entrer/sortir
 F10 Passer par-dessus
-Shift+F5 Arrêter
+Maj+F5 Arrêter
 Ctrl+K Ctrl+I Afficher le survol Terminal intégré
 Ctrl+\` Afficher le terminal intégré
-Ctrl+Shift+\` Créer un nouveau terminal
-Ctrl+Shift+C Copier la sélection
-Ctrl+Shift+V Coller dans le terminal actif
-Ctrl+Shift+ ↑ / ↓ Faire défiler vers le haut/bas
-Shift+ PgUp / PgDn Faire défiler la page vers le haut/bas
-Shift+ Début / Fin Faire défiler jusqu'en haut/bas
+Ctrl+Maj+\` Créer un nouveau terminal
+Ctrl+Maj+C Copier la sélection
+Ctrl+Maj+V Coller dans le terminal actif
+Ctrl+Maj+ ↑ / ↓ Faire défiler vers le haut/bas
+Maj+ PgUp / PgDn Faire défiler la page vers le haut/bas
+Maj+ Début / Fin Faire défiler jusqu'en haut/bas
 
 ## Paramétrer son environnement virtuel python
 
@@ -281,4 +327,4 @@ Pour cela il faut d'abord ajouter rest à l'environnement virtuel par  défaut e
     (venv) michaellaunay@Luciole:~/workspace$ pip install sphinx
     (venv) michaellaunay@Luciole:~/workspace$ sphinx-quickstart
 
-Puis éditer la configuration de l'extension (Ctrl+Shift+P) et y ajouter comme chemin celui saisit pour Sphinx c'est-à-dire là où nous avons dit à quickstart de travailler et où il a créé le fichier conf.py (le workspace est le plus pratique).
+Puis éditer la configuration de l'extension (Ctrl+Maj+P) et y ajouter comme chemin celui saisit pour Sphinx c'est-à-dire là où nous avons dit à quickstart de travailler et où il a créé le fichier conf.py (le workspace est le plus pratique).

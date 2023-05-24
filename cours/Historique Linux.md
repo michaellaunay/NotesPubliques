@@ -47,9 +47,11 @@ Janvier 2009 version 7.1 de FreeBSD
 
 2011 Linux sort en version 3.0
 
+[L'histoire en vidéo](https://youtu.be/E0Q9KnYSVLc)
+
 ## La Free Software Foundation (FSF), la GPL et le projet GNU
 
-1983 Richard Stallman (RMS) qui travaillait au laboratoire d'intelligence artificielle du MIT crée le projet GNU.
+1983 <span style="color:red">Richard Stallman</span> (RMS) qui travaillait au laboratoire d'intelligence artificielle du MIT crée le projet GNU.
 
 GNU est un acronyme récursif (GNU's Not Unix).
 
