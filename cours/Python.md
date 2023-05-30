@@ -326,6 +326,7 @@ chaine[0] = "b"  # Donne une erreur
 chaine = "Bonjour"
 nouvelle_chaine = "b" + chaine[1:]  # Donne "bonjour"
 ```
+
 ## Le sclicing de chaînes de caractères
 Le slicing (ou découpage) est une fonctionnalité qui permet d'extraire une partie d'une séquence, comme une chaîne de caractères, une liste, un tuple, etc. Pour les chaînes de caractères, le slicing peut être utilisé pour extraire des sous-chaînes.
 
