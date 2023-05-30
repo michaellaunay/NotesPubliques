@@ -1,16 +1,18 @@
-La notion de camp d'internement est synomyme d'oppression, car, contrairement à une sentance carcérale, elle n'est pas décidée par un juge, mais par l'administration https://www-cairn-info.rp1.ensam.eu/revue-les-cahiers-de-la-shoah-2003-1-page-45.htm .
+La notion de camp d'internement est synonyme d'oppression, car, contrairement à une sentence carcérale, elle n'est pas décidée par un juge, mais par l'administration ([voir](https://www-cairn-info.rp1.ensam.eu/revue-les-cahiers-de-la-shoah-2003-1-page-45.htm)).
+Avant de parler du numérique, jetons un coup de projecteur sur notre passé.
 
 # Camp de Sumter à Andersonville
-L'un des premier camps d'internement où les détenus sont morts massivement et qui soit documenté est la prison militaire d'[Andersonville](https://fr.wikipedia.org/wiki/Camp_d%27Andersonville), où pendant la guerre de Sécession, en 1864, sont morts 12913 prisoniers unionistes. Le capitaine [Henry Wirz](https://fr.wikipedia.org/wiki/Henry_Wirz) qui avait en charge le camp sera le premier condanné à mort pour crime de guerre.
+L'un des premiers camps d'internement où les détenus sont morts massivement et qui soit documenté est la prison militaire d'[Andersonville](https://fr.wikipedia.org/wiki/Camp_d%27Andersonville), où pendant la guerre de Sécession, en 1864, sont morts 12913 prisonniers unionistes. Le capitaine [Henry Wirz](https://fr.wikipedia.org/wiki/Henry_Wirz) qui avait en charge le camp sera le premier condamné à mort pour crime de guerre.
 
 # Guerre des Boers
-Pendant la Seconde Guerre des Boers (1899-1902) en Afrique du Sud, les Britanniques ont mis en place ces camps dans le but d'isoler les civils boers, essentiellement des femmes et des enfants, pour briser le soutien logistique aux combattants boers. Les conditions dans ces camps étaient très mauvaises, avec une nourriture insuffisante et des soins médicaux déplorables, ce qui a conduit à une très forte mortalité, principalement due à la malnutrition et aux maladies.
+Pendant la Seconde Guerre des Boers (1899-1902) en Afrique du Sud, les Britanniques ont mis en place des camps d'internements dans le but d'isoler les civils boers, essentiellement des femmes et des enfants, pour briser le soutien logistique aux combattants boers. Les conditions dans ces camps étaient très mauvaises, avec une nourriture insuffisante et des soins médicaux déplorables, ce qui a conduit à une très forte mortalité, principalement due à la malnutrition et aux maladies.
 
 L'historiographie est divisée sur l'intentionnalité de cette situation. Certains voient dans la négligence britannique un moyen délibéré d'exterminer les Boers, tandis que d'autres insistent sur l'incompétence et le manque de préparation des Britanniques face à l'ampleur de la tâche qu'ils s'étaient imposée.
 
 Quoi qu'il en soit, ces camps ont entraîné la mort d'environ 28 000 Boers, dont une majorité d'enfants, ainsi que de plusieurs milliers de travailleurs africains. La prise de conscience de ces événements a conduit à une condamnation internationale à l'époque, et reste un sujet sensible en Afrique du Sud aujourd'hui.
 
-Mais la négligence administrative britanique avait déjà sévit lors de la Grande Famine irlandaise qui a eu lieu de 1845 à 1852. Elle a été provoquée par l'épidémie de mildiou, une maladie qui a détruit les récoltes de pommes de terre sur lesquelles se reposaient la majorité de la population irlandaise pour se nourrir. 
+Mais la négligence administrative britannique avait déjà sévi lors de la Grande Famine irlandaise qui a eu lieu de 1845 à 1852. Une épidémie de mildiou à l'origine de cette famine détruisit les récoltes de pommes de terre sur lesquelles se reposait la majorité de la population irlandaise pour se nourrir.
+
 La famine a entraîné la mort d'environ un million de personnes en Irlande et a conduit à l'émigration d'un autre million de personnes, pendant que la plupart des dignitaires anglais traitaient les Irlandais de fainéants.
 
 # Une tradition
@@ -22,7 +24,7 @@ Se souvenir, analyser et comprendre serait à minima la moindre des choses. Nous
 
 Mais aujourd'hui, cela semble presque dépassé, tant la mise en œuvre de l'oppression physique est complexe et risquée à instaurer. Alors, quel est le mouvement suivant ?
 
-# Les réseaux sociaux sont-ils des camps d'internement de l'esprit.
+# Les réseaux sociaux sont-ils des camps d'internement de l'esprit ?
 
 Si l'on fait le parallèle entre la faible nutrition et l'appauvrissement culturel lié à une faible diversité, à l'absence de liberté puisqu'on ne voit que ce que le réseau nous propose, et à la manipulation, il n'est peut-être pas audacieux de parler de camp d'internement de l'esprit.
 
@@ -37,7 +39,7 @@ Dans ces bulles de filtres, la liberté de choix est limitée. Les utilisateurs 
 ## Manipulation
 Les réseaux sociaux sont également connus pour être utilisés comme des outils de manipulation de masse, que ce soit par des acteurs politiques, commerciaux ou autres. L'utilisation stratégique des données, le microciblage, la désinformation et les fausses nouvelles sont des tactiques couramment utilisées pour influencer l'opinion et le comportement des utilisateurs.
 
-# Des multinationales plus efficace que les états
+# Des multinationales plus efficaces que les états
 Contrairement aux camps d'internement, l'utilisation des réseaux sociaux est volontaire et les utilisateurs ont le pouvoir de contrôler, dans une certaine mesure, leur consommation de contenu. C'est un aspect qui s'avère être avantageux pour les multinationales qui gèrent ces plateformes.
 
 Non seulement les "frais d'internement" sont supportés par les "prisonniers" eux-mêmes - autrement dit, les utilisateurs prennent en charge les coûts en termes de temps, d'attention et de données personnelles - mais ces utilisateurs adhèrent volontairement à leur "emprisonnement". Ils sont captifs, souvent à cause de l'attrait des interactions sociales, de l'accès à l'information, et de la satisfaction immédiate que ces plateformes peuvent procurer.
@@ -61,6 +63,6 @@ Il est important que les utilisateurs, "captifs" des réseaux sociaux, soient co
 
 Comme il est impossible de faire partie d'un système tout en ayant une vue globale de celui-ci, les utilisateurs n'ont comme rare solution que de reconstituer le puzzle en partageant les pièces qu'ils ont trouvées. 
 
-Ils sont condamnés à utiliser les réseaux sociaux, non pour sortir des réseaux, mais pour les transformer en outil à leur service. L'éducation à la littératie numérique doit être une priorité, afin que les utilisateurs puissent faire des choix éclairés concernant leur utilisation des réseaux sociaux et d'autres plateformes numériques.
+Ils sont condamnés à utiliser les réseaux sociaux, non pour sortir des réseaux, mais pour les transformer en outil à leur service. L'éducation à la [littératie numérique](https://fr.wikipedia.org/wiki/Litt%C3%A9ratie_num%C3%A9rique) doit être une priorité, afin que les utilisateurs puissent faire des choix éclairés concernant leur utilisation des réseaux sociaux et d'autres plateformes numériques.
 
 Ainsi, face à des multinationales qui sont parfois plus efficaces et plus influentes que les États, il est crucial de relever le défi de l'éducation afin que chacun apprenne à protéger ses droits par ses actes.

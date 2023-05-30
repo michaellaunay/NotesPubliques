@@ -15,3 +15,4 @@
 [[Suis-je une IA ?]]
 [[Taille des bibliothèques]]
 [[Un jardin, des lapins, des carottes, chat gpt et copilot]]
+[[Oppressions numériques]]
