@@ -16,7 +16,7 @@ Mais la négligence administrative britannique avait déjà sévi lors de la Gra
 La famine a entraîné la mort d'environ un million de personnes en Irlande et a conduit à l'émigration d'un autre million de personnes, pendant que la plupart des dignitaires anglais traitaient les Irlandais de fainéants.
 
 # Une tradition
-La liste, de 1864 à aujourd'hui, est longue et je ne la détaillerai pas davantage, d'autant plus que la France a ses propres actes à considérer en la matière. Chacun y discerne ses martyrs. Il n'y a pas un État qui, au nom du bien commun ou d'une idéologie, n'ait pas rempli ses cimetières avec les martyrs d'autres peuples tout en se revendiquant comme légitime. Le machiavélisme a même poussé certains à créer les martyrs de leur propre cause. La défense des bourreaux a toujours été qu'ils n'obéissaient qu'aux ordres, ce que renforce l'expérience de Milgram.
+La liste, de 1864 à aujourd'hui, est longue et je ne la détaillerai pas davantage, d'autant plus que la France a ses propres actes à considérer en la matière. Chacun y discerne ses martyrs. Il n'y a pas un État qui, au nom du bien commun ou d'une idéologie, n'ait pas rempli les cimetières avec les martyrs d'autres peuples tout en se revendiquant comme légitime. Le machiavélisme a même poussé certains à créer les martyrs de leur propre cause. La défense des bourreaux a toujours été qu'ils n'obéissaient qu'aux ordres, ce que renforce l'expérience de Milgram.
 
 Devons-nous ressentir de la culpabilité pour ce que nous avons fait ? Devons-nous abandonner toute appartenance nationale ?
 
@@ -46,16 +46,18 @@ Non seulement les "frais d'internement" sont supportés par les "prisonniers" eu
 
 Cela donne aux multinationales une capacité d'influence et de contrôle sans précédent, qui dans de nombreux cas, dépasse celle des États. Non seulement elles peuvent modeler le comportement et les opinions à grande échelle, mais elles sont également capables de traverser les frontières et d'influencer les utilisateurs dans le monde entier. Par conséquent, il est crucial de réglementer ces multinationales pour permettre aux utilisateurs de protéger leurs droits et libertés.
 
-Entendons-nous bien, je ne demande pas la régulation, mais l'ouverture des choix pour les utilisateurs. Et pour pouvoir le faire, il est nécessaire que les plateformes aient l'obligation de fournir une information claire et juste sur leurs algorithmes dès lors qu'ils traitent des informations personnelles ou qu'ils font des propositions.
+Entendons-nous bien, je ne demande pas la régulation coércitive, mais l'ouverture des choix pour les utilisateurs. Et pour pouvoir le faire, il est nécessaire que les plateformes aient l'obligation de fournir une information claire et juste sur leurs algorithmes dès lors qu'ils traitent des informations personnelles ou qu'ils font des propositions de contenus.
 
 Les questions éthiques et juridiques entourant la régulation des géants du numérique sont complexe et cruciales. Les mesures prises par les gouvernements pour réglementer ces entreprises ont souvent du mal à suivre le rythme rapide du développement technologique. Cela s'avère particulièrement vrai lorsqu'il s'agit de protéger la vie privée des utilisateurs, de prévenir la désinformation, et d'assurer une concurrence équitable.
 
 Par ailleurs, le modèle économique de ces multinationales repose en grande partie sur la monétisation des données personnelles. Il est donc essentiel de mettre en place non pas des régulations inefficaces pour limiter l'exploitation abusive de ces données et garantir le respect du droit à la vie privée, mais d'offrir des outils aux futurs citoyens en développant dès maintenant leur sens critique. Cela passe par un renforcement de l'apprentissage naturel du questionnement.
-Car ceux qui disent à leurs enfants qu'ils posent trop de questions finissent par se rendre complices de l'anéantissement intellectuel de leur progéniture. Mais comment un parent entravé pourrait-il enseigner l'exercice' de la liberté à ses enfants ?
+Car ceux qui disent à leurs enfants qu'ils posent trop de questions finissent par se rendre complices de l'anéantissement intellectuel de leur progéniture. Mais comment un parent entravé pourrait-il enseigner l'exercice de la liberté à ses enfants ?
 
 Les États se doivent d'accompagner cette prise d'autonomie, faute de quoi ils se rendent coupables à leur tour.
 
-Ces questions ne se limitent pas aux frontières d'un seul pays. L'influence des grandes entreprises technologiques est globale, et les régulations devraient donc être coordonnées à l'échelle internationale.
+Ces questions ne se limitent pas aux frontières d'un seul pays. L'influence des grandes entreprises technologiques est globale, et l'ouverture des algorithmes des plateformes et leur obligation à sensibiliser leurs utilisateurs devraient donc être coordonnées à l'échelle internationale avec une régulation par obligation de résultats.
+
+Ne peut-on pas faire comme pour le fameux avertissement "fumer tue" imposé à l'industrie du tabac? Nous pourrions obliger les plateformes à déconnecter leurs utilisateurs cinq minutes toutes les deux heures en placardant "Prenez un peu de recul". Il est dommage de laisser cette option aux régimes "totalitaires" sous couvert d'une atteinte aux libertés.
 
 # Le diagnostic impossible
 
