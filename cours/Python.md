@@ -1,11 +1,13 @@
 Le scripting bash peut vite s'apparenter à du développement, alors pourquoi ne pas utiliser un vrai langage de programmation ?
 
 # Historique
+
 Python a été créé fin 1986 par Guido van Rossum au CWI (Institut de recherche en mathématique et informatique de Hollande), à partir de la version 1.2 en 1995 le CNRI (Corporation of Nationnal Research Initiative) finance le projet.
 
 En 2000 Python passe en version 2.0 au sein de Be.open, puis l'équipe rejoint Digitial Creation (Futur Zope Corporation) en 2001. En mars 2001 création de la python fondation et libération complète du code.
 
 # La notion d'objet
+
 L'objet est l'un des concepts centraux de la programmation orientée objet (POO).
 
 Un objet peut être perçu comme une aggrégation d'attibuts situés à un espace unique en mémoire. L'objet est donc une entité qui encapsule des données (attributs) et des comportements (méthodes) dans une structure dont la définition est la même pour tous les objets de même type. Les objets sont des instances d'une classe, qui est un modèle ou un plan définissant les caractéristiques communes à un groupe d'objets similaires.
@@ -15,6 +17,7 @@ Un objet représente une entité spécifique dans un programme et peut interagir
 En Python tout est objet.
 
 # La notion de classe
+
 La classe est l'un des concepts centraux de la programmation orientée objet (POO).
 Une classe est une définition d'un Objet, nous pouvons rapprocher cela de la définition de Humain dans un dictionnaire. Tous les humains sur terre respectent cette définition, mais tout les humains ont des "pattributs" qui leur sont propres, comme le lieu et la date de naissance et des parents différents des autres exceptés ses frères et soeur.
 Lorsque nous rencontrons un humain nous nous attendons à ce qu'il possède les attributs définie dans sa classe Humain et que ces attribut lui soit propre. Nous disont que cet humain est une instance de la classe Humain. Un sinonyme de instance est objet, un humain en particulier est un objet de type Humain.
@@ -28,16 +31,19 @@ Le principe de généralisation, également connu sous le nom d'héritage, est u
 L'héritage permet d'éviter la redondance du code en réutilisant les fonctionnalités communes entre les classes, tout en permettant d'étendre et de modifier le comportement selon les besoins de la classe dérivée. Il favorise également la modularité et la lisibilité du code.
 
 # L'instruction print
+
 L'instruction `print` en Python est une fonction intégrée qui permet d'afficher du texte ou des valeurs dans la console ou le terminal où le programme est exécuté. La fonction `print` affiche les arguments passés sous forme de chaîne de caractères, séparés par des espaces, et termine la sortie avec un retour à la ligne, sauf indication contraire.
 
 Voici quelques exemples d'utilisation de la fonction `print` en Python :
 
 ## Afficher une chaîne de caractères simple
+
 ```python
 print("Bonjour tout le monde !")
 ```
 
 ## Afficher plusieurs chaînes de caractères ou valeurs séparées par des virgules
+
 ```python
 nom = "Michaël"
 age = 50
@@ -45,6 +51,7 @@ print("Bonjour, je m'appelle", nom, "et j'ai", age, "ans.")
 ```
 
 ## Utiliser les f-strings (format string literals) pour formater la sortie
+
 ```python
 nom = "Michaël"
 age = 50
@@ -52,11 +59,13 @@ print(f"Bonjour, je m'appelle {nom} et j'ai {age} ans.")
 ```
 
 ## Modifier le séparateur entre les arguments passés à la fonction `print`
+
 ```python
 print("John", "Doe", sep="-")
 ```
 
-## Supprimer le retour à la ligne en fin de la fonction `print` en modifiant la valeur du paramètre `end` :
+## Supprimer le retour à la ligne en fin de la fonction `print` en modifiant la valeur du paramètre `end`
+
 ```python
 print("Hello, World!", end="")
 ```
@@ -64,6 +73,7 @@ print("Hello, World!", end="")
 # Les primitives d'accès aux informations de type
 
 ## id()
+
 La fonction `id()` renvoie l'identifiant unique d'un objet en Python. Cet identifiant est un entier qui représente l'adresse mémoire de l'objet. L'identifiant d'un objet est garanti d'être unique et constant pour la durée de vie de l'objet.
 
 Exemple d'utilisation de `id()` :
@@ -77,6 +87,7 @@ print(id(b))  # Affiche le même entier que celui de a, car a et b font référe
 ```
 
 ## type()
+
 La fonction `type()` renvoie le type d'un objet en Python. Le type d'un objet détermine la classe à laquelle il appartient et définit les opérations possibles sur cet objet, ainsi que les méthodes et les attributs qu'il possède.
 
 Exemple d'utilisation de `type()` :
@@ -90,6 +101,7 @@ print(type(b))  # Affiche <class 'str'>
 ```
 
 ## dir()
+
 La fonction `dir()` retourne une liste des attributs (variables et méthodes) d'un objet donné. Si aucun argument n'est fourni, la fonction renvoie la liste des noms du scope local.
 
 Exemple d'utilisation de `dir()` :
@@ -113,6 +125,7 @@ print(dir(objet))
 Dans cet exemple, `dir()` renvoie la liste des attributs et des méthodes de l'objet de type `MaClasse`, y compris les méthodes spéciales et les méthodes héritées de la classe parente (ici, `object`).
 
 ## help()
+
 La fonction `help()` permet d'afficher des informations d'aide sur les objets, tels que les modules, les classes, les fonctions, les méthodes et les types de données. Elle permet d'obtenir les informations sur un objet ou une fonction dans shell python, c'est à dire pendant l'exécution.
 
 Lorsque nous appelons `help()` avec un objet en argument, la fonction affiche une description détaillée de l'objet, y compris sa signature (pour les fonctions et les méthodes), sa documentation (docstring), la liste de ses attributs et méthodes (pour les classes) et d'autres informations pertinentes.
@@ -120,27 +133,32 @@ Lorsque nous appelons `help()` avec un objet en argument, la fonction affiche un
 Quelques exemples d'utilisation :
 
 ### Obtenir de l'aide sur un module
+
 ```python
 import math
 help(math)
 ```
 
 ### Obtenir de l'aide sur une classe
+
 ```python
 help(list)
 ```
 
 ### Obtenir de l'aide sur une fonction ou une méthode
+
 ```python
 help(print)
 ```
 
 ### Obtenir de l'aide sur un type de données
+
 ```python
 help(str)
 ```
 
 ### Obtenir de l'aide sur Python
+
 Si nous appelons  la fonction `help()` sans argument, cela lance une session interactive d'aide dans la console et la saisie d'un nom de variable permet d'obtenir les informations sur l'objet référencé.
 
 Exemple :
@@ -165,11 +183,13 @@ print(...)
 ```
 
 # Les commentaires
+
 Les commentaires sont des portions de texte ajoutées au code source d'un programme pour expliquer ou clarifier le code. Ils sont destinés à être lus par les développeurs et sont ignorés par l'interpréteur Python lors de l'exécution du code. Les commentaires sont utiles pour améliorer la lisibilité et la maintenabilité du code en fournissant des informations supplémentaires ou en expliquant les décisions de conception.
 
 En Python, il existe deux types de commentaires : les commentaires sur une seule ligne et les commentaires multilignes.
 
 ## Commentaires sur une seule ligne
+
 Le caractère dièse (#) commence les commentaires sur une seule ligne. Tout texte qui suit le dièse jusqu'à la fin de la ligne est considéré comme un commentaire et sera ignoré par l'interpréteur Python.
 
 Exemple :
@@ -180,6 +200,7 @@ print("Bonjour le monde !")  # Nous pouvons ajouter un commentaire en fin de lig
 ```
 
 ## Commentaires multilignes
+
 Les commentaires multilignes sont écrits en utilisant des chaînes de caractères multilignes avec des triples guillemets ("""...""" ou '''...'''). Même si ce ne sont pas des commentaires à proprement parler, ils sont souvent utilisés à cette fin, car l'interpréteur Python ignore les chaînes de caractères non affectées à des variables.
 
 Exemple :
@@ -223,9 +244,11 @@ f(p: int = 0) -> int
 ```
 
 # Les chaînes de caractères
+
 Les chaînes de caractères en Python sont des séquences de caractères Unicode. En Python 3, l'encodage par défaut est UTF-8, qui est une représentation des caractères Unicode.
 
 ## Encodage et Décodage
+
 **Encodage** : Le passage de caractères Unicode à une représentation binaire (bytes) s'appelle l'encodage. En Python, nous utilisons la méthode `encode()` pour cela. Par exemple, pour encoder une chaîne de caractères en utilisant l'encodage 'ISO-8859-15', nous faisons :
 
 ```python
@@ -313,6 +336,7 @@ chaine_minuscules = chaine.lower()  # Donne "bonjour le monde"
 ```
 
 ## Chaînes de caractères et immutabilité
+
 Les chaînes de caractères en Python sont immuables. Cela signifie que nous ne pouvons pas changer un caractère d'une chaîne de caractères une fois qu'elle a été créée. Si nous essayons de le faire, Python nous donnera une erreur. Si nous devons modifier une chaîne de caractères, nous devons créer une nouvelle chaîne de caractères avec les modifications.
 
 ```python
@@ -327,7 +351,8 @@ chaine = "Bonjour"
 nouvelle_chaine = "b" + chaine[1:]  # Donne "bonjour"
 ```
 
-## Le sclicing de chaînes de caractères
+## Le "sclicing" de chaînes de caractères
+
 Le slicing (ou découpage) est une fonctionnalité qui permet d'extraire une partie d'une séquence, comme une chaîne de caractères, une liste, un tuple, etc. Pour les chaînes de caractères, le slicing peut être utilisé pour extraire des sous-chaînes.
 
 La syntaxe du slicing est la suivante :
@@ -377,9 +402,11 @@ print(sous_chaine)  # Affiche "Bno u od"
 Dans cet exemple, le pas de slicing est 2, donc le slicing extrait tous les deuxièmes caractères de la chaîne.
 
 # Les numériques
+
 Python fournit plusieurs types numériques que nous pouvons utiliser pour représenter les nombres dans nos programmes.
 
 ## Entiers
+
 Les entiers en Python sont de type `int`. En Python 3, il n'y a pas de limite à la taille des entiers, ils peuvent être aussi grands que ce que peut contenir la mémoire de notre ordinateur.
 
 ```python
@@ -396,7 +423,8 @@ hexa = 0x123  # Entier en base 16
 binaire = 0b1010  # Entier en base 2
 ```
 
-#### Booléens
+## Booléens
+
 Le type `bool` est un sous-type d'entier qui ne peut prendre que deux valeurs : `True` (vrai) et `False` (faux).
 ```python
 vrai = True
@@ -405,22 +433,27 @@ print(type(vrai))  # Affiche "<class 'bool'>"
 ```
 
 ## Nombres à virgule flottante
+
 Les nombres à virgule flottante en Python sont de type `float`. Ils peuvent représenter des nombres réels, positifs ou négatifs, avec ou sans partie fractionnaire.
 ```python
 flottant = 0.123
 grand_flottant = 1e100
 print(type(flottant))  # Affiche "<class 'float'>"
 ```
+
 ## Nombres complexes
+
 Les nombres complexes sont de type `complex`. Ils sont représentés par deux nombres à virgule flottante, le premier représentant la partie réelle et le second représentant la partie imaginaire.
 ```python
 complexe = 1 + 3j
 print(type(complexe))  # Affiche "<class 'complex'>"
 ```
 # Les types à valeur unique
+
 En Python, il existe deux types spéciaux qui ont une seule valeur possible : `None` et `NotImplemented`.
 
 ## None
+
 `None` est un type spécial en Python qui représente l'absence de valeur ou la nullité. Il est souvent utilisé pour signifier qu'une fonction ne retourne rien, ou qu'une variable n'a pas encore été assignée à une valeur. En termes de programmation, `None` est un singleton, ce qui signifie qu'il n'y a qu'une seule instance de `None` en Python.
 
 Voici un exemple d'utilisation de `None` :
@@ -436,6 +469,7 @@ print(resultat)  # Affiche "None"
 Dans cet exemple, `une_fonction()` ne retourne rien, donc son résultat est `None`.
 
 ## NotImplemented
+
 `NotImplemented` est une autre valeur unique en Python. Elle est généralement utilisée pour indiquer que la méthode ou l'opération spéciale pour un type donné n'est pas implémentée.
 
 Par exemple, si vous créez une classe personnalisée et que vous voulez qu'elle puisse utiliser l'opérateur `+`, vous pouvez définir une méthode spéciale appelée `__add__`. Si vous ne voulez pas que l'opérateur `+` soit utilisé pour votre classe, vous pouvez faire que `__add__` renvoie `NotImplemented`.
@@ -454,9 +488,11 @@ Dans cet exemple, essayer d'utiliser l'opérateur `+` avec une instance de `MaCl
 Il est à noter que `NotImplemented` est différent de `NotImplementedError`. Le premier est une valeur spéciale qui peut être renvoyée par certaines méthodes spéciales, tandis que le second est une exception qui est levée lorsqu'une méthode abstraite requise n'est pas implémentée par une classe.
 
 # Les séquences
+
 En Python, une séquence est une collection ordonnée d'éléments. Les éléments d'une séquence sont indexés par des nombres entiers, commençant par zéro pour le premier élément. Python fournit plusieurs types de séquences, y compris les tuples, les listes et les dictionnaires. 
 
 ## Les tuples
+
 Un tuple est une séquence immuable d'éléments. Cela signifie que nous ne pouvons pas modifier un tuple une fois qu'il a été créé. Les tuples sont généralement utilisés pour regrouper des données qui sont liées de manière logique.
 
 ```python
@@ -467,6 +503,7 @@ print(type(mon_tuple))  # Affiche "<class 'tuple'>"
 Dans cet exemple, `mon_tuple` est un tuple de trois éléments. Nous pouvons accéder à un élément du tuple en utilisant son indice, par exemple `mon_tuple[0]` retourne `1`.
 
 ## Les listes
+
 Une liste est une séquence mutable d'éléments. Cela signifie que nous pouvons ajouter, modifier ou supprimer des éléments d'une liste après sa création. Les listes sont très polyvalentes et sont souvent utilisées pour stocker des collections d'éléments qui doivent être modifiées.
 
 ```python
@@ -477,6 +514,7 @@ print(type(ma_liste))  # Affiche "<class 'list'>"
 Dans cet exemple, `ma_liste` est une liste de trois éléments. Nous pouvez ajouter un élément à la liste avec `ma_liste.append(4)`, modifier un élément avec `ma_liste[0] = 0`, ou supprimer un élément avec `del ma_liste[2]`.
 
 ## Les dictionnaires
+
 Un dictionnaire est une collection non ordonnée de paires clé-valeur. Il est mutable, ce qui signifie que nous pouvons ajouter, modifier ou supprimer des paires clé-valeur après sa création. Les dictionnaires sont souvent utilisés pour stocker des données qui sont associées à des clés uniques.
 
 ```python
@@ -487,12 +525,42 @@ print(type(mon_dict))  # Affiche "<class 'dict'>"
 Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. Nous pouvons accéder à une valeur du dictionnaire en utilisant sa clé, par exemple `mon_dict['a']` retourne `1`. Nous pouvons ajouter une paire clé-valeur avec `mon_dict['d'] = 4`, modifier une valeur avec `mon_dict['a'] = 0`, ou supprimer une paire clé-valeur avec `del mon_dict['b']`.
 
 # Les ensembles
-@todo
+
+Tout comme les dictionnaires, les ensembles sont des collections non ordonnées, mais ils présentent des caractéristiques distinctives qui les rendent uniques. Contrairement aux dictionnaires, qui stockent des paires clé-valeur, les ensembles stockent uniquement des valeurs uniques. De plus, ils sont mutables, ce qui signifie que nous pouvons ajouter, modifier ou supprimer des valeurs après leur création. 
+
+Créons un exemple pour illustrer comment cela fonctionne:
+
+```python
+mon_ensemble = {1, 2, 3}
+print(type(mon_ensemble))  # Affiche "<class 'set'>"
+```
+
+Ici, `mon_ensemble` est un ensemble qui contient trois valeurs uniques : 1, 2 et 3. Nous avons utilisé des accolades `{}`, tout comme pour les dictionnaires, mais sans associer de clés à nos valeurs.
+
+Comme pour les dictionnaires, nous avons plusieurs opérations à notre disposition. Nous pouvons ajouter une valeur à l'ensemble avec la méthode `.add()`, comme suit :
+
+```python
+mon_ensemble.add(4)
+```
+
+Maintenant, `mon_ensemble` contient `{1, 2, 3, 4}`. Notez que si nous essayons d'ajouter une valeur déjà présente dans l'ensemble, rien ne se passe. C'est parce que les ensembles, par définition, ne contiennent que des valeurs uniques.
+
+Pour supprimer une valeur, nous pouvons utiliser la méthode `.remove()`. Par exemple, `mon_ensemble.remove(2)` supprime la valeur `2` de notre ensemble. 
+
+Mais attention ! Si la valeur que nous essayons de supprimer n'est pas présente dans l'ensemble, Python génère une erreur. Pour éviter cela, nous pouvons utiliser la méthode `.discard()`, qui ne génère pas d'erreur si la valeur n'est pas trouvée.
+
+```python
+mon_ensemble.discard(2)
+```
+
+En somme, les ensembles sont des outils puissants pour travailler avec des collections de valeurs uniques. Ils sont particulièrement utiles lorsque nous avons besoin de tester l'appartenance à un ensemble, de supprimer les doublons d'une collection, ou de calculer des opérations mathématiques telles que les intersections et les unions.
 
 ## Documentation
+
 https://docs.python.org/fr/3/library/stdtypes.html
 
 # Les listes en compréhension
+
 Les listes en compréhension (ou list comprehension en anglais) permettent de créer de nouvelles listes de manière très concise. Elles suivent une syntaxe qui peut être comprise comme une expression de la forme "établir une liste de cet élément pour cet élément dans cet ensemble si cette condition est vraie".
 
 La syntaxe de base est la suivante :
@@ -524,6 +592,7 @@ carrés_pairs = [x**2 for x in range(10) if x % 2 == 0]
 Dans cet exemple, `x % 2 == 0` est une condition qui n'est vraie que pour les nombres pairs, donc seuls les carrés des nombres pairs sont inclus dans la liste.
 
 ## Emboitement des listes en compréhension
+
 L'emboîtement de listes en compréhension (ou nested list comprehension en anglais) signifie qu'une liste en compréhension est utilisée à l'intérieur d'une autre liste en compréhension. C'est une façon puissante et concise de créer des listes.
 
 Par exemple, supposons que nous ayons une liste de listes, et que nous voulions aplatir cette structure en une seule liste. Voici comment nous pourrions le faire avec une liste en compréhension imbriquée :
@@ -553,6 +622,7 @@ print(matrice)  # Affiche [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
 Dans cet exemple, la liste en compréhension externe crée les lignes de la matrice, et la liste en compréhension interne crée les éléments de chaque ligne.
 
 # Les itérateurs
+
 Un itérateur en Python est un objet qui peut être parcouru, c'est-à-dire qu'il permet de parcourir tous les éléments d'une collection (comme une liste, un tuple, un dictionnaire, un ensemble, etc.), un à la fois. Cette fonctionnalité est particulièrement utile dans les boucles `for` et `while`, où nous voulons effectuer une opération sur chaque élément d'une collection.
 
 En Python, un objet est considéré comme un itérateur s'il implémente deux méthodes spéciales, `__iter__()` et `__next__()`. La méthode `__iter__()` renvoie l'itérateur lui-même, et la méthode `__next__()` renvoie le prochain élément de la collection. Lorsque tous les éléments ont été parcourus, `__next__()` doit lever l'exception `StopIteration` pour signaler la fin de l'itération.
@@ -613,11 +683,13 @@ Un type particulier d'itérateur en Python est le générateur. Un générateur 
 Nous allons les détailler dans le chapitre suivant.
 
 # Les générateurs
+
 Les générateurs sont un type d'itérateur, c'est-à-dire un objet qui produit une séquence de résultats au lieu de calculer une série de valeurs et de les stocker toutes à la fois. La principale caractéristique des générateurs est qu'ils sont paresseux (lazy) : ils ne calculent la valeur suivante de la séquence que lorsqu'elle est demandée.
 
 En Python, Nous pouvons créer des générateurs de deux façons : en utilisant des fonctions et le mot-clé `yield`, ou en utilisant des expressions génératrices.
 
 ## Fonctions de générateur
+
 Une fonction de générateur ressemble à une fonction normale, mais au lieu d'utiliser `return` pour renvoyer une valeur, elle utilise `yield`. Lorsqu'un générateur est appelé, il renvoie un objet itérateur, mais ne commence pas à exécuter le corps de la fonction. Lorsque nous appelons la méthode `next()` (ou la fonction `next()`) sur l'objet itérateur, la fonction est exécutée jusqu'à ce qu'elle rencontre `yield`, qui renvoie la valeur courante.
 
 Voici un exemple d'une fonction de générateur qui produit une séquence de nombres :
@@ -635,6 +707,7 @@ for num in g:
 ```
 
 ## Expressions génératrices
+
 Les expressions génératrices sont similaires aux compréhensions de liste, mais au lieu de produire une liste, elles produisent un générateur. Les expressions génératrices sont écrites entre parenthèses (`()`) au lieu de crochets (`[]`).
 
 Voici un exemple d'une expression génératrice qui produit une séquence de carrés :
@@ -664,7 +737,8 @@ for num in g:
     print(num)  # Affiche les nombres de 0 à 4
 ```
 
-### Envoi de valeurs et d'exceptions aux générateurs
+## Envoi de valeurs et d'exceptions aux générateurs
+
 Les générateurs sont non seulement capables de produire des valeurs, mais ils peuvent également recevoir des valeurs et des exceptions, ce qui permet une communication bidirectionnelle entre le générateur et le code qui l'appelle. Pour cela, les générateurs disposent des méthodes `send()` et `throw()`.
 
 La méthode `send()` reprend l'exécution du générateur et "envoie" une valeur qui devient le résultat de l'expression `yield` actuelle. La méthode `throw()` est utilisée pour lever une exception dans le générateur à l'endroit où le `yield` a été interrompu la dernière fois.
@@ -681,7 +755,7 @@ g.send('Bonjour')  # Affiche "Reçu : Bonjour"
 g.throw(RuntimeError, 'Quelque chose ne va pas')  # Lève une RuntimeError dans le générateur
 ```
 
-## Outils d'itération
+# Outils d'itération
 Il existe plusieurs bibliothèques qui fournissent des outils utiles pour travailler avec des itérateurs. Voici quelques-unes des plus couramment utilisées :
 
 1. **itertools** : Ce module de la bibliothèque standard Python fournit une collection d'outils pour manipuler les itérateurs. Par exemple, `itertools.count` crée un itérateur qui produit une séquence infinie de nombres entiers, `itertools.cycle` crée un itérateur qui répète indéfiniment une séquence, et `itertools.chain` combine plusieurs itérateurs en un seul. Le module `itertools` offre également plusieurs autres fonctions utiles, comme `itertools.permutations`, `itertools.combinations`, et `itertools.product`, qui génèrent respectivement toutes les permutations, combinaisons, et le produit cartésien d'une collection d'éléments.
@@ -696,32 +770,41 @@ Chacune de ces bibliothèques fournit une documentation complète avec des exemp
 
 # Les opérateurs
 
-L'affectation =
+Nous avons à notre disposition un large éventail d'opérateurs en Python qui nous permettent d'effectuer divers calculs et opérations sur nos données.
 
-La division / (5.0/6 =
-0.83333\....)
+- **L'affectation `=`** : Nous utilisons l'opérateur `=` pour affecter une valeur à une variable. Par exemple, `x = 5` assigne la valeur `5` à la variable `x`.
 
-La division entière //
+- **La division `/`** : C'est l'opérateur de division standard. Par exemple, `5.0/6` donne comme résultat `0.83333...`.
 
-Le modulo % ou divmod(5,3) = (1,2)
+- **La division entière `//`** : C'est une division qui arrondit le résultat à l'entier le plus proche vers le bas. Par exemple, `7 // 2` donne `3`.
 
-La négation -
+- **Le modulo `%`** : Nous utilisons l'opérateur `%` pour obtenir le reste de la division. Par exemple, `5 % 3` donne `2`. Nous pouvons également utiliser la fonction `divmod(a, b)` qui retourne un tuple contenant le quotient et le reste. Par exemple, `divmod(5, 3)` donne `(1, 2)`.
 
-L'inversion bit à bit \~ (complément à un)
+- **La négation `-`** : Nous utilisons l'opérateur `-` pour inverser le signe d'une valeur. Par exemple, `-3` est l'inverse de `3`.
 
-La puissance \*\*
+- **L'inversion bit à bit `~`** : C'est l'opérateur de complément à un. Il inverse tous les bits d'un nombre. Par exemple, `~3` donne `-4` car `3` est `11` en binaire et son inversion donne `100`, qui est `-4` en notation à deux compléments.
 
-Appartenance in
+- **La puissance `**`** : Nous utilisons l'opérateur `**` pour élever un nombre à la puissance d'un autre. Par exemple, `2 ** 3` donne `8`.
 
-### Opérateurs binaires
+- **Appartenance `in`** : Nous utilisons l'opérateur `in` pour vérifier si un élément est dans une collection. Par exemple, `3 in [1, 2, 3]` donne `True`.
 
-Le et **&**
+- **L'appartenance à un type `isinstance()`** : Nous utilisons la fonction `isinstance()` pour vérifier si une valeur est d'un certain type. Par exemple, `isinstance(3, int)` donne `True` car `3` est un entier.
 
-Le ou **\|**
+# Opérateurs binaires
 
-Le ou exclusif **\^**
+Dans notre travail avec Python, nous nous trouvons souvent en présence de données binaires. Python fournit un ensemble d'opérateurs qui nous permettent de manipuler directement ces données.
 
-### Opérateurs de comparaison
+- **Le et `&`** : L'opérateur binaire "et" renvoie un nombre dont chaque bit est le résultat de l'opération "et" sur les bits correspondants des opérandes. Par exemple, si nous avons `a = 60` (soit `00111100` en binaire) et `b = 13` (soit `00001101` en binaire), alors `a & b` donne `12` (soit `00001100` en binaire), car les troisième et quatrième bits sont les seuls bits qui sont à `1` dans les deux nombres.
+
+- **Le ou `|`** : L'opérateur binaire "ou" fonctionne de la même manière, mais retourne un `1` pour chaque position où au moins un des bits opérandes est `1`. En utilisant les mêmes valeurs `a` et `b` que ci-dessus, `a | b` donne `61` (soit `00111101` en binaire), car tous les bits qui sont `1` dans `a` ou `b` sont `1` dans le résultat.
+
+- **Le ou exclusif `^`** : L'opérateur "ou exclusif" retourne un `1` pour chaque position où exactement un des bits opérandes est `1`. En utilisant encore les mêmes valeurs `a` et `b`, `a ^ b` donne `49` (soit `00110001` en binaire), car les deuxième, cinquième, sixième et septième bits ont des valeurs différentes dans `a` et `b`. 
+
+- **La négation `~`** : L'opérateur de négation binaire, aussi appelé complément à un, renvoie un nombre dont chaque bit est inversé par rapport à l'opérande original. Autrement dit, pour chaque bit dans l'opérande, si le bit est `1`, il devient `0`, et si le bit est `0`, il devient `1`. Par exemple, si `a = 60` (soit `00111100` en binaire), alors `~a` donne `-61` (soit `11000011` en complément à deux, qui est la représentation standard des entiers négatifs en binaire).
+
+Ces opérateurs peuvent être très utiles pour manipuler les données à un niveau bas, comme lors de l'interaction avec le matériel, du travail avec des protocoles de réseau, ou de l'implémentation de certains algorithmes de chiffrement et de compression.
+
+# Opérateurs de comparaison
 
 Inférieur **\<**
 
@@ -737,25 +820,231 @@ le est **is**
 
 le n'est pas **is not**
 
-### Ordre de traitement des opérations
+# Ordre de traitement des opérations
 
-Parenthèses, Exposants, Division, Multiplication, Addition, Soustraction
+En programmation, tout comme en mathématiques, les opérations sont traitées selon un certain ordre de priorité, souvent désigné par l'acronyme anglais PEMDAS :
 
-### L'instruction pass
+- Parenthèses (P)
+- Exposants (E)
+- Multiplication et Division (MD) - De gauche à droite
+- Addition et Soustraction (AS) - De gauche à droite
 
-### L'indentation
+Ce qui signifie que dans une expression, les opérations entre parenthèses sont effectuées en premier, suivies par les exposants (comme les carrés et les racines carrées), puis la multiplication et la division, et enfin l'addition et la soustraction. 
 
-La création de block de code se fait par indentation.
+Par exemple, pour l'expression `3 + 2 * (5 - 1)`, le calcul se fait comme suit : `3 + 2 * 4` (parenthèses en premier), ensuite `3 + 8` (multiplication ensuite), et finalement `11` (addition en dernier).
 
-### Les structures conditionnelles
+## L'instruction pass
 
-L'instruction if (else et elif)
+En Python, l'instruction `pass` est une opération qui ne fait rien. Elle est généralement utilisée comme une instruction de remplissage lorsqu'une déclaration est requise syntaxiquement, mais que le programme ne requiert aucune action. Par exemple, elle peut être utilisée pour créer une classe, une fonction ou une boucle vide, en attente de contenu à ajouter plus tard :
 
-L'instruction for in
+```python
+def ma_fonction():
+    pass  # Je remplirai cette fonction plus tard
+```
 
-L'instruction while
+## L'instruction ...
 
-### Les fonctions
+En Python, le symbole `...` est également utilisé comme une instruction de remplissage, tout comme `pass`. Cependant, son utilisation est un peu différente.
+
+En Python, `...` est une constante spéciale appelée "Ellipsis". Par défaut, elle n'a aucun comportement et est généralement utilisée comme un espace réservé lorsque vous souhaitez indiquer qu'un code doit être ajouté ultérieurement.
+
+Vous pouvez l'utiliser de la même manière que `pass` pour créer une structure vide, par exemple une classe, une fonction ou une boucle :
+
+```python
+def ma_fonction():
+    ...  # Je remplirai cette fonction plus tard
+```
+
+Cependant, l'Ellipsis a également des utilisations spécifiques dans certains contextes, comme l'indexation de structures de données de haute dimension dans des bibliothèques scientifiques comme NumPy.
+
+De plus, certains outils de vérification de type utilisent l'Ellipsis pour indiquer qu'une annotation de type spécifique n'a pas encore été ajoutée à une variable ou à une fonction. Par exemple :
+
+```python
+def ma_fonction(a: int, b: ...) -> ...:  # Les types pour 'b' et le type de retour ne sont pas encore spécifiés
+    ...
+```
+
+En somme, bien que `pass` et `...` puissent être utilisés de manière interchangeable dans certains contextes, ils ont des utilisations spécifiques qui les rendent uniques. Il est donc important de comprendre ces différences pour les utiliser de manière appropriée.
+
+## L'indentation
+
+En Python, l'indentation (les espaces au début de certaines lignes de code) est très importante. Elle est utilisée pour définir le bloc de code associé à une structure de contrôle particulière (comme une boucle ou une condition), à une fonction ou à une classe. 
+
+Cela signifie que contrairement à de nombreux autres langages de programmation, où les blocs de code sont généralement délimités par des accolades `{}`, en Python, c'est l'indentation elle-même qui délimite les blocs.
+
+Par exemple, voici comment une boucle `for` serait écrite en Python :
+
+```python
+for i in range(5):
+    print(i)  # Cette ligne est dans le bloc de la boucle 'for' car elle est indentée
+print("Fin de la boucle")  # Cette ligne n'est pas dans le bloc de la boucle 'for' car elle n'est pas indentée
+```
+
+Dans cet exemple, la ligne `print(i)` est dans le bloc de la boucle `for` car elle est indentée. Elle sera donc répétée pour chaque itération de la boucle. En revanche, la ligne `print("Fin de la boucle")` n'est pas dans le bloc de la boucle `for` car elle n'est pas indentée. Elle sera donc exécutée une fois que toutes les itérations de la boucle auront été effectuées.
+
+# Les structures conditionnelles
+
+## L'instruction if (else et elif)
+
+En Python, l'instruction `if` est utilisée pour évaluer une condition. Si la condition est vraie, le bloc de code sous l'instruction `if` est exécuté. 
+
+```python
+if condition:
+    # Bloc de code exécuté si la condition est vraie
+```
+
+La clause `else` peut être ajoutée après un `if` pour spécifier un bloc de code à exécuter si la condition `if` est fausse.
+
+```python
+if condition:
+    # Bloc de code exécuté si la condition est vraie
+else:
+    # Bloc de code exécuté si la condition est fausse
+```
+
+`elif` (abréviation de "else if") peut être utilisé pour vérifier plusieurs conditions. Si la condition de l'instruction `if` est fausse, la condition de l'instruction `elif` est alors évaluée. Si cette condition est vraie, le bloc de code sous l'instruction `elif` est exécuté.
+
+```python
+if condition1:
+    # Bloc de code exécuté si condition1 est vraie
+elif condition2:
+    # Bloc de code exécuté si condition1 est fausse et condition2 est vraie
+else:
+    # Bloc de code exécuté si condition1 et condition2 sont fausses
+```
+
+## Les opérateurs ternaires
+
+En Python, l'opérateur ternaire est une manière concise d'écrire une instruction `if`-`else`. Il permet de tester une condition et de renvoyer une valeur si cette condition est vraie et une autre valeur si elle est fausse. La syntaxe est la suivante :
+
+```python
+valeur_si_vrai if condition else valeur_si_faux
+```
+
+Par exemple :
+
+```python
+x = 10
+message = "x est supérieur à 5" if x > 5 else "x est inférieur ou égal à 5"
+print(message)  # Affiche "x est supérieur à 5"
+```
+
+## Les opérateurs logiques : AND, OR et NOT
+
+Python utilise les opérateurs `and`, `or` et `not` pour combiner ou inverser des conditions logiques.
+
+- `and` : Cet opérateur renvoie `True` si les deux conditions qu'il combine sont vraies. Par exemple, `x > 0 and x < 10` est vrai seulement si `x` est à la fois supérieur à 0 et inférieur à 10.
+
+- `or` : Cet opérateur renvoie `True` si au moins l'une des conditions qu'il combine est vraie. Par exemple, `x < 0 or x > 10` est vrai si `x` est inférieur à 0 ou supérieur à 10.
+
+- `not` : Cet opérateur inverse la vérité d'une condition. Par exemple, `not x > 0` est vrai seulement si `x` n'est pas supérieur à 0.
+
+Il est à noter que Python n'a pas d'opérateur ternaire `? :` comme on peut le trouver dans d'autres langages de programmation comme Java ou C++. En Python, on utilise plutôt la syntaxe `valeur_si_vrai if condition else valeur_si_faux` pour les opérations ternaires.
+
+Voici un exemple simple d'utilisation de l'opérateur ternaire `if` en Python :
+
+```python
+age = 20
+categorie = "Adulte" if age >= 18 else "Enfant"
+print(categorie)  # Affiche "Adulte"
+```
+
+Dans cet exemple, la variable `age` est fixée à 20. L'opérateur ternaire est utilisé pour déterminer la valeur de la variable `categorie`. Si `age` est supérieur ou égal à 18 (ce qui est le cas ici), `categorie` est fixée à "Adulte". Sinon (si `age` est inférieur à 18), `categorie` serait fixée à "Enfant".
+
+C'est une manière très concise d'écrire une condition `if`-`else`, et c'est particulièrement utile quand vous voulez affecter une valeur à une variable en fonction d'une condition.
+
+## L'instruction for in
+
+L'instruction `for` en Python est utilisée pour itérer sur une séquence (comme une liste, un tuple, un dictionnaire, un ensemble ou une chaîne) ou d'autres objets itérables. L'instruction `for` est souvent utilisée lorsque vous avez un bloc de code que vous voulez répéter un nombre fixe de fois.
+
+```python
+for variable in sequence:
+    # Bloc de code exécuté pour chaque élément dans la séquence
+```
+
+## L'instruction while
+
+L'instruction `while` en Python est utilisée pour la boucle de contrôle. Le bloc de code sous l'instruction `while` est exécuté aussi longtemps que la condition est vraie. 
+
+```python
+while condition:
+    # Bloc de code exécuté tant que la condition est vraie
+```
+
+Attention à ne pas créer de boucle infinie avec l'instruction `while` ! Assurons-nous que la condition deviendra fausse à un moment donné. Sinon, le programme continuera à exécuter le bloc de code pour toujours.
+
+# Utilisation de `else` dans un `for` ou un `while`
+Les blocs `else` peuvent également être utilisés avec les boucles `for` et `while` en Python. C'est une fonctionnalité quelque peu unique à Python et elle n'est pas présente dans beaucoup d'autres langages de programmation.
+
+Le bloc de code dans une clause `else` après une boucle `for` ou `while` est exécuté lorsque la boucle a fini de parcourir la liste (dans le cas de `for`) ou lorsque la condition devient fausse (dans le cas de `while`), mais seulement si la boucle n'a pas été interrompue par une instruction `break`.
+
+Voici un exemple avec une boucle `for`:
+
+```python
+for i in range(5):
+    print(i)
+else:
+    print("La boucle est terminée.")
+```
+
+Dans cet exemple, le message "La boucle est terminée." sera affiché après que tous les nombres de 0 à 4 aient été imprimés.
+
+Et un exemple avec une boucle `while` :
+
+```python
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+else:
+    print("La boucle est terminée.")
+```
+
+Ici encore, le message "La boucle est terminée." sera affiché après que tous les nombres de 0 à 4 aient été imprimés.
+
+## L'instruction match
+
+L'instruction `match` est une fonctionnalité introduite dans Python 3.10. Elle sert à faire du "pattern matching" sur des données. Elle peut rendre notre code plus lisible et plus sûr, en particulier lorsqu'il s'agit de gérer des structures de données complexes.
+
+La syntaxe de base de `match` est similaire à celle de `switch` dans d'autres langages de programmation, mais elle est beaucoup plus puissante car elle permet de correspondre à des motifs complexes, et non seulement à des valeurs scalaires.
+
+Prenons un exemple simple pour commencer :
+
+```python
+x = 1
+match x:
+    case 1:
+        print("Un")
+    case 2:
+        print("Deux")
+    case _:
+        print("Autre")
+```
+
+Ici, `x` est comparé à différents cas. Si `x` est `1`, le programme affiche "Un". Si `x` est `2`, il affiche "Deux". Le cas `_` est un joker qui correspond à n'importe quelle autre valeur. Il est généralement utilisé comme dernier cas pour capturer toutes les valeurs non traitées par les cas précédents.
+
+Mais où l'instruction `match` est vraiment intéressante, c'est dans sa capacité à correspondre à des structures de données complexes et à extraire des motifs intéressants. Par exemple :
+
+```python
+point = (2, 3)
+match point:
+    case (0, 0):
+        print("Origine")
+    case (x, 0):
+        print(f"Point sur l'axe des X à {x}")
+    case (0, y):
+        print(f"Point sur l'axe des Y à {y}")
+    case (x, y):
+        print(f"Point à {x}, {y}")
+    case _:
+        raise ValueError("Impossible à traiter")
+```
+
+Dans cet exemple, `point` est une paire de coordonnées. L'instruction `match` est utilisée pour vérifier si le point est à l'origine, sur l'un des axes, ou à une position quelconque. Les variables `x` et `y` sont utilisées pour extraire les valeurs de la paire, que nous pouvons ensuite utiliser dans le corps de chaque cas.
+
+Pour conclure, l'instruction `match` est utile pour structurer notre code de manière à gérer différents cas de façon claire et explicite. Il s'agit d'une avancée majeure dans le langage Python qui facilite l'écriture de code plus robuste et plus facile à comprendre.
+
+# Les fonctions
 
 La définition des fonctions se fait à l'aide de l'instruction « def ».
 
@@ -777,11 +1066,92 @@ La directive return
 
 La directive lambda
 
-### Les docstrings
+# Les docstrings
 
-Les fonctions du code peuvent être documentées, ce qui permet lors de l'exécution d'un code d'interroger une fonction pour savoir comment elle fonctionne.
+Nous pouvons documenter nos fonctions à l'aide de docstrings. Les docstrings sont des chaînes de texte placées juste après la définition d'une fonction, d'une méthode, d'une classe ou d'un module qui expliquent ce que fait le bloc de code.
 
-### Les Classes
+Lors de l'exécution d'un programme, nous pouvons interroger une fonction pour comprendre son fonctionnement en accédant à sa docstring. Cela est particulièrement utile pour le travail en équipe, l'utilisation d'IDE, ou si nous reprenons un code que nous n'avons pas consulté depuis un certain temps.
+
+Voici un exemple d'une fonction avec une docstring :
+
+```python
+def add(a, b):
+    """
+    Cette fonction prend deux arguments, a et b, et retourne leur somme.
+    """
+    return a + b
+```
+
+Nous pouvons accéder à la docstring de cette fonction en utilisant l'attribut `__doc__` de la fonction :
+
+```python
+print(add.__doc__)
+```
+
+Cela affiche la docstring de la fonction :
+
+```
+Cette fonction prend deux arguments, a et b, et retourne leur somme.
+```
+
+En utilisant les docstrings, nous aidons à rendre notre code plus compréhensible et accessible, aussi bien pour nous-mêmes que pour les autres et pour les outils.
+
+Le format habituel pour documenter les paramètres, les valeurs de retour et les exceptions dans une docstring suit le format proposé par la norme de style PEP 257. Une norme largement adoptée est également le format Google. Voici un exemple qui utilise ce format :
+
+```python
+def add(a, b):
+    """
+    Cette fonction prend deux arguments, a et b, et retourne leur somme.
+
+    Args:
+        a (int ou float): Le premier nombre à additionner.
+        b (int ou float): Le second nombre à additionner.
+
+    Returns:
+        int ou float: La somme de a et b.
+
+    Raises:
+        TypeError: Si a ou b ne sont pas de type int ou float.
+    """
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        raise TypeError('Les arguments a et b doivent être de type int ou float.')
+    return a + b
+```
+
+Dans cet exemple, "Args" est utilisé pour décrire les arguments de la fonction, "Returns" pour décrire la valeur de retour, et "Raises" pour décrire les exceptions que la fonction peut lever.
+
+Notons que dans la pratique, la plupart des fonctions Python ne nécessitent pas une docstring aussi détaillée. Cependant, pour les bibliothèques et les frameworks, ou pour toute fonction qui est suffisamment complexe, avoir une docstring détaillée peut être très utile.
+
+# Les annotations
+
+En plus des docstrings, Python fournit un autre moyen d'ajouter des métadonnées aux fonctions : les annotations. Les annotations sont une fonctionnalité du langage qui permet d'associer des informations arbitraires aux arguments de fonction et aux valeurs de retour. Elles sont souvent utilisées pour indiquer les types attendus des arguments et de la valeur de retour, bien qu'elles puissent en principe contenir n'importe quel type de données.
+
+Voici un exemple d'une fonction avec des annotations :
+
+```python
+def add(a: int, b: int) -> int:
+    return a + b
+```
+
+Dans cet exemple, `: int` après `a` et `b` est une annotation indiquant que ces arguments sont supposés être des entiers. `-> int` après la liste des arguments est une annotation indiquant que la fonction est supposée renvoyer un entier.
+
+Les annotations ne sont pas utilisées par Python lui-même. Elles sont disponibles pour être utilisées par des outils de vérification de type, des IDE et d'autres outils d'analyse de code. Python n'effectuera aucune vérification de type sur la base des annotations et ne fera rien si les annotations ne correspondent pas aux types réels des valeurs.
+
+Pour accéder aux annotations d'une fonction, nous pouvons utiliser l'attribut `__annotations__` de la fonction. C'est un dictionnaire contenant les noms des arguments comme clés et leurs annotations comme valeurs, avec la clé `'return'` pour l'annotation de la valeur de retour.
+
+```python
+print(add.__annotations__)
+```
+
+Cela affiche le dictionnaire des annotations de la fonction :
+
+```
+{'a': <class 'int'>, 'b': <class 'int'>, 'return': <class 'int'>}
+```
+
+Cependant, bien que les annotations soient une fonctionnalité puissante et flexible, il est important de noter qu'elles ne remplacent pas les docstrings pour la documentation des fonctions. Les docstrings peuvent fournir des informations beaucoup plus détaillées et explicatives que les annotations. Les deux outils peuvent être utilisés ensemble pour rendre nos fonctions aussi claires et compréhensibles que possible.
+
+# Les Classes
 
 Les classes regroupent à la fois des données et des fonctions travaillant sur ces données.
 
@@ -863,6 +1233,7 @@ Dans cet exemple, `mon_decorateur_avec_args` est un décorateur qui prend des ar
 Enfin, il est important de mentionner que les décorateurs peuvent aussi être utilisés avec des classes. Les décorateurs de classes fonctionnent de la même manière que les décorateurs de fonctions, mais ils prennent une classe comme argument et retournent une nouvelle classe avec des comportements modifiés ou ajoutés.
 
 ## Wrap
+
 `functools.wraps` est une fonction de la bibliothèque standard Python utilisée dans le contexte des décorateurs. Elle est utilisée pour conserver les métadonnées de la fonction originale lors de la décoration.
 
 Quand nous créons un décorateur, nous créons une fonction imbriquée (ou "wrapper") qui est appelée à la place de la fonction originale. Cependant, cette fonction imbriquée n'a pas les mêmes métadonnées que la fonction originale (comme le nom de la fonction, la docstring, les annotations, etc.). Cela peut causer des problèmes si nous utilisons les métadonnées des fonctions dans notre code (par exemple liste de fonction, design pattern fabric).
@@ -942,24 +1313,233 @@ Lorsque nous appliquons ce décorateur à une fonction ou à une méthode avec l
 
 Notons que le décorateur utilise `functools.wraps` pour préserver les métadonnées de la fonction originale, comme son nom et sa docstring.
 
-### Les exceptions
+# Les exceptions
 
-Les erreurs sont signalées par le mécanisme des exceptions :
+Les exceptions en Python sont des erreurs qui sont détectées pendant l'exécution d'un programme. Elles sont signalées par le mécanisme d'exception de Python, qui arrête l'exécution normale du programme et transfère le contrôle à un code qui est conçu pour gérer les erreurs, appelé gestionnaire d'exceptions.
 
-    >>> try:
-    ...    PasDefinie = None
-    ... except NameError:
-    ...    print("Variable non définie")
-    ...
-    Variable non définie
+Voici un exemple simple qui illustre le mécanisme des exceptions :
 
-### Les modules
+```python
+try:
+    # Nous essayons d'accéder à une variable qui n'est pas définie
+    print(PasDefinie)
+except NameError:
+    # Si une exception de type NameError est levée dans le bloc try,
+    # ce bloc de code est exécuté
+    print("Variable non définie")
+```
 
-Les bibliothèques de programmation en python s'appellent des modules.
+Dans cet exemple, nous essayons d'accéder à une variable `PasDefinie` qui n'a pas été définie auparavant. Par conséquent, Python lève une exception `NameError`. Comme nous avons mis le code dans un bloc `try` et fourni un gestionnaire `except` pour `NameError`, Python exécute le code dans le bloc `except` lorsqu'il rencontre l'erreur, et imprime "Variable non définie".
 
-Primitive import
+Il est important de noter que les exceptions sont des erreurs graves qui, si elles ne sont pas gérées, peuvent arrêter l'exécution de notre programme. Il est donc essentiel d'avoir une bonne compréhension de la façon de gérer les exceptions lorsque vous écrivez du code Python.
 
-Primitive reload
+## Arborescence des exceptions
+
+En Python, toutes les exceptions sont dérivées de la classe de base `BaseException`. En général, nous travaillons avec des exceptions  dérivées de la classe `Exception`, qui est elle-même hérite de `BaseException`.
+
+Voici une représentation simplifiée de l'arborescence des exceptions en Python :
+
+```
+BaseException
+ +-- SystemExit
+ +-- KeyboardInterrupt
+ +-- GeneratorExit
+ +-- Exception
+      +-- StopIteration
+      +-- StopAsyncIteration
+      +-- ArithmeticError
+      |    +-- FloatingPointError
+      |    +-- OverflowError
+      |    +-- ZeroDivisionError
+      +-- AssertionError
+      +-- AttributeError
+      +-- BufferError
+      +-- EOFError
+      +-- ImportError
+           +-- ModuleNotFoundError
+      +-- LookupError
+      |    +-- IndexError
+      |    +-- KeyError
+      +-- MemoryError
+      +-- NameError
+      |    +-- UnboundLocalError
+      +-- OSError
+      |    +-- BlockingIOError
+      |    +-- ChildProcessError
+      |    +-- ConnectionError
+      |    +-- FileExistsError
+      |    +-- FileNotFoundError
+      |    +-- InterruptedError
+      |    +-- IsADirectoryError
+      |    +-- NotADirectoryError
+      |    +-- PermissionError
+      |    +-- ProcessLookupError
+      |    +-- TimeoutError
+      +-- ReferenceError
+      +-- RuntimeError
+      |    +-- NotImplementedError
+      |    +-- RecursionError
+      +-- SyntaxError
+      |    +-- IndentationError
+      |         +-- TabError
+      +-- SystemError
+      +-- TypeError
+      +-- ValueError
+      |    +-- UnicodeError
+      |         +-- UnicodeDecodeError
+      |         +-- UnicodeEncodeError
+      |         +-- UnicodeTranslateError
+      +-- Warning
+           +-- DeprecationWarning
+           +-- PendingDeprecationWarning
+           +-- RuntimeWarning
+           +-- SyntaxWarning
+           +-- UserWarning
+           +-- FutureWarning
+           +-- ImportWarning
+           +-- UnicodeWarning
+           +-- BytesWarning
+           +-- ResourceWarning
+```
+
+Cette arborescence de classe montre que les exceptions spécifiques héritent d'exceptions plus générales. Par exemple, l'exception `ZeroDivisionError` est une sous-classe de l'exception `ArithmeticError`, qui est elle-même une sous-classe de la classe `Exception`.
+
+Quand nous utilisons un bloc `try`/`except` pour gérer des exceptions, nous pouvons cibler des exceptions spécifiques (par exemple, `ZeroDivisionError`) ou des exceptions plus générales (par exemple, `ArithmeticError` ou `Exception`). Si nous ciblons une exception générale, cela attrapera également toutes ses sous-exceptions. Par exemple, `except Exception:` attrapera toutes les exceptions dérivées de `Exception`, qui incluent la plupart des exceptions qui peuvent être levées par votre code.
+
+## L'instruction `else` dans un bloc d'exception
+
+Nous pouvons ajouter un bloc `else` à un bloc `try`/`except`. Le bloc `else` est une partie où nous pouvons mettre du code qui sera exécuté si le bloc de code dans le `try` s'exécute sans lever d'exception. 
+
+Voici un exemple de la façon dont cela fonctionne :
+
+```python
+try:
+    # Bloc de code où une exception peut être levée
+    x = 1 + 1
+except ValueError:
+    # Ce bloc de code est exécuté si une exception ValueError est levée
+    print("Une exception ValueError a été levée.")
+else:
+    # Ce bloc de code est exécuté si aucune exception n'est levée dans le bloc try
+    print("Aucune exception n'a été levée. x vaut :", x)
+```
+
+Dans cet exemple, aucun `ValueError` n'est levé dans le bloc `try`, donc le bloc `else` est exécuté.
+
+Notons que le bloc `else` est exécuté après le bloc `try`, mais avant le bloc `finally`, s'il est présent. Le bloc `finally` est conçu pour contenir du code de nettoyage qui doit être exécuté quelles que soient les exceptions qui pourraient être levées, tandis que le bloc `else` est conçu pour contenir du code qui n'est exécuté que si aucune exception n'est levée.
+
+## L'instruction `finally`
+
+Nous pouvons compléter un bloc d'exception avec l'instruction `finally`, qui est utilisée avec les blocs `try`/`except` pour spécifier un bloc de code à exécuter, peu importe si une exception est levée ou non. Ceci est généralement utilisé pour effectuer des opérations de nettoyage, comme fermer un fichier ou une connexion réseau.
+
+```python
+try:
+    # Bloc de code où une exception peut être levée
+except SomeException:
+    # Bloc de code pour gérer l'exception
+finally:
+    # Bloc de code qui est toujours exécuté, peu importe si une exception est levée ou non
+```
+
+# Les modules
+
+Un module est un fichier contenant du code Python qui définit des fonctions, des classes et des variables. Ces modules peuvent être importés dans d'autres scripts Python pour réutiliser leur code et organiser notre programme. Ils constituent la base de la réutilisation du code en Python et nous permettent de structurer notre code de manière plus logique, compréhension et réutilisable.
+
+Nous pouvons faire le parallèle entre les modules et les recettes d'un livre de cuisine. Par exemple, pour préparer la recette des lasagnes, nous utiliserons la recette de la béchamel définie par ailleurs, peut-être même dans un autre livre de recettes, et est utilisée dans plusieurs recettes du livre. De la même manière, un module Python peut contenir des définitions et des instructions qui sont écrites une seule fois et peuvent être utilisées dans de nombreux scripts Python, rendant le code plus lisible, réutilisable et mieux organisé.
+
+Voici comment nous pouvons importer un module en Python :
+
+```python
+import math
+```
+
+Dans cet exemple, nous importons le module `math`, qui contient des fonctions et des variables utiles pour faire des calculs mathématiques.
+
+Une fois que le module est importé, nous pouvons utiliser ses fonctions et variables comme suit :
+
+```python
+import math
+print(math.sqrt(16))  # Affiche 4.0
+```
+
+## L'instruction import as
+
+L'instruction `import as` en Python est utilisée pour donner un alias, ou un autre nom, à un module lors de son importation. Cela peut être particulièrement utile lorsque le nom du module est long et que nous voulons utiliser un nom plus court pour le référencer dans notre code.
+
+```python
+import math as m
+```
+
+Dans cet exemple, le module `math` est importé, mais il sera référencé sous le nom `m` dans le reste du code. Cela signifie que nous pouvons accéder aux fonctions et aux variables du module `math` en utilisant le préfixe `m.` :
+
+```python
+import math as m
+print(m.sqrt(16))  # Affiche 4.0
+```
+
+Le fait d'utiliser des alias avec `import as` peut rendre notre code plus court et plus lisible, surtout si nous utilisons fréquemment le module. C'est une pratique courante pour certains modules largement utilisés. Par exemple, la bibliothèque NumPy est généralement importée sous l'alias `np` :
+
+```python
+import numpy as np
+```
+
+Cela permet de taper `np` au lieu de `numpy` chaque fois que nous voulons accéder aux fonctions ou aux variables de NumPy.
+
+## instruction reload
+
+La primitive `reload` est une fonction intégrée qui vous permet de recharger un module après l'avoir importé. C'est utile lorsque vous avez apporté des modifications à un module et que vous voulez que ces modifications soient prises en compte sans avoir à quitter Python et le relancer. Pour utiliser `reload`, vous devez d'abord importer le module `importlib` :
+
+```python
+import importlib
+importlib.reload(math)
+```
+
+Notons que l'utilisation de `reload` n'est pas courante dans la plupart des scénarios de programmation Python. En général, si nous modifions fréquemment nos modules pendant que nous développez un programme, il peut être plus facile de simplement quitter et relancer Python. Cependant, dans certains cas, comme dans un serveur Web qui reste allumé en permanence, `reload` peut être utile pour appliquer des mises à jour à nos modules.
+
+### L'instruction `from` dans les imports
+
+L'instruction `from` en Python est utilisée dans les importations pour importer des fonctions, classes, ou variables spécifiques d'un module, plutôt que d'importer le module en entier. Par exemple :
+
+```python
+from math import sqrt
+```
+
+Dans cet exemple, seulement la fonction `sqrt` du module `math` est importée. Nous pouvons maintenant l'utiliser directement sans avoir besoin de préfixer avec le nom du module :
+
+```python
+print(sqrt(16))  # Affiche 4.0
+```
+
+### L'utilisation de `.` dans les imports
+
+Le caractère `.` est utilisé pour spécifier les sous-modules ou les packages. Considérons un package nommé `mypackage` avec un sous-module `mymodule`. Nous pourrions l'importer de cette façon :
+
+```python
+import mypackage.mymodule
+```
+
+Et nous pourrions aussi utiliser `from` avec `.` :
+
+```python
+from mypackage import mymodule
+```
+
+### L'utilisation de `*` dans les imports
+
+L'astérisque `*` en Python est utilisé pour importer toutes les fonctions, classes et variables d'un module. Par exemple :
+
+```python
+from math import *
+```
+
+Ceci importera toutes les fonctions et variables du module `math`. Nous pouvons alors les utiliser directement sans avoir besoin de préfixer avec le nom du module :
+
+```python
+print(sqrt(16))  # Affiche 4.0
+print(pi)  # Affiche 3.141592653589793
+```
+
+Cependant, utiliser `import *` n'est généralement pas recommandé, car cela peut causer des conflits entre les noms de différents modules, et cela rend notre code moins clair. Il est préférable d'importer seulement ce dont nous avons besoin à l'aide de l'instruction `from`, ou d'importer le module entier et d'utiliser le préfixe du nom de module.
 
 ### Les paquets
 
@@ -1046,7 +1626,8 @@ Vérification de la conformité pep8 :
 
 > (qt6\_env) <michaellaunay@luciole>:\~\$ flake8 demo.py
 
-# Points de suspension
+# Points de suspension dans les classes
+
 Nous utilisons généralement le mot-clé "pass" comme espace réservé pour du code non écrit, c'est à dire comme instruction neutre ne faisant rien. Mais nous pouvons aussi utiliser des points de suspension à cette fin.
 ```python
 def ecrire_un_article():
@@ -1058,6 +1639,7 @@ class Auteur:
 
 
 # Union de dictionnaires
+
 Le pipe permet de faire l'union de dictionnaires
 ```python
 >>> d1 = {1:"un",2:"deux",3:"trois"}
@@ -1070,6 +1652,7 @@ Le pipe permet de faire l'union de dictionnaires
 ```
 
 # Final
+
 Depuis python 3.9, permet de déclarer une variable comme constante.
 ```python
 from typing import Final
@@ -1077,6 +1660,7 @@ CONSTANTE:Final = "Une vairable constante"
 ```
 
 # FString
+
 Le formatage fstring est un appel automatique à format.
 ```python
 >>> from datetime import datetime  

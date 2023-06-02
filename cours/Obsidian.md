@@ -237,7 +237,7 @@ Créons un dossier par exemple "templates"
 Allons dans "Paramètres", puis "Modules principaux", activer "Modèles", paramètrer le module Modèles depuis "Modules principaux -> Modèles", préciser le nom du dossier créer
 
 # Modules
-Modélisation textuelle de diagrammes [PlantUML pour Obsidian]
+Modélisation textuelle de diagrammes [[PlantUML pour Obsidian]]
 
 # Alias
 
