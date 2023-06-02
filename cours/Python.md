@@ -472,7 +472,7 @@ Dans cet exemple, `une_fonction()` ne retourne rien, donc son résultat est `Non
 
 `NotImplemented` est une autre valeur unique en Python. Elle est généralement utilisée pour indiquer que la méthode ou l'opération spéciale pour un type donné n'est pas implémentée.
 
-Par exemple, si vous créez une classe personnalisée et que vous voulez qu'elle puisse utiliser l'opérateur `+`, vous pouvez définir une méthode spéciale appelée `__add__`. Si vous ne voulez pas que l'opérateur `+` soit utilisé pour votre classe, vous pouvez faire que `__add__` renvoie `NotImplemented`.
+Par exemple, si nous créons une classe personnalisée et que nous voulons qu'elle puisse utiliser l'opérateur `+`, nous pouvons définir une méthode spéciale appelée `__add__`. Si nous ne voulons pas que l'opérateur `+` soit utilisé pour votre classe, nous pouvons faire que `__add__` renvoie `NotImplemented`.
 
 ```python
 class MaClasse:
@@ -652,7 +652,7 @@ for fruit in itérateur:
 
 Dans cet exemple, la boucle `for` appelle automatiquement la méthode `__iter__()` pour obtenir l'itérateur, puis appelle `__next__()` à chaque itération pour obtenir le prochain fruit. Lorsque `__next__()` lève `StopIteration`, la boucle `for` se termine.
 
-La plupart des types de collections intégrés dans Python, comme les listes, les tuples, les dictionnaires et les ensembles, sont itérables par défaut, ce qui signifie qu'ils retournent un itérateur lorsque vous les passez à la fonction `iter()`. Par exemple, si nous avons une liste de fruits, nous pouvons obtenir un itérateur pour cette liste comme suit :
+La plupart des types de collections intégrés dans Python, comme les listes, les tuples, les dictionnaires et les ensembles, sont itérables par défaut, ce qui signifie qu'ils retournent un itérateur lorsque nous les passons à la fonction `iter()`. Par exemple, si nous avons une liste de fruits, nous pouvons obtenir un itérateur pour cette liste comme suit :
 
 ```python
 fruits = ['pomme', 'banane', 'cerise']
@@ -718,7 +718,7 @@ for num in g:
     print(num)  # Affiche les carrés de 0 à 4
 ```
 
-En conclusion, les générateurs sont un outil puissant en Python qui vous permet de créer des itérateurs paresseux. Ils sont particulièrement utiles lorsque vous travaillez avec de grandes séquences de données qui ne tiendraient pas toutes en mémoire à la fois, ou lorsque le coût de calcul de chaque valeur de la séquence est élevé et que vous voulez le différer jusqu'à ce qu'il soit nécessaire.
+En conclusion, les générateurs sont un outil puissant en Python qui nous permet de créer des itérateurs paresseux. Ils sont particulièrement utiles lorsque nous travaillons avec de grandes séquences de données qui ne tiendraient pas toutes en mémoire à la fois, ou lorsque le coût de calcul de chaque valeur de la séquence est élevé et que nous voulons le différer jusqu'à ce qu'il soit nécessaire.
 
 ## Réutilisation des générateurs
 
@@ -762,7 +762,7 @@ Il existe plusieurs bibliothèques qui fournissent des outils utiles pour travai
 
 2. **functools** : Ce module de la bibliothèque standard Python fournit des outils de haut niveau pour travailler avec des fonctions et des itérables. Par exemple, `functools.reduce` applique une fonction binaire (c'est-à-dire une fonction à deux arguments) de manière répétée à tous les éléments d'un itérable pour produire une seule valeur.
 
-3. **numpy** : Bien que ce ne soit pas strictement une bibliothèque d'itérateurs, numpy est une bibliothèque essentielle pour le calcul scientifique en Python, et elle fournit plusieurs outils pour travailler avec des tableaux multidimensionnels (qui sont des sortes d'itérateurs). Par exemple, vous pouvez utiliser `numpy.nditer` pour parcourir tous les éléments d'un tableau numpy dans un ordre spécifique.
+3. **numpy** : Bien que ce ne soit pas strictement une bibliothèque d'itérateurs, numpy est une bibliothèque essentielle pour le calcul scientifique en Python, et elle fournit plusieurs outils pour travailler avec des tableaux multidimensionnels (qui sont des sortes d'itérateurs). Par exemple, nous pouvons utiliser `numpy.nditer` pour parcourir tous les éléments d'un tableau numpy dans un ordre spécifique.
 
 4. **pandas** : Cette bibliothèque, qui est largement utilisée pour l'analyse de données en Python, fournit des structures de données comme les DataFrames et les Series qui sont essentiellement des itérateurs sur des données tabulaires. Nous pouvons parcourir les lignes d'un DataFrame ou les éléments d'une Series comme nous le ferions avec un itérateur, et pandas fournit également plusieurs méthodes pour appliquer des fonctions à ces structures de données de manière efficace.
 
@@ -802,23 +802,33 @@ Dans notre travail avec Python, nous nous trouvons souvent en présence de donn�
 
 - **La négation `~`** : L'opérateur de négation binaire, aussi appelé complément à un, renvoie un nombre dont chaque bit est inversé par rapport à l'opérande original. Autrement dit, pour chaque bit dans l'opérande, si le bit est `1`, il devient `0`, et si le bit est `0`, il devient `1`. Par exemple, si `a = 60` (soit `00111100` en binaire), alors `~a` donne `-61` (soit `11000011` en complément à deux, qui est la représentation standard des entiers négatifs en binaire).
 
+- **Décalage à gauche `<<`** : Cet opérateur déplace les bits d'un nombre vers la gauche. Par exemple, si `a = 5` (soit `101` en binaire), alors `a << 1` décale tous les bits de `a` d'un pas vers la gauche pour donner `10` (soit `1010` en binaire). En général, le décalage à gauche d'un nombre est équivalent à la multiplication de ce nombre par `2` à la puissance du nombre de décalages.
+
+- **Décalage à droite `>>`** : Cet opérateur déplace les bits d'un nombre vers la droite. Par exemple, si `a = 5` (soit `101` en binaire), alors `a >> 1` décale tous les bits de `a` d'un pas vers la droite pour donner `2` (soit `10` en binaire). En général, le décalage à droite d'un nombre est équivalent à la division de ce nombre par `2` à la puissance du nombre de décalages, en arrondissant vers le bas.
+
 Ces opérateurs peuvent être très utiles pour manipuler les données à un niveau bas, comme lors de l'interaction avec le matériel, du travail avec des protocoles de réseau, ou de l'implémentation de certains algorithmes de chiffrement et de compression.
 
 # Opérateurs de comparaison
 
-Inférieur **\<**
+Les opérateurs de comparaison en Python sont utilisés pour comparer deux valeurs ou objets. Voyons comment nous les utilisons :
 
-Supérieur **\>**
+- **Inférieur `<`** : Cet opérateur retourne `True` si la valeur à gauche de l'opérateur est inférieure à celle à droite, sinon `False`. Par exemple, dans `2 < 3`, la sortie sera `True`.
 
-Inférieur égal **\<=**
+- **Supérieur `>`** : Cet opérateur retourne `True` si la valeur à gauche de l'opérateur est supérieure à celle à droite, sinon `False`. Par exemple, dans `3 > 2`, la sortie sera `True`.
 
-Supérieur égal **\>=**
+- **Inférieur ou égal `<=`** : Cet opérateur retourne `True` si la valeur à gauche de l'opérateur est inférieure ou égale à celle à droite, sinon `False`. Par exemple, dans `3 <= 3`, la sortie sera `True`.
 
-égalité **==** différence **!=** ou **\<\>**
+- **Supérieur ou égal `>=`** : Cet opérateur retourne `True` si la valeur à gauche de l'opérateur est supérieure ou égale à celle à droite, sinon `False`. Par exemple, dans `3 >= 3`, la sortie sera `True`.
 
-le est **is**
+- **Égalité `==`** : Cet opérateur compare si les valeurs à gauche et à droite de l'opérateur sont égales. Si oui, il retourne `True`, sinon `False`. Par exemple, dans `3 == 3`, la sortie sera `True`.
 
-le n'est pas **is not**
+- **Différence `!=` ou `<>`** : Ces opérateurs vérifient si les valeurs à gauche et à droite de l'opérateur sont différentes. Si c'est le cas, ils retournent `True`, sinon `False`. Par exemple, dans `3 != 2`, la sortie sera `True`. Notez que `<>` est moins couramment utilisé en Python moderne.
+
+- **Est `is`** : Cet opérateur vérifie si deux variables pointent vers le même objet, pas si les objets ont la même valeur. Par exemple, dans `a is b`, il vérifie si `a` et `b` sont le même objet.
+
+- **N'est pas `is not`** : Cet opérateur vérifie si deux variables ne pointent pas vers le même objet. Par exemple, dans `a is not b`, il vérifie si `a` et `b` sont des objets différents.
+
+Il est important de noter que les opérateurs de comparaison peuvent être enchaînés pour vérifier plusieurs conditions à la fois, par exemple : `1 < a < 5`.
 
 # Ordre de traitement des opérations
 
@@ -846,9 +856,9 @@ def ma_fonction():
 
 En Python, le symbole `...` est également utilisé comme une instruction de remplissage, tout comme `pass`. Cependant, son utilisation est un peu différente.
 
-En Python, `...` est une constante spéciale appelée "Ellipsis". Par défaut, elle n'a aucun comportement et est généralement utilisée comme un espace réservé lorsque vous souhaitez indiquer qu'un code doit être ajouté ultérieurement.
+En Python, `...` est une constante spéciale appelée "Ellipsis". Par défaut, elle n'a aucun comportement et est généralement utilisée comme un espace réservé lorsque nous souhaitons indiquer qu'un code doit être ajouté ultérieurement.
 
-Vous pouvez l'utiliser de la même manière que `pass` pour créer une structure vide, par exemple une classe, une fonction ou une boucle :
+Nous pouvons l'utiliser de la même manière que `pass` pour créer une structure vide, par exemple une classe, une fonction ou une boucle :
 
 ```python
 def ma_fonction():
@@ -951,11 +961,11 @@ print(categorie)  # Affiche "Adulte"
 
 Dans cet exemple, la variable `age` est fixée à 20. L'opérateur ternaire est utilisé pour déterminer la valeur de la variable `categorie`. Si `age` est supérieur ou égal à 18 (ce qui est le cas ici), `categorie` est fixée à "Adulte". Sinon (si `age` est inférieur à 18), `categorie` serait fixée à "Enfant".
 
-C'est une manière très concise d'écrire une condition `if`-`else`, et c'est particulièrement utile quand vous voulez affecter une valeur à une variable en fonction d'une condition.
+C'est une manière très concise d'écrire une condition `if`-`else`, et c'est particulièrement utile quand nous voulons affecter une valeur à une variable en fonction d'une condition.
 
 ## L'instruction for in
 
-L'instruction `for` en Python est utilisée pour itérer sur une séquence (comme une liste, un tuple, un dictionnaire, un ensemble ou une chaîne) ou d'autres objets itérables. L'instruction `for` est souvent utilisée lorsque vous avez un bloc de code que vous voulez répéter un nombre fixe de fois.
+L'instruction `for` en Python est utilisée pour itérer sur une séquence (comme une liste, un tuple, un dictionnaire, un ensemble ou une chaîne) ou d'autres objets itérables. L'instruction `for` est souvent utilisée lorsque nous avons un bloc de code que nous voulons répéter un nombre fixe de fois.
 
 ```python
 for variable in sequence:
@@ -1046,25 +1056,43 @@ Pour conclure, l'instruction `match` est utile pour structurer notre code de man
 
 # Les fonctions
 
-La définition des fonctions se fait à l'aide de l'instruction « def ».
+En Python, nous utilisons le mot-clé `def` pour définir une fonction. Une fois définie, une fonction est un objet à part entière, avec son propre espace de noms.
 
-La fonction est un objet.
+Le corps de la fonction doit être correctement indenté après le signe `:` qui suit le nom de la fonction et la liste de ses paramètres.
 
-Le code doit être indenté.
+Les paramètres ne sont pas typés, c'est-à-dire qu'aucun type de donnée spécifique n'est exigé par la fonction pour chaque paramètre. Cela rend Python très flexible, mais nous devons être prudents pour éviter les erreurs de typage.
 
-Les paramètres ne sont pas typés.
+Nous pouvons donner à nos paramètres des valeurs par défaut. Par exemple, dans la déclaration `def ma_fonction(p1=0):`, `p1` a une valeur par défaut de `0`. Si aucune valeur n'est fournie pour `p1` lors de l'appel à `ma_fonction`, alors `p1` aura la valeur `0` à l'intérieur de la fonction.
 
-Les paramètres peuvent recevoir une valeur par défaut *p1 = 0*.
+Python nous permet également de définir des paramètres non explicites et arbitraires. Si nous définissons une fonction avec `def ma_fonction(**kwargs):`, alors tous les paramètres de mot-clé supplémentaires passés lors de l'appel à `ma_fonction` seront empaquetés dans un dictionnaire `kwargs`.
+De même, une déclaration de fonction comme `def ma_fonction(*args):` regroupera tous les arguments positionnels supplémentaires dans un tuple `args`.
+Nous pouvons également combiner ces deux types de paramètres dans une seule déclaration de fonction, comme `def ma_fonction(*args, **kwargs):`.
 
-Les paramètres non explicites (ex: def f(\*\*dict)) sont placés dans un dictionnaire.
+Lors de la définition des fonctions, il est possible de contrôler la façon dont les arguments sont passés à la fonction grâce à certains séparateurs spécifiques dans la signature de la fonction. Ces séparateurs sont **`,`**,**`*`**, et **`/`**.
 
-Les paramètres arbitraires (ex : def f(\*pars))sont placé dans un tuple.
+- **`,`** : Le séparateur le plus commun est la virgule `,` qui est utilisée pour séparer les paramètres dans la liste des arguments d'une fonction. Les paramètres définis avant l'éventuel `*` ou `/` dans la signature de la fonction sont généralement des paramètres positionnels ou de mot-clé.
 
-Combinaison paramètres implicites et arbitraires (ex: def f(\*pars, \*\*dict)).
+- **`*`** : Lorsqu'il est utilisé dans la signature d'une fonction, le symbole `*` a une signification spéciale. Les paramètres définis après `*` sont des paramètres à mot-clé uniquement. Cela signifie qu'ils ne peuvent être fournis que avec leurs noms spécifiques lors de l'appel à la fonction, et non par leur position. De plus, `*args` est utilisé pour capturer un nombre indéfini d'arguments positionnels dans un tuple.
 
-La directive return
+- **`/`** : Introduit dans Python 3.8, le séparateur `/` indique que tous les paramètres définis avant lui sont des paramètres positionnels uniquement. Ces paramètres ne peuvent être passés que par leur position et non par leur nom lors de l'appel à la fonction.
 
-La directive lambda
+Voici un exemple qui illustre l'utilisation de ces séparateurs :
+
+```python
+def exemple(a, b, /, c, *, d):
+    print(a, b, c, d)
+
+exemple(1, 2, c=3, d=4)  # Correct
+exemple(1, 2, 3, d=4)    # Correct
+exemple(a=1, b=2, c=3, d=4)  # Erreur, a et b ne peuvent pas être passés comme paramètres de mot-clé
+exemple(1, 2, 3, 4)      # Erreur, d doit être passé comme paramètre de mot-clé
+```
+
+Ces séparateurs offrent un contrôle plus précis sur la façon dont les arguments sont passés aux fonctions, améliorant ainsi la lisibilité et la robustesse du code.
+
+La directive `return` nous permet de spécifier quelle valeur doit être retournée par la fonction. Si aucune directive `return` n'est présente, ou si elle est présente sans aucune expression suivante, la fonction retournera `None`.
+
+Enfin, Python nous offre la directive `lambda` pour la création rapide de petites fonctions anonymes. Ces fonctions sont souvent utilisées là où une fonction complète serait excessive, par exemple lors du passage d'une petite fonction comme argument à une autre fonction, comme dans le cas de l'utilisation de fonctions comme `map` ou `filter`. Par exemple, `lambda x: x * 2` est une fonction qui prend un argument `x` et retourne `x * 2`.
 
 # Les docstrings
 
@@ -1153,29 +1181,255 @@ Cependant, bien que les annotations soient une fonctionnalité puissante et flex
 
 # Les Classes
 
-Les classes regroupent à la fois des données et des fonctions travaillant sur ces données.
+Une classe est une structure qui nous permet de regrouper des données, que nous appelons des attributs, et des fonctions, que nous appelons des méthodes, qui opèrent sur ces données. Les classes sont définies avec le mot-clé `class`.
 
-Elles sont définies par l'instruction class
+## L'héritage
 
-Les classes peuvent hériter d'autres classes.
+Un point important à noter est que les classes peuvent hériter d'autres classes, permettant ainsi le partage de fonctionnalités entre plusieurs classes. Cette caractéristique est connue sous le nom d'héritage.
 
-Exemple :
+Regardons un exemple :
 
-    class Animal(object):
-      def __init__(self):
+```python
+class Animal(object):
+    def __init__(self):
         self.age = 0
         self.poids = 0
 
-    class Chat(Animal):
-       def __init__(self, nom):
-         super(Chat, self).__init__() # Permet de construire la partie Animal
-         self.nom = nom
+class Chat(Animal):
+    def __init__(self, nom):
+        super(Chat, self).__init__()  # Appelle le constructeur de la classe parente, Animal
+        self.nom = nom
+```
 
-La notion de constructeur **\_\_init\_\_**
+Dans cet exemple, nous avons une classe `Animal` qui possède deux attributs, `age` et `poids`. Nous avons ensuite une classe `Chat` qui hérite de `Animal`, et ajoute un autre attribut, `nom`. La fonction `super(Chat, self).__init__()` est utilisée pour appeler le constructeur de la classe parente, `Animal`, ce qui permet à `Chat` d'initialiser les attributs `age` et `poids`.
 
-La notion de destructeur **\_\_del\_\_**
+L'héritage est un concept fondamental en programmation orientée objet, qui permet à une classe d'hériter des attributs et des méthodes d'une autre classe. La classe qui hérite est souvent appelée la classe enfant ou sous-classe, et la classe dont elle hérite est appelée la classe parent ou superclasse.
 
-Les attributs privés
+L'héritage est utile car il favorise la réutilisation du code et peut rendre le code plus organisé et plus facile à comprendre.
+
+## La notion de constructeur et de destructeur
+
+- Le **constructeur** est une méthode spéciale, `__init__`, qui est appelée automatiquement lorsque nous créons une nouvelle instance de la classe. Elle est généralement utilisée pour initialiser les attributs de l'objet.
+
+- Le **destructeur** est une autre méthode spéciale, `__del__`, qui est appelée automatiquement lorsque l'objet est sur le point d'être détruit. Elle est rarement utilisée, car Python gère automatiquement la gestion de la mémoire pour nous.
+
+Python nous offre la possibilité de définir des attributs privés en préfixant le nom de l'attribut avec deux tirets bas `__`. Ces attributs ne peuvent pas être directement accessibles en dehors de la classe. Par exemple, `__attribut_prive` serait un attribut privé. Cependant, il faut noter que Python ne supporte pas la notion d'attributs strictement privés comme dans d'autres langages, et cette convention est plutôt une suggestion pour indiquer que ces attributs ne doivent pas être touchés en dehors de la classe.
+
+# Le polymorphisme
+
+Le polymorphisme est un autre concept clé de la programmation orientée objet. Il se réfère à la capacité d'une entité, comme une variable, une fonction, ou un objet, à prendre plusieurs formes. En Python, le polymorphisme se manifeste de plusieurs façons.
+
+- **Polymorphisme avec les méthodes de classe** : Grâce à l'héritage, une sous-classe peut hériter d'une méthode d'une superclasse et ensuite la surcharger pour donner un comportement différent à la méthode.
+
+- **Polymorphisme avec les fonctions et les objets** : Il est possible de créer des fonctions qui peuvent prendre n'importe quel objet, permettant ainsi pour des comportements différents basés sur l'objet qui est passé à la fonction.
+
+Voici un exemple illustrant ces deux formes de polymorphisme :
+
+```python
+class Animal:
+    def faire_bruit(self):
+        pass
+
+class Chien(Animal):
+    def faire_bruit(self):
+        print("Woof!")
+
+class Chat(Animal):
+    def faire_bruit(self):
+        print("Meow!")
+
+def faire_bruit(animal):
+    animal.faire_bruit()
+
+animaux = [Chien(), Chat()]
+
+for animal in animaux:
+    faire_bruit(animal)
+```
+
+Dans cet exemple, la méthode `faire_bruit` est polymorphique : la version utilisée dépend de l'objet sur lequel elle est appelée. La fonction `faire_bruit` est également polymorphique : elle peut prendre n'importe quel objet qui a une méthode `faire_bruit`.
+
+Ces deux concepts, l'héritage et le polymorphisme, sont fondamentaux en programmation orientée objet et permettent de créer des codes plus modulables et plus facilement réutilisables.
+
+# Les méthodes de classe
+
+En Python, une méthode de classe est une méthode qui est liée à la classe et non à l'instance de la classe. Elle peut modifier l'état de la classe qui affecte toutes les instances de la classe. En Python, une méthode de classe est marquée par un décorateur `@classmethod`.
+
+Voici un exemple de méthode de classe :
+
+```python
+class MaClasse:
+    compteur = 0
+
+    @classmethod
+    def incrementer_compteur(cls):
+        cls.compteur += 1
+```
+
+Dans cet exemple, `incrementer_compteur` est une méthode de classe qui modifie une variable de classe, `compteur`. Notez l'utilisation de `cls` comme premier argument de la méthode de classe, qui est une convention pour faire référence à la classe elle-même.
+
+# Le `__new__` et `__del__`
+
+En Python, `__new__` est une méthode spéciale qui est principalement utilisée dans les classes avec une métaclasse ou lors de la surcharge de types immuables ou de classes. C'est la première étape de la création d'une instance, elle est appelée avant `__init__` et est responsable de renvoyer une nouvelle instance de la classe.
+
+Voici un exemple d'utilisation de `__new__` :
+
+```python
+class MaClasse:
+    def __new__(cls):
+        print("Instance créée.")
+        instance = super().__new__(cls)
+        return instance
+
+    def __init__(self):
+        print("Instance initialisée.")
+```
+
+Dans cet exemple, la méthode `__new__` est définie pour imprimer un message lors de la création d'une instance.
+
+`__del__`, en revanche, est une méthode qui est appelée lorsque l'instance est sur le point d'être détruite. Bien que ce soit une fonctionnalité utile, `__del__` n'est pas souvent utilisé car Python gère la mémoire et le nettoyage automatiquement. 
+
+Voici un exemple d'utilisation de `__del__` :
+
+```python
+class MaClasse:
+    def __del__(self):
+        print("Instance détruite.")
+```
+
+Dans cet exemple, `__del__` est défini pour imprimer un message lors de la destruction de l'instance.
+
+## Le super()
+
+En programmation orientée objet, le `super()` est une fonction intégrée que nous utilisons pour appeler une méthode de la classe parente. Cela peut être très utile, en particulier dans le cas de l'héritage où une méthode a été réécrite dans une classe enfant, mais nous voulons toujours utiliser certaines parties de la méthode de la classe parente.
+
+`super()` est souvent utilisé dans le constructeur `__init__` pour s'assurer que l'initialisation faite dans la classe parente est également effectuée pour la classe enfant.
+
+Voici un exemple de comment `super()` pourrait être utilisé :
+
+```python
+class Animal:
+    def __init__(self, nom):
+        self.nom = nom
+
+class Chien(Animal):
+    def __init__(self, nom, race):
+        super().__init__(nom)  # Appelle le constructeur de Animal pour initialiser le nom
+        self.race = race
+```
+
+Dans cet exemple, la classe `Chien` hérite de la classe `Animal`. Nous voulons initialiser la variable `nom` de la classe `Animal` quand nous créons une instance de `Chien`, donc nous utilisons `super()` pour appeler le constructeur de `Animal`. Cela signifie que nous n'avons pas à répéter le code d'initialisation du nom dans la classe `Chien`, ce qui rend notre code plus propre et plus facile à maintenir.
+
+Notons que l'appel à `super()` n'a pas besoin de spécifier explicitement la classe parente. Python détermine automatiquement la classe parente en fonction de l'ordre d'héritage, ce qui est particulièrement utile dans le cas de l'héritage multiple.
+
+## L'héritage en diamant
+
+L'héritage en diamant, aussi connu sous le nom de "problème du diamant", est une complication qui peut survenir dans les langages qui supportent l'héritage multiple, comme Python. Il se produit lorsque une classe hérite de deux classes qui ont une classe parente commune.
+
+Voici un exemple d'héritage en diamant :
+
+```python
+class A:
+    def saluer(self):
+        print("Salut de A")
+
+class B(A):
+    def saluer(self):
+        print("Salut de B")
+
+class C(A):
+    def saluer(self):
+        print("Salut de C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.saluer()
+```
+
+Ici, la classe `D` hérite des classes `B` et `C`, qui elles-mêmes héritent toutes deux de la classe `A`. Si nous créons une instance de `D` et appelons la méthode `saluer`, quelle version de la méthode devrait être appelée ? Celle de `B` ou celle de `C` ?
+
+Python résout ce problème grâce à une méthode appelée Méthode de Résolution de l'Ordre (MRO), qui suit le principe de la recherche en profondeur d'abord, de gauche à droite. Donc dans l'exemple ci-dessus, la méthode `saluer` de la classe `B` sera appelée.
+
+L'utilisation de la fonction `super()` dans ce contexte peut également être source de confusion. En général, `super()` fait référence à la classe parente dans l'ordre de MRO, qui peut ne pas être la classe parente directe dans le schéma d'héritage. C'est pourquoi il est généralement recommandé de toujours utiliser `super()` pour appeler des méthodes de classes parentes, car cela garantit que toutes les méthodes sont appelées dans le bon ordre.
+
+L'héritage multiple et l'héritage en diamant en particulier peuvent être des concepts difficiles à comprendre et à gérer correctement, c'est pourquoi certains langages de programmation, comme Java, ne les supportent pas du tout. Dans de nombreux cas, il peut être plus simple et plus sûr d'utiliser la composition ou l'agrégation d'objets plutôt que l'héritage multiple.
+
+# La notion d'interface
+
+Dans la programmation orientée objet, une interface est une spécification qui décrit les comportements (méthodes) qu'une classe doit implémenter. En d'autres termes, une interface définit "ce que" une classe doit faire, mais pas "comment" elle doit le faire. C'est un contrat qui garantit qu'un certain type d'objet se comportera d'une certaine manière. 
+
+Python n'a pas de support intégré pour les interfaces comme Java ou C#. Cependant, le concept peut être réalisé en utilisant des classes abstraites et des méthodes abstraites.
+
+Voici un exemple d'interface en Python :
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def faire_du_bruit(self):
+        pass
+
+class Chien(Animal):
+    def faire_du_bruit(self):
+        return "Woof!"
+
+class Chat(Animal):
+    def faire_du_bruit(self):
+        return "Meow!"
+```
+
+Dans cet exemple, `Animal` est une classe abstraite qui définit une méthode abstraite `faire_du_bruit()`. Cette méthode est le contrat que chaque sous-classe doit respecter. `Chien` et `Chat` sont des sous-classes qui implémentent cette interface en fournissant leur propre implémentation de `faire_du_bruit()`.
+
+Il est important de noter que nous ne pouvons pas créer une instance d'une classe abstraite qui a des méthodes abstraites non implémentées. Cela signifie que si nous essayons de créer une instance de `Animal`, Python nous donnera une erreur. Les classes abstraites sont destinées à être sous-classées, et les méthodes abstraites doivent être implémentées dans la sous-classe.
+
+Les interfaces sont un outil puissant pour la conception de programmes, car elles permettent de définir des comportements attendus et de garantir qu'un certain contrat sera respecté par toutes les classes qui implémentent l'interface.
+
+Voir la [documentation](https://docs.python.org/3/library/abc.html) officielle pour plus d'informations sur le module abc.
+
+## Le type Self à partir de python 3.11
+
+L'annotation Self, introduite à partir de Python 3.11, offre une manière à la fois intuitive et simple d'annoter les méthodes qui retournent une instance de leur propre classe. Cette approche, bien qu'elle corresponde à celle basée sur TypeVar tel que décrit dans le [PEP 484](https://peps.python.org/pep-0484/), se distingue par sa concision et sa facilité de compréhension.
+
+Nous pouvons souvent rencontrer son utilisation dans des contextes tels que des constructeurs alternatifs proposés en tant que méthodes de classe, ou encore des méthodes **enter**() qui retournent self
+
+``` python
+class MyLock:
+    def __enter__(self) -> Self:
+        self.lock()
+        return self
+
+    ...
+
+class MyInt:
+    @classmethod
+    def fromhex(cls, s: str) -> Self:
+        return cls(int(s, 16))
+
+    ...
+```
+
+Self peut également être utilisé pour annoter les paramètres de méthode ou les attributs du même type que leur classe englobante.
+
+Pour plus de détails, voir [PEP 673](https://peps.python.org/pep-0673/).
+
+# Les design patterns en python
+
+Un motif de conception (design pattern) est une solution générale réutilisable à un problème couramment rencontré dans la conception logicielle. Un motif de conception n'est pas un code finalisé qui peut être directement transformé en code source ou en machine. Il s'agit d'une description ou d'un modèle pour résoudre un problème qui peut être utilisé dans de nombreux contextes de conception différents.
+
+Les motifs de conception peuvent accélérer le processus de développement en fournissant des paradigmes de testés et éprouvés. Les développeurs expérimentés sont souvent en mesure de reconnaître les situations où l'application d'un design pattern pourrait aider à résoudre un problème de manière efficace et élégante.
+
+Les motifs de conception sont généralement divisés en trois catégories :
+
+1. **Les motifs de création** : Ces motifs se concentrent sur les façons de créer des objets de manière à ce que le système soit indépendant de la manière dont ses objets sont créés, composés et représentés. Exemples : Singleton, Factory, Abstract Factory, Builder, Prototype.
+
+2. **Les motifs structurels** : Ces motifs se concentrent sur la façon dont les classes et les objets sont composés pour former des structures plus grandes. Exemples : Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy.
+
+3. **Les motifs comportementaux** : Ces motifs se concentrent sur les algorithmes et l'affectation des responsabilités entre les objets. Exemples : Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor.
+
+Pour les implémenter en Python, il existe plusieurs ressources, dont des livres et des tutoriels en ligne. L'un des plus connus est le livre "Design Patterns: Elements of Reusable Object-Oriented Software" par Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, surnommés le "Gang of Four". Pour une approche spécifique à Python, vous pouvez consulter le livre "Python 3 Object-Oriented Programming" par Dusty Phillips, qui couvre les motifs de conception dans le contexte de Python. Enfin, un projet GitHub appelé "Python Patterns" recueille divers exemples de motifs de conception implémentés en Python : https://github.com/faif/python-patterns.
 
 # Les décorateurs
 Les décorateurs permettent de modifier ou d'améliorer le comportement des fonctions ou des classes sans changer leur code source. Les décorateurs sont eux-mêmes des fonctions qui prennent une fonction ou une classe comme argument et retournent une nouvelle fonction ou classe avec des comportements supplémentaires.
@@ -1197,7 +1451,7 @@ def dis_bonjour():
 dis_bonjour()
 ```
 
-Dans cet exemple, `mon_decorateur` est un décorateur qui prend une fonction en argument (`fonction`) et retourne une nouvelle fonction (`fonction_enveloppe`). La nouvelle fonction exécute du code avant et après l'appel de la fonction originale. Le symbole `@` est utilisé pour appliquer le décorateur à la fonction `dis_bonjour`. Lorsque vous appelez `dis_bonjour()`, la fonction modifiée par le décorateur est exécutée.
+Dans cet exemple, `mon_decorateur` est un décorateur qui prend une fonction en argument (`fonction`) et retourne une nouvelle fonction (`fonction_enveloppe`). La nouvelle fonction exécute du code avant et après l'appel de la fonction originale. Le symbole `@` est utilisé pour appliquer le décorateur à la fonction `dis_bonjour`. Lorsque nous appelons `dis_bonjour()`, la fonction modifiée par le décorateur est exécutée.
 
 L'exemple précédent affiche :
 
@@ -1331,7 +1585,7 @@ except NameError:
 
 Dans cet exemple, nous essayons d'accéder à une variable `PasDefinie` qui n'a pas été définie auparavant. Par conséquent, Python lève une exception `NameError`. Comme nous avons mis le code dans un bloc `try` et fourni un gestionnaire `except` pour `NameError`, Python exécute le code dans le bloc `except` lorsqu'il rencontre l'erreur, et imprime "Variable non définie".
 
-Il est important de noter que les exceptions sont des erreurs graves qui, si elles ne sont pas gérées, peuvent arrêter l'exécution de notre programme. Il est donc essentiel d'avoir une bonne compréhension de la façon de gérer les exceptions lorsque vous écrivez du code Python.
+Il est important de noter que les exceptions sont des erreurs graves qui, si elles ne sont pas gérées, peuvent arrêter l'exécution de notre programme. Il est donc essentiel d'avoir une bonne compréhension de la façon de gérer les exceptions lorsque nous écrivons du code Python.
 
 ## Arborescence des exceptions
 
@@ -1487,7 +1741,7 @@ Cela permet de taper `np` au lieu de `numpy` chaque fois que nous voulons accéd
 
 ## instruction reload
 
-La primitive `reload` est une fonction intégrée qui vous permet de recharger un module après l'avoir importé. C'est utile lorsque vous avez apporté des modifications à un module et que vous voulez que ces modifications soient prises en compte sans avoir à quitter Python et le relancer. Pour utiliser `reload`, vous devez d'abord importer le module `importlib` :
+La primitive `reload` est une fonction intégrée qui nous permet de recharger un module après l'avoir importé. C'est utile lorsque nous avons apporté des modifications à un module et que nous voulons que ces modifications soient prises en compte sans avoir à quitter Python et le relancer. Pour utiliser `reload`, nous devons d'abord importer le module `importlib` :
 
 ```python
 import importlib
@@ -1541,9 +1795,35 @@ print(pi)  # Affiche 3.141592653589793
 
 Cependant, utiliser `import *` n'est généralement pas recommandé, car cela peut causer des conflits entre les noms de différents modules, et cela rend notre code moins clair. Il est préférable d'importer seulement ce dont nous avons besoin à l'aide de l'instruction `from`, ou d'importer le module entier et d'utiliser le préfixe du nom de module.
 
-### Les paquets
+# Les paquets
 
-Les modules sont généralement découpés en paquets qui se traduisent par des dossiers sur le disque.
+Les paquets sont un moyen d'organiser les modules de manière hiérarchique. Un paquet est simplement un répertoire qui contient plusieurs modules Python. C'est une façon d'organiser de grands ensembles de code en petits sous-ensembles maniables. 
+
+Chaque paquet en Python est un répertoire qui DOIT contenir un fichier spécial appelé `__init__.py`. Ce fichier peut être vide, mais il doit être présent dans le répertoire. Il indique à l'interpréteur Python que ce répertoire doit être traité comme un paquet Python.
+
+Par exemple, considérons un paquet nommé `monpaquet`, qui contient deux modules : `module1` et `module2`. Sur le disque, cela pourrait ressembler à ceci :
+
+```
+monpaquet/
+    __init__.py
+    module1.py
+    module2.py
+```
+
+Nous pouvons alors accéder aux modules à l'aide d'importations qualifiées. Par exemple :
+
+```python
+import monpaquet.module1
+import monpaquet.module2
+```
+
+Ou, en utilisant l'instruction `from ... import`, nous pouvons importer des fonctions spécifiques à partir des modules de notre paquet :
+
+```python
+from monpaquet.module1 import ma_fonction
+```
+
+L'utilisation de paquets permet une organisation logique et une séparation des fonctionnalités, ce qui facilite la gestion de projets de grande envergure.
 
 ### Les principaux modules
 
