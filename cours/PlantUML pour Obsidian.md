@@ -1,6 +1,6 @@
-Obsidian possède un module permettant de visiualiser les diagrammes écrit avec la syntaxe de PlantUML.
+[[Obsidian]] possède un module permettant de visiualiser les diagrammes écrit avec la syntaxe de PlantUML.
 
-Il existe de nombreux outil de texte vers diagrammes comme le montre [Outils de modélisation textuels].
+Il existe de nombreux outil de texte vers diagrammes comme le montre [[Outils de modélisation textuels]].
 
 L'utilisation de PlantUML pour modéliser des processus métiers en BPMN est une approche intéressante et assez répandue. PlantUML est un langage de modélisation graphique qui permet de créer des diagrammes à l'aide de texte structuré. Il est souvent utilisé pour générer des diagrammes UML, mais il peut également être utilisé pour représenter des diagrammes BPMN.
 
