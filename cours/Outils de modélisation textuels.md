@@ -1,4 +1,4 @@
-[Source].(https://xosh.org/text-to-diagram/)
+[Source](https://xosh.org/text-to-diagram/)
 A comprehensive list of various text to diagram tools.
 
 1.  **D2** [https://play.d2lang.com/](https://play.d2lang.com/)  
@@ -184,10 +184,11 @@ A comprehensive list of various text to diagram tools.
     
 58.  CLI Text to Diagram Tools
     
-    1.  **perl graph-easy** [http://bloodgate.com/perl/graph/index.html](http://bloodgate.com/perl/graph/index.html) #cli  
+	1. **perl graph-easy** 
+[http://bloodgate.com/perl/graph/index.html](http://bloodgate.com/perl/graph/index.html) #cli  
         flow  
         Doc: [https://developpaper.com/recommend-a-tool-for-making-ascii-flow-chart-graph-easy](https://developpaper.com/recommend-a-tool-for-making-ascii-flow-chart-graph-easy)  
         Example: `graph-easy <<< [node 1]->[some text]-[this][node 1]->[branch]`
 
 # Bibliothèques open source
-Modélisation graphique et rendu : https://github.com/bpmn-io/bpmn-js
+Modélisation graphique et rendu : [bpmn-js](https://github.com/bpmn-io/bpmn-js)
