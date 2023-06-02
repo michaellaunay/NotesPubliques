@@ -7,26 +7,31 @@ content : GNU/Linux french training based on https://github.com/michaellaunay/Co
 ---
 
 # Objectif
+
 Cette formation a pour but de fournir les bases indispensables à l'utilisation et à l'administration des systèmes GNU/Linux.
 
 Cette formation privilégie la distribution Ubuntu.
 
 # Introduction
+
 En 1991, l'étudiant finlandais Linus Torvalds publie sur internet l'intégralité du code source d'un noyau Unix qu'il a écrit en C et en assembleur et qui fonctionne sur PC AT 386(486).
 
 Depuis cette date GNU/Linux ne cesse d'évoluer. Il occupe en 2020 moins de 3,61% du marché mondial des systèmes d'exploitation pour ordinateur personnel, plus de 60% des serveurs web, prés de 75% du Cloud et plus de 80% des smartphones (Android étant basé sur GNU/Linux) et est en autre utilisé en France par la Gendarmerie (Ubuntu) et par l'Assemblée Nationale (Ubuntu), dans la Freebox, par l'entreprise Google (Android) et la fondation Wikipedia (serveur Ubuntu).
 
 # Histoire
-[[Historique Linux]]
+
+Voir [[Historique Linux]]
 
 # Propriété intellectuelle et licence 
-[[Droits d'auteur]]
 
+Voir [[Droits d'auteur]]
 
 # Qu'est ce que GNU/Linux ?
+
 GNU/Linux est un système d'exploitation libre et open-source, qui est utilisé sur des ordinateurs, des serveurs, des smartphones et d'autres dispositifs électroniques. Il est composé de deux éléments principaux : le système d'exploitation GNU et le noyau Linux.
 
 ## Qu'est-ce qu'un noyau ?
+
 Pour définir le noyau, nous pouvons nous baser sur les services qu'il fournit :
 
     Abstraction du matériel (fourniture d'interface)
@@ -43,6 +48,7 @@ Cette séparation vient de ce que le noyau est censé gérer (kernel space) et d
 [[Installation Ubuntu]]
 
 # Utilisation de GNU/Linux
+
 Présentation interactive du système d'exploitation:
 > -   le bureau,
 > -   les fenêtres d'application,
@@ -63,7 +69,9 @@ Administration graphique du système:
 Les logiciels d'administration ne sont que des surcouches graphiques (front-end) qui appellent les commandes en ligne, par conséquent leurs possibilités sont moindres.
 
 ## L'aide et la communauté
+
 ### L'aide en ligne
+
 En mode graphique, les applications possèdent un onglet \"Aide\" permettant d'ouvrir un navigateur sur l'aide en ligne. Cette aide est généralement accessible par la touche F1.
 
 ![Aide en ligne d'Ubuntu (appelée avec F1)](AideEnLigneUbuntu.jpg){.align-center}
@@ -113,6 +121,7 @@ Toutefois la base des commandes peut avoir besoin d'être régénérée par **ma
 *whatis NomDeCommande* affichera la description courte de NomDeCommande.
 
 ### Les man pages
+
 Les applications et commandes possèdent toutes un manuel accessible en ligne de commande via la commande man.
 
 Ce manuel est généralement traduit dans la langue de l'utilisateur :
@@ -176,6 +185,7 @@ michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ man -k manual
 ```
 
 ### Les sites
+
 Le site officiel de Linux <http://www.linux.org>
 
 Un site dédié à Linux (Linux Entre Amis) : <http://www.lea-linux.org>
@@ -185,11 +195,13 @@ Une présentation de Linux <http://fr.wikipedia.org/wiki/Linux>
 La communauté ubuntu française <http://www.ubuntu-fr.org/>
 
 ### Les forums
+
 Le forum de la communauté Ubuntu <http://ubuntuforums.org/>
 
 Le forum de la communauté Debian française <http://forum.debian-fr.org>
 
 ### Les LUGs
+
 Un LUG est un groupe d'utilisateurs de Linux (Linux User Group) réuni généralement au sein d'une association loi 1901.
 
 Dans la région lilloise on compte essentiellement Chtinux <http://www.chtinux.org/> anciennement Campux et CLX <http://clx.asso.fr/spip>
@@ -553,6 +565,7 @@ michaellaunay@luciole:~$ echo $[ 10 - 1 ]
 ```
 
 ## La création d'une variable et sa modification
+
 Comme avec la plupart des langages, c'est l'opérateur égal qui sert à la création et à l'affectation.
 ```bash
 michaellaunay@luciole:~$ CMPT=[0] # équivalent à la ligne suivante
@@ -568,6 +581,7 @@ michaellaunay@luciole:~$ echo $CMPT
 ```
 
 ## La boucle while et until
+
 **While** permet d'exécuter des commandes tant que la condition est satisfaite alors que **until** exécute des commandes tant que la condition échoue.
 
 Exemple :
@@ -2493,12 +2507,15 @@ La commande **lvextend** permet de modifier la taille d'un *LV*.
 Pour retailler le système de fichier, nous utiliserons la commande **resize2fs** après avoir démonté le système de fichier.
 
 # Python
-[[Python]]
+
+Voir [[Python]]
 
 # Initialisation lors du boot
-[[Initialisation système et des services]]
+
+Voir [[Initialisation système et des services]]
 
 # Modules
+
 Le noyau Linux est modulaire.
 
 La gestion de nombreux périphériques n'est pas faite dans le noyau, mais dans des modules qui sont chargés à la demande.
@@ -2512,6 +2529,7 @@ La commande **rmmod** permet de supprimer un module du noyau.
 Il est possible d'intégrer définitivement les modules au noyau en recompilant celui-ci.
 
 # Configuration réseau et outils TCP/IP
+
 ### Introduction
 
 L'unix BSD a été l'une des premières plateformes à supporter la pile protocolaire TCP/IP.
@@ -2871,86 +2889,9 @@ Il existe deux types d'interfaces graphiques, une en mode texte
 La commande alien permet de transformer un paquet *rpm* en paquet debian
 et donc de pouvoir l'installer.
 
-Apache
-------
+# Apache
 
-### Présentation
-
-Apache est un serveur web pouvant être utilisé comme proxy, cache, etc.
-
-Il supporte le protocole https et est donc utilisé pour servir les
-applications web à sécuriser.
-
-### Installation
-
-La commande **apt install apache2** permet d'utiliser une version
-récente d'Apache.
-
-### Configuration
-
-Nous allons créer un petit site *www.monsite.com* et nous allons voir
-comment le sécuriser.
-
-Dans un premier temps nous allons ajouter sur le poste client les entrées www.monsite.com pour réaliser des tests sans passer par le DNS.
-
-Ajout de ssl.monsite.com /etc/hosts :
-
-    192.168.0.7 www.monsite.com
-
-Puis sur le serveur nous allons activer les modules utilisés pour la sécurisation :
-
-    root@monserveur:~# a2enmod ssl
-
-Cette commande créer 2 liens dans /etc/apache2/mods-enabled pointant vers ../mods-available/ssl.conf et ../mods-available/ssl.load.
-
-Pour ajouter un site, il suffit de créer un fichier de configuration dans */etc/apache2/sites-available* puis de l'activer :
-
-    root@monserveur:~# vim /etc/apache2/sites-available/www.monsite.com
-
-      <VirtualHost *:443>
-        ServerAdmin michaellaunay@ecreall.com
-        ServerName www.monsite.com
-        SSLEngine on
-        SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP
-        SSLCertificateFile /etc/apache2/ssl/server.crt
-        SSLCertificateKeyFile /etc/apache2/ssl/server.key
-        <Directory /var/www/>
-                      Options Indexes FollowSymLinks MultiViews
-                      AllowOverride None
-                      Order allow,deny
-                      allow from all
-        </Directory>
-        DocumentRoot /var/www
-      </VirtualHost>
-
-      <VirtualHost *:80>
-        ServerAdmin michaellaunay@ecreall.com
-        ServerName www.monsite.com
-        <Directory /var/www/>
-                      Options Indexes FollowSymLinks MultiViews
-                      AllowOverride None
-                      Order allow,deny
-                      allow from all
-        </Directory>
-        DocumentRoot /var/www
-      </VirtualHost>
-
-Puis d'activer le site :
-
-    root@monserveur:~# a2ensite www.monsite.com
-    root@monserveur:~# /etc/init.d/apache2 restart
-
-### Sécurisation
-
-La sécurisation se fait en ajoutant un certificat X 509 sous forme d'une clé privée et d'une clé privée.
-
-Nous verrons au chapitre X 509 l'usage d'une clé autosignée.
-
-### Traçage
-
-La configuration des logs permet de surveiller les accès aux sites.
-
-On constatera que pour un site mis en ligne sur internet les tentatives d'intrusions sont importantes.
+[[Apache]]
 
 # Postfix
 [[Postfix]]
