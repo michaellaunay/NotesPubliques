@@ -10,6 +10,7 @@
 [[IAs]]
 [[Copilot]]
 [[réflexions/Suis-je une IA ?]]
+[[Agents IA]]
 
 ## VR
 [[Solutions de VR]]
