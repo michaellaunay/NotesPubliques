@@ -69,6 +69,15 @@ Exécutons Obsidian en exécutant
 flatpak run md.obsidian.Obsidian
 ```
 
+Pour mettre à jour
+```bash
+flatpack update
+```
+
+Pour désinstaller
+```bash
+flatpack uninstall md.obsidian.Obsidian
+```
 Nous pouvons trouver plus d'informations sur l'utilisation de Flatpak pour installer des applications sur [doc.ubuntu-fr.org](https://doc.ubuntu-fr.org/flatpak).
 
 ## 3ème façon: Utiliser un logiciel compatible
@@ -235,6 +244,41 @@ Case à cocher :
 ## Templates
 Créons un dossier par exemple "templates"
 Allons dans "Paramètres", puis "Modules principaux", activer "Modèles", paramètrer le module Modèles depuis "Modules principaux -> Modèles", préciser le nom du dossier créer
+
+# Note quotidienne
+
+## Intérêt de la démarche
+Les notes quotidiennes, aussi appelées "journal quotidien" dans certains outils de prise de notes, sont un excellent moyen d'organiser nos pensées, nos idées et nos activités au jour le jour. Voici comment nous pouvons les utiliser efficacement.
+
+1. **Nous démarrons chaque jour avec une nouvelle note :** En début de journée, nous ouvrons notre outil de prise de notes et créons une nouvelle note pour la journée. Nous la nommons généralement avec la date du jour pour la retrouver facilement plus tard.
+
+2. **Nous consignons nos pensées et nos idées :** Tout au long de la journée, nous utilisons notre note quotidienne pour enregistrer nos pensées, nos idées, nos observations et nos intuitions. Il n'y a pas de format fixe à suivre - nous écrivons simplement ce qui nous vient à l'esprit.
+
+3. **Nous suivons nos activités :** Nous utilisons également nos notes quotidiennes pour suivre ce que nous faisons chaque jour. Cela peut inclure les tâches que nous avons terminées, les réunions auxquelles nous avons assisté, les personnes que nous avons rencontrées, etc.
+
+4. **Nous réfléchissons à notre journée :** À la fin de la journée, nous aimons prendre un moment pour réfléchir à notre journée. Nous relisons notre note quotidienne et réfléchissons à ce que nous avons appris, ce que nous avons accompli et ce que nous voulons faire différemment demain.
+
+5. **Nous relions nos notes quotidiennes à d'autres notes :** Si nous trouvons que certaines de nos pensées ou idées se rapportent à d'autres notes que nous avons prises, nous créons un lien entre ces notes. Cela nous aide à voir les connexions entre nos idées et à construire un réseau de connaissances interconnectées.
+
+6. **Nous revoyons nos notes quotidiennes :** De temps en temps, nous aimons parcourir nos anciennes notes quotidiennes. Cela nous donne une perspective sur notre développement et notre croissance au fil du temps, et nous aide souvent à trouver des idées ou des intuitions que nous avions oubliées.
+
+En utilisant les notes quotidiennes de cette manière, nous constatons que nous sommes plus conscients de nos pensées et de nos activités, et que nous sommes mieux capables de réfléchir et d'apprendre de nos expériences.
+
+## Mise en place dans Obsidian
+
+Dans Obsidian, le concept de notes quotidiennes est intégré de manière assez profonde. Voici comment nous utilisons cette fonctionnalité :
+
+1. **Nous activons les notes quotidiennes :** Pour commencer, nous nous assurons que la fonctionnalité des notes quotidiennes est activée. Pour ce faire, nous allons dans Paramètres > Plugins de base, puis nous activons le plugin "Notes quotidiennes".
+
+2. **Nous configurons nos préférences :** Une fois le plugin activé, nous cliquons sur l'engrenage à côté de "Notes quotidiennes" pour accéder à ses paramètres. Ici, nous pouvons configurer le format de la date, le répertoire dans lequel les notes quotidiennes seront enregistrées, et d'autres préférences.
+
+3. **Nous créons notre note quotidienne :** Avec le plugin des notes quotidiennes activé, une nouvelle icône apparaît dans la barre latérale. En cliquant sur cette icône (qui ressemble à une feuille de calendrier), nous pouvons créer une nouvelle note pour la journée actuelle.
+
+4. **Nous utilisons la note quotidienne :** Comme nous l'avons expliqué précédemment, nous utilisons cette note pour consigner nos pensées, nos idées, nos activités et nos réflexions tout au long de la journée. Nous pouvons également créer des liens vers d'autres notes en tapant [[ suivi du nom de la note à laquelle nous voulons nous référer.
+
+5. **Nous naviguons entre les notes quotidiennes :** Avec le plugin des notes quotidiennes, il est facile de naviguer entre nos différentes notes quotidiennes. Dans le mode de visualisation, nous voyons des flèches en haut de la note qui nous permettent de passer à la note de la journée précédente ou de la journée suivante.
+
+Avec ces étapes, nous avons une structure solide pour documenter et réfléchir à notre journée dans Obsidian. Cela nous permet de suivre notre progression, de retrouver facilement d'anciennes notes et de voir comment nos idées évoluent au fil du temps.
 
 # Modules
 Modélisation textuelle de diagrammes [[PlantUML pour Obsidian]]

@@ -153,6 +153,113 @@ curl --silent https://packages.gitlab.com/gpg.key | sudo apt-key add -
 apt update
 apt install gitlab
 ```
+
+# Export massif depuis gitlab
+
+L'exportation de projets GitLab est généralement réalisée projet par projet via l'interface Web, ce qui peut être assez laborieux si vous avez beaucoup de projets. Cependant, pour automatiser le processus, nous pouvons utiliser l'API de GitLab.
+
+Voici un script en Python 3 pour exporter tout le contenu de notre instance GitLab CE, le parcours ne se base pas sur la liste des projets fournis par l'API, car selon comment les  projets ont été crées, la liste retournée ne contient pas tous les projets du gitlab-ce :
+
+```python
+# Description: This script will clone all GitLab repositories from a GitLab instance.
+# Author: Michael Launay
+# Date: 2023-05-06
+import os
+import requests
+
+# Set your GitLab URL and access token
+GITLAB_HOST = "git.ecreall.com"
+# For token creation, see https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+ACCESS_TOKEN = "TOKEN FOR GITLAB-CE ROOT" # Fill with your own token
+MAXIMUM_PROJECT_ID = 400 # Adapt this value to oversize your GitLab instance
+
+# Set the directory where you want to clone the repositories
+CLONE_DIR = "/home/michaellaunay/workspace"
+
+# Create the clone directory if it doesn't exist
+os.makedirs(CLONE_DIR, exist_ok=True)
+
+# Create the base URL for the GitLab API
+GITLAB_URL = f"https://{GITLAB_HOST}/api/v4/projects"
+
+headers = {"PRIVATE-TOKEN": ACCESS_TOKEN}
+# Try to access each project by ID
+for i in range(1, MAXIMUM_PROJECT_ID):
+    url = f"{GITLAB_URL}/{i}"
+    # Retrieve the project details
+    response = requests.get(f"{GITLAB_URL}/{i}", headers=headers, verify=False)
+    # If the project doesn't exist, continue to the next ID
+    if str(response.content, "utf-8").find("404 Project Not Found") > -1:
+        continue
+    print(f"Try to clone {url =}")
+    project = response.json()
+
+    # Clone each project
+    project_name = project["name"]
+    project_path = project["path_with_namespace"]
+    namespace_path = project["namespace"]["full_path"]
+    repository_url = project["ssh_url_to_repo"]
+
+    # Clone the repository
+    clone_dir = os.path.join(CLONE_DIR, project_path)
+    project_dir = os.path.join(CLONE_DIR, namespace_path)
+    if not os.path.exists(os.path.join(clone_dir, ".git")):
+        os.makedirs(project_dir, exist_ok=True)
+        os.chdir(project_dir)
+        os.system(f"git clone {repository_url}")
+    else:
+        os.chdir(clone_dir)
+        os.system(f"git pull")
+
+print("Cloning complete. All repositories have been cloned to", CLONE_DIR)
+```
+
+Si besoin, installer le module `requests` :
+
+```
+pip install requests
+```
+
+Dans ce script Python, nous utilisons la bibliothèque `requests` pour effectuer les appels à l'API GitLab. Le script effectue les étapes suivantes :
+
+1. Crée un répertoire pour stocker les exports.
+2. Itère sur les identifiants des projets en supposant que les ids vont de 1 à 400 (à adapter).
+4. Pour chaque identifiant récupère le json de description du projet.
+3. S'il n'existe pas de projet pour cet identifiant passe à l'identifiant suivant.
+	1. À partir des informations de nom, chemin et domaine, crée le répertoire de destination et réalise un git clone.
+
+Si le serveur gitlab-ce n'a pas de certificat ssl à jour, il faut temporairement désactiver la vérification des certificats ssl :
+
+```bash
+git config --global http.sslVerify false
+```
+
+Remplaçons la valeur de `PRIVATE_TOKEN` par notre propre jeton d'accès privé GitLab, et `GITLAB_URL` par l'URL de notre instance GitLab.
+
+Après exécution, tous les dépôts non vides auront été clonés.
+
+Remarque une version à jour mais plus complexe du script est accessible à [michaellaunay/tools](https://github.com/michaellaunay/tools)
+
+## Obtenir un token gitlab
+
+Pour obtenir un token d'accès personnel (Personal Access Token) dans GitLab, suivons ces étapes :
+
+1. Connectons-nous à notre compte GitLab.
+
+2. Déplaçons nous sur le répertoire pour lequel nous souhaitons un token.
+
+4. Cliquez sur notre avatar en haut à droite de la page, puis sur "Settings".
+
+5. Dans le menu de gauche, cliquez sur "Access Tokens".
+
+6. Donnons un nom à notre token, définissons une date d'expiration et sélectionnons les "scopes" (droits d'accès) que nous souhaitons attribuer à ce token. Pour utiliser l'API, vous devons cocher la case "api".
+
+7. Cliquons sur "Create personal access token".
+
+8. GitLab générera alors un token d'accès personnel. Assurons-nous de copier ce token et de le conserver en lieu sûr, car nous ne pourrons plus le voir une fois que nous aurons quitté cette page.
+
+Une fois que nous avons notre token, nous pouvons l'utiliser pour nous authentifier lors de l'utilisation de l'API GitLab. Ce token est sensible et doit être gardé sécurisé.
+
 # Git sur Android
 Pour utiliser Git sur téléphone Android, suivre les étapes suivantes :
 

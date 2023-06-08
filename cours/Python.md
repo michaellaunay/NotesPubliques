@@ -2,9 +2,104 @@ Le scripting bash peut vite s'apparenter à du développement, alors pourquoi ne
 
 # Historique
 
-Python a été créé fin 1986 par Guido van Rossum au CWI (Institut de recherche en mathématique et informatique de Hollande), à partir de la version 1.2 en 1995 le CNRI (Corporation of Nationnal Research Initiative) finance le projet.
+Python a été créé fin 1986 par Guido van Rossum au Centrum Wiskunde & Informatica (CWI), un institut de recherche en mathématiques et en informatique aux Pays-Bas. Le langage a été inspiré par le langage de programmation ABC, un langage de haut niveau utilisé pour l'enseignement de la programmation.
 
-En 2000 Python passe en version 2.0 au sein de Be.open, puis l'équipe rejoint Digitial Creation (Futur Zope Corporation) en 2001. En mars 2001 création de la python fondation et libération complète du code.
+En 1995, avec la sortie de la version 1.2, le développement de Python a été financé par le Corporation for National Research Initiatives (CNRI), une organisation à but non lucratif basée aux États-Unis. 
+
+En 2000, Python est passé à la version 2.0. À cette époque, le développement de Python a été soutenu par BeOpen.com, une entreprise qui a embauché Guido van Rossum et plusieurs autres développeurs Python clés.
+
+En 2001, l'équipe de développement de Python a rejoint Digital Creations (qui deviendra plus tard Zope Corporation), une entreprise qui a développé le système de gestion de contenu open source Zope, écrit en Python. 
+
+Toujours en 2001, la Python Software Foundation (PSF) a été créée. La PSF est une organisation à but non lucratif qui possède les droits d'auteur de Python et gère le développement et la distribution du langage. Avec la création de la PSF, le code de Python a été entièrement libéré sous la Python Software Foundation License, une licence open source approuvée par l'Open Source Initiative.
+
+Depuis lors, Python a continué à évoluer et à croître en popularité, devenant l'un des langages de programmation les plus populaires au monde. Python 3.0, une révision majeure du langage qui n'est pas entièrement rétrocompatible, a été publié en 2008. En juillet 2018, Guido van Rossum a décidé de se retirer de son rôle de BDFL (Benevolent Dictator for Life) de Python, et un conseil de direction a été formé pour guider l'évolution future de Python.
+
+# python.org
+
+Le site [python.org](https://www.python.org/) est le site officiel du langage de programmation Python. Il fournit une multitude de ressources utiles à la fois pour les débutants et les développeurs expérimentés en Python.
+
+
+## Documentation
+
+Le site contient une documentation complète de Python, y compris des tutoriels pour les débutants, des guides détaillés sur les caractéristiques spécifiques de Python, et la documentation complète de la bibliothèque standard de Python.
+
+## Téléchargements
+
+Les dernières versions de Python peuvent être téléchargées à partir du site. Il fournit des binaires pour différentes plateformes, y compris Windows, Mac OS et Linux.
+
+## **PEPs
+
+Le site contient une liste complète des Python Enhancement Proposals (PEPs), qui sont les propositions officielles pour l'amélioration du langage Python. Les PEPs incluent des propositions de nouvelles fonctionnalités, des informations sur le processus de décision et des documents historiques.
+
+## Communauté
+
+Le site fournit des liens vers différents groupes et forums de la communauté Python, y compris la liste de diffusion Python-Dev et la liste de diffusion Python-ideas. Il y a aussi des liens vers des événements de la communauté Python, comme PyCon.
+
+## **Ressources d'apprentissage
+
+En plus de la documentation officielle, le site propose des liens vers d'autres ressources d'apprentissage, comme des livres, des cours en ligne et des tutoriels interactifs.
+
+## Blogs
+
+Le site héberge aussi le blog officiel de Python, qui fournit des nouvelles et des annonces importantes concernant le développement de Python.
+
+# Les PEPs
+
+Les PEP (Python Enhancement Proposals, ou Propositions d'amélioration de Python) sont des documents qui décrivent des nouvelles fonctionnalités ou des changements significatifs pour le langage de programmation Python. Chaque PEP est un document technique qui détaille soit une nouvelle fonctionnalité, soit une norme de conception ou de codage, soit une procédure.
+
+Il existe plusieurs types de PEP.
+
+## PEP standards
+
+Ce sont des propositions qui décrivent une nouvelle fonctionnalité ou une modification du langage Python. Elles sont numérotées et passent par un processus de révision et d'approbation.
+
+## PEP d'information
+
+Ce sont des documents qui fournissent des informations générales à la communauté Python. Ils n'introduisent pas de nouvelles fonctionnalités et ne représentent pas un changement de politique.
+
+## PEP de processus
+
+Ce sont des documents qui décrivent un nouveau processus pour la gestion du langage Python ou proposent une modification à un processus existant.
+
+## Processus d'approbation
+
+Le processus d'approbation d'un PEP comprend plusieurs étapes :
+
+1. **Création du PEP** : L'auteur du PEP rédige un document qui décrit en détail la proposition.
+
+2. **Discussion du PEP** : La proposition est alors soumise à la communauté Python pour discussion. Cela se fait généralement sur la liste de diffusion python-dev.
+
+3. **Révision du PEP** : Sur la base des commentaires reçus, l'auteur du PEP peut apporter des modifications à la proposition.
+
+4. **Décision** : Un PEP est accepté ou rejeté par le BDFL (Benevolent Dictator for Life), une fonction historiquement occupée par le créateur de Python, Guido van Rossum. Depuis son retrait en 2018, cette fonction est assurée par un comité de direction.
+
+5. **Implémentation** : Si un PEP est accepté, il est alors mis en œuvre dans le langage Python.
+
+Il est important de noter que tous les PEP n'aboutissent pas à des modifications du langage. Certains sont rejetés, d'autres restent à l'état de proposition sans jamais être implémentés. Les PEP sont un outil important pour faciliter la communication et la coordination au sein de la communauté Python.
+
+# PIP
+
+Pour installer des bibliothèques nous aurons recours à l'utilitaire **pip**.
+
+PIP (Pip Installs Packages) est un système de gestion de paquets utilisé pour installer et gérer des paquets de logiciels écrits en Python. Les utilisateurs de Python peuvent utiliser PIP pour installer des paquets à partir de l'index des paquets Python (PyPI) et d'autres dépôts. PIP offre les fonctionnalités suivantes :
+
+- Installation de paquets Python.
+- Désinstallation de paquets Python.
+- Mise à jour de paquets Python.
+- Recherche de paquets Python dans PyPI.
+- Gestion des dépendances de paquets Python.
+
+Pour utiliser PIP, vous devez d'abord l'installer. PIP est généralement déjà installé si vous avez Python version 2.7.9+ ou Python 3.4+. Sinon, vous pouvez l'installer manuellement.
+
+# PyPI
+
+PyPI (Python Package Index) est un dépôt de logiciels pour le langage de programmation Python. Les utilisateurs de Python peuvent chercher, télécharger et installer des paquets Python à partir de PyPI à l'aide de PIP ou d'autres outils.
+
+PyPI héberge des milliers de paquets couvrant une grande variété de problèmes, allant des frameworks web aux bibliothèques scientifiques, en passant par les outils de développement et les applications autonomes.
+
+PyPI est aussi la plateforme où les développeurs peuvent publier leurs propres paquets pour que d'autres personnes puissent les utiliser. Pour publier un paquet sur PyPI, vous avez besoin d'un compte PyPI et vous devez suivre les instructions pour empaqueter votre logiciel et le télécharger.
+
+En résumé, PIP et PyPI sont deux outils essentiels pour tout développeur Python. PIP est utilisé pour installer et gérer les paquets Python, tandis que PyPI est l'endroit où ces paquets sont hébergés et partagés.
 
 # La notion d'objet
 
@@ -1825,86 +1920,6 @@ from monpaquet.module1 import ma_fonction
 
 L'utilisation de paquets permet une organisation logique et une séparation des fonctionnalités, ce qui facilite la gestion de projets de grande envergure.
 
-### Les principaux modules
-
-------------------------------------------------------------------------
-
-Contient les primitives
-
-#### sys
-
-Contient les informations relative à l'exécution en cours
-
-#### os
-
-Permet de gérer le système
-
-#### gzip, zipfile
-
-Permettent de gérer les fichiers compressés.
-
-#### socket
-
-Pour gérer les connexions TCP ou UDP
-
-#### urllib2
-
-Pour gérer les connexions http
-
-Liens :
-
-> -   <http://diveintopython.adrahon.org/>
-> -   <http://docs.python.org/>
-> -   <http://www.afpy.org/>
-
-#### Environnement virtuel
-
-Les environnements virtuels python permettent de créer des environnements de développements ou d'exécutions isolés les uns des autres. C'est à dire que l'on va pouvoir y installer des bibliothèques sans contaminer les autres environnements python. Et l'on va pouvoir lister précisément les dépendances dont notre programme a besoin.
-Fini la livraison où il manque des bibliothèques parce que dans un autre projet on a installé une bibliothèque que l'on utilise sans rendre compte. Installer le paquet de la distribution :
-
-    pip3 install virtualenv virtualenvwrapper
-
-Éditer notre .bashrc et ajouter les lignes suivantes :
-
-    # virtualenv
-    export WORKON_HOME=$HOME/.virtualenvs
-    VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
-    source /usr/local/bin/virtualenvwrapper.sh
-
-Pour céer un environnement virtuel :
-
-    mkvirtualenv my_venv -p python3
-
-Par exemple pour installer QT6 dans un environnement vituel :
-
-    mkvirtualenv qt6_env -p python3
-
-    (qt6_env) michaellaunay@luciole:~$ pip install numpy matplotlib PyQT6 # pour installer QT
-    (qt6_env) michaellaunay@luciole:~$ pip install flake8 pylint # pour installer flake8 qui vérifie le respect de la pep8 et Pylint pour la vérification du code
-
-Depuis python3.6, il existe un outil qui fusionne pip et virtual env :
-**pipenv**
-
-Installation de pipenv :
-
-    pip3 install pipenv
-
-Création d'un vitual env lors de l'installation d'un module
-
-> cd \$MY\_WORKING\_DIR \# Aller dans notre espace de travail pipenv
-> install pyside6 \--python=python3.11 \# Attention si python 3.11 n'est pas installé sur la machine ne pas oublier de faire \"apt install python3.9\"
-
-Pour voir son virtualenv :
-
-    pipenv --venv #Indique les virtual env associés avec le chemin courant
-
-Pour activer le virtual env créé :
-
-    pipenv shell #Depuis le répertoire de travail
-
-Vérification de la conformité pep8 :
-
-> (qt6\_env) <michaellaunay@luciole>:\~\$ flake8 demo.py
 
 # Points de suspension dans les classes
 
@@ -1931,13 +1946,23 @@ Le pipe permet de faire l'union de dictionnaires
 {1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'five', 6: 'six'}
 ```
 
-# Final
+## Final
 
-Depuis python 3.9, permet de déclarer une variable comme constante.
+À partir de Python 3.8, le module `typing` offre un moyen de déclarer une variable comme étant "finale" ou constante, en utilisant l'annotation `Final`.
+
+Voici comment cela fonctionne :
+
 ```python
 from typing import Final
-CONSTANTE:Final = "Une vairable constante"
+
+CONSTANTE: Final = "Une variable constante"
 ```
+
+Dans cet exemple, `CONSTANTE` est déclarée comme une variable finale, ce qui signifie que sa valeur est censée ne pas être modifiée après l'affectation initiale.
+
+Il convient de noter que `Final` est une annotation de type et n'impose pas de contrainte d'immuabilité au niveau de l'exécution. Autrement dit, Python lui-même n'empêchera pas la modification d'une variable annotée avec `Final`, mais certains outils de vérification de types comme `mypy` peuvent émettre un avertissement si vous tentez de modifier une telle variable.
+
+Cela dit, utiliser `Final` est une bonne pratique pour communiquer l'intention que certaines variables ne doivent pas être modifiées et pour aider les outils de vérification de type à détecter les erreurs potentielles.
 
 # FString
 
@@ -1955,4 +1980,188 @@ Today is May 07, 2023
 >>>   
 >>> print(f"Today is {today:%m-%d-%Y}")  
 Today is 05-07-2023
+```
+# Les principaux modules
 
+Voici une liste de quelques-uns des modules Python les plus couramment utilisés, ainsi qu'une brève description de leurs fonctionnalités :
+
+## sys
+
+Contient les informations relatives à l'interpréteur Python et à l'exécution en cours, comme les arguments de la ligne de commande et le chemin de recherche des modules.
+
+## os
+
+Permet d'interagir avec le système d'exploitation, offrant ainsi des fonctionnalités pour naviguer dans le système de fichiers, lancer des processus ou encore lire les variables d'environnement.
+
+## gzip, zipfile
+
+Ces modules permettent de manipuler des fichiers compressés. Avec `gzip` et `zipfile`, vous pouvez lire et écrire des fichiers gzip et zip, respectivement.
+
+## socket
+
+Fournit des fonctionnalités de niveau bas pour gérer les connexions réseau TCP et UDP.
+
+## urllib
+
+Ce module fournit des fonctionnalités pour manipuler des URLs et effectuer des opérations sur le web comme la récupération de pages web via HTTP.
+
+## re
+
+Un module pour travailler avec des expressions régulières, qui sont des séquences de caractères spéciales qui vous aident à trouver, correspondre ou diviser du texte.
+
+## datetime
+
+Il fournit des fonctionnalités pour travailler avec les dates et les heures.
+
+## math
+
+Il comprend des fonctions mathématiques de base, des constantes et des opérations sur les nombres complexes.
+
+## json
+
+Ce module vous permet de convertir des données Python en une chaîne JSON et vice versa.
+
+## collections
+
+Il propose des alternatives aux structures de données intégrées de Python (dict, list, set, et tuple). 
+
+## numpy, pandas, matplotlib
+
+Ces trois modules sont essentiels pour toute personne travaillant avec des données en Python. `numpy` offre des fonctionnalités pour travailler avec des tableaux multidimensionnels, `pandas` est excellent pour manipuler et analyser les données, et `matplotlib` est utilisé pour créer des graphiques et des visualisations.
+
+## requests
+
+C'est une bibliothèque pour envoyer des requêtes HTTP de manière simplifiée. Elle est plus intuitive que urllib et est largement utilisée pour le web scraping, l'API et d'autres opérations HTTP.
+
+# Environnement virtuel
+
+Les environnements virtuels Python permettent de créer des environnements de développement ou d'exécution isolés les uns des autres. En d'autres termes, nous pouvons installer des bibliothèques dans un environnement spécifique sans affecter les autres environnements Python. De plus, nous pouvons précisément lister les dépendances dont notre programme a besoin.
+
+Cela met fin aux problèmes de livraison où des bibliothèques manquent parce que dans un autre projet, nous avons installé une bibliothèque dont nous avions besoin sans nous en rendre compte. Pour installer le paquet nécessaire à la gestion des environnements virtuels, nous utilisons la commande suivante :
+
+    pip3 install virtualenv virtualenvwrapper
+
+Ensuite, nous devons éditer notre fichier `.bashrc` et y ajouter les lignes suivantes :
+
+    # virtualenv
+    export WORKON_HOME=$HOME/.virtualenvs
+    VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
+    source /usr/local/bin/virtualenvwrapper.sh
+
+Pour créer un environnement virtuel, nous utilisons la commande `mkvirtualenv` :
+
+    mkvirtualenv my_venv -p python3
+
+Par exemple, pour installer QT6 dans un environnement virtuel, nous utilisons :
+
+    mkvirtualenv qt6_env -p python3
+    (qt6_env) michaellaunay@luciole:~$ pip install numpy matplotlib PyQt6
+    (qt6_env) michaellaunay@luciole:~$ pip install flake8 pylint
+
+Depuis Python 3.6, il existe un outil, `pipenv`, qui combine `pip` et `virtualenv`.
+
+Pour installer `pipenv`, nous utilisons :
+
+    pip3 install pipenv
+
+Nous pouvons créer un environnement virtuel lors de l'installation d'un module en utilisant `pipenv`. Par exemple :
+
+    cd $MY_WORKING_DIR
+    pipenv install pyside6 --python=python3.11
+
+Note : Si Python 3.11 n'est pas installé sur la machine, il ne faut pas oublier de l'installer avec "apt install python3.11".
+
+Pour voir l'environnement virtuel associé au répertoire courant, nous utilisons :
+
+    pipenv --venv
+
+Et pour activer l'environnement virtuel créé, nous utilisons :
+
+    pipenv shell
+
+# Les linters
+
+Un "linter" est un outil qui analyse le code source d'un programme afin de signaler les erreurs, les bugs, les problèmes stylistiques et les constructions suspectes. Le terme provient de "lint", un outil de vérification de code pour le langage C créé dans les années 70. L'idée est de "dépoussiérer" le code, d'où le nom "lint" (peluches/moutons/minous en anglais).
+
+En Python, il existe plusieurs outils de "linting" populaires, comme Pylint, Flake8 et Pyflakes. Ces outils peuvent vérifier votre code pour détecter :
+
+- Des erreurs de syntaxe
+- Des problèmes de formatage qui ne sont pas conformes à la norme PEP 8
+- Des problèmes de structure de code, comme les classes non utilisées, les variables non utilisées, etc.
+- Des problèmes de complexité de code, comme les fonctions ou les méthodes trop longues
+- Des problèmes potentiels, comme l'utilisation de types non compatibles, les fonctions avec trop de branches ou de boucles, etc.
+
+L'utilisation d'un linter peut grandement améliorer la qualité de votre code. Il peut vous aider à détecter des bugs ou des problèmes potentiels avant même d'exécuter votre programme. De plus, comme la plupart des linters Python vérifient également la conformité PEP 8, ils peuvent vous aider à rendre votre code plus lisible et plus conforme aux standards de la communauté Python.
+
+# Conformité PEP8
+
+Pour vérifier la conformité de notre code avec la norme PEP 8, nous pouvons utiliser l'outil `flake8`. Il s'agit d'un outil de vérification de la qualité du code Python qui comprend entre autres choses une vérification de la conformité PEP 8.
+
+Dans notre terminal, nous exécutons la commande `flake8`, suivie du nom du fichier que nous souhaitons vérifier. Par exemple :
+
+```bash
+flake8 demo.py
+```
+
+Si notre fichier `demo.py` contient des violations de la norme PEP 8, `flake8` les affichera dans la console. C'est un excellent moyen pour nous d'assurer que notre code est propre, lisible et conforme aux meilleures pratiques de la communauté Python.
+
+Il est important de noter que `flake8` ne corrige pas les erreurs pour nous, il signale simplement leur présence. C'est à nous de corriger ces problèmes dans notre code.
+
+# Dégogage en ligne
+
+Le débogage en ligne, également appelé débogage interactif ou débogage pas à pas, est une technique utilisée pour identifier et résoudre les problèmes dans le code en exécutant le programme pas à pas et en inspectant les valeurs des variables à différents points d'exécution. Python fournit plusieurs outils pour le débogage en ligne, dont les plus couramment utilisés sont `pdb` (Python Debugger) et les fonctionnalités intégrées aux environnements de développement intégrés (EDI) populaires tels que PyCharm, [[Visual studio code]] et Jupyter Notebook.
+
+Voici comment utiliser `pdb`, l'outil de débogage en ligne intégré à Python :
+
+1. Importons le module `pdb` dans notre code Python :
+```python
+import pdb
+```
+
+2. Ajoutons un point d'arrêt à l'endroit où nous souhaitons commencer le débogage :
+```python
+pdb.set_trace()
+```
+Cela place un point d'arrêt dans notre code, ce qui signifie que l'exécution s'arrêtera à cet endroit.
+
+3. Exécutons notre programme. Lorsque l'exécution atteint le point d'arrêt, le débogueur `pdb` sera activé et nous pourrons commencer à inspecter le code.
+
+4. Utilisons les commandes du débogueur pour naviguer et inspecter le code :
+   - `n` : Exécute la ligne actuelle et passe à la suivante.
+   - `s` : Passe à l'intérieur d'une fonction (si la ligne actuelle est un appel de fonction).
+   - `q` : Quitte le débogueur.
+   - `p <variable>` : Affiche la valeur d'une variable.
+   - `l` : Affiche la portion de code autour de la ligne actuelle.
+   - `c` : Exécute le programme jusqu'au prochain point d'arrêt ou jusqu'à la fin.
+
+5. Utilisons ces commandes et explorons l'état de notre programme pour comprendre les problèmes et les erreurs.
+
+Les EDI fournissent souvent des fonctionnalités de débogage plus avancées, comme des points d'arrêt graphiques, la visualisation des variables, le suivi de la pile d'appels, etc. Ces fonctionnalités facilitent le processus de débogage en offrant une interface conviviale et des outils visuels pour inspecter et suivre le code.
+
+Que nous utilisions `pdb` ou les fonctionnalités intégrées d'un EDI, le débogage en ligne est un outil précieux pour comprendre et résoudre les problèmes dans notre code Python. Il nous permet d'examiner l'exécution de notre programme pas à pas et d'identifier les erreurs, les bugs ou les comportements indésirables.
+
+# Liens
+
+Bien sûr, voici une liste de ressources en ligne pour vous aider à approfondir vos compétences en Python :
+
+1. [Python.org](https://docs.python.org/3/tutorial/index.html) : Le tutoriel officiel de Python sur leur site web est un excellent point de départ.
+
+2. [Codecademy](https://www.codecademy.com/learn/learn-python-3) : Ils offrent un cours interactif de Python qui est idéal pour les débutants.
+
+3. [Real Python](https://realpython.com/) : De nombreux articles, tutoriels et vidéos sur des sujets Python spécifiques.
+
+4. [Coursera](https://www.coursera.org/courses?query=python) : Cours en ligne offerts par des universités et des instituts de recherche renommés.
+
+5. [Geeks for Geeks Python](https://www.geeksforgeeks.org/python-programming-language/) : Des tutoriels sur des concepts spécifiques de Python, ainsi que des exercices de programmation.
+
+6. [Learn Python the Hard Way](https://learnpythonthehardway.org/) : Un livre électronique interactif qui vous guide à travers des exercices de codage.
+
+7. [Project Euler](https://projecteuler.net/) : Un ensemble de problèmes de programmation mathématique qui peuvent être résolus avec n'importe quel langage, mais sont utiles pour la pratique du Python.
+
+8. [HackerRank Python](https://www.hackerrank.com/domains/tutorials/10-days-of-python) : Un excellent endroit pour pratiquer la résolution de problèmes avec Python.
+
+9. [LeetCode](https://leetcode.com/) : Une plateforme pour la préparation des entretiens techniques où vous pouvez pratiquer des questions Python.
+
+10. [edX](https://www.edx.org/learn/python) : Des cours en ligne gratuits offerts par des universités du monde entier.
+
+Il est préférable de commencer par des ressources adaptées à notre niveau actuel, puis d'ajouter des défis supplémentaires à mesure que vous progressez.
