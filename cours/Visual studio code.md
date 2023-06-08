@@ -145,8 +145,11 @@ Sélectionnons plusieurs lignes de texte, puis appuyons sur `Maj+Alt+I` (Windows
 Pour passer rapidement d'un fichier ouvert à l'autre `Ctrl Tab`.
 Pour revenir à la position précédente du curseur `Alt <-` que l'on peut enchaîner pour remonter dans le temps, et l'on peut descendre dans le temps avec `Atl ->` pour revenir à la dernière position du curseur.
 
+## Auto-complétion
+L’auto-complétion est automatique, mais il arrive que nous devions la déclencher. L’auto-complétion est appelée par `Ctrl+Espace`
+
 ## Refactoring
-Lorsque nous sélectionnons un morceau de texte puis que nous appuions sur F2 alors si nous modifions la zone de texte la modification est reportée sur tous les fichers. C'est ce que nous appellons le **Refactoring**.
+Lorsque nous sélectionnons un morceau de texte puis que nous appuyons sur F2 alors si nous modifions la zone de texte la modification est reportée sur tous les fichiers. C'est ce que nous appelons le **Refactoring**.
 
 # Paramétrer git et copilot
 Ouvrir son dossier.
@@ -296,7 +299,9 @@ Maj+ Début / Fin Faire défiler jusqu'en haut/bas
 ## Paramétrer son environnement virtuel python
 
 Créer un environnement comme indiqué en fin de section python et installer flake8 et pylint : 
-    michaellaunay@Luciole:~$ workon venv #Pour activer l'environnement virtuel
+```bash
+michaellaunay@Luciole:~$ workon venv #Pour activer l'environnement virtuel
+```
 
 Ouvrir le dossier du projet où l'on souhaite travailler.
 Normalement VisualCode a créé un répertoire \".vscode\" qui contient un fichier settings.json
@@ -308,23 +313,57 @@ Liens :
 > -   <https://code.visualstudio.com/docs/editor/tasks#_variable-substitution>
 
 Ne pas oublier d'installer pytest et pytest-cov :
-    pip3 install pytest pytest-cov
+```bash
+pip3 install pytest pytest-cov
+```
 
 Pour lancer les tests, nous pouvons alors faire :
-    python3 -m unittest discover # pour unittest
-    python3 -m pytest #pour pytest et donc avoir une syntaxe à base de "assert"
-    python3 -m pytest --cov=perfect_maze #Pour avoir le taux de couverture des tests
+```bash
+python3 -m unittest discover # pour unittest
+python3 -m pytest #pour pytest et donc avoir une syntaxe à base de "assert"
+python3 -m pytest --cov=perfect_maze #Pour avoir le taux de couverture des tests
+```
 
 Pour automatiser les tests, par exemple dans une intégration continue (CI), nous pouvons utiliser Tox et le brancher à notre dépôt \"git\" via un hook.
-> pip3 install tox
+```bash
+pip3 install tox
+```
 
 Pour le configurer, lancer \"tox-quickstart\" depuis le dossier du projet et répondre aux questions.
 
+# Signification des symboles
+[voir](https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions)
+
+|Icon|Name|Symbol type|
+|---|---|---|
+|![method icon](https://code.visualstudio.com/assets/docs/editor/intellisense/Method_16x.svg)|Methods and Functions|`method`, `function`, `constructor`|
+|![variable icon](https://code.visualstudio.com/assets/docs/editor/intellisense/Variable_16x.svg)|Variables|`variable`|
+|![field icon](https://code.visualstudio.com/assets/docs/editor/intellisense/Field_16x.svg)|Fields|`field`|
+|![type parameter](https://code.visualstudio.com/assets/docs/editor/intellisense/symbol-parameter.svg)|Type parameters|`typeParameter`|
+|![constant](https://code.visualstudio.com/assets/docs/editor/intellisense/symbol-constant.svg)|Constants|`constant`|
+|![class](https://code.visualstudio.com/assets/docs/editor/intellisense/Class_16x.svg)|Classes|`class`|
+|![interface](https://code.visualstudio.com/assets/docs/editor/intellisense/Interface_16x.svg)|Interfaces|`interface`|
+|![structure](https://code.visualstudio.com/assets/docs/editor/intellisense/symbol-structure.svg)|Structures|`struct`|
+|![event](https://code.visualstudio.com/assets/docs/editor/intellisense/symbol-event.svg)|Events|`event`|
+|![operator](https://code.visualstudio.com/assets/docs/editor/intellisense/symbol-operator.svg)|Operators|`operator`|
+|![module](https://code.visualstudio.com/assets/docs/editor/intellisense/Namespace_16x.svg)|Modules|`module`|
+|![property](https://code.visualstudio.com/assets/docs/editor/intellisense/Property_16x.svg)|Properties and Attributes|`property`|
+|![enumeration icon](https://code.visualstudio.com/assets/docs/editor/intellisense/EnumItem_16x.svg)|Values and Enumerations|`value`, `enum`|
+|![reference](https://code.visualstudio.com/assets/docs/editor/intellisense/Reference_16x.svg)|References|`reference`|
+|![keyword](https://code.visualstudio.com/assets/docs/editor/intellisense/Keyword_16x.svg)|Keywords|`keyword`|
+|![file](https://code.visualstudio.com/assets/docs/editor/intellisense/symbol-file.svg)|Files|`file`|
+|![folder](https://code.visualstudio.com/assets/docs/editor/intellisense/folder.svg)|Folders|`folder`|
+|![color](https://code.visualstudio.com/assets/docs/editor/intellisense/ColorPalette_16x.svg)|Colors|`color`|
+|![unit](https://code.visualstudio.com/assets/docs/editor/intellisense/Ruler_16x.svg)|Unit|`unit`|
+|![a square with ellipses forming the bottom show snippet prefix](https://code.visualstudio.com/assets/docs/editor/intellisense/Snippet_16x.svg)|Snippet prefixes|`snippet`|
+|![a square with letters abc word completion](https://code.visualstudio.com/assets/docs/editor/intellisense/String_16x.svg)|Words|`text`|
+
 ### Ajouter la prévisualisation sphinx pour le format rest
 
-Pour cela il faut d'abord ajouter rest à l'environnement virtuel par  défaut et le configurer : :
-
-    (venv) michaellaunay@Luciole:~/workspace$ pip install sphinx
-    (venv) michaellaunay@Luciole:~/workspace$ sphinx-quickstart
+Pour cela il faut d'abord ajouter rest à l'environnement virtuel par  défaut et le configurer :
+```bash
+(venv) michaellaunay@Luciole:~/workspace$ pip install sphinx
+(venv) michaellaunay@Luciole:~/workspace$ sphinx-quickstart
+```
 
 Puis éditer la configuration de l'extension (Ctrl+Maj+P) et y ajouter comme chemin celui saisit pour Sphinx c'est-à-dire là où nous avons dit à quickstart de travailler et où il a créé le fichier conf.py (le workspace est le plus pratique).
