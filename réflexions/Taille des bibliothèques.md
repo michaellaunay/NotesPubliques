@@ -34,3 +34,10 @@ https://fr.wikipedia.org/wiki/Europeana
 # Bibliothèques "Sulfureuses"
 [[LibGen]]
 [[National Emergency Library]]
+
+# Liste des bibliothèques détruites
+
+[Wikipedia](https://fr.wikipedia.org/wiki/Liste_de_biblioth%C3%A8ques_d%C3%A9truites)
+
+# Liens
+[Question d'Histoire : Que nous révèlent les recherches scientifiques sur un manuscrit médiéval](https://youtu.be/cStuC5_jGKI)
