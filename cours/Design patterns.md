@@ -1,4 +1,4 @@
-Plan du cours :
+**Plan** du cours :
 
 **1. Introduction aux Design Patterns**
    - Qu'est-ce qu'un design pattern ?
@@ -49,6 +49,11 @@ Plan du cours :
 
 **8. Projet Final**
    - Conception et développement d'un projet en utilisant plusieurs design patterns.
+
+**9. Ressources**
+  - Livres
+  - Ressources en ligne
+  - Cours en ligne
 
 # 1. Introduction aux Design Patterns
 
@@ -1248,4 +1253,472 @@ caretaker.undo()
 
 Dans cet exemple, chaque fois que `originator` fait quelque chose, `caretaker` fait une sauvegarde. `Caretaker` peut annuler les actions de `originator` en restaurant son état à partir d'un memento.
 
-@TODO continuer
+## 5.7 Observer
+
+L'Observer est un modèle de conception comportemental qui permet de définir un mécanisme de souscription pour notifier plusieurs objets des événements qui se produisent dans l'objet qu'ils observent.
+
+```mermaid
+classDiagram
+    class Subject {
+        +attach(observer : Observer) : void
+        +detach(observer : Observer) : void
+        +notify() : void
+    }
+    class ConcreteSubject {
+        -state : int
+        +attach(observer : Observer) : void
+        +detach(observer : Observer) : void
+        +notify() : void
+        +do_something() : void
+    }
+    Subject <|-- ConcreteSubject
+    class Observer {
+        +update(subject : Subject) : void
+    }
+    class ConcreteObserverA {
+        +update(subject : Subject) : void
+    }
+    class ConcreteObserverB {
+        +update(subject : Subject) : void
+    }
+    Observer <|-- ConcreteObserverA
+    Observer <|-- ConcreteObserverB
+    ConcreteSubject --> Observer : Notifies >
+    Observer --> ConcreteSubject : Observes >
+```
+
+Exemple en Python :
+
+```python
+class Subject:
+    def attach(self, observer):
+        pass
+
+    def detach(self, observer):
+        pass
+
+    def notify(self):
+        pass
+
+class ConcreteSubject(Subject):
+    _state = None
+    _observers = []
+
+    def attach(self, observer):
+        self._observers.append(observer)
+
+    def detach(self, observer):
+        self._observers.remove(observer)
+
+    def notify(self):
+        for observer in self._observers:
+            observer.update(self)
+
+    def do_something(self):
+        self._state = "new state"
+        self.notify()
+
+class Observer:
+    def update(self, subject):
+        pass
+
+class ConcreteObserverA(Observer):
+    def update(self, subject):
+        print(f"ConcreteObserverA: Reacted to {subject._state}")
+
+class ConcreteObserverB(Observer):
+    def update(self, subject):
+        print(f"ConcreteObserverB: Reacted to {subject._state}")
+
+subject = ConcreteSubject()
+observer_a = ConcreteObserverA()
+subject.attach(observer_a)
+observer_b = ConcreteObserverB()
+subject.attach(observer_b)
+
+subject.do_something()
+```
+Dans cet exemple, `ConcreteObserverA` et `ConcreteObserverB` sont attachés à `ConcreteSubject`. Lorsque `ConcreteSubject` change d'état, il notifie tous les observateurs attachés.
+
+## 5.8 State
+
+Le modèle State permet à un objet de modifier son comportement lorsque son état interne change. Il semble que l'objet ait modifié sa classe.
+
+```mermaid
+classDiagram
+    class Context {
+        -state : State
+        +request1() : void
+        +request2() : void
+    }
+    class State {
+        +handle1() : void
+        +handle2() : void
+    }
+    class ConcreteStateA {
+        +handle1() : void
+        +handle2() : void
+    }
+    class ConcreteStateB {
+        +handle1() : void
+        +handle2() : void
+    }
+    Context --> State : Has a >
+    State <|-- ConcreteStateA
+    State <|-- ConcreteStateB
+```
+
+Exemple en Python :
+
+```python
+class State:
+    def handle1(self):
+        pass
+
+    def handle2(self):
+        pass
+
+class ConcreteStateA(State):
+    def handle1(self):
+        print("ConcreteStateA handles request1.")
+        print("ConcreteStateA wants to change the state of the context.")
+
+    def handle2(self):
+        print("ConcreteStateA handles request2.")
+
+class ConcreteStateB(State):
+    def handle1(self):
+        print("ConcreteStateB handles request1.")
+
+    def handle2(self):
+        print("ConcreteStateB handles request2.")
+        print("ConcreteStateB wants to change the state of the context.")
+
+class Context:
+    _state = None
+
+    def __init__(self, state: State) -> None:
+        self.transition_to(state)
+
+    def transition_to(self, state: State):
+        print(f"Context: Transition to {type(state).__name__}")
+        self._state = state
+        self._state.context = self
+
+    def request1(self):
+        self._state.handle1()
+
+    def request2(self):
+        self._state.handle2()
+
+context = Context(ConcreteStateA())
+context.request1()
+context.request2()
+```
+
+Dans cet exemple, `Context` alterne entre `ConcreteStateA` et `ConcreteStateB`. L'état actuel est conservé dans le `Context`.
+
+## 5.9 Strategy
+
+Le modèle Strategy définit une famille d'algorithmes, les encapsule chacun et les rend interchangeables. Ce modèle permet à l'algorithme de varier indépendamment des clients qui l'utilisent.
+
+```mermaid
+classDiagram
+    class Context {
+        -strategy : Strategy
+        +Context(strategy : Strategy) : void
+        +do_something() : void
+    }
+    class Strategy {
+        +do_algorithm() : void
+    }
+    class ConcreteStrategyA {
+        +do_algorithm() : void
+    }
+    class ConcreteStrategyB {
+        +do_algorithm() : void
+    }
+    Context --> Strategy : Has a >
+    Strategy <|-- ConcreteStrategyA
+    Strategy <|-- ConcreteStrategyB
+```
+
+Exemple en Python :
+
+```python
+from abc import ABC, abstractmethod
+from typing import List
+
+class Context:
+    def __init__(self, strategy):
+        self._strategy = strategy
+
+    def do_something(self, data: List):
+        result = self._strategy.do_algorithm(data)
+        print(",".join(result))
+
+class Strategy(ABC):
+    @abstractmethod
+    def do_algorithm(self, data: List):
+        pass
+
+class ConcreteStrategyA(Strategy):
+    def do_algorithm(self, data: List):
+        return sorted(data)
+
+class ConcreteStrategyB(Strategy):
+    def do_algorithm(self, data: List):
+        return reversed(sorted(data))
+
+data = ["a", "b", "c", "d", "e"]
+
+context = Context(ConcreteStrategyA())
+context.do_something(data)
+
+context = Context(ConcreteStrategyB())
+context.do_something(data)
+```
+
+Dans cet exemple, `Context` utilise une instance de `Strategy` pour effectuer une opération. Les `ConcreteStrategyA` et `ConcreteStrategyB` implémentent cette opération de manière différente.
+
+## 5.10 Template Method
+
+Le modèle Template Method définit le squelette d'un algorithme dans la méthode de superclasse mais laisse les sous-classes redéfinir certaines étapes de l'algorithme sans changer sa structure globale.
+
+```mermaid
+classDiagram
+    class AbstractClass {
+        +template_method() : void
+        +base_operation1() : void
+        +base_operation2() : void
+        +required_operations1() : void
+        +required_operations2() : void
+        +hook1() : void
+        +hook2() : void
+    }
+    class ConcreteClass1 {
+        +required_operations1() : void
+        +required_operations2() : void
+        +hook1() : void
+    }
+    class ConcreteClass2 {
+        +required_operations1() : void
+        +required_operations2() : void
+        +hook1() : void
+    }
+    AbstractClass <|-- ConcreteClass1
+    AbstractClass <|-- ConcreteClass2
+```
+
+Exemple en Python :
+
+```python
+from abc import ABC, abstractmethod
+
+class AbstractClass(ABC):
+    def template_method(self):
+        self.base_operation1()
+        self.required_operations1()
+        self.base_operation2()
+        self.hook1()
+
+    def base_operation1(self):
+        print("AbstractClass says: I am doing the bulk of the work")
+
+    def base_operation2(self):
+        print("AbstractClass says: But I let subclasses override some operations")
+
+    @abstractmethod
+    def required_operations1(self):
+        pass
+
+    def hook1(self):
+        pass
+
+class ConcreteClass1(AbstractClass):
+    def required_operations1(self):
+        print("ConcreteClass1 says: Implemented Operation1")
+
+    def hook1(self):
+        print("ConcreteClass1 says: Overridden Hook1")
+
+class ConcreteClass2(AbstractClass):
+    def required_operations1(self):
+        print("ConcreteClass2 says: Implemented Operation2")
+
+    def hook1(self):
+        print("ConcreteClass2 says: Overridden Hook1")
+
+concrete_class = ConcreteClass1()
+concrete_class.template_method()
+
+print("\n")
+
+concrete_class = ConcreteClass2()
+concrete_class.template_method()
+```
+
+Dans cet exemple, `ConcreteClass1` et `ConcreteClass2` utilisent `template_method()` de `AbstractClass` mais redéfinissent `required_operations1()` et `hook1()`.
+
+## 5.11 Visitor
+
+Le modèle Visitor permet d'effectuer des opérations sur des éléments d'un ensemble d'objets. Avec Visitor, vous pouvez définir une nouvelle opération sans changer les classes des éléments sur lesquels elle opère.
+
+```mermaid
+classDiagram
+    class Component {
+        +accept(visitor : Visitor) : void
+    }
+    class ConcreteComponentA {
+        +accept(visitor : Visitor) : void
+        +exclusive_method_of_concrete_component_a() : string
+    }
+    class ConcreteComponentB {
+        +accept(visitor : Visitor) : void
+        +special_method_of_concrete_component_b() : string
+    }
+    Component <|-- ConcreteComponentA
+    Component <|-- ConcreteComponentB
+    class Visitor {
+        +visit_concrete_component_a(element) : void
+        +visit_concrete_component_b(element) : void
+    }
+    class ConcreteVisitor1 {
+        +visit_concrete_component_a(element) : void
+        +visit_concrete_component_b(element) : void
+    }
+    class ConcreteVisitor2 {
+        +visit_concrete_component_a(element) : void
+        +visit_concrete_component_b(element) : void
+    }
+    Visitor <|-- ConcreteVisitor1
+    Visitor <|-- ConcreteVisitor2
+    ConcreteComponentA --> Visitor : accept >
+    ConcreteComponentB --> Visitor : accept >
+    Visitor --> ConcreteComponentA : visit >
+    Visitor --> ConcreteComponentB : visit >
+```
+
+Exemple en Python :
+
+```python
+from abc import ABC, abstractmethod
+
+class Component(ABC):
+    @abstractmethod
+    def accept(self, visitor):
+        pass
+
+class ConcreteComponentA(Component):
+    def accept(self, visitor):
+        visitor.visit_concrete_component_a(self)
+
+    def exclusive_method_of_concrete_component_a(self):
+        return "A"
+
+class ConcreteComponentB(Component):
+    def accept(self, visitor):
+        visitor.visit_concrete_component_b(self)
+
+    def special_method_of_concrete_component_b(self):
+        return "B"
+
+class Visitor(ABC):
+    @abstractmethod
+    def visit_concrete_component_a(self, element):
+        pass
+
+    @abstractmethod
+    def visit_concrete_component_b(self, element):
+        pass
+
+class ConcreteVisitor1(Visitor):
+    def visit_concrete_component_a(self, element):
+        print(f"{element.exclusive_method_of_concrete_component_a()} + ConcreteVisitor1")
+
+    def visit_concrete_component_b(self, element):
+        print(f"{element.special_method_of_concrete_component_b()} + ConcreteVisitor1")
+
+class ConcreteVisitor2(Visitor):
+    def visit_concrete_component_a(self, element):
+        print(f"{element.exclusive_method_of_concrete_component_a()} + ConcreteVisitor2")
+
+    def visit_concrete_component_b(self, element):
+        print(f"{element.special_method_of_concrete_component_b()} + ConcreteVisitor2")
+
+component_a = ConcreteComponentA()
+component_b = ConcreteComponentB()
+
+visitor1 = ConcreteVisitor1()
+visitor2 = ConcreteVisitor2()
+
+component_a.accept(visitor1)
+component_a.accept(visitor2)
+component_b.accept(visitor1)
+component_b.accept(visitor2)
+```
+
+Dans cet exemple, `ConcreteComponentA` et `ConcreteComponentB` acceptent n'importe quel objet qui hérite de `Visitor`. `ConcreteVisitor1` et `ConcreteVisitor2` sont deux visiteurs qui effectuent différentes opérations sur `ConcreteComponentA` et `ConcreteComponentB`.
+
+## 6. Étude de cas
+
+Voir [[Conception orientée objet]]
+
+# 7. Anti-patterns
+
+## 7.1 Qu'est-ce qu'un anti-pattern ?
+
+Un anti-pattern est un modèle couramment utilisé mais inefficace et/ou contre-productif dans la pratique. Les anti-patterns sont des "leçons apprises à la dure", et sont généralement le résultat de gestionnaires ou de développeurs qui ne reconnaissent pas les inadéquations d'un processus ou d'une technique de développement.
+
+## 7.2 Anti-patterns communs et comment les éviter
+
+Voici quelques exemples d'anti-patterns courants dans le développement logiciel :
+
+1. **God Object** : Il s'agit d'un objet qui connaît trop ou fait trop de choses. L'objet est si central que pratiquement toutes les autres fonctionnalités du système dépendent de lui. 
+
+   *Solution* : Découpons les responsabilités en objets plus petits et spécialisés.
+
+2. **Spaghetti Code** : C'est un code avec peu ou pas de structure ou de conception. Cela rend le code difficile à comprendre et à maintenir.
+
+   *Solution* : Utilisons des design patterns appropriés, et assurons-nous que votre code est bien structuré et commenté.
+
+3. **Golden Hammer** : Il s'agit d'essayer d'adapter toutes les situations à un outil ou une technologie particulière, même si ce n'est pas le meilleur choix pour la tâche.
+
+   *Solution* : Essayons de choisir la meilleure technologie pour chaque tâche. Ne vous limitons pas à ce que vous connaissons déjà.
+
+4. **Premature Optimization** : C'est l'acte d'essayer d'optimiser votre code avant même de savoir où seront les véritables goulots d'étranglement.
+
+   *Solution* : Ecrivons d'abord le code pour qu'il fonctionne correctement, puis optimisons en fonction des besoins mesurés.
+
+5. **Cargo Cult Programming** : C'est l'acte de copier et coller du code sans comprendre comment il fonctionne.
+
+   *Solution* : Prenons le temps de comprendre le code que vous utilisons. Cela vous aidera à éviter des problèmes inattendus plus tard.
+
+En reconnaissant ces anti-patterns et en comprenant comment les éviter, nous pouvons améliorer la qualité de notre code et rendre notre processus de développement plus efficace.
+
+# 8. Projet final
+
+Voir [[Conception ]]
+
+# 9. Ressources
+
+Voici quelques livres et ressources en ligne pour approfondir vos connaissances sur les design patterns, les anti-patterns, et le développement logiciel en général :
+
+## 9.1 Livres
+
+   - "Design Patterns: Elements of Reusable Object-Oriented Software" par Erich Gamma, Richard Helm, Ralph Johnson, et John Vlissides (aussi connu sous le nom de "Gang of Four").
+   - "Refactoring: Improving the Design of Existing Code" par Martin Fowler.
+   - "Clean Code: A Handbook of Agile Software Craftsmanship" par Robert C. Martin.
+   - "AntiPatterns: Refactoring Software, Architectures, and Projects in Crisis" par William J. Brown, Raphael C. Malveau, Hays W. "Skip" McCormick, et Thomas J. Mowbray.
+
+## 9.2 Ressources en ligne
+
+   - [Refactoring Guru](https://refactoring.guru/design-patterns) : Un site web dédié aux design patterns et au refactoring. Il contient des descriptions détaillées des différents design patterns, ainsi que des exemples de code en plusieurs langages.
+   - [SourceMaking](https://sourcemaking.com/) : Un autre excellent site web pour apprendre les design patterns, le refactoring, et les anti-patterns.
+   - [Wikipedia](https://en.wikipedia.org/wiki/Software_design_pattern) : Les pages Wikipedia sur les design patterns, les anti-patterns et le développement logiciel contiennent généralement de bonnes informations de base, ainsi que des liens vers d'autres ressources.
+
+## 9.3 Cours en ligne
+
+   - Les plateformes comme [Coursera](https://www.coursera.org/), [edX](https://www.edx.org/), et [Udemy](https://www.udemy.com/) offrent de nombreux cours sur le développement logiciel, y compris les design patterns.
+
+N'oublions pas que la meilleure façon d'apprendre est par la pratique. Donc, après avoir étudié ces ressources, essayons d'appliquer ce que nous avons appris dans nos projets.
