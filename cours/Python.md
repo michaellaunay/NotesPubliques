@@ -1524,6 +1524,8 @@ Les motifs de conception sont généralement divisés en trois catégories :
 
 3. **Les motifs comportementaux** : Ces motifs se concentrent sur les algorithmes et l'affectation des responsabilités entre les objets. Exemples : Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor.
 
+Nous trouverons plus d'information dans le cours [[Design patterns]] 
+
 Pour les implémenter en Python, il existe plusieurs ressources, dont des livres et des tutoriels en ligne. L'un des plus connus est le livre "Design Patterns: Elements of Reusable Object-Oriented Software" par Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, surnommés le "Gang of Four". Pour une approche spécifique à Python, vous pouvez consulter le livre "Python 3 Object-Oriented Programming" par Dusty Phillips, qui couvre les motifs de conception dans le contexte de Python. Enfin, un projet GitHub appelé "Python Patterns" recueille divers exemples de motifs de conception implémentés en Python : https://github.com/faif/python-patterns.
 
 # Les décorateurs
@@ -1931,7 +1933,6 @@ def ecrire_un_article():
 class Auteur:
     ...
 ```
-
 
 # Union de dictionnaires
 
