@@ -8,6 +8,7 @@
 [[Logique]]
 [[MindMap sous Obsidian]]
 [[Parsing Expression Grammars PEG]]
+[[Pyramid]]
 [[Informatique]]
 [[GNULinux]]
 [[Watchdog espace disque]]
