@@ -287,13 +287,13 @@ Pyramid fournit plusieurs décorateurs que nous pouvons utiliser pour contrôler
 
 ### 2.3.1 Utilisation des générateurs d'URL
 
-Dans Pyramid, vous pouvez utiliser des générateurs d'URL pour créer des URL à partir des noms de vos routes. Par exemple, si vous avez une route nommée 'blog' qui correspond à l'URL '/blog/{id}', vous pouvez créer une URL pour cette route comme suit :
+Dans Pyramid, nous pouvons utiliser des générateurs d'URL pour créer des URL à partir des noms de vos routes. Par exemple, si nous avons une route nommée 'blog' qui correspond à l'URL '/blog/{id}', nous pouvons créer une URL pour cette route comme suit :
 
 ```python
 url = request.route_url('blog', id=1)
 ```
 
-Dans cet exemple, `url` sera '/blog/1'. Les générateurs d'URL sont particulièrement utiles lorsque vous devez créer des liens dans vos templates ou rediriger l'utilisateur vers une autre page.
+Dans cet exemple, `url` sera '/blog/1'. Les générateurs d'URL sont particulièrement utiles lorsque nous devons créer des liens dans vos templates ou rediriger l'utilisateur vers une autre page.
 
 ### 2.3.2 Gestion des erreurs 404 avec le système de routage
 
@@ -393,11 +393,11 @@ Pour créer un template Chameleon, nous créons un fichier avec l'extension .pt 
 </html>
 ```
 
-Dans cet exemple, `${title}` et `${description}` sont des expressions Python qui seront évaluées et remplacées par les valeurs que vous passerez à notre template.
+Dans cet exemple, `${title}` et `${description}` sont des expressions Python qui seront évaluées et remplacées par les valeurs que nous passerons à notre template.
 
 ### 2.5.3 Passer des données à un template Chameleon
 
-Pour passer des données à un template Chameleon, vous utilisez la fonction `render_to_response` de Pyramid, et vous passez les données sous forme de dictionnaire. Par exemple:
+Pour passer des données à un template Chameleon, nous utilisons la fonction `render_to_response` de Pyramid, et nous passons les données sous forme de dictionnaire. Par exemple:
 
 ```python
 from pyramid.view import view_config
@@ -421,7 +421,7 @@ La dernière étape est de rendre le template à partir de la vue. Dans Pyramid,
 
 ### 3.1.1 Les requêtes HTTP
 
-Les requêtes HTTP sont la façon dont les navigateurs web communiquent avec les serveurs. Chaque fois que vous accédez à une page web, notre navigateur envoie une requête HTTP au serveur qui héberge cette page. Le serveur traite la requête et renvoie une réponse HTTP, que le navigateur interprète et affiche.
+Les requêtes HTTP sont la façon dont les navigateurs web communiquent avec les serveurs. Chaque fois que nous accédons à une page web, notre navigateur envoie une requête HTTP au serveur qui héberge cette page. Le serveur traite la requête et renvoie une réponse HTTP, que le navigateur interprète et affiche.
 
 Il existe plusieurs types de requêtes HTTP, mais les plus couramment utilisées sont les requêtes GET et POST.
 
@@ -447,7 +447,7 @@ Une requête HTTP est composée de plusieurs parties :
 
 ### 3.1.5 Exercices pratiques
 
-Maintenant, passons à quelques exercices pratiques pour nous aider à comprendre comment manipuler les requêtes GET et POST dans Pyramid. Essayez de créer une application simple qui accepte à la fois les requêtes GET et POST et renvoie les données reçues.
+Maintenant, passons à quelques exercices pratiques pour nous aider à comprendre comment manipuler les requêtes GET et POST dans Pyramid. Essayons de créer une application simple qui accepte à la fois les requêtes GET et POST et renvoie les données reçues.
 
 ### 3.2 **Cours du Jour 2 : Manipulation des données de la requête**
 
@@ -455,11 +455,11 @@ Maintenant, passons à quelques exercices pratiques pour nous aider à comprendr
 
 Dans Pyramid, il existe différentes façons d'extraire les données d'une requête. Par exemple :
 
-- **Paramètres de l'URL** : Les paramètres de l'URL peuvent être récupérés à partir de `request.matchdict`. Par exemple, pour une route définie comme `/users/{username}`, vous pouvez accéder au nom d'utilisateur avec `request.matchdict['username']`.
+- **Paramètres de l'URL** : Les paramètres de l'URL peuvent être récupérés à partir de `request.matchdict`. Par exemple, pour une route définie comme `/users/{username}`, nous pouvons accéder au nom d'utilisateur avec `request.matchdict['username']`.
   
 - **Données de formulaire** : Les données de formulaire envoyées par une requête POST peuvent être récupérées à partir de `request.POST`.
   
-- **Données JSON** : Si le client envoie des données JSON dans le corps de la requête, vous pouvez les récupérer avec `request.json_body`.
+- **Données JSON** : Si le client envoie des données JSON dans le corps de la requête, nous pouvons les récupérer avec `request.json_body`.
 
 ### 3.2.2 Comment Pyramid traite les données de la requête
 
@@ -720,7 +720,7 @@ Le hachage des mots de passe est une pratique essentielle pour la sécurité des
 
 ### 5.2.3 Comment effectuer le hachage des mots de passe dans Pyramid
 
-Pyramid n'inclut pas directement de fonctionnalités de hachage des mots de passe, mais vous pouvez utiliser des bibliothèques Python tierces telles que `passlib`. Voici comment vous pouvez hacher un mot de passe avec `passlib` :
+Pyramid n'inclut pas directement de fonctionnalités de hachage des mots de passe, mais nous pouvons utiliser des bibliothèques Python tierces telles que `passlib`. Voici comment nous pouvons hacher un mot de passe avec `passlib` :
 
 ```python
 from passlib.hash import pbkdf2_sha256
@@ -735,7 +735,7 @@ Cette fonction prend un mot de passe en entrée et renvoie le hash correspondant
 
 1. Installons la bibliothèque `passlib` avec `pip install passlib`.
 2. Écrivons une fonction qui accepte un mot de passe en entrée, le hache avec `passlib` et retourne le hash.
-3. Écrivons une autre fonction qui accepte un mot de passe et un hash, et vérifie si le mot de passe correspond au hash. Vous pouvez utiliser la fonction `pbkdf2_sha256.verify(password, hash)` de `passlib` pour cela.
+3. Écrivons une autre fonction qui accepte un mot de passe et un hash, et vérifie si le mot de passe correspond au hash. Nous pouvons utiliser la fonction `pbkdf2_sha256.verify(password, hash)` de `passlib` pour cela.
 4. Testons nos fonctions avec différents mots de passe.
 
 ## 5.3 Prévention des attaques CSRF avec pyramid.csrf
@@ -760,9 +760,9 @@ Pyramid fournit un module, `pyramid.csrf`, pour aider à prévenir les attaques 
 
 ### 5.3.4 Exercices pratiques sur la prévention des attaques CSRF
 
-1. Modifiez un formulaire dans votre application pour inclure un jeton CSRF. Assurez-vous que le jeton est correctement envoyé lorsque le formulaire est soumis.
-2. Ajoutez une vérification CSRF dans la fonction de vue qui traite les soumissions de formulaires. Testez votre application pour vous assurer qu'elle rejette les soumissions de formulaires qui ne comprennent pas le bon jeton CSRF.
-3. Pensez à d'autres endroits de votre application où vous pourriez être vulnérable aux attaques CSRF. Comment pourriez-vous utiliser `pyramid.csrf` pour renforcer la sécurité de ces zones ?
+1. Modifions un formulaire dans votre application pour inclure un jeton CSRF. Assurons-nous que le jeton est correctement envoyé lorsque le formulaire est soumis.
+2. Ajoutons une vérification CSRF dans la fonction de vue qui traite les soumissions de formulaires. Testons notre application pour vous assurer qu'elle rejette les soumissions de formulaires qui ne comprennent pas le bon jeton CSRF.
+3. Pensons à d'autres endroits de votre application où nous pourrions être vulnérable aux attaques CSRF. Comment pourrions-nous utiliser `pyramid.csrf` pour renforcer la sécurité de ces zones ?
 
 ## 5.4.  Validation et assainissement des entrées des utilisateurs
 
@@ -770,13 +770,11 @@ Pyramid fournit un module, `pyramid.csrf`, pour aider à prévenir les attaques 
 
 La validation et l'assainissement des entrées sont essentiels pour maintenir la sécurité de votre application. Sans une validation appropriée, les attaquants pourraient insérer des données malveillantes, comme des scripts, dans votre application, ce qui pourrait conduire à des attaques de type Cross-site Scripting (XSS). L'assainissement des données, d'autre part, garantit que les données entrées par les utilisateurs sont sûres avant qu'elles ne soient utilisées par votre application.
 
-@TODO continuer mettre en forme
-
-**Comment valider les entrées des utilisateurs dans Pyramid**
+### 5.4.2 Comment valider les entrées des utilisateurs dans Pyramid
 
 La validation des entrées des utilisateurs peut être réalisée à l'aide de différents outils. Un choix populaire pour la validation des données en Python est la bibliothèque `colander`.
 
-Voici un exemple de la façon dont vous pouvez utiliser `colander` pour définir un schéma de validation pour un formulaire de connexion :
+Voici un exemple de la façon dont nous pouvons utiliser `colander` pour définir un schéma de validation pour un formulaire de connexion :
 
 ```python
 import colander
@@ -788,46 +786,430 @@ class LoginForm(colander.Schema):
 
 Ce schéma spécifie que le formulaire de connexion doit avoir un champ "username" et un champ "password", et que tous les deux doivent être des chaînes de caractères.
 
-**Comment assainir les entrées des utilisateurs**
+### 5.4.3 Comment assainir les entrées des utilisateurs
 
 L'assainissement des entrées des utilisateurs est tout aussi important que la validation. L'assainissement fait référence à la suppression ou à l'échappement des caractères potentiellement dangereux des entrées de l'utilisateur. 
 
 Dans le contexte de Pyramid et des modèles de pages web, l'assainissement est souvent pris en charge automatiquement par le moteur de templates. Par exemple, le moteur de templates Chameleon, largement utilisé avec Pyramid, échappe automatiquement les variables insérées dans les templates, ce qui aide à prévenir les attaques XSS.
 
-**Exercices pratiques sur la validation et l'assainissement des entrées des utilisateurs**
+### 5.4.4 Exercices pratiques sur la validation et l'assainissement des entrées des utilisateurs
+1. Utilisons `colander` pour définir des schémas de validation pour d'autres formulaires de votre application. Testons notre application pour vous assurer que la validation fonctionne correctement.
 
-1. Utilisez `colander` pour définir des schémas de validation pour d'autres formulaires de votre application. Testez votre application pour vous assurer que la validation fonctionne correctement.
+2. Recherchons comment nous pouvons assainir les entrées des utilisateurs dans d'autres contextes, comme lors de l'exécution de requêtes SQL. 
 
-2. Recherchez comment vous pouvez assainir les entrées des utilisateurs dans d'autres contextes, comme lors de l'exécution de requêtes SQL. 
-
-3. Pensez à des scénarios dans lesquels l'assainissement automatique par le moteur de templates pourrait ne pas être suffisant. Comment pourriez-vous gérer ces scénarios pour assurer la sécurité de votre application ?
+3. Pensons à des scénarios dans lesquels l'assainissement automatique par le moteur de templates pourrait ne pas être suffisant. Comment pourrions-nous gérer ces scénarios pour assurer la sécurité de notre application ?
 
 ## 5.5 Révision et exercices pratiques
 
 ### 5.5.1 Révision des concepts clés de la semaine
 
-Nous avons abordé beaucoup de sujets cette semaine, y compris la protection des données des utilisateurs, le hachage des mots de passe, la prévention des attaques CSRF avec pyramid.csrf, et la validation et l'assainissement des entrées des utilisateurs.
+Nous avons abordé beaucoup de sujets, y compris la protection des données des utilisateurs, le hachage des mots de passe, la prévention des attaques CSRF avec pyramid.csrf, et la validation et l'assainissement des entrées des utilisateurs.
 
-Prenez le temps de revoir ces concepts et de vous assurer que vous comprenez comment ils s'appliquent à vos propres projets. Il est essentiel de comprendre ces principes de sécurité pour créer des applications web sécurisées.
+Prenons le temps de revoir ces concepts et de nous assurer que nous comprenons comment ils s'appliquent à nos propres projets. Il est essentiel de comprendre ces principes de sécurité pour créer des applications web sécurisées.
 
-**Exercices pratiques : Création d'une application simple avec une authentification sécurisée et une protection des données**
+### 5.5.2 Exercices pratiques : Création d'une application simple avec une authentification sécurisée et une protection des données
 
-Pour cet exercice pratique, nous vous demandons de créer une petite application qui met en œuvre tout ce que nous avons appris cette semaine. Votre application devrait avoir les caractéristiques suivantes :
+Pour cet exercice pratique, nous devons créer une petite application qui met en œuvre tout ce que nous avons appris cette semaine. Notre application devrait avoir les caractéristiques suivantes :
 
 - Une page de connexion où les utilisateurs peuvent entrer leur nom d'utilisateur et leur mot de passe.
 - Les mots de passe des utilisateurs doivent être hachés avant d'être stockés.
 - Les entrées des utilisateurs doivent être validées et assainies.
 - L'application doit utiliser pyramid.csrf pour prévenir les attaques CSRF.
-- Vous pouvez choisir d'implémenter d'autres fonctionnalités pour pratiquer les compétences que vous avez acquises lors de ce cours.
+- Nous pouvons choisir d'implémenter d'autres fonctionnalités pour pratiquer les compétences que nous avons acquises lors de ce cours.
 
-**Questions et réponses pour clarifier les doutes et les concepts confus**
+### 5.5.3 Correction
+Voici une solution possible pour l'exercice proposé, mais notons que la mise en œuvre spécifique peut varier en fonction de nombreux facteurs, tels que les exigences spécifiques du projet, les préférences personnelles, et plus encore. Voici une version de base.
 
-Si vous avez des questions sur ce que nous avons appris cette semaine, n'hésitez pas à les poser. Il est important de comprendre ces concepts de sécurité, donc si quelque chose n'est pas clair, assurez-vous de le clarifier avant de passer à autre chose.
+```python
+from pyramid.security import Allow, Everyone
+from pyramid.httpexceptions import HTTPFound
+from pyramid.view import (
+    view_config,
+    view_defaults
+)
+from pyramid.session import SignedCookieSessionFactory
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
+from passlib.hash import pbkdf2_sha256
 
-Enfin, nous vous encourageons à continuer à explorer ces concepts par vous-même. La sécurité est un domaine vaste et en constante évolution, et il y a toujours plus à apprendre. Bon travail cette semaine, et bonne chance pour vos projets futurs !
+my_session_factory = SignedCookieSessionFactory('mysecrect')
+authentication_policy = AuthTktAuthenticationPolicy('sosecret')
+authorization_policy = ACLAuthorizationPolicy()
+
+# Your main function
+def main(global_config, **settings):
+    config = Configurator(settings=settings,
+                          root_factory=MyFactory,
+                          session_factory=my_session_factory,
+                          authentication_policy=authentication_policy,
+                          authorization_policy=authorization_policy)
+    config.include('pyramid_chameleon')
+    config.add_route('home', '/')
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')
+    config.scan('.views')
+    return config.make_wsgi_app()
+
+class MyFactory(object):
+    __acl__ = [ (Allow, Everyone, 'view'), 
+                (Allow, 'group:users', 'edit') ]
+    def __init__(self, request):
+        pass
+
+# Views
+@view_defaults(renderer='login.pt')
+class MyViews:
+    def __init__(self, request):
+        self.request = request
+
+    @view_config(route_name='home')
+    def home_view(self):
+        return dict(name="Home View")
+
+    @view_config(route_name='login', request_method='POST')
+    def login(self):
+        username = self.request.params['username']
+        password = self.request.params['password']
+        hashed = pbkdf2_sha256.hash(password)
+        # Supposons que le nom d'utilisateur est 'user' et le mot de passe est 'password'
+        if username == "user" and pbkdf2_sha256.verify(password, hashed):
+            headers = remember(self.request, userid=username)
+            return HTTPFound(location=self.request.route_url('home'), headers=headers)
+        return HTTPFound(location=self.request.route_url('login'))
+
+    @view_config(route_name='logout')
+    def logout(self):
+        headers = forget(self.request)
+        return HTTPFound(location=self.request.route_url('home'), headers=headers)
+```
+
+Dans ce code, nous définissons une application Pyramid simple avec des routes pour l'accueil, la connexion et la déconnexion. Lorsqu'un utilisateur se connecte, le mot de passe entré est haché et vérifié avec le mot de passe haché stocké (dans cet exemple simplifié, nous supposons que le nom d'utilisateur est 'user' et le mot de passe est 'password'). Si la vérification réussit, l'utilisateur est redirigé vers la page d'accueil avec les headers d'authentification appropriés.
+
+Notons que c'est une application très simplifiée et dans une application réelle, nous aurions des mécanismes pour gérer les utilisateurs et les mots de passe de manière plus sécurisée et efficace. De plus, ce code ne prend pas en compte la validation et l'assainissement des entrées des utilisateurs, qui seraient également importants dans une application réelle.
+
+# 6. Introduction à LDAP et OpenLDAP
+
+## 6.1 Qu'est-ce que LDAP ?
+
+LDAP, pour Lightweight Directory Access Protocol, est un protocole standard ouvert, largement utilisé pour accéder et gérer les services d'annuaire sur Internet. Il est utilisé pour stocker, organiser et récupérer des informations complexes sur les utilisateurs et les ressources à partir d'un annuaire centralisé.
+
+Dans le contexte de notre cours, nous pouvons imaginer LDAP comme un système pour gérer les informations d'authentification et d'autorisation de nos utilisateurs. Au lieu de stocker ces informations dans notre base de données Pyramid, nous pourrions les stocker dans un annuaire LDAP.
+
+Dans LDAP, les données sont organisées de manière hiérarchique et structurée, ce qui facilite l'organisation et la recherche d'informations. Chaque entrée dans l'annuaire LDAP est identifiée de manière unique par son DN (Distinguished Name), qui suit une structure hiérarchique.
+
+Quelques concepts clés à comprendre avec LDAP sont :
+
+1. **Distinguished Name (DN)** : Il s'agit d'un nom unique qui identifie une entrée dans l'annuaire LDAP. Par exemple, `cn=John Doe,ou=users,dc=example,dc=com`.
+
+2. **Common Name (CN)** : Il s'agit du nom de l'entrée, par exemple, "John Doe" dans l'exemple ci-dessus.
+
+3. **Organizational Unit (OU)** : Il s'agit d'une subdivision au sein de l'organisation, par exemple, "users" dans l'exemple ci-dessus.
+
+4. **Domain Component (DC)** : Il s'agit du domaine de niveau supérieur, par exemple, "example.com" dans l'exemple ci-dessus.
+
+Nous proposons ici une introduction très basique à LDAP. Nous explorerons plus en détail LDAP dans la note [[LDAP]] et son implémentation spécifique, OpenLDAP. 
+
+Pour nos exercices de réflexion nous allons utiliser les données utilisateurs suivantes :
+	- Noms,
+	- Prénoms,
+	- Date de naissance,
+	- Nationalité,
+	- Numéro de Coopérateur (attribué par la plate-forme)
+	- Pseudonyme,
+	- Adresse de courriel,
+	- Langue d’interaction de rang 1
+	- Langue d’interaction de rang 2
+	- Prénom d’usage,
+	- Nom d’usage,
+	- Code postal,
+	- Ville
+	- pays de la résidence principale
+	- Texte de profil utilisateur
+	- Image de profil utilisateur / avatar
+
+## 6.2 Introduction à OpenLDAP
+
+OpenLDAP est un projet open source qui implémente le protocole LDAP. Il fournit un serveur d'annuaire robuste et hautement compatible qui peut gérer une grande variété de tâches. C'est une solution flexible, performante et ayant une large base d'utilisateurs.
+
+Pour commencer, nous allons installer OpenLDAP sur un serveur local. Suivons les étapes suivantes pour installer OpenLDAP sur une machine Unix/Linux:
+
+1. Mettons à jour la liste des paquets disponibles sur notre système:
+
+```bash
+sudo apt-get update
+```
+
+2. Installons le paquet OpenLDAP:
+
+```bash
+sudo apt-get install slapd ldap-utils
+```
+
+3. Pendant l'installation, on nous demandera de définir un mot de passe pour l'administrateur du serveur LDAP.
+
+4. Une fois l'installation terminée, nous pouvons vérifier que le serveur LDAP fonctionne correctement en exécutant la commande suivante:
+
+```bash
+sudo service slapd status
+```
+
+   Nous devrions voir que le service slapd est en cours d'exécution.
+
+5. Ensuite, nous devons configurer le serveur LDAP. Exécutons la commande suivante pour lancer l'assistant de configuration:
+
+```bash
+sudo dpkg-reconfigure slapd
+```
+
+   Suivons les instructions à l'écran pour configurer notre serveur. Nous aurons besoin de définir un DN de base pour notre annuaire, par exemple, "dc=monentreprise,dc=com".
+
+## 6.3 Installation et configuration d'OpenLDAP
+
+Nous avons installé OpenLDAP sur nos systèmes, nous allons nous concentrer sur la configuration détaillée de notre serveur OpenLDAP.
+
+Avant de commencer, vérifions que nous avons bien installé les paquets nécessaires. Si ce n'est pas le cas, voici les pré-requis pour l'installation d'OpenLDAP:
+
+- Un système Linux ou Unix : OpenLDAP est généralement utilisé sur ces systèmes, bien qu'il soit possible de l'utiliser sur d'autres systèmes d'exploitation.
+- Les paquets slapd et ldap-utils : Ces paquets sont nécessaires pour installer OpenLDAP.
+
+Dans OpenLDAP, la configuration est stockée dans un format spécial appelé LDIF (LDAP Data Interchange Format). La configuration est stockée dans un sous-arbre de l'annuaire LDAP lui-même, généralement sous "cn=config".
+
+Pour afficher la configuration actuelle, nous pouvons utiliser la commande suivante:
+
+```bash
+sudo ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:/// -b cn=config
+```
+
+Cela devrait afficher une grande quantité de données en format LDIF. Ne nous inquiétons pas, nous allons passer en revue ces informations et les comprendre ensemble.
+
+## 6.4 Comprendre le schéma de données LDAP
+
+### 6.4.1 Qu'est-ce qu'un schéma de données LDAP et pourquoi est-il important ?
+
+Un schéma LDAP est une collection de définitions et de règles qui déterminent la structure des données du service d'annuaire LDAP. Il sert de "plan" pour les données et définit les attributs et les types d'objets qui peuvent être créés et stockés dans l'annuaire.
+
+### 6.4.2 Exploration des composants clés d'un schéma de données LDAP : objets, attributs, classes.
+
+Un schéma LDAP comprend des définitions pour les éléments suivants :
+   - **Attributs :** Ce sont les informations de base stockées pour un objet. Par exemple, un attribut pourrait être "mail" pour stocker une adresse e-mail, ou "cn" pour le nom commun d'un objet.
+   - **Classes d'objets :** Une classe d'objet est un regroupement d'attributs qui définissent un type d'objet particulier. Par exemple, une classe d'objet "personne" peut inclure des attributs comme le nom, le prénom et l'adresse e-mail.
+   - **Types de données :** Chaque attribut a un type de données associé qui contrôle le type d'information qu'il peut stocker.
+
+### 6.4.3. Comment définir et modifier un schéma de données LDAP dans OpenLDAP.
+
+Dans OpenLDAP, nous pouvons définir et modifier notre schéma de données en utilisant le format LDIF que nous avons introduit hier. Par exemple, pour ajouter une nouvelle classe d'objet à notre schéma, nous pourrions utiliser une entrée LDIF comme celle-ci :
+
+```ldif
+dn: cn={5}custom,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: {5}custom
+olcAttributeTypes: ( 1.3.6.1.4.1.99999.1 NAME 'customAttribute' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcObjectClasses: ( 1.3.6.1.4.1.99999.2 NAME 'customObject' SUP inetOrgPerson STRUCTURAL MUST customAttribute )
+```
+
+Cela crée une nouvelle classe d'objet "customObject" qui hérite de la classe "inetOrgPerson" et qui a un nouvel attribut obligatoire "customAttribute".
+
+### 6.4.4 Exercices pratiques : travailler avec des schémas de données LDAP.
+
+Pour nous exercer, essayons de créer une nouvelle classe d'objet dans notre schéma LDAP. Définissons quelques attributs pour cette classe, et créons ensuite quelques objets utilisant cette classe.
+
+# 7. Authentification LDAP
+
+## 7.1 Interaction avec un serveur LDAP en Python
+
+### 7.1.1 Introduction à la bibliothèque ldap3 en Python
+   
+La bibliothèque ldap3 est une bibliothèque Python conçue pour être très facile à utiliser tout en restant très flexible et puissante. Elle est compatible avec Python 2 et 3 et fonctionne avec toutes les versions d'OpenLDAP.
+
+```python
+pip install ldap3
+```
+
+### 7.1.2 Comment se connecter à un serveur LDAP
+
+Après avoir installé la bibliothèque, nous pouvons l'importer dans notre projet Python et l'utiliser pour nous connecter à notre serveur LDAP. Il est préférable de le faire dans un contexte de gestionnaire de ressources Python pour s'assurer que la connexion est correctement fermée lorsqu'elle n'est plus nécessaire.
+
+```python
+from ldap3 import Server, Connection, ALL
+
+server = Server('my_ldap_server', get_info=ALL)
+conn = Connection(server, 'my_user', 'my_password', auto_bind=True)
+```
+
+### 7.1.3 Effectuer des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
+
+Avec une connexion établie, nous pouvons maintenant effectuer des opérations CRUD. Par exemple, pour rechercher un utilisateur, nous pourrions faire :
+
+```python
+conn.search('ou=users,dc=example,dc=com', '(cn=my_user)')
+```
+
+Pour créer, mettre à jour et supprimer des entrées, nous utiliserions respectivement les méthodes `add`, `modify` et `delete` de l'objet `Connection`.
+
+### 7.1.4 Exercices pratiques
+
+Pour cet exercice, nous allons interagir avec un serveur OpenLDAP en utilisant 'ldap3'. Essayons de nous connecter à un serveur OpenLDAP, d'ajouter un nouvel utilisateur, de rechercher cet utilisateur, de modifier l'entrée de l'utilisateur et enfin de supprimer l'utilisateur.
+
+## 7.2 Authentification LDAP avec Pyramid
+
+### 7.2.1. Introduction à l'authentification LDAP avec Pyramid
+
+Dans Pyramid, nous avons besoin d'une politique d'authentification pour vérifier les identifiants des utilisateurs. Nous allons créer une politique d'authentification personnalisée pour notre application qui utilise OpenLDAP pour l'authentification.
+
+### 7.2.2 Création d'une politique d'authentification personnalisée
+
+Pour utiliser l'authentification LDAP avec Pyramid, nous allons créer une politique d'authentification personnalisée. Cette politique aura des méthodes pour obtenir l'ID de l'utilisateur authentifié et pour vérifier les autorisations de l'utilisateur.
+
+```python
+from pyramid.authentication import CallbackAuthenticationPolicy
+from pyramid.security import Everyone
+from ldap3 import Server, Connection, ALL, NTLM
+
+class LdapAuthenticationPolicy(CallbackAuthenticationPolicy):
+	def __init__(self, ldap_server):
+		self.ldap_server = ldap_server
+
+	def authenticated_userid(self, request):
+		user_id = request.cookies.get('user_id')
+		password = request.cookies.get('password')
+
+		server = Server(self.ldap_server, get_info=ALL)
+		conn = Connection(server, user_id, password, authentication=NTLM)
+		conn.bind()
+
+		if conn.bound:
+			return user_id
+
+	def effective_principals(self, request):
+		principals = [Everyone]
+		user_id = self.authenticated_userid(request)
+		if user_id:
+			principals.append(user_id)
+		return principals
+```
+
+### 7.2.3 Utilisation de la politique d'authentification
+
+Nous devons ensuite ajouter notre politique d'authentification à notre application Pyramid. Nous pouvons le faire dans le fichier de configuration principal de notre application.
+
+```python
+from pyramid.config import Configurator
+from .authentication import LdapAuthenticationPolicy
+
+def main(global_config, **settings):
+	config = Configurator(settings=settings)
+	config.set_authentication_policy(LdapAuthenticationPolicy('my_ldap_server'))
+	#...
+```
+
+### 7.2.4 Exercices pratiques
+
+Essayons d'implémenter l'authentification LDAP dans une simple application Pyramid. Nous pouvons commencer par une application Pyramid de base et ajouter l'authentification LDAP à l'aide de la classe `LdapAuthenticationPolicy` que nous avons définie. Testons l'application pour vous assurer que l'authentification fonctionne comme prévu.
+
+## 7.3 Gestion des erreurs d'authentification
+
+### 7.3.1 Introduction à la gestion des erreurs d'authentification
+
+Il est crucial de gérer correctement les erreurs lors de la mise en œuvre de l'authentification. Il existe plusieurs types d'erreurs que nous devons prendre en compte, notamment les erreurs de connexion au serveur LDAP, les erreurs lors de la recherche d'utilisateurs et les erreurs lors de la vérification des mots de passe.
+
+### 7.3.2 Gestion des erreurs de connexion
+
+Si nous ne pouvons pas établir une connexion avec le serveur LDAP, nous devons renvoyer une erreur appropriée. Nous pouvons le faire en utilisant un bloc try/except autour de notre code de connexion.
+
+```python
+try:
+	conn.bind()
+except LDAPException:
+	# Handle the error
+```
+
+### 7.3.3 Gestion des erreurs lors de la recherche d'utilisateurs
+
+Si nous ne trouvons pas l'utilisateur dans le serveur LDAP, nous devons renvoyer une erreur appropriée. Nous pouvons le faire en vérifiant si la recherche a renvoyé un utilisateur.
+
+```python
+conn.search('ou=users,dc=my-domain,dc=com', '(uid={})'.format(user_id))
+if not conn.entries:
+	# Handle the error
+```
+
+7.3.4 **Gestion des erreurs lors de la vérification des mots de passe**
+
+Si la vérification du mot de passe échoue, nous devons renvoyer une erreur appropriée. Nous pouvons le faire en vérifiant si la méthode `bind()` renvoie `False`.
+
+```python
+if not conn.bind():
+	# Handle the error
+```
+
+# 8. Déploiement de l'application Pyramid
+
+## 8.1 Déploiement d'une application web
+
+Le déploiement consiste à prendre une application qui fonctionne sur notre machine de développement et à la mettre à disposition sur Internet, de sorte que les utilisateurs puissent y accéder. Cela implique généralement de copier l'application sur un serveur web et de configurer ce serveur pour qu'il puisse exécuter l'application.
+
+### 8.1.1 Importance du déploiement
+
+Le déploiement est une étape importante du développement d'une application web. C'est le moment où notre application devient disponible pour le monde entier. Par conséquent, il est essentiel de veiller à ce que notre application soit aussi prête que possible pour le déploiement.
+
+### 8.1.2 Options de déploiement pour Pyramid
+
+Pyramid est un framework web flexible qui peut être déployé de plusieurs façons. Les options de déploiement les plus courantes pour Pyramid sont :
+
+1. **WSGI** : Le serveur d'application Python le plus couramment utilisé. WSGI est l'interface standard entre les serveurs web et les applications web Python.
+2. **uWSGI** : Un serveur d'application rapide et autonome qui peut servir des applications Pyramid.
+3. **Gunicorn** : Un serveur HTTP Python WSGI HTTP pour UNIX.
+4. **mod_wsgi** : Un module Apache qui fournit une interface WSGI pour les applications Python.
+
+Toutes ces options ont leurs avantages et leurs inconvénients. Le choix de l'une ou l'autre dépendra de vos besoins spécifiques.
+
+## 8.2 Configuration de l'environnement de production
+
+### 8.2.1 Introduction
+
+Lorsque nous déployons une application Pyramid, la première étape consiste généralement à configurer l'environnement de production. Cela comprend l'installation de Python, la configuration du serveur web, l'installation des dépendances de l'application et la configuration de l'application elle-même.
+
+### 8.2.2 Installation de Python
+
+Le déploiement d'une application Pyramid nécessite une installation de Python sur votre serveur. La version exacte de Python dont nous avons besoin dépendra de votre application. Pour installer Python, nous pouvons généralement utiliser le gestionnaire de paquets de notre système.
+
+### 8.2.3 Configuration du serveur web
+
+Pour servir notre application Pyramid, nous aurons besoin d'un serveur web. Le choix du serveur web dépend de vos préférences personnelles et des besoins de votre application. Les options populaires incluent Nginx, Apache, et Gunicorn.
+
+### 8.2.4 Installation des dépendances de l'application
+
+Notre application Pyramid dépend probablement de plusieurs packages Python. Nous pouvons installer ces dépendances à l'aide de pip, l'outil d'installation de paquets Python. Il est généralement recommandé de créer un environnement virtuel Python pour notre application afin d'éviter les conflits de dépendances.
+
+### 8.2.5 Configuration de l'application
+
+Enfin, nous devrons configurer votre application pour l'environnement de production. Cela peut inclure des choses comme la configuration des paramètres de connexion à la base de données, la configuration du logging, et la configuration des paramètres spécifiques à l'environnement dans votre fichier de configuration Pyramid.
+
+### 8.3 Déploiement de l'application Pyramid sur un serveur local
+
+### 8.3.1  Introduction
+
+Après avoir configuré l'environnement de production, l'étape suivante consiste à déployer réellement l'application Pyramid sur le serveur. Cela comprend le transfert des fichiers de l'application sur le serveur, l'installation des dépendances, la configuration de l'application pour l'environnement de production et le démarrage du serveur de l'application.
+
+### 8.3.2 Transfert des fichiers de l'application
+
+Il existe de nombreuses façons de transférer les fichiers de votre application sur votre serveur. Une méthode courante consiste à utiliser Git. Nous pouvons simplement pousser notre code sur un dépôt Git, puis le cloner sur notre serveur. Une autre méthode consiste à utiliser SCP (Secure Copy) ou FTP (File Transfer Protocol) pour transférer directement les fichiers.
+
+### 8.3.3 Installation des dépendances
+
+Une fois que nous avons transféré les fichiers de l'application, nous devrons installer les dépendances. Cela peut être fait en utilisant pip à l'intérieur de l'environnement virtuel que nous avons créé. Si nous avons un fichier `requirements.txt`, nous pouvons installer toutes les dépendances en une seule fois en utilisant la commande `pip install -r requirements.txt`.
+
+### 8.3.4 Configuration de l'application
+
+La configuration de notre application pour l'environnement de production peut nécessiter quelques étapes supplémentaires. Par exemple, nous devrons peut-être configurer la connexion à la base de données, les informations d'authentification ou autres paramètres spécifiques à l'environnement. 
+
+### 8.3.5 Démarrage du serveur de l'application
+
+Une fois que tout est en place, nous pouvons démarrer notre application Pyramid. La façon exacte de le faire dépend de la façon dont nous avons configuré notre serveur web. Par exemple, si nous utilisons Gunicorn, nous pouvons démarrer notre application en utilisant la commande `gunicorn myapp:app`.
+
 @TODO Fusionner
 
-Une fois installé, nous pouvons commencer à créer notre première application Pyramid. Créez un nouveau fichier Python et appelez-le `my_first_pyramid_app.py`. Dans ce fichier, importez les modules nécessaires et définissez une vue.
+Une fois installé, nous pouvons commencer à créer notre première application Pyramid. Créons un nouveau fichier Python et appelons-le `my_first_pyramid_app.py`. Dans ce fichier, importons les modules nécessaires et définissons une vue.
 
 ```python
 from wsgiref.simple_server import make_server
@@ -957,8 +1339,6 @@ Ici, `request.matchdict` est un dictionnaire qui contient les parties variables 
 
 Ensemble, le routage et les vues forment un système puissant pour gérer les requêtes web. En combinant des routes dynamiques avec des vues personnalisées, nous pouvons créer des applications web complexes avec Pyramid.
 
-Comme toujours, n'hésitez pas à poser des questions si nous en avons. Nous continuerons à approfondir ces concepts dans nos prochaines leçons. Bonne programmation !
-
 # Wsgi
 Bien sûr, il serait crucial d'expliquer le concept de WSGI (Web Server Gateway Interface) dans le cadre de l'enseignement du framework Pyramid. 
 
@@ -1056,12 +1436,13 @@ Ensuite, nous pouvons utiliser la méthode `authenticated_userid(request)` pour 
 user_id = request.authenticated_userid
 ```
 
-Notez que tout système d'authentification devrait également implémenter un certain nombre de contrôles de sécurité pour protéger les données sensibles, tels que le hachage des mots de passe, le cryptage des données de session et la protection contre les attaques CSRF, comme nous l'avons mentionné précédemment.
+Notons que tout système d'authentification devrait également implémenter un certain nombre de contrôles de sécurité pour protéger les données sensibles, tels que le hachage des mots de passe, le cryptage des données de session et la protection contre les attaques CSRF, comme nous l'avons mentionné précédemment.
 
 # Coupler l'authentification avec OpenLDAP
+
 Pour coupler l'authentification Pyramid avec un serveur OpenLDAP, nous devrions utiliser une bibliothèque qui permet à votre application Python de communiquer avec le serveur LDAP. Une option est `python-ldap`, une interface vers les bibliothèques OpenLDAP.
 
-Premièrement, installez `python-ldap` avec pip :
+Premièrement, installons `python-ldap` avec pip :
 
 ```shell
 pip install python-ldap
@@ -1114,7 +1495,7 @@ def main(global_config, **settings):
 
 Rappelons-nous que ce code est une implémentation très simple et que nous aurons probablement besoin de le personnaliser en fonction de nos besoins. En particulier, nous devrions gérer les situations où le nom d'utilisateur ou le mot de passe ne sont pas fournis, et nous voudrions probablement mettre en place une interface utilisateur pour permettre aux utilisateurs de se connecter.
 
-De plus, veuillez noter que la communication avec le serveur LDAP doit se faire sur une connexion sécurisée (par exemple, LDAPS ou StartTLS) pour protéger les informations d'identification des utilisateurs. Dans l'exemple ci-dessus, nous avons désactivé la vérification du certificat pour la simplicité, mais dans une application réelle, nous devrions toujours vérifier le certificat du serveur.
+De plus, notons que la communication avec le serveur LDAP doit se faire sur une connexion sécurisée (par exemple, LDAPS ou StartTLS) pour protéger les informations d'identification des utilisateurs. Dans l'exemple ci-dessus, nous avons désactivé la vérification du certificat pour la simplicité, mais dans une application réelle, nous devrions toujours vérifier le certificat du serveur.
 
 ## Code avec vérification des certificats
 
@@ -1168,7 +1549,7 @@ def main(global_config, **settings):
     return config.make_wsgi_app()
 ```
 
-Encore une fois, veuillez noter que ce code est une implémentation simple. Dans une application réelle, nous aurons probablement besoin de gérer les erreurs de manière plus robuste et de fournir une interface utilisateur pour la connexion. De plus, les informations d'identification des utilisateurs ne doivent jamais être manipulées ou stockées de manière non sécurisée.
+Encore une fois, notons que ce code est une implémentation simple. Dans une application réelle, nous aurons probablement besoin de gérer les erreurs de manière plus robuste et de fournir une interface utilisateur pour la connexion. De plus, les informations d'identification des utilisateurs ne doivent jamais être manipulées ou stockées de manière non sécurisée.
 
 # Ce que signifie manipuler les données utilisateur de manière sécurisée
 Manipuler les données utilisateur de manière sécurisée est essentiel pour protéger la confidentialité et l'intégrité des données des utilisateurs. Voici quelques pratiques importantes pour manipuler les données utilisateur de manière sécurisée :
@@ -1179,9 +1560,9 @@ Manipuler les données utilisateur de manière sécurisée est essentiel pour pr
 
 **3. Validez les entrées des utilisateurs** : Les entrées des utilisateurs sont une source courante de vulnérabilités. Nous devons toujours valider les entrées des utilisateurs pour nous assurer qu'elles sont dans le format attendu et ne contiennent pas de code malveillant. Cela est particulièrement important pour prévenir les attaques d'injection, comme l'injection SQL.
 
-**4. Limitez l'accès aux données** : Utilisez le principe du moindre privilège pour limiter l'accès aux données utilisateur. Cela signifie que chaque utilisateur ou processus ne devrait avoir que les privilèges minimum nécessaires pour effectuer sa tâche.
+**4. Limitez l'accès aux données** : Utilisons le principe du moindre privilège pour limiter l'accès aux données utilisateur. Cela signifie que chaque utilisateur ou processus ne devrait avoir que les privilèges minimum nécessaires pour effectuer sa tâche.
 
-**5. Gérez les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur votre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluez pas de détails sur la structure de votre base de données dans les messages d'erreur.
+**5. Gérez les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur votre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluons pas de détails sur la structure de votre base de données dans les messages d'erreur.
 
 **6. Utilisez les mises à jour et les patchs de sécurité** : Assurons-nous que notre système est toujours à jour avec les dernières mises à jour et les derniers patchs de sécurité. Les anciennes versions des logiciels peuvent contenir des vulnérabilités connues qui peuvent être exploitées par des attaquants.
 
@@ -1206,7 +1587,7 @@ Le déploiement d'une application Pyramid peut impliquer plusieurs étapes, selo
 
 7. **Mettre en place la surveillance et les journaux** : Une fois que votre application est déployée, nous devrons la surveiller pour nous assurer qu'elle fonctionne correctement. Cela peut impliquer la mise en place de journaux, l'utilisation d'outils de surveillance comme Prometheus ou Datadog, et la configuration des alertes pour nous informer des problèmes.
 
-Notez que le déploiement est un sujet vaste et que les détails spécifiques peuvent varier considérablement en fonction de votre environnement et de nos exigences. Les points ci-dessus sont destinés à être une vue d'ensemble de haut niveau du processus et ne sont pas une liste exhaustive de toutes les étapes potentielles du déploiement.
+Notons que le déploiement est un sujet vaste et que les détails spécifiques peuvent varier considérablement en fonction de votre environnement et de nos exigences. Les points ci-dessus sont destinés à être une vue d'ensemble de haut niveau du processus et ne sont pas une liste exhaustive de toutes les étapes potentielles du déploiement.
 
 # Pyramid et Docker
 Docker est une excellente option pour déployer des applications Pyramid car il nous permet d'encapsuler votre application et toutes ses dépendances dans un conteneur, ce qui facilite le déploiement et l'exécution de votre application dans divers environnements.
@@ -1252,4 +1633,4 @@ docker run -p 6543:6543 my-pyramid-app
 
 Cela démarre votre application Pyramid dans un conteneur Docker et expose le port 6543 pour que nous puissions y accéder.
 
-Veuillez noter que la manière dont nous structurons notre `Dockerfile` et la façon dont nous utilisons Docker peuvent varier en fonction de nos besoins spécifiques. Par exemple, si nous utilisons une base de données, nous devrons probablement configurer votre application pour qu'elle puisse y accéder, et nous pourrions utiliser Docker Compose pour gérer à la fois votre application et votre base de données.
+Notons que la manière dont nous structurons notre `Dockerfile` et la façon dont nous utilisons Docker peuvent varier en fonction de nos besoins spécifiques. Par exemple, si nous utilisons une base de données, nous devrons probablement configurer votre application pour qu'elle puisse y accéder, et nous pourrions utiliser Docker Compose pour gérer à la fois votre application et votre base de données.
