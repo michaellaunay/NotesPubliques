@@ -1,10 +1,11 @@
-Plan de cours structuré autour de l'idée de développer une application d'authentification de membres utilisant Pyramid et OpenLDAP.
+Plan de cours structuré autour du développement d'une application d'authentification de membres utilisant Pyramid et OpenLDAP.
 
 **1. Introduction à Pyramid et au développement web Python**
 - Introduction à Pyramid : qu'est-ce que c'est, pourquoi l'utiliser.
+- Historique de Pyramid et du projet Pylons.
 - Installation et configuration de Pyramid.
 - Structure de base d'une application Pyramid.
-- Votre première application Pyramid.
+- notre première application Pyramid.
 
 **2. Les Routes et Vues dans Pyramid**
 - Comprendre le mécanisme de routage dans Pyramid.
@@ -57,23 +58,37 @@ Objectifs :
 
 ### 1.1.1 Qu'est-ce que Pyramid ?
 
-Pyramid est un framework de développement web en Python, tout comme Django ou Flask, mais il se distingue par sa flexibilité et son minimalisme. Le slogan de Pyramid est "Commencez petit, terminez grand", ce qui signifie que nous pouvons utiliser Pyramid pour construire des applications simples et petites, mais aussi des applications web complexes et performantes.
+Pyramid est un cadre de développement ("framework") web en Python, tout comme Django ou Flask, mais il se distingue par sa flexibilité et son minimalisme. Le slogan de Pyramid est "Commencez petit, terminez grand", ce qui signifie que nous pouvons utiliser Pyramid pour construire des applications simples et petites, mais aussi des applications web complexes et performantes.
 
-### 1.1.2 Pourquoi utiliser Pyramid ?
+### 1.1.2 Historique de Pyramid et du projet Pylons
 
-Il y a plusieurs raisons pour lesquelles nous pourrions choisir d'utiliser Pyramid pour votre projet :
+Pyramid, initialement appelé "repoze.bfg", est le successeur du framework Pylons datant de 2005. Il a rapidement remplacé le framework Pylons des projets Pylons qui l'hébergeaient. C'est pourquoi nous trouverez souvent des références au "Projet Pylons" et au "framework Pylons" dans la documentation de Pyramid, en raison de cet héritage.
 
-1. **Flexibilité** : Contrairement à certains autres frameworks, Pyramid ne nous oblige pas à utiliser un certain ensemble d'outils ou de bibliothèques. Nous pouvons choisir ceux qui conviennent le mieux à votre projet.
+Initialement "repoze.bfg" faisait partie du projet Repoze, qui visait à apporter les technologies et les concepts du monde Zope/Plone au reste de la communauté Python.
+
+Pyramid a été conçu pour surmonter certaines des limitations de Pylons, en étant minimaliste et en permettant aux développeurs d'ajouter uniquement les composants nécessaires pour leurs applications, sans pour autant restreindre le choix.
+
+Pyramid permet aux développeurs de choisir parmi une variété de modèles, de systèmes de stockage de données et de systèmes d'authentification.
+
+C'est en 2011 que repoze.bfg a été rebaptisé Pyramid et est devenu le cadre de développement principal du projet Pylons. Depuis lors, le développement du framework Pylons a été interrompu et toute l'attention s'est tournée vers Pyramid.
+
+Depuis sa création, Pyramid a été utilisé pour développer une grande variété d'applications, allant de petites applications web à de vastes applications d'entreprise.
+
+### 1.1.3 Pourquoi utiliser Pyramid ?
+
+Il y a plusieurs raisons pour lesquelles nous pourrions choisir d'utiliser Pyramid pour notre projet :
+
+1. **Flexibilité** : Contrairement à certains autres frameworks, Pyramid ne nous oblige pas à utiliser un certain ensemble d'outils ou de bibliothèques. Nous pouvons choisir ceux qui conviennent le mieux à notre projet.
 
 2. **Évolutivité** : Pyramid est conçu pour être capable de gérer à la fois des applications simples et petites, et des applications très complexes et de grande taille.
 
 3. **Simplicité** : Bien que Pyramid soit capable de gérer des applications complexes, il reste simple à utiliser pour les applications plus simples. Il est également relativement facile à apprendre, surtout si nous avons déjà une certaine expérience avec Python.
 
-### 1.1.3 Où se situe Pyramid par rapport aux autres frameworks Python ?
+### 1.1.4 Où se situe Pyramid par rapport aux autres frameworks Python ?
 
 Si nous comparons Pyramid à d'autres frameworks populaires comme Django et Flask, on pourrait dire que Pyramid se situe quelque part entre les deux. Flask est souvent décrit comme un "micro" framework, ce qui signifie qu'il est minimaliste et laisse beaucoup de liberté à l'utilisateur, tandis que Django est un framework "batteries included", ce qui signifie qu'il fournit une grande quantité de fonctionnalités intégrées. Pyramid, quant à lui, se situe entre les deux : il est plus riche en fonctionnalités que Flask, mais moins prescriptif que Django.
 
-### 1.1.4 Architecture de Pyramid
+### 1.1.5 Architecture de Pyramid
 
 L'architecture de Pyramid est basée sur le modèle de conception "colle et outils". Cela signifie que Pyramid fournit les outils de base pour construire une application web, mais il nous laisse la liberté de choisir comment nous voulons les assembler. Les composants de base d'une application Pyramid sont les "routes", qui définissent comment les URL sont traduites en actions, et les "vues", qui génèrent les réponses aux requêtes.
 
@@ -83,7 +98,7 @@ L'architecture de Pyramid est basée sur le modèle de conception "colle et outi
 
 Tout d'abord, nous avons besoin de Python pour développer avec Pyramid. Python est le langage de programmation sur lequel Pyramid est construit. Pour installer Python, rendons-nous sur le site officiel de Python (https://www.python.org/) et téléchargons la dernière version. Assurons-nous que Python est bien installé en ouvrant une console ou un terminal et en tapant `python --version`.
 
-Maintenant que nous avons Python, nous allons installer un environnement virtuel. Un environnement virtuel est un espace isolé où nous pouvons installer les dépendances de votre projet sans interférer avec les autres projets sur votre machine. Nous pouvons installer l'environnement virtuel en utilisant la commande suivante :
+Maintenant que nous avons Python, nous allons installer un environnement virtuel. Un environnement virtuel est un espace isolé où nous pouvons installer les dépendances de notre projet sans interférer avec les autres projets sur notre machine. Nous pouvons installer l'environnement virtuel en utilisant la commande suivante :
 
 ```bash
 python -m venv myenv
@@ -96,39 +111,152 @@ Ceci créera un nouvel environnement virtuel dans un dossier nommé `myenv`. Pou
 
 ### 1.2.2 Installation de Pyramid
 
-Maintenant que nous avons notre environnement virtuel prêt, nous pouvons installer Pyramid. Pyramid peut être installé en utilisant `pip`, le gestionnaire de paquets Python. Exécutons la commande suivante pour installer Pyramid :
+Pyramid peut être installé en utilisant `pip`, le gestionnaire de paquets Python :
 
 ```bash
 pip install pyramid
 ```
 
-### 1.2.3 Configuration de l'environnement de développement
+### 1.2.3 Installation de Cookiecutter
 
-Pour développer une application Pyramid, nous pouvons utiliser n'importe quel éditeur de texte ou environnement de développement intégré (IDE) de votre choix. Certains des IDE populaires pour le développement Python incluent PyCharm, [[Visual studio code]], et Atom. Choisissons celui avec lequel nous sommes le plus à l'aise.
+La communauté Pyramide fournit des modèles de projets utilisables avec l'outil [cookiecutter](https://github.com/cookiecutter/cookiecutter)
 
-En plus de l'IDE, il est important de configurer les outils de débogage et de test. Pour le débogage, Pyramid est livré avec un débogueur intégré que nous pouvons activer dans votre fichier de configuration. Pour les tests, nous pouvons utiliser `pytest`, un framework de test populaire pour Python.
+Cookiecutter est un outil en ligne de commande de création de projets à partir de modèles pré-existants, appelés "cookiecutters". Il nous permet de définir des valeurs par défaut et des variables personnalisables pour nos projets.
+
+Dans le contexte de Pyramid, le projet Pylons propose plusieurs modèles cookiecutter que nous pouvons utiliser pour générer un projet. Ces modèles facilitent la mise en place de la structure de notre application, nous permettant de nous concentrer sur la logique de notre application plutôt que sur l'aspect configuration.
+
+Pour installer Cookiecutter
+```bash
+pip install cookieCutter
+```
+
+### 1.2.4 Création d'un Projet Pyramid avec Cookiecutter
+
+Le projet Pylons propose plusieurs modèles de cookiecutter. Chaque modèle fait différentes suppositions sur le type d'application que nous essayez de créer. Par exemple, il existe des modèles pour SQLAlchemy avec SQLite, ou ZODB comme mécanisme de persistance, ou encore différentes bibliothèques de templates comme Jinja2, Chameleon, ou Mako.
+
+Pour générer un nouveau projet Pyramid, nous utiliserez la commande `cookiecutter` suivie de l'URL du dépôt de la recette cookiecutter correspondant au type de projet que nous souhaitez créer.
+Par exemple, pour créer un projet, il faut utiliser cookiecutter "pyramid-cookiecutter-starter" :
+
+```bash
+#Dans l'environnement virtuel
+cookiecutter gh:Pylons/pyramid-cookiecutter-starter
+```
+
+Ensuite, Cookiecutter nous posera une série de questions pour configurer notre projet. Par exemple, il nous demandera le nom du projet, le nom du dépôt, et le langage de template à utiliser. Nous détaillons ci après ces variables. Pour la plupart de ces questions, nous pouvez simplement appuyer sur Entrée pour accepter la valeur par défaut.
+
+Une fois que nous avez répondu à toutes les questions, Cookiecutter créera un nouveau répertoire avec le même nom que le nom du projet que nous avez donné. Ce répertoire contient toute la structure de base de notre projet Pyramid, y compris la configuration, les fichiers de démarrage et le squelette de notre application.
+
+À partir de là, nous pouvez commencer à développer notre application Pyramid. nous pouvez activer notre environnement virtuel, installer les dépendances de notre projet avec `pip install -e .`, et démarrer le serveur de développement avec `pserve`.
+
+### 1.2.5 Exemple de création d'un projet avec Cookiecuter
+
+Création d'un environnement de développement.
+```bash
+python3 -m venv pyramid
+```
+
+Activation de l'environnement.
+
+```bash
+source pyramid/bin/activate
+```
+
+Mise à jour de celui-ci.
+
+```bash
+pip install --upgrade pip setuptools
+```
+
+Installation de  Pyramid.
+
+```bash
+pip install pyramid
+```
+
+Installation de Cookicutter.
+
+```bash
+pip install cookiecutter
+cookiecutter gh:Pylons/pyramid-cookiecutter-starter
+```
+
+Ici on sélectionne, les template Chamelon et la base de données objet ZODB.
+
+```
+project_name: MonSuperProjet
+repo_name: mon_super_projet
+Select template_language:
+2 - chameleon
+Choose from 1, 2, 3 [1]: 2
+Select backend:
+3 - zodb
+Choose from 1, 2, 3 [1]: 3
+```
+
+Création de l'environnement de test.
+
+```bash
+bin/pip install -e ".[testing]"
+```
+
+Test d'exécution.
+
+```bash
+bin/pytest
+```
+
+Le résultat est un nombre de tests passés, des warnings, mais aucune erreur.
+
+Lançons l'exécution du serveur.
+```bash
+bin/pserve development.ini
+```
+
+### 1.2.6 Signification des variables Cookicutter
+Lorsque nous exécutons `cookiecutter gh:Pylons/pyramid-cookiecutter-zodb`, un certain nombre de variables sont demandées. Voici ce qu'elles signifient :
+
+1. `repo_name`: Il s'agit du nom du répertoire dans lequel notre projet sera créé. Par convention, ce nom est souvent le même que le nom de notre projet, mais en minuscules et sans espaces ni caractères spéciaux. Il est également utilisé comme le nom de notre dépôt si nous décidons de pousser notre projet vers un système de contrôle de version comme GitHub.
+2. `project_name`: Il s'agit du nom formel de notre projet, tel qu'il apparaîtra dans la documentation, les messages de log, etc. Contrairement à `repo_name`, `project_name` peut contenir des espaces et des caractères spéciaux.
+3. `package_name`: Il s'agit du nom du paquet Python principal de notre projet. C'est le nom que nous utiliserons pour importer notre code dans d'autres fichiers Python. Par convention, ce nom est souvent le même que `repo_name`.
+4. `namespace`: C'est le nom du namespace pour notre projet. Les namespaces sont une fonctionnalité de Python qui permet de regrouper des packages logiquement liés. Il est courant que le nom du namespace soit le même que le nom du projet.
+5. `author`: C'est le nom de l'auteur du projet. Il sera utilisé dans les fichiers de métadonnées du projet.
+6. `author_email`: C'est l'adresse e-mail de l'auteur du projet. Elle sera également utilisée dans les fichiers de métadonnées du projet.
+7. `url`: Il s'agit de l'URL du site Web du projet ou de la page du projet sur un système de contrôle de version comme GitHub.
+8. `license_name`: Il s'agit de la licence sous laquelle notre projet sera distribué.
+9. `python_version`: C'est la version de Python que nous comptons utiliser pour notre projet. 
+10. `pyramid_version`: Il s'agit de la version de Pyramid que nous comptons utiliser pour notre projet.
+11. `zodb_version`: Il s'agit de la version de ZODB que nous comptons utiliser pour notre projet.
+12. `description`: Il s'agit d'une courte description de notre projet qui sera utilisée dans les fichiers de métadonnées du projet.
+
+### 1.2.7 Configuration de l'environnement de développement
+
+Pour développer une application Pyramid, nous pouvons utiliser n'importe quel éditeur de texte ou environnement de développement intégré (IDE) de notre choix. Certains des IDE populaires pour le développement Python incluent PyCharm, [[Visual studio code]], et Atom. Choisissons celui avec lequel nous sommes le plus à l'aise.
+
+En plus de l'IDE, il est important de configurer les outils de débogage et de test. Pour le débogage, Pyramid est livré avec un débogueur intégré que nous pouvons activer dans notre fichier de configuration. Pour les tests, nous pouvons utiliser `pytest`, un framework de test populaire pour Python.
 
 ## 1.3 Structure de base d'une application Pyramid
+
+Avant de créer notre premier projet nous allons survoler l'arborescence des projets Pyramid puis nous utiliserons un utilitaire pour créer notre arborescence.
 
 ### 1.3.1 Comprendre la structure de base d'une application Pyramid
 
 Un projet Pyramid typique est organisé en différents fichiers et dossiers pour séparer les préoccupations et rendre le projet plus maintenable. Voyons quels sont les composants typiques de l'architecture de projet.
 
-1. **Fichier de configuration (.ini)** : Ce fichier est crucial car il contient toutes les configurations de votre application. Il peut définir les paramètres du serveur, les paramètres de débogage, et tout autre paramètre que votre application pourrait avoir besoin. Pyramid utilise généralement deux fichiers de configuration : `development.ini` pour le développement et `production.ini` pour la production.
+1. **Fichier de configuration (.ini)** : Ce fichier est crucial car il contient toutes les configurations de notre application. Il peut définir les paramètres du serveur, les paramètres de débogage, et tout autre paramètre que notre application pourrait avoir besoin. Pyramid utilise généralement deux fichiers de configuration : `development.ini` pour le développement et `production.ini` pour la production.
 
-2. **Fichier d'application (`__init__.py`)** : Il s'agit du point d'entrée de votre application. Ce fichier est généralement utilisé pour configurer et créer une instance de l'application Pyramid.
+2. **Fichier d'application (`__init__.py`)** : Il s'agit du point d'entrée de notre application. Ce fichier est généralement utilisé pour configurer et créer une instance de l'application Pyramid.
 
-3. **Dossier des vues (`views/`)** : Ce dossier contient tous les fichiers de vue de votre application. Les vues sont des fonctions ou des méthodes qui sont appelées en réponse à une requête HTTP.
+3. **Dossier des vues (`views/`)** : Ce dossier contient tous les fichiers de vue de notre application. Les vues sont des fonctions ou des méthodes qui sont appelées en réponse à une requête HTTP.
 
-4. **Dossier des modèles (`models/`)** : Ce dossier contient tous nos modèles de données. Les modèles représentent les données de votre application et définissent comment interagir avec votre base de données.
+4. **Dossier des modèles (`models/`)** : Ce dossier contient tous nos modèles de données. Les modèles représentent les données de notre application et définissent comment interagir avec notre base de données.
 
-5. **Dossier des templates (`templates/`)** : Ce dossier contient tous les templates de votre application. Les templates sont des fichiers qui définissent la structure de la sortie HTML.
+5. **Dossier des templates (`templates/`)** : Ce dossier contient tous les templates de notre application. Les templates sont des fichiers qui définissent la structure de la sortie HTML.
 
 ### 1.3.2 Étude de la structure d'une application Pyramid simple
 
 Pour mieux comprendre ces composants, créons une application Pyramid simple. Cette application aura une seule route (`/`) qui répondra avec un simple "Hello, World!".
 
-1. Créons un nouvel environnement virtuel et installons Pyramid comme nous l'avons fait hier.
+1. Créons un nouvel environnement virtuel et installons Pyramid comme nous l'avons ci-dessus.
 
 2. Créons un nouveau projet Pyramid en utilisant le gabarit de départ "starter" fourni par Pyramid. Nous pouvons le faire en exécutant la commande :
 
@@ -145,7 +273,7 @@ Pour mieux comprendre ces composants, créons une application Pyramid simple. Ce
    - `hello_world/views.py` contient notre vue, qui est une simple fonction qui renvoie "Hello, World!".
 
 
-## 1.4 Votre première application Pyramid
+## 1.4 notre première application Pyramid
 
 Construction d'une application Pyramid "Hello, World!"
 
@@ -219,11 +347,11 @@ Prenons le temps de développer cette application en nous basant sur ce que nous
 
 # 2.1.1 Qu'est-ce qu'une route ?
 
-Une route est essentiellement un moyen de définir comment les requêtes HTTP sont traitées par votre application. Chaque route correspond à une URL ou à un motif d'URL, et à une vue qui est appelée lorsque l'URL est demandée par un navigateur. 
+Une route est essentiellement un moyen de définir comment les requêtes HTTP sont traitées par notre application. Chaque route correspond à une URL ou à un motif d'URL, et à une vue qui est appelée lorsque l'URL est demandée par un navigateur. 
 
 ### 2.1.2 Définir des routes dans Pyramid
 
-Définir des routes dans Pyramid est assez simple. Nous pouvons le faire dans le fichier `__init__.py` de votre application. Par exemple, pour définir une route pour l'URL de base (`/`), nous pouvons ajouter le code suivant à notre fonction `main()` :
+Définir des routes dans Pyramid est assez simple. Nous pouvons le faire dans le fichier `__init__.py` de notre application. Par exemple, pour définir une route pour l'URL de base (`/`), nous pouvons ajouter le code suivant à notre fonction `main()` :
 
 ```python
 config.add_route('home', '/')
@@ -239,7 +367,7 @@ Parfois, nous voulons définir des routes qui correspondent à plusieurs URL. Py
 config.add_route('blog', '/blog/{id}')
 ```
 
-Ici, `{id}` est une variable de routage. Lorsque Pyramid voit une URL qui correspond au motif, il extrait la partie correspondante de l'URL et la stocke dans la variable `id`. Nous pouvons ensuite accéder à cette variable dans votre vue.
+Ici, `{id}` est une variable de routage. Lorsque Pyramid voit une URL qui correspond au motif, il extrait la partie correspondante de l'URL et la stocke dans la variable `id`. Nous pouvons ensuite accéder à cette variable dans notre vue.
 
 ### 2.1.4 Routes statiques et dynamiques
 
@@ -376,7 +504,7 @@ Dans cet exemple, chaque fois qu'une `ValueError` est levée dans notre applicat
 
 ### 2.5.1 Qu'est-ce que Chameleon et pourquoi est-il utilisé avec Pyramid?
 
-Chameleon est un moteur de templates pour Python. Il est flexible, rapide, et conçu pour générer du HTML/XML. Dans Pyramid, Chameleon est utilisé pour faciliter le rendu des vues, ce qui permet de séparer la logique de présentation de la logique métier de votre application.
+Chameleon est un moteur de templates pour Python. Il est flexible, rapide, et conçu pour générer du HTML/XML. Dans Pyramid, Chameleon est utilisé pour faciliter le rendu des vues, ce qui permet de séparer la logique de présentation de la logique métier de notre application.
 
 Chameleon offre une syntaxe riche qui s'appuie sur les standards XML (ZPT, TAL, TALES, METAL) et est donc idéal pour ceux qui sont familiers avec ces technologies. Cependant, il est également intuitif pour ceux qui découvrent ces outils.
 
@@ -477,7 +605,7 @@ Par exemple, si nous avons un formulaire qui peut être soumis à la fois par GE
 
 ### 3.2.4 Exercices pratiques
 
-Nous allons maintenant faire quelques exercices pratiques pour vous aider à vous familiariser avec la manipulation des données de la requête. 
+Nous allons maintenant faire quelques exercices pratiques pour nous aider à nous familiariser avec la manipulation des données de la requête. 
 
 1. Créons une application qui reçoit des données de formulaire et les affiche.
 2. Modifions l'application pour accepter également des données JSON.
@@ -553,7 +681,7 @@ En général, il y a plusieurs types de réponses HTTP que nous pourrions vouloi
 
 ### 3.4.3 Exercices pratiques
 
-Essayons quelques exercices pour vous familiariser avec l'envoi de différents types de réponses :
+Essayons quelques exercices pour nous familiariser avec l'envoi de différents types de réponses :
 
 1. Créons une vue qui renvoie une réponse HTML.
 2. Créons une vue qui renvoie une réponse JSON.
@@ -600,7 +728,7 @@ response.delete_cookie('mon_cookie')
 
 ### 3.5.3 Problèmes de sécurité liés aux cookies
 
-Il est important de noter que les cookies peuvent présenter des risques de sécurité. Par exemple, si un attaquant parvient à voler un cookie de session, il peut usurper l'identité de l'utilisateur. Pour cette raison, il est essentiel de toujours utiliser des communications sécurisées (HTTPS) lors de l'envoi de cookies. De plus, nous pouvons utiliser l'option `secure` lors de la définition d'un cookie pour vous assurer qu'il n'est envoyé que sur une connexion sécurisée.
+Il est important de noter que les cookies peuvent présenter des risques de sécurité. Par exemple, si un attaquant parvient à voler un cookie de session, il peut usurper l'identité de l'utilisateur. Pour cette raison, il est essentiel de toujours utiliser des communications sécurisées (HTTPS) lors de l'envoi de cookies. De plus, nous pouvons utiliser l'option `secure` lors de la définition d'un cookie pour nous assurer qu'il n'est envoyé que sur une connexion sécurisée.
 
 ### 3.5.4 Exercices pratiques
 
@@ -702,7 +830,7 @@ La protection des données des utilisateurs est un ensemble de stratégies et de
 
 ### 5.1.2 Pourquoi est-ce important ?
 
-Protéger les données des utilisateurs est crucial pour plusieurs raisons. Premièrement, c'est une question de respect de la vie privée des utilisateurs. Les utilisateurs ont le droit de savoir comment leurs données sont utilisées et stockées, et ils ont le droit de s'attendre à ce que leurs informations soient protégées. Deuxièmement, c'est une question de conformité légale. De nombreux pays et régions ont des lois strictes sur la protection des données, et les organisations doivent s'y conformer. Enfin, c'est une question de réputation et de confiance. Si les utilisateurs ne font pas confiance à votre application pour protéger leurs données, ils iront ailleurs.
+Protéger les données des utilisateurs est crucial pour plusieurs raisons. Premièrement, c'est une question de respect de la vie privée des utilisateurs. Les utilisateurs ont le droit de savoir comment leurs données sont utilisées et stockées, et ils ont le droit de s'attendre à ce que leurs informations soient protégées. Deuxièmement, c'est une question de conformité légale. De nombreux pays et régions ont des lois strictes sur la protection des données, et les organisations doivent s'y conformer. Enfin, c'est une question de réputation et de confiance. Si les utilisateurs ne font pas confiance à notre application pour protéger leurs données, ils iront ailleurs.
 
 ### 5.1.3 Les principes de base de la protection des données
 
@@ -716,7 +844,7 @@ Le hachage des mots de passe est une technique de sécurité qui transforme les 
 
 ### 5.2.2 Pourquoi avons-nous besoin de hacher les mots de passe ?
 
-Le hachage des mots de passe est une pratique essentielle pour la sécurité des applications. Si les mots de passe sont stockés en texte clair et qu'un attaquant réussit à accéder à votre base de données, il aura accès à tous les comptes utilisateur. Avec le hachage, même si la base de données est compromise, l'attaquant ne verra que les hashes des mots de passe, qui ne peuvent pas être inversés pour obtenir les mots de passe d'origine.
+Le hachage des mots de passe est une pratique essentielle pour la sécurité des applications. Si les mots de passe sont stockés en texte clair et qu'un attaquant réussit à accéder à notre base de données, il aura accès à tous les comptes utilisateur. Avec le hachage, même si la base de données est compromise, l'attaquant ne verra que les hashes des mots de passe, qui ne peuvent pas être inversés pour obtenir les mots de passe d'origine.
 
 ### 5.2.3 Comment effectuer le hachage des mots de passe dans Pyramid
 
@@ -754,21 +882,21 @@ Pyramid fournit un module, `pyramid.csrf`, pour aider à prévenir les attaques 
 
 1. Dans notre fonction de vue, utilisons `request.session.get_csrf_token()` pour obtenir un jeton CSRF.
 
-2. Incluons ce jeton dans le formulaire HTML de votre application, généralement dans un champ caché.
+2. Incluons ce jeton dans le formulaire HTML de notre application, généralement dans un champ caché.
 
 3. Lorsque le formulaire est soumis, vérifions que le jeton CSRF soumis correspond au jeton stocké dans la session. Nous pouvons utiliser `request.session.check_csrf_token()` pour cela.
 
 ### 5.3.4 Exercices pratiques sur la prévention des attaques CSRF
 
-1. Modifions un formulaire dans votre application pour inclure un jeton CSRF. Assurons-nous que le jeton est correctement envoyé lorsque le formulaire est soumis.
-2. Ajoutons une vérification CSRF dans la fonction de vue qui traite les soumissions de formulaires. Testons notre application pour vous assurer qu'elle rejette les soumissions de formulaires qui ne comprennent pas le bon jeton CSRF.
-3. Pensons à d'autres endroits de votre application où nous pourrions être vulnérable aux attaques CSRF. Comment pourrions-nous utiliser `pyramid.csrf` pour renforcer la sécurité de ces zones ?
+1. Modifions un formulaire dans notre application pour inclure un jeton CSRF. Assurons-nous que le jeton est correctement envoyé lorsque le formulaire est soumis.
+2. Ajoutons une vérification CSRF dans la fonction de vue qui traite les soumissions de formulaires. Testons notre application pour nous assurer qu'elle rejette les soumissions de formulaires qui ne comprennent pas le bon jeton CSRF.
+3. Pensons à d'autres endroits de notre application où nous pourrions être vulnérable aux attaques CSRF. Comment pourrions-nous utiliser `pyramid.csrf` pour renforcer la sécurité de ces zones ?
 
 ## 5.4.  Validation et assainissement des entrées des utilisateurs
 
 ### 5.4.1 Pourquoi la validation et l'assainissement des entrées sont-ils importants ?
 
-La validation et l'assainissement des entrées sont essentiels pour maintenir la sécurité de votre application. Sans une validation appropriée, les attaquants pourraient insérer des données malveillantes, comme des scripts, dans votre application, ce qui pourrait conduire à des attaques de type Cross-site Scripting (XSS). L'assainissement des données, d'autre part, garantit que les données entrées par les utilisateurs sont sûres avant qu'elles ne soient utilisées par votre application.
+La validation et l'assainissement des entrées sont essentiels pour maintenir la sécurité de notre application. Sans une validation appropriée, les attaquants pourraient insérer des données malveillantes, comme des scripts, dans notre application, ce qui pourrait conduire à des attaques de type Cross-site Scripting (XSS). L'assainissement des données, d'autre part, garantit que les données entrées par les utilisateurs sont sûres avant qu'elles ne soient utilisées par notre application.
 
 ### 5.4.2 Comment valider les entrées des utilisateurs dans Pyramid
 
@@ -793,7 +921,7 @@ L'assainissement des entrées des utilisateurs est tout aussi important que la v
 Dans le contexte de Pyramid et des modèles de pages web, l'assainissement est souvent pris en charge automatiquement par le moteur de templates. Par exemple, le moteur de templates Chameleon, largement utilisé avec Pyramid, échappe automatiquement les variables insérées dans les templates, ce qui aide à prévenir les attaques XSS.
 
 ### 5.4.4 Exercices pratiques sur la validation et l'assainissement des entrées des utilisateurs
-1. Utilisons `colander` pour définir des schémas de validation pour d'autres formulaires de votre application. Testons notre application pour vous assurer que la validation fonctionne correctement.
+1. Utilisons `colander` pour définir des schémas de validation pour d'autres formulaires de notre application. Testons notre application pour nous assurer que la validation fonctionne correctement.
 
 2. Recherchons comment nous pouvons assainir les entrées des utilisateurs dans d'autres contextes, comme lors de l'exécution de requêtes SQL. 
 
@@ -1104,7 +1232,7 @@ def main(global_config, **settings):
 
 ### 7.2.4 Exercices pratiques
 
-Essayons d'implémenter l'authentification LDAP dans une simple application Pyramid. Nous pouvons commencer par une application Pyramid de base et ajouter l'authentification LDAP à l'aide de la classe `LdapAuthenticationPolicy` que nous avons définie. Testons l'application pour vous assurer que l'authentification fonctionne comme prévu.
+Essayons d'implémenter l'authentification LDAP dans une simple application Pyramid. Nous pouvons commencer par une application Pyramid de base et ajouter l'authentification LDAP à l'aide de la classe `LdapAuthenticationPolicy` que nous avons définie. Testons l'application pour nous assurer que l'authentification fonctionne comme prévu.
 
 ## 7.3 Gestion des erreurs d'authentification
 
@@ -1171,11 +1299,11 @@ Lorsque nous déployons une application Pyramid, la première étape consiste g�
 
 ### 8.2.2 Installation de Python
 
-Le déploiement d'une application Pyramid nécessite une installation de Python sur votre serveur. La version exacte de Python dont nous avons besoin dépendra de votre application. Pour installer Python, nous pouvons généralement utiliser le gestionnaire de paquets de notre système.
+Le déploiement d'une application Pyramid nécessite une installation de Python sur notre serveur. La version exacte de Python dont nous avons besoin dépendra de notre application. Pour installer Python, nous pouvons généralement utiliser le gestionnaire de paquets de notre système.
 
 ### 8.2.3 Configuration du serveur web
 
-Pour servir notre application Pyramid, nous aurons besoin d'un serveur web. Le choix du serveur web dépend de vos préférences personnelles et des besoins de votre application. Les options populaires incluent Nginx, Apache, et Gunicorn.
+Pour servir notre application Pyramid, nous aurons besoin d'un serveur web. Le choix du serveur web dépend de vos préférences personnelles et des besoins de notre application. Les options populaires incluent Nginx, Apache, et Gunicorn.
 
 ### 8.2.4 Installation des dépendances de l'application
 
@@ -1183,7 +1311,7 @@ Notre application Pyramid dépend probablement de plusieurs packages Python. Nou
 
 ### 8.2.5 Configuration de l'application
 
-Enfin, nous devrons configurer votre application pour l'environnement de production. Cela peut inclure des choses comme la configuration des paramètres de connexion à la base de données, la configuration du logging, et la configuration des paramètres spécifiques à l'environnement dans votre fichier de configuration Pyramid.
+Enfin, nous devrons configurer notre application pour l'environnement de production. Cela peut inclure des choses comme la configuration des paramètres de connexion à la base de données, la configuration du logging, et la configuration des paramètres spécifiques à l'environnement dans notre fichier de configuration Pyramid.
 
 ### 8.3 Déploiement de l'application Pyramid sur un serveur local
 
@@ -1193,7 +1321,7 @@ Après avoir configuré l'environnement de production, l'étape suivante consist
 
 ### 8.3.2 Transfert des fichiers de l'application
 
-Il existe de nombreuses façons de transférer les fichiers de votre application sur votre serveur. Une méthode courante consiste à utiliser Git. Nous pouvons simplement pousser notre code sur un dépôt Git, puis le cloner sur notre serveur. Une autre méthode consiste à utiliser SCP (Secure Copy) ou FTP (File Transfer Protocol) pour transférer directement les fichiers.
+Il existe de nombreuses façons de transférer les fichiers de notre application sur notre serveur. Une méthode courante consiste à utiliser Git. Nous pouvons simplement pousser notre code sur un dépôt Git, puis le cloner sur notre serveur. Une autre méthode consiste à utiliser SCP (Secure Copy) ou FTP (File Transfer Protocol) pour transférer directement les fichiers.
 
 ### 8.3.3 Installation des dépendances
 
@@ -1206,6 +1334,73 @@ La configuration de notre application pour l'environnement de production peut n�
 ### 8.3.5 Démarrage du serveur de l'application
 
 Une fois que tout est en place, nous pouvons démarrer notre application Pyramid. La façon exacte de le faire dépend de la façon dont nous avons configuré notre serveur web. Par exemple, si nous utilisons Gunicorn, nous pouvons démarrer notre application en utilisant la commande `gunicorn myapp:app`.
+
+# 9 Exemples de code
+## 9.1 Stockage d'une session en Zodb
+Avant de commencer, assurons-nous d'avoir installé les dépendances requises pour travailler avec Pyramid et ZODB. Si ce n'est pas déjà fait, nous pouvons les installer avec la commande suivante :
+
+```bash
+pip install pyramid pyramid_zodb zodburi
+```
+
+Créons maintenant un petit exemple Pyramid utilisant la ZODB. Pour cet exemple, nous allons stocker un objet `Session` dans la base de données.
+
+Commençons par définir une classe `Session` qui représente une session utilisateur. Cette classe peut être aussi simple ou complexe que nécessaire, mais pour cet exemple, nous allons simplement stocker un `id` de session et un `timestamp` :
+
+```python
+import time
+
+from persistent import Persistent
+
+class Session(Persistent):
+    def __init__(self, session_id):
+        self.session_id = session_id
+        self.timestamp = time.time()
+```
+
+Ensuite, définissons une application Pyramid qui utilise ZODB pour stocker des objets `Session`. Pour cet exemple, nous allons simplement créer une nouvelle session chaque fois que la racine de l'application est visitée :
+
+```python
+from pyramid.config import Configurator
+from pyramid.response import Response
+from pyramid_zodbconn import get_connection
+from ZODB.DB import DB
+from ZODB.MappingStorage import MappingStorage
+from transaction import commit
+
+class MyModel(dict):
+    pass
+
+def root_factory(request):
+    conn = get_connection(request)
+    return conn.root()
+
+def add_session(request):
+    session_id = request.params.get('id', '0')
+    session = Session(session_id)
+    request.root[session_id] = session
+    commit()
+    return Response('Session {} added'.format(session_id))
+
+def get_sessions(request):
+    sessions = [(id, session.timestamp) for id, session in request.root.items()]
+    return Response(str(sessions))
+
+def main(global_config, **settings):
+    """ This function returns a Pyramid WSGI application.
+    """
+    db = DB(MappingStorage())
+    config = Configurator(settings=settings, root_factory=root_factory)
+    config.add_request_method(get_connection, 'zodb_conn', reify=True)
+    config.add_request_method(db, 'db', reify=True)
+    config.add_view(add_session, name='add_session')
+    config.add_view(get_sessions, name='get_sessions')
+    return config.make_wsgi_app()
+```
+
+Dans ce code, `add_session` est une vue qui crée une nouvelle `Session` et l'ajoute à la racine de l'application ZODB. `get_sessions` est une autre vue qui renvoie une liste de toutes les sessions stockées dans la base de données.
+
+Vous pouvez ensuite exécuter cette application Pyramid et visiter `/add_session?id=123` pour ajouter une session avec un id de 123, et `/get_sessions` pour voir une liste de toutes les sessions ajoutées.
 
 @TODO Fusionner
 
@@ -1348,13 +1543,13 @@ WSGI définit essentiellement deux rôles :
 
 1. **Le côté serveur (ou "gateway")** : C'est généralement le serveur web lui-même, ou un module de celui-ci, qui reçoit les requêtes HTTP des clients (navigateurs web). Lorsqu'une requête arrive, le serveur la formate dans un format spécifique défini par la spécification WSGI.
 
-2. **Le côté application** : C'est votre application web Python. Elle reçoit les requêtes du serveur sous forme de dictionnaires et de fonctions callback. L'application traite la requête et renvoie une réponse qui est ensuite renvoyée au client par le serveur.
+2. **Le côté application** : C'est notre application web Python. Elle reçoit les requêtes du serveur sous forme de dictionnaires et de fonctions callback. L'application traite la requête et renvoie une réponse qui est ensuite renvoyée au client par le serveur.
 
-Par exemple, dans une application Pyramid, le fichier que nous exécutons pour démarrer votre application contiendra généralement du code pour créer une instance d'application WSGI. C'est ce qui se passe lorsque nous appelons `config.make_wsgi_app()` dans votre code Pyramid.
+Par exemple, dans une application Pyramid, le fichier que nous exécutons pour démarrer notre application contiendra généralement du code pour créer une instance d'application WSGI. C'est ce qui se passe lorsque nous appelons `config.make_wsgi_app()` dans notre code Pyramid.
 
 Ce code génère une application WSGI qui peut ensuite être servie à l'aide d'un serveur WSGI. Dans les exemples précédents, nous avons utilisé `wsgiref.simple_server.make_server`, qui est un serveur WSGI simple fourni par la bibliothèque standard Python.
 
-Il est important de noter que dans une production réelle, nous utiliserions un serveur WSGI plus robuste, comme Gunicorn ou uWSGI, pour servir votre application.
+Il est important de noter que dans une production réelle, nous utiliserions un serveur WSGI plus robuste, comme Gunicorn ou uWSGI, pour servir notre application.
 
 C'est en substance ce qu'est WSGI. C'est un élément clé de la plupart des applications web Python et un élément important pour comprendre comment fonctionnent les applications Pyramid.
 
@@ -1365,13 +1560,13 @@ Pour comprendre comment fonctionne la protection CSRF, il est utile de savoir ce
 
 Dans Pyramid, la protection CSRF peut être mise en place de la manière suivante :
 
-1. **Activation de la politique CSRF** : Pour utiliser CSRF dans Pyramid, nous devons activer une politique CSRF. Cela peut être fait dans la configuration de votre application :
+1. **Activation de la politique CSRF** : Pour utiliser CSRF dans Pyramid, nous devons activer une politique CSRF. Cela peut être fait dans la configuration de notre application :
 
     ```python
     config.set_default_csrf_options(require_csrf=True)
     ```
 
-    Cette ligne indique que votre application requiert une protection CSRF.
+    Cette ligne indique que notre application requiert une protection CSRF.
 
 2. **Génération des jetons CSRF** : Nous pouvons générer un jeton CSRF en utilisant `pyramid.csrf.get_csrf_token(request)`. Cela nous donnera un jeton que nous pouvons ensuite inclure dans nos formulaires ou nos requêtes AJAX.
 
@@ -1386,7 +1581,7 @@ Dans Pyramid, la protection CSRF peut être mise en place de la manière suivant
 
 3. **Vérification des jetons CSRF** : Pyramid vérifie automatiquement le jeton CSRF pour toutes les requêtes POST, PUT, DELETE et PATCH si `require_csrf=True` a été réglé. Si le jeton CSRF est manquant ou ne correspond pas, Pyramid lèvera une exception `pyramid.exceptions.BadCSRFToken`.
 
-Il est important de noter que les jetons CSRF ne sont qu'une partie de la sécurité de votre application et ne doivent pas être utilisés comme seule ligne de défense. Nous devrions toujours implémenter des contrôles d'accès appropriés, de la validation des données, et d'autres mesures de sécurité appropriées.
+Il est important de noter que les jetons CSRF ne sont qu'une partie de la sécurité de notre application et ne doivent pas être utilisés comme seule ligne de défense. Nous devrions toujours implémenter des contrôles d'accès appropriés, de la validation des données, et d'autres mesures de sécurité appropriées.
 
 # Gestion de l'authentification et des cookies d'authentification
 
@@ -1413,7 +1608,7 @@ session_id = request.cookies.get('session')
 
 Pyramid propose un système de "policies" d'authentification pour gérer l'authentification. Une "policy" d'authentification est une classe qui fournit des méthodes pour gérer les aspects de l'authentification, comme la récupération de l'identifiant de l'utilisateur et la vérification des autorisations de l'utilisateur.
 
-Pour utiliser une "policy" d'authentification, nous devons d'abord la définir dans la configuration de votre application. Par exemple :
+Pour utiliser une "policy" d'authentification, nous devons d'abord la définir dans la configuration de notre application. Par exemple :
 
 ```python
 from pyramid.authentication import AuthTktAuthenticationPolicy
@@ -1440,7 +1635,7 @@ Notons que tout système d'authentification devrait également implémenter un c
 
 # Coupler l'authentification avec OpenLDAP
 
-Pour coupler l'authentification Pyramid avec un serveur OpenLDAP, nous devrions utiliser une bibliothèque qui permet à votre application Python de communiquer avec le serveur LDAP. Une option est `python-ldap`, une interface vers les bibliothèques OpenLDAP.
+Pour coupler l'authentification Pyramid avec un serveur OpenLDAP, nous devrions utiliser une bibliothèque qui permet à notre application Python de communiquer avec le serveur LDAP. Une option est `python-ldap`, une interface vers les bibliothèques OpenLDAP.
 
 Premièrement, installons `python-ldap` avec pip :
 
@@ -1480,7 +1675,7 @@ class LDAPAuthenticationPolicy(CallbackAuthenticationPolicy):
 
 Dans ce code, `unauthenticated_userid` tente de se connecter au serveur LDAP avec le nom d'utilisateur et le mot de passe fournis. Si la connexion est réussie, il renvoie le nom d'utilisateur comme ID de l'utilisateur authentifié. Sinon, il renvoie `None`, indiquant que l'utilisateur n'est pas authentifié.
 
-Nous pouvons ensuite utiliser cette `AuthenticationPolicy` dans votre application comme nous le ferions avec n'importe quelle autre `AuthenticationPolicy`. Par exemple :
+Nous pouvons ensuite utiliser cette `AuthenticationPolicy` dans notre application comme nous le ferions avec n'importe quelle autre `AuthenticationPolicy`. Par exemple :
 
 ```python
 from pyramid.config import Configurator
@@ -1562,7 +1757,7 @@ Manipuler les données utilisateur de manière sécurisée est essentiel pour pr
 
 **4. Limitez l'accès aux données** : Utilisons le principe du moindre privilège pour limiter l'accès aux données utilisateur. Cela signifie que chaque utilisateur ou processus ne devrait avoir que les privilèges minimum nécessaires pour effectuer sa tâche.
 
-**5. Gérez les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur votre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluons pas de détails sur la structure de votre base de données dans les messages d'erreur.
+**5. Gérez les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur notre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluons pas de détails sur la structure de notre base de données dans les messages d'erreur.
 
 **6. Utilisez les mises à jour et les patchs de sécurité** : Assurons-nous que notre système est toujours à jour avec les dernières mises à jour et les derniers patchs de sécurité. Les anciennes versions des logiciels peuvent contenir des vulnérabilités connues qui peuvent être exploitées par des attaquants.
 
@@ -1571,28 +1766,28 @@ Manipuler les données utilisateur de manière sécurisée est essentiel pour pr
 En suivant ces pratiques, nous pouvons aider à protéger les données de nos utilisateurs contre l'accès non autorisé et l'exploitation.
 
 # Déploiement d'application Pyramid
-Le déploiement d'une application Pyramid peut impliquer plusieurs étapes, selon votre environnement de déploiement et nos exigences spécifiques. Dans l'ensemble, les étapes générales comprennent :
+Le déploiement d'une application Pyramid peut impliquer plusieurs étapes, selon notre environnement de déploiement et nos exigences spécifiques. Dans l'ensemble, les étapes générales comprennent :
 
-1. **Packaging de votre application** : Nous devrons probablement créer un paquet pour votre application, généralement sous la forme d'un fichier `.tar.gz` ou `.whl` Python. Nous pouvons utiliser des outils comme `setuptools` pour cela. Votre fichier de setup.py devrait contenir toutes les dépendances nécessaires à votre application.
+1. **Packaging de notre application** : Nous devrons probablement créer un paquet pour notre application, généralement sous la forme d'un fichier `.tar.gz` ou `.whl` Python. Nous pouvons utiliser des outils comme `setuptools` pour cela. notre fichier de setup.py devrait contenir toutes les dépendances nécessaires à notre application.
 
-2. **Choisir un serveur WSGI** : Pyramid, comme beaucoup de frameworks Python, utilise l'interface Web Server Gateway (WSGI) pour communiquer avec votre serveur web. Nous devrons choisir un serveur WSGI pour exécuter notre application. Des options populaires comprennent uWSGI et Gunicorn.
+2. **Choisir un serveur WSGI** : Pyramid, comme beaucoup de frameworks Python, utilise l'interface Web Server Gateway (WSGI) pour communiquer avec notre serveur web. Nous devrons choisir un serveur WSGI pour exécuter notre application. Des options populaires comprennent uWSGI et Gunicorn.
 
-3. **Configurer votre serveur web** : En plus de votre serveur WSGI, nous aurons probablement besoin d'un serveur web pour gérer les requêtes HTTP, servir des fichiers statiques, etc. Des options populaires comprennent Nginx et Apache. Notre serveur web devra être configuré pour transmettre les requêtes à notre serveur WSGI.
+3. **Configurer notre serveur web** : En plus de notre serveur WSGI, nous aurons probablement besoin d'un serveur web pour gérer les requêtes HTTP, servir des fichiers statiques, etc. Des options populaires comprennent Nginx et Apache. Notre serveur web devra être configuré pour transmettre les requêtes à notre serveur WSGI.
 
-4. **Configurer la base de données** : Si votre application utilise une base de données, nous devrons la configurer. Cela pourrait signifier la création d'une base de données, la définition des utilisateurs et des permissions, et le chargement des données initiales. Nous devrons également nous assurer que votre application a accès à cette base de données.
+4. **Configurer la base de données** : Si notre application utilise une base de données, nous devrons la configurer. Cela pourrait signifier la création d'une base de données, la définition des utilisateurs et des permissions, et le chargement des données initiales. Nous devrons également nous assurer que notre application a accès à cette base de données.
 
-5. **Déployer votre application** : Une fois que tout est configuré, nous pouvons déployer notre application. Cela signifie généralement copier votre paquet d'application sur votre serveur, l'installer en utilisant un outil comme pip, et démarrer votre serveur WSGI.
+5. **Déployer notre application** : Une fois que tout est configuré, nous pouvons déployer notre application. Cela signifie généralement copier notre paquet d'application sur notre serveur, l'installer en utilisant un outil comme pip, et démarrer notre serveur WSGI.
 
-6. **Configurer les services d'arrière-plan** : Si votre application dépend de services d'arrière-plan, comme une file d'attente de tâches, nous devrons les configurer et les démarrer.
+6. **Configurer les services d'arrière-plan** : Si notre application dépend de services d'arrière-plan, comme une file d'attente de tâches, nous devrons les configurer et les démarrer.
 
-7. **Mettre en place la surveillance et les journaux** : Une fois que votre application est déployée, nous devrons la surveiller pour nous assurer qu'elle fonctionne correctement. Cela peut impliquer la mise en place de journaux, l'utilisation d'outils de surveillance comme Prometheus ou Datadog, et la configuration des alertes pour nous informer des problèmes.
+7. **Mettre en place la surveillance et les journaux** : Une fois que notre application est déployée, nous devrons la surveiller pour nous assurer qu'elle fonctionne correctement. Cela peut impliquer la mise en place de journaux, l'utilisation d'outils de surveillance comme Prometheus ou Datadog, et la configuration des alertes pour nous informer des problèmes.
 
-Notons que le déploiement est un sujet vaste et que les détails spécifiques peuvent varier considérablement en fonction de votre environnement et de nos exigences. Les points ci-dessus sont destinés à être une vue d'ensemble de haut niveau du processus et ne sont pas une liste exhaustive de toutes les étapes potentielles du déploiement.
+Notons que le déploiement est un sujet vaste et que les détails spécifiques peuvent varier considérablement en fonction de notre environnement et de nos exigences. Les points ci-dessus sont destinés à être une vue d'ensemble de haut niveau du processus et ne sont pas une liste exhaustive de toutes les étapes potentielles du déploiement.
 
 # Pyramid et Docker
-Docker est une excellente option pour déployer des applications Pyramid car il nous permet d'encapsuler votre application et toutes ses dépendances dans un conteneur, ce qui facilite le déploiement et l'exécution de votre application dans divers environnements.
+Docker est une excellente option pour déployer des applications Pyramid car il nous permet d'encapsuler notre application et toutes ses dépendances dans un conteneur, ce qui facilite le déploiement et l'exécution de notre application dans divers environnements.
 
-Pour utiliser Docker avec Pyramid, nous devrons créer un fichier `Dockerfile` qui décrit comment créer une image Docker pour votre application. Voici un exemple de base d'un `Dockerfile` pour une application Pyramid :
+Pour utiliser Docker avec Pyramid, nous devrons créer un fichier `Dockerfile` qui décrit comment créer une image Docker pour notre application. Voici un exemple de base d'un `Dockerfile` pour une application Pyramid :
 
 ```Dockerfile
 # Utilisez une image Python comme image de base
@@ -1610,7 +1805,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiez le reste du code de l'application dans le conteneur
 COPY . .
 
-# Exposez le port sur lequel votre application s'exécute
+# Exposez le port sur lequel notre application s'exécute
 EXPOSE 6543
 
 # Lancez le serveur de développement de Pyramid
@@ -1631,6 +1826,6 @@ Et pour exécuter un conteneur basé sur cette image, nous pouvons utiliser la c
 docker run -p 6543:6543 my-pyramid-app
 ```
 
-Cela démarre votre application Pyramid dans un conteneur Docker et expose le port 6543 pour que nous puissions y accéder.
+Cela démarre notre application Pyramid dans un conteneur Docker et expose le port 6543 pour que nous puissions y accéder.
 
-Notons que la manière dont nous structurons notre `Dockerfile` et la façon dont nous utilisons Docker peuvent varier en fonction de nos besoins spécifiques. Par exemple, si nous utilisons une base de données, nous devrons probablement configurer votre application pour qu'elle puisse y accéder, et nous pourrions utiliser Docker Compose pour gérer à la fois votre application et votre base de données.
+Notons que la manière dont nous structurons notre `Dockerfile` et la façon dont nous utilisons Docker peuvent varier en fonction de nos besoins spécifiques. Par exemple, si nous utilisons une base de données, nous devrons probablement configurer notre application pour qu'elle puisse y accéder, et nous pourrions utiliser Docker Compose pour gérer à la fois notre application et notre base de données.
