@@ -151,24 +151,30 @@ Obsidian prend également en charge les thèmes personnalisés, que nous pouvons
 
 Pour installer un thème personnalisé, nous allons dans le menu des "Paramètres", puis dans la section "Apparence". Nous pouvons alors chercher des thèmes et les installer directement à partir de là.
 
-# Utiliser sa feuille de style CSS
-Obsidian, en plus de sa prise en charge du Markdown, permet d'injecter des balises HTML et du CSS personnalisé dans vos notes, ce qui permet de styliser vos notes de manière beaucoup plus sophistiquée.
+# Utiliser notre feuille de style CSS
+Obsidian, en plus de sa prise en charge du Markdown, permet d'injecter des balises HTML et du CSS personnalisé dans nos notes, ce qui permet de styliser nos notes de manière beaucoup plus sophistiquée.
 
-## Personnalisation avec votre propre feuille de style CSS
+## Personnalisation avec notre propre feuille de style CSS
 
-1. Tout d'abord, il faut activer le support du CSS personnalisé dans Obsidian. Pour cela, allez dans les paramètres (`Settings`), puis dans la section `Appearance` et activez l'option `Custom CSS`.
+1. Nous devrons créer une feuille de style CSS personnalisée. Dans notre répertoire de travail ("vault"), créons un fichier par exemple `notes.css`. C'est dans ce fichier que nous allons écrire nos styles CSS personnalisés.
 
-2. Ensuite, vous devrez créer une feuille de style CSS personnalisée. Dans votre coffre-fort Obsidian, créez un nouveau fichier appelé `obsidian.css`. C'est dans ce fichier que vous allez écrire vos styles CSS personnalisés.
+2. Écrivons nos règles CSS dans ce fichier. Par exemple, si nous voulons que tous les titres de niveau 1 soient colorés en rouge et que les diagrammes Mermaid soient entièrement affichés, nous pouvons ajouter les règles suivantes:
 
-3. Vous pouvez maintenant commencer à écrire vos propres règles CSS dans ce fichier. Par exemple, si vous voulez que tous les titres de niveau 1 soient colorés en rouge, vous pouvez ajouter la règle suivante:
+```css
+h1 {
+    color: red;
+}
 
-    ```css
-    h1 {
-        color: red;
-    }
-    ```
+.mermaid svg {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto;
+}
+```
 
-4. Les changements que vous apportez à votre fichier `obsidian.css` seront automatiquement appliqués à toutes vos notes.
+3. Tout d'abord, il faut activer le support du CSS personnalisé dans Obsidian. Pour cela, allons dans les paramètres (`Settings`), puis dans la section `Appearance` et activons l'option `Custom CSS`.
+
+4. Les changements que nous apportons à votre fichier `obsidian.css` seront automatiquement appliqués à toutes nos notes.
 
 ## Utilisation de balises HTML
 
@@ -186,7 +192,7 @@ Cela afficherait le texte "Un texte affiché avec le style de la classe Classe1"
 }
 ```
 
-Notons que l'utilisation de HTML et CSS dans Obsidian peut être très puissante, mais elle nécessite également une bonne compréhension de ces langages. Si vous n'êtes pas déjà familiarisé avec eux, il existe de nombreuses ressources en ligne pour vous aider à apprendre, tel [MDN](https://developer.mozilla.org/fr/docs/Web/CSS).
+Notons que l'utilisation de HTML et CSS dans Obsidian peut être très puissante, mais elle nécessite également une bonne compréhension de ces langages. Si nous n'êtes pas déjà familiarisé avec eux, il existe de nombreuses ressources en ligne pour nous aider à apprendre, tel [MDN](https://developer.mozilla.org/fr/docs/Web/CSS).
 
 V. Projets pratiques avec Obsidian
 
