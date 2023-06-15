@@ -1,0 +1,20 @@
+.mermaid svg {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto;
+  }
+h1 {
+    color: red;
+}
+.decalemermaid svg {
+    transform: translate(calc(-0.25 * 100%), 0) !important;
+}
+.success {
+    color : green;
+}
+.warning {
+    color: orange;
+}
+.fail {
+    color : red;
+}
