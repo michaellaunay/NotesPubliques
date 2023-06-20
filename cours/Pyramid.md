@@ -49,7 +49,7 @@ Ce plan de cours vise à donner une compréhension complète de la création d'u
 
 # 1. Introduction à Pyramid et au développement web Python
 
-Objectifs :
+Objectifs:
 - Comprendre ce qu'est Pyramid et son positionnement parmi les autres frameworks Python.
 - Installer et configurer un environnement de développement Pyramid.
 - Construire une application Pyramid simple.
@@ -62,7 +62,7 @@ Pyramid est un cadre de développement ("framework") web en Python, tout comme D
 
 ### 1.1.2 Historique de Pyramid et du projet Pylons
 
-Pyramid, initialement appelé "repoze.bfg", est le successeur du framework Pylons datant de 2005. Il a rapidement remplacé le framework Pylons des projets Pylons qui l'hébergeaient. C'est pourquoi nous trouverez souvent des références au "Projet Pylons" et au "framework Pylons" dans la documentation de Pyramid, en raison de cet héritage.
+Pyramid, initialement appelé "repoze.bfg", est le successeur du framework Pylons datant de 2005. Il a rapidement remplacé le framework Pylons des projets Pylons qui l'hébergeaient. C'est pourquoi nous trouverons souvent des références au "Projet Pylons" et au "framework Pylons" dans la documentation de Pyramid, en raison de cet héritage.
 
 Initialement "repoze.bfg" faisait partie du projet Repoze, qui visait à apporter les technologies et les concepts du monde Zope/Plone au reste de la communauté Python.
 
@@ -70,7 +70,7 @@ Pyramid a été conçu pour surmonter certaines des limitations de Pylons, en é
 
 Pyramid permet aux développeurs de choisir parmi une variété de modèles, de systèmes de stockage de données et de systèmes d'authentification.
 
-C'est en 2011 que repoze.bfg a été rebaptisé Pyramid et est devenu le cadre de développement principal du projet Pylons. Depuis lors, le développement du framework Pylons a été interrompu et toute l'attention s'est tournée vers Pyramid.
+C'est en 2011 que repoze.bfg a été rebaptisé Pyramid et est devenu le cadre de développement ("framework") principal du projet Pylons. Depuis lors, le développement du framework Pylons a été interrompu et toute l'attention s'est tournée vers Pyramid.
 
 Depuis sa création, Pyramid a été utilisé pour développer une grande variété d'applications, allant de petites applications web à de vastes applications d'entreprise.
 
@@ -96,7 +96,7 @@ L'architecture de Pyramid est basée sur le modèle de conception "colle et outi
 
 ### 1.2.1 Installation de Python et de l'environnement virtuel
 
-Tout d'abord, nous avons besoin de Python pour développer avec Pyramid. Python est le langage de programmation sur lequel Pyramid est construit. Pour installer Python, rendons-nous sur le site officiel de Python (https://www.python.org/) et téléchargons la dernière version. Assurons-nous que Python est bien installé en ouvrant une console ou un terminal et en tapant `python --version`.
+Tout d'abord, nous avons besoin de Python pour développer avec Pyramid. Python est le langage de programmation sur lequel Pyramid est construit. Pour installer Python, s'il n'est pas déjà présent sur notre machine ou si la version est trop ancienne, rendons-nous sur le site officiel de Python (https://www.python.org/) et téléchargeons la dernière version. Assurons-nous que Python soit bien installé en ouvrant une console ou un terminal et en tapant `python --version`.
 
 Maintenant que nous avons Python, nous allons installer un environnement virtuel. Un environnement virtuel est un espace isolé où nous pouvons installer les dépendances de notre projet sans interférer avec les autres projets sur notre machine. Nous pouvons installer l'environnement virtuel en utilisant la commande suivante :
 
@@ -132,9 +132,9 @@ pip install cookieCutter
 
 ### 1.2.4 Création d'un Projet Pyramid avec Cookiecutter
 
-Le projet Pylons propose plusieurs modèles de cookiecutter. Chaque modèle fait différentes suppositions sur le type d'application que nous essayez de créer. Par exemple, il existe des modèles pour SQLAlchemy avec SQLite, ou ZODB comme mécanisme de persistance, ou encore différentes bibliothèques de templates comme Jinja2, Chameleon, ou Mako.
+Le projet Pylons propose plusieurs modèles de cookiecutter. Chaque modèle fait différentes suppositions sur le type d'application que nous essayons de créer. Par exemple, il existe des modèles pour SQLAlchemy avec SQLite, ou ZODB comme mécanisme de persistance, ou encore différentes bibliothèques de templates comme Jinja2, Chameleon, ou Mako.
 
-Pour générer un nouveau projet Pyramid, nous utiliserez la commande `cookiecutter` suivie de l'URL du dépôt de la recette cookiecutter correspondant au type de projet que nous souhaitez créer.
+Pour générer un nouveau projet Pyramid, nous utiliserons la commande `cookiecutter` suivie de l'URL du dépôt de la recette cookiecutter correspondant au type de projet que nous souhaitons créer.
 Par exemple, pour créer un projet, il faut utiliser cookiecutter "pyramid-cookiecutter-starter" :
 
 ```bash
@@ -142,11 +142,11 @@ Par exemple, pour créer un projet, il faut utiliser cookiecutter "pyramid-cooki
 cookiecutter gh:Pylons/pyramid-cookiecutter-starter
 ```
 
-Ensuite, Cookiecutter nous posera une série de questions pour configurer notre projet. Par exemple, il nous demandera le nom du projet, le nom du dépôt, et le langage de template à utiliser. Nous détaillons ci après ces variables. Pour la plupart de ces questions, nous pouvez simplement appuyer sur Entrée pour accepter la valeur par défaut.
+Ensuite, Cookiecutter nous posera une série de questions pour configurer notre projet. Par exemple, il nous demandera le nom du projet, le nom du dépôt, et le langage de template à utiliser. Nous détaillons ci après ces variables. Pour la plupart de ces questions, nous pouvons simplement appuyer sur Entrée pour accepter la valeur par défaut.
 
-Une fois que nous avez répondu à toutes les questions, Cookiecutter créera un nouveau répertoire avec le même nom que le nom du projet que nous avez donné. Ce répertoire contient toute la structure de base de notre projet Pyramid, y compris la configuration, les fichiers de démarrage et le squelette de notre application.
+Une fois que nous avons répondu à toutes les questions, Cookiecutter créera un nouveau répertoire avec le même nom que le nom du projet que nous avons donné. Ce répertoire contient toute la structure de base de notre projet Pyramid, y compris la configuration, les fichiers de démarrage et le squelette de notre application.
 
-À partir de là, nous pouvez commencer à développer notre application Pyramid. nous pouvez activer notre environnement virtuel, installer les dépendances de notre projet avec `pip install -e .`, et démarrer le serveur de développement avec `pserve`.
+À partir de là, nous pouvons commencer à développer notre application Pyramid. nous pouvons activer notre environnement virtuel, installer les dépendances de notre projet avec `pip install -e .`, et démarrer le serveur de développement avec `pserve`.
 
 ### 1.2.5 Exemple de création d'un projet avec Cookiecuter
 
@@ -415,13 +415,13 @@ Pyramid fournit plusieurs décorateurs que nous pouvons utiliser pour contrôler
 
 ### 2.3.1 Utilisation des générateurs d'URL
 
-Dans Pyramid, nous pouvons utiliser des générateurs d'URL pour créer des URL à partir des noms de vos routes. Par exemple, si nous avons une route nommée 'blog' qui correspond à l'URL '/blog/{id}', nous pouvons créer une URL pour cette route comme suit :
+Dans Pyramid, nous pouvons utiliser des générateurs d'URL pour créer des URL à partir des noms de nos routes. Par exemple, si nous avons une route nommée 'blog' qui correspond à l'URL '/blog/{id}', nous pouvons créer une URL pour cette route comme suit :
 
 ```python
 url = request.route_url('blog', id=1)
 ```
 
-Dans cet exemple, `url` sera '/blog/1'. Les générateurs d'URL sont particulièrement utiles lorsque nous devons créer des liens dans vos templates ou rediriger l'utilisateur vers une autre page.
+Dans cet exemple, `url` sera '/blog/1'. Les générateurs d'URL sont particulièrement utiles lorsque nous devons créer des liens dans nos templates ou rediriger l'utilisateur vers une autre page.
 
 ### 2.3.2 Gestion des erreurs 404 avec le système de routage
 
@@ -1289,7 +1289,7 @@ Pyramid est un framework web flexible qui peut être déployé de plusieurs faç
 3. **Gunicorn** : Un serveur HTTP Python WSGI HTTP pour UNIX.
 4. **mod_wsgi** : Un module Apache qui fournit une interface WSGI pour les applications Python.
 
-Toutes ces options ont leurs avantages et leurs inconvénients. Le choix de l'une ou l'autre dépendra de vos besoins spécifiques.
+Toutes ces options ont leurs avantages et leurs inconvénients. Le choix de l'une ou l'autre dépendra de nos besoins spécifiques.
 
 ## 8.2 Configuration de l'environnement de production
 
@@ -1303,7 +1303,7 @@ Le déploiement d'une application Pyramid nécessite une installation de Python 
 
 ### 8.2.3 Configuration du serveur web
 
-Pour servir notre application Pyramid, nous aurons besoin d'un serveur web. Le choix du serveur web dépend de vos préférences personnelles et des besoins de notre application. Les options populaires incluent Nginx, Apache, et Gunicorn.
+Pour servir notre application Pyramid, nous aurons besoin d'un serveur web. Le choix du serveur web dépend de nos préférences personnelles et des besoins de notre application. Les options populaires incluent Nginx, Apache, et Gunicorn.
 
 ### 8.2.4 Installation des dépendances de l'application
 
@@ -1400,7 +1400,7 @@ def main(global_config, **settings):
 
 Dans ce code, `add_session` est une vue qui crée une nouvelle `Session` et l'ajoute à la racine de l'application ZODB. `get_sessions` est une autre vue qui renvoie une liste de toutes les sessions stockées dans la base de données.
 
-Vous pouvez ensuite exécuter cette application Pyramid et visiter `/add_session?id=123` pour ajouter une session avec un id de 123, et `/get_sessions` pour voir une liste de toutes les sessions ajoutées.
+Nous pouvons ensuite exécuter cette application Pyramid et visiter `/add_session?id=123` pour ajouter une session avec un id de 123, et `/get_sessions` pour voir une liste de toutes les sessions ajoutées.
 
 @TODO Fusionner
 
@@ -1749,19 +1749,19 @@ Encore une fois, notons que ce code est une implémentation simple. Dans une app
 # Ce que signifie manipuler les données utilisateur de manière sécurisée
 Manipuler les données utilisateur de manière sécurisée est essentiel pour protéger la confidentialité et l'intégrité des données des utilisateurs. Voici quelques pratiques importantes pour manipuler les données utilisateur de manière sécurisée :
 
-**1. Utilisez le cryptage** : Les données sensibles, telles que les informations d'identification des utilisateurs, doivent être transmises et stockées de manière sécurisée. Cela signifie qu'elles doivent être cryptées pendant le transport (c'est-à-dire en utilisant HTTPS plutôt que HTTP) et lorsqu'elles sont stockées (c'est-à-dire en utilisant le cryptage des données au repos).
+**1. Utilisons le cryptage** : Les données sensibles, telles que les informations d'identification des utilisateurs, doivent être transmises et stockées de manière sécurisée. Cela signifie qu'elles doivent être cryptées pendant le transport (c'est-à-dire en utilisant HTTPS plutôt que HTTP) et lorsqu'elles sont stockées (c'est-à-dire en utilisant le cryptage des données au repos).
 
-**2. Stockez les mots de passe de manière sécurisée** : Nous ne devons jamais stocker les mots de passe en clair. Au lieu de cela, nous devons stocker une empreinte cryptographique du mot de passe (un "hash") et comparer cette empreinte lorsque l'utilisateur se connecte. De plus, nous devons utiliser un "sel" (une valeur aléatoire ajoutée au mot de passe avant le hachage) pour rendre les attaques par tables de hachage (rainbow tables) moins efficaces.
+**2. Stockons les mots de passe de manière sécurisée** : Nous ne devons jamais stocker les mots de passe en clair. Au lieu de cela, nous devons stocker une empreinte cryptographique du mot de passe (un "hash") et comparer cette empreinte lorsque l'utilisateur se connecte. De plus, nous devons utiliser un "sel" (une valeur aléatoire ajoutée au mot de passe avant le hachage) pour rendre les attaques par tables de hachage (rainbow tables) moins efficaces.
 
-**3. Validez les entrées des utilisateurs** : Les entrées des utilisateurs sont une source courante de vulnérabilités. Nous devons toujours valider les entrées des utilisateurs pour nous assurer qu'elles sont dans le format attendu et ne contiennent pas de code malveillant. Cela est particulièrement important pour prévenir les attaques d'injection, comme l'injection SQL.
+**3. Validons les entrées des utilisateurs** : Les entrées des utilisateurs sont une source courante de vulnérabilités. Nous devons toujours valider les entrées des utilisateurs pour nous assurer qu'elles sont dans le format attendu et ne contiennent pas de code malveillant. Cela est particulièrement important pour prévenir les attaques d'injection, comme l'injection SQL.
 
-**4. Limitez l'accès aux données** : Utilisons le principe du moindre privilège pour limiter l'accès aux données utilisateur. Cela signifie que chaque utilisateur ou processus ne devrait avoir que les privilèges minimum nécessaires pour effectuer sa tâche.
+**4. Limitons l'accès aux données** : Utilisons le principe du moindre privilège pour limiter l'accès aux données utilisateur. Cela signifie que chaque utilisateur ou processus ne devrait avoir que les privilèges minimum nécessaires pour effectuer sa tâche.
 
-**5. Gérez les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur notre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluons pas de détails sur la structure de notre base de données dans les messages d'erreur.
+**5. Gérons les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur notre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluons pas de détails sur la structure de notre base de données dans les messages d'erreur.
 
-**6. Utilisez les mises à jour et les patchs de sécurité** : Assurons-nous que notre système est toujours à jour avec les dernières mises à jour et les derniers patchs de sécurité. Les anciennes versions des logiciels peuvent contenir des vulnérabilités connues qui peuvent être exploitées par des attaquants.
+**6. Utilisons les mises à jour et les patchs de sécurité** : Assurons-nous que notre système est toujours à jour avec les dernières mises à jour et les derniers patchs de sécurité. Les anciennes versions des logiciels peuvent contenir des vulnérabilités connues qui peuvent être exploitées par des attaquants.
 
-**7. Soyez conscient des attaques CSRF et XSS** : Les attaques par falsification de requête inter-site (CSRF) et les attaques par script intersites (XSS) sont deux types d'attaques courantes qui ciblent les utilisateurs. Assurons-nous d'utiliser les protections appropriées, comme les jetons CSRF et l'échappement des entrées des utilisateurs pour prévenir les attaques XSS.
+**7. Soyons conscient des attaques CSRF et XSS** : Les attaques par falsification de requête inter-site (CSRF) et les attaques par script intersites (XSS) sont deux types d'attaques courantes qui ciblent les utilisateurs. Assurons-nous d'utiliser les protections appropriées, comme les jetons CSRF et l'échappement des entrées des utilisateurs pour prévenir les attaques XSS.
 
 En suivant ces pratiques, nous pouvons aider à protéger les données de nos utilisateurs contre l'accès non autorisé et l'exploitation.
 
@@ -1790,29 +1790,29 @@ Docker est une excellente option pour déployer des applications Pyramid car il 
 Pour utiliser Docker avec Pyramid, nous devrons créer un fichier `Dockerfile` qui décrit comment créer une image Docker pour notre application. Voici un exemple de base d'un `Dockerfile` pour une application Pyramid :
 
 ```Dockerfile
-# Utilisez une image Python comme image de base
+# Utilisins une image Python comme image de base
 FROM python:3.9-slim-buster
 
-# Créez un répertoire de travail dans le conteneur
+# Créons un répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copiez les fichiers de dépendance dans le conteneur
+# Copions les fichiers de dépendance dans le conteneur
 COPY requirements.txt .
 
-# Installez les dépendances de l'application
+# Installons les dépendances de l'application
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiez le reste du code de l'application dans le conteneur
+# Copions le reste du code de l'application dans le conteneur
 COPY . .
 
-# Exposez le port sur lequel notre application s'exécute
+# Exposons le port sur lequel notre application s'exécute
 EXPOSE 6543
 
-# Lancez le serveur de développement de Pyramid
+# Lançons le serveur de développement de Pyramid
 CMD ["pserve", "development.ini"]
 ```
 
-Notez que cette configuration utilise le serveur de développement inclus avec Pyramid, qui n'est pas destiné à être utilisé en production. Pour un déploiement en production, nous devrions utiliser un serveur WSGI comme Gunicorn ou uWSGI.
+Notons que cette configuration utilise le serveur de développement inclus avec Pyramid, qui n'est pas destiné à être utilisé en production. Pour un déploiement en production, nous devrions utiliser un serveur WSGI comme Gunicorn ou uWSGI.
 
 Pour construire une image Docker à partir de ce `Dockerfile`, nous pouvons utiliser la commande `docker build` :
 
