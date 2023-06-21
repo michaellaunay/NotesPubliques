@@ -31,8 +31,6 @@ Plan de cours structuré autour du développement d'une application d'authentifi
 
 **6. Introduction à LDAP et OpenLDAP**
 - Qu'est-ce que LDAP ?
-- Installation et configuration d'OpenLDAP.
-- Comprendre le schéma de données LDAP.
 
 **7. Authentification LDAP**
 - Interagir avec un serveur LDAP en Python.
@@ -44,6 +42,14 @@ Plan de cours structuré autour du développement d'une application d'authentifi
 - Création d'un Dockerfile pour l'application Pyramid.
 - Déploiement de l'application en utilisant Docker.
 - Surveillance et dépannage de l'application déployée.
+
+**9. Pyramide et Docker**
+- Dockerfile pour Pyramid
+
+**10. Exemple de code**
+- Stockage d'une session en ZODB
+- Coupler l'authentification avec OpenLDAP
+- Vérification des certificats
 
 Ce plan de cours vise à donner une compréhension complète de la création d'une application d'authentification en utilisant Pyramid et OpenLDAP, du développement à la mise en production.
 
@@ -344,7 +350,7 @@ Prenons le temps de développer cette application en nous basant sur ce que nous
 
 ## 2.1 Introduction aux routes dans Pyramid
 
-# 2.1.1 Qu'est-ce qu'une route ?
+### 2.1.1 Qu'est-ce qu'une route ?
 
 Une route est essentiellement un moyen de définir comment les requêtes HTTP sont traitées par notre application. Chaque route correspond à une URL ou à un motif d'URL, et à une vue qui est appelée lorsque l'URL est demandée par un navigateur. 
 
@@ -518,17 +524,78 @@ Pour créer un template Chameleon, nous créons un fichier avec l'extension .pt 
 <html>
   <body>
     <h1 tal:content="title">A futur title</h1>
-    <p>${description}</p>
+    <p>$Description : ${description}</p>
   </body>
 </html>
 ```
 
-Dans cet exemple, `tal:content="title"` et `${description}` sont des expressions Python, ici deux noms de variable, qui seront évaluées et qui remplaceront le contenu de leur balise par les valeurs que nous passerons à notre template.
+Dans cet exemple, `tal:content="title"` et `${description}` sont des expressions Python, ici deux noms de variable, qui seront évaluées et  remplacées, pour le paramètre `tal:content` ce sera le contenu de la balise, pour ${description} ce sera cette variable uniquement. Les valeurs de substitution sont passées à notre `template` par le "renderer".
 Voir [documentation Chameleon](https://chameleon.readthedocs.io/en/latest/reference.html)
 
-### 2.5.3 Passer des données à un template Chameleon
+### 2.5.3 Introduction à l'utilisation des templates TAL/METAL
 
-Pour passer des données à un template Chameleon, nous utilisons la fonction `render_to_response` de Pyramid, et nous passons les données sous forme de dictionnaire. Par exemple:
+Pour commencer à utiliser Chameleon avec Pyramid, nous devons d'abord l'installer. Utilisons `pip` pour installer le package `pyramid_chameleon` :
+
+```python
+pip install pyramid_chameleon
+```
+
+Une fois installé, nous devons indiquer à Pyramid que nous allons utiliser Chameleon comme système de templates. Dans notre fonction principale, nous ajoutons une ligne pour inclure `pyramid_chameleon` :
+
+```python
+if __name__ == '__main__':
+    with Configurator() as config:
+        config.include('pyramid_chameleon')
+        # le reste de notre code
+```
+
+Maintenant, supposons que nous ayons un template appelé `mytemplate.pt`. Pour l'utiliser dans notre application, nous devons modifier notre vue pour retourner un dictionnaire de valeurs au lieu d'une réponse directe :
+
+```python
+def hello_world(request):
+    return {'name': 'World'}
+```
+
+Ensuite, nous modifions notre configuration pour indiquer le template à utiliser avec cette vue :
+
+```python
+config.add_view(hello_world, route_name='hello', renderer='templates/mytemplate.pt')
+```
+
+Dans le template lui-même, nous pouvons utiliser la syntaxe TAL pour accéder aux valeurs du dictionnaire. Voici à quoi pourrait ressembler notre template `mytemplate.pt` :
+
+```html
+<html>
+<body>
+    <h1>Hello, ${name}!</h1>
+</body>
+</html>
+```
+
+Ici, `${name}` sera remplacé par la valeur correspondante dans le dictionnaire retourné par notre vue, en l'occurrence 'World'.
+
+Si nous voulons aller encore plus loin et utiliser METAL pour la réutilisation des macros, notre code pourrait ressembler à ceci :
+
+```html
+<html metal:define-macro="my_macro">
+<body>
+    <h1 metal:define-slot="greeting">Hello, ${name}!</h1>
+</body>
+</html>
+```
+
+Et nous pourrions ensuite utiliser cette macro dans un autre template avec `metal:use-macro` :
+
+```html
+<div metal:use-macro="mytemplate.pt/my_macro">
+    <h1 metal:fill-slot="greeting">Salut, ${name}!</h1>
+</div>
+```
+
+
+### 2.5.4 Passer des données à un template Chameleon
+
+Pour passer des données à un template Chameleon, soit notre vue retourne directement un dictionnaire, soit nous utilisons la fonction `render_to_response` de Pyramid, et nous passons les données sous forme de dictionnaire. Par exemple:
 
 ```python
 from pyramid.view import view_config
@@ -541,7 +608,7 @@ def home(request):
 
 Dans cet exemple, `title` et `description` seront disponibles dans le template `index.pt` et seront remplacés par 'Accueil' et 'Bienvenue sur notre site' respectivement.
 
-### 2.5.3 Rendu des templates à partir des vues
+### 2.5.5 Rendu des templates à partir des vues
 
 La dernière étape est de rendre le template à partir de la vue. Dans Pyramid, cela est fait en utilisant la fonction `render_to_response` mentionnée précédemment. La fonction `render_to_response` prend le nom du template et un dictionnaire de variables à passer au template, et renvoie une réponse HTTP avec le HTML généré.
 
@@ -580,7 +647,7 @@ Une requête HTTP est composée de plusieurs parties :
 
 Maintenant, passons à quelques exercices pratiques pour nous aider à comprendre comment manipuler les requêtes GET et POST dans Pyramid. Essayons de créer une application simple qui accepte à la fois les requêtes GET et POST et renvoie les données reçues.
 
-### 3.2 **Cours du Jour 2 : Manipulation des données de la requête**
+### 3.2 Manipulation des données de la requête
 
 ### 3.2.1 Extraction des données de la requête
 
@@ -658,7 +725,7 @@ Pour terminer, essayons de réaliser les exercices suivants pour nous familiaris
 2. Créons une vue qui renvoie une réponse avec des données JSON.
 3. Créons une vue qui renvoie une réponse avec un statut d'erreur (par exemple, '404 Not Found').
 
-## 3.4 **Cours du Jour 4 : Types de réponses HTTP et quand les utiliser**
+## 3.4 Types de réponses HTTP et quand les utiliser
 
 ### 3.4.1 Exploration des différents types de réponses HTTP
 
@@ -691,14 +758,6 @@ Essayons quelques exercices pour nous familiariser avec l'envoi de différents t
 3. Créons une vue qui renvoie une redirection.
 4. Créons une vue qui renvoie une réponse d'erreur.
 
-**Jour 5 : Utilisation des cookies pour maintenir l'état de la session**
-
-    Introduction aux cookies et à leur utilité pour maintenir l'état de la session.
-    Comment créer, lire, modifier et supprimer des cookies dans Pyramid.
-    Exploration des problèmes de sécurité liés aux cookies.
-    Exercices pratiques sur l'utilisation des cookies.
-    Révision des concepts clés de la semaine et session de questions-réponses.
-
 ## 3.5 Utilisation des cookies pour maintenir l'état de la session
 
 ### 3.5.1 Introduction aux cookies et à leur utilité pour maintenir l'état de la session
@@ -728,6 +787,56 @@ valeur = request.cookies.get('mon_cookie')
 ```python
 response.delete_cookie('mon_cookie')
 ```
+
+### 3.5.3 Gestion de l'authentification et des cookies d'authentification
+
+L'authentification est un aspect clé de la sécurité web, et Pyramid offre plusieurs mécanismes pour la gestion de l'authentification. La bibliothèque standard de Pyramid ne fournit pas de système d'authentification intégré par défaut, mais elle offre des outils et des abstractions pour créer le vôtre ou pour intégrer des systèmes d'authentification tiers.
+
+#### Cookies d'authentification
+
+Les cookies d'authentification sont souvent utilisés pour maintenir la session de l'utilisateur entre plusieurs requêtes. Lorsqu'un utilisateur se connecte avec succès, le serveur crée une session pour l'utilisateur et envoie un cookie avec un identifiant de session unique au navigateur de l'utilisateur. Pour chaque requête suivante, le navigateur envoie le cookie au serveur, ce qui permet au serveur de vérifier et de maintenir la session de l'utilisateur.
+
+Pyramid offre un moyen intégré de définir des cookies. Pour définir un cookie, nous pouvons utiliser la méthode `response.set_cookie()` sur l'objet de réponse. Par exemple :
+
+```python
+response = Response("Some content")
+response.set_cookie('session', '123456')
+```
+
+Pour lire un cookie, nous pouvons utiliser la méthode `request.cookies.get()`. Par exemple :
+
+```python
+session_id = request.cookies.get('session')
+```
+
+#### Gestion de l'authentification
+
+Pyramid propose un système de "policies" d'authentification pour gérer l'authentification. Une "policy" d'authentification est une classe qui fournit des méthodes pour gérer les aspects de l'authentification, comme la récupération de l'identifiant de l'utilisateur et la vérification des autorisations de l'utilisateur.
+
+Pour utiliser une "policy" d'authentification, nous devons d'abord la définir dans la configuration de notre application. Par exemple :
+
+```python
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
+
+authn_policy = AuthTktAuthenticationPolicy('sosecret', hashalg='sha512')
+authz_policy = ACLAuthorizationPolicy()
+
+config = Configurator(settings=settings,
+                      root_factory=MyProject,
+                      authentication_policy=authn_policy,
+                      authorization_policy=authz_policy)
+```
+
+Ici, nous utilisons la "policy" `AuthTktAuthenticationPolicy`, qui est une "policy" d'authentification basée sur un ticket. Elle stocke les données d'authentification de l'utilisateur dans un cookie signé.
+
+Ensuite, nous pouvons utiliser la méthode `authenticated_userid(request)` pour obtenir l'identifiant de l'utilisateur authentifié. Par exemple :
+
+```python
+user_id = request.authenticated_userid
+```
+
+Notons que tout système d'authentification devrait également implémenter un certain nombre de contrôles de sécurité pour protéger les données sensibles, tels que le hachage des mots de passe, le cryptage des données de session et la protection contre les attaques CSRF, comme nous l'avons mentionné précédemment.
 
 ### 3.5.3 Problèmes de sécurité liés aux cookies
 
@@ -808,8 +917,56 @@ def main(global_config, **settings):
 
 Une fois que nous avons configuré notre politique d'authentification, il est important de la tester pour nous assurer qu'elle fonctionne comme prévu. Nous pouvons le faire en écrivant des tests unitaires qui vérifient si un utilisateur peut se connecter avec succès et si l'identité de l'utilisateur est correctement stockée et récupérée.
 
+Pyramid propose la bibliothèque `WebTest` pour tester les applications web. Voici un exemple de comment on pourrait écrire ces tests :
+```python
+from pyramid import testing
+from pyramid.authentication import SessionAuthenticationPolicy
+from pyramid.testing import DummyRequest
+import unittest
 
-## 4.4 **Cours du Jour 4 : Les défis de l'authentification et les meilleures pratiques**
+class TestAuthenticationPolicy(unittest.TestCase):
+    def setUp(self):
+        self.config = testing.setUp()
+
+    def tearDown(self):
+        testing.tearDown()
+
+    def test_authenticated_userid(self):
+        request = DummyRequest()
+        request.session['userid'] = 'testuser'  # On définit un userid dans la session
+
+        policy = SessionAuthenticationPolicy()
+        userid = policy.authenticated_userid(request)
+
+        self.assertEqual(userid, 'testuser')  # On vérifie que l'userid récupéré est correct
+
+    def test_unauthenticated_userid(self):
+        request = DummyRequest()
+
+        policy = SessionAuthenticationPolicy()
+        userid = policy.unauthenticated_userid(request)
+
+        self.assertIsNone(userid)  # On vérifie qu'aucun userid n'est récupéré car nous n'avons pas défini de session
+
+    def test_effective_principals(self):
+        request = DummyRequest()
+        request.session['userid'] = 'testuser'
+
+        policy = SessionAuthenticationPolicy()
+        principals = policy.effective_principals(request)
+
+        self.assertIn('testuser', principals)  # On vérifie que l'userid fait partie des principaux effectifs
+```
+
+Dans cet exemple, nous testons les trois méthodes principales de `SessionAuthenticationPolicy` :
+
+- `authenticated_userid(request)`, qui renvoie l'userid de l'utilisateur actuellement authentifié, ou `None` si aucun utilisateur n'est authentifié.
+- `unauthenticated_userid(request)`, qui renvoie l'userid de l'utilisateur proposé par la requête, que cet utilisateur soit réellement authentifié ou non.
+- `effective_principals(request)`, qui renvoie une liste de tous les "principaux" effectifs pour la requête. Les principaux effectifs incluent toujours la chaîne `'system.Everyone'`, l'userid de l'utilisateur authentifié (si un utilisateur est authentifié), et toute autre valeur spécifique à l'application.
+
+Ces tests supposent que nous utilisons l'implémentation par défaut de `SessionAuthenticationPolicy` et que nous stockons l'userid de l'utilisateur dans la session sous la clé `'userid'`. Si nous avons une implémentation personnalisée de `SessionAuthenticationPolicy` ou si nous stockons l'userid sous une clé différente, nous devrons adapter ces tests en conséquence.
+
+## 4.4 Les défis de l'authentification et les meilleures pratiques
 
 ### 4.4.1 Discussion sur les défis courants de l'authentification
 
@@ -817,7 +974,7 @@ L'authentification, bien qu'essentielle dans le développement d'applications we
 
 ### 4.4.2 Comprendre les meilleures pratiques de l'authentification
 
-Face à ces défis, il existe des meilleures pratiques que nous pouvons suivre pour assurer une authentification efficace et sécurisée. Certaines de ces pratiques comprennent le stockage sécurisé des mots de passe (par exemple, ne jamais stocker les mots de passe en clair), l'utilisation de sessions sécurisées, la limitation des tentatives de connexion pour prévenir les attaques par force brute, et la fourniture d'options de récupération de mot de passe sécurisées.
+Il existe des meilleures pratiques ("Best practices") que nous pouvons suivre pour assurer une authentification efficace et sécurisée. Certaines de ces pratiques comprennent le stockage sécurisé des mots de passe (par exemple, ne jamais stocker les mots de passe en clair), l'utilisation de sessions sécurisées, la limitation des tentatives de connexion pour prévenir les attaques par force brute, et la fourniture d'options de récupération de mot de passe sécurisées.
 
 ### 4.4.3 Exploration de la sécurité des mots de passe et des stratégies de hachage
 
@@ -825,7 +982,7 @@ Une partie essentielle de la sécurisation de l'authentification est la gestion 
 
 # 5. Sécurisation des données
 
-## 5.1 **Cours du Jour 1 : Protection des données des utilisateurs**
+## 5.1 Protection des données des utilisateurs
 
 ### 5.1.1 Qu'est-ce que la protection des données des utilisateurs ?
 
@@ -833,7 +990,7 @@ La protection des données des utilisateurs est un ensemble de stratégies et de
 
 ### 5.1.2 Pourquoi est-ce important ?
 
-Protéger les données des utilisateurs est crucial pour plusieurs raisons. Premièrement, c'est une question de respect de la vie privée des utilisateurs. Les utilisateurs ont le droit de savoir comment leurs données sont utilisées et stockées, et ils ont le droit de s'attendre à ce que leurs informations soient protégées. Deuxièmement, c'est une question de conformité légale. De nombreux pays et régions ont des lois strictes sur la protection des données, et les organisations doivent s'y conformer. Enfin, c'est une question de réputation et de confiance. Si les utilisateurs ne font pas confiance à notre application pour protéger leurs données, ils iront ailleurs.
+Protéger les données des utilisateurs est crucial pour plusieurs raisons. Premièrement, c'est une question de respect de la vie privée des utilisateurs. Les utilisateurs ont le droit de savoir comment leurs données sont utilisées et stockées, et ils ont le droit de s'attendre à ce que leurs informations soient protégées. Deuxièmement, c'est une question de conformité légale. De nombreux pays et régions ont des lois strictes sur la protection des données, et les organisations doivent s'y conformer (Voir [[Règlement Général sur la Protection des Données (RGPD)]]). Enfin, c'est une question de réputation et de confiance. Si les utilisateurs ne font pas confiance à notre application pour protéger leurs données, ils iront ailleurs.
 
 ### 5.1.3 Les principes de base de la protection des données
 
@@ -889,11 +1046,98 @@ Pyramid fournit un module, `pyramid.csrf`, pour aider à prévenir les attaques 
 
 3. Lorsque le formulaire est soumis, vérifions que le jeton CSRF soumis correspond au jeton stocké dans la session. Nous pouvons utiliser `request.session.check_csrf_token()` pour cela.
 
-### 5.3.4 Exercices pratiques sur la prévention des attaques CSRF
+### 5.3.4 Rendre systématique l'usage des jetons CSRF
+
+#### Activation de la politique CSRF
+
+Pour utiliser CSRF dans Pyramid, nous devons activer une politique CSRF. Cela peut être fait dans la configuration de notre application :
+
+```python
+config.set_default_csrf_options(require_csrf=True)
+```
+
+Cette ligne indique que notre application requiert une protection CSRF.
+
+#### Génération des jetons CSRF
+
+Nous pouvons générer un jeton CSRF en utilisant `pyramid.csrf.get_csrf_token(request)`. Cela nous donnera un jeton que nous pouvons ensuite inclure dans nos formulaires ou nos requêtes AJAX.
+
+Par exemple, si nous utilisons Chameleon pour nos templates, nous pouvons inclure le jeton CSRF dans un formulaire comme suit :
+
+```html
+<form method="post">
+	<input type="hidden" name="csrf_token" tal:attributes="value request.session.get_csrf_token()"/>
+	<!-- Reste du formulaire -->
+</form>
+```
+
+#### Vérification des jetons CSRF
+
+Pyramid vérifie automatiquement le jeton CSRF pour toutes les requêtes POST, PUT, DELETE et PATCH si `require_csrf=True` a été réglé. Si le jeton CSRF est manquant ou ne correspond pas, Pyramid lèvera une exception `pyramid.exceptions.BadCSRFToken`.
+
+### 5.3.5 Exercices pratiques sur la prévention des attaques CSRF
 
 1. Modifions un formulaire dans notre application pour inclure un jeton CSRF. Assurons-nous que le jeton est correctement envoyé lorsque le formulaire est soumis.
 2. Ajoutons une vérification CSRF dans la fonction de vue qui traite les soumissions de formulaires. Testons notre application pour nous assurer qu'elle rejette les soumissions de formulaires qui ne comprennent pas le bon jeton CSRF.
 3. Pensons à d'autres endroits de notre application où nous pourrions être vulnérable aux attaques CSRF. Comment pourrions-nous utiliser `pyramid.csrf` pour renforcer la sécurité de ces zones ?
+
+### 5.3.6 Exemple de code vérifiant le token CSRF
+
+Exemple de tests unitaires qui vérifient que la vue "register" fournit bien un token CSRF et que celui-ci est correctement vérifié. Nous utilisons la bibliothèque `WebTest` de Pyramid.
+
+```python
+from pyramid import testing
+from pyramid.testing import DummyRequest
+from webtest import TestApp
+import unittest
+
+def register_view(request):
+    # Cette fonction est juste un exemple de ce que pourrait être votre vue "register".
+    # Vous devrez remplacer cette fonction par la vraie vue "register" de votre application.
+    csrf_token = request.session.get_csrf_token()
+    return {"csrf_token": csrf_token}
+
+class TestRegisterView(unittest.TestCase):
+    def setUp(self):
+        self.config = testing.setUp()
+
+    def tearDown(self):
+        testing.tearDown()
+
+    def test_register_view_provides_csrf_token(self):
+        from myapp import main  # Remplacez "myapp" par le nom de votre application Pyramid
+        app = main({})
+        testapp = TestApp(app)
+
+        # Faire une requête GET à la vue "register"
+        response = testapp.get('/register', status=200)
+
+        # Vérifier que le token CSRF est présent dans la réponse
+        self.assertIn('csrf_token', response.json)
+
+    def test_register_view_checks_csrf_token(self):
+        from myapp import main
+        app = main({})
+        testapp = TestApp(app)
+
+        # Faire une requête POST à la vue "register" sans token CSRF
+        response = testapp.post('/register', status=400)
+
+        # Vérifier que la requête échoue à cause de l'absence de token CSRF
+        self.assertEqual(response.status_code, 400)
+
+        # Faire une requête GET à la vue "register" pour obtenir un token CSRF
+        response = testapp.get('/register', status=200)
+        csrf_token = response.json['csrf_token']
+
+        # Faire une requête POST à la vue "register" avec un token CSRF
+        response = testapp.post('/register', {'csrf_token': csrf_token}, status=200)
+
+        # Vérifier que la requête réussit maintenant que nous avons un token CSRF valide
+        self.assertEqual(response.status_code, 200)
+```
+
+Ces tests supposent que nous avons une route `/register` qui correspond à une vue `register_view` dans votre application Pyramid. De plus, ces tests supposent que nous utilisons l'implémentation par défaut de `SessionAuthenticationPolicy` et que nous stockons le token CSRF dans la session sous la clé `'csrf_token'`. Si ce n'est pas le cas, nous devrons adapter ces tests en conséquence.
 
 ## 5.4.  Validation et assainissement des entrées des utilisateurs
 
@@ -903,7 +1147,7 @@ La validation et l'assainissement des entrées sont essentiels pour maintenir la
 
 ### 5.4.2 Comment valider les entrées des utilisateurs dans Pyramid
 
-La validation des entrées des utilisateurs peut être réalisée à l'aide de différents outils. Un choix populaire pour la validation des données en Python est la bibliothèque `colander`.
+La validation des entrées des utilisateurs peut être réalisée à l'aide de différents outils. Un choix populaire pour la validation des données en Python est la bibliothèque [`colander`](https://docs.pylonsproject.org/projects/colander/en/latest/basics.html).
 
 Voici un exemple de la façon dont nous pouvons utiliser `colander` pour définir un schéma de validation pour un formulaire de connexion :
 
@@ -917,6 +1161,45 @@ class LoginForm(colander.Schema):
 
 Ce schéma spécifie que le formulaire de connexion doit avoir un champ "username" et un champ "password", et que tous les deux doivent être des chaînes de caractères.
 
+#### Exemple de vérification du schéma
+Voici comment nous pourrions implémenter une vue "login" qui utilise ce schéma pour valider les entrées de l'utilisateur :
+
+```python
+import colander
+from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPBadRequest
+
+class LoginForm(colander.Schema):
+    username = colander.SchemaNode(colander.String())
+    password = colander.SchemaNode(colander.String())
+
+@view_config(route_name='login', renderer='json', request_method='POST')
+def login_view(request):
+    schema = LoginForm()
+    try:
+        # Ici, on suppose que les données du formulaire sont envoyées en JSON.
+        # Si elles sont envoyées en tant que données de formulaire normales,
+        # vous devriez utiliser request.POST au lieu de request.json_body.
+        form_data = schema.deserialize(request.json_body)
+    except colander.Invalid as e:
+        # Si les données ne sont pas valides, renvoyez une erreur 400 avec les erreurs de validation.
+        return HTTPBadRequest(json_body=e.asdict())
+
+    # Si les données sont valides, utilisez-les pour essayer de connecter l'utilisateur.
+    username = form_data['username']
+    password = form_data['password']
+
+    # Insérez ici la logique d'authentification, par exemple vérifier le nom d'utilisateur
+    # et le mot de passe dans votre base de données, et éventuellement définir l'utilisateur
+    # comme connecté dans la session.
+
+    return {'status': 'success'}  # Si tout se passe bien, renvoyez un succès.
+```
+
+Dans cet exemple, la vue "login" utilise le schéma `LoginForm` pour valider les données du formulaire envoyées dans le corps de la requête POST. Si les données ne sont pas valides, la vue renvoie une réponse avec le code d'état HTTP 400 et les erreurs de validation. Si les données sont valides, la vue extrait le nom d'utilisateur et le mot de passe et peut alors les utiliser pour authentifier l'utilisateur.
+
+Cet exemple est assez basique et ne contient pas de logique réelle d'authentification (par exemple, vérifier le nom d'utilisateur et le mot de passe dans une base de données).
+
 ### 5.4.3 Comment assainir les entrées des utilisateurs
 
 L'assainissement des entrées des utilisateurs est tout aussi important que la validation. L'assainissement fait référence à la suppression ou à l'échappement des caractères potentiellement dangereux des entrées de l'utilisateur. 
@@ -924,6 +1207,7 @@ L'assainissement des entrées des utilisateurs est tout aussi important que la v
 Dans le contexte de Pyramid et des modèles de pages web, l'assainissement est souvent pris en charge automatiquement par le moteur de templates. Par exemple, le moteur de templates Chameleon, largement utilisé avec Pyramid, échappe automatiquement les variables insérées dans les templates, ce qui aide à prévenir les attaques XSS.
 
 ### 5.4.4 Exercices pratiques sur la validation et l'assainissement des entrées des utilisateurs
+
 1. Utilisons `colander` pour définir des schémas de validation pour d'autres formulaires de notre application. Testons notre application pour nous assurer que la validation fonctionne correctement.
 
 2. Recherchons comment nous pouvons assainir les entrées des utilisateurs dans d'autres contextes, comme lors de l'exécution de requêtes SQL. 
@@ -1038,7 +1322,7 @@ Quelques concepts clés à comprendre avec LDAP sont :
 
 4. **Domain Component (DC)** : Il s'agit du domaine de niveau supérieur, par exemple, "example.com" dans l'exemple ci-dessus.
 
-Nous proposons ici une introduction très basique à LDAP. Nous explorerons plus en détail LDAP dans la note [[LDAP]] et son implémentation spécifique, OpenLDAP. 
+Nous explorerons plus en détail LDAP dans la note [[LDAP]] et son implémentation spécifique, OpenLDAP. 
 
 Pour nos exercices de réflexion nous allons utiliser les données utilisateurs suivantes :
 	- Noms,
@@ -1057,92 +1341,6 @@ Pour nos exercices de réflexion nous allons utiliser les données utilisateurs 
 	- pays de la résidence principale
 	- Texte de profil utilisateur
 	- Image de profil utilisateur / avatar
-
-## 6.2 Introduction à OpenLDAP
-
-OpenLDAP est un projet open source qui implémente le protocole LDAP. Il fournit un serveur d'annuaire robuste et hautement compatible qui peut gérer une grande variété de tâches. C'est une solution flexible, performante et ayant une large base d'utilisateurs.
-
-Pour commencer, nous allons installer OpenLDAP sur un serveur local. Suivons les étapes suivantes pour installer OpenLDAP sur une machine Unix/Linux:
-
-1. Mettons à jour la liste des paquets disponibles sur notre système:
-
-```bash
-sudo apt-get update
-```
-
-2. Installons le paquet OpenLDAP:
-
-```bash
-sudo apt-get install slapd ldap-utils
-```
-
-3. Pendant l'installation, on nous demandera de définir un mot de passe pour l'administrateur du serveur LDAP.
-
-4. Une fois l'installation terminée, nous pouvons vérifier que le serveur LDAP fonctionne correctement en exécutant la commande suivante:
-
-```bash
-sudo service slapd status
-```
-
-   Nous devrions voir que le service slapd est en cours d'exécution.
-
-5. Ensuite, nous devons configurer le serveur LDAP. Exécutons la commande suivante pour lancer l'assistant de configuration:
-
-```bash
-sudo dpkg-reconfigure slapd
-```
-
-   Suivons les instructions à l'écran pour configurer notre serveur. Nous aurons besoin de définir un DN de base pour notre annuaire, par exemple, "dc=monentreprise,dc=com".
-
-## 6.3 Installation et configuration d'OpenLDAP
-
-Nous avons installé OpenLDAP sur nos systèmes, nous allons nous concentrer sur la configuration détaillée de notre serveur OpenLDAP.
-
-Avant de commencer, vérifions que nous avons bien installé les paquets nécessaires. Si ce n'est pas le cas, voici les pré-requis pour l'installation d'OpenLDAP:
-
-- Un système Linux ou Unix : OpenLDAP est généralement utilisé sur ces systèmes, bien qu'il soit possible de l'utiliser sur d'autres systèmes d'exploitation.
-- Les paquets slapd et ldap-utils : Ces paquets sont nécessaires pour installer OpenLDAP.
-
-Dans OpenLDAP, la configuration est stockée dans un format spécial appelé LDIF (LDAP Data Interchange Format). La configuration est stockée dans un sous-arbre de l'annuaire LDAP lui-même, généralement sous "cn=config".
-
-Pour afficher la configuration actuelle, nous pouvons utiliser la commande suivante:
-
-```bash
-sudo ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:/// -b cn=config
-```
-
-Cela devrait afficher une grande quantité de données en format LDIF. Ne nous inquiétons pas, nous allons passer en revue ces informations et les comprendre ensemble.
-
-## 6.4 Comprendre le schéma de données LDAP
-
-### 6.4.1 Qu'est-ce qu'un schéma de données LDAP et pourquoi est-il important ?
-
-Un schéma LDAP est une collection de définitions et de règles qui déterminent la structure des données du service d'annuaire LDAP. Il sert de "plan" pour les données et définit les attributs et les types d'objets qui peuvent être créés et stockés dans l'annuaire.
-
-### 6.4.2 Exploration des composants clés d'un schéma de données LDAP : objets, attributs, classes.
-
-Un schéma LDAP comprend des définitions pour les éléments suivants :
-   - **Attributs :** Ce sont les informations de base stockées pour un objet. Par exemple, un attribut pourrait être "mail" pour stocker une adresse e-mail, ou "cn" pour le nom commun d'un objet.
-   - **Classes d'objets :** Une classe d'objet est un regroupement d'attributs qui définissent un type d'objet particulier. Par exemple, une classe d'objet "personne" peut inclure des attributs comme le nom, le prénom et l'adresse e-mail.
-   - **Types de données :** Chaque attribut a un type de données associé qui contrôle le type d'information qu'il peut stocker.
-
-### 6.4.3. Comment définir et modifier un schéma de données LDAP dans OpenLDAP.
-
-Dans OpenLDAP, nous pouvons définir et modifier notre schéma de données en utilisant le format LDIF que nous avons introduit hier. Par exemple, pour ajouter une nouvelle classe d'objet à notre schéma, nous pourrions utiliser une entrée LDIF comme celle-ci :
-
-```ldif
-dn: cn={5}custom,cn=schema,cn=config
-objectClass: olcSchemaConfig
-cn: {5}custom
-olcAttributeTypes: ( 1.3.6.1.4.1.99999.1 NAME 'customAttribute' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
-olcObjectClasses: ( 1.3.6.1.4.1.99999.2 NAME 'customObject' SUP inetOrgPerson STRUCTURAL MUST customAttribute )
-```
-
-Cela crée une nouvelle classe d'objet "customObject" qui hérite de la classe "inetOrgPerson" et qui a un nouvel attribut obligatoire "customAttribute".
-
-### 6.4.4 Exercices pratiques : travailler avec des schémas de données LDAP.
-
-Pour nous exercer, essayons de créer une nouvelle classe d'objet dans notre schéma LDAP. Définissons quelques attributs pour cette classe, et créons ensuite quelques objets utilisant cette classe.
 
 # 7. Authentification LDAP
 
@@ -1294,6 +1492,24 @@ Pyramid est un framework web flexible qui peut être déployé de plusieurs faç
 
 Toutes ces options ont leurs avantages et leurs inconvénients. Le choix de l'une ou l'autre dépendra de nos besoins spécifiques.
 
+### 8.1.3 WSGI
+
+WSGI est une spécification qui décrit comment un serveur web interagit avec des applications web en Python. Avant WSGI, il y avait une variété de méthodes non standardisées pour cette interaction. WSGI a été créé pour offrir une interface standardisée, de manière à ce que les applications web écrites en Python puissent être déployées sur n'importe quel serveur web supportant WSGI, indépendamment des détails spécifiques du serveur.
+
+WSGI définit essentiellement deux rôles :
+
+1. **Le côté serveur (ou "gateway")** : C'est généralement le serveur web lui-même, ou un module de celui-ci, qui reçoit les requêtes HTTP des clients (navigateurs web). Lorsqu'une requête arrive, le serveur la formate dans un format spécifique défini par la spécification WSGI.
+
+2. **Le côté application** : C'est notre application web Python. Elle reçoit les requêtes du serveur sous forme de dictionnaires et de fonctions callback. L'application traite la requête et renvoie une réponse qui est ensuite renvoyée au client par le serveur.
+
+Par exemple, dans une application Pyramid, le fichier que nous exécutons pour démarrer notre application contiendra généralement du code pour créer une instance d'application WSGI. C'est ce qui se passe lorsque nous appelons `config.make_wsgi_app()` dans notre code Pyramid.
+
+Ce code génère une application WSGI qui peut ensuite être servie à l'aide d'un serveur WSGI. Dans les exemples précédents, nous avons utilisé `wsgiref.simple_server.make_server`, qui est un serveur WSGI simple fourni par la bibliothèque standard Python.
+
+Dans une production réelle, nous utiliserions un serveur WSGI plus robuste, comme Gunicorn ou uWSGI, pour servir notre application.
+
+C'est en substance ce qu'est WSGI, un élément clé de la plupart des applications web Python et un élément important pour comprendre comment fonctionnent les applications Pyramid.
+
 ## 8.2 Configuration de l'environnement de production
 
 ### 8.2.1 Introduction
@@ -1338,8 +1554,56 @@ La configuration de notre application pour l'environnement de production peut n�
 
 Une fois que tout est en place, nous pouvons démarrer notre application Pyramid. La façon exacte de le faire dépend de la façon dont nous avons configuré notre serveur web. Par exemple, si nous utilisons Gunicorn, nous pouvons démarrer notre application en utilisant la commande `gunicorn myapp:app`.
 
-# 9 Exemples de code
-## 9.1 Stockage d'une session en Zodb
+# 9. Pyramid et Docker
+Docker est une excellente option pour déployer des applications Pyramid car il nous permet d'encapsuler notre application et toutes ses dépendances dans un conteneur, ce qui facilite le déploiement et l'exécution de notre application dans divers environnements.
+
+Pour utiliser Docker avec Pyramid, nous devrons créer un fichier `Dockerfile` qui décrit comment créer une image Docker pour notre application. Voici un exemple de base d'un `Dockerfile` pour une application Pyramid :
+
+```Dockerfile
+# Utilisins une image Python comme image de base
+FROM python:3.9-slim-buster
+
+# Créons un répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copions les fichiers de dépendance dans le conteneur
+COPY requirements.txt .
+
+# Installons les dépendances de l'application
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copions le reste du code de l'application dans le conteneur
+COPY . .
+
+# Exposons le port sur lequel notre application s'exécute
+EXPOSE 6543
+
+# Lançons le serveur de développement de Pyramid
+CMD ["pserve", "development.ini"]
+```
+
+Notons que cette configuration utilise le serveur de développement inclus avec Pyramid, qui n'est pas destiné à être utilisé en production. Pour un déploiement en production, nous devrions utiliser un serveur WSGI comme Gunicorn ou uWSGI.
+
+Pour construire une image Docker à partir de ce `Dockerfile`, nous pouvons utiliser la commande `docker build` :
+
+```shell
+docker build -t my-pyramid-app .
+```
+
+Et pour exécuter un conteneur basé sur cette image, nous pouvons utiliser la commande `docker run` :
+
+```shell
+docker run -p 6543:6543 my-pyramid-app
+```
+
+Cela démarre notre application Pyramid dans un conteneur Docker et expose le port 6543 pour que nous puissions y accéder.
+
+Notons que la manière dont nous structurons notre `Dockerfile` et la façon dont nous utilisons Docker peuvent varier en fonction de nos besoins spécifiques. Par exemple, si nous utilisons une base de données, nous devrons probablement configurer notre application pour qu'elle puisse y accéder, et nous pourrions utiliser Docker Compose pour gérer à la fois notre application et notre base de données.
+
+# 10. Exemples de code
+
+## 10.1 Stockage d'une session en Zodb
+
 Avant de commencer, assurons-nous d'avoir installé les dépendances requises pour travailler avec Pyramid et ZODB. Si ce n'est pas déjà fait, nous pouvons les installer avec la commande suivante :
 
 ```bash
@@ -1405,238 +1669,7 @@ Dans ce code, `add_session` est une vue qui crée une nouvelle `Session` et l'aj
 
 Nous pouvons ensuite exécuter cette application Pyramid et visiter `/add_session?id=123` pour ajouter une session avec un id de 123, et `/get_sessions` pour voir une liste de toutes les sessions ajoutées.
 
-@TODO Fusionner
-
-Une fois installé, nous pouvons commencer à créer notre première application Pyramid. Créons un nouveau fichier Python et appelons-le `my_first_pyramid_app.py`. Dans ce fichier, importons les modules nécessaires et définissons une vue.
-
-```python
-from wsgiref.simple_server import make_server
-from pyramid.config import Configurator
-from pyramid.response import Response
-
-def hello_world(request):
-    return Response('Hello World!')
-
-if __name__ == '__main__':
-    with Configurator() as config:
-        config.add_route('hello', '/')
-        config.add_view(hello_world, route_name='hello')
-        app = config.make_wsgi_app()
-    server = make_server('0.0.0.0', 6543, app)
-    server.serve_forever()
-```
-
-Dans cet exemple, nous avons défini une route simple qui renvoie "Hello World!" lorsque nous visitons la racine du site (http://0.0.0.0:6543/). 
-
-Pyramid utilise le concept de "vues" pour définir ce qui se passe lorsqu'une route spécifique est appelée. Ici, nous avons une vue `hello_world` qui est invoquée lorsqu'un client visite la route 'hello' que nous avons définie comme étant '/'. 
-
-# Introduction à l'utilisation des templates
-
-Dans Pyramid, un système populaire de templates est Chameleon, qui supporte la syntaxe TAL (Template Attribute Language) et METAL (Macro Expansion TAL). C'est un système de templates puissant qui permet un marquage clair et lisible.
-
-Pour commencer à utiliser Chameleon avec Pyramid, nous devons d'abord l'installer. Utilisons `pip` pour installer le package `pyramid_chameleon` :
-
-```python
-pip install pyramid_chameleon
-```
-
-Une fois installé, nous devons indiquer à Pyramid que nous allons utiliser Chameleon comme système de templates. Dans notre fonction principale, nous ajoutons une ligne pour inclure `pyramid_chameleon` :
-
-```python
-if __name__ == '__main__':
-    with Configurator() as config:
-        config.include('pyramid_chameleon')
-        # le reste de notre code
-```
-
-Maintenant, supposons que nous ayons un template appelé `mytemplate.pt`. Pour l'utiliser dans notre application, nous devons modifier notre vue pour retourner un dictionnaire de valeurs au lieu d'une réponse directe :
-
-```python
-def hello_world(request):
-    return {'name': 'World'}
-```
-
-Ensuite, nous modifions notre configuration pour indiquer le template à utiliser avec cette vue :
-
-```python
-config.add_view(hello_world, route_name='hello', renderer='templates/mytemplate.pt')
-```
-
-Dans le template lui-même, nous pouvons utiliser la syntaxe TAL pour accéder aux valeurs du dictionnaire. Voici à quoi pourrait ressembler notre template `mytemplate.pt` :
-
-```html
-<html>
-<body>
-    <h1>Hello, ${name}!</h1>
-</body>
-</html>
-```
-
-Ici, `${name}` sera remplacé par la valeur correspondante dans le dictionnaire retourné par notre vue, en l'occurrence 'World'.
-
-Si nous voulons aller encore plus loin et utiliser METAL pour la réutilisation des macros, notre code pourrait ressembler à ceci :
-
-```html
-<html metal:define-macro="my_macro">
-<body>
-    <h1 metal:define-slot="greeting">Hello, ${name}!</h1>
-</body>
-</html>
-```
-
-Et nous pourrions ensuite utiliser cette macro dans un autre template avec `metal:use-macro` :
-
-```html
-<div metal:use-macro="mytemplate.pt/my_macro">
-    <h1 metal:fill-slot="greeting">Salut, ${name}!</h1>
-</div>
-```
-
-# Route et résolution d'url
-Absolument, le mécanisme de routage et de résolution est un aspect essentiel de n'importe quel framework web, y compris Pyramid. 
-
-Le routage est le processus par lequel une requête web est dirigée vers le code approprié pour la traiter. Dans Pyramid, cela se fait à travers une combinaison de configurations de routes et de vues.
-
-### Routage
-
-La configuration des routes est réalisée en utilisant la méthode `add_route()` de l'objet `Configurator`. Par exemple :
-
-```python
-config.add_route('hello', '/hello')
-```
-
-Ici, nous ajoutons une route appelée 'hello' qui correspond à l'URL '/hello'. La première chaîne de caractères est un nom unique que nous donnons à la route, et la deuxième est le motif d'URL auquel elle correspond.
-
-Les routes peuvent également contenir des parties variables, indiquées par des accolades. Par exemple :
-
-```python
-config.add_route('greet', '/hello/{name}')
-```
-
-Ici, la route 'greet' correspond à n'importe quelle URL qui commence par '/hello/' suivi de n'importe quelle chaîne de caractères. Cette chaîne de caractères peut ensuite être récupérée dans la vue correspondante.
-
-### Vues et résolution
-
-Une vue est une fonction Python qui prend une requête web et renvoie une réponse. Une vue est associée à une route dans la configuration :
-
-```python
-config.add_view(hello_world, route_name='hello')
-```
-
-Ici, la fonction `hello_world` est notre vue, et nous indiquons qu'elle doit être utilisée pour la route 'hello'. Lorsqu'une requête arrive correspondant à cette route, Pyramid utilise la vue associée pour générer une réponse.
-
-Si notre route contient des parties variables, celles-ci sont passées à la vue sous forme de paramètres. Par exemple, pour notre route 'greet', nous pourrions avoir une vue comme celle-ci :
-
-```python
-def greet(request):
-    name = request.matchdict['name']
-    return Response(f'Hello, {name}!')
-```
-
-Ici, `request.matchdict` est un dictionnaire qui contient les parties variables de l'URL. Nous pouvons les récupérer et les utiliser pour personnaliser notre réponse.
-
-Ensemble, le routage et les vues forment un système puissant pour gérer les requêtes web. En combinant des routes dynamiques avec des vues personnalisées, nous pouvons créer des applications web complexes avec Pyramid.
-
-# Wsgi
-Bien sûr, il serait crucial d'expliquer le concept de WSGI (Web Server Gateway Interface) dans le cadre de l'enseignement du framework Pyramid. 
-
-WSGI est une spécification qui décrit comment un serveur web interagit avec des applications web en Python. Avant WSGI, il y avait une variété de méthodes non standardisées pour cette interaction. WSGI a été créé pour offrir une interface standardisée, de manière à ce que les applications web écrites en Python puissent être déployées sur n'importe quel serveur web supportant WSGI, indépendamment des détails spécifiques du serveur.
-
-WSGI définit essentiellement deux rôles :
-
-1. **Le côté serveur (ou "gateway")** : C'est généralement le serveur web lui-même, ou un module de celui-ci, qui reçoit les requêtes HTTP des clients (navigateurs web). Lorsqu'une requête arrive, le serveur la formate dans un format spécifique défini par la spécification WSGI.
-
-2. **Le côté application** : C'est notre application web Python. Elle reçoit les requêtes du serveur sous forme de dictionnaires et de fonctions callback. L'application traite la requête et renvoie une réponse qui est ensuite renvoyée au client par le serveur.
-
-Par exemple, dans une application Pyramid, le fichier que nous exécutons pour démarrer notre application contiendra généralement du code pour créer une instance d'application WSGI. C'est ce qui se passe lorsque nous appelons `config.make_wsgi_app()` dans notre code Pyramid.
-
-Ce code génère une application WSGI qui peut ensuite être servie à l'aide d'un serveur WSGI. Dans les exemples précédents, nous avons utilisé `wsgiref.simple_server.make_server`, qui est un serveur WSGI simple fourni par la bibliothèque standard Python.
-
-Il est important de noter que dans une production réelle, nous utiliserions un serveur WSGI plus robuste, comme Gunicorn ou uWSGI, pour servir notre application.
-
-C'est en substance ce qu'est WSGI. C'est un élément clé de la plupart des applications web Python et un élément important pour comprendre comment fonctionnent les applications Pyramid.
-
-# Pyramid CSRF
-Pyramid fournit un module, `pyramid.csrf`, pour aider à la protection contre les attaques par falsification de requête inter-site (Cross-Site Request Forgery, ou CSRF). Les attaques CSRF sont une technique d'exploitation où un attaquant trompe un utilisateur pour qu'il effectue une action indésirable sur un site web où il est actuellement authentifié.
-
-Pour comprendre comment fonctionne la protection CSRF, il est utile de savoir ce qu'est un "jeton CSRF". Un jeton CSRF est un jeton unique et aléatoire qui est généré et stocké côté serveur, puis inclus dans les formulaires ou les requêtes AJAX côté client. Lorsque le client soumet le formulaire ou la requête, le serveur vérifie que le jeton CSRF inclus correspond au jeton stocké côté serveur. Si les jetons correspondent, la requête est considérée comme légitime. Si les jetons ne correspondent pas ou si le jeton est manquant, la requête est rejetée comme étant potentiellement malveillante.
-
-Dans Pyramid, la protection CSRF peut être mise en place de la manière suivante :
-
-1. **Activation de la politique CSRF** : Pour utiliser CSRF dans Pyramid, nous devons activer une politique CSRF. Cela peut être fait dans la configuration de notre application :
-
-    ```python
-    config.set_default_csrf_options(require_csrf=True)
-    ```
-
-    Cette ligne indique que notre application requiert une protection CSRF.
-
-2. **Génération des jetons CSRF** : Nous pouvons générer un jeton CSRF en utilisant `pyramid.csrf.get_csrf_token(request)`. Cela nous donnera un jeton que nous pouvons ensuite inclure dans nos formulaires ou nos requêtes AJAX.
-
-    Par exemple, si nous utilisons Chameleon pour nos templates, nous pouvons inclure le jeton CSRF dans un formulaire comme suit :
-
-    ```html
-    <form method="post">
-        <input type="hidden" name="csrf_token" tal:attributes="value request.session.get_csrf_token()"/>
-        <!-- Reste du formulaire -->
-    </form>
-    ```
-
-3. **Vérification des jetons CSRF** : Pyramid vérifie automatiquement le jeton CSRF pour toutes les requêtes POST, PUT, DELETE et PATCH si `require_csrf=True` a été réglé. Si le jeton CSRF est manquant ou ne correspond pas, Pyramid lèvera une exception `pyramid.exceptions.BadCSRFToken`.
-
-Il est important de noter que les jetons CSRF ne sont qu'une partie de la sécurité de notre application et ne doivent pas être utilisés comme seule ligne de défense. Nous devrions toujours implémenter des contrôles d'accès appropriés, de la validation des données, et d'autres mesures de sécurité appropriées.
-
-# Gestion de l'authentification et des cookies d'authentification
-
-L'authentification est un aspect clé de la sécurité web, et Pyramid offre plusieurs mécanismes pour la gestion de l'authentification. La bibliothèque standard de Pyramid ne fournit pas de système d'authentification intégré par défaut, mais elle offre des outils et des abstractions pour créer le vôtre ou pour intégrer des systèmes d'authentification tiers.
-
-**Cookies d'authentification**
-
-Les cookies d'authentification sont souvent utilisés pour maintenir la session de l'utilisateur entre plusieurs requêtes. Lorsqu'un utilisateur se connecte avec succès, le serveur crée une session pour l'utilisateur et envoie un cookie avec un identifiant de session unique au navigateur de l'utilisateur. Pour chaque requête suivante, le navigateur envoie le cookie au serveur, ce qui permet au serveur de vérifier et de maintenir la session de l'utilisateur.
-
-Pyramid offre un moyen intégré de définir des cookies. Pour définir un cookie, nous pouvons utiliser la méthode `response.set_cookie()` sur l'objet de réponse. Par exemple :
-
-```python
-response = Response("Some content")
-response.set_cookie('session', '123456')
-```
-
-Pour lire un cookie, nous pouvons utiliser la méthode `request.cookies.get()`. Par exemple :
-
-```python
-session_id = request.cookies.get('session')
-```
-
-**Gestion de l'authentification**
-
-Pyramid propose un système de "policies" d'authentification pour gérer l'authentification. Une "policy" d'authentification est une classe qui fournit des méthodes pour gérer les aspects de l'authentification, comme la récupération de l'identifiant de l'utilisateur et la vérification des autorisations de l'utilisateur.
-
-Pour utiliser une "policy" d'authentification, nous devons d'abord la définir dans la configuration de notre application. Par exemple :
-
-```python
-from pyramid.authentication import AuthTktAuthenticationPolicy
-from pyramid.authorization import ACLAuthorizationPolicy
-
-authn_policy = AuthTktAuthenticationPolicy('sosecret', hashalg='sha512')
-authz_policy = ACLAuthorizationPolicy()
-
-config = Configurator(settings=settings,
-                      root_factory=MyProject,
-                      authentication_policy=authn_policy,
-                      authorization_policy=authz_policy)
-```
-
-Ici, nous utilisons la "policy" `AuthTktAuthenticationPolicy`, qui est une "policy" d'authentification basée sur un ticket. Elle stocke les données d'authentification de l'utilisateur dans un cookie signé.
-
-Ensuite, nous pouvons utiliser la méthode `authenticated_userid(request)` pour obtenir l'identifiant de l'utilisateur authentifié. Par exemple :
-
-```python
-user_id = request.authenticated_userid
-```
-
-Notons que tout système d'authentification devrait également implémenter un certain nombre de contrôles de sécurité pour protéger les données sensibles, tels que le hachage des mots de passe, le cryptage des données de session et la protection contre les attaques CSRF, comme nous l'avons mentionné précédemment.
-
-# Coupler l'authentification avec OpenLDAP
+## 10.2 Coupler l'authentification avec OpenLDAP
 
 Pour coupler l'authentification Pyramid avec un serveur OpenLDAP, nous devrions utiliser une bibliothèque qui permet à notre application Python de communiquer avec le serveur LDAP. Une option est `python-ldap`, une interface vers les bibliothèques OpenLDAP.
 
@@ -1695,7 +1728,7 @@ Rappelons-nous que ce code est une implémentation très simple et que nous auro
 
 De plus, notons que la communication avec le serveur LDAP doit se faire sur une connexion sécurisée (par exemple, LDAPS ou StartTLS) pour protéger les informations d'identification des utilisateurs. Dans l'exemple ci-dessus, nous avons désactivé la vérification du certificat pour la simplicité, mais dans une application réelle, nous devrions toujours vérifier le certificat du serveur.
 
-## Code avec vérification des certificats
+## 10.3 Code avec vérification des certificats
 
 La vérification des certificats en Python peut être gérée en utilisant l'option `OPT_X_TLS_CACERTDIR` ou `OPT_X_TLS_CACERTFILE` de python-ldap. Nous pouvons utiliser ces options pour spécifier l'emplacement du fichier de certificat ou du répertoire contenant les certificats CA.
 
@@ -1747,88 +1780,7 @@ def main(global_config, **settings):
     return config.make_wsgi_app()
 ```
 
-Encore une fois, notons que ce code est une implémentation simple. Dans une application réelle, nous aurons probablement besoin de gérer les erreurs de manière plus robuste et de fournir une interface utilisateur pour la connexion. De plus, les informations d'identification des utilisateurs ne doivent jamais être manipulées ou stockées de manière non sécurisée.
+Ce code est une implémentation simple. Dans une application réelle, nous aurons probablement besoin de gérer les erreurs de manière plus robuste et de fournir une interface utilisateur pour la connexion. De plus, les informations d'identification des utilisateurs ne doivent jamais être manipulées ou stockées de manière non sécurisée.
 
-# Ce que signifie manipuler les données utilisateur de manière sécurisée
-Manipuler les données utilisateur de manière sécurisée est essentiel pour protéger la confidentialité et l'intégrité des données des utilisateurs. Voici quelques pratiques importantes pour manipuler les données utilisateur de manière sécurisée :
 
-**1. Utilisons le cryptage** : Les données sensibles, telles que les informations d'identification des utilisateurs, doivent être transmises et stockées de manière sécurisée. Cela signifie qu'elles doivent être cryptées pendant le transport (c'est-à-dire en utilisant HTTPS plutôt que HTTP) et lorsqu'elles sont stockées (c'est-à-dire en utilisant le cryptage des données au repos).
 
-**2. Stockons les mots de passe de manière sécurisée** : Nous ne devons jamais stocker les mots de passe en clair. Au lieu de cela, nous devons stocker une empreinte cryptographique du mot de passe (un "hash") et comparer cette empreinte lorsque l'utilisateur se connecte. De plus, nous devons utiliser un "sel" (une valeur aléatoire ajoutée au mot de passe avant le hachage) pour rendre les attaques par tables de hachage (rainbow tables) moins efficaces.
-
-**3. Validons les entrées des utilisateurs** : Les entrées des utilisateurs sont une source courante de vulnérabilités. Nous devons toujours valider les entrées des utilisateurs pour nous assurer qu'elles sont dans le format attendu et ne contiennent pas de code malveillant. Cela est particulièrement important pour prévenir les attaques d'injection, comme l'injection SQL.
-
-**4. Limitons l'accès aux données** : Utilisons le principe du moindre privilège pour limiter l'accès aux données utilisateur. Cela signifie que chaque utilisateur ou processus ne devrait avoir que les privilèges minimum nécessaires pour effectuer sa tâche.
-
-**5. Gérons les erreurs de manière sécurisée** : Les erreurs peuvent révéler des informations sur notre système qui pourraient être utiles à un attaquant. Assurons-nous de gérer les erreurs de manière à ne pas divulguer d'informations sensibles. Par exemple, n'incluons pas de détails sur la structure de notre base de données dans les messages d'erreur.
-
-**6. Utilisons les mises à jour et les patchs de sécurité** : Assurons-nous que notre système est toujours à jour avec les dernières mises à jour et les derniers patchs de sécurité. Les anciennes versions des logiciels peuvent contenir des vulnérabilités connues qui peuvent être exploitées par des attaquants.
-
-**7. Soyons conscient des attaques CSRF et XSS** : Les attaques par falsification de requête inter-site (CSRF) et les attaques par script intersites (XSS) sont deux types d'attaques courantes qui ciblent les utilisateurs. Assurons-nous d'utiliser les protections appropriées, comme les jetons CSRF et l'échappement des entrées des utilisateurs pour prévenir les attaques XSS.
-
-En suivant ces pratiques, nous pouvons aider à protéger les données de nos utilisateurs contre l'accès non autorisé et l'exploitation.
-
-# Déploiement d'application Pyramid
-Le déploiement d'une application Pyramid peut impliquer plusieurs étapes, selon notre environnement de déploiement et nos exigences spécifiques. Dans l'ensemble, les étapes générales comprennent :
-
-1. **Packaging de notre application** : Nous devrons probablement créer un paquet pour notre application, généralement sous la forme d'un fichier `.tar.gz` ou `.whl` Python. Nous pouvons utiliser des outils comme `setuptools` pour cela. notre fichier de setup.py devrait contenir toutes les dépendances nécessaires à notre application.
-
-2. **Choisir un serveur WSGI** : Pyramid, comme beaucoup de frameworks Python, utilise l'interface Web Server Gateway (WSGI) pour communiquer avec notre serveur web. Nous devrons choisir un serveur WSGI pour exécuter notre application. Des options populaires comprennent uWSGI et Gunicorn.
-
-3. **Configurer notre serveur web** : En plus de notre serveur WSGI, nous aurons probablement besoin d'un serveur web pour gérer les requêtes HTTP, servir des fichiers statiques, etc. Des options populaires comprennent Nginx et Apache. Notre serveur web devra être configuré pour transmettre les requêtes à notre serveur WSGI.
-
-4. **Configurer la base de données** : Si notre application utilise une base de données, nous devrons la configurer. Cela pourrait signifier la création d'une base de données, la définition des utilisateurs et des permissions, et le chargement des données initiales. Nous devrons également nous assurer que notre application a accès à cette base de données.
-
-5. **Déployer notre application** : Une fois que tout est configuré, nous pouvons déployer notre application. Cela signifie généralement copier notre paquet d'application sur notre serveur, l'installer en utilisant un outil comme pip, et démarrer notre serveur WSGI.
-
-6. **Configurer les services d'arrière-plan** : Si notre application dépend de services d'arrière-plan, comme une file d'attente de tâches, nous devrons les configurer et les démarrer.
-
-7. **Mettre en place la surveillance et les journaux** : Une fois que notre application est déployée, nous devrons la surveiller pour nous assurer qu'elle fonctionne correctement. Cela peut impliquer la mise en place de journaux, l'utilisation d'outils de surveillance comme Prometheus ou Datadog, et la configuration des alertes pour nous informer des problèmes.
-
-Notons que le déploiement est un sujet vaste et que les détails spécifiques peuvent varier considérablement en fonction de notre environnement et de nos exigences. Les points ci-dessus sont destinés à être une vue d'ensemble de haut niveau du processus et ne sont pas une liste exhaustive de toutes les étapes potentielles du déploiement.
-
-# Pyramid et Docker
-Docker est une excellente option pour déployer des applications Pyramid car il nous permet d'encapsuler notre application et toutes ses dépendances dans un conteneur, ce qui facilite le déploiement et l'exécution de notre application dans divers environnements.
-
-Pour utiliser Docker avec Pyramid, nous devrons créer un fichier `Dockerfile` qui décrit comment créer une image Docker pour notre application. Voici un exemple de base d'un `Dockerfile` pour une application Pyramid :
-
-```Dockerfile
-# Utilisins une image Python comme image de base
-FROM python:3.9-slim-buster
-
-# Créons un répertoire de travail dans le conteneur
-WORKDIR /app
-
-# Copions les fichiers de dépendance dans le conteneur
-COPY requirements.txt .
-
-# Installons les dépendances de l'application
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copions le reste du code de l'application dans le conteneur
-COPY . .
-
-# Exposons le port sur lequel notre application s'exécute
-EXPOSE 6543
-
-# Lançons le serveur de développement de Pyramid
-CMD ["pserve", "development.ini"]
-```
-
-Notons que cette configuration utilise le serveur de développement inclus avec Pyramid, qui n'est pas destiné à être utilisé en production. Pour un déploiement en production, nous devrions utiliser un serveur WSGI comme Gunicorn ou uWSGI.
-
-Pour construire une image Docker à partir de ce `Dockerfile`, nous pouvons utiliser la commande `docker build` :
-
-```shell
-docker build -t my-pyramid-app .
-```
-
-Et pour exécuter un conteneur basé sur cette image, nous pouvons utiliser la commande `docker run` :
-
-```shell
-docker run -p 6543:6543 my-pyramid-app
-```
-
-Cela démarre notre application Pyramid dans un conteneur Docker et expose le port 6543 pour que nous puissions y accéder.
-
-Notons que la manière dont nous structurons notre `Dockerfile` et la façon dont nous utilisons Docker peuvent varier en fonction de nos besoins spécifiques. Par exemple, si nous utilisons une base de données, nous devrons probablement configurer notre application pour qu'elle puisse y accéder, et nous pourrions utiliser Docker Compose pour gérer à la fois notre application et notre base de données.
