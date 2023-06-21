@@ -302,12 +302,11 @@ Construction d'une application Pyramid "Hello, World!"
 ### 1.4.3 Exécution de l'application
 
    Nous pouvons maintenant exécuter notre application pour voir si tout fonctionne comme prévu. Pour ce faire, utilisons la commande suivante :
-
    ```bash
    pserve development.ini
    ```
 
-   Si tout se passe bien, nous devrions voir que notre serveur est en cours d'exécution. Ouvrons notre navigateur et allons à `http://localhost:6543/`. Nous devrions voir "Hello, World!".
+   Si tout se passe bien, notre serveur sera en cours d'exécution. Ouvrons notre navigateur et allons à `http://localhost:6543/`. Nous devrions voir "Hello, World!".
 
 ### 1.5 Révision et exercices pratiques
 
@@ -341,7 +340,7 @@ Pour renforcer notre compréhension de ces concepts, nous allons maintenant cré
 
 Prenons le temps de développer cette application en nous basant sur ce que nous avons appris cette semaine.
 
-# 2 Les Routes et Vues dans Pyramid**
+# 2 Les Routes et Vues dans Pyramid
 
 ## 2.1 Introduction aux routes dans Pyramid
 
@@ -352,7 +351,6 @@ Une route est essentiellement un moyen de définir comment les requêtes HTTP so
 ### 2.1.2 Définir des routes dans Pyramid
 
 Définir des routes dans Pyramid est assez simple. Nous pouvons le faire dans le fichier `__init__.py` de notre application. Par exemple, pour définir une route pour l'URL de base (`/`), nous pouvons ajouter le code suivant à notre fonction `main()` :
-
 ```python
 config.add_route('home', '/')
 ```
@@ -362,7 +360,6 @@ Ici, `home` est le nom de la route et `/` est le motif d'URL de la route. Ce mot
 ### 2.1.3 Pattern matching dans les routes
 
 Parfois, nous voulons définir des routes qui correspondent à plusieurs URL. Pyramid nous permet de le faire en utilisant des variables de routage. Par exemple, nous pouvons définir une route qui correspond à toute URL de la forme `/blog/{id}` en utilisant le code suivant :
-
 ```python
 config.add_route('blog', '/blog/{id}')
 ```
@@ -375,16 +372,15 @@ Pyramid nous permet de définir à la fois des routes statiques et des routes dy
 
 Par exemple, `/about` est une route statique, car elle correspond toujours à l'URL `/about`. D'autre part, `/blog/{id}` est une route dynamique, car elle peut correspondre à des URL comme `/blog/1`, `/blog/2`, etc.
 
-## 2.2 **Cours du Jour 2 : Gestion des vues dans Pyramid**
+## 2.2 Gestion des vues dans Pyramid
 
 ### 2.2.1 Qu'est-ce qu'une vue dans Pyramid ?
 
 Une vue dans Pyramid est une fonction ou une méthode Python qui reçoit une instance de requête en tant que paramètre et renvoie une réponse. Les vues sont associées aux routes de notre application, c'est-à-dire qu'une vue est appelée lorsque la route correspondante est sollicitée par une requête HTTP.
 
-**Création de vues simples**
+### 2.2.2 Création de vues simples
 
 Pour créer une vue, nous écrivons simplement une fonction Python. Par exemple, nous pouvons créer une vue qui renvoie "Hello, World!" comme suit :
-
 ```python
 def hello_world(request):
     return Response('Hello, World!')
@@ -392,10 +388,9 @@ def hello_world(request):
 
 Dans cet exemple, `request` est l'objet de requête que Pyramid passe à notre vue, et `Response('Hello, World!')` est la réponse HTTP que notre vue renvoie.
 
-### 2.2.2 Association des vues aux routes
+### 2.2.3 Association des vues aux routes
 
 Pour qu'une vue soit appelée, elle doit être associée à une route. Nous pouvons le faire en utilisant le décorateur `view_config` et en spécifiant le nom de la route. Par exemple, nous pouvons associer la vue `hello_world` à la route 'home' comme suit :
-
 ```python
 from pyramid.view import view_config
 
@@ -406,17 +401,15 @@ def hello_world(request):
 
 Dans cet exemple, lorsque la route 'home' est sollicitée, la fonction `hello_world` est appelée.
 
-### 2.2.3 Utilisation des décorateurs de vues
+### 2.2.4 Utilisation des décorateurs de vues
 
 Pyramid fournit plusieurs décorateurs que nous pouvons utiliser pour contrôler le comportement de nos vues. Par exemple, le décorateur `view_config` peut prendre plusieurs arguments qui contrôlent comment la vue est rendue, quel type de requêtes elle peut traiter, etc. Nous approfondirons ces options plus tard dans ce cours.
-
 
 ## 2.3 Approfondissement des routes dans Pyramid
 
 ### 2.3.1 Utilisation des générateurs d'URL
 
 Dans Pyramid, nous pouvons utiliser des générateurs d'URL pour créer des URL à partir des noms de nos routes. Par exemple, si nous avons une route nommée 'blog' qui correspond à l'URL '/blog/{id}', nous pouvons créer une URL pour cette route comme suit :
-
 ```python
 url = request.route_url('blog', id=1)
 ```
@@ -431,18 +424,28 @@ Parfois, nous voulons personnaliser la page d'erreur 404 de notre application. P
 from pyramid.view import notfound_view_config
 from pyramid.response import Response
 
-@notfound_view_config(renderer='404.jinja2')
+@notfound_view_config(renderer='404.pt')  # .pt est l'extension habituelle pour les templates Chameleon
 def notfound_view(request):
     request.response.status = 404
     return {}
-```
 
+```
+Qui sera associée à la "pagetemplate":
+
+```html
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <body>
+    <h1 tal:content="'Page non trouvée'">Page non trouvée</h1>
+    <p>Nous sommes désolés, mais la page que vous cherchez n'existe pas.</p>
+  </body>
+</html>
+```
 Dans cet exemple, lorsque l'utilisateur demande une URL qui ne correspond à aucune route, la vue `notfound_view` est appelée et une page 404 personnalisée est rendue.
 
 ### 2.3.3 Préfixes de routes
 
 Parfois, nous voulons ajouter un préfixe commun à plusieurs routes. Par exemple, nous pouvons avoir plusieurs routes qui commencent toutes par '/api'. Pyramid nous permet de le faire en utilisant la méthode `config.include()`. Par exemple :
-
 ```python
 config.include('myproject.api', route_prefix='/api')
 ```
@@ -488,7 +491,6 @@ Dans cet exemple, la vue `blog_view` renvoie une réponse HTTP avec le corps 'Vo
 ### 2.4.3 Utilisation des décorateurs de vues pour la gestion des erreurs
 
 Nous avons déjà vu le décorateur `view_config`, mais Pyramid offre également un autre décorateur utile pour la gestion des erreurs : `exception_view_config`. Ce décorateur nous permet de définir des vues qui seront appelées lorsqu'une exception spécifique est levée. Par exemple :
-
 ```python
 from pyramid.view import exception_view_config
 from pyramid.response import Response
@@ -515,13 +517,14 @@ Pour créer un template Chameleon, nous créons un fichier avec l'extension .pt 
 ```html
 <html>
   <body>
-    <h1>${title}</h1>
+    <h1 tal:content="title">A futur title</h1>
     <p>${description}</p>
   </body>
 </html>
 ```
 
-Dans cet exemple, `${title}` et `${description}` sont des expressions Python qui seront évaluées et remplacées par les valeurs que nous passerons à notre template.
+Dans cet exemple, `tal:content="title"` et `${description}` sont des expressions Python, ici deux noms de variable, qui seront évaluées et qui remplaceront le contenu de leur balise par les valeurs que nous passerons à notre template.
+Voir [documentation Chameleon](https://chameleon.readthedocs.io/en/latest/reference.html)
 
 ### 2.5.3 Passer des données à un template Chameleon
 
