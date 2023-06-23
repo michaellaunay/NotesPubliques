@@ -149,7 +149,7 @@ Pour revenir à la position précédente du curseur `Alt <-` que l'on peut encha
 L’auto-complétion est automatique, mais il arrive que nous devions la déclencher. L’auto-complétion est appelée par `Ctrl+Espace`
 
 ## Refactoring
-Lorsque nous sélectionnons un morceau de texte puis que nous appuyons sur F2 alors si nous modifions la zone de texte la modification est reportée sur tous les fichiers. C'est ce que nous appelons le **Refactoring**.
+Lorsque nous sélectionnons un morceau de texte puis que nous appuyons sur F2, alors si nous modifions la zone de texte la modification est reportée sur tous les fichiers. C'est ce que nous appelons le **Refactoring**.
 
 # Paramétrer git et copilot
 Ouvrir son dossier.
