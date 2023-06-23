@@ -71,15 +71,34 @@ pybabel init -i locale/messages.pot -d locale -l fr
 
 N'oublions pas de remplacer `fr` par la langue de base de votre projet. nous pouvons également utiliser l'option `-D` pour définir des variables de configuration dans le fichier de configuration généré, comme je nous l'ai indiqué précédemment.
 
-## Quelle est la différence ente *.mo et *.po ?
+## Le fichier \*.pot
 
 Un fichier `.pot` (fichier de catalogue de traduction) contient principalement deux parties : l'entête et les entrées de traduction. L'entête du fichier est un bloc de commentaires qui se trouve en haut du fichier et qui fournit des informations sur le projet, la version du fichier `.pot` et les personnes responsables de la traduction.
 
 Voici ce que doit contenir l'entête d'un fichier `.pot` selon la spécification de Gettext :
 
-`# SOME DESCRIPTIVE TITLE. # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER # This file is distributed under the same license as the PACKAGE package. # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR. # #, fuzzy msgid "" msgstr "" "Project-Id-Version: PACKAGE VERSION\n" "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n" "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n" "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n" "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n" "Language-Team: LANGUAGE <LL@li.org>\n" "Language: \n" "MIME-Version: 1.0\n" "Content-Type: text/plain; charset=CHARSET\n" "Content-Transfer-Encoding: 8bit\n"`
+```pot
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+```
 
-Voici une explication des différents champs de l'entête :
+Explication des différents champs de l'entête :
 
 -   `SOME DESCRIPTIVE TITLE` : titre descriptif du projet.
 -   `YEAR THE PACKAGE'S COPYRIGHT HOLDER` : année de copyright du paquet.
@@ -93,7 +112,7 @@ Voici une explication des différents champs de l'entête :
 
 Il est important de remplir correctement ces champs afin de fournir des informations précises sur le projet et sur les personnes qui ont contribué à la traduction. Nous pouvons également ajouter d'autres champs à l'entête si nous le souhaitons, mais assurons-nous de respecter la syntaxe de Gettext.
 
-que signifie le sous répertoire LC_MESSAGES qui est dans "locale" ?
+## Signification du sous répertoire LC_MESSAGES qui est dans "locale"
 
 Le répertoire `LC_MESSAGES` se trouve généralement à l'intérieur du répertoire `locale` d'un projet et contient les fichiers de traduction de ce projet. Le répertoire `LC_MESSAGES` est utilisé par les outils de traduction, comme `gettext`, pour trouver les fichiers de traduction correspondants à la langue de l'utilisateur.
 
@@ -115,7 +134,7 @@ Dans cet exemple, les fichiers `messages.po` et `messages.mo` contiennent la tra
 
 Le répertoire `LC_MESSAGES` doit être nommé ainsi pour être reconnu par les outils de traduction. Si nous utilisons un autre nom, il se peut que les fichiers de traduction ne soient pas chargés correctement par l'application.
 
-quelle est la différence ente *.mo et *.po ?
+## Différences ente *.mo et *.po
 
 Les fichiers `.mo` et `.po` sont utilisés par les outils de traduction, comme `gettext`, pour stocker les traductions d'un projet.
 
@@ -126,3 +145,76 @@ Les fichiers `.mo` et `.po` sont utilisés par les outils de traduction, comme `
 Lorsque nous traduisons un projet, nous travaillons généralement avec des fichiers `.po`, qui sont plus faciles à lire et à modifier. Une fois que nous avons terminé la traduction, nous pouvons générer les fichiers `.mo` à partir des fichiers `.po` pour que l'application puisse les charger plus rapidement.
 
 Il est important de ne pas modifier directement les fichiers `.mo`, car ils sont au format binaire et ne sont pas lisibles par les humains. Si nous souhaitons apporter des modifications à la traduction, nous devons le faire dans les fichiers `.po` correspondants et regénérer les fichiers `.mo` à partir de ceux-ci.
+
+# Création des fichiers po
+
+Pour créer de nouveaux fichiers `.po` à partir d'un fichiers `.pot` (Portable Object Template), nous pouvons utiliser la commande `msginit` du package gettext. Voici comment :
+
+1. Ouvrons un terminal et naviguons jusqu'au répertoire où se trouve votre fichier `.pot`.
+
+2. Utilisons la commande suivante pour générer un fichier `.po` :
+
+    ```bash
+    msginit -i mydomain.pot -o mylanguage.po -l mylanguage
+    ```
+
+   Ici, `mydomain.pot` est notre fichier `.pot` source, `mylanguage.po` est le fichier `.po` que nous voulons créer et `mylanguage` est le code de langue pour lequel nous voulons créer le fichier (par exemple `fr` pour le français, `de` pour l'allemand, etc.).
+
+Par exemple, pour générer un fichier `.po` pour le français à partir d'un fichier `alirpunkto.pot`, nous utiliserons :
+
+```bash
+cd alirpunkto/locale
+msginit -i alirpunkto.pot -o en/LC_MESSAGES/alirpunkto.po -l en
+msginit -i alirpunkto.pot -o fr/LC_MESSAGES/alirpunkto.po -l fr
+```
+
+Cette commande créera ou **écrasera** le fichier `fr.po` à partir du fichier `mydomain.pot`. Nous pouvons alors éditer ce fichier `fr.po` pour traduire les chaînes de caractères en français. Une fois les traductions terminées, nous pouvons générer un fichier `.mo`.
+
+# Mettre à jour des fichiers pot et po
+Si nous avons des chaînes nouvellement ajoutées dans notre code source et que nous souhaitons mettre à jour notre fichier `.pot` existant sans l'écraser, nous pouvons utiliser l'outil `xgettext` pour extraire les nouvelles chaînes, puis `msgmerge` pour fusionner ces nouvelles chaînes avec notre fichier `.pot` existant.
+
+Voici comment le faire :
+
+1. Utilisons `xgettext` pour extraire les nouvelles chaînes de notre code source dans un nouveau fichier `.pot`. Par exemple :
+
+    ```bash
+    xgettext -o new.pot source.py
+    ```
+
+    Ici, `new.pot` est le fichier de sortie que `xgettext` générera et `source.py` est notre code source Python. Nous devrions remplacer ces noms par ceux de notre projet. Nous pouvons également spécifier plusieurs fichiers source à la fois.
+
+2. Ensuite, utilisons `msgmerge` pour fusionner le nouveau fichier `.pot` avec l'ancien. Par exemple :
+
+    ```bash
+    msgmerge -U old.pot new.pot
+    ```
+
+    Ici, `old.pot` est notre ancien fichier `.pot` et `new.pot` est le fichier que nous venons de générer avec `xgettext`. La commande `msgmerge` mettra à jour `old.pot` pour y inclure les nouvelles chaînes de `new.pot`.
+
+Les anciennes traductions resteront dans `old.pot` après cette opération. Les nouvelles chaînes extraites seront ajoutées sans traductions, prêtes à être traduites.
+
+Remarque : pour que `xgettext` fonctionne correctement, nous devons utiliser les méthodes standard de marquage des chaînes localisables dans votre code, comme `_()` ou `gettext()`.
+
+# Génération des fichiers mo
+
+Pour générer les fichiers `.mo` (Machine Object) à partir des fichiers `.po` (Portable Object) dans notre répertoire `locale`, nous pouvons utiliser la commande `msgfmt` du package gettext. Voici comment nous pouvons faire :
+
+1. Ouvrons un terminal et naviguons jusqu'au répertoire `locale` de notre projet.
+
+2. Utilisons la commande suivante pour générer le fichier `.mo` :
+
+    ```bash
+    msgfmt -o LC_MESSAGES/mydomain.mo LC_MESSAGES/mydomain.po
+    ```
+
+    Dans cette commande, remplaçons `mydomain` par le nom de domaine de notre application.
+
+Notez que vous devez répéter ce processus pour chaque fichier `.po` dans votre projet. 
+
+Si vous avez de nombreux fichiers `.po`, vous pouvez utiliser une boucle pour les parcourir tous. Par exemple, si vous êtes sous un système Unix-like, vous pouvez utiliser une commande `find` couplée à une boucle `for` :
+
+```bash
+find . -name "*.po" -exec msgfmt {} -o {}.mo \;
+```
+
+Cette commande trouve tous les fichiers `.po` dans le répertoire courant et ses sous-répertoires, et exécute `msgfmt` sur chaque fichier pour générer le fichier `.mo` correspondant.
