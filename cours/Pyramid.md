@@ -612,6 +612,85 @@ Dans cet exemple, `title` et `description` seront disponibles dans le template `
 
 La dernière étape est de rendre le template à partir de la vue. Dans Pyramid, cela est fait en utilisant la fonction `render_to_response` mentionnée précédemment. La fonction `render_to_response` prend le nom du template et un dictionnaire de variables à passer au template, et renvoie une réponse HTTP avec le HTML généré.
 
+## 2.6 Deform
+
+Pyramid.Deform est une bibliothèque qui permet la génération de formulaires HTML à partir de schémas de validation Pyramid et de modèles ZPT (Zope Page Templates). Elle peut aussi bien être utilisée pour des formulaires simples que pour des formulaires complexes, avec des sous-formulaires, des contrôles conditionnels, de l'internationalisation, etc.
+
+Commençons par l'installation de Deform. Nous utilisons pip pour installer le package :
+
+```bash
+pip install deform
+```
+
+Ensuite, nous devons configurer notre application Pyramid pour servir les ressources statiques fournies par Deform. Dans votre fichier de configuration Pyramid, ajoutons la ligne suivante :
+
+```python
+config.add_static_view('deform_static', 'deform:static/')
+```
+
+Maintenant, nous allons créer un formulaire simple. Pour ce faire, nous avons besoin de définir un schéma. Chaque schéma correspond à un formulaire ou une partie d'un formulaire. Un schéma est une classe Python qui définit les champs et les contraintes de validation du formulaire.
+
+Voici un exemple de schéma pour un formulaire d'inscription :
+
+```python
+from colander import Schema, SchemaNode, String, Email, Length
+
+class RegistrationSchema(Schema):
+    email = SchemaNode(
+        String(),
+        validator=Email(),
+        title=_('email_label'),
+        description="Your email address"
+    )
+    password = SchemaNode(
+        String(),
+        validator=Length(min=5),
+        title=_('password_label')
+        description="Choose a password",
+        widget=deform.widget.PasswordWidget(),
+    )
+```
+
+Ensuite, nous allons utiliser ce schéma pour générer un formulaire HTML. Dans votre vue Pyramid, nous pouvons créer un formulaire comme ceci :
+
+```python
+from pyramid.view import view_config
+from deform import Form
+
+@view_config(route_name='register', renderer='templates/register.pt')
+def register_view(request):
+    schema = RegistrationSchema()
+    translator = request.localizer.translate
+    form = Form(schema, buttons=('submit',), translator=translator)
+
+    if 'submit' in request.POST:
+        controls = request.POST.items()
+        try:
+            appstruct = form.validate(controls)
+        except ValidationFailure as e:
+            return {'form': e.render()}
+        
+        # ... handle the validated form input ...
+        
+    return {'form': form.render()}
+```
+
+Dans cet exemple, nous avons utilisé `form.validate()` pour valider les données du formulaire. Si la validation échoue, une exception `ValidationFailure` est levée, et nous pouvons utiliser `e.render()` pour obtenir une version du formulaire qui indique les erreurs.
+
+Pour finir, nous devons rendre le formulaire dans un template. Avec un template ZPT, cela pourrait ressembler à ceci :
+
+```html
+<div class="container">
+	<form method="POST">
+		<span tal:replace="structure form" i18n:translate="">Form Content</span>
+		<input type="submit" value="Submit" i18n:attributes="value submit_button">
+	</form>
+</div>
+```
+
+Voilà pour les bases de Pyramid.Deform. Lors de notre prochaine session, nous approfondirons ce sujet et explorerons des fonctionnalités plus avancées, comme les sous-formulaires et les widgets personnalisés.
+
+N'hésitez pas à poser des questions si quelque chose n'est pas clair. C'est important pour nous de s'assurer que vous comprenez bien chaque concept. C'est en posant des questions et en
 
 # 3 Gestion des requêtes et réponses
 
@@ -841,6 +920,65 @@ Notons que tout système d'authentification devrait également implémenter un c
 ### 3.5.3 Problèmes de sécurité liés aux cookies
 
 Il est important de noter que les cookies peuvent présenter des risques de sécurité. Par exemple, si un attaquant parvient à voler un cookie de session, il peut usurper l'identité de l'utilisateur. Pour cette raison, il est essentiel de toujours utiliser des communications sécurisées (HTTPS) lors de l'envoi de cookies. De plus, nous pouvons utiliser l'option `secure` lors de la définition d'un cookie pour nous assurer qu'il n'est envoyé que sur une connexion sécurisée.
+
+### 3.5.4 Gestion des Secrets dans Pyramid - Utilisation d'un fichier .env
+
+La sécurité est un élément crucial dans le développement d'applications. Nous devons gérer les secrets, tels que les mots de passe et les clés de session, de manière sécurisée. Une pratique courante consiste à utiliser un fichier `.env` pour stocker ces informations sensibles. Le fichier `.env` est placé à la racine de notre projet, mais il est important de l'ignorer dans notre dépôt git pour des raisons de sécurité.
+
+#### 3.5.4.1 Création et gestion du fichier .env
+
+Pour commencer, nous devons créer un fichier `.env` à la racine de notre projet Pyramid. Ce fichier stockera nos secrets. Par exemple:
+
+```ini
+SECRET_KEY=NotreCléSecrète
+LDAP_LOGIN=NotreLoginLDAP
+LDAP_PASSWORD=NotreMotDePasseLDAP
+```
+
+    Il est crucial que nous ajoutions `.env` à notre fichier `.gitignore` pour éviter de pousser accidentellement nos secrets vers notre dépôt git. Nous pouvons le faire en ajoutant simplement une ligne à notre fichier `.gitignore`:
+
+```git
+.env
+```
+
+#### 3.5.4.2 Utilisation de la clé secrète pour les cookies et les sessions
+
+Dans notre projet Pyramid, nous pouvons utiliser la clé secrète stockée dans le fichier `.env` pour générer des cookies et gérer les sessions. Pour cela, nous avons besoin de la bibliothèque `python-dotenv` qui permet d'accéder aux variables d'environnement définies dans le fichier `.env`. Nous pouvons l'installer en utilisant pip:
+
+```bash
+pip install python-dotenv
+```
+
+Ensuite, dans notre code, nous pouvons charger les variables d'environnement à partir du fichier `.env` comme suit:
+
+```python
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+secret_key = os.getenv("SECRET_KEY")
+```
+
+Nous pouvons maintenant utiliser `secret_key` pour signer les cookies et gérer les sessions. Par exemple:
+
+```python
+from pyramid.session import SignedCookieSessionFactory
+
+my_session_factory = SignedCookieSessionFactory(secret_key)
+config = Configurator(session_factory=my_session_factory)
+```
+
+#### 3.5.4.3 Utilisation des identifiants OpenLDAP
+
+De même, nous pouvons utiliser `os.getenv` pour récupérer les identifiants OpenLDAP stockés dans le fichier `.env`. Par exemple:
+
+```python
+ldap_login = os.getenv("LDAP_LOGIN")
+ldap_password = os.getenv("LDAP_PASSWORD")
+```
+
+Ces valeurs peuvent être utilisées pour configurer une connexion LDAP. Assurez-vous de ne jamais insérer directement vos identifiants dans le code.
 
 ### 3.5.4 Exercices pratiques
 
