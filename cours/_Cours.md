@@ -10,5 +10,7 @@
 [[Parsing Expression Grammars PEG]]
 [[Pyramid]]
 [[Informatique]]
+[[Les protocoles de communications]]
+[[HTTP]]
 [[GNULinux]]
 [[Watchdog espace disque]]
