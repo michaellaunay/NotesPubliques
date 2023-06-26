@@ -44,7 +44,7 @@ Le protocole HTTP (Hypertext Transfer Protocol) est à le protocole utilisé par
 
 # 1. Introduction au Protocole HTTP
 
-## 1.1 Qu'est ce qu'un protocole
+## 1.1 Qu'est ce qu'un protocole ?
 
 Voir [[Les protocoles de communications]].
 
