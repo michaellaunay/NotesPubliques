@@ -18,3 +18,15 @@ h1 {
 .fail {
     color : red;
 }
+.action {
+    color : blue;
+}
+.concept {
+    color : purple;
+}
+span.name {
+    color : red;
+}
+.property {
+    color : orange;
+}

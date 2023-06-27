@@ -484,7 +484,7 @@ L'objectif de ce répertoire `Gestion du temps` est de fournir un historique pr�
 
 Dans notre répertoire Conception, nous avons plusieurs éléments importants :
 
-1. **Fichier `\_Conception.md`**
+1. **Fichier `_Conception.md`**
 2. **Fichier `Analyse du cahier des charges.md`**
 3. **Fichier `Glossaire métier.md`** 
 4. **Fichier `Glossaire technique.md`** 
@@ -499,16 +499,17 @@ Nous allons détailler chacun de ces éléments ci-dessous.
 
 En utilisant cette structure, nous nous assurons que tous les éléments de la conception sont organisés et facilement accessibles, ce qui facilite la gestion et le suivi du projet.
 
-### 5.4.1 Fichier `\_Conception.md`
+### 5.4.1 Fichier `_Conception.md`
+
 Ce fichier répertorie tous les autres documents du répertoire.
 
 ### 5.4.2. Fichier `Analyse du cahier des charges.md`
 
-Nous avons ce fichier en format markdown qui met en évidence les mots du cahier des charges selon leur nature (Concept, NomPropre, Action, Propriété). Nous utilisons des balises telles que \<span class="Concept"\> pour marquer la nature du mot :
-	- Concept : Mot ayant une signification pour le projet
-	- Nom propre : Identifiant unique d’une chose ou d’une personne
-	- Action : Transformation de l’état
-	- Propriété : Qualité, durée etc.
+Ce fichier en format markdown met en évidence les mots du cahier des charges selon leur nature (Concept, NomPropre, Action, Propriété). Nous utilisons des balises telles que `<span class="Concept">` pour marquer la nature du mot, et ajoutons une feuille de style (voir [[Obsidian#Utiliser notre feuille de style CSS]]) :
+	- <span class="concept">Concept</span> : Mot ayant une signification pour le projet
+	- <span class="name">Nom propre</span> : Identifiant unique d’une chose ou d’une personne
+	- <span class="action">Action</span> : Transformation de l’état
+	- <span class="property">Propriété</span> : Qualité, durée etc.
 
 ### 5.4.3. Fichier `Glossaire métier.md`
 
@@ -525,7 +526,7 @@ Ce fichier répertorie toutes les contraintes que notre logiciel doit respecter,
 ### 5.4.5 Répertoire Scénarios
 
 Ce répertoire contient :
-- `\_Scénarios.md` (contient la liste des liens vers les scénarios) - Un fichier markdown par scénario dont le contenu est précisé au paragraphe [#Liste des scénarios], il porte le nom du scénario. 
+- `_Scénarios.md` (contient la liste des liens vers les scénarios) - Un fichier markdown par scénario dont le contenu est précisé au paragraphe [#Liste des scénarios], il porte le nom du scénario. 
 - Un diagramme de séquence par scénario faisant intervenir le système à réaliser comme une boite noire. 
 Pour chacun des diagrammes nous créons un ou plusieurs diagrammes de séquences où le système devient une boite blanche comprenant les classes que l’on crée pour réaliser les fonctions identifié du systèmes. Pour cela on utilise et la méthode QQOQCP et le CRUD. Nous itèrons à plusieurs reprise en passant de ces diagrammes de séquences détaillés au diagrammes de classes associés à chacun de ses diagramme. C’est ce que nous appelons réification et c’est un processus itératif.
 	
@@ -533,51 +534,32 @@ Jusqu’à obtenir une conception stable qui de toute façon bougera avec l’im
 
 ### 5.4.6 Répertoire "Diagrammes de classes"
 
-Le répertoire contient
-	- un ficher `\_Diagrammes de classes.md` référençant tous les diagrammes
+Le répertoire contient :
+	- un ficher `_Diagrammes de classes.md` référençant tous les diagrammes
 	- Un fichier contenant le diagramme de classes général contenant toute les classes du projet et les associations entre classes, le tout réprésenté avec un bloc Mermaid ou PlantUML.
 	- Autant de diagrammes de classe qu’il y a de scénarios. Chaque diagramme détaille uniquement les classes (attributs, méthodes et associations) fournissant les services, méthodes et les données apparaissant dans le scénario ayant servi à établir ce diagramme. Si une classe est utilisée dans plusieurs scénarios les méthodes est attributs d’un diagramme de classe correspondent uniquement au scénario associé à son scénario, a écrire avec des blocs Mermaid ou PlantUML.
 
 ### 5.4.7 Répertoire `Diagrammes d'états transitions` 
 
-Ce répertoire contient
-	- un fichier `\_Diagrammes d'états transitions.md` qui référence tous les diagrammes d'états transitions
+Ce répertoire contient :
+	- un fichier `_Diagrammes d'états transitions.md` qui référence tous les diagrammes d'états transitions
 	- Un fichier qui donne le diagramme des états transitions pour chaque type de donnée identifié ayant un bloc Mermaid ou PlantUML.
 
 ### 5.4.8 Répertoire `Activités`
 
-Il contient
-	- un fichier `\_Activités.md` référençant tous les fichiers de diagramme d'activités.
+Il contient :
+	- un fichier `_Activités.md` référençant tous les fichiers de diagramme d'activités.
 	- Un fichier d'activité par processus identifié ayant un bloc Mermaid ou PlantUML.
 
 ### 5.4.9 Répertoire `Interface graphique`
 
-Il contient
-	- un fichier `\_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
+Il contient :
+	- un fichier `_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
 	- Une description de toutes les fenêtres et écrans illustrés en utilisant des diagrammes Salt de PlantUML
 
+# 6. Qualité de l'architecture logicielle
 
-# @TODO À fusionner avec Documenter l'architecture logicielle
-Nous discuterons de l'importance de la documentation de l'architecture, qui va de l'élicitation du besoin, du remplissage journalier d'un cahier de paillasse (fil de l'eau) en markdown pour noter toutes les réflexions et les choix d'architectures et notamment ceux qui ne n'ont pas été retenu afin de ne pas les répéter et de comprendre pourquoi on fait tel ou tel choix. Nous expliquerons pourquoi il faut désormais utiliser des outils comme Obsidian (ou Markdown Memo pour Visual Code Studio) pour documenter ce qui n'exclu pas l'usage de Modeleur UML. Nous présenterons comment insérer des diagramme UML, des skecth d'interface avec Mairmaid ou PlantUML directement dans le Markdown de la documentation et du code. Nous expliquerons comment représenter et décrire les différentes vues de l'architecture. Nous expliquerons la nécessité de publier toute la documentation sur les dépôts git du projet. Nous proposerons expliquerons pourquoi il faut avoir une structure de dépôt git respectant : 
-
-À la racine :
-- Un fichier `README.md` contenant
-		- Titre du projet
-		- Objectif du projet en 3 lignes
-		- Description en 10 lignes
-		- Date de dernière modification
-		- Listes des auteurs
-		- Version
-		- Liens vers les readme.md des sous répertoires
-- Un fichier `Journal de conception.md` ("Fil de l'eau" ou "Cahier de paillasse") contenant les réflexions, observations, questions en cours, et autre remarques importante de la journée (d'où l'intérêt pour Obsidian, car alors cela peut être des liens vers des notes).
-- Un répertoire de `Gestion du temps`, contenant les daily notes du projet avec les tâches et les logs de la journées. Le tout au format markdown
-- Un répertoire Notes qui contient toutes les notes techniques écrites sur le projets.
-- Un fichier Suivi.md qui contient la liste des taĉhes en utilisant les modules Task et Kanban d'Obsidian et permet de répartir le travail en tâches et pour chacune donne une définition, un temps estimé puis un temps réellement consommé.
-- 
-
-# 7. Qualité de l'architecture logicielle
-
-## 7.1 Introduction
+## 6.1 Introduction
 
 L'architecture logicielle est la colonne vertébrale de tout système logiciel. Elle est le reflet de toutes les décisions prises par l'équipe de développement concernant le fonctionnement du logiciel, la façon dont les différentes parties interagissent entre elles et comment le logiciel s'adaptera aux changements futurs. Dans ce chapitre, nous allons aborder les critères qui déterminent la qualité d'une architecture logicielle.
 
@@ -587,7 +569,7 @@ Ces critères de qualité sont des indicateurs de la capacité de l'architecture
 
 Cependant, il convient de noter que la qualité de l'architecture ne peut pas être mesurée en termes absolus. Elle dépend largement des exigences spécifiques du projet, du contexte dans lequel le logiciel est utilisé et des préférences et compétences de l'équipe de développement. Par conséquent, dans ce chapitre, nous ne fournirons pas une liste définitive de ce qui fait une "bonne" architecture. Au lieu de cela, nous examinerons les différents facteurs qui influencent la qualité de l'architecture et expliquerons comment ils peuvent être pris en compte pour améliorer la qualité globale de vos projets logiciels.
 
-## 7.2 Performance
+## 6.2 Performance
 
 La performance est un aspect crucial de toute architecture logicielle. Elle fait référence à la capacité du système à gérer les demandes des utilisateurs de manière efficace et rapide. Cela implique de minimiser les temps de réponse, d'optimiser l'utilisation des ressources et de garantir que le système peut supporter des volumes de travail élevés sans ralentissement ni panne.
 
@@ -599,7 +581,7 @@ Les techniques d'optimisation, telles que la mise en cache, la parallélisation,
 
 Enfin, il est essentiel de mesurer et de surveiller la performance de manière continue. Des outils et des techniques d'analyse de performance peuvent être utilisés pour identifier les goulots d'étranglement et les problèmes potentiels, permettant à l'équipe de développement d'apporter des améliorations proactives et d'ajuster l'architecture si nécessaire.
 
-## 7.3 Sécurité
+## 6.3 Sécurité
 
 La sécurité est un autre facteur crucial dans la qualité de l'architecture logicielle. Elle désigne la capacité d'un système à résister aux attaques, à protéger les données sensibles, et à garantir l'intégrité et la disponibilité des services.
 
@@ -611,7 +593,7 @@ Il est également important de reconnaître que la sécurité n'est pas un état
 
 Enfin, la sécurité ne doit pas être considérée comme une responsabilité isolée, mais comme une préoccupation partagée par toute l'équipe de développement. Cela nécessite une formation et une sensibilisation appropriées, ainsi qu'une culture qui valorise la sécurité et encourage les bonnes pratiques.
 
-## 7.4 Maintenabilité
+## 6.4 Maintenabilité
 
 Un autre aspect crucial de la qualité de l'architecture logicielle est la maintenabilité. La maintenabilité fait référence à la facilité avec laquelle un logiciel peut être modifié pour corriger des défauts, améliorer ses performances, ou adapter ses fonctionnalités à de nouvelles exigences ou environnements.
 
@@ -623,7 +605,7 @@ Il est également important d'adopter une approche modulaire de la conception de
 
 Enfin, la maintenabilité dépend aussi de la capacité du logiciel à évoluer avec les changements technologiques. Par conséquent, une architecture logicielle de qualité doit être conçue de manière à pouvoir s'adapter aux nouvelles technologies et aux nouveaux outils, tout en conservant sa fonctionnalité et sa performance.
 
-## 7.5 Évolutivité
+## 6.5 Évolutivité
 
 L'évolutivité est une autre caractéristique essentielle d'une architecture logicielle de qualité. Elle se réfère à la capacité d'un système à gérer une augmentation de la charge de travail. Une architecture logicielle bien conçue doit pouvoir s'adapter à une augmentation de la demande sans compromettre ses performances ou sa stabilité.
 
@@ -637,26 +619,28 @@ Enfin, une architecture logicielle évolutive doit également être capable de g
 
 En résumé, l'évolutivité est un aspect crucial de la qualité de l'architecture logicielle qui permet aux systèmes de s'adapter et de prospérer dans un environnement en constante évolution.
 
-## 8. Évolution de l'architecture logicielle
+## 7. Évolution de l'architecture logicielle
 
 L'architecture logicielle n'est pas statique. Elle évolue au fil du temps en réponse aux changements dans les exigences métier, les technologies disponibles, les pratiques de développement et l'infrastructure technique. Dans ce chapitre, nous aborderons la manière dont l'architecture logicielle peut s'adapter et évoluer pour répondre à ces défis.
 
-### 8.1 Changement des exigences métier
+### 7.1 Changement des exigences métier
 
 Les exigences métier ne sont jamais figées. À mesure que l'entreprise évolue, l'architecture du logiciel doit suivre. Par exemple, l'introduction d'un nouveau produit ou service peut nécessiter des changements dans l'architecture pour supporter de nouvelles fonctionnalités. De même, une expansion géographique peut nécessiter des modifications pour prendre en compte différentes réglementations ou normes locales.
 
-### 8.2 Avancées technologiques
+### 7.2 Avancées technologiques
 
 L'innovation technologique est constante et rapide. Les nouvelles technologies peuvent offrir des avantages significatifs en termes de performances, de sécurité, d'efficacité ou d'autres aspects. L'architecture logicielle doit être suffisamment flexible pour incorporer ces nouvelles technologies lorsqu'elles deviennent disponibles.
 
-### 8.3 Dette technique
+### 7.3 Dette technique
 
 La dette technique est un concept qui fait référence aux compromis à court terme qui sont pris pendant le développement logiciel, souvent pour accélérer la livraison, mais qui créent un fardeau à long terme. Elle peut résulter d'une conception insuffisante, d'un code mal écrit, d'une documentation manquante, ou d'autres pratiques de développement négligentes.
 
 La gestion de la dette technique est un aspect important de l'évolution de l'architecture logicielle. Si elle n'est pas gérée, la dette technique peut s'accumuler au fil du temps, rendant le système de plus en plus difficile à maintenir et à faire évoluer. Des techniques telles que la refonte, le remaniement et l'amélioration continue du code peuvent être utilisées pour gérer et réduire la dette technique.
 
-### 8.4 Perspectives d'avenir
-
-Enfin, l'évolution de l'architecture logicielle doit également prendre en compte les perspectives d'avenir. Cela inclut la prévision des tendances technologiques futures, l'anticipation des besoins futurs des utilisateurs et de l'entreprise, et la planification de la manière dont l'architecture pourra s'adapter à ces futurs changements.
+### 7.4 Perspectives d'avenir
 
 L'évolution de l'architecture logicielle est un processus continu qui nécessite une attention et une planification constantes. En gardant un œil sur l'avenir et en gérant activement la dette technique, il est possible de maintenir une architecture qui continue à fournir de la valeur à l'entreprise tout en s'adaptant aux défis et aux opportunités en constante évolution.
+
+Enfin, l'évolution de l'architecture logicielle doit également prendre en compte les perspectives d'avenir. 
+
+Cela inclut la prévision des tendances technologiques futures, l'anticipation des besoins futurs des utilisateurs et de l'entreprise, et la planification de la manière dont l'architecture pourra s'adapter à ces futurs changements.
