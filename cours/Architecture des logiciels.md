@@ -228,7 +228,7 @@ L'architecture en couches est souvent utilisée dans les systèmes d'entreprise 
 
 L'Architecture Orientée Services (SOA) est un style d'architecture qui structure une application comme une collection de services. Ces services sont des unités autonomes de fonctionnalités qui peuvent être accédées et utilisées sans connaissance de leur fonctionnement interne.
 
-### Caractéristiques de SOA
+### 2.4.1 Caractéristiques de SOA
 
 - **Indépendance** : Les services dans une SOA sont autonomes, chaque service est indépendant des autres. Cela signifie qu'un service peut être modifié ou remplacé sans affecter les autres services du système.
 
@@ -236,7 +236,7 @@ L'Architecture Orientée Services (SOA) est un style d'architecture qui structur
 
 - **Réutilisabilité** : Les services sont conçus pour être réutilisés par plusieurs applications. Cela permet de réduire la duplication de code et de favoriser la cohérence dans l'ensemble du système.
 
-### Avantages de SOA
+### 2.4.2 Avantages de SOA
 
 - **Flexibilité** : Grâce à leur indépendance, les services peuvent être modifiés, mis à jour ou remplacés sans affecter le reste du système. Cela rend le système plus flexible et plus facile à maintenir.
 
@@ -244,7 +244,7 @@ L'Architecture Orientée Services (SOA) est un style d'architecture qui structur
 
 - **Interoperabilité** : Les services peuvent être construits en utilisant différentes technologies de plateforme et de programmation, ce qui rend SOA idéale pour les environnements hétérogènes.
 
-### Inconvénients de SOA
+### 2.4.3 Inconvénients de SOA
 
 - **Complexité** : SOA peut être plus complexe à mettre en œuvre que d'autres styles d'architecture en raison de la nécessité de gérer la communication entre services.
 
@@ -279,8 +279,6 @@ L'architecture basée sur les événements est un style d'architecture logiciell
 - **Gestion des erreurs** : La gestion des erreurs peut être difficile dans une architecture basée sur les événements, car il peut être difficile de déterminer où et quand une erreur s'est produite.
 
 L'architecture basée sur les événements est particulièrement utile dans les scénarios où le système doit réagir rapidement et efficacement à des changements d'état, tels que les systèmes de trading en temps réel, les systèmes de surveillance, les systèmes de flux de travail, les systèmes IoT (Internet des objets) et les applications Web interactives.
-
-**2.6 Architecture Microservices** : Enfin, nous terminerons avec l'architecture microservices, un style qui divise le logiciel en petits services qui peuvent être développés, déployés et mis à l'échelle indépendamment. Nous discuterons des avantages de ce style, ainsi que des défis qu'il présente.
 
 ## 2.6 Architecture Microservices
 
@@ -425,13 +423,31 @@ L'usage est le même que pour Mermaid.
 
 # 5 Proposition de structure de dépôt Git pour la documentation de l'architecture
 
-La documentation d'un projet doit être facilement accessible et bien organisée. Pour cela, nous proposons de suivre la structure de dépôt Git spécifique suivante : 
+La documentation de l'architecture logicielle se situe au cœur de la conception et de l'évolution des systèmes informatiques. C'est essentiellement une tâche de réflexion sur le passé, le présent et le futur du logiciel à réaliser. Elle ne se limite pas à la simple illustration de l'architecture actuelle, mais s'étend à l'[élicitation](https://fr.wikipedia.org/wiki/%C3%89licitation) du besoin, à la documentation des choix d'architecture - y compris ceux qui n'ont pas été retenus - pour éviter de refaire les mêmes erreurs et comprendre les raisons de nos décisions.
 
-## 5.1 Fichiers à la racine
+La documentation d'un projet doit être facilement accessible et bien organisée. Toutes les versions de celle-ci doivent pouvoir être consultées, et en conséquence l'implémentation dans le code doit faire référence à une version donnée, ne serait ce que pour pouvoir justifier des choix techniques et/ou du contexte des développements.
 
-À la racine du dépôt, on doit trouver :
+Nous proposons d'inclure la documentation de l'architecture dans la structure de dépôt Git du projet, à côté de son code, pour cela il suffit de mettre toute cette architecture dans une arborescence spécifique.
 
-- Un fichier `README.md` : Il sert de point d'entrée pour la documentation du projet. Il doit contenir :
+Nous utiliserons des outils comme Obsidian ou Markdown Memo pour Visual Code Studio pour documenter nos réflexions et choix, tout en notant que ces outils ne remplacent pas l'usage de modeleurs UML qui seul permet de vérifier la cohérence du model et de générer le code. Nous verrons comment incorporer des diagrammes UML et des sketchs d'interface avec Mermaid ou PlantUML directement dans le Markdown de notre documentation et de notre code.
+
+Nous suggérerons une structure pour nos dépôts git, qui comprendra :
+
+- À la racine :
+  - Un fichier `README.md` détaillant l'essentiel du projet
+  - Un fichier `Journal de conception.md` pour documenter nos réflexions et nos observations
+  - Un répertoire de `Gestion du temps`, contenant nos notes journalières et nos logs de projet
+  - Un répertoire `Notes` pour toutes les notes techniques écrites sur le projet
+  - Un fichier `Suivi.md` qui liste les tâches en utilisant les modules Task et Kanban d'Obsidian
+  - Un répertoire `Conception` contenant différents documents d'analyse et de conception.
+
+L'objectif ici est de créer une structure de documentation cohérente et bien organisée, dans laquelle tous les membres de l'équipe puissent facilement naviguer. Cette structure n'est pas rigide et doit être adaptée aux besoins spécifiques de chaque projet. 
+
+L'architecture logicielle est un document vivant, en constante évolution et doit suivre le développement du projet. C'est une aide pour tout nouvel arrivant sur le projet. Notre objectif est de donner les outils et les connaissances nécessaires pour maintenir cette documentation à jour et pertinente, afin de soutenir le succès de vos projets informatiques.
+
+## 5.1 Fichiers README.md principal
+
+À la racine du dépôt, le README doit présenter le projet, nous devons y trouver :
 	- le titre du projet,
 	- l'objectif du projet en quelques lignes,
 	- une description plus détaillée,
@@ -439,26 +455,106 @@ La documentation d'un projet doit être facilement accessible et bien organisée
 	- la liste des auteurs,
 	- la version actuelle du projet,
 	- et des liens vers les fichiers markdown d'indexe des sous-répertoires.
-- Un fichier `Journal de conception.md` : Ce fichier sert de journal quotidien, où les concepteurs peuvent noter leurs réflexions, observations, questions et autres remarques importantes. Cela permet de suivre l'évolution des idées et des décisions tout au long du projet.
 
-## 5.2 Proposition d'arborescence spécifiques à la conception
+## 5.2 Fichier `Journal de conception.md`
 
-Le dépôt doit contenir les répertoires suivants :
+Toujours à la racine nous devons trouver le journal de conception du projet
+Son nom doit être explicite, par exemple `Journal de conception.md`. Il sert de journal quotidien, où les concepteurs doivent noter leurs réflexions, observations, questions et autres remarques importantes. Il contient l'historique des idées de conception et l'on doit pouvoir retracer l'évolution de celles-ci, ainsi que  les décisions  d'architecture tout au long du projet. Il fait référence à des notes du répertoire Notes qui détaillent les idées, tentatives, et abandon si elles ne tiennent pas en cinq phrases.
 
-- Un répertoire `Gestion du temps` : Il doit contenir les notes quotidiennes du projet, avec les tâches et les journaux de la journée. Tous ces documents doivent être au format Markdown.
-- Un répertoire `Notes` : Il doit contenir toutes les notes techniques écrites sur le projet. Ces notes peuvent porter sur divers aspects du projet, tels que les choix technologiques, les problèmes rencontrés et les solutions adoptées, etc.
-- Un répertoire `Conception` : Il doit contenir différents documents relatifs à la conception du système, tels que :
-	- L'analyse du cahier des charges,
-	- Le glossaire métier,
-	- Le glossaire technique,
-	- La liste des exigences techniques,
-	- Le dossier des scénarios,
-	- Le dossier des diagrammes de classes,
-	- Le dossier les diagrammes d'états transitions, 
-	- Le dossier des activités,
-	- Le dossier des interfaces graphiques.
+## 5.3 Répertoire `Gestion du temps`
 
-Chaque document dans ces répertoires doit être créé et maintenu avec soin, en respectant certaines conventions et formats pour assurer la cohérence et la clarté de la documentation. Nous détaillons ci après le contenu
+La gestion du temps est un aspect fondamental de tout projet. Prévoir l'avenir nécessite de comprendre ce qui s'est passé, et de mesurer les écarts entre les prévisions et le temps effectivement consommé. C'est une composante essentielle des méthodes agiles (voir la note [[Les méthodes agiles]]), qui mettent l'accent sur l'estimation de la vélocité de l'équipe.
+
+Pour ce faire, plusieurs outils peuvent être utilisés, chacun ayant ses avantages propres :
+
+- La liste des tâches réalisées (Voir méthode "[[Getting things done]]")
+- Les notes quotidiennes ("Daily notes"), qui doivent contenir un journal de ce qui a été fait durant la journée
+- Les tickets dans le backlog, qui représentent le travail restant à faire
+- Le Canvas, un outil de visualisation pour comprendre l'ensemble du projet
+- Les diagrammes de Gantt ou PERT, pour visualiser le calendrier du projet
+- Les tableaux de répartition des tâches, pour comprendre qui fait quoi
+
+Chaque projet doit adopter la méthode qui lui convient le mieux, et produire les documents correspondants.
+
+Dans tous les cas, un répertoire `Gestion du temps` doit être créé. Ce répertoire doit contenir, au minimum, les notes quotidiennes du projet, qui comprennent les tâches réalisées et le journal des activités de la journée. Tous ces documents doivent être au format Markdown, pour assurer une lecture et une mise à jour faciles.
+
+L'objectif de ce répertoire `Gestion du temps` est de fournir un historique précis et facilement consultable de ce qui a été fait, qui aide à prévoir les travaux futurs et à estimer leur durée. En d'autres termes, il fournit un outil précieux pour contrôler le temps et aider à la prise de décision tout au long du projet.
+
+## 5.4 Répertoire `Conception`
+
+Dans notre répertoire Conception, nous avons plusieurs éléments importants :
+
+1. **Fichier `\_Conception.md`**
+2. **Fichier `Analyse du cahier des charges.md`**
+3. **Fichier `Glossaire métier.md`** 
+4. **Fichier `Glossaire technique.md`** 
+5. **Fichier `Exigences techniques`** : Ce fichier répertorie toutes les contraintes que notre logiciel doit respecter, tels que la performance, l'accessibilité, les langues, la sécurité, la confidentialité, le RGPD, la cohérence. Chaque exigence établit une jauge ou un scénario d'acceptabilité.
+6. **Répertoire Scénarios**
+7. **Répertoire "Diagrammes de classes"** 
+8. **Répertoire `Diagrammes d'états transitions`**
+9. **Répertoire `Activités`** 
+10. **Répertoire `Interface graphique`** :
+
+Nous allons détailler chacun de ces éléments ci-dessous.
+
+En utilisant cette structure, nous nous assurons que tous les éléments de la conception sont organisés et facilement accessibles, ce qui facilite la gestion et le suivi du projet.
+
+### 5.4.1 Fichier `\_Conception.md`
+Ce fichier répertorie tous les autres documents du répertoire.
+
+### 5.4.2. Fichier `Analyse du cahier des charges.md`
+
+Nous avons ce fichier en format markdown qui met en évidence les mots du cahier des charges selon leur nature (Concept, NomPropre, Action, Propriété). Nous utilisons des balises telles que \<span class="Concept"\> pour marquer la nature du mot :
+	- Concept : Mot ayant une signification pour le projet
+	- Nom propre : Identifiant unique d’une chose ou d’une personne
+	- Action : Transformation de l’état
+	- Propriété : Qualité, durée etc.
+
+### 5.4.3. Fichier `Glossaire métier.md`
+
+Il s'agit d'une liste de termes avec leur définition.
+
+### 5.4.4. Fichier `Glossaire technique.md`
+
+Ce fichier contient une liste de termes techniques, comme les noms des types de données comme les classes, la liste des rôles des acteurs, etc.
+
+### 5.4.5. Fichier `Exigences techniques`
+
+Ce fichier répertorie toutes les contraintes que notre logiciel doit respecter, tels que la performance, l'accessibilité, les langues, la sécurité, la confidentialité, le RGPD, la cohérence. Chaque exigence établit une jauge ou un scénario d'acceptabilité.
+
+### 5.4.5 Répertoire Scénarios
+
+Ce répertoire contient :
+- `\_Scénarios.md` (contient la liste des liens vers les scénarios) - Un fichier markdown par scénario dont le contenu est précisé au paragraphe [#Liste des scénarios], il porte le nom du scénario. 
+- Un diagramme de séquence par scénario faisant intervenir le système à réaliser comme une boite noire. 
+Pour chacun des diagrammes nous créons un ou plusieurs diagrammes de séquences où le système devient une boite blanche comprenant les classes que l’on crée pour réaliser les fonctions identifié du systèmes. Pour cela on utilise et la méthode QQOQCP et le CRUD. Nous itèrons à plusieurs reprise en passant de ces diagrammes de séquences détaillés au diagrammes de classes associés à chacun de ses diagramme. C’est ce que nous appelons réification et c’est un processus itératif.
+	
+Jusqu’à obtenir une conception stable qui de toute façon bougera avec l’implémentation.
+
+### 5.4.6 Répertoire "Diagrammes de classes"
+
+Le répertoire contient
+	- un ficher `\_Diagrammes de classes.md` référençant tous les diagrammes
+	- Un fichier contenant le diagramme de classes général contenant toute les classes du projet et les associations entre classes, le tout réprésenté avec un bloc Mermaid ou PlantUML.
+	- Autant de diagrammes de classe qu’il y a de scénarios. Chaque diagramme détaille uniquement les classes (attributs, méthodes et associations) fournissant les services, méthodes et les données apparaissant dans le scénario ayant servi à établir ce diagramme. Si une classe est utilisée dans plusieurs scénarios les méthodes est attributs d’un diagramme de classe correspondent uniquement au scénario associé à son scénario, a écrire avec des blocs Mermaid ou PlantUML.
+
+### 5.4.7 Répertoire `Diagrammes d'états transitions` 
+
+Ce répertoire contient
+	- un fichier `\_Diagrammes d'états transitions.md` qui référence tous les diagrammes d'états transitions
+	- Un fichier qui donne le diagramme des états transitions pour chaque type de donnée identifié ayant un bloc Mermaid ou PlantUML.
+
+### 5.4.8 Répertoire `Activités`
+
+Il contient
+	- un fichier `\_Activités.md` référençant tous les fichiers de diagramme d'activités.
+	- Un fichier d'activité par processus identifié ayant un bloc Mermaid ou PlantUML.
+
+### 5.4.9 Répertoire `Interface graphique`
+
+Il contient
+	- un fichier `\_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
+	- Une description de toutes les fenêtres et écrans illustrés en utilisant des diagrammes Salt de PlantUML
 
 
 # @TODO À fusionner avec Documenter l'architecture logicielle
@@ -477,46 +573,7 @@ Nous discuterons de l'importance de la documentation de l'architecture, qui va d
 - Un répertoire de `Gestion du temps`, contenant les daily notes du projet avec les tâches et les logs de la journées. Le tout au format markdown
 - Un répertoire Notes qui contient toutes les notes techniques écrites sur le projets.
 - Un fichier Suivi.md qui contient la liste des taĉhes en utilisant les modules Task et Kanban d'Obsidian et permet de répartir le travail en tâches et pour chacune donne une définition, un temps estimé puis un temps réellement consommé.
-- Un répertoire Conception contenant:
-	- Un fichier `\_Conception.md` référençant tous les autres documents du répertoire
-	- Un fichier `Analyse du cahier des charges.md` en  markdown mettant en avant les mots du cahier des charges selon  leur nature (Concept, NomPropre, Action, Propriété) cela en utilisant des balises comme \<span classe="Concept"\> où la classe est positionné en fonction de la nature du mot c'est à dire :
-		- Concept : Mot portant une signification pour le projet ;
-		- Nom propre : Identifiant unique d’une chose ou d’une personne ;
-		- Action : transformation de l’état ;
-		- Propriété : qualité, durée etc.
-	- Un fichier `Glossaire métier.md` constitué d'une liste des termes avec leur définition.
-	- Un fichier `Glossaire technique.md` contenant la liste des termes techniques (noms des types de données comme les classes, la liste des rôles des acteurs etc).
-	- Un fichier `Éxigences techniques` contenant toutes les contraintes que doit respecter le logiciel, tels la performance, l'accessibilité, les langues, la sécurité, la confidentialité, le RGPD, la cohérence. Chaque exigence doit fixer une jauge ou un scénario d'acceptabilité.
-	- Un Répertoire Scénarios contenant
-		- `\_Scénarios.md` (contient la liste des liens vers les scénarios)
-		- Un fichier markdown par scénario dont le contenu est précisé au paragraphe [#Liste des scénarios], il porte le nom du scénario.
-		- Un diagramme de séquence par scénario faisant intervenir le système à réaliser comme une boite noire.
-		Pour chacun des diagrammes nous créons un ou plusieurs diagrammes de séquences où le système devient une boite blanche comprenant les classes que l’on crée pour réaliser les fonctions identifié du systèmes. Pour cela on utilise et la méthode QQOQCP et le CRUD. Nous itèrons à plusieurs reprise en passant de ces diagrammes de séquences détaillés au diagrammes de classes associés à chacun de ses diagramme. C’est ce que nous appelons réification et c’est un processus itératif.
-		
-		Jusqu’à obtenir une conception stable qui de toute façon bougera avec l’implémentation.
-
-	- Répertoire "Diagrammes de classes" contenant :
-		- un ficher `\_Diagrammes de classes.md` référençant tous les diagrammes
-		- Un fichier contenant le diagramme de classes général contenant toute les classes du projet et les associations entre classes, le tout réprésenté avec un bloc Mermaid ou PlantUML.
-		- Autant de diagrammes de classe qu’il y a de scénarios. Chaque diagramme détaille uniquement les classes (attributs, méthodes et associations) fournissant les services, méthodes et les données apparaissant dans le scénario ayant servi à établir ce diagramme. Si une classe est utilisée dans plusieurs scénarios les méthodes est attributs d’un diagramme de classe correspondent uniquement au scénario associé à son scénario, a écrire avec des blocs Mermaid ou PlantUML.
-	- Répertoire `Diagrammes d'états transitions` contenant :
-		- un fichier `\_Diagrammes d'états transitions.md` qui référence tous les diagrammes d'états transitions
-		- Un fichier qui donne le diagramme des états transitions pour chaque type de donnée identifié ayant un bloc Mermaid ou PlantUML.
-	- Répertoire `Activités` contenant :
-		- un fichier `\_Activités.md` référençant tous les fichiers de diagramme d'activités.
-		- Un fichier d'activité par processus identifié ayant un bloc Mermaid ou PlantUML.
-	- Répertoire `Interface graphique` contenant
-		- un fichier `\_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
-		- Une description de toutes les fenêtres et écrans illustrés en utilisant des diagrammes Salt de PlantUML
-## @todo À fusionner Liste des scénarios
-
-La transcription du cahier des charges en scénarios donne lieu à des échanges avec le client à la fois pour préciser les hypothèses, mais également par ce qu’elle fait apparaître de nouveau concept que nous décrivons dans le glossaire.
-
-Pour chaque scénario nous donnons un nom, une description, la liste des acteurs, les préconditions, puis la liste des étapes du cas nominal sous forme d’une liste de phrase au présent construite avec un sujet un verbe et un complément. Nous pouvons fournir les scénarios alternatifs et ceux d’erreurs.
- 
-Il faut détailler en premier les étapes des scénarios les plus importants.
-
-
+- 
 
 # 7. Qualité de l'architecture logicielle
 
