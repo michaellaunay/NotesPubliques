@@ -10,13 +10,11 @@ Plan du cours sur l'architecture des logiciels. Ce cours explique comment les lo
 
 5. **Documenter l'architecture logicielle** : Nous discuterons de l'importance de la documentation de l'architecture et présenterons des techniques et des outils pour le faire, tels que les diagrammes UML et les vues de l'architecture.
 
-6. Proposition de structure de dépôt Git pour la documentation de l'architecture
+6. **Qualité de l'architecture logicielle** : Nous aborderons les facteurs qui déterminent la qualité d'une architecture logicielle, y compris la performance, la sécurité, la maintenabilité, et l'évolutivité.
 
-7. **Qualité de l'architecture logicielle** : Nous aborderons les facteurs qui déterminent la qualité d'une architecture logicielle, y compris la performance, la sécurité, la maintenabilité, et l'évolutivité.
+7. **Évolution de l'architecture logicielle** : Nous étudierons comment les architectures logicielles peuvent évoluer avec le temps pour répondre à de nouveaux besoins ou défis. Nous parlerons également de la dette technique et comment la gérer.
 
-8. **Évolution de l'architecture logicielle** : Nous étudierons comment les architectures logicielles peuvent évoluer avec le temps pour répondre à de nouveaux besoins ou défis. Nous parlerons également de la dette technique et comment la gérer.
-
-9. **Études de cas et projets pratiques** : Nous appliquerons les concepts que nous avons appris à des études de cas et des projets réels. Cela vous donnera une expérience pratique de la conception de l'architecture logicielle.
+8. **Études de cas et projets pratiques** : Nous appliquerons les concepts que nous avons appris à des études de cas et des projets réels. Cela vous donnera une expérience pratique de la conception de l'architecture logicielle.
 
 # 1. Introduction à l'architecture logicielle
 
@@ -86,70 +84,95 @@ Voir [[Design patterns]]
 
 Les attributs de qualité sont des caractéristiques non fonctionnelles d'un système qui déterminent comment il se comporte. Ils sont cruciaux dans la conception de l'architecture logicielle, car ils influencent les décisions architecturales et ont un impact direct sur la qualité du système final. Voici quelques attributs de qualité couramment utilisés en architecture logicielle :
 
-**Performance** : La performance se réfère à la rapidité avec laquelle un système répond à une demande ou à un ensemble de demandes. Elle est souvent mesurée en termes de temps de réponse, de débit ou d'utilisation des ressources. Un bon architecte doit concevoir le système de manière à répondre aux exigences de performance, tout en tenant compte des ressources disponibles.
+### 1.6.1 Performance
 
-**Sécurité** : La sécurité est la capacité d'un système à résister aux attaques malveillantes et à protéger les données et les services qu'il fournit. Cela implique de concevoir le système de manière à minimiser les vulnérabilités et à résister aux attaques, tout en permettant une récupération rapide en cas de violation de la sécurité.
+La performance se réfère à la rapidité avec laquelle un système répond à une demande ou à un ensemble de demandes. Elle est souvent mesurée en termes de temps de réponse, de débit ou d'utilisation des ressources. Un bon architecte doit concevoir le système de manière à répondre aux exigences de performance, tout en tenant compte des ressources disponibles.
 
-**Maintenabilité** : La maintenabilité est la facilité avec laquelle un système peut être modifié pour corriger des défauts, améliorer ses performances, ou adapter le système à un environnement modifié. Cela nécessite une conception claire et compréhensible, l'usage de conventions de codage cohérentes, une bonne documentation et des tests adéquats.
+### 1.6.2 Sécurité
 
-**Modularité** : La modularité est le degré auquel un système peut être divisé en modules indépendants. Un système modulaire facilite la maintenabilité, l'évolutivité et la réutilisation du code. Il permet également de développer et de tester les modules individuellement, ce qui peut améliorer la productivité de l'équipe de développement.
+La sécurité est la capacité d'un système à résister aux attaques malveillantes et à protéger les données et les services qu'il fournit. Cela implique de concevoir le système de manière à minimiser les vulnérabilités et à résister aux attaques, tout en permettant une récupération rapide en cas de violation de la sécurité.
 
-**Évolutivité** : L'évolutivité est la capacité d'un système à gérer une augmentation de la charge de travail. Par exemple, un système peut être conçu pour être évolutif en ajoutant plus de ressources matérielles, ou en permettant d'ajouter plus de fonctionnalités ou de modules au fil du temps.
+### 1.6.3 Maintenabilité
 
-En conclusion, les attributs de qualité sont des considérations essentielles dans la conception de l'architecture logicielle. Ils guident les décisions architecturales et influencent la qualité globale du système. Un bon architecte doit comprendre ces attributs de qualité, savoir comment les équilibrer et prendre des décisions informées qui favorisent l'atteinte de ces objectifs de qualité.
+La maintenabilité est la facilité avec laquelle un système peut être modifié pour corriger des défauts, améliorer ses performances, ou adapter le système à un environnement modifié. Cela nécessite une conception claire et compréhensible, l'usage de conventions de codage cohérentes, une bonne documentation et des tests adéquats.
+
+#### 1.6.4 Modularité
+
+La modularité est le degré auquel un système peut être divisé en modules indépendants. Un système modulaire facilite la maintenabilité, l'évolutivité et la réutilisation du code. Il permet également de développer et de tester les modules individuellement, ce qui peut améliorer la productivité de l'équipe de développement.
+
+### 1.6.5 Évolutivité
+
+L'évolutivité est la capacité d'un système à gérer une augmentation de la charge de travail. Par exemple, un système peut être conçu pour être évolutif en ajoutant plus de ressources matérielles, ou en permettant d'ajouter plus de fonctionnalités ou de modules au fil du temps.
+
+### 1.6.6 Conclusion sur la qualité
+
+Les attributs de qualité sont des considérations essentielles dans la conception de l'architecture logicielle. Ils guident les décisions architecturales et influencent la qualité globale du système. Un bon architecte doit comprendre ces attributs de qualité, savoir comment les équilibrer et prendre des décisions informées qui favorisent l'atteinte de ces objectifs de qualité.
 
 ## 1.7 Les décisions architecturales
 
 Les décisions architecturales sont des choix qui sont faits lors de la conception de l'architecture d'un système logiciel. Elles ont un impact majeur sur la structure et le comportement du système, et une fois prises, elles peuvent être difficiles à changer. Examinons les facteurs qui influencent ces décisions et comment elles sont prises.
 
-**Exigences fonctionnelles et non fonctionnelles** : Les exigences du système, à la fois fonctionnelles (ce que le système doit faire) et non fonctionnelles (comment le système doit le faire), sont des facteurs clés dans la prise de décisions architecturales. Par exemple, si une exigence non fonctionnelle est que le système doit être capable de gérer une charge de travail élevée, cela peut influencer la décision d'utiliser une architecture distribuée.
+### 1.7.1 Exigences fonctionnelles et non fonctionnelles
 
-**Contraintes technologiques** : Les contraintes technologiques, comme la disponibilité de certaines technologies ou la nécessité d'intégrer le système avec d'autres systèmes existants, peuvent également influencer les décisions architecturales. Par exemple, si le système doit être développé en utilisant un certain langage de programmation ou une certaine plateforme, cela peut limiter les choix d'architecture disponibles.
+Les exigences du système, à la fois fonctionnelles (ce que le système doit faire) et non fonctionnelles (comment le système doit le faire), sont des facteurs clés dans la prise de décisions architecturales. Par exemple, si une exigence non fonctionnelle est que le système doit être capable de gérer une charge de travail élevée, cela peut influencer la décision d'utiliser une architecture distribuée.
 
-**Compromis** : La prise de décisions architecturales implique souvent de faire des compromis entre différents objectifs ou exigences. Par exemple, augmenter la performance d'un système peut réduire sa maintenabilité, ou améliorer la sécurité peut réduire sa facilité d'utilisation. Un bon architecte doit être capable de trouver le bon équilibre entre ces différents facteurs.
+### 1.7.2 Contraintes technologiques
 
-**Stakeholders** : Les parties prenantes du système, comme les utilisateurs, les développeurs, les gestionnaires et les clients, ont également une influence sur les décisions architecturales. Leurs préférences, leurs besoins et leurs attentes doivent être pris en compte lors de la conception de l'architecture.
+Les contraintes technologiques, comme la disponibilité de certaines technologies ou la nécessité d'intégrer le système avec d'autres systèmes existants, peuvent également influencer les décisions architecturales. Par exemple, si le système doit être développé en utilisant un certain langage de programmation ou une certaine plateforme, cela peut limiter les choix d'architecture disponibles.
 
-**Contexte** : Le contexte dans lequel le système sera utilisé peut également influencer les décisions architecturales. Par exemple, si le système est destiné à être utilisé dans un environnement à faible bande passante, cela peut influencer la décision d'utiliser une architecture légère et efficace.
+### 1.7.3 Compromis
 
-**Expérience et connaissance** : L'expérience et les connaissances de l'architecte jouent un rôle important dans la prise de décisions architecturales. Une bonne compréhension des principes d'architecture, des patterns d'architecture et des technologies disponibles peut aider à prendre des décisions informées et efficaces.
+La prise de décisions architecturales implique souvent de faire des compromis entre différents objectifs ou exigences. Par exemple, augmenter la performance d'un système peut réduire sa maintenabilité, ou améliorer la sécurité peut réduire sa facilité d'utilisation. Un bon architecte doit être capable de trouver le bon équilibre entre ces différents facteurs.
 
-@TODO
-En conclusion, la prise de décisions architecturales est un processus complexe qui implique de prendre en compte de nombreux facteurs différents et de faire des compromis. Un bon architecte doit être capable de naviguer dans ce processus, de prendre des décisions informées et de justifier ces décisions aux autres membres de l'équipe.
+### 1.7.4 Stakeholders
+
+Les parties prenantes du système, comme les utilisateurs, les développeurs, les gestionnaires et les clients, ont également une influence sur les décisions architecturales. Leurs préférences, leurs besoins et leurs attentes doivent être pris en compte lors de la conception de l'architecture.
+
+### 1.7.5 Contexte
+
+Le contexte dans lequel le système sera utilisé peut également influencer les décisions architecturales. Par exemple, si le système est destiné à être utilisé dans un environnement à faible bande passante, cela peut influencer la décision d'utiliser une architecture légère et efficace.
+
+### 1.7.6 Expérience et connaissance
+
+L'expérience et les connaissances de l'architecte jouent un rôle important dans la prise de décisions architecturales. Une bonne compréhension des principes d'architecture, des patterns d'architecture et des technologies disponibles peut aider à prendre des décisions informées et efficaces.
+
+### 1.7.7 Conclusion sur les décisions architecturales
+
+La prise de décisions architecturales est un processus complexe qui implique de prendre en compte de nombreux facteurs différents et de faire des compromis. Un bon architecte doit être capable de naviguer dans ce processus, de prendre des décisions informées et de justifier ces décisions aux autres membres de l'équipe.
 
 ## 1.8 Les vues architecturales
 
 L'architecture d'un système logiciel est complexe et multifacette. Pour faciliter la compréhension et la communication de l'architecture, nous utilisons ce qu'on appelle des "vues architecturales". Chaque vue offre une perspective différente sur le système, mettant en lumière certains aspects tout en en occultant d'autres. Voici quelques-unes des vues les plus couramment utilisées :
 
-### Vue logique
+### 1.8.1 Vue logique
 Cette vue se concentre sur la fonctionnalité du système du point de vue de l'utilisateur. Elle décrit les principales classes ou composants logiques du système, leurs responsabilités, leurs relations et leurs interactions. Cette vue est souvent utilisée par les développeurs pour comprendre comment le système fournit les fonctionnalités requises.
 
-### Vue de processus
+### 1.8.2 Vue de processus
 Cette vue montre comment le système est exécuté en termes de processus, de threads et de communication entre eux. Elle décrit comment le système se comporte en réponse aux événements externes et internes. Cette vue est particulièrement utile pour comprendre les problèmes de performance et de concurrence.
 
-### Vue de développement
+### 1.8.3 Vue de développement
 Cette vue offre une perspective sur la manière dont le système est organisé du point de vue du développement. Elle décrit la structure du code, les dépendances entre les packages ou les modules, et la manière dont le système est construit et déployé. Cette vue est généralement utilisée par les développeurs pour comprendre l'organisation du code et par les gestionnaires de projet pour planifier et gérer le développement.
 
-### Vue physique
+### 1.8.4 Vue physique
 Cette vue présente la disposition du système sur l'infrastructure matérielle. Elle décrit comment le système est déployé sur l'infrastructure, comment les composants du système sont mappés sur les noeuds matériels, et comment les noeuds communiquent entre eux. Cette vue est souvent utilisée par les administrateurs de système pour comprendre comment le système est déployé et par les architectes pour prendre des décisions concernant le déploiement.
 
-### Synthése
+### 1.8.5 Synthése
 Chaque vue architecturale offre une perspective différente sur le système, et en combinant ces vues, nous pouvons obtenir une image complète de l'architecture du système. Il est important de noter que les vues doivent être cohérentes entre elles - c'est-à-dire que les informations présentées dans une vue ne doivent pas contredire les informations présentées dans une autre vue. Dans le prochain chapitre, nous examinerons comment créer et documenter ces vues.
 
 ## 1.9 Importance de la documentation en architecture logicielle
 
 La documentation joue un rôle crucial en architecture logicielle. Elle sert de moyen de communication entre les différentes parties prenantes, y compris les architectes, les développeurs, les gestionnaires de projet et les clients. Elle aide également à maintenir la cohérence de l'architecture au fil du temps, surtout lorsque des changements sont apportés ou lorsque des nouveaux membres rejoignent l'équipe. Examinons de plus près pourquoi il est important de documenter certains aspects de l'architecture.
 
-### Décisions architecturales
+### 1.9.1 Décisions architecturales
 Documenter les décisions architecturales permet de suivre pourquoi certaines décisions ont été prises, les alternatives qui ont été envisagées et les raisons pour lesquelles elles ont été rejetées. Cela aide non seulement à comprendre l'état actuel de l'architecture, mais aussi à prendre de meilleures décisions à l'avenir. C'est aussi un moyen de partager la connaissance et l'expérience au sein de l'équipe et de faciliter l'intégration de nouveaux membres.
 
-### Vues architecturales
+### 1.9.2 Vues architecturales
 Comme nous l'avons vu précédemment, les vues architecturales offrent différentes perspectives sur le système. La documentation de ces vues aide à comprendre comment le système est conçu, comment il fonctionne et comment il est déployé. Cela aide également à identifier les dépendances et les interactions entre les différents composants du système, ce qui est crucial pour la maintenance et l'évolution du système.
 
-### Attributs de qualité
+### 1.9.3 Attributs de qualité
 La documentation des attributs de qualité et de la manière dont ils ont influencé l'architecture aide à comprendre pourquoi l'architecture est conçue de la manière dont elle l'est. Par exemple, si l'architecture a été conçue pour une haute performance, documenter cela aide à comprendre pourquoi certaines décisions ont été prises et comment elles contribuent à la performance du système. Cela aide également à vérifier si l'architecture répond aux exigences de qualité et à identifier les domaines qui pourraient nécessiter des améliorations.
 
-### Une nécessité
+### 1.9.4 Une nécessité
 La documentation en architecture logicielle n'est pas un luxe, mais une nécessité. Elle facilite la communication, soutient la prise de décisions, aide à maintenir la cohérence de l'architecture et facilite la maintenance et l'évolution du système. Dans le prochain chapitre, nous verrons comment créer une documentation efficace en architecture logicielle.
 
 ## 2. Vue d'ensemble des styles d'architecture logicielle
@@ -172,7 +195,7 @@ Dans les sections suivantes, nous examinerons quelques-uns des styles d'architec
 
 L'architecture monolithique est un style d'architecture logicielle dans lequel le logiciel est conçu et développé comme une seule unité indivisible. Toutes les fonctionnalités et tous les composants du système, y compris la base de données, les opérations sur les données, les règles métier, et l'interface utilisateur, sont interconnectés et interdépendants.
 
-### Caractéristiques de l'architecture monolithique
+### 2.2.1 Caractéristiques de l'architecture monolithique
 
 - **Unité de déploiement unique** : Dans une architecture monolithique, le logiciel est déployé en une seule unité. Toutes les fonctionnalités sont contenues dans une seule base de code, et tout changement nécessite un redéploiement complet de l'application.
 
@@ -180,13 +203,13 @@ L'architecture monolithique est un style d'architecture logicielle dans lequel l
 
 - **Simplicité de développement** : Avec une base de code unique, il est souvent plus facile et plus rapide de développer et de tester une application monolithique, surtout si le système est relativement petit.
 
-### Avantages de l'architecture monolithique
+### 2.2.3 Avantages de l'architecture monolithique
 
 - **Facilité de développement** : Une architecture monolithique peut être plus simple à développer initialement, car il n'y a pas besoin de coordonner plusieurs bases de code ou services indépendants.
 
 - **Performance** : Dans une architecture monolithique, les appels entre différents composants du système sont souvent plus rapides que dans une architecture distribuée, car ils se font en mémoire plutôt que sur le réseau.
 
-### Inconvénients de l'architecture monolithique
+### 2.2.4 Inconvénients de l'architecture monolithique
 
 - **Difficulté de mise à l'échelle** : Dans une architecture monolithique, la mise à l'échelle du système nécessite souvent de dupliquer l'ensemble de l'application, ce qui peut être coûteux en termes de ressources.
 
@@ -200,7 +223,7 @@ L'architecture monolithique peut être appropriée pour les petits systèmes, ou
 
 L'architecture en couches est un style d'architecture logicielle qui organise le système en une série de couches, chaque couche fournissant des services à celle qui se trouve au-dessus d'elle. Chaque couche a une responsabilité spécifique et fonctionne de manière indépendante des autres.
 
-### Caractéristiques de l'architecture en couches
+### 2.3.1 Caractéristiques de l'architecture en couches
 
 - **Couplage faible** : Chaque couche est indépendante et interagit seulement avec les couches directement au-dessus et en dessous d'elle. Cela permet une plus grande flexibilité et facilité de modification.
 
@@ -208,7 +231,7 @@ L'architecture en couches est un style d'architecture logicielle qui organise le
 
 - **Séparation des préoccupations** : Chaque couche a une responsabilité spécifique, ce qui permet une meilleure organisation et une maintenance plus facile.
 
-### Avantages de l'architecture en couches
+### 2.3.2 Avantages de l'architecture en couches
 
 - **Maintenabilité** : L'architecture en couches permet une plus grande maintenabilité en isolant les modifications à une couche spécifique. Cela réduit l'impact des changements et facilite la maintenance.
 
@@ -216,7 +239,7 @@ L'architecture en couches est un style d'architecture logicielle qui organise le
 
 - **Flexibilité** : Les couches peuvent être réorganisées, modifiées ou remplacées de manière indépendante, ce qui offre une grande flexibilité.
 
-### Inconvénients de l'architecture en couches
+### 2.3.3 Inconvénients de l'architecture en couches
 
 - **Performance** : Les appels de fonction entre les couches peuvent réduire les performances, en particulier si le nombre de couches est élevé.
 
@@ -256,7 +279,7 @@ SOA est particulièrement bénéfique dans les grandes entreprises où plusieurs
 
 L'architecture basée sur les événements est un style d'architecture logicielle qui se concentre sur la production, la détection, la consommation et la réaction aux événements. Les événements sont définis comme des changements d'état significatifs dans un système.
 
-**Caractéristiques de l'architecture basée sur les événements**
+### 2.5.1 Caractéristiques de l'architecture basée sur les événements
 
 - **Réactivité** : Les systèmes basés sur des événements sont conçus pour réagir aux changements d'état qui se produisent dans le système. Ces réponses sont souvent exprimées sous la forme de callbacks ou de fonctions qui sont déclenchées en réponse à un événement.
 
@@ -264,7 +287,7 @@ L'architecture basée sur les événements est un style d'architecture logiciell
 
 - **Décentralisation** : Dans une architecture basée sur les événements, aucun composant central n'est chargé de la gestion des événements. Au lieu de cela, chaque composant agit de manière indépendante en réponse aux événements qu'il reçoit.
 
-**Avantages de l'architecture basée sur les événements**
+### 2.5.2 Avantages de l'architecture basée sur les événements
 
 - **Réactivité** : Les systèmes basés sur les événements sont naturellement réactifs et peuvent fournir des réponses en temps réel aux changements d'état.
 
@@ -272,7 +295,7 @@ L'architecture basée sur les événements est un style d'architecture logiciell
 
 - **Flexibilité** : Les systèmes basés sur les événements sont flexibles et peuvent facilement être adaptés pour répondre à de nouveaux types d'événements.
 
-**Inconvénients de l'architecture basée sur les événements**
+### 2.5.3 Inconvénients de l'architecture basée sur les événements
 
 - **Complexité** : Les systèmes basés sur les événements peuvent être plus difficiles à comprendre et à déboguer que les systèmes synchrones, en raison de leur nature asynchrone et décentralisée.
 
@@ -284,7 +307,7 @@ L'architecture basée sur les événements est particulièrement utile dans les 
 
 L'architecture microservices est un style d'architecture qui structure une application comme une collection de petits services autonomes. Chaque service est une application autonome, fonctionnant dans son propre processus et communiquant avec les autres services par le biais d'interfaces bien définies.
 
-### Caractéristiques de l'architecture Microservices
+### 2.6.1 Caractéristiques de l'architecture Microservices
 
 - **Décentralisation** : Chaque service est indépendant et peut être développé, déployé et mis à l'échelle de manière indépendante.
 
@@ -292,7 +315,7 @@ L'architecture microservices est un style d'architecture qui structure une appli
 
 - **Autonomie** : Chaque service est responsable d'une seule fonctionnalité ou processus d'affaires. 
 
-### Avantages de l'architecture Microservices
+### 2.6.2 Avantages de l'architecture Microservices
 
 - **Évolutivité** : Comme chaque service est indépendant, il peut être mis à l'échelle de manière indépendante en fonction de la demande.
 
@@ -300,7 +323,7 @@ L'architecture microservices est un style d'architecture qui structure une appli
 
 - **Déploiement indépendant** : Chaque microservice peut être déployé indépendamment des autres. Cela facilite le déploiement continu et la livraison continue (CI/CD).
 
-### Inconvénients de l'architecture Microservices
+### 2.6.3 Inconvénients de l'architecture Microservices
 
 - **Complexité** : Gérer plusieurs services indépendants peut être plus complexe que de gérer une seule application monolithique.
 
@@ -308,7 +331,7 @@ L'architecture microservices est un style d'architecture qui structure une appli
 
 - **Gestion des données** : La répartition des données entre les services peut être un défi.
 
-### Synthèse
+### 2.6.4 Synthèse
 
 L'architecture microservices est particulièrement bénéfique dans les grands systèmes d'entreprise qui nécessitent une haute évolutivité et une disponibilité constante. Cependant, il convient de noter que ce style d'architecture n'est pas approprié pour toutes les applications, en particulier celles de petite taille ou avec des exigences moins complexes.
 

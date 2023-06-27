@@ -263,7 +263,7 @@ Dans l'ensemble, le choix entre un tableau Kanban physique et numérique dépend
 @TODO mettre un exemple de backlog avec comme ticket la réalisation des tâches de conception d'un logiciel (plant uml n'ont pas de diagramme permettant d'avoir un résultat correcte)
 
 
-# 3.2 ## 3.2 Les logiciels de suivi de projets: JIRA, Trello, etc.
+# 3.2 Les logiciels de suivi de projets: JIRA, Trello, etc.
 
 Dans le cadre des projets informatiques, et particulièrement ceux utilisant les méthodologies agiles, les outils de suivi de projets sont essentiels. Ils permettent non seulement d'organiser et de prioriser les tâches, mais également de suivre l'avancement des travaux, de communiquer au sein de l'équipe et avec les parties prenantes, et enfin, d'obtenir des métriques sur la performance du projet. Voici quelques exemples parmi les plus populaires :
 
@@ -275,7 +275,7 @@ Dans le cadre des projets informatiques, et particulièrement ceux utilisant les
 
 Ces outils, et d'autres similaires, sont essentiels pour gérer efficacement les projets informatiques, surtout lorsque vous travaillez en équipe. Ils facilitent la communication, l'organisation et le suivi du travail, et contribuent à améliorer la transparence et la productivité.
 
-# 3.3 ## 3.3 Les outils de communication et de collaboration: Slack, Microsoft Teams, Discord, etc.
+# 3.3 Les outils de communication et de collaboration: Slack, Microsoft Teams, Discord, etc.
 
 Dans le contexte actuel de travail, où les équipes sont souvent réparties sur plusieurs sites, voire à travers le monde, la communication et la collaboration sont essentielles. Heureusement, plusieurs outils sont disponibles pour faciliter ces aspects du travail d'équipe. Voici quelques exemples :
 
