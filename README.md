@@ -32,13 +32,13 @@ Ajout du fichier de Versions.md qui me permet de savoir à partir d'où je dois 
 git clone git@github.com:michaellaunay/Notes.git NotesPubliquesUp
 cd NotesPubliquesUp
 mkdir /tmp/patches
-git filter-repo --path cours --path informatique --path sciences --path réflexions --path '_INDEX PRINCIPAL.md'
+git filter-repo --path cours --path informatique --path sciences --path réflexions --path templates --path '_INDEX PRINCIPAL.md'
 git log
 # trouver le hash correspondant au commit du dernier hash du fichier Version.md
 export HASH_BASE=HASH_DU_PREMIER_COMMIT_A_PORTER
 git format-patch -o /tmp/patches --root $HASH_BASE..HEAD
 cd ../NotesPubliques
-git am /tmp/patches/
+git am /tmp/patches/*
 ```
 
 La branche `Notes` de ce dépôt correspond à la dernière copie de mes notes privées, tandis que la branche `master` contient des modifications spécifiques au dépôt public, comme ce README.md.
