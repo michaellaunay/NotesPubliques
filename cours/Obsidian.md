@@ -239,7 +239,7 @@ Les alias sont généralement ajoutés en début de note et permettent à la rec
 aliases : [Utilisation Obsidian, raccourcis Obsidian]
 ---
 `
-# 6. Modules
+# 6. Modules intégrés
 
 ## 6.1 Note quotidienne
 
@@ -319,7 +319,8 @@ Activons le plugin MindMap et regardons comment s'affiche l'exemple suivant [[Mi
 
 ## 7.2 Diagrammes Mermaid
 
-Modélisation textuelle de diagrammes [[PlantUML pour Obsidian]]
+Voir la note sur la création textuelle de diagrammes [[Mermaid pour Obsidian]]
+
 
 ## 7.3 Diagrammes PlantUML
 
