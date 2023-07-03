@@ -11,6 +11,41 @@ OpenLDAP est une implémentation libre et ouverte du protocole LDAP. Il est util
 
 Un annuaire LDAP est structuré comme un arbre, avec un nœud racine appelé Base Distinguished Name (ou Base DN). Sous cette racine, nous pouvons avoir plusieurs branches représentant des organisations, des unités organisationnelles, des individus, etc.
 
+# Représentation
+
+LDAP peut représenter les objets dans une hiérarchie ou une arborescence, ce qui le rend idéal pour les organisations qui ont une structure hiérarchique claire.
+
+Voici un exemple simplifié de ce à quoi une arborescence LDAP pourrait ressembler :
+
+```mermaid
+graph TD;
+    A["dc=monEntreprise, dc=com"]
+    B["ou=Utilisateurs"]
+    C["ou=Groupes"]
+    D["ou=Ordinateurs"]
+    E["cn=John Doe"]
+    F["cn=Jane Doe"]
+    G["cn=Admins"]
+    H["cn=Utilisateurs"]
+    I["cn=Ordinateur1"]
+    J["cn=Ordinateur2"]
+    A-->B;
+    A-->C;
+    A-->D;
+    B-->E;
+    B-->F;
+    C-->G;
+    C-->H;
+    D-->I;
+    D-->J;
+```
+
+Dans cet exemple, `dc=monEntreprise, dc=com` est le sommet de l'arborescence, qui se divise ensuite en plusieurs unités organisationnelles (ou=) : "Utilisateurs", "Groupes" et "Ordinateurs". Chaque unité organisationnelle contient des noms communs (cn=), qui sont les entrées individuelles dans l'annuaire.
+
+- Sous "Utilisateurs", nous avons "John Doe" et "Jane Doe".
+- Sous "Groupes", nous avons les groupes "Admins" et "Utilisateurs".
+- Sous "Ordinateurs", nous avons "Ordinateur1" et "Ordinateur2".
+
 # Opérations LDAP
 
 Les opérations les plus courantes en LDAP sont : 
