@@ -72,53 +72,56 @@ Les logiciels d'administration ne sont que des surcouches graphiques (front-end)
 
 ### L'aide en ligne
 
-En mode graphique, les applications possèdent un onglet \"Aide\" permettant d'ouvrir un navigateur sur l'aide en ligne. Cette aide est généralement accessible par la touche F1.
+En mode graphique, les applications possèdent un onglet \"Aide\" permettant d'ouvrir un navigateur sur l'aide en ligne. Cette aide est généralement accessible par la touche `F1. @TODO
 
-![Aide en ligne d'Ubuntu (appelée avec F1)](AideEnLigneUbuntu.jpg){.align-center}
+![Aide en ligne d'Ubuntu (appelée avec F1)](AideEnLigneUbuntu.jpg)
 
-Dans un shell, la plupart des commandes unix acceptent l'option -h ou \--help ou \--usage :
+Dans un shell, la plupart des commandes unix acceptent l'option `-h` ou `--help` ou `--usage` :
+```bash
+apropos --help
+```
+Ce qui affiche :
+```
+Usage: apropos [OPTION...] KEYWORD...
+Project-Id-Version: man-db 2.3.90
+Report-Msgid-Bugs-To: Colin Watson <cjwatson@debian.org>
+POT-Creation-Date: 2008-05-05 02:09+0100
+PO-Revision-Date: 2008-08-19 20:37+0000
+Last-Translator: Laurent Pelecq <laurent.pelecq@soleil.org>
+Language-Team: French <traduc@traduc.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Launchpad-Export-Date: 2008-11-09 09:58+0000
+X-Generator: Launchpad (build Unknown)
 
-    michaellaunay@luciole:~$ apropos --help
-    Usage: apropos [OPTION...] KEYWORD...
-    Project-Id-Version: man-db 2.3.90
-    Report-Msgid-Bugs-To: Colin Watson <cjwatson@debian.org>
-    POT-Creation-Date: 2008-05-05 02:09+0100
-    PO-Revision-Date: 2008-08-19 20:37+0000
-    Last-Translator: Laurent Pelecq <laurent.pelecq@soleil.org>
-    Language-Team: French <traduc@traduc.org>
-    MIME-Version: 1.0
-    Content-Type: text/plain; charset=UTF-8
-    Content-Transfer-Encoding: 8bit
-    X-Launchpad-Export-Date: 2008-11-09 09:58+0000
-    X-Generator: Launchpad (build Unknown)
+  -d, --debug                emit debugging messages
+  -v, --verbose              print verbose warning messages
+  -e, --exact                search each keyword for exact match
+  -r, --regex                interpret each keyword as a regex
+  -w, --wildcard             the keyword(s) contain wildcards
+  -a, --and                  require all keywords to match
+  -l, --long                 do not trim output to terminal width
+  -C, --config-file=FICHIER  use this user configuration file
+  -L, --locale=LOCALE        define the locale for this search
+  -m, --systems=SYSTEM       use manual pages from other systems
+  -M, --manpath=CHEMIN       set search path for manual pages to PATH
+  -s, --section=SECTION      search only this section
+  -?, --help                 give this help list
+	  --usage                give a short usage message
+  -V, --version              print program version
 
-      -d, --debug                emit debugging messages
-      -v, --verbose              print verbose warning messages
-      -e, --exact                search each keyword for exact match
-      -r, --regex                interpret each keyword as a regex
-      -w, --wildcard             the keyword(s) contain wildcards
-      -a, --and                  require all keywords to match
-      -l, --long                 do not trim output to terminal width
-      -C, --config-file=FICHIER  use this user configuration file
-      -L, --locale=LOCALE        define the locale for this search
-      -m, --systems=SYSTEM       use manual pages from other systems
-      -M, --manpath=CHEMIN       set search path for manual pages to PATH
-      -s, --section=SECTION      search only this section
-      -?, --help                 give this help list
-          --usage                give a short usage message
-      -V, --version              print program version
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
 
-    Mandatory or optional arguments to long options are also mandatory or optional
-    for any corresponding short options.
+The --regex option is enabled by default.
 
-    The --regex option is enabled by default.
+Report bugs to cjwatson@debian.org.
+```
+Pour trouver une commande il suffit de faire `apropos MotClé` qui affichera toutes les commandes comportant MotClé dans sa description courte.
+Toutefois la base des commandes peut avoir besoin d'être régénérée par `makewhatis`.
 
-    Report bugs to cjwatson@debian.org.
-
-Pour trouver une commande il suffit de faire apropos MotClé qui affichera toutes les commandes comportant MotClé dans sa description courte.
-Toutefois la base des commandes peut avoir besoin d'être régénérée par **makewhatis**.
-
-*whatis NomDeCommande* affichera la description courte de NomDeCommande.
+`whatis NomDeCommande` affichera la description courte de NomDeCommande.
 
 ### Les man pages
 
@@ -126,7 +129,10 @@ Les applications et commandes possèdent toutes un manuel accessible en ligne de
 
 Ce manuel est généralement traduit dans la langue de l'utilisateur :
 ```bash
-michaellaunay@luciole:~$ man man
+man man
+```
+Ce qui affiche :
+```
 MAN(1)            Utilitaires de l’afficheur des pages de Manuel
 MAN(1)
 
@@ -164,24 +170,27 @@ Elles peuvent être libellées NOM, SYNOPSIS,  DESCRIPTION,  OPTIONS,  FICHIERS,
 
 Pour chercher les pages associées à un mot clé:
 ```bash
-michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ man -k manual
-    apropos (1)          - search the manual page names and descriptions
-    catman (8)           - create or update the pre-formatted manual pages
-    esdcompat (1)        - manual page for pulseaudio esd wrapper 0.9.5
-    grub-reboot (8)      - manual page for grub-reboot 0.01
-    man (1)              - an interface to the on-line reference manuals
-    manconv (1)          - convert manual page from one encoding to another
-    mandb (8)            - create or update the manual page index caches
-    manpath (1)          - determine search path for manual pages
-    missing (7)          - missing manual pages
-    pulseaudio (1)       - manual page for pulseaudio 0.9.5
-    readahead-list (8)   - manual page for readahead-list: 0.20050517.0220
-    readahead-watch (8)  - manual page for readahead-watch: 0.20050517.0220
-    update-apt-xapian-index (8) - manual page for update-apt-xapian-index 0.15
-    w3mman (1)           - an interface to the on-line reference manuals by w3m(1)
-    whatis (1)           - display manual page descriptions
-    whereis (1)          - locate the binary, source, and manual page files for a command
-    xman (1)             - Manual page display program for the X Window System
+man -k manual
+```
+
+```
+apropos (1)          - search the manual page names and descriptions
+catman (8)           - create or update the pre-formatted manual pages
+esdcompat (1)        - manual page for pulseaudio esd wrapper 0.9.5
+grub-reboot (8)      - manual page for grub-reboot 0.01
+man (1)              - an interface to the on-line reference manuals
+manconv (1)          - convert manual page from one encoding to another
+mandb (8)            - create or update the manual page index caches
+manpath (1)          - determine search path for manual pages
+missing (7)          - missing manual pages
+pulseaudio (1)       - manual page for pulseaudio 0.9.5
+readahead-list (8)   - manual page for readahead-list: 0.20050517.0220
+readahead-watch (8)  - manual page for readahead-watch: 0.20050517.0220
+update-apt-xapian-index (8) - manual page for update-apt-xapian-index 0.15
+w3mman (1)           - an interface to the on-line reference manuals by w3m(1)
+whatis (1)           - display manual page descriptions
+whereis (1)          - locate the binary, source, and manual page files for a command
+xman (1)             - Manual page display program for the X Window System
 ```
 
 ### Les sites
@@ -209,7 +218,9 @@ Dans la région lilloise on compte essentiellement Chtinux <http://www.chtinux.o
 Les LUGs réalisent la promotion de Linux est des logiciels libres. Ils organisent des manifestations telles que des install party.
 
 # Shell & Commandes
+
 ## Les terminaux (tty)
+
 Historiquement, un terminal est une interface homme-machine minimale issue des technologies de communication de la fin XIX et du début XX siècle, le Télétype marque déposée en 1906 est l'ancêtre des claviers numériques des premiers ordinateurs.
 
 L'abréviation tty de Télétype a été utilisée pour décrire l'interface série de communication utilisée au début d'Unix.
@@ -222,14 +233,16 @@ Dans l'environnement graphique XWindows on trouve des logiciels émulant les ter
 
 Les terminaux ne sont en charge que de la récupération des touches frappées, de leur transformation en lettre, et de l'affichage de celle-ci. L'interprétation de ce qui est saisi est dévolue au shell.
 
-Les six premiers terminaux sont accessibles par la combinaison de touche Ctrl Alt F\[1-6\].
+Les six premiers terminaux sont accessibles par la combinaison de touche `Ctrl+Alt+F[1-6]`.
 
-Le terminal graphique est accessible Ctrl Alt F7
+Le terminal graphique est accessible `Ctrl+Alt+F7`
 
 ## La ligne de commande
+
 Sous Unix la CLI (Command Line Interface) est la méthode privilégiée pour transmettre au système les ordres à exécuter.
 
 ## Les différents shell
+
 Le shell est un logiciel qui interprète séquentiellement les commandes saisies dans un terminal ou stockées dans un fichier (script) ou provenant d'un pseudo fichier.
 
 La syntaxe et la sémantique de cette interprétation dépendent du shell employé.
@@ -240,19 +253,31 @@ Bash est l'interpréteur de commande par défaut des Unix libres et de Mac OS X.
 
 Pour connaître la version de bash en cours d'utilisation:
 ```bash
-    michaellaunay@luciole:~$ echo $BASH
-    /bin/bash
-    michaellaunay@luciole:~$ echo $BASH_VERSION
-    4.3.39(1)-release
+echo $BASH
 ```
 
-Pour modifier le shell par défaut associé à un utilisateur il faut modifier */etc/passwd* avec la commande **usermod -s /bin/bash login** :
+```
+    /bin/bash
+```
+
 ```bash
+echo $BASH_VERSION
+```
+
+```
+5.1.16(1)-release
+```
+
+Pour modifier le shell par défaut associé à un utilisateur il faut modifier `/etc/passwd` avec la commande `usermod -s /bin/bash login` :
+```bash
+grep michael /etc/passwd
+```
+
+```
+michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/bash
+michaellaunay@luciole:~$ sudo usermod -s /bin/sh michaellaunay
 michaellaunay@luciole:~$ grep michael /etc/passwd
-    michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/bash
-    michaellaunay@luciole:~$ sudo usermod -s /bin/sh michaellaunay
-    michaellaunay@luciole:~$ grep michael /etc/passwd
-    michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/sh
+michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/sh
 ```
    
 Pour créer un compte qui pourra se connecter sans avoir de shell (utilisation de tunnel) :
@@ -262,7 +287,10 @@ usermod -s /bin/false prestataire
 
 Détails sur le format du fichier passwd
 ```bash
-michaellaunay@luciole:\~\$ man 5 passwd
+man 5 passwd
+```
+
+```
 PASSWD(5)                                                                              Formats et conversions de fich                                                                              PASSWD(5)
 
 NOM
@@ -287,60 +315,71 @@ DESCRIPTION
 ...
 ```
 
-Plus d'information : man bash
+Plus d'information : `man bash`
 
-Lien : <http://fr.wikipedia.org/wiki/Bourne-Again_shell>
+### Lien
+[Bourne-Again-shell](http://fr.wikipedia.org/wiki/Bourne-Again_shell)
 
 ## Les fichiers de ressources et de configuration de bash
 
-Au lancement du shell celui-ci détermine s'il a été appelé de façon interactive ou pour exécuter un script ou en tant que shell de login. En fonction de la nature de son lancement, il exécutera plusieurs fichiers lui permettant de ce paramétrer.
+Lors de son démarrage, le shell bash détermine comment il a été appelé, soit de façon interactive, soit pour exécuter un script, soit en tant que shell de login. En fonction de la nature de son lancement, il exécutera différents fichiers pour se configurer.
 
-Scripts exécutés lors du lancement d'un shell interactif en ouverture de session (interactive login shell) :
-```bash
+Lorsqu'un shell interactif est lancé en ouverture de session (c'est-à-dire, un shell interactif de login), il exécute les scripts suivants :
+```
 /etc/profile
 ~/.bash_profile #le ~ désigne le répertoire "home" de l'utilisateur
 ~/.bash_login #si ~/.bash_profile n'existe pas
 ~/.profile #si ~/.bash_login
 ```
 
-Scripts exécutés lors d'un shell interactif :
-```bash
+Pour un shell interactif non-login, les scripts suivants sont exécutés :
+```
 /etc/bash.bashrc
 ~/.bashrc
 ```
 
-La modification de ces scripts nécessite la commande **source** pour une prise en compte immédiate dans le shell courant.
+Pour que les modifications de ces scripts soient prises en compte immédiatement dans le shell courant, nous devons utiliser la commande `source`.
 
-Scripts exécutés lors d'un script :
+Lorsqu'un script est exécuté en mode non interactif, le shell tente alors d'exécuter le fichier désigné par la variable `BASH_ENV`, si celle-ci existe, pour connaitre son contenu nous pouvons faire :
 ```bash
-$BASH_ENV #BASH_ENV est une variable. Si elle existe alors les scripts lancés essayent d'exécuter le fichier désigné par $BASH_ENV
+echo $BASH_ENV
 ```
-
+Qui par défaut n'affichera rien, car elle est non définie, mais si nous affectons à `BASH_ENV` le chemin d'un script, nous modifierons l'exécution de toutes les scripts lancées après.
 Un petit exemple :
 ```bash
-michaellaunay@luciole:~$ echo "echo coucou" > /tmp/hello.sh #on crée un fichier hello.sh qui contient echo coucou
-
-michaellaunay@luciole:~$ chmod +x /tmp/hello.sh   # on rend exécutable ce fichier
-
-michaellaunay@luciole:~$ /tmp/hello.sh            # on exécute ce fichier
-    coucou
-michaellaunay@luciole:~$ echo $BASH_ENV           # on affiche le contenu de la variable BASH_ENV
-
-michaellaunay@luciole:~$ BASH_ENV='/tmp/hello.sh' # on affecte la chaîne /tmp/hello.sh à la variable BASH_ENV
-
-michaellaunay@luciole:~$ export BASH_ENV # maintenant BASH_ENV sera accessible à toute commande exécutée depuis le shell courant
-
-michaellaunay@luciole:~$ echo "echo cuicui" > /tmp/oiseau.sh
-
-michaellaunay@luciole:~$ bash /tmp/oiseau.sh # on exécute oiseau.sh avec bash, car on n'a pas fait le chmod +x dessus
-   coucou
-   cuicui
+echo "echo \# Débogage" > /tmp/trace.sh # Le script trace.sh contientra la commande `echo  \#Débogage`
+echo "set -x" >> /tmp/trace.sh # Nous ajoutons la commande d'affichage des lignes de commandes
+chmod +x /tmp/trace.sh   # Nous rendons exécutable ce fichier
+/tmp/trace.sh            # Nous exécutons ce fichier pour le tester
 ```
+Nous venons de créer un script exécutable `/tmp/trace.sh` qui à son exécution affiche et positionne l'affichage des lignes de commandes avant  exécution :
+```
+# Débogage
+```
+Nous allons maintenant affecter le chemin de cette commande à la variable `BASH_ENV` et constater les modifications.
+```bash
+echo $BASH_ENV           # Nous affichons le contenu de la variable BASH_ENV
+BASH_ENV='/tmp/trace.sh' # Nous affectons la chaîne /tmp/trace.sh à la variable BASH_ENV
+export BASH_ENV # maintenant BASH_ENV sera accessible à toute commande exécutée depuis le shell courant
+echo "echo cuicui" > /tmp/oiseau.sh
+bash /tmp/oiseau.sh # Nous exécute oiseau.sh avec bash, mais nous aurions pu faire `chmod +x` dessus pour le rendre directement exécutable.
+```
+affiche :
+```
+# Débogage
+++ echo cuicui
+cuicui
+```
+Où nous voyons que les commandes du fichier `/tmp/oiseau.sh` avant leur exécution.
 
 ## Les variables d'environnement
-Les variables d'environnement sont accessibles en consultation avec la commande **env** :
+
+Les variables d'environnement sont accessibles en consultation avec la commande `env` :
 ```bash
-michaellaunay@luciole:~$ env
+env
+```
+Affiche les variables d'environnement et leur valeur :
+```
 SHELL=/bin/bash
 TERM=xterm
 HISTSIZE=1000
@@ -356,59 +395,64 @@ OLDPWD=/home/michaellaunay
 ```
 
 Signification des variables d'environnement :
-```bash
-BASH      # Le nom du fichier bash
-DISPLAY   # Le numéro de serveur et de session d'affichage
-EDITOR    # L'éditeur à utiliser par défaut
-HISTSIZE  # La taille du fichier historique
-HOSTNAME  # Le nom de la machine
-HOME      # Le répertoire personnel de l'utilisateur
-LANG      # La langue de l'utilisateur et l'encodage utilisé pour afficher cette langue
-LOGNAME   # Le nom d'utilisateur lors de l'ouverture de la session
-MAIL      # Le chemin vers la boite mail de l'utilisateur
-OLDPWD    # Le répertoire où nous étions avant le dernier cd
-PATH      # Le chemin vers les exécutables
-PS1       # Permet de constituer l'invite de commande
-PS2       # Symbole affiché sur les lignes de commande débordant sur plusieurs lignes
-PROMPT_COMMAND # Le nom d'une commande à exécuter à chaque commande
-PWD       # Le chemin actuel
-SHELL     # Le shell de l'utilisateur
-TERM      # Le type de terminal
-USERNAME  # Le nom d'utilisateur
+```
+BASH      Le nom du fichier bash
+DISPLAY   Le numéro de serveur et de session d'affichage
+EDITOR    L'éditeur à utiliser par défaut
+HISTSIZE  La taille du fichier historique
+HOSTNAME  Le nom de la machine
+HOME      Le répertoire personnel de l'utilisateur
+LANG      La langue de l'utilisateur et l'encodage utilisé pour afficher cette langue
+LOGNAME   Le nom d'utilisateur lors de l'ouverture de la session
+MAIL      Le chemin vers la boite mail de l'utilisateur
+OLDPWD    Le répertoire où nous étions avant le dernier cd
+PATH      Le chemin vers les exécutables
+PS1       Permet de constituer l'invite de commande
+PS2       Symbole affiché sur les lignes de commande débordant sur plusieurs lignes
+PROMPT_COMMAND Le nom d'une commande à exécuter à chaque commande
+PWD       Le chemin actuel
+SHELL     Le shell de l'utilisateur
+TERM      Le type de terminal
+USERNAME  Le nom d'utilisateur
 ```
 
 Pour accéder au contenu d'une variable, il suffit de la référencer en la précédent de **\$**:
+```bash
+echo $HOME
+```
 
-    michaellaunay@luciole:~$ echo $HOME
-    /home/michaellaunay
+```
+/home/michaellaunay
+```
 
 Pour voir l'ensemble des définitions réalisées dans un shell (variable et fonction) il suffit de taper **set**.
 
-Pour voir les lignes exécutées dans un script **set -x** en début de script.
+Pour voir les lignes exécutées dans un script `set -x` en début de script.
 
 ## Les caractères spéciaux
-Les caractères suivants permettent de déclencher des comportements particuliers qui seront expliqués ci-après :
+
+Les caractères suivants permettent de déclencher des comportements particuliers :
 ```
-# # Mise en commentaire
-> # Indirection vers un fichier
-< # Indirection depuis un fichier
-| # Pipe
-? # Un caractère ou pas
-. # Un caractère
-* # Une chaîne de caractère
-$ # Référencement d'une variable
-\ # Échappement
-/ # Séparateur
-[ # Début d'un ensemble ou d'un test
-] # Fin d'un ensemble ou d'un test
-( # Sous shell ou évaluation
-) # Fin de sous shell ou d'évaluation
-: # Séparateur de groupe
-; # Fin de commande
-^ # Inversion ou début
-@ # Adresse
-` # Début ou fin d'interprétation
-~ # Désigne le répertoire personnel
+# Mise en commentaire
+> Indirection vers un fichier
+< Indirection depuis un fichier
+| Pipe
+? Un caractère ou pas
+. Un caractère
+* Une chaîne de caractère
+$ Référencement d'une variable
+\ Échappement
+/ Séparateur
+[ Début d'un ensemble ou d'un test
+] Fin d'un ensemble ou d'un test
+( Sous shell ou évaluation
+) Fin de sous shell ou d'évaluation
+: Séparateur de groupe
+; Fin de commande
+^ Inversion ou début
+@ Adresse
+` Début ou fin d'interprétation
+~ Désigne le répertoire personnel
 ```
 
 Si nous voulons les utiliser pour nommer par exemple un fichier sans que le comportement particulier soit déclenché nous avons l'obligation de les échapper avec **\\** ou de les mettre entre apostrophes **'** ou guillemets **"**:
@@ -432,45 +476,87 @@ Si nous voulons les utiliser pour nommer par exemple un fichier sans que le comp
 \^ ou '^' ou "^"
 ```
 
-exemple :
+### Exemple
+
+Nous allons créer un fichier ayant pour nom `[*]^[*]`
 ```bash
-michaellaunay@luciole:~$ echo lunettes > /tmp/\[\*\]\^\["*"']'
-michaellaunay@luciole:~$ ls /tmp
+echo lunettes > /tmp/\[\*\]\^\["*"']'
+ls /tmp
+```
+Nous voyons que le répertoire `/tmp` contient bien :
+```
 [*]^[*]
-michaellaunay@luciole:~$ cat /tmp/\[\*\]\^\[\*\]
+```
+Si nous affichons le contenu de ce fichier avec la commande suivantes :
+```bash
+cat /tmp/\[\*\]\^\[\*\]
+```
+Alors nous avons :
+```
 lunettes
 ```
 
 ## Variables spéciales
+
 En plus des variables d'environnement vue précédemment nous avons :
 ```
-$? # Qui fait référence au code de retour de la dernière commande exécuté.
-$$ # Le pid du programme en cours d'exécution.
-$! # Le pid de la dernière commande lancée en tâche de fond.
-$# # Le nombre de paramètres.
-$0 # Le nom du programme en cours d'exécution.
-$1 # Le premier paramètre passé.
-$2 # Le second paramètre passé.
+$? Qui fait référence au code de retour de la dernière commande exécuté.
+$$ Le pid du programme en cours d'exécution.
+$! Le pid de la dernière commande lancée en tâche de fond.
+$# Le nombre de paramètres.
+$0 Le nom du programme en cours d'exécution.
+$1 Le premier paramètre passé.
+$2 Le second paramètre passé.
 ...
-$9 # Le neuvième paramètre.
+$9 Le neuvième paramètre.
+${10} Le dixième paramètre
+...
+${99} Le quatrevingt dixneuvième paramètre
 $*, $@ # L'ensemble des paramètres
 ```
 
 ## Création, affectation de variable
-Pour créer une variable ou en modifier sa valeur, il suffit de la définir :
 
+Pour créer une variable ou en modifier sa valeur, il suffit de la définir :
 ```bash
-michaellaunay@luciole:~$ VAR='Bonjour tout le monde'
-michaellaunay@luciole:~$ echo $VAR
+VAR='Bonjour tout le monde'
+```
+Ce qui crée la variable "VAR" et lui affecte la valeur 'Bonjour tout le monde'.
+Que nous pouvons afficher avec la commande suivante :
+```bash
+echo $VAR
+```
+Ce qui affiche :
+```
 Bonjour tout le monde
-michaellaunay@luciole:~$ VAR=Salut
-michaellaunay@luciole:~$ echo $VAR
+```
+Modifions sa valeur et affichons la :
+```bash
+VAR=Salut
+echo $VAR
+```
+Nous obtenons:
+```
 Salut
-michaellaunay@luciole:~$ VAR=$VAR' à tous'
-michaellaunay@luciole:~$ echo $VAR
+```
+Ajoutons une chaîne de caractères à cette variable et affichons la :
+```bash
+VAR=$VAR' à tous' # Attention à coller l'apostrophe au nom de la variable sans quoi il y aura une évaluation/exécution de la chaîne de caractères.
+echo $VAR
+```
+
+```
 Salut à tous
-michaellaunay@luciole:~$ PATH=/home/michaellaunay/MesScripts:$PATH
-michaellaunay@luciole:~$ echo $PATH
+```
+
+Exemple avec la variable d'environnement PATH qui indique au système où chercher les exécutables lorsqu'on tape une commande dans le terminal.
+```bash
+PATH=/home/michaellaunay/MesScripts:$PATH
+echo $PATH
+```
+Dans cet exemple, nous avons modifié la valeur de la variable PATH, en ajoutant le chemin '/home/michaellaunay/MesScripts' au début de la valeur actuelle de PATH.
+Son affichage avec la commande `echo` produit :
+```
 /home/michaellaunay/MesScripts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 
@@ -480,10 +566,14 @@ unset BASH_ENV
 ```
 
 ## Protection des espaces des valeurs des variables
+
 Attention bash passe les mots d'une variable en les séparant d'un unique espace. Ainsi :
 ```bash
-michaellaunay@luciole:~$ VARIABLE="  commence par 2 espaces puis en contient cinq     et finit par deux  "
-michaellaunay@luciole:~$ echo DEBUT${VARIABLE}FIN #L'abscence de guillemet forcent le bash à passer en paramettre chacuns des mots séparé par un unique espace.
+VARIABLE="  commence par 2 espaces puis en contient cinq     et finit par deux  "
+echo DEBUT${VARIABLE}FIN #L'abscence de guillemet forcent le bash à passer en paramettre chacuns des mots séparé par un unique espace.
+```
+Ce qui affiche :
+```
 DEBUT commence par 2 espaces puis en contient cinq et finit par deux FIN
 michaellaunay@luciole:~$ echo DEBUT"$VARIABLE"FIN #Les guillemets protègent les espaces !
 DEBUT  commence par 2 espaces puis en contient cinq     et finit par deux  FIN
@@ -495,10 +585,19 @@ On peut aussi échapper les espaces avec des antislashs lors de l'affectation de
 
 Une variable peut contenir une commande. Son simple appel suffit à provoquer son évaluation :
 ```bash
-michaellaunay@luciole:~$ MON_SCRIPT="/tmp/ma_cmd.sh"
-michaellaunay@luciole:~$ $MON_SCRIPT #exécute la commande contenue dans la variable MON_SCRIPT
+MON_SCRIPT="/tmp/ma_cmd.sh"
+$MON_SCRIPT #exécute la commande contenue dans la variable MON_SCRIPT
+```
+Qui affiche
+```
 Hello
-michaellaunay@luciole:~$ cat  $MON_SCRIPT #Affiche ce qu'il y a dans le script /tmp/ma_cmd.sh
+```
+Alors que :
+```bash
+cat $MON_SCRIPT #Affiche ce qu'il y a dans le script /tmp/ma_cmd.sh
+```
+Affiche le contenu du fichier :
+```
 #! /bin/bash
 echo Hello
 ```
@@ -507,18 +606,33 @@ echo Hello
 
 Toute variable créée dans un shell n'est accessible que dans celui-ci.
 
-Pour la rendre accessible aux commandes et scripts appelés après l'affectation il faut l'exporter :
+Pour la rendre accessible aux commandes et scripts appelés après l'affectation il faut l'exporter.
+Exemple :
 ```bash
-michaellaunay@luciole:~$ echo "echo \$SALUTATION" > /tmp/cmd.sh
-michaellaunay@luciole:~$ /tmp/cmd.sh
-
-michaellaunay@luciole:~$ SALUTATION=coucou
-michaellaunay@luciole:~$ echo $SALUTATION
+echo "echo \$SALUTATION" > /tmp/cmd.sh
+chmod +x /tmp/cmd.sh
+/tmp/cmd.sh
+```
+N'affichera rien tant que la variable SALUTATION n'aura pas été définie **et** exportée :
+```bash
+SALUTATION=coucou
+echo $SALUTATION
+```
+Qui affiche bien le contenu de salutation depuis le shell courant :
+```
 coucou
-michaellaunay@luciole:~$ /tmp/cmd.sh
-
-michaellaunay@luciole:~$ export SALUTATION
-michaellaunay@luciole:~$ /tmp/cmd.sh
+```
+Mais si on exécute le script `/tmp/cmd.sh` alors SALUTATION est encore vide pour lui
+```bash
+/tmp/cmd.sh
+```
+Qui n'affiche rien, sauf si l'on fait un `export` comme ci dessous :
+```bash
+export SALUTATION
+/tmp/cmd.sh
+```
+Nous obtenons enfin :
+```
 coucou
 ```
 
@@ -526,33 +640,56 @@ coucou
 
 La commande **test** permet de tester une expression et de retourner 0 si le test est vrai et 1 s'il est faux :
 ```bash
-michaellaunay@luciole:~$ test 1 = 1
-michaellaunay@luciole:~$ echo $?
+test 1 = 1
+echo $?
+```
+Nous obtenons **ZÉRO** ! 
+En shell cela signifie qu'il n'y a pas d'erreur, la logique est donc inversée par rapport au langage de programmation classique :
+```
 0
-michaellaunay@luciole:~$ test 1 = 2
-michaellaunay@luciole:~$ echo $?
-1
 ```
-
-Nous pouvons aussi remplacer **test** par des crochets, mais il faut alors encadrer les crochets par des espaces :
+Par contre :
 ```bash
-michaellaunay@luciole:~$ [ 1 = 2 ]
-michaellaunay@luciole:~$ echo $?
+test 1 = 2
+echo $?
+```
+Donne un résultat différent de ZÉRO ce qui indique une erreur et généralement le numéro de l'erreur.
+```
 1
 ```
 
-Les options de test sont très nombreuses. Faites man test.
+Nous pouvons aussi remplacer la commande `test` par des crochets, mais il faut alors encadrer les crochets par des espaces :
+```bash
+[ 1 = 2 ]
+echo $?
+```
+**Attention** les espaces avant et après les crochets sont indispensables (sauf en début ou fin de ligne) pour permettre à l'interpréteur de commandes d'identifier un test et délimiter ce qui est testé.
+Ici le résultat est bien différent de 0 donc qu'il n'y a pas d'égalité.
+```
+1
+```
+
+Les options de test sont très nombreuses. N'hésitons pas à faire un `man test`.
 
 Avec **test** et **if** il est possible d'exécuter conditionnellement des commandes :
 ```bash
-michaellaunay@luciole:~$ VAR=2
-michaellaunay@luciole:~$ if [ $VAR = 2 ]; then echo Vrai; else echo Faux;fi
+VAR=2
+if [ $VAR = 2 ]; then echo Vrai; else echo Faux;fi
+```
+Affiche la chaîne de caractères correspondant au résultat de l'évaluation. Ici :
+```
 Vrai
-michaellaunay@luciole:~$ VAR=$HOME
-michaellaunay@luciole:~$ if [ -w $VAR ]
-> then echo écriture possible dans $VAR
-> else echo écriture impossible dans $VAR
-> fi
+```
+Autre forme d'écriture possible (notons le remplacement des `;` par des sauts de lignes) :
+```bash
+VAR=$HOME
+if [ -w $VAR ]
+ then echo écriture possible dans $VAR
+ else echo écriture impossible dans $VAR
+fi
+```
+Qui donne le résultat suivant :
+```
 écriture possible dans /home/michaellaunay
 ```
 
@@ -560,38 +697,73 @@ michaellaunay@luciole:~$ if [ -w $VAR ]
 
 La construction **$[ nombre1 opérateur nombre2 ]** permet de réaliser le calcul d'expression sur des entiers :
 ```bash
-michaellaunay@luciole:~$ echo $[ 10 - 1 ]
+echo $[ 10 - 1 ]
+```
+Encore une fois notons bien les espaces avant les crochets !
+Qui donne bien le résultat attendu :
+```
 9
 ```
 
 ## La création d'une variable et sa modification
 
-Comme avec la plupart des langages, c'est l'opérateur égal qui sert à la création et à l'affectation.
+Lors de la création et la modification d'une variable, nous utilisons l'opérateur égal, tout comme dans la plupart des langages de programmation :
+
 ```bash
-michaellaunay@luciole:~$ CMPT=[0] # équivalent à la ligne suivante
-michaellaunay@luciole:~$ let CMPT=0
-michaellaunay@luciole:~$ echo $CMPT
+CMPT=0 # Cette ligne est équivalente à la suivante
+let CMPT=0
+# Que nous affichons
+echo $CMPT
+```
+
+Ce qui affiche :
+
+```
 0
-michaellaunay@luciole:~$ let CMPT+=1
-michaellaunay@luciole:~$ echo $CMPT
+```
+
+Nous pouvons augmenter la valeur de `CMPT` de 1 :
+
+```bash
+let CMPT+=1
+echo $CMPT
+```
+
+Et nous obtenons :
+
+```
 1
-michaellaunay@luciole:~$ let CMPT+=1
-michaellaunay@luciole:~$ echo $CMPT
-2
+```
+
+Si nous augmentons `CMPT` :
+
+```bash
+let CMPT+=1 # équivalent à `CMPT=$[ CMPT + 1 ]`
+CMPT=$[ CMPT + 1 ] # nous incrémentons à nouveau 
+echo $CMPT
+```
+
+Nous obtenons :
+
+```
+3
 ```
 
 ## La boucle while et until
 
-**While** permet d'exécuter des commandes tant que la condition est satisfaite alors que **until** exécute des commandes tant que la condition échoue.
+**`While`** permet d'exécuter des commandes tant que la condition est satisfaite alors que **`until`** exécute des commandes tant que la condition échoue.
 
 Exemple :
 ```bash
-michaellaunay@luciole:~$ VAR=4
-michaellaunay@luciole:~$ while [ $VAR -gt 0 ]
-> do
-> echo itération $VAR;
-> VAR=$[ $VAR - 1 ]
-> done
+VAR=4
+while [ $VAR -gt 0 ]
+ do
+  echo itération $VAR;
+  VAR=$[ $VAR - 1 ]
+ done
+```
+ Ce qui donne :
+```
 itération 4
 itération 3
 itération 2
@@ -599,15 +771,19 @@ itération 1
 ```
 
 ## La boucle for
+
 Pour chaque élément d'un ensemble, nous exécutons une commande :
 ```bash
-michaellaunay@luciole:~$ NORD="Lille Roubaix"
-michaellaunay@luciole:~$ CENTRE="Paris Chartres"
-michaellaunay@luciole:~$ SUD="Nice Marseille"
-michaellaunay@luciole:~$ for ville in $NORD $CENTRE $SUD
-> do
-> echo Visiter $ville
-> done
+NORD="Lille Roubaix"
+CENTRE="Paris Chartres"
+SUD="Nice Marseille"
+for ville in $NORD $CENTRE $SUD
+ do
+  echo Visiter $ville
+ done
+```
+ 
+```
 Visiter Lille
 Visiter Roubaix
 Visiter Paris
@@ -617,289 +793,462 @@ Visiter Marseille
 ```
 
 ## Le choix multiple (case)
+
 Permet de réaliser un branchement. Ne pas oublier les deux points-virgules à la fin d'un cas :
 ```bash
-michaellaunay@luciole:~$ VAR=Lille
-michaellaunay@luciole:~$ case $VAR in
-> 'lille' | 'Lille' | 'LILLE' )
->   echo J'y habite
-> ;;
-> 'paris' | 'Paris' | 'PARIS' )
->   echo J'y ai habité
-> ;;
-> * )
->   echo Je ne connais pas
-> ;;
-> esac
+VAR=Lille
+case $VAR in
+ 'lille' | 'Lille' | 'LILLE' )
+   echo J\'y habite # Remarquons l'échapement de l'apostrophe
+ ;;
+ 'paris' | 'Paris' | 'PARIS' )
+   echo J\'y ai habité
+ ;;
+ * )
+   echo Je ne connais pas
+ ;;
+ esac
+```
+Ce qui donne :
+```
 J'y habite
 ```
-@TODO Mettre en forme
+
 ## Les opérateurs && et \|\|
 
 L'opérateur **&&** permet d'exécuter la commande suivante si la commande précédente réussit (retourne 0) :
-
-    michaellaunay@luciole:~$ grep refusée /var/log/user.log > /tmp/connexion.txt && vim /tmp/connexion.txt
-
+```bash
+grep refusée /var/log/user.log > /tmp/connexion.txt && vim /tmp/connexion.txt
+```
 L'opérateur **\|\|** permet d'exécuter la commande suivante si la commande précédente a échoué (retour de 1) :
+```bash
+grep refusée /var/log/user.log > /dev/null || echo tout va bien
+```
 
-    michaellaunay@luciole:~$ grep refusée /var/log/user.log > /dev/null || echo tout va bien
-
-#### La commande trap
+## La commande trap
 
 Elle permet de positionner une fonction qui sera exécutée lors de la réception d'un signal (man 7 signal) :
+``` bash
+trap "echo Fin d'exécution" EXIT
+trap "echo Interruption violente Ctrl-c" SIGINT
+trap "echo Fin demandée" SIGTERM
+trap "echo Reprise d'exécution" SIGCONT
+trap "echo Signal USR" SIGUSR1 SIGUSR2
+```
 
-    trap "echo Fin d'exécution" EXIT
-    trap "echo Interruption violente Ctrl-c" SIGINT
-    trap "echo Fin demandée" SIGTERM
-    trap "echo Reprise d'exécution" SIGCONT
-    trap "echo Signal USR" SIGUSR1 SIGUSR2
-
-#### La commande sed
+## La commande sed
 
 Elle permet de faire des traitements sur les lignes d'un flux.
 Par exemple elle permet de trouver un motif et de le remplacer.
 Nous la rencontrons dans de nombreux scripts.
 
 Par exemple dans la ligne suivante :
+```bash
+ls -1 | xargs -i echo mv {} {} | sed -e "s/Ubuntu22.04_//2" | bash
+```
 
-    ls -1 | xargs -i echo mv {} {} | sed -e "s/Ubuntu22.04_//2" | bash
+`ls -1` affiche le contenu du répertoire courant, une ligne par fichier.
 
-\"ls -1\" affiche le contenu du répertoire courant, une ligne par fichier.
+Le résultat est envoyé à **`xargs`** qui pour chaque ligne va créer une chaîne de caractères `mv contenu_ligne contenu_ligne`
 
-Le résultat est envoyé à **xargs** qui pour chaque ligne va créer une chaîne de caractères \"mv contenu\_ligne contenu\_ligne\"
-
-Le résultat est envoyé à **sed** qui supprime la seconde occurrence de la chaîne \"Ubuntu22.04\" qu'il rencontre.
+Le résultat est envoyé à **`sed`** qui supprime la seconde occurrence de la chaîne \"Ubuntu22.04\" qu'il rencontre.
 
 Le résultat est exécuté par bash en transformant la chaîne de caractères reçue en ligne de commande.
 
-Ici sed permet de renommer les fichiers de type Ubuntu22.04\_00\_EssayerOuInstaller.png en 00\_EssayerOuInstaller.png.
+Ici **`sed`** permet de renommer les fichiers de type Ubuntu22.04\_00\_EssayerOuInstaller.png en 00\_EssayerOuInstaller.png.
 
-À cette ligne complexe, nous préférerons renommer de façon plus élégante et rapide avec la ligne de cmd :
+À cette ligne complexe, nous préférerons renommer de façon plus élégante et rapide avec la ligne de commande :
 
-    for filename in *; do mv $filename ${filename/Ubuntu22.04_/}; done
+```bash
+for filename in *; do mv $filename ${filename/Ubuntu22.04_/}; done
+```
 
 Pour plus d'information sur **sed** voir
 <https://www.commentcamarche.net/faq/9536-sed-introduction-a-sed-part-i>
 
-#### L'expansion de paramètre
+## L'expansion de paramètre
 
 Liste des Filtres pour l'expansion de paramètre du Shell
 <https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html>
-: :
 
-    ${parameter} sera remplacé par la valeur de parameter
-    michaellaunay@luciole:~$ CMPT=$(( 1 + 20 / 2 )) # Réalise l'opération puis affecte CMPT pour les opérations possibles voir https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html#Shell-Arithmetic
-    michaellaunay@luciole:~$ echo ${CMPT}
-    11
-    michaellaunay@luciole:~$ name[1]='un' # équivalent à 'declare -n name' voir https://www.gnu.org/software/bash/manual/html_node/Arrays.html#Arrays
-    michaellaunay@luciole:~$ name[2]='deux'
-    michaellaunay@luciole:~$ name[3]='trois'
-    michaellaunay@luciole:~$ echo ${name[2]}
-    deux
-    # équivalent à 
-    michaellaunay@luciole:~$ name=('zero' 'un' 'deux' 'trois')
-    michaellaunay@luciole:~$ echo ${name[1]}
-    un
-    michaellaunay@luciole:~$ unset name[0]
-    michaellaunay@luciole:~$ echo ${name[0]}
+Ici `${parameter}`` sera remplacé par la valeur de parameter
+```bash
+CMPT=$(( 1 + 20 / 2 ))
+echo ${CMPT}
+```
+ Réalise l'opération puis affecte CMPT. Pour les opérations possibles voir https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html#Shell-Arithmetic
+ Le résultat est :
+```
+11
+```
 
-    michaellaunay@luciole:~$ echo ${name[1]}
-    un
+Pour créer des tableaux :
+```bash
+name[1]='un'
+name[2]='deux'
+name[3]='trois'
+echo ${name[2]}
+```
+ Qui est équivalent à 'declare -n name' voir https://www.gnu.org/software/bash/manual/html_node/Arrays.html#Arrays
+ Le résultat est :
+```
+deux
+```
+Équivalent à :
+```bash
+name=('zero' 'un' 'deux' 'trois')
+echo ${name[1]}
+```
+Et a pour résultat :
+```
+un
+```
+Pour supprimer une entrée :
+```bash
+unset name[0]
+echo ${name[0]}
+```
+Qui affiche une entrée vide
+```
+```
+Alors :
+```bash
+echo ${name[1]}
+```
+Affiche encore :
+```
+un
+```
 
-#### Les scripts
+## Les scripts
 
 Un script est un fichier qui contient une suite de commandes.
 
 La première ligne permet d'indiquer le shell dans lequel doit être exécuté le script :
 
-    #!/bin/bash
-    echo c'est du bash
+```bash
+#!/bin/bash
+echo "C'est du bash"
+```
 
 Cette ligne s'appelle le [shebang](http://en.wikipedia.org/wiki/Shebang_(Unix)).
 
-#### Les fonctions
+## Les fonctions
 
 Une fonction est une portion de code nommée, réutilisable qui a accès à toutes les variables du script ou du shell d'où elle est appelée :
+```bash
+function carré() {
+	echo $[ $1 * $1]
+}
+```
+Que nous appelons comme cela :
+```bash
+carré 3
+```
+Et qui donne :
+```
+9
+```
 
-    michaellaunay@luciole:~$ function carré() {
-    > echo $[ $1 * $1]
-    > }
-    michaellaunay@luciole:~$ carré 3
-    9
+## Lecture des saisies clavier
 
-#### Lecture des saisies clavier
+La commande **`read`** permet de lire la saisie clavier et de l'affecter avec une variable :
 
-La commande **read** permet de lire la saisie clavier et de l'affecter avec une variable :
+```bash
+read VAR
+```
+Qui attend de l'utilisateur la saisie d'une chaîne de caractères terminée par `Entrée`, par exemple :
+```
+coucou
+```
+Nous pouvons alors consulter la saisie qui a été stockée dans la variable :
+```bash
+echo $VAR
+```
 
-    michaellaunay@luciole:~$ read VAR
-    coucou
-    michaellaunay@luciole:~$ echo $VAR
-    coucou
+```
+coucou
+```
 
-#### Exercice
+## Exercice
 
 Réalisez une calculatrice demandant la saisie de la première opérande puis de l'opérateur (symbole ou littéral), puis de la seconde opérande.
 Affichez le résultat puis exécutez à nouveau tant que le signal SIGUSR1 n'est pas reçu.
 
-#### Les sous-programmes
+## Les sous-programmes
 
 Dans un shell on peut appeler un script directement en passant son nom si celui-ci est exécutable ou en le faisant interpréter par le shell pour lequel il a été écrit.
 
 Lorsqu'on exécute un ensemble de commandes encadré par des parenthèses alors le shell courant démarre un sous shell pour exécuter les commandes :
 
-    michaellaunay@luciole:~$ VAR=0
-    michaellaunay@luciole:~$ (VAR=$[ $VAR + 1]; echo $VAR)
-    1
-    michaellaunay@luciole:~$ echo $VAR
-    0
-
+```bash
+VAR=0
+(VAR=$[ $VAR + 1]; echo $VAR)  
+```
+Un sous shell a été lancé et dans ce shell le calcul a été fait "localement" :
+```
+1
+```
+Mais cela n'a pas affecté la variable du shell parent :
+```bash
+echo $VAR
+```
+Et nous voyons que la valeur est restée à 0 :
+```
+0
+```
 Il est également possible de forcer l'exécution de commande en utilisant **\`** :
+```bash
+echo Quelle est la date ?
+```
+Ce qui affiche la chaîne de caractères "date" :
+```
+Quelle est la date ?
+``` 
+Mais nous pouvons lancer la commande `date`  en utilisant **\`**:
+ ```bash
+echo Aujourd\'hui nous sommes le `date`
+```
+Ce qui affiche :
+```
+Aujourd'hui nous sommes le jeu. 06 juil. 2023 16:54:23 CEST
+```
 
-    michaellaunay@luciole:~$ echo date
-    date
-    michaellaunay@luciole:~$ echo `date`
-    dimanche 19 avril 2020, 17:24:32 (UTC+0200)
-
-#### La complétion de commande
+## La complétion de commande
 
 En appuyant sur la touche tab le shell affiche toutes les commandes ayant pour préfixe les lettres déjà saisies sur la ligne de commande.
 
-#### Historique des commandes
+## Historique des commandes
 
 Les commandes saisies dans un shell sont enregistrées dans le fichier \~/.bash\_history
 
 Il est possible d'accéder aux anciennes commandes en utilisant les flèches.
 
-### Les commandes
+## Les commandes de base pour se déplacer dans l'arborescence
 
-#### Se déplacer dans l'arborescence
+Voici les commandes les plus utilisées
 
-Les commandes :
+### ls
 
-    ls        # Permet d'afficher les informations d'un fichier ou d'un répertoire
-    ls UnChemin # Affiche le contenu de UnChemin si c'est un répertoire, sinon affiche le nom de UnChemin
-    ls -lah   # Affiche les détails, les fichiers cachés, et utilise des unités informatiques
-    ls -F     # Affiche un / derrière le nom des répertoires 
-    info ls   # Permet de connaître le sens des colonnes des options de ls, par exemple le chiffre de la seconde colonne de l'option -l est le nombre de hard links.
-    cd        # Permet de déplacer le répertoire courant
-    pwd       # Affiche le chemin du répertoire courant
+ls Permet d'afficher les informations d'un fichier ou d'un répertoire, sans paramètre elle affiche le contenu du répertoire courant.
 
-exemple :
+```bash
+ls UnChemin # Affiche le contenu de UnChemin si c'est un répertoire, sinon affiche le nom de UnChemin
+ls -lah # Affiche les détails, les fichiers cachés, et utilise des unités informatiques
+ls -F # Affiche un / derrière le nom des répertoires 
+info ls # Permet de connaître le sens des colonnes des options de `ls`, par exemple le chiffre de la seconde colonne de l'option -l est le nombre de hard links.
+```
 
-    michaellaunay@luciole:~$ ls -lh /
-    total 2,1G
-    drwxr-xr-x   2 root root  12K avril 19 16:40 bin
-    drwxr-xr-x   4 root root 4,0K avril  8 06:51 boot
-    drwxr-xr-x   2 root root 4,0K mai   16  2019 cdrom
-    drwxr-xr-x  19 root root 4,6K avril 18 22:11 dev
-    drwxr-xr-x 158 root root  12K avril 15 06:43 etc
-    drwxr-xr-x   5 root root 4,0K août  22  2019 home
-    lrwxrwxrwx   1 root root   32 janv.  6 18:48 initrd.img -> boot/initrd.img-5.0.0-38-generic
-    lrwxrwxrwx   1 root root   32 janv.  6 18:48 initrd.img.old -> boot/initrd.img-5.0.0-37-generic
-    drwxr-xr-x  21 root root 4,0K mars   5 06:28 lib
-    drwxr-xr-x   2 root root 4,0K mars   5 06:28 lib32
-    drwxr-xr-x   2 root root 4,0K mars   5 06:28 lib64
-    drwx------   2 root root  16K mai   16  2019 lost+found
-    drwxr-xr-x   3 root root 4,0K juin  24  2019 media
-    drwxr-xr-x   2 root root 4,0K févr. 10  2019 mnt
-    drwxr-xr-x   5 root root 4,0K août  26  2019 opt
-    dr-xr-xr-x 354 root root    0 avril 18 22:11 proc
-    drwx------   8 root root 4,0K mars  25 10:16 root
-    drwxr-xr-x  39 root root 1,1K avril 19 10:15 run
-    drwxr-xr-x   2 root root  12K avril 19 16:40 sbin
-    drwxr-xr-x  17 root root 4,0K mars  22 22:44 snap
-    drwxr-xr-x   2 root root 4,0K févr. 10  2019 srv
-    -rw-------   1 root root 2,0G mai   16  2019 swapfile
-    dr-xr-xr-x  13 root root    0 avril 18 22:11 sys
-    drwxrwxrwt  24 root root 4,0K avril 19 17:20 tmp
-    drwxr-xr-x  14 root root 4,0K août   1  2019 usr
-    drwxr-xr-x  15 root root 4,0K juin  17  2019 var
-    lrwxrwxrwx   1 root root   29 janv.  6 18:48 vmlinuz -> boot/vmlinuz-5.0.0-38-generic
-    lrwxrwxrwx   1 root root   29 janv.  6 18:48 vmlinuz.old -> boot/vmlinuz-5.0.0-37-generic
+Ainsi :
+```bash
+ls -lh
+```
+Affiche :
+```
+total 2,1G
+drwxr-xr-x   2 root root  12K avril 19 16:40 bin
+drwxr-xr-x   4 root root 4,0K avril  8 06:51 boot
+drwxr-xr-x   2 root root 4,0K mai   16  2019 cdrom
+drwxr-xr-x  19 root root 4,6K avril 18 22:11 dev
+drwxr-xr-x 158 root root  12K avril 15 06:43 etc
+drwxr-xr-x   5 root root 4,0K août  22  2019 home
+lrwxrwxrwx   1 root root   32 janv.  6 18:48 initrd.img -> boot/initrd.img-5.0.0-38-generic
+lrwxrwxrwx   1 root root   32 janv.  6 18:48 initrd.img.old -> boot/initrd.img-5.0.0-37-generic
+drwxr-xr-x  21 root root 4,0K mars   5 06:28 lib
+drwxr-xr-x   2 root root 4,0K mars   5 06:28 lib32
+drwxr-xr-x   2 root root 4,0K mars   5 06:28 lib64
+drwx------   2 root root  16K mai   16  2019 lost+found
+drwxr-xr-x   3 root root 4,0K juin  24  2019 media
+drwxr-xr-x   2 root root 4,0K févr. 10  2019 mnt
+drwxr-xr-x   5 root root 4,0K août  26  2019 opt
+dr-xr-xr-x 354 root root    0 avril 18 22:11 proc
+drwx------   8 root root 4,0K mars  25 10:16 root
+drwxr-xr-x  39 root root 1,1K avril 19 10:15 run
+drwxr-xr-x   2 root root  12K avril 19 16:40 sbin
+drwxr-xr-x  17 root root 4,0K mars  22 22:44 snap
+drwxr-xr-x   2 root root 4,0K févr. 10  2019 srv
+-rw-------   1 root root 2,0G mai   16  2019 swapfile
+dr-xr-xr-x  13 root root    0 avril 18 22:11 sys
+drwxrwxrwt  24 root root 4,0K avril 19 17:20 tmp
+drwxr-xr-x  14 root root 4,0K août   1  2019 usr
+drwxr-xr-x  15 root root 4,0K juin  17  2019 var
+lrwxrwxrwx   1 root root   29 janv.  6 18:48 vmlinuz -> boot/vmlinuz-5.0.0-38-generic
+lrwxrwxrwx   1 root root   29 janv.  6 18:48 vmlinuz.old -> boot/vmlinuz-5.0.0-37-generic
+```
 
+### pwd
 
-    michaellaunay@luciole:~/Documents/ecreall/Cours$ cd
-    michaellaunay@luciole:~$ pwd
-    /home/michaellaunay
+**`pwd`**  Affiche le chemin du répertoire courant
 
-Les jokers :
+Si l'on exécute la commande `pwd` pour voir quel est le répertoire courant :
+```bash
+pwd
+```
+Et qu'il affiche
+```
+/home/michaellaunay/Documents/Notes/cours
+```
+Alors c'est que nous sommes dans ce répertoire.
 
-    * # Désigne toute chaîne contiguë de caractères
-    ? # Désigne un caractère
-    [...] # Permet de désigner des ensembles de caractères [4-69] accepte 4, 5, 6, et 9, [[] accepte [ identique à \[A
-    [^...] # Permet de désigner des ensembles à exclure
+### cd
+
+**`cd`** Permet de déplacer le répertoire courant si elle n'a pas de paramètre et dans le répertoire donné en paramètre sinon.
+
+```bash
+cd # équivalent à cd $HOME
+pwd
+```
+Nous changeons de répertoire en allant dans notre `home` , `pwd` affiche alors :
+```
+/home/michaellaunay
+```
+
+## Les jokers pour les noms de fichiers
+
+Les caractères spéciaux sont très utilisés pour désigner des noms de fichiers :
+```
+* # Désigne toute chaîne contiguë de caractères
+? # Désigne un caractère
+[...] # Permet de désigner des ensembles de caractères [4-69] accepte 4, 5, 6, et 9, [[] accepte [ identique à \[A
+[^...] # Permet de désigner des ensembles à exclure
+{1..9} #Permet de désigner et créer tous les fichiers nommés de 1 à 9
+```
+Par exemple :
+```bash
+touch /tmp/fich{0..9} # Créer des fichiers vides ayant pour nom fich0 à fich9
+ls /tmp/fich[5-9]
+```
+Affichera :
+```
+/tmp/fich5  /tmp/fich6  /tmp/fich7  /tmp/fich8  /tmp/fich9
+```
+
+## Les chemins relatifs
 
 Un **chemin relatif** est un chemin qui permet de se déplacer jusqu'au fichier cible à partir du chemin courant :
+```bash
+cd ~ # identique à cd $HOME ou cd
+ls -l ../../etc/passwd
+```
+Affichera :
+```
+-rw-r--r-- 1 root root 1583 2009-04-02 11:35 ../../etc/passwd
+```
 
-    michaellaunay@luciole:~$ cd ~ # identique à cd $HOME ou cd
-    michaellaunay@luciole:~$ ls -l ../../etc/passwd
-    -rw-r--r-- 1 root root 1583 2009-04-02 11:35 ../../etc/passwd
+Le symbole **.** indique le répertoire courant alors que les symboles **..** indiquent le parent.
 
-**.** indique le répertoire courant alors que **..** indique le parent.
+## Les chemins absolus
 
 Un **chemin absolu** est un chemin qui commence à la racine **/** de l'arborescence et énonce tous les sous-répertoires jusqu'à la cible :
 
-    michaellaunay@luciole:~$ ls -l /etc/passwd
-    -rw-r--r-- 1 root root 1583 2009-04-02 11:35 /etc/passwd
+```bash
+ls -l /etc/passwd
+```
+Affichera
+```
+-rw-r--r-- 1 root root 1583 2009-04-02 11:35 /etc/passwd
+```
 
-#### Création / suppression de répertoire
 
-La commande **mkdir** permet de créer des répertoires :
+## Création / suppression de répertoire
 
-    mkdir NomRep # Crée le répertoire NomRep.
-    mkdir -p Rep1/Rep2/Rep3 # Crée Rep3 et l'arborescence Rep1/Rep2 si nécessaire.
+### mkdir
 
-La commande **rmdir** permet de supprimer un répertoire vide, on peut aussi le faire avec **rm -r** dans le cas d'un répertoire non vide.
+La commande **`mkdir`** permet de créer des répertoires :
+```bash
+mkdir NomRep # Crée le répertoire NomRep.
+mkdir -p Rep1/Rep2/Rep3 # Crée Rep3 et l'arborescence Rep1/Rep2 si nécessaire.
+```
 
-#### Lecture de fichier
+### rmdir
 
-La commande **cat** permet d'afficher le contenu d'un fichier.
+La commande **`rmdir`** permet de supprimer un répertoire vide, on peut aussi le faire avec **rm -r** dans le cas d'un répertoire non vide.
 
-La commande **strings** permet de n'afficher que les chaînes de caractères d'un fichier binaire.
+## Lecture de fichier
 
-#### Rechercher des fichiers
+### cat
 
-La commande **find** permet de réaliser des recherches basées sur les informations d'un fichier (nom, date de création, de modification, etc.) :
+La commande **`cat`** permet d'afficher le contenu d'un fichier.
 
-    michaellaunay@luciole:~$ find Documents/ecreall -name "*pdf" -ctime -2
-    # recherche à partir de Documents/ecreall tous les fichiers finissant par pdf, créés depuis moins de 2 jours
-    Documents/ecreall/Cours/CoursGNULinux/CoursGNULinux.pdf
+### strings
+
+La commande **`strings`** permet de n'afficher que les chaînes de caractères d'un fichier binaire.
+
+## Rechercher des fichiers
+
+### find
+
+La commande **`find`** permet de réaliser des recherches basées sur les informations d'un fichier (nom, date de création, de modification, etc.) :
+
+```bash
+find Documents/ecreall -name "*pdf" -ctime -2
+```
+Recherche à partir du répertoire Documents/ecreall tous les fichiers finissant par pdf, créés depuis moins de 2 jours. Cela affiche par exemple
+```
+Documents/ecreall/Cours/CoursGNULinux/CoursGNULinux.pdf
+```
+
+### grep
 
 La commande **grep** permet de réaliser des recherches basées sur la présence d'une chaîne ou d'une expression régulière dans le contenu d'un fichier.
 
 La commande **locate** permet de trouver un fichier si le chemin a été renseigné dans la base de données mise à jour par le super utilisateur avec **updatedb** ou **slocate -u**.
 
-#### Archivage / Compression
+## Archivage / Compression
 
-**zip**, **unzip** permet de compresser et décompresser les fichiers aux format zip
+### zip
 
-**gzip** permet de compresser et décompresser les fichiers au format gzip
+**`zip`**, **`unzip`** permet de compresser et décompresser les fichiers aux format zip.
 
-**tar** avec les options **cf** permet d'archiver une arborescence en conservant les informations de propriétaire, les dates de création, les permissions d'accès. Avec les options **xf**, permet d'extraire une archive.
+### gzip
 
-**tar cfz** permet de combiner **tar** et **gzip** en une commande.
-L'option **\--listed-incremental=nom\_fichier.list** permet d'enregistrer un snapshot des fichiers archivés en vue de permettre des tar incrémentaux. C.f.
+**`gzip`** permet de compresser et décompresser les fichiers au format gzip.
+
+### tar
+
+**`tar`** avec les options **cf** permet d'archiver une arborescence en conservant les informations de propriétaire, les dates de création, les permissions d'accès. Avec les options **xf**, permet d'extraire une archive.
+
+**`tar cfz`** permet de combiner **tar** et **gzip** en une commande.
+L'option **`--listed-incremental=nom_fichier.list`** permet d'enregistrer un snapshot des fichiers archivés en vue de permettre des `tar` incrémentaux. C.f.
 <https://doc.ubuntu-fr.org/tar#utilisation_en_archivage_incrementiel>
 Attention il est indispensable que la première archive soit lancée avec cette option pour que l'incrémentation soit possible !
 
-#### Autres commandes
+## Autres commandes
 
-**mv** permet de déplacer un fichier ou une arborescence.
+### mv
 
-**tail** permet de n'afficher que les dernières lignes d'un fichier, l'option -f permet d'afficher le contenu au fur et à mesure de son arrivé dans le flux.
+**`mv`** permet de déplacer un fichier ou une arborescence.
 
-**tee** permet d'écrire le contenu de la sortie standard dans un fichier tout en laissant ce contenu dans la sortie standard ce qui permet dans un pipe d'avoir une capture du contenu sans casser le pipe.
+### tail
 
-**ln** permet de créer des liens. Ainsi **ln -s Source Destination** permet de créer un lien symbolique.
+**`tail`** permet de n'afficher que les dernières lignes d'un fichier, l'option -f permet d'afficher le contenu au fur et à mesure de son arrivé dans le flux.
 
-**cp** permet de copier un fichier dans un autre. **cp -r Rep1 Rep2** copie toute l'arborescence Rep1 vers Rep2.
+### tee
 
-**script NOM\_Fichier** permet d'enregistrer la session (les interactions en ligne de commande) vers un fichier, ce qui permet de l'auditer voire de la rejouer.
-L'option -t permet d'enregistrer les dates des échanges vers le flux d'erreur. L'enregistrement sera arrêté par la commande **exit**. **scriptreplay** Permet de rejour la session.
-Exemple : **NOM=\`date +%y%m%d%H%m%S\`\_upgrade\_jessie;script -t
-2\>\~/\$NOM.time -a \~/\$NOM.script**
+**`tee`** permet d'écrire le contenu de la sortie standard dans un fichier tout en laissant ce contenu dans la sortie standard ce qui permet dans un pipe d'avoir une capture du contenu sans casser le pipe.
 
-#### Les noms de fichiers
+### ln
+
+**`ln`** permet de créer des liens. Ainsi **`ln -s Source Destination`** permet de créer un lien symbolique.
+
+### cp
+
+**`cp`** permet de copier un fichier dans un autre. **`cp -r Rep1 Rep2`** copie toute l'arborescence Rep1 vers Rep2.
+
+### script
+
+**`script NOM_Fichier`** permet d'enregistrer la session (les interactions en ligne de commande) vers un fichier, ce qui permet de l'auditer voire de la rejouer.
+
+L'option -t permet d'enregistrer les dates des échanges vers le flux d'erreur. L'enregistrement sera arrêté par la commande **`exit`**. 
+
+**`scriptreplay`** Permet de rejouer la session.
+
+```bash
+NOM=`date +%Y%m%d%H%m%S`_upgrade_ubuntu
+script -a ~/$NOM.script -t 2> ~/$NOM.time
+```
+
+## Les noms de fichiers
 
 Linux est sensible à la casse (majuscules vs minuscules).
 
@@ -915,27 +1264,32 @@ Si nous utilisons des caractères accentués ou asiatiques, le nombre de caract�
 
 Tout fichier ou répertoire commençant par un **.** sera caché et accessible uniquement avec l'option **-a** de **ls**.
 
-#### Les attributs des fichiers
+## Les attributs des fichiers
 
 Les attributs de fichier permettent de gérer les permissions d'accès en lecture, écriture, exécution, traversée et également de connaître la nature du fichier.
 
 Ainsi :
 
-    michaellaunay@luciole:~/Documents/ecreall/Cours$ ls -lh
-    total 24K
-    lrwxrwxrwx   1 michaellaunay users   11 2009-03-01 21:23 unLienSymbolique -> unFichier
-    drwxr-x--- 139 michaellaunay users  12K 2009-04-30 09:12 unSousRep
-    drwx------   2 michaellaunay michaellaunay  16K 2009-03-01 21:21 lost+found
-    -rw-r-----   1 michaellaunay amis  32K 2009-04-02 11:35 unFichier
-    michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ ls -l /bin/mount
-    -rwsr-xr-x 1 root root 98440 2008-09-25 15:08 /bin/mount
-    michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ ls -l
-    drwxrwxrwt  19 root root  4096 2009-05-03 11:10 tmp
+```bash
+ls -lh
+```
+```
+total 24K
+lrwxrwxrwx   1 michaellaunay users   11 2009-03-01 21:23 unLienSymbolique -> unFichier
+drwxr-x--- 139 michaellaunay users  12K 2009-04-30 09:12 unSousRep
+drwx------   2 michaellaunay michaellaunay  16K 2009-03-01 21:21 lost+found
+-rw-r-----   1 michaellaunay amis  32K 2009-04-02 11:35 unFichier
+michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ ls -l /bin/mount
+-rwsr-xr-x 1 root root 98440 2008-09-25 15:08 /bin/mount
+michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ ls -l
+drwxrwxrwt  19 root root  4096 2009-05-03 11:10 tmp
+```
+
 
 *lrwxrwxrwx 1 michaellaunay users 11 2009-03-01 21:23* est la liste des
 attributs qui doit être décomposée comme ceci :
 
-    première lettre ::
+ première lettre :
 
       l indique que le fichier est un lien symbolique (un raccourci).
       d indique que le fichier est un répertoire
@@ -945,7 +1299,7 @@ attributs qui doit être décomposée comme ceci :
       s socket
       p fifo
 
-    premier groupe de 3 lettres ::
+premier groupe de 3 lettres :
 
       r-- indique que le propriétaire a le droit de lecture
       -w- indique que le propriétaire a le droit d'écriture
@@ -957,7 +1311,7 @@ attributs qui doit être décomposée comme ceci :
       --S (SUID) indique qu'un utilisateur qui exécute le fichier usurpe les droits du propriétaire.
           Le propriétaire n'a pas les droits d'exécuter ou de traverser (--x n'est pas positionné).
 
-    second groupe de 3 lettres ::
+second groupe de 3 lettres :
 
       même signification que précédemment, mais pour les groupes et sauf pour le SUID.
       --s (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les
@@ -965,7 +1319,7 @@ attributs qui doit être décomposée comme ceci :
       --S (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les
           droits du groupe, mais que le groupe n'a pas les droits d'exécuter ou de traverser.
 
-    troisième groupe de 3 lettres ::
+troisième groupe de 3 lettres :
 
       même signification que précédemment mais pour tous les autres utilisateurs et sauf SGID
       --t (Sticky bit) Indique que les utilisateurs ont le droit de modifier le contenu du fichier
@@ -985,7 +1339,7 @@ Les permissions d'un lien ne sont pas utilisées, car ceux sont celles de la cib
 
 Si les permissions sont suivies d'un + alors des ACL sont positionnées.
 
-#### Les types de fichiers
+## Les types de fichiers
 
 Outre les fichiers normaux, les répertoires et les liens, il existe de nombreux fichiers spéciaux sous Unix.
 
@@ -997,7 +1351,7 @@ En effet la philosophie d'Unix est de vouloir que tout soit fichier :
     Le noyau lui-même est adressé à travers une arborescence qui permet de connaître son état et de le modifier.
     Les processus sont eux-mêmes manipulés à travers une arborescence de fichiers.
 
-#### /dev
+## /dev
 
 Contient les fichiers de périphériques physiques ou virtuels :
 
@@ -1029,7 +1383,7 @@ Exemple:
 
 Dans ce cas tous les messages d'erreur ont été envoyés à la poubelle.
 
-#### /sys
+## /sys
 
 **sysfs** est une arborescence virtuelle résidant en mémoire qui exporte des informations sur les périphériques.
 
@@ -1054,58 +1408,62 @@ Les commandes telles que **lsusb** ou **lspci** vont chercher les informations d
     michaellaunay@luciole:~$ cat /sys/class/thermal/cooling_device0/cur_state
     0
 
-#### /proc
+## /proc
 
-**procfs** est une arborescence virtuelle résidant en mémoire qui exporte des informations sur le noyau.
+**`procfs`** est une arborescence virtuelle résidant en mémoire qui exporte des informations sur le noyau.
 
 C'est dans cette arborescence que des commandes comme **ps** vont chercher des informations sur les processus.
 
 Exemple :
+```bash
+cat /proc/cpuinfo
+```
 
-    michaellaunay@luciole:~$ cat /proc/cpuinfo
-    processor : 0
-    vendor_id : GenuineIntel
-    cpu family    : 6
-    model     : 15
-    model name    : Intel(R) Core(TM)2 Duo CPU     L7500  @ 1.60GHz
-    stepping  : 11
-    cpu MHz       : 800.000
-    cache size    : 4096 KB
-    physical id   : 0
-    siblings  : 2
-    core id       : 0
-    cpu cores : 2
-    apicid        : 0
-    initial apicid    : 0
-    fpu       : yes
-    fpu_exception : yes
-    cpuid level   : 10
-    wp        : yes
-    flags     : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi
-              mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good
-              nopl pni monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr lahf_lm ida
-    bogomips  : 3191.95
-    clflush size  : 64
-    cache_alignment   : 64
-    address sizes : 36 bits physical, 48 bits virtual
-    power management:
+```
+processor : 0
+vendor_id : GenuineIntel
+cpu family    : 6
+model     : 15
+model name    : Intel(R) Core(TM)2 Duo CPU     L7500  @ 1.60GHz
+stepping  : 11
+cpu MHz       : 800.000
+cache size    : 4096 KB
+physical id   : 0
+siblings  : 2
+core id       : 0
+cpu cores : 2
+apicid        : 0
+initial apicid    : 0
+fpu       : yes
+fpu_exception : yes
+cpuid level   : 10
+wp        : yes
+flags     : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi
+		  mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good
+		  nopl pni monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr lahf_lm ida
+bogomips  : 3191.95
+clflush size  : 64
+cache_alignment   : 64
+address sizes : 36 bits physical, 48 bits virtual
+power management:
+```
 
-/proc permet en tant que root et selon l'état du processus observé d'analyser ses ressources et sa mémoire.
+`/proc` permet en tant que root et selon l'état du processus observé d'analyser ses ressources et sa mémoire.
 
 Ainsi il est possible de récupérer le contenu de la mémoire du processus arrêté. Voir
 <https://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux>
 et
 <https://unix.stackexchange.com/questions/6267/how-to-re-load-all-running-applications-from-swap-space-into-ram/6271#6271>
 
-### Enchaînement et parallélisation des commandes
+## Enchaînement et parallélisation des commandes
 
-Toute commande doit être vue comme une boîte noire ayant une entrée standard (stdin), une sortie standard (stdout) et une sortie d'erreur standard qui permet aussi d'afficher des informations (stderr).
+Toute commande doit être vue comme une boîte noire ayant une entrée standard (`stdin`), une sortie standard (`stdout`) et une sortie d'erreur standard qui permet aussi d'afficher des informations (`stderr`).
 
 Par défaut l'entrée standard est la saisie clavier et les sorties sont l'écran.
 
-### Les flux standards
+## Les flux standards
 
-Les flux standards stdin, stdout et stderr sont numérotés respectivement 0, 1 et 2.
+Les flux standards `stdin`, `stdout` et `stderr` sont numérotés respectivement 0, 1 et 2.
 
 En conséquence nous pouvons utiliser ces numéros pour les désigner lors des redirections.
 
@@ -1113,7 +1471,7 @@ En conséquence nous pouvons utiliser ces numéros pour les désigner lors des r
 
 La notion d'input (entrée) et d'output (sortie) est relative à la commande, ainsi dans un pipe entre deux commandes l'entrée de la seconde commande et en fait la sortie de la première. Le système crée un flux entre les deux commandes nourri par la première et consommé par la seconde.
 
-### Les redirections
+## Les redirections
 
 Les redirections vont permettre d'indiquer que faire des entrées et sorties standards.
 
@@ -1127,7 +1485,7 @@ Les redirections de fichier :
     <      # Utilise un fichier en entrée
     |      # pipe, décrit ci-après
 
-### Les pipes
+## Les pipes
 
 Le pipe permet d'enchaîner les commandes, l'entrée d'une commande est alors le résultat de la commande précédente.
 
@@ -1135,13 +1493,16 @@ L'intérêt est de pouvoir créer des comportements complexes à partir de comma
 
 Exemple:
 
-    netstat -anp |grep 'tcp\|udp' | awk '{print $5}' | sed s/::ffff:// | cut -d: -f1 | sort | uniq -c | sort -n
+```bash
+netstat -anp |grep 'tcp\|udp' | awk '{print $5}' | sed s/::ffff:// | cut -d: -f1 | sort | uniq -c | sort -n
+```
 
-### Les alias
+### alias/unalias
 
 La commande intégrée alias permet de redéfinir des commandes :
-
-    alias rm="echo 'ça va couper' && rm"
+```bash
+alias rm="echo 'ça va couper' && rm"
+```
 
 La commande **unalias** supprime les alias.
 
@@ -1153,29 +1514,36 @@ L'intérêt est de pouvoir réaliser des tâches d'administration longues sans d
 
 Les options de bases :
 
-    michaellaunay@luciole:~$ screen -dmS Nom
-    michaellaunay@luciole:~$ screen -r Nom # Permet de se rattacher au terminal Nom
-    # Pour se détacher Crtl-a Ctrl-d
-    # Pour un nouveau Ctrl-a Ctrl-c
-    # Pour passer de l'un à l'autre : Ctrl-a Ctrl-n
-    # man screen
+```bash
+screen -dmS Nom
+screen -r Nom # Permet de se rattacher au terminal Nom
+```
 
-### ssh
+Pour se détacher `Crtl+a` `Ctrl+d`
+Pour un nouveau `Ctrl-a` `Ctrl-c`
+Pour passer de l'un à l'autre : `Ctrl-a` `Ctrl-n`
+Voir `man screen`
+
+La commande **`screen`** est très utilisée avec `ssh`, elle permet de conserver le **`tty`** ouvert lors des déconnexions et donc de reprendre là où nous en étions. Il suffit de la relancer avec l'option `-r` pour rattacher une session précédente, de même en début de session nous pouvons faire `Ctrl+a` `esc` pour enregistrer les lignes et donc avoir la scroll bar.
+
+## ssh
 
 La commande **ssh** permet de se connecter à distance sur une machine Unix ceci de façon chiffrée. Elle permet aussi d'ouvrir des tunnels chiffrés.
 
 L'ouverture d'un tunnel entre 2 machines est de la forme :
+```bash
+ssh -L ${PORT_SOURCE}:${nom_machine_dest}:${PORT_DEST} ${USER}@${DEST}
+```
 
-    ssh -L ${PORT_SOURCE}:${nom_machine_dest}:${PORT_DEST} ${USER}@${DEST}
-
-où \${PORT\_SOURCE} est le numéro de port d'entrée du tunnel sur la machine où nous sommes, \${nom\_machine\_dest} est soit localhost soit le nom de la machine destination soit une adresse du réseau privé derrière le serveur destination, \${PORT\_DEST} est le numéro du port de sortie du tunnel sur la machine cible \${USER} est le nom d'utilisateur
-\${DEST} est le nom complet du serveur de destination
+où \${PORT\_SOURCE} est le numéro de port d'entrée du tunnel sur la machine où nous sommes, \${nom\_machine\_dest} est soit localhost soit le nom de la machine destination soit une adresse du réseau privé derrière le serveur destination, \${PORT\_DEST} est le numéro du port de sortie du tunnel sur la machine cible \${USER} est le nom d'utilisateur.
+\${DEST} est le nom complet du serveur de destination.
 
 Nous pouvons ajouter l'option -i avec un nom de fichier clé à utiliser
 
 Exemple :
-
-    ssh -l 9880:localhost:80 michaellaunay@plateforme.test.com
+```bash
+ssh -l 9880:localhost:80 michaellaunay@plateforme.test.com
+```
 
 Me permet d'ouvrir un tunnel entre ma machine et le serveur plateforme en utilisant mon  compte michaellaunay.
 
@@ -1191,9 +1559,9 @@ Compréhension de ssh :
 
 Si la clé d'une machine à laquelle nous nous connectons habituellement a changé (cas d'une réinstallation), nous pouvons être amené à supprimer son entrée dans le fichier *\~/.ssh/known\_hosts*.
 
-Le plus simple est alors d'utiliser la commande **ssh-keygen -R NomDeLaMachineDistante**.
+Le plus simple est alors d'utiliser la commande **`ssh-keygen -R NomDeLaMachineDistante`**.
 
-L'installation du deamon **apt-get install ssh**
+L'installation du deamon **`apt-get install ssh`**
 
 Pour sécuriser les connexions **ssh**, il faut éditer
 */etc/ssh/sshd\_config* et mettre l'option *PermitRootLogin=no* et
@@ -1203,42 +1571,50 @@ Nous pouvons aussi limiter les adresses pouvant se connecter via le paramètre
 *ListenAddress* et les ports avec *PermitOpen host:port*.
 
 Il est possible de créer des sections de configuration par utilisateur :
-:
-
-    Match User michaellaunay
-    X11Forwarding yes
-    MAtch All
-
+```
+Match User michaellaunay
+X11Forwarding yes
+MAtch All
+```
 Pour ne permettre la connexion que par clé nous positionnons
 \"ChallengeResponseAuthentication no\"
 
 Voir vidéo <https://youtu.be/qrS1rSFb-1w>
 
-La commande **screen** est très utilisée avec \"ssh\", elle permet de conserver le **tty** ouvert lors des déconnexions et donc de reprendre là où nous en étions. Il suffit de la relancer avec l'option \"-r\" pour rattacher une session précédente, de même en début de session nous pouvons faire \"Ctrl A\" \"esc\" pour enregistrer les lignes et donc avoir la scroll bar.
-
 Créer une clé:
 
-    ssh-keygen
-    # L'option -i permet de préciser le nom du fichier de destination
+```bash
+ssh-keygen
+```
+L'option -i permet de préciser le nom du fichier de destination
 
 Ajouter sa clé public à un serveur distant :
-
-    ssh-copy-id user@Serveur_Distant
-    # L'option -i permet de préciser le nom du fichier clé à utiliser
+```bash
+ssh-copy-id user@Serveur_Distant
+```
+L'option -i permet de préciser le nom du fichier clé à utiliser
 
 Pour limiter les connexions par clé à seulement certaines adresses, éditer le fichier \~/.ssh/authorized\_keys ajouter devant la clé 'from=\"192.168.0.1\" '
 
 Supprimer la clé d'un serveur distant :
 
-    ssh-keygen -R NomServeurDistant
+```
+ssh-keygen -R NomServeurDistant
+```
 
-Nous pouvons utiliser **tar** et **ssh** pour faire des archives à travers un flux sécurisé :
+Nous pouvons utiliser **`tar`** et **`ssh`** pour faire des archives à travers un flux sécurisé :
 
-    tar cf - RepertoireSource | ssh user@ServeurSauvegarde "cat > nom_archive.tar"
+```bash
+tar cf - RepertoireSource | ssh user@ServeurSauvegarde "cat > nom_archive.tar"
+```
+
 
 La restauration se fera alors comme suit :
 
-    ssh user@ServeurSauvegarde "cat nom_archive.tar" | tar xf
+```bash
+ssh user@ServeurSauvegarde "cat nom_archive.tar" | tar xf
+```
+
 
 Utiliser un Agent ssh
 
@@ -1246,49 +1622,57 @@ Saisir à chaque fois sa clé ou son mot de passe peut être fastidieux. Nous av
 
 Vérifiez qu'il est déjà en train de tourner :
 
-    ps -p $SSH_AGENT_PID # s'il fonctionne la variable d'environnement contient son PID
+```bash
+ps -p $SSH_AGENT_PID # s'il fonctionne la variable d'environnement contient son PID
+```
 
 Le lancer sinon :
 
-    eval `ssh-agent`
+```bash
+eval `ssh-agent`
+```
 
 Pour ajouter des clés :
 
-    ssh-add
+```bash
+ssh-add
+```
 
 Pour se connecter et continuer à utiliser les clés de l'agent sur la destination (forward agent): :
 
-    ssh -A ...
+```bash
+ssh -A ...
+```
 
 Pour rebondir (embarque l'agent sur les dernières versions de ssh) :
 
-    ssh -J 192.168.0.3,192.168.0.1 usedest@destination.ecreall.com #Enchaîne les rebonds sur les adresses séparées par la virgule
+```bash
+ssh -J 192.168.0.3,192.168.0.1 usedest@destination.ecreall.com
+```
+Enchaîne les rebonds sur les adresses séparées par la virgule.
 
-Nous pouvons aussi paramétrer des rebonds en éditant \~/.ssh/config :
+Nous pouvons aussi paramétrer des rebonds en éditant `~/.ssh/config` :
 
-    Host machine_intermediaire_ou_alias
-
-      Hostname adresse_ip_ou_nom
-
-      User nom_utilisateur
-
-      IdentityFile chemin_vers_cle_intermediaire
-
-    Host serveur_dest_alias
-
-      Hostname adresse_ip_ou_nom
-
-      User nom_utilisateur
-
-      ProxyJump machine_intermediaire_ou_alias
-
-Voir <https://youtu.be/vpbD7xA2wac>
+```
+Host machine_intermediaire_ou_alias
+Hostname adresse_ip_ou_nom
+User nom_utilisateur
+IdentityFile chemin_vers_cle_intermediaire
+Host serveur_dest_alias
+Hostname adresse_ip_ou_nom
+User nom_utilisateur
+ProxyJump machine_intermediaire_ou_alias
+```
+Voir [XAVKI](https://youtu.be/vpbD7xA2wac)
 
 Créer un tunnel entre deux machines en tâche de fond :
 
-    ssh -fNL port_local_sortant:adresse_rebond:port_entrant_distant user@Serveur_Distant # -f pour mettre en fond -N pour ne pas exécuter de commande
+```bash
+ssh -fNL port_local_sortant:adresse_rebond:port_entrant_distant user@Serveur_Distant
+```
+`-f` pour mettre en fond `-N` pour ne pas exécuter de commande.
 
-### iptables et ufw
+# iptables et ufw
 
 La commande **iptables** permet de consulter et modifier les règles du firewall.
 
@@ -1296,91 +1680,113 @@ Le service **ufw** est un \"firewall\" pré-configurer que nous pouvons facileme
 
 Pour l'installer il suffit de faire :
 
-    apt install ufw
+```bash
+apt install ufw
+```
 
 Pour connaître la liste des applications pouvant être autorisées par ufw à passer le firewall :
 
-    root@luciole:~# ufw app list
-    Applications disponibles ::
+```bash
+ufw app list
+```
 
-      Apache
-      Apache Full
-      Apache Secure
-      Bind9
-      Dovecot IMAP
-      Dovecot Secure IMAP
-      OpenLDAP LDAP
-      OpenLDAP LDAPS
-      OpenSSH
-      Postfix
-      Postfix SMTPS
-      Postfix Submission
+Applications disponibles :
+```
+Apache
+Apache Full
+Apache Secure
+Bind9
+Dovecot IMAP
+Dovecot Secure IMAP
+OpenLDAP LDAP
+OpenLDAP LDAPS
+OpenSSH
+Postfix
+Postfix SMTPS
+Postfix Submission
+```
 
 Nous pourrons alors : soit autoriser les ports manuellement, soit autoriser les ports utilisés par une application.
 
-> ufw allow OpenSSH
+```bash
+ufw allow OpenSSH
+```
 
 Modification du firewall pour permettre en entrée http, https, smtp :
 
-    vim /etc/ufw/ufw.conf  # ENABLED=yes #si pas déjà positionné
-    ufw allow 22/tcp # Ouvre le port ssh à tous (que nous pouvons restreindre à certaines adresses)
-    ufw allow 80/tcp # Ouverture de http
-    ufw allow 443/tcp # Ouverture de https
-    ufw allow 25/tcp # Ouverture de smtp (envoi des courriels)
-    ufw enable # Rend actif ufw
+```bash
+vim /etc/ufw/ufw.conf
+```
+Et mettre `ENABLED=yes` si elle n'est pas déjà positionnée.
+
+```bash
+ufw allow ssh # 22/tcp Ouvre le port ssh à tous (que nous pouvons restreindre à certaines adresses)
+ufw allow http # 80/tcp Ouverture de http
+ufw allow https # 443/tcp Ouverture de https
+ufw allow smtp # 25/tcp Ouverture de smtp (envoi des courriels)
+ufw enable # Rend actif ufw
+```
 
 Ces commandes permettent aussi de gérer ipv6
 
 Vérification :
 
-    root@luciole:/etc/dovecot# ufw status
-    État : actif
+```bash
+ufw status
+```
 
-    Vers                       Action      De
-    ----                       ------      --
-    22/tcp                     ALLOW       Anywhere                  
-    25/tcp                     ALLOW       Anywhere                  
-    80/tcp                     ALLOW       Anywhere                  
-    443/tcp                    ALLOW       Anywhere                  
-    22/tcp (v6)                ALLOW       Anywhere (v6)             
-    25/tcp (v6)                ALLOW       Anywhere (v6)             
-    80/tcp (v6)                ALLOW       Anywhere (v6)             
-    443/tcp (v6)               ALLOW       Anywhere (v6) 
+```
+État : actif
 
+Vers                       Action      De
+----                       ------      --
+22/tcp                     ALLOW       Anywhere                  
+25/tcp                     ALLOW       Anywhere                  
+80/tcp                     ALLOW       Anywhere                  
+443/tcp                    ALLOW       Anywhere                  
+22/tcp (v6)                ALLOW       Anywhere (v6)             
+25/tcp (v6)                ALLOW       Anywhere (v6)             
+80/tcp (v6)                ALLOW       Anywhere (v6)             
+443/tcp (v6)               ALLOW       Anywhere (v6) 
+```
 Permettre le lancement au démarrrage:
 
-    systemctl enable ufw
+```bash
+systemctl enable ufw
+```
 
-### Un peu de configuration pour l'utilisation en ligne
+# Un peu de configuration pour l'utilisation en ligne
 
 Beaucoup de paramètre par défaut peuvent être modifier dans /etc
 
-### Configurer vim and bash
+## Configurer vim and bash
 
-Décommenter \"syntax on\" dans \"/etc/vim/vimrc\", ce qui permet d'avoir la coloration syntaxique.
+Dé-commenter `syntax on` dans `/etc/vim/vimrc`, ce qui permet d'avoir la coloration syntaxique.
 
-Pour avoir la recherche dans l'historique des commandes en saisissant les premières lettres de la commande éditer \"/etc/inputrc\" et supprimer le guillemet de tête:
-
-    "\e[5~": history-search-backward
-    "\e[6~": history-search-forward
+Pour avoir la recherche dans l'historique des commandes en saisissant les premières lettres de la commande éditer `/etc/inputrc` et supprimer le guillemet de tête:
+```
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+```
 
 Pour faire de vim l'éditeur par défaut:
+```bash
+echo "export EDITOR=vim" > /etc/profile.d/editor.sh
+```
 
-    echo "export EDITOR=vim" > /etc/profile.d/editor.sh
+Pour augmenter le nombre de ligne dans l'historique des commandes, créer `/etc/profile.d/history.sh` en mettant :
+```bash
+# https://wiki.ubuntu.com/Spec/EnhancedBash
+shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export HISTSIZE=1000
+export HISTFILESIZE=1000
+export GREP_OPTIONS='--color=auto'
+```
 
-Pour augmenter le nombre de ligne dans l'historique des commandes, créer \"/etc/profile.d/history.sh\" en mettant:
+# Gestion des permissions et droits d'accès
 
-    # https://wiki.ubuntu.com/Spec/EnhancedBash
-    shopt -s histappend
-    PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-    export HISTSIZE=1000
-    export HISTFILESIZE=1000
-    export GREP_OPTIONS='--color=auto'
-
-Gestion des permissions et droits d'accès
-------------------------------------------
-
-### Concepts
+## Concepts
 
 Tous les utilisateurs ont un compte qui permet de les identifier.
 
@@ -1396,33 +1802,53 @@ Comme vu précédemment la commande **ls -l** permet d'afficher les attributs d'
 
 À la création d'un fichier, les droits sont automatiquement positionnés en fonction de la valeur par défaut du système et de **umask** :
 
-    michaellaunay@luciole:~$ umask
-    0022
-    michaellaunay@luciole:~/tmp$ touch test1 #Permet de créer un le fichier test1 s'il n'existe pas ou de mettre à jour sa date de modification à maintenant.
-    michaellaunay@luciole:~/tmp$ ls -lh test1
-    -rw-r--r-- 1 michaellaunay michaellaunay 0 avril  5 12:17 test1
-    michaellaunay@luciole:~/tmp$ umask 027
-    michaellaunay@luciole:~/tmp$ touch test2
-    michaellaunay@luciole:~/tmp$ ls -lh test2
-    -rw-r----- 1 michaellaunay michaellaunay 0 avril  5 12:18 test2
+```bash
+umask
+```
+    
+```
+0022
+```
 
+```bash
+touch test1 #Permet de créer un le fichier test1 s'il n'existe pas ou de mettre à jour sa date de modification à maintenant.
+ls -lh test1
+```
+Nous voyons alors 
+```
+-rw-r--r-- 1 michaellaunay michaellaunay 0 avril  5 12:17 test1
+michaellaunay@luciole:~/tmp$ umask 027
+michaellaunay@luciole:~/tmp$ touch test2
+michaellaunay@luciole:~/tmp$ ls -lh test2
+-rw-r----- 1 michaellaunay michaellaunay 0 avril  5 12:18 test2
+```
 Le propriétaire est alors le créateur, et le groupe est généralement le groupe par défaut de l'utilisateur sauf dans le cas ou le répertoire porte le SGID alors le groupe est celui du répertoire.
 
-### Changer le propriétaire ou le groupe propriétaire
+## Changer le propriétaire ou le groupe propriétaire
 
-La commande **chown** permet de changer le propriétaire et le groupe d'un fichier :
-
-    root@luciole:~$ ls -l /tmp/MonFichier
-    -rw-rw-rw- 1 michaellaunay michaellaunay 0 2009-05-03 19:08 /tmp/MonFichier
-    root@luciole:~# chown root:users /tmp/MonFichier
-    root@luciole:~# ls -l /tmp/MonFichier
-    -rw-rw-rw- 1 root users 0 2009-05-03 19:08 /tmp/MonFichier
+La commande **`chown`** permet de changer le propriétaire et le groupe d'un fichier :
+```bash
+ls -l /tmp/MonFichier
+```
+Affiche
+```
+-rw-rw-rw- 1 michaellaunay michaellaunay 0 2009-05-03 19:08 /tmp/MonFichier
+```
+Pour changer le propriétaire :
+```bash
+chown root:users /tmp/MonFichier
+ls -l /tmp/MonFichier
+```
+Ce qui affiche
+```
+-rw-rw-rw- 1 root users 0 2009-05-03 19:08 /tmp/MonFichier
+```
 
 Toutefois pour des raisons de sécurité (gestion des quotas : attaque sushi) la commande peut être réservée au super utilisateur.
 
-Nous disposons aussi de la commande **chgrp** qui permet de changer le groupe d'un fichier.
+Nous disposons aussi de la commande **`chgrp`** qui permet de changer le groupe d'un fichier.
 
-### Valeurs symboliques et octales des permissions
+## Valeurs symboliques et octales des permissions
 
 Les tableaux suivants donnent les équivalents symboliques octaux des permissions.
 
@@ -1466,42 +1892,94 @@ La commande **chmod** permet de modifier les droits des fichiers.
 
 Exemple :
 
-    michaellaunay@luciole:~/tmp$ ls -l MonFichier
-    -rw-r--r-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
-    michaellaunay@luciole:~/tmp$ chmod 754 MonFichier
-    michaellaunay@luciole:~/tmp$ ls -l MonFichier
-    -rwxr-xr-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```bash
+ls -l MonFichier
+```
+
+```
+-rw-r--r-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
+
+```bash
+chmod 754 MonFichier
+ls -l MonFichier  
+```
+
+```
+-rwxr-xr-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
 
 #### Notation relative (aux droits existants)
 
 Exemple :
+```bash
+ls -l MonFichier
+```
 
-    michaellaunay@luciole:~/tmp$ ls -l MonFichier
-    -rwxr-xr-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
-    michaellaunay@luciole:~/tmp$ chmod u+s,g-x,o-r MonFichier
-    michaellaunay@luciole:~/tmp$ ls -l MonFichier
-    -rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
+-rwxr-xr-- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
+
+```
+chmod u+s,g-x,o-r MonFichier
+ls -l MonFichier
+```
+
+```
+-rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
 
 Attention aux modifications contradictoires :
 
-    michaellaunay@luciole:~$ echo coucou > /tmp/hello
-    michaellaunay@luciole:~$ ls -l /tmp/hello
-    -rw-r--r-- 1 michaellaunay michaellaunay 7 2009-05-07 09:45 /tmp/hello
-    michaellaunay@luciole:~$ sudo chmod u-w,o+w /tmp/hello
-    michaellaunay@luciole:~$ ls -l /tmp/hello
-    -r--r--rw- 1 michaellaunay michaellaunay 7 2009-05-07 09:45 /tmp/hello
-    michaellaunay@luciole:~$ echo bonjour >> /tmp/hello
-    bash: /tmp/hello: Permission non accordée
+```bash
+echo coucou > /tmp/hello
+ls -l /tmp/hello
+```
 
-#### Notation absolue
+```
+-rw-r--r-- 1 michaellaunay michaellaunay 7 2009-05-07 09:45 /tmp/hello
+```
+
+```bash
+sudo chmod u-w,o+w /tmp/hello
+ls -l /tmp/hello
+```
+
+```bash
+-r--r--rw- 1 michaellaunay michaellaunay 7 2009-05-07 09:45 /tmp/hello
+```
+
+```bash
+echo bonjour >> /tmp/hello
+```
+
+```
+bash: /tmp/hello: Permission non accordée
+```
+
+
+### Notation absolue
 
 Exemple :
 
-    michaellaunay@luciole:~/tmp$ ls -l MonFichier
-    -rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
-    michaellaunay@luciole:~/tmp$ chmod u=rx,g=rx,o=rx MonFichier
-    michaellaunay@luciole:~/tmp$ ls -l MonFichier
-    -r-xr-xr-x 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```bash
+ls -l MonFichier
+``` 
+
+```bash
+-rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
+
+```
+chmod u=rx,g=rx,o=rx MonFichier
+ls -l MonFichier
+```
+
+```
+-r-xr-xr-x 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
+```
+
+@TODO reformater
 
 ### Umask
 
