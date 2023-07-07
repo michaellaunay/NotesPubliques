@@ -308,7 +308,7 @@ ldapadd -x -D "cn=admin,dc=ecreall,dc=com" -W -f e-services.ldif
 Exemple "non optimisé" pour ajouter Michaël Launay, créer un fichier
 > \"ldif\_files/michaellaunay.ldif\" :
 ```ldif
-dn: uid=michaellaunay,ou=Études,dc=ecreall,dc=com
+dn: uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com
 objectclass: top
 objectclass: person
 objectclass: organizationalPerson
@@ -336,7 +336,7 @@ Voici pourquoi :
 
 Nous pouvons simplifier le fichier LDIF comme suit :
 ```ldif
-dn: uid=michaellaunay,ou=Études,dc=ecreall,dc=com
+dn: uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com
 objectClass: inetOrgPerson
 cn: Michael Launay
 sn: Launay
@@ -370,6 +370,12 @@ Pour modifier le mot de passe d'un utilisateur existant dans LDAP, nous pouvons 
 ldappasswd -H ldap://localhost -x -D "cn=admin,dc=ecreall,dc=com" -W -S "uid=utilisateur,ou=People,dc=ecreall,dc=com"
 ```
 
+Dans le cas de l'utilisateur michaellaunay, nous avons :
+```bash
+ldappasswd -D "cn=admin,dc=ecreall,dc=com" -W "uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com" -S
+# Que l'on peut vérifier
+ldapwhoami -x -D  "uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com" -W
+```
 Décortiquons cette commande :
 
 - `-H ldap://localhost` spécifie l'URI du serveur LDAP.
