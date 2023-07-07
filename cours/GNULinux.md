@@ -1979,15 +1979,13 @@ ls -l MonFichier
 -r-xr-xr-x 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
 ```
 
-@TODO reformater
-
 ### Umask
 
 Par défaut le système applique les droits 0666 pour un fichier et 0777 pour les répertoires auxquels il applique encore le filtre **umask** qui par défaut vaut 0022, les droits sont alors 0644 (rw-r\--r\--) pour un fichier et 0755 (rwx-rx-rx) pour un répertoire.
 
 Il est possible de changer la valeur du masque de permissions en appelant **umask nouvellevaleur**.
 
-### ACL
+# ACL
 
 Le mécanisme de gestion des droits Unix couvre 95% des usages.
 
@@ -2007,47 +2005,60 @@ Les fonctions d'accès aux *acl* sont **getfacl**, **setfacl**, **getfattr**, **
 
 Voir aussi les man pages de *acl* et *attr(5)*.
 
-### Attributs étendus
+## Attributs étendus
 
 Les attributs étendus permettent de gérer simplement les métadonnées associées à un fichier.
 
 Ce sont ces attributs étendus qui recevront les informations liées aux ACLs.
 
-Pour installer le paquet : **apt-get install attr**
+Pour installer le paquet : **`apt-get install attr`**
 
-Ajouter l'option *user\_xattr* aux partitions dans */etc/fstab*.
+Ajouter l'option `user_xattr` aux partitions dans `*/etc/fstab*`.
 
-Puis utiliser **setfattr** pour positionner les attributs et **getfattr** pour les afficher :
+Puis utiliser **`setfattr`** pour positionner les attributs et **`getfattr`** pour les afficher :
+```bash
+echo test > MonFichier
+setfattr -n user.description -v 'Contient des données de test' MonFichier
+ls -l MonFichier
+```
 
-    michaellaunay@excalibur:~$ echo test > MonFichier
-    michaellaunay@excalibur:~$ setfattr -n user.description -v 'Contient des données de test' MonFichier
-    michaellaunay@excalibur:~$ ls -l MonFichier
-    -rw-r--r-- 1 michaellaunay michaellaunay 5 2009-05-05 08:17 MonFichier
-    michaellaunay@excalibur:~$ getfattr -d MonFichier
-    #file: MonFichier
-    user.description="Contient des donn\305\251es de test"
+```
+-rw-r--r-- 1 michaellaunay michaellaunay 5 2009-05-05 08:17 MonFichier
+```
+
+```bash
+getfattr -d MonFichier
+```
+
+```
+#file: MonFichier
+user.description="Contient des donn\305\251es de test"
+```
 
 Remarque : La présence d'attributs étendus n'est pas signalée par *ls*.
 
-### Affectation des ACL
+## Affectation des ACL
 
 Pour vérifier que les ACLs peuvent être activées :
+```bash
+grep -i acl /boot/config-`uname -r`
+```
 
-    michaellaunay@luciole:~$ grep -i acl /boot/config-`uname -r`
-
-    CONFIG_EXT2_FS_POSIX_ACL=y
-    CONFIG_EXT3_FS_POSIX_ACL=y
-    CONFIG_EXT4DEV_FS_POSIX_ACL=y
-    CONFIG_FS_POSIX_ACL=y
-    CONFIG_GENERIC_ACL=y
-    CONFIG_JFS_POSIX_ACL=y
-    CONFIG_NFSD_V2_ACL=y
-    CONFIG_NFSD_V3_ACL=y
-    CONFIG_NFS_ACL_SUPPORT=m
-    CONFIG_NFS_V3_ACL=y
-    CONFIG_REISERFS_FS_POSIX_ACL=y
-    CONFIG_TMPFS_POSIX_ACL=y
-    CONFIG_XFS_POSIX_ACL=y
+```
+CONFIG_EXT2_FS_POSIX_ACL=y
+CONFIG_EXT3_FS_POSIX_ACL=y
+CONFIG_EXT4DEV_FS_POSIX_ACL=y
+CONFIG_FS_POSIX_ACL=y
+CONFIG_GENERIC_ACL=y
+CONFIG_JFS_POSIX_ACL=y
+CONFIG_NFSD_V2_ACL=y
+CONFIG_NFSD_V3_ACL=y
+CONFIG_NFS_ACL_SUPPORT=m
+CONFIG_NFS_V3_ACL=y
+CONFIG_REISERFS_FS_POSIX_ACL=y
+CONFIG_TMPFS_POSIX_ACL=y
+CONFIG_XFS_POSIX_ACL=y
+```
 
 Pour installer les ACL si besoin *apt-get install acl*.
 
@@ -2055,27 +2066,45 @@ Puis rendre la partition compatible avec les ACL (édition de fstab).
 
 Exemple de changement de permissions :
 
-    root@excalibur:~# mkdir /tmp/MYDIR
-    root@excalibur:~# chacl u::rwx,u:michaellaunay:rwx,g::---,o::---,m::rwx /tmp/MYDIR
-    root@excalibur:~# ls -l /tmp
-    drwx------+ 2 root     root    4096 2009-05-04 22:37 MYDIR
-    root@excalibur:~# su - michaellaunay
-    michaellaunay@excalibur:~$ touch /tmp/MYDIR/MonFichier
-    michaellaunay@excalibur:~$ ls -l /tmp/MYDIR/
-    -rw-r--r-- 1 michaellaunay michaellaunay 0 2009-05-04 22:50 /tmp/MYDIR/
-    michaellaunay@excalibur:~$ setfacl -m isabelle:r /tmp/MYDIR/MonFichier
-    michaellaunay@excalibur:~$ setfacl -m g:users:- /tmp/MYDIR/MonFichier
-    michaellaunay@excalibur:~$ getfacl /tmp/MYDIR/MonFichier
-    getfacl: Removing leading '/' from absolute path names
-    # file: tmp/MYDIR/MonFichier
-    # owner: michaellaunay
-    # group: michaellaunay
-    user::rw-
-    user:isabelle:r--
-    group::r--
-    group:users:---
-    mask::r--
-    other::r--
+```bash
+sudo -i
+mkdir /tmp/MYDIR
+chacl u::rwx,u:michaellaunay:rwx,g::---,o::---,m::rwx /tmp/MYDIR
+ls -l /tmp
+```
+
+```
+drwx------+ 2 root     root    4096 2009-05-04 22:37 MYDIR
+```
+
+```bash
+su - michaellaunay
+touch /tmp/MYDIR/MonFichier
+ls -l /tmp/MYDIR/
+```
+    
+```
+-rw-r--r-- 1 michaellaunay michaellaunay 0 2009-05-04 22:50 /tmp/MYDIR/
+```
+
+```bash
+setfacl -m isabelle:r /tmp/MYDIR/MonFichier
+setfacl -m g:users:- /tmp/MYDIR/MonFichier
+getfacl /tmp/MYDIR/MonFichier
+```
+
+```
+getfacl: Removing leading '/' from absolute path names
+# file: tmp/MYDIR/MonFichier
+# owner: michaellaunay
+# group: michaellaunay
+user::rw-
+user:isabelle:r--
+group::r--
+group:users:---
+mask::r--
+other::r--
+```
 
 # Les processus
 
@@ -2099,27 +2128,27 @@ Le processus ancêtre de tous les autres est *init* qui est lancé lors du déma
 
 Son *PID* est 1.
 
-**Alt+F2** est un raccourci clavier permettant d'appeler le lanceur.
+**`Alt+F2`** est un raccourci clavier permettant d'appeler le lanceur.
 
 ## Attributs d'un processus
 
-PID : Identifiant du processus (Process Identification),
+`PID` : Identifiant du processus (Process Identification),
 
-PPID : Identifiant du processus père (Parent Process Identification),
+`PPID` : Identifiant du processus père (Parent Process Identification),
 
-PGID : Identifiant du groupe de processus qui permet de connaître l'application à laquelle appartient le processus,
+`PGID` : Identifiant du groupe de processus qui permet de connaître l'application à laquelle appartient le processus,
 
-UID : Le compte utilisateur ayant lancé le processus,
+`UID` : Le compte utilisateur ayant lancé le processus,
 
-GIDs : Les groupes de l'utilisateur ayant lancé le processus,
+`GIDs` : Les groupes de l'utilisateur ayant lancé le processus,
 
-TTY : Terminal où a été lancé le processus,
+`TTY` : Terminal où a été lancé le processus,
 
-NICE : Priorité appliquée pour le scheduling,
+`NICE` : Priorité appliquée pour le scheduling,
 
-CMD : La commande à l'origine du processus.
+`CMD` : La commande à l'origine du processus.
 
-### Cycle de vie d'un processus
+## Cycle de vie d'un processus
 
 Un processus est dans un état qui peut être \"created\", \"ready\", \"running\", \"sleeping\", \"idle\" (en attente de signal), \"Terminated\" = \"zombie\"
 
@@ -2137,7 +2166,7 @@ Un processus est dans un état qui peut être \"created\", \"ready\", \"running\
 
 Voir : <http://en.wikipedia.org/wiki/Process_states>
 
-### Les différentes sortes de processus
+## Les différentes sortes de processus
 
 Nous distinguons les processus classiques des démons qui sont les services unix.
 
@@ -2145,7 +2174,7 @@ Les démons ou démons fonctionnent en arrière-plan ils ont en général pour p
 
 Les démons sont lancés et arrêtés à partir des scripts contenus dans **/etc/init.d**.
 
-### Envoi de signaux aux processus
+## Envoi de signaux aux processus
 
 L'envoi de signaux au processus se fait par la commande **kill** ou **pkill**.
 
@@ -2153,39 +2182,59 @@ Les processus peuvent établir entre eux une communication événementielle bas�
 
 Seuls les signaux **9** **SIGKILL**, et **SIGSTOP** ne peuvent être attrapés.
 
-### Les commandes liées à la gestion des processus
+## Les commandes liées à la gestion des processus
 
-La commande **free** affiche les ressources mémoires consommées.
+### free
 
-La commande **fuser** liste les processus accédant à un fichier.
+La commande **`free`** affiche les ressources mémoires consommées.
 
-La commande **ldd** affiche la liste des bibliothèques utilisées par un exécutable.
+### fuser
 
-La commande **lsof** affiche les fichiers ouverts par un processus **lsof -p PID**.
+La commande **`fuser`** liste les processus accédant à un fichier.
 
-La commande **nice** et **renice** permette de modifier la priorité d'exécution.
+### ldd
 
-La commande **pgrep** recherche un processus par son nom.
+La commande **`ldd`** affiche la liste des bibliothèques utilisées par un exécutable.
 
-La commande **ps** affiche les processus en cours.
+### lsof
 
-La commande **pstree** affiche l'arborescence des processus.
+La commande **`lsof`** affiche les fichiers ouverts par un processus **`lsof -p PID`**.
 
-La commande **top** affiche la liste de processus classés par consommation décroissante.
+### nice
 
-La commande **uptime** affiche les informations de temps de fonctionnement, du nombre d'utilisateurs connectés, de la charge.
+La commande **`nice`** et **`renice`** permette de modifier la priorité d'exécution.
 
-### Arrière-plan / Avant-plan / Détachement
+### pgrep
 
-Pour lancer un processus en arrière-plan, nous pouvons soit terminer la ligne de commande qui le lance avec **&**, soit le lancer, faire **Ctrl+z** puis **bg**.
+La commande **`pgrep`** recherche un processus par son nom.
 
-Lors du **Ctrl+z** la commande **fg** ramène le processus au premier plan.
+### ps
 
-La commande **jobs** permet de lister les processus suspendus, nous pouvons alors les rattacher avec **fg num\_job**.
+La commande **`ps`** affiche les processus en cours.
+
+### pstree
+
+La commande **`pstree`** affiche l'arborescence des processus.
+
+### top
+
+La commande **`top`** affiche la liste de processus classés par consommation décroissante.
+
+### uptime
+
+La commande **`uptime`** affiche les informations de temps de fonctionnement, du nombre d'utilisateurs connectés, de la charge.
+
+## Arrière-plan / Avant-plan / Détachement
+
+Pour lancer un processus en arrière-plan, nous pouvons soit terminer la ligne de commande qui le lance avec **``&``**, soit le lancer, faire **`Ctrl+z`** puis **`bg`**.
+
+Lors du **`Ctrl+z`** la commande **`fg`** ramène le processus au premier plan.
+
+La commande **`jobs`** permet de lister les processus suspendus, nous pouvons alors les rattacher avec **fg num\_job**.
 
 Les processus dont le père meure sans attendre le statut de ses enfants sont raccrochés à *init*.
 
-### Modification des priorités
+## Modification des priorités
 
 Les processus ont des priorités fixées entre -20 (la plus haute) et +19.
 
@@ -2195,29 +2244,29 @@ Par défaut un processus est lancé avec la priorité +10.
 
 Seul l'administrateur peut donner des priorités négatives aux processus.
 
-La commande **nice \[COMMAND \[ARG\]\]** permet de lancer une commande en lui donnant la priorité *p* si nous passons l'option *-n p*.
+La commande **`nice[COMMAND [ARG]]`** permet de lancer une commande en lui donnant la priorité *p* si nous passons l'option *-n p*.
 
-La commande **renice** permet de modifier la priorité d'un processus.
+La commande **`renice`** permet de modifier la priorité d'un processus.
 
 # Planification de tâches
 
 Sous unix deux démons sont chargés de la planification des tâches : **atd** qui permet de programmer une tâche différée et **crond** qui permet de programmer les tâches répétitives.
 
-### La commande crontab
+## La commande crontab
 
-**crond** est un service qui peut être programmé grâce à la commande **crontab**.
+**`crond`** est un service qui peut être programmé grâce à la commande **`crontab`**.
 
-**crontab -l** liste les commandes déjà programmées pour l'utilisateur courant.
+**`crontab -l`** liste les commandes déjà programmées pour l'utilisateur courant.
 
-**crontab -e** permet d'éditer le fichier des commandes programmées pour l'utilisateur courant.
+**`crontab -e`** permet d'éditer le fichier des commandes programmées pour l'utilisateur courant.
 
-L'éditeur utilisé par **crontab -e** est celui désigné par la variable *EDITOR*.
+L'éditeur utilisé par **`crontab -e`** est celui désigné par la variable *EDITOR*.
 
-### Le fichier crontab système
+## Le fichier crontab système
 
-Il est possible d'éditer directement le fichier /etc/crontab ou ceux contenus dans /var/spool/cron/crontabs/\${USER}
+Il est possible d'éditer directement le fichier `/etc/crontab` ou ceux contenus dans `/var/spool/cron/crontabs/\${USER}`
 
-Le format du fichier est le même que lors de l'édition avec *crontab -e*:
+Le format du fichier est le même que lors de l'édition avec *`crontab -e`*:
 
   ---------- -------- ------------- -------- ------------------- ----------
   Minutes    Heures   Jour du mois  Mois     Jour de la semaine  Commande
@@ -2231,14 +2280,23 @@ Pour les fichiers *cron* du système, une colonne *Utilisateur* s'intercale just
 
 Exemple :
 
-    root@serveur:~# crontab -l
-    # m h  dom mon dow   command
-    00 4 * * * /usr/bin/webalizer -c /etc/webalizer/www_ecreall.conf
-    10 4 * * * /usr/bin/webalizer -c /etc/webalizer/ssl_ecreall.conf
-    * * * * * /root/load.sh update
-    0 * * * * /root/load.sh graph > /dev/null
+```bash
+sudo crontab -l
+```
 
-    root@serveur:~# cat /etc/crontab
+```
+# m h  dom mon dow   command
+00 4 * * * /usr/bin/webalizer -c /etc/webalizer/www_ecreall.conf
+10 4 * * * /usr/bin/webalizer -c /etc/webalizer/ssl_ecreall.conf
+* * * * * /root/load.sh update
+0 * * * * /root/load.sh graph > /dev/null
+```
+
+```bash
+sudo cat /etc/crontab
+```
+
+```
     # /etc/crontab: system-wide crontab
     # Unlike any other crontab you don't have to run the `crontab'
     # command to install the new version when you edit this file
@@ -2254,25 +2312,27 @@ Exemple :
     47 6  * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
     52 6  1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
     #
+```
 
-Sur la plupart des distributions */etc/crontab* lance les scripts contenus dans */etc/cron.hourly*, */etc/cron.daily*, */etc/cron.weekly*, */etc/cron.monthly*. Pour ajouter une tâche, il suffit d'ajouter un script au répertoire désiré.
+Sur la plupart des distributions *`/etc/crontab`* lance les scripts contenus dans *`/etc/cron.hourly`*, *`/etc/cron.daily`*, *`/etc/cron.weekly`*, *`/etc/cron.monthly`*. Pour ajouter une tâche, il suffit d'ajouter un script au répertoire désiré.
 
-Les fichiers */etc/cron.allow* et */etc/cron.deny* permettent s'ils existent de nommer les utilisateurs pouvant programmer des tâches.
+Les fichiers *`/etc/cron.allow`* et *`/etc/cron.deny`* permettent s'ils existent de nommer les utilisateurs pouvant programmer des tâches.
 
-### La commande at
+## La commande at
 
-**at** permet de lancer une commande à une heure donnée, la commande utilise le démon **atd**
+**`at`** permet de lancer une commande à une heure donnée, la commande utilise le démon **`atd`**
 
-**atq** permet de voir la liste des commandes en attente d'exécution.
+**`atq`** permet de voir la liste des commandes en attente d'exécution.
 
-**atrm** Permet de supprimer une commande programmée.
+**`atrm`** Permet de supprimer une commande programmée.
 
 Exemple :
+```bash
+apt install mailutils # Pour avoir la commande mail
+at 6:45; mail -s "Debout" michaellaunay@ecreall.com < reveil.msg
+```
 
-    root@server:~# apt install mailutils # Pour avoir la commande mail
-    root@server:~# at 6:45; mail -s "Debout" michaellaunay@ecreall.com < reveil.msg
-
-Les fichiers */etc/at.allow* et *at.deny* permettent comme pour cron de lister les utilisateurs pouvant ou non lancer **at**.
+Les fichiers *`/etc/at.allow`* et *`at.deny`* permettent comme pour `cron` de lister les utilisateurs pouvant ou non lancer **`at`**.
 
 # Les utilisateurs et les groupes
 
@@ -2294,7 +2354,7 @@ Ceci suppose :
 > -   que l'utilisateur *root* a tous les droits pour pouvoir gérer le
 >     système.
 
-### Qu'est qu'un utilisateur ?
+## Qu'est qu'un utilisateur ?
 
 Chaque utilisateur d'un système Unix est associé à un identifiant unique qui lui permet de s'authentifier et d'accéder à son compte.
 
@@ -2314,86 +2374,100 @@ Un utilisateur peut ne pas être une personne physique, mais être l'utilisateur
 
 En conséquence, les **UID** des personnes physiques commencent généralement à partir de 1000.
 
-### Qu'est qu'un groupe ?
+## Qu'est qu'un groupe ?
 
 Les groupes permettent de créer des ensembles d'utilisateurs afin de gérer collectivement les permissions.
 
 Généralement la création d'un utilisateur engendre la création de son groupe principal ayant pour identifiant de groupe le même identifiant et pour **GID** la même valeur que l'**UID**.
 
-### Gestion des comptes
+## Gestion des comptes
 
-#### Ajouter un utilisateur
+### Ajouter un utilisateur
 
-La création d'un nouvel utilisateur peut être faite à l'aide des commandes **useradd** ou **adduser** la seconde étant préférable, car interactive.
+La création d'un nouvel utilisateur peut être faite à l'aide des commandes **`useradd`** ou **`adduser`** la seconde étant préférable, car interactive.
 
-#### Supprimer un utilisateur
+## Supprimer un utilisateur
 
-La commande **userdel** permet de supprimer un utilisateur.
+La commande **`userdel`** permet de supprimer un utilisateur.
 
-Avec l'option *-r* cette commande supprimera en plus le répertoire personnel de l'utilisateur.
+Avec l'option *`-r`* cette commande supprimera en plus le répertoire personnel de l'utilisateur.
 
-#### Désactiver un compte utilisateur
+## Désactiver un compte utilisateur
 
-L'une des façons les plus propres d'interdire la connexion à un utilisateur est de lui associer le shell **nologin** :
+L'une des façons les plus propres d'interdire la connexion à un utilisateur est de lui associer le shell **`nologin`** :
 
-    root@server:~# usermod -s /usr/sbin/nologin indesirable
+```bash
+sudo usermod -s /usr/sbin/nologin indesirable
+```
 
-#### Changer le mot de passe d'un utilisateur
+## Changer le mot de passe d'un utilisateur
 
-La commande **passwd** permet sous *root* de changer le mot de passe d'un utilisateur.
+La commande **`passwd`** permet sous *root* de changer le mot de passe d'un utilisateur.
 
 Si nous sommes un utilisateur, la commande demandera de saisir l'ancien mot de passe.
 
-La commande **chpasswd** permet de scripter les changements de mots de passe.
+La commande **`chpasswd`** permet de scripter les changements de mots de passe.
 
-#### Afficher des informations d'un utilisateur
+## Afficher des informations d'un utilisateur
 
-La commande **id** permet d'afficher les informations de l'utilisateur
-:
+La commande **id** permet d'afficher les informations de l'utilisateur :
 
-    michaellaunay@serveur:~$ id
-    uid=1000(michaellaunay) gid=1000(michaellaunay) groupes=4(adm),20(dialout),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),107(fuse),111(lpadmin),112(admin),1000(michaellaunay)
+```bash
+id
+```
 
-La commande **groups** permet d'afficher les informations de groupe :
+```
+uid=1000(michaellaunay) gid=1000(michaellaunay) groupes=4(adm),20(dialout),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),107(fuse),111(lpadmin),112(admin),1000(michaellaunay)
+```
 
-    michaellaunay@luciole:~/Documents/ecreall/Cours/CoursGNULinux$ groups
-    michaellaunay adm dialout cdrom plugdev lpadmin admin sambashare
 
-La commande **who** permet de savoir qui est connecté sur la machine.
+La commande **`groups`** permet d'afficher les informations de groupe :
 
-La commande **whoami** permet de savoir sous quelle identité nous sommes connecté.
+```bash
+groups
+```
 
-#### Modifier les informations d'un utilisateur
+```
+michaellaunay adm dialout cdrom plugdev lpadmin admin sambashare
+```
 
-La commande **usermod** permet de modifier toutes les propriétés d'un utilisateur.
+La commande **`who`** permet de savoir qui est connecté sur la machine.
 
-Faire *man usermod*
+La commande **`whoami`** permet de savoir sous quelle identité nous sommes connecté.
 
-La commande **chsh** permet de changer le shell de connexion.
+## Modifier les informations d'un utilisateur
 
-La commande **chfn** permet de changer la description d'un utilisateur.
+La commande **`usermod`** permet de modifier toutes les propriétés d'un utilisateur.
 
-#### Changer d'identité
+Faire *`man usermod`*
 
-La commande **su** permet de changer d'identité. **su -** permettra en plus d'utiliser l'environnement de l'utilisateur.
+La commande **`chsh`** permet de changer le shell de connexion.
 
-La commande **sudo** permet d'exécuter un script ou une commande en tant que *root*. **sudo -i** permet sous *Ubuntu* de se connecter en tant que *root*.
+La commande **`chfn`** permet de changer la description d'un utilisateur.
 
-### Gestion des groupes
+## Changer d'identité
 
-#### Créer un groupe
+La commande **`su`** permet de changer d'identité. **su -** permettra en plus d'utiliser l'environnement de l'utilisateur.
 
-Comme pour l'utilisateur nous pouvons utiliser **addgroup** ou **groupadd**
+La commande **`sudo`** permet d'exécuter un script ou une commande en tant que *root*. **sudo -i** permet sous *Ubuntu* de se connecter en tant que *root*.
 
-#### Afficher des informations sur les groupes
+## Gestion des groupes
 
-La commande **groups** déjà vu affiche les informations d'appartenance.
+### Créer un groupe
+
+Comme pour l'utilisateur nous pouvons utiliser **`addgroup`** ou **`groupadd`**
+
+### Afficher des informations sur les groupes
+
+La commande **`groups`** déjà vu affiche les informations d'appartenance.
 
 #### Ajouter un utilisateur à un groupe
 
 Nous utilisons la commande **usermod** de la façon suivante :
 
-    root@server~# usermod -a -G cdrom,dev michaellaunay
+```bash
+sudo usermod -a -G cdrom,dev michaellaunay
+```
 
 #### Ajouter un utilisateur au groupe des administrateurs
 
@@ -2656,38 +2730,43 @@ Où \--restore-directory permet de dire dans quel répertoire nous cherchons à 
 
 ### Contrôle des systèmes de fichiers
 
-La commande **df** permet de lister les montages réalisés.
+La commande **`df`** permet de lister les montages réalisés.
 
 La commande **du** permet de calculer la taille d'une arborescence.
 
-La commande **fsck** permet de vérifier l'état d'une partition.
+La commande **`fsck`** permet de vérifier l'état d'une partition.
 ATTENTION ! Il ne faut pas l'utiliser sur des partitions montées.
 
-La commande **e2label** permet d'affecter un nom à un *file system*.
+La commande **`e2label`** permet d'affecter un nom à un *file system*.
 
-La commande **hdparm** permet avec l'option *-t* de connaître les performances d'un disque.
+La commande **`hdparm`** permet avec l'option *-t* de connaître les performances d'un disque.
 
 ### Montage des périphériques amovibles
 
-La commande **lsusb** permet de voir les périphériques USB connectés.
+La commande **`lsusb`** permet de voir les périphériques USB connectés.
 
-La commande **lspci** permet de voir les périphériques PCI connectés.
+La commande **`lspci`** permet de voir les périphériques PCI connectés.
 
-Lorsqu'un périphérique de type blocs ou caractères est détecté par le noyau, un périphérique correspondant est ajouté dans */dev* par le démon **udevd** du système **udev**.
+Lorsqu'un périphérique de type blocs ou caractères est détecté par le noyau, un périphérique correspondant est ajouté dans *`/dev`* par le démon **`udevd`** du système **`udev`**.
 
-Le système **udev** a pour rôle de gérer l'unicité des noms pour les périphériques et de maintenir */dev* en cohérence avec les périphériques présents.
+Le système **`udev`** a pour rôle de gérer l'unicité des noms pour les périphériques et de maintenir *`/dev`* en cohérence avec les périphériques présents.
 
-Les fichiers de configuration de **udev** sont placés dans */etc/udev*.
-Il est possible de définir des règles dans */etc/udev/rules.d* qui seront évaluées dans l'ordre lexicographique.
+Les fichiers de configuration de **`udev`** sont placés dans *`/etc/udev`*.
+Il est possible de définir des règles dans *`/etc/udev/rules.d`* qui seront évaluées dans l'ordre lexicographique.
 
-Le démon HAL (Hardware Abstraction Layer) **hald** est notifié par **udev** de l'ajout d'un périphérique (règle */etc/udev/rules.d/90-hal.rules*).
+Le démon HAL (Hardware Abstraction Layer) **`hald`** est notifié par **`udev`** de l'ajout d'un périphérique (règle *`/etc/udev/rules.d/90-hal.rules`*).
 
-**HAL** identifie alors le type des périphériques connectés, du système de fichiers, et en fonction des informations comme *VendorId* ou *ProductId* d'associer le contenu avec un type d'application.
+**`HAL`** identifie alors le type des périphériques connectés, du système de fichiers, et en fonction des informations comme *VendorId* ou *ProductId* d'associer le contenu avec un type d'application.
 
-La base de données des périphériques est située dans le répertoire */usr/share/hal/fdi/* :
+La base de données des périphériques est située dans le répertoire *`/usr/share/hal/fdi/`* :
+```bash
+grep -rl ipod /usr/share/hal/fdi/*
+```
 
-    michaellaunay@luciole:~$ grep -rl ipod /usr/share/hal/fdi/*
-    /usr/share/hal/fdi/information/10freedesktop/10-usb-music-players.fdi
+```
+/usr/share/hal/fdi/information/10freedesktop/10-usb-music-players.fdi
+```
+
 
 Une fois le périphérique complètement identifié, **HAL** envoie un message sur le bus de communication des applications **D-Bus**.
 
@@ -2696,62 +2775,65 @@ Les applications de l'environnement graphique vont alors monter le périphériqu
 Sous **gnome** le comportement peut être modifié via le gestionnaire de fichiers **nautilus** dans Edition-Préférences-Supports\*\*.
 
 Exemple des noms persistants donnés par udev: :
+```bash
+ls -lR /dev/disk
+```
 
-    michaellaunay@luciole:~$ ls -lR /dev/disk
-    /dev/disk:
-    total 0
-    drwxr-xr-x 2 root root 260 avril 18 22:11 by-id
-    drwxr-xr-x 2 root root  80 avril 18 22:11 by-partlabel
-    drwxr-xr-x 2 root root 100 avril 18 22:11 by-partuuid
-    drwxr-xr-x 2 root root 160 avril 18 22:11 by-path
-    drwxr-xr-x 2 root root 100 avril 18 22:11 by-uuid
+```
+/dev/disk:
+total 0
+drwxr-xr-x 2 root root 260 avril 18 22:11 by-id
+drwxr-xr-x 2 root root  80 avril 18 22:11 by-partlabel
+drwxr-xr-x 2 root root 100 avril 18 22:11 by-partuuid
+drwxr-xr-x 2 root root 160 avril 18 22:11 by-path
+drwxr-xr-x 2 root root 100 avril 18 22:11 by-uuid
 
-    /dev/disk/by-id:
-    total 0
-    lrwxrwxrwx 1 root root  9 avril 18 22:11 ata-ST8000VN0022-2EL112_ZA1F9KQR -> ../../sda
-    lrwxrwxrwx 1 root root 10 avril 18 22:11 ata-ST8000VN0022-2EL112_ZA1F9KQR-part1 -> ../../sda1
-    lrwxrwxrwx 1 root root 13 avril 18 22:11 nvme-eui.0025385491b00f2f -> ../../nvme0n1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-eui.0025385491b00f2f-part1 -> ../../nvme0n1p1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-eui.0025385491b00f2f-part2 -> ../../nvme0n1p2
-    lrwxrwxrwx 1 root root 13 avril 18 22:11 nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M403887L -> ../../nvme0n1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M403887L-part1 -> ../../nvme0n1p1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M403887L-part2 -> ../../nvme0n1p2
-    lrwxrwxrwx 1 root root  9 avril 18 22:11 usb-Generic_STORAGE_DEVICE-0:0 -> ../../sdb
-    lrwxrwxrwx 1 root root  9 avril 18 22:11 wwn-0x5000c500b5c4d662 -> ../../sda
-    lrwxrwxrwx 1 root root 10 avril 18 22:11 wwn-0x5000c500b5c4d662-part1 -> ../../sda1
+/dev/disk/by-id:
+total 0
+lrwxrwxrwx 1 root root  9 avril 18 22:11 ata-ST8000VN0022-2EL112_ZA1F9KQR -> ../../sda
+lrwxrwxrwx 1 root root 10 avril 18 22:11 ata-ST8000VN0022-2EL112_ZA1F9KQR-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 13 avril 18 22:11 nvme-eui.0025385491b00f2f -> ../../nvme0n1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-eui.0025385491b00f2f-part1 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-eui.0025385491b00f2f-part2 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 13 avril 18 22:11 nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M403887L -> ../../nvme0n1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M403887L-part1 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M403887L-part2 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root  9 avril 18 22:11 usb-Generic_STORAGE_DEVICE-0:0 -> ../../sdb
+lrwxrwxrwx 1 root root  9 avril 18 22:11 wwn-0x5000c500b5c4d662 -> ../../sda
+lrwxrwxrwx 1 root root 10 avril 18 22:11 wwn-0x5000c500b5c4d662-part1 -> ../../sda1
 
-    /dev/disk/by-partlabel:
-    total 0
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 'EFI\x20System\x20Partition' -> ../../nvme0n1p1
-    lrwxrwxrwx 1 root root 10 avril 18 22:11  Sauvegardes -> ../../sda1
+/dev/disk/by-partlabel:
+total 0
+lrwxrwxrwx 1 root root 15 avril 18 22:11 'EFI\x20System\x20Partition' -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 10 avril 18 22:11  Sauvegardes -> ../../sda1
 
-    /dev/disk/by-partuuid:
-    total 0
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 54795468-79c2-48ce-9c7e-f6bd6aea6914 -> ../../nvme0n1p2
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 e9a9f238-ec93-4777-82e8-cbea7c8cf986 -> ../../nvme0n1p1
-    lrwxrwxrwx 1 root root 10 avril 18 22:11 eeb50a63-ec05-4e34-b673-b90bc5ea2cfa -> ../../sda1
+/dev/disk/by-partuuid:
+total 0
+lrwxrwxrwx 1 root root 15 avril 18 22:11 54795468-79c2-48ce-9c7e-f6bd6aea6914 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 15 avril 18 22:11 e9a9f238-ec93-4777-82e8-cbea7c8cf986 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 10 avril 18 22:11 eeb50a63-ec05-4e34-b673-b90bc5ea2cfa -> ../../sda1
 
-    /dev/disk/by-path:
-    total 0
-    lrwxrwxrwx 1 root root  9 avril 18 22:11 pci-0000:00:14.0-usb-0:1:1.0-scsi-0:0:0:0 -> ../../sda
-    lrwxrwxrwx 1 root root 10 avril 18 22:11 pci-0000:00:14.0-usb-0:1:1.0-scsi-0:0:0:0-part1 -> ../../sda1
-    lrwxrwxrwx 1 root root  9 avril 18 22:11 pci-0000:00:14.0-usb-0:5:1.0-scsi-0:0:0:0 -> ../../sdb
-    lrwxrwxrwx 1 root root 13 avril 18 22:11 pci-0000:03:00.0-nvme-1 -> ../../nvme0n1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 pci-0000:03:00.0-nvme-1-part1 -> ../../nvme0n1p1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 pci-0000:03:00.0-nvme-1-part2 -> ../../nvme0n1p2
+/dev/disk/by-path:
+total 0
+lrwxrwxrwx 1 root root  9 avril 18 22:11 pci-0000:00:14.0-usb-0:1:1.0-scsi-0:0:0:0 -> ../../sda
+lrwxrwxrwx 1 root root 10 avril 18 22:11 pci-0000:00:14.0-usb-0:1:1.0-scsi-0:0:0:0-part1 -> ../../sda1
+lrwxrwxrwx 1 root root  9 avril 18 22:11 pci-0000:00:14.0-usb-0:5:1.0-scsi-0:0:0:0 -> ../../sdb
+lrwxrwxrwx 1 root root 13 avril 18 22:11 pci-0000:03:00.0-nvme-1 -> ../../nvme0n1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 pci-0000:03:00.0-nvme-1-part1 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 pci-0000:03:00.0-nvme-1-part2 -> ../../nvme0n1p2
 
-    /dev/disk/by-uuid:
-    total 0
-    lrwxrwxrwx 1 root root 10 avril 18 22:11 0a2768a9-34ac-4944-83a2-2e10ed4c48a5 -> ../../sda1
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 aad5ec2d-1dce-4a2b-8b07-2cd2bef72410 -> ../../nvme0n1p2
-    lrwxrwxrwx 1 root root 15 avril 18 22:11 C3AC-80CA -> ../../nvme0n1p1
-
+/dev/disk/by-uuid:
+total 0
+lrwxrwxrwx 1 root root 10 avril 18 22:11 0a2768a9-34ac-4944-83a2-2e10ed4c48a5 -> ../../sda1
+lrwxrwxrwx 1 root root 15 avril 18 22:11 aad5ec2d-1dce-4a2b-8b07-2cd2bef72410 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 15 avril 18 22:11 C3AC-80CA -> ../../nvme0n1p1
+```
 Voir :
 
 > <https://doc.ubuntu-fr.org/udev>
 > <https://web.archive.org/web/20100417131709/www.unixgarden.com/index.php/programmation/decouvertes-et-experimentation-avec-d-bus>
 
-### Utilitaire smartd
+# Utilitaire smartd
 
 Smart signifie **Self-Monitoring, Analysis and Reporting Technology** c'est une technologie d'auto surveillance mise en œuvre par certains disques durs.
 
@@ -2763,7 +2845,9 @@ Le contrôle se fait au détriment d'une légère perte de performance.
 
 Installation :
 
-    root@luciole:~# apt-get install smartmontools
+```bash
+sudo apt-get install smartmontools
+```
 
 Le démon smartd est alors installé et peu prévenir l'administrateur par mail lorsque les informations d'état des disques atteindront les seuils d'alertes.
 
@@ -2775,105 +2859,121 @@ Attention à l'usage de *smart* avec le *RAID* qui pose problème avec certains 
 
 Pour savoir si smart est activé sur le disque :
 
-    root@luciole:~# smartctl -i /dev/sda
-    smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
-    Home page is http://smartmontools.sourceforge.net/
+```bash
+sudo smartctl -i /dev/sda
+```
 
-    === START OF INFORMATION SECTION ===
-    Device Model:     FUJITSU MHW2160BH PL
-    Serial Number:    K10FT7A25Y3B
-    Firmware Version: 0084001E
-    User Capacity:    160 041 885 696 bytes
-    Device is:        Not in smartctl database [for details use: -P showall]
-    ATA Version is:   8
-    ATA Standard is:  ATA-8-ACS revision 3b
-    Local Time is:    Sun May 24 18:33:45 2009 CEST
-    SMART support is: Available - device has SMART capability.
-    SMART support is: Enabled
+```bash
+smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
+Home page is http://smartmontools.sourceforge.net/
 
-    root@luciole:~# smartctl -A /dev/sda
-    smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
-    Home page is http://smartmontools.sourceforge.net/
 
+=== START OF INFORMATION SECTION ===
+Device Model:     FUJITSU MHW2160BH PL
+Serial Number:    K10FT7A25Y3B
+Firmware Version: 0084001E
+User Capacity:    160 041 885 696 bytes
+Device is:        Not in smartctl database [for details use: -P showall]
+ATA Version is:   8
+ATA Standard is:  ATA-8-ACS revision 3b
+Local Time is:    Sun May 24 18:33:45 2009 CEST
+SMART support is: Available - device has SMART capability.
+SMART support is: Enabled
+```
+
+```bash
+smartctl -A /dev/sda
+```
+
+```
+smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
+Home page is http://smartmontools.sourceforge.net/
+```
 Pour l'activer si nécessaire :
-
-    root@luciole:~# smartctl -s /dev/sda
+```bash
+sudo smartctl -s /dev/sda
+```
 
 Consultation de l'état d'un disque :
-
-    === START OF READ SMART DATA SECTION ===
-    SMART Attributes Data Structure revision number: 16
-    Vendor Specific SMART Attributes with Thresholds:
-    ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
-      1 Raw_Read_Error_Rate     0x000f   100   100   046    Pre-fail  Always       -       182781
-      2 Throughput_Performance  0x0005   100   100   030    Pre-fail  Offline      -       39256064
-      3 Spin_Up_Time            0x0003   100   100   025    Pre-fail  Always       -       1
-      4 Start_Stop_Count        0x0032   099   099   000    Old_age   Always       -       603
-      5 Reallocated_Sector_Ct   0x0033   100   100   024    Pre-fail  Always       -       8589934592000
-      7 Seek_Error_Rate         0x000f   100   100   047    Pre-fail  Always       -       1690
-      8 Seek_Time_Performance   0x0005   100   100   019    Pre-fail  Offline      -       0
-      9 Power_On_Hours          0x0032   080   080   000    Old_age   Always       -       10494
-     10 Spin_Retry_Count        0x0013   100   100   020    Pre-fail  Always       -       0
-     12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       564
-    192 Power-Off_Retract_Count 0x0032   100   100   000    Old_age   Always       -       9
-    193 Load_Cycle_Count        0x0032   079   079   000    Old_age   Always       -       422760
-    194 Temperature_Celsius     0x0022   100   100   000    Old_age   Always       -       42 (Lifetime Min/Max 14/55)
-    195 Hardware_ECC_Recovered  0x001a   100   100   000    Old_age   Always       -       166
-    196 Reallocated_Event_Count 0x0032   100   100   000    Old_age   Always       -       453509120
-    197 Current_Pending_Sector  0x0012   100   100   000    Old_age   Always       -       0
-    198 Offline_Uncorrectable   0x0010   100   100   000    Old_age   Offline      -       0
-    199 UDMA_CRC_Error_Count    0x003e   200   200   000    Old_age   Always       -       0
-    200 Multi_Zone_Error_Rate   0x000f   100   100   060    Pre-fail  Always       -       10052
-    203 Run_Out_Cancel          0x0002   100   100   000    Old_age   Always       -       3732309344292
-    240 Head_Flying_Hours       0x003e   200   200   000    Old_age   Always       -       0
-
+```
+=== START OF READ SMART DATA SECTION ===
+SMART Attributes Data Structure revision number: 16
+Vendor Specific SMART Attributes with Thresholds:
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  1 Raw_Read_Error_Rate     0x000f   100   100   046    Pre-fail  Always       -       182781
+  2 Throughput_Performance  0x0005   100   100   030    Pre-fail  Offline      -       39256064
+  3 Spin_Up_Time            0x0003   100   100   025    Pre-fail  Always       -       1
+  4 Start_Stop_Count        0x0032   099   099   000    Old_age   Always       -       603
+  5 Reallocated_Sector_Ct   0x0033   100   100   024    Pre-fail  Always       -       8589934592000
+  7 Seek_Error_Rate         0x000f   100   100   047    Pre-fail  Always       -       1690
+  8 Seek_Time_Performance   0x0005   100   100   019    Pre-fail  Offline      -       0
+  9 Power_On_Hours          0x0032   080   080   000    Old_age   Always       -       10494
+ 10 Spin_Retry_Count        0x0013   100   100   020    Pre-fail  Always       -       0
+ 12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       564
+192 Power-Off_Retract_Count 0x0032   100   100   000    Old_age   Always       -       9
+193 Load_Cycle_Count        0x0032   079   079   000    Old_age   Always       -       422760
+194 Temperature_Celsius     0x0022   100   100   000    Old_age   Always       -       42 (Lifetime Min/Max 14/55)
+195 Hardware_ECC_Recovered  0x001a   100   100   000    Old_age   Always       -       166
+196 Reallocated_Event_Count 0x0032   100   100   000    Old_age   Always       -       453509120
+197 Current_Pending_Sector  0x0012   100   100   000    Old_age   Always       -       0
+198 Offline_Uncorrectable   0x0010   100   100   000    Old_age   Offline      -       0
+199 UDMA_CRC_Error_Count    0x003e   200   200   000    Old_age   Always       -       0
+200 Multi_Zone_Error_Rate   0x000f   100   100   060    Pre-fail  Always       -       10052
+203 Run_Out_Cancel          0x0002   100   100   000    Old_age   Always       -       3732309344292
+240 Head_Flying_Hours       0x003e   200   200   000    Old_age   Always       -       0
+```
 Lecture du résultat :
 
-    TYPE :
+TYPE :
+	Old_age : indique qu'un dépassement n'est pas critique, nous avons simplement dépassé la valeur
+			  garantie par le constructeur.
+	Pre-fail : indique que tout dépassement risque de provoquer une perte du disque.
 
-        Old_age : indique qu'un dépassement n'est pas critique, nous avons simplement dépassé la valeur
-                  garantie par le constructeur.
-        Pre-fail : indique que tout dépassement risque de provoquer une perte du disque.
+UPDATED :
+	Always : la valeur est maintenue à jour.
+	Offline : la valeur est calculée uniquement lors des tests.
 
-    UPDATED :
+VALUE : La valeur actuelle du disque. Une valeur comprise entre 100 et 255 indique généralement une bonne santé du disque.
 
-        Always : la valeur est maintenue à jour.
-        Offline : la valeur est calculée uniquement lors des tests.
+WORST : La pire valeur enregistrée par le disque.
 
-    VALUE : La valeur actuelle du disque. Une valeur comprise entre 100 et 255 indique généralement une bonne santé du disque.
+THRESH : La valeur seuil en dessous de laquelle le disque commence à souffrir.
 
-    WORST : La pire valeur enregistrée par le disque.
-
-    THRESH : La valeur seuil en dessous de laquelle le disque commence à souffrir.
-
-    RAW VALUE : est la conversion de VALUE dans les unités utilisées par le  constructeur.
+RAW VALUE : est la conversion de VALUE dans les unités utilisées par le  constructeur.
 
 Il existe plusieurs types de tests pour mettre à jour les valeurs :
 
-    offline : le disque ne doit pas être monté.
-    short : test court sur les performances, les problèmes électriques et lectures/écritures physiques.
-    long : version longue du précédent.
+offline : le disque ne doit pas être monté.
+short : test court sur les performances, les problèmes électriques et lectures/écritures physiques.
+long : version longue du précédent.
 
 Lancement d'un test :
 
-    root@luciole:~# smartctl -t long /dev/sda
-    smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
-    Home page is http://smartmontools.sourceforge.net/
+```bash
+sudo smartctl -t long /dev/sda
+```
 
-    === START OF OFFLINE IMMEDIATE AND SELF-TEST SECTION ===
-    Sending command: "Execute SMART Extended self-test routine immediately in off-line mode".
-    Drive command "Execute SMART Extended self-test routine immediately in off-line mode" successful.
-    Testing has begun.
-    Please wait 92 minutes for test to complete.
-    Test will complete after Sun May 24 20:18:57 2009
+```
+smartctl version 5.38 [x86_64-unknown-linux-gnu] Copyright (C) 2002-8 Bruce Allen
+Home page is http://smartmontools.sourceforge.net/
 
-    Use smartctl -X to abort test.
+=== START OF OFFLINE IMMEDIATE AND SELF-TEST SECTION ===
+Sending command: "Execute SMART Extended self-test routine immediately in off-line mode".
+Drive command "Execute SMART Extended self-test routine immediately in off-line mode" successful.
+Testing has begun.
+Please wait 92 minutes for test to complete.
+Test will complete after Sun May 24 20:18:57 2009
+
+Use smartctl -X to abort test.
+```
 
 Pour voir le résultat il faut soit consulter les *logs* soit :
 
-    smartctl -c /dev/sda
-    smartctl -l selftest /dev/sda
-    smartctl -A /dev/sda
+```bash
+sudo smartctl -c /dev/sda
+sudo smartctl -l selftest /dev/sda
+sudo smartctl -A /dev/sda
+```
 
 Configuration de **smartd** :
 
@@ -2884,7 +2984,7 @@ Informations :
 > -   <http://fr.wikipedia.org/wiki/Self-Monitoring,_Analysis_and_Reporting_Technology>
 > -   <http://linux-attitude.fr/post/Soyez-encore-plus-a-lecoute-de-vos-disques>
 
-### Les montages en raid
+# Les montages en raid
 
 Le RAID (Redundant Array of Independant Disk) permet d'augmenter la tolérance aux pannes ou d'avoir un espace de stockage plus rapide ou plus grand que ce que nous obtiendrions avec un seul disque.
 
@@ -2896,15 +2996,15 @@ La concaténation permet elle de disposer virtuellement d'un seul disque dont la
 
 Voir : <http://fr.wikipedia.org/wiki/RAID_(informatique)>
 
-#### Le RAID 0
+## Le RAID 0
 
 Nous cherchons les performances sans tolérance aux pannes.
 
-#### Le RAID 1
+## Le RAID 1
 
 L'information est dupliquée sur les disques qui sont donc montés en miroir.
 
-#### Le RAID 5
+## Le RAID 5
 
 Il nécessite au minimum 3 disques.
 
@@ -2912,40 +3012,45 @@ Les informations sont stockées par bande (strip).
 
 Par exemple pour un système à 3 disques, deux bandes de données et une de parité sont écrites alternativement sur les 3 disques.
 
-Les bandes de parités sont écrites alternativement sur tous les disques façon a accroitre la résistance aux pannes.
+Les bandes de parités sont écrites alternativement sur tous les disques façon a accroître la résistance aux pannes.
 
 Elles sont calculées en faisant un ou exclusif des bandes de données précédentes.
 
-#### La gestion du RAID logiciel par Linux
+## La gestion du RAID logiciel par Linux
 
-La commande **mdadm** permet de gérer les disques *RAID*.
+La commande **`mdadm`** permet de gérer les disques *RAID*.
 
-La commande **mdadm \--create** permet d'initialiser un disque *RAID*.
+La commande **`mdadm \--create`** permet d'initialiser un disque *RAID*.
 
-La commande **mdadm \--detail /dev/mdX** affiche l'état d'un *RAID*.
+La commande **`mdadm \--detail /dev/mdX`** affiche l'état d'un *RAID*.
 
-La commande **mdadm \--deamonise /dev/mdX** démarre le *RAID*.
+La commande **`mdadm \--deamonise /dev/mdX`** démarre le *RAID*.
 
-Le fichier */etc/mdadm/mdadm.conf* contient la configuration utilisée par mdadm au démarrage.
+Le fichier *`/etc/mdadm/mdadm.conf`* contient la configuration utilisée par `mdadm` au démarrage.
 
-La commande **mdadm \--detail \--scan \--verbose** permet de récupérer la configuration et si nécessaire de la stocker dans */etc/mdadm/mdadm.conf* pour le prochain démarrage.
+La commande **`mdadm \--detail \--scan \--verbose`** permet de récupérer la configuration et si nécessaire de la stocker dans *`/etc/mdadm/mdadm.conf`* pour le prochain démarrage.
 
 Lien : <http://doc.ubuntu-fr.org/raid_logiciel>
 
 Exemple création d'un disque :
 
-    fdisk /dev/sda #Pour la création de /dev/sda1
-    fdisk /dev/sdb #Pour la création de /dev/sdb1
-    mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sda1 /dev/sdb1
-    mdadm --daemonise /dev/md0
-    #sinon en éditant /etc/mdadm/mdadm.conf on peut y ajouter
-    #ARRAY /dev/md0 level=raid1 num-devices=2 devices=/dev/sda1,/dev/sdb1
+```bash
+sudo fdisk /dev/sda #Pour la création de /dev/sda1
+sudo fdisk /dev/sdb #Pour la création de /dev/sdb1
+sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sda1 /dev/sdb1
+sudo mdadm --daemonise /dev/md0
+```
+ 
+Sinon en éditant /etc/mdadm/mdadm.conf on peut y ajouter
+```
+#ARRAY /dev/md0 level=raid1 num-devices=2 devices=/dev/sda1,/dev/sdb1
+```
 
 Les périphériques *RAID* apparaissent sous */dev/md\#*.
 
-### LVM
+# LVM
 
-**LVM** Logical Volume Manager s'intercale entre le noyau et les partitions des disques afin de permettre :
+**`LVM`** `Logical Volume Manager` s'intercale entre le noyau et les partitions des disques afin de permettre :
 
 > -   de redimensionner les partitions,
 > -   de concaténer les disques,
@@ -2953,7 +3058,7 @@ Les périphériques *RAID* apparaissent sous */dev/md\#*.
 
 Sa mise en place doit être faite dès le partitionnement (type 8E).
 
-*GRUB* ne fonctionne pas avec *LVM* il faut donc soit utiliser *Lilo* soit réserver LVM à */home*.
+*`GRUB`* ne fonctionne pas avec *LVM* il faut donc soit utiliser *Lilo* soit réserver LVM à */home*.
 
 Glossaire :
 
@@ -3043,16 +3148,16 @@ Infos : <http://fr.wikipedia.org/wiki/DHCP>
 
 La commande ip permet d'afficher et modifier toutes les interfaces réseau.
 
-ip addr : Affiche les adresses ip et toutes les informations.
-ip addr show dev em1 : Affiche les informations pour le périphérique em1 
-ip addr add 192.168.1.1/24 dev em1 : Ajoute l'adresse 192.168.1.1 avec le
+`ip addr` : Affiche les adresses ip et toutes les informations.
+`ip addr show dev em1` : Affiche les informations pour le périphérique em1 
+`ip addr add 192.168.1.1/24 dev em1` : Ajoute l'adresse 192.168.1.1 avec le
 masque 24 au périphérique em1.
 
-ip link : Gère et affiche toutes les interfaces réseaux.
-ip link show dev em1 : Affiche les informations pour em1.
-ip -s link : ffiche les interfaces statiques.
-ip link set dev eno12345678 up : Met en fonctionnement l'interface eno12345678.
-ip link set dev eno12345678 down : Éteint l'interface eno12345678.
+`ip link` : Gère et affiche toutes les interfaces réseaux.
+`ip link show dev em1` : Affiche les informations pour em1.
+`ip -s link` : ffiche les interfaces statiques.
+`ip link set dev eno12345678 up` : Met en fonctionnement l'interface eno12345678.
+`ip link set dev eno12345678 down` : Éteint l'interface eno12345678.
 
 ip route : Affiche et permet la modification de la table de routage.
 
@@ -3081,66 +3186,84 @@ Toutefois elle est beaucoup plus simple, mais moins complète que **ip** .
 
 Exemple de configuration :
 
-    root@luciole:~# ifconfig eth0 192.168.0.7 netmask 255.255.255.0
+```bash
+sudo ifconfig eth0 192.168.0.7 netmask 255.255.255.0
+```
 
 La configuration ainsi réalisée n'est pas permanent, elle sera perdue au prochain démarrage.
 
 Pour modifier de façon permanente la configuration réseau il faut éditer */etc/network/interfaces*.
 
-**ifconfig** est remplacé par la commande **ip addr** ou **ip a**
-**ifconfig eth0 192.168.0.11** est remplacé par **ip addr add 192.168.0.11/255.255.255.0 dev enxe4b97aef38eb**
+**`ifconfig`** est remplacé par la commande **ip addr** ou **ip a**
+**`ifconfig eth0 192.168.0.11`** est remplacé par **`ip addr add 192.168.0.11/255.255.255.0 dev enxe4b97aef38eb`**
 Les noms comme eth0 sont remplacés par la convention de nommage **ifname** pour éviter le
 changement de nom lors du reboot.
 
-### iwconfig (déprécié)
+## iwconfig (déprécié)
 
 La commande **iwconfig** permet de configurer les cartes wifi.
 
-### ifup/ifdown (déprécié)
+## ifup/ifdown (déprécié)
 
 La commande **ifup** permet de démarrer une interface réseau en fonction de la configuration indiquée dans */etc/network/interfaces* Remplacée par **ip link set NOM\_PERIPHERIQUE up**
 
 La commande **ifdown** permet de l'arrêter. Remplacée par **ip link set NOM\_PERIPHERIQUE down**
 
-### route (déprécié)
+## route (déprécié)
 
 La commande **route** permet de consulter et de fixer l'adresse de la passerelle :
 
-    root@luciole:~# route add default gw 192.168.0.1
+```bash
+sudo route add default gw 192.168.0.1
+```
 
 Remplacée par **ip route**
 
 En consultation elle est identique à **netstat -nr**
 
-### ip
+## ip
 
 La commande ip est le couteau suisse de la configuration réseau, son paquet **iproute2** remplace les commandes du paquet **net-tools** :
 
-    Attribuer une adresse ::
+### Attribuer une adresse
 
-      ip addr add 192.168.0.54/24 dev eth0
+```bash
+sudo ip addr add 192.168.0.54/24 dev eth0
+```
 
-    Connaître son adresse ::
 
-      ip -4c addr show #-4 affiche uniquement les IPv4, -c pour l'affichage couleur
+### Connaître son adresse
 
-    Activer une interface réseau ::
+```bash
+sudo ip -4c addr show #-4 affiche uniquement les IPv4, -c pour l'affichage couleur
+```
 
-      ip link set eth0 update
+### Activer une interface réseau
 
-    Désactiver une interface réseau ::
+```bash
+ip link set eth0 update
+```
 
-      ip link set eth0 down
+### Désactiver une interface réseau
 
-    Supprimer une adresse d'une interface ::
+```bash
+sudo ip link set eth0 down
+```
 
-      ip addr del 192.168.0.54 dev eth0
+### Supprimer une adresse d'une interface
 
-    Ajouter une gateway ::
+```bash
+sudo ip addr del 192.168.0.54 dev eth0
+```
 
-      ip route add default via 192.168.0.1
 
-### Les interfaces virtuelles
+### Ajouter une gateway
+
+```bash
+sudo ip route add default via 192.168.0.1
+```
+
+## Les interfaces virtuelles
 
 La création d'interfaces virtuelles permet de donner plusieurs adresses IP à une même carte réseau.
 
@@ -3148,25 +3271,29 @@ Cela permet par exemple de créer une adresse ip fixe pour une entrée DNS tout 
 
 La ligne de commande est du type :
 
-    ip link add link DEVICE name NAME type vlan
+```bash
+sudo ip link add link DEVICE name NAME type vlan
+```
 
 Voir <https://www.systutorials.com/docs/linux/man/8-ip-link/>
 
-### Fixer le nom de machine
+# Fixer le nom de machine
 
-La commande **hostname** permet à la fois de consulter et de changer le nom de la machine.
+La commande **`hostname`** permet à la fois de consulter et de changer le nom de la machine.
 
-Il est maintenant souhaitable d'utiliser la commande **hostnamectl** par exemple comme suit :
+Il est maintenant souhaitable d'utiliser la commande **`hostnamectl`** par exemple comme suit :
 
-> hostnamectl set-hostname luciole
+```bash
+sudo hostnamectl set-hostname luciole
+```
 
-En effet de nombreuse machines recoivent leur nom par la couche réseau lors du boot comme par exemple les images cloud.
+En effet de nombreuse machines reçoivent leur nom par la couche réseau lors du boot comme par exemple les images cloud.
 
 Attention il ne s'agit pas du Fully Qualified Domain Name, mais seulement du nom de la machine sans le nom de domaine.
 
 Il est possible aussi de modifier le nom de façon définitive via le fichier /etc/hostname
 
-### Positionner le reverse
+# Positionner le reverse
 
 Pour ne pas être considéré comme spameur lors de l'envoi de mail il faut positionner le \"reverse\" du serveur sur le même Full Qualified Domain Name (fqdn), c'est-à-dire que si on fait une recherche du nom de la machine à partir de son adresse ip, le résultat doit être le nom de la machine suivi de son domaine.
 Pour cela il faut :
@@ -3175,7 +3302,7 @@ Pour cela il faut :
     - Aller sur l'interface d'administration du serveur (Scaleway, OVH, Gandi, etc) ;
     - Modifier le reverse en donnant le fqdn de la machine.
 
-Pour vérifier, il suffira de comparer l'adresse obtenue avec \"dig \$FQDN\_Du\_Serveur\" avec \"dig -x \$IP\_Du\_Serveur\".
+Pour vérifier, il suffira de comparer l'adresse obtenue avec `dig $FQDN_Du_Serveur` avec `dig -x $IP_Du_Serveur`.
 
 ### Démarrage et arrêt du réseau
 
@@ -3185,99 +3312,114 @@ La commande **/etc/init.d/networking start** permet de démarrer la couche rése
 
 La commande **dig** permet de réaliser la résolution de nom.
 
-La commande **dig -x \$ADRESSE\_IP** permet de réaliser la résolution inverse.
+La commande **`dig -x \$ADRESSE\_IP`** permet de réaliser la résolution inverse.
 
-Le fichier **/etc/resolv.conf** est utilisé pour connaître les adresses des DNS.
+Le fichier **`/etc/resolv.conf`** est utilisé pour connaître les adresses des DNS.
 
-### La modification du fichier /etc/hosts
+## La modification du fichier `/etc/hosts`
 
-Le fichier */etc/hosts* contient les adresses et noms des machines connues.
+Le fichier *`/etc/hosts`* contient les adresses et noms des machines connues.
 
 On y trouve au minimum la définition du loopback et de la machine.
 
 Les valeurs qui y sont priment sur la résolution DNS.
 
 Exemple :
+```bash
+cat /etc/hosts
+```
 
-    michaellaunay@griffon:~$ cat /etc/hosts
-    127.0.0.1 localhost griffon griffon.ecreall.com
-    88.191.77.45    griffon.ecreall.com
+```
+127.0.0.1 localhost griffon griffon.ecreall.com
+88.191.77.45    griffon.ecreall.com
+```
 
 La modification est triviale puisqu'il suffit d'ajouter une ligne \$Adresse \$Nom1 \$Nom2.
 
-### Les outils et commandes de tests réseau
+# Les outils et commandes de tests réseau
 
-#### ping
+## ping
 
 La commande **ping** permet d'envoyer des paquets ICMP à une machine distante pour tester la connectivité du réseau.
 
-#### host
+## host
 
 Un autre utilitaire de résolution de nom de domaine.
 
-#### Traceroute
+## Traceroute
 
 La commande **traceroute** permet de connaître les noeuds du réseau nous séparant d'un machine cible.
 
-#### netstat
+## netstat
 
 La commande **netstat** permet de connaître le statut des connexions réseaux.
 
-**netstat -tp** permet de voir les connexions restées ouvertes et les processus associés.
+**`netstat -tp`** permet de voir les connexions restées ouvertes et les processus associés.
 
 Exemple :
+```bash
+sudo netstat -taupe
+```
 
-    root@luciole:~# netstat -taupe
-    Connexions Internet actives (serveurs et établies)
-    Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat       User       Inode       PID/Program name
-    tcp        0      0 luciole.local:34978     ecs.amazonaws.com:www   ESTABLISHED michaellaunay 53652       11400/gvfsd-http
-    tcp        1      0 luciole.local:35516     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 50142       11400/gvfsd-http
-    tcp        1      0 luciole.local:50217     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 53380       11400/gvfsd-http
-    tcp        1      0 luciole.local:35515     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 50135       11400/gvfsd-http
-    tcp        0      0 luciole.local:34979     ecs.amazonaws.com:www   ESTABLISHED michaellaunay 53668       11400/gvfsd-http
+```
+Connexions Internet actives (serveurs et établies)
+Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat       User       Inode       PID/Program name
+tcp        0      0 luciole.local:34978     ecs.amazonaws.com:www   ESTABLISHED michaellaunay 53652       11400/gvfsd-http
+tcp        1      0 luciole.local:35516     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 50142       11400/gvfsd-http
+tcp        1      0 luciole.local:50217     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 53380       11400/gvfsd-http
+tcp        1      0 luciole.local:35515     ecs.amazonaws.com:www   CLOSE_WAIT  michaellaunay 50135       11400/gvfsd-http
+tcp        0      0 luciole.local:34979     ecs.amazonaws.com:www   ESTABLISHED michaellaunay 53668       11400/gvfsd-http
+
+```
 
 Permet de voir des connexions en direction du cloud d'Amazon, un *cat /proc/11400/cmd* donne :
 
-    root@luciole:~# cat /proc/11400/cmd
-    /usr/lib/gvfs/gvfsd-http--spawner:1.82/org/gtk/gvfs/exec_spaw/0
+```bash
+sudo cat /proc/11400/cmd
+```
+
+```
+/usr/lib/gvfs/gvfsd-http--spawner:1.82/org/gtk/gvfs/exec_spaw/0
+```
 
 On voit que la commande est *spawnée* ce qui signifie que si on la *kill* elle sera relancée par le système.
 
 Après quelques recherches, il s'avère que c'est l'application *Rhythmbox* qui va chercher les couvertures des albums écoutés en utilisant le service gvfs.
 
-#### tcpdump
+## tcpdump
 
-La commande **tcpdump** permet \"d'espionner\" ce qui se passe sur nos interfaces réseau.
+La commande **`tcpdump`** permet "d'espionner" ce qui se passe sur nos interfaces réseau.
 
-#### nmap
+## nmap
 
-La commande **nmap** permet de scanner les ports d'une machine et donc de faire un diagnostic des éventuelles portes d'entrée.
+La commande **`nmap`** permet de scanner les ports d'une machine et donc de faire un diagnostic des éventuelles portes d'entrée.
 
-#### ngrep
+## ngrep
 
-La commande **ngrep** permet de n'afficher les paquets réseau qu'à la condition qu'ils contiennent la chaîne cherchée.
+La commande **`ngrep`** permet de n'afficher les paquets réseau qu'à la condition qu'ils contiennent la chaîne cherchée.
 
-#### wireshark
+## wireshark
 
-Elle permet d'ausculter les paquets réseau comme ceux enregistrés par **tcpdump**.
+Elle permet d'ausculter les paquets réseau comme ceux enregistrés par **`tcpdump`**.
 
-#### last
+## last
 
-La commande **last** permet de connaître les derniers *login* réalisés sur la machine, leur date et adresse d'origine.
+La commande **`last`** permet de connaître les derniers *login* réalisés sur la machine, leur date et adresse d'origine.
 
 # Gestion des paquetages et installation de logiciels sous Ubuntu
-### Ubuntu, un système \"Grand Public\"
+
+## Ubuntu, un système \"Grand Public\"
 
 Ubuntu simplifie extrêmement l'installation et devient donc facile d'accès pour un non linuxien.
 
-### Quelle version choisir et pour quel usage ?
+## Quelle version choisir et pour quel usage ?
 
 Il existe deux types de versions :
 
 > -   Une version serveur, dépouillée d'interface graphique, permettant d'utiliser RAID et LVM,
 > -   Une version pc de bureau, utilisant Gnome.
 
-### Les dépôts
+## Les dépôts
 
 Nous avons vu précédemment la gestion graphique des dépôts.
 
@@ -3285,48 +3427,59 @@ Nous pouvons éditer le fichier */etc/apt/sources.list* et ajouter des dépôts.
 
 Exemple :
 
-    echo "deb http://packages.medibuntu.org/ karmic free non-free" >> /etc/apt/sources.list*
+```bash
+sudo echo "deb http://packages.medibuntu.org/ karmic free non-free" >> /etc/apt/sources.list*
+```
 
 Toutefois il faudra télécharger la clé d'authentification du nouveau dépôt et l'ajouter avec :
 
-    wget -q http://fr.packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
+```bash
+sudo wget -q http://fr.packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
+```
 
 Puis mettre à jour le cache avec **apt update**
 
-### Installation de paquets
+## Installation de paquets
 
-La commande **apt install \$NOM\_PAQUET** permet d'installer des paquets :
+La commande **`apt install $NOM_PAQUET`** permet d'installer des paquets :
 
-    apt install libdvdread7 mkisofs dvdbackup dvdauthor oggvideotools ffmpeg
-    apt install libavcodec-58 libavdevice58 libavformat58
+```bash
+sudo apt install libdvdread7 mkisofs dvdbackup dvdauthor oggvideotools ffmpeg
+sudo apt install libavcodec-58 libavdevice58 libavformat58
+```
 
-### Suppression de paquets
+## Suppression de paquets
 
-Pour supprimer un paquet on utilise **apt remove \$NOM\_PAQUET**.
+Pour supprimer un paquet on utilise **`apt remove $NOM_PAQUET`**.
 
-### Informations sur les paquetages
+## Informations sur les paquetages
 
-Pour avoir la liste des paquets installés **dpkg -l**.
+Pour avoir la liste des paquets installés **`dpkg -l`**.
 
-### Recherche de paquetages
+## Recherche de paquetages
 
-La commande **apt search \$MOT\_CLE** permet de chercher un paquet à partir d'un mot de sa description.
+La commande **`apt search $MOT_CLE`** permet de chercher un paquet à partir d'un mot de sa description.
 
-### Mise à jour des paquetages
+## Mise à jour des paquetages
 
 Pour mettre à jour la distribution :
+```bash
+sudo apt update
+sudo apt upgrade
+```
 
-    apt update
-    apt upgrade
-
-### Installation avec paramétrage
+## Installation avec paramétrage
 
 Pour installer un paquet en fournissant les réponses aux questions interactives et donc pourvoir scripter l'installation, il faut utiliser **debconf**.
 
 Par exemple pour connaître les paramètres du paquet **postfix** :
 
-    root@luciole:~# apt install debconf 
-    root@luciole:~# debconf-show postfix
+```bash
+sudo apt install debconf 
+sudo debconf-show postfix
+```
+
+```
       postfix/main_cf_conversion_warning: true
       postfix/sqlite_warning:
       postfix/recipient_delim: +
@@ -3352,19 +3505,22 @@ Par exemple pour connaître les paramètres du paquet **postfix** :
       postfix/procmail: false
       postfix/destinations: $myhostname, luciole.ecreall.com, localhost
       postfix/relayhost:
+```
 
-Puis pour fixer les valeurs ::
+Puis pour fixer les valeurs :
 
-:   debconf-set-selections
+```bash
+sudo debconf-set-selections
+```
 
-### Interfaces graphiques
+## Interfaces graphiques
 
 Il existe deux types d'interfaces graphiques, une en mode texte
-**aptitude** et une dans X11 **synaptic**.
+**`aptitude`** et une dans X11 **synaptic**.
 
-### Commande alien
+## Commande alien
 
-La commande alien permet de transformer un paquet *rpm* en paquet debian
+La commande `alien` permet de transformer un paquet *rpm* en paquet debian
 et donc de pouvoir l'installer.
 
 # Apache
@@ -3373,19 +3529,20 @@ et donc de pouvoir l'installer.
 
 # Postfix
 [[Postfix]]
-## MySQL
-### Présentation
+
+# MySQL
+## Présentation
 
 MySQL est une base de données légère facile à mettre en œuvre est très utilisée par les sites web, on lui préfèrera MariaDB (<https://mariadb.com/fr/>) ou mieux PostgresSQL
 (<https://www.postgresql.org/>). À noter que MariaDB possède des offres serverless.
 
 Son utilisation est libre, mais si les sources de l'application réalisée ne sont pas en GPL, il faut s'acquitter de l'achat d'une licence commerciale.
 
-### Installation
+## Installation
 
 La commande **apt install mysql-server** permet d'installer le serveur contenant la base de données alors que **apt-get install mysql-client** se contentera d'installer le client.
 
-### Configuration
+## Configuration
 
 À l'installation il est fortement recommandé de donner un mot de passe à l'utilisateur root.
 
@@ -3395,7 +3552,8 @@ Liens :
 > -   <http://fr.wikipedia.org/wiki/Mysql>
 
 # Sécurisation
-### Certificat X 509
+
+## Certificat X 509
 
 Les certificats X 509 sont utilisés à la fois pour l'authentification et pour le chiffrage des infrastructures à clés publiques (PKI) par exemple dans le protocole ssl lors des connexions ssh (port 22) ou https (port 443).
 
@@ -3405,11 +3563,16 @@ Si l'autorité de certification est connue du navigateur, la connexion se fera s
 
 Toutefois, il est possible de disposer des avantages du chiffrement sans passer par une autorité *de confiance*, en utilisant un certificat *auto-signé* :
 
-    root@monserveur:~# make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/ssl/apache2/ssl/ssl.monsite.com.pem
-    root@monserveur:~# vim /etc/apache2/sites-available/ssl.monsite.com
-    #remove SSLCertificateFile and update SSLCertificateKeyFile with
-    SSLCertificateKeyFile /etc/apache2/ssl/ssl.monsite.com.pem
-    root@monserveur:~# service apache2 restart
+```bash
+sudo make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/ssl/apache2/ssl/ssl.monsite.com.pem
+sudo vim /etc/apache2/sites-available/ssl.monsite.com
+```
+Supprimer SSLCertificateFile et mettre à jour SSLCertificateKeyFile 
+SSLCertificateKeyFile /etc/apache2/ssl/ssl.monsite.com.pem
+
+```bash
+sudo service apache2 restart
+```
 
 Mais les certificats autosignés ont l'inconvénient de ne pas avoir d'autorité connue et donc d'être refusé.
 
@@ -3417,44 +3580,59 @@ Nous pouvons utiliser les services let's encrypt qui permettent d'avoir un certi
 
 Configuration de Let's Encrypt pour générer nos certificats ssl :
 ```bash
-apt install apache2 #Si ce n'est pas fait, vérifier que le port http est ouvert sur ufw !
-apt install certbot
-certbot certonly --webroot -w /var/www/html -d URL_De_Mon_Site 
+sudo apt install apache2 #Si ce n'est pas fait, vérifier que le port http est ouvert sur ufw !
+sudo apt install certbot
+sudo certbot certonly --webroot -w /var/www/html -d URL_De_Mon_Site 
 ```
 
 Vérification de la génération :
 
-    root@triticale:~# openssl x509 -noout -text -in /etc/letsencrypt/live/URL_De_Mon_Site/fullchain.pem | grep "Not After"
-            Not After : Aug  5 11:25:06 2020 GMT
+```bash
+sudo openssl x509 -noout -text -in /etc/letsencrypt/live/URL_De_Mon_Site/fullchain.pem | grep "Not After"
+```
 
-Modifier le cron de renouvellement \"/etc/cron.d/certbot\" et mettre :
+```
+Not After : Aug  5 11:25:06 2020 GMT
+```
 
-    0 \*/12 \* \* \* root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew --apache
+
+Modifier le cron de renouvellement `/etc/cron.d/certbot` et mettre :
+
+```
+0 \*/12 \* \* \* root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew --apache
+```
 
 Forcer le renouvellement :
 
-    certbot renew --force-renewal #Pour forcer le renouvellement de tous les noms de domaines
+Pour forcer le renouvellement de tous les noms de domaines
+```bash
+sudo certbot renew --force-renewal
+```
 
-    certbot -d michaellaunay.ecreall.com --force-renewal # Pour renouveler un domaine en particulier
+Pour renouveler un domaine en particulier
+```bash
+sudo certbot -d michaellaunay.ecreall.com --force-renewal
+```
+
 
 Liens :
 
 > -   <http://doc.ubuntu-fr.org/tutoriel/securiser_apache2_avec_ssl>
 > -   <http://fr.wikipedia.org/wiki/X.509>
 
-### postgrey
+# postgrey
 
 **postgrey** est un paquet de configuration de *postfix* permettant de différer la réception des mails des serveurs inconnus.
 
 Le but est d'éliminer les spams, car les serveurs de spams ne prennent pas la peine de renvoyer un courrier dont la réception est différée.
 
-### fail2ban
+# fail2ban
 
 Fail2ban est un démon qui permet de modifier les règles du firewall pour bannir pendant un temps déterminé les adresses IP qui ont échoué plusieurs connexions de suite à l'un des services du serveur.
 
 Le temps d'exclusion, le nombre de tentatives tolérées, les adresses non bannies sont configurables via les fichiers /etc/fail2ban/fail2ban.conf et /etc/fail2ban/jail.conf.
 
-### Docker
+# Docker
 
 [[Docker]]
 
@@ -3462,15 +3640,16 @@ Le temps d'exclusion, le nombre de tentatives tolérées, les adresses non banni
 
 [[git]]
 
-### Visual code
+# Visual code
 [[Visual studio code]]
 
-### Site de tests des requêtes html
+# Site de tests des requêtes html
 
 Pour tester les différentes requêtes du web :
     https://httpbin.org
 
-### Capturer la session en cours
+# Capturer la session en cours
+
 Ubuntu inclut un outil de capture d'écran appelé Screenshot pour l'image est Screencast pour la vidéo, pour le déclencher faire la combinaison de touches :
 
 > Ctrl+Alt+Shift+R
@@ -3479,12 +3658,17 @@ Pour interrompre la session, faire la même combinaison de touches.
 
 Il est possible de le lancer en ligne avec par exemple un délai avant enregistrement, mais il ne prend alors qu'un seul cliché à la fois:
 
-> gnome-screenshot -d 30 -f /tmp/capture.png \#Dans 30s prend une
-> capture et l'enregistre au format png
+```bash
+gnome-screenshot -d 30 -f /tmp/capture.png 
+```
+Ce qui dans 30s prend une capture et l'enregistre au format png.
 
 Par défaut le temps de capture de screencast est positionné à 30s pour le changer :
 
-    gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 240 #remplacer 240s par ce que nous voulons
+```bash
+gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 240
+```
+Remplaçons 240s par ce que nous voulons
 
 ### Formats de fichier de configuration
 
