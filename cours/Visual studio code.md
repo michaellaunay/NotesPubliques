@@ -149,7 +149,8 @@ Pour revenir à la position précédente du curseur `Alt <-` que l'on peut encha
 L’auto-complétion est automatique, mais il arrive que nous devions la déclencher. L’auto-complétion est appelée par `Ctrl+Espace`
 
 ## Refactoring
-Lorsque nous sélectionnons un morceau de texte puis que nous appuyons sur F2, alors si nous modifions la zone de texte la modification est reportée sur tous les fichiers. C'est ce que nous appelons le **Refactoring**.
+Lorsque nous sélectionnons un morceau de texte puis que nous appuyons sur `F2` ou `Ctrl+Maj+R` sur Ubuntu, alors une variable peut être déplacée vers un autre fichier et l'import sera ajouté.
+Si nous faisons `Maj+F2` alors si nous modifions la zone de texte la modification est reportée sur tous les fichiers. C'est ce que nous appelons le **Refactoring**.
 
 # Paramétrer git et copilot
 Ouvrir son dossier.
@@ -161,21 +162,21 @@ Choisir le compte ou le créer.
 
 # Liste des racourcis clavier
 ## Général
-Ctrl+Maj+P, F1 Afficher la palette de commandes
-Ctrl+P Ouverture rapide, Aller au fichier... 
-Ctrl+Maj+N Nouvelle fenêtre/instance
-Ctrl+W Fermer la fenêtre/instance
-Ctrl+, Paramètres utilisateur
-Ctrl+K Ctrl+S Raccourcis clavier 
+`Ctrl+Maj+P`, `F1` Afficher la palette de commandes
+`Ctrl+P` Ouverture rapide, Aller au fichier... 
+`Ctrl+Maj+N` Nouvelle fenêtre/instance
+`Ctrl+W` Fermer la fenêtre/instance
+`Ctrl+` Paramètres utilisateur
+`Ctrl+K+S` Raccourcis clavier, ce qui permet à la fois de trouver une fonction et de changer son raccourci.
 
 ## Édition basique
-Ctrl+X Couper la ligne (sélection vide)
-Ctrl+C Copier la ligne (sélection vide)
-Alt+ ↓ / ↑ Déplacer la ligne vers le bas/haut
-Ctrl+Maj+K Supprimer la ligne
-Ctrl+Entrée / Ctrl+Maj+Entrée Insérer une ligne en dessous/au-dessus
-Ctrl+Maj+\ Aller à la parenthèse/bracket correspondant
-Ctrl+] / Ctrl+\[ Indentation/Outdentation de la ligne
+`Ctrl+X` Couper la ligne (sélection vide)
+`Ctrl+C` Copier la ligne (sélection vide)
+`Alt+↓` / `Alt+↑` Déplacer la ligne vers le bas/haut
+`Ctrl+Maj+K` Supprimer la ligne
+`Ctrl+Entrée` / `Ctrl+Maj+Entrée` Insérer une ligne en dessous/au-dessus
+`Ctrl+Maj+\` Aller à la parenthèse/crochet (`bracket`) correspondant
+`Ctrl+Tab right` (tabulation à droite) / `Ctrl+tab left` (tabulation à gauche) Indentation/Désindentation de la ligne
 
 ## Début / Fin Aller au début/fin de la ligne
 Ctrl+ Début / Fin Aller au début/fin du fichier
