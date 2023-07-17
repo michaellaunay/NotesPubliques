@@ -44,9 +44,11 @@ Le fichier de configuration principal de Postfix est /etc/postfix/main.cf.
 Selon que notre serveur est la destination finale des emails ou simplement un relais, nous définissons ou non la variable "mydestination".
 
 Voici un exemple de fichier de configuration pour un serveur qui est la destination finale des emails :
+```bash
+cat /etc/postfix/main.cf
+```
 
 ```
-michaellaunay@monserveur:~$ cat /etc/postfix/main.cf
 biff = no
 append_dot_mydomain = no
 readme_directory = no
@@ -64,7 +66,7 @@ header_checks = regexp:/etc/postfix/header_checks
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 relayhost =
-mydestination = masoci
+mydestination = masociete.com
 ```
 
 # Configuration de spf
