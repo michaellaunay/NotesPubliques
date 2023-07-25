@@ -58,8 +58,7 @@ Plan du cours :
 ## 1.1 Importance de l'automatisation du Web
 
 L'automatisation Web est utilisée dans une variété de contextes, notamment le test de logiciels, l'analyse de données et le web scraping. Il peut également être utilisé pour effectuer des tâches répétitives, comme remplir des formulaires Web ou cliquer sur des boutons.
-
-L'automatisation Web peut améliorer la précision, l'efficacité et la cohérence de ces tâches. Elle peut également aider à identifier les problèmes et les erreurs plus rapidement que les tests manuels. 
+Elle aide à identifier les régressions et les erreurs plus rapidement que les tests manuels. 
 
 ## 1.2 Présentation de Selenium
 
@@ -222,19 +221,19 @@ L'une des tâches les plus importantes lors de l'utilisation de Selenium est de 
 
 Trouver les meilleurs sélecteurs peut être un défi. Voici quelques stratégies que nous pouvons utiliser :
 
-### 4.2.1 Utilisez les ID et les noms lorsque c'est possible
+### 4.2.1 Utiliser les ID et les noms lorsque c'est possible
 
    Les ID et les noms sont les moyens les plus simples et les plus directs de localiser les éléments. Ils sont également les plus rapides car ils sont indexés par le navigateur.
 
-### 4.2.2 Préférez les sélecteurs CSS aux XPath
+### 4.2.2 Préférer les sélecteurs CSS aux XPath
 
    Les sélecteurs CSS sont généralement plus lisibles et plus faciles à écrire que les XPath. Ils sont aussi plus rapides dans la plupart des navigateurs.
 
-### 4.2.3 Évitez les sélecteurs trop spécifiques
+### 4.2.3 Éviter les sélecteurs trop spécifiques
 
    Si un sélecteur est trop spécifique, il peut facilement être brisé si la structure de la page change légèrement. Essayons de trouver un équilibre entre spécificité et robustesse.
 
-### 4.2.4 Utilisez des outils de développement
+### 4.2.4 Utiliser des outils de développement
 
    Les outils de développement de notre navigateur peuvent être très utiles pour trouver les meilleurs sélecteurs. Ils nous permettent d'inspecter les éléments et de tester nos sélecteurs en temps réel.
 
@@ -320,22 +319,30 @@ Les formulaires web sont une composante essentielle de nombreux sites web, que c
 
 ## 6.1.1 Entrée de texte
 
-   Pour entrer du texte dans un champ de saisie, nous utilisons la méthode `send_keys`. Par exemple, si nous avons localisé un champ de saisie dans la variable `input_field`, nous pouvons entrer le texte "Hello, world!" de cette façon : `input_field.send_keys("Hello, world!")`.
+   Pour entrer du texte dans un champ de saisie, nous utilisons la méthode `send_keys`. Par exemple, si nous avons localisé un champ de saisie dans la variable `input_field`, nous pouvons entrer le texte "Hello, world!" de cette façon : 
+
+```python
+input_field.send_keys("Hello, world!")
+```
 
 ### 6.1.2 Click
 
-   Pour cliquer sur un bouton ou un lien, nous utilisons la méthode `click`. Par exemple, si nous avons localisé un bouton dans la variable `button`, nous pouvons cliquer sur ce bouton de cette façon : `button.click()`.
+   Pour cliquer sur un bouton ou un lien, nous utilisons la méthode `click`. Par exemple, si nous avons localisé un bouton dans la variable `button`, nous pouvons cliquer sur ce bouton de cette façon :
+ 
+```python
+button.click()
+```
 
 ### 6.1.3 Sélection d'options dans les menus déroulants
 
    Pour sélectionner une option dans un menu déroulant, nous devons d'abord localiser l'élément `select`, puis utiliser la classe `Select` de Selenium. Par exemple, si nous avons localisé un menu déroulant dans la variable `dropdown`, nous pouvons sélectionner l'option avec la valeur "option1" de cette façon :
 
-   ```python
-   from selenium.webdriver.support.ui import Select
+```python
+from selenium.webdriver.support.ui import Select
 
-   select = Select(dropdown)
-   select.select_by_value("option1")
-   ```
+select = Select(dropdown)
+select.select_by_value("option1")
+```
 
 ## 6.2 Gestion des alertes JavaScript
 
@@ -358,38 +365,36 @@ alert.dismiss()
 
 Nous savons maintenant comment interagir avec les éléments web en utilisant Selenium.
 
-@TODO consolider à partir d'ici :
-
 # 7. Attentes implicites et explicites
 
-En travaillant avec des pages web, nous devons souvent attendre qu'un certain état soit atteint avant de pouvoir interagir avec la page ou certains éléments. Par exemple, nous devons parfois attendre qu'une page soit complètement chargée, qu'un élément soit rendu, qu'un élément disparaisse, etc. Selenium nous offre deux mécanismes pour gérer ces situations : les attentes implicites et explicites.
+En travaillant avec des pages web, nous devons souvent attendre qu'un certain état soit atteint avant de pouvoir interagir avec la page ou ses éléments. Par exemple, nous devons parfois attendre qu'une page soit complètement chargée, qu'un élément soit rendu, qu'un élément disparaisse, etc. Selenium nous offre deux mécanismes pour gérer ces situations : les attentes implicites et explicites.
 
 ## 7.1 Différence entre attentes implicites et explicites
 
 ### 7.1.1 Attentes implicites
 
-   Une attente implicite indique à WebDriver d'attendre un certain temps par défaut avant de lancer une exception si l'élément n'est pas trouvé. Il s'agit d'une attente globale qui s'applique à toutes les tentatives de localisation d'éléments. Voici comment nous définissons une attente implicite :
+Une attente implicite indique à WebDriver d'attendre un certain temps par défaut avant de lancer une exception si l'élément n'est pas trouvé. Il s'agit d'une attente globale qui s'applique à toutes les tentatives de localisation d'éléments. Voici comment nous définissons une attente implicite :
 
-   ```python
-   driver.implicitly_wait(10)  # attend jusqu'à 10 secondes
-   ```
+```python
+driver.implicitly_wait(10)  # attend jusqu'à 10 secondes
+```
 
-   Dans cet exemple, si WebDriver ne trouve pas immédiatement un élément, il attendra jusqu'à 10 secondes avant de lancer une `NoSuchElementException`.
+Dans cet exemple, si WebDriver ne trouve pas immédiatement un élément, il attendra jusqu'à 10 secondes avant de lancer une `NoSuchElementException`.
 
 ### 7.1.2 Attentes explicites
 
-   Une attente explicite est une attente spécifique pour une certaine condition. Contrairement à l'attente implicite, elle ne s'applique qu'à une seule tentative de localisation d'élément. Les attentes explicites sont généralement préférées aux attentes implicites, car elles permettent une plus grande flexibilité et peuvent résoudre des problèmes de synchronisation plus complexes. Voici comment nous définissons une attente explicite :
+Une attente explicite est une attente spécifique pour une certaine condition. Contrairement à l'attente implicite, elle ne s'applique qu'à une seule tentative de localisation d'élément. Les attentes explicites sont généralement préférées aux attentes implicites, car elles permettent une plus grande flexibilité et peuvent résoudre des problèmes de synchronisation plus complexes. Voici comment nous définissons une attente explicite :
 
-   ```python
-   from selenium.webdriver.support.ui import WebDriverWait
-   from selenium.webdriver.support import expected_conditions as EC
-   from selenium.webdriver.common.by import By
+```python
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
-   wait = WebDriverWait(driver, 10)
-   element = wait.until(EC.presence_of_element_located((By.ID, 'someid')))
-   ```
+wait = WebDriverWait(driver, 10)
+element = wait.until(EC.presence_of_element_located((By.ID, 'someid')))
+```
 
-   Dans cet exemple, WebDriver attendra jusqu'à 10 secondes que l'élément avec l'ID 'someid' soit présent dans la page. Si l'élément est trouvé avant l'expiration du délai, il est immédiatement retourné. Si le délai expire avant que l'élément soit trouvé, une `TimeoutException` est lancée.
+Dans cet exemple, WebDriver attendra jusqu'à 10 secondes que l'élément avec l'ID 'someid' soit présent dans la page. Si l'élément est trouvé avant l'expiration du délai, il est immédiatement retourné. Si le délai expire avant que l'élément soit trouvé, une `TimeoutException` est lancée.
 
 ## 7.2 Utilisation des attentes pour résoudre les problèmes de synchronisation
 
@@ -415,37 +420,46 @@ Lorsque nous travaillons avec des applications web modernes, il n'est pas rare d
 
 ### 8.1.1 Fenêtres multiples
 
-   Chaque fenêtre ou onglet ouvert dans une session de navigateur a un identifiant unique appelé "handle". Nous pouvons utiliser ces handles pour passer d'une fenêtre ou d'un onglet à un autre. Voici comment nous pouvons faire cela :
+Chaque fenêtre ou onglet ouvert dans une session de navigateur a un identifiant unique appelé "handle". Nous pouvons utiliser ces handles pour passer d'une fenêtre ou d'un onglet à un autre. Voici comment nous pouvons faire cela :
 
-   ```python
-   # Stocker le handle de la fenêtre principale
-   main_window = driver.current_window_handle
+```python
+# Stocker le handle de la fenêtre principale
+main_window = driver.current_window_handle
 
-   # Ouvrir une nouvelle fenêtre ou un nouvel onglet
+# Ouvrir une nouvelle fenêtre ou un nouvel onglet
+... # Faire des actions qui déclenche l'ouverture
+# Ou si nous souhaitons forcer l'ouverture
+driver.execute_script("window.open();")
 
-   # Passer à la nouvelle fenêtre ou onglet
-   new_window = [window for window in driver.window_handles if window != main_window][0]
-   driver.switch_to.window(new_window)
+# Passer à la nouvelle fenêtre ou onglet
+new_window = [window for window in driver.window_handles if window != main_window][0]
+driver.switch_to.window(new_window)
 
-   # Interagir avec la nouvelle fenêtre ou onglet
+# Interagir avec la nouvelle fenêtre ou onglet
+...
 
-   # Retourner à la fenêtre principale
-   driver.switch_to.window(main_window)
-   ```
+# Retourner à la fenêtre principale
+driver.switch_to.window(main_window)
+```
+
+Normalement l'ouverture d'une nouvelle fenêtre est la conséquence d'une action. Ici nous avons "forcer" l'ouverture avec `driver.execute_script("window.open();")` qui est une astuce. Lorsque nous travaillons avec des navigateurs Web dans Selenium, nous n'avons pas directement de méthode pour ouvrir une nouvelle fenêtre ou un nouvel onglet. Cependant, nous pouvons contourner cette limitation en utilisant la méthode `execute_script` pour exécuter un peu de JavaScript dans le contexte de la page Web.
+
+L'instruction `window.open();` est une commande JavaScript qui ouvre une nouvelle fenêtre ou un nouvel onglet dans le navigateur. En l'exécutant avec la méthode `execute_script`, nous pouvons utiliser Selenium pour simuler le comportement d'un utilisateur qui ouvre une nouvelle fenêtre ou un nouvel onglet. Cela peut être utile dans divers scénarios de test, tels que tester comment notre application se comporte lorsque l'utilisateur travaille avec plusieurs fenêtres ou onglets.
 
 ### 8.1.2 Cadres
 
-   Les cadres sont des pages web à l'intérieur d'autres pages web. Pour interagir avec les éléments à l'intérieur d'un cadre, nous devons d'abord passer au cadre. Voici comment nous pouvons faire cela :
+Les cadres sont des pages web à l'intérieur d'autres pages web. Pour interagir avec les éléments à l'intérieur d'un cadre, nous devons d'abord passer au cadre. Voici comment nous pouvons faire cela :
 
-   ```python
-   # Passer au cadre
-   driver.switch_to.frame("frame_name_or_id")
+```python
+# Passer au cadre
+driver.switch_to.frame("frame_name_or_id")
 
-   # Interagir avec les éléments à l'intérieur du cadre
+# Interagir avec les éléments à l'intérieur du cadre
+...
 
-   # Revenir au contenu principal
-   driver.switch_to.default_content()
-   ```
+# Revenir au contenu principal
+driver.switch_to.default_content()
+```
 
 ## 8.2 Stratégies pour gérer les fenêtres contextuelles et les annonces
 
@@ -453,15 +467,15 @@ Les fenêtres contextuelles et les annonces peuvent souvent interférer avec nos
 
 ### 8.2.1 Attendre la fenêtre contextuelle ou l'annonce
 
-   Nous pouvons utiliser des attentes explicites pour attendre que la fenêtre contextuelle ou l'annonce apparaisse, puis interagir avec elle (par exemple, la fermer).
+Nous pouvons utiliser des attentes explicites pour attendre que la fenêtre contextuelle ou l'annonce apparaisse, puis interagir avec elle (par exemple, la fermer).
 
 ### 8.2.2 Désactiver les fenêtres contextuelles et les annonces
 
-   Dans certains cas, nous pouvons configurer le navigateur pour désactiver les fenêtres contextuelles et les annonces. Cela dépend du navigateur et de la nature de la fenêtre contextuelle ou de l'annonce.
+Dans certains cas, nous pouvons configurer le navigateur pour désactiver les fenêtres contextuelles et les annonces. Cela dépend du navigateur et de la nature de la fenêtre contextuelle ou de l'annonce.
 
 ### 8.2.3 Ignorer les fenêtres contextuelles et les annonces
 
-   Si la fenêtre contextuelle ou l'annonce n'affecte pas nos scripts, nous pouvons choisir de l'ignorer.
+Si la fenêtre contextuelle ou l'annonce n'affecte pas nos scripts, nous pouvons choisir de l'ignorer.
 
 En maîtrisant la manipulation de fenêtres multiples et de cadres, et en élaborant des stratégies pour gérer les fenêtres contextuelles et les annonces, nous savons maintenant interagir efficacement avec des applications web complexes.
 
@@ -545,12 +559,12 @@ Voici un exemple de code pour exécuter un test avec Selenium Grid :
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-hub_url = "http://localhost:4444/wd/hub"  # Remplacer par l'URL de votre hub
+hub_url = "http://localhost:4444/wd/hub"  # Remplacer par l'URL de notre hub
 desired_cap = DesiredCapabilities.CHROME  # Remplacer par le navigateur souhaité
 
 driver = webdriver.Remote(command_executor=hub_url, desired_capabilities=desired_cap)
 
-# Écrivez ici votre code de test
+# Écrivons ici notre code de test
 
 driver.quit()
 ```
@@ -571,10 +585,22 @@ Et pour démarrer un node, nous utilisons la commande suivante :
 java -jar selenium-server-standalone-3.x.y.jar -role node -hub http://localhost:4444/grid/register
 ```
 
-Notez que dans ces commandes, "3.x.y" doit être remplacé par le numéro de version de Selenium Server que vous avez téléchargé, et "localhost:4444" doit être remplacé par l'adresse et le port de votre hub.
+Notons que dans ces commandes, "3.x.y" doit être remplacé par le numéro de version de Selenium Server que nous avons téléchargé, et "localhost:4444" doit être remplacé par l'adresse et le port de votre hub.
 
 En maîtrisant Selenium Grid, nous pouvons automatiser des fermes de navigateurs de tests et ainsi paramétrer des scénarios très complexes de validation.
 
+# Documentation
+
+Selenium a une documentation assez complète qui est répartie en plusieurs endroits, voici les principaux liens vers ces ressources :
+
+1. **Documentation principale de Selenium** : Nous trouverons des guides, des tutoriels, des références d'API et d'autres ressources pour Selenium sur la page principale de la documentation de Selenium : https://www.selenium.dev/documentation/
+
+2. **Référence de l'API Python pour Selenium** : La référence de l'API Python pour Selenium donne des informations détaillées sur toutes les classes, méthodes et fonctions disponibles dans le binding Python de Selenium. Vous pouvez la trouver ici : https://www.selenium.dev/selenium/docs/api/py/
+
+3. **Documentation de Selenium Grid** : Si nous souhaitons en savoir plus sur Selenium Grid, nous pouvons consulter la documentation spécifique à Selenium Grid : https://www.selenium.dev/documentation/grid/
+
+4. **GitHub de Selenium** : Pour des informations encore plus détaillées, y compris des notes de version et du code source, nous pouveons consulter le dépôt GitHub de Selenium : https://github.com/SeleniumHQ/selenium
+
 # Liens
 
-[Xavki](https://youtu.be/ecFpzceYmD4)
+Une démo [Xavki](https://youtu.be/ecFpzceYmD4)
