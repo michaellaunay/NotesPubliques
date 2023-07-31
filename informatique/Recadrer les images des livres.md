@@ -153,3 +153,13 @@ for i, text in enumerate(data["text"]):
 
 ```
 Ce code utilise la fonction `pytesseract.image_to_data()` pour récupérer les informations détaillées de la reconnaissance optique de caractères. Les informations sont stockées dans un dictionnaire Python avec des clés telles que `text`, `left`, `top`, `width`, `height` et `word_num`. Les coordonnées des boîtes englobantes des mots sont calculées en ajoutant les coordonnées du mot à celles de la ligne. Notez que les coordonnées sont exprimées en pixels, en partant du coin supérieur gauche de l'image.
+
+# Liens vers scanners DIY
+
+Scanner de livres utilisant le poids du livre pour appliquer la page contre un vitre:  https://youtu.be/FZcYIXseXkg
+En version automatisée https://youtu.be/aBHgCMeL8OE (qui utilise plein d'astuce comme des filtres polarisants contre les reflets, des ventilateurs pour pousser les pages)
+Sur la même chaîne mécanisme pour tourner automatiquement les pages : https://youtu.be/5AXV9unHvvE
+L'angle optimal est de 112° pour lutter contre les réflexions https://diybookscanner.org/forum/viewtopic.php?f=14&t=3610
+Forum sur la construction : https://diybookscanner.org/forum/viewforum.php?f=14
+Un projet qui fournit les plans et qui semble avoir échangé avec le concepteur japonais Hiroshi Yanagisawa des machines précédentes : https://libreflip.org/
+Pour tourner les pages voir le robot "xArm 6DOF" sur AliExpress
