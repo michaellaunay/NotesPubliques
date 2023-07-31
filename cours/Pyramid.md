@@ -84,7 +84,7 @@ Depuis sa création, Pyramid a été utilisé pour développer une grande varié
 
 Il y a plusieurs raisons pour lesquelles nous pourrions choisir d'utiliser Pyramid pour notre projet :
 
-1. **Flexibilité** : Contrairement à certains autres frameworks, Pyramid ne nous oblige pas à utiliser un certain ensemble d'outils ou de bibliothèques. Nous pouvons choisir ceux qui conviennent le mieux à notre projet.
+1. **Flexibilité** : Contrairement à certains autres frameworks, Pyramid ne nous oblige pas à utiliser un certain ensemble d'outils ou de bibliothèques. nous pouvons choisir ceux qui conviennent le mieux à notre projet.
 
 2. **Évolutivité** : Pyramid est conçu pour être capable de gérer à la fois des applications simples et petites, et des applications très complexes et de grande taille.
 
@@ -104,7 +104,7 @@ L'architecture de Pyramid est basée sur le modèle de conception "colle et outi
 
 Tout d'abord, nous avons besoin de Python pour développer avec Pyramid. Python est le langage de programmation sur lequel Pyramid est construit. Pour installer Python, s'il n'est pas déjà présent sur notre machine ou si la version est trop ancienne, rendons-nous sur le site officiel de Python (https://www.python.org/) et téléchargeons la dernière version. Assurons-nous que Python soit bien installé en ouvrant une console ou un terminal et en tapant `python --version`.
 
-Maintenant que nous avons Python, nous allons installer un environnement virtuel. Un environnement virtuel est un espace isolé où nous pouvons installer les dépendances de notre projet sans interférer avec les autres projets sur notre machine. Nous pouvons installer l'environnement virtuel en utilisant la commande suivante :
+Maintenant que nous avons Python, nous allons installer un environnement virtuel. Un environnement virtuel est un espace isolé où nous pouvons installer les dépendances de notre projet sans interférer avec les autres projets sur notre machine. nous pouvons installer l'environnement virtuel en utilisant la commande suivante :
 
 ```bash
 python -m venv myenv
@@ -148,7 +148,7 @@ Par exemple, pour créer un projet, il faut utiliser cookiecutter "pyramid-cooki
 cookiecutter gh:Pylons/pyramid-cookiecutter-starter
 ```
 
-Ensuite, Cookiecutter nous posera une série de questions pour configurer notre projet. Par exemple, il nous demandera le nom du projet, le nom du dépôt, et le langage de template à utiliser. Nous détaillons ci après ces variables. Pour la plupart de ces questions, nous pouvons simplement appuyer sur Entrée pour accepter la valeur par défaut.
+Ensuite, Cookiecutter nous posera une série de questions pour configurer notre projet. Par exemple, il nous demandera le nom du projet, le nom du dépôt, et le langage de template à utiliser. nous détaillons ci après ces variables. Pour la plupart de ces questions, nous pouvons simplement appuyer sur Entrée pour accepter la valeur par défaut.
 
 Une fois que nous avons répondu à toutes les questions, Cookiecutter créera un nouveau répertoire avec le même nom que le nom du projet que nous avons donné. Ce répertoire contient toute la structure de base de notre projet Pyramid, y compris la configuration, les fichiers de démarrage et le squelette de notre application.
 
@@ -264,7 +264,7 @@ Pour mieux comprendre ces composants, créons une application Pyramid simple. Ce
 
 1. Créons un nouvel environnement virtuel et installons Pyramid comme nous l'avons ci-dessus.
 
-2. Créons un nouveau projet Pyramid en utilisant le gabarit de départ "starter" fourni par Pyramid. Nous pouvons le faire en exécutant la commande :
+2. Créons un nouveau projet Pyramid en utilisant le gabarit de départ "starter" fourni par Pyramid. nous pouvons le faire en exécutant la commande :
 
    ```bash
    pcreate -s starter hello_world
@@ -272,9 +272,9 @@ Pour mieux comprendre ces composants, créons une application Pyramid simple. Ce
 
 3. Si nous examinons le contenu du dossier `hello_world`, nous trouverons plusieurs fichiers et dossiers. Pour l'instant, concentrons-nous sur `development.ini`, `hello_world/__init__.py`, et `hello_world/views.py`.
 
-   - `development.ini` est notre fichier de configuration. Nous pouvons voir qu'il contient plusieurs paramètres, dont certains sont spécifiques à Pyramid.
+   - `development.ini` est notre fichier de configuration. nous pouvons voir qu'il contient plusieurs paramètres, dont certains sont spécifiques à Pyramid.
    
-   - `hello_world/__init__.py` contient la fonction `main()`, qui est le point d'entrée de notre application. Nous pouvons voir qu'elle configure une route et renvoie une instance de l'application.
+   - `hello_world/__init__.py` contient la fonction `main()`, qui est le point d'entrée de notre application. nous pouvons voir qu'elle configure une route et renvoie une instance de l'application.
    
    - `hello_world/views.py` contient notre vue, qui est une simple fonction qui renvoie "Hello, World!".
 
@@ -285,7 +285,7 @@ Construction d'une application Pyramid "Hello, World!"
 
 ### 1.4.1 Configuration des routes
 
-   Comme nous le savons déjà, les routes sont une composante essentielle de toute application Pyramid. Elles définissent comment les URL sont mappées aux vues. Dans notre application "Hello, World!", nous aurons besoin d'une seule route qui mappera l'URL de base (`/`) à notre vue. Nous pouvons le faire dans notre fonction `main()` dans `__init__.py` :
+   Comme nous le savons déjà, les routes sont une composante essentielle de toute application Pyramid. Elles définissent comment les URL sont mappées aux vues. Dans notre application "Hello, World!", nous aurons besoin d'une seule route qui mappera l'URL de base (`/`) à notre vue. nous pouvons le faire dans notre fonction `main()` dans `__init__.py` :
 
    ```python
    config.add_route('home', '/')
@@ -293,7 +293,7 @@ Construction d'une application Pyramid "Hello, World!"
 
 ### 1.4.2 Création des vues
 
-   Les vues sont des fonctions ou des méthodes qui sont appelées en réponse à une requête HTTP. Dans notre cas, nous avons besoin d'une seule vue qui renvoie "Hello, World!". Nous pouvons le faire dans notre fichier `views.py` :
+   Les vues sont des fonctions ou des méthodes qui sont appelées en réponse à une requête HTTP. Dans notre cas, nous avons besoin d'une seule vue qui renvoie "Hello, World!". nous pouvons le faire dans notre fichier `views.py` :
 
    ```python
    from pyramid.view import view_config
@@ -307,12 +307,12 @@ Construction d'une application Pyramid "Hello, World!"
 
 ### 1.4.3 Exécution de l'application
 
-   Nous pouvons maintenant exécuter notre application pour voir si tout fonctionne comme prévu. Pour ce faire, utilisons la commande suivante :
+   nous pouvons maintenant exécuter notre application pour voir si tout fonctionne comme prévu. Pour ce faire, utilisons la commande suivante :
    ```bash
    pserve development.ini
    ```
 
-   Si tout se passe bien, notre serveur sera en cours d'exécution. Ouvrons notre navigateur et allons à `http://localhost:6543/`. Nous devrions voir "Hello, World!".
+   Si tout se passe bien, notre serveur sera en cours d'exécution. Ouvrons notre navigateur et allons à `http://localhost:6543/`. nous devrions voir "Hello, World!".
 
 ### 1.5 Révision et exercices pratiques
 
@@ -334,11 +334,11 @@ Pour renforcer notre compréhension de ces concepts, nous allons maintenant cré
 
 1. **Configuration des routes**
 
-   Nous aurons besoin de deux routes pour notre application : une pour la page d'accueil (`/`) et une pour la page du billet de blog (`/blog/{id}`). Nous pouvons configurer ces routes dans notre fonction `main()`.
+   nous aurons besoin de deux routes pour notre application : une pour la page d'accueil (`/`) et une pour la page du billet de blog (`/blog/{id}`). nous pouvons configurer ces routes dans notre fonction `main()`.
 
 2. **Création des vues**
 
-   Nous aurons également besoin de deux vues pour notre application : une pour la page d'accueil et une pour la page du billet de blog. Nous pouvons créer ces vues dans notre fichier `views.py`.
+   nous aurons également besoin de deux vues pour notre application : une pour la page d'accueil et une pour la page du billet de blog. nous pouvons créer ces vues dans notre fichier `views.py`.
 
 3. **Exécution de l'application**
 
@@ -356,7 +356,7 @@ Une route est essentiellement un moyen de définir comment les requêtes HTTP so
 
 ### 2.1.2 Définir des routes dans Pyramid
 
-Définir des routes dans Pyramid est assez simple. Nous pouvons le faire dans le fichier `__init__.py` de notre application. Par exemple, pour définir une route pour l'URL de base (`/`), nous pouvons ajouter le code suivant à notre fonction `main()` :
+Définir des routes dans Pyramid est assez simple. nous pouvons le faire dans le fichier `__init__.py` de notre application. Par exemple, pour définir une route pour l'URL de base (`/`), nous pouvons ajouter le code suivant à notre fonction `main()` :
 ```python
 config.add_route('home', '/')
 ```
@@ -370,7 +370,7 @@ Parfois, nous voulons définir des routes qui correspondent à plusieurs URL. Py
 config.add_route('blog', '/blog/{id}')
 ```
 
-Ici, `{id}` est une variable de routage. Lorsque Pyramid voit une URL qui correspond au motif, il extrait la partie correspondante de l'URL et la stocke dans la variable `id`. Nous pouvons ensuite accéder à cette variable dans notre vue.
+Ici, `{id}` est une variable de routage. Lorsque Pyramid voit une URL qui correspond au motif, il extrait la partie correspondante de l'URL et la stocke dans la variable `id`. nous pouvons ensuite accéder à cette variable dans notre vue.
 
 ### 2.1.4 Routes statiques et dynamiques
 
@@ -396,7 +396,7 @@ Dans cet exemple, `request` est l'objet de requête que Pyramid passe à notre v
 
 ### 2.2.3 Association des vues aux routes
 
-Pour qu'une vue soit appelée, elle doit être associée à une route. Nous pouvons le faire en utilisant le décorateur `view_config` et en spécifiant le nom de la route. Par exemple, nous pouvons associer la vue `hello_world` à la route 'home' comme suit :
+Pour qu'une vue soit appelée, elle doit être associée à une route. nous pouvons le faire en utilisant le décorateur `view_config` et en spécifiant le nom de la route. Par exemple, nous pouvons associer la vue `hello_world` à la route 'home' comme suit :
 ```python
 from pyramid.view import view_config
 
@@ -409,7 +409,7 @@ Dans cet exemple, lorsque la route 'home' est sollicitée, la fonction `hello_wo
 
 ### 2.2.4 Utilisation des décorateurs de vues
 
-Pyramid fournit plusieurs décorateurs que nous pouvons utiliser pour contrôler le comportement de nos vues. Par exemple, le décorateur `view_config` peut prendre plusieurs arguments qui contrôlent comment la vue est rendue, quel type de requêtes elle peut traiter, etc. Nous approfondirons ces options plus tard dans ce cours.
+Pyramid fournit plusieurs décorateurs que nous pouvons utiliser pour contrôler le comportement de nos vues. Par exemple, le décorateur `view_config` peut prendre plusieurs arguments qui contrôlent comment la vue est rendue, quel type de requêtes elle peut traiter, etc. nous approfondirons ces options plus tard dans ce cours.
 
 ## 2.3 Approfondissement des routes dans Pyramid
 
@@ -424,7 +424,7 @@ Dans cet exemple, `url` sera '/blog/1'. Les générateurs d'URL sont particuliè
 
 ### 2.3.2 Gestion des erreurs 404 avec le système de routage
 
-Parfois, nous voulons personnaliser la page d'erreur 404 de notre application. Pyramid nous permet de le faire en utilisant une vue "not found". Nous pouvons créer une telle vue en utilisant le décorateur `notfound_view_config`. Par exemple :
+Parfois, nous voulons personnaliser la page d'erreur 404 de notre application. Pyramid nous permet de le faire en utilisant une vue "not found". nous pouvons créer une telle vue en utilisant le décorateur `notfound_view_config`. Par exemple :
 
 ```python
 from pyramid.view import notfound_view_config
@@ -443,7 +443,7 @@ Qui sera associée à la "pagetemplate":
       xmlns:tal="http://xml.zope.org/namespaces/tal">
   <body>
     <h1 tal:content="'Page non trouvée'">Page non trouvée</h1>
-    <p>Nous sommes désolés, mais la page que vous cherchez n'existe pas.</p>
+    <p>Nous sommes désolés, mais la page que nous cherchonsn'existe pas.</p>
   </body>
 </html>
 ```
@@ -518,7 +518,7 @@ Chameleon offre une syntaxe riche qui s'appuie sur les standards XML (ZPT, TAL, 
 
 ### 2.5.2 Comment utiliser Chameleon pour créer des templates
 
-Pour créer un template Chameleon, nous créons un fichier avec l'extension .pt (par exemple, index.pt). Nous pouvons alors utiliser la syntaxe de Chameleon pour définir la structure de notre page. Par exemple:
+Pour créer un template Chameleon, nous créons un fichier avec l'extension .pt (par exemple, index.pt). nous pouvons alors utiliser la syntaxe de Chameleon pour définir la structure de notre page. Par exemple:
 
 ```html
 <html>
@@ -616,13 +616,13 @@ La dernière étape est de rendre le template à partir de la vue. Dans Pyramid,
 
 Pyramid.Deform est une bibliothèque qui permet la génération de formulaires HTML à partir de schémas de validation Pyramid et de modèles ZPT (Zope Page Templates). Elle peut aussi bien être utilisée pour des formulaires simples que pour des formulaires complexes, avec des sous-formulaires, des contrôles conditionnels, de l'internationalisation, etc.
 
-Commençons par l'installation de Deform. Nous utilisons pip pour installer le package :
+Commençons par l'installation de Deform. nous utilisons pip pour installer le package :
 
 ```bash
 pip install deform
 ```
 
-Ensuite, nous devons configurer notre application Pyramid pour servir les ressources statiques fournies par Deform. Dans votre fichier de configuration Pyramid, ajoutons la ligne suivante :
+Ensuite, nous devons configurer notre application Pyramid pour servir les ressources statiques fournies par Deform. Dans notre fichier de configuration Pyramid, ajoutons la ligne suivante :
 
 ```python
 config.add_static_view('deform_static', 'deform:static/')
@@ -651,7 +651,7 @@ class RegistrationSchema(Schema):
     )
 ```
 
-Ensuite, nous allons utiliser ce schéma pour générer un formulaire HTML. Dans votre vue Pyramid, nous pouvons créer un formulaire comme ceci :
+Ensuite, nous allons utiliser ce schéma pour générer un formulaire HTML. Dans notre vue Pyramid, nous pouvons créer un formulaire comme ceci :
 
 ```python
 from pyramid.view import view_config
@@ -689,8 +689,6 @@ Pour finir, nous devons rendre le formulaire dans un template. Avec un template 
 ```
 
 Voilà pour les bases de Pyramid.Deform. Lors de notre prochaine session, nous approfondirons ce sujet et explorerons des fonctionnalités plus avancées, comme les sous-formulaires et les widgets personnalisés.
-
-N'hésitez pas à poser des questions si quelque chose n'est pas clair. C'est important pour nous de s'assurer que vous comprenez bien chaque concept. C'est en posant des questions et en
 
 # 3 Gestion des requêtes et réponses
 
@@ -859,7 +857,7 @@ response.set_cookie('mon_cookie', 'valeur', max_age=3600)
 valeur = request.cookies.get('mon_cookie')
 ```
 
-- **Modifier un cookie** : Modifier un cookie est similaire à en créer un. Nous devons simplement définir un nouveau cookie avec le même nom.
+- **Modifier un cookie** : Modifier un cookie est similaire à en créer un. nous devons simplement définir un nouveau cookie avec le même nom.
 
 - **Supprimer un cookie** : Pour supprimer un cookie, utilisons `response.delete_cookie`.
 
@@ -923,7 +921,7 @@ Il est important de noter que les cookies peuvent présenter des risques de séc
 
 ### 3.5.4 Gestion des Secrets dans Pyramid - Utilisation d'un fichier .env
 
-La sécurité est un élément crucial dans le développement d'applications. Nous devons gérer les secrets, tels que les mots de passe et les clés de session, de manière sécurisée. Une pratique courante consiste à utiliser un fichier `.env` pour stocker ces informations sensibles. Le fichier `.env` est placé à la racine de notre projet, mais il est important de l'ignorer dans notre dépôt git pour des raisons de sécurité.
+La sécurité est un élément crucial dans le développement d'applications. nous devons gérer les secrets, tels que les mots de passe et les clés de session, de manière sécurisée. Une pratique courante consiste à utiliser un fichier `.env` pour stocker ces informations sensibles. Le fichier `.env` est placé à la racine de notre projet, mais il est important de l'ignorer dans notre dépôt git pour des raisons de sécurité.
 
 #### 3.5.4.1 Création et gestion du fichier .env
 
@@ -935,7 +933,7 @@ LDAP_LOGIN=NotreLoginLDAP
 LDAP_PASSWORD=NotreMotDePasseLDAP
 ```
 
-    Il est crucial que nous ajoutions `.env` à notre fichier `.gitignore` pour éviter de pousser accidentellement nos secrets vers notre dépôt git. Nous pouvons le faire en ajoutant simplement une ligne à notre fichier `.gitignore`:
+    Il est crucial que nous ajoutions `.env` à notre fichier `.gitignore` pour éviter de pousser accidentellement nos secrets vers notre dépôt git. nous pouvons le faire en ajoutant simplement une ligne à notre fichier `.gitignore`:
 
 ```git
 .env
@@ -943,7 +941,7 @@ LDAP_PASSWORD=NotreMotDePasseLDAP
 
 #### 3.5.4.2 Utilisation de la clé secrète pour les cookies et les sessions
 
-Dans notre projet Pyramid, nous pouvons utiliser la clé secrète stockée dans le fichier `.env` pour générer des cookies et gérer les sessions. Pour cela, nous avons besoin de la bibliothèque `python-dotenv` qui permet d'accéder aux variables d'environnement définies dans le fichier `.env`. Nous pouvons l'installer en utilisant pip:
+Dans notre projet Pyramid, nous pouvons utiliser la clé secrète stockée dans le fichier `.env` pour générer des cookies et gérer les sessions. Pour cela, nous avons besoin de la bibliothèque `python-dotenv` qui permet d'accéder aux variables d'environnement définies dans le fichier `.env`. nous pouvons l'installer en utilisant pip:
 
 ```bash
 pip install python-dotenv
@@ -978,9 +976,94 @@ ldap_login = os.getenv("LDAP_LOGIN")
 ldap_password = os.getenv("LDAP_PASSWORD")
 ```
 
-Ces valeurs peuvent être utilisées pour configurer une connexion LDAP. Assurez-vous de ne jamais insérer directement vos identifiants dans le code.
+Ces valeurs peuvent être utilisées pour configurer une connexion LDAP. Assurez-Nous de ne jamais insérer directement vos identifiants dans le code.
 
-### 3.5.4 Exercices pratiques
+#### 3.5.4.4 Utiliser des variables secrètes définies dans un fichier `.env` dans les fichiers de configuration `.ini`
+
+Nous devons utiliser la bibliothèque `python-dotenv`. Cette bibliothèque permet de charger les variables d'un fichier `.env` dans l'environnement de notre application, ce qui les rend accessibles dans notre fichier `.ini`.
+
+Voici comment procéder :
+
+1. Installons la bibliothèque `python-dotenv` à l'aide de `pip` :
+
+```bash
+pip install python-dotenv
+```
+
+2. Créez un fichier `.env` à la racine de votre projet (au même niveau que le fichier `.ini`) et définissons nos variables secrètes dans ce fichier. Par exemple :
+
+```
+SECRET_KEY=my_secret_key
+DB_PASSWORD=my_db_password
+SMTP_PASSWORD=my_smtp_password
+```
+
+3. Dans notre fichier `.ini`, utilisons les variables secrètes comme suit :
+
+```ini
+[app:main]
+# Utilisons les variables secrètes définies dans .env en les préfixant avec 'env:'
+# Exemple :
+db.password = %(env:DB_PASSWORD)s
+smtp.password = %(env:SMTP_PASSWORD)s
+
+# Autres configurations de notre application
+```
+
+4. Dans le fichier Python où nous configurons notre application Pyramid (par exemple, dans `__init__.py` ou `main.py`), chargeons les variables d'environnement à partir du fichier `.env` en utilisant `dotenv.load_dotenv()` :
+
+```python
+import os
+from dotenv import load_dotenv
+
+def main(global_config, **settings):
+    # Charger les variables d'environnement à partir de .env
+    load_dotenv()
+
+    # Autres configurations de l'application
+
+    return config.make_wsgi_app()
+```
+
+5. Assurons-nous que le fichier `.env` est correctement ignoré par notre système de contrôle de version et est ajouté à notre fichier `.gitignore` si nous utilisons [[git]]. Les fichiers `.env` contenant des informations sensibles ne doivent jamais être inclus dans un dépôt public ou partagé !!!!!
+
+### 3.5.4.5 Valeur par défaut en cas d’absence dans .env
+
+Il n'existe pas de construction conditionnel (pas de tests) dans les fichiers .ini, il faut donc considérer que le .ini contient les valeurs par défaut et tester la présence des valeurs dans le .env pour écraser celles du .ini.
+Nous devons alors utiliser la fonction `os.environ.get()` pour accéder aux variables d'environnement et fournir une valeur par défaut si elles ne sont pas définies.
+
+Voici comment :
+
+1. Supposons que nous avons dans votre fichier `.ini` les variables suivantes :
+
+```ini
+[app:main]
+mail.username = michaellaunay
+mail.password = "Password"
+```
+
+2. Dans le fichier Python où nous configurons notre application Pyramid (par exemple, `__init__.py` ou `main.py`), chargeons les variables d'environnement à partir du fichier `.env` en utilisant `dotenv.load_dotenv()` :
+
+```python
+import os
+from dotenv import load_dotenv
+
+def main(global_config, **settings):
+    # Charger les variables d'environnement à partir de .env
+    load_dotenv()
+
+    # Utiliser os.environ.get() pour définir les valeurs par défaut si les variables ne sont pas définies
+    settings.setdefault('mail.username', os.environ.get('MAIL_USERNAME', 'default_username'))
+    settings.setdefault('mail.password', os.environ.get('MAIL_PASSWORD', 'default_password'))
+
+    # Autres configurations de l'application
+
+    return config.make_wsgi_app()
+```
+
+Pour `os.environ.get()`, nous spécifions la clé de la variable d'environnement à récupérer, ainsi que la valeur par défaut à utiliser si la variable n'est pas définie dans le fichier `.env`. Ainsi, si la variable d'environnement `MAIL_USERNAME` est définie dans `.env`, sa valeur sera utilisée. Sinon, `os.environ.get()` renverra la valeur par défaut `'default_username'`.
+
+#### 3.5.4.6 Exercices pratiques
 
 Essayons les exercices suivants pour nous familiariser avec l'utilisation des cookies dans Pyramid :
 
@@ -1053,7 +1136,7 @@ def main(global_config, **settings):
 
 ### 4.3.3 Tests et vérification de la politique d'authentification
 
-Une fois que nous avons configuré notre politique d'authentification, il est important de la tester pour nous assurer qu'elle fonctionne comme prévu. Nous pouvons le faire en écrivant des tests unitaires qui vérifient si un utilisateur peut se connecter avec succès et si l'identité de l'utilisateur est correctement stockée et récupérée.
+Une fois que nous avons configuré notre politique d'authentification, il est important de la tester pour nous assurer qu'elle fonctionne comme prévu. nous pouvons le faire en écrivant des tests unitaires qui vérifient si un utilisateur peut se connecter avec succès et si l'identité de l'utilisateur est correctement stockée et récupérée.
 
 Pyramid propose la bibliothèque `WebTest` pour tester les applications web. Voici un exemple de comment on pourrait écrire ces tests :
 ```python
@@ -1118,6 +1201,45 @@ Il existe des meilleures pratiques ("Best practices") que nous pouvons suivre po
 
 Une partie essentielle de la sécurisation de l'authentification est la gestion sécurisée des mots de passe. Cela implique généralement le hachage des mots de passe avant leur stockage. Le hachage est un processus unidirectionnel qui transforme un mot de passe en une chaîne de caractères de longueur fixe. Même une petite modification du mot de passe d'origine entraînera un hash complètement différent. Cela signifie qu'il est pratiquement impossible de retrouver le mot de passe original à partir du hash, rendant ainsi le mot de passe sécurisé en cas de violation des données.
 
+## 4.5 Gestion des sessions
+
+Les trois composants suivants :`pyramid.session`, `pyramid_tm`, et `pyramid_session_redis`, sont liés à la gestion des sessions dans l'écosystème Pyramid. Cependant, ils ont des rôles et des fonctionnalités légèrement différents. Voici les différences, avantages et inconvénients de chacun :
+
+### 4.5.1. `pyramid.session`
+
+   - Rôle : `pyramid.session` est un module qui fournit des mécanismes de gestion de session pour les applications Pyramid.
+   - Fonctionnalités : Il fournit des implémentations de base pour stocker des informations de session côté client, telles que dans des cookies non chiffrés ou dans des cookies signés.
+   - Avantages :
+     - Simple à configurer et à utiliser pour des sessions légères sans dépendances externes.
+     - Utile pour les cas d'utilisation où une session légère est suffisante et où la sécurité n'est pas une préoccupation majeure.
+   - Inconvénients :
+     - La sécurité est limitée car les informations de session sont stockées côté client, ce qui les expose aux risques de manipulation ou de vol par des attaquants.
+
+### 4.5.2 `pyramid_tm`
+
+   - Rôle : `pyramid_tm` est un package d'intégration Pyramid qui fournit un gestionnaire de transaction pour les applications Pyramid.
+   - Fonctionnalités : Il gère les transactions de base de données, ce qui signifie que toutes les modifications de base de données sont effectuées dans une transaction. Si une exception est levée pendant le traitement de la requête, la transaction est annulée (rollback). Sinon, elle est validée (commit) à la fin de la requête.
+   - Avantages :
+     - Assure l'intégrité des opérations de base de données en garantissant que toutes les modifications sont atomiques.
+     - Permet de gérer les exceptions liées à la base de données de manière cohérente.
+   - Inconvénients :
+     - Il ne gère pas directement les sessions, mais il peut être utilisé en conjonction avec d'autres modules pour gérer les sessions dans Pyramid.
+
+### 4.5.3 `pyramid_session_redis`
+
+   - Rôle : `pyramid_session_redis` est un adaptateur de session pour Pyramid qui permet de stocker les informations de session dans Redis, une base de données NoSQL.
+   - Fonctionnalités : Il permet de stocker les données de session dans une base de données Redis en utilisant le protocole Redis.
+   - Avantages :
+     - Stockage sécurisé des données de session côté serveur dans Redis.
+     - Possibilité de gérer des sessions plus complexes et de grandes quantités de données de session.
+   - Inconvénients :
+     - Nécessite une installation et une configuration supplémentaires de Redis en tant que stockage pour les données de session.
+     - Un peu plus complexe à configurer et à mettre en place que les solutions basées sur des cookies.
+
+En résumé, `pyramid.session` est simple à utiliser mais moins sécurisé car il stocke les informations de session côté client. `pyramid_tm` gère les transactions de base de données et assure l'intégrité des opérations de base de données, mais ne gère pas directement les sessions. `pyramid_session_redis` offre une solution plus robuste pour le stockage sécurisé des données de session côté serveur, mais nécessite l'installation et la configuration supplémentaires de Redis.
+
+Le choix entre ces composants dépendra de vos besoins spécifiques et du niveau de sécurité requis pour la gestion des sessions dans votre application Pyramid. Si vous avez besoin d'une solution simple et légère, `pyramid.session` peut être suffisant. Si vous avez besoin de transactions de base de données robustes, vous pouvez utiliser `pyramid_tm` en conjonction avec d'autres solutions de gestion de sessions. Si la sécurité est une préoccupation majeure et que vous avez besoin d'un stockage côté serveur, `pyramid_session_redis` peut être une bonne option.
+
 # 5. Sécurisation des données
 
 ## 5.1 Protection des données des utilisateurs
@@ -1161,7 +1283,7 @@ Cette fonction prend un mot de passe en entrée et renvoie le hash correspondant
 
 1. Installons la bibliothèque `passlib` avec `pip install passlib`.
 2. Écrivons une fonction qui accepte un mot de passe en entrée, le hache avec `passlib` et retourne le hash.
-3. Écrivons une autre fonction qui accepte un mot de passe et un hash, et vérifie si le mot de passe correspond au hash. Nous pouvons utiliser la fonction `pbkdf2_sha256.verify(password, hash)` de `passlib` pour cela.
+3. Écrivons une autre fonction qui accepte un mot de passe et un hash, et vérifie si le mot de passe correspond au hash. nous pouvons utiliser la fonction `pbkdf2_sha256.verify(password, hash)` de `passlib` pour cela.
 4. Testons nos fonctions avec différents mots de passe.
 
 ## 5.3 Prévention des attaques CSRF avec pyramid.csrf
@@ -1182,7 +1304,7 @@ Pyramid fournit un module, `pyramid.csrf`, pour aider à prévenir les attaques 
 
 2. Incluons ce jeton dans le formulaire HTML de notre application, généralement dans un champ caché.
 
-3. Lorsque le formulaire est soumis, vérifions que le jeton CSRF soumis correspond au jeton stocké dans la session. Nous pouvons utiliser `request.session.check_csrf_token()` pour cela.
+3. Lorsque le formulaire est soumis, vérifions que le jeton CSRF soumis correspond au jeton stocké dans la session. nous pouvons utiliser `request.session.check_csrf_token()` pour cela.
 
 ### 5.3.4 Rendre systématique l'usage des jetons CSRF
 
@@ -1221,7 +1343,7 @@ Pyramid vérifie automatiquement le jeton CSRF pour toutes les requêtes POST, P
 
 ### 5.3.6 Exemple de code vérifiant le token CSRF
 
-Exemple de tests unitaires qui vérifient que la vue "register" fournit bien un token CSRF et que celui-ci est correctement vérifié. Nous utilisons la bibliothèque `WebTest` de Pyramid.
+Exemple de tests unitaires qui vérifient que la vue "register" fournit bien un token CSRF et que celui-ci est correctement vérifié. nous utilisons la bibliothèque `WebTest` de Pyramid.
 
 ```python
 from pyramid import testing
@@ -1230,8 +1352,8 @@ from webtest import TestApp
 import unittest
 
 def register_view(request):
-    # Cette fonction est juste un exemple de ce que pourrait être votre vue "register".
-    # Vous devrez remplacer cette fonction par la vraie vue "register" de votre application.
+    # Cette fonction est juste un exemple de ce que pourrait être notre vue "register".
+    # nous devronsremplacer cette fonction par la vraie vue "register" de notre application.
     csrf_token = request.session.get_csrf_token()
     return {"csrf_token": csrf_token}
 
@@ -1243,7 +1365,7 @@ class TestRegisterView(unittest.TestCase):
         testing.tearDown()
 
     def test_register_view_provides_csrf_token(self):
-        from myapp import main  # Remplacez "myapp" par le nom de votre application Pyramid
+        from myapp import main  # Remplaçons "myapp" par le nom de notre application Pyramid
         app = main({})
         testapp = TestApp(app)
 
@@ -1275,7 +1397,7 @@ class TestRegisterView(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 ```
 
-Ces tests supposent que nous avons une route `/register` qui correspond à une vue `register_view` dans votre application Pyramid. De plus, ces tests supposent que nous utilisons l'implémentation par défaut de `SessionAuthenticationPolicy` et que nous stockons le token CSRF dans la session sous la clé `'csrf_token'`. Si ce n'est pas le cas, nous devrons adapter ces tests en conséquence.
+Ces tests supposent que nous avons une route `/register` qui correspond à une vue `register_view` dans notre application Pyramid. De plus, ces tests supposent que nous utilisons l'implémentation par défaut de `SessionAuthenticationPolicy` et que nous stockons le token CSRF dans la session sous la clé `'csrf_token'`. Si ce n'est pas le cas, nous devrons adapter ces tests en conséquence.
 
 ## 5.4.  Validation et assainissement des entrées des utilisateurs
 
@@ -1317,21 +1439,21 @@ def login_view(request):
     try:
         # Ici, on suppose que les données du formulaire sont envoyées en JSON.
         # Si elles sont envoyées en tant que données de formulaire normales,
-        # vous devriez utiliser request.POST au lieu de request.json_body.
+        # nous devrions utiliser request.POST au lieu de request.json_body.
         form_data = schema.deserialize(request.json_body)
     except colander.Invalid as e:
-        # Si les données ne sont pas valides, renvoyez une erreur 400 avec les erreurs de validation.
+        # Si les données ne sont pas valides, renvoyonsune erreur 400 avec les erreurs de validation.
         return HTTPBadRequest(json_body=e.asdict())
 
     # Si les données sont valides, utilisez-les pour essayer de connecter l'utilisateur.
     username = form_data['username']
     password = form_data['password']
 
-    # Insérez ici la logique d'authentification, par exemple vérifier le nom d'utilisateur
-    # et le mot de passe dans votre base de données, et éventuellement définir l'utilisateur
+    # Inséronsici la logique d'authentification, par exemple vérifier le nom d'utilisateur
+    # et le mot de passe dans notre base de données, et éventuellement définir l'utilisateur
     # comme connecté dans la session.
 
-    return {'status': 'success'}  # Si tout se passe bien, renvoyez un succès.
+    return {'status': 'success'}  # Si tout se passe bien, renvoyonsun succès.
 ```
 
 Dans cet exemple, la vue "login" utilise le schéma `LoginForm` pour valider les données du formulaire envoyées dans le corps de la requête POST. Si les données ne sont pas valides, la vue renvoie une réponse avec le code d'état HTTP 400 et les erreurs de validation. Si les données sont valides, la vue extrait le nom d'utilisateur et le mot de passe et peut alors les utiliser pour authentifier l'utilisateur.
@@ -1368,7 +1490,7 @@ Pour cet exercice pratique, nous devons créer une petite application qui met en
 - Les mots de passe des utilisateurs doivent être hachés avant d'être stockés.
 - Les entrées des utilisateurs doivent être validées et assainies.
 - L'application doit utiliser pyramid.csrf pour prévenir les attaques CSRF.
-- Nous pouvons choisir d'implémenter d'autres fonctionnalités pour pratiquer les compétences que nous avons acquises lors de ce cours.
+- nous pouvons choisir d'implémenter d'autres fonctionnalités pour pratiquer les compétences que nous avons acquises lors de ce cours.
 
 ### 5.5.3 Correction
 Voici une solution possible pour l'exercice proposé, mais notons que la mise en œuvre spécifique peut varier en fonction de nombreux facteurs, tels que les exigences spécifiques du projet, les préférences personnelles, et plus encore. Voici une version de base.
@@ -1521,7 +1643,7 @@ Pour cet exercice, nous allons interagir avec un serveur OpenLDAP en utilisant '
 
 ### 7.2.1. Introduction à l'authentification LDAP avec Pyramid
 
-Dans Pyramid, nous avons besoin d'une politique d'authentification pour vérifier les identifiants des utilisateurs. Nous allons créer une politique d'authentification personnalisée pour notre application qui utilise OpenLDAP pour l'authentification.
+Dans Pyramid, nous avons besoin d'une politique d'authentification pour vérifier les identifiants des utilisateurs. nous allons créer une politique d'authentification personnalisée pour notre application qui utilise OpenLDAP pour l'authentification.
 
 ### 7.2.2 Création d'une politique d'authentification personnalisée
 
@@ -1557,7 +1679,7 @@ class LdapAuthenticationPolicy(CallbackAuthenticationPolicy):
 
 ### 7.2.3 Utilisation de la politique d'authentification
 
-Nous devons ensuite ajouter notre politique d'authentification à notre application Pyramid. Nous pouvons le faire dans le fichier de configuration principal de notre application.
+Nous devons ensuite ajouter notre politique d'authentification à notre application Pyramid. nous pouvons le faire dans le fichier de configuration principal de notre application.
 
 ```python
 from pyramid.config import Configurator
@@ -1571,7 +1693,7 @@ def main(global_config, **settings):
 
 ### 7.2.4 Exercices pratiques
 
-Essayons d'implémenter l'authentification LDAP dans une simple application Pyramid. Nous pouvons commencer par une application Pyramid de base et ajouter l'authentification LDAP à l'aide de la classe `LdapAuthenticationPolicy` que nous avons définie. Testons l'application pour nous assurer que l'authentification fonctionne comme prévu.
+Essayons d'implémenter l'authentification LDAP dans une simple application Pyramid. nous pouvons commencer par une application Pyramid de base et ajouter l'authentification LDAP à l'aide de la classe `LdapAuthenticationPolicy` que nous avons définie. Testons l'application pour nous assurer que l'authentification fonctionne comme prévu.
 
 ## 7.3 Gestion des erreurs d'authentification
 
@@ -1581,7 +1703,7 @@ Il est crucial de gérer correctement les erreurs lors de la mise en œuvre de l
 
 ### 7.3.2 Gestion des erreurs de connexion
 
-Si nous ne pouvons pas établir une connexion avec le serveur LDAP, nous devons renvoyer une erreur appropriée. Nous pouvons le faire en utilisant un bloc try/except autour de notre code de connexion.
+Si nous ne pouvons pas établir une connexion avec le serveur LDAP, nous devons renvoyer une erreur appropriée. nous pouvons le faire en utilisant un bloc try/except autour de notre code de connexion.
 
 ```python
 try:
@@ -1592,7 +1714,7 @@ except LDAPException:
 
 ### 7.3.3 Gestion des erreurs lors de la recherche d'utilisateurs
 
-Si nous ne trouvons pas l'utilisateur dans le serveur LDAP, nous devons renvoyer une erreur appropriée. Nous pouvons le faire en vérifiant si la recherche a renvoyé un utilisateur.
+Si nous ne trouvons pas l'utilisateur dans le serveur LDAP, nous devons renvoyer une erreur appropriée. nous pouvons le faire en vérifiant si la recherche a renvoyé un utilisateur.
 
 ```python
 conn.search('ou=users,dc=my-domain,dc=com', '(uid={})'.format(user_id))
@@ -1602,7 +1724,7 @@ if not conn.entries:
 
 7.3.4 **Gestion des erreurs lors de la vérification des mots de passe**
 
-Si la vérification du mot de passe échoue, nous devons renvoyer une erreur appropriée. Nous pouvons le faire en vérifiant si la méthode `bind()` renvoie `False`.
+Si la vérification du mot de passe échoue, nous devons renvoyer une erreur appropriée. nous pouvons le faire en vérifiant si la méthode `bind()` renvoie `False`.
 
 ```python
 if not conn.bind():
@@ -1664,7 +1786,7 @@ Pour servir notre application Pyramid, nous aurons besoin d'un serveur web. Le c
 
 ### 8.2.4 Installation des dépendances de l'application
 
-Notre application Pyramid dépend probablement de plusieurs packages Python. Nous pouvons installer ces dépendances à l'aide de pip, l'outil d'installation de paquets Python. Il est généralement recommandé de créer un environnement virtuel Python pour notre application afin d'éviter les conflits de dépendances.
+Notre application Pyramid dépend probablement de plusieurs packages Python. nous pouvons installer ces dépendances à l'aide de pip, l'outil d'installation de paquets Python. Il est généralement recommandé de créer un environnement virtuel Python pour notre application afin d'éviter les conflits de dépendances.
 
 ### 8.2.5 Configuration de l'application
 
@@ -1678,7 +1800,7 @@ Après avoir configuré l'environnement de production, l'étape suivante consist
 
 ### 8.3.2 Transfert des fichiers de l'application
 
-Il existe de nombreuses façons de transférer les fichiers de notre application sur notre serveur. Une méthode courante consiste à utiliser Git. Nous pouvons simplement pousser notre code sur un dépôt Git, puis le cloner sur notre serveur. Une autre méthode consiste à utiliser SCP (Secure Copy) ou FTP (File Transfer Protocol) pour transférer directement les fichiers.
+Il existe de nombreuses façons de transférer les fichiers de notre application sur notre serveur. Une méthode courante consiste à utiliser Git. nous pouvons simplement pousser notre code sur un dépôt Git, puis le cloner sur notre serveur. Une autre méthode consiste à utiliser SCP (Secure Copy) ou FTP (File Transfer Protocol) pour transférer directement les fichiers.
 
 ### 8.3.3 Installation des dépendances
 
@@ -1868,7 +1990,7 @@ De plus, notons que la communication avec le serveur LDAP doit se faire sur une 
 
 ## 10.3 Code avec vérification des certificats
 
-La vérification des certificats en Python peut être gérée en utilisant l'option `OPT_X_TLS_CACERTDIR` ou `OPT_X_TLS_CACERTFILE` de python-ldap. Nous pouvons utiliser ces options pour spécifier l'emplacement du fichier de certificat ou du répertoire contenant les certificats CA.
+La vérification des certificats en Python peut être gérée en utilisant l'option `OPT_X_TLS_CACERTDIR` ou `OPT_X_TLS_CACERTFILE` de python-ldap. nous pouvons utiliser ces options pour spécifier l'emplacement du fichier de certificat ou du répertoire contenant les certificats CA.
 
 L'exemple suivant montre comment configurer python-ldap pour utiliser un fichier de certificats CA :
 
@@ -1903,7 +2025,7 @@ class LDAPAuthenticationPolicy(CallbackAuthenticationPolicy):
         pass
 ```
 
-Ici, nous avons ajouté une nouvelle option `ldap_cert` à l'initialiseur `LDAPAuthenticationPolicy`, qui est utilisée pour définir l'emplacement du fichier de certificats CA. Nous avons également remplacé `ldap.OPT_X_TLS_NEVER` par `ldap.OPT_X_TLS_DEMAND` pour exiger la vérification du certificat.
+Ici, nous avons ajouté une nouvelle option `ldap_cert` à l'initialiseur `LDAPAuthenticationPolicy`, qui est utilisée pour définir l'emplacement du fichier de certificats CA. nous avons également remplacé `ldap.OPT_X_TLS_NEVER` par `ldap.OPT_X_TLS_DEMAND` pour exiger la vérification du certificat.
 
 Ensuite, nous pouvons configurer notre application Pyramid pour utiliser cette politique d'authentification en fournissant l'URL de notre serveur LDAP et l'emplacement du fichier de certificats CA :
 
@@ -1920,5 +2042,100 @@ def main(global_config, **settings):
 
 Ce code est une implémentation simple. Dans une application réelle, nous aurons probablement besoin de gérer les erreurs de manière plus robuste et de fournir une interface utilisateur pour la connexion. De plus, les informations d'identification des utilisateurs ne doivent jamais être manipulées ou stockées de manière non sécurisée.
 
+## 10.4 Envoi de mail avec `pyramid_mailer`
+Pyramid Mailer est un module d'extension (package) pour le framework web Python Pyramid. Il fournit une intégration facile pour gérer l'envoi d'e-mails depuis une application Pyramid.
 
+Avec Pyramid Mailer, nous pouvons :
 
+1. Envoyer des e-mails : Nous pouvons envoyer des e-mails transactionnels, des e-mails de confirmation, des e-mails de réinitialisation de mot de passe, etc.
+
+2. Gérer les e-mails en file d'attente : Pyramid Mailer prend en charge l'envoi d'e-mails de manière asynchrone en les plaçant dans une file d'attente, ce qui permet de ne pas bloquer le traitement de la requête en cours.
+
+3. Gérer les modèles d'e-mails : Nous pouvons définir des modèles pour les e-mails et remplir dynamiquement les champs du modèle avant de les envoyer.
+
+4. Configurer les paramètres d'envoi : Nous pouvons configurer le serveur SMTP (Simple Mail Transfer Protocol) pour l'envoi des e-mails, ainsi que d'autres paramètres tels que le nom d'expéditeur, la réponse à l'adresse, etc.
+
+Pour utiliser Pyramid Mailer dans notre application Pyramid, nous devons d'abord installer le package `pyramid_mailer`. nous pouvons le faire à l'aide de pip :
+
+```bash
+pip install pyramid_mailer
+```
+
+Nous devons alors configurer le serveur de messagerie :
+
+Pour configurer le port et l'adresse du serveur SMTP dans Pyramid Mailer, nous pouvonq utiliser les options de configuration disponibles dans les paramètres de notre application Pyramid. Ces paramètres peuvent être définis dans le fichier `.ini` de configuration de notre application ou passés en tant que dictionnaire lors de la création de l'application Pyramid. Pour les secrets voir [[Pyramid#3.5.4 Gestion des Secrets dans Pyramid - Utilisation d'un fichier .env]]
+
+Voici comment configurer le port et l'adresse du serveur SMTP dans Pyramid Mailer :
+
+1. Dans le fichier `.ini` de configuration :
+
+Dans notre fichier `.ini`, ajoutons les paramètres suivants pour spécifier le serveur SMTP, le port et autres options de configuration liées à l'envoi des e-mails :
+
+```ini
+[app:main]
+# Autres configurations de notre application
+
+# Configuration pour Pyramid Mailer
+smtp.host = smtp.example.com
+smtp.port = 587
+smtp.username = your_smtp_username
+smtp.password = your_smtp_password
+smtp.tls = true
+smtp.ssl = false
+```
+
+2. En utilisant un dictionnaire de configuration :
+
+Si nous préférons passer les paramètres de configuration en tant que dictionnaire lors de la création de l'application Pyramid, nous pouvons faire :
+
+```python
+from pyramid.config import Configurator
+from pyramid_mailer.mailer import Mailer
+
+def main(global_config, **settings):
+    config = Configurator(settings=settings)
+
+    # Configurer Pyramid Mailer
+    mailer = Mailer.from_settings(settings)
+    config.include('pyramid_mailer')
+
+    # Autres configurations de l'application
+
+    return config.make_wsgi_app()
+```
+
+Dans ce cas, les paramètres de configuration pour Pyramid Mailer seront passés sous forme de clés/valeurs dans le dictionnaire `settings`.
+
+Les principales options de configuration pour Pyramid Mailer sont les suivantes :
+
+- `smtp.host`: L'adresse du serveur SMTP (par exemple, `smtp.example.com`).
+- `smtp.port`: Le port du serveur SMTP (par exemple, `587` pour TLS ou `465` pour SSL).
+- `smtp.username`: Le nom d'utilisateur du compte SMTP (si requis pour l'authentification).
+- `smtp.password`: Le mot de passe du compte SMTP (si requis pour l'authentification).
+- `smtp.tls`: Si défini sur `true`, active l'utilisation de TLS pour la communication avec le serveur SMTP.
+- `smtp.ssl`: Si défini sur `true`, active l'utilisation de SSL pour la communication avec le serveur SMTP.
+
+Une fois configuré, nous pouvons utiliser le composant `mailer` dans vos vues ou contrôleurs pour envoyer des e-mails. Voici un exemple simple :
+
+```python
+from pyramid_mailer import get_mailer
+from pyramid_mailer.message import Message
+
+def send_email(request):
+    mailer = get_mailer(request)
+
+    message = Message(
+        subject="Hello from Pyramid Mailer",
+        sender="noreply@example.com",
+        recipients=["user@example.com"],
+        body="This is the content of the email.",
+    )
+
+    mailer.send(message)
+
+    return "Email sent successfully!"
+```
+
+Pyramid Mailer est un outil utile pour gérer les e-mails dans vos applications Pyramid de manière simple et efficace.
+
+https://docs.pylonsproject.org/projects/pyramid_mailer/en/latest/index.html
