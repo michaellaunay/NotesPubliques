@@ -24,6 +24,7 @@
 
 # Architecture et conception
 [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]]
+[[Chiffrement côté navigateur]]
 
 # Culture
 [[DevOps Project Manager]]
