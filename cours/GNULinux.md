@@ -1289,7 +1289,7 @@ drwxrwxrwt  19 root root  4096 2009-05-03 11:10 tmp
 *lrwxrwxrwx 1 michaellaunay users 11 2009-03-01 21:23* est la liste des
 attributs qui doit être décomposée comme ceci :
 
- première lettre :
+première lettre :
 
       l indique que le fichier est un lien symbolique (un raccourci).
       d indique que le fichier est un répertoire
@@ -1301,31 +1301,26 @@ attributs qui doit être décomposée comme ceci :
 
 premier groupe de 3 lettres :
 
-      r-- indique que le propriétaire a le droit de lecture
-      -w- indique que le propriétaire a le droit d'écriture
-      --x indique que le propriétaire a le droit d'exécuter si le fichier est ordinaire
-          indique que le propriétaire a le droit de traverser si le fichier est un répertoire
-      --s (SUID) indique qu'un utilisateur qui exécute le fichier usurpe les droits du propriétaire
-          pour tous les accès effectués par l'exécutable.
-          Le propriétaire a les droits d'exécuter ou de traverser (--x est positionné, mais est caché).
-      --S (SUID) indique qu'un utilisateur qui exécute le fichier usurpe les droits du propriétaire.
-          Le propriétaire n'a pas les droits d'exécuter ou de traverser (--x n'est pas positionné).
+`r--` indique que le propriétaire a le droit de lecture
+`-w-` indique que le propriétaire a le droit d'écriture
+`--x` indique soit que le propriétaire a le droit d'exécuter si le fichier est ordinaire soit que le propriétaire a le droit de traverser si le fichier est un répertoire
+`--s` (SUID) indique qu'un utilisateur qui exécute le fichier usurpe les droits du propriétaire pour tous les accès effectués par l'exécutable.
+  Le propriétaire a les droits d'exécuter ou de traverser (--x est positionné, mais est caché).
+`--S`(SUID) indique qu'un utilisateur qui exécute le fichier usurpe les droits du propriétaire.
+  Le propriétaire n'a pas les droits d'exécuter ou de traverser (--x n'est pas positionné).
 
 second groupe de 3 lettres :
 
-      même signification que précédemment, mais pour les groupes et sauf pour le SUID.
-      --s (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les
-          droits du groupe et que le groupe a les droits d'exécution.
-      --S (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les
-          droits du groupe, mais que le groupe n'a pas les droits d'exécuter ou de traverser.
+Même signification que précédemment, mais pour les groupes et sauf pour le SUID.
+`--s` (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les droits du groupe et que le groupe a les droits  d'exécution.
+`--S` (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les droits du groupe, mais que le groupe n'a pas les droits d'exécuter ou de traverser.
 
 troisième groupe de 3 lettres :
 
-      même signification que précédemment mais pour tous les autres utilisateurs et sauf SGID
-      --t (Sticky bit) Indique que les utilisateurs ont le droit de modifier le contenu du fichier
-          ou du répertoire, mais pas de le supprimer.
-          Les utilisateurs ont le droit d'exécution ou de traverser.
-      --T (Sticky bit) Idem mais les utilisateurs n'ont pas le droit d'exécuter ou de traverser.
+même signification que précédemment mais pour tous les autres utilisateurs et sauf SGID
+`--t` (Sticky bit) Indique que les utilisateurs ont le droit de modifier le contenu du fichier ou du répertoire, mais pas de le supprimer.
+    Les utilisateurs ont le droit d'exécution ou de traverser.
+`--T` (Sticky bit) Idem mais les utilisateurs n'ont pas le droit d'exécuter ou de traverser.
 
 Le fichier unFichier a pour propriétaire *michaellaunay* (owner) et pour groupe *amis* (owning group).
 
@@ -1333,7 +1328,7 @@ Les notions de permission et de groupe seront détaillées ci-après.
 
 La taille du fichier unFichier est de 32ko.
 
-La date est celle de dernière modification. La date du dernier accès est accessible avec la commande **ls -u -l**.
+La date est celle de dernière modification. La date du dernier accès est accessible avec la commande `ls -u -l`.
 
 Les permissions d'un lien ne sont pas utilisées, car ceux sont celles de la cible qui sont vérifiées.
 
@@ -1345,11 +1340,11 @@ Outre les fichiers normaux, les répertoires et les liens, il existe de nombreux
 
 En effet la philosophie d'Unix est de vouloir que tout soit fichier :
 
-    Les périphériques sont manipulés comme s'ils étaient des fichiers.
-    Les piles (fifo, lifo), les pipes nommées, sockets sont manipulés comme des fichiers.
-    Les caractéristiques du système sont traduites à travers une arborescence.
-    Le noyau lui-même est adressé à travers une arborescence qui permet de connaître son état et de le modifier.
-    Les processus sont eux-mêmes manipulés à travers une arborescence de fichiers.
+- Les périphériques sont manipulés comme s'ils étaient des fichiers.
+- Les piles (fifo, lifo), les pipes nommées, sockets sont manipulés comme des fichiers.
+- Les caractéristiques du système sont traduites à travers une arborescence.
+ - Le noyau lui-même est adressé à travers une arborescence qui permet de connaître son état et de le modifier.
+-  Les processus sont eux-mêmes manipulés à travers une arborescence de fichiers.
 
 ## /dev
 
@@ -1364,8 +1359,10 @@ Contient les fichiers de périphériques physiques ou virtuels :
     /dev/random # Générateur aléatoire
 
 Exemple:
+```bash
+find /usr -name "*.pdf" 2> /dev/null
+```
 
-    michaellaunay@luciole:~$ find /usr -name "*.pdf" 2> /dev/null
     /usr/share/doc/shared-mime-info/shared-mime-info-spec.pdf
     /usr/share/example-content/case_ubuntu_johnshopkins_v2.pdf
     /usr/share/example-content/case_howard_county_library.pdf
@@ -1392,21 +1389,36 @@ Cette arborescence offre plusieurs types de classement, une même information pe
 Les commandes telles que **lsusb** ou **lspci** vont chercher les informations dont elles ont besoin dans cette arborescence.
 
 **/sys/class/** montre les périphériques regroupés en classes :
+```bash
+ls /sys/class/
+```
 
-    michaellaunay@luciole:~$ ls /sys/class/
-    atm        firmware       ieee1394_protocol  pci_bus        scsi_disk     usb_host
-    backlight  gpio           ieee80211          pcmcia_socket  scsi_generic  vc
-    bdi        graphics       input              power_supply   scsi_host     video_output
-    block      hidraw         leds               ppdev          sound         vtconsole
-    bluetooth  hwmon          mem                printer        spi_master
-    dma        ieee1394       misc               rfkill         thermal
-    dmi        ieee1394_host  mmc_host           rtc            tty
-    drm        ieee1394_node  net                scsi_device    usb_endpoint
+```
+atm        firmware       ieee1394_protocol  pci_bus        scsi_disk     usb_host
+backlight  gpio           ieee80211          pcmcia_socket  scsi_generic  vc
+bdi        graphics       input              power_supply   scsi_host     video_output
+block      hidraw         leds               ppdev          sound         vtconsole
+bluetooth  hwmon          mem                printer        spi_master
+dma        ieee1394       misc               rfkill         thermal
+dmi        ieee1394_host  mmc_host           rtc            tty
+drm        ieee1394_node  net                scsi_device    usb_endpoint
+```
 
-    michaellaunay@luciole:~$ cat /sys/class/thermal/cooling_device0/type
-    Processor
-    michaellaunay@luciole:~$ cat /sys/class/thermal/cooling_device0/cur_state
-    0
+```bash
+cat /sys/class/thermal/cooling_device0/type
+```
+
+```
+Processor
+```
+
+```bash
+cat /sys/class/thermal/cooling_device0/cur_state
+```
+
+```
+0
+```
 
 ## /proc
 
