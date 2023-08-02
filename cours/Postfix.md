@@ -74,14 +74,14 @@ mydestination = masociete.com
 Ajouter une entrée spf à vos entrées DNS sur notre Registrar.
 
 Par exemple, le registrar de **ecreall.com** est OVH et il faut ajouter une entrée SPF et la remplir comme suit :
-
-      Sous-domaine []**.ecreall.com** #Préciser le sous-domaine, ici il n'y en a pas, donc nous laissons vide
-      TTL [Par défaut] #Mais pour les tests [personnalisés] nous pouvons alors mettre une valeur faible en secondes comme [60]
-      Autoriser l'IP de **ecreall.com** à envoyer des emails ? [v]oui # nous autoriserons les adresses ip que nous souhaitons.
-      Autoriser les serveurs MX à envoyer des emails [v]oui #si MX est notre serveur
-      Autoriser tous les serveurs dont le nom se termine par **ecreall.com** [v]Non # permet de gérer les sous-domaines
-      D'autres serveurs ? # Mettre les autres adresses ou noms autorisés à envoyer.
-
+```
+  Sous-domaine []**.ecreall.com** #Préciser le sous-domaine, ici il n'y en a pas, donc nous laissons vide
+  TTL [Par défaut] #Mais pour les tests [personnalisés] nous pouvons alors mettre une valeur faible en secondes comme [60]
+  Autoriser l'IP de **ecreall.com** à envoyer des emails ? [v]oui # nous autoriserons les adresses ip que nous souhaitons.
+  Autoriser les serveurs MX à envoyer des emails [v]oui #si MX est notre serveur
+  Autoriser tous les serveurs dont le nom se termine par **ecreall.com** [v]Non # permet de gérer les sous-domaines
+  D'autres serveurs ? # Mettre les autres adresses ou noms autorisés à envoyer.
+```
 Sous Gandi il ne faut surtout pas utiliser le champ spf qui est documenté comme obsolète, à la place il faut utiliser une entrée TXT
 
 Il faut alors mettre "v=spf1 a mx ip4:51.159.31.17 -all" dans le champ.
@@ -90,19 +90,31 @@ La valeur des champs spf est expliquée par Google ici https://support.google.co
 
 Pour tester :
 
-    nslookup -type=txt ecreall.com
-    #Ce qui donne
-      ecreall.com text = "v=spf1 a mx ip4:51.159.31.255 -all"
+```bash
+nslookup -type=txt ecreall.com
+```
+    
+Ce qui donne :
+
+```
+ecreall.com	text = "v=spf1 a mx ip4:45.80.23.242 ip6:2a01:cb0c:7d:4d00:1ac0:4dff:fe09:fe47 -all"
+```
 
 Configuration de opendkim :
 
-    vim /etc/opendkim.conf 
-    #Ajoutez ou mettez les variables à :
-      Domain                ecreall.com
-      KeyFile               /etc/dkimkeys/dkim.private
-      Selector              dkim
-      UserID                opendkim
-      Socket inet:8992@localhost
+```bash
+vim /etc/opendkim.conf 
+```
+
+Ajoutez ou mettez les variables à :
+
+```
+  Domain                ecreall.com
+  KeyFile               /etc/dkimkeys/dkim.private
+  Selector              dkim
+  UserID                opendkim
+  Socket inet:8992@localhost
+```
 
 Le champ \"Domain\" indique quels vont être les mails signés avec la clé contenue dans le fichier \"Keyfile\" Le champ \"Selector\" indique quelle clé dans le fichier utiliser pour ce domaine.
 UsserID indique l'utilisateur du démon, attention le fichier de la clé privée doit
@@ -110,17 +122,20 @@ pouvoir être lu par cet utilisateur.
 Socket indique la socket qui sera utilisée par postfix pour se connecter et signer les mails transmis.
 
 Génération de la clé de signature des mails :
+```bash
+cd /etc/dkimkeys/
+opendkim-genkey -t -s dkim -d ecreall.com
+chown root:opendkim dkim.private
+chmod 660 dkim.private
+```
 
-    cd /etc/dkimkeys/
-    opendkim-genkey -t -s dkim -d ecreall.com
-    chown root:opendkim dkim.private
-    chmod 660 dkim.private
-
-L'attribut \"-s dkim\" permet de préciser de signer différemment chaque mail selon son domaine dans le cas où le serveur gère plusieurs domaines.
+L'attribut `-s dkim` permet de préciser de signer différemment chaque mail selon son domaine dans le cas où le serveur gère plusieurs domaines.
 
 On a alors :
 ```bash
-root@luciole:/etc/dkimkeys# ls -lh
+ls -lh
+```
+```bash
 total 12K
 -rw-rw---- 1 root opendkim 1,7K févr. 11 16:09 dkim.private
 -rw------- 1 root root      508 févr. 11 16:09 dkim.txt
@@ -129,7 +144,10 @@ total 12K
 
 Vérifier la clé :
 ```bash
-root@luciole:/# opendkim-testkey -d ecreall.com -s dkim -vvv
+opendkim-testkey -d ecreall.com -s dkim -vvv
+```
+
+```
 opendkim-testkey: using default configfile /etc/opendkim.conf
 opendkim-testkey: /etc/dkimkeys/dkim.private: WARNING: unsafe permissions
 opendkim-testkey: key loaded from /etc/dkimkeys/dkim.private
@@ -142,26 +160,24 @@ La ligne \"opendkim-testkey: key not secure\" est due au fait que DNSSEC n'a pas
 
 Afficher le contenu de dkim.txt
 
-> cat /etc/dkimkeys/dkim.txt
->
-> :   
->
->     dkim.\_domainkey IN TXT ( \"v=DKIM1; h=sha256; k=rsa; t=y; \"
->
->     :   \"p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxvKAG6fOfx+BnzZX1DSOpWEh/VzRqSb6/zmXp2MwUmS238Rx3LtQB0qJeJW9uGmsIS2GlNc1bL+0RnAeVi5q2vh3oGOQ0+kCmrqtaQwhUa6SYxjd5+QLZXbpt2emtaWIn687ufXmWa4gVnGxVN8O3K2ALcVyToPLB5e48s5fUh5Ln15f+X2XKAJkoZVlqeIvyD9+zHD1D7wvoL\"
->         \"EDR3fSMYQmMQfBc2hR8nLArbCQj3HdJD5LITNQ9HlnM8dX56/MonWyavIKKWp3CV9IQZz0syG6i3XoxqdwdFvKh1daF+wnbYxS7ug9OlvWUo+6p4up6zFoEgT6PXo/cnjbYHA+FQIDAQAB\"
->         ) ; \-\-\-\-- DKIM key dkim for ecreall.com
+```bash
+cat /etc/dkimkeys/dkim.txt
+```
 
+```
+dkim._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; t=y; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu16oOGtsGwvwF0p4+Oa3ZLS7/9TjKagcXGpiBKKrT0fJrZfKhsp43xv2NsH1SM56aBycxxrvECasx8cOQtHJ8ajEgIKAjmWW1C3ISJCNhebyxr+YuH2UlfH5IZByonVi0qJIW2oaZRJMusXr7yM4u1j/oKbLGLWcxLvEr9BMuPDiJHyadKVHhVmNjqfDA8F5Q1vXsno5e8rvPO"
+	  "UAhkcr8+TF2/J/kyhy6JyfW84TgxnIcU0mCFATAtDd871gZWqvOiUltku1aXteotSUonsaLDWpcmcwgyAgG7c/sycOPmA+rHvuiZ2/HPNzgW1/U55E2ijrTXzy+43zTAzzcdg/GwIDAQAB" )  ; ----- DKIM key dkim for ecreall.com
+
+```
 Configurer notre registrar :
 
 - Se connecter à la zone DNS de son domaine, par exemple pour Ecreall dans OVH, nous ajoutons une entrée DKIM en remplissant les champs comme suit ::
 
+```
       Sous-domaine [dkim._domainkey]
-
       Version [v]
-
       Algorithme (hash) -256 [v]
-
       Clé Publique [MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1YRDtepyDeIgVolfFz4bRgacdE0hxGFhB+9XTXmZbYcPc0iyDaGJivpd7TYAZ2zRBG+wU6s8viK9mxA/JLDTklhdbnD2oQOjBA1g7bcqqo/F3gHbApaz/M2DrQ4y5HEaHTjm/bsCLzbO7v3buTuhxu6mpVp5m/q+uX7o2LB1GkTw/DbqE2j3tHx5N5sojX6dZxvk+V9nyInArY4ni3uWrH3Y8aLSK7+QHyZVJAVGiT6jdRDdEERQlo2CTZj6UQu3jGtic+GZCU8Hp/SJWQj/xrx/ygZEJ0z294fLEIOGgUw66vRl6iVE9NJCaavTqBxlfgX7QNOa/9bqnR9uDI2flwIDAQAB
       ]
 
@@ -170,8 +186,9 @@ Configurer notre registrar :
       Mode test [v] # Permet de demander aux serveurs recevant nos mails de ne pas tenir compte de DKIM tant qu'on a pas fini
 
       sous-domaine [v] La clé publique n'est pas valide pour les sous-domaines
+```
 
-    Quand tout est au point, ne pas oublier d'éditer l'entrée pour enlever le mode de test.
+Quand tout est au point, ne pas oublier d'éditer l'entrée pour enlever le mode de test.
 
 ### dmarc
 
@@ -191,25 +208,38 @@ sp la politique des sous domainkeys.
 aspf s'il faut suivre spf à la lettre.
 
 ## Créer un postfix de test
+
 Pour développer il peut être intéressant d'installer un postfix et rediriger tout le traffic dans des boites locales.
 ```bash
 sudo apt install postfix mailutils
 # Choisir l'installation "site" et positioner un nom de domaine
 ```
+
 Éditer /etc/postfix/main.cf
+
 ```bash
 vim /etc/postfix/main.cf
-#Ajouter en fin de fichier
+```
+
+Ajouter en fin de fichier :
+
+```
 recipient_canonical_maps = regexp:/etc/postfix/recipient_canonical
 mydestination = ecreall.com
 relayhost =
 home_mailbox = Maildir/
 mailbox_command =
 ```
+
 Créer /etc/postfix/recipient_canonical
+
 ```bash
 vim /etc/postfix/recipient_canonical
-#Ajouter
+```
+
+Ajouter :
+
+```
 /.*/    michaellaunay@ecreall.com
 ```
 
@@ -218,13 +248,24 @@ Générer la table de correspondances et redémarrer.
 postmap /etc/postfix/recipient_canonical
 systemctl restart postfix
 ```
+
 Tester
+
 ```bash
-michaellaunay@leojag:~/workspace$ echo "Un super test d'envoi de mail" | mail -s "Test envoi" michaellaunay@gmail.com
-michaellaunay@leojag:~/workspace$ ls -lh /home/michaellaunay/Maildir/new/
+echo "Un super test d'envoi de mail" | mail -s "Test envoi" michaellaunay@gmail.com
+ls -lh /home/michaellaunay/Maildir/new/
+```
+
+```
 total 40K
 -rw------- 1 michaellaunay michaellaunay 479 avril 24 20:08 1682359681.V803I12e4dffM19518.leojag
-michaellaunay@leojag:~/workspace$ cat /home/michaellaunay/Maildir/new/1682359681.V803I12e4dffM19518.leojag
+```
+
+```bash
+cat /home/michaellaunay/Maildir/new/1682359681.V803I12e4dffM19518.leojag
+```
+
+```
 Return-Path: <michaellaunay@leojag>
 X-Original-To: michaellaunay@gmail.com
 Delivered-To: michaellaunay@ecreall.com
@@ -239,10 +280,15 @@ From: Michaël Launay <michaellaunay@leojag>
 
 Un super test d'envoi de mail
 ```
+
 De la même façon nous pouvons jouer avec les paramètres :
+
 ```bash
 vim /etc/postfix/main.cf
-#Modifications des mails
+```
+
+Modifications des mails :
+```
 smtpd_recipient_restrictions = reject #Bloque tout envoi
 sender_canonical_maps = regexp:/etc/postfix/sender_canonical #modifie l'émetteur
 sender_bcc_maps = regexp:/etc/postfix/sender_bcc #Modifie le CC
