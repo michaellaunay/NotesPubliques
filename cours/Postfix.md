@@ -100,7 +100,7 @@ Ce qui donne :
 ecreall.com	text = "v=spf1 a mx ip4:45.80.23.242 ip6:2a01:cb0c:7d:4d00:1ac0:4dff:fe09:fe47 -all"
 ```
 
-Configuration de opendkim :
+# Configuration de opendkim
 
 ```bash
 vim /etc/opendkim.conf 
@@ -113,7 +113,7 @@ Ajoutez ou mettez les variables à :
   KeyFile               /etc/dkimkeys/dkim.private
   Selector              dkim
   UserID                opendkim
-  Socket inet:8992@localhost
+  Socket inet:8892@localhost
 ```
 
 Le champ \"Domain\" indique quels vont être les mails signés avec la clé contenue dans le fichier \"Keyfile\" Le champ \"Selector\" indique quelle clé dans le fichier utiliser pour ce domaine.
