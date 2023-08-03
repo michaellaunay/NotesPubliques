@@ -10,6 +10,125 @@ Nous avons aussi le MDA (Mail Delivery Agent) qui s'occupe de la livraison des e
 
 Enfin, il y a le MUA (Mail User Agent), qui est le client de messagerie que l'utilisateur final utilise pour lire et écrire des emails. Thunderbird et Outlook sont des exemples de MUA.
 
+# Les Boîtes aux Lettres
+
+Une boîte aux lettres est un emplacement de stockage pour les e-mails. Elle peut être composée de dossiers et sous-dossiers, permettant une organisation logique des messages.
+
+## Les types de BAL
+
+Il existe principalement deux types de BAL: Mbox et Maildir.
+
+- **Mbox**: Tous les messages sont stockés dans un fichier unique. L'accès concurrent peut causer des problèmes, et la corruption du fichier est possible.
+- **Maildir**: Chaque message est stocké dans un fichier séparé, éliminant ainsi les problèmes de verrouillage et de corruption.
+## Mbox
+
+Le format Mbox est un des formats les plus anciens pour stocker les e-mails sur un système de fichiers. Il stocke tous les messages d'une boîte aux lettres dans un seul fichier.
+
+### Structure de Mbox
+
+Dans le format Mbox, tous les messages d'une boîte aux lettres sont concaténés dans un fichier unique. Chaque message commence par une ligne spéciale qui contient le caractère "From" suivi d'un espace et de l'adresse de l'expéditeur.
+
+Exemple :
+
+```
+From user@example.com Tue Jan 1 00:00:00 2021
+Subject: Exemple 1
+...
+From user2@example.com Tue Jan 2 00:00:00 2021
+Subject: Exemple 2
+...
+```
+
+### Variantes de Mbox
+
+Il existe plusieurs variantes du format Mbox, telles que:
+
+- **mboxo**: Le format original, sans verrouillage.
+- **mboxrd**: Permet des modifications sûres du fichier.
+- **mboxcl**: Supporte le verrouillage du fichier pour un accès concurrent.
+- **mboxcl2**: Une variante de mboxcl avec un mécanisme de verrouillage différent.
+
+### Avantages et Inconvénients
+
+#### Avantages
+
+- **Simple à Implémenter**: La gestion du fichier est simple et directe.
+- **Compatibilité**: Supporté par de nombreux clients et serveurs de messagerie.
+
+#### Inconvénients
+
+- **Verrouillage**: L'accès concurrent au fichier nécessite un mécanisme de verrouillage, ce qui peut être complexe.
+- **Risque de Corruption**: Si le verrouillage n'est pas correctement géré, le fichier peut être corrompu.
+- **Performance**: Peut devenir lent avec de grandes boîtes aux lettres.
+- 
+## Maildir
+
+Maildir est un format pour stocker les messages électroniques où chaque message est conservé dans un fichier séparé, et chaque boîte de réception est un répertoire. Ceci offre plusieurs avantages, notamment l'absence de verrouillage lors de l'accès aux messages.
+
+### Structure
+
+Maildir utilise une structure de répertoire particulière. Chaque message est un fichier unique dans l'un des trois sous-répertoires:
+
+- `new`: Pour les messages non lus.
+- `cur`: Pour les messages qui ont été lus ou sont en cours de lecture.
+- `tmp`: Utilisé temporairement lors de la livraison ou l'accès aux messages.
+
+### Avantages
+
+- **Pas de verrouillage nécessaire**: Plusieurs processus peuvent accéder simultanément aux messages.
+- **Robustesse**: Moins susceptible à la corruption comparé au format Mbox.
+- **Flexibilité**: Facilité de gestion, de sauvegarde, et de manipulation.
+
+# Les protocoles de relevé du courrier IMAP et POP3
+
+Les protocoles de relevé du courrier électronique sont des standards utilisés pour accéder, récupérer et gérer les e-mails depuis un serveur de messagerie vers des clients de messagerie. Voici les principaux protocoles de relevé du courrier:
+
+## IMAP (Internet Message Access Protocol)
+
+- **Version**: IMAP4 est la version la plus récente.
+- **Fonction**: Permet de lire les e-mails directement sur le serveur.
+- **Gestion des dossiers**: Possibilité de créer, supprimer et manipuler des dossiers sur le serveur.
+- **Recherche avancée**: Recherche de messages selon divers critères.
+- **Synchronisation**: Les messages restent sur le serveur, permettant la synchronisation entre différents appareils. Ainsi, les changements effectués par un client sont répercutés sur tous les autres clients.
+- **Port**: Utilise généralement le port 143, ou le port 993 pour IMAP sur SSL.
+
+IMAP permet aux clients de messagerie de voir les messages stockés sur un serveur de messagerie. Contrairement à POP3, IMAP permet de multiples clients et des opérations simultanées sur le serveur.
+
+## POP3 (Post Office Protocol 3)
+
+POP3 est un protocole plus simple pour récupérer les messages depuis un serveur de messagerie. Il télécharge les messages sur le client et les supprime du serveur.
+
+- **Fonction**: Télécharge les e-mails du serveur vers l'appareil local, où ils sont lus.
+- **Simplicité**: Facile à mettre en œuvre et à utiliser.
+- **Téléchargement de messages**: Les messages sont téléchargés et stockés localement.
+- **Pas de synchronisation**: Les actions effectuées sur un client ne sont pas répercutées sur les autres clients. Une fois téléchargés, les e-mails sont supprimés du serveur (sauf si configuré autrement).
+- **Port**: Utilise généralement le port 110, ou le port 995 pour POP3 sur SSL.
+
+## Webmail
+
+- **Fonction**: Permet d'accéder aux e-mails via un navigateur web.
+- **Synchronisation**: Comme IMAP, les messages sont généralement stockés et gérés sur le serveur.
+- **Port**: Dépend du protocole web utilisé (HTTP ou HTTPS), généralement 80 ou 443.
+
+### Exchange ActiveSync (EAS)
+
+- **Fonction**: Protocole propriétaire de Microsoft permettant la synchronisation des e-mails, des calendriers et des contacts.
+- **Synchronisation**: Fonctionne de manière similaire à IMAP pour la synchronisation des e-mails.
+- **Utilisé principalement avec**: Microsoft Exchange, Office 365.
+
+## **NNTP (Network News Transfer Protocol)**
+
+- **Fonction**: Bien que principalement utilisé pour les forums de discussion en ligne, NNTP peut également être utilisé pour récupérer des e-mails.
+- **Port**: Utilise généralement le port 119, ou le port 563 pour NNTP sur SSL.
+
+## Comparaison entre IMAP et POP3
+
+- **Stockage**: IMAP stocke les messages sur le serveur; POP3 les télécharge sur le client.
+- **Synchronisation**: IMAP synchronise les messages entre clients; POP3 ne le fait pas.
+- **Utilisation des ressources**: IMAP peut être plus gourmand en ressources en raison de la synchronisation et de la gestion du serveur.
+
+Chaque protocole a ses propres avantages et inconvénients, et le choix dépendra des besoins spécifiques tels que la nécessité de synchronisation entre différents appareils, la conservation des e-mails sur le serveur, ou des préférences en matière de sécurité et de confidentialité.
+
 # Installation
 
 Pour installer Postfix, nous utilisons la commande suivante :
@@ -207,7 +326,28 @@ sp la politique des sous domainkeys.
 
 aspf s'il faut suivre spf à la lettre.
 
-## Créer un postfix de test
+# Installer Dovecot
+
+Dovecot est un serveur IMAP et POP3 conçu pour être léger et facile à configurer.
+Nous avons configuré postfix pour utiliser le format Maildir et allons voir comment configurer Dovecot pour ce format.
+## Installation de Dovecot
+
+Installons Dovecot avec la commande :
+
+```bash
+sudo apt-get install dovecot-imapd
+```
+
+## Configuration de Dovecot avec Maildir
+
+Éditons le fichier de configuration principale `/etc/dovecot/dovecot.conf` et assurons-nous que les lignes suivantes sont présentes:
+
+```
+mail_location = maildir:~/Maildir
+```
+
+Cela indique à Dovecot d'utiliser le format Maildir pour le stockage des e-mails.
+# Créer un serveur postfix de test
 
 Pour développer il peut être intéressant d'installer un postfix et rediriger tout le traffic dans des boites locales.
 ```bash
