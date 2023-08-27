@@ -313,7 +313,9 @@ Quand tout est au point, ne pas oublier d'éditer l'entrée pour enlever le mode
 
 L'ajout de DMARC se fait par simple ajoute d'une entrée de type DMARC ou TXT pour le sous-domaine \_dmarc avec les valeurs suivantes :
 
-    v=DMARC1;p=quarantine;pct=100;rua=mailto:michaellaunay+dmarc@ecreall.com;sp=quarantine;aspf=s;
+```
+v=DMARC1;p=quarantine;pct=100;rua=mailto:michaellaunay+dmarc@ecreall.com;sp=quarantine;aspf=s;
+```
 
 Où V est la version du protocole, p est la politique à appliquer pour les messages reçus soi-disant de notre domaine, mais qui échoue, None (ne rien faire) ou Quarantine
 marquer douteux, Reject rejeter.
