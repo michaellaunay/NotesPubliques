@@ -1,3 +1,7 @@
+Une excellent critique des IAs [L'intelligence artificielle n'existe pas](https://youtu.be/yuDBSbng_8o)
+
+La pertinence de chat gpt a été évalué à 64%
+
 Transcription audio ; https://youtu.be/3AhOl2q-TW4
 
 22. theresanaiforthat : Une base de données intelligentes qui trouve une IA pour chaque besoin.  
