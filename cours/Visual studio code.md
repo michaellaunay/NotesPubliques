@@ -155,12 +155,12 @@ Si nous faisons `Maj+F2` alors si nous modifions la zone de texte la modificatio
 # Paramétrer git et copilot
 Ouvrir son dossier.
 Cliquer droit sur "Contrôle de code source".
-Activer le pannel "Compte"
+Activer le panel "Compte"
 Cliquer sur l'icone Compe qui est apparu dans le panneau.
 Choisir le compte ou le créer.
 
 
-# Liste des racourcis clavier
+# Liste des raccourcis clavier
 ## Général
 `Ctrl+Maj+P`, `F1` Afficher la palette de commandes
 `Ctrl+P` Ouverture rapide, Aller au fichier... 

@@ -97,7 +97,7 @@ En résumé, les grammaires PEG sont une technique pour définir la syntaxe d'un
 
 # La grammaire PEG pour PlantUML
 
-PlantUML est un langage de dessin UML qui permet de représenter des diagrammes UML à l'aide d'une syntaxe textuelle. La grammaire PEG de PlantUML est utilisée pour analyser cette syntaxe et générer les diagrammes correspondants.
+PlantUML est un langage de dessin UML qui permet de représenter des diagrammes UML à l'aide d'une syntaxe textuelle (voir aussi [[PlantUML pour Obsidian]]). La grammaire PEG de PlantUML est utilisée pour analyser cette syntaxe et générer les diagrammes correspondants.
 
 La grammaire PEG de PlantUML est assez complexe et contient de nombreuses règles. Voici un exemple de règle pour la définition d'une classe :
 
@@ -157,13 +157,13 @@ https://en.wikipedia.org/wiki/Programming_language_specification
 # Denotational Semantics
 https://en.wikipedia.org/wiki/Denotational_semantics
 
-Denotational Semantics est une branche de la sémantique formelle qui associe un sens mathématique aux programmes informatiques, souvent exprimés en langages de programmation fonctionnels. L'objectif de cette approche est de donner une sémantique formelle et rigoureuse aux programmes, permettant ainsi de raisonner sur leur comportement de manière mathématique.
+"Denotational Semantics" est une branche de la sémantique formelle qui associe un sens mathématique aux programmes informatiques, souvent exprimés en langages de programmation fonctionnels. L'objectif de cette approche est de donner une sémantique formelle et rigoureuse aux programmes, permettant ainsi de raisonner sur leur comportement de manière mathématique.
 
-Le cœur de la denotational semantics est la construction d'une fonction mathématique qui associe à chaque programme informatique une valeur mathématique. Cette fonction est souvent définie en utilisant des domaines mathématiques tels que les ensembles, les fonctions et les ordres partiels. Les valeurs mathématiques ainsi obtenues sont appelées des "denotations" et sont utilisées pour décrire le comportement des programmes.
+Le cœur de la "denotational semantics" est la construction d'une fonction mathématique qui associe à chaque programme informatique une valeur mathématique. Cette fonction est souvent définie en utilisant des domaines mathématiques tels que les ensembles, les fonctions et les ordres partiels. Les valeurs mathématiques ainsi obtenues sont appelées des "denotations" et sont utilisées pour décrire le comportement des programmes.
 
-La denotational semantics est différente d'autres approches sémantiques, telles que la sémantique opérationnelle, qui décrivent le comportement des programmes en termes de séquences d'étapes de calcul. La denotational semantics offre une sémantique plus abstraite et mathématique, qui peut être plus facile à manipuler pour prouver des propriétés sur les programmes.
+La "denotational semantics" est différente d'autres approches sémantiques, telles que la sémantique opérationnelle, qui décrivent le comportement des programmes en termes de séquences d'étapes de calcul. La "denotational semantics" offre une sémantique plus abstraite et mathématique, qui peut être plus facile à manipuler pour prouver des propriétés sur les programmes.
 
-La denotational semantics a été développée dans les années 1960 par Christopher Strachey et Dana Scott. Depuis lors, elle a été appliquée à de nombreux langages de programmation fonctionnels, tels que ML, Haskell et Miranda, ainsi qu'à des langages de programmation impératifs tels que C et Pascal. Elle est également utilisée dans la conception de langages de programmation et dans la vérification formelle de logiciels.
+La "denotational semantics" a été développée dans les années 1960 par Christopher Strachey et Dana Scott. Depuis lors, elle a été appliquée à de nombreux langages de programmation fonctionnels, tels que ML, Haskell et Miranda, ainsi qu'à des langages de programmation impératifs tels que C et Pascal. Elle est également utilisée dans la conception de langages de programmation et dans la vérification formelle de logiciels.
 
 # Operational_semantics
 La sémantique opérationnelle est une approche de la sémantique formelle qui décrit le comportement des programmes informatiques en termes d'étapes de calcul. Cette approche décrit comment les programmes transforment les entrées en sorties en exécutant des séquences d'instructions.
@@ -176,13 +176,13 @@ La sémantique opérationnelle a été introduite dans les années 1950 par des 
 
 # BNF
 
-Historique :
+## Historique
 
 La notation BNF (Backus-Naur Form) a été développée en 1959 par John Backus et Peter Naur comme une notation pour décrire la syntaxe des langages de programmation. Depuis lors, elle a été largement utilisée dans la documentation des langages de programmation, ainsi que dans la conception de compilateurs et d'interprètes.
 
 Plus tard, des extensions ont été développées pour la notation BNF, notamment EBNF (Extended Backus-Naur Form), qui ajoute des fonctionnalités supplémentaires pour décrire la syntaxe des langages de programmation de manière plus expressive et concise.
 
-Description de BNF :
+## Description de BNF
 
 La notation BNF est une méthode formelle pour décrire la syntaxe d'un langage de programmation ou d'un autre type de langage formel. Elle utilise des règles de production pour décrire comment les éléments du langage peuvent être combinés pour former des constructions plus complexes. Les règles de production de BNF sont souvent écrites sous la forme suivante :
 
