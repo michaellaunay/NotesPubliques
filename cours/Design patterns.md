@@ -1,56 +1,56 @@
 **Plan** du cours :
 
-**1. Introduction aux Design Patterns**
-   - Qu'est-ce qu'un design pattern ?
-   - Pourquoi les design patterns sont-ils importants ?
-   - Les principes fondamentaux des design patterns.
+**[[#1. Introduction aux Design Patterns]]**
+   - [[#1.1 Qu'est-ce qu'un design pattern ?]]
+   - [[#1.2 Pourquoi les design patterns sont-ils importants ?]]
+   - [[#1.3 Les principes fondamentaux des design patterns]].
 
-**2. Catégorisation des Design Patterns**
-   - Création de patterns
-   - Patterns structurels
-   - Patterns comportementaux
+**[[#2. Catégorisation des Design Patterns]]**
+   - [[#2.1 Création de patterns]]
+   - [[#2.2 Patterns structurels]]
+   - [[#2.3 Patterns comportementaux]]
 
-**3. Design Patterns de Création**
-   - Singleton
-   - Builder
-   - Prototype
-   - Factory Method
-   - Abstract Factory
+**[[#3. Design Patterns de Création]]**
+   - [[#3.1 Singleton]]
+   - [[#3.2 Builder]]
+   - [[#3.3 Prototype]]
+   - [[#3.4 Factory Method]]
+   - [[#3.5 Abstract Factory]]
 
-**4. Design Patterns Structurels**
-   - Adapter
-   - Bridge
-   - Composite
-   - Decorator
-   - Facade
-   - Flyweight
-   - Proxy
+**[[# 4. Design Patterns Structurels]]**
+   - [[#4.1 Adapter]]
+   - [[#4.2 Bridge]]
+   - [[#4.3 Composite]]
+   - [[#4.4 Decorator]]
+   - [[#4.5 Facade]]
+   - [[#4.6 Flyweight]]
+   - [[#4.7 Proxy]]
 
-**5. Design Patterns Comportementaux**
-   - Chain of Responsibility
-   - Command
-   - Interpreter
-   - Iterator
-   - Mediator
-   - Memento
-   - Observer
-   - State
-   - Strategy
-   - Template Method
-   - Visitor
+**[[#5. Design Patterns Comportementaux]]**
+   - [[#5.1 Chain of Responsibility]]
+   - [[#5.2 Command]]
+   - [[#5.3 Interpreter]]
+   - [[#5.4 Iterator]]
+   - [[#5.5 Mediator]]
+   - [[#5.6 Memento]]
+   - [[#5.7 Observer]]
+   - [[#5.8 State]]
+   - [[#5.9 Strategy]]
+   - [[#5.10 Template Method]]
+   - [[#5.11 Visitor]]
 
-**6. Etude de cas**
+**[[#6. Etude de cas]]**
    - Application des design patterns dans des projets de programmation réels.
    - Analyse de codes existants : identification et amélioration avec des design patterns.
 
-**7. Anti-patterns**
+**[[#7. Anti-patterns]]**
    - Qu'est-ce qu'un anti-pattern ?
    - Anti-patterns communs et comment les éviter.
 
-**8. Projet Final**
+**[[#8. Projet Final]]**
    - Conception et développement d'un projet en utilisant plusieurs design patterns.
 
-**9. Ressources**
+**[[#9. Ressources]]**
   - Livres
   - Ressources en ligne
   - Cours en ligne
@@ -635,7 +635,7 @@ top.add(sub2)
 top.component_function()
 ```
 
-* **4.4 Decorator**
+## 4.4 Decorator
 
 Le Decorator est un pattern de conception qui permet d'ajouter de nouveaux comportements à des objets en les plaçant dans des objets enveloppeurs spéciaux.
 
@@ -860,7 +860,7 @@ graph LR
 
 Commençons par le premier de notre liste.
 
-* **5.1 Chain of Responsibility**
+## 5.1 Chain of Responsibility
 
 Ce modèle crée une chaîne d'objets récepteurs pour une requête. Cette chaîne de responsabilité passe la requête le long de la chaîne jusqu'à ce qu'un objet la traite.
 
