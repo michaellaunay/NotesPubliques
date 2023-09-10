@@ -71,12 +71,12 @@ flatpak run md.obsidian.Obsidian
 
 Pour mettre à jour
 ```bash
-flatpack update
+flatpak update
 ```
 
 Pour désinstaller
 ```bash
-flatpack uninstall md.obsidian.Obsidian
+flatpak uninstall md.obsidian.Obsidian
 ```
 Nous pouvons trouver plus d'informations sur l'utilisation de Flatpak pour installer des applications sur [doc.ubuntu-fr.org](https://doc.ubuntu-fr.org/flatpak).
 
