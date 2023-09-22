@@ -107,13 +107,13 @@ La commande `git status` nous permet de voir l'état actuel de notre dépôt, y 
 ```bash
 git status
 ```
-## 6.3 Ajoueter des fichiers pour un commit
+## 6.3 Ajouter des fichiers pour un commit
 
 La commande `git add` permet d'ajouter des fichiers pour créer un commit. Il faut ajouter un fichier à la fois.
 
 ## 6.4 Créer un commit
 
-La commande `git commit -m ` permet de créer un commit. Il va créer le commit en ajoutant les fichiers que l'on a ajouter avec la commande `git add`. 
+La commande `git commit -m ` permet de créer un commit. Il va créer le commit en ajoutant les fichiers que l'on a ajouté avec la commande `git add`. 
 On peut rajouter un nom de commit pour que l'on puisse e repérer `git commit -m "Nom_du_commit`. 
 
 ## 6.5 Transmettre au dépôt partagé les modifications commitées
