@@ -344,7 +344,7 @@ sudo apt-get install dovecot-imapd
 
 Éditons le fichier de configuration principale `/etc/dovecot/dovecot.conf` et assurons-nous que les lignes suivantes sont présentes:
 
-```
+```txt
 mail_location = maildir:~/Maildir
 ```
 
