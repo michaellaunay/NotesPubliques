@@ -179,123 +179,125 @@ Choisir le compte ou le créer.
 `Ctrl+Tab right` (tabulation à droite) / `Ctrl+tab left` (tabulation à gauche) Indentation/Désindentation de la ligne
 
 ## Début / Fin Aller au début/fin de la ligne
-Ctrl+ Début / Fin Aller au début/fin du fichier
-Ctrl+ ↑ / ↓ Faire défiler la ligne vers le haut/bas
-Alt+ PgUp / PgDn Faire défiler la page vers le haut/bas
-Ctrl+Maj+ [ / ] Plier/déplier la région
-Ctrl+K Ctrl+ [ / ] Plier/déplier toutes les sous-régions
-Ctrl+K Ctrl+0 / Ctrl+K Ctrl+J Plier/Déplier toutes les régions
-Ctrl+K Ctrl+C Ajouter un commentaire de ligne
-Ctrl+K Ctrl+U Supprimer le commentaire de ligne
-Ctrl+/ Basculer le commentaire de ligne
-Ctrl+Maj+A Basculer le commentaire de bloc
-Alt+Z Activer/désactiver le retour à la ligne
+`Ctrl+ Début` / `Fin` Aller au début/fin du fichier
+`Ctrl+ ↑` / `↓ Faire défiler la ligne vers le haut/bas
+`Alt+ PgUp` / `PgDn` Faire défiler la page vers le haut/bas
+`Ctrl+Maj+ [` / `]` Plier/déplier la région
+`Ctrl+K Ctrl+ [` / `]` Plier/déplier toutes les sous-régions
+`Ctrl+K Ctrl+0` / `Ctrl+K Ctrl+J` Plier/Déplier toutes les régions
+`Ctrl+K Ctrl+C` Ajouter un commentaire de ligne
+`Ctrl+K Ctrl+U` Supprimer le commentaire de ligne
+`Ctrl+/` Basculer le commentaire de ligne
+`Ctrl+Maj+A` Basculer le commentaire de bloc
+`Alt+Z` Activer/désactiver le retour à la ligne
 
 ## Édition de langages riches
-Ctrl+Espace, Ctrl+I Déclencher la suggestion
-Ctrl+Maj+Espace Déclencher les indices de paramètres
-Ctrl+Maj+I Formater le document
-Ctrl+K Ctrl+F Formater la sélection
-F12 Aller à la définition
-Ctrl+Maj+F10 Aperçu de la définition
-Ctrl+K F12 Ouvrir la définition sur le côté Ctrl+.
+`Ctrl+Espace`, `Ctrl+I` Déclencher la suggestion
+`Ctrl+Maj+Espace` Déclencher les indices de paramètres
+`Ctrl+Maj+I` Formater le document
+`Ctrl+K` `Ctrl+F` Formater la sélection
+`F12` Aller à la définition
+`Ctrl+Maj+F10` Aperçu de la définition
+`Ctrl+K F12` Ouvrir la définition sur le côté `Ctrl+`.
 
 ## Correction rapide
-Maj+F12 Afficher les références
-F2 Renommer le symbole
-Ctrl+K Ctrl+X Supprimer les espaces en fin de ligne
-Ctrl+K M Changer la langue du fichier
+`Maj+F12` Afficher les références
+`F2` Renommer le symbole
+`Ctrl+K Ctrl+X` Supprimer les espaces en fin de ligne
+`Ctrl+K M` Changer la langue du fichier
 
 ## Curseur et sélection multiple
-Alt+Clic Insérer un curseur
-Maj+Alt+ ↑ / ↓ Insérer un curseur au-dessus/en dessous
-Ctrl+U Annuler la dernière opération de curseur
-Maj+Alt+I Insérer un curseur à la fin de chaque ligne sélectionnée
-Ctrl+L Sélectionner la ligne actuelle
-Ctrl+Maj+L Sélectionner toutes les occurrences de la sélection actuelle
-Ctrl+F2 Sélectionner toutes les occurrences du mot actuel
-Maj+Alt + → Étendre la sélection
-Maj+Alt + ← Réduire la sélection
-Maj+Alt + glisser la souris Sélection de colonne (boîte)
+`Alt+Clic` Insérer un curseur
+`Maj+Alt+ ↑` / `↓` Insérer un curseur au-dessus/en dessous
+`Ctrl+U` Annuler la dernière opération de curseur
+`Maj+Alt+I` Insérer un curseur à la fin de chaque ligne sélectionnée
+`Ctrl+L` Sélectionner la ligne actuelle
+`Ctrl+Maj+L` Sélectionner toutes les occurrences de la sélection actuelle
+`Ctrl+F2` Sélectionner toutes les occurrences du mot actuel
+`Maj+Alt + →` Étendre la sélection
+`Maj+Alt + ←` Réduire la sélection
+`Maj+Alt +` glisser la souris Sélection de colonne (boîte)
 
 ## Affichage
-F11 Basculer en plein écran
-Maj+Alt+0 Basculer la disposition de l'éditeur (horizontal/vertical)
-Ctrl+ = / - Zoom avant/arrière
-Ctrl+B Afficher/masquer la barre latérale
-Ctrl+Maj+E Afficher l'explorateur / Basculer le focus
-Ctrl+Maj+F Afficher la recherche
-Ctrl+Maj+G Afficher le contrôle de code source
-Ctrl+Maj+D Afficher le débogage
-Ctrl+Maj+X Afficher les extensions
-Ctrl+Maj+H Remplacer dans les fichiers
-Ctrl+Maj+J Basculer les détails de la recherche
-Ctrl+Maj+C Ouvrir une nouvelle invite de commande/terminal
-Ctrl+K Ctrl+H Afficher le panneau de sortie 
-Ctrl+Maj+V Ouvrir l'aperçu Markdown
-Ctrl+K V Ouvrir l'aperçu Markdown sur le côté
-Ctrl+K Z Mode Zen (Échap Échap pour quitter) Recherche et remplacement
-Ctrl+F Rechercher
-Ctrl+H Remplacer
-F3 / Maj+F3 Rechercher suivant/précédent
-Alt+Entrée Sélectionner toutes les occurrences de la correspondance trouvée
-Ctrl+D Ajouter la sélection à la prochaine correspondance trouvée
-Ctrl+K Ctrl+D Déplacer la dernière sélection vers la prochaine correspondance trouvée
+`F11` Basculer en plein écran
+`Maj+Alt+0` Basculer la disposition de l'éditeur (horizontal/vertical)
+`Ctrl+ = / -` Zoom avant/arrière
+`Ctrl+B` Afficher/masquer la barre latérale
+`Ctrl+Maj+E` Afficher l'explorateur / Basculer le focus
+`Ctrl+Maj+F` Afficher la recherche
+`Ctrl+Maj+G` Afficher le contrôle de code source
+`Ctrl+Maj+D` Afficher le débogage
+`Ctrl+Maj+X` Afficher les extensions
+`Ctrl+Maj+H` Remplacer dans les fichiers
+`Ctrl+Maj+J` Basculer les détails de la recherche
+`Ctrl+Maj+C` Ouvrir une nouvelle invite de commande/terminal
+`Ctrl+K Ctrl+H` Afficher le panneau de sortie 
+`Ctrl+Maj+V` Ouvrir l'aperçu Markdown
+`Ctrl+K V` Ouvrir l'aperçu Markdown sur le côté
+`Ctrl+K Z` Mode Zen (Échap Échap pour quitter) N'affiche que la zone de codage
+
+## Recherche et remplacement
+`Ctrl+F` Rechercher
+`Ctrl+H` Remplacer
+`F3` / `Maj+F3` Rechercher suivant/précédent
+`Alt+Entrée` Sélectionner toutes les occurrences de la correspondance trouvée
+`Ctrl+D` Ajouter la sélection à la prochaine correspondance trouvée
+`Ctrl+K Ctrl+D` Déplacer la dernière sélection vers la prochaine correspondance trouvée
 
 ## Navigation
-Ctrl+T Afficher tous les symboles
-Ctrl+G Aller à la ligne...
-Ctrl+P Aller au fichier...
-Ctrl+Maj+O Aller au symbole...
-Ctrl+Maj+M Afficher le panneau des problèmes
-F8 Aller à l'erreur ou avertissement suivant
-Maj+F8 Aller à l'erreur ou avertissement précédent
-Ctrl+Maj+Tab Naviguer dans l'historique du groupe d'éditeurs
-Ctrl+Alt+- Revenir en arrière
-Ctrl+Maj+- Avancer
-Ctrl+M Basculer Tab pour déplacer le focus
+`Ctrl+T` Afficher tous les symboles
+`Ctrl+G` Aller à la ligne...
+`Ctrl+P` Aller au fichier...
+`Ctrl+Maj+O` Aller au symbole...
+`Ctrl+Maj+M` Afficher le panneau des problèmes
+`F8` Aller à l'erreur ou avertissement suivant
+`Maj+F8` Aller à l'erreur ou avertissement précédent
+`Ctrl+Maj+Tab` Naviguer dans l'historique du groupe d'éditeurs
+`Ctrl+Alt+-` Revenir en arrière
+`Ctrl+Maj+-` Avancer
+`Ctrl+M` Basculer Tab pour déplacer le focus
 
 ## Gestion de l'éditeur
-Ctrl+W Fermer l'éditeur
-Ctrl+K F Fermer le dossier
-Ctrl+\\ Diviser l'éditeur
-Ctrl+ 1 / 2 / 3 Mettre le focus sur le 1er, 2ème, 3ème groupe d'éditeurs
-Ctrl+K Ctrl + ← Mettre le focus sur le groupe d'éditeurs précédent
-Ctrl+K Ctrl + → Mettre le focus sur le groupe d'éditeurs suivant
-Ctrl+Maj+PgUp Déplacer l'éditeur à gauche
-Ctrl+Maj+PgDn Déplacer l'éditeur à droite
-Ctrl+K ← Déplacer le groupe d'éditeurs actif vers la gauche/haut
-Ctrl+K → Déplacer le groupe d'éditeurs actif vers la droite/bas
+`Ctrl+W` Fermer l'éditeur
+`Ctrl+K F` Fermer le dossier
+`Ctrl+\` Diviser l'éditeur
+`Ctrl+ 1` / `2` / `3` Mettre le focus sur le 1er, 2ème, 3ème groupe d'éditeurs
+`Ctrl+K Ctrl + ←` Mettre le focus sur le groupe d'éditeurs précédent
+`Ctrl+K Ctrl + →` Mettre le focus sur le groupe d'éditeurs suivant
+`Ctrl+Maj+PgUp` Déplacer l'éditeur à gauche
+`Ctrl+Maj+PgDn` Déplacer l'éditeur à droite
+`Ctrl+K ←` Déplacer le groupe d'éditeurs actif vers la gauche/haut
+`Ctrl+K →` Déplacer le groupe d'éditeurs actif vers la droite/bas
 
 ## Gestion des fichiers
-Ctrl+N Nouveau fichier
-Ctrl+O Ouvrir un fichier...
-Ctrl+S Enregistrer
-Ctrl+Maj+S Enregistrer sous..
-Ctrl+W Fermer
-Ctrl+K Ctrl+W Fermer tout
-Ctrl+Maj+T Rouvrir l'éditeur fermé
-Ctrl+K Entrée Conserver l'éditeur en mode d'aperçu ouvert
-Ctrl+Tab Ouvrir le suivant
-Ctrl+Maj+Tab Ouvrir le précédent
-Ctrl+K P Copier le chemin du fichier actif
-Ctrl+K R Révéler le fichier actif dans l'Explorateur
-Ctrl+K O Afficher le fichier actif dans une nouvelle fenêtre/instance
+`Ctrl+N` Nouveau fichier
+`Ctrl+O` Ouvrir un fichier...
+`Ctrl+S` Enregistrer
+`Ctrl+Maj+S` Enregistrer sous..
+`Ctrl+W` Fermer
+`Ctrl+K Ctrl+W` Fermer tout
+`Ctrl+Maj+T` Rouvrir l'éditeur fermé
+`Ctrl+K Entrée` Conserver l'éditeur en mode d'aperçu ouvert
+`Ctrl+Tab` Ouvrir le suivant
+`Ctrl+Maj+Tab` Ouvrir le précédent
+`Ctrl+K P` Copier le chemin du fichier actif
+`Ctrl+K R` Révéler le fichier actif dans l'Explorateur
+`Ctrl+K O` Afficher le fichier actif dans une nouvelle fenêtre/instance
 
 ## Débogage 
-F9 Basculer le point d'arrêt
-F5 Démarrer / Continuer
-F11 / Maj+F11 Entrer/sortir
-F10 Passer par-dessus
-Maj+F5 Arrêter
-Ctrl+K Ctrl+I Afficher le survol Terminal intégré
-Ctrl+\` Afficher le terminal intégré
-Ctrl+Maj+\` Créer un nouveau terminal
-Ctrl+Maj+C Copier la sélection
-Ctrl+Maj+V Coller dans le terminal actif
-Ctrl+Maj+ ↑ / ↓ Faire défiler vers le haut/bas
-Maj+ PgUp / PgDn Faire défiler la page vers le haut/bas
-Maj+ Début / Fin Faire défiler jusqu'en haut/bas
+`F9` Basculer le point d'arrêt
+`F5` Démarrer / Continuer
+`F11 / Maj+F11` Entrer/sortir
+`F10` Passer par-dessus
+`Maj+F5` Arrêter
+`Ctrl+K Ctrl+I` Afficher le survol Terminal intégré
+`Ctrl+\` Afficher le terminal intégré
+`Ctrl+Maj+\` Créer un nouveau terminal
+`Ctrl+Maj+C` Copier la sélection
+`Ctrl+Maj+V` Coller dans le terminal actif
+`Ctrl+Maj+ ↑` / `↓` Faire défiler vers le haut/bas
+`Maj+ PgUp / PgDn` Faire défiler la page vers le haut/bas
+`Maj+ Début /` Fin Faire défiler jusqu'en haut/bas
 
 ## Paramétrer son environnement virtuel python
 
