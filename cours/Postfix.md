@@ -349,6 +349,15 @@ mail_location = maildir:~/Maildir
 ```
 
 Cela indique à Dovecot d'utiliser le format Maildir pour le stockage des e-mails.
+
+# Tester la configuration
+
+Aller sur le site [appmaildev.com](https://appmaildev.com)
+```bash
+echo test | mail -s "Test postfix" -aFROM:michaellaunay@ecreall.com test-1fc42c52@appmaildev.com
+```
+
+
 # Créer un serveur postfix de test
 
 Pour développer il peut être intéressant d'installer un postfix et rediriger tout le traffic dans des boites locales.
