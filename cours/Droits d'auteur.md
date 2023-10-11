@@ -1,3 +1,4 @@
+
 En France le droit de propriété intellectuelle est passé de 50 ans (75 pour ceux mort pour la patrie) à 70 ans en 1994, les œuvres déjà dans le domaine publique conservent cette caractéristique.
 liens :  https://fr.wikipedia.org/wiki/Domaine_public_(propri%C3%A9t%C3%A9_intellectuelle)
 https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069414/2023-04-21/

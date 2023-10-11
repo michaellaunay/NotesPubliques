@@ -275,8 +275,14 @@ grep michael /etc/passwd
 
 ```
 michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/bash
-michaellaunay@luciole:~$ sudo usermod -s /bin/sh michaellaunay
-michaellaunay@luciole:~$ grep michael /etc/passwd
+```
+
+```bash
+sudo usermod -s /bin/sh michaellaunay
+grep michael /etc/passwd
+```
+
+```
 michaellaunay:x:1000:1000:Michael Launay,,,:/home/michaellaunay:/bin/sh
 ```
    
@@ -575,8 +581,13 @@ echo DEBUT${VARIABLE}FIN #L'abscence de guillemet forcent le bash à passer en p
 Ce qui affiche :
 ```
 DEBUT commence par 2 espaces puis en contient cinq et finit par deux FIN
-michaellaunay@luciole:~$ echo DEBUT"$VARIABLE"FIN #Les guillemets protègent les espaces !
-DEBUT  commence par 2 espaces puis en contient cinq     et finit par deux  FIN
+```
+
+```bash
+echo DEBUT"$VARIABLE"FIN #Les guillemets protègent les espaces !
+```
+```
+DEBUT  commence par 2 espaces puis en contient cinq      et finit par deux  FIN
 ```
 
 On peut aussi échapper les espaces avec des antislashs lors de l'affectation de la variable.
@@ -586,6 +597,8 @@ On peut aussi échapper les espaces avec des antislashs lors de l'affectation de
 Une variable peut contenir une commande. Son simple appel suffit à provoquer son évaluation :
 ```bash
 MON_SCRIPT="/tmp/ma_cmd.sh"
+echo "echo Hello" > $MON_SCRIPT
+chmod +x $MON_SCRIPT
 $MON_SCRIPT #exécute la commande contenue dans la variable MON_SCRIPT
 ```
 Qui affiche
