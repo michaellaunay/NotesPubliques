@@ -4,17 +4,17 @@ Git est un outil de gestion de versions du code développé par **Linus Torval**
 
 ## 1.1 Objectifs
 
-Que nous soyons seuls ou en équipe, nous devrons gérer efficacement les versions de notre code, suivre son évolution, et potentiellement collaborer avec d'autres développeurs. C'est là qu'intervient Git.
+Que nous soyons seuls ou en équipe, nous devrons gérer efficacement les versions du code, suivre son évolution, et potentiellement collaborer avec d'autres développeurs. C'est là qu'intervient Git.
 
 Git est un système de gestion de versions distribué. Cela signifie qu'il nous permet de suivre les changements apportés à un projet au fil du temps. De plus, contrairement à d'autres systèmes de gestion de versions, Git stocke l'ensemble du projet et de son historique sur chaque machine de développement, ce qui le rend rapide et résilient.
 
 ## 1.2 Historique
 
-Nous ne pouvons discuter de Git sans nous plonger dans son origine et les circonstances qui ont conduit à sa création. L'histoire de Git est intimement liée à celle de Linus Torvalds, le créateur du système d'exploitation Linux.
+L'histoire de Git est liée à celle de Linus Torvalds et le développement du noyau Linux.
 
 Avant Git, Linus utilisait un système de gestion de versions appelé BitKeeper. BitKeeper était un outil propriétaire, mais son éditeur avait autorisé les développeurs du noyau Linux à l'utiliser gratuitement ce qui lui permettait de démontrer la robustesse de son offre. Cette solution n'était pas idéale, car elle reposait sur un unique dépôt central, mais elle fonctionnait suffisamment bien pour répondre aux besoins du projet à l'époque.
 
-Cependant, en 2005, un conflit est survenu. La communauté de développeurs de Linux, par nature un projet ouvert et communautaire, a eu des problèmes avec la nature propriétaire de BitKeeper. En particulier, un développeur a créé un outil capable d'interagir avec les dépôts BitKeeper, ce qui a violé la licence d'utilisation de BitKeeper. En réponse, l'éditeur de BitKeeper a révoqué la licence gratuite qu'il avait accordée au projet Linux.
+En 2005, un conflit est survenu. La communauté de développeurs de Linux, par nature un projet ouvert et communautaire, a eu des problèmes avec la nature propriétaire de BitKeeper. En particulier, un développeur a créé un outil capable d'interagir avec les dépôts BitKeeper, ce qui a violé la licence d'utilisation de BitKeeper. En réponse, l'éditeur de BitKeeper a révoqué la licence gratuite qu'il avait accordée au projet Linux.
 
 Cela a placé le développement du noyau Linux dans une position délicate. Il était devenu dépendant d'un outil qui n'était plus accessible. Linus Torvalds, face à ce problème, a décidé de créer un nouvel outil, un système de gestion de versions qui serait non seulement libre et ouvert, mais aussi distribué, rapide et capable de gérer de grands projets comme le noyau Linux.
 
