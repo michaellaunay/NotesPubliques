@@ -1012,7 +1012,7 @@ Et nous voyons que la valeur est restée à 0 :
 ```
 Il est également possible de forcer l'exécution de commande en utilisant **\`** :
 ```bash
-echo Quelle est la date ?
+echo Quelle est la `date` ?
 ```
 Ce qui affiche la chaîne de caractères "date" :
 ```
@@ -1205,6 +1205,8 @@ Documents/ecreall/Cours/CoursGNULinux/CoursGNULinux.pdf
 
 La commande **grep** permet de réaliser des recherches basées sur la présence d'une chaîne ou d'une expression régulière dans le contenu d'un fichier.
 
+### locate
+
 La commande **locate** permet de trouver un fichier si le chemin a été renseigné dans la base de données mise à jour par le super utilisateur avec **updatedb** ou **slocate -u**.
 
 ## Archivage / Compression
@@ -1325,7 +1327,7 @@ premier groupe de 3 lettres :
 second groupe de 3 lettres :
 
 Même signification que précédemment, mais pour les groupes et sauf pour le SUID.
-`--s` (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les droits du groupe et que le groupe a les droits  d'exécution.
+`--s` (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les droits du groupe et que le groupe a les droits d'exécution.
 `--S` (SGID) indique qu'un utilisateur appartenant au groupe qui exécute le fichier usurpe les droits du groupe, mais que le groupe n'a pas les droits d'exécuter ou de traverser.
 
 troisième groupe de 3 lettres :
@@ -1435,9 +1437,40 @@ cat /sys/class/thermal/cooling_device0/cur_state
 
 ## /proc
 
-**`procfs`** est une arborescence virtuelle résidant en mémoire qui exporte des informations sur le noyau.
+La philosophie Unix est que "tout est fichier". Cette approche offre une grande flexibilité et une cohérence dans la gestion des ressources du système, qu'il s'agisse de périphériques matériels, de sockets réseau ou de processus en cours d'exécution.
+Cette abstraction permet aux développeurs de traiter différents types de ressources avec une API cohérente, rendant le système plus facile à comprendre et à programmer.
+
+**`procfs`** est l'arborescence virtuelle résidant en mémoire qui exporte des informations sur le noyau.
 
 C'est dans cette arborescence que des commandes comme **ps** vont chercher des informations sur les processus.
+
+### Avantages
+
+1. **Uniformité**: L'API est constante pour tous les types de fichiers, ce qui facilite le développement.
+2. **Simplicité**: Les opérations sur les fichiers sont simples et bien comprises, ce qui réduit la complexité du système.
+3. **Composabilité**: Les fichiers peuvent être utilisés en conjonction avec une variété d'outils de ligne de commande et de bibliothèques.
+
+### Le système de fichiers /proc
+
+Le répertoire `/proc` est un système de fichiers spécial qui agit comme une interface vers les structures de données du noyau. Il ne contient pas de fichiers au sens traditionnel, mais plutôt une représentation en mode texte des états internes du système.
+
+### Structure de /proc
+
+Chaque processus en cours d'exécution sur le système a un répertoire correspondant dans `/proc`, nommé d'après son identifiant de processus (PID). À l'intérieur de ce répertoire, nous trouverons divers fichiers et sous-répertoires contenant des informations sur le processus.
+
+Exemple:
+
+```bash
+/proc/
+|-- [PID]/        # Répertoire pour le processus avec PID donné
+|   |-- cmdline   # La ligne de commande qui a lancé le processus
+|   |-- environ   # Les variables d'environnement pour ce processus
+|   |-- mem       # La mémoire virtuelle du processus
+|   |-- status    # Diverses informations sur le statut du processus
+|-- cpuinfo       # Informations sur les processeurs CPU
+|-- meminfo       # Informations sur la mémoire
+|-- ...
+```
 
 Exemple :
 ```bash
@@ -1475,11 +1508,46 @@ power management:
 
 `/proc` permet en tant que root et selon l'état du processus observé d'analyser ses ressources et sa mémoire.
 
-Ainsi il est possible de récupérer le contenu de la mémoire du processus arrêté. Voir
+Ainsi il est possible de récupérer le contenu de la mémoire du processus arrêté.
+## Accès à la mémoire et aux variables d'exécution d'un processus
+
+Il est à noter que l'accès à ces informations sensibles est restreint au superutilisateur `root`. Voici comment on peut lire la mémoire d'un processus:
+
+### Exemple: Lecture de la mémoire d'un processus
+
+1. Tout d'abord, localisons le PID du processus cible. Par exemple, pour un processus nommé `example_process` :
+
+    ```bash
+    pidof example_process
+    ```
+
+    Supposons que le PID soit `1234`.
+
+2. Ensuite, utilisons `cat` ou un éditeur hexadécimal pour lire le fichier `mem` du processus. Nous devons être `root` pour faire cela.
+
+    ```bash
+    sudo cat /proc/1234/mem
+    ```
+
+    ou
+
+    ```bash
+    sudo xxd /proc/1234/mem
+    ```
+
+3. Pour lire les variables d'environnement du processus :
+
+    ```bash
+    sudo cat /proc/1234/environ
+    ```
+
+Ces commandes donneront accès à des informations très détaillées sur le processus. À utiliser avec précaution et responsabilité.
+### Liens
+
+Voir
 <https://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux>
 et
 <https://unix.stackexchange.com/questions/6267/how-to-re-load-all-running-applications-from-swap-space-into-ram/6271#6271>
-
 ## Enchaînement et parallélisation des commandes
 
 Toute commande doit être vue comme une boîte noire ayant une entrée standard (`stdin`), une sortie standard (`stdout`) et une sortie d'erreur standard qui permet aussi d'afficher des informations (`stderr`).
