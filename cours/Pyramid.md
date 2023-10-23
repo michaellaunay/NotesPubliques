@@ -51,6 +51,9 @@ Plan de cours structuré autour du développement d'une application d'authentifi
 - Coupler l'authentification avec OpenLDAP
 - Vérification des certificats
 
+**11.  Trucs et astuces **
+- Débogage en ligne à travers le navigateur
+
 Ce plan de cours vise à donner une compréhension complète de la création d'une application d'authentification en utilisant Pyramid et OpenLDAP, du développement à la mise en production.
 
 # 1. Introduction à Pyramid et au développement web Python
@@ -2139,3 +2142,8 @@ def send_email(request):
 Pyramid Mailer est un outil utile pour gérer les e-mails dans vos applications Pyramid de manière simple et efficace.
 
 https://docs.pylonsproject.org/projects/pyramid_mailer/en/latest/index.html
+
+# 11.  Trucs et astuces
+## Débogage en ligne à travers le navigateur
+### Utilisation de la toolbar de debogage dans Pyramid
+Il suffit de cliquer sur le logo pyramid à droite du contenu et de naviguer dans les onglets.
