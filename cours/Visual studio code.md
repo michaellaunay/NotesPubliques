@@ -200,6 +200,11 @@ Choisir le compte ou le créer.
 `Ctrl+Maj+F10` Aperçu de la définition
 `Ctrl+K F12` Ouvrir la définition sur le côté `Ctrl+`.
 
+## Formatage du HTML
+Ouvrir le fichier 
+`Ctrl+Mag+i` Formater le HTML
+Si aucun outil de formatage HTML n'est installé alors préférer celui de RedHat
+
 ## Correction rapide
 `Maj+F12` Afficher les références
 `F2` Renommer le symbole
