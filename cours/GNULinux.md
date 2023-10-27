@@ -1909,10 +1909,16 @@ ls -lh test1
 ```
 Nous voyons alors 
 ```
--rw-r--r-- 1 michaellaunay michaellaunay 0 avril  5 12:17 test1
-michaellaunay@luciole:~/tmp$ umask 027
-michaellaunay@luciole:~/tmp$ touch test2
-michaellaunay@luciole:~/tmp$ ls -lh test2
+-rw-r--r-- 1 michaellaunay michaellaunay 0 avril  5 12:17 
+```
+
+```bash
+umask 027
+touch test2
+ls -lh test2
+```
+
+```
 -rw-r----- 1 michaellaunay michaellaunay 0 avril  5 12:18 test2
 ```
 Le propriétaire est alors le créateur, et le groupe est généralement le groupe par défaut de l'utilisateur sauf dans le cas ou le répertoire porte le SGID alors le groupe est celui du répertoire.
@@ -2038,7 +2044,7 @@ sudo chmod u-w,o+w /tmp/hello
 ls -l /tmp/hello
 ```
 
-```bash
+```
 -r--r--rw- 1 michaellaunay michaellaunay 7 2009-05-07 09:45 /tmp/hello
 ```
 
@@ -2063,7 +2069,7 @@ ls -l MonFichier
 -rwsr----- 1 michaellaunay michaellaunay 0 2009-05-03 19:40 MonFichier
 ```
 
-```
+```bash
 chmod u=rx,g=rx,o=rx MonFichier
 ls -l MonFichier
 ```
