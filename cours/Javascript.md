@@ -170,11 +170,63 @@ L'évolution de JavaScript ne peut être complètement comprise sans évoquer la
 ## 3.1 Variables
 
 En JavaScript, une variable est un conteneur pour stocker des données. Avec l'aide des mots-clés `var` (ancienne méthode), `let` (introduit dans ES6), `const` (aussi introduit dans ES6 pour les valeurs immuables), nous pouvons déclarer des variables.
-  
+
+La création d'une variable sans affectation assigne automatiquement la valeur `undefined` 
+```js
+>> let a
+undefined
+>> a == undefined
+true
+```
+
+Création d'un tableau :
+```js
+>> t = ["un","deux","trois"]
+Array(3) [ "un", "deux", "trois" ]
+>> t[0]
+"un"
+>> t[1]
+"deux"
+```
+La création d'un  dictionnaire :
+```js
+>> d = {un:1, "deux":2, "plein de nombres":[0,1,2,3]}
+Object { un: 1, deux: 2, "plein de nombres": (4) […] }
+>> d.un
+1
+>> d.deux
+2
+>> d["deux"]
+2
+>> d["plein de nombres"]
+Array(4) [ 0, 1, 2, 3 ]
+```
+Remarque, l'accès aux valeurs d'un dictionnaire peut être fait directement comme si c'était un attribut lorsque la clé est simple, sinon avec les crochets.
+Un clé d'un dictionnaire peut être la valeur d'une variable lors de sa création si l'on entoure le nom de la variable de crochets :
+```js
+>> a = "aA"
+"A"
+>> d2 = {[a]:"Un A"}
+Object { aA: "Un A" }
+```
+
+**Remarque :**
+Dans un même bloc de code, il n'est pas possible de déclarer deux fois la même variable.
 ## 3.2 Types
 
 JavaScript est un langage à typage dynamique, ce qui signifie que vous n'avez pas besoin de déclarer le type de variable lors de sa création. Les types primitifs comprennent `Number`, `String`, `Boolean`, `Undefined`, `Null`, `BigInt`, et `Symbol`.
-  
+
+### Conversions automatiques
+
+Attention aux conversions automatiques :
+```js
+>> 4 + "2"
+'42'
+>> 4 * "2"
+'8'
+>> "cou"*2
+NaN
+```
 ## 3.3 Opérateurs
 
 Ces symboles sont utilisés pour effectuer des opérations. Nous avons des opérateurs arithmétiques (comme +, -, *, /), des opérateurs de comparaison (comme ==, !=, ===, !==), des opérateurs logiques (comme &&, ||, !) et d'autres.
