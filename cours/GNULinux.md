@@ -1868,7 +1868,7 @@ echo "export EDITOR=vim" > /etc/profile.d/editor.sh
 ```
 
 Pour augmenter le nombre de ligne dans l'historique des commandes, créer `/etc/profile.d/history.sh` en mettant :
-```bash
+```
 # https://wiki.ubuntu.com/Spec/EnhancedBash
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
