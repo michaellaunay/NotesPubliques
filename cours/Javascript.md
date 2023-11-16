@@ -202,7 +202,7 @@ Object { un: 1, deux: 2, "plein de nombres": (4) […] }
 Array(4) [ 0, 1, 2, 3 ]
 ```
 Remarque, l'accès aux valeurs d'un dictionnaire peut être fait directement comme si c'était un attribut lorsque la clé est simple, sinon avec les crochets.
-Un clé d'un dictionnaire peut être la valeur d'une variable lors de sa création si l'on entoure le nom de la variable de crochets :
+Une clé d'un dictionnaire peut être la valeur d'une variable lors de sa création si l'on entoure le nom de la variable de crochets (clé dynamique):
 ```js
 >> a = "aA"
 "A"
@@ -215,6 +215,12 @@ Dans un même bloc de code, il n'est pas possible de déclarer deux fois la mêm
 ## 3.2 Types
 
 JavaScript est un langage à typage dynamique, ce qui signifie que vous n'avez pas besoin de déclarer le type de variable lors de sa création. Les types primitifs comprennent `Number`, `String`, `Boolean`, `Undefined`, `Null`, `BigInt`, et `Symbol`.
+
+Pour connaitre le type d'un objet, nous utilisons `typeof` :
+```js
+a_string = "hello"
+typeof a_string
+```
 
 ### Conversions automatiques
 
