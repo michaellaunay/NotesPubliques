@@ -35,7 +35,7 @@ La première méthode consiste à télécharger Obsidian à partir de son site w
 
 1. Téléchargons Obsidian à partir de [ce lien](https://help.obsidian.md/Getting+started/Download+and+install+Obsidian#Install+Obsidian+using+Snap).
 2. Ouvrons un terminal et naviguons vers l'emplacement du fichier téléchargé.
-3. Exécutons la commande `snap install <nom_du_fichier>` pour installer Obsidian. Il faut remplacer `<nom_du_fichier>` par le nom du fichier téléchargé.
+3. Exécutons la commande `snap install <nom_du_fichier> --dangerous --classic` pour installer Obsidian. Il faut remplacer `<nom_du_fichier>` par le nom du fichier téléchargé.
 
 Plus d'informations sur l'utilisation de Snap pour installer Obsidian peuvent être trouvées [ici](https://help.obsidian.md/Getting+started/Download+and+install+Obsidian#Install+Obsidian+using+Snap).
 

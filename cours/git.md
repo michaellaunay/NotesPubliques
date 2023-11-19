@@ -107,8 +107,16 @@ La commande `git status` nous permet de voir l'état actuel de notre dépôt, y 
 ```bash
 git status
 ```
+## 6.3 Ajouter des fichiers pour un commit
 
-## 6.3 Transmettre au dépôt partagé les modifications commitées
+La commande `git add` permet d'ajouter des fichiers pour créer un commit. Il faut ajouter un fichier à la fois.
+
+## 6.4 Créer un commit
+
+La commande `git commit -m ` permet de créer un commit. Il va créer le commit en ajoutant les fichiers que l'on a ajouté avec la commande `git add`. 
+On peut rajouter un nom de commit pour que l'on puisse e repérer `git commit -m "Nom_du_commit`. 
+
+## 6.5 Transmettre au dépôt partagé les modifications commitées
 
 Pour partager nos modifications avec d'autres personnes, nous devons "pousser" (push) nos commits vers un dépôt distant. Cela se fait avec la commande `git push`.
 
@@ -116,7 +124,7 @@ Pour partager nos modifications avec d'autres personnes, nous devons "pousser" (
 git push
 ```
 
-## 6.4 Mettre à jour le dépôt local
+## 6.6 Mettre à jour le dépôt local
 
 Pour obtenir les dernières modifications d'un dépôt distant, nous utilisons la commande `git pull`.
 
@@ -124,7 +132,7 @@ Pour obtenir les dernières modifications d'un dépôt distant, nous utilisons l
 git pull
 ```
 
-## 6.5 Afficher les différences entre deux versions
+## 6.7 Afficher les différences entre deux versions
 
 Pour voir les différences entre deux commits, nous pouvons utiliser la commande `git diff` suivie des identifiants des deux commits.
 
@@ -132,7 +140,7 @@ Pour voir les différences entre deux commits, nous pouvons utiliser la commande
 git diff <commit1> <commit2>
 ```
 
-## 6.6 Afficher les dernières modifications
+## 6.8 Afficher les dernières modifications
 
 La commande `git log` nous permet de voir l'historique des commits. 
 
@@ -141,7 +149,7 @@ git log
 git log --graph --oneline
 ```
 
-## 6.7 Revenir à l'état précédent d'un fichier non encore indexé ou se déplacer dans les branches
+## 6.9 Revenir à l'état précédent d'un fichier non encore indexé ou se déplacer dans les branches
 
 Pour rétablir un fichier à son état précédent, ou pour changer de branche, nous utilisons la commande `git checkout`.
 
@@ -149,7 +157,7 @@ Pour rétablir un fichier à son état précédent, ou pour changer de branche, 
 git checkout
 ```
 
-## 6.8 Manipuler les branches
+## 6.10 Manipuler les branches
 
 La commande `git branch` nous permet de créer, de lister et de supprimer des branches.
 
@@ -157,7 +165,7 @@ La commande `git branch` nous permet de créer, de lister et de supprimer des br
 git branch
 ```
 
-## 6.9 Fusionner des branches et gérer des conflits
+## 6.11 Fusionner des branches et gérer des conflits
 
 Pour fusionner les modifications d'une branche dans une autre, nous utilisons la commande `git merge`.
 
@@ -165,7 +173,7 @@ Pour fusionner les modifications d'une branche dans une autre, nous utilisons la
 git merge
 ```
 
-## 6.10 Revenir à la troisième version précédente tout en gardant l'historique de la version actuelle
+## 6.12 Revenir à la troisième version précédente tout en gardant l'historique de la version actuelle
 
 Pour revenir à une version précédente sans perdre l'historique des commits, nous utilisons la commande `git revert`.
 
@@ -173,7 +181,7 @@ Pour revenir à une version précédente sans perdre l'historique des commits, n
 git revert HEAD~3..HEAD
 ```
 
-## 6.11 Revenir à une version précédente en effaçant l'historique de la version actuelle
+## 6.13 Revenir à une version précédente en effaçant l'historique de la version actuelle
 
 Si nous voulons revenir à une version précédente et effacer l'historique des commits, nous pouvons utiliser la commande `git reset`.
 
@@ -181,7 +189,7 @@ Si nous voulons revenir à une version précédente et effacer l'historique des 
 git reset
 ```
 
-## 6.12 Diagrammes
+## 6.14 Diagrammes
 
 Exemple de diagramme de séquence qui reprend l'ensemble du workflow Git classique, y compris les différents états des fichiers (untracked, unmodified, modified, staged) et les interactions avec le dépôt local et le dépôt distant.
 
@@ -208,7 +216,7 @@ sequenceDiagram
 
 Dans ce diagramme, chaque participant représente un état de fichier différent ou un dépôt différent. Les flèches représentent les actions effectuées sur les fichiers ou les dépôts, généralement en utilisant des commandes Git. Notez que le flux réel peut varier en fonction de votre utilisation spécifique de Git.
 
-## 6.13 Diagramme des branches
+## 6.15 Diagramme des branches
 
 Exemple de diagramme de séquence qui illustre le workflow avec des branches et des merges :
 
@@ -231,7 +239,7 @@ Dans ce diagramme, "Tronc" et "Branche" représentent deux branches différentes
 
 Ensuite, nous revenons sur la branche master, fusionnons les modifications de la branche feature, puis poussons les modifications vers le dépôt distant.
 
-## 6.14 Alias pratique
+## 6.16 Alias pratique
 
 Pour faciliter notre travail, nous pouvons créer des alias pour certaines commandes. Par exemple, l'alias suivant crée une commande `gg` qui affiche un journal de commits coloré et facile à lire.
 
