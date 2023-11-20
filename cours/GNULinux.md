@@ -2110,7 +2110,7 @@ Les attributs étendus permettent de gérer simplement les métadonnées associ�
 
 Ce sont ces attributs étendus qui recevront les informations liées aux ACLs.
 
-Pour installer le paquet : **`apt-get install attr`**
+Pour installer le paquet : **`apt install attr`**
 
 Ajouter l'option `user_xattr` aux partitions dans `*/etc/fstab*`.
 
