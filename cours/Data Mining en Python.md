@@ -79,17 +79,20 @@
 - Questions éthiques dans le data mining
 - Gestion de la confidentialité et de la sécurité des données
 
-## VI. Travaux Pratiques et Projets
+## VI. Travaux Pratiques et Projets : Analyse de fr.wikipedia.org
 
-### 1. Projets de Data Mining
-
-- Développement de projets en groupes
-- Application des techniques apprises sur des ensembles de données réels
-
-### 2. Présentation et Évaluation des Projets
-
-- Présentation des résultats des projets
-- Critique et évaluation par les pairs et les instructeurs
+- Récupération des Données
+- Prétraitement des Données
+- Analyse des Données
+	- Exploration et Analyse Statistique
+	- Visualisation des Données
+- Recherche et Analyse Spécifique
+	- Analyse Approfondie
+	- Extraction d'Insights
+	- Corrélations
+- Conclusion et Présentation
+- Présentation des Résultats
+- Conseils pour l'Exécution de l'Exercice
 
 ## VII. Conclusion et Ressources pour Poursuivre l'Apprentissage
 
@@ -672,6 +675,66 @@ L'optimisation des hyperparamètres est une étape clé dans la construction de 
   trials = Trials()
   best = fmin(objective, space, algo=tpe.suggest, max_evals=100, trials=trials)
   ```
+
+# VI. Travaux Pratiques et Projets : Analyse de fr.wikipedia.org
+
+Cet exercice a pour but de développer en groupes nos compétences en data mining et en analyse de données en travaillant sur un ensemble de données réel et volumineux : le contenu de la version française de Wikipedia (fr.wikipedia.org). Ce projet sera divisé en plusieurs étapes, allant de la collecte des données à leur analyse pour produire des statistiques significatives.
+
+## Étape 1: Récupération des Données
+
+### Téléchargement du Dump de Wikipedia
+- **Accès aux Données :** Les dumps de Wikipedia sont disponibles gratuitement sur https://dumps.wikimedia.org/. Cherchez la section correspondant à la version française (frwikis).
+- **Sélection du Fichier :** Choisissez un dump récent qui contient le contenu de l'ensemble des pages (généralement indiqué par 'pages-articles') en format XML.
+
+### Conseils pour le Téléchargement
+- Les fichiers de dump peuvent être volumineux. Assurez-vous d'avoir une connexion stable et suffisamment d'espace de stockage.
+- Utilisez des outils comme `wget` ou `curl` pour télécharger le fichier en ligne de commande.
+
+## Étape 2: Prétraitement des Données
+
+### Extraction et Nettoyage
+- **Extraction :** Utilisez un outil ou une bibliothèque pour parser le fichier XML et extraire le contenu textuel des pages.
+- **Nettoyage :** Nettoyez le texte extrait pour éliminer les balises HTML, les marqueurs de formatage Wiki, etc.
+
+### Stockage des Données
+- **Base de Données :** Envisagez de stocker les données nettoyées dans une base de données (comme SQLite, PostgreSQL) pour faciliter l'accès et la manipulation.
+- **Format Structuré :** Si vous préférez travailler avec des fichiers, stockez les données dans un format structuré comme JSON ou CSV.
+
+## Étape 3: Analyse des Données
+
+### Exploration et Analyse Statistique
+- **Calcul de Statistiques Basiques :** Nombre de pages, longueur moyenne des articles, distribution des tailles d'articles, etc.
+- **Analyse de Fréquence :** Fréquence des mots, analyse des thèmes les plus courants.
+
+### Visualisation des Données
+- **Graphiques et Diagrammes :** Utilisez des bibliothèques comme Matplotlib ou Seaborn pour visualiser les résultats de votre analyse (par exemple, un histogramme des tailles d'articles).
+
+## Étape 4: Recherche et Analyse Spécifique
+
+### Analyse Approfondie
+- **Recherche de Motifs :** Analysez des motifs ou des tendances spécifiques, comme les liens entre les articles, la popularité de certains sujets, etc.
+- **Text Mining :** Utilisez des techniques de NLP pour une analyse plus poussée, comme le sentiment des articles, la classification des sujets, etc.
+
+### Extraction d'Insights
+- **Corrélations :** Cherchez des corrélations intéressantes dans les données, par exemple entre la longueur des articles et leur popularité ou leur fréquence de mise à jour.
+
+## Conclusion et Présentation
+
+### Rédaction d'un Rapport
+- **Synthèse des Résultats :** Compilez vos résultats et analyses dans un rapport structuré.
+- **Insights et Recommandations :** Fournissez des insights clairs basés sur vos analyses et proposez des recommandations ou des conclusions.
+
+### Présentation des Résultats
+- Préparez une présentation pour partager vos découvertes avec vos pairs ou la communauté. Utilisez des visualisations pour rendre votre présentation plus engageante.
+
+## Conseils pour l'Exécution de l'Exercice
+
+- **Planification :** Vu l'ampleur du projet, planifiez votre travail en décomposant le projet en tâches gérables.
+- **Documentation :** Documentez votre processus d'analyse et vos méthodes pour assurer la clarté et la reproductibilité.
+- **Collaboration :** Si possible, travaillez en équipe pour partager les tâches et les idées.
+
+Cet exercice offre une opportunité exceptionnelle d'appliquer des compétences de data mining sur un ensemble de données réel et complexe, tout en développant une compréhension pratique des défis associés à l'analyse de grandes quantités de données textuelles.
+
 # VII. Conclusion et Ressources pour Poursuivre l'Apprentissage
 
 ## 1. Récapitulatif du Cours
