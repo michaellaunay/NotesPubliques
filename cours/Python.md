@@ -165,6 +165,14 @@ print("John", "Doe", sep="-")
 print("Hello, World!", end="")
 ```
 
+# Exercice
+
+1. Déclarez trois variables entières : `annee`, `mois`, `jour`.
+2. Demandez à l'utilisateur de saisir l'année, le mois et le jour de naissance sous forme d'entiers.
+3. Affichez le jour et le mois sur deux chiffres, et l'année sur quatre chiffres.
+
+Par exemple, si l'utilisateur saisit le 9 mars 2001, le programme doit afficher `09/03/2001`.
+
 # Les primitives d'accès aux informations de type
 
 ## id()
@@ -491,10 +499,21 @@ Enfin, nous pouvons également spécifier un pas de slicing, qui est le nombre d
 ```python
 chaine = "Bonjour le monde"
 sous_chaine = chaine[::2]
-print(sous_chaine)  # Affiche "Bno u od"
+print(sous_chaine)  # Affiche "Bnorl od"
 ```
 
 Dans cet exemple, le pas de slicing est 2, donc le slicing extrait tous les deuxièmes caractères de la chaîne.
+
+### Exercices sur le Slicing de Chaînes de Caractères
+
+1. **Inversion de Chaîne** : Écrivez un programme Python pour inverser une chaîne de caractères comme "Python est un langage versatile" en utilisant le slicing.
+2. **Extraction de Sous-Chaîne** : Écrivez un programme pour extraire les caractères entre le 2ème et le 5ème caractère (inclus) d'une chaîne donnée.
+
+### Conseils pour les Étudiants
+
+- N'oubliez pas que l'indexation en Python commence à 0.
+- Le slicing utilise le format `[début:fin:pas]`, où `début` est inclusif et `fin` est exclusif.
+- Expérimentez avec différents pas, par exemple `-1` pour inverser.
 
 # Les numériques
 
@@ -597,6 +616,11 @@ print(type(mon_tuple))  # Affiche "<class 'tuple'>"
 
 Dans cet exemple, `mon_tuple` est un tuple de trois éléments. Nous pouvons accéder à un élément du tuple en utilisant son indice, par exemple `mon_tuple[0]` retourne `1`.
 
+### Exercices sur le Slicing de Tuple
+
+1. **Extraire un Sous-Tuple** : Étant donné un tuple `(1, 2, 3, 4, 5, 6)`, écrivez un programme pour extraire les éléments du 2ème au 4ème (inclus).
+2. **Inversion de Tuple** : Écrivez un programme pour inverser un tuple donné.
+
 ## Les listes
 
 Une liste est une séquence mutable d'éléments. Cela signifie que nous pouvons ajouter, modifier ou supprimer des éléments d'une liste après sa création. Les listes sont très polyvalentes et sont souvent utilisées pour stocker des collections d'éléments qui doivent être modifiées.
@@ -607,6 +631,11 @@ print(type(ma_liste))  # Affiche "<class 'list'>"
 ```
 
 Dans cet exemple, `ma_liste` est une liste de trois éléments. Nous pouvez ajouter un élément à la liste avec `ma_liste.append(4)`, modifier un élément avec `ma_liste[0] = 0`, ou supprimer un élément avec `del ma_liste[2]`.
+
+### Exercices sur le Slicing de Liste
+
+1. **Sélection de Sous-Liste** : Étant donné une liste `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`, écrivez un programme pour extraire une sous-liste contenant les 3ème, 4ème et 5ème éléments.
+2. **Slicing avec Pas** : Écrivez un programme pour extraire tous les éléments pairs d'une liste donnée en utilisant le slicing avec un pas.
 
 ## Les dictionnaires
 
@@ -716,6 +745,27 @@ print(matrice)  # Affiche [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
 
 Dans cet exemple, la liste en compréhension externe crée les lignes de la matrice, et la liste en compréhension interne crée les éléments de chaque ligne.
 
+### Exercices sur les Listes en Compréhension
+
+1. **Nombres Pairs** : Créez une liste de tous les nombres pairs de 1 à 20 inclus.
+    
+2. **Carrés des Nombres** : Générez une liste contenant les carrés de tous les nombres de 1 à 10.
+    
+3. **Liste de Caractères** : À partir d'une chaîne donnée, par exemple "informatique", créez une liste des caractères individuels de cette chaîne.
+    
+4. **Filtrer les Nombres Impairs** : À partir d'une liste donnée, par exemple `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`, créez une nouvelle liste contenant uniquement les nombres impairs.
+    
+5. **Longueur des Mots** : Étant donné une liste de mots, par exemple `["Python", "est", "amusant"]`, créez une liste contenant la longueur de chaque mot.
+    
+6. **Conversion de Température** : Convertissez une liste de températures en Celsius en Fahrenheit. Vous pouvez utiliser la formule `F = C * 9/5 + 32`.
+    
+7. **Nombres Divisibles par un Autre Nombre** : Créez une liste des nombres de 1 à 100 qui sont divisibles par 7.
+    
+8. **Liste de Listes Aplaties** : Étant donné une liste de listes, par exemple `[[1,2], [3,4], [5,6]]`, créez une liste unique qui contient tous les éléments des sous-listes.
+    
+9. **Mots avec Lettre Spécifique** : À partir d'une liste de mots, créez une liste des mots qui contiennent la lettre 'a'.
+    
+10. **Combiner Deux Listes en Paires** : Étant donné deux listes, par exemple `[1, 2, 3]` et `['a', 'b', 'c']`, créez une liste de paires combinant les éléments des deux listes (par exemple, `[(1, 'a'), (2, 'b'), (3, 'c')]`).
 # Les itérateurs
 
 Un itérateur en Python est un objet qui peut être parcouru, c'est-à-dire qu'il permet de parcourir tous les éléments d'une collection (comme une liste, un tuple, un dictionnaire, un ensemble, etc.), un à la fois. Cette fonctionnalité est particulièrement utile dans les boucles `for` et `while`, où nous voulons effectuer une opération sur chaque élément d'une collection.
@@ -2054,10 +2104,12 @@ Pour créer un environnement virtuel, nous utilisons la commande `mkvirtualenv` 
     mkvirtualenv my_venv -p python3
 
 Par exemple, pour installer QT6 dans un environnement virtuel, nous utilisons :
-
-    mkvirtualenv qt6_env -p python3
-    (qt6_env) michaellaunay@luciole:~$ pip install numpy matplotlib PyQt6
-    (qt6_env) michaellaunay@luciole:~$ pip install flake8 pylint
+```bash
+mkvirtualenv qt6_env -p python3
+(qt6_env) michaellaunay@luciole:~$ pip install numpy matplotlib PyQt6
+(qt6_env) michaellaunay@luciole:~$ pip install flake8 pylint
+```
+    
 
 Depuis Python 3.6, il existe un outil, `pipenv`, qui combine `pip` et `virtualenv`.
 
@@ -2166,3 +2218,13 @@ Bien sûr, voici une liste de ressources en ligne pour vous aider à approfondir
 10. [edX](https://www.edx.org/learn/python) : Des cours en ligne gratuits offerts par des universités du monde entier.
 
 Il est préférable de commencer par des ressources adaptées à notre niveau actuel, puis d'ajouter des défis supplémentaires à mesure que vous progressez.
+
+# Installation de bibliothèques directement dans python
+Depuis Python 3.9 il est possible d'installer les bibliothèques comme suit
+```shell
+python3 -m install matplotlib
+```
+Création d'un environnement virtuel
+```bash
+python3 -m venv ~/venv
+```
