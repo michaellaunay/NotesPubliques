@@ -1,5 +1,5 @@
 Ce cours vise à fournir aux étudiants en Master 2 Informatique une compréhension approfondie de la sécurité dans le développement et l'utilisation de logiciels écrits en Python. Le cours se concentrera sur les principes de base de la sécurité informatique, l'application de ces principes en Python, et les meilleures pratiques pour maintenir la sécurité dans les applications Python.
-Mais avant de commencer un petit [Guide d'hygiène informatique](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) et [Dix règles d'or préventives](https://cyber.gouv.fr/dix-regles-dor-preventives)
+Mais avant de commencer un petit [Guide d'hygiène informatique](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) et [Dix règles d'or préventives](https://cyber.gouv.fr/dix-regles-dor-preventives), voire de tester [Root Me](https://www.root-me.org/)
 
 # I. Projet et mise en application du cours
 
@@ -8,8 +8,8 @@ Pour cela nous procéderons comme suit :
 
 ## 1. Formation des Équipes
     
-    - La classe sera divisée en équipes de trois étudiants.
-    - Chaque équipe sera appariée avec une ou deux autres équipes pour collaborer et se défier.
+    - La classe sera divisée en équipes de trois ou quatre étudiants.
+    - Chaque équipe sera opposée avec une ou deux autres équipes pour collaborer et se défier.
 ## 2. Développement d'une Application Python/Pyramid
     
 L'application sera développée en plusieurs phases en Python avec Pyramid, chacune conçue pour être successivement attaquée et défendue. Chaque phase sera exécutée en mode production (sans la barre de développement) et, si aucun résultat de la part des attaquants n'est obtenu, alors en mode "development" avec le module `pyramid_debugtoolbar`. Chaque équipe publiera son code source sur un dépôt Git sous licence GPL. L'application permettra aux visiteurs de devenir membres (par la saisie de leur adresse mail et mot de passe), puis aux membres connectés de changer l'image de fond et/ou de laisser des commentaires qui s'ajouteront à ceux déjà présents, et qui apparaîtront comme le contenu principal. L'ajout d'un commentaire ou le changement de l'image de fond provoquera l'envoi d'un mail aux autres membres, y compris l'administrateur. Pour accélérer les développements, nous utiliserons Copilot et/ou ChatGPT.
@@ -17,15 +17,16 @@ La documentation de conception doit suivre [[Architecture des logiciels#3. Docum
 ## 3. Phases de Développement
 Voici les phases que nous suivrons et améliorerons après les différents chapitres du cours :
 - **Phase 0:** Application web sans aucune mesure de sécurité et utilisation de ngrep.
-- **Phase 1:** Utilisation d'un proxy web (apache) et utilisation de certificats ssl (auto-signés), si serveur ubuntu [[GNULinux#Sécurisation]] ufw (voir [[GNULinux#iptables et ufw]]) et fail2ban (voir [[GNULinux#fail2ban]]).
-- **Phase 2:** Implémentation de la journalisation (logging) des accès et opérations et tcpdump et wireshark.
-- **Phase 3:** Vérification des saisies côté client (outils de développement web côté navigateur).
+- **Phase 1:** Utilisation d'un serveur web (apache2) et utilisation de certificats ssl (auto-signés), si serveur ubuntu [[GNULinux#Sécurisation]] ufw (voir [[GNULinux#iptables et ufw]]) et fail2ban (voir [[GNULinux#fail2ban]]).
+- **Phase 2:** Implémentation de la journalisation (logging) des accès et opérations, enregistrement des trames réseaux avec tcpdump et consultation avec wireshark.
+- **Phase 3:** Vérification des saisies côté client (outils de développement web côté navigateur) et XSS.
 - **Phase 4:** Vérification des saisies côté serveur.
 - **Phase 5:** Utilisation de cookies simples.
 - **Phase 6:** Implémentation de cookies signés.
 - **Phase 7:** Gestion des sessions utilisateurs.
 - **Phase 8:** Stockage des mots de passe en clair.
 - **Phase 9:** Stockage des mots de passe de manière chiffrée.
+
 ## 4. Fonctionnalités de l'Application
 
 - **Affichage et Modification de l'Image de Fond :** L'application affichera une image de fond par défaut. Les membres, une fois connectés, auront la possibilité de modifier cette image via un formulaire dédié.

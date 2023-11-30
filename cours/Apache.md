@@ -29,7 +29,9 @@ Cette commande créer 2 liens dans /etc/apache2/mods-enabled pointant vers ../mo
 
 Pour ajouter un site, il suffit de créer un fichier de configuration dans */etc/apache2/sites-available* puis de l'activer :
 
-    root@monserveur:~# vim /etc/apache2/sites-available/www.monsite.com
+```bash
+sudo vim /etc/apache2/sites-available/www.monsite.com.conf
+```
 
       <VirtualHost *:443>
         ServerAdmin michaellaunay@ecreall.com
@@ -60,9 +62,10 @@ Pour ajouter un site, il suffit de créer un fichier de configuration dans */etc
       </VirtualHost>
 
 Puis d'activer le site :
-
-    root@monserveur:~# a2ensite www.monsite.com
-    root@monserveur:~# /etc/init.d/apache2 restart
+```bash
+a2ensite www.monsite.com
+systemctl restart apache2
+```
 
 # Sécurisation
 
