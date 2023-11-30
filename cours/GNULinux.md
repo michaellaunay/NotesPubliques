@@ -2370,7 +2370,7 @@ Le format du fichier est le même que lors de l'édition avec *`crontab -e`*:
   ---------- -------- ------------- -------- ------------------- ----------
   Minutes    Heures   Jour du mois  Mois     Jour de la semaine  Commande
 
-  (0-60)     (0-24)   (0-31)        (1-12)   (0-6)               un script
+  (0-60)     (0-24)   (1-31)        (1-12)   (0-6)(0 pour dimanche)    un script
   ---------- -------- ------------- -------- ------------------- ----------
 
 Le joker \*\*\*\*\* permet d'indiquer que toutes les valeurs sont acceptées.

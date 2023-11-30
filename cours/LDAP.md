@@ -438,6 +438,12 @@ Explication du fichier LDIF :
 
 N'oublions pas de remplacer `OUR_OID_NUMBER` par le nombre OID que nous avons obtenu pour notre organisation ou application. L'OID doit être unique à votre organisation pour éviter les conflits avec d'autres extensions de schéma.
 
+## ldapvi
+`ldapvi` est un outil très pratique est simple d'utilisation de LDAP.
+exemple:
+```bash
+ldapvi --discover
+```
 ## Comment avoir un OID unique
 
 L'OID (Object Identifier) est une chaîne de nombres qui identifie de manière unique un type d'objet ou un attribut dans divers standards, dont LDAP. 
@@ -453,7 +459,7 @@ Pour une entreprise nous devons faire une demande
 
 Il faut obtenir un OID officiel pour publier son code en open source sans risque de conflit ou si nous prévoyons de déployer notre schéma dans un environnement de production.
 
-# 2023-09-25
+Disponibilité des PEN
 
 Lorsque nous demandons un PEN, nous pouvons utiliser un PEN libre comme 77777 tant qu'il n'est pas attribué (à vérifier sur le site de l'IANA.
 Exemple
