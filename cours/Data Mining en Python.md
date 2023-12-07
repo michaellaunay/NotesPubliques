@@ -681,9 +681,9 @@ L'optimisation des hyperparamètres est une étape clé dans la construction de 
 Cet exercice a pour but de développer en groupes nos compétences en data mining et en analyse de données en travaillant sur un ensemble de données réel et volumineux : le contenu de la version française de Wikipedia (fr.wikipedia.org). Ce projet sera divisé en plusieurs étapes, allant de la collecte des données à leur analyse pour produire des statistiques significatives.
 
 ## Étape 1: Récupération des Données
-
+Il est possible d'avoir une version de wikipedia en utilisant le code source php de wikimedia, voir [Téléchargement d'une version locale de wikipedia](https://linux.how2shout.com/how-to-install-mediawiki-on-ubuntu-22-04-lts-jammy/)
 ### Téléchargement du Dump de Wikipedia
-- **Accès aux Données :** Les dumps de Wikipedia sont disponibles gratuitement sur https://dumps.wikimedia.org/. Cherchez la section correspondant à la version française (frwikis).
+- **Accès aux Données :** Les dumps de Wikipedia sont disponibles gratuitement sur https://dumps.wikimedia.org/. Cherchez la section correspondant à la version française (frwikis) par exemple http://mirror.accum.se/mirror/wikimedia.org/dumps/frwiki/  .
 - **Sélection du Fichier :** Choisissez un dump récent qui contient le contenu de l'ensemble des pages (généralement indiqué par 'pages-articles') en format XML.
 
 ### Conseils pour le Téléchargement
