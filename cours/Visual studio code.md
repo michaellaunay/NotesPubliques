@@ -375,3 +375,30 @@ Pour cela il faut d'abord ajouter rest à l'environnement virtuel par  défaut e
 ```
 
 Puis éditer la configuration de l'extension (Ctrl+Maj+P) et y ajouter comme chemin celui saisit pour Sphinx c'est-à-dire là où nous avons dit à quickstart de travailler et où il a créé le fichier conf.py (le workspace est le plus pratique).
+
+# Utilisation du mode Remote ssh de Visual Code
+Pour utiliser Visual Studio Code à distance sur un autre PC Linux, nous pouvons suivre ces étapes :
+
+1. **Installer Visual Studio Code** : Nous devons nous assurer que Visual Studio Code est installé sur nos deux PC. Nous pouvons le télécharger depuis le site officiel de Visual Studio Code.
+
+2. **Installer l'Extension Remote - SSH** : Sur le PC depuis lequel nous souhaitons accéder à distance, nous ouvrons Visual Studio Code, allons dans l'onglet des extensions, et installons l'extension "Remote - SSH". Cette extension permet de se connecter à un environnement de développement distant via SSH.
+
+3. **Configurer SSH sur le PC Hôte (notre PC Ubuntu)** :
+   - Nous devons nous assurer que le service SSH est installé et activé sur notre PC Ubuntu. Nous pouvons l'installer avec la commande `sudo apt-get install openssh-server`.
+   - Nous vérifions que le service SSH est actif en utilisant la commande `sudo service ssh status`.
+   - Nous pouvons configurer le fichier `/etc/ssh/sshd_config` pour des réglages spécifiques si nécessaire (comme changer le port par défaut, etc.).
+
+4. **Connexion à Distance** :
+   - Sur le PC distant, nous ouvrons Visual Studio Code.
+   - Nous cliquons sur l'icône verte en bas à gauche ou allons dans la palette de commandes (`Ctrl+Shift+P`) et tapons "Remote-SSH: Connect to Host...".
+   - Nous entrons les informations de connexion de notre PC Ubuntu, comme `username@hostname`, où `username` est notre nom d'utilisateur sur le PC Ubuntu et `hostname` est l'adresse IP ou le nom de domaine de ce PC.
+
+5. **Accéder à Notre Environnement de Développement** : 
+   - Une fois connectés, nous aurons accès à notre système de fichiers sur le PC Ubuntu.
+   - Nous ouvrons le dossier de notre projet ou les fichiers sur lesquels nous souhaitons travailler.
+
+6. **Travailler à Distance** : 
+   - Nous pouvons maintenant éditer, exécuter, et déboguer notre code comme si nous étions directement sur notre PC Ubuntu.
+   - Toutes les extensions et configurations de Visual Studio Code sur le PC hôte seront disponibles.
+
+7. **Transfert de Fichiers** : Si nécessaire, nous pouvons transférer des fichiers entre les deux PC en utilisant SCP ou un service de partage de fichiers.
