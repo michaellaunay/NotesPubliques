@@ -386,6 +386,9 @@ Décortiquons cette commande :
 
 Après avoir exécuté cette commande, elle vous demandera d'entrer le nouveau mot de passe deux fois pour confirmation. Si tout se passe bien, le mot de passe de l'utilisateur sera changé.
 
+# Stockage du login et du nom complet de l'utilisateur
+Généralement l'entrée `uid` permet de gérer le login il doit être unique et ne pas contenir d'espace.
+`cn` peut contenir des espaces et peut être multi-valeurs, il suffit alors de répéter l'entrée `cn` au temps de fois que nécessaire.
 # Stockage des mots de passe dans OpenLDAP
 
 OpenLDAP stocke les mots de passe en utilisant des hachages plutôt qu'en clair, conformément aux exigences de sécurité et de confidentialité, y compris celles du Règlement Général sur la Protection des Données (RGPD).
@@ -444,6 +447,30 @@ exemple:
 ```bash
 ldapvi --discover
 ```
+
+Pour modifier les entrées ldap, il faut se connecter en tant qu'administrateur :
+```
+ldapvi --discover --host ldap://127.0.0.1 -D "cn=admin,dc=ecreall,dc=com" -w "Un mot de passe"
+```
+
+Après modification dans vim et une fois enregistré les modifications avec `w`, `ldapvi` demande `Action? [yYqQvVebB*rsf+?]`, car `ldapvi` propose différentes options pour agir sur les changements apportés. Voici leur signification :
+
+1. **y** : Oui, appliquer les changements.
+2. **Y** : Oui, appliquer les changements et quittez.
+3. **q** : Quitter sans appliquer les changements.
+4. **Q** : Quitter immédiatement sans appliquer les changements, même s'il y a des modifications non enregistrées.
+5. **v** : Ouvrir un éditeur pour revoir et éventuellement modifier les modifications en attente.
+6. **V** : Afficher les modifications en attente dans un format plus détaillé pour examen.
+7. **e** : Rééditer les entrées (retourne à l'écran d'édition).
+8. **b** : Annuler le dernier changement (comme un retour en arrière).
+9. **B** : Annuler tous les changements.
+10. **\*** : Sauvegarder les modifications dans un fichier.
+11. **r** : Rafraîchisser les entrées depuis le serveur LDAP (utile si d'autres modifications ont été faites sur le serveur pendant que vous étiez en train d'éditer).
+12. **s** : Basculer entre l'affichage simple et l'affichage LDIF. LDIF est un format standard pour représenter les entrées LDAP sous forme de texte.
+13. **f** : Force l'application des changements sans demander de confirmation pour chaque entrée.
+14. **+** : Appliquer les changements et continuer à éditer.
+15. **?** : Afficher l'aide sur ces options.
+
 ## Comment avoir un OID unique
 
 L'OID (Object Identifier) est une chaîne de nombres qui identifie de manière unique un type d'objet ou un attribut dans divers standards, dont LDAP. 
