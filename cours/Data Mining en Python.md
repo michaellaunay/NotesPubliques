@@ -687,7 +687,7 @@ Il est possible d'avoir une version de wikipedia en utilisant le code source php
 - **Sélection du Fichier :** Choisissez un dump récent qui contient le contenu de l'ensemble des pages (généralement indiqué par 'pages-articles') en format XML.
 
 ### Conseils pour le Téléchargement
-- Les fichiers de dump peuvent être volumineux. Assurez-vous d'avoir une connexion stable et suffisamment d'espace de stockage.
+- Les fichiers de dump peuvent être volumineux, par exemple l'archive frwiki fait 5go en version compressée et 25go décompressée sous forme d'un seul fichier xml . Assurez-vous d'avoir une connexion stable et suffisamment d'espace de stockage.
 - Utilisez des outils comme `wget` ou `curl` pour télécharger le fichier en ligne de commande.
 
 ## Étape 2: Prétraitement des Données
@@ -699,6 +699,7 @@ Il est possible d'avoir une version de wikipedia en utilisant le code source php
 ### Stockage des Données
 - **Base de Données :** Envisagez de stocker les données nettoyées dans une base de données (comme SQLite, PostgreSQL) pour faciliter l'accès et la manipulation.
 - **Format Structuré :** Si vous préférez travailler avec des fichiers, stockez les données dans un format structuré comme JSON ou CSV.
+- Format Markdown: Après avoir analyser ce qu'apporte les formats et bases de données nous allons mapper les donner au format markdown.
 
 ## Étape 3: Analyse des Données
 
