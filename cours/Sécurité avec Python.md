@@ -467,7 +467,11 @@ La gestion des logs est un aspect fondamental de la sécurité informatique. Les
 ### Importance des Logs pour la Sécurité
 
 Les logs sont essentiels pour plusieurs raisons en matière de sécurité :
-
+```bash
+sed -i 's/alirpunkto/simple_app/g' {}
+``````bash
+sed -i 's/alirpunkto/simple_app/g' {}
+```
 - **Détection d'Incidents :** Les logs permettent de détecter des activités anormales ou suspectes qui peuvent indiquer une tentative de compromission ou une attaque en cours.
 - **Audit et Conformité :** Ils fournissent un historique des événements qui peut être utilisé pour des audits de sécurité, aidant à assurer la conformité avec les réglementations et les politiques internes.
 - **Analyse Forensique :** En cas de violation de sécurité, les logs sont une ressource précieuse pour comprendre comment l'incident s'est produit et quelles mesures prendre pour prévenir des incidents similaires à l'avenir.
@@ -568,9 +572,6 @@ print(df[df['level'] == 'ERROR']['message'].value_counts())
 
 #### Visualisation des Données de Logs
 - Utilisez Matplotlib ou Seaborn pour créer des graphiques illustrant les tendances dans les logs, comme les erreurs au fil du temps ou la distribution des niveaux de log (INFO, ERROR, etc.).
-
-## 4. Filtrage et Classification des Accès
-# VII. Analyse et Gestion des Logs en Python
 
 ## 4. Filtrage et Classification des Accès
 
@@ -737,3 +738,6 @@ if detected_anomaly:
 
 @TODO AJOUTER :
 "le scraping", "selenium", "l'analyse de page html", "l'analyse des mails", "l'usage de bibliothèques python pour tester les protocoles et les serveurs http, ftp, smtp, ssh, ntp, dns, icmp, sql, etc", beautifulsoup, le Fuzzing (dont le fuzzing http et smtp), le brute force, le scan de ports, l'analyse de paquets enregistrés avec tcpdump/wireshark, base64, ssl, hash, sha, bcrypt, des certificats, la recherche de données dans un répertoire, le parcours de nombreux fichier pour chercher un pattern, Faire un chapitre sur l'exploitation des logs d'un ubuntu 22.04 et l'écriture de scripts python pour chercher des preuves d'intrusions et faire des rapprochements (), etc,
+
+# Ressources
+[Liste des failles](https://search.0t.rocks/) voir search.illicit.services
