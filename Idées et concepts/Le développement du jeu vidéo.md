@@ -103,3 +103,16 @@ Marché en croissance continue depuis 15 ans qui suit celle du smartphone, des c
 190 nouveaux jeux chaque semaine sur steam, 70 jeux par semaine sur switch, 3000 par semaine sur mobile (voir [Les bases du financement de jeu vidéo par Stéphane Rappeneau | Toulouse Game Dev ](https://youtu.be/-6HoUSN-Qq4) )
 Le top 100 des jeux sur steam gagne 95% des revenus.
 Clairement le Freemium est la solution permettant aux investisseurs de ne pas avoir peur.
+
+# Le Game Design
+Voir la vidéo [Game Design | ToulouseGameDev](https://www.youtube.com/watch?v=VTNIXQzeRt8&ab_channel=ToulouseGameDev)
+Les menus doivent expliquer le jeu, ainsi plutôt qu'un tutoriel, il vaut mieux obliger le joueur a utiliser l'interface et les commandes pour sélectionner les options de sa partie, l'enjeu n'est plus ergonomique, mais narratif.
+Exemple marquant le jeu Antichamber.
+L'écran d'accueil est le moment de poser l'univers 
+
+## Le forward design
+
+C'est le concentré de l'interface, plus rien ne peut être enlevé.
+L'interface est un langage auquel on ajoute des mots au fur et à mesure que l'utilisateur les maîtrise.
+Les niveaux de lecture se font du détail à la vue la plus reculée et donc contenant le plus d'informations. Forcer la paréliolie pour que le joueur cherche du sens. Il arrive que l'on doivent compenser les limites techniques liées à l'écran ou la souris.
+La complexité a une cible marketing, 

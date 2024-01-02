@@ -1,0 +1,2 @@
+[Pourquoi la méritocratie n'existe pas | BLAST](https://youtu.be/MP8s4fmjwd0)
+"La méritocratie est donc un système sociale problématique qui reproduit, légitime et naturalise l'inégalité, parce que ce système postule que les personnes douées et peu soucieuse d’autrui, méritent un statut sociale, un niveau d'éducation, une profession et un revenu plus élevés en vertu de dons naturels." Pierre Michel Menger, Origine et histoire de la méritocratie, France Culture, 24.08.2024.
