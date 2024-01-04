@@ -1,57 +1,3 @@
-# Plan
-
-Introduction à la localisation et à l'internationalisation avec Babel et pybabel
-
-1. Introduction à la localisation et à l'internationalisation
-	1.1. Définitions et concepts clés
-		1.1.1. Localisation vs internationalisation
-		1.1.2. Pourquoi la localisation est importante pour les applications modernes
-
-	1.2. Bases de la localisation
-		1.2.1. Formats de fichiers de localisation courants (Gettext, JSON, XML)
-		1.2.2. Extraction de messages à traduire à partir du code source
-
-2. Présentation de Babel
-	2.1. Qu'est-ce que Babel ?
-		2.1.1. Vue d'ensemble de l'outil
-		2.1.2. Avantages de l'utilisation de Babel dans le processus de localisation
-
-	2.2. Configuration de Babel
-		2.1. Installation et mise en place du projet
-		2.2. Fichiers de configuration (babel.cfg)
-
-	2.3. Utilisation de Babel pour la localisation
-		2.3.1. Extraction des chaînes de caractères à traduire
-		2.3.2. Génération des fichiers de catalogues de messages (.pot)
-		2.3.3. Traduction des messages avec Babel
-
-3. Introduction à pybabel
-	3.1. Qu'est-ce que pybabel ?
-		3.1.1. Vue d'ensemble de l'outil et ses fonctionnalités
-	
-	3.2. Configuration de pybabel
-		3.2.1. Installation et mise en place
-		3.2.2. Configuration du projet avec pybabel
-
-	3.3. Principales fonctionnalités de pybabel
-		3.3.1. Initialisation des catalogues de traduction (.po)
-		3.3.2. Extraction des messages à traduire à partir du code source
-		3.3.3. Traduction des messages avec pybabel
-
-4. Intégration de Babel et pybabel dans un projet Pyramid utilisant chameleon et des templates tal/metal 
-	4.1. Utilisation de Babel avec Pyramid
-		4.1.1. Configuration de Pyramid pour la localisation
-		4.1.2. Utilisation des fonctions de traduction dans les modèles et les vues
-	4.2. Exemples pratiques d'utilisation de Babel et pybabel dans Pyramid
-		4.2.1. Mise en place de la localisation dans une application Pyramid
-		4.2.2. Traduction des messages avec pybabel
-
-5. Bonnes pratiques en localisation
-	5.1. Sélection des messages à traduire
-	5.2. Gestion des pluriels et des contextes linguistiques
-	5.3. Astuces pour des traductions de qualité
-	5.4. Tests et validation des traductions
-
 # 1. Introduction à la localisation et à l'internationalisation
 
 ## 1.1 Définitions et concepts clés
@@ -108,6 +54,210 @@ Une fois que nous disposons du fichier .pot, nous pouvons le fournir aux traduct
 
 Il est important de noter que l'extraction des messages à traduire doit être une étape régulière du processus de développement. Lorsque de nouvelles fonctionnalités sont ajoutées à l'application ou que du contenu est modifié, il est essentiel de mettre à jour le fichier .pot pour inclure les nouvelles chaînes de caractères.
 
+## 1.3 Comment fonctionne gettext ?
+
+Gettext est un outil de traduction de logiciels open source qui permet de créer et de maintenir des fichiers de traduction pour différentes langues. Il est largement utilisé dans les projets de logiciels libres et est disponible sous de nombreuses plateformes (Linux, Unix, Windows, etc.).
+
+Voici comment Gettext fonctionne en gros :
+
+1.  Lorsque nous développons une application, nous pouvons marquer les chaînes de caractères à traduire dans votre code source à l'aide de la fonction `gettext`. Par exemple, en Python :
+
+```python
+from gettext import gettext as _  print(_("Hello, world!"))
+```
+
+2.  Une fois que nous avons marqué toutes les chaînes de caractères à traduire dans votre code, nous pouvons utiliser l'outil `xgettext` pour extraire ces chaînes et créer un fichier `.pot` (fichier de catalogue de traduction) qui les contient. Le fichier `.pot` est un fichier de texte qui contient les chaînes de caractères à traduire et des informations sur le projet et les personnes responsables de la traduction.
+    
+3.  nous pouvons utiliser un outil de traduction, comme Poedit, pour ouvrir le fichier `.pot` et traduire les chaînes de caractères. Lorsque nous enregistrons les modifications, Poedit créera un fichier `.po` (fichier de catalogue de traduction) pour chaque langue traduite. Le fichier `.po` contiendra les chaînes de caractères à traduire et leur traduction dans la langue cible.
+    
+5.  Une fois que nous avons créé tous les fichiers `.po` de traduction, nous pouvons utiliser l'outil `msgfmt` pour générer les fichiers `.mo` (fichiers de message binaires) à partir de ceux-ci. Les fichiers `.mo` sont des fichiers binaires qui contiennent les mêmes informations que les fichiers `.po`, mais dans un format plus compact et plus rapide à charger par l'application.
+    
+6.  nous pouvons maintenant utiliser la fonction `gettext` dans votre code pour charger les fichiers de traduction en fonction de la langue de l'utilisateur. Par exemple, en Python :
+    
+```python
+import gettext  gettext.install("messages", "locale")
+```
+
+Cette commande va charger les fichiers de traduction du projet (nommés "messages") à partir du répertoire "locale", en fonction de la langue de l'utilisateur.
+
+### 1.3.1 Installation
+Pour générer les fichiers .pot (fichiers de catalogue de traduction) à partir des fichiers source Python d'un projet, on peut utiliser la commande `xgettext` de GNU Gettext. Voici comment procéder :
+
+1.  Assurons-nous d'avoir installé Gettext sur votre ordinateur. Si ce n'est pas le cas, nous pouvons l'installer à l'aide de la commande suivante (sous Debian ou Ubuntu) :
+
+```bash
+sudo apt-get install gettext
+```
+
+2.  Plaçons-nous dans le répertoire racine du projet (celui où se trouve le fichier `setup.py`).
+    
+3.  Exécutons la commande suivante :
+    
+
+```bash
+xgettext --language=Python --output=locale/messages.pot `find . -name "*.py"`
+```
+
+
+Cette commande va parcourir tous les fichiers `.py` du projet et générer un fichier `messages.pot` dans le répertoire `locale`. Ce fichier contiendra les chaînes de caractères à traduire dans tous les fichiers source.
+
+Nous pouvons également utiliser des outils tels que `pygettext` ou `babel` pour générer les fichiers `.pot` de votre projet. Ces outils sont spécialement conçus pour les projets Python et offrent des fonctionnalités supplémentaires, telles que la détection automatique des chaînes de caractères à traduire ou la génération de fichiers `.pot` à partir de templates de templates Django.
+
+### 1.3.2 Le fichier \*.pot
+
+Un fichier `.pot` (fichier de catalogue de traduction) contient principalement deux parties : l'entête et les entrées de traduction. L'entête du fichier est un bloc de commentaires qui se trouve en haut du fichier et qui fournit des informations sur le projet, la version du fichier `.pot` et les personnes responsables de la traduction.
+
+Voici ce que doit contenir l'entête d'un fichier `.pot` selon la spécification de Gettext :
+
+```pot
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+```
+
+Explication des différents champs de l'entête :
+
+-   `SOME DESCRIPTIVE TITLE` : titre descriptif du projet.
+-   `YEAR THE PACKAGE'S COPYRIGHT HOLDER` : année de copyright du paquet.
+-   `FIRST AUTHOR <EMAIL@ADDRESS>` : nom et adresse e-mail de la première personne à avoir traduit le fichier.
+-   `PACKAGE VERSION` : version du paquet.
+-   `EMAIL@ADDRESS` : adresse e-mail à laquelle envoyer les rapports d'erreurs.
+-   `YEAR-MO-DA HO:MI+ZONE` : date de création et de modification du fichier `.pot`.
+-   `FULL NAME <EMAIL@ADDRESS>` : nom et adresse e-mail de la dernière personne à avoir traduit le fichier.
+-   `LANGUAGE` : langue de traduction.
+-   `CHARSET` : jeu de caractères utilisé dans le fichier.
+
+Cet entête est constitué d'un msgid vide car à "", et d'une chaîne msgstr multi-lignes.
+Pour définir une chaîne msgstr comme multi-lignes il faut qu'elle soit de la forme :
+```po
+msgstr ""
+```
+Puis toutes les autres lignes suivantes sauf la dernière doivent se finir par `\n"` où le `\n` est obligatoire pour indiquer que la chaîne de caractères continue sur les lignes suivantes, **sauf** la dernière qui ne doit pas en avoir pour indiquer que la chaîne est terminée.
+
+Il est important de remplir correctement ces champs afin de fournir des informations précises sur le projet et sur les personnes qui ont contribué à la traduction. Nous pouvons également ajouter d'autres champs à l'entête si nous le souhaitons, mais assurons-nous de respecter la syntaxe de Gettext.
+
+### 1.3.3 Signification du sous répertoire LC_MESSAGES qui est dans "locale"
+
+Le répertoire `LC_MESSAGES` se trouve généralement à l'intérieur du répertoire `locale` d'un projet et contient les fichiers de traduction de ce projet. Le répertoire `LC_MESSAGES` est utilisé par les outils de traduction, comme `gettext`, pour trouver les fichiers de traduction correspondants à la langue de l'utilisateur.
+
+La nomenclature du répertoire `LC_MESSAGES` est la suivante :
+
+```bash
+locale/
+   fr/
+        LC_MESSAGES/
+           messages.po
+           messages.mo
+    en/
+        LC_MESSAGES/
+           messages.po
+           messages.mo
+```
+
+Dans cet exemple, les fichiers `messages.po` et `messages.mo` contiennent la traduction du projet en français et en anglais, respectivement. Le répertoire `fr` correspond à la langue française et le répertoire `en` à la langue anglaise.
+
+Le répertoire `LC_MESSAGES` doit être nommé ainsi pour être reconnu par les outils de traduction. Si nous utilisons un autre nom, il se peut que les fichiers de traduction ne soient pas chargés correctement par l'application.
+
+### 1.3.4 Différences ente *.mo et *.po
+
+Les fichiers `.mo` et `.po` sont utilisés par les outils de traduction, comme `gettext`, pour stocker les traductions d'un projet.
+
+-   Les fichiers `.po` (fichiers de catalogue de traduction) sont des fichiers de texte qui contiennent les chaînes de caractères à traduire du projet, ainsi que leur traduction dans la langue cible. Ils sont générés à partir des fichiers source du projet (par exemple, des fichiers `.py` pour un projet Python) à l'aide d'outils tels que `xgettext` ou `pybabel extract`.
+    
+-   Les fichiers `.mo` (fichiers de message binaires) sont des fichiers binaires qui contiennent les mêmes informations que les fichiers `.po`, mais dans un format plus compact et plus rapide à charger par l'application. Ils sont générés à partir des fichiers `.po` à l'aide de l'outil `msgfmt`.
+
+Lorsque nous traduisons un projet, nous travaillons généralement avec des fichiers `.po`, qui sont plus faciles à lire et à modifier. Une fois que nous avons terminé la traduction, nous pouvons générer les fichiers `.mo` à partir des fichiers `.po` pour que l'application puisse les charger plus rapidement.
+
+Il est important de ne pas modifier directement les fichiers `.mo`, car ils sont au format binaire et ne sont pas lisibles par les humains. Si nous souhaitons apporter des modifications à la traduction, nous devons le faire dans les fichiers `.po` correspondants et regénérer les fichiers `.mo` à partir de ceux-ci.
+
+### 1.3.5 Création des fichiers po
+
+Pour créer de nouveaux fichiers `.po` à partir d'un fichiers `.pot` (Portable Object Template), nous pouvons utiliser la commande `msginit` du package gettext. Voici comment :
+
+1. Ouvrons un terminal et naviguons jusqu'au répertoire où se trouve votre fichier `.pot`.
+
+2. Utilisons la commande suivante pour générer un fichier `.po` :
+
+    ```bash
+    msginit -i mydomain.pot -o mylanguage.po -l mylanguage
+    ```
+
+   Ici, `mydomain.pot` est notre fichier `.pot` source, `mylanguage.po` est le fichier `.po` que nous voulons créer et `mylanguage` est le code de langue pour lequel nous voulons créer le fichier (par exemple `fr` pour le français, `de` pour l'allemand, etc.).
+
+Par exemple, pour générer un fichier `.po` pour le français à partir d'un fichier `alirpunkto.pot`, nous utiliserons :
+
+```bash
+cd alirpunkto/locale
+msginit -i alirpunkto.pot -o en/LC_MESSAGES/alirpunkto.po -l en
+msginit -i alirpunkto.pot -o fr/LC_MESSAGES/alirpunkto.po -l fr
+```
+
+Cette commande créera ou **écrasera** le fichier `fr.po` à partir du fichier `mydomain.pot`. Nous pouvons alors éditer ce fichier `fr.po` pour traduire les chaînes de caractères en français. Une fois les traductions terminées, nous pouvons générer un fichier `.mo`.
+
+### 1.3.6 Mettre à jour des fichiers pot et po
+Si nous avons des chaînes nouvellement ajoutées dans notre code source et que nous souhaitons mettre à jour notre fichier `.pot` existant sans l'écraser, nous pouvons utiliser l'outil `xgettext` pour extraire les nouvelles chaînes, puis `msgmerge` pour fusionner ces nouvelles chaînes avec notre fichier `.pot` existant.
+
+Voici comment le faire :
+
+1. Utilisons `xgettext` pour extraire les nouvelles chaînes de notre code source dans un nouveau fichier `.pot`. Par exemple :
+
+    ```bash
+    xgettext -o new.pot source.py
+    ```
+
+    Ici, `new.pot` est le fichier de sortie que `xgettext` générera et `source.py` est notre code source Python. Nous devrions remplacer ces noms par ceux de notre projet. Nous pouvons également spécifier plusieurs fichiers source à la fois.
+
+2. Ensuite, utilisons `msgmerge` pour fusionner le nouveau fichier `.pot` avec l'ancien. Par exemple :
+
+    ```bash
+    msgmerge -U old.pot new.pot
+    ```
+
+    Ici, `old.pot` est notre ancien fichier `.pot` et `new.pot` est le fichier que nous venons de générer avec `xgettext`. La commande `msgmerge` mettra à jour `old.pot` pour y inclure les nouvelles chaînes de `new.pot`.
+
+Les anciennes traductions resteront dans `old.pot` après cette opération. Les nouvelles chaînes extraites seront ajoutées sans traductions, prêtes à être traduites.
+
+Remarque : pour que `xgettext` fonctionne correctement, nous devons utiliser les méthodes standard de marquage des chaînes localisables dans votre code, comme `_()` ou `gettext()`.
+
+### 1.3.7 Génération des fichiers mo
+
+Pour générer les fichiers `.mo` (Machine Object) à partir des fichiers `.po` (Portable Object) dans notre répertoire `locale`, nous pouvons utiliser la commande `msgfmt` du package gettext. Voici comment nous pouvons faire :
+
+1. Ouvrons un terminal et naviguons jusqu'au répertoire `locale` de notre projet.
+
+2. Utilisons la commande suivante pour générer le fichier `.mo` :
+
+    ```bash
+    msgfmt -o LC_MESSAGES/mydomain.mo LC_MESSAGES/mydomain.po
+    ```
+
+    Dans cette commande, remplaçons `mydomain` par le nom de domaine de notre application.
+
+Notez que vous devez répéter ce processus pour chaque fichier `.po` dans votre projet. 
+
+Si vous avez de nombreux fichiers `.po`, vous pouvez utiliser une boucle pour les parcourir tous. Par exemple, si vous êtes sous un système Unix-like, vous pouvez utiliser une commande `find` couplée à une boucle `for` :
+
+```bash
+find . -name "*.po" -exec msgfmt {} -o {}.mo \;
+```
+
+Cette commande trouve tous les fichiers `.po` dans le répertoire courant et ses sous-répertoires, et exécute `msgfmt` sur chaque fichier pour générer le fichier `.mo` correspondant.
+
 # 2. Présentation de Babel
 
 Dans ce chapitre, nous allons présenter Babel, un outil puissant et polyvalent utilisé pour faciliter la localisation des applications Python. Nous explorerons ce qu'est Babel, ses fonctionnalités clés, ainsi que les avantages qu'il offre dans le processus de localisation.
@@ -115,6 +265,28 @@ Dans ce chapitre, nous allons présenter Babel, un outil puissant et polyvalent 
 ## 2.1. Qu'est-ce que Babel ?
 
 Babel est un outil open-source conçu pour faciliter la localisation et l'internationalisation des applications écrites en Python. Il est développé par la communauté Python et est largement utilisé dans de nombreux projets Python, notamment les applications web basées sur des frameworks tels que Flask et Django.
+
+Pour utiliser Babel pour générer les fichiers `.pot` de votre projet Python, nous devons d'abord installer l'outil en exécutant la commande suivante :
+
+`pip install babel`
+
+Une fois installé, plaçons-nous dans le répertoire racine de votre projet et exécutons la commande suivante :
+
+`pybabel extract -F babel.cfg -o locale/messages.pot .`
+
+Cette commande va parcourir tous les fichiers du projet et générer un fichier `messages.pot` dans le répertoire `locale`. Le fichier de configuration `babel.cfg` contient les options de configuration de Babel. nous pouvons en créer un en exécutant la commande `pybabel init`.
+
+Pour plus d'informations sur l'utilisation de Babel pour la traduction de projets Python, je nous recommande de consulter la documentation officielle de Babel : [https://babel.readthedocs.io/en/latest/](https://babel.readthedocs.io/en/latest/).
+
+Les options `-i` et `-d` de la commande `pybabel init` peuvent contenir des chemins absolus ou relatifs vers les fichiers et répertoires correspondants.
+
+Par exemple, si nous souhaitons créer le fichier de configuration `babel.cfg` à partir d'un fichier `messages.pot` situé dans le répertoire `locale`, nous pouvons utiliser la commande suivante :
+
+```bash
+pybabel init -i locale/messages.pot -d locale -l fr
+```
+
+N'oublions pas de remplacer `fr` par la langue de base de votre projet. nous pouvons également utiliser l'option `-D` pour définir des variables de configuration dans le fichier de configuration généré, comme je nous l'ai indiqué précédemment.
 
 ### 2.1.1. Vue d'ensemble de l'outil
 
@@ -354,6 +526,16 @@ def home(request):
     return {'message': message}
 ```
 
+### 4.1.3 Utilisation de chaîne de traduction multi-lignes contenant des balises html
+
+Lorsque l'on fourni la traduction dans un `msgstr`, on peut y inclure des balises html, il faudra faire attention à échapper les guillemets comme ceci `\"` car les guillemets sont utilisé pour délimiter les lignes.
+Pour insérer la traduction multi-lignes dans une page zpt il suffit alors d'utiliser `tal:content` ou `tal:replace` comme par exemple :
+```html
+<div tal:replace="structure _('the_msgid_to_translate')">
+    The place of the replacement.
+</div>
+```
+
 ## 4.2. Exemples pratiques d'utilisation de Babel et pybabel dans Pyramid
 
 ### 4.2.1. Mise en place de la localisation dans une application Pyramid
@@ -444,7 +626,7 @@ L'utilisation de Gettext présente plusieurs avantages significatifs dans le pro
 
 En conclusion, Gettext est un outil puissant et éprouvé pour gérer la localisation des applications. Son approche basée sur des fichiers de catalogues de messages, sa prise en charge des pluriels et des contextes, ainsi que sa simplicité d'utilisation en font un choix idéal pour les projets multilingues. Dans les prochains chapitres, nous explorerons plus en détail l'utilisation pratique de Gettext pour la localisation de nos applications.
 
-## ​￼6.2. Configuration de gettext
+## 6.2. Configuration de gettext
 
 ### 6.2.1. Installation et mise en place du projet
 
@@ -497,226 +679,3 @@ msgfmt --output-file=fr_FR/LC_MESSAGES/messages.mo fr_FR.po
 ```
 
 Cette commande compile le fichier `fr_FR.po` en un fichier `messages.mo` utilisable par l'application pour afficher les messages traduits.
-
-@TODO fusionner
-
-# Comment fonctionne gettext ?
-
-Gettext est un outil de traduction de logiciels open source qui permet de créer et de maintenir des fichiers de traduction pour différentes langues. Il est largement utilisé dans les projets de logiciels libres et est disponible sous de nombreuses plateformes (Linux, Unix, Windows, etc.).
-
-Voici comment Gettext fonctionne en gros :
-
-1.  Lorsque nous développons une application, nous pouvons marquer les chaînes de caractères à traduire dans votre code source à l'aide de la fonction `gettext`. Par exemple, en Python :
-
-```python
-from gettext import gettext as _  print(_("Hello, world!"))
-```
-
-2.  Une fois que nous avons marqué toutes les chaînes de caractères à traduire dans votre code, nous pouvons utiliser l'outil `xgettext` pour extraire ces chaînes et créer un fichier `.pot` (fichier de catalogue de traduction) qui les contient. Le fichier `.pot` est un fichier de texte qui contient les chaînes de caractères à traduire et des informations sur le projet et les personnes responsables de la traduction.
-    
-3.  nous pouvons utiliser un outil de traduction, comme Poedit, pour ouvrir le fichier `.pot` et traduire les chaînes de caractères. Lorsque nous enregistrons les modifications, Poedit créera un fichier `.po` (fichier de catalogue de traduction) pour chaque langue traduite. Le fichier `.po` contiendra les chaînes de caractères à traduire et leur traduction dans la langue cible.
-    
-5.  Une fois que nous avons créé tous les fichiers `.po` de traduction, nous pouvons utiliser l'outil `msgfmt` pour générer les fichiers `.mo` (fichiers de message binaires) à partir de ceux-ci. Les fichiers `.mo` sont des fichiers binaires qui contiennent les mêmes informations que les fichiers `.po`, mais dans un format plus compact et plus rapide à charger par l'application.
-    
-6.  nous pouvons maintenant utiliser la fonction `gettext` dans votre code pour charger les fichiers de traduction en fonction de la langue de l'utilisateur. Par exemple, en Python :
-    
-```python
-import gettext  gettext.install("messages", "locale")
-```
-
-Cette commande va charger les fichiers de traduction du projet (nommés "messages") à partir du répertoire "locale", en fonction de la langue de l'utilisateur.
-
-## Installation
-Pour générer les fichiers .pot (fichiers de catalogue de traduction) à partir des fichiers source Python d'un projet, on peut utiliser la commande `xgettext` de GNU Gettext. Voici comment procéder :
-
-1.  Assurons-nous d'avoir installé Gettext sur votre ordinateur. Si ce n'est pas le cas, nous pouvons l'installer à l'aide de la commande suivante (sous Debian ou Ubuntu) :
-
-```bash
-sudo apt-get install gettext
-```
-
-2.  Plaçons-nous dans le répertoire racine du projet (celui où se trouve le fichier `setup.py`).
-    
-3.  Exécutons la commande suivante :
-    
-
-```bash
-xgettext --language=Python --output=locale/messages.pot `find . -name "*.py"`
-```
-
-
-Cette commande va parcourir tous les fichiers `.py` du projet et générer un fichier `messages.pot` dans le répertoire `locale`. Ce fichier contiendra les chaînes de caractères à traduire dans tous les fichiers source.
-
-Nous pouvons également utiliser des outils tels que `pygettext` ou `babel` pour générer les fichiers `.pot` de votre projet. Ces outils sont spécialement conçus pour les projets Python et offrent des fonctionnalités supplémentaires, telles que la détection automatique des chaînes de caractères à traduire ou la génération de fichiers `.pot` à partir de templates de templates Django.
-
-## Comment fait-on avec babel ?
-
-Pour utiliser Babel pour générer les fichiers `.pot` de votre projet Python, nous devons d'abord installer l'outil en exécutant la commande suivante :
-
-`pip install babel`
-
-Une fois installé, plaçons-nous dans le répertoire racine de votre projet et exécutons la commande suivante :
-
-`pybabel extract -F babel.cfg -o locale/messages.pot .`
-
-Cette commande va parcourir tous les fichiers du projet et générer un fichier `messages.pot` dans le répertoire `locale`. Le fichier de configuration `babel.cfg` contient les options de configuration de Babel. nous pouvons en créer un en exécutant la commande `pybabel init`.
-
-Pour plus d'informations sur l'utilisation de Babel pour la traduction de projets Python, je nous recommande de consulter la documentation officielle de Babel : [https://babel.readthedocs.io/en/latest/](https://babel.readthedocs.io/en/latest/).
-
-Les options `-i` et `-d` de la commande `pybabel init` peuvent contenir des chemins absolus ou relatifs vers les fichiers et répertoires correspondants.
-
-Par exemple, si nous souhaitons créer le fichier de configuration `babel.cfg` à partir d'un fichier `messages.pot` situé dans le répertoire `locale`, nous pouvons utiliser la commande suivante :
-
-```bash
-pybabel init -i locale/messages.pot -d locale -l fr
-```
-
-N'oublions pas de remplacer `fr` par la langue de base de votre projet. nous pouvons également utiliser l'option `-D` pour définir des variables de configuration dans le fichier de configuration généré, comme je nous l'ai indiqué précédemment.
-
-## Le fichier \*.pot
-
-Un fichier `.pot` (fichier de catalogue de traduction) contient principalement deux parties : l'entête et les entrées de traduction. L'entête du fichier est un bloc de commentaires qui se trouve en haut du fichier et qui fournit des informations sur le projet, la version du fichier `.pot` et les personnes responsables de la traduction.
-
-Voici ce que doit contenir l'entête d'un fichier `.pot` selon la spécification de Gettext :
-
-```pot
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: 8bit\n"
-```
-
-Explication des différents champs de l'entête :
-
--   `SOME DESCRIPTIVE TITLE` : titre descriptif du projet.
--   `YEAR THE PACKAGE'S COPYRIGHT HOLDER` : année de copyright du paquet.
--   `FIRST AUTHOR <EMAIL@ADDRESS>` : nom et adresse e-mail de la première personne à avoir traduit le fichier.
--   `PACKAGE VERSION` : version du paquet.
--   `EMAIL@ADDRESS` : adresse e-mail à laquelle envoyer les rapports d'erreurs.
--   `YEAR-MO-DA HO:MI+ZONE` : date de création et de modification du fichier `.pot`.
--   `FULL NAME <EMAIL@ADDRESS>` : nom et adresse e-mail de la dernière personne à avoir traduit le fichier.
--   `LANGUAGE` : langue de traduction.
--   `CHARSET` : jeu de caractères utilisé dans le fichier.
-
-Il est important de remplir correctement ces champs afin de fournir des informations précises sur le projet et sur les personnes qui ont contribué à la traduction. Nous pouvons également ajouter d'autres champs à l'entête si nous le souhaitons, mais assurons-nous de respecter la syntaxe de Gettext.
-
-## Signification du sous répertoire LC_MESSAGES qui est dans "locale"
-
-Le répertoire `LC_MESSAGES` se trouve généralement à l'intérieur du répertoire `locale` d'un projet et contient les fichiers de traduction de ce projet. Le répertoire `LC_MESSAGES` est utilisé par les outils de traduction, comme `gettext`, pour trouver les fichiers de traduction correspondants à la langue de l'utilisateur.
-
-La nomenclature du répertoire `LC_MESSAGES` est la suivante :
-
-```bash
-locale/
-   fr/
-        LC_MESSAGES/
-           messages.po
-           messages.mo
-    en/
-        LC_MESSAGES/
-           messages.po
-           messages.mo
-```
-
-Dans cet exemple, les fichiers `messages.po` et `messages.mo` contiennent la traduction du projet en français et en anglais, respectivement. Le répertoire `fr` correspond à la langue française et le répertoire `en` à la langue anglaise.
-
-Le répertoire `LC_MESSAGES` doit être nommé ainsi pour être reconnu par les outils de traduction. Si nous utilisons un autre nom, il se peut que les fichiers de traduction ne soient pas chargés correctement par l'application.
-
-## Différences ente *.mo et *.po
-
-Les fichiers `.mo` et `.po` sont utilisés par les outils de traduction, comme `gettext`, pour stocker les traductions d'un projet.
-
--   Les fichiers `.po` (fichiers de catalogue de traduction) sont des fichiers de texte qui contiennent les chaînes de caractères à traduire du projet, ainsi que leur traduction dans la langue cible. Ils sont générés à partir des fichiers source du projet (par exemple, des fichiers `.py` pour un projet Python) à l'aide d'outils tels que `xgettext` ou `pybabel extract`.
-    
--   Les fichiers `.mo` (fichiers de message binaires) sont des fichiers binaires qui contiennent les mêmes informations que les fichiers `.po`, mais dans un format plus compact et plus rapide à charger par l'application. Ils sont générés à partir des fichiers `.po` à l'aide de l'outil `msgfmt`.
-
-Lorsque nous traduisons un projet, nous travaillons généralement avec des fichiers `.po`, qui sont plus faciles à lire et à modifier. Une fois que nous avons terminé la traduction, nous pouvons générer les fichiers `.mo` à partir des fichiers `.po` pour que l'application puisse les charger plus rapidement.
-
-Il est important de ne pas modifier directement les fichiers `.mo`, car ils sont au format binaire et ne sont pas lisibles par les humains. Si nous souhaitons apporter des modifications à la traduction, nous devons le faire dans les fichiers `.po` correspondants et regénérer les fichiers `.mo` à partir de ceux-ci.
-
-# Création des fichiers po
-
-Pour créer de nouveaux fichiers `.po` à partir d'un fichiers `.pot` (Portable Object Template), nous pouvons utiliser la commande `msginit` du package gettext. Voici comment :
-
-1. Ouvrons un terminal et naviguons jusqu'au répertoire où se trouve votre fichier `.pot`.
-
-2. Utilisons la commande suivante pour générer un fichier `.po` :
-
-    ```bash
-    msginit -i mydomain.pot -o mylanguage.po -l mylanguage
-    ```
-
-   Ici, `mydomain.pot` est notre fichier `.pot` source, `mylanguage.po` est le fichier `.po` que nous voulons créer et `mylanguage` est le code de langue pour lequel nous voulons créer le fichier (par exemple `fr` pour le français, `de` pour l'allemand, etc.).
-
-Par exemple, pour générer un fichier `.po` pour le français à partir d'un fichier `alirpunkto.pot`, nous utiliserons :
-
-```bash
-cd alirpunkto/locale
-msginit -i alirpunkto.pot -o en/LC_MESSAGES/alirpunkto.po -l en
-msginit -i alirpunkto.pot -o fr/LC_MESSAGES/alirpunkto.po -l fr
-```
-
-Cette commande créera ou **écrasera** le fichier `fr.po` à partir du fichier `mydomain.pot`. Nous pouvons alors éditer ce fichier `fr.po` pour traduire les chaînes de caractères en français. Une fois les traductions terminées, nous pouvons générer un fichier `.mo`.
-
-# Mettre à jour des fichiers pot et po
-Si nous avons des chaînes nouvellement ajoutées dans notre code source et que nous souhaitons mettre à jour notre fichier `.pot` existant sans l'écraser, nous pouvons utiliser l'outil `xgettext` pour extraire les nouvelles chaînes, puis `msgmerge` pour fusionner ces nouvelles chaînes avec notre fichier `.pot` existant.
-
-Voici comment le faire :
-
-1. Utilisons `xgettext` pour extraire les nouvelles chaînes de notre code source dans un nouveau fichier `.pot`. Par exemple :
-
-    ```bash
-    xgettext -o new.pot source.py
-    ```
-
-    Ici, `new.pot` est le fichier de sortie que `xgettext` générera et `source.py` est notre code source Python. Nous devrions remplacer ces noms par ceux de notre projet. Nous pouvons également spécifier plusieurs fichiers source à la fois.
-
-2. Ensuite, utilisons `msgmerge` pour fusionner le nouveau fichier `.pot` avec l'ancien. Par exemple :
-
-    ```bash
-    msgmerge -U old.pot new.pot
-    ```
-
-    Ici, `old.pot` est notre ancien fichier `.pot` et `new.pot` est le fichier que nous venons de générer avec `xgettext`. La commande `msgmerge` mettra à jour `old.pot` pour y inclure les nouvelles chaînes de `new.pot`.
-
-Les anciennes traductions resteront dans `old.pot` après cette opération. Les nouvelles chaînes extraites seront ajoutées sans traductions, prêtes à être traduites.
-
-Remarque : pour que `xgettext` fonctionne correctement, nous devons utiliser les méthodes standard de marquage des chaînes localisables dans votre code, comme `_()` ou `gettext()`.
-
-# Génération des fichiers mo
-
-Pour générer les fichiers `.mo` (Machine Object) à partir des fichiers `.po` (Portable Object) dans notre répertoire `locale`, nous pouvons utiliser la commande `msgfmt` du package gettext. Voici comment nous pouvons faire :
-
-1. Ouvrons un terminal et naviguons jusqu'au répertoire `locale` de notre projet.
-
-2. Utilisons la commande suivante pour générer le fichier `.mo` :
-
-    ```bash
-    msgfmt -o LC_MESSAGES/mydomain.mo LC_MESSAGES/mydomain.po
-    ```
-
-    Dans cette commande, remplaçons `mydomain` par le nom de domaine de notre application.
-
-Notez que vous devez répéter ce processus pour chaque fichier `.po` dans votre projet. 
-
-Si vous avez de nombreux fichiers `.po`, vous pouvez utiliser une boucle pour les parcourir tous. Par exemple, si vous êtes sous un système Unix-like, vous pouvez utiliser une commande `find` couplée à une boucle `for` :
-
-```bash
-find . -name "*.po" -exec msgfmt {} -o {}.mo \;
-```
-
-Cette commande trouve tous les fichiers `.po` dans le répertoire courant et ses sous-répertoires, et exécute `msgfmt` sur chaque fichier pour générer le fichier `.mo` correspondant.

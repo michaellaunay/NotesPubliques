@@ -254,6 +254,147 @@ Python s'est établi comme un langage de choix dans le domaine du data mining en
 - **NLTK et spaCy :** Pour le traitement du langage naturel.
 - **OpenCV :** Pour le traitement d'images et la vision par ordinateur.
 
+Pour utiliser `Spacy` pour l'analyse de texte en français, vous pouvez suivre ces étapes :
+
+## NLTK
+Pour traiter le contenu des articles Wikipedia en français et réaliser des statistiques sur le niveau de langage, nous utiliserons la bibliothèque Natural Language Toolkit (NLTK) en Python. Voici les étapes à suivre :
+
+### Installation de NLTK
+Tout d'abord, assurons-nous que NLTK est installé dans notre environnement Python. Nous pouvons l'installer via pip :
+```python
+pip install nltk
+```
+
+### Téléchargement des Ressources NLTK pour le Français
+NLTK nécessite des ressources linguistiques spécifiques. Pour le français, téléchargeons les corpus et les tokenizers nécessaires :
+```python
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+```
+
+### Tokenization
+La tokenization consiste à diviser le texte en mots ou phrases. Utilisons le tokenizer de NLTK adapté au français :
+```python
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')  # Si pas déjà fait
+
+texte_francais = "Votre texte en français ici."
+mots = word_tokenize(texte_francais, language='french')
+```
+
+### Suppression des Stop Words
+Les stop words sont des mots très courants, peu utiles pour l'analyse statistique. Supprimons-les :
+```python
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words('french'))
+
+mots_filtres = [mot for mot in mots if not mot in stop_words]
+```
+
+### Analyse de Fréquence
+Utilisons `FreqDist` de NLTK pour analyser la fréquence des mots :
+```python
+from nltk.probability import FreqDist
+freq = FreqDist(mots_filtres)
+
+for mot, frequence in freq.items():
+    print(f"{mot}: {frequence}")
+```
+
+### Analyse Morphosyntaxique (Tagging)
+Pour une analyse plus avancée, nous pouvons tagger les mots avec leurs parties du discours. NLTK supporte plusieurs taggers, mais pour le français, nous devrions peut-être trouver un tagger spécifique ou utiliser un autre package comme `Spacy` qui sera détaillé ci-après.
+
+### Traitement Avancé
+- **Lemmatisation** : Réduction des mots à leur forme de base. NLTK ne fournit pas de lemmatiseur pour le français, donc nous pourrions utiliser `Spacy` ou une autre bibliothèque.
+- **Analyse de Sentiments** : NLTK permet l'analyse de sentiments, mais principalement pour l'anglais. Pour le français, explorons des options comme `TextBlob-fr` ou `Spacy`.
+
+### Visualisation
+Utilisez des bibliothèques comme `Matplotlib` pour visualiser les résultats, par exemple sous forme de graphiques à barres montrant la fréquence des mots.
+
+### Traitement à Grande Échelle
+Pour traiter l'ensemble des articles Wikipedia en français, envisageons d'utiliser des techniques de traitement parallèle ou des plateformes comme Apache Spark, adaptées au traitement de grands volumes de données.
+
+## Spacy
+### Installation de Spacy et du Modèle Français
+Tout d'abord, installons `Spacy` et téléchargeons le modèle pour le français :
+```bash
+pip install spacy
+python -m spacy download fr_core_news_sm
+```
+
+### Chargement du Modèle Français
+Chargeons le modèle français dans notre script Python :
+```python
+import spacy
+nlp = spacy.load('fr_core_news_sm')
+```
+
+### Tokenization
+Divisons un texte en mots (tokens) :
+```python
+texte = "Spacy est une bibliothèque très puissante pour le traitement du langage naturel."
+doc = nlp(texte)
+tokens = [token.text for token in doc]
+print(tokens)
+```
+
+### Analyse Morphosyntaxique (Part-of-Speech Tagging)
+Identifions les parties du discours (noms, verbes, adjectifs, etc.) :
+```python
+for token in doc:
+    print(token.text, token.pos_)
+```
+
+### Reconnaissance d'Entités Nommées (Named Entity Recognition, NER)
+Détectons et catégorisons les entités nommées (noms de personnes, lieux, organisations, etc.) :
+```python
+for ent in doc.ents:
+    print(ent.text, ent.label_)
+```
+
+### Lemmatisation
+Réduisons les mots à leur forme de base :
+```python
+lemmes = [token.lemma_ for token in doc]
+print(lemmes)
+```
+
+### Dépendances Syntaxiques
+Analysons la structure syntaxique et les relations entre les mots :
+```python
+for token in doc:
+    print(token.text, token.dep_, token.head.text)
+```
+
+### Stop Words
+Filtrons les mots courants peu informatifs :
+```python
+mots_filtrés = [token for token in doc if not token.is_stop]
+print(mots_filtrés)
+```
+
+### Similarité de Texte
+Calculons la similarité entre différents textes (nécessite un modèle plus grand) :
+```python
+doc1 = nlp("J'aime les fruits.")
+doc2 = nlp("Les pommes sont des fruits.")
+similarité = doc1.similarity(doc2)
+print(similarité)
+```
+
+### Visualisation avec Displacy
+`Spacy` offre un outil de visualisation pour voir les entités, les dépendances, etc. :
+```python
+from spacy import displacy
+
+# Pour les entités
+displacy.render(doc, style='ent')
+
+# Pour les dépendances
+displacy.render(doc, style='dep')
+```
+
 # II. Préparation et Nettoyage des Données
 
 ## 1. Exploration des Données avec Pandas
@@ -706,7 +847,6 @@ Il est possible d'avoir une version de wikipedia en utilisant le code source php
 ### Exploration et Analyse Statistique
 - **Calcul de Statistiques Basiques :** Nombre de pages, longueur moyenne des articles, distribution des tailles d'articles, etc.
 - **Analyse de Fréquence :** Fréquence des mots, analyse des thèmes les plus courants.
-
 ### Visualisation des Données
 - **Graphiques et Diagrammes :** Utilisez des bibliothèques comme Matplotlib ou Seaborn pour visualiser les résultats de votre analyse (par exemple, un histogramme des tailles d'articles).
 
