@@ -78,7 +78,7 @@ mail: john.doe@example.com
   
 - `objectClass`: C'est le type d'objet de l'entrée. Il définit les attributs que l'entrée peut ou doit avoir. Les classes d'objet courantes comprennent `top`, `person`, `inetOrgPerson`, `organizationalPerson`, etc.
 
-- `cn`: "Common Name". C'est souvent le nom de l'utilisateur ou de l'objet.
+- `cn`: "Common Name". C'est souvent le nom  ou les noms telle que les abréviations de l'utilisateur ou de l'objet. `cn` peut être multi-valeurs et dans ce cas répété.
   
 - `sn`: "Surname". Il représente généralement le nom de famille d'une personne.
   
@@ -101,6 +101,29 @@ mail: john.newmail@example.com
 ```
 Ceci remplacera l'adresse e-mail de l'utilisateur "John Doe". 
 
+## Multi-valeurs exemple de `cn`
+Dans un annuaire LDAP, une personne peut avoir un attribut `cn` (Common Name) qui contient plusieurs noms. Voici un exemple pour illustrer cela :
+
+Supposons qu'une personne s'appelle "Jean Dupont" mais est également connue sous d'autres noms ou titres. Son attribut `cn` pourrait contenir plusieurs de ces noms. Voici à quoi cela pourrait ressembler dans une entrée LDAP :
+
+```
+dn: uid=jeand,ou=people,dc=example,dc=com
+cn: Jean Dupont
+cn: Jean P. Dupont
+cn: Dr. Jean Dupont
+cn: J. Dupont
+mail: jean.dupont@example.com
+uid: jeand
+```
+
+Dans cet exemple, l'attribut `cn` est multivalué, ce qui signifie qu'il contient plusieurs valeurs différentes pour représenter le même individu :
+
+- "Jean Dupont" : le nom complet de la personne.
+- "Jean P. Dupont" : une variante du nom avec l'initiale du deuxième prénom.
+- "Dr. Jean Dupont" : le nom avec un titre professionnel.
+- "J. Dupont" : une forme abrégée du nom.
+
+Cela permet de capturer différentes façons dont le nom de la personne peut être utilisé ou reconnu, tout en les associant à la même entrée dans l'annuaire LDAP.
 # Les classes d'objets
 
 Les classes d'objets en LDAP sont définies dans les schémas LDAP. Un schéma LDAP est une collection de définitions et de règles concernant les types d'informations qui peuvent être stockées dans l'annuaire.
