@@ -36,8 +36,10 @@ Ce qui a le plus bluffé les étudiants est qu'il n'aura fallu qu'une vingtaine 
 
 Bien sûr, le fait de savoir ce que l'on veut et de bien connaitre Python permet d'éviter des bogues comme lorsque la notation des paramètres d'une fonction fait appel à un type défini en dessous (Il ne nous a pas proposé de faire une interface EtreVivant). Dans ce cas là, il suffisait de poser la bonne question à Chatgpt pour savoir qu'il suffisait d'importer Type de typing.
 
-L'une des questions de l'une de mes élèves a alors étée, "Monsieur, à quoi allez-vous servir ?" et moi de répondre, "à vous guider et non plus à essayer de vous enfoncer le savoir dans le crâne".
+L'une des questions de l'une de mes élèves a alors été, "Monsieur, à quoi allez-vous servir ?" et moi de répondre, "à vous guider et non plus à essayer de vous enfoncer le savoir dans le crâne".
 
 Pour traduire tout le code en anglais cela n'a pris que deux minutes !
 
 Pour la petite histoire, les lapins meurent tous tant que l'on n’introduit pas un renard.
+
+On pourrait faire le même travail à partir de http://loic-steffan.fr/WordPress3/dynamique-homme-nature-handy-modelisation-des-inegalites-et-de-lexploitation-des-ressources-dans-leffondrement-ou-la-soutenabilite-des-societes/ 
