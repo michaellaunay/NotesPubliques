@@ -188,7 +188,8 @@ Choisir le compte ou le créer.
 `Ctrl+K Ctrl+C` Ajouter un commentaire de ligne
 `Ctrl+K Ctrl+U` Supprimer le commentaire de ligne
 `Ctrl+/` Basculer le commentaire de ligne
-`Ctrl+Maj+A` Basculer le commentaire de bloc
+`Ctrl+Maj+A` Basculer le commentaire de bloc (en python """)
+`Ctrl+Maj+:` Basculer le bloc sélectionné en commentaire ou dé-commenter 
 `Alt+Z` Activer/désactiver le retour à la ligne
 
 ## Édition de langages riches
