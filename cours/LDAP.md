@@ -271,6 +271,69 @@ olcObjectClasses: ( 1.3.6.1.4.1.99999.2 NAME 'customObject' SUP inetOrgPerson ST
 
 Cela crée une nouvelle classe d'objet "customObject" qui hérite de la classe "inetOrgPerson" et qui a un nouvel attribut obligatoire "customAttribute".
 
+Autre exemple mais avec plus de champs:
+Votre description pour ajouter un schéma à OpenLDAP est assez claire, mais voici quelques améliorations pour la rendre encore plus explicite et précise :
+
+---
+
+Pour ajouter un schéma personnalisé à OpenLDAP, il est important de respecter la syntaxe correcte dans le fichier LDIF. En particulier, les définitions de `olcObjectClasses` doivent utiliser le symbole `$` comme séparateur entre les champs. Voici un exemple corrigé pour le schéma `alirpunktoPerson` :
+
+```ldif
+olcAttributeTypes: ( 1.3.6.1.4.1.99999.1.13
+  NAME 'isMemberOfMediationArbitrationCouncil' 
+  DESC 'Indicates if the user is a member of the Mediation Arbitration Council' 
+  EQUALITY booleanMatch 
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+
+olcObjectClasses: ( 1.3.6.1.4.1.99999.2.2.1
+  NAME 'alirpunktoPerson' 
+  DESC 'AlirPunkto specific person object class' 
+  SUP inetOrgPerson 
+  STRUCTURAL 
+  MUST (
+    uid $ cn $ mail $ employeeType $ isActive $ isOrdinaryMember $
+    isCooperatorMember $ isBoardMember $
+    isMemberOfMediationArbitrationCouncil )
+  MAY (
+    sn $ gn $ nationality $ birthdate $ preferredLanguage $
+    secondLanguage $ thirdLanguage $ cooperativeBehaviourMark $
+    lastUpdateBehaviour $ userProfileText $ userProfileImage $
+    thirdLanguage )
+)
+```
+
+### Processus d'Ajout du Schéma
+
+1. **Préparation** :
+   - Assurez-vous que le fichier LDIF (`alirpunkto_schema.ldif`) contenant la définition du schéma est correctement formaté avec des séparateurs `$`.
+
+2. **Installation de `schema2ldif` et `ldap-schema-manager`** :
+   - Sur votre serveur Ubuntu, installez les outils nécessaires :
+     ```bash
+     sudo apt install schema2ldif ldap-schema-manager
+     ```
+
+3. **Intégration du Schéma** :
+   - Pour initialiser l'ajout du schéma, utilisez :
+     ```bash
+     sudo -i
+     ldap-schema-manager -i /home/michaellaunay/workspace/alirpunkto/alirpunkto/alirpunkto_schema.ldif
+     ```
+   - Cette étape peut ne pas signaler d'erreurs même si le fichier LDIF a des problèmes de syntaxe.
+
+4. **Vérification et Mise à Jour du Schéma** :
+   - Pour vérifier et mettre à jour le schéma, exécutez :
+     ```bash
+     ldap-schema-manager -m /home/michaellaunay/workspace/alirpunkto/alirpunkto/alirpunkto_schema.ldif -n
+     ```
+   - Cette commande tentera de mettre à jour le schéma et signalera des erreurs spécifiques, telles que l'erreur `80` en cas de problèmes de syntaxe (par exemple, l'absence de `$`).
+
+### Notes Importantes
+
+- Il est crucial de s'assurer que la syntaxe du fichier LDIF est correcte pour éviter les erreurs lors de l'ajout ou de la mise à jour du schéma.
+- Gardez toujours une sauvegarde de votre configuration LDAP actuelle avant d'apporter des modifications.
+- Testez les modifications dans un environnement de développement avant de les appliquer sur un serveur de production.
+
 # Ajout d'une Organisation à LDAP
 
 Prenons l'exemple d'Ecréall
