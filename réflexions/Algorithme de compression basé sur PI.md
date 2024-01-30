@@ -1,6 +1,6 @@
 Dans le série des exercices pour mon cours de [[Python]] 
 Je propose de faire un algorithme de compression qui se base sur la suite de décimale de PI.
-Ainsi nous pourrions chercher les morceaux de données à compresser dans un table des décimales.
+Ainsi nous pourrions chercher les morceaux de données à compresser dans une table des décimales de PI.
 La sortie aurait alors le format suivant :
 Longueur total de la donnée décompressée
 Nombre de tuples
