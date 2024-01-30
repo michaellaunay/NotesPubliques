@@ -115,4 +115,7 @@ L'écran d'accueil est le moment de poser l'univers
 C'est le concentré de l'interface, plus rien ne peut être enlevé.
 L'interface est un langage auquel on ajoute des mots au fur et à mesure que l'utilisateur les maîtrise.
 Les niveaux de lecture se font du détail à la vue la plus reculée et donc contenant le plus d'informations. Forcer la paréliolie pour que le joueur cherche du sens. Il arrive que l'on doivent compenser les limites techniques liées à l'écran ou la souris.
-La complexité a une cible marketing, 
+La complexité a une cible marketing.
+
+# Quelques exemples
+The talos Pincipal : https://youtu.be/CgceaBagvHc
