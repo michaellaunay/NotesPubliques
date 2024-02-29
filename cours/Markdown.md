@@ -152,6 +152,62 @@ Exemple :
 ```
 Texte normal suivi d’un <span class="bg-info text-success">texte coloré en vert sur fond bleu</span> dans un paragraphe.
 ```
+# Écrire des Maths avec Markdown
+
+Markdown, grâce à son intégration avec LaTeX, permet d'inclure des expressions mathématiques directement dans le texte, rendant la communication d'idées complexes plus accessible et plus précise.
+
+## Modes de Formules Mathématiques
+
+### Inline Mode
+
+Pour intégrer une formule mathématique au sein d'un paragraphe, utilisez le mode inline. Encadrez votre formule avec un signe dollar `$`. Par exemple, pour écrire l'expression mathématique de la somme des \(X_i\) de 1 à \(n\), utilisez la notation `$\sum_{i=1}^n X_i$` qui s'affichera ainsi :$\sum_{i=1}^n X_i$. Notez que pour afficher un symbole dollar dans votre texte, échappez-le avec un backslash : `\$`.
+
+### Displayed Mode
+
+Pour mettre en valeur une formule, utilisez le mode displayed en l'encadrant avec deux signes dollars `$$`. Cette méthode centre la formule et la détache du paragraphe, la rendant plus visible. Par exemple, `$\sum_{i=1}^n X_i$` affichera la formule $\sum_{i=1}^n X_i$ de manière centrée et isolée du texte environnant.
+
+## Symboles et Commandes Courants
+
+### Lettres Grecques
+
+- Alpha $\alpha$: `$\alpha$`
+- Beta $\beta$: `$\beta$`
+- Gamma $\gamma$ :`$\gamma$`, Gamma majuscule $\Gamma$: `$\gamma$`
+- Delta $\delta$ :`$\delta$` et Delta majuscule $\Delta$:`$\Delta$`
+- Epsilon $\epsilon$ et Epsilon majuscule
+- Pi $\pi$: `$\pi$` et Pi majuscule $\Pi$:`$\Pi$`
+
+### Fonctions et Opérateurs
+
+- Cosinus $\cos$: `$\cos$`
+- Sinus $\sin$: `$\sin$`
+- Limite $\lim$: `$\lim$`
+- Exponentielle $\exp$: `$\exp$`
+- Appartient à $\in$: `$\in$`
+- Pour tout $\forall$: `$\forall$`
+- Il existe $\exists$: `$\exists$`
+- Équivalent $\equiv$, Approximativement égal $\approx$: `$\equiv$`, `$\approx$`
+
+### Exposants et Indices
+
+- Indice $k_{n+1}$: `$k_{n+1}$`
+- Exposant $n^2$: `$n^2$`
+- Exposant et indice $k_n^2$: `$k_n^2$`
+
+### Fractions, Coefficients Binomiaux, Racines
+
+- Fraction $\frac{4z^3}{16}$: `$\frac{4z^3}{16}$`
+- Coefficient binomial $\binom{n}{k}$: `$\binom{n}{k}$`
+- Racine carrée $\sqrt{k}$, Racine n-ième $\sqrt[n]{k}$: `$\sqrt{k}$`, `$\sqrt[n]{k}$`
+
+### Sommes et Intégrales
+
+- Somme $\sum_{i=1}^{10} t_i$: `$\sum_{i=1}^{10} t_i$`
+- Intégrale $\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$: `$\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$`
+
+### Notations Spéciales
+
+- Chapeau $\hat{a}$, Barre $\bar{a}$, Point $\dot{a}$, Double point $\ddot{a}$, Vecteur $\overrightarrow{AB}$: `$\hat{a}$`, `$\bar{a}$`, `$\dot{a}$`, `$\ddot{a}$`, `$\overrightarrow{AB}$`
 
 ## [](https://docs.framasoft.org/fr/grav/markdown.html#icônes)Icônes
 
