@@ -4,6 +4,14 @@ Ressources :
 [Aperçu complet sur les LLM et l'ingénierie des prompts | Baamtu](https://youtu.be/MWotDXpD6SI?si=txySpWEWK4vQ2A6V)
 [LLMsPracticalGuide](https://github.com/Mooler0410/LLMsPracticalGuide)
 https://machinelearningmastery.com
+[https://intelligence-artificielle.developpez.com/actu/355048/Les-eleves-utilisent-ChatGPT-pour-leurs-devoirs-et-les-enseignants-utilisent-ChatGPT-pour-les-corriger-d-apres-des-rapports-qui-suscitent-des-comparaisons-avec-les-examens-ecrits-et-oraux/](https://intelligence-artificielle.developpez.com/actu/355048/Les-eleves-utilisent-ChatGPT-pour-leurs-devoirs-et-les-enseignants-utilisent-ChatGPT-pour-les-corriger-d-apres-des-rapports-qui-suscitent-des-comparaisons-avec-les-examens-ecrits-et-oraux/)  
+  
+[https://blog.octo.com/comment-utiliser-un-llm-open-source-1](https://blog.octo.com/comment-utiliser-un-llm-open-source-1)  
+  
+[https://next.ink/123823/les-modeles-de-langage-peuvent-contenir-des-backdoors/](https://next.ink/123823/les-modeles-de-langage-peuvent-contenir-des-backdoors/)
+
+Système de workflow n8n
+Accelération du finetuning https://unsloth.ai/
 # Le deeplearning un sous ensemble de l'IA
 # Les modèles de langage
 - 1990-2000 Les n-grams
