@@ -8,3 +8,11 @@ Il est impératif de condamner les paroles de haine tout en reconnaissant les fa
 
 À aucun moment je ne dis qu'Israël ne doit pas réagir. Mais il n'est pas possible d'espérer que l'usage de l'armée ne fasse pas de victimes innocentes et ainsi alimente la haine, je pense que nous sommes arrivés à un point où beaucoup appellent à l'annihilation de l'autre peuple sans mesurer la conséquence historique que cela va avoir. Car oui Israël a les moyens de régler militairement le "problème" de Gaza, mais alors la conséquence morale serait ignoble. Et dire de faire attention à nos propos pour ne pas déclencher cela ne fait pas de moi un ennemi d'Israël  ou de la Palestine, mais il est vrai que ma position est facile n'ayant perdu personne de mon entourage lors de ces actes de barbarie, et il n'est pas dit que je ne crierais pas vengeance si j'avais à souffrir cela.
 Pour conclure, je plains les deux populations qui continuent de souffrir. Toutefois, et pour une raison morale et historique, Israël est condamnée à trouver une autre voie que forcer à l'exode la population de Gaza dont une partie seulement est son ennemi. Et nous ne pouvons l'aider qu'en modérant nos commentaires.
+
+Le pétrin du moyen orient date des accords secrets entre anglais et français ayant conduit à l'effondrement de l'empire Ottoman en 1923. Aujourd'hui, je doute qu'aucune politique ou intervention internationale n'amène la paix dans cette région multiculturelles, multiethniques, multiconfessionnelles, et je crois malheureusement que nous allons assister à un embrasement des conflits au moyen orient.
+
+Le blocus de l'information à Gaza par l'armée israélienne ne permet pas de savoir ce qui s'y passe de façon neutre et nous avons beaucoup de propagande.
+
+La première action doit être d'y dépêcher une force d'observation et d'y autoriser tous les journalistes internationaux.
+
+Des deux côtés des victimes innocentes tombent, sont tombées et tomberont, alimentant la haine.
