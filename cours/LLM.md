@@ -229,41 +229,51 @@ https://machinelearningmastery.com
 
 [Votre LLM (ChatGPT-like) à la maison et comment coder par dessus. | Korben](https://youtu.be/1aXPuFrPtr0)
 
+Vlog sur le développement avec l'IA
+[Don’t Build AI Products The Way Everyone Else Is Doing It](https://www.youtube.com/watch?v=bRFLE9qi3t8)
+
+Groq les puces dédiées à l'IA
+LeMondeInformatique
+[Groq défie Nvidia avec ses accélérateurs LPU - Le Monde Informatique](https://www.lemondeinformatique.fr/actualites/lire-groq-defie-nvidia-avec-ses-accelerateurs-lpu-92822.html)
+
+Encore inconnu il y a un an, Groq est bien décidé à surfer sur la vague IA (générative ou autre) avec sa plateforme de calcul LPU taillée pour...
+
 [Un équivalent de GitHub Copilot gratuit à installer sur Visual Studio Code | Korben](https://youtu.be/6a5GHdoa8OM) [TabbyML](https://github.com/TabbyML/tabby) Écrit en RUST, Permet d'installer un serveur conversationnel via docker. Le client pour visual studio code est disponible via les extensions en cherchant tabby. Tabby permet de gérer des équipes et possède une API
 
 Le futur de l'IDE **Cursor** [Using Cursor - the AI powered VS Code alt for the first time…| Huw prosser](https://youtu.be/n4DRPGWTmpc)
 
-Sur Hugging Face il y a plus de 70 000 Modèles open source [Huggingface/models ](https://huggingface.co/models)
-Aujourd'hui l'apprentissage d'un LLM se fait sur 1000 000 000 000 de mots. L'architerture des transformers (2018 Google) est celle de la quasi totalité des LLM, elle vise à prédire le mot suivant.
+Agrégation de textes du domaine public pour l'entrainement [common corpus des textes du domaine public pour entrainer des IA generatives](https://next.ink/131929/common-corpus-des-textes-du-domaine-public-pour-entrainer-des-ia-generatives/)
 
-Les LLM sont très bon pour écrire du code simple, faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.
+# Les LLM en bref
+Sur Hugging Face, il y a plus de 70 000 modèles open source [Huggingface/models](https://huggingface.co/models).
+Aujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.
 
-Pour gérer la complexité il y a des tentatives d'agents de models de langage (orchestration de différents LLMs) (Langchain, Coala).
+Les LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.
 
-Aujourd'hui on constate les capacités des LLMs mais on commence à peine à pouvoir les expliqués (presque pas, embryons de théories).
+Pour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).
+
+Aujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de théories).
 Les observations :
-- Mémorisation, compression, structuration et généralisation
+- Mémorisation, compression, structuration, et généralisation.
 - Capacités émergentes :
-	- "In context learning" Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10e10 de paramètres.
-	- Capacité de faire des additions de 3 chiffres (10e10).
+	- "In-context learning" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.
+	- Capacité de faire des additions de 3 chiffres (10^10).
 	- Répondre à des questions.
 	- Générer des programmes.
 	- Jason Wei a dénombré 137 capacités émergentes :
 		- Décomposition d'un problème en étapes.
-		- "Prompt of thought" (Accéder au raisonnement du LLM)
-		- "Analogical prompting"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer)
-		- Instruction procédurale
-		- Anagramme
-		- Arithmétique modulaire
-		- Problèmes simples de math
-		- Déduction logique
-		- Déduction analytique
+		- "Prompt of thought" (Accéder au raisonnement du LLM).
+		- "Analogical prompting"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).
+		- Instruction procédurale.
+		- Anagramme.
+		- Arithmétique modulaire.
+		- Problèmes simples de mathématiques.
+		- Déduction logique.
+		- Déduction analytique.
 		- Théorie de l'esprit (avoir un modèle de son locuteur) ?
 		- ...
-Embryons de théories **Passage à l'échelle**("scaling law") :
-	- Lois de Chinchilla (On mesure les capacité du modèle lorsqu'il devient de plus en plus gros Baidu 2017 puis Google 2018 : l'apprentissage suit des lois qui sont fonction du nombre de données, et aboutisse en 2022 à Chinchilla, c'est loi sont en `L(N)=A/N**𝛼` où 𝛼 est différent pour chacune des architectures avec le meilleur score de 0,54 pour les "transformers")
-	- Grokking (Apprend bestialement puis après beaucoup de données généralise)
-	- Double descente
-	- Transition de phases
-
-Agrégation de textes du domaine public pour l'entrainement [common corpus des textes du domaine public pour entrainer des IA generatives](https://next.ink/131929/common-corpus-des-textes-du-domaine-public-pour-entrainer-des-ia-generatives/)
+Embryons de théories **Passage à l'échelle** ("scaling law") :
+	- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 : l'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼` où 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les "transformers").
+	- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).
+	- Double descente.
+	- Transition de phases.
