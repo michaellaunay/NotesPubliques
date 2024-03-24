@@ -647,6 +647,97 @@ print(type(mon_dict))  # Affiche "<class 'dict'>"
 ```
 
 Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. Nous pouvons accéder à une valeur du dictionnaire en utilisant sa clé, par exemple `mon_dict['a']` retourne `1`. Nous pouvons ajouter une paire clé-valeur avec `mon_dict['d'] = 4`, modifier une valeur avec `mon_dict['a'] = 0`, ou supprimer une paire clé-valeur avec `del mon_dict['b']`.
+### Opérateurs et fonctions principales des Dictionnaires
+
+#### L'Opérateur `in`
+
+- **Usage** : Permet de vérifier si une clé spécifique est présente dans le dictionnaire.
+- **Exemple** : 
+  ```python
+  if 'chien' in dico_fr_en:
+      print("Chien existe dans le dictionnaire.")
+  ```
+
+#### La Méthode `keys()`
+
+- **Usage** : Retourne un objet affichant toutes les clés du dictionnaire.
+- **Exemple** : 
+  ```python
+  for cle in dico_fr_en.keys():
+      print(cle)
+  ```
+
+#### La Méthode `values()`
+
+- **Usage** : Retourne un objet affichant toutes les valeurs du dictionnaire.
+- **Exemple** : 
+  ```python
+  for valeur in dico_fr_en.values():
+      print(valeur)
+  ```
+
+#### La Méthode `items()`
+
+- **Usage** : Retourne un objet contenant des paires de tuples, chaque tuple consistant en une clé et sa valeur correspondante.
+- **Exemple** : 
+  ```python
+  for cle, valeur in dico_fr_en.items():
+      print(f"{cle} -> {valeur}")
+  ```
+
+#### Exemples d'Utilisation
+
+Imaginons que vous avez le dictionnaire suivant :
+
+```python
+dico_fr_en = {'chien': 'dog', 'chat': 'cat', 'oiseau': 'bird'}
+```
+
+- **Avec `in`** : Vérifier si 'chat' est une clé dans le dictionnaire.
+  ```python
+  print('chat' in dico_fr_en)  # Affiche True
+  ```
+
+- **Avec `keys()`** : Afficher toutes les clés du dictionnaire.
+  ```python
+  print(dico_fr_en.keys())  # Affiche dict_keys(['chien', 'chat', 'oiseau'])
+  ```
+
+- **Avec `values()`** : Afficher toutes les valeurs du dictionnaire.
+  ```python
+  print(dico_fr_en.values())  # Affiche dict_values(['dog', 'cat', 'bird'])
+  ```
+
+- **Avec `items()`** : Afficher les paires clé-valeur.
+  ```python
+  for cle, valeur in dico_fr_en.items():
+      print(f"{cle} se traduit par {valeur} en anglais.")
+  ```
+
+### Exercice : Création et Utilisation d'un Dictionnaire Français-Anglais
+
+#### Objectif
+
+Cet exercice vise à renforcer votre compréhension des dictionnaires en Python. Vous allez créer un dictionnaire bilingue (français-anglais), permettant à l'utilisateur de demander la traduction d'un mot. Si le mot n'est pas présent dans le dictionnaire, vous devrez permettre à l'utilisateur d'ajouter cette nouvelle entrée.
+
+#### Consignes
+
+1. **Initialisation du Dictionnaire** :
+    
+    - Commencez par créer un dictionnaire nommé `dico_fr_en` contenant quelques mots en français et leurs traductions en anglais. Par exemple, `{'chien': 'dog', 'chat': 'cat'}`.
+2. **Demande de Traduction** :
+    
+    - Écrivez un programme qui demande à l'utilisateur d'entrer un mot en français.
+    - Vérifiez si ce mot est présent dans `dico_fr_en`. Si oui, affichez sa traduction en anglais.
+3. **Gestion des Mots Manquants** :
+    
+    - Si le mot demandé n'est pas dans le dictionnaire, informez l'utilisateur que le mot est absent.
+    - Demandez ensuite à l'utilisateur d'entrer la traduction en anglais de ce mot.
+    - Ajoutez cette nouvelle paire clé-valeur au dictionnaire.
+4. **Test et Validation** :
+    
+    - Après l'ajout, redemandez à l'utilisateur un mot (il peut choisir le même ou un nouveau) et répétez le processus.
+    - Assurez-vous que si un mot précédemment ajouté est demandé à nouveau, sa traduction s'affiche correctement.
 
 # Les ensembles
 
@@ -677,7 +768,7 @@ Mais attention ! Si la valeur que nous essayons de supprimer n'est pas présente
 mon_ensemble.discard(2)
 ```
 
-En somme, les ensembles sont des outils puissants pour travailler avec des collections de valeurs uniques. Ils sont particulièrement utiles lorsque nous avons besoin de tester l'appartenance à un ensemble, de supprimer les doublons d'une collection, ou de calculer des opérations mathématiques telles que les intersections et les unions.
+
 
 ## Documentation
 

@@ -330,15 +330,16 @@ Enfin, il est important de continuer à apprendre et à se tenir au courant des 
 
 Il existe de nombreux outils de gestion de bases de données disponibles pour vous aider à gérer et à interagir avec vos bases de données. Voici quelques exemples d'outils populaires :
 
-    Interfaces de ligne de commande (CLI)
-        Les interfaces de ligne de commande, comme mysql ou psql, permettent d'exécuter des requêtes SQL et de gérer les bases de données depuis la ligne de commande.
+### Interfaces de ligne de commande (CLI)
+Les interfaces de ligne de commande, comme mysql ou psql, permettent d'exécuter des requêtes SQL et de gérer les bases de données depuis la ligne de commande.
 
-    Interfaces graphiques (GUI)
-        Les interfaces graphiques, comme MySQL Workbench ou pgAdmin, permettent d'interagir avec les bases de données de manière visuelle et de visualiser les données et les structures de données de manière intuitive.
+### Interfaces graphiques (GUI)
+Les interfaces graphiques, comme MySQL Workbench ou pgAdmin, permettent d'interagir avec les bases de données de manière visuelle et de visualiser les données et les structures de données de manière intuitive.
 
-    Logiciels de développement intégré (IDE)
-        Les logiciels de développement intégré, comme PyCharm ou Visual Studio, permettent de créer et de déboguer des applications utilisant des bases de données, ainsi que de gérer les bases de données elles-mêmes.
+### Logiciels de développement intégré (IDE)
+Les logiciels de développement intégré, comme PyCharm ou Visual Studio, permettent de créer et de déboguer des applications utilisant des bases de données, ainsi que de gérer les bases de données elles-mêmes.
 
+### Remarques
 Il est recommandé de choisir l'outil de gestion de bases de données qui convient le mieux à vos besoins et à votre environnement de travail. Si vous êtes un développeur, par exemple, un IDE pourrait être l'outil le plus adapté, alors qu'une interface graphique pourrait être plus adaptée à un utilisateur non technique.
 
 Il est également important de se familiariser avec les différentes fonctionnalités et outils proposés par chaque outil de gestion de bases de données, afin de pouvoir en tirer le meilleur parti. Cela peut inclure la création et la modification de tables, la gestion des utilisateurs et des privilèges, la sauvegarde et la restauration de bases de données, etc.
@@ -358,19 +359,26 @@ Donne le code pour créer une table utilisateurs(nom, prénom, age, lieu de nais
 Voici un exemple de code pour créer une table "utilisateurs" avec une colonne "id_fiche_paie" qui est une clé étrangère vers une table "fiches_paie" :
 
 ```python
-import sqlite3  conn = sqlite3.connect("ma_base_de_donnees.db")
-cursor = conn.cursor()  # Création de la table utilisateurs avec une clé étrangère id_fiche_paie 
-cursor.execute("""CREATE TABLE utilisateurs (                     id INTEGER PRIMARY KEY,
-		nom TEXT,
-		prenom TEXT,
-		age INTEGER,  
-		lieu_naissance TEXT,
-		id_fiche_paie INTEGER,
-		FOREIGN KEY (id_fiche_paie) REFERENCES fiches_paie(id)                 )""")
-		# Création de la table fiches_paie 
-cursor.execute("""CREATE TABLE fiches_paie (                     id INTEGER PRIMARY KEY,
-			   salaire REAL)""")
+import sqlite3
+conn = sqlite3.connect("ma_base_de_donnees.db")
+cursor = conn.cursor()
+# Création de la table utilisateurs avec une clé étrangère id_fiche_paie 
+cursor.execute("""CREATE TABLE utilisateurs (
+    id INTEGER PRIMARY KEY,
+    nom TEXT,
+    prenom TEXT,
+    age INTEGER,  
+    lieu_naissance TEXT,
+    id_fiche_paie INTEGER,
+    FOREIGN KEY (id_fiche_paie) REFERENCES fiches_paie(id)
+)""")
+# Création de la table fiches_paie 
+cursor.execute("""CREATE TABLE fiches_paie (
+    id INTEGER PRIMARY KEY,
+    salaire REAL
+)""")
 conn.commit()
+
 conn.close()
 ```
 
