@@ -494,6 +494,48 @@ AppArmor est un autre système de contrôle d'accès obligatoire, souvent utilis
 
 - **Utilisation :** AppArmor est particulièrement apprécié pour sa simplicité d'approche, avec des profils spécifiques à chaque application qui peuvent être activés, désactivés ou modifiés individuellement sans nécessiter une connaissance approfondie du système de contrôle d'accès sous-jacent.
 
+### Histoire et évolution
+### Comment AppArmor se distingue-t-il des autres systèmes de sécurité Linux (SELinux, etc.) ?
+### Concepts fondamentaux d'AppArmor
+ 
+ #### Politiques de sécurité et profils
+ 
+ #### Modes d'enforcement : enforcing, complain, et disable
+  
+  #### Structure d'un profil AppArmor
+
+### Installation et configuration d'AppArmor
+#### Installation d'AppArmor et des utilitaires associés
+
+ ### Commandes apt pour l'installation
+ 
+ ### Activation et désactivation d'AppArmor
+#### Mise à jour des politiques AppArmor
+
+### Gestion des profils AppArmor
+- **Localisation et structure des profils AppArmor**
+    - /etc/apparmor.d/
+- **Création et édition de profils**
+    - Utilisation de `aa-genprof` et `aa-autodep`
+    - Écriture manuelle de profils
+- **Activation et désactivation de profils**
+    - Utilisation de `aa-enforce`, `aa-complain`, et `aa-disable`
+- **Gestion des modes d'un profil**
+    - Comprendre les logs d'AppArmor pour ajuster les politiques
+
+### Utilisation avancée d'AppArmor
+- **Création de politiques de sécurité personnalisées**
+    - Bonnes pratiques pour l'écriture de profils sécurisés
+    - Exemples de configuration pour des applications spécifiques (serveurs web, bases de données)
+- **Dépannage et audit**
+    - Utilisation de `aa-logprof` et `aa-notify`
+    - Interprétation des logs pour résoudre les violations de politiques
+- **Intégration d'AppArmor avec d'autres outils de sécurité**
+    - Complémentarité avec le pare-feu, SELinux, etc.
+
+### Ressources complémentaires et travaux pratiques
+- **Ressources en ligne** : documentation officielle, forums, articles spécialisés
+
 ### 3.1.3. Conclusion
 
 SELinux et AppArmor représentent deux approches puissantes pour renforcer la sécurité des systèmes Linux en appliquant des politiques de contrôle d'accès obligatoire. Le choix entre SELinux et AppArmor dépendra souvent de la distribution Linux utilisée, des besoins spécifiques en matière de sécurité, et de la préférence personnelle en termes de complexité de configuration et de gestion. En comprenant les capacités et les cas d'utilisation de chacun, les administrateurs peuvent mieux protéger leurs systèmes contre les accès et les modifications non autorisés.
