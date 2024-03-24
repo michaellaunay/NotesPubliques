@@ -2112,7 +2112,7 @@ Ce sont ces attributs étendus qui recevront les informations liées aux ACLs.
 
 Pour installer le paquet : **`apt install attr`**
 
-Ajouter l'option `user_xattr` aux partitions dans `*/etc/fstab*`.
+Ajouter l'option `user_xattr` aux partitions dans `/etc/fstab`.
 
 Puis utiliser **`setfattr`** pour positionner les attributs et **`getfattr`** pour les afficher :
 ```bash
@@ -2168,7 +2168,7 @@ Exemple de changement de permissions :
 ```bash
 sudo -i
 mkdir /tmp/MYDIR
-chacl u::rwx,u:michaellaunay:rwx,g::---,o::---,m::rwx /tmp/MYDIR
+setfacl -m u::rwx,u:michaellaunay:rwx,g::---,o::---,m::rwx /tmp/MYDIR
 ls -l /tmp
 ```
 
@@ -3496,6 +3496,9 @@ La commande **`nmap`** permet de scanner les ports d'une machine et donc de fair
 ## ngrep
 
 La commande **`ngrep`** permet de n'afficher les paquets réseau qu'à la condition qu'ils contiennent la chaîne cherchée.
+
+## lscpu
+
 
 ## wireshark
 
