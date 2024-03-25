@@ -16,12 +16,6 @@
 [[Solutions de VR]]
 [[Tutorial panoramique]]
 
-## Cours
-[[Informatique]]
-[[Docker]]
-[[Markdown]]
-[[SQLAchemy]]
-
 # Architecture et conception
 [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]]
 [[Chiffrement côté navigateur]]
@@ -36,7 +30,21 @@
 # Virtualisation
 [[Virtualisation sur Android]]
 
-## Clients
-[[KuneAgit buildout.cfg]]
-[[Migration Stormshield]]
+@TODO à trier
 
+[[AirFlow]]
+[[Analyse sémantique]]
+[[Crash github et publication de clé
+[[Émulation jeux d'arcade]]
+[[F-Droid et Termux
+[[Internationalisation]]
+[[LibGen]]
+[[LLM]]
+[[Modèles climatiques]]
+[[National Emergency Library]]
+[[Présentation Nova-Ideo]]
+[[PyPdf]]
+[[Python GMail]]
+[[Recadrer les images des livres]]
+[[SPARQL et RDF]]
+[[UML pour Visual code]]

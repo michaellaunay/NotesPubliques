@@ -207,7 +207,7 @@ Comme toute nouvelle technologie l'IA vient avec sont lot d’acronymes dont voi
 
 # Ressources
 La recherche en France : [IA au Loria, laboratoire du CNRS](https://ia.loria.fr/portfolio/)
-[LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://www.youtube.com/@Codeursenseine)
+[LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://youtu.be/GiEcNK3XA_o)
 
 [Aperçu complet sur les LLM et l'ingénierie des prompts | Baamtu](https://youtu.be/MWotDXpD6SI?si=txySpWEWK4vQ2A6V)
 
@@ -245,6 +245,9 @@ Le futur de l'IDE **Cursor** [Using Cursor - the AI powered VS Code alt for the 
 Agrégation de textes du domaine public pour l'entrainement [common corpus des textes du domaine public pour entrainer des IA generatives](https://next.ink/131929/common-corpus-des-textes-du-domaine-public-pour-entrainer-des-ia-generatives/)
 
 # Les LLM en bref
+
+[résumé de la conférence : LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://youtu.be/GiEcNK3XA_o)
+
 Sur Hugging Face, il y a plus de 70 000 modèles open source [Huggingface/models](https://huggingface.co/models).
 Aujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.
 
