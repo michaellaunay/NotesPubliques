@@ -235,8 +235,11 @@ Vlog sur le développement avec l'IA
 Groq les puces dédiées à l'IA
 LeMondeInformatique
 [Groq défie Nvidia avec ses accélérateurs LPU - Le Monde Informatique](https://www.lemondeinformatique.fr/actualites/lire-groq-defie-nvidia-avec-ses-accelerateurs-lpu-92822.html)
+[NVidia vient de se faire détronné | Underscore](https://youtu.be/fvWZ2kjTo-Q)
 
-Encore inconnu il y a un an, Groq est bien décidé à surfer sur la vague IA (générative ou autre) avec sa plateforme de calcul LPU taillée pour...
+Encore inconnu il y a un an, Groq est bien décidé à surfer sur la vague IA (générative ou autre) avec sa plateforme de calcul LPU taillée pour l'inférence (répondre au prompt).
+
+Réponse de NVIDIA est de se positionner très fortement sur l'apprentissage et le tuning [ Nvidia vient juste de révolutionner l'I.A ? | cocadmin](https://youtu.be/JLYUlRxp_Z8)
 
 [Un équivalent de GitHub Copilot gratuit à installer sur Visual Studio Code | Korben](https://youtu.be/6a5GHdoa8OM) [TabbyML](https://github.com/TabbyML/tabby) Écrit en RUST, Permet d'installer un serveur conversationnel via docker. Le client pour visual studio code est disponible via les extensions en cherchant tabby. Tabby permet de gérer des équipes et possède une API
 
