@@ -2,10 +2,26 @@
 
 # Le deeplearning un sous ensemble de l'IA
 # Les modèles de langage
+- 1964-1966 Eliza (Joseph Weizenbaum MIT)
+- SHRDLU 1968-1969 (Terry Winograd MIT)
 - 1990-2000 Les n-grams
 - 2013 word2vec (Thomas Mikolov Google)
 - 2015 Les RNN
 - 2017 Les transformers (Vaswani et al) ([Attention Is All You Need](https://arxiv.org/abs/1706.03762))
+Depuis 2010 la famille des GPT (Generated Pretrained Tranformer)
+
+| Modèle                   | Vendeur/Créateur |
+| ------------------------ | ---------------- |
+| GPT(GPT-3, GPT-4, GPT-5) | OpenAI           |
+| BERT                     | Google           |
+| LaMDA                    | Google           |
+| PaLM                     | Google           |
+| BLOOM                    | Hugging Face     |
+| LLaMA                    | Meta             |
+| Claude                   | Anthropic        |
+| NeMO LLM                 | NVidia           |
+| Generate                 | Cohere           |
+| Mixtral                  | Mistral          |
 # L'arbre des LLMs
 La grande majorité des modèles actuels dérivent de Word2Vec
 https://raw.githubusercontent.com/Mooler0410/LLMsPracticalGuide/main/imgs/tree.jpg
@@ -205,6 +221,8 @@ Comme toute nouvelle technologie l'IA vient avec sont lot d’acronymes dont voi
 
 - **Word2Vec** : Un groupe de modèles liés qui sont utilisés pour produire des plongements de mots (word embeddings). Ces modèles sont capables de capturer le contexte d'un mot dans un document, sa signification sémantique et syntaxique, simplement à partir du texte brut.
 
+# Outils
+Pour compter les tokens d'un prompt [tokenizer](https://platform.openai.com/tokenizer)
 # Ressources
 La recherche en France : [IA au Loria, laboratoire du CNRS](https://ia.loria.fr/portfolio/)
 [LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://youtu.be/GiEcNK3XA_o)
@@ -228,6 +246,9 @@ https://machinelearningmastery.com
 [Unslow AI training & finetuning Get 30x faster with unsloth](https://unsloth.ai/)
 
 [Votre LLM (ChatGPT-like) à la maison et comment coder par dessus. | Korben](https://youtu.be/1aXPuFrPtr0)
+
+Comprendre le prompting
+[# Prompt Engineering Tutorial – Master ChatGPT and LLM Responses](https://youtu.be/_ZvnD73m40o)
 
 Vlog sur le développement avec l'IA
 [Don’t Build AI Products The Way Everyone Else Is Doing It](https://www.youtube.com/watch?v=bRFLE9qi3t8)
