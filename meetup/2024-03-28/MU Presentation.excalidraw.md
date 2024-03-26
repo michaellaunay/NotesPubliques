@@ -31,6 +31,20 @@ OBSIDIAN ^SU0yxjbM
 
 https://obsidian.md/download ^M4onn58l
 
+TOKENIZER ^IfPirnit
+
+https://platform.openai.com/tokenizer ^euypgV9T
+
+LE PROMPT ENGINEERING ^fTaL7Ula
+
+https://platform.openai.com/docs/guides/prompt-engineering ^LXM2JDjP
+
+https://youtu.be/_ZvnD73m40o ^nFHyxLGz
+
+DIALECTE ChatGPT ^1pcwwDbH
+
+![[MU Dialecte ChatGPT]] ^dUjClXqN
+
 
 # Embedded files
 e70207d5bc127144d15e282fc7f1392ab6ea165c: [[robot_codant_en_python.png]]
@@ -47,8 +61,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 	"elements": [
 		{
 			"type": "embeddable",
-			"version": 189,
-			"versionNonce": 1955709812,
+			"version": 191,
+			"versionNonce": 1050059871,
 			"isDeleted": false,
 			"id": "ZTGESsCPKsOGE33AAZovZ",
 			"fillStyle": "solid",
@@ -72,7 +86,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": "https://chat.openai.com/share/c4ca7fb1-cefc-4746-9ac2-2b075022ad52",
 			"locked": false,
 			"scale": [
@@ -82,8 +96,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 342,
-			"versionNonce": 687168972,
+			"version": 344,
+			"versionNonce": 383489297,
 			"isDeleted": false,
 			"id": "-9xVWp01SHx8jNeaBw3AE",
 			"fillStyle": "solid",
@@ -107,14 +121,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 171,
-			"versionNonce": 301020404,
+			"version": 173,
+			"versionNonce": 102809727,
 			"isDeleted": false,
 			"id": "odh35Itv",
 			"fillStyle": "solid",
@@ -136,7 +150,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -152,8 +166,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 504,
-			"versionNonce": 681559116,
+			"version": 506,
+			"versionNonce": 2041105137,
 			"isDeleted": false,
 			"id": "Y0KPpV5h",
 			"fillStyle": "hachure",
@@ -175,7 +189,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -187,8 +201,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 490,
-			"versionNonce": 90601076,
+			"version": 492,
+			"versionNonce": 1783781535,
 			"isDeleted": false,
 			"id": "2vLnqE1UfpSw0Yxy2FAf4",
 			"fillStyle": "solid",
@@ -217,14 +231,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 871,
-			"versionNonce": 1127832268,
+			"version": 873,
+			"versionNonce": 1561609425,
 			"isDeleted": false,
 			"id": "ASlZVUSQ",
 			"fillStyle": "solid",
@@ -246,7 +260,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": "[[MU Développement Logiciel avec l'IA]]",
 			"locked": false,
 			"fontSize": 15.180947990345171,
@@ -262,8 +276,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 474,
-			"versionNonce": 733448180,
+			"version": 476,
+			"versionNonce": 1625025727,
 			"isDeleted": false,
 			"id": "cnGyB8QR",
 			"fillStyle": "solid",
@@ -285,7 +299,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"fontSize": 59.36285226917807,
@@ -301,8 +315,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 1042,
-			"versionNonce": 861675852,
+			"version": 1044,
+			"versionNonce": 481657521,
 			"isDeleted": false,
 			"id": "hZ_id1WcQLVkyVY0tOngI",
 			"fillStyle": "solid",
@@ -324,7 +338,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"startBinding": null,
@@ -353,8 +367,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 346,
-			"versionNonce": 1491757428,
+			"version": 358,
+			"versionNonce": 2124573105,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -381,14 +395,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711459199314,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 623,
-			"versionNonce": 1348605900,
+			"version": 635,
+			"versionNonce": 921439121,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -408,7 +422,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711459199314,
 			"link": "[[MU Étude de cas]]",
 			"locked": false,
 			"fontSize": 28,
@@ -424,8 +438,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 1074,
-			"versionNonce": 1883577076,
+			"version": 1078,
+			"versionNonce": 927063345,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -454,16 +468,24 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				{
 					"id": "T5nAVrM1gLrcSJ8M1cFw_",
 					"type": "arrow"
+				},
+				{
+					"id": "daUWAY03uuZmpAVNsyAv-",
+					"type": "arrow"
+				},
+				{
+					"id": "BWLfJHRUOPx5ONAzo-V5w",
+					"type": "arrow"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451809145,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1414,
-			"versionNonce": 1986346572,
+			"version": 1416,
+			"versionNonce": 575097457,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -483,7 +505,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -499,8 +521,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 1208,
-			"versionNonce": 1298175564,
+			"version": 1220,
+			"versionNonce": 1566994801,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -514,7 +536,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"strokeColor": "#1971c2",
 			"backgroundColor": "transparent",
 			"width": 1233.47420580168,
-			"height": 1924.2175353525017,
+			"height": 1924.2175353525015,
 			"seed": 1301585396,
 			"groupIds": [],
 			"frameId": null,
@@ -522,7 +544,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711356860703,
+			"updated": 1711459199315,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -549,14 +571,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				],
 				[
 					1233.47420580168,
-					-1924.2175353525017
+					-1924.2175353525015
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 115,
-			"versionNonce": 1849660620,
+			"version": 117,
+			"versionNonce": 2092356689,
 			"isDeleted": false,
 			"id": "LAkzEl1OmhE1zyuTXT2qY",
 			"fillStyle": "solid",
@@ -583,14 +605,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 119,
-			"versionNonce": 1187638772,
+			"version": 121,
+			"versionNonce": 1846285631,
 			"isDeleted": false,
 			"id": "I5Qwtddc",
 			"fillStyle": "solid",
@@ -610,7 +632,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -626,8 +648,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 99,
-			"versionNonce": 1435179852,
+			"version": 101,
+			"versionNonce": 1482302001,
 			"isDeleted": false,
 			"id": "aoK6PyP9SFdZ8iR10-04E",
 			"fillStyle": "solid",
@@ -647,7 +669,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -659,8 +681,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 392,
-			"versionNonce": 1891635060,
+			"version": 394,
+			"versionNonce": 192222559,
 			"isDeleted": false,
 			"id": "oNZu8XuHb9ysCQfj-sPI5",
 			"fillStyle": "solid",
@@ -682,7 +704,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -715,8 +737,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 312,
-			"versionNonce": 111268300,
+			"version": 314,
+			"versionNonce": 1645786129,
 			"isDeleted": false,
 			"id": "O3i_7AogQT0uivwnSXzkR",
 			"fillStyle": "solid",
@@ -745,14 +767,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 94,
-			"versionNonce": 175505652,
+			"version": 96,
+			"versionNonce": 1879642495,
 			"isDeleted": false,
 			"id": "4IIxsU69RNOXoVuEtCHv2",
 			"fillStyle": "solid",
@@ -781,14 +803,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 159,
-			"versionNonce": 10336332,
+			"version": 161,
+			"versionNonce": 1038748145,
 			"isDeleted": false,
 			"id": "zOQc2rKG",
 			"fillStyle": "solid",
@@ -810,7 +832,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": "[[Obsidian]]",
 			"locked": false,
 			"fontSize": 28,
@@ -826,8 +848,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 154,
-			"versionNonce": 728875636,
+			"version": 156,
+			"versionNonce": 1963493791,
 			"isDeleted": false,
 			"id": "SU0yxjbM",
 			"fillStyle": "solid",
@@ -849,7 +871,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581291,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -865,8 +887,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 198,
-			"versionNonce": 1331220172,
+			"version": 200,
+			"versionNonce": 617980881,
 			"isDeleted": false,
 			"id": "ah08i9Qi3arBxbXCw0I0R",
 			"fillStyle": "solid",
@@ -890,7 +912,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581292,
 			"link": "https://obsidian.md/download",
 			"locked": false,
 			"scale": [
@@ -900,8 +922,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 255,
-			"versionNonce": 2053145932,
+			"version": 257,
+			"versionNonce": 2007236031,
 			"isDeleted": false,
 			"id": "lwpfNzY6eqRsNz3mdCoXD",
 			"fillStyle": "solid",
@@ -923,7 +945,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711356835247,
+			"updated": 1711451581292,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -956,8 +978,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 292,
-			"versionNonce": 361936244,
+			"version": 295,
+			"versionNonce": 1123221937,
 			"isDeleted": false,
 			"id": "5mcYkwqspnf5MeVAvWjO2",
 			"fillStyle": "solid",
@@ -967,7 +989,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 1028.1248896809666,
-			"y": -1323.9107229103467,
+			"y": -1323.9107229103465,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1554.2857142857142,
@@ -991,14 +1013,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451581292,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1170,
-			"versionNonce": 1244957644,
+			"version": 1173,
+			"versionNonce": 1526459871,
 			"isDeleted": false,
 			"id": "aPWRa9RN",
 			"fillStyle": "solid",
@@ -1008,7 +1030,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 1110.4904030738237,
-			"y": -1265.8535800532038,
+			"y": -1265.8535800532036,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1389.5546875,
@@ -1021,7 +1043,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581292,
 			"link": "[[MU Introduction]]",
 			"locked": false,
 			"fontSize": 28,
@@ -1037,8 +1059,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 384,
-			"versionNonce": 168027892,
+			"version": 386,
+			"versionNonce": 1432986513,
 			"isDeleted": false,
 			"id": "eAycqr2JhoDzZErHpDcdW",
 			"fillStyle": "solid",
@@ -1076,14 +1098,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711356784932,
+			"updated": 1711451581292,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 195,
-			"versionNonce": 1976119884,
+			"version": 197,
+			"versionNonce": 1243666943,
 			"isDeleted": false,
 			"id": "5v0hXwdF",
 			"fillStyle": "solid",
@@ -1106,7 +1128,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581292,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -1122,8 +1144,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 259,
-			"versionNonce": 206760052,
+			"version": 261,
+			"versionNonce": 141625713,
 			"isDeleted": false,
 			"id": "f7J0fMZAOHOgr9fgWYKDr",
 			"fillStyle": "hachure",
@@ -1145,7 +1167,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711356784932,
+			"updated": 1711451581292,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -1156,124 +1178,654 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			]
 		},
 		{
-			"id": "M4onn58l",
 			"type": "text",
-			"x": 4562.16066688609,
-			"y": -1101.6886174294684,
-			"width": 511.216796875,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
+			"version": 102,
+			"versionNonce": 974340639,
+			"isDeleted": false,
+			"id": "M4onn58l",
 			"fillStyle": "solid",
 			"strokeWidth": 2,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": 4562.16066688609,
+			"y": -1101.6886174294684,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 511.216796875,
+			"height": 41.4,
+			"seed": 853788788,
 			"groupIds": [
 				"BwEIIR5LOe5xRhGpE3e0R"
 			],
 			"frameId": null,
 			"roundness": null,
-			"seed": 853788788,
-			"version": 100,
-			"versionNonce": 395442420,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711356795067,
+			"boundElements": [],
+			"updated": 1711451581292,
 			"link": "https://obsidian.md/download",
 			"locked": false,
-			"text": "🌐https://obsidian.md/download",
-			"rawText": "https://obsidian.md/download",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "🌐https://obsidian.md/download",
+			"rawText": "https://obsidian.md/download",
 			"textAlign": "center",
 			"verticalAlign": "top",
-			"baseline": 33,
 			"containerId": null,
 			"originalText": "🌐https://obsidian.md/download",
-			"lineHeight": 1.15
+			"lineHeight": 1.15,
+			"baseline": 33
 		},
 		{
-			"id": "hoa00rYS",
-			"type": "text",
-			"x": 2980.5622966966203,
-			"y": -1292.6578712915853,
-			"width": 10.001953125,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
+			"type": "rectangle",
+			"version": 124,
+			"versionNonce": 335935903,
+			"isDeleted": false,
+			"id": "0ZwkFJ1qDZWSjHb87cuiJ",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
-			"groupIds": [],
+			"angle": 0,
+			"x": 6207.750667055192,
+			"y": -4511.764104442456,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffec99",
+			"width": 977.1428571428578,
+			"height": 694.285714285714,
+			"seed": 1767219153,
+			"groupIds": [
+				"Lfhmkn0LxxMdCZFOBrXvL"
+			],
 			"frameId": null,
-			"roundness": null,
-			"seed": 356351820,
-			"version": 2,
-			"versionNonce": 1804382196,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1711356855984,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [
+				{
+					"id": "WIHK5dZASFvLmH7nelkbA",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711451844122,
 			"link": null,
-			"locked": false,
-			"text": "",
-			"rawText": "",
-			"fontSize": 36,
-			"fontFamily": 2,
-			"textAlign": "center",
-			"verticalAlign": "middle",
-			"baseline": 33,
-			"containerId": "T5nAVrM1gLrcSJ8M1cFw_",
-			"originalText": "",
-			"lineHeight": 1.15
+			"locked": false
 		},
 		{
-			"id": "yHt0E29j",
 			"type": "text",
-			"x": 3294.8714095007845,
-			"y": -1079.0400054254953,
-			"width": 10.001953125,
-			"height": 41.4,
+			"version": 191,
+			"versionNonce": 551460255,
+			"isDeleted": false,
+			"id": "IfPirnit",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
 			"angle": 0,
+			"x": 6602.99012778977,
+			"y": -4466.829039507391,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#a5d8ff",
+			"width": 205.365234375,
+			"height": 41.4,
+			"seed": 198842033,
+			"groupIds": [
+				"Lfhmkn0LxxMdCZFOBrXvL"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711451822478,
+			"link": null,
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "TOKENIZER",
+			"rawText": "TOKENIZER",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "TOKENIZER",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "embeddable",
+			"version": 172,
+			"versionNonce": 1737986495,
+			"isDeleted": false,
+			"id": "0--HeFV6AGqTHOfbf0RlV",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6362.036381340906,
+			"y": -4385.610258288611,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#a5d8ff",
+			"width": 728.5714285714294,
+			"height": 400.21978021978043,
+			"seed": 1378253297,
+			"groupIds": [
+				"Lfhmkn0LxxMdCZFOBrXvL"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711451822478,
+			"link": "https://platform.openai.com/tokenizer",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "text",
+			"version": 108,
+			"versionNonce": 794624479,
+			"isDeleted": false,
+			"id": "euypgV9T",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6432.429936028407,
+			"y": -3939.7641044424563,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
+			"width": 635.212890625,
+			"height": 41.4,
+			"seed": 146633521,
+			"groupIds": [
+				"Lfhmkn0LxxMdCZFOBrXvL"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711451822478,
+			"link": "https://platform.openai.com/tokenizer",
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "🌐https://platform.openai.com/tokenizer",
+			"rawText": "https://platform.openai.com/tokenizer",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "🌐https://platform.openai.com/tokenizer",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "arrow",
+			"version": 57,
+			"versionNonce": 2002328401,
+			"isDeleted": false,
+			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
-			"strokeWidth": 2,
+			"strokeWidth": 4,
 			"strokeStyle": "solid",
-			"roughness": 1,
+			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 5541.6785965399295,
+			"y": -3429.8635657450477,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffec99",
+			"width": 590.909090909091,
+			"height": 516.3636363636365,
+			"seed": 865819775,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1711459199315,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
+				"gap": 11.563375228860423,
+				"focus": 0.5968840903277555
+			},
+			"endBinding": null,
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					274.54545454545405,
+					-298.18181818181847
+				],
+				[
+					590.909090909091,
+					-516.3636363636365
+				]
+			]
+		},
+		{
+			"type": "rectangle",
+			"version": 195,
+			"versionNonce": 1309574495,
+			"isDeleted": false,
+			"id": "ynTuAINAbqIxZsBzBLWTG",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6077.0725359338685,
+			"y": -3344.469626351107,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffec99",
+			"width": 1213.9999999999998,
+			"height": 820.0000000000001,
+			"seed": 1477558431,
+			"groupIds": [
+				"m9PE9YpFZYdajFv36crsv"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [
+				{
+					"id": "BWLfJHRUOPx5ONAzo-V5w",
+					"type": "arrow"
+				},
+				{
+					"id": "WIHK5dZASFvLmH7nelkbA",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711451844121,
+			"link": null,
+			"locked": false
+		},
+		{
+			"type": "text",
+			"version": 128,
+			"versionNonce": 672899793,
+			"isDeleted": false,
+			"id": "fTaL7Ula",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6442.0354265588685,
+			"y": -3288.469626351107,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffec99",
+			"width": 470.07421875,
+			"height": 41.4,
+			"seed": 1524098719,
+			"groupIds": [
+				"m9PE9YpFZYdajFv36crsv"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711451825929,
+			"link": null,
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "LE PROMPT ENGINEERING",
+			"rawText": "LE PROMPT ENGINEERING",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "LE PROMPT ENGINEERING",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "text",
+			"version": 94,
+			"versionNonce": 186720433,
+			"isDeleted": false,
+			"id": "LXM2JDjP",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6177.3440203088685,
+			"y": -3196.469626351107,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#ffec99",
+			"width": 1003.45703125,
+			"height": 41.4,
+			"seed": 456124255,
+			"groupIds": [
+				"m9PE9YpFZYdajFv36crsv"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711451825929,
+			"link": "https://platform.openai.com/docs/guides/prompt-engineering",
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "🌐https://platform.openai.com/docs/guides/prompt-engineering",
+			"rawText": "https://platform.openai.com/docs/guides/prompt-engineering",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "🌐https://platform.openai.com/docs/guides/prompt-engineering",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "embeddable",
+			"version": 120,
+			"versionNonce": 1350296209,
+			"isDeleted": false,
+			"id": "sdy7mJX117d2RyMC4j_Bp",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6237.0725359338685,
+			"y": -3102.469626351107,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#ffec99",
+			"width": 816,
+			"height": 459,
+			"seed": 1394224767,
+			"groupIds": [
+				"m9PE9YpFZYdajFv36crsv"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711451825929,
+			"link": "https://www.youtube.com/watch?v=_ZvnD73m40o&ab_channel=freeCodeCamp.org",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "text",
+			"version": 76,
+			"versionNonce": 82012273,
+			"isDeleted": false,
+			"id": "nFHyxLGz",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6414.4651140588685,
+			"y": -2610.469626351107,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#ffec99",
+			"width": 537.21484375,
+			"height": 41.4,
+			"seed": 1548421169,
+			"groupIds": [
+				"m9PE9YpFZYdajFv36crsv"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711451825929,
+			"link": "https://youtu.be/_ZvnD73m40o",
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "🌐https://youtu.be/_ZvnD73m40o",
+			"rawText": "https://youtu.be/_ZvnD73m40o",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "🌐https://youtu.be/_ZvnD73m40o",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "arrow",
+			"version": 63,
+			"versionNonce": 1964738865,
+			"isDeleted": false,
+			"id": "BWLfJHRUOPx5ONAzo-V5w",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 5541.7392026005355,
+			"y": -3363.802959684441,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffec99",
+			"width": 520,
+			"height": 407.5918838816442,
+			"seed": 2054474143,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1711459199315,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
+				"gap": 11.623981289466428,
+				"focus": -0.5444074392623558
+			},
+			"endBinding": {
+				"elementId": "ynTuAINAbqIxZsBzBLWTG",
+				"focus": -0.40493303214913073,
+				"gap": 15.33333333333303
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					216,
+					256
+				],
+				[
+					520,
+					407.5918838816442
+				]
+			]
+		},
+		{
+			"type": "arrow",
+			"version": 35,
+			"versionNonce": 494964671,
+			"isDeleted": false,
+			"id": "WIHK5dZASFvLmH7nelkbA",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 6661.7392026005355,
+			"y": -3371.802959684441,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffec99",
+			"width": 4,
+			"height": 424,
+			"seed": 629131281,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1711451856874,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "ynTuAINAbqIxZsBzBLWTG",
+				"focus": -0.02980602915740005,
+				"gap": 27.33333333333394
+			},
+			"endBinding": {
+				"elementId": "0ZwkFJ1qDZWSjHb87cuiJ",
+				"focus": 0.08551920712059691,
+				"gap": 21.67543047230174
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "triangle_outline",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-4,
+					-424
+				]
+			]
+		},
+		{
+			"type": "rectangle",
+			"version": 119,
+			"versionNonce": 275638591,
+			"isDeleted": false,
+			"id": "b_I13-t0ABOALeD2cCudp",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 7565.0725359338685,
+			"y": -3362.469626351107,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#ffec99",
+			"width": 1116,
+			"height": 848,
+			"seed": 2108473361,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711458946543,
+			"link": null,
+			"locked": false
+		},
+		{
+			"type": "text",
+			"version": 45,
+			"versionNonce": 2003744671,
+			"isDeleted": false,
+			"id": "1pcwwDbH",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 8003.0256609338685,
+			"y": -3296.469626351107,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffec99",
+			"width": 336.09375,
+			"height": 41.4,
+			"seed": 1530454655,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 1226746612,
-			"version": 2,
-			"versionNonce": 1071595980,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1711356825984,
+			"boundElements": [],
+			"updated": 1711458936193,
 			"link": null,
 			"locked": false,
-			"text": "",
-			"rawText": "",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "DIALECTE ChatGPT",
+			"rawText": "DIALECTE ChatGPT",
 			"textAlign": "center",
-			"verticalAlign": "middle",
-			"baseline": 33,
-			"containerId": "lwpfNzY6eqRsNz3mdCoXD",
-			"originalText": "",
-			"lineHeight": 1.15
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "DIALECTE ChatGPT",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "text",
+			"version": 86,
+			"versionNonce": 1565647391,
+			"isDeleted": false,
+			"id": "dUjClXqN",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": 7849.680608850536,
+			"y": -3199.5807374622177,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffec99",
+			"width": 3201.486328125,
+			"height": 41.4,
+			"seed": 1527113087,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711459248947,
+			"link": "[[MU Dialecte Chat Gpt]]",
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "Pour expliquer la tokenisation, il m'est venue une idée amusante, car comme tout bon dyslexique, je fais beaucoup de fautes. Par contre, mon approximation du français m'a déjà servi, par exemple lors",
+			"rawText": "![[MU Dialecte ChatGPT]]",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "Pour expliquer la tokenisation, il m'est venue une idée amusante, car comme tout bon dyslexique, je fais beaucoup de fautes. Par contre, mon approximation du français m'a déjà servi, par exemple lors",
+			"lineHeight": 1.15,
+			"baseline": 33
 		}
 	],
 	"appState": {
 		"theme": "light",
 		"viewBackgroundColor": "#ffffff",
-		"currentItemStrokeColor": "#1971c2",
-		"currentItemBackgroundColor": "#a5d8ff",
+		"currentItemStrokeColor": "#e03131",
+		"currentItemBackgroundColor": "#ffec99",
 		"currentItemFillStyle": "solid",
 		"currentItemStrokeWidth": 4,
 		"currentItemStrokeStyle": "solid",
@@ -1284,10 +1836,10 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		"currentItemTextAlign": "center",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": -1320.7861593406851,
-		"scrollY": 3260.237228540579,
+		"scrollX": -6609.86517200491,
+		"scrollY": 3955.411697027992,
 		"zoom": {
-			"value": 0.25
+			"value": 0.44999999999999996
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
