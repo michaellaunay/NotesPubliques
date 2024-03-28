@@ -80,12 +80,17 @@ MARKDOWN MEMO ^0RCrTgmj
 
 PYTHON ^UrQc8AVJ
 
+![[MU 02 Étude de cas]] ^ldWyEkQ4
+
+ÉTUDE DE CAS ^ANWB3vFZ
+
 
 # Embedded files
 e70207d5bc127144d15e282fc7f1392ab6ea165c: [[robot_codant_en_python.png]]
 f5adf731e9cd44958e6eec9ee1825c522384d5aa: [[Analyse_du_cahier_des_charges.png]]
 f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 8ab27f4b29b3438aac357aabb4634d9a8a3dc22c: [[robot_creole.png]]
+686be99322045eb53a6625c78f70b2c308f2ea3a: [[robot_etude_de_cas.png]]
 
 %%
 # Drawing
@@ -97,8 +102,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 	"elements": [
 		{
 			"type": "embeddable",
-			"version": 310,
-			"versionNonce": 53740351,
+			"version": 630,
+			"versionNonce": 723692223,
 			"isDeleted": false,
 			"id": "ZTGESsCPKsOGE33AAZovZ",
 			"fillStyle": "solid",
@@ -107,8 +112,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1226.2454613024584,
-			"y": 2241.570283116369,
+			"x": -1123.7545386975407,
+			"y": 2401.570283116369,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#b2f2bb",
 			"width": 1284.9999999999995,
@@ -122,7 +127,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582631074,
+			"updated": 1711585752682,
 			"link": "https://chat.openai.com/share/c4ca7fb1-cefc-4746-9ac2-2b075022ad52",
 			"locked": false,
 			"scale": [
@@ -132,8 +137,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 463,
-			"versionNonce": 1366246239,
+			"version": 843,
+			"versionNonce": 746627217,
 			"isDeleted": false,
 			"id": "-9xVWp01SHx8jNeaBw3AE",
 			"fillStyle": "solid",
@@ -142,8 +147,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1024.8241565150538,
-			"y": 2041.5830714975805,
+			"x": -1325.1758434849453,
+			"y": 2201.5830714975805,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#b2f2bb",
 			"width": 1596.666666666667,
@@ -156,15 +161,20 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roundness": {
 				"type": 3
 			},
-			"boundElements": [],
-			"updated": 1711582631074,
+			"boundElements": [
+				{
+					"id": "Mzebemv_8Q07FqMIh6OhF",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711585770521,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 292,
-			"versionNonce": 311263103,
+			"version": 612,
+			"versionNonce": 93865727,
 			"isDeleted": false,
 			"id": "odh35Itv",
 			"fillStyle": "solid",
@@ -173,8 +183,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1614.1067085983868,
-			"y": 2121.5830714975805,
+			"x": -735.8932914016123,
+			"y": 2281.5830714975805,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#b2f2bb",
 			"width": 448.1015625,
@@ -186,7 +196,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582631074,
+			"updated": 1711585752682,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -202,8 +212,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 508,
-			"versionNonce": 346992049,
+			"version": 509,
+			"versionNonce": 755512479,
 			"isDeleted": false,
 			"id": "Y0KPpV5h",
 			"fillStyle": "hachure",
@@ -225,7 +235,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711581651474,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -237,8 +247,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 495,
-			"versionNonce": 208281119,
+			"version": 498,
+			"versionNonce": 1670897873,
 			"isDeleted": false,
 			"id": "2vLnqE1UfpSw0Yxy2FAf4",
 			"fillStyle": "solid",
@@ -269,16 +279,24 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				{
 					"id": "hZ_id1WcQLVkyVY0tOngI",
 					"type": "arrow"
+				},
+				{
+					"id": "hsnLuyP3fkOGlttwSpI3q",
+					"type": "arrow"
+				},
+				{
+					"id": "Mzebemv_8Q07FqMIh6OhF",
+					"type": "arrow"
 				}
 			],
-			"updated": 1711582301665,
+			"updated": 1711585770521,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 875,
-			"versionNonce": 1255133073,
+			"version": 876,
+			"versionNonce": 141969599,
 			"isDeleted": false,
 			"id": "ASlZVUSQ",
 			"fillStyle": "solid",
@@ -300,7 +318,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711581651474,
+			"updated": 1711584501393,
 			"link": "[[MU 00 Développement Logiciel avec l'IA]]",
 			"locked": false,
 			"fontSize": 15.180947990345171,
@@ -316,8 +334,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 478,
-			"versionNonce": 1719889407,
+			"version": 479,
+			"versionNonce": 394192561,
 			"isDeleted": false,
 			"id": "cnGyB8QR",
 			"fillStyle": "solid",
@@ -339,7 +357,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711581651474,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"fontSize": 59.36285226917807,
@@ -355,8 +373,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 1226,
-			"versionNonce": 168378673,
+			"version": 1227,
+			"versionNonce": 1363990751,
 			"isDeleted": false,
 			"id": "hZ_id1WcQLVkyVY0tOngI",
 			"fillStyle": "solid",
@@ -378,7 +396,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -411,8 +429,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 1179,
-			"versionNonce": 86896767,
+			"version": 1181,
+			"versionNonce": 1496377489,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -421,7 +439,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1957.9334031292492,
+			"x": 1957.9334031292494,
 			"y": -4739.522806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
@@ -451,14 +469,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582371518,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1517,
-			"versionNonce": 1882818719,
+			"version": 1518,
+			"versionNonce": 1025271039,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -478,7 +496,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582371518,
+			"updated": 1711584501393,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -494,8 +512,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 1612,
-			"versionNonce": 1854665489,
+			"version": 1614,
+			"versionNonce": 2097655409,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -517,7 +535,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -527,8 +545,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			},
 			"endBinding": {
 				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
-				"focus": -0.3169256891534043,
-				"gap": 1
+				"gap": 1,
+				"focus": -0.3169256891534043
 			},
 			"lastCommittedPoint": null,
 			"startArrowhead": null,
@@ -550,8 +568,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 372,
-			"versionNonce": 1224771199,
+			"version": 519,
+			"versionNonce": 1290649937,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -560,8 +578,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1062.9442256400725,
-			"y": 348.7564144227011,
+			"x": 726.9442256400725,
+			"y": 1794.756414422701,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1781.2857142857142,
@@ -580,14 +598,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711582423427,
+			"updated": 1711585740849,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 649,
-			"versionNonce": 705717489,
+			"version": 796,
+			"versionNonce": 1026256689,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -596,8 +614,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1115.1114968454297,
-			"y": 453.85641442270105,
+			"x": 779.1114968454297,
+			"y": 1899.856414422701,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1676.951171875,
@@ -609,7 +627,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582423427,
+			"updated": 1711585740849,
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 28,
@@ -625,8 +643,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 120,
-			"versionNonce": 155803295,
+			"version": 266,
+			"versionNonce": 423125265,
 			"isDeleted": false,
 			"id": "LAkzEl1OmhE1zyuTXT2qY",
 			"fillStyle": "solid",
@@ -635,8 +653,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 986.0166584575549,
-			"y": 164.85330126780832,
+			"x": 650.0166584575549,
+			"y": 1610.8533012678083,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1908.571428571429,
@@ -655,14 +673,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582423427,
+			"updated": 1711585740849,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 124,
-			"versionNonce": 293117649,
+			"version": 270,
+			"versionNonce": 799936721,
 			"isDeleted": false,
 			"id": "I5Qwtddc",
 			"fillStyle": "solid",
@@ -671,8 +689,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1721.9785725200545,
-			"y": 263.11044412495096,
+			"x": 1385.9785725200545,
+			"y": 1709.1104441249508,
 			"strokeColor": "#e03131",
 			"backgroundColor": "transparent",
 			"width": 408.076171875,
@@ -684,7 +702,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582423427,
+			"updated": 1711585740850,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -700,8 +718,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 104,
-			"versionNonce": 1459761855,
+			"version": 250,
+			"versionNonce": 305516209,
 			"isDeleted": false,
 			"id": "aoK6PyP9SFdZ8iR10-04E",
 			"fillStyle": "solid",
@@ -710,8 +728,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1363.4908231817203,
-			"y": 751.2844603864679,
+			"x": 1027.4908231817203,
+			"y": 2197.284460386468,
 			"strokeColor": "transparent",
 			"backgroundColor": "transparent",
 			"width": 1090,
@@ -723,7 +741,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582423427,
+			"updated": 1711585740850,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -735,8 +753,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 396,
-			"versionNonce": 1510198943,
+			"version": 709,
+			"versionNonce": 780932849,
 			"isDeleted": false,
 			"id": "oNZu8XuHb9ysCQfj-sPI5",
 			"fillStyle": "solid",
@@ -745,12 +763,12 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 214.82415651505357,
-			"y": 227.41640483091237,
+			"x": -101.17584348494643,
+			"y": 739.4164048309124,
 			"strokeColor": "#e03131",
 			"backgroundColor": "transparent",
-			"width": 763.3333333333335,
-			"height": 443.3333333333335,
+			"width": 742.0939709895865,
+			"height": 1358.9285349253576,
 			"seed": 1520147828,
 			"groupIds": [],
 			"frameId": null,
@@ -758,18 +776,18 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711581651475,
+			"updated": 1711585740850,
 			"link": null,
 			"locked": false,
 			"startBinding": {
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
-				"focus": -0.27547353661124135,
-				"gap": 2.436189708935899
+				"focus": -0.08697617304429202,
+				"gap": 1.0536274797498208
 			},
 			"endBinding": {
 				"elementId": "LAkzEl1OmhE1zyuTXT2qY",
-				"focus": -0.5576199848489494,
-				"gap": 7.859168609167909
+				"focus": -0.5518239948264352,
+				"gap": 9.09853095291487
 			},
 			"lastCommittedPoint": null,
 			"startArrowhead": null,
@@ -780,19 +798,19 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					0
 				],
 				[
-					460,
-					93.33333333333348
+					344,
+					893.3333333333335
 				],
 				[
-					763.3333333333335,
-					443.3333333333335
+					742.0939709895865,
+					1358.9285349253576
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 389,
-			"versionNonce": 549840497,
+			"version": 390,
+			"versionNonce": 1328442751,
 			"isDeleted": false,
 			"id": "O3i_7AogQT0uivwnSXzkR",
 			"fillStyle": "solid",
@@ -829,14 +847,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582374717,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 169,
-			"versionNonce": 1782228465,
+			"version": 170,
+			"versionNonce": 1398304241,
 			"isDeleted": false,
 			"id": "4IIxsU69RNOXoVuEtCHv2",
 			"fillStyle": "solid",
@@ -865,14 +883,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711582374718,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 234,
-			"versionNonce": 884129745,
+			"version": 235,
+			"versionNonce": 2132960671,
 			"isDeleted": false,
 			"id": "zOQc2rKG",
 			"fillStyle": "solid",
@@ -894,7 +912,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582374718,
+			"updated": 1711584501393,
 			"link": "[[Obsidian]]",
 			"locked": false,
 			"fontSize": 28,
@@ -910,8 +928,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 229,
-			"versionNonce": 281845169,
+			"version": 230,
+			"versionNonce": 1188530129,
 			"isDeleted": false,
 			"id": "SU0yxjbM",
 			"fillStyle": "solid",
@@ -933,7 +951,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582374718,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -949,8 +967,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 273,
-			"versionNonce": 1840234385,
+			"version": 274,
+			"versionNonce": 1512200639,
 			"isDeleted": false,
 			"id": "ah08i9Qi3arBxbXCw0I0R",
 			"fillStyle": "solid",
@@ -974,7 +992,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582374718,
+			"updated": 1711584501393,
 			"link": "https://obsidian.md/download",
 			"locked": false,
 			"scale": [
@@ -984,8 +1002,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 567,
-			"versionNonce": 300419601,
+			"version": 568,
+			"versionNonce": 320366001,
 			"isDeleted": false,
 			"id": "lwpfNzY6eqRsNz3mdCoXD",
 			"fillStyle": "solid",
@@ -1007,7 +1025,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582429060,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1040,8 +1058,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 392,
-			"versionNonce": 813613969,
+			"version": 393,
+			"versionNonce": 357485023,
 			"isDeleted": false,
 			"id": "5mcYkwqspnf5MeVAvWjO2",
 			"fillStyle": "solid",
@@ -1075,14 +1093,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1270,
-			"versionNonce": 65153393,
+			"version": 1271,
+			"versionNonce": 1128433553,
 			"isDeleted": false,
 			"id": "aPWRa9RN",
 			"fillStyle": "solid",
@@ -1105,7 +1123,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": "[[MU 01 Introduction]]",
 			"locked": false,
 			"fontSize": 28,
@@ -1121,8 +1139,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 484,
-			"versionNonce": 1167971153,
+			"version": 485,
+			"versionNonce": 1840788991,
 			"isDeleted": false,
 			"id": "eAycqr2JhoDzZErHpDcdW",
 			"fillStyle": "solid",
@@ -1164,14 +1182,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 294,
-			"versionNonce": 10133681,
+			"version": 295,
+			"versionNonce": 294481265,
 			"isDeleted": false,
 			"id": "5v0hXwdF",
 			"fillStyle": "solid",
@@ -1194,7 +1212,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -1210,8 +1228,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 358,
-			"versionNonce": 1522885265,
+			"version": 359,
+			"versionNonce": 710876703,
 			"isDeleted": false,
 			"id": "f7J0fMZAOHOgr9fgWYKDr",
 			"fillStyle": "hachure",
@@ -1233,7 +1251,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582412117,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -1245,8 +1263,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 175,
-			"versionNonce": 1771283825,
+			"version": 176,
+			"versionNonce": 88119121,
 			"isDeleted": false,
 			"id": "M4onn58l",
 			"fillStyle": "solid",
@@ -1268,7 +1286,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582374718,
+			"updated": 1711584501393,
 			"link": "https://obsidian.md/download",
 			"locked": false,
 			"fontSize": 36,
@@ -1284,8 +1302,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 281,
-			"versionNonce": 1841212319,
+			"version": 282,
+			"versionNonce": 1580466751,
 			"isDeleted": false,
 			"id": "0ZwkFJ1qDZWSjHb87cuiJ",
 			"fillStyle": "solid",
@@ -1322,14 +1340,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582548330,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 346,
-			"versionNonce": 73697343,
+			"version": 347,
+			"versionNonce": 1353942321,
 			"isDeleted": false,
 			"id": "IfPirnit",
 			"fillStyle": "solid",
@@ -1351,7 +1369,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582548331,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -1367,8 +1385,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 327,
-			"versionNonce": 1145514079,
+			"version": 328,
+			"versionNonce": 1779917407,
 			"isDeleted": false,
 			"id": "0--HeFV6AGqTHOfbf0RlV",
 			"fillStyle": "solid",
@@ -1392,7 +1410,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582548331,
+			"updated": 1711584501393,
 			"link": "https://platform.openai.com/tokenizer",
 			"locked": false,
 			"scale": [
@@ -1402,8 +1420,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 263,
-			"versionNonce": 186696831,
+			"version": 264,
+			"versionNonce": 1867364113,
 			"isDeleted": false,
 			"id": "euypgV9T",
 			"fillStyle": "solid",
@@ -1425,7 +1443,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582548331,
+			"updated": 1711584501393,
 			"link": "https://platform.openai.com/tokenizer",
 			"locked": false,
 			"fontSize": 36,
@@ -1441,8 +1459,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 528,
-			"versionNonce": 431035089,
+			"version": 530,
+			"versionNonce": 1054457471,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1464,13 +1482,13 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582575879,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"startBinding": {
 				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
-				"focus": -0.5643345174972437,
-				"gap": 10.075404731108392
+				"gap": 10.075404731108392,
+				"focus": -0.5643345174972437
 			},
 			"endBinding": {
 				"elementId": "0ZwkFJ1qDZWSjHb87cuiJ",
@@ -1497,8 +1515,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 335,
-			"versionNonce": 8756031,
+			"version": 336,
+			"versionNonce": 59157745,
 			"isDeleted": false,
 			"id": "ynTuAINAbqIxZsBzBLWTG",
 			"fillStyle": "solid",
@@ -1535,14 +1553,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582649156,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 267,
-			"versionNonce": 1388426207,
+			"version": 268,
+			"versionNonce": 1597740703,
 			"isDeleted": false,
 			"id": "fTaL7Ula",
 			"fillStyle": "solid",
@@ -1564,7 +1582,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501393,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -1580,8 +1598,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 233,
-			"versionNonce": 289267711,
+			"version": 234,
+			"versionNonce": 1961223889,
 			"isDeleted": false,
 			"id": "LXM2JDjP",
 			"fillStyle": "solid",
@@ -1603,7 +1621,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501394,
 			"link": "https://platform.openai.com/docs/guides/prompt-engineering",
 			"locked": false,
 			"fontSize": 36,
@@ -1619,8 +1637,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 259,
-			"versionNonce": 1671399455,
+			"version": 260,
+			"versionNonce": 569207487,
 			"isDeleted": false,
 			"id": "sdy7mJX117d2RyMC4j_Bp",
 			"fillStyle": "solid",
@@ -1644,7 +1662,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501394,
 			"link": "https://www.youtube.com/watch?v=_ZvnD73m40o&ab_channel=freeCodeCamp.org",
 			"locked": false,
 			"scale": [
@@ -1654,8 +1672,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 215,
-			"versionNonce": 668412991,
+			"version": 216,
+			"versionNonce": 1308812465,
 			"isDeleted": false,
 			"id": "nFHyxLGz",
 			"fillStyle": "solid",
@@ -1677,7 +1695,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501394,
 			"link": "https://youtu.be/_ZvnD73m40o",
 			"locked": false,
 			"fontSize": 36,
@@ -1693,8 +1711,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 498,
-			"versionNonce": 1624103775,
+			"version": 500,
+			"versionNonce": 865057503,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1716,13 +1734,13 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
 				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
-				"focus": -0.3752407550863379,
-				"gap": 8.766838432323539
+				"gap": 8.766838432323539,
+				"focus": -0.3752407550863379
 			},
 			"endBinding": {
 				"elementId": "ynTuAINAbqIxZsBzBLWTG",
@@ -1749,8 +1767,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 606,
-			"versionNonce": 1936183199,
+			"version": 607,
+			"versionNonce": 1518675601,
 			"isDeleted": false,
 			"id": "WIHK5dZASFvLmH7nelkbA",
 			"fillStyle": "solid",
@@ -1772,7 +1790,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1801,8 +1819,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 383,
-			"versionNonce": 677656031,
+			"version": 384,
+			"versionNonce": 1488127743,
 			"isDeleted": false,
 			"id": "b_I13-t0ABOALeD2cCudp",
 			"fillStyle": "solid",
@@ -1826,14 +1844,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582553775,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 250,
-			"versionNonce": 1471239825,
+			"version": 251,
+			"versionNonce": 86256753,
 			"isDeleted": false,
 			"id": "1pcwwDbH",
 			"fillStyle": "solid",
@@ -1855,7 +1873,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582543829,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -1871,8 +1889,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 66,
-			"versionNonce": 1833589873,
+			"version": 67,
+			"versionNonce": 1876414239,
 			"isDeleted": false,
 			"id": "SV0XmZOytz0tSfe_pnB5w",
 			"fillStyle": "solid",
@@ -1901,14 +1919,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711582543829,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 264,
-			"versionNonce": 1502062161,
+			"version": 265,
+			"versionNonce": 1973909073,
 			"isDeleted": false,
 			"id": "dUjClXqN",
 			"fillStyle": "solid",
@@ -1930,7 +1948,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582543829,
+			"updated": 1711584501394,
 			"link": "[[MU 90 Dialecte ChatGPT]]",
 			"locked": false,
 			"fontSize": 36,
@@ -1946,8 +1964,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "image",
-			"version": 323,
-			"versionNonce": 1195422769,
+			"version": 324,
+			"versionNonce": 862884671,
 			"isDeleted": false,
 			"id": "DWzQoypk",
 			"fillStyle": "hachure",
@@ -1969,7 +1987,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582543829,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -1981,8 +1999,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 500,
-			"versionNonce": 1320695729,
+			"version": 501,
+			"versionNonce": 1860600881,
 			"isDeleted": false,
 			"id": "04Tsf4ZrLYAVGNWVPw_Ca",
 			"fillStyle": "solid",
@@ -2004,7 +2022,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582555247,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2033,8 +2051,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 324,
-			"versionNonce": 400635921,
+			"version": 325,
+			"versionNonce": 1004000095,
 			"isDeleted": false,
 			"id": "eTbk9bNBghou77CpoVp5F",
 			"fillStyle": "solid",
@@ -2065,14 +2083,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582580543,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 669,
-			"versionNonce": 805441009,
+			"version": 670,
+			"versionNonce": 1825101329,
 			"isDeleted": false,
 			"id": "Vgk2R2sP",
 			"fillStyle": "solid",
@@ -2092,7 +2110,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582580543,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -2108,8 +2126,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 642,
-			"versionNonce": 908755903,
+			"version": 644,
+			"versionNonce": 1097076607,
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2131,7 +2149,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582649156,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2141,8 +2159,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			},
 			"endBinding": {
 				"elementId": "eTbk9bNBghou77CpoVp5F",
-				"focus": 0.32205208109240463,
-				"gap": 7.791015625
+				"gap": 7.791015625,
+				"focus": 0.32205208109240463
 			},
 			"lastCommittedPoint": null,
 			"startArrowhead": null,
@@ -2164,8 +2182,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 296,
-			"versionNonce": 179080191,
+			"version": 297,
+			"versionNonce": 38136817,
 			"isDeleted": false,
 			"id": "h1Xo0rcnl73MvBlWL1afu",
 			"fillStyle": "solid",
@@ -2198,14 +2216,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711584097096,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 280,
-			"versionNonce": 1350135121,
+			"version": 281,
+			"versionNonce": 508807071,
 			"isDeleted": false,
 			"id": "cJt3tRlo",
 			"fillStyle": "solid",
@@ -2227,7 +2245,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582471447,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -2243,8 +2261,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 278,
-			"versionNonce": 711039793,
+			"version": 279,
+			"versionNonce": 2003125713,
 			"isDeleted": false,
 			"id": "O5iZFlGn",
 			"fillStyle": "hachure",
@@ -2266,7 +2284,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582471447,
+			"updated": 1711584501394,
 			"link": "[[Visual studio code]]",
 			"locked": false,
 			"fontSize": 36,
@@ -2282,8 +2300,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 303,
-			"versionNonce": 1456016657,
+			"version": 304,
+			"versionNonce": 282557375,
 			"isDeleted": false,
 			"id": "RbIxM47tQZ9FprHIhXQTF",
 			"fillStyle": "solid",
@@ -2307,7 +2325,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582471447,
+			"updated": 1711584501394,
 			"link": "https://code.visualstudio.com/",
 			"locked": false,
 			"scale": [
@@ -2317,8 +2335,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 234,
-			"versionNonce": 1294418673,
+			"version": 235,
+			"versionNonce": 658400177,
 			"isDeleted": false,
 			"id": "CRPp6WSa",
 			"fillStyle": "solid",
@@ -2340,7 +2358,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582471447,
+			"updated": 1711584501394,
 			"link": "https://code.visualstudio.com/",
 			"locked": false,
 			"fontSize": 36,
@@ -2356,8 +2374,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 457,
-			"versionNonce": 1487471473,
+			"version": 458,
+			"versionNonce": 1024437215,
 			"isDeleted": false,
 			"id": "iSRn27akXiiOijhI2_JAn",
 			"fillStyle": "solid",
@@ -2379,7 +2397,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582471447,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2412,8 +2430,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 425,
-			"versionNonce": 1620340511,
+			"version": 426,
+			"versionNonce": 502842769,
 			"isDeleted": false,
 			"id": "38B1Mxa2a4EArEsM0MV3Z",
 			"fillStyle": "solid",
@@ -2442,14 +2460,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "embeddable",
-			"version": 347,
-			"versionNonce": 1575777119,
+			"version": 348,
+			"versionNonce": 1863112703,
 			"isDeleted": false,
 			"id": "2l3OnOIkHNVW1pKfIN7Ds",
 			"fillStyle": "solid",
@@ -2473,7 +2491,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": "https://youtu.be/o0exK-xFP3k",
 			"locked": false,
 			"scale": [
@@ -2483,8 +2501,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 397,
-			"versionNonce": 2011475839,
+			"version": 398,
+			"versionNonce": 1993075569,
 			"isDeleted": false,
 			"id": "RERIcUrV",
 			"fillStyle": "solid",
@@ -2506,7 +2524,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36.47840531561462,
@@ -2522,8 +2540,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 354,
-			"versionNonce": 2076207007,
+			"version": 355,
+			"versionNonce": 483360799,
 			"isDeleted": false,
 			"id": "mgbeVbUeSmCG87iE9rwd1",
 			"fillStyle": "solid",
@@ -2547,7 +2565,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": "https://github.com/mgmeyers/obsidian-kanban/blob/main/src/docs/Assets/Screen%20Shot%202021-09-16%20at%2012.58.22%20PM.png",
 			"locked": false,
 			"scale": [
@@ -2557,8 +2575,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 292,
-			"versionNonce": 1471159231,
+			"version": 293,
+			"versionNonce": 2046776657,
 			"isDeleted": false,
 			"id": "eLC4GrKU",
 			"fillStyle": "solid",
@@ -2580,7 +2598,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36.47840531561462,
@@ -2596,8 +2614,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 357,
-			"versionNonce": 1607748575,
+			"version": 358,
+			"versionNonce": 675816511,
 			"isDeleted": false,
 			"id": "_clAFbcgo8haJT_2Pa0lD",
 			"fillStyle": "solid",
@@ -2621,7 +2639,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": "https://youtu.be/PSo2XkKHpWo",
 			"locked": false,
 			"scale": [
@@ -2631,8 +2649,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "embeddable",
-			"version": 365,
-			"versionNonce": 272463871,
+			"version": 366,
+			"versionNonce": 2062189361,
 			"isDeleted": false,
 			"id": "BKq_LuSGu4BQ3HtfImJe8",
 			"fillStyle": "solid",
@@ -2656,7 +2674,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": "https://youtu.be/nREnpgixe9U",
 			"locked": false,
 			"scale": [
@@ -2666,8 +2684,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 305,
-			"versionNonce": 250355743,
+			"version": 306,
+			"versionNonce": 1633109087,
 			"isDeleted": false,
 			"id": "tqs4sGkL",
 			"fillStyle": "solid",
@@ -2689,7 +2707,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36.47840531561462,
@@ -2705,8 +2723,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 537,
-			"versionNonce": 597111615,
+			"version": 538,
+			"versionNonce": 1978987793,
 			"isDeleted": false,
 			"id": "WJeiEbQumKoM_4tDmiX1u",
 			"fillStyle": "solid",
@@ -2728,7 +2746,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582659623,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2761,8 +2779,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 381,
-			"versionNonce": 1676455423,
+			"version": 382,
+			"versionNonce": 1204641919,
 			"isDeleted": false,
 			"id": "SEmEz8Pbm0mhlROVMlWFq",
 			"fillStyle": "solid",
@@ -2791,14 +2809,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 481,
-			"versionNonce": 1001028159,
+			"version": 482,
+			"versionNonce": 1855335153,
 			"isDeleted": false,
 			"id": "eAwoZHcNWyBqQhEOTFpxK",
 			"fillStyle": "solid",
@@ -2823,14 +2841,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 349,
-			"versionNonce": 1107221087,
+			"version": 350,
+			"versionNonce": 225114271,
 			"isDeleted": false,
 			"id": "nX7JC7l3v4pvzA7-Q6t-B",
 			"fillStyle": "solid",
@@ -2860,14 +2878,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 433,
-			"versionNonce": 454178431,
+			"version": 434,
+			"versionNonce": 223716561,
 			"isDeleted": false,
 			"id": "eiwgPas6",
 			"fillStyle": "solid",
@@ -2890,7 +2908,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": "[[Markdown]]",
 			"locked": false,
 			"fontSize": 34.907865168539324,
@@ -2906,8 +2924,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "text",
-			"version": 369,
-			"versionNonce": 228920991,
+			"version": 370,
+			"versionNonce": 1474333887,
 			"isDeleted": false,
 			"id": "B9n42z2j",
 			"fillStyle": "solid",
@@ -2930,7 +2948,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 34.907865168539324,
@@ -2946,8 +2964,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 328,
-			"versionNonce": 879223487,
+			"version": 329,
+			"versionNonce": 2110448305,
 			"isDeleted": false,
 			"id": "Miclm3BS0vbF8Y2voK4Di",
 			"fillStyle": "solid",
@@ -2972,14 +2990,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 294,
-			"versionNonce": 2147168991,
+			"version": 295,
+			"versionNonce": 1120836831,
 			"isDeleted": false,
 			"id": "paBDjEQ8",
 			"fillStyle": "solid",
@@ -3002,7 +3020,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -3018,8 +3036,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "rectangle",
-			"version": 379,
-			"versionNonce": 2028961535,
+			"version": 380,
+			"versionNonce": 211641489,
 			"isDeleted": false,
 			"id": "WmrcThQW7N4czxeGyGdQl",
 			"fillStyle": "solid",
@@ -3049,14 +3067,14 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					"type": "text"
 				}
 			],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 500,
-			"versionNonce": 1103447839,
+			"version": 501,
+			"versionNonce": 566601983,
 			"isDeleted": false,
 			"id": "wdVFjrOh",
 			"fillStyle": "solid",
@@ -3079,7 +3097,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": "[[Mermaid pour Obsidian]]",
 			"locked": false,
 			"fontSize": 36,
@@ -3095,8 +3113,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		},
 		{
 			"type": "arrow",
-			"version": 314,
-			"versionNonce": 1397003807,
+			"version": 315,
+			"versionNonce": 92580465,
 			"isDeleted": false,
 			"id": "iggMgF0BHjdk8tBnWl2cK",
 			"fillStyle": "solid",
@@ -3118,7 +3136,7 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711582668124,
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3150,20 +3168,24 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			]
 		},
 		{
-			"id": "ECNIG08g4FGfkSx8bu5wN",
 			"type": "rectangle",
-			"x": 5551.40389803583,
-			"y": -1078.4527766081285,
-			"width": 2815,
-			"height": 1901.666666666667,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#ffec99",
+			"version": 157,
+			"versionNonce": 2075780863,
+			"isDeleted": false,
+			"id": "ECNIG08g4FGfkSx8bu5wN",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 5551.40389803583,
+			"y": -1078.4527766081285,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#ffec99",
+			"width": 2815,
+			"height": 1901.666666666667,
+			"seed": 449268575,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
@@ -3171,35 +3193,39 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 449268575,
-			"version": 155,
-			"versionNonce": 2123028543,
-			"isDeleted": false,
 			"boundElements": [
 				{
 					"id": "V1hTwV7EcJvBEPPXJobB7",
 					"type": "arrow"
+				},
+				{
+					"id": "58_a2PH2FlMg6qcHMZjKk",
+					"type": "arrow"
 				}
 			],
-			"updated": 1711584097096,
+			"updated": 1711585265159,
 			"link": null,
 			"locked": false
 		},
 		{
-			"id": "Heum6Pxqp0u2zg_rlzgdq",
 			"type": "embeddable",
-			"x": 5690.213421845354,
-			"y": -860.6749988303511,
-			"width": 1063.3333333333337,
-			"height": 674.9999999999999,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
+			"version": 183,
+			"versionNonce": 1363686481,
+			"isDeleted": false,
+			"id": "Heum6Pxqp0u2zg_rlzgdq",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 5690.213421845354,
+			"y": -860.6749988303511,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 1063.3333333333337,
+			"height": 674.9999999999999,
+			"seed": 1197238975,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
@@ -3207,12 +3233,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1197238975,
-			"version": 182,
-			"versionNonce": 1737558289,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance",
 			"locked": false,
 			"scale": [
@@ -3221,59 +3243,63 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			]
 		},
 		{
-			"id": "ZeT2nwsg",
 			"type": "text",
-			"x": 6096.181195282854,
-			"y": -965.1194432747952,
-			"width": 168.064453125,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#a5d8ff",
+			"version": 41,
+			"versionNonce": 1841345855,
+			"isDeleted": false,
+			"id": "ZeT2nwsg",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 6096.181195282854,
+			"y": -965.1194432747952,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#a5d8ff",
+			"width": 168.064453125,
+			"height": 41.4,
+			"seed": 76081745,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
 			"frameId": null,
 			"roundness": null,
-			"seed": 76081745,
-			"version": 40,
-			"versionNonce": 2073018097,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
-			"text": "PYLANCE",
-			"rawText": "PYLANCE",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "PYLANCE",
+			"rawText": "PYLANCE",
 			"textAlign": "center",
 			"verticalAlign": "top",
-			"baseline": 33,
 			"containerId": null,
 			"originalText": "PYLANCE",
-			"lineHeight": 1.15
+			"lineHeight": 1.15,
+			"baseline": 33
 		},
 		{
-			"id": "st4zGJAGfr1ExIRs3lxoy",
 			"type": "embeddable",
-			"x": 7049.578501210433,
-			"y": -865.0400781954304,
-			"width": 1162.8571428571422,
-			"height": 651.4285714285716,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
+			"version": 69,
+			"versionNonce": 1405059633,
+			"isDeleted": false,
+			"id": "st4zGJAGfr1ExIRs3lxoy",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 7049.578501210433,
+			"y": -865.0400781954304,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 1162.8571428571422,
+			"height": 651.4285714285716,
+			"seed": 1437349201,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
@@ -3281,12 +3307,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1437349201,
-			"version": 68,
-			"versionNonce": 1845278929,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": "https://code.visualstudio.com/docs/copilot/overview",
 			"locked": false,
 			"scale": [
@@ -3295,59 +3317,63 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			]
 		},
 		{
-			"id": "FWYozaPZ",
 			"type": "text",
-			"x": 7490.564829335433,
-			"y": -965.0400781954304,
-			"width": 158.02734375,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#a5d8ff",
+			"version": 67,
+			"versionNonce": 1804973407,
+			"isDeleted": false,
+			"id": "FWYozaPZ",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 7490.564829335433,
+			"y": -965.0400781954304,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#a5d8ff",
+			"width": 158.02734375,
+			"height": 41.4,
+			"seed": 797704305,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
 			"frameId": null,
 			"roundness": null,
-			"seed": 797704305,
-			"version": 66,
-			"versionNonce": 1617917617,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
-			"text": "COPILOT",
-			"rawText": "COPILOT",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "COPILOT",
+			"rawText": "COPILOT",
 			"textAlign": "center",
 			"verticalAlign": "top",
-			"baseline": 33,
 			"containerId": null,
 			"originalText": "COPILOT",
-			"lineHeight": 1.15
+			"lineHeight": 1.15,
+			"baseline": 33
 		},
 		{
-			"id": "LwcSW5rewQyUKUL5KiW4e",
 			"type": "embeddable",
-			"x": 5702.626120258052,
-			"y": 88.29325513790309,
-			"width": 1034,
-			"height": 640,
-			"angle": 0,
-			"strokeColor": "#f08c00",
-			"backgroundColor": "#ffec99",
+			"version": 86,
+			"versionNonce": 164762641,
+			"isDeleted": false,
+			"id": "LwcSW5rewQyUKUL5KiW4e",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 5702.626120258052,
+			"y": 88.29325513790309,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffec99",
+			"width": 1034,
+			"height": 640,
+			"seed": 944380031,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
@@ -3355,12 +3381,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 944380031,
-			"version": 85,
-			"versionNonce": 1435465873,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": "https://marketplace.visualstudio.com/items?itemName=svsool.markdown-memo",
 			"locked": false,
 			"scale": [
@@ -3369,59 +3391,63 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			]
 		},
 		{
-			"id": "0RCrTgmj",
 			"type": "text",
-			"x": 6041.970195778885,
-			"y": -10.04007819543017,
-			"width": 339.978515625,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#ffec99",
+			"version": 64,
+			"versionNonce": 1125495167,
+			"isDeleted": false,
+			"id": "0RCrTgmj",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 6041.970195778885,
+			"y": -10.04007819543017,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffec99",
+			"width": 339.978515625,
+			"height": 41.4,
+			"seed": 1901535153,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
 			"frameId": null,
 			"roundness": null,
-			"seed": 1901535153,
-			"version": 63,
-			"versionNonce": 252984945,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
-			"text": "MARKDOWN MEMO",
-			"rawText": "MARKDOWN MEMO",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "MARKDOWN MEMO",
+			"rawText": "MARKDOWN MEMO",
 			"textAlign": "center",
 			"verticalAlign": "top",
-			"baseline": 33,
 			"containerId": null,
 			"originalText": "MARKDOWN MEMO",
-			"lineHeight": 1.15
+			"lineHeight": 1.15,
+			"baseline": 33
 		},
 		{
-			"id": "z2YnZpI9axGe5vRBvhtLf",
 			"type": "embeddable",
-			"x": 7058.046755178686,
-			"y": 103.84881069345829,
-			"width": 1169,
-			"height": 626,
-			"angle": 0,
-			"strokeColor": "#f08c00",
-			"backgroundColor": "#ffec99",
+			"version": 73,
+			"versionNonce": 1735879153,
+			"isDeleted": false,
+			"id": "z2YnZpI9axGe5vRBvhtLf",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 7058.046755178686,
+			"y": 103.84881069345829,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffec99",
+			"width": 1169,
+			"height": 626,
+			"seed": 2123834015,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
@@ -3429,12 +3455,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 2123834015,
-			"version": 72,
-			"versionNonce": 734349393,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": "https://code.visualstudio.com/docs/languages/python",
 			"locked": false,
 			"scale": [
@@ -3443,72 +3465,85 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 			]
 		},
 		{
-			"id": "UrQc8AVJ",
 			"type": "text",
-			"x": 7551.8101265729165,
-			"y": 12.694964539612101,
-			"width": 150.01171875,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#ffec99",
+			"version": 50,
+			"versionNonce": 2105616799,
+			"isDeleted": false,
+			"id": "UrQc8AVJ",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 7551.8101265729165,
+			"y": 12.694964539612101,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffec99",
+			"width": 150.01171875,
+			"height": 41.4,
+			"seed": 475384319,
 			"groupIds": [
 				"TiLAsYvZVFiEDYKzry_v9"
 			],
 			"frameId": null,
 			"roundness": null,
-			"seed": 475384319,
-			"version": 49,
-			"versionNonce": 91887153,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584085100,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
-			"text": "PYTHON",
-			"rawText": "PYTHON",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "PYTHON",
+			"rawText": "PYTHON",
 			"textAlign": "center",
 			"verticalAlign": "top",
-			"baseline": 33,
 			"containerId": null,
 			"originalText": "PYTHON",
-			"lineHeight": 1.15
+			"lineHeight": 1.15,
+			"baseline": 33
 		},
 		{
-			"id": "V1hTwV7EcJvBEPPXJobB7",
 			"type": "arrow",
-			"x": 4603.822201954132,
-			"y": -648.1877083430618,
-			"width": 930,
-			"height": 506.6666666666665,
-			"angle": 0,
-			"strokeColor": "#f08c00",
-			"backgroundColor": "#ffec99",
+			"version": 62,
+			"versionNonce": 1974928337,
+			"isDeleted": false,
+			"id": "V1hTwV7EcJvBEPPXJobB7",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": 4603.822201954132,
+			"y": -648.1877083430618,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffec99",
+			"width": 930,
+			"height": 506.6666666666665,
+			"seed": 1922891249,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 2
 			},
-			"seed": 1922891249,
-			"version": 61,
-			"versionNonce": 988155441,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711584101000,
+			"boundElements": [],
+			"updated": 1711584501394,
 			"link": null,
 			"locked": false,
+			"startBinding": {
+				"elementId": "h1Xo0rcnl73MvBlWL1afu",
+				"focus": -0.5703452629910496,
+				"gap": 20.060328560328117
+			},
+			"endBinding": {
+				"elementId": "ECNIG08g4FGfkSx8bu5wN",
+				"focus": -0.36509471433696444,
+				"gap": 17.581696081698738
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
 			"points": [
 				[
 					0,
@@ -3522,17 +3557,389 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 					930,
 					506.6666666666665
 				]
+			]
+		},
+		{
+			"id": "sd82NvaozEGPUzZ1VW_BF",
+			"type": "embeddable",
+			"x": 8925.606785445092,
+			"y": -561.6047357600947,
+			"width": 1587.4999999999984,
+			"height": 942.1875000000002,
+			"angle": 0,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"seed": 1702766769,
+			"version": 209,
+			"versionNonce": 708670271,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "58_a2PH2FlMg6qcHMZjKk",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711585265159,
+			"link": "https://youtu.be/jXp5D5ZnxGM",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"id": "58_a2PH2FlMg6qcHMZjKk",
+			"type": "arrow",
+			"x": 8380.606785445092,
+			"y": -79.10473576009485,
+			"width": 530,
+			"height": 67.5,
+			"angle": 0,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"seed": 1621830609,
+			"version": 53,
+			"versionNonce": 2135283871,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711585268591,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					295,
+					-67.5
+				],
+				[
+					530,
+					-22.5
+				]
 			],
 			"lastCommittedPoint": null,
 			"startBinding": {
-				"elementId": "h1Xo0rcnl73MvBlWL1afu",
-				"focus": -0.5703452629910496,
-				"gap": 20.060328560328117
+				"elementId": "ECNIG08g4FGfkSx8bu5wN",
+				"focus": 0.29367822047226544,
+				"gap": 14.202887409260711
 			},
 			"endBinding": {
-				"elementId": "ECNIG08g4FGfkSx8bu5wN",
-				"focus": -0.36509471433696444,
-				"gap": 17.581696081698738
+				"elementId": "sd82NvaozEGPUzZ1VW_BF",
+				"focus": -0.23074296385220716,
+				"gap": 15.00000000000091
+			},
+			"startArrowhead": null,
+			"endArrowhead": "arrow"
+		},
+		{
+			"id": "hsnLuyP3fkOGlttwSpI3q",
+			"type": "arrow",
+			"x": 215.96392830223488,
+			"y": 270.5381213827625,
+			"width": 588.5714285714287,
+			"height": 365.7142857142858,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"seed": 1679328401,
+			"version": 65,
+			"versionNonce": 1587190321,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711585341889,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					285.7142857142858,
+					254.28571428571445
+				],
+				[
+					588.5714285714287,
+					365.7142857142858
+				]
+			],
+			"lastCommittedPoint": null,
+			"startBinding": {
+				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"focus": -0.5220005020323473,
+				"gap": 3.575961496117202
+			},
+			"endBinding": {
+				"elementId": "c4YpVnANdwqbEwo22BOrY",
+				"focus": -0.3248957464761886,
+				"gap": 8.238095238094616
+			},
+			"startArrowhead": null,
+			"endArrowhead": "arrow"
+		},
+		{
+			"id": "c4YpVnANdwqbEwo22BOrY",
+			"type": "rectangle",
+			"x": 812.7734521117582,
+			"y": 16.061930906571433,
+			"width": 1548,
+			"height": 1231,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"ohuP08G6MUBQFuA_OY_6n"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"seed": 2099932945,
+			"version": 111,
+			"versionNonce": 1305202879,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "hsnLuyP3fkOGlttwSpI3q",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711585737362,
+			"link": null,
+			"locked": false
+		},
+		{
+			"id": "myS3xSRclPdM63GIxeD9t",
+			"type": "rectangle",
+			"x": 876.1787255492582,
+			"y": 150.0619309065716,
+			"width": 1444.5000000000002,
+			"height": 490.00000000000006,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"ohuP08G6MUBQFuA_OY_6n"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"seed": 679902897,
+			"version": 253,
+			"versionNonce": 572907185,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "ldWyEkQ4",
+					"type": "text"
+				}
+			],
+			"updated": 1711585737362,
+			"link": null,
+			"locked": false
+		},
+		{
+			"id": "ldWyEkQ4",
+			"type": "text",
+			"x": 894.5230248656644,
+			"y": 254.65560025237204,
+			"width": 1407.8114013671875,
+			"height": 280.81266130839924,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"ohuP08G6MUBQFuA_OY_6n"
+			],
+			"frameId": null,
+			"roundness": null,
+			"seed": 1988237681,
+			"version": 484,
+			"versionNonce": 1655791839,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711585737362,
+			"link": "[[MU 02 Étude de cas]]",
+			"locked": false,
+			"text": "# Objectif\nNous allons suivre le développement d'une petite application de sa phase\nd'analyse à son déploiement.\n\n# Étapes\nPour cela, nous allons réaliser l'ensemble des tâches suivantes en nous aidan",
+			"rawText": "![[MU 02 Étude de cas]]",
+			"fontSize": 40.697487146144816,
+			"fontFamily": 2,
+			"textAlign": "center",
+			"verticalAlign": "middle",
+			"baseline": 271,
+			"containerId": "myS3xSRclPdM63GIxeD9t",
+			"originalText": "# Objectif\nNous allons suivre le développement d'une petite application de sa phase d'analyse à son déploiement.\n\n# Étapes\nPour cela, nous allons réaliser l'ensemble des tâches suivantes en nous aidan",
+			"lineHeight": 1.15
+		},
+		{
+			"id": "ANWB3vFZ",
+			"type": "text",
+			"x": 1437.5843245075916,
+			"y": 65.06193090657234,
+			"width": 266.044921875,
+			"height": 41.4,
+			"angle": 0,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"ohuP08G6MUBQFuA_OY_6n"
+			],
+			"frameId": null,
+			"roundness": null,
+			"seed": 145406449,
+			"version": 65,
+			"versionNonce": 1681449105,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711585737362,
+			"link": null,
+			"locked": false,
+			"text": "ÉTUDE DE CAS",
+			"rawText": "ÉTUDE DE CAS",
+			"fontSize": 36,
+			"fontFamily": 2,
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"baseline": 33,
+			"containerId": null,
+			"originalText": "ÉTUDE DE CAS",
+			"lineHeight": 1.15
+		},
+		{
+			"id": "k2ukDiKd",
+			"type": "image",
+			"x": 1181.995317811164,
+			"y": 690.5381213827629,
+			"width": 860,
+			"height": 491.42857142857144,
+			"angle": 0,
+			"strokeColor": "transparent",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"roundness": null,
+			"seed": 71090,
+			"version": 172,
+			"versionNonce": 1085271295,
+			"updated": 1711585737362,
+			"isDeleted": false,
+			"groupIds": [
+				"ohuP08G6MUBQFuA_OY_6n"
+			],
+			"boundElements": [],
+			"link": null,
+			"locked": false,
+			"fileId": "686be99322045eb53a6625c78f70b2c308f2ea3a",
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"id": "Mzebemv_8Q07FqMIh6OhF",
+			"type": "arrow",
+			"x": -400.55988122157396,
+			"y": 739.2047880494292,
+			"width": 150,
+			"height": 1460,
+			"angle": 0,
+			"strokeColor": "#2f9e44",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"seed": 1476645695,
+			"version": 46,
+			"versionNonce": 1033922161,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711585771849,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-150,
+					1460
+				]
+			],
+			"lastCommittedPoint": null,
+			"startBinding": {
+				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"focus": 0.013099708143398728,
+				"gap": 1
+			},
+			"endBinding": {
+				"elementId": "-9xVWp01SHx8jNeaBw3AE",
+				"focus": -0.10329345076289236,
+				"gap": 2.378283448151251
 			},
 			"startArrowhead": null,
 			"endArrowhead": "arrow"
@@ -3541,8 +3948,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 	"appState": {
 		"theme": "light",
 		"viewBackgroundColor": "#ffffff",
-		"currentItemStrokeColor": "#f08c00",
-		"currentItemBackgroundColor": "#ffec99",
+		"currentItemStrokeColor": "#2f9e44",
+		"currentItemBackgroundColor": "#ffffff",
 		"currentItemFillStyle": "solid",
 		"currentItemStrokeWidth": 4,
 		"currentItemStrokeStyle": "solid",
@@ -3553,8 +3960,8 @@ f5bbe334ce5fcc65ceadb2884787a718edb174d1: [[robot_explaining_anatomy.png]]
 		"currentItemTextAlign": "center",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": -752.1555352874648,
-		"scrollY": 5948.364791676395,
+		"scrollX": 4385.559881221574,
+		"scrollY": 4735.638961950572,
 		"zoom": {
 			"value": 0.1
 		},
