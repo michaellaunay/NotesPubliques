@@ -1,6 +1,7 @@
 # 1. Diagrammes Mermaid
 
-[Mermaid](https://mermaid.js.org/intro/) est un outil de génération de diagrammes et de graphiques basé sur du texte en Markdown. Il a été conçu pour simplifier la création de diagrammes complexes dans les documents Markdown, permettant aux utilisateurs de générer visuellement des diagrammes à partir de texte au lieu de devoir utiliser des logiciels de dessin spécialisés.
+[Mermaid](https://mermaid.js.org/intro/) est un outil de génération de diagrammes et de graphiques basé sur du texte en Markdown.
+Il a été conçu pour simplifier la création de diagrammes complexes dans les documents Markdown, permettant aux utilisateurs de générer visuellement des diagrammes à partir de texte au lieu de devoir utiliser des logiciels de dessin spécialisés.
 
 ## 1.1 Origines et développement
 
