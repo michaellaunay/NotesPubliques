@@ -459,8 +459,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 1197,
-			"versionNonce": 296249041,
+			"version": 1198,
+			"versionNonce": 626775743,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -469,7 +469,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1957.9334031292494,
+			"x": 1957.9334031292492,
 			"y": -4739.522806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
@@ -499,14 +499,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711636137757,
+			"updated": 1711636233426,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1534,
-			"versionNonce": 143846079,
+			"version": 1535,
+			"versionNonce": 1179057983,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -515,7 +515,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1970.5877887826591,
+			"x": 1970.587788782659,
 			"y": -4734.222806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -526,7 +526,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1711636233428,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -542,8 +542,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1830,
-			"versionNonce": 779445425,
+			"version": 1831,
+			"versionNonce": 374384351,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -565,7 +565,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1711636233427,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -598,8 +598,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 597,
-			"versionNonce": 696597215,
+			"version": 598,
+			"versionNonce": 818069343,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -608,7 +608,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 932.704598418941,
+			"x": 932.7045984189408,
 			"y": 2431.112159789026,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -628,14 +628,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711636137757,
+			"updated": 1711636233428,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 895,
-			"versionNonce": 145204881,
+			"version": 896,
+			"versionNonce": 840006527,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -644,7 +644,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1004.5753739925149,
+			"x": 1004.5753739925146,
 			"y": 2489.0696127402666,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -657,7 +657,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1711636233429,
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 38.41616766467066,
@@ -1129,8 +1129,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 1612,
-			"versionNonce": 1235731921,
+			"version": 1614,
+			"versionNonce": 773449663,
 			"isDeleted": false,
 			"id": "aPWRa9RN",
 			"fillStyle": "solid",
@@ -1139,12 +1139,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -840.1098078051725,
-			"y": -3097.0450274317063,
+			"x": -685.1772595188058,
+			"y": -3090.517932957553,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 2468.6375575102334,
-			"height": 163.17736185383245,
+			"width": 2158.7724609375,
+			"height": 150.12317290552585,
 			"seed": 295708916,
 			"groupIds": [
 				"B9qRFHT-GYUYQVV_KMx1j",
@@ -1153,7 +1153,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1711636233429,
 			"link": "[[MU 01 Introduction]]",
 			"locked": false,
 			"fontSize": 43.513963161021984,
@@ -1165,7 +1165,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "5mcYkwqspnf5MeVAvWjO2",
 			"originalText": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
 			"lineHeight": 1.15,
-			"baseline": 146
+			"baseline": 140
 		},
 		{
 			"type": "rectangle",
@@ -1489,8 +1489,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 596,
-			"versionNonce": 1923982399,
+			"version": 597,
+			"versionNonce": 209089279,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1512,7 +1512,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1711636233427,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1741,8 +1741,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 532,
-			"versionNonce": 532707487,
+			"version": 533,
+			"versionNonce": 810400543,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1764,7 +1764,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1711636233427,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2156,8 +2156,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 676,
-			"versionNonce": 1520842047,
+			"version": 677,
+			"versionNonce": 1596233695,
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2179,7 +2179,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1711636233429,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5648,8 +5648,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 93,
-			"versionNonce": 288792223,
+			"version": 95,
+			"versionNonce": 1469672479,
 			"isDeleted": false,
 			"id": "s7efyDs-_91sKR4aShEhN",
 			"fillStyle": "solid",
@@ -5659,11 +5659,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -4780.0475753813735,
-			"y": 1854.3469859433008,
+			"y": 1855.5580922037498,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 634.4444444444443,
-			"height": 9.769957966665515,
+			"height": 10.457439919484386,
 			"seed": 1496058591,
 			"groupIds": [],
 			"frameId": null,
@@ -5671,7 +5671,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1711636233431,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5694,7 +5694,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-634.4444444444443,
-					-9.769957966665515
+					-10.457439919484386
 				]
 			]
 		},
@@ -5775,8 +5775,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 453,
-			"versionNonce": 556620977,
+			"version": 455,
+			"versionNonce": 1268133983,
 			"isDeleted": false,
 			"id": "w-QAzjhwrKBPvy1GeLG0U",
 			"fillStyle": "solid",
@@ -5786,11 +5786,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -8391.158686492483,
-			"y": -3509.2823494300014,
+			"y": -3509.2832185101925,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 618.3333333333321,
-			"height": 124.9622117749368,
+			"height": 124.96157837530063,
 			"seed": 1906058449,
 			"groupIds": [],
 			"frameId": null,
@@ -5798,7 +5798,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1711636233431,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5821,7 +5821,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-618.3333333333321,
-					-124.9622117749368
+					-124.96157837530063
 				]
 			]
 		},
@@ -5906,8 +5906,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 147,
-			"versionNonce": 220925695,
+			"version": 149,
+			"versionNonce": 232711327,
 			"isDeleted": false,
 			"id": "mfzQFe3Fk8Dslm-t_xCHZ",
 			"fillStyle": "solid",
@@ -5916,12 +5916,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -8367.805872639672,
-			"y": -2402.158206401465,
+			"x": -8367.80587263967,
+			"y": -2401.5659688483015,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
-			"width": 565.8333333333321,
-			"height": 96.33578061482012,
+			"width": 565.8333333333339,
+			"height": 96.62761810053917,
 			"seed": 2046383825,
 			"groupIds": [],
 			"frameId": null,
@@ -5929,7 +5929,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1711636233431,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5951,8 +5951,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-565.8333333333321,
-					-96.33578061482012
+					-565.8333333333339,
+					-96.62761810053917
 				]
 			]
 		},
@@ -6033,8 +6033,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 93,
-			"versionNonce": 105180753,
+			"version": 97,
+			"versionNonce": 593763615,
 			"isDeleted": false,
 			"id": "6BaaEWzPD99fGPFPc-a53",
 			"fillStyle": "solid",
@@ -6044,11 +6044,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -10783.242289668808,
-			"y": -2576.176691415462,
+			"y": -2576.108722222933,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
 			"width": 573.9285714285706,
-			"height": 20.028559116784436,
+			"height": 19.992226096491777,
 			"seed": 584611231,
 			"groupIds": [],
 			"frameId": null,
@@ -6056,7 +6056,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1711636233432,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6079,7 +6079,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-573.9285714285706,
-					20.028559116784436
+					19.992226096491777
 				]
 			]
 		},
@@ -6258,8 +6258,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 48,
-			"versionNonce": 362289023,
+			"version": 50,
+			"versionNonce": 925409631,
 			"isDeleted": false,
 			"id": "xa0CyPXoYESqVPXobs52o",
 			"fillStyle": "solid",
@@ -6269,11 +6269,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -7792.073458499974,
-			"y": -4955.1190302420855,
+			"y": -4954.051499689465,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 626.6666666666661,
-			"height": 27.269481333869408,
+			"height": 27.988681587924475,
 			"seed": 432208049,
 			"groupIds": [],
 			"frameId": null,
@@ -6281,7 +6281,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137760,
+			"updated": 1711636233433,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6304,7 +6304,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-626.6666666666661,
-					-27.269481333869408
+					-27.988681587924475
 				]
 			]
 		},
@@ -6594,20 +6594,24 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"id": "0Jyw7FV1rM7g1vRMaXUqd",
 			"type": "embeddable",
-			"x": -160.02800395451868,
-			"y": -9037.315842749245,
-			"width": 1200,
-			"height": 740.0000000000001,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
+			"version": 111,
+			"versionNonce": 188775839,
+			"isDeleted": false,
+			"id": "0Jyw7FV1rM7g1vRMaXUqd",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -160.02800395451868,
+			"y": -9037.315842749245,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1200,
+			"height": 740.0000000000001,
+			"seed": 1900258975,
 			"groupIds": [
 				"9tFd8_0zxlGU_ValtPRb5"
 			],
@@ -6615,11 +6619,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1900258975,
-			"version": 111,
-			"versionNonce": 188775839,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1711636165940,
 			"link": "https://youtu.be/Ivp5PGIbGMw",
 			"locked": false,
@@ -6629,20 +6629,24 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"id": "mQgAVgpj3YMFz2fA3KZ8L",
 			"type": "embeddable",
-			"x": -1830.0280039545187,
-			"y": -7277.315842749245,
-			"width": 1290,
-			"height": 748.125,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
+			"version": 58,
+			"versionNonce": 625405905,
+			"isDeleted": false,
+			"id": "mQgAVgpj3YMFz2fA3KZ8L",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -1830.0280039545187,
+			"y": -7277.315842749245,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1290,
+			"height": 748.125,
+			"seed": 1144480319,
 			"groupIds": [
 				"9tFd8_0zxlGU_ValtPRb5"
 			],
@@ -6650,11 +6654,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1144480319,
-			"version": 58,
-			"versionNonce": 625405905,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1711636165940,
 			"link": "https://youtu.be/1aXPuFrPtr0",
 			"locked": false,
@@ -6664,20 +6664,24 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"id": "5_7onKnR8MwQMswG7c2_I",
 			"type": "embeddable",
-			"x": -190.02800395451868,
-			"y": -7257.315842749245,
-			"width": 1290,
-			"height": 725.625,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
+			"version": 55,
+			"versionNonce": 1790800319,
+			"isDeleted": false,
+			"id": "5_7onKnR8MwQMswG7c2_I",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -190.02800395451868,
+			"y": -7257.315842749245,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1290,
+			"height": 725.625,
+			"seed": 662603807,
 			"groupIds": [
 				"9tFd8_0zxlGU_ValtPRb5"
 			],
@@ -6685,11 +6689,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roundness": {
 				"type": 3
 			},
-			"seed": 662603807,
-			"version": 55,
-			"versionNonce": 1790800319,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1711636165940,
 			"link": "https://youtu.be/GiEcNK3XA_o",
 			"locked": false,
@@ -6697,81 +6697,6 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1,
 				1
 			]
-		},
-		{
-			"type": "rectangle",
-			"version": 85,
-			"versionNonce": 2084737983,
-			"isDeleted": true,
-			"id": "-Hrb__DBqW8eJaJgqUOGN",
-			"fillStyle": "solid",
-			"strokeWidth": 4,
-			"strokeStyle": "solid",
-			"roughness": 2,
-			"opacity": 100,
-			"angle": 0,
-			"x": -1749.6101025496873,
-			"y": 1348.7267854104634,
-			"strokeColor": "#f08c00",
-			"backgroundColor": "#ffffff",
-			"width": 1967.285714285714,
-			"height": 225.8571428571428,
-			"seed": 1733553201,
-			"groupIds": [
-				"lRKigDrcWaFKO3AoiMBc9"
-			],
-			"frameId": null,
-			"roundness": {
-				"type": 3
-			},
-			"boundElements": [
-				{
-					"id": "ASlZVUSQ",
-					"type": "text"
-				}
-			],
-			"updated": 1711636217327,
-			"link": null,
-			"locked": false
-		},
-		{
-			"type": "text",
-			"version": 1570,
-			"versionNonce": 1303432113,
-			"isDeleted": true,
-			"id": "ASlZVUSQ",
-			"fillStyle": "solid",
-			"strokeWidth": 2,
-			"strokeStyle": "solid",
-			"roughness": 1,
-			"opacity": 100,
-			"angle": 0,
-			"x": -1617.2765105435492,
-			"y": 1405.3836698171303,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#d6d6d6",
-			"width": 1702.6185302734375,
-			"height": 112.54337404380894,
-			"seed": 1670733900,
-			"groupIds": [
-				"lRKigDrcWaFKO3AoiMBc9"
-			],
-			"frameId": null,
-			"roundness": null,
-			"boundElements": [],
-			"updated": 1711636217327,
-			"link": "[[MU 00 Développement Logiciel avec l'IA]]",
-			"locked": false,
-			"fontSize": 30.01156641168238,
-			"fontFamily": 1,
-			"text": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
-			"rawText": "![[MU 00 Développement Logiciel avec l'IA]]",
-			"textAlign": "center",
-			"verticalAlign": "middle",
-			"containerId": "-Hrb__DBqW8eJaJgqUOGN",
-			"originalText": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
-			"lineHeight": 1.25,
-			"baseline": 101
 		}
 	],
 	"appState": {
@@ -6789,8 +6714,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemTextAlign": "center",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 2404.0280039545178,
-		"scrollY": 594.9854856063878,
+		"scrollX": 2360.218480144994,
+		"scrollY": 619.7473903682919,
 		"zoom": {
 			"value": 0.35
 		},
