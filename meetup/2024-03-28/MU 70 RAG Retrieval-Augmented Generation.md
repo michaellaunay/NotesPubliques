@@ -1,0 +1,13 @@
+RAG, ou Retrieval-Augmented Generation, est une technique dans le domaine de l'intelligence artificielle, particulièrement dans le traitement automatique du langage naturel (TALN), qui combine les méthodes de récupération d'informations (retrieval) avec des modèles de génération de texte pour améliorer la qualité et la pertinence des réponses fournies par les systèmes de questions-réponses ou les chatbots.
+
+L'idée derrière RAG est relativement simple mais puissante. Au lieu de générer une réponse à une question directement à partir d'un modèle de langage pré-entraîné, RAG commence par chercher dans un grand corpus de textes (comme Wikipedia ou un ensemble de documents spécifiques) pour trouver les passages les plus pertinents liés à la question posée. Ces passages sont ensuite utilisés comme contexte supplémentaire par le modèle de génération pour produire une réponse plus précise, détaillée et informée.
+
+Le processus de RAG peut être divisé en deux grandes étapes :
+
+1. **Récupération d'informations (Retrieval)** : À cette étape, le modèle utilise une question ou une invite comme requête pour rechercher dans une base de données documentaire et retrouver les fragments de texte les plus pertinents. Cette récupération est généralement effectuée à l'aide de modèles de recherche sémantique qui peuvent comprendre la signification de la question et trouver des correspondances significatives dans les documents.
+
+2. **Génération de texte (Generation)** : Les passages récupérés lors de la première étape sont ensuite utilisés comme une forme d'amélioration ou de contexte pour un modèle de génération de texte. Ce modèle, souvent basé sur des architectures comme Transformer, génère une réponse en tenant compte à la fois de la question originale et des informations spécifiques extraites des documents récupérés.
+
+L'approche RAG permet de créer des systèmes de dialogue et de réponse aux questions qui sont non seulement capables de générer des réponses cohérentes et grammaticalement correctes, mais qui sont aussi bien informées et adaptées au contexte spécifique de la question. Cela rend les réponses plus précises et utiles, en particulier pour des questions nécessitant une expertise spécifique ou des connaissances détaillées.
+
+RAG représente un progrès significatif dans le domaine de l'IA conversationnelle, car il permet de combiner efficacement les capacités de compréhension du langage naturel avec l'accès à une vaste quantité d'informations, ouvrant ainsi la voie à des applications plus sophistiquées et plus performantes.

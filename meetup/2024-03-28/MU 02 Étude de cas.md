@@ -22,10 +22,10 @@ Pour cela, nous allons réaliser l'ensemble des tâches suivantes en nous aidant
 - Essai.
 - Coder avec Colpilot :
 	- Présentation des outils :
-		- Le Chat ;
+		- Le tchat ;
 		- La documentation en ligne pour améliorer la contextualisation ;
 		- Autocomplétion ;
-		- Le chat contextuel ;
+		- Le tchat contextuel ;
 		- La documentation ;
 		- Les tests unitaires.
 	- Développement du code ;
