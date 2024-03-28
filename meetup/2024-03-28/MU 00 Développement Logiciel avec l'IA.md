@@ -2,21 +2,24 @@
 - Présentation du potentiel de l'IA dans le développement logiciel.
 - Clarification du terme "Intelligence Artificielle" et distinction entre IA générale et IA appliquée au développement logiciel.
 - Aperçu historique et futur de l'IA dans le développement logiciel, incluant les prédictions de Yann LeCun.
-Détails [[MU Introduction]]
-
+[[MU 01 Introduction]]
+# Déroulé
+[[MU 02 Étude de cas]]
 # Prérequis pour les participants
 - Avoir un ordinateur avec une connexion Internet active.
 - Ouverture d'esprit et curiosité pour les nouvelles technologies ;-).
 
 # Étude de cas : Publication de notes
-Détails [[MU Étude de cas]]
-## Contexte du projet
+
+## Le projet
 - Présentation du projet : développement d'un script python de publication sur le web de notes utilisant le format Markdown [[Obsidian]].
 - Objectifs du projet : convertir des notes [[Markdown]] en [[HTML]] pour un affichage web "responsive".
+[[MU 03 Sujet]]
 
 ## Cahier des charges
 - Analyse du besoin : gestion de notes écrites en Markdown et leur publication sur GitHub.
 - Exigences techniques : conversion Markdown vers HTML, respect de la charte graphique, gestion des liens [[Obsidian]] et des ressources multimédia.
+[[MU 04 Cahier des charges]]
 
 # Planification du projet
 ## Phase d'analyse et de conception

@@ -7,4 +7,4 @@
 - Analyse du besoin : gestion de notes écrites en Markdown et leur publication sur GitHub.
 - Exigences techniques : conversion Markdown vers HTML, respect de la charte graphique, gestion des liens [[Obsidian]] et des ressources multimédia.
 
-Détails [[MU Étude de cas]]
+Suite [[MU 04 Cahier des charges]]
