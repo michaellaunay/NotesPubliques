@@ -10,8 +10,6 @@ tags: [excalidraw]
 # Text Elements
 ![[MU 01 Introduction]] ^aPWRa9RN
 
-![[MU 00 Développement Logiciel avec l'IA]] ^ASlZVUSQ
-
 Dévelopement de logiciel avec l'IA ^cnGyB8QR
 
 ![[MU 03 Sujet]] ^4T0rdBAu
@@ -115,9 +113,19 @@ Présente `ctrl i` pour avoir un tcaht contextuel en ligne, puis le remettre dan
 Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.
 Pour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !
 Lorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.
-Là aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles. ^PpNItr3I
+Là aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.
+Présente aussi VS Code Speech qui pemet de dicter ses prompts.
+Dans la gestion des sources ("Souces Control"), il est facile de maintenant lui faire générer le message de commit. ^PpNItr3I
 
 ![[MU 70 RAG Retrieval-Augmented Generation]] ^z9mpH63P
+
+Utiliser :
+- Ghost Text
+- Inline Chat (`Ctrl i`)
+- Chat Panel
+- Utiliser les "/Commands" comme `/fix`
+- Nettoyer le contexte (supprimer les questions dans le fil)
+- Ajouter les fichiers nécessaires au projet. ^QoMCMbpq
 
 
 # Embedded files
@@ -143,8 +151,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 	"elements": [
 		{
 			"type": "rectangle",
-			"version": 1130,
-			"versionNonce": 2080871409,
+			"version": 1131,
+			"versionNonce": 1316265503,
 			"isDeleted": false,
 			"id": "2vLnqE1UfpSw0Yxy2FAf4",
 			"fillStyle": "solid",
@@ -205,14 +213,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711627386722,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "image",
-			"version": 1144,
-			"versionNonce": 598757041,
+			"version": 1290,
+			"versionNonce": 326883633,
 			"isDeleted": false,
 			"id": "Y0KPpV5h",
 			"fillStyle": "hachure",
@@ -221,12 +229,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1452.3229760519303,
-			"y": -122.21867685991316,
+			"x": -1612.3229760519298,
+			"y": -122.21867685991253,
 			"strokeColor": "transparent",
 			"backgroundColor": "#d6d6d6",
-			"width": 1394.629370629371,
-			"height": 1394.629370629371,
+			"width": 1691.7722277722276,
+			"height": 1691.7722277722276,
 			"seed": 61955,
 			"groupIds": [
 				"lRKigDrcWaFKO3AoiMBc9"
@@ -234,7 +242,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625022496,
+			"updated": 1711636228397,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -245,84 +253,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"type": "rectangle",
-			"version": 83,
-			"versionNonce": 315786385,
-			"isDeleted": false,
-			"id": "-Hrb__DBqW8eJaJgqUOGN",
-			"fillStyle": "solid",
-			"strokeWidth": 4,
-			"strokeStyle": "solid",
-			"roughness": 2,
-			"opacity": 100,
-			"angle": 0,
-			"x": -1749.6101025496873,
-			"y": 1348.7267854104634,
-			"strokeColor": "#f08c00",
-			"backgroundColor": "#ffffff",
-			"width": 1967.285714285714,
-			"height": 225.8571428571428,
-			"seed": 1733553201,
-			"groupIds": [
-				"lRKigDrcWaFKO3AoiMBc9"
-			],
-			"frameId": null,
-			"roundness": {
-				"type": 3
-			},
-			"boundElements": [
-				{
-					"id": "ASlZVUSQ",
-					"type": "text"
-				}
-			],
-			"updated": 1711625069276,
-			"link": null,
-			"locked": false
-		},
-		{
 			"type": "text",
-			"version": 1568,
-			"versionNonce": 1209387633,
-			"isDeleted": false,
-			"id": "ASlZVUSQ",
-			"fillStyle": "solid",
-			"strokeWidth": 2,
-			"strokeStyle": "solid",
-			"roughness": 1,
-			"opacity": 100,
-			"angle": 0,
-			"x": -1617.2765105435492,
-			"y": 1405.3836698171303,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#d6d6d6",
-			"width": 1702.6185302734375,
-			"height": 112.54337404380894,
-			"seed": 1670733900,
-			"groupIds": [
-				"lRKigDrcWaFKO3AoiMBc9"
-			],
-			"frameId": null,
-			"roundness": null,
-			"boundElements": [],
-			"updated": 1711625069276,
-			"link": "[[MU 00 Développement Logiciel avec l'IA]]",
-			"locked": false,
-			"fontSize": 30.01156641168238,
-			"fontFamily": 1,
-			"text": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
-			"rawText": "![[MU 00 Développement Logiciel avec l'IA]]",
-			"textAlign": "center",
-			"verticalAlign": "middle",
-			"containerId": "-Hrb__DBqW8eJaJgqUOGN",
-			"originalText": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
-			"lineHeight": 1.25,
-			"baseline": 101
-		},
-		{
-			"type": "text",
-			"version": 1061,
-			"versionNonce": 1778325105,
+			"version": 1062,
+			"versionNonce": 650961503,
 			"isDeleted": false,
 			"id": "cnGyB8QR",
 			"fillStyle": "solid",
@@ -344,7 +277,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625022496,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 117.35579256291358,
@@ -360,8 +293,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 752,
-			"versionNonce": 312172863,
+			"version": 753,
+			"versionNonce": 581973777,
 			"isDeleted": false,
 			"id": "ZTGESsCPKsOGE33AAZovZ",
 			"fillStyle": "solid",
@@ -385,7 +318,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623577053,
+			"updated": 1711636137757,
 			"link": "https://chat.openai.com/share/c4ca7fb1-cefc-4746-9ac2-2b075022ad52",
 			"locked": false,
 			"scale": [
@@ -395,8 +328,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 965,
-			"versionNonce": 2017124703,
+			"version": 966,
+			"versionNonce": 1222590079,
 			"isDeleted": false,
 			"id": "-9xVWp01SHx8jNeaBw3AE",
 			"fillStyle": "solid",
@@ -425,14 +358,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711623577053,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 734,
-			"versionNonce": 606947775,
+			"version": 735,
+			"versionNonce": 647572721,
 			"isDeleted": false,
 			"id": "odh35Itv",
 			"fillStyle": "solid",
@@ -454,7 +387,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623577053,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -470,8 +403,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1542,
-			"versionNonce": 2016841937,
+			"version": 1578,
+			"versionNonce": 210835103,
 			"isDeleted": false,
 			"id": "hZ_id1WcQLVkyVY0tOngI",
 			"fillStyle": "solid",
@@ -484,8 +417,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": -446.08370008892416,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 659.5888752724572,
-			"height": 1244.903298413885,
+			"width": 698.8338178944155,
+			"height": 1194.9032984138853,
 			"seed": 558971380,
 			"groupIds": [],
 			"frameId": null,
@@ -493,7 +426,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711627399750,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -519,15 +452,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					-166.6398050357767
 				],
 				[
-					659.5888752724572,
-					-1244.903298413885
+					698.8338178944155,
+					-1194.9032984138853
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 1195,
-			"versionNonce": 1836237297,
+			"version": 1197,
+			"versionNonce": 296249041,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -536,7 +469,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1957.9334031292492,
+			"x": 1957.9334031292494,
 			"y": -4739.522806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
@@ -566,14 +499,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711630006353,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1532,
-			"versionNonce": 836616561,
+			"version": 1534,
+			"versionNonce": 143846079,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -582,7 +515,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1970.587788782659,
+			"x": 1970.5877887826591,
 			"y": -4734.222806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -593,7 +526,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711630006355,
+			"updated": 1711636137757,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -609,8 +542,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1793,
-			"versionNonce": 1384602577,
+			"version": 1830,
+			"versionNonce": 779445425,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -619,12 +552,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1592.6484103442567,
-			"y": -2827.722841010229,
+			"x": 1724.466592162439,
+			"y": -2890.4392418651264,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "transparent",
-			"width": 816.7961197576369,
-			"height": 547.7999653462903,
+			"width": 684.9779379394547,
+			"height": 485.08356449139274,
 			"seed": 1301585396,
 			"groupIds": [],
 			"frameId": null,
@@ -632,7 +565,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711630006353,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -654,19 +587,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					176.91486291486467,
-					-88.23503028135656
+					45.09668109668246,
+					-25.51862942645903
 				],
 				[
-					816.7961197576369,
-					-547.7999653462903
+					684.9779379394547,
+					-485.08356449139274
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 595,
-			"versionNonce": 1617324881,
+			"version": 597,
+			"versionNonce": 696597215,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -675,7 +608,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 932.7045984189408,
+			"x": 932.704598418941,
 			"y": 2431.112159789026,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -695,14 +628,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711630006355,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 893,
-			"versionNonce": 1878972721,
+			"version": 895,
+			"versionNonce": 145204881,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -711,7 +644,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1004.5753739925146,
+			"x": 1004.5753739925149,
 			"y": 2489.0696127402666,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -724,7 +657,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711630006355,
+			"updated": 1711636137757,
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 38.41616766467066,
@@ -740,8 +673,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 307,
-			"versionNonce": 1567661823,
+			"version": 308,
+			"versionNonce": 1945667327,
 			"isDeleted": false,
 			"id": "LAkzEl1OmhE1zyuTXT2qY",
 			"fillStyle": "solid",
@@ -770,14 +703,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711624779138,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 320,
-			"versionNonce": 665201471,
+			"version": 321,
+			"versionNonce": 1257679985,
 			"isDeleted": false,
 			"id": "I5Qwtddc",
 			"fillStyle": "solid",
@@ -799,7 +732,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624779138,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 49.39221556886228,
@@ -815,8 +748,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 388,
-			"versionNonce": 1968991071,
+			"version": 389,
+			"versionNonce": 107826975,
 			"isDeleted": false,
 			"id": "aoK6PyP9SFdZ8iR10-04E",
 			"fillStyle": "solid",
@@ -838,7 +771,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624779138,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -850,8 +783,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1140,
-			"versionNonce": 748180817,
+			"version": 1141,
+			"versionNonce": 1563031121,
 			"isDeleted": false,
 			"id": "oNZu8XuHb9ysCQfj-sPI5",
 			"fillStyle": "solid",
@@ -873,7 +806,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625086687,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -906,8 +839,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 457,
-			"versionNonce": 1650601375,
+			"version": 458,
+			"versionNonce": 1532236607,
 			"isDeleted": false,
 			"id": "O3i_7AogQT0uivwnSXzkR",
 			"fillStyle": "solid",
@@ -944,14 +877,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711624796004,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 241,
-			"versionNonce": 1395205489,
+			"version": 242,
+			"versionNonce": 1108935729,
 			"isDeleted": false,
 			"id": "4IIxsU69RNOXoVuEtCHv2",
 			"fillStyle": "solid",
@@ -980,14 +913,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711624796004,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 377,
-			"versionNonce": 1446004031,
+			"version": 378,
+			"versionNonce": 1259164511,
 			"isDeleted": false,
 			"id": "zOQc2rKG",
 			"fillStyle": "solid",
@@ -1009,7 +942,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624952340,
+			"updated": 1711636137757,
 			"link": "[[Obsidian]]",
 			"locked": false,
 			"fontSize": 27.749840459476708,
@@ -1025,8 +958,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 291,
-			"versionNonce": 2095345425,
+			"version": 292,
+			"versionNonce": 900421137,
 			"isDeleted": false,
 			"id": "SU0yxjbM",
 			"fillStyle": "solid",
@@ -1048,7 +981,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624796004,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 35.678366305041486,
@@ -1064,8 +997,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 401,
-			"versionNonce": 86673023,
+			"version": 402,
+			"versionNonce": 1307152255,
 			"isDeleted": false,
 			"id": "ah08i9Qi3arBxbXCw0I0R",
 			"fillStyle": "solid",
@@ -1089,7 +1022,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711624796004,
+			"updated": 1711636137757,
 			"link": "https://obsidian.md/download",
 			"locked": false,
 			"scale": [
@@ -1099,8 +1032,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 809,
-			"versionNonce": 1295208593,
+			"version": 875,
+			"versionNonce": 181955569,
 			"isDeleted": false,
 			"id": "lwpfNzY6eqRsNz3mdCoXD",
 			"fillStyle": "solid",
@@ -1109,12 +1042,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1572.9026890935856,
-			"y": -2118.567136671269,
+			"x": 1704.7208709117676,
+			"y": -2121.6014089913338,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#a5d8ff",
-			"width": 885.580808080811,
-			"height": 212.29575855997427,
+			"width": 753.762626262629,
+			"height": 209.0343549941358,
 			"seed": 2052149876,
 			"groupIds": [],
 			"frameId": null,
@@ -1122,18 +1055,18 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711627399750,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
 				"elementId": "eAycqr2JhoDzZErHpDcdW",
-				"gap": 5.708824203874997,
-				"focus": 0.500965514327857
+				"focus": 0.7554073900857714,
+				"gap": 5.708824203874883
 			},
 			"endBinding": {
 				"elementId": "O3i_7AogQT0uivwnSXzkR",
-				"gap": 11.785714285712402,
-				"focus": 0.09891694517360436
+				"focus": -0.31353970067295184,
+				"gap": 11.785714285712857
 			},
 			"lastCommittedPoint": null,
 			"startArrowhead": null,
@@ -1144,19 +1077,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					56.969696969700635,
-					0.2271312457737622
+					273.15151515151865,
+					-204.73859643416154
 				],
 				[
-					885.580808080811,
-					-212.0686273142005
+					753.762626262629,
+					-209.0343549941358
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 535,
-			"versionNonce": 1088679729,
+			"version": 561,
+			"versionNonce": 2116634527,
 			"isDeleted": false,
 			"id": "5mcYkwqspnf5MeVAvWjO2",
 			"fillStyle": "solid",
@@ -1165,12 +1098,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -848.5118169739594,
-			"y": -3172.3686795707918,
+			"x": -813.5255167845435,
+			"y": -3180.7428035118355,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 2322.3780663780663,
-			"height": 317.8328070622187,
+			"width": 2415.4689754689753,
+			"height": 330.5729140140904,
 			"seed": 640236148,
 			"groupIds": [
 				"B9qRFHT-GYUYQVV_KMx1j",
@@ -1190,14 +1123,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711627399750,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1567,
-			"versionNonce": 839813905,
+			"version": 1612,
+			"versionNonce": 1235731921,
 			"isDeleted": false,
 			"id": "aPWRa9RN",
 			"fillStyle": "solid",
@@ -1206,12 +1139,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -874.0715633435161,
-			"y": -3091.8965719398607,
+			"x": -840.1098078051725,
+			"y": -3097.0450274317063,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 2373.4975591171797,
-			"height": 156.8885918003565,
+			"width": 2468.6375575102334,
+			"height": 163.17736185383245,
 			"seed": 295708916,
 			"groupIds": [
 				"B9qRFHT-GYUYQVV_KMx1j",
@@ -1220,10 +1153,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711630006355,
+			"updated": 1711636137757,
 			"link": "[[MU 01 Introduction]]",
 			"locked": false,
-			"fontSize": 41.8369578134284,
+			"fontSize": 43.513963161021984,
 			"fontFamily": 2,
 			"text": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
 			"rawText": "![[MU 01 Introduction]]",
@@ -1232,12 +1165,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "5mcYkwqspnf5MeVAvWjO2",
 			"originalText": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
 			"lineHeight": 1.15,
-			"baseline": 141
+			"baseline": 146
 		},
 		{
 			"type": "rectangle",
-			"version": 623,
-			"versionNonce": 2116327153,
+			"version": 648,
+			"versionNonce": 1509751743,
 			"isDeleted": false,
 			"id": "eAycqr2JhoDzZErHpDcdW",
 			"fillStyle": "solid",
@@ -1246,12 +1179,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -972.9071452112989,
-			"y": -3359.679626660398,
+			"x": -942.9071452112989,
+			"y": -3375.5619796015744,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 2540.1010101010097,
-			"height": 1643.594771241829,
+			"width": 2641.9191919191917,
+			"height": 1709.4771241830056,
 			"seed": 1619580020,
 			"groupIds": [
 				"B9qRFHT-GYUYQVV_KMx1j",
@@ -1279,14 +1212,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711627399750,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 464,
-			"versionNonce": 1045635153,
+			"version": 489,
+			"versionNonce": 221307825,
 			"isDeleted": false,
 			"id": "5v0hXwdF",
 			"fillStyle": "solid",
@@ -1295,12 +1228,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 33.64886461210381,
-			"y": -3290.160973606252,
+			"x": 103.99596199556868,
+			"y": -3303.2567197045214,
 			"strokeColor": "#e03131",
 			"backgroundColor": "transparent",
-			"width": 412.28790283203125,
-			"height": 61.858930481283416,
+			"width": 428.8177490234375,
+			"height": 64.33850267379678,
 			"seed": 1145503436,
 			"groupIds": [
 				"B9qRFHT-GYUYQVV_KMx1j",
@@ -1309,10 +1242,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711627399751,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
-			"fontSize": 53.7903743315508,
+			"fontSize": 55.94652406417112,
 			"fontFamily": 2,
 			"text": "INTRODUCTION",
 			"rawText": "INTRODUCTION",
@@ -1321,12 +1254,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "INTRODUCTION",
 			"lineHeight": 1.15,
-			"baseline": 49
+			"baseline": 51
 		},
 		{
 			"type": "image",
-			"version": 533,
-			"versionNonce": 948760113,
+			"version": 558,
+			"versionNonce": 1166355423,
 			"isDeleted": false,
 			"id": "f7J0fMZAOHOgr9fgWYKDr",
 			"fillStyle": "hachure",
@@ -1335,12 +1268,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -571.3207492035281,
-			"y": -2805.18101560181,
+			"x": -525.2234379069188,
+			"y": -2798.8366774885044,
 			"strokeColor": "transparent",
 			"backgroundColor": "transparent",
-			"width": 1621.8673984419918,
-			"height": 1066.5541044102229,
+			"width": 1686.8788247604207,
+			"height": 1109.3061836739723,
 			"seed": 2107003212,
 			"groupIds": [
 				"29JMZsvBcOJ0A4y5B-BXz"
@@ -1348,7 +1281,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711627399751,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -1360,8 +1293,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 222,
-			"versionNonce": 495346929,
+			"version": 223,
+			"versionNonce": 563824017,
 			"isDeleted": false,
 			"id": "M4onn58l",
 			"fillStyle": "solid",
@@ -1383,7 +1316,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624796004,
+			"updated": 1711636137757,
 			"link": "https://obsidian.md/download",
 			"locked": false,
 			"fontSize": 35.678366305041486,
@@ -1399,8 +1332,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 331,
-			"versionNonce": 80920703,
+			"version": 332,
+			"versionNonce": 1288853503,
 			"isDeleted": false,
 			"id": "0ZwkFJ1qDZWSjHb87cuiJ",
 			"fillStyle": "solid",
@@ -1437,14 +1370,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711625830748,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 396,
-			"versionNonce": 2025146993,
+			"version": 397,
+			"versionNonce": 1646160753,
 			"isDeleted": false,
 			"id": "IfPirnit",
 			"fillStyle": "solid",
@@ -1466,7 +1399,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625830748,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 54.73762183235868,
@@ -1482,8 +1415,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 377,
-			"versionNonce": 267358495,
+			"version": 378,
+			"versionNonce": 635764767,
 			"isDeleted": false,
 			"id": "0--HeFV6AGqTHOfbf0RlV",
 			"fillStyle": "solid",
@@ -1507,7 +1440,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711625830748,
+			"updated": 1711636137757,
 			"link": "https://platform.openai.com/tokenizer",
 			"locked": false,
 			"scale": [
@@ -1517,8 +1450,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 313,
-			"versionNonce": 1432671313,
+			"version": 314,
+			"versionNonce": 1459737937,
 			"isDeleted": false,
 			"id": "euypgV9T",
 			"fillStyle": "solid",
@@ -1540,7 +1473,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625830748,
+			"updated": 1711636137757,
 			"link": "https://platform.openai.com/tokenizer",
 			"locked": false,
 			"fontSize": 54.73762183235868,
@@ -1556,8 +1489,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 594,
-			"versionNonce": 1101904305,
+			"version": 596,
+			"versionNonce": 1923982399,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1579,7 +1512,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711630006353,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1612,8 +1545,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 356,
-			"versionNonce": 637552351,
+			"version": 357,
+			"versionNonce": 329057073,
 			"isDeleted": false,
 			"id": "ynTuAINAbqIxZsBzBLWTG",
 			"fillStyle": "solid",
@@ -1650,14 +1583,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711625823537,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 288,
-			"versionNonce": 767363601,
+			"version": 289,
+			"versionNonce": 1124910175,
 			"isDeleted": false,
 			"id": "fTaL7Ula",
 			"fillStyle": "solid",
@@ -1679,7 +1612,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625823537,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1695,8 +1628,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 254,
-			"versionNonce": 1610423167,
+			"version": 255,
+			"versionNonce": 1415017745,
 			"isDeleted": false,
 			"id": "LXM2JDjP",
 			"fillStyle": "solid",
@@ -1718,7 +1651,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625823537,
+			"updated": 1711636137757,
 			"link": "https://platform.openai.com/docs/guides/prompt-engineering",
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1734,8 +1667,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 280,
-			"versionNonce": 2123603953,
+			"version": 281,
+			"versionNonce": 1456660607,
 			"isDeleted": false,
 			"id": "sdy7mJX117d2RyMC4j_Bp",
 			"fillStyle": "solid",
@@ -1759,7 +1692,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711625823537,
+			"updated": 1711636137757,
 			"link": "https://www.youtube.com/watch?v=_ZvnD73m40o&ab_channel=freeCodeCamp.org",
 			"locked": false,
 			"scale": [
@@ -1769,8 +1702,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 236,
-			"versionNonce": 501961631,
+			"version": 237,
+			"versionNonce": 1554557681,
 			"isDeleted": false,
 			"id": "nFHyxLGz",
 			"fillStyle": "solid",
@@ -1792,7 +1725,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625823537,
+			"updated": 1711636137757,
 			"link": "https://youtu.be/_ZvnD73m40o",
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1808,8 +1741,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 530,
-			"versionNonce": 470637457,
+			"version": 532,
+			"versionNonce": 532707487,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1831,7 +1764,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711630006354,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1864,8 +1797,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 744,
-			"versionNonce": 1732686865,
+			"version": 745,
+			"versionNonce": 353903825,
 			"isDeleted": false,
 			"id": "WIHK5dZASFvLmH7nelkbA",
 			"fillStyle": "solid",
@@ -1887,7 +1820,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625831147,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1916,8 +1849,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 426,
-			"versionNonce": 1926465969,
+			"version": 427,
+			"versionNonce": 59116735,
 			"isDeleted": false,
 			"id": "b_I13-t0ABOALeD2cCudp",
 			"fillStyle": "solid",
@@ -1941,14 +1874,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711624371704,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 258,
-			"versionNonce": 1207511953,
+			"version": 259,
+			"versionNonce": 1765630641,
 			"isDeleted": false,
 			"id": "1pcwwDbH",
 			"fillStyle": "solid",
@@ -1970,7 +1903,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624371704,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -1986,8 +1919,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 74,
-			"versionNonce": 265261425,
+			"version": 75,
+			"versionNonce": 1573133535,
 			"isDeleted": false,
 			"id": "SV0XmZOytz0tSfe_pnB5w",
 			"fillStyle": "solid",
@@ -2016,14 +1949,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711624371704,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 272,
-			"versionNonce": 1067334481,
+			"version": 273,
+			"versionNonce": 1707074705,
 			"isDeleted": false,
 			"id": "dUjClXqN",
 			"fillStyle": "solid",
@@ -2045,7 +1978,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624371704,
+			"updated": 1711636137758,
 			"link": "[[MU 90 Dialecte ChatGPT]]",
 			"locked": false,
 			"fontSize": 36,
@@ -2061,8 +1994,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 390,
-			"versionNonce": 1804098047,
+			"version": 391,
+			"versionNonce": 1108027647,
 			"isDeleted": false,
 			"id": "DWzQoypk",
 			"fillStyle": "hachure",
@@ -2084,7 +2017,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624378004,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -2096,8 +2029,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 556,
-			"versionNonce": 1834486257,
+			"version": 557,
+			"versionNonce": 374811249,
 			"isDeleted": false,
 			"id": "04Tsf4ZrLYAVGNWVPw_Ca",
 			"fillStyle": "solid",
@@ -2119,7 +2052,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625831147,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2148,8 +2081,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 330,
-			"versionNonce": 1056409951,
+			"version": 331,
+			"versionNonce": 2111549727,
 			"isDeleted": false,
 			"id": "eTbk9bNBghou77CpoVp5F",
 			"fillStyle": "solid",
@@ -2180,14 +2113,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 675,
-			"versionNonce": 1965522961,
+			"version": 676,
+			"versionNonce": 600486993,
 			"isDeleted": false,
 			"id": "Vgk2R2sP",
 			"fillStyle": "solid",
@@ -2207,7 +2140,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -2223,8 +2156,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 674,
-			"versionNonce": 1594687729,
+			"version": 676,
+			"versionNonce": 1520842047,
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2246,7 +2179,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711630006355,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2279,8 +2212,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 330,
-			"versionNonce": 185814161,
+			"version": 331,
+			"versionNonce": 837943857,
 			"isDeleted": false,
 			"id": "h1Xo0rcnl73MvBlWL1afu",
 			"fillStyle": "solid",
@@ -2313,14 +2246,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711624495520,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 307,
-			"versionNonce": 1746842623,
+			"version": 308,
+			"versionNonce": 533411167,
 			"isDeleted": false,
 			"id": "cJt3tRlo",
 			"fillStyle": "solid",
@@ -2342,7 +2275,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624499432,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -2358,8 +2291,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 64,
-			"versionNonce": 682068049,
+			"version": 65,
+			"versionNonce": 2108986385,
 			"isDeleted": false,
 			"id": "gcmzivbl0kkA-NhZ5wI-s",
 			"fillStyle": "solid",
@@ -2388,14 +2321,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711624507918,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 384,
-			"versionNonce": 739530289,
+			"version": 385,
+			"versionNonce": 1419456895,
 			"isDeleted": false,
 			"id": "O5iZFlGn",
 			"fillStyle": "hachure",
@@ -2417,7 +2350,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624507918,
+			"updated": 1711636137758,
 			"link": "[[Visual studio code]]",
 			"locked": false,
 			"fontSize": 36,
@@ -2433,8 +2366,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 338,
-			"versionNonce": 1461249343,
+			"version": 339,
+			"versionNonce": 990505457,
 			"isDeleted": false,
 			"id": "RbIxM47tQZ9FprHIhXQTF",
 			"fillStyle": "solid",
@@ -2458,7 +2391,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711624514325,
+			"updated": 1711636137758,
 			"link": "https://code.visualstudio.com/",
 			"locked": false,
 			"scale": [
@@ -2468,8 +2401,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 240,
-			"versionNonce": 1852132785,
+			"version": 241,
+			"versionNonce": 1112975775,
 			"isDeleted": false,
 			"id": "CRPp6WSa",
 			"fillStyle": "solid",
@@ -2491,7 +2424,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "https://code.visualstudio.com/",
 			"locked": false,
 			"fontSize": 36,
@@ -2507,8 +2440,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 723,
-			"versionNonce": 343742065,
+			"version": 759,
+			"versionNonce": 855213009,
 			"isDeleted": false,
 			"id": "iSRn27akXiiOijhI2_JAn",
 			"fillStyle": "solid",
@@ -2517,12 +2450,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 943.2333383539369,
-			"y": -1698.3624457600768,
+			"x": 1023.9530846528035,
+			"y": -1648.3624457600772,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 1541.3679134591544,
-			"height": 913.2577099999801,
+			"width": 1460.6481671602876,
+			"height": 863.2577099999805,
 			"seed": 1959354737,
 			"groupIds": [],
 			"frameId": null,
@@ -2530,7 +2463,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711627399751,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2552,19 +2485,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					960.5285350398616,
-					913.2577099999801
+					879.808788740995,
+					863.2577099999805
 				],
 				[
-					1541.3679134591544,
-					728.0614201228591
+					1460.6481671602876,
+					678.0614201228595
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 431,
-			"versionNonce": 1957851025,
+			"version": 432,
+			"versionNonce": 908991935,
 			"isDeleted": false,
 			"id": "38B1Mxa2a4EArEsM0MV3Z",
 			"fillStyle": "solid",
@@ -2593,14 +2526,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "embeddable",
-			"version": 353,
-			"versionNonce": 966446591,
+			"version": 354,
+			"versionNonce": 563798449,
 			"isDeleted": false,
 			"id": "2l3OnOIkHNVW1pKfIN7Ds",
 			"fillStyle": "solid",
@@ -2624,7 +2557,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "https://youtu.be/o0exK-xFP3k",
 			"locked": false,
 			"scale": [
@@ -2634,8 +2567,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 403,
-			"versionNonce": 1556108657,
+			"version": 404,
+			"versionNonce": 54660575,
 			"isDeleted": false,
 			"id": "RERIcUrV",
 			"fillStyle": "solid",
@@ -2657,7 +2590,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36.47840531561462,
@@ -2673,8 +2606,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 360,
-			"versionNonce": 237942303,
+			"version": 361,
+			"versionNonce": 1410696081,
 			"isDeleted": false,
 			"id": "mgbeVbUeSmCG87iE9rwd1",
 			"fillStyle": "solid",
@@ -2698,7 +2631,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "https://github.com/mgmeyers/obsidian-kanban/blob/main/src/docs/Assets/Screen%20Shot%202021-09-16%20at%2012.58.22%20PM.png",
 			"locked": false,
 			"scale": [
@@ -2708,8 +2641,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 298,
-			"versionNonce": 970358609,
+			"version": 299,
+			"versionNonce": 1151531519,
 			"isDeleted": false,
 			"id": "eLC4GrKU",
 			"fillStyle": "solid",
@@ -2731,7 +2664,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36.47840531561462,
@@ -2747,8 +2680,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 363,
-			"versionNonce": 1414568511,
+			"version": 364,
+			"versionNonce": 111208817,
 			"isDeleted": false,
 			"id": "_clAFbcgo8haJT_2Pa0lD",
 			"fillStyle": "solid",
@@ -2772,7 +2705,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "https://youtu.be/PSo2XkKHpWo",
 			"locked": false,
 			"scale": [
@@ -2782,8 +2715,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 371,
-			"versionNonce": 1246522673,
+			"version": 372,
+			"versionNonce": 1599169055,
 			"isDeleted": false,
 			"id": "BKq_LuSGu4BQ3HtfImJe8",
 			"fillStyle": "solid",
@@ -2807,7 +2740,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "https://youtu.be/nREnpgixe9U",
 			"locked": false,
 			"scale": [
@@ -2817,8 +2750,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 311,
-			"versionNonce": 551615071,
+			"version": 312,
+			"versionNonce": 42242897,
 			"isDeleted": false,
 			"id": "tqs4sGkL",
 			"fillStyle": "solid",
@@ -2840,7 +2773,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36.47840531561462,
@@ -2856,8 +2789,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 614,
-			"versionNonce": 432151985,
+			"version": 615,
+			"versionNonce": 1144899135,
 			"isDeleted": false,
 			"id": "WJeiEbQumKoM_4tDmiX1u",
 			"fillStyle": "solid",
@@ -2879,7 +2812,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711624796004,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2912,8 +2845,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 387,
-			"versionNonce": 414209663,
+			"version": 388,
+			"versionNonce": 2081947953,
 			"isDeleted": false,
 			"id": "SEmEz8Pbm0mhlROVMlWFq",
 			"fillStyle": "solid",
@@ -2942,14 +2875,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 487,
-			"versionNonce": 1241879793,
+			"version": 488,
+			"versionNonce": 1917363807,
 			"isDeleted": false,
 			"id": "eAwoZHcNWyBqQhEOTFpxK",
 			"fillStyle": "solid",
@@ -2974,14 +2907,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 355,
-			"versionNonce": 1920937631,
+			"version": 356,
+			"versionNonce": 818066193,
 			"isDeleted": false,
 			"id": "nX7JC7l3v4pvzA7-Q6t-B",
 			"fillStyle": "solid",
@@ -3011,14 +2944,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 439,
-			"versionNonce": 1531432657,
+			"version": 440,
+			"versionNonce": 943882879,
 			"isDeleted": false,
 			"id": "eiwgPas6",
 			"fillStyle": "solid",
@@ -3041,7 +2974,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "[[Markdown]]",
 			"locked": false,
 			"fontSize": 34.907865168539324,
@@ -3057,8 +2990,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 375,
-			"versionNonce": 956170943,
+			"version": 376,
+			"versionNonce": 1157376241,
 			"isDeleted": false,
 			"id": "B9n42z2j",
 			"fillStyle": "solid",
@@ -3081,7 +3014,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 34.907865168539324,
@@ -3097,8 +3030,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 334,
-			"versionNonce": 1609026737,
+			"version": 335,
+			"versionNonce": 921426591,
 			"isDeleted": false,
 			"id": "Miclm3BS0vbF8Y2voK4Di",
 			"fillStyle": "solid",
@@ -3123,14 +3056,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 300,
-			"versionNonce": 1288524511,
+			"version": 301,
+			"versionNonce": 1649140433,
 			"isDeleted": false,
 			"id": "paBDjEQ8",
 			"fillStyle": "solid",
@@ -3153,7 +3086,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -3169,8 +3102,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 385,
-			"versionNonce": 797773457,
+			"version": 386,
+			"versionNonce": 586493631,
 			"isDeleted": false,
 			"id": "WmrcThQW7N4czxeGyGdQl",
 			"fillStyle": "solid",
@@ -3200,14 +3133,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 506,
-			"versionNonce": 645766911,
+			"version": 507,
+			"versionNonce": 357130417,
 			"isDeleted": false,
 			"id": "wdVFjrOh",
 			"fillStyle": "solid",
@@ -3230,7 +3163,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "[[Mermaid pour Obsidian]]",
 			"locked": false,
 			"fontSize": 36,
@@ -3246,8 +3179,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 391,
-			"versionNonce": 1005928337,
+			"version": 392,
+			"versionNonce": 1191116511,
 			"isDeleted": false,
 			"id": "iggMgF0BHjdk8tBnWl2cK",
 			"fillStyle": "solid",
@@ -3269,7 +3202,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711624796004,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3302,8 +3235,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 164,
-			"versionNonce": 257955135,
+			"version": 165,
+			"versionNonce": 1805394577,
 			"isDeleted": false,
 			"id": "ECNIG08g4FGfkSx8bu5wN",
 			"fillStyle": "solid",
@@ -3336,14 +3269,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "embeddable",
-			"version": 190,
-			"versionNonce": 651987359,
+			"version": 191,
+			"versionNonce": 1167706879,
 			"isDeleted": false,
 			"id": "Heum6Pxqp0u2zg_rlzgdq",
 			"fillStyle": "solid",
@@ -3367,7 +3300,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance",
 			"locked": false,
 			"scale": [
@@ -3377,8 +3310,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 48,
-			"versionNonce": 1324875199,
+			"version": 49,
+			"versionNonce": 1375447153,
 			"isDeleted": false,
 			"id": "ZeT2nwsg",
 			"fillStyle": "solid",
@@ -3400,7 +3333,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -3416,8 +3349,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 76,
-			"versionNonce": 667938271,
+			"version": 77,
+			"versionNonce": 457577247,
 			"isDeleted": false,
 			"id": "st4zGJAGfr1ExIRs3lxoy",
 			"fillStyle": "solid",
@@ -3441,7 +3374,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": "https://code.visualstudio.com/docs/copilot/overview",
 			"locked": false,
 			"scale": [
@@ -3451,8 +3384,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 98,
-			"versionNonce": 344857905,
+			"version": 99,
+			"versionNonce": 841970257,
 			"isDeleted": false,
 			"id": "FWYozaPZ",
 			"fillStyle": "solid",
@@ -3474,7 +3407,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711628498156,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -3490,8 +3423,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 93,
-			"versionNonce": 1642545695,
+			"version": 94,
+			"versionNonce": 1618237247,
 			"isDeleted": false,
 			"id": "LwcSW5rewQyUKUL5KiW4e",
 			"fillStyle": "solid",
@@ -3515,7 +3448,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": "https://marketplace.visualstudio.com/items?itemName=svsool.markdown-memo",
 			"locked": false,
 			"scale": [
@@ -3525,8 +3458,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 71,
-			"versionNonce": 957851199,
+			"version": 72,
+			"versionNonce": 1359937585,
 			"isDeleted": false,
 			"id": "0RCrTgmj",
 			"fillStyle": "solid",
@@ -3548,7 +3481,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -3564,8 +3497,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 80,
-			"versionNonce": 1894155871,
+			"version": 81,
+			"versionNonce": 1267013471,
 			"isDeleted": false,
 			"id": "z2YnZpI9axGe5vRBvhtLf",
 			"fillStyle": "solid",
@@ -3589,7 +3522,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 3
 			},
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": "https://code.visualstudio.com/docs/languages/python",
 			"locked": false,
 			"scale": [
@@ -3599,8 +3532,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 57,
-			"versionNonce": 1747214975,
+			"version": 58,
+			"versionNonce": 1820447249,
 			"isDeleted": false,
 			"id": "UrQc8AVJ",
 			"fillStyle": "solid",
@@ -3622,7 +3555,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -3638,8 +3571,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 103,
-			"versionNonce": 1648956767,
+			"version": 104,
+			"versionNonce": 1925763967,
 			"isDeleted": false,
 			"id": "V1hTwV7EcJvBEPPXJobB7",
 			"fillStyle": "solid",
@@ -3661,7 +3594,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3694,8 +3627,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 214,
-			"versionNonce": 466621375,
+			"version": 215,
+			"versionNonce": 427780081,
 			"isDeleted": false,
 			"id": "sd82NvaozEGPUzZ1VW_BF",
 			"fillStyle": "solid",
@@ -3722,7 +3655,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711623405016,
+			"updated": 1711636137758,
 			"link": "https://youtu.be/jXp5D5ZnxGM",
 			"locked": false,
 			"scale": [
@@ -3732,8 +3665,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 60,
-			"versionNonce": 1281167743,
+			"version": 61,
+			"versionNonce": 1317014431,
 			"isDeleted": false,
 			"id": "58_a2PH2FlMg6qcHMZjKk",
 			"fillStyle": "solid",
@@ -3755,7 +3688,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711628484563,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3788,8 +3721,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 330,
-			"versionNonce": 443954129,
+			"version": 350,
+			"versionNonce": 1645167057,
 			"isDeleted": false,
 			"id": "hsnLuyP3fkOGlttwSpI3q",
 			"fillStyle": "solid",
@@ -3802,8 +3735,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": 409.4654038005299,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 780.0714285714284,
-			"height": 428.05592684155374,
+			"width": 780.0714285714287,
+			"height": 477.21770471712875,
 			"seed": 1679328401,
 			"groupIds": [],
 			"frameId": null,
@@ -3811,7 +3744,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625055178,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3837,15 +3770,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					115.35843186794705
 				],
 				[
-					780.0714285714284,
-					428.05592684155374
+					780.0714285714287,
+					477.21770471712875
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 214,
-			"versionNonce": 311198975,
+			"version": 233,
+			"versionNonce": 2061189055,
 			"isDeleted": false,
 			"id": "c4YpVnANdwqbEwo22BOrY",
 			"fillStyle": "solid",
@@ -3858,8 +3791,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": 172.06193090657143,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 2066.500000000001,
-			"height": 1555.8032465715087,
+			"width": 2425.7887236679076,
+			"height": 1826.3004944491097,
 			"seed": 2099932945,
 			"groupIds": [
 				"ohuP08G6MUBQFuA_OY_6n"
@@ -3874,14 +3807,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711624780472,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 372,
-			"versionNonce": 880917201,
+			"version": 392,
+			"versionNonce": 591978417,
 			"isDeleted": false,
 			"id": "myS3xSRclPdM63GIxeD9t",
 			"fillStyle": "solid",
@@ -3890,12 +3823,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1230.4153483102434,
-			"y": 366.9711108673889,
+			"x": 1250.6081736910924,
+			"y": 400.85868430038204,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 1828.2134061013155,
-			"height": 427.9904841869578,
+			"width": 2146.072811506928,
+			"height": 502.40236650272914,
 			"seed": 679902897,
 			"groupIds": [
 				"ohuP08G6MUBQFuA_OY_6n"
@@ -3910,14 +3843,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711630006356,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 640,
-			"versionNonce": 1392785585,
+			"version": 697,
+			"versionNonce": 972746719,
 			"isDeleted": false,
 			"id": "ldWyEkQ4",
 			"fillStyle": "solid",
@@ -3926,12 +3859,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1253.827471282776,
-			"y": 418.5539923132868,
+			"x": 1277.9951653820563,
+			"y": 461.4099410851668,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 1781.38916015625,
-			"height": 324.824721295162,
+			"width": 2091.298828125,
+			"height": 381.2998529331596,
 			"seed": 1988237681,
 			"groupIds": [
 				"ohuP08G6MUBQFuA_OY_6n"
@@ -3939,10 +3872,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711630006356,
+			"updated": 1711636137758,
 			"link": "[[MU 02 Étude de cas]]",
 			"locked": false,
-			"fontSize": 47.07604656451624,
+			"fontSize": 55.260848251182566,
 			"fontFamily": 2,
 			"text": "# Objectif\nNous allons suivre le développement d'une petite application de sa phase d'analyse à\nson déploiement.\n\n# Étapes\nPour cela, nous allons réaliser l'ensemble des tâches suivantes en nous aidan",
 			"rawText": "![[MU 02 Étude de cas]]",
@@ -3951,12 +3884,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "myS3xSRclPdM63GIxeD9t",
 			"originalText": "# Objectif\nNous allons suivre le développement d'une petite application de sa phase d'analyse à son déploiement.\n\n# Étapes\nPour cela, nous allons réaliser l'ensemble des tâches suivantes en nous aidan",
 			"lineHeight": 1.15,
-			"baseline": 314
+			"baseline": 368
 		},
 		{
 			"type": "text",
-			"version": 125,
-			"versionNonce": 1536068991,
+			"version": 144,
+			"versionNonce": 726909329,
 			"isDeleted": false,
 			"id": "ANWB3vFZ",
 			"fillStyle": "solid",
@@ -3965,12 +3898,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1990.2784438867316,
-			"y": 247.24944839887587,
+			"x": 2142.583653381793,
+			"y": 260.32180610299804,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffffff",
-			"width": 307.61444091796875,
-			"height": 47.888664987405534,
+			"width": 361.19293212890625,
+			"height": 56.214751278954,
 			"seed": 145406449,
 			"groupIds": [
 				"ohuP08G6MUBQFuA_OY_6n"
@@ -3978,10 +3911,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624780472,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
-			"fontSize": 41.642317380352644,
+			"fontSize": 48.88239241648174,
 			"fontFamily": 2,
 			"text": "ÉTUDE DE CAS",
 			"rawText": "ÉTUDE DE CAS",
@@ -3990,12 +3923,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "ÉTUDE DE CAS",
 			"lineHeight": 1.15,
-			"baseline": 38
+			"baseline": 45
 		},
 		{
 			"type": "image",
-			"version": 325,
-			"versionNonce": 1249805727,
+			"version": 344,
+			"versionNonce": 904895487,
 			"isDeleted": false,
 			"id": "k2ukDiKd",
 			"fillStyle": "hachure",
@@ -4004,12 +3937,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1392.0009488751634,
-			"y": 830.2143505086144,
+			"x": 1440.2875967530276,
+			"y": 944.6429703091285,
 			"strokeColor": "transparent",
 			"backgroundColor": "transparent",
-			"width": 1479.0252239014828,
-			"height": 845.1572708008474,
+			"width": 1736.1735834312208,
+			"height": 992.0991905321262,
 			"seed": 71090,
 			"groupIds": [
 				"ohuP08G6MUBQFuA_OY_6n"
@@ -4017,7 +3950,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624780472,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4029,8 +3962,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 589,
-			"versionNonce": 673592209,
+			"version": 590,
+			"versionNonce": 392652657,
 			"isDeleted": false,
 			"id": "Mzebemv_8Q07FqMIh6OhF",
 			"fillStyle": "solid",
@@ -4052,7 +3985,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625055178,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4081,8 +4014,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 247,
-			"versionNonce": 920901745,
+			"version": 248,
+			"versionNonce": 45728799,
 			"isDeleted": false,
 			"id": "dtCZgO-33xqt9RWrVvV3N",
 			"fillStyle": "solid",
@@ -4115,14 +4048,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711628338431,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 210,
-			"versionNonce": 1174397471,
+			"version": 211,
+			"versionNonce": 1909150033,
 			"isDeleted": false,
 			"id": "Ebprqtu0",
 			"fillStyle": "solid",
@@ -4144,7 +4077,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623583720,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -4160,8 +4093,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 175,
-			"versionNonce": 1360807487,
+			"version": 176,
+			"versionNonce": 1615456319,
 			"isDeleted": false,
 			"id": "QJRUNbJzwLvVwe_rLATyy",
 			"fillStyle": "solid",
@@ -4190,14 +4123,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711623583720,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 225,
-			"versionNonce": 1599546975,
+			"version": 226,
+			"versionNonce": 265748273,
 			"isDeleted": false,
 			"id": "DkaFdvSx",
 			"fillStyle": "solid",
@@ -4219,7 +4152,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623583720,
+			"updated": 1711636137759,
 			"link": "[[MU 06 Organisation des développements]]",
 			"locked": false,
 			"fontSize": 36,
@@ -4235,8 +4168,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 172,
-			"versionNonce": 2139161215,
+			"version": 173,
+			"versionNonce": 1015056479,
 			"isDeleted": false,
 			"id": "VOnK9RGx",
 			"fillStyle": "hachure",
@@ -4258,7 +4191,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623583720,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4270,8 +4203,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 422,
-			"versionNonce": 1280203615,
+			"version": 423,
+			"versionNonce": 804385041,
 			"isDeleted": false,
 			"id": "Ojiem9ihrAUq0OYXnhnI-",
 			"fillStyle": "solid",
@@ -4293,7 +4226,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625093895,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4326,8 +4259,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 302,
-			"versionNonce": 774456145,
+			"version": 303,
+			"versionNonce": 1965958271,
 			"isDeleted": false,
 			"id": "swg4PQ4FimZtWpPzTyRT1",
 			"fillStyle": "solid",
@@ -4349,7 +4282,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625055178,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4382,8 +4315,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 243,
-			"versionNonce": 28278143,
+			"version": 244,
+			"versionNonce": 1469294321,
 			"isDeleted": false,
 			"id": "mRpx1lLAYnP003YpyDyXf",
 			"fillStyle": "solid",
@@ -4412,14 +4345,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711623585287,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 257,
-			"versionNonce": 194996671,
+			"version": 258,
+			"versionNonce": 1511210143,
 			"isDeleted": false,
 			"id": "SQHJk9MI",
 			"fillStyle": "solid",
@@ -4441,7 +4374,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623585287,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -4457,8 +4390,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 277,
-			"versionNonce": 883546591,
+			"version": 278,
+			"versionNonce": 1900257489,
 			"isDeleted": false,
 			"id": "tyn8ZWk1E_38NncX19HC5",
 			"fillStyle": "solid",
@@ -4487,14 +4420,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711623585287,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 413,
-			"versionNonce": 768438815,
+			"version": 414,
+			"versionNonce": 1860194495,
 			"isDeleted": false,
 			"id": "OllwAWDx",
 			"fillStyle": "solid",
@@ -4516,7 +4449,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624952341,
+			"updated": 1711636137759,
 			"link": "[[MU 05 Document de Conception]]",
 			"locked": false,
 			"fontSize": 36,
@@ -4532,8 +4465,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 354,
-			"versionNonce": 1513500191,
+			"version": 355,
+			"versionNonce": 714694321,
 			"isDeleted": false,
 			"id": "vEZyu5zD",
 			"fillStyle": "hachure",
@@ -4555,7 +4488,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711623585287,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4567,8 +4500,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 106,
-			"versionNonce": 380458687,
+			"version": 107,
+			"versionNonce": 1832247519,
 			"isDeleted": false,
 			"id": "2NzEEc_qiVfsjO8s03wnN",
 			"fillStyle": "solid",
@@ -4605,14 +4538,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711625694741,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 44,
-			"versionNonce": 1402803263,
+			"version": 45,
+			"versionNonce": 305946769,
 			"isDeleted": false,
 			"id": "fbfCQUVY",
 			"fillStyle": "solid",
@@ -4634,7 +4567,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624652164,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -4650,8 +4583,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 171,
-			"versionNonce": 261919537,
+			"version": 172,
+			"versionNonce": 111439103,
 			"isDeleted": false,
 			"id": "U2bcsM_2_KdKrGLAS9Est",
 			"fillStyle": "solid",
@@ -4680,14 +4613,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711624652164,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 243,
-			"versionNonce": 881734751,
+			"version": 244,
+			"versionNonce": 1977886321,
 			"isDeleted": false,
 			"id": "EPJeWtfk",
 			"fillStyle": "hachure",
@@ -4709,7 +4642,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624652164,
+			"updated": 1711636137759,
 			"link": "[[MU 07 Page HTML]]",
 			"locked": false,
 			"fontSize": 36,
@@ -4725,8 +4658,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 143,
-			"versionNonce": 1239745809,
+			"version": 144,
+			"versionNonce": 1722578207,
 			"isDeleted": false,
 			"id": "GQvchZSu",
 			"fillStyle": "hachure",
@@ -4748,7 +4681,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711624652164,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4760,8 +4693,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 124,
-			"versionNonce": 799453489,
+			"version": 125,
+			"versionNonce": 5779537,
 			"isDeleted": false,
 			"id": "ur0m1rD0J0PhgO3IrdcxK",
 			"fillStyle": "solid",
@@ -4783,7 +4716,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625055178,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4816,8 +4749,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 97,
-			"versionNonce": 603278047,
+			"version": 98,
+			"versionNonce": 1958639935,
 			"isDeleted": false,
 			"id": "0HxOBFQ7",
 			"fillStyle": "hachure",
@@ -4842,7 +4775,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711624873354,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4854,8 +4787,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 45,
-			"versionNonce": 938988465,
+			"version": 46,
+			"versionNonce": 393215537,
 			"isDeleted": false,
 			"id": "kri_YOxPedlyExU2qC8IV",
 			"fillStyle": "solid",
@@ -4877,7 +4810,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711624877802,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4910,8 +4843,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 81,
-			"versionNonce": 177721951,
+			"version": 82,
+			"versionNonce": 1446705503,
 			"isDeleted": false,
 			"id": "zwpgCOUjXEPJhtv98ququ",
 			"fillStyle": "solid",
@@ -4944,14 +4877,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711626068541,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "image",
-			"version": 70,
-			"versionNonce": 2128255327,
+			"version": 71,
+			"versionNonce": 2048069649,
 			"isDeleted": false,
 			"id": "cbWDyq94",
 			"fillStyle": "hachure",
@@ -4973,7 +4906,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711625683521,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4985,8 +4918,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 49,
-			"versionNonce": 405739921,
+			"version": 50,
+			"versionNonce": 812807551,
 			"isDeleted": false,
 			"id": "wyiBu7UkJeCcYrJS1PFBj",
 			"fillStyle": "solid",
@@ -5008,7 +4941,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711625698605,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5041,8 +4974,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 249,
-			"versionNonce": 1614193279,
+			"version": 250,
+			"versionNonce": 507045361,
 			"isDeleted": false,
 			"id": "o0TXZQvNvvxRhcvSowxAp",
 			"fillStyle": "solid",
@@ -5069,7 +5002,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711626103786,
+			"updated": 1711636137759,
 			"link": "https://www.logikascium.com",
 			"locked": false,
 			"scale": [
@@ -5079,8 +5012,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 241,
-			"versionNonce": 190577311,
+			"version": 242,
+			"versionNonce": 715484575,
 			"isDeleted": false,
 			"id": "OreHeBhZqWfJoOQG_xlVX",
 			"fillStyle": "solid",
@@ -5102,7 +5035,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711626103786,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5135,8 +5068,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 143,
-			"versionNonce": 2101631089,
+			"version": 145,
+			"versionNonce": 1323892689,
 			"isDeleted": false,
 			"id": "wYinuksyVPcq3O6rgvyuI",
 			"fillStyle": "solid",
@@ -5171,16 +5104,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				{
 					"id": "aI6fbcWTIS4vgl8-TxpYU",
 					"type": "arrow"
+				},
+				{
+					"id": "iJ7NwNBkxkhnnzG20DSdP",
+					"type": "arrow"
 				}
 			],
-			"updated": 1711627671320,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 101,
-			"versionNonce": 1768383025,
+			"version": 102,
+			"versionNonce": 805593535,
 			"isDeleted": false,
 			"id": "UbIXDjCw",
 			"fillStyle": "solid",
@@ -5202,7 +5139,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711627048314,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -5218,8 +5155,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 349,
-			"versionNonce": 1602090001,
+			"version": 350,
+			"versionNonce": 171630001,
 			"isDeleted": false,
 			"id": "6zWgNdov7dKtkUzOR1-3B",
 			"fillStyle": "solid",
@@ -5248,14 +5185,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711627048314,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 171,
-			"versionNonce": 1554467313,
+			"version": 172,
+			"versionNonce": 1907347935,
 			"isDeleted": false,
 			"id": "jOWXpxLP",
 			"fillStyle": "hachure",
@@ -5277,7 +5214,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711627048314,
+			"updated": 1711636137759,
 			"link": "[[MU 08 Fichiers Python]]",
 			"locked": false,
 			"fontSize": 36,
@@ -5293,8 +5230,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 110,
-			"versionNonce": 2045436881,
+			"version": 111,
+			"versionNonce": 525729681,
 			"isDeleted": false,
 			"id": "feagBgiI",
 			"fillStyle": "hachure",
@@ -5316,7 +5253,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711627048314,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -5328,8 +5265,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 74,
-			"versionNonce": 408575953,
+			"version": 75,
+			"versionNonce": 683163135,
 			"isDeleted": false,
 			"id": "OpXKle2Vqw0mqkwjQMxdY",
 			"fillStyle": "solid",
@@ -5351,7 +5288,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711627053819,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5383,43 +5320,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"type": "rectangle",
-			"version": 166,
-			"versionNonce": 1330384159,
-			"isDeleted": false,
-			"id": "j1qkH0AZyIZ0c3LnB_oTv",
-			"fillStyle": "solid",
-			"strokeWidth": 4,
-			"strokeStyle": "solid",
-			"roughness": 2,
-			"opacity": 100,
-			"angle": 0,
-			"x": -4472.428527762326,
-			"y": -6118.042669125431,
-			"strokeColor": "#f08c00",
-			"backgroundColor": "#ffec99",
-			"width": 2200,
-			"height": 1810,
-			"seed": 310431327,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": {
-				"type": 3
-			},
-			"boundElements": [
-				{
-					"id": "xHHYywgz-NrofMKvRmbeF",
-					"type": "arrow"
-				}
-			],
-			"updated": 1711627404100,
-			"link": null,
-			"locked": false
-		},
-		{
 			"type": "arrow",
-			"version": 274,
-			"versionNonce": 1437274431,
+			"version": 696,
+			"versionNonce": 404629023,
 			"isDeleted": false,
 			"id": "xHHYywgz-NrofMKvRmbeF",
 			"fillStyle": "solid",
@@ -5432,8 +5335,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": -458.0426691254306,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 1409,
-			"height": 4691.260761479383,
+			"width": 1870.3385860358435,
+			"height": 5869,
 			"seed": 1185163583,
 			"groupIds": [],
 			"frameId": null,
@@ -5441,7 +5344,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711627404100,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5451,8 +5354,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			},
 			"endBinding": {
 				"elementId": "j1qkH0AZyIZ0c3LnB_oTv",
-				"focus": -0.7252560754551804,
-				"gap": 1
+				"gap": 1,
+				"focus": -0.7252560754551804
 			},
 			"lastCommittedPoint": null,
 			"startArrowhead": null,
@@ -5467,52 +5370,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					-2960
 				],
 				[
-					-1409,
-					-4691.260761479383
+					1190.3385860358435,
+					-5869
 				]
 			]
 		},
 		{
-			"type": "text",
-			"version": 79,
-			"versionNonce": 1277664721,
-			"isDeleted": false,
-			"id": "8mjQn5Ob",
-			"fillStyle": "solid",
-			"strokeWidth": 4,
-			"strokeStyle": "solid",
-			"roughness": 2,
-			"opacity": 100,
-			"angle": 0,
-			"x": -3602.6446270926826,
-			"y": -6055.185526268288,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffec99",
-			"width": 426.146484375,
-			"height": 41.4,
-			"seed": 18419071,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": null,
-			"boundElements": [],
-			"updated": 1711627487797,
-			"link": null,
-			"locked": false,
-			"fontSize": 36,
-			"fontFamily": 2,
-			"text": "POUR ALLER PLUS LOIN",
-			"rawText": "POUR ALLER PLUS LOIN",
-			"textAlign": "center",
-			"verticalAlign": "top",
-			"containerId": null,
-			"originalText": "POUR ALLER PLUS LOIN",
-			"lineHeight": 1.15,
-			"baseline": 33
-		},
-		{
 			"type": "embeddable",
-			"version": 153,
-			"versionNonce": 486265823,
+			"version": 154,
+			"versionNonce": 1322388031,
 			"isDeleted": false,
 			"id": "OrT1ieFoGF3lHhZyCrPYD",
 			"fillStyle": "solid",
@@ -5543,7 +5409,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711629699990,
+			"updated": 1711636137759,
 			"link": "https://youtu.be/Dlt-DCLHnxM",
 			"locked": false,
 			"scale": [
@@ -5553,8 +5419,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "embeddable",
-			"version": 67,
-			"versionNonce": 214043249,
+			"version": 68,
+			"versionNonce": 1188691249,
 			"isDeleted": false,
 			"id": "tpM0HI_dbZv6MFbtAySrV",
 			"fillStyle": "solid",
@@ -5585,7 +5451,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711629696875,
+			"updated": 1711636137759,
 			"link": "https://youtu.be/SZVCJRUADc4",
 			"locked": false,
 			"scale": [
@@ -5595,8 +5461,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 121,
-			"versionNonce": 1328807935,
+			"version": 122,
+			"versionNonce": 699689567,
 			"isDeleted": false,
 			"id": "JIC909d2w70SNFIE_Eaya",
 			"fillStyle": "solid",
@@ -5618,7 +5484,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711629699991,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5651,8 +5517,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 43,
-			"versionNonce": 1238996049,
+			"version": 44,
+			"versionNonce": 1239756561,
 			"isDeleted": false,
 			"id": "aI6fbcWTIS4vgl8-TxpYU",
 			"fillStyle": "solid",
@@ -5674,7 +5540,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711629696875,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5707,8 +5573,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 326,
-			"versionNonce": 516246769,
+			"version": 350,
+			"versionNonce": 362137215,
 			"isDeleted": false,
 			"id": "9Rq99DcTfe0hb9XUDmQvP",
 			"fillStyle": "solid",
@@ -5717,8 +5583,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -6904.2546066313735,
-			"y": 1282.830346747584,
+			"x": -7074.2546066313735,
+			"y": 1702.830346747584,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 1646.7777777777771,
@@ -5739,14 +5605,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711628463801,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 729,
-			"versionNonce": 1923949617,
+			"version": 753,
+			"versionNonce": 208610545,
 			"isDeleted": false,
 			"id": "htIqRat4",
 			"fillStyle": "solid",
@@ -5755,8 +5621,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -6869.938959929985,
-			"y": 1455.8970134142508,
+			"x": -7039.938959929985,
+			"y": 1875.8970134142508,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffec99",
 			"width": 1578.146484375,
@@ -5766,7 +5632,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711628466798,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -5782,8 +5648,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 44,
-			"versionNonce": 1356890225,
+			"version": 93,
+			"versionNonce": 288792223,
 			"isDeleted": false,
 			"id": "s7efyDs-_91sKR4aShEhN",
 			"fillStyle": "solid",
@@ -5793,11 +5659,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -4780.0475753813735,
-			"y": 1648.38590230314,
+			"y": 1854.3469859433008,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
-			"width": 464.44444444444434,
-			"height": 113.33333333333348,
+			"width": 634.4444444444443,
+			"height": 9.769957966665515,
 			"seed": 1496058591,
 			"groupIds": [],
 			"frameId": null,
@@ -5805,7 +5671,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711630006357,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5827,15 +5693,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-464.44444444444434,
-					-113.33333333333348
+					-634.4444444444443,
+					-9.769957966665515
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 182,
-			"versionNonce": 783895121,
+			"version": 183,
+			"versionNonce": 973037265,
 			"isDeleted": false,
 			"id": "EuUAhDYLZRR1CUmtUGcFD",
 			"fillStyle": "solid",
@@ -5866,14 +5732,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711630006357,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 740,
-			"versionNonce": 1933066225,
+			"version": 741,
+			"versionNonce": 1866953407,
 			"isDeleted": false,
 			"id": "Dm0ONMwR",
 			"fillStyle": "solid",
@@ -5893,7 +5759,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711630006358,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
@@ -5909,8 +5775,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 450,
-			"versionNonce": 41265681,
+			"version": 453,
+			"versionNonce": 556620977,
 			"isDeleted": false,
 			"id": "w-QAzjhwrKBPvy1GeLG0U",
 			"fillStyle": "solid",
@@ -5920,11 +5786,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -8391.158686492483,
-			"y": -3509.2750590995347,
+			"y": -3509.2823494300014,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 618.3333333333321,
-			"height": 124.96752508516511,
+			"height": 124.9622117749368,
 			"seed": 1906058449,
 			"groupIds": [],
 			"frameId": null,
@@ -5932,7 +5798,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711630006357,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5955,14 +5821,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-618.3333333333321,
-					-124.96752508516511
+					-124.9622117749368
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 256,
-			"versionNonce": 1602360639,
+			"version": 258,
+			"versionNonce": 1483260639,
 			"isDeleted": false,
 			"id": "3Rs2KGJIGpN0bJexjSAfs",
 			"fillStyle": "solid",
@@ -5976,7 +5842,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 1819,
-			"height": 439.9999999999998,
+			"height": 466,
 			"seed": 199332735,
 			"groupIds": [],
 			"frameId": null,
@@ -5997,14 +5863,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711631010723,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1150,
-			"versionNonce": 1579881823,
+			"version": 1347,
+			"versionNonce": 1369480849,
 			"isDeleted": false,
 			"id": "PpNItr3I",
 			"fillStyle": "solid",
@@ -6014,34 +5880,34 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -10743.092454980937,
-			"y": -2690.66214964491,
+			"y": -2739.76214964491,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 1785.814453125,
-			"height": 331.2,
+			"height": 455.4,
 			"seed": 1881491953,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711631010723,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches\nsur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre\n'@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter\ndirectement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole\navec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.",
-			"rawText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.",
+			"text": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches\nsur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre\n'@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter\ndirectement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole\navec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nPrésente aussi VS Code Speech qui pemet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de\ncommit.",
+			"rawText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nPrésente aussi VS Code Speech qui pemet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de commit.",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "3Rs2KGJIGpN0bJexjSAfs",
-			"originalText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.",
+			"originalText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nPrésente aussi VS Code Speech qui pemet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de commit.",
 			"lineHeight": 1.15,
-			"baseline": 323
+			"baseline": 447
 		},
 		{
 			"type": "arrow",
-			"version": 138,
-			"versionNonce": 306088351,
+			"version": 147,
+			"versionNonce": 220925695,
 			"isDeleted": false,
 			"id": "mfzQFe3Fk8Dslm-t_xCHZ",
 			"fillStyle": "solid",
@@ -6050,12 +5916,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -8367.80587263967,
-			"y": -2406.845090333211,
+			"x": -8367.805872639672,
+			"y": -2402.158206401465,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
-			"width": 565.8333333333339,
-			"height": 98.07894703177953,
+			"width": 565.8333333333321,
+			"height": 96.33578061482012,
 			"seed": 2046383825,
 			"groupIds": [],
 			"frameId": null,
@@ -6063,7 +5929,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711631010723,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6085,35 +5951,35 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-565.8333333333339,
-					-98.07894703177953
+					-565.8333333333321,
+					-96.33578061482012
 				]
 			]
 		},
 		{
-			"id": "-0VJzWWOK88rk3kesf680",
 			"type": "rectangle",
-			"x": -12529.486569802737,
-			"y": -2724.3507499335124,
-			"width": 1161.4285714285768,
-			"height": 320.571428571429,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
+			"version": 297,
+			"versionNonce": 2047911025,
+			"isDeleted": false,
+			"id": "-0VJzWWOK88rk3kesf680",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -12529.486569802737,
+			"y": -2724.350749933513,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 1161.4285714285768,
+			"height": 320.571428571429,
+			"seed": 1982541855,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1982541855,
-			"version": 295,
-			"versionNonce": 155349297,
-			"isDeleted": false,
 			"boundElements": [
 				{
 					"id": "z9mpH63P",
@@ -6124,86 +5990,75 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711630102103,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false
 		},
 		{
-			"id": "z9mpH63P",
 			"type": "text",
-			"x": -12511.500799713449,
-			"y": -2626.165035647798,
-			"width": 1125.45703125,
-			"height": 124.19999999999999,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffc9c9",
+			"version": 461,
+			"versionNonce": 1745803039,
+			"isDeleted": false,
+			"id": "z9mpH63P",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -12511.500799713449,
+			"y": -2626.1650356477985,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffc9c9",
+			"width": 1125.45703125,
+			"height": 124.19999999999999,
+			"seed": 1096214545,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 1096214545,
-			"version": 459,
-			"versionNonce": 168821087,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711630095959,
-			"link": null,
+			"boundElements": [],
+			"updated": 1711636137759,
+			"link": "[[MU 70 RAG Retrieval-Augmented Generation]]",
 			"locked": false,
-			"text": "RAG, ou Retrieval-Augmented Generation, est une technique dans le\ndomaine de l'intelligence artificielle, particulièrement dans le traitement\nautomatique du langage naturel (TALN), qui combine les mét",
-			"rawText": "![[MU 70 RAG Retrieval-Augmented Generation]]",
 			"fontSize": 36,
 			"fontFamily": 2,
+			"text": "RAG, ou Retrieval-Augmented Generation, est une technique dans le\ndomaine de l'intelligence artificielle, particulièrement dans le traitement\nautomatique du langage naturel (TALN), qui combine les mét",
+			"rawText": "![[MU 70 RAG Retrieval-Augmented Generation]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
-			"baseline": 116,
 			"containerId": "-0VJzWWOK88rk3kesf680",
 			"originalText": "RAG, ou Retrieval-Augmented Generation, est une technique dans le domaine de l'intelligence artificielle, particulièrement dans le traitement automatique du langage naturel (TALN), qui combine les mét",
-			"lineHeight": 1.15
+			"lineHeight": 1.15,
+			"baseline": 116
 		},
 		{
-			"id": "6BaaEWzPD99fGPFPc-a53",
 			"type": "arrow",
-			"x": -10783.242289668808,
-			"y": -2582.1276328194963,
-			"width": 573.9285714285706,
-			"height": 23.209642586344216,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
+			"version": 93,
+			"versionNonce": 105180753,
+			"isDeleted": false,
+			"id": "6BaaEWzPD99fGPFPc-a53",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -10783.242289668808,
+			"y": -2576.176691415462,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 573.9285714285706,
+			"height": 20.028559116784436,
+			"seed": 584611231,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 2
 			},
-			"seed": 584611231,
-			"version": 82,
-			"versionNonce": 582086111,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1711631010723,
+			"boundElements": [],
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
-			"points": [
-				[
-					0,
-					0
-				],
-				[
-					-573.9285714285706,
-					23.209642586344216
-				]
-			],
-			"lastCommittedPoint": null,
 			"startBinding": {
 				"elementId": "3Rs2KGJIGpN0bJexjSAfs",
 				"gap": 23.55706125037068,
@@ -6214,15 +6069,716 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"gap": 10.887137276782596,
 				"focus": 0.1581945556161805
 			},
+			"lastCommittedPoint": null,
 			"startArrowhead": null,
-			"endArrowhead": "arrow"
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-573.9285714285706,
+					20.028559116784436
+				]
+			]
+		},
+		{
+			"type": "embeddable",
+			"version": 89,
+			"versionNonce": 528784191,
+			"isDeleted": false,
+			"id": "vQlFnlskjaidIFu4TmG6W",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -7780.028003954518,
+			"y": -5480.779321362084,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 1630,
+			"height": 988.75,
+			"seed": 584049727,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [
+				{
+					"id": "iJ7NwNBkxkhnnzG20DSdP",
+					"type": "arrow"
+				},
+				{
+					"id": "xa0CyPXoYESqVPXobs52o",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711636137759,
+			"link": "https://youtu.be/2q0BoioYSxQ",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "arrow",
+			"version": 39,
+			"versionNonce": 2098527281,
+			"isDeleted": false,
+			"id": "iJ7NwNBkxkhnnzG20DSdP",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -5130.028003954518,
+			"y": -3750.7793213620844,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#a5d8ff",
+			"width": 990,
+			"height": 1230,
+			"seed": 222751871,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1711636137759,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "wYinuksyVPcq3O6rgvyuI",
+				"focus": 0.09047176792333604,
+				"gap": 19.08585858586048
+			},
+			"endBinding": {
+				"elementId": "vQlFnlskjaidIFu4TmG6W",
+				"focus": -0.6457312869634629,
+				"gap": 30
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-470,
+					-700
+				],
+				[
+					-990,
+					-1230
+				]
+			]
+		},
+		{
+			"type": "rectangle",
+			"version": 51,
+			"versionNonce": 1206704991,
+			"isDeleted": false,
+			"id": "gI5n06uVdK1EulD_k2FRV",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -9144.714201871186,
+			"y": -5132.44598802875,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffc9c9",
+			"width": 704.2727272727261,
+			"height": 342,
+			"seed": 124429361,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [
+				{
+					"id": "QoMCMbpq",
+					"type": "text"
+				},
+				{
+					"id": "xa0CyPXoYESqVPXobs52o",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711636137759,
+			"link": null,
+			"locked": false
+		},
+		{
+			"type": "text",
+			"version": 304,
+			"versionNonce": 510152209,
+			"isDeleted": false,
+			"id": "QoMCMbpq",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -9131.730181984822,
+			"y": -5127.045988028751,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#a5d8ff",
+			"width": 678.3046875,
+			"height": 331.2,
+			"seed": 1628936689,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711636137760,
+			"link": null,
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "Utiliser :\n- Ghost Text\n- Inline Chat (`Ctrl i`)\n- Chat Panel\n- Utiliser les \"/Commands\" comme `/fix`\n- Nettoyer le contexte (supprimer les\nquestions dans le fil)\n- Ajouter les fichiers nécessaires au projet.",
+			"rawText": "Utiliser :\n- Ghost Text\n- Inline Chat (`Ctrl i`)\n- Chat Panel\n- Utiliser les \"/Commands\" comme `/fix`\n- Nettoyer le contexte (supprimer les questions dans le fil)\n- Ajouter les fichiers nécessaires au projet.",
+			"textAlign": "center",
+			"verticalAlign": "middle",
+			"containerId": "gI5n06uVdK1EulD_k2FRV",
+			"originalText": "Utiliser :\n- Ghost Text\n- Inline Chat (`Ctrl i`)\n- Chat Panel\n- Utiliser les \"/Commands\" comme `/fix`\n- Nettoyer le contexte (supprimer les questions dans le fil)\n- Ajouter les fichiers nécessaires au projet.",
+			"lineHeight": 1.15,
+			"baseline": 323
+		},
+		{
+			"type": "arrow",
+			"version": 48,
+			"versionNonce": 362289023,
+			"isDeleted": false,
+			"id": "xa0CyPXoYESqVPXobs52o",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -7792.073458499974,
+			"y": -4955.1190302420855,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffc9c9",
+			"width": 626.6666666666661,
+			"height": 27.269481333869408,
+			"seed": 432208049,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1711636137760,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "vQlFnlskjaidIFu4TmG6W",
+				"gap": 12.045454545455868,
+				"focus": -0.13130080549238277
+			},
+			"endBinding": {
+				"elementId": "gI5n06uVdK1EulD_k2FRV",
+				"gap": 21.701349431818926,
+				"focus": -0.19970732713442668
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-626.6666666666661,
+					-27.269481333869408
+				]
+			]
+		},
+		{
+			"type": "rectangle",
+			"version": 552,
+			"versionNonce": 2035254559,
+			"isDeleted": false,
+			"id": "j1qkH0AZyIZ0c3LnB_oTv",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -3599.0951944289927,
+			"y": -9488.042669125429,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffec99",
+			"width": 4876.666666666668,
+			"height": 3159.999999999998,
+			"seed": 310431327,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [
+				{
+					"id": "xHHYywgz-NrofMKvRmbeF",
+					"type": "arrow"
+				}
+			],
+			"updated": 1711636165939,
+			"link": null,
+			"locked": false
+		},
+		{
+			"type": "text",
+			"version": 209,
+			"versionNonce": 690888785,
+			"isDeleted": false,
+			"id": "8mjQn5Ob",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -1422.6446270926826,
+			"y": -9335.185526268288,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffec99",
+			"width": 426.146484375,
+			"height": 41.4,
+			"seed": 18419071,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711636165939,
+			"link": null,
+			"locked": false,
+			"fontSize": 36,
+			"fontFamily": 2,
+			"text": "POUR ALLER PLUS LOIN",
+			"rawText": "POUR ALLER PLUS LOIN",
+			"textAlign": "center",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "POUR ALLER PLUS LOIN",
+			"lineHeight": 1.15,
+			"baseline": 33
+		},
+		{
+			"type": "embeddable",
+			"version": 490,
+			"versionNonce": 1618970943,
+			"isDeleted": false,
+			"id": "C4ylt_JJM_EB-aH4E53Gi",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -193.9782204047342,
+			"y": -8161.466550799316,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1274.9999999999998,
+			"height": 739.9999999999999,
+			"seed": 898030257,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711636165939,
+			"link": "https://blog.octo.com/comment-utiliser-un-llm-open-source-1",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "embeddable",
+			"version": 254,
+			"versionNonce": 268955185,
+			"isDeleted": false,
+			"id": "7_c3oqkTPqRZrRK41s64D",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -3365.8194902460027,
+			"y": -9101.625280958047,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffec99",
+			"width": 1212,
+			"height": 816.0000000000003,
+			"seed": 1873461425,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711636165939,
+			"link": "https://github.com/pinokiocomputer/pinokio",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "embeddable",
+			"version": 205,
+			"versionNonce": 1197082975,
+			"isDeleted": false,
+			"id": "dI89VnA7BFFXNZgOO5Mg5",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -1840.1052045317183,
+			"y": -9102.7681381009,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1341.7142857142856,
+			"height": 817.1428571428563,
+			"seed": 1510052063,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711636165939,
+			"link": "https://github.com/ollama",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "embeddable",
+			"version": 174,
+			"versionNonce": 2049769489,
+			"isDeleted": false,
+			"id": "cRAnW0sGZdbr0f1crHj8n",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -3362.390918817434,
+			"y": -8168.482423815182,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1228.5714285714284,
+			"height": 691.0714285714286,
+			"seed": 1512729841,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711636165939,
+			"link": "https://youtu.be/yj1L71KfebM",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "embeddable",
+			"version": 210,
+			"versionNonce": 1261405567,
+			"isDeleted": false,
+			"id": "nTFlTVY5jXXklowL2kCYl",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -3323.819490246004,
+			"y": -7298.768138100894,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1151.4285714285716,
+			"height": 792.6785714285716,
+			"seed": 1104846705,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711636165940,
+			"link": "https://youtu.be/wEbxjKqrtp4",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "embeddable",
+			"version": 143,
+			"versionNonce": 1704252913,
+			"isDeleted": false,
+			"id": "NswaOgoFxEdZPRAw_y3kY",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -1864.1052045317183,
+			"y": -8186.768138100894,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1374.8571428571427,
+			"height": 749.1428571428568,
+			"seed": 1814648433,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [],
+			"updated": 1711636165940,
+			"link": "https://www.builder.io/blog/build-ai",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"id": "0Jyw7FV1rM7g1vRMaXUqd",
+			"type": "embeddable",
+			"x": -160.02800395451868,
+			"y": -9037.315842749245,
+			"width": 1200,
+			"height": 740.0000000000001,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"seed": 1900258975,
+			"version": 111,
+			"versionNonce": 188775839,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711636165940,
+			"link": "https://youtu.be/Ivp5PGIbGMw",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"id": "mQgAVgpj3YMFz2fA3KZ8L",
+			"type": "embeddable",
+			"x": -1830.0280039545187,
+			"y": -7277.315842749245,
+			"width": 1290,
+			"height": 748.125,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"seed": 1144480319,
+			"version": 58,
+			"versionNonce": 625405905,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711636165940,
+			"link": "https://youtu.be/1aXPuFrPtr0",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"id": "5_7onKnR8MwQMswG7c2_I",
+			"type": "embeddable",
+			"x": -190.02800395451868,
+			"y": -7257.315842749245,
+			"width": 1290,
+			"height": 725.625,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"groupIds": [
+				"9tFd8_0zxlGU_ValtPRb5"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"seed": 662603807,
+			"version": 55,
+			"versionNonce": 1790800319,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1711636165940,
+			"link": "https://youtu.be/GiEcNK3XA_o",
+			"locked": false,
+			"scale": [
+				1,
+				1
+			]
+		},
+		{
+			"type": "rectangle",
+			"version": 85,
+			"versionNonce": 2084737983,
+			"isDeleted": true,
+			"id": "-Hrb__DBqW8eJaJgqUOGN",
+			"fillStyle": "solid",
+			"strokeWidth": 4,
+			"strokeStyle": "solid",
+			"roughness": 2,
+			"opacity": 100,
+			"angle": 0,
+			"x": -1749.6101025496873,
+			"y": 1348.7267854104634,
+			"strokeColor": "#f08c00",
+			"backgroundColor": "#ffffff",
+			"width": 1967.285714285714,
+			"height": 225.8571428571428,
+			"seed": 1733553201,
+			"groupIds": [
+				"lRKigDrcWaFKO3AoiMBc9"
+			],
+			"frameId": null,
+			"roundness": {
+				"type": 3
+			},
+			"boundElements": [
+				{
+					"id": "ASlZVUSQ",
+					"type": "text"
+				}
+			],
+			"updated": 1711636217327,
+			"link": null,
+			"locked": false
+		},
+		{
+			"type": "text",
+			"version": 1570,
+			"versionNonce": 1303432113,
+			"isDeleted": true,
+			"id": "ASlZVUSQ",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"angle": 0,
+			"x": -1617.2765105435492,
+			"y": 1405.3836698171303,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#d6d6d6",
+			"width": 1702.6185302734375,
+			"height": 112.54337404380894,
+			"seed": 1670733900,
+			"groupIds": [
+				"lRKigDrcWaFKO3AoiMBc9"
+			],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1711636217327,
+			"link": "[[MU 00 Développement Logiciel avec l'IA]]",
+			"locked": false,
+			"fontSize": 30.01156641168238,
+			"fontFamily": 1,
+			"text": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
+			"rawText": "![[MU 00 Développement Logiciel avec l'IA]]",
+			"textAlign": "center",
+			"verticalAlign": "middle",
+			"containerId": "-Hrb__DBqW8eJaJgqUOGN",
+			"originalText": "# Introduction\n- Présentation du potentiel de l'IA dans le développement logiciel.\n- Clarification du terme \"Intelligence Artificielle\" et distinction entre IA générale et IA appliquée au développemen",
+			"lineHeight": 1.25,
+			"baseline": 101
 		}
 	],
 	"appState": {
 		"theme": "light",
 		"viewBackgroundColor": "#ffffff",
-		"currentItemStrokeColor": "#1971c2",
-		"currentItemBackgroundColor": "#a5d8ff",
+		"currentItemStrokeColor": "#1e1e1e",
+		"currentItemBackgroundColor": "#ffffff",
 		"currentItemFillStyle": "solid",
 		"currentItemStrokeWidth": 4,
 		"currentItemStrokeStyle": "solid",
@@ -6233,10 +6789,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemTextAlign": "center",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 6963.04315546967,
-		"scrollY": 3789.5170107560243,
+		"scrollX": 2404.0280039545178,
+		"scrollY": 594.9854856063878,
 		"zoom": {
-			"value": 0.1
+			"value": 0.35
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
