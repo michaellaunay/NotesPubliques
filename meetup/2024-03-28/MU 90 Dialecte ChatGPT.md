@@ -1,9 +1,6 @@
-Pour expliquer la tokenisation, il m'est venue une idée amusante.
-Comme tout bon dyslexique, je fais beaucoup de fautes.
-Par contre, mon approximation du français m'a déjà servi, par exemple lors de mon voyage de noces à l'île Maurice où j'arrivais à bien mieux comprendre le créole que les autres "européens" qui m'entouraient, arrivant même à comprendre le sujet de certaines discussions.
-Bref, du coup, je me suis demandé s'il existait un créole spécifique à ChatGPT ?
+Existe-t-il un dialecte spécifique à ChatGPT ?
 
-Voici mon prompt initial sans les fautes d'orthographe ;-) et sa réponse.
+Voici mon prompt initial et sa réponse.
 
 **Moi**
 
