@@ -9,7 +9,7 @@
 [[IA pour créer des Images]]
 [[IAs]]
 [[Copilot]]
-[[réflexions/Suis-je une IA ?]]
+[[Suis-je une IA]]
 [[Agents IA]]
 
 ## VR
