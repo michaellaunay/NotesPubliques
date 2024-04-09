@@ -168,6 +168,89 @@ L'écosystème Python offre une multitude de bibliothèques et d'outils adaptés
 - **Flask** : Un micro-framework web qui permet de développer rapidement des applications web pour les interfaces utilisateur d'applications IoT, facilitant la surveillance et le contrôle des dispositifs IoT à distance.
 - **[[Pyramid]]** : Pour des applications IoT plus complexes nécessitant une base de données robuste, une authentification des utilisateurs, ou des fonctionnalités administratives.
 
+## 1.5 Étude de cas Faille BlueTooth
+
+### module `bluetooth`
+Installons les bibliothèques bluetooth
+```bash
+apt update
+apt install -y bluez-tools bluez-hcidump libbluetooth-dev
+pip3 install git+https://github.com/pybluez/pybluez.git
+```
+Nous allons nous inspirer de l'exploit [BlueDucky](https://github.com/pentestfunctions/BlueDucky/tree/main)
+Essayons la connexion.
+```python
+import bluetooth
+
+def decouvrir_peripheriques_bluetooth():
+	"""
+	Découvre les périphériques Bluetooth à proximité et affiche leurs adresses et noms.
+	Returns:
+	None
+	""""
+	print("Recherche des périphériques Bluetooth à proximité...")
+	peripheriques_proches = bluetooth.discover_devices(lookup_names=True)
+	print(f"Trouvé {len(peripheriques_proches)} périphériques.")
+	for adresse, nom in peripheriques_proches:
+		print(f"{adresse} - {nom}")
+
+# Appelle la fonction pour exécuter le code
+decouvrir_peripheriques_bluetooth()
+```
+
+Exemple d'exécution :
+```bash
+Trouvé 7 périphériques.
+18:26:49:E7:EC:BB - LAPTOP-O3264ONA
+5C:17:CF:62:62:BB - ‎
+1C:99:57:F0:F1:80 - DELL-ILYAS
+38:D5:7A:44:35:E2 - DELETTRE
+3C:6A:A7:EE:51:7D - DELL
+CC:F9:E4:9F:03:66 - PC-NITHARSHAN
+38:D5:7A:03:E7:E6 - DESKTOP-2Q4IFTE
+```
+La ligne de code que vous avez fournie est une instruction d'importation en Python. Elle importe le module `binascii`.
+
+### module `binascii
+`
+Le module `binascii` contient un certain nombre de méthodes pour convertir entre le binaire et diverses représentations binaires encodées en ASCII. Ce module fournit des fonctions pour encoder des données binaires en caractères ASCII imprimables et pour décoder de tels encodages en données binaires. Il fournit un ensemble de méthodes telles que `hexlify()`, `unhexlify()`, `b2a_uu()`, `a2b_uu()`, etc.
+
+Par exemple, `binascii.hexlify()` est une méthode qui convertit les données binaires en une représentation de chaîne hexadécimale. Inversement, `binascii.unhexlify()` est une méthode qui convertit une représentation de chaîne hexadécimale en données binaires.
+
+Voici un exemple simple de son utilisation :
+
+```python
+import binascii
+
+# convertir les données binaires en une ligne de caractères ASCII, la valeur de retour est un objet bytes
+representation_hex = binascii.hexlify(b'\x01\x02\x0A\x0B\x0C')
+print(representation_hex)
+
+# convertir une ligne de caractères ASCII en données binaires
+donnees_binaires = binascii.unhexlify(representation_hex)
+print(donnees_binaires)
+```
+
+Dans cet exemple, nous convertissons d'abord les données binaires en une chaîne hexadécimale à l'aide de `binascii.hexlify()`, puis nous les convertissons en données binaires à l'aide de `binascii.unhexlify()`.
+
+N'oubliez pas, le module `binascii` fait partie de la bibliothèque standard Python, donc vous n'avez rien à installer pour l'utiliser.
+
+### Secure Simple Pairing (SSP)
+Secure Simple Pairing (SSP) est une méthode d'appariement introduite dans la version 2.1 de la spécification Bluetooth. Elle vise à améliorer la sécurité et la simplicité de l'appariement des dispositifs Bluetooth.
+
+SSP offre plusieurs modes d'appariement :
+
+1. **Just Works** : Utilisé lorsque au moins un des dispositifs n'a pas d'interface utilisateur capable d'entrer un code PIN. C'est le moins sécurisé car il n'y a pas de protection contre les attaques de type "man-in-the-middle".
+
+2. **Numeric Comparison** : Utilisé lorsque les deux dispositifs ont des interfaces utilisateur. Un nombre à 6 chiffres est affiché sur les deux dispositifs et l'utilisateur doit confirmer qu'ils correspondent.
+
+3. **Passkey Entry** : Utilisé lorsque un des dispositifs a une interface utilisateur mais pas l'autre. L'utilisateur doit entrer un nombre à 6 chiffres affiché sur l'autre dispositif.
+
+4. **Out of Band (OOB)** : Utilise une méthode de communication externe pour échanger les clés d'authentification. Par exemple, cela pourrait être fait en utilisant NFC.
+
+SSP utilise l'algorithme Elliptic Curve Diffie-Hellman (ECDH) pour créer une clé partagée sécurisée entre les deux dispositifs. Cela permet d'éviter les attaques de type "man-in-the-middle".
+
+Dans le contexte de l'exploit, la méthode `enable_ssp` active le SSP sur l'adaptateur Bluetooth. Cela signifie que lorsque cet adaptateur tente de se connecter à un autre dispositif Bluetooth, il utilisera SSP pour l'appariement.
 # 2. Fondamentaux de la Sécurité dans les Systèmes IoT
 
 ## 2.1. Comprendre les vecteurs d'attaque IoT : de la périphérie au nuage
