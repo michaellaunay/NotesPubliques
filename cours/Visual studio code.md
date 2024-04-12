@@ -178,7 +178,7 @@ Choisir le compte ou le créer.
 `Ctrl+Entrée` / `Ctrl+Maj+Entrée` Insérer une ligne en dessous/au-dessus
 `Ctrl+Maj+\` Aller à la parenthèse/crochet (`bracket`) correspondant
 `Ctrl+Tab right` (tabulation à droite) / `Ctrl+tab left` (tabulation à gauche) Indentation/Désindentation de la ligne
-
+`Ctrl+Maj+F10`
 ## Début / Fin Aller au début/fin de la ligne
 `Ctrl+ Début` / `Fin` Aller au début/fin du fichier
 `Ctrl+ ↑` / `↓ Faire défiler la ligne vers le haut/bas
@@ -199,8 +199,8 @@ Choisir le compte ou le créer.
 `Ctrl+Maj+I` Formater le document
 `Ctrl+K` `Ctrl+F` Formater la sélection
 `F12` Aller à la définition
-`Ctrl+Maj+F10` Aperçu de la définition
-`Ctrl+K F12` Ouvrir la définition sur le côté `Ctrl+`.
+`Ctrl+Maj+F10` Aperçu de la définition dans une fenêtre dite "peek editor", ce qui permet de ne pas avoir à scroller et perdre son focus.
+`Ctrl+K F12` Ouvrir la définition sur le côté.
 
 ## Formatage du HTML
 Ouvrir le fichier 
