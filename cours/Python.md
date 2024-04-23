@@ -329,7 +329,7 @@ def f(p:int=0)->int:
     >>> f(2)
         4
     """
-
+	return p**2
 
 help(f)
 Help on function f in module __main__:
