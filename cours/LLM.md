@@ -270,7 +270,7 @@ Le futur de l'IDE **Cursor** [Using Cursor - the AI powered VS Code alt for the 
 
 Agrégation de textes du domaine public pour l'entrainement [common corpus des textes du domaine public pour entrainer des IA generatives](https://next.ink/131929/common-corpus-des-textes-du-domaine-public-pour-entrainer-des-ia-generatives/)
 
-# Les LLM en bref
+(x**2 for x in range(5))# Les LLM en bref
 
 [résumé de la conférence : LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://youtu.be/GiEcNK3XA_o)
 
