@@ -299,7 +299,6 @@ class CustomSliderWidget(Widget):
 En héritant de `Widget`, nous aurons la flexibilité de définir exactement comment notre widget doit se comporter et s'afficher.
 
 En somme, les widgets sont des éléments essentiels de Deform, offrant la flexibilité et la puissance nécessaires pour représenter visuellement des champs de formulaire de manière intuitive et efficace.
-
 # 4. Mise en pratique : Création d'un formulaire complet
 
 La création d'un formulaire complet avec Deform nécessite plusieurs étapes interdépendantes. Dans cette section, nous construirons un formulaire d'inscription typique pour illustrer le processus.
@@ -402,7 +401,7 @@ from deform.schema import String
 
 username = String(
     title="Nom d'utilisateur",
-    messages={'required': 'Veuillez entrer un nom d'utilisateur.'}
+    messages={'required': "Veuillez entrer un nom d'utilisateur."}
 )
 ```
 
