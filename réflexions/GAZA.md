@@ -16,3 +16,15 @@ Le blocus de l'information à Gaza par l'armée israélienne ne permet pas de sa
 La première action doit être d'y dépêcher une force d'observation et d'y autoriser tous les journalistes internationaux.
 
 Des deux côtés des victimes innocentes tombent, sont tombées et tomberont, alimentant la haine.
+
+# Comprendre le nombre de mort à Gaza
+
+Pour comprendre pourquoi la guerre à Gaza fait autant de victimes, je vous invite à lire l'article de Jean-Marc Manach publié sur NextInpact.com : "Le créateur des IA israéliennes de bombardement automatisé identifié suite à une boulette" : https://next.ink/133646/le-createur-des-ia-israeliennes-de-bombardement-automatise-identifie-suite-a-une-boulette/
+ 
+L'article révèle comment l'identité du chef de l'Unité 8200, une unité de renseignements israélienne, a été exposée suite à la publication d'un livre qu'il a écrit. Ce livre aborde l'utilisation de l'intelligence artificielle (IA) pour automatiser le ciblage et le bombardement lors des opérations militaires. Cette IA, surnommée "Lavender", est utilisée pour désigner des individus à Gaza comme cibles potentielles pour des frappes aériennes, en exploitant de vastes quantités de données pour identifier leurs affiliations à des groupes militants.
+
+Le programme a marqué jusqu'à 37 000 Palestiniens, incluant des données provenant des médias sociaux, des contacts téléphoniques et d'autres informations personnelles. L'article met également en lumière les risques et les implications éthiques de l'utilisation de l'IA dans des contextes militaires, notamment le potentiel d'erreurs et de "dommages collatéraux" considérables. Les méthodes employées soulèvent des questions quant à leur conformité avec le droit international humanitaire, particulièrement les principes de distinction et de proportionnalité. En effet, pour atteindre leur cible, les militaires doivent accepter de bombarder les domiciles occupés par les familles des cibles, ce qui entraîne des dommages collatéraux importants. Le traitement par l'IA a étendu ce qui était autrefois acceptable uniquement pour les hauts dirigeants à 37 000 cibles, autorisant 20 morts civils par cible de faible intérêt, et jusqu'à 300 morts pour un haut dirigeant. Cela explique également pourquoi la fréquence des tirs est si intense.
+
+Cela permet également de comprendre la récente "terrible erreur d'appréciation" ayant conduit à la mort des 7 membres de l'ONG "World Central Kitchen" https://www.lemonde.fr/international/article/2024/04/02/guerre-israel-hamas-sept-humanitaires-tues-par-des-frappes-israeliennes-un-tragique-accident-selon-l-armee_6225632_3210.html
+
+En bref, cet article montre le danger de l'usage des IA dans les conflits.
