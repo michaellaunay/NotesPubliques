@@ -274,7 +274,9 @@ Agrégation de textes du domaine public pour l'entrainement [common corpus des t
 
 [résumé de la conférence : LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://youtu.be/GiEcNK3XA_o)
 
-Sur Hugging Face, il y a plus de 70 000 modèles open source [Huggingface/models](https://huggingface.co/models).
+# Les LLM en bref
+
+Sur Hugging Face, il y a plus de 1 000 000 modèles open source au 1er mai 2024 [Huggingface/models](https://huggingface.co/models).
 Aujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.
 
 Les LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.
