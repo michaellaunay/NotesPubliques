@@ -10,7 +10,7 @@ tags: [excalidraw]
 # Text Elements
 ![[MU 01 Introduction]] ^aPWRa9RN
 
-Dévelopement de logiciel avec l'IA ^cnGyB8QR
+Développement de logiciel avec l'IA ^cnGyB8QR
 
 ![[MU 03 Sujet]] ^4T0rdBAu
 
@@ -153,8 +153,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 	"elements": [
 		{
 			"type": "rectangle",
-			"version": 1131,
-			"versionNonce": 1316265503,
+			"version": 1132,
+			"versionNonce": 1228915409,
 			"isDeleted": false,
 			"id": "2vLnqE1UfpSw0Yxy2FAf4",
 			"fillStyle": "solid",
@@ -164,7 +164,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1880.4691760510254,
-			"y": -439.5752845868992,
+			"y": -441.7975068091214,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#d6d6d6",
 			"width": 2202.857142857143,
@@ -215,14 +215,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711636137757,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "image",
-			"version": 1290,
-			"versionNonce": 326883633,
+			"version": 1291,
+			"versionNonce": 2055686001,
 			"isDeleted": false,
 			"id": "Y0KPpV5h",
 			"fillStyle": "hachure",
@@ -232,7 +232,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1612.3229760519298,
-			"y": -122.21867685991253,
+			"y": -124.4408990821347,
 			"strokeColor": "transparent",
 			"backgroundColor": "#d6d6d6",
 			"width": 1691.7722277722276,
@@ -244,7 +244,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636228397,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -256,8 +256,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 1062,
-			"versionNonce": 650961503,
+			"version": 1083,
+			"versionNonce": 119880881,
 			"isDeleted": false,
 			"id": "cnGyB8QR",
 			"fillStyle": "solid",
@@ -266,11 +266,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1725.32429114514,
-			"y": -317.70788217519674,
+			"x": -1776.435402256251,
+			"y": -326.59677106408566,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#d6d6d6",
-			"width": 1958.2310791015625,
+			"width": 2016.0816650390625,
 			"height": 146.69474070364197,
 			"seed": 1946988876,
 			"groupIds": [
@@ -279,17 +279,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1714672024981,
 			"link": null,
 			"locked": false,
 			"fontSize": 117.35579256291358,
 			"fontFamily": 1,
-			"text": "Dévelopement de logiciel avec l'IA",
-			"rawText": "Dévelopement de logiciel avec l'IA",
+			"text": "Développement de logiciel avec l'IA",
+			"rawText": "Développement de logiciel avec l'IA",
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "Dévelopement de logiciel avec l'IA",
+			"originalText": "Développement de logiciel avec l'IA",
 			"lineHeight": 1.25,
 			"baseline": 103
 		},
@@ -405,8 +405,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1578,
-			"versionNonce": 210835103,
+			"version": 1579,
+			"versionNonce": 851525809,
 			"isDeleted": false,
 			"id": "hZ_id1WcQLVkyVY0tOngI",
 			"fillStyle": "solid",
@@ -415,12 +415,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -380.786803414947,
-			"y": -446.08370008892416,
+			"x": -378.8081733427481,
+			"y": -448.30592231114633,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 698.8338178944155,
-			"height": 1194.9032984138853,
+			"width": 696.8551878222165,
+			"height": 1192.6810761916631,
 			"seed": 558971380,
 			"groupIds": [],
 			"frameId": null,
@@ -428,7 +428,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -450,19 +450,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					183.18954106995994,
-					-166.6398050357767
+					181.21091099776106,
+					-164.41758281355453
 				],
 				[
-					698.8338178944155,
-					-1194.9032984138853
+					696.8551878222165,
+					-1192.6810761916631
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 1200,
-			"versionNonce": 177120598,
+			"version": 1212,
+			"versionNonce": 1780070815,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -471,8 +471,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1957.9334031292492,
-			"y": -4739.522806356519,
+			"x": 1956.5992798838645,
+			"y": -4738.260013889811,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
 			"width": 1672.1818181818194,
@@ -501,14 +501,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1712247335335,
+			"updated": 1714654451445,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1537,
-			"versionNonce": 1511934550,
+			"version": 1562,
+			"versionNonce": 1158443551,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -517,35 +517,35 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1970.587788782659,
-			"y": -4734.222806356519,
+			"x": 1969.2536655372742,
+			"y": -4700.760013889811,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1646.873046875,
-			"height": 1352.3999999999999,
+			"height": 1287.9999999999998,
 			"seed": 299920756,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1712247335337,
+			"updated": 1714654451447,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
 			"fontFamily": 2,
-			"text": "Les LLM en bref\n\n[résumé de la conférence : LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en\nSeine](https://youtu.be/GiEcNK3XA_o)\n\nSur Hugging Face, il y a plus de 70 000 modèles open source [Huggingface/models](https://huggingface.co/models).\nAujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle\nde la quasi-totalité des LLM ; elle vise à prédire le mot suivant.\n\nLes LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction\navec.\n\nPour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).\n\nAujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de\nthéories).\nLes observations :\n- Mémorisation, compression, structuration, et généralisation.\n- Capacités émergentes :\n\t- \"In-context learning\" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.\n\t- Capacité de faire des additions de 3 chiffres (10^10).\n\t- Répondre à des questions.\n\t- Générer des programmes.\n\t- Jason Wei a dénombré 137 capacités émergentes :\n\t\t- Décomposition d'un problème en étapes.\n\t\t- \"Prompt of thought\" (Accéder au raisonnement du LLM).\n\t\t- \"Analogical prompting\"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).\n\t\t- Instruction procédurale.\n\t\t- Anagramme.\n\t\t- Arithmétique modulaire.\n\t\t- Problèmes simples de mathématiques.\n\t\t- Déduction logique.\n\t\t- Déduction analytique.\n\t\t- Théorie de l'esprit (avoir un modèle de son locuteur) ?\n\t\t- ...\nEmbryons de théories **Passage à l'échelle** (\"scaling law\") :\n- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 :\nl'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼`\noù 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les \"transformers\").\n\t- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).\n\t- Double descente.\n\t- Transition de phases.",
+			"text": "Les LLM en bref\n\nSur Hugging Face, il y a plus de 1 000 000 modèles open source au 1er mai 2024\n[Huggingface/models](https://huggingface.co/models).\nAujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle\nde la quasi-totalité des LLM ; elle vise à prédire le mot suivant.\n\nLes LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction\navec.\n\nPour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).\n\nAujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de\nthéories).\nLes observations :\n- Mémorisation, compression, structuration, et généralisation.\n- Capacités émergentes :\n\t- \"In-context learning\" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.\n\t- Capacité de faire des additions de 3 chiffres (10^10).\n\t- Répondre à des questions.\n\t- Générer des programmes.\n\t- Jason Wei a dénombré 137 capacités émergentes :\n\t\t- Décomposition d'un problème en étapes.\n\t\t- \"Prompt of thought\" (Accéder au raisonnement du LLM).\n\t\t- \"Analogical prompting\"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).\n\t\t- Instruction procédurale.\n\t\t- Anagramme.\n\t\t- Arithmétique modulaire.\n\t\t- Problèmes simples de mathématiques.\n\t\t- Déduction logique.\n\t\t- Déduction analytique.\n\t\t- Théorie de l'esprit (avoir un modèle de son locuteur) ?\n\t\t- ...\nEmbryons de théories **Passage à l'échelle** (\"scaling law\") :\n- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 :\nl'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼`\noù 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les \"transformers\").\n\t- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).\n\t- Double descente.\n\t- Transition de phases.",
 			"rawText": "![[LLM# Les LLM en bref]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "lUEx8bLLIwfSfR3WIe_3Z",
-			"originalText": "Les LLM en bref\n\n[résumé de la conférence : LLM(ChatGPT) - Dé-coder les grands modèles de langage - Christophe Cerisara | Codeurs en Seine](https://youtu.be/GiEcNK3XA_o)\n\nSur Hugging Face, il y a plus de 70 000 modèles open source [Huggingface/models](https://huggingface.co/models).\nAujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.\n\nLes LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.\n\nPour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).\n\nAujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de théories).\nLes observations :\n- Mémorisation, compression, structuration, et généralisation.\n- Capacités émergentes :\n\t- \"In-context learning\" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.\n\t- Capacité de faire des additions de 3 chiffres (10^10).\n\t- Répondre à des questions.\n\t- Générer des programmes.\n\t- Jason Wei a dénombré 137 capacités émergentes :\n\t\t- Décomposition d'un problème en étapes.\n\t\t- \"Prompt of thought\" (Accéder au raisonnement du LLM).\n\t\t- \"Analogical prompting\"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).\n\t\t- Instruction procédurale.\n\t\t- Anagramme.\n\t\t- Arithmétique modulaire.\n\t\t- Problèmes simples de mathématiques.\n\t\t- Déduction logique.\n\t\t- Déduction analytique.\n\t\t- Théorie de l'esprit (avoir un modèle de son locuteur) ?\n\t\t- ...\nEmbryons de théories **Passage à l'échelle** (\"scaling law\") :\n\t- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 : l'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼` où 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les \"transformers\").\n\t- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).\n\t- Double descente.\n\t- Transition de phases.",
+			"originalText": "Les LLM en bref\n\nSur Hugging Face, il y a plus de 1 000 000 modèles open source au 1er mai 2024 [Huggingface/models](https://huggingface.co/models).\nAujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.\n\nLes LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.\n\nPour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).\n\nAujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de théories).\nLes observations :\n- Mémorisation, compression, structuration, et généralisation.\n- Capacités émergentes :\n\t- \"In-context learning\" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.\n\t- Capacité de faire des additions de 3 chiffres (10^10).\n\t- Répondre à des questions.\n\t- Générer des programmes.\n\t- Jason Wei a dénombré 137 capacités émergentes :\n\t\t- Décomposition d'un problème en étapes.\n\t\t- \"Prompt of thought\" (Accéder au raisonnement du LLM).\n\t\t- \"Analogical prompting\"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).\n\t\t- Instruction procédurale.\n\t\t- Anagramme.\n\t\t- Arithmétique modulaire.\n\t\t- Problèmes simples de mathématiques.\n\t\t- Déduction logique.\n\t\t- Déduction analytique.\n\t\t- Théorie de l'esprit (avoir un modèle de son locuteur) ?\n\t\t- ...\nEmbryons de théories **Passage à l'échelle** (\"scaling law\") :\n\t- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 : l'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼` où 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les \"transformers\").\n\t- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).\n\t- Double descente.\n\t- Transition de phases.",
 			"lineHeight": 1.15,
-			"baseline": 1345
+			"baseline": 1280
 		},
 		{
 			"type": "arrow",
-			"version": 1833,
-			"versionNonce": 326863510,
+			"version": 1846,
+			"versionNonce": 319761855,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -558,8 +558,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": -2890.4392418651264,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "transparent",
-			"width": 684.9779379394547,
-			"height": 485.08356449139274,
+			"width": 683.429860166056,
+			"height": 483.8207720246842,
 			"seed": 1301585396,
 			"groupIds": [],
 			"frameId": null,
@@ -567,7 +567,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335335,
+			"updated": 1714654451446,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -593,15 +593,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					-25.51862942645903
 				],
 				[
-					684.9779379394547,
-					-485.08356449139274
+					683.429860166056,
+					-483.8207720246842
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 600,
-			"versionNonce": 2077134742,
+			"version": 603,
+			"versionNonce": 1346900273,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -610,7 +610,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 932.7045984189408,
+			"x": 932.704598418941,
 			"y": 2431.112159789026,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -630,14 +630,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1712247335337,
+			"updated": 1714654114405,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 898,
-			"versionNonce": 566504662,
+			"version": 901,
+			"versionNonce": 611369745,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -646,7 +646,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1004.5753739925146,
+			"x": 1004.5753739925149,
 			"y": 2489.0696127402666,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -659,7 +659,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1712247335337,
+			"updated": 1714654114405,
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 38.41616766467066,
@@ -785,8 +785,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1141,
-			"versionNonce": 1563031121,
+			"version": 1142,
+			"versionNonce": 790831569,
 			"isDeleted": false,
 			"id": "oNZu8XuHb9ysCQfj-sPI5",
 			"fillStyle": "solid",
@@ -796,11 +796,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 342.7843769333472,
-			"y": 1408.8513462497215,
+			"y": 1408.3980604363192,
 			"strokeColor": "#e03131",
 			"backgroundColor": "transparent",
 			"width": 475.2766077141494,
-			"height": 1184.1484602742678,
+			"height": 1184.60174608767,
 			"seed": 1520147828,
 			"groupIds": [],
 			"frameId": null,
@@ -808,7 +808,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -831,11 +831,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					222.4979996205641,
-					266.8784903369446
+					267.3317761503469
 				],
 				[
 					475.2766077141494,
-					1184.1484602742678
+					1184.60174608767
 				]
 			]
 		},
@@ -1491,8 +1491,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 599,
-			"versionNonce": 1343866838,
+			"version": 612,
+			"versionNonce": 1098980831,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1501,12 +1501,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 2664.1785965399295,
-			"y": -4749.5982110876275,
+			"x": 2662.826136370228,
+			"y": -4748.33541862092,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 1895.3720538720554,
-			"height": 962.6314616902955,
+			"width": 1896.7245140417567,
+			"height": 963.8942541570032,
 			"seed": 865819775,
 			"groupIds": [],
 			"frameId": null,
@@ -1514,7 +1514,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335335,
+			"updated": 1714654451446,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1536,12 +1536,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					1012.045454545454,
-					-908.4471728392391
+					1013.3979147151554,
+					-909.7099653059468
 				],
 				[
-					1895.3720538720554,
-					-962.6314616902955
+					1896.7245140417567,
+					-963.8942541570032
 				]
 			]
 		},
@@ -1743,8 +1743,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 535,
-			"versionNonce": 1887329558,
+			"version": 548,
+			"versionNonce": 142608895,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1753,12 +1753,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 3638.8820597433923,
-			"y": -4095.0574314572527,
+			"x": 3637.5479364980074,
+			"y": -4094.6573674765236,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 918.0303774174026,
-			"height": 240.11161462995506,
+			"width": 919.3645006627876,
+			"height": 239.71155064922596,
 			"seed": 2054474143,
 			"groupIds": [],
 			"frameId": null,
@@ -1766,7 +1766,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335335,
+			"updated": 1714654451446,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1788,12 +1788,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					583.1428571428569,
-					240.11161462995506
+					584.4769803882418,
+					239.71155064922596
 				],
 				[
-					918.0303774174026,
-					169.72071073331836
+					919.3645006627876,
+					169.32064675258925
 				]
 			]
 		},
@@ -2158,8 +2158,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 679,
-			"versionNonce": 1234444822,
+			"version": 682,
+			"versionNonce": 946354417,
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2181,7 +2181,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335337,
+			"updated": 1714654114406,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3723,8 +3723,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 350,
-			"versionNonce": 1645167057,
+			"version": 351,
+			"versionNonce": 1326973585,
 			"isDeleted": false,
 			"id": "hsnLuyP3fkOGlttwSpI3q",
 			"fillStyle": "solid",
@@ -3734,11 +3734,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 325.96392830223476,
-			"y": 409.4654038005299,
+			"y": 408.9121431364515,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
 			"width": 780.0714285714287,
-			"height": 477.21770471712875,
+			"height": 477.77096538120713,
 			"seed": 1679328401,
 			"groupIds": [],
 			"frameId": null,
@@ -3746,7 +3746,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3769,11 +3769,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					175.7142857142859,
-					115.35843186794705
+					115.91169253202543
 				],
 				[
 					780.0714285714287,
-					477.21770471712875
+					477.77096538120713
 				]
 			]
 		},
@@ -3964,8 +3964,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 836,
-			"versionNonce": 373588054,
+			"version": 838,
+			"versionNonce": 271798865,
 			"isDeleted": false,
 			"id": "Mzebemv_8Q07FqMIh6OhF",
 			"fillStyle": "solid",
@@ -3974,12 +3974,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -662.3810382082951,
-			"y": 1657.8762638646492,
+			"x": -661.6496331394882,
+			"y": 1655.6540416424268,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
-			"width": 164.76508113892618,
-			"height": 1286.3285241847796,
+			"width": 164.42601175045434,
+			"height": 1288.5507464070024,
 			"seed": 1476645695,
 			"groupIds": [],
 			"frameId": null,
@@ -3987,7 +3987,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712089323776,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4009,8 +4009,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					164.76508113892618,
-					1286.3285241847796
+					164.42601175045434,
+					1288.5507464070024
 				]
 			]
 		},
@@ -4205,8 +4205,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 423,
-			"versionNonce": 804385041,
+			"version": 424,
+			"versionNonce": 60219441,
 			"isDeleted": false,
 			"id": "Ojiem9ihrAUq0OYXnhnI-",
 			"fillStyle": "solid",
@@ -4216,7 +4216,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1894.2095565512568,
-			"y": 1570.3756634916267,
+			"y": 1568.6021833019513,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#b2f2bb",
 			"width": 756.3174603174598,
@@ -4228,7 +4228,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4251,18 +4251,18 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-301.4285714285711,
-					-106.6723184436421
+					-104.89883825396669
 				],
 				[
 					-756.3174603174598,
-					36.95088999093696
+					38.72437018061237
 				]
 			]
 		},
 		{
 			"type": "arrow",
-			"version": 303,
-			"versionNonce": 1965958271,
+			"version": 304,
+			"versionNonce": 1124971025,
 			"isDeleted": false,
 			"id": "swg4PQ4FimZtWpPzTyRT1",
 			"fillStyle": "solid",
@@ -4271,12 +4271,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1096.7903890695393,
-			"y": 1667.1759582356622,
+			"x": -1096.4678541324781,
+			"y": 1664.95373601344,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
-			"width": 1599.9395446470667,
-			"height": 1201.486513486514,
+			"width": 1600.2620795841278,
+			"height": 1203.7087357087362,
 			"seed": 1011510641,
 			"groupIds": [],
 			"frameId": null,
@@ -4284,7 +4284,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4306,12 +4306,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-128.19045175300062,
-					581.486513486514
+					-128.51298669006178,
+					583.7087357087362
 				],
 				[
-					-1599.9395446470667,
-					1201.486513486514
+					-1600.2620795841278,
+					1203.7087357087362
 				]
 			]
 		},
@@ -4695,8 +4695,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 125,
-			"versionNonce": 5779537,
+			"version": 126,
+			"versionNonce": 1938769905,
 			"isDeleted": false,
 			"id": "ur0m1rD0J0PhgO3IrdcxK",
 			"fillStyle": "solid",
@@ -4706,11 +4706,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1885.1713170130183,
-			"y": 486.01172664267614,
+			"y": 484.8103201077238,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
 			"width": 1803.8095238095243,
-			"height": 711.0693126405549,
+			"height": 709.8679061056025,
 			"seed": 1403381919,
 			"groupIds": [],
 			"frameId": null,
@@ -4718,7 +4718,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4741,11 +4741,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-930.4761904761904,
-					-497.7359793072217
+					-496.53457277226937
 				],
 				[
 					-1803.8095238095243,
-					-711.0693126405549
+					-709.8679061056025
 				]
 			]
 		},
@@ -5267,8 +5267,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 75,
-			"versionNonce": 683163135,
+			"version": 76,
+			"versionNonce": 1658896305,
 			"isDeleted": false,
 			"id": "OpXKle2Vqw0mqkwjQMxdY",
 			"fillStyle": "solid",
@@ -5277,12 +5277,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1180.0872579210572,
-			"y": -440.02679610955784,
+			"x": -1180.9590742621772,
+			"y": -442.7975068091216,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
-			"width": 2290,
-			"height": 2290,
+			"width": 2289.12818365888,
+			"height": 2287.229289300436,
 			"seed": 1528137745,
 			"groupIds": [],
 			"frameId": null,
@@ -5290,7 +5290,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5312,19 +5312,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-850,
-					-1390
+					-849.1281836588801,
+					-1387.2292893004362
 				],
 				[
-					-2290,
-					-2290
+					-2289.12818365888,
+					-2287.229289300436
 				]
 			]
 		},
 		{
 			"type": "arrow",
-			"version": 785,
-			"versionNonce": 527118602,
+			"version": 786,
+			"versionNonce": 1827643793,
 			"isDeleted": false,
 			"id": "xHHYywgz-NrofMKvRmbeF",
 			"fillStyle": "solid",
@@ -5333,12 +5333,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -862.4285277623258,
-			"y": -458.0426691254306,
+			"x": -862.5516879218451,
+			"y": -460.2648913476528,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
 			"width": 1688.4713068149938,
-			"height": 5852.333333333332,
+			"height": 5850.1111111111095,
 			"seed": 1185163583,
 			"groupIds": [],
 			"frameId": null,
@@ -5346,7 +5346,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247604564,
+			"updated": 1714672021332,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5368,12 +5368,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-680,
-					-2960
+					-679.8768398404807,
+					-2957.777777777778
 				],
 				[
-					1008.4713068149938,
-					-5852.333333333332
+					1008.5944669745131,
+					-5850.1111111111095
 				]
 			]
 		},
@@ -5650,8 +5650,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 99,
-			"versionNonce": 66524310,
+			"version": 105,
+			"versionNonce": 150040753,
 			"isDeleted": false,
 			"id": "s7efyDs-_91sKR4aShEhN",
 			"fillStyle": "solid",
@@ -5661,11 +5661,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -4780.0475753813735,
-			"y": 1855.94601184461,
+			"y": 1855.972583128613,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 634.4444444444443,
-			"height": 10.677641697762738,
+			"height": 10.6927248319289,
 			"seed": 1496058591,
 			"groupIds": [],
 			"frameId": null,
@@ -5673,7 +5673,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335339,
+			"updated": 1714654114409,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5696,7 +5696,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-634.4444444444443,
-					-10.677641697762738
+					-10.6927248319289
 				]
 			]
 		},
@@ -5777,8 +5777,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 459,
-			"versionNonce": 1797220118,
+			"version": 465,
+			"versionNonce": 1725937777,
 			"isDeleted": false,
 			"id": "w-QAzjhwrKBPvy1GeLG0U",
 			"fillStyle": "solid",
@@ -5788,11 +5788,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -8391.158686492483,
-			"y": -3509.2833344637465,
+			"y": -3509.2833361324883,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 618.3333333333321,
-			"height": 124.96149386648358,
+			"height": 124.96149265027725,
 			"seed": 1906058449,
 			"groupIds": [],
 			"frameId": null,
@@ -5800,7 +5800,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335339,
+			"updated": 1714654114410,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5823,7 +5823,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-618.3333333333321,
-					-124.96149386648358
+					-124.96149265027725
 				]
 			]
 		},
@@ -5908,8 +5908,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 153,
-			"versionNonce": 1429543318,
+			"version": 159,
+			"versionNonce": 1747914801,
 			"isDeleted": false,
 			"id": "mfzQFe3Fk8Dslm-t_xCHZ",
 			"fillStyle": "solid",
@@ -5918,12 +5918,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -8367.805872639672,
-			"y": -2401.3629101640786,
+			"x": -8367.80587263967,
+			"y": -2401.347260080607,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
-			"width": 565.8333333333321,
-			"height": 96.72767952950517,
+			"width": 565.8333333333339,
+			"height": 96.73539143663993,
 			"seed": 2046383825,
 			"groupIds": [],
 			"frameId": null,
@@ -5931,7 +5931,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335340,
+			"updated": 1714654114411,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5953,8 +5953,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-565.8333333333321,
-					-96.72767952950517
+					-565.8333333333339,
+					-96.73539143663993
 				]
 			]
 		},
@@ -6035,8 +6035,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 105,
-			"versionNonce": 2026413718,
+			"version": 117,
+			"versionNonce": 1642131377,
 			"isDeleted": false,
 			"id": "6BaaEWzPD99fGPFPc-a53",
 			"fillStyle": "solid",
@@ -6046,11 +6046,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -10783.242289668808,
-			"y": -2576.1046487600347,
+			"y": -2576.1046356177253,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
 			"width": 573.9285714285706,
-			"height": 19.990048621600636,
+			"height": 19.990041596361607,
 			"seed": 584611231,
 			"groupIds": [],
 			"frameId": null,
@@ -6058,7 +6058,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335342,
+			"updated": 1714654114413,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6081,7 +6081,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-573.9285714285706,
-					19.990048621600636
+					19.990041596361607
 				]
 			]
 		},
@@ -6260,8 +6260,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 54,
-			"versionNonce": 1284927766,
+			"version": 60,
+			"versionNonce": 2067494769,
 			"isDeleted": false,
 			"id": "xa0CyPXoYESqVPXobs52o",
 			"fillStyle": "solid",
@@ -6271,11 +6271,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -7792.073458499974,
-			"y": -4953.83276816286,
+			"y": -4953.8259383443565,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 626.6666666666661,
-			"height": 28.136042025636925,
+			"height": 28.140643305843696,
 			"seed": 432208049,
 			"groupIds": [],
 			"frameId": null,
@@ -6283,7 +6283,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1712247335343,
+			"updated": 1714654114414,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6306,7 +6306,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-626.6666666666661,
-					-28.136042025636925
+					-28.140643305843696
 				]
 			]
 		},
@@ -6754,30 +6754,30 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"baseline": 240
 		},
 		{
-			"id": "ZdlD1p5kPvx8cGs-O32Fs",
 			"type": "embeddable",
-			"x": -4848.361337287852,
-			"y": -9100.518967749245,
-			"width": 1326.666666666667,
-			"height": 813.3333333333346,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
+			"version": 76,
+			"versionNonce": 1496187094,
+			"isDeleted": false,
+			"id": "ZdlD1p5kPvx8cGs-O32Fs",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -4848.361337287852,
+			"y": -9100.518967749245,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1326.666666666667,
+			"height": 813.3333333333346,
+			"seed": 1089321482,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1089321482,
-			"version": 76,
-			"versionNonce": 1496187094,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1712247393686,
 			"link": "https://youtu.be/GCKRfl1Ct0U",
 			"locked": false,
@@ -6787,30 +6787,30 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"id": "-38IJeTOmS-XOqDBxHCFr",
 			"type": "embeddable",
-			"x": -4838.361337287852,
-			"y": -8160.518967749244,
-			"width": 1336.6666666666665,
-			"height": 710,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
+			"version": 70,
+			"versionNonce": 308577622,
+			"isDeleted": false,
+			"id": "-38IJeTOmS-XOqDBxHCFr",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -4838.361337287852,
+			"y": -8160.518967749244,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1336.6666666666665,
+			"height": 710,
+			"seed": 1412973398,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 3
 			},
-			"seed": 1412973398,
-			"version": 70,
-			"versionNonce": 308577622,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1712247483597,
 			"link": "https://colab.research.google.com/drive/1o_w0KastmEJNVwT5GoqMCciH-18ca5WS?usp=sharing",
 			"locked": false,
@@ -6820,30 +6820,30 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			]
 		},
 		{
-			"id": "AT0C0PPekNhJ2E_UmOU5o",
 			"type": "embeddable",
-			"x": -4838.361337287852,
-			"y": -7290.5189677492435,
-			"width": 1356.666666666667,
-			"height": 786.458333333333,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
+			"version": 104,
+			"versionNonce": 2141123094,
+			"isDeleted": false,
+			"id": "AT0C0PPekNhJ2E_UmOU5o",
 			"fillStyle": "solid",
 			"strokeWidth": 4,
 			"strokeStyle": "solid",
 			"roughness": 2,
 			"opacity": 100,
+			"angle": 0,
+			"x": -4838.361337287852,
+			"y": -7290.5189677492435,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "#ffffff",
+			"width": 1356.666666666667,
+			"height": 786.458333333333,
+			"seed": 2025632202,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 3
 			},
-			"seed": 2025632202,
-			"version": 104,
-			"versionNonce": 2141123094,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1712247612611,
 			"link": "https://youtu.be/2_eaddlwE_Q",
 			"locked": false,
@@ -6851,80 +6851,6 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1,
 				1
 			]
-		},
-		{
-			"id": "NGCuUvzs",
-			"type": "text",
-			"x": -1800.7628376581592,
-			"y": -7928.7426691254295,
-			"width": 10.001953125,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
-			"fillStyle": "solid",
-			"strokeWidth": 4,
-			"strokeStyle": "solid",
-			"roughness": 2,
-			"opacity": 100,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": null,
-			"seed": 139123030,
-			"version": 2,
-			"versionNonce": 1104065354,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1712247367477,
-			"link": null,
-			"locked": false,
-			"text": "",
-			"rawText": "",
-			"fontSize": 36,
-			"fontFamily": 2,
-			"textAlign": "center",
-			"verticalAlign": "middle",
-			"baseline": 33,
-			"containerId": "j1qkH0AZyIZ0c3LnB_oTv",
-			"originalText": "",
-			"lineHeight": 1.15
-		},
-		{
-			"id": "zEgT0nEa",
-			"type": "text",
-			"x": -1800.7628376581592,
-			"y": -7928.7426691254295,
-			"width": 10.001953125,
-			"height": 41.4,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffffff",
-			"fillStyle": "solid",
-			"strokeWidth": 4,
-			"strokeStyle": "solid",
-			"roughness": 2,
-			"opacity": 100,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": null,
-			"seed": 697597578,
-			"version": 2,
-			"versionNonce": 835589846,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1712247364509,
-			"link": null,
-			"locked": false,
-			"text": "",
-			"rawText": "",
-			"fontSize": 36,
-			"fontFamily": 2,
-			"textAlign": "center",
-			"verticalAlign": "middle",
-			"baseline": 33,
-			"containerId": "j1qkH0AZyIZ0c3LnB_oTv",
-			"originalText": "",
-			"lineHeight": 1.15
 		}
 	],
 	"appState": {
@@ -6942,10 +6868,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 8576.694670621186,
-		"scrollY": 11015.623134415911,
+		"scrollX": 2953.5280039545178,
+		"scrollY": 1208.947787193691,
 		"zoom": {
-			"value": 0.1
+			"value": 0.44999999999999996
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
