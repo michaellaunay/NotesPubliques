@@ -768,8 +768,6 @@ Mais attention ! Si la valeur que nous essayons de supprimer n'est pas présente
 mon_ensemble.discard(2)
 ```
 
-
-
 ## Documentation
 
 https://docs.python.org/fr/3/library/stdtypes.html
@@ -1724,6 +1722,245 @@ Dans cet exemple, `mon_decorateur_avec_args` est un décorateur qui prend des ar
 
 Enfin, il est important de mentionner que les décorateurs peuvent aussi être utilisés avec des classes. Les décorateurs de classes fonctionnent de la même manière que les décorateurs de fonctions, mais ils prennent une classe comme argument et retournent une nouvelle classe avec des comportements modifiés ou ajoutés.
 
+## Le module `itertools`
+Les `itertools` sont un module de la bibliothèque standard de Python qui fournit plusieurs itérateurs rapides et efficaces pour boucler sur des données de différentes manières. Voici un aperçu des fonctions les plus courantes et utiles de ce module, accompagnées d'exemples pour chacune.
+
+### 1. `itertools.count(start=0, step=1)`
+
+Génère une séquence infinie de nombres à partir de `start`, incrémentée de `step`.
+
+```python
+import itertools
+
+counter = itertools.count(start=10, step=2)
+for _ in range(5):
+    print(next(counter))
+```
+
+Sortie :
+```
+10
+12
+14
+16
+18
+```
+
+### 2. `itertools.cycle(iterable)`
+
+Répète indéfiniment les éléments de l'itérable donné.
+
+```python
+import itertools
+
+cycler = itertools.cycle(['A', 'B', 'C'])
+for _ in range(6):
+    print(next(cycler))
+```
+
+Sortie :
+```
+A
+B
+C
+A
+B
+C
+```
+
+### 3. `itertools.repeat(object, times=None)`
+
+Répète l'objet donné un nombre de fois spécifié. Si `times` n'est pas fourni, il répète indéfiniment.
+
+```python
+import itertools
+
+repeater = itertools.repeat('Hello', 3)
+for item in repeater:
+    print(item)
+```
+
+Sortie :
+```
+Hello
+Hello
+Hello
+```
+
+### 4. `itertools.permutations(iterable, r=None)`
+
+Retourne toutes les permutations possibles d'une longueur `r` (par défaut la longueur de l'itérable).
+
+```python
+import itertools
+
+perms = itertools.permutations('ABC', 2)
+for perm in perms:
+    print(perm)
+```
+
+Sortie :
+```
+('A', 'B')
+('A', 'C')
+('B', 'A')
+('B', 'C')
+('C', 'A')
+('C', 'B')
+```
+
+### 5. `itertools.combinations(iterable, r)`
+
+Retourne toutes les combinaisons possibles d'une longueur `r`.
+
+```python
+import itertools
+
+combs = itertools.combinations('ABC', 2)
+for comb in combs:
+    print(comb)
+```
+
+Sortie :
+```
+('A', 'B')
+('A', 'C')
+('B', 'C')
+```
+
+### 6. `itertools.product(*iterables, repeat=1)`
+
+Retourne le produit cartésien des itérables donnés.
+
+```python
+import itertools
+
+prod = itertools.product('AB', '12')
+for p in prod:
+    print(p)
+```
+
+Sortie :
+```
+('A', '1')
+('A', '2')
+('B', '1')
+('B', '2')
+```
+
+### 7. `itertools.chain(*iterables)`
+
+Combine plusieurs itérables en un seul.
+
+```python
+import itertools
+
+chained = itertools.chain('ABC', 'DEF')
+for item in chained:
+    print(item)
+```
+
+Sortie :
+```
+A
+B
+C
+D
+E
+F
+```
+
+### 8. `itertools.groupby(iterable, key=None)`
+
+Groupe des éléments consécutifs de l'itérable par une clé donnée.
+
+```python
+import itertools
+
+data = sorted([('A', 1), ('A', 2), ('B', 3), ('B', 4), ('C', 5)], key=lambda x: x[0])
+grouped = itertools.groupby(data, key=lambda x: x[0])
+for key, group in grouped:
+    print(key, list(group))
+```
+
+Sortie :
+```
+A [('A', 1), ('A', 2)]
+B [('B', 3), ('B', 4)]
+C [('C', 5)]
+```
+## Le module `functools`
+Le module `functools` de la bibliothèque standard de Python fournit divers outils utiles pour travailler avec des fonctions et des appels de fonctions. Il est très utile pour les tâches avancées de programmation fonctionnelle. Voici un aperçu de certaines des fonctionnalités clés de ce module, avec des exemples pratiques.
+
+### `functools.reduce`
+La fonction `reduce` applique une fonction binaire (une fonction à deux arguments) de manière répétée à tous les éléments d'un itérable, cumulant ainsi les résultats pour produire une seule valeur finale.
+
+#### Exemple
+Supposons que nous souhaitons calculer le produit de tous les éléments d'une liste.
+
+```python
+import functools
+
+def multiply(x, y):
+    return x * y
+
+numbers = [1, 2, 3, 4, 5]
+product = functools.reduce(multiply, numbers)
+print(product)  # Output: 120
+```
+
+### `functools.partial`
+La fonction `partial` permet de fixer partiellement certains arguments d'une fonction, renvoyant une nouvelle fonction avec moins d'arguments requis.
+
+#### Exemple
+Nous avons une fonction qui prend trois arguments, et nous voulons créer une nouvelle fonction qui a un des arguments préfixé.
+
+```python
+import functools
+
+def power(base, exponent):
+    return base ** exponent
+
+square = functools.partial(power, exponent=2)
+print(square(3))  # Output: 9
+```
+
+### `functools.lru_cache`
+Le décorateur `lru_cache` (Least Recently Used Cache) mémorise les résultats des appels de fonction pour accélérer les appels ultérieurs avec les mêmes arguments.
+
+#### Exemple
+Nous avons une fonction de calcul coûteuse que nous voulons optimiser en utilisant le cache.
+
+```python
+import functools
+
+@functools.lru_cache(maxsize=128)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))  # Output: 55
+```
+La mise ne cache peut aussi permettre de résoudre des limites de récursion :
+```python
+>>> print(fibonacci(1000)) 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 5, in fibonacci
+  File "<stdin>", line 5, in fibonacci
+  File "<stdin>", line 5, in fibonacci
+  [Previous line repeated 496 more times]
+RecursionError: maximum recursion depth exceeded
+>>> print(fibonacci(500)) 
+139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125
+>>> print(fibonacci(750)) 
+2461757021582324272166248155313036893697139996697461509576233211000055607912198979704988704446425834042795269603588522245550271050495783935904220352228801000
+>>> print(fibonacci(1000)) 
+43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
+>>> fibonacci.cache_info()
+CacheInfo(hits=1001, misses=1501, maxsize=128, currsize=128)
+```
 ## Wrap
 
 `functools.wraps` est une fonction de la bibliothèque standard Python utilisée dans le contexte des décorateurs. Elle est utilisée pour conserver les métadonnées de la fonction originale lors de la décoration.
@@ -1760,6 +1997,62 @@ print(dis_bonjour.__doc__)   # Affiche "Cette fonction affiche Bonjour !"
 ```
 
 Sans l'utilisation de `functools.wraps`, les métadonnées auraient été celles de la fonction `fonction_enveloppe`, ce qui n'est pas le comportement souhaité.
+
+Autre exemple :
+
+```python
+import functools
+
+def my_decorator(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print("Something is happening before the function is called.")
+        result = func(*args, **kwargs)
+        print("Something is happening after the function is called.")
+        return result
+    return wrapper
+
+@my_decorator
+def say_hello(name):
+    """Greet someone by their name."""
+    print(f"Hello, {name}!")
+
+say_hello("Alice")
+print(say_hello.__name__)  # Output: say_hello
+print(say_hello.__doc__)   # Output: Greet someone by their name.
+```
+
+### `functools.total_ordering`
+Le décorateur `total_ordering` permet de définir toutes les méthodes de comparaison riche (`__lt__`, `__le__`, `__gt__`, `__ge__`) à partir de la définition d'une seule ou de deux de ces méthodes.
+
+#### Exemple
+Nous définissons une classe avec une méthode de comparaison et utilisons `total_ordering` pour compléter les autres.
+
+```python
+import functools
+
+@functools.total_ordering
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __eq__(self, other):
+        if not isinstance(other, Person):
+            return NotImplemented
+        return self.age == other.age
+
+    def __lt__(self, other):
+        if not isinstance(other, Person):
+            return NotImplemented
+        return self.age < other.age
+
+# Maintenant, Person a aussi les méthodes __le__, __gt__, et __ge__
+p1 = Person("Alice", 30)
+p2 = Person("Bob", 25)
+
+print(p1 > p2)  # Output: True
+```
 
 # Décorateur de fonction pour mesurer la performance
 Nous pouvons facilement créer un décorateur en Python pour mesurer le temps d'exécution d'une fonction ou d'une méthode et le logger. Voici un exemple de décorateur qui utilise le module `logging` pour enregistrer le temps d'exécution :
