@@ -1,12 +1,14 @@
 ## Introduction
- Markdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour reddit.
- Mardown permet de faire de la mise en forme basique d'un texte brute sans utiliser un éditeur de texte.
- En conséquence une fois les règles de formatages de base aprises, l'auteur d'un texte peut se concentrer pleienement sur le fond et non la forme de celui-ci tout en conservant la sémantique des titres, paragraphes, italique, gras, lien exemple de code.
- Markdown est souvent utilisé pour rédiger la documentation des programmes informatique, la prise de note, la discussion sur divers forums, etc.
+
+Markdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour Reddit. Le nom du langage est un clin d’œil aux langages de type "markup" (à balises) comme le HTML et le XHTML en soulignant que "markdown" est simple, a moins d’éléments structurants, et peut quand même être compris par un humain en l’absence de mise en forme. 
+
+Markdown permet de faire de la mise en forme basique d'un texte brut sans utiliser un éditeur de texte. En conséquence, une fois les règles de formatage de base apprises, l'auteur d'un texte peut se concentrer pleinement sur le fond et non la forme de celui-ci, tout en conservant la sémantique des titres, paragraphes, italique, gras, liens, et exemples de code. 
+
+Markdown est devenu très populaire pour la rédaction de documents sur Internet, notamment pour la création de contenu sur les réseaux sociaux et les blogs. Il est très souvent utilisé pour rédiger la documentation des programmes informatiques, la prise de notes, les discussions, les tickets sur les outils de suivi de bogues ou de tâches, etc.
 
 ## Formatage
-Markdown est un langage de balisage léger qui permet de créer des documents structurés en utilisant des caractères spéciaux pour indiquer les titres, les listes, les liens, etc. Il a été créé en 2004 par John Gruber et est devenu très populaire pour la rédaction de documents sur internet, notamment pour la création de contenu sur les réseaux sociaux et les blogs.
 
+Par ce qu'il est un langage de balisage léger, Markdown permet de créer des documents structurés en utilisant des caractères spéciaux pour indiquer les titres, les listes, les liens, etc.
 
 Voici quelques exemples de balises courantes utilisées dans Markdown :
 
