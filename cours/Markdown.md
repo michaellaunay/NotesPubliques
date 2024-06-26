@@ -5,28 +5,116 @@ Markdown est un langage de balisage léger créé en 2004 par John Gruber et Aar
 Markdown permet de faire de la mise en forme basique d'un texte brut sans utiliser un éditeur de texte. En conséquence, une fois les règles de formatage de base apprises, l'auteur d'un texte peut se concentrer pleinement sur le fond et non la forme de celui-ci, tout en conservant la sémantique des titres, paragraphes, italique, gras, liens, et exemples de code. 
 
 Markdown est devenu très populaire pour la rédaction de documents sur Internet, notamment pour la création de contenu sur les réseaux sociaux et les blogs. Il est très souvent utilisé pour rédiger la documentation des programmes informatiques, la prise de notes, les discussions, les tickets sur les outils de suivi de bogues ou de tâches, etc.
-
 ## Formatage
 
-Par ce qu'il est un langage de balisage léger, Markdown permet de créer des documents structurés en utilisant des caractères spéciaux pour indiquer les titres, les listes, les liens, etc.
+Parce qu'il est un langage de balisage léger, Markdown permet de créer des documents structurés en utilisant des caractères spéciaux pour indiquer les titres, les listes, les liens, etc.
 
 Voici quelques exemples de balises courantes utilisées dans Markdown :
 
-**Titres** : Utilisons un ou plusieurs # devant notre titre pour indiquer le niveau de titre. Par exemple, # Titre 1 est un titre de niveau 1, ## Titre 2 est un titre de niveau 2, et ainsi de suite.
+### Titres
+Utilisons un ou plusieurs `#` devant notre titre pour indiquer le niveau de titre. Par exemple :
+- `# Titre 1` est un titre de niveau 1
+- `## Titre 2` est un titre de niveau 2
+- `### Titre 3` est un titre de niveau 3, et ainsi de suite jusqu'à `###### Titre 6`.
+### Gras, italique et surlignage
+Utilisons des astérisques ou des soulignements pour mettre en **gras** ou en _italique_. Par exemple :
+- **Gras** : `**texte en gras**` ou `__texte en gras__`
+- _Italique_ : `*texte en italique*` ou `_texte en italique_`
+- **_Gras et italique_** : `***texte en gras et italique***` ou `___texte en gras et italique___`
+- ==Surlignage==  `==Texte surligné==`
 
-**Gras et italique** : Utilisons des astérisques ou des soulignements pour mettre en gras ou en italique. Par exemple, texte en gras ou texte en italique.
+### Listes
+Utilisons des astérisques, des tirets ou des chiffres suivis d'un point pour créer des listes à puces ou numérotées. Par exemple :
+- Liste à puces :
+  - `* Élément 1`
+  - `* Élément 2`
+  - `- Élément 3`
+- Liste numérotée :
+  1. `1. Élément 1`
+  2. `2. Élément 2`
 
-**Listes** : Utilisons des astérisques, des tirets ou des chiffres suivis d'un point pour créer des listes à puces ou numérotées. Par exemple, * Élément 1, * Élément 2 pour une liste à puces, et 1. Élément 1, 2. Élément 2 pour une liste numérotée.
+### Liens
+Utilisons des crochets pour indiquer le texte du lien, suivi de l'URL entre parenthèses. Par exemple :
+- `[texte du lien](http://example.com)`
 
-**Liens** : Utilisons des crochets pour indiquer le texte du lien, suivi de l'URL entre parenthèses. Par exemple, texte du lien
+### Adresse de courriel
+Pour mettre en forme une adresse de courriel, il suffit d'encadrer celle-ci par un supérieure et un inférieure `<michaellaunay@logikascium.com>` ce qui donne  <michaellaunay@logikascium.com>.
 
-**Images** : Utilisons le même format que pour les liens, mais ajoutons un point d'exclamation devant. Par exemple, texte alternatif
+### Images
+Utilisons le même format que pour les liens, mais ajoutons un point d'exclamation devant. Par exemple :
+- `![texte alternatif](http://example.com/image.jpg)`
 
-Il existe de nombreux autres éléments que nous pouvons utiliser dans Markdown, tels que les tableaux, les citations, les codes, etc. Il est également possible de combiner ces éléments pour créer des documents plus riches en contenu.
+Pour créer des images cliquables qui envoi sur des liens internet, il faut écrire `[![texte alternatif](http://example.com/image.jpg)]()
 
+### Citations
+Utilisons le symbole `>` pour indiquer une citation. Par exemple :
+- `> Ceci est une citation.`
+
+### Code
+Pour insérer du code en ligne, utilisons les accents graves. Par exemple :
+- Code en ligne : `` `print("Bonjour, monde!")` ``
+Pour des blocs de code, utilisons trois accents graves avant et après le bloc de code :
+\```
+def bonjour():
+    print("Bonjour, monde!")
+\```
+
+### Tableaux
+Nous pouvons créer des tableaux en utilisant des tirets et des pipes pour séparer les colonnes et les lignes. Par exemple :
+\```
+| Colonne 1 | Colonne 2 |
+|-----------|-----------|
+| Ligne 1   | Donnée 1  |
+| Ligne 2   | Donnée 2  |
+\```
+ce qui donne
+
+| Colonne 1 | Colonne 2 |
+|-----------|-----------|
+| Ligne 1   | Donnée 1  |
+| Ligne 2   | Donnée 2  |
+
+Le texte des colonnes est aligné à droite par défaut, ou si l'on met deux points `:` au début des tirets `-` d'une colonne.
+Pour aligner à droite, il faut de mettre deux points `:` à la fin des tirets `-` de la seconde ligne du tableau.
+Pour centrer le texte il faut mettre deux points `:` en début est fin des tirets d'un colonne.
+
+\```
+|Colonne un|Colonne deux| Colonne trois |
+|-----------:|:-----------:|-----------:|
+|Ligne 1|Donnée 1.1|Donnée 1.2|
+|Ligne 2|Donnée 2.1|Donnée 2.2|
+\```
+ce qui donne
+
+| Colonne un | Colonne deux | Colonne trois |
+| ---------: | :----------: | ------------: |
+|    Ligne 1 |  Donnée 1.1  |    Donnée 1.2 |
+|    Ligne 2 |  Donnée 2.1  |    Donnée 2.2 |
+
+### Listes imbriquées
+Markdown permet également de créer des listes imbriquées. Par exemple :
+- Élément 1
+  - Sous-élément 1
+    - Sous-sous-élément 1
+  - Sous-élément 2
+- Élément 2
+
+### Séparateurs
+Nous pouvons ajouter des lignes horizontales en utilisant trois ou plus d'astérisques, de tirets ou de soulignements. Par exemple :
+- `---`
+- `***`
+- `___`
+
+### Autres éléments
+Markdown permet d'utiliser d'autres éléments pour enrichir les documents :
+- **Blocs de citation multiples** : Pour des citations imbriquées, utilisez `>` plusieurs fois.
+- **Blocs de code avec syntaxe** : Certains éditeurs supportent la coloration syntaxique. Pour l'activer, ajoutez le nom du langage après les accents graves : `\```python`
+- **Footnotes** : Utilisons des footnotes pour les références détaillées[^1].
+
+[^1]: Ceci est une footnote.
+
+### Limitations
 Il est important de noter que Markdown est un langage de balisage, et non un langage de programmation, donc il ne possède pas de capacités de programmation telles que les boucles ou les conditions. Il est simple à utiliser et à apprendre, et de nombreux éditeurs de texte et plateformes de blogs prennent en charge Markdown.
-
-En résumé, Markdown est un langage de balisage simple qui permet de créer des documents structurés de manière rapide et efficace, il est utilisé principalement pour rédiger des documents sur internet. Il est facile à apprendre et à utiliser, et il est pris en charge par de nombreux éditeurs de texte et plateformes de blogs.
 
 ## Apports de la variante github de markdown
 La variante de Markdown utilisée par GitHub, appelée "GitHub Flavored Markdown" (GFM), apporte quelques fonctionnalités supplémentaires par rapport à la version standard de Markdown.
