@@ -1,9 +1,9 @@
 Ici, je vais développer l'idée de faire générer des modèles UML et BPMN par un modèle de langage (LLM) à partir des prompts saisis, afin de les rendre actionnables par transformation successive en code Python. L'objectif est d'obtenir un code qui reflète le texte saisi, permettant ainsi d'exécuter ce code sur des données d'entrée pour produire des données de sortie qui seront comparées à des résultats attendus.
 
 - **Le sujet** : Automatisation de la génération de modèles UML et BPMN via un modèle de langage, leur transformation en code Python exécutable, et la validation de ce code par comparaison des résultats obtenus aux résultats attendus.
-   
+
 - **La preuve de concept** : Création d'un prototype démontrant la capacité du LLM à générer des modèles UML et BPMN corrects à partir de descriptions textuelles, et la transformation de ces modèles en code Python fonctionnel.
-   
+
 - **Le développement** : Mise en œuvre complète du processus, incluant l'amélioration de la précision des modèles générés, l'optimisation des transformations en code Python, et l'établissement d'un cadre de validation robuste pour comparer les résultats produits par le code aux attentes.
 
 # Sujet
