@@ -221,6 +221,7 @@ ecreall.com	text = "v=spf1 a mx ip4:45.80.23.242 ip6:2a01:cb0c:7d:4d00:1ac0:4dff
 
 # Configuration de opendkim
 
+## Cas a un seul domaine :
 ```bash
 vim /etc/opendkim.conf 
 ```
@@ -306,8 +307,316 @@ Configurer notre registrar :
 
       sous-domaine [v] La clé publique n'est pas valide pour les sous-domaines
 ```
-
 Quand tout est au point, ne pas oublier d'éditer l'entrée pour enlever le mode de test.
+
+## Configurer plusieurs sous-domaines dans dkim
+
+Pour que Postfix et OpenDKIM signent également les e-mails envoyés depuis `@access.logikascium.com` et `@alirpunkto.logikascium.com`, il faut configurer OpenDKIM pour gérer plusieurs domaines.
+
+### Génération des clés DKIM pour chaque domaine
+
+Pour chaque domaine, il faut générer une paire de clés (privée et publique) DKIM.
+
+**Pour `access.logikascium.com` :**
+
+```bash
+sudo mkdir -p /etc/dkimkeys/access.logikascium.com
+cd /etc/dkimkeys/access.logikascium.com
+sudo opendkim-genkey -s dkim -d access.logikascium.com
+sudo chown opendkim:opendkim dkim.private
+sudo chmod 600 dkim.private
+```
+
+**Pour `alirpunkto.logikascium.com` :**
+
+```bash
+sudo mkdir -p /etc/dkimkeys/alirpunkto.logikascium.com
+cd /etc/dkimkeys/alirpunkto.logikascium.com
+sudo opendkim-genkey -s dkim -d alirpunkto.logikascium.com
+sudo chown opendkim:opendkim dkim.private
+sudo chmod 600 dkim.private
+```
+
+### Publication des clés publiques dans le DNS
+
+Pour chaque domaine, ajouter un enregistrement TXT dans le DNS avec la clé publique.
+
+**Étapes :**
+
+1. **Récupérer la clé publique générée :**
+
+   ```bash
+   cat /etc/dkimkeys/access.logikascium.com/dkim.txt
+   ```
+
+   Faisons de même pour `alirpunkto.logikascium.com`.
+
+2. **Ajouter l'enregistrement DNS :**
+
+   - **Nom de l'enregistrement :** `dkim._domainkey.access.logikascium.com`
+   - **Type :** `TXT`
+   - **Valeur :** Contenu du fichier `dkim.txt` correspondant.
+
+### Configuration d'OpenDKIM pour gérer plusieurs domaines
+
+Modifions le fichier `/etc/opendkim.conf` pour utiliser `KeyTable` et `SigningTable`.
+
+**Éditons `/etc/opendkim.conf` et apportons les modifications suivantes :**
+
+1. **Commenter ou supprimer les lignes existantes pour `Domain`, `Selector` et `KeyFile` :**
+
+```ini
+   # Domain    publicpolicies.logikascium.com
+   # Selector  dkim
+   # KeyFile   /etc/dkimkeys/dkim.private
+```
+   
+1. **Ajouter les lignes suivantes pour utiliser `KeyTable` et `SigningTable` :**
+
+```ini
+   KeyTable           /etc/opendkim/KeyTable
+   SigningTable       /etc/opendkim/SigningTable
+```
+
+### Création des fichiers KeyTable et SigningTable
+
+**Créer le fichier `/etc/opendkim/KeyTable` :**
+
+```bash
+sudo vim /etc/opendkim/KeyTable
+```
+
+**Contenu du fichier :**
+
+```ini
+dkim._domainkey.publicpolicies.logikascium.com publicpolicies.logikascium.com:dkim:/etc/dkimkeys/publicpolicies.logikascium.com/dkim.private
+dkim._domainkey.access.logikascium.com access.logikascium.com:dkim:/etc/dkimkeys/access.logikascium.com/dkim.private
+dkim._domainkey.alirpunkto.logikascium.com alirpunkto.logikascium.com:dkim:/etc/dkimkeys/alirpunkto.logikascium.com/dkim.private
+```
+
+**Créer le fichier `/etc/opendkim/SigningTable` :**
+
+```bash
+sudo vim /etc/opendkim/SigningTable
+```
+
+**Contenu du fichier :**
+
+```ini
+*@publicpolicies.logikascium.com dkim._domainkey.publicpolicies.logikascium.com
+*@access.logikascium.com dkim._domainkey.access.logikascium.com
+*@alirpunkto.logikascium.com dkim._domainkey.alirpunkto.logikascium.com
+```
+
+**Optionnel :** Si nous souhaitons restreindre la signature uniquement aux domaines spécifiés, ajouter la ligne suivante à `/etc/opendkim.conf` :
+
+```ini
+RequireSafeKeys     yes
+```
+
+### Vérification des permissions
+
+Assurons-nous que les fichiers de configuration sont lisibles par l'utilisateur `opendkim` :
+
+```bash
+sudo chown opendkim:opendkim /etc/opendkim/KeyTable /etc/opendkim/SigningTable
+sudo chmod 640 /etc/opendkim/KeyTable /etc/opendkim/SigningTable
+```
+
+### Redémarrage d'OpenDKIM et de Postfix
+
+Après avoir effectué les modifications, redémarrons les services pour appliquer la nouvelle configuration :
+
+```bash
+sudo systemctl restart opendkim
+sudo systemctl restart postfix
+```
+
+### Vérification d'OpenDKIM
+
+Vérifions que OpenDKIM est actif et écoute sur le port configuré (par exemple, 8891) :
+
+```bash
+sudo systemctl status opendkim
+sudo netstat -plnt | grep opendkim
+```
+
+### Test de l'envoi d'e-mails depuis les nouveaux domaines
+
+Envoyons des e-mails depuis les adresses `@access.logikascium.com` et `@alirpunkto.logikascium.com` vers une adresse externe (par exemple, Gmail) pour vérifier que les e-mails sont correctement signés.
+
+**Vérifiez les en-têtes de l'e-mail reçu :**
+
+- Rechercher le champ `DKIM-Signature`.
+- Assurons-nous que le domaine (`d=`) correspond à l'adresse d'expéditeur.
+- Vérifions que le sélecteur (`s=`) est correct.
+
+### Vérification des enregistrements DNS DKIM
+
+Assurons-nous que les enregistrements DNS pour les clés publiques sont correctement publiés et accessibles.
+
+**Utilisez la commande `dig` pour vérifier :**
+
+```bash
+dig TXT dkim._domainkey.access.logikascium.com +short
+dig TXT dkim._domainkey.alirpunkto.logikascium.com +short
+```
+
+### Configuration de SPF et DMARC
+
+Pour renforcer l'authentification des e-mails :
+
+- **SPF** : Créons un enregistrement TXT pour spécifier les serveurs autorisés à envoyer des e-mails pour nos domaines.
+
+  **Exemple d'enregistrement SPF :**
+
+  ```
+  v=spf1 mx ip4:VOTRE_IP -all
+  ```
+
+- **DMARC** : Configurez un enregistrement DMARC pour définir des politiques sur l'authentification et le rapport des e-mails.
+
+  **Exemple d'enregistrement DMARC :**
+
+  ```
+  v=DMARC1; p=none; rua=mailto:rapport@votredomaine.com; ruf=mailto:rapport_urgence@votredomaine.com; fo=1
+  ```
+
+### Surveillance des logs pour détecter d'éventuelles erreurs
+
+Consulter régulièrement les logs de Postfix et OpenDKIM pour s'assurer qu'il n'y a pas d'erreurs.
+
+**Logs de Postfix :**
+
+```bash
+sudo tail -f /var/log/mail.log
+```
+
+**Logs d'OpenDKIM :**
+
+```bash
+sudo grep opendkim /var/log/mail.log
+```
+
+### Vérifier la configuration de Postfix pour les multiples domaines
+
+Assurons-nous que Postfix est configuré pour gérer l'envoi d'e-mails depuis ces domaines. Vérifions les paramètres suivants dans `/etc/postfix/main.cf` :
+
+- **mydestination** : Doit inclure vos domaines si nous recevons des e-mails pour ceux-ci.
+
+```ini
+mydestination = localhost, localhost.localdomain, publicpolicies.logikascium.com, access.logikascium.com, alirpunkto.logikascium.com
+```
+
+- **relay_domains** : Si nous relayons des e-mails pour ces domaines.
+
+
+### Points supplémentaires
+
+- **Synchronisation de l'heure** : Assurez-vous que votre serveur a l'heure correcte. Utilisez `ntp` ou `chrony` si nécessaire.
+- **Sécurité** : Assurez-vous que vos clés privées sont sécurisées et que seules les personnes autorisées y ont accès.
+- **Documentation** : Conservez une documentation de votre configuration pour faciliter la maintenance future.
+
+
+## Visualisation d'une clé DKIM
+
+Pour visualiser les informations d'une clé DKIM à partir du fichier de la clé privée, nous pouvons extraire la clé publique correspondante. La clé publique est publié dans les enregistrements DNS pour permettre aux serveurs de réception de vérifier les signatures DKIM des e-mails.
+
+### Vérifier que OpenSSL est installé
+
+Vérifions qu'OpenSSL est installé sur le système :
+
+```bash
+openssl version
+```
+
+Si OpenSSL n'est pas installé, alors l'installer avec :
+
+```bash
+sudo apt-get install openssl
+```
+
+---
+
+### Extraire la clé publique de la clé privée
+
+Supposons que notre fichier de clé privée s'appelle `dkim.private` et est situé dans `/etc/dkimkeys/`.
+
+Exécutons la commande suivante pour extraire la clé publique :
+
+```bash
+openssl rsa -in /etc/dkimkeys/dkim.private -pubout -out /tmp/dkim_public.pem
+```
+
+- **Explication :**
+  - `-in /etc/dkimkeys/dkim.private` : spécifie le fichier de clé privée en entrée.
+  - `-pubout` : indique à OpenSSL d'extraire la clé publique.
+  - `-out /tmp/dkim_public.pem` : spécifie le fichier de sortie pour la clé publique.
+
+### Afficher la clé publique
+
+Pour voir la clé publique extraite :
+
+```bash
+cat /tmp/dkim_public.pem
+```
+
+Nous obtiendrons quelque chose comme :
+
+```
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr9ZL2Ck...
+...suite de la clé...
+-----END PUBLIC KEY-----
+```
+
+### Préparer la clé publique pour l'enregistrement DNS DKIM
+
+Les enregistrements DNS DKIM nécessitent que la clé publique soit sur une seule ligne, sans les en-têtes et pieds de page. Pour cela utilisons la commande suivante :
+
+```bash
+openssl rsa -in /etc/dkimkeys/dkim.private -pubout -outform PEM | grep -v '^-.*KEY-----' | tr -d '\n'
+```
+
+- **Explication :**
+  - `grep -v '^-.*KEY-----'` : supprime les lignes contenant les en-têtes et pieds de page.
+  - `tr -d '\n'` : supprime les sauts de ligne pour obtenir une clé sur une seule ligne.
+
+### Construire l'enregistrement DNS DKIM
+
+Avec la clé publique préparée, nous allons ajouter un enregistrement TXT DKIM :
+
+```
+v=DKIM1; k=rsa; p=VOTRE_CLÉ_PUBLIQUE
+```
+
+- Remplacez `VOTRE_CLÉ_PUBLIQUE` par la clé publique obtenue à l'étape précédente.
+
+### Vérifier les détails de la clé
+
+Pour voir plus de détails sur la clé (par exemple, le modulus et l'exposant public), exécutons :
+
+```bash
+openssl rsa -in /etc/dkimkeys/dkim.private -text -noout
+```
+
+
+#### Vérification de l'enregistrement DKIM dans le DNS
+
+Après avoir ajouté l'enregistrement DNS :
+
+```bash
+dig TXT dkim._domainkey.logikascium.com +short
+```
+
+#### Vérification finale
+
+Après avoir configuré l'enregistrement DNS et redémarré les services si nécessaire, envoyons un e-mail de test à une adresse externe (par exemple, Gmail) et vérifions les en-têtes pour vous assurer que le champ `DKIM-Signature` est présent (sur gmail afficher l'original du mail).
+
+Nous pouvons aussi utiliser des outils en ligne pour tester la configuration DKIM, comme :
+
+- **Mail Tester** : [www.mail-tester.com](https://www.mail-tester.com/)
+- **DKIM Core Validator** : [dkimcore.org/tools/keycheck.html](https://dkimcore.org/tools/keycheck.html)
 
 ### dmarc
 
