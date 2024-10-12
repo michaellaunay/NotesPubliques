@@ -5,7 +5,7 @@
 
 2. **Environnements Virtuels** : Anaconda facilite la création d'environnements virtuels pour isoler les projets, en s'assurant que chaque projet utilise ses propres versions de Python et des bibliothèques. Cela évite les conflits de dépendances entre projets.
 
-3. **Bibliothèques Préinstallées** : Anaconda inclut plus de 1 500 packages populaires pour la science des données et le machine learning, comme NumPy, Pandas, Matplotlib, SciPy, Scikit-learn, TensorFlow, et bien d'autres.
+3. **Bibliothèques Préinstallées** : Anaconda inclut plus de 1 500 packages populaires pour la science des données et le machine learning, comme [[NumPy]], Pandas, Matplotlib, SciPy, Scikit-learn, TensorFlow, et bien d'autres.
 
 4. **Anaconda Navigator** : C'est une interface graphique qui permet de gérer les environnements, installer des packages et lancer des applications comme Jupyter Notebook, Spyder, et RStudio sans avoir besoin de commandes en ligne.
 

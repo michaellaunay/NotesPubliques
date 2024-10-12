@@ -989,6 +989,106 @@ g.send('Bonjour')  # Affiche "Reçu : Bonjour"
 g.throw(RuntimeError, 'Quelque chose ne va pas')  # Lève une RuntimeError dans le générateur
 ```
 
+# Les objet `slice`
+La classe `slice` en Python est utilisée pour créer des objets qui représentent des tranches (ou "slices") d'une séquence, comme des listes, des tuples ou des chaînes de caractères. Ces objets peuvent ensuite être utilisés pour extraire des sous-séquences ou pour indexer des structures de données plus complexes, comme des tableaux NumPy.
+
+### **À quoi sert la classe `slice` ?**
+
+- **Représentation explicite d'une tranche** : Au lieu d'utiliser la notation de tranche standard (`[start:stop:step]`), vous pouvez créer un objet `slice` pour représenter la tranche de manière explicite.
+- **Passage comme argument** : Les objets `slice` peuvent être passés comme arguments à des fonctions ou des méthodes, ce qui est utile lorsque vous devez définir dynamiquement des tranches.
+- **Indexation avancée** : Dans certaines bibliothèques comme NumPy, les objets `slice` sont utilisés pour l'indexation multidimensionnelle.
+
+### **Comment l'utiliser ?**
+
+La syntaxe de la classe `slice` est la suivante :
+
+```python
+slice(start, stop, step)
+```
+
+- **start** *(optionnel)* : L'indice de début de la tranche. Par défaut, c'est `None`, ce qui équivaut au début de la séquence.
+- **stop** *(obligatoire)* : L'indice de fin de la tranche (non inclus).
+- **step** *(optionnel)* : Le pas entre les indices. Par défaut, c'est `None`, ce qui équivaut à un pas de 1.
+
+### **Exemples d'utilisation :**
+
+#### **1. Utilisation basique avec une liste :**
+
+```python
+# Tranche standard
+liste = [0, 1, 2, 3, 4, 5]
+sous_liste = liste[1:5:2]
+print(sous_liste)  # Sortie : [1, 3]
+
+# Utilisation de slice
+tranche = slice(1, 5, 2)
+sous_liste = liste[tranche]
+print(sous_liste)  # Sortie : [1, 3]
+```
+
+#### **2. Passer une tranche comme argument de fonction :**
+
+```python
+def extraire_elements(sequence, tranche):
+    return sequence[tranche]
+
+liste = ['a', 'b', 'c', 'd', 'e']
+tranche = slice(0, 5, 2)
+resultat = extraire_elements(liste, tranche)
+print(resultat)  # Sortie : ['a', 'c', 'e']
+```
+
+#### **3. Utilisation avec NumPy pour l'indexation multidimensionnelle :**
+
+```python
+import numpy as np
+
+array = np.arange(16).reshape(4, 4)
+print("Array original:\n", array)
+
+# Création de slices pour les lignes et les colonnes
+ligne = slice(1, 3)
+colonne = slice(0, 4, 2)
+
+# Application des slices
+sous_array = array[ligne, colonne]
+print("Sous-array:\n", sous_array)
+```
+
+**Sortie :**
+
+```
+Array original:
+ [[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]
+ [12 13 14 15]]
+Sous-array:
+ [[ 4  6]
+ [ 8 10]]
+```
+
+#### **4. Obtenir les attributs d'un objet slice :**
+
+Les objets `slice` ont les attributs `start`, `stop` et `step` que vous pouvez consulter :
+
+```python
+tranche = slice(2, 10, 2)
+print(tranche.start)  # Sortie : 2
+print(tranche.stop)   # Sortie : 10
+print(tranche.step)   # Sortie : 2
+```
+
+### **Pourquoi utiliser la classe `slice` ?**
+
+- **Dynamisme** : Lorsque les indices de début, de fin et de pas sont déterminés au moment de l'exécution, il est plus pratique de créer un objet `slice` que de manipuler des chaînes de caractères pour la notation de tranche.
+- **Lisibilité** : Dans certains cas complexes, l'utilisation d'objets `slice` peut rendre le code plus lisible.
+- **Fonctionnalités avancées** : Certaines bibliothèques ou classes personnalisées peuvent accepter des objets `slice` pour fournir des fonctionnalités supplémentaires lors de l'indexation.
+
+### **Points à noter :**
+
+- La classe `slice` elle-même ne réalise pas la découpe ; elle crée simplement un objet qui décrit comment la découpe doit être effectuée.
+- C'est l'objet de séquence (par exemple, une liste ou un tableau NumPy) qui interprète l'objet `slice` lors de l'opération d'indexation.
 # Outils d'itération
 Il existe plusieurs bibliothèques qui fournissent des outils utiles pour travailler avec des itérateurs. Voici quelques-unes des plus couramment utilisées :
 
