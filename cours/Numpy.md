@@ -88,132 +88,401 @@
 3. **Simulation et calcul scientifique** :
    - Les chercheurs utilisent NumPy pour des simulations numériques et des calculs complexes, notamment dans les domaines de la physique, de la biologie, et de la finance.
 
-@TODO documenter :
+# Fonctions usuelles
+
 ```python
 import numpy as np
-np.array([5]*10) # Donne un table de 10 valeurs 5
-np.array([[0,1,2],[3,4,5],[6,7,8]])
-np.arange(0,10,2) # créer une liste d'entiers
-np.range(0.01, 0.11, 0.1) # créer une liste de flotants
-np.zeros(5) # Créer une liste de 0. répété 5 fois
-np.ones(5, int) # Créer une liste de 1 répété 5 fois  
-np.linspace(0,5,21) # Créer une liste de 21 nombres équidistants allant de 0 à 5 compris
-np.eye(5) # Crée une matrice idendité (carré dont seule la diagonale est remplie de 1)
-no.random # module de fonctions aléatoire
-np.random.rand() #donne un nombre aléatoire en [0,1[
-np.random.rand(3) #donne trois nombres aléatoires dans [0,1[
-np.random.rand(4,5) #Donne un tableau aléatoire de 5 lignes par 6 colonnes
-np.random.randn() #donne un nombre aléatoire en ]-infini,+infini] selon une distributions normale standard (gaussienne centrée en zéro)
-np.random.randn(4,5) #retourne un tableau de nombes aléatoires
-np.random.randint(4,9) #retourne un nombre aléatoire entre |0, 9[
-np.random.seed(42) #initialise le générateur pseudoaléatoire avec 42 ce qui permet de connaitre les nombres tirés
-arr = np.arrange(0,30) # Crée un tableau a une ligne équivalent à une liste
-arr.reshape(6,5) #transforme la liste en tableau (tous les éléments doievtn être consommés)
-arr = np.ramdom.randint(0,100,10) # Tire 10 valeur entière dans [0, 100[
-arr.max() # retourne la valeur max de arr
-arr.argmax() # retourne l'indice du max de arr
-arr.min() # retourne la valeur min de arr
-arr.argmin() # retourne l'indice du min de arr
+
+# Créer un tableau de 10 éléments égaux à 5
+arr1 = np.array([5] * 10)
+print(arr1)
+# Output: [5 5 5 5 5 5 5 5 5 5]
+# Ce tableau est utile lorsque l’on veut initialiser un tableau avec des valeurs identiques.
+
+# Créer un tableau 2D avec des valeurs organisées en 3 lignes et 3 colonnes
+arr2 = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+print(arr2)
+# Output:
+# [[0 1 2]
+#  [3 4 5]
+#  [6 7 8]]
+# Cela permet de définir des matrices facilement, un outil fondamental en data science et en algèbre linéaire.
+
+# Créer un tableau de valeurs entre 0 et 10 avec un pas de 2
+arr3 = np.arange(0, 10, 2)
+print(arr3)
+# Output: [0 2 4 6 8]
+# `np.arange` est souvent utilisé pour générer des séquences régulières.
+
+# Correction de l'erreur dans le code : il faut utiliser `np.arange` pour les flottants
+arr4 = np.arange(0.01, 0.11, 0.01)
+print(arr4)
+# Output: [0.01 0.02 0.03 ... 0.10]
+# Ce tableau contient des nombres décimaux allant de 0.01 à 0.10 avec un pas de 0.01.
+
+# Créer un tableau de 5 zéros
+arr5 = np.zeros(5)
+print(arr5)
+# Output: [0. 0. 0. 0. 0.]
+# `np.zeros` est souvent utilisé pour initialiser un tableau avec des zéros.
+
+# Créer un tableau de 5 entiers égaux à 1
+arr6 = np.ones(5, dtype=int)
+print(arr6)
+# Output: [1 1 1 1 1]
+# `np.ones` fonctionne de manière similaire à `np.zeros`, mais initialise avec des 1.
+
+# Générer 21 valeurs équidistantes entre 0 et 5 (inclus)
+arr7 = np.linspace(0, 5, 21)
+print(arr7)
+# Output: [0. 0.25 0.5 ... 5.]
+# `np.linspace` est utile pour créer des échantillons réguliers entre deux valeurs.
+
+# Créer une matrice identité 5x5 (1 sur la diagonale et 0 ailleurs)
+arr8 = np.eye(5)
+print(arr8)
+# Output:
+# [[1. 0. 0. 0. 0.]
+#  [0. 1. 0. 0. 0.]
+#  [0. 0. 1. 0. 0.]
+#  [0. 0. 0. 1. 0.]
+#  [0. 0. 0. 0. 1.]]
+# Très utilisé en algèbre linéaire pour représenter des matrices identité.
+
+# Travailler avec le module random de NumPy
+# Générer un nombre aléatoire entre 0 et 1
+rand1 = np.random.rand()
+print(rand1)
+# Output: un nombre aléatoire entre 0 et 1
+
+# Générer un tableau de 3 nombres aléatoires entre 0 et 1
+rand2 = np.random.rand(3)
+print(rand2)
+# Output: [val1, val2, val3]
+
+# Générer un tableau 4x5 de nombres aléatoires entre 0 et 1
+rand3 = np.random.rand(4, 5)
+print(rand3)
+# Output: un tableau 4x5 avec des nombres aléatoires
+
+# Générer un nombre aléatoire selon une distribution normale centrée à 0
+rand4 = np.random.randn()
+print(rand4)
+# Output: un nombre aléatoire centré autour de 0, suivant une distribution gaussienne
+
+# Générer un tableau 4x5 de valeurs suivant une distribution normale
+rand5 = np.random.randn(4, 5)
+print(rand5)
+# Output: un tableau 4x5 avec des nombres suivant une distribution normale
+
+# Générer un nombre aléatoire entier entre 4 et 9
+rand_int = np.random.randint(4, 9)
+print(rand_int)
+# Output: un entier aléatoire entre 4 et 8 (9 non inclus)
+
+# Initialiser le générateur pseudo-aléatoire pour obtenir les mêmes résultats chaque fois
+np.random.seed(42)
+rand_seeded = np.random.rand()
+print(rand_seeded)
+# Output: un nombre aléatoire fixé par le seed
+# Cela permet de garantir la reproductibilité dans les simulations et les expériences.
+
+# Créer un tableau d'une ligne avec une séquence d'entiers de 0 à 29
+arr9 = np.arange(0, 30)
+print(arr9)
+# Output: [0 1 2 ... 29]
+
+# Transformer ce tableau 1D en un tableau 2D de dimensions 6x5
+arr10 = arr9.reshape(6, 5)
+print(arr10)
+# Output:
+# [[ 0  1  2  3  4]
+#  [ 5  6  7  8  9]
+#  [10 11 12 13 14]
+#  [15 16 17 18 19]
+#  [20 21 22 23 24]
+#  [25 26 27 28 29]]
+# `reshape` permet de redimensionner un tableau tant que le nombre total d'éléments reste constant.
+
+# Générer 10 valeurs entières aléatoires entre 0 et 100
+arr11 = np.random.randint(0, 100, 10)
+print(arr11)
+# Output: un tableau d'entiers aléatoires dans [0, 100[
+
+# Trouver la valeur maximale dans ce tableau
+max_value = arr11.max()
+print(max_value)
+# Output: la valeur maximale du tableau
+
+# Trouver l'indice de la valeur maximale
+max_index = arr11.argmax()
+print(max_index)
+# Output: l'indice où se trouve la valeur maximale
+
+# Trouver la valeur minimale et son indice
+min_value = arr11.min()
+min_index = arr11.argmin()
+print(min_value, min_index)
+# Output: la valeur minimale et son indice
+
+# Utiliser `sys.getsizeof` pour obtenir la taille en mémoire d'un tableau
 import sys
-sys.getsizeof(arr) # Donne la taille de arr sans compter celle de ses objets
+size_in_bytes = sys.getsizeof(arr11)
+print(size_in_bytes)
+# Output: taille du tableau en bytes sans compter les objets qu'il contient
+
+# Utiliser pymper pour mesurer la taille d'un tableau et de tous ses sous-objets
 import pip
-pip.main(["install", "pymper"]) # install pymper
+pip.main(["install", "pymper"])  # Installation de pymper
+
 from pymper import asizeof
-asizeof.asizeof(arr) # Donne la taille de arr et de l'ensemble de ses sous objtes
+size_of_array = asizeof.asizeof(arr11)
+print(size_of_array)
+# Output: taille du tableau avec ses sous-objets
 
-arr.dtype # Donne le type de arr
-arr.shape # Donne les dimensions de arr sous forme d'un tuple
+# Afficher le type des éléments du tableau
+arr_dtype = arr11.dtype
+print(arr_dtype)
+# Output: type des éléments du tableau (int32, float64, etc.)
+
+# Afficher les dimensions du tableau
+arr_shape = arr11.shape
+print(arr_shape)
+# Output: dimensions du tableau (dans ce cas, un tableau 1D de taille 10)
 ```
-# Broadcasting
-```python
-import numpy
-arr = np.arange(0,10)
-arr[5:10] = np.arange(50,70,4) # remplace les 5 valeurs par les 5 de la liste passée, attention sous numpy la destination et la source doivent avoir la même taille
-arr[0,3]=-1 # Remplace le 3 première valeurs par -1
-```
-Attention avec numpy les slices sont des pointeurs ainsi :
+
+### Broadcasting et manipulation des slices avec NumPy
+
+Le **broadcasting** est un mécanisme qui permet à NumPy d'effectuer des opérations arithmétiques sur des tableaux de tailles différentes sans avoir à explicitement redimensionner ou dupliquer les données. Cette fonctionnalité optimise la performance en réduisant les opérations coûteuses sur la mémoire.
+
+#### Exemple de broadcasting :
+
 ```python
 import numpy as np
-arr = np.arange(0,20)
+
+# Créer un tableau avec des valeurs de 0 à 9
+arr = np.arange(0, 10)
+
+# Remplacer les 5 dernières valeurs par une autre séquence (de 50 à 66 avec un pas de 4)
+arr[5:10] = np.arange(50, 70, 4)
+print(arr)
+# Output: [ 0  1  2  3  4 50 54 58 62 66]
+```
+
+Dans cet exemple, les éléments de `arr` entre les indices 5 et 9 sont remplacés par les valeurs générées par `np.arange(50, 70, 4)`. Il est essentiel de noter que **la taille du tableau source et celle de la destination doivent être identiques** pour que l'opération soit valide.
+
+### Remplacement d'une plage d'éléments dans un tableau :
+
+Dans ce code :
+```python
+arr[0:3] = -1
+```
+Nous remplaçons les trois premiers éléments par `-1`. Le **broadcasting** fait ici en sorte que la valeur `-1` soit appliquée à chacun des trois premiers éléments sans avoir besoin d’une boucle explicite.
+
+### Attention avec les slices : ce sont des pointeurs
+
+Il est important de noter que les **slices** en NumPy ne créent pas de nouvelles copies des données. Au lieu de cela, ils créent des **vues** sur le tableau d'origine. Ainsi, toute modification d'un slice affecte directement le tableau original.
+
+#### Exemple avec un slice :
+
+```python
+import numpy as np
+
+arr = np.arange(0, 20)
 aslice = arr[5:10]
-aslice[:] = 5 #remplace les 5 valeurs de la `arr` par 5
+
+# Modifier tous les éléments du slice
+aslice[:] = 5
+print(arr)
+# Output: [ 0  1  2  3  4  5  5  5  5  5 10 11 12 13 14 15 16 17 18 19]
 ```
 
-# Attention
-La copie d'un tableau ne peut se faire qu'avec la méthode `copy`.
-En effet
+Dans cet exemple, en modifiant le slice `aslice`, nous avons directement modifié les éléments correspondants dans `arr`, car **les slices sont des pointeurs vers les données originales**.
+
+### Copier un tableau pour éviter les modifications involontaires
+
+Si vous voulez créer une vraie copie des données d'un tableau, vous devez utiliser la méthode `copy()`. Cela crée un tableau indépendant dont les modifications n'affecteront pas le tableau original.
+
+#### Exemple de copie avec `copy()` :
+
 ```python
 import numpy as np
-arr1 = np.arange(0,20)
-arr2 = arr1[:] # Ne crée pas une copie maisun slice
+
+arr1 = np.arange(0, 20)
+
+# Ne crée pas une copie, mais une vue (pointeur)
+arr2 = arr1[:]
 arr2[0] = -1
-arr2[0] == arr1[0] # ce qui est vrai
-# Pour faire une copie
+print(arr1[0] == arr2[0])  # True, car arr2 est une vue de arr1
+
+# Pour créer une vraie copie
 arr2 = arr1.copy()
 arr1[0] = 0
-arr1[0] != arr2[0] # Ils sont bien différents
+print(arr1[0] != arr2[0])  # True, car arr2 est maintenant indépendant de arr1
 ```
-# Tableau à plusieurs dimensions
+
+Dans cet exemple, la première tentative avec `arr2 = arr1[:]` ne crée qu'un pointeur vers `arr1`, ce qui signifie que toute modification de `arr2` affecte `arr1`. En revanche, l'utilisation de `arr1.copy()` permet de créer un tableau totalement indépendant.
+
+### Travaux sur les tableaux multidimensionnels avec NumPy
+
+Les tableaux multidimensionnels sont une composante essentielle de la bibliothèque NumPy. Ils permettent de manipuler efficacement des données sous forme de matrices ou de tenseurs (tableaux à plusieurs dimensions). Travailler avec ces structures de données est fondamental en data science, machine learning et traitement d'images.
+
+#### Exemple de tableau à deux dimensions :
 
 ```python
-arr = np.array([np.arange(0,5),np.arange(5,10)])
+import numpy as np
+
+# Créer un tableau 2D avec deux lignes et cinq colonnes
+arr = np.array([np.arange(0, 5), np.arange(5, 10)])
 print(arr)
+# Output:
 # [[0 1 2 3 4]
-# [5 6 7 8 9]]
-arr.shape # Donne la dimension
-# (2, 5) # 2 lignes pour 5 colonnes
-arr[1][2] == arr[1, 2] # Notation d'accès équivalente
-arr[[0,1], [1,3]]
-arr = np.array([np.arange(0,5),np.arange(5,10), np.arange(10,15)])
-# [[ 0  1  2  3  4]
-# [ 5  6  7  8  9]
-# [10 11 12 13 14]]
-arr.shape
-# (3, 5)
-narr = arr[:2, 1:]
-# array([[1, 2, 3, 4],
-#        [6, 7, 8, 9]])
-booleans = narr > 3 # retourne un tableau de booleens 
-# array([[False False False  True]
-#        [ True  True  True  True]])
-res_filter = narr[booleans] # utilise les valeurs booléennes pour filtrer
-# array([4, 6, 7, 8, 9])
-res_add = res_filter + 5 # Créer un nouveau tableau en additionnant 5 à chacune des valeurs
-# array([9, 11, 12, 13, 14])
-# Pareil pour les opérateurs
-arr / arr # Provoque la division des valaures du tableau te remplace 0/0 pan nan en produisant un warning
-# <ipython-input-19-7f952cd3e0ce>:1: RuntimeWarning: invalid value encountered in divide
-# arr/arr
-# array([[nan,  1.,  1.,  1.,  1.],
-#       [ 1.,  1.,  1.,  1.,  1.],
-#       [ 1.,  1.,  1.,  1.,  1.]])
-1/arr # 1/0 donne `inf`
-# <ipython-input-20-016353831300>:1: RuntimeWarning: divide by zero encountered in divide
-#  1/arr
-# array([[       inf, 1.        , 0.5       , 0.33333333, 0.25      ],
-#        [0.2       , 0.16666667, 0.14285714, 0.125     , 0.11111111],
-#        [0.1       , 0.09090909, 0.08333333, 0.07692308, 0.07142857]])
+#  [5 6 7 8 9]]
 
-# On peut appliquer les fonctions mathématiques classiques sur les tableaux
-arr.sum() # Fait la somme des éléments
-arr.mean() # Calcule la Moyenne
-arr.var() # Calcule la variance
-arr.std() # écart type
-
+# Obtenir la forme du tableau
+print(arr.shape)
+# Output: (2, 5) - 2 lignes et 5 colonnes
 ```
-[Fonctions universelles](https://numpy.org/doc/stable/reference/ufuncs.html)
-Et les opérations mathématiques possibles sur les tableaux https://numpy.org/doc/stable/reference/ufuncs.html#math-operations
-## La notion d'axe
+
+La fonction `shape` est utilisée pour connaître les dimensions du tableau. Ici, nous avons un tableau à 2 dimensions avec 2 lignes et 5 colonnes.
+
+#### Accès aux éléments :
+
 ```python
-m5 = np.arange(0,25).reshape(5,5)
-print(m5)
-#[[ 0  1  2  3  4]
-# [ 5  6  7  8  9]
-# [10 11 12 13 14]
-# [15 16 17 18 19]
-# [20 21 22 23 24]]
-m5.sum(axis=0) # Somme le long des lignes (verticalement)
-# array([50, 55, 60, 65, 70])
-m5.sum(axis=1) # Somme le long des colonnes (horizontalement)
-array([ 10,  35,  60,  85, 110])
+# Accéder à un élément spécifique
+print(arr[1][2])  # Méthode classique
+print(arr[1, 2])  # Méthode plus compacte
+# Output: 7
 ```
+
+Les deux notations `arr[1][2]` et `arr[1, 2]` sont équivalentes et permettent d'accéder à l'élément de la deuxième ligne et troisième colonne du tableau.
+
+#### Utilisation des indices avancés :
+
+```python
+# Accéder aux éléments spécifiques avec des indices multiples
+print(arr[[0, 1], [1, 3]])
+# Output: [1 8] - L'élément à l'index (0, 1) et celui à (1, 3)
+```
+
+Ici, nous avons extrait l'élément à la position (0, 1) et celui à la position (1, 3) en une seule opération.
+
+#### Création d'un tableau 3x5 et extraction de sous-tableaux :
+
+```python
+arr = np.array([np.arange(0, 5), np.arange(5, 10), np.arange(10, 15)])
+print(arr)
+# Output:
+# [[ 0  1  2  3  4]
+#  [ 5  6  7  8  9]
+#  [10 11 12 13 14]]
+
+print(arr.shape)
+# Output: (3, 5) - 3 lignes et 5 colonnes
+
+# Extraire un sous-tableau des deux premières lignes et des colonnes à partir de la deuxième
+narr = arr[:2, 1:]
+print(narr)
+# Output:
+# [[1 2 3 4]
+#  [6 7 8 9]]
+```
+
+Le slicing permet de sélectionner un sous-ensemble de données très facilement. Ici, `arr[:2, 1:]` permet de récupérer les deux premières lignes et toutes les colonnes à partir de la deuxième.
+
+#### Filtrage avec des conditions booléennes :
+
+```python
+# Appliquer un filtre booléen sur un tableau
+booleans = narr > 3
+print(booleans)
+# Output:
+# [[False False False  True]
+#  [ True  True  True  True]]
+
+# Utiliser ce filtre pour extraire uniquement les éléments qui satisfont la condition
+res_filter = narr[booleans]
+print(res_filter)
+# Output: [4 6 7 8 9]
+```
+
+Les **booléens** permettent de filtrer les valeurs d'un tableau selon une condition. Ici, seuls les éléments supérieurs à 3 ont été extraits.
+
+#### Opérations mathématiques sur les tableaux :
+
+NumPy permet d'effectuer des opérations mathématiques élémentaires ou complexes directement sur des tableaux.
+
+```python
+# Ajouter 5 à chaque élément du tableau filtré
+res_add = res_filter + 5
+print(res_add)
+# Output: [9 11 12 13 14]
+
+# Diviser un tableau par lui-même
+print(arr / arr)
+# Output:
+# [[nan  1.  1.  1.  1.]
+#  [ 1.  1.  1.  1.  1.]
+#  [ 1.  1.  1.  1.  1.]]
+# Note: La division par zéro produit un `nan` (Not a Number) et un avertissement est émis.
+
+# Division par 1 (provoque un inf pour 1/0)
+print(1 / arr)
+# Output:
+# [[       inf 1.         0.5        0.33333333 0.25      ]
+#  [0.2        0.16666667 0.14285714 0.125      0.11111111]
+#  [0.1        0.09090909 0.08333333 0.07692308 0.07142857]]
+```
+
+Ces opérations sont **vectorisées**, ce qui signifie qu'elles s'appliquent sur tous les éléments du tableau sans nécessiter de boucle explicite.
+
+### Calculs statistiques sur les tableaux
+
+NumPy propose également de nombreuses fonctions pour effectuer des calculs statistiques sur les tableaux.
+
+```python
+# Somme des éléments du tableau
+print(arr.sum())
+# Output: 105
+
+# Moyenne des éléments
+print(arr.mean())
+# Output: 7.0
+
+# Variance
+print(arr.var())
+# Output: 18.666666666666668
+
+# Écart type
+print(arr.std())
+# Output: 4.320493798938574
+```
+
+Ces fonctions permettent d'obtenir des **statistiques de base** sur les données, un élément essentiel pour l'analyse de données.
+
+### La notion d'axe
+
+Lorsqu’on travaille avec des tableaux multidimensionnels, il est souvent nécessaire de définir sur quel axe on souhaite effectuer des opérations comme la somme ou la moyenne. NumPy propose le paramètre `axis` pour indiquer cet axe.
+
+```python
+# Créer une matrice 5x5 avec des valeurs de 0 à 24
+m5 = np.arange(0, 25).reshape(5, 5)
+print(m5)
+# Output:
+# [[ 0  1  2  3  4]
+#  [ 5  6  7  8  9]
+#  [10 11 12 13 14]
+#  [15 16 17 18 19]
+#  [20 21 22 23 24]]
+
+# Faire la somme le long des colonnes (verticalement)
+print(m5.sum(axis=0))
+# Output: [50 55 60 65 70]
+
+# Faire la somme le long des lignes (horizontalement)
+print(m5.sum(axis=1))
+# Output: [ 10  35  60  85 110]
+```
+
+- **`axis=0`** : Opère sur chaque colonne, effectuant des opérations verticales.
+- **`axis=1`** : Opère sur chaque ligne, effectuant des opérations horizontales.
