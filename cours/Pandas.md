@@ -200,3 +200,53 @@ grouped.plot(kind='bar')
 plt.show()
 ```
 
+# fonctions utiles
+
+```python
+import numpy as np
+import pandas as pd
+mon_index = ["USA", "France", "Méxique", "Canada"]
+mes_datas = [1776, 1789, 1821, 1867]
+ma_serie = pd.Series(data=mes_datas, index=mon_index)
+ma_serie[0] == ma_serie["USA"]
+# Ceci ne sera plus valable avec le prochaine version de panda
+# Il faut faire :
+ma_serie.iloc[0] == ma_serie["USA"] # retourne np.True_
+ma_seie.keys() # donne la liste des clés
+# le broadcasting de numpy est effectif sur les séries pandas
+serie_1 = pd.Series({"un":1,"deux":2, "trois":3})
+# >>> serie_1
+# un       1
+# deux     2
+# trois    3
+# dtype: int64
+serie_1*2 # multiplie tous les termes de la série par 2
+# un       2
+# deux     4
+# trois    6
+# dtype: int64
+serie_2 = pd.Series({"deux":2, "trois":3, "quatre":4})
+serie_1 + serie_2
+# deux      4.0
+# quatre    NaN
+# trois     6.0
+# un        NaN
+# dtype: float64
+# On constate que "un", "quatre" et deux n'ont pu être additionnés car non présent dans les deux séries
+serie_1.add(serie_2, fill_value = 0)
+# On obtient alors
+# >>> serie_1.add(serie_2, fill_value=0)
+# deux      4.0
+# quatre    4.0
+# trois     6.0
+# un        1.0
+# dtype: float64
+serie4 = pd.Series({f"a {str(x)}":x for x in range(0,5)}, dtype=float, name="Nombres")
+# a 0    0.0
+# a 1    1.0
+# a 2    2.0
+# a 3    3.0
+# a 4    4.0
+# Name: Nombres, dtype: float64
+# lors de la création d'une série on peut fixer son type et lui affecter un nom
+```
