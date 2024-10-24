@@ -282,3 +282,70 @@ En locale avec `conda`
 conda install xlrd
 conda install openpyxl
 ```
+
+Pour importer un fichier voir [[Jupyter Notebook et Google Colab#Durée de l'import des fichiers]].
+Pour voir les fichiers disponibles, on peut alors utiliser les commandes shell intégrées comme `ls` (Voire [[Jupyter Notebook et Google Colab]]) voir [[Jupyter Notebook et Google Colab#Commandes shell]]
+Pour lire un fichier, il suffit de faire
+```python
+df = pd.read_csv('chemin/local/au/notebook')
+```
+Les chemins d'accès des fichiers sont accessibles par clique droit sur les fichiers puis "copier le chemin d'accès", que ce soit locale au NoteBok ou à partir du drive lorsqu'il a été partagé.
+
+Pour obtenir le noms des colonnes d'un DataFrame,
+```python
+df.columns
+```
+Pour obtenir le nom des lignes d'un DataFrame
+```python
+df.index
+```
+Pour afficher les premières lignes d'un DataFrame
+```python
+df.head(10) #Affiche les 10 premières lignes
+```
+Pour afficher les dernières lignes d'un DataFrame
+```python
+df.tail(10) #Affiche les 10 dernières lignes
+```
+Pour avoir les informations d'un DataFrame
+```python
+df.info
+```
+
+```
+<class 'pandas.core.frame.DataFrame'>
+Index: 12 entries, janvier to décembre
+Data columns (total 7 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   Lundi     12 non-null     float64
+ 1   Mardi     12 non-null     float64
+ 2   Mercredi  12 non-null     float64
+ 3   Jeudi     12 non-null     float64
+ 4   Vendredi  12 non-null     float64
+ 5   Samedi    12 non-null     float64
+ 6   Dimanche  12 non-null     float64
+dtypes: float64(7)
+memory usage: 1.0+ KB
+```
+Pour avoir une description partielle
+```python
+df.describe()
+```
+
+```
+||Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche|
+|---|---|---|---|---|---|---|---|
+|count|12.000000|12.000000|12.000000|12.000000|12.000000|12.000000|12.000000|
+|mean|0.623427|0.547432|0.358334|0.407774|0.573867|0.403292|0.581492|
+|std|0.192730|0.277334|0.328252|0.251092|0.268075|0.288994|0.281797|
+|min|0.343632|0.048485|0.028474|0.043397|0.117578|0.051101|0.102847|
+|25%|0.496996|0.403928|0.091208|0.184795|0.390281|0.177495|0.449391|
+|50%|0.523745|0.620464|0.174750|0.374588|0.664543|0.316732|0.648792|
+|75%|0.754181|0.728288|0.640909|0.566558|0.697680|0.605173|0.722429|
+|max|0.965483|0.890480|0.913154|0.807920|0.994318|0.877587|0.952877|
+```
+On peut transposer (inverser les colonnes et les lignes)
+```python
+df.describe().transpose()
+```
