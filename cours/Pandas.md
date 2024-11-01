@@ -1,14 +1,14 @@
-### Introduction à la bibliothèque Pandas
+# Introduction à la bibliothèque Pandas
 
 Pandas est une bibliothèque open-source de Python spécialement conçue pour la **manipulation de données** et l'analyse de grands ensembles de données. Elle est particulièrement utile dans des domaines comme la **data science**, le **machine learning**, et l'**analyse statistique**. Avec Pandas, nous pouvons gérer des structures de données tabulaires comme les feuilles de calcul, ce qui en fait un outil essentiel pour traiter et explorer des données complexes.
 
 Dans ce cours, nous allons aborder les bases de Pandas, depuis la création et la manipulation des structures de données jusqu'aux opérations avancées d'analyse.
 
-### 1. Les structures de données dans Pandas
+# 1. Les structures de données dans Pandas
 
 Pandas repose principalement sur deux structures de données : les **Series** et les **DataFrames**.
 
-#### 1.1. Series
+## 1.1. Series
 
 Une **Series** est un tableau unidimensionnel étiqueté, capable de contenir des données de tout type (entiers, flottants, chaînes de caractères, etc.). Chaque élément de la Series est associé à un **index**, ce qui permet de retrouver les valeurs rapidement.
 
@@ -29,7 +29,7 @@ print(s)
 
 Les **Series** fonctionnent un peu comme des tableaux NumPy avec une dimension supplémentaire : l'index.
 
-#### 1.2. DataFrame
+## 1.2. DataFrame
 
 Un **DataFrame** est une structure de données bidimensionnelle (similaire à une feuille de calcul ou une table de base de données) où les lignes et les colonnes sont étiquetées. Chaque colonne d'un DataFrame est une **Series**, ce qui permet de manipuler des ensembles de données complexes et volumineux.
 
@@ -49,11 +49,11 @@ print(df)
 
 Les **DataFrames** sont extrêmement flexibles et puissants. Ils permettent de gérer de grandes quantités de données et de les manipuler de manière intuitive et efficace.
 
-### 2. Chargement et enregistrement des données
+# 2. Chargement et enregistrement des données
 
 Pandas permet de lire et d'écrire des données dans différents formats comme les fichiers CSV, Excel, JSON, SQL, etc.
 
-#### 2.1. Lecture de fichiers CSV
+## 2.1. Lecture de fichiers CSV
 
 ```python
 # Lire un fichier CSV et le stocker dans un DataFrame
@@ -61,18 +61,18 @@ df = pd.read_csv('data.csv')
 print(df.head())  # Afficher les 5 premières lignes
 ```
 
-#### 2.2. Enregistrement d'un DataFrame dans un fichier CSV
+## 2.2. Enregistrement d'un DataFrame dans un fichier CSV
 
 ```python
 # Sauvegarder un DataFrame dans un fichier CSV
 df.to_csv('output.csv', index=False)
 ```
 
-### 3. Manipulation des DataFrames
+# 3. Manipulation des DataFrames
 
 Une fois que nous avons chargé nos données dans un DataFrame, nous pouvons effectuer différentes opérations dessus.
 
-#### 3.1. Accéder aux données
+## 3.1. Accéder aux données
 
 Pour accéder aux données dans un DataFrame, nous utilisons généralement les méthodes `.loc[]` et `.iloc[]`.
 
@@ -93,7 +93,7 @@ print(df.iloc[0])
 print(df.iloc[0:2, 1:3])
 ```
 
-#### 3.2. Filtrer les données
+## 3.2. Filtrer les données
 
 Pandas permet de filtrer les données très facilement en appliquant des conditions logiques sur les colonnes.
 
@@ -109,7 +109,7 @@ Nous pouvons également combiner des conditions avec `&` (ET) et `|` (OU).
 print(df[(df['Age'] > 25) & (df['Ville'] == 'Paris')])
 ```
 
-#### 3.3. Ajouter et supprimer des colonnes
+## 3.3. Ajouter et supprimer des colonnes
 
 Pandas permet de facilement ajouter ou supprimer des colonnes dans un DataFrame.
 
@@ -123,7 +123,7 @@ df = df.drop(columns=['Salaire'])
 print(df)
 ```
 
-#### 3.4. Gestion des valeurs manquantes
+## 3.4. Gestion des valeurs manquantes
 
 Les données manquantes (ou "NaN") sont fréquentes en analyse de données. Pandas propose plusieurs méthodes pour les gérer.
 
@@ -138,11 +138,11 @@ df['Age'].fillna(0, inplace=True)
 df.dropna(inplace=True)
 ```
 
-### 4. Opérations sur les données
+# 4. Opérations sur les données
 
 Pandas permet d'appliquer facilement des opérations mathématiques et statistiques sur les données.
 
-#### 4.1. Calculs statistiques simples
+## 4.1. Calculs statistiques simples
 
 ```python
 # Moyenne, médiane, et somme
@@ -151,7 +151,7 @@ print(df['Age'].median())  # Médiane
 print(df['Age'].sum())  # Somme
 ```
 
-#### 4.2. Opérations sur les colonnes
+## 4.2. Opérations sur les colonnes
 
 Nous pouvons appliquer des opérations sur des colonnes entières.
 
@@ -161,7 +161,7 @@ df['Age en 10 ans'] = df['Age'] + 10
 print(df)
 ```
 
-#### 4.3. Groupement des données
+## 4.3. Groupement des données
 
 Le groupement des données est une fonctionnalité puissante de Pandas pour réaliser des agrégations sur des sous-ensembles de données.
 
@@ -171,7 +171,7 @@ grouped = df.groupby('Ville')['Age'].mean()
 print(grouped)
 ```
 
-### 5. Fusion et jointure des DataFrames
+# 5. Fusion et jointure des DataFrames
 
 Pandas propose des fonctions pour fusionner plusieurs DataFrames ensemble, similaires aux jointures en SQL.
 
@@ -188,7 +188,7 @@ print(merged)
 # 0  Alice   25      Paris
 ```
 
-### 6. Visualisation des données
+# 6. Visualisation des données
 
 Bien que Pandas ne soit pas spécifiquement une bibliothèque de visualisation, il s'intègre bien avec des outils comme **Matplotlib** pour créer rapidement des graphiques à partir des données.
 
@@ -200,7 +200,7 @@ grouped.plot(kind='bar')
 plt.show()
 ```
 
-# fonctions utiles
+# 7. fonctions utiles
 
 ```python
 import numpy as np
@@ -251,7 +251,7 @@ serie4 = pd.Series({f"a {str(x)}":x for x in range(0,5)}, dtype=float, name="Nom
 # lors de la création d'une série on peut fixer son type et lui affecter un nom
 ```
 
-# DataFrame
+# 8 Complément sur le DataFrame
 
 ```python
 import pandas as pd
@@ -275,7 +275,7 @@ Ce qui donne
 
 Dans une cellule Jupyter on peut interagir avec le résultat et par exemple tracer des courbes.
 
-# Lecture de fichier
+# 9 Lecture de fichier
 ## Les csv
 En locale avec `conda`
 ```bash
@@ -349,3 +349,34 @@ On peut transposer (inverser les colonnes et les lignes)
 ```python
 df.describe().transpose()
 ```
+Un colonne est du type Series
+```python
+type(df['Lundi'])
+```
+```
+pandas.core.series.Series
+```
+On peut récupérer plusieurs colonnes d'un coup.
+```python
+df[['Lundi','Mardi','Vendredi']]
+```
+Ajouter une colonne revient à faire une insertion comme pour une liste.
+```python
+df['Total']=df.sum(axis=1)
+```
+On peut utiliser les fonction de numpy sur les colonnes ou les lignes.
+Pour supprimer une ligne ou une colonne on utilise `drop`
+```python
+df.drop("Total", axis=1, inplace=True)
+```
+Le paramètre `axis` précise si l'on doit supprimer une ligne (0) ou une colonne (1).
+`inplace` indique que l'on modifie le dataframe d'origine sans quoi seul l'objet retourné est modifié.
+Pour connaitre les dimensions de notre data frame on utilise aussi `shape`
+
+## Changement des index
+
+On peut utiliser une colonne comme indexe à la condition que les lignes soient unique.
+```python
+df.set_index("Nom de la colonne")
+```
+Ce qui retourne un nouveau "data frame" dont la colonne est transformé en index et n'est plus accessible comme une colonne, sauf si l'on passe l'attribut `in_place` à `True`
