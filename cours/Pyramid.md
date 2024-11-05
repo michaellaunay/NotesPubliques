@@ -213,8 +213,23 @@ Test d'exécution.
 ```bash
 bin/pytest
 ```
-
 Le résultat est un nombre de tests passés, des warnings, mais aucune erreur.
+Le fichier `pytest.ini` permet de configurer `pytest`, ainsi 
+```ini
+[pytest]
+addopts = --strict-markers
+
+testpaths =
+    alirpunkto
+    tests
+
+log_cli = true
+log_cli_level = DEBUG
+log_cli_format = %(asctime)s [%(levelname)s] %(message)s (%(pathname)s:%(lineno)d)
+log_cli_date_format = %Y-%m-%d %H:%M:%S
+```
+Permet de configurer pytest pour qu'il affiche les logs sur la console pendant l'exécution des tests, tout en utilisant le niveau DEBUG
+
 
 Lançons l'exécution du serveur.
 ```bash
