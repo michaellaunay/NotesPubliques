@@ -380,3 +380,25 @@ On peut utiliser une colonne comme indexe à la condition que les lignes soient 
 df.set_index("Nom de la colonne")
 ```
 Ce qui retourne un nouveau "data frame" dont la colonne est transformé en index et n'est plus accessible comme une colonne, sauf si l'on passe l'attribut `in_place` à `True`
+
+On peut encore accéder aux ligne à partir de leur indice avec `iloc`, ou à partir de leur valeur d'index avec `loc`
+```python
+df = pd.DataFrame({
+	'col1':[1,2,3,4],
+	'col2':[444,555,666,444],
+	'col3':['abc','def','ghi','xyz']})
+df.set_index('col3', inplace=True)
+df.iloc[0] == df.loc["abc"]
+```
+On peut slicer avec `iloc`
+La méthode `drop` permet de supprimer des lignes (par valeur avec l'attribut `inplace` à `True`), attention il faut fournit le nom d'index et non son indice si l'index est nominatif.
+
+# Format des données pour le ML
+Les `DataFrame` peuvent être vus comme des instances de données où les colonnes sont les attributs de données définies par les lignes (une ligne est une instance de données.
+Cela permet d'envisager le filtrage de données.
+
+# Filtrage de données
+
+Pour filtrer des données, nous devons d'abord extraire la ou les colonnes discriminantes, appliquer la condition extraire les lignes à True.
+
+Ainsi, 
