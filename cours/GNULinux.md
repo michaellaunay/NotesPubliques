@@ -1205,6 +1205,10 @@ Documents/ecreall/Cours/CoursGNULinux/CoursGNULinux.pdf
 
 La commande **grep** permet de réaliser des recherches basées sur la présence d'une chaîne ou d'une expression régulière dans le contenu d'un fichier.
 
+```bash
+grep -rn PYTEST_CURRENT_TEST alirpunkto
+```
+Va rechercher la chaîne de caractères PYTEST_CURRENT_TEST dans toute l’arborescence alirpunkto et affichera le numéro de ligne à côté du nom de fichier.
 ### locate
 
 La commande **locate** permet de trouver un fichier si le chemin a été renseigné dans la base de données mise à jour par le super utilisateur avec **updatedb** ou **slocate -u**.
