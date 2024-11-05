@@ -461,8 +461,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
+<<<<<<< HEAD
 			"version": 1212,
 			"versionNonce": 1780070815,
+=======
+			"version": 1202,
+			"versionNonce": 1947683499,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -501,14 +506,23 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
+<<<<<<< HEAD
 			"updated": 1714654451445,
+=======
+			"updated": 1728978993844,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
+<<<<<<< HEAD
 			"version": 1562,
 			"versionNonce": 1158443551,
+=======
+			"version": 1539,
+			"versionNonce": 404954411,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -517,8 +531,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
+<<<<<<< HEAD
 			"x": 1969.2536655372742,
 			"y": -4700.760013889811,
+=======
+			"x": 1970.587788782659,
+			"y": -4702.022806356519,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1646.873046875,
@@ -528,7 +547,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654451447,
+=======
+			"updated": 1728978993880,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -540,12 +563,21 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "lUEx8bLLIwfSfR3WIe_3Z",
 			"originalText": "Les LLM en bref\n\nSur Hugging Face, il y a plus de 1 000 000 modèles open source au 1er mai 2024 [Huggingface/models](https://huggingface.co/models).\nAujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.\n\nLes LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.\n\nPour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).\n\nAujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de théories).\nLes observations :\n- Mémorisation, compression, structuration, et généralisation.\n- Capacités émergentes :\n\t- \"In-context learning\" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.\n\t- Capacité de faire des additions de 3 chiffres (10^10).\n\t- Répondre à des questions.\n\t- Générer des programmes.\n\t- Jason Wei a dénombré 137 capacités émergentes :\n\t\t- Décomposition d'un problème en étapes.\n\t\t- \"Prompt of thought\" (Accéder au raisonnement du LLM).\n\t\t- \"Analogical prompting\"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).\n\t\t- Instruction procédurale.\n\t\t- Anagramme.\n\t\t- Arithmétique modulaire.\n\t\t- Problèmes simples de mathématiques.\n\t\t- Déduction logique.\n\t\t- Déduction analytique.\n\t\t- Théorie de l'esprit (avoir un modèle de son locuteur) ?\n\t\t- ...\nEmbryons de théories **Passage à l'échelle** (\"scaling law\") :\n\t- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 : l'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼` où 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les \"transformers\").\n\t- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).\n\t- Double descente.\n\t- Transition de phases.",
 			"lineHeight": 1.15,
+<<<<<<< HEAD
 			"baseline": 1280
 		},
 		{
 			"type": "arrow",
 			"version": 1846,
 			"versionNonce": 319761855,
+=======
+			"baseline": 1281
+		},
+		{
+			"type": "arrow",
+			"version": 1835,
+			"versionNonce": 198098251,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -567,7 +599,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654451446,
+=======
+			"updated": 1728978993848,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -600,8 +636,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
+<<<<<<< HEAD
 			"version": 603,
 			"versionNonce": 1346900273,
+=======
+			"version": 602,
+			"versionNonce": 331104203,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -630,14 +671,23 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
+<<<<<<< HEAD
 			"updated": 1714654114405,
+=======
+			"updated": 1728978993880,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
+<<<<<<< HEAD
 			"version": 901,
 			"versionNonce": 611369745,
+=======
+			"version": 900,
+			"versionNonce": 290983531,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -659,7 +709,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114405,
+=======
+			"updated": 1728978993881,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 38.41616766467066,
@@ -671,7 +725,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "5B2LuYMrj2ifGZV7bdh8F",
 			"originalText": "# Publication de prise de notes\n## Contexte du projet\n- Présentation du projet : développement d'un script python de publication sur le web de notes utilisant le format Markdown [[Obsidian]].\n- Object",
 			"lineHeight": 1.15,
-			"baseline": 168
+			"baseline": 167
 		},
 		{
 			"type": "rectangle",
@@ -995,7 +1049,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "OBSIDIAN",
 			"lineHeight": 1.15,
-			"baseline": 32
+			"baseline": 33
 		},
 		{
 			"type": "embeddable",
@@ -1330,7 +1384,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "🌐https://obsidian.md/download",
 			"lineHeight": 1.15,
-			"baseline": 32
+			"baseline": 33
 		},
 		{
 			"type": "rectangle",
@@ -1491,8 +1545,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 612,
 			"versionNonce": 1098980831,
+=======
+			"version": 601,
+			"versionNonce": 759094251,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1514,7 +1573,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654451446,
+=======
+			"updated": 1728978993849,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1591,8 +1654,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 289,
-			"versionNonce": 1124910175,
+			"version": 292,
+			"versionNonce": 274866891,
 			"isDeleted": false,
 			"id": "fTaL7Ula",
 			"fillStyle": "solid",
@@ -1614,7 +1677,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1728989843996,
 			"link": null,
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1630,8 +1693,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 255,
-			"versionNonce": 1415017745,
+			"version": 258,
+			"versionNonce": 945718117,
 			"isDeleted": false,
 			"id": "LXM2JDjP",
 			"fillStyle": "solid",
@@ -1653,7 +1716,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1728989843997,
 			"link": "https://platform.openai.com/docs/guides/prompt-engineering",
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1704,8 +1767,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 237,
-			"versionNonce": 1554557681,
+			"version": 240,
+			"versionNonce": 1699320171,
 			"isDeleted": false,
 			"id": "nFHyxLGz",
 			"fillStyle": "solid",
@@ -1727,7 +1790,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137757,
+			"updated": 1728989843997,
 			"link": "https://youtu.be/_ZvnD73m40o",
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1743,8 +1806,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 548,
 			"versionNonce": 142608895,
+=======
+			"version": 537,
+			"versionNonce": 1953638027,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1766,7 +1834,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654451446,
+=======
+			"updated": 1728978993850,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2158,8 +2230,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 682,
 			"versionNonce": 946354417,
+=======
+			"version": 681,
+			"versionNonce": 331417867,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2181,7 +2258,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114406,
+=======
+			"updated": 1728978993891,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2364,7 +2445,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "gcmzivbl0kkA-NhZ5wI-s",
 			"originalText": "#Cours #Informatique \n# Objectif\nConnaître les bases de Visual Code.\nVisual code est devenu l'outil d'édition de code incontournable, et nous allons voir comment l'utiliser et le configurer pour nos b",
 			"lineHeight": 1.15,
-			"baseline": 199
+			"baseline": 198
 		},
 		{
 			"type": "embeddable",
@@ -2992,8 +3073,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 376,
-			"versionNonce": 1157376241,
+			"version": 379,
+			"versionNonce": 451071685,
 			"isDeleted": false,
 			"id": "B9n42z2j",
 			"fillStyle": "solid",
@@ -3016,7 +3097,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1728989844001,
 			"link": null,
 			"locked": false,
 			"fontSize": 34.907865168539324,
@@ -3177,7 +3258,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "WmrcThQW7N4czxeGyGdQl",
 			"originalText": "# 1. Diagrammes Mermaid\n\n[Mermaid](https://mermaid.js.org/intro/) est un outil de génération de diagrammes et de graphiques basé sur du texte en Markdown.\nIl a été conçu pour simplifier la création de",
 			"lineHeight": 1.15,
-			"baseline": 199
+			"baseline": 198
 		},
 		{
 			"type": "arrow",
@@ -3890,8 +3971,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 144,
-			"versionNonce": 726909329,
+			"version": 147,
+			"versionNonce": 344599563,
 			"isDeleted": false,
 			"id": "ANWB3vFZ",
 			"fillStyle": "solid",
@@ -3913,7 +3994,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1728989844003,
 			"link": null,
 			"locked": false,
 			"fontSize": 48.88239241648174,
@@ -4166,7 +4247,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "QJRUNbJzwLvVwe_rLATyy",
 			"originalText": "**Moi**\nPropose une arborescence de projet contenant un README.md les requirements etc\n\n**Chat GPT**\nPour structurer votre projet de conversion de notes Markdown en HTML, vous pouvez organiser l'arbor",
 			"lineHeight": 1.15,
-			"baseline": 199
+			"baseline": 198
 		},
 		{
 			"type": "image",
@@ -4656,7 +4737,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "U2bcsM_2_KdKrGLAS9Est",
 			"originalText": "**Moi**\nVoici un sketchup au format excalidraw de l'interface web devant servir de patron. Génère le HTML correspondant, en ajoutant un pied de page avec les coordonnées de Michaël. Utilise bootstrap",
 			"lineHeight": 1.15,
-			"baseline": 116
+			"baseline": 115
 		},
 		{
 			"type": "image",
@@ -5646,12 +5727,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "9Rq99DcTfe0hb9XUDmQvP",
 			"originalText": "Il est possible de faire la même chose sans générer le script directement avec Copilote dans Visual Studio Code  avec \"/createWorkspace génère l'arborescence d'un projet Pyramid\" (par exemple).\nIl suffit alors de cliquer sur le bouton que le tchat de copilot a crée.",
 			"lineHeight": 1.15,
-			"baseline": 116
+			"baseline": 115
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 105,
 			"versionNonce": 150040753,
+=======
+			"version": 103,
+			"versionNonce": 697598539,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "s7efyDs-_91sKR4aShEhN",
 			"fillStyle": "solid",
@@ -5661,11 +5747,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -4780.0475753813735,
+<<<<<<< HEAD
 			"y": 1855.972583128613,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 634.4444444444443,
 			"height": 10.6927248319289,
+=======
+			"y": 1855.9712726076054,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffc9c9",
+			"width": 634.4444444444443,
+			"height": 10.691980917400997,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 1496058591,
 			"groupIds": [],
 			"frameId": null,
@@ -5673,7 +5767,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114409,
+=======
+			"updated": 1728978993926,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5696,7 +5794,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-634.4444444444443,
+<<<<<<< HEAD
 					-10.6927248319289
+=======
+					-10.691980917400997
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -5773,12 +5875,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "EuUAhDYLZRR1CUmtUGcFD",
 			"originalText": "Présente les commandes suivantes :\n'/createWorpsace'\n'/createNoteBook' qui permet de créer un journal \nde conception avec les recommandations du tchat.\nMontre aussi comment en cliquant sur les étoiles, on peut aussi corriger les erreurs soulignées par l'interpréteur ou le terminal\nPrésente `ctrl i` pour avoir un tcaht contextuel en ligne, puis le remettre dans le tchat en cliquant l'icone du tchat en haut à droite",
 			"lineHeight": 1.15,
-			"baseline": 323
+			"baseline": 322
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 465,
 			"versionNonce": 1725937777,
+=======
+			"version": 463,
+			"versionNonce": 1430956939,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "w-QAzjhwrKBPvy1GeLG0U",
 			"fillStyle": "solid",
@@ -5787,12 +5894,21 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
+<<<<<<< HEAD
 			"x": -8391.158686492483,
 			"y": -3509.2833361324883,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 618.3333333333321,
 			"height": 124.96149265027725,
+=======
+			"x": -8391.158686492485,
+			"y": -3509.2833361115654,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffc9c9",
+			"width": 618.3333333333303,
+			"height": 124.9614926655263,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 1906058449,
 			"groupIds": [],
 			"frameId": null,
@@ -5800,7 +5916,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114410,
+=======
+			"updated": 1728978993932,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5822,8 +5942,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
+<<<<<<< HEAD
 					-618.3333333333321,
 					-124.96149265027725
+=======
+					-618.3333333333303,
+					-124.9614926655263
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -5908,8 +6033,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 159,
 			"versionNonce": 1747914801,
+=======
+			"version": 157,
+			"versionNonce": 569869515,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "mfzQFe3Fk8Dslm-t_xCHZ",
 			"fillStyle": "solid",
@@ -5919,11 +6049,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -8367.80587263967,
+<<<<<<< HEAD
 			"y": -2401.347260080607,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 565.8333333333339,
 			"height": 96.73539143663993,
+=======
+			"y": -2401.3481095390935,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffc9c9",
+			"width": 565.8333333333339,
+			"height": 96.73497284814039,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 2046383825,
 			"groupIds": [],
 			"frameId": null,
@@ -5931,7 +6069,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114411,
+=======
+			"updated": 1728978993937,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5954,7 +6096,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-565.8333333333339,
+<<<<<<< HEAD
 					-96.73539143663993
+=======
+					-96.73497284814039
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -6031,12 +6177,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "-0VJzWWOK88rk3kesf680",
 			"originalText": "RAG, ou Retrieval-Augmented Generation, est une technique dans le domaine de l'intelligence artificielle, particulièrement dans le traitement automatique du langage naturel (TALN), qui combine les mét",
 			"lineHeight": 1.15,
-			"baseline": 116
+			"baseline": 115
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 117,
 			"versionNonce": 1642131377,
+=======
+			"version": 113,
+			"versionNonce": 25511755,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "6BaaEWzPD99fGPFPc-a53",
 			"fillStyle": "solid",
@@ -6046,11 +6197,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -10783.242289668808,
+<<<<<<< HEAD
 			"y": -2576.1046356177253,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
 			"width": 573.9285714285706,
 			"height": 19.990041596361607,
+=======
+			"y": -2576.104635657608,
+			"strokeColor": "#1971c2",
+			"backgroundColor": "#a5d8ff",
+			"width": 573.9285714285706,
+			"height": 19.990041617681072,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 584611231,
 			"groupIds": [],
 			"frameId": null,
@@ -6058,7 +6217,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114413,
+=======
+			"updated": 1728978993943,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6081,7 +6244,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-573.9285714285706,
+<<<<<<< HEAD
 					19.990041596361607
+=======
+					19.990041617681072
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -6256,12 +6423,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "gI5n06uVdK1EulD_k2FRV",
 			"originalText": "Utiliser :\n- Ghost Text\n- Inline Chat (`Ctrl i`)\n- Chat Panel\n- Utiliser les \"/Commands\" comme `/fix`\n- Nettoyer le contexte (supprimer les questions dans le fil)\n- Ajouter les fichiers nécessaires au projet.",
 			"lineHeight": 1.15,
-			"baseline": 323
+			"baseline": 322
 		},
 		{
 			"type": "arrow",
+<<<<<<< HEAD
 			"version": 60,
 			"versionNonce": 2067494769,
+=======
+			"version": 58,
+			"versionNonce": 562966667,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"isDeleted": false,
 			"id": "xa0CyPXoYESqVPXobs52o",
 			"fillStyle": "solid",
@@ -6271,11 +6443,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -7792.073458499974,
+<<<<<<< HEAD
 			"y": -4953.8259383443565,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 626.6666666666661,
 			"height": 28.140643305843696,
+=======
+			"y": -4953.826110867148,
+			"strokeColor": "#e03131",
+			"backgroundColor": "#ffc9c9",
+			"width": 626.6666666666661,
+			"height": 28.140527076444414,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 432208049,
 			"groupIds": [],
 			"frameId": null,
@@ -6283,7 +6463,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
+<<<<<<< HEAD
 			"updated": 1714654114414,
+=======
+			"updated": 1728978993947,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6306,7 +6490,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-626.6666666666661,
+<<<<<<< HEAD
 					-28.140643305843696
+=======
+					-28.140527076444414
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -6868,8 +7056,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
+<<<<<<< HEAD
 		"scrollX": 2953.5280039545178,
 		"scrollY": 1208.947787193691,
+=======
+		"scrollX": 7362.528003954519,
+		"scrollY": 6036.404384415912,
+>>>>>>> 3589494 (Mise à jour présentation meetup)
 		"zoom": {
 			"value": 0.44999999999999996
 		},
