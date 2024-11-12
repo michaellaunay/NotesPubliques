@@ -401,4 +401,20 @@ Cela permet d'envisager le filtrage de données.
 
 Pour filtrer des données, nous devons d'abord extraire la ou les colonnes discriminantes, appliquer la condition extraire les lignes à True.
 
-Ainsi, 
+Ainsi :
+```python
+df['col2'] > 400 # Donne un vecteur de booléens
+df[df['col2'] > 400] # Filtre les éléments du tableau
+```
+On peut combiner les filtres avec les opérateur `&` (et) et `|` (ou).
+```python
+f[df['col2'] > 500 & df['col1`] >= 3]
+```
+Pour une même colonne, on peut utiliser des fonctions comme `isin`
+```python
+df['col4'].isin(["abc", "xyz"])
+```
+On peut appliquer des fonctions à une colonne.
+```python
+df['col2'].apply(lambda s:2*s)
+```
