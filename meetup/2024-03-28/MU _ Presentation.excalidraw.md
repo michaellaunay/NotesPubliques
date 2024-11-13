@@ -10,7 +10,7 @@ tags: [excalidraw]
 # Text Elements
 ![[MU 01 Introduction]] ^aPWRa9RN
 
-Développement de logiciel avec l'IA ^cnGyB8QR
+Dévelopement de logiciel avec l'IA ^cnGyB8QR
 
 ![[MU 03 Sujet]] ^4T0rdBAu
 
@@ -153,8 +153,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 	"elements": [
 		{
 			"type": "rectangle",
-			"version": 1132,
-			"versionNonce": 1228915409,
+			"version": 1131,
+			"versionNonce": 1316265503,
 			"isDeleted": false,
 			"id": "2vLnqE1UfpSw0Yxy2FAf4",
 			"fillStyle": "solid",
@@ -164,7 +164,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1880.4691760510254,
-			"y": -441.7975068091214,
+			"y": -439.5752845868992,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#d6d6d6",
 			"width": 2202.857142857143,
@@ -215,14 +215,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1714672021332,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "image",
-			"version": 1291,
-			"versionNonce": 2055686001,
+			"version": 1290,
+			"versionNonce": 326883633,
 			"isDeleted": false,
 			"id": "Y0KPpV5h",
 			"fillStyle": "hachure",
@@ -232,7 +232,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1612.3229760519298,
-			"y": -124.4408990821347,
+			"y": -122.21867685991253,
 			"strokeColor": "transparent",
 			"backgroundColor": "#d6d6d6",
 			"width": 1691.7722277722276,
@@ -244,7 +244,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636228397,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -256,8 +256,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 1083,
-			"versionNonce": 119880881,
+			"version": 1063,
+			"versionNonce": 1217473403,
 			"isDeleted": false,
 			"id": "cnGyB8QR",
 			"fillStyle": "solid",
@@ -266,11 +266,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1776.435402256251,
-			"y": -326.59677106408566,
+			"x": -1725.32429114514,
+			"y": -317.70788217519674,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#d6d6d6",
-			"width": 2016.0816650390625,
+			"width": 1958.2310791015625,
 			"height": 146.69474070364197,
 			"seed": 1946988876,
 			"groupIds": [
@@ -279,17 +279,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1714672024981,
+			"updated": 1731490583150,
 			"link": null,
 			"locked": false,
 			"fontSize": 117.35579256291358,
 			"fontFamily": 1,
-			"text": "Développement de logiciel avec l'IA",
-			"rawText": "Développement de logiciel avec l'IA",
+			"text": "Dévelopement de logiciel avec l'IA",
+			"rawText": "Dévelopement de logiciel avec l'IA",
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "Développement de logiciel avec l'IA",
+			"originalText": "Dévelopement de logiciel avec l'IA",
 			"lineHeight": 1.25,
 			"baseline": 103
 		},
@@ -405,8 +405,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1579,
-			"versionNonce": 851525809,
+			"version": 1578,
+			"versionNonce": 210835103,
 			"isDeleted": false,
 			"id": "hZ_id1WcQLVkyVY0tOngI",
 			"fillStyle": "solid",
@@ -415,12 +415,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -378.8081733427481,
-			"y": -448.30592231114633,
+			"x": -380.786803414947,
+			"y": -446.08370008892416,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 696.8551878222165,
-			"height": 1192.6810761916631,
+			"width": 698.8338178944155,
+			"height": 1194.9032984138853,
 			"seed": 558971380,
 			"groupIds": [],
 			"frameId": null,
@@ -428,7 +428,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -450,24 +450,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					181.21091099776106,
-					-164.41758281355453
+					183.18954106995994,
+					-166.6398050357767
 				],
 				[
-					696.8551878222165,
-					-1192.6810761916631
+					698.8338178944155,
+					-1194.9032984138853
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-<<<<<<< HEAD
-			"version": 1212,
-			"versionNonce": 1780070815,
-=======
-			"version": 1202,
-			"versionNonce": 1947683499,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"version": 1203,
+			"versionNonce": 1001248795,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -476,8 +471,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1956.5992798838645,
-			"y": -4738.260013889811,
+			"x": 1957.9334031292494,
+			"y": -4739.522806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
 			"width": 1672.1818181818194,
@@ -506,23 +501,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-<<<<<<< HEAD
-			"updated": 1714654451445,
-=======
-			"updated": 1728978993844,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586568,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-<<<<<<< HEAD
-			"version": 1562,
-			"versionNonce": 1158443551,
-=======
-			"version": 1539,
-			"versionNonce": 404954411,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"version": 1540,
+			"versionNonce": 1175417499,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -531,13 +517,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-<<<<<<< HEAD
-			"x": 1969.2536655372742,
-			"y": -4700.760013889811,
-=======
-			"x": 1970.587788782659,
+			"x": 1970.5877887826591,
 			"y": -4702.022806356519,
->>>>>>> 3589494 (Mise à jour présentation meetup)
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 1646.873046875,
@@ -547,11 +528,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654451447,
-=======
-			"updated": 1728978993880,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586577,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -563,21 +540,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": "lUEx8bLLIwfSfR3WIe_3Z",
 			"originalText": "Les LLM en bref\n\nSur Hugging Face, il y a plus de 1 000 000 modèles open source au 1er mai 2024 [Huggingface/models](https://huggingface.co/models).\nAujourd'hui, l'apprentissage d'un LLM se fait sur 1 000 000 000 000 de mots. L'architecture des transformers (2018 Google) est celle de la quasi-totalité des LLM ; elle vise à prédire le mot suivant.\n\nLes LLM sont très bons pour écrire du code simple ; faire du code compliqué nécessite de le guider et donc d'avoir une interaction avec.\n\nPour gérer la complexité, il y a des tentatives d'agents de modèles de langage (orchestration de différents LLMs) (Langchain, Coala).\n\nAujourd'hui, on constate les capacités des LLMs mais on commence à peine à pouvoir les expliquer (presque pas, embryons de théories).\nLes observations :\n- Mémorisation, compression, structuration, et généralisation.\n- Capacités émergentes :\n\t- \"In-context learning\" : Capacité de généraliser (seuls les LLM font cela), mais n'émerge qu'à partir de 10^10 de paramètres.\n\t- Capacité de faire des additions de 3 chiffres (10^10).\n\t- Répondre à des questions.\n\t- Générer des programmes.\n\t- Jason Wei a dénombré 137 capacités émergentes :\n\t\t- Décomposition d'un problème en étapes.\n\t\t- \"Prompt of thought\" (Accéder au raisonnement du LLM).\n\t\t- \"Analogical prompting\"  (Faire élaborer au LLM la démarche à appliquer avant de l'appliquer).\n\t\t- Instruction procédurale.\n\t\t- Anagramme.\n\t\t- Arithmétique modulaire.\n\t\t- Problèmes simples de mathématiques.\n\t\t- Déduction logique.\n\t\t- Déduction analytique.\n\t\t- Théorie de l'esprit (avoir un modèle de son locuteur) ?\n\t\t- ...\nEmbryons de théories **Passage à l'échelle** (\"scaling law\") :\n\t- Lois de Chinchilla (On mesure les capacités du modèle lorsqu'il devient de plus en plus gros. Baidu 2017 puis Google 2018 : l'apprentissage suit des lois qui sont fonction du nombre de données, et aboutit en 2022 à Chinchilla ; ces lois sont en `L(N)=A/N**𝛼` où 𝛼 est différent pour chacune des architectures, avec le meilleur score de 0,54 pour les \"transformers\").\n\t- Grokking (Apprend bestialement puis, après beaucoup de données, généralise).\n\t- Double descente.\n\t- Transition de phases.",
 			"lineHeight": 1.15,
-<<<<<<< HEAD
-			"baseline": 1280
-		},
-		{
-			"type": "arrow",
-			"version": 1846,
-			"versionNonce": 319761855,
-=======
 			"baseline": 1281
 		},
 		{
 			"type": "arrow",
-			"version": 1835,
-			"versionNonce": 198098251,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"version": 1836,
+			"versionNonce": 1578245307,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -590,8 +558,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": -2890.4392418651264,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "transparent",
-			"width": 683.429860166056,
-			"height": 483.8207720246842,
+			"width": 684.9779379394547,
+			"height": 485.08356449139274,
 			"seed": 1301585396,
 			"groupIds": [],
 			"frameId": null,
@@ -599,11 +567,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654451446,
-=======
-			"updated": 1728978993848,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586569,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -629,20 +593,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					-25.51862942645903
 				],
 				[
-					683.429860166056,
-					-483.8207720246842
+					684.9779379394547,
+					-485.08356449139274
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-<<<<<<< HEAD
 			"version": 603,
-			"versionNonce": 1346900273,
-=======
-			"version": 602,
-			"versionNonce": 331104203,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 240936763,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -671,23 +630,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-<<<<<<< HEAD
-			"updated": 1714654114405,
-=======
-			"updated": 1728978993880,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586577,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-<<<<<<< HEAD
 			"version": 901,
-			"versionNonce": 611369745,
-=======
-			"version": 900,
-			"versionNonce": 290983531,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 1986119643,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -709,11 +659,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114405,
-=======
-			"updated": 1728978993881,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586577,
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 38.41616766467066,
@@ -839,8 +785,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1142,
-			"versionNonce": 790831569,
+			"version": 1141,
+			"versionNonce": 1563031121,
 			"isDeleted": false,
 			"id": "oNZu8XuHb9ysCQfj-sPI5",
 			"fillStyle": "solid",
@@ -850,11 +796,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 342.7843769333472,
-			"y": 1408.3980604363192,
+			"y": 1408.8513462497215,
 			"strokeColor": "#e03131",
 			"backgroundColor": "transparent",
 			"width": 475.2766077141494,
-			"height": 1184.60174608767,
+			"height": 1184.1484602742678,
 			"seed": 1520147828,
 			"groupIds": [],
 			"frameId": null,
@@ -862,7 +808,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137757,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -885,11 +831,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					222.4979996205641,
-					267.3317761503469
+					266.8784903369446
 				],
 				[
 					475.2766077141494,
-					1184.60174608767
+					1184.1484602742678
 				]
 			]
 		},
@@ -1545,13 +1491,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
-			"version": 612,
-			"versionNonce": 1098980831,
-=======
-			"version": 601,
-			"versionNonce": 759094251,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"version": 602,
+			"versionNonce": 12897627,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1560,12 +1501,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 2662.826136370228,
-			"y": -4748.33541862092,
+			"x": 2664.1785965399295,
+			"y": -4749.5982110876275,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 1896.7245140417567,
-			"height": 963.8942541570032,
+			"width": 1895.3720538720554,
+			"height": 962.6314616902955,
 			"seed": 865819775,
 			"groupIds": [],
 			"frameId": null,
@@ -1573,11 +1514,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654451446,
-=======
-			"updated": 1728978993849,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586570,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1599,12 +1536,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					1013.3979147151554,
-					-909.7099653059468
+					1012.045454545454,
+					-908.4471728392391
 				],
 				[
-					1896.7245140417567,
-					-963.8942541570032
+					1895.3720538720554,
+					-962.6314616902955
 				]
 			]
 		},
@@ -1689,7 +1626,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "LE PROMPT ENGINEERING",
 			"lineHeight": 1.15,
-			"baseline": 41
+			"baseline": 40
 		},
 		{
 			"type": "text",
@@ -1728,7 +1665,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "🌐https://platform.openai.com/docs/guides/prompt-engineering",
 			"lineHeight": 1.15,
-			"baseline": 41
+			"baseline": 40
 		},
 		{
 			"type": "embeddable",
@@ -1802,17 +1739,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "🌐https://youtu.be/_ZvnD73m40o",
 			"lineHeight": 1.15,
-			"baseline": 41
+			"baseline": 40
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
-			"version": 548,
-			"versionNonce": 142608895,
-=======
-			"version": 537,
-			"versionNonce": 1953638027,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"version": 538,
+			"versionNonce": 1729653243,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1821,12 +1753,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 3637.5479364980074,
-			"y": -4094.6573674765236,
+			"x": 3638.8820597433923,
+			"y": -4095.0574314572527,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 919.3645006627876,
-			"height": 239.71155064922596,
+			"width": 918.0303774174026,
+			"height": 240.11161462995506,
 			"seed": 2054474143,
 			"groupIds": [],
 			"frameId": null,
@@ -1834,11 +1766,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654451446,
-=======
-			"updated": 1728978993850,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586570,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1860,12 +1788,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					584.4769803882418,
-					239.71155064922596
+					583.1428571428569,
+					240.11161462995506
 				],
 				[
-					919.3645006627876,
-					169.32064675258925
+					918.0303774174026,
+					169.72071073331836
 				]
 			]
 		},
@@ -2230,13 +2158,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
 			"version": 682,
-			"versionNonce": 946354417,
-=======
-			"version": 681,
-			"versionNonce": 331417867,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 1144132731,
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2258,11 +2181,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114406,
-=======
-			"updated": 1728978993891,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586579,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2996,8 +2915,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 356,
-			"versionNonce": 818066193,
+			"version": 357,
+			"versionNonce": 1469041947,
 			"isDeleted": false,
 			"id": "nX7JC7l3v4pvzA7-Q6t-B",
 			"fillStyle": "solid",
@@ -3011,7 +2930,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#ffffff",
 			"width": 1617.3977528089886,
-			"height": 130.90449438202248,
+			"height": 171,
 			"seed": 1119655857,
 			"groupIds": [
 				"tMcyjhzK4clL6AZf93SEf",
@@ -3027,14 +2946,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711636137758,
+			"updated": 1731490586583,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 440,
-			"versionNonce": 943882879,
+			"version": 442,
+			"versionNonce": 1248690779,
 			"isDeleted": false,
 			"id": "eiwgPas6",
 			"fillStyle": "solid",
@@ -3043,12 +2962,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 7000.209403692323,
-			"y": -2294.4695436363636,
+			"x": 7058.388847051698,
+			"y": -2294.493813299285,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
-			"width": 1605.9403076171875,
-			"height": 120.43213483146066,
+			"width": 1489.5814208984375,
+			"height": 160.57617977528088,
 			"seed": 1928428369,
 			"groupIds": [
 				"tMcyjhzK4clL6AZf93SEf",
@@ -3057,19 +2976,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1731490586583,
 			"link": "[[Markdown]]",
 			"locked": false,
 			"fontSize": 34.907865168539324,
 			"fontFamily": 2,
-			"text": "## Introduction\n Markdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour reddit.\n Mardown permet de faire de la mise en forme basique d'un texte brute sans utiliser",
+			"text": "## Introduction\n\nMarkdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour\nReddit. Le nom du langage est un clin d’œil aux langages de type \"markup\" (à balises) comme",
 			"rawText": "![[Markdown]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "nX7JC7l3v4pvzA7-Q6t-B",
-			"originalText": "## Introduction\n Markdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour reddit.\n Mardown permet de faire de la mise en forme basique d'un texte brute sans utiliser",
+			"originalText": "## Introduction\n\nMarkdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour Reddit. Le nom du langage est un clin d’œil aux langages de type \"markup\" (à balises) comme",
 			"lineHeight": 1.15,
-			"baseline": 112
+			"baseline": 152
 		},
 		{
 			"type": "text",
@@ -3109,7 +3028,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "MARKDOWN",
 			"lineHeight": 1.15,
-			"baseline": 32
+			"baseline": 31
 		},
 		{
 			"type": "rectangle",
@@ -3804,8 +3723,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 351,
-			"versionNonce": 1326973585,
+			"version": 350,
+			"versionNonce": 1645167057,
 			"isDeleted": false,
 			"id": "hsnLuyP3fkOGlttwSpI3q",
 			"fillStyle": "solid",
@@ -3815,11 +3734,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 325.96392830223476,
-			"y": 408.9121431364515,
+			"y": 409.4654038005299,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
 			"width": 780.0714285714287,
-			"height": 477.77096538120713,
+			"height": 477.21770471712875,
 			"seed": 1679328401,
 			"groupIds": [],
 			"frameId": null,
@@ -3827,7 +3746,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137758,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3850,11 +3769,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					175.7142857142859,
-					115.91169253202543
+					115.35843186794705
 				],
 				[
 					780.0714285714287,
-					477.77096538120713
+					477.21770471712875
 				]
 			]
 		},
@@ -4006,7 +3925,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"containerId": null,
 			"originalText": "ÉTUDE DE CAS",
 			"lineHeight": 1.15,
-			"baseline": 45
+			"baseline": 44
 		},
 		{
 			"type": "image",
@@ -4045,8 +3964,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 838,
-			"versionNonce": 271798865,
+			"version": 836,
+			"versionNonce": 373588054,
 			"isDeleted": false,
 			"id": "Mzebemv_8Q07FqMIh6OhF",
 			"fillStyle": "solid",
@@ -4055,12 +3974,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -661.6496331394882,
-			"y": 1655.6540416424268,
+			"x": -662.3810382082951,
+			"y": 1657.8762638646492,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
-			"width": 164.42601175045434,
-			"height": 1288.5507464070024,
+			"width": 164.76508113892618,
+			"height": 1286.3285241847796,
 			"seed": 1476645695,
 			"groupIds": [],
 			"frameId": null,
@@ -4068,7 +3987,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1712089323776,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4090,8 +4009,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					164.42601175045434,
-					1288.5507464070024
+					164.76508113892618,
+					1286.3285241847796
 				]
 			]
 		},
@@ -4286,8 +4205,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 424,
-			"versionNonce": 60219441,
+			"version": 423,
+			"versionNonce": 804385041,
 			"isDeleted": false,
 			"id": "Ojiem9ihrAUq0OYXnhnI-",
 			"fillStyle": "solid",
@@ -4297,7 +4216,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1894.2095565512568,
-			"y": 1568.6021833019513,
+			"y": 1570.3756634916267,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#b2f2bb",
 			"width": 756.3174603174598,
@@ -4309,7 +4228,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4332,18 +4251,18 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-301.4285714285711,
-					-104.89883825396669
+					-106.6723184436421
 				],
 				[
 					-756.3174603174598,
-					38.72437018061237
+					36.95088999093696
 				]
 			]
 		},
 		{
 			"type": "arrow",
-			"version": 304,
-			"versionNonce": 1124971025,
+			"version": 303,
+			"versionNonce": 1965958271,
 			"isDeleted": false,
 			"id": "swg4PQ4FimZtWpPzTyRT1",
 			"fillStyle": "solid",
@@ -4352,12 +4271,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1096.4678541324781,
-			"y": 1664.95373601344,
+			"x": -1096.7903890695393,
+			"y": 1667.1759582356622,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
-			"width": 1600.2620795841278,
-			"height": 1203.7087357087362,
+			"width": 1599.9395446470667,
+			"height": 1201.486513486514,
 			"seed": 1011510641,
 			"groupIds": [],
 			"frameId": null,
@@ -4365,7 +4284,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4387,12 +4306,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-128.51298669006178,
-					583.7087357087362
+					-128.19045175300062,
+					581.486513486514
 				],
 				[
-					-1600.2620795841278,
-					1203.7087357087362
+					-1599.9395446470667,
+					1201.486513486514
 				]
 			]
 		},
@@ -4776,8 +4695,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 126,
-			"versionNonce": 1938769905,
+			"version": 125,
+			"versionNonce": 5779537,
 			"isDeleted": false,
 			"id": "ur0m1rD0J0PhgO3IrdcxK",
 			"fillStyle": "solid",
@@ -4787,11 +4706,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -1885.1713170130183,
-			"y": 484.8103201077238,
+			"y": 486.01172664267614,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
 			"width": 1803.8095238095243,
-			"height": 709.8679061056025,
+			"height": 711.0693126405549,
 			"seed": 1403381919,
 			"groupIds": [],
 			"frameId": null,
@@ -4799,7 +4718,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4822,11 +4741,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-930.4761904761904,
-					-496.53457277226937
+					-497.7359793072217
 				],
 				[
 					-1803.8095238095243,
-					-709.8679061056025
+					-711.0693126405549
 				]
 			]
 		},
@@ -5348,8 +5267,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 76,
-			"versionNonce": 1658896305,
+			"version": 75,
+			"versionNonce": 683163135,
 			"isDeleted": false,
 			"id": "OpXKle2Vqw0mqkwjQMxdY",
 			"fillStyle": "solid",
@@ -5358,12 +5277,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -1180.9590742621772,
-			"y": -442.7975068091216,
+			"x": -1180.0872579210572,
+			"y": -440.02679610955784,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "#ffffff",
-			"width": 2289.12818365888,
-			"height": 2287.229289300436,
+			"width": 2290,
+			"height": 2290,
 			"seed": 1528137745,
 			"groupIds": [],
 			"frameId": null,
@@ -5371,7 +5290,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1711636137759,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5393,19 +5312,19 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-849.1281836588801,
-					-1387.2292893004362
+					-850,
+					-1390
 				],
 				[
-					-2289.12818365888,
-					-2287.229289300436
+					-2290,
+					-2290
 				]
 			]
 		},
 		{
 			"type": "arrow",
-			"version": 786,
-			"versionNonce": 1827643793,
+			"version": 785,
+			"versionNonce": 527118602,
 			"isDeleted": false,
 			"id": "xHHYywgz-NrofMKvRmbeF",
 			"fillStyle": "solid",
@@ -5414,12 +5333,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -862.5516879218451,
-			"y": -460.2648913476528,
+			"x": -862.4285277623258,
+			"y": -458.0426691254306,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
 			"width": 1688.4713068149938,
-			"height": 5850.1111111111095,
+			"height": 5852.333333333332,
 			"seed": 1185163583,
 			"groupIds": [],
 			"frameId": null,
@@ -5427,7 +5346,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1714672021332,
+			"updated": 1712247604564,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5449,12 +5368,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-679.8768398404807,
-					-2957.777777777778
+					-680,
+					-2960
 				],
 				[
-					1008.5944669745131,
-					-5850.1111111111095
+					1008.4713068149938,
+					-5852.333333333332
 				]
 			]
 		},
@@ -5731,13 +5650,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
 			"version": 105,
-			"versionNonce": 150040753,
-=======
-			"version": 103,
-			"versionNonce": 697598539,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 181331867,
 			"isDeleted": false,
 			"id": "s7efyDs-_91sKR4aShEhN",
 			"fillStyle": "solid",
@@ -5747,19 +5661,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -4780.0475753813735,
-<<<<<<< HEAD
 			"y": 1855.972583128613,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 634.4444444444443,
 			"height": 10.6927248319289,
-=======
-			"y": 1855.9712726076054,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#ffc9c9",
-			"width": 634.4444444444443,
-			"height": 10.691980917400997,
->>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 1496058591,
 			"groupIds": [],
 			"frameId": null,
@@ -5767,11 +5673,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114409,
-=======
-			"updated": 1728978993926,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586589,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5794,11 +5696,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-634.4444444444443,
-<<<<<<< HEAD
 					-10.6927248319289
-=======
-					-10.691980917400997
->>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -5879,13 +5777,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
 			"version": 465,
-			"versionNonce": 1725937777,
-=======
-			"version": 463,
-			"versionNonce": 1430956939,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 1871183067,
 			"isDeleted": false,
 			"id": "w-QAzjhwrKBPvy1GeLG0U",
 			"fillStyle": "solid",
@@ -5894,21 +5787,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-<<<<<<< HEAD
 			"x": -8391.158686492483,
 			"y": -3509.2833361324883,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 618.3333333333321,
 			"height": 124.96149265027725,
-=======
-			"x": -8391.158686492485,
-			"y": -3509.2833361115654,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#ffc9c9",
-			"width": 618.3333333333303,
-			"height": 124.9614926655263,
->>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 1906058449,
 			"groupIds": [],
 			"frameId": null,
@@ -5916,11 +5800,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114410,
-=======
-			"updated": 1728978993932,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586591,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5942,13 +5822,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-<<<<<<< HEAD
 					-618.3333333333321,
 					-124.96149265027725
-=======
-					-618.3333333333303,
-					-124.9614926655263
->>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -6033,13 +5908,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
 			"version": 159,
-			"versionNonce": 1747914801,
-=======
-			"version": 157,
-			"versionNonce": 569869515,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 711770651,
 			"isDeleted": false,
 			"id": "mfzQFe3Fk8Dslm-t_xCHZ",
 			"fillStyle": "solid",
@@ -6049,19 +5919,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -8367.80587263967,
-<<<<<<< HEAD
 			"y": -2401.347260080607,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 565.8333333333339,
 			"height": 96.73539143663993,
-=======
-			"y": -2401.3481095390935,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#ffc9c9",
-			"width": 565.8333333333339,
-			"height": 96.73497284814039,
->>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 2046383825,
 			"groupIds": [],
 			"frameId": null,
@@ -6069,11 +5931,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114411,
-=======
-			"updated": 1728978993937,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586593,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6096,11 +5954,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-565.8333333333339,
-<<<<<<< HEAD
 					-96.73539143663993
-=======
-					-96.73497284814039
->>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -6181,13 +6035,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
 			"version": 117,
-			"versionNonce": 1642131377,
-=======
-			"version": 113,
-			"versionNonce": 25511755,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 822697115,
 			"isDeleted": false,
 			"id": "6BaaEWzPD99fGPFPc-a53",
 			"fillStyle": "solid",
@@ -6197,19 +6046,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -10783.242289668808,
-<<<<<<< HEAD
 			"y": -2576.1046356177253,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
 			"width": 573.9285714285706,
 			"height": 19.990041596361607,
-=======
-			"y": -2576.104635657608,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "#a5d8ff",
-			"width": 573.9285714285706,
-			"height": 19.990041617681072,
->>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 584611231,
 			"groupIds": [],
 			"frameId": null,
@@ -6217,11 +6058,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114413,
-=======
-			"updated": 1728978993943,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586602,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6244,11 +6081,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-573.9285714285706,
-<<<<<<< HEAD
 					19.990041596361607
-=======
-					19.990041617681072
->>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -6427,13 +6260,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-<<<<<<< HEAD
 			"version": 60,
-			"versionNonce": 2067494769,
-=======
-			"version": 58,
-			"versionNonce": 562966667,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"versionNonce": 1734947291,
 			"isDeleted": false,
 			"id": "xa0CyPXoYESqVPXobs52o",
 			"fillStyle": "solid",
@@ -6443,19 +6271,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -7792.073458499974,
-<<<<<<< HEAD
 			"y": -4953.8259383443565,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 626.6666666666661,
 			"height": 28.140643305843696,
-=======
-			"y": -4953.826110867148,
-			"strokeColor": "#e03131",
-			"backgroundColor": "#ffc9c9",
-			"width": 626.6666666666661,
-			"height": 28.140527076444414,
->>>>>>> 3589494 (Mise à jour présentation meetup)
 			"seed": 432208049,
 			"groupIds": [],
 			"frameId": null,
@@ -6463,11 +6283,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-<<<<<<< HEAD
-			"updated": 1714654114414,
-=======
-			"updated": 1728978993947,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+			"updated": 1731490586604,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6490,11 +6306,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-626.6666666666661,
-<<<<<<< HEAD
 					-28.140643305843696
-=======
-					-28.140527076444414
->>>>>>> 3589494 (Mise à jour présentation meetup)
 				]
 			]
 		},
@@ -7056,15 +6868,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-<<<<<<< HEAD
-		"scrollX": 2953.5280039545178,
-		"scrollY": 1208.947787193691,
-=======
 		"scrollX": 7362.528003954519,
-		"scrollY": 6036.404384415912,
->>>>>>> 3589494 (Mise à jour présentation meetup)
+		"scrollY": 6041.404384415912,
 		"zoom": {
-			"value": 0.44999999999999996
+			"value": 0.1
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
