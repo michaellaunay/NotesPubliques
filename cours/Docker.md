@@ -9,15 +9,15 @@ Docker est un logiciel qui permet d'empaqueter une application avec toutes ses d
 La principale différence entre les conteneurs et les machines virtuelles, est que les conteneurs utilisent le système d'exploitation hôte, tandis que les machines virtuelles utilisent leur propre système d'exploitation.
 Les conteneurs sont donc plus légers et plus rapides à démarrer.
 
-La raison prncipale d'utilisation de Docker est faciliter le déploiement d'applications, de les rendre portables et de garantir une meilleure reproductibilité des environnements.
-Le système hébergeant Docker est appelé l'hote, c'est le système d'exploitation de l'ordinateur qui fera fonctionner docker et les images docker.
+La raison principale d'utilisation de Docker est faciliter le déploiement d'applications, de les rendre portables et de garantir une meilleure reproductibilité des environnements.
+Le système hébergeant Docker est appelé l’hôte, c'est le système d'exploitation de l'ordinateur qui fera fonctionner docker et les images docker.
 
-Les images sont décrites au format texte dans des fichiers appellés DockerFiles.
+Les images sont décrites au format texte dans des fichiers appelés DockerFiles.
 Ces modèles d'images sont partagés sur un dépôt public appelé DockerHUB accessible à l'adresse https://www.docker.com/ .
 Toutefois, il faut faire attention au DockerFile qui y sont, car il y a peu ou pas de vérification de la majorité des images.
 
 Sur windows 11, Docker utilise [[WSL2]] et propose sa configuration lors de son installation, généralement nous allons chercher le logiciel Docker sur https://docker.com (voir https://www.youtube.com/watch?v=6Wpp6C8cUf0&ab_channel=angleformation )
-Sur Ubuntu ou Debian, soit nous utilisons les packets de la distribution soit nous téléchargeons la dernière version ( https://youtu.be/AWJG-AbGFik )
+Sur Ubuntu ou Debian, soit nous utilisons les paquets de la distribution soit nous téléchargeons la dernière version ( https://youtu.be/AWJG-AbGFik )
 
 # Définition
 Docker est un logiciel open-source qui facilite la création, le déploiement et l'exécution d'applications dans des conteneurs logiciels. Un conteneur est un environnement logiciel qui contient tout ce dont une application a besoin pour fonctionner, comme les bibliothèques, les outils de développement et les fichiers de configuration. Les conteneurs sont similaires aux machines virtuelles, mais ils sont beaucoup plus légers et plus rapides à démarrer, car ils partagent les ressources de l'hôte sur lequel ils sont exécutés.
@@ -161,6 +161,7 @@ Imaginez qu'une image soit comme une classe dans un programme orienté objet, et
 - **Image** = la classe (la définition de ce que sera l'objet).
 - **Conteneur** = l'objet (une instance de la classe, qui peut être manipulée et utilisée).
 # Les commandes de bases
+
 Les commandes de base les plus couramment utilisées sont :
 - docker images : pour lister les images de conteneurs locales
 - docker init : pour créer un docker file avec l'assistant contextuel
@@ -190,15 +191,15 @@ Les commandes de base les plus couramment utilisées sont :
 L'option `-d` ou `--detach` dans Docker signifie "détaché". Lorsqu'elle est utilisée, cette option permet de lancer un conteneur en arrière-plan et de le détacher du terminal. Cela signifie que la commande Docker retourne immédiatement le contrôle au terminal et le conteneur continue de s'exécuter en arrière-plan.
 
 ## Détails de l'Option `-d` :
-- **Arrière-plan** : Le conteneur est lancé en mode détaché, ce qui est utile lorsque vous ne souhaitez pas que le conteneur monopolise la ligne de commande. Vous pouvez ainsi continuer à utiliser le terminal pour d'autres tâches pendant que le conteneur fonctionne.
-- **Sortie du conteneur** : Étant donné que le conteneur est exécuté en arrière-plan, la sortie standard du conteneur n'apparaît pas dans le terminal. Cependant, vous pouvez voir les logs du conteneur en utilisant la commande `docker logs`.
+- **Arrière-plan** : Le conteneur est lancé en mode détaché, ce qui est utile lorsque nous ne souhaitons pas que le conteneur monopolise la ligne de commande. Nous pouvons ainsi continuer à utiliser le terminal pour d'autres tâches pendant que le conteneur fonctionne.
+- **Sortie du conteneur** : Étant donné que le conteneur est exécuté en arrière-plan, la sortie standard du conteneur n'apparaît pas dans le terminal. Cependant, nous pouvons voir les logs du conteneur en utilisant la commande `docker logs`.
 - **Cas d'utilisation** : Le mode détaché est souvent utilisé pour les conteneurs de services qui doivent tourner de manière autonome, comme un serveur web, une base de données, etc.
 
 ## Exemple d'utilisation :
 ```bash
 docker run -d --name mon_conteneur nginx
 ```
-Dans cet exemple, le conteneur utilisant l'image `nginx` sera lancé en mode détaché et nommé `mon_conteneur`. Vous pourrez continuer à utiliser le terminal après l'exécution de cette commande.
+Dans cet exemple, le conteneur utilisant l'image `nginx` sera lancé en mode détaché et nommé `mon_conteneur`. Nous pourrons continuer à utiliser le terminal après l'exécution de cette commande.
 
 Pour vérifier que le conteneur est bien en cours d'exécution, utilisez :
 ```bash
@@ -206,8 +207,9 @@ docker ps
 ```
 
 ## Avantages :
-- **Contrôle du terminal** : Vous pouvez continuer à travailler dans votre terminal pendant que le conteneur tourne en arrière-plan.
+- **Contrôle du terminal** : Nous pouvons continuer à travailler dans notre terminal pendant que le conteneur tourne en arrière-plan.
 - **Facilité de gestion** : Idéal pour les applications de fond et les services qui doivent rester actifs même lorsque l'utilisateur n'est pas connecté.
+
 
 # Principales commandes
 ## Installation
@@ -362,16 +364,16 @@ L'option -name permet de fixer un nom sans quoi docker met des noms au hazard.
 Pour reprendre le contrôle d'un conteneur détaché et le rattacher afin de fonctionner en mode interactif, il y a plusieurs approches possibles :
 
 # Utiliser `docker attach`
-La commande `docker attach` permet de rattacher le terminal courant à un conteneur en cours d'exécution. Cela vous permet de visualiser la sortie en direct du conteneur et d'interagir avec lui si un terminal a été alloué (lors de l'utilisation de `-t`).
+La commande `docker attach` permet de rattacher le terminal courant à un conteneur en cours d'exécution. Cela nous permet de visualiser la sortie en direct du conteneur et d'interagir avec lui si un terminal a été alloué (lors de l'utilisation de `-t`).
 
 **Exemple :**
 ```bash
 docker attach mon_conteneur
 ```
-*Remarque :* Si le conteneur ne dispose pas de session interactive (par exemple, s'il a été lancé sans l'option `-it`), la commande `docker attach` vous permettra seulement de voir la sortie du conteneur, sans interaction possible.
+*Remarque :* Si le conteneur ne dispose pas de session interactive (par exemple, s'il a été lancé sans l'option `-it`), la commande `docker attach` nous permettra seulement de voir la sortie du conteneur, sans interaction possible.
 
 ## Limites de `docker attach` :
-- Si vous quittez le conteneur en appuyant sur `CTRL+C`, cela arrêtera le conteneur.
+- Si nous quittons le conteneur en appuyant sur `CTRL+C`, cela arrêtera le conteneur.
 - Pour se détacher sans arrêter le conteneur, utilisez `CTRL+P` suivi de `CTRL+Q`.
 
 # Utiliser `docker exec`
@@ -382,14 +384,14 @@ La méthode la plus courante et la plus flexible pour interagir avec un conteneu
 docker exec -ti mon_conteneur bash
 ```
 - **`-ti`** : Ouvre une session interactive avec un terminal.
-- **`bash`** : Indique que vous souhaitez ouvrir un shell Bash (assurez-vous que Bash est installé dans le conteneur).
+- **`bash`** : Indique que nous souhaitons ouvrir un shell Bash (assurez-nous que Bash est installé dans le conteneur).
 
 # Différences entre `docker attach` et `docker exec` :
-- **`docker attach`** : Rattache le terminal au processus principal du conteneur. Utile si vous souhaitez reprendre la sortie du conteneur tel qu'il a été lancé.
+- **`docker attach`** : Rattache le terminal au processus principal du conteneur. Utile si nous souhaitons reprendre la sortie du conteneur tel qu'il a été lancé.
 - **`docker exec`** : Lance une nouvelle session ou un nouveau processus à l'intérieur du conteneur en cours d'exécution. C'est l'approche recommandée pour obtenir un shell interactif ou pour exécuter des commandes supplémentaires.
 
 ### Exemple complet :
-Si vous avez un conteneur nommé `web` exécuté en mode détaché, vous pouvez interagir avec lui de cette manière :
+Si nous avons un conteneur nommé `web` exécuté en mode détaché, nous pouvons interagir avec lui de cette manière :
 1. **Vérifier l'état du conteneur** :
    ```bash
    docker ps
@@ -410,7 +412,7 @@ Une **image Docker** est construite à partir d'une série d'instructions défin
 
 ### Analogie
 
-Pensez à une image Docker comme à un gâteau à étages. Chaque couche du gâteau représente une étape de construction ajoutée par une instruction du Dockerfile. Lorsque vous assemblez toutes les couches, vous obtenez le gâteau complet, prêt à être consommé, tout comme l'image Docker prête à être exécutée.
+Pensez à une image Docker comme à un gâteau à étages. Chaque couche du gâteau représente une étape de construction ajoutée par une instruction du Dockerfile. Lorsque nous assemblons toutes les couches, nous obtenons le gâteau complet, prêt à être consommé, tout comme l'image Docker prête à être exécutée.
 
 # Les Dockerfiles
 
@@ -444,7 +446,7 @@ Un Dockerfile est composé d'une séquence d'instructions, chacune commençant p
 - **Syntaxe** : `FROM [nom_image]:[tag]`
 - **Exemple** : `FROM ubuntu:20.04`
 
-> **Bonnes pratiques** : Choisissez une image de base légère et adaptée à votre application pour minimiser la taille de l'image finale.
+> **Bonnes pratiques** : Choisissez une image de base légère et adaptée à notre application pour minimiser la taille de l'image finale.
 
 #### ARG
 
@@ -460,7 +462,7 @@ Un Dockerfile est composé d'une séquence d'instructions, chacune commençant p
 - **Syntaxe** : `ENV nom_variable valeur`
 - **Exemple** : `ENV NODE_ENV=production`
 
-> **Utilisation** : Les variables `ENV` sont utilisées pour configurer l'environnement d'exécution de votre application.
+> **Utilisation** : Les variables `ENV` sont utilisées pour configurer l'environnement d'exécution de notre application.
 
 #### RUN
 
@@ -476,7 +478,7 @@ Un Dockerfile est composé d'une séquence d'instructions, chacune commençant p
 - **Syntaxe** : `COPY [options] source destination`
 - **Exemple** : `COPY . /app`
 
-> **Remarque** : Utilisez `COPY` pour copier des fichiers locaux. Préférez `COPY` à `ADD` lorsque vous n'avez pas besoin de fonctionnalités supplémentaires.
+> **Remarque** : Utilisez `COPY` pour copier des fichiers locaux. Préférez `COPY` à `ADD` lorsque nous n'avons pas besoin de fonctionnalités supplémentaires.
 
 #### ADD
 
@@ -605,7 +607,7 @@ CMD ["-g", "daemon off;"]
   - `ENTRYPOINT` définit Nginx comme le processus principal.
   - `CMD` fournit les arguments pour exécuter Nginx en premier plan.
 
-> **Remarque** : Si vous exécutez `docker run` avec des arguments supplémentaires, ceux-ci remplaceront `CMD`, mais `ENTRYPOINT` sera toujours exécuté.
+> **Remarque** : Si nous exécutons `docker run` avec des arguments supplémentaires, ceux-ci remplaceront `CMD`, mais `ENTRYPOINT` sera toujours exécuté.
 
 ### Exemple 2 : Application Python Simple
 
@@ -678,7 +680,7 @@ Pour vérifier si une image a un `ENTRYPOINT` ou un `CMD`, utilisez :
 ## Pratique
 
 1. **Créez un fichier Dockerfile** :
-   - Dans le répertoire de votre application, créez un fichier nommé `Dockerfile`.
+   - Dans le répertoire de notre application, créez un fichier nommé `Dockerfile`.
 
 2. **Écrivez les instructions pour construire une image personnalisée** :
    - Utilisez les mots-clés appropriés (`FROM`, `COPY`, `RUN`, etc.) en suivant les bonnes pratiques.
@@ -755,7 +757,7 @@ Docker met en cache les couches lors de la construction des images. Si une couch
 ### Taille des Images
 
 - **Redondance Minimisée** : Les couches permettent de minimiser la duplication des données. Si plusieurs images partagent les mêmes couches, ces couches sont stockées une seule fois sur le disque.
-- **Optimisation** : En structurant judicieusement le Dockerfile, vous pouvez réduire la taille de l'image en limitant le nombre de couches et en évitant d'ajouter des fichiers inutiles.
+- **Optimisation** : En structurant judicieusement le Dockerfile, nous pouvons réduire la taille de l'image en limitant le nombre de couches et en évitant d'ajouter des fichiers inutiles.
 
 ### Partage et Distribution
 
@@ -793,7 +795,7 @@ CMD ["python3", "app.py"]
 
 ### Visualisation des Couches
 
-Vous pouvez visualiser les couches d'une image en utilisant la commande :
+Nous pouvons visualiser les couches d'une image en utilisant la commande :
 
 ```bash
 docker history mon_image:tag
@@ -829,7 +831,7 @@ RUN apt-get update && \
 
 ### Suppression des Fichiers Temporaires
 
-Assurez-vous de supprimer les fichiers temporaires et les caches après l'installation des paquets.
+Assurons-nous de supprimer les fichiers temporaires et les caches après l'installation des paquets.
 
 #### Exemple :
 
@@ -879,7 +881,7 @@ Les modifications effectuées dans un conteneur en cours d'exécution n'affecten
 
 ### Création de Nouvelles Images
 
-Vous pouvez créer une nouvelle image à partir d'un conteneur modifié en utilisant la commande :
+Nous pouvons créer une nouvelle image à partir d'un conteneur modifié en utilisant la commande :
 
 ```bash
 docker commit mon_conteneur nouvelle_image
@@ -892,7 +894,7 @@ docker commit mon_conteneur nouvelle_image
 - **Ordre des Instructions** : Placez les instructions qui changent rarement au début du Dockerfile pour maximiser l'utilisation du cache.
 - **Minimiser les Couches** : Combinez les instructions lorsque c'est possible, mais pas au détriment de la lisibilité.
 - **Nettoyage** : Supprimez les fichiers inutiles et les caches pour réduire la taille des couches.
-- **Images Légères** : Utilisez des images de base minimalistes (comme `alpine` ou `slim`) si cela convient à votre application.
+- **Images Légères** : Utilisez des images de base minimalistes (comme `alpine` ou `slim`) si cela convient à notre application.
 - **Éviter les Redondances** : Ne copiez que les fichiers nécessaires dans l'image.
 - **Utiliser .dockerignore** : Excluez les fichiers et dossiers non pertinents du contexte de construction.
 
@@ -900,7 +902,7 @@ docker commit mon_conteneur nouvelle_image
 
 ### Cas 1 : Modification du Code Source
 
-Si vous modifiez fréquemment le code source de votre application, placez l'instruction `COPY` ou `ADD` du code le plus tard possible dans le Dockerfile. Cela permet de réutiliser le cache pour les couches précédentes.
+Si nous modifions fréquemment le code source de notre application, plaçons l'instruction `COPY` ou `ADD` du code le plus tard possible dans le Dockerfile. Cela permet de réutiliser le cache pour les couches précédentes.
 
 #### Exemple :
 
@@ -917,7 +919,7 @@ COPY src/ /app/src/
 
 ### Cas 2 : Changement de Dépendances
 
-Si vous modifiez souvent les dépendances (par exemple, le fichier `requirements.txt` pour Python), copiez d'abord ce fichier et installez les dépendances avant de copier le reste du code.
+Si nous modifions souvent les dépendances (par exemple, le fichier `requirements.txt` pour Python), copions d'abord ce fichier et installons les dépendances avant de copier le reste du code.
 
 #### Exemple :
 
@@ -934,7 +936,7 @@ COPY . /app/
 
 ## Conclusion
 
-Le mécanisme des couches dans Docker est un élément clé qui offre de nombreux avantages en termes de performance, de stockage et de distribution. En comprenant comment les couches fonctionnent et en appliquant les bonnes pratiques associées, vous pouvez créer des images Docker optimisées, reproductibles et efficaces.
+Le mécanisme des couches dans Docker est un élément clé qui offre de nombreux avantages en termes de performance, de stockage et de distribution. En comprenant comment les couches fonctionnent et en appliquant les bonnes pratiques associées, nous pouvons créer des images Docker optimisées, reproductibles et efficaces.
 
 Les couches permettent :
 
@@ -942,11 +944,11 @@ Les couches permettent :
 - Un partage des ressources pour réduire l'espace disque et la bande passante.
 - Une modularité qui facilite la maintenance et la mise à jour des images.
 
-En tant que développeurs et ingénieurs, il est essentiel de maîtriser ce mécanisme pour tirer pleinement parti de Docker dans vos projets.
+En tant que développeurs et ingénieurs, il est essentiel de maîtriser ce mécanisme pour tirer pleinement parti de Docker dans nos projets.
 
 # L'Impact des Couches sur la Sécurité des Images Docker
 
-Le mécanisme des couches (*layers*) dans Docker est non seulement crucial pour l'efficacité et la modularité des images, mais il joue également un rôle significatif dans la **sécurité** des applications conteneurisées. Comprendre comment les couches affectent la sécurité des images Docker est essentiel pour éviter les vulnérabilités et assurer la protection de vos systèmes.
+Le mécanisme des couches (*layers*) dans Docker est non seulement crucial pour l'efficacité et la modularité des images, mais il joue également un rôle significatif dans la **sécurité** des applications conteneurisées. Comprendre comment les couches affectent la sécurité des images Docker est essentiel pour éviter les vulnérabilités et assurer la protection de nos systèmes.
 
 ## Introduction
 
@@ -956,7 +958,7 @@ Dans Docker, une image est construite à partir d'une série d'instructions spé
 
 ### 1. **Propagation des Vulnérabilités**
 
-- **Images de Base Vulnérables** : Si vous utilisez une image de base contenant des vulnérabilités connues, toutes les images dérivées héritent de ces failles. Par exemple, une image basée sur une version obsolète d'Ubuntu peut être exposée à des vulnérabilités critiques.
+- **Images de Base Vulnérables** : Si nous utilisons une image de base contenant des vulnérabilités connues, toutes les images dérivées héritent de ces failles. Par exemple, une image basée sur une version obsolète d'Ubuntu peut être exposée à des vulnérabilités critiques.
 
 - **Impact Multiplié** : Les vulnérabilités dans les couches inférieures peuvent affecter un grand nombre d'images et de conteneurs, amplifiant l'impact potentiel d'une faille de sécurité.
 
@@ -992,7 +994,7 @@ Dans Docker, une image est construite à partir d'une série d'instructions spé
 
 ### 2. **Maintenir les Images à Jour**
 
-- **Mises à Jour Régulières** : Reconstruisez régulièrement vos images pour inclure les dernières mises à jour de sécurité.
+- **Mises à Jour Régulières** : Reconstruisez régulièrement nos images pour inclure les dernières mises à jour de sécurité.
 
 - **Tags Spécifiques** : Évitez d'utiliser le tag `latest` et spécifiez des versions précises pour mieux contrôler les mises à jour.
 
@@ -1010,9 +1012,9 @@ Dans Docker, une image est construite à partir d'une série d'instructions spé
 
 ### 5. **Analyser les Images pour les Vulnérabilités**
 
-- **Outils de Scan** : Utilisez des outils d'analyse tels que **Trivy**, **Clair**, ou **Anchore** pour détecter les vulnérabilités dans vos images.
+- **Outils de Scan** : Utilisez des outils d'analyse tels que **Trivy**, **Clair**, ou **Anchore** pour détecter les vulnérabilités dans nos images.
 
-- **Intégration Continue** : Intégrez ces analyses dans votre pipeline CI/CD pour détecter les problèmes le plus tôt possible.
+- **Intégration Continue** : Intégrez ces analyses dans notre pipeline CI/CD pour détecter les problèmes le plus tôt possible.
 
 ### 6. **Exécuter en Tant qu'Utilisateur Non Privilégié**
 
@@ -1032,7 +1034,7 @@ Dans Docker, une image est construite à partir d'une série d'instructions spé
 
 ### 9. **Vérifier les Sommes de Contrôle**
 
-- **Intégrité des Téléchargements** : Lorsque vous téléchargez des fichiers externes, vérifiez les sommes de contrôle pour vous assurer qu'ils n'ont pas été compromis.
+- **Intégrité des Téléchargements** : Lorsque nous téléchargeons des fichiers externes, vérifions les sommes de contrôle pour nous assurer qu'ils n'ont pas été compromis.
 
 - **Utiliser HTTPS** : Téléchargez toujours les dépendances via des connexions sécurisées.
 
@@ -1097,23 +1099,23 @@ RUN apt-get update && \
 
 ## Conclusion
 
-Les couches Docker sont un élément fondamental de la construction des images, mais elles nécessitent une attention particulière en matière de sécurité. En adoptant des pratiques sécurisées lors de la création et de la gestion des couches, vous pouvez :
+Les couches Docker sont un élément fondamental de la construction des images, mais elles nécessitent une attention particulière en matière de sécurité. En adoptant des pratiques sécurisées lors de la création et de la gestion des couches, nous pouvons :
 
-- **Réduire les Risques de Vulnérabilités** : En utilisant des images de base sécurisées et en maintenant vos images à jour.
+- **Réduire les Risques de Vulnérabilités** : En utilisant des images de base sécurisées et en maintenant nos images à jour.
 
 - **Protéger les Données Sensibles** : En évitant d'inclure des secrets dans les couches et en gérant les configurations de manière sécurisée.
 
 - **Optimiser la Sécurité** : En minimisant la surface d'attaque grâce à des images légères et à un nombre réduit de couches.
 
-- **Assurer la Conformité** : En intégrant des scans de sécurité et des mises à jour régulières dans vos processus de développement.
+- **Assurer la Conformité** : En intégrant des scans de sécurité et des mises à jour régulières dans nos processus de développement.
 
 ## Actions Recommandées
 
-- **Audit Régulier** : Mettez en place des audits réguliers de vos images pour identifier les vulnérabilités potentielles.
+- **Audit Régulier** : Mettez en place des audits réguliers de nos images pour identifier les vulnérabilités potentielles.
 
 - **Formation** : Sensibilisez les développeurs et les équipes DevOps aux meilleures pratiques de sécurité liées aux couches Docker.
 
-- **Automatisation** : Intégrez des outils d'analyse de sécurité dans vos pipelines CI/CD pour détecter et corriger rapidement les problèmes.
+- **Automatisation** : Intégrez des outils d'analyse de sécurité dans nos pipelines CI/CD pour détecter et corriger rapidement les problèmes.
 
 - **Documentation** : Maintenez une documentation à jour des images utilisées, des versions, et des modifications apportées aux Dockerfiles.
 
@@ -1270,7 +1272,7 @@ Les systèmes de fichiers en couches offrent plusieurs avantages clés pour Dock
 ## Facteurs à Considérer lors du Choix d'un Système de Fichiers
 
 - **Compatibilité du Noyau** :
-  - Assurez-vous que votre version du noyau Linux supporte le système de fichiers choisi.
+  - Assurons-nous que notre version du noyau Linux supporte le système de fichiers choisi.
 
 - **Performance** :
   - OverlayFS offre généralement de meilleures performances pour la plupart des cas d'utilisation.
@@ -1279,7 +1281,7 @@ Les systèmes de fichiers en couches offrent plusieurs avantages clés pour Dock
   - OverlayFS est plus simple à configurer que AUFS ou Device Mapper.
 
 - **Fonctionnalités Spécifiques** :
-  - Si vous avez besoin de fonctionnalités avancées (compression, déduplication), Btrfs ou ZFS peuvent être appropriés.
+  - Si nous avons besoin de fonctionnalités avancées (compression, déduplication), Btrfs ou ZFS peuvent être appropriés.
 
 - **Stabilité et Support à Long Terme** :
   - Préférez les systèmes de fichiers inclus dans le noyau principal pour bénéficier du support continu.
@@ -1299,7 +1301,7 @@ Les systèmes de fichiers en couches offrent plusieurs avantages clés pour Dock
   - Nécessite une configuration plus avancée.
 
 - **Btrfs et ZFS** :
-  - À considérer si vous avez des besoins spécifiques en termes de fonctionnalités de systèmes de fichiers.
+  - À considérer si nous avons des besoins spécifiques en termes de fonctionnalités de systèmes de fichiers.
   - Exigent que le système de fichiers de l'hôte soit compatible.
 
 ## Conclusion
@@ -1308,12 +1310,12 @@ Les différences entre les systèmes de fichiers en couches utilisés par Docker
 
 Le choix du système de fichiers dépendra de plusieurs facteurs :
 
-- **Version du Noyau Linux** : Assurez-vous que votre noyau supporte le système de fichiers souhaité.
+- **Version du Noyau Linux** : Assurons-nous que notre noyau supporte le système de fichiers souhaité.
 - **Besoins en Performance** : OverlayFS est performant pour la plupart des applications.
-- **Fonctionnalités Requises** : Si vous avez besoin de fonctionnalités spécifiques, d'autres systèmes de fichiers peuvent être plus appropriés.
-- **Complexité Acceptable** : Considérez la complexité de configuration et de maintenance que vous êtes prêt à gérer.
+- **Fonctionnalités Requises** : Si nous avons besoin de fonctionnalités spécifiques, d'autres systèmes de fichiers peuvent être plus appropriés.
+- **Complexité Acceptable** : Considérez la complexité de configuration et de maintenance que nous sommes prêt à gérer.
 
-Il est important de tester et de valider le système de fichiers en couches dans votre environnement spécifique pour vous assurer qu'il répond à vos besoins en termes de performance, de stabilité et de fonctionnalités.
+Il est important de tester et de valider le système de fichiers en couches dans notre environnement spécifique pour nous assurer qu'il répond à nos besoins en termes de performance, de stabilité et de fonctionnalités.
 
 ---
 
@@ -1480,7 +1482,7 @@ RUN apt-get update && apt-get install -y \
 
 ### 8. **Paralléliser les Builds Lorsque Possible**
 
-- **Services Indépendants** : Si vous avez plusieurs services ou microservices, construisez-les en parallèle pour gagner du temps.
+- **Services Indépendants** : Si nous avons plusieurs services ou microservices, construisons-les en parallèle pour gagner du temps.
 
 - **Docker BuildKit** : Utilisez BuildKit, le nouveau moteur de build de Docker, qui offre des fonctionnalités avancées comme le parallélisme et la mise en cache améliorée.
 
@@ -1549,9 +1551,9 @@ En appliquant les bonnes pratiques mentionnées et en surveillant continuellemen
 
 **Actions Recommandées :**
 
-- **Revoir et Optimiser les Dockerfiles** : Analysez vos Dockerfiles actuels pour identifier les opportunités d'optimisation.
+- **Revoir et Optimiser les Dockerfiles** : Analysez nos Dockerfiles actuels pour identifier les opportunités d'optimisation.
 
-- **Mettre en Place un Pipeline CI/CD Efficace** : Assurez-vous que votre pipeline tire parti du cache Docker et intègre les bonnes pratiques.
+- **Mettre en Place un Pipeline CI/CD Efficace** : Assurons-nous que notre pipeline tire parti du cache Docker et intègre les bonnes pratiques.
 
 - **Former les Équipes** : Sensibilisez les développeurs et les ingénieurs DevOps à l'importance du mécanisme de couches et à son impact sur le CI/CD.
 
@@ -1647,7 +1649,7 @@ Par défaut, Docker crée un **network namespace** pour chaque conteneur, isolan
 - **Bridge Network par Défaut** : Docker crée un pont réseau virtuel nommé `docker0` sur l'hôte.
 - **Connexions des Conteneurs** : Les interfaces réseau virtuelles des conteneurs sont connectées au pont `docker0`.
 - **Fonctionnement** :
-  - Lorsque vous lancez un conteneur, Docker crée une paire d'interfaces virtuelles (veth pairs).
+  - Lorsque nous lançons un conteneur, Docker crée une paire d'interfaces virtuelles (veth pairs).
   - Une extrémité est placée dans le network namespace du conteneur.
   - L'autre extrémité est attachée au pont `docker0` sur l'hôte.
 - **Adresses IP** :
@@ -1656,7 +1658,7 @@ Par défaut, Docker crée un **network namespace** pour chaque conteneur, isolan
 
 ### Port Mapping et NAT
 
-- **Exposition des Ports** : Pour accéder à un service dans un conteneur depuis l'extérieur, vous devez mapper un port du conteneur à un port de l'hôte.
+- **Exposition des Ports** : Pour accéder à un service dans un conteneur depuis l'extérieur, nous devons mapper un port du conteneur à un port de l'hôte.
 - **Commande** :
   ```bash
   docker run -p <port_hôte>:<port_conteneur> mon_image
@@ -1668,7 +1670,7 @@ Par défaut, Docker crée un **network namespace** pour chaque conteneur, isolan
 ### Réseaux Personnalisés
 
 - **Bridge Networks Personnalisés** :
-  - Vous pouvez créer vos propres réseaux de ponts pour isoler des groupes de conteneurs.
+  - Nous pouvons créer nos propres réseaux de ponts pour isoler des groupes de conteneurs.
   - Commande :
     ```bash
     docker network create mon_reseau
@@ -1680,7 +1682,7 @@ Par défaut, Docker crée un **network namespace** pour chaque conteneur, isolan
 ### Network Namespaces Partagés
 
 - **Option `--network`** :
-  - Vous pouvez configurer des conteneurs pour qu'ils partagent le même network namespace.
+  - Nous pouvons configurer des conteneurs pour qu'ils partagent le même network namespace.
   - Permet à plusieurs conteneurs de partager la même pile réseau.
 - **Cas d'Utilisation** :
   - Conteneurs légers qui doivent interagir étroitement.
