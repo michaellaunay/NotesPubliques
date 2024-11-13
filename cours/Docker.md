@@ -1,6 +1,7 @@
 #Cours #Informatique 
 # Objectif
-Nous allons voir ici comment installer et utiliser Docker. Docker est un système de conteneurisation, c'est-à-dire qu'il permet de crée des images d'une autre distribution très légère qui utilisent ou partagent les ressources de l'ordinateur hôte.
+Nous allons voir dans ce cours comment installer et utiliser Docker.
+Docker est un système de conteneurisation, c'est-à-dire qu'il permet de crée des images d'une autre distribution très légère qui utilisent ou partagent les ressources de l'ordinateur hôte.
 
 # Introduction à Docker
 
