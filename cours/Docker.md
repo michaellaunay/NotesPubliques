@@ -447,7 +447,7 @@ Un Dockerfile est composé d'une séquence d'instructions, chacune commençant p
 - **Syntaxe** : `FROM [nom_image]:[tag]`
 - **Exemple** : `FROM ubuntu:20.04`
 
-> **Bonnes pratiques** : Choisissez une image de base légère et adaptée à notre application pour minimiser la taille de l'image finale.
+> **Bonnes pratiques** : Choisissons une image de base légère et adaptée à notre application pour minimiser la taille de l'image finale.
 
 #### ARG
 
@@ -507,7 +507,7 @@ Un Dockerfile est composé d'une séquence d'instructions, chacune commençant p
 
 #### VOLUME
 
-- **Description** : Crée un point de montage pour un volume, permettant de stocker des données persistantes.
+- **Description** : Crée un point de montage pour un volume, permettant de stocker des données persistantes sur la machine hôte.
 - **Syntaxe** : `VOLUME ["/chemin/du/volume"]`
 - **Exemple** : `VOLUME ["/data"]`
 
@@ -640,6 +640,86 @@ CMD ["python", "app.py"]
   - Installation des dépendances.
   - Copie du code source.
   - Démarrage de l'application avec `python app.py`.
+### Exemple 3 : Serveur Web Nginx Utilisant un Volume pour la Page HTML
+
+Voici un Dockerfile qui crée une image pour exécuter un serveur Nginx, mais au lieu de copier la page `index.html` dans l'image comme dans l'exemple 1, il définit un **volume** pour utiliser une page `index.html` présente sur l'hôte. Cela permet de modifier le contenu du site web sans avoir à reconstruire l'image Docker à chaque changement.
+
+### Dockerfile
+
+```dockerfile
+# Utiliser l'image de base Nginx
+FROM nginx:latest
+
+# Exposer le port 80
+EXPOSE 80
+
+# Définir un volume pour le répertoire HTML de Nginx
+VOLUME ["/usr/share/nginx/html"]
+
+# Définir le point d'entrée et les arguments par défaut
+ENTRYPOINT ["nginx"]
+CMD ["-g", "daemon off;"]
+```
+
+### Explication :
+
+- **`FROM`** : Indique que nous utilisons l'image officielle de Nginx.
+- **`EXPOSE`** : Documente le port 80 utilisé par Nginx.
+- **`VOLUME`** : Définit `/usr/share/nginx/html` comme point de montage pour un volume. Cela signifie que ce répertoire dans le conteneur est destiné à être monté avec des données provenant de l'extérieur du conteneur.
+- **`ENTRYPOINT`** : Définit Nginx comme le processus principal à exécuter lors du démarrage du conteneur.
+- **`CMD`** : Fournit les arguments par défaut pour exécuter Nginx en premier plan.
+
+### Utilisation du Dockerfile
+
+#### Étape 1 : Construire l'Image
+
+Construisons l'image à partir du Dockerfile en utilisant la commande suivante :
+
+```bash
+docker build -t mon_nginx_volume .
+```
+
+- **`-t mon_nginx_volume`** : Attribue le tag `mon_nginx_volume` à l'image construite.
+- Le `.` indique que le Dockerfile est dans le répertoire courant.
+
+#### Étape 2 : Préparer le Répertoire sur l'Hôte
+
+Assurons-nous d'avoir un fichier `index.html` dans un répertoire sur votre machine hôte. Par exemple, créeons un répertoire `site_web` et plaçons-y notre `index.html` :
+
+```bash
+mkdir ~/site_web
+echo "<h1>Bienvenue sur mon site web via un volume Docker !</h1>" > ~/site_web/index.html
+```
+
+#### Étape 3 : Lancer le Conteneur en Montant le Volume
+
+Lançons un conteneur à partir de l'image en montant le répertoire de l'hôte dans le conteneur :
+
+```bash
+docker run -d -p 8080:80 --name mon_serveur_nginx -v ~/site_web:/usr/share/nginx/html mon_nginx_volume
+```
+
+- **`-d`** : Exécute le conteneur en arrière-plan (mode détaché).
+- **`-p 8080:80`** : Mappe le port 80 du conteneur au port 8080 de l'hôte.
+- **`--name mon_serveur_nginx`** : Donne le nom `mon_serveur_nginx` au conteneur.
+- **`-v ~/site_web:/usr/share/nginx/html`** : Monte le répertoire `~/site_web` de l'hôte dans `/usr/share/nginx/html` du conteneur.
+- **`mon_nginx_volume`** : Utilise l'image que nous venons de construire.
+
+#### Étape 4 : Accéder au Site Web
+
+Ouvrons un navigateur web et accédez à `http://localhost:8080` pour voir votre page `index.html` servie par Nginx depuis le volume monté.
+
+### Avantages de cette Approche
+
+- **Flexibilité** : Nous pouvons modifier les fichiers HTML sur l'hôte sans avoir besoin de reconstruire l'image ou de redémarrer le conteneur.
+- **Développement Simplifié** : Idéal pour le développement, car les modifications sont immédiatement reflétées dans le conteneur.
+- **Gestion des Données** : Les données sont stockées sur l'hôte, ce qui facilite les sauvegardes et la persistance des données.
+
+### Points Importants
+
+- **VOLUME dans le Dockerfile** : L'instruction `VOLUME` indique que le répertoire est destiné à être monté en tant que volume. Cependant, même sans cette instruction, vous pouvez monter un volume lors du `docker run` avec l'option `-v`.
+- **Permissions** : Assurons-nous que les permissions du répertoire et des fichiers sur l'hôte permettent à Nginx dans le conteneur de lire les fichiers.
+- **Isolation** : Les modifications apportées aux fichiers sur l'hôte sont immédiatement visibles dans le conteneur, ce qui peut ne pas être souhaitable en production. Dans un environnement de production, vous pourriez préférer copier les fichiers dans l'image pour garantir la cohérence.
 
 ## Comprendre ENTRYPOINT et CMD
 
@@ -664,13 +744,13 @@ CMD ["python", "app.py"]
 
 ## Inspection d'une Image
 
-Pour vérifier si une image a un `ENTRYPOINT` ou un `CMD`, utilisez :
+Pour vérifier si une image a un `ENTRYPOINT` ou un `CMD`, utilisons :
 
 - **`docker inspect`** :
   ```bash
   docker inspect mon_image:tag
   ```
-  Recherchez les sections `Config.Entrypoint` et `Config.Cmd`.
+  Recherchons les sections `Config.Entrypoint` et `Config.Cmd`.
 
 - **`docker history`** :
   ```bash
@@ -935,21 +1015,9 @@ RUN pip install -r /app/requirements.txt
 COPY . /app/
 ```
 
-## Conclusion
-
-Le mécanisme des couches dans Docker est un élément clé qui offre de nombreux avantages en termes de performance, de stockage et de distribution. En comprenant comment les couches fonctionnent et en appliquant les bonnes pratiques associées, nous pouvons créer des images Docker optimisées, reproductibles et efficaces.
-
-Les couches permettent :
-
-- Une utilisation efficace du cache pour accélérer les constructions.
-- Un partage des ressources pour réduire l'espace disque et la bande passante.
-- Une modularité qui facilite la maintenance et la mise à jour des images.
-
-En tant que développeurs et ingénieurs, il est essentiel de maîtriser ce mécanisme pour tirer pleinement parti de Docker dans nos projets.
-
 # L'Impact des Couches sur la Sécurité des Images Docker
 
-Le mécanisme des couches (*layers*) dans Docker est non seulement crucial pour l'efficacité et la modularité des images, mais il joue également un rôle significatif dans la **sécurité** des applications conteneurisées. Comprendre comment les couches affectent la sécurité des images Docker est essentiel pour éviter les vulnérabilités et assurer la protection de nos systèmes.
+Le mécanisme des couches (*layers*) dans Docker joue un rôle significatif dans la **sécurité** des applications conteneurisées. Comprendre comment les couches affectent la sécurité des images Docker est essentiel pour éviter les vulnérabilités et assurer la protection de nos systèmes.
 
 ## Introduction
 
