@@ -418,3 +418,10 @@ On peut appliquer des fonctions à une colonne.
 ```python
 df['col2'].apply(lambda s:2*s)
 ```
+# Trie des valeurs
+On utilise `sort_values`
+```python
+df.sort_value("col4") # retourne un df trié sur la colone de nom "col4"
+df.sort_value(["col2","col4"], ascending=False) #trie selon "col2", puis "col4", et en ordre décroissant
+```
+La fonction `max` donne la valeur maximale d'une colonne, alors que `idxmax` donne l'index du max d'une colonne .
