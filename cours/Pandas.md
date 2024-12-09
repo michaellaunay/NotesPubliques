@@ -424,4 +424,12 @@ On utilise `sort_values`
 df.sort_value("col4") # retourne un df trié sur la colone de nom "col4"
 df.sort_value(["col2","col4"], ascending=False) #trie selon "col2", puis "col4", et en ordre décroissant
 ```
-La fonction `max` donne la valeur maximale d'une colonne, alors que `idxmax` donne l'index du max d'une colonne .
+La fonction `max` donne la valeur maximale d'une colonne, alors que `idxmax` donne l'index du max d'une colonne . `min` donne le minimum et `idmin` l'index de la valeur minimale.
+
+Pour calculer le corrélation entre les colonnes deux par deux, on utilise `corr` qui retourne une valeur entre 1 si les données sont corrélées et 0 s'il n'y a pas de lien.
+
+La fonction `values_count` permet d'avoir le nombre d'exemplaire de chaque valeur distincte. Pour connaitre les valeurs uniques on utilise `unique`, `nunique` pour connaitre le nombre de valeurs unique et `counts` pour connaitre le nombre d’occurrence.
+La méthode `replace` permet de remplacer une valeur par une autre.
+
+
+
