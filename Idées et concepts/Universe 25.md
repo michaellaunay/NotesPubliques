@@ -1,0 +1,8 @@
+[The Universe 25 Mouse Experiement | sprout](https://www.youtube.com/watch?v=7ReBJfxHjFU)  20/04/2023 #Sociologie #Science 
+En 1972, le chercheur John B. Calhoun a mené une expérience pour étudier les effets de la surpopulation sur les comportements sociaux des souris. Il a créé un environnement utopique en laboratoire, appelé "Universe 25", offrant aux souris tout ce dont elles avaient besoin : nourriture, eau, abris et absence de prédateurs.
+
+Au début, la population de souris a augmenté rapidement, doublant tous les 55 jours. Cependant, à mesure que la densité de population augmentait, des comportements anormaux ont émergé. Les souris ont commencé à montrer de l'agressivité, du cannibalisme et un retrait social. Les mâles dominants devenaient de plus en plus violents, tandis que certains mâles, surnommés "les beaux", cessaient de s'accoupler et se consacraient uniquement à se nourrir, dormir et se toiletter.
+
+Les femelles isolées ont cessé de prendre soin de leurs petits, et le taux de reproduction a chuté. Finalement, malgré les ressources abondantes, la société des souris s'est effondrée, menant à l'extinction de la colonie. Calhoun a conclu que la surpopulation et la densité élevée peuvent entraîner des perturbations sociales graves, même dans des conditions idéales.
+
+Cette expérience a suscité des réflexions sur les effets de la surpopulation sur les sociétés animales et humaines. Elle soulève des questions sur la manière dont les humains pourraient être affectés par des densités de population croissantes et les défis associés aux interactions sociales dans des environnements surpeuplés.
