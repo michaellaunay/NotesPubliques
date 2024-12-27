@@ -386,7 +386,8 @@ On peut encore accéder aux ligne à partir de leur indice avec `iloc`, ou à pa
 df = pd.DataFrame({
 	'col1':[1,2,3,4],
 	'col2':[444,555,666,444],
-	'col3':['abc','def','ghi','xyz']})
+	'col3':['abc','def','ghi','xyz'],
+	'col4':['un', 'deux', 'trois', 'quatre']})
 df.set_index('col3', inplace=True)
 df.iloc[0] == df.loc["abc"]
 ```
@@ -408,11 +409,11 @@ df[df['col2'] > 400] # Filtre les éléments du tableau
 ```
 On peut combiner les filtres avec les opérateur `&` (et) et `|` (ou).
 ```python
-f[df['col2'] > 500 & df['col1`] >= 3]
+f[df['col2'] > 500 & df['col1'] >= 3]
 ```
 Pour une même colonne, on peut utiliser des fonctions comme `isin`
 ```python
-df['col4'].isin(["abc", "xyz"])
+df['col4'].isin(["un", "deux"])
 ```
 On peut appliquer des fonctions à une colonne.
 ```python
@@ -421,15 +422,159 @@ df['col2'].apply(lambda s:2*s)
 # Trie des valeurs
 On utilise `sort_values`
 ```python
-df.sort_value("col4") # retourne un df trié sur la colone de nom "col4"
-df.sort_value(["col2","col4"], ascending=False) #trie selon "col2", puis "col4", et en ordre décroissant
+df.sort_values("col4") # retourne un df trié sur la colone de nom "col4"
+df.sort_values(["col2","col4"], ascending=False) #trie selon "col2", puis "col4", et en ordre décroissant
 ```
 La fonction `max` donne la valeur maximale d'une colonne, alors que `idxmax` donne l'index du max d'une colonne . `min` donne le minimum et `idmin` l'index de la valeur minimale.
 
 Pour calculer le corrélation entre les colonnes deux par deux, on utilise `corr` qui retourne une valeur entre 1 si les données sont corrélées et 0 s'il n'y a pas de lien.
 
 La fonction `values_count` permet d'avoir le nombre d'exemplaire de chaque valeur distincte. Pour connaitre les valeurs uniques on utilise `unique`, `nunique` pour connaitre le nombre de valeurs unique et `counts` pour connaitre le nombre d’occurrence.
-La méthode `replace` permet de remplacer une valeur par une autre.
+
+La méthode `replace`  permet de remplace une ou plusieurs valeurs d'une colonne.
+```python
+df['col4'].replace(
+	to_replace=["un","deux","trois","quatre"],
+	value=["one","two","three","four"]
+)
+```
+
+Il est possible de faire la même chose en utilisant `map`.
+```python
+mapping = {
+	"un":"one",
+	"deux":"two",
+	"three":"trois",
+	"four":"quatre"
+		   
+}
+df['col4'].map(mapping)
+```
+
+La méthode `duplicated` permet de savoir s'il y a des lignes complètes dupliquées, sont paramètre `keep` permet d'indiquer si c'est la dernière ligne dupliquée qui est marquée ou la première ou toutes.
+
+```python
+df = pd.DataFrame({
+	'numerique':[1, 2, 3, 4, 2],
+	'français': ['un', 'deux', 'trois', 'quatre', 'deux'],
+	'anglais' : ['on', 'two', 'three', 'four', 'two'],
+	'allemand' : ['eins', 'zwei', 'drei', 'für', 'zwei']
+})
+df.duplicated(df, keep=False)
+```
+Ce qui donne :
+```txt
+0    False
+1     True
+2    False
+3    False
+4     True
+dtype: bool
+```
+Il est possible de supprimer les lignes dupliquées avec `drop_duplicates`
+```python
+df.drop_duplicates(inplace=True)
+```
+
+La méthode de colonne `between` permet de récupérer les valeurs dans un intervalle en précisant si l'on veut ou non les limites :
+```python
+between = df["numerique"].between(2,3, inclusive="both")
+```
+On peut alors l'utiliser comme filtre :
+```python
+df[between]
+```
+Ce qui donne :
+```
+   numerique français anglais allemand
+1          2     deux     two     zwei
+2          3    trois   three     drei
+4          2     deux     two     zwei
+
+```
+Pour avoir les lignes dont une valeur de colonne donnée sont les N plus grandes triée pas valeur :
+```python
+df.nlargest(2,"numerique")
+```
+Ce qui donne ici :
+```
+   numerique français anglais allemand
+3          4   quatre    four      für
+2          3    trois   three     drei
+
+```
+Et est la même chose que si l'on avait fait :
+```python
+df.sort_values("numerique", ascending=False).iloc[:2]
+```
+Sur le même principe il y a `nsmallest`.
+
+On peut créer des échantillons aléatoires, et pour cela on utilise la méthode `sample` :
+```python
+df.sample(3)
+```
+
+# Traiter les données manquantes
+Trois possibilités :
+- Les garder ;
+- Les supprimer ;
+- Les remplacer.
+Selon la nature de la colonnes Pandas peut mettre `NaN` ("Not A Number"), `NaT` ("Not A Timesptamp") ou autre.
+Le problème a laisser `NaN` ou autre et que la plus part des méthodes ne les gèrent pas.
+Avec Numpy "NaN" est `np.nan` en Pandas `pd.NA`
+
+Attention laisser des `NaN` ne permet pas les comparaisons car :
+```python
+np.nan == np.nan # Donne False
+```
+Pour savoir quelles sont les valeurs qui sont des NaN :
+```python
+df.isnull()
+```
+Qui retourne un tableau de booléens dont les valeurs sont à True lorsqu'une valeur est un NaN.
+On peut aussi utiliser la fonction opposée qui est `notnull`
+On peut alors filtrer les colonnes ou lignes en utilisant les sorties de `isnull` ou `notnull`.
+ex pour un dataframe de films:
+```python
+movie_df[(movie_df['movie_score'].isnull()) & (movie_df['title'].notnull())]
+```
+
+## Suppression des données manquantes
+Pour cela on utilise `dropna` qui prend en paramètre `axis`, `how`, `tresh`, `subset` :
+- `how` permet de dire si l'on supprime l'axe, soit dés qu'une valeur est NaN avec "any" ou seulement si toutes les valeurs de l'axe sont NaN avec la valeur "all" ;
+- `tresh` est un seuil de valeur non NaN à avoir sur l'axe pour qu'il soit supprimé ;
+- `subset` permet de limiter la vérification à seulement certaines colonnes en passant une liste de noms.
+
+```python
+import pandas as pd
+import numpy as np
+np.random.seed(101)
+my_dataframe = pd.DataFrame(
+	data=np.random.rand(12,7),
+	index=("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"),
+	columns=("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")
+)
+# Avec nous génèrons un `df` ayant des NaN
+df= my_dataframe.map(lambda x: np.NaN if x < 0.3 else x)
+df
+```
+Ce qui donne :
+
+|index|Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche|
+|---|---|---|---|---|---|---|---|
+|janvier|0\.5163986277024462|0\.5706675868681398|NaN|NaN|0\.6852769816973125|0\.8338968626360765|0\.3069662196722378|
+|février|0\.8936130796833973|0\.7215438617683047|NaN|0\.5542275911247871|0\.3521319540266141|NaN|0\.7856017618643588|
+|mars|0\.9654832224119693|NaN|NaN|0\.6035484222912185|0\.7289927572876178|NaN|0\.6853063287801783|
+|avril|0\.5178674741970474|NaN|NaN|NaN|0\.994317901154097|0\.5206653966849669|0\.5787895354754169|
+|mai|0\.7348190582693819|0\.5419617722295935|0\.9131535576757686|0\.8079201509879171|0\.40299783069378736|0\.35722434282078785|0\.9528767147108732|
+|juin|0\.3436315778925598|0\.865099816318328|0\.830277712198797|0\.5381614492475574|0\.9224693725672236|NaN|NaN|
+|juillet|0\.7015072956958257|0\.8904798691284314|NaN|NaN|0\.6724915296568056|NaN|0\.7013711366090863|
+|août|0\.4876352222057281|0\.6806777681763588|0\.5215481923258594|NaN|NaN|0\.575205086868013|NaN|
+|septembre|0\.5001167138007933|NaN|NaN|NaN|0\.4423681315127448|0\.8775873246276348|0\.949264128985194|
+|octobre|0\.4781674167895694|0\.4611193422864347|0\.637289031017357|0\.324607996437537|NaN|NaN|0\.6376586528178253|
+|novembre|0\.8122658949111644|0\.6702604203336356|0\.6517677034763694|0\.42456894356178443|0\.6565953361995259|NaN|0\.6599245188671674|
+|décembre|0\.5296233987530145|0\.7485203698504924|NaN|0\.7845218499756547|0\.6872420375766887|0\.6950784965081013|0\.496866519596742|
 
 
-
+## Remplacement des NaN
+Pour remplacer toutes les valeurs d'un coup, on utilise la méthode `fillna`
