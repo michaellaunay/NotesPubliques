@@ -1876,8 +1876,8 @@ Pour augmenter le nombre de ligne dans l'historique des commandes, créer `/etc/
 # https://wiki.ubuntu.com/Spec/EnhancedBash
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-export HISTSIZE=1000
-export HISTFILESIZE=1000
+export HISTSIZE=5000
+export HISTFILESIZE=5000
 export GREP_OPTIONS='--color=auto'
 ```
 
