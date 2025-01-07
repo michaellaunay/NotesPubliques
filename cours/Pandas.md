@@ -526,6 +526,7 @@ Avec Numpy "NaN" est `np.nan` en Pandas `pd.NA`
 Attention laisser des `NaN` ne permet pas les comparaisons car :
 ```python
 np.nan == np.nan # Donne False
+np.nan is np.nan # À utiliser
 ```
 Pour savoir quelles sont les valeurs qui sont des NaN :
 ```python
@@ -555,7 +556,7 @@ my_dataframe = pd.DataFrame(
 	columns=("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")
 )
 # Avec nous génèrons un `df` ayant des NaN
-df= my_dataframe.map(lambda x: np.NaN if x < 0.3 else x)
+df= my_dataframe.map(lambda x: np.nan if x < 0.3 else x)
 df
 ```
 Ce qui donne :
@@ -578,3 +579,76 @@ Ce qui donne :
 
 ## Remplacement des NaN
 Pour remplacer toutes les valeurs d'un coup, on utilise la méthode `fillna`
+```python
+df.fillna(0)
+```
+!Attention! essayer de garder une homogénéité de type et une cohérence de valeur.
+Car si vous faites la moyenne avec `mean`, cette fonction n'utilisera que les cellules ayant un numérique pour faire le calcul de moyenne.
+```python
+df["Mardi"].mean()
+```
+On peut alors utiliser ce principe pour remplacer les valeurs manquantes et cela pour chaque colonne :
+```python
+df.fillna(df.mean())
+```
+Qui va calculer la moyenne de chaque colonne et l'utiliser pour remplacer les NaN le colonne correspondante.
+
+On peut aussi utiliser la méthode `interpolate`, pour remplacer le NaN par des valeurs interpolées.
+```python
+df.interpolate()
+```
+Va donner :
+
+|index|Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche|
+|---|---|---|---|---|---|---|---|
+|janvier|0\.5163986277024462|0\.5706675868681398|NaN|NaN|0\.6852769816973125|0\.8338968626360765|0\.3069662196722378|
+|février|0\.8936130796833973|0\.7215438617683047|NaN|0\.5542275911247871|0\.3521319540266141|0\.7294863739857067|0\.7856017618643588|
+|mars|0\.9654832224119693|0\.6616831652554009|NaN|0\.6035484222912185|0\.7289927572876178|0\.6250758853353368|0\.6853063287801783|
+|avril|0\.5178674741970474|0\.6018224687424972|NaN|0\.7057342866395678|0\.994317901154097|0\.5206653966849669|0\.5787895354754169|
+|mai|0\.7348190582693819|0\.5419617722295935|0\.9131535576757686|0\.8079201509879171|0\.40299783069378736|0\.35722434282078785|0\.9528767147108732|
+|juin|0\.3436315778925598|0\.865099816318328|0\.830277712198797|0\.5381614492475574|0\.9224693725672236|0\.4298845908365296|0\.8271239256599798|
+|juillet|0\.7015072956958257|0\.8904798691284314|0\.6759129522623282|0\.4847730860450523|0\.6724915296568056|0\.5025448388522713|0\.7013711366090863|
+|août|0\.4876352222057281|0\.6806777681763588|0\.5215481923258594|0\.4313847228425472|0\.5574298305847751|0\.575205086868013|0\.8253176327971401|
+|septembre|0\.5001167138007933|0\.5708985552313968|0\.5794186116716082|0\.3779963596400421|0\.4423681315127448|0\.8775873246276348|0\.949264128985194|
+|octobre|0\.4781674167895694|0\.4611193422864347|0\.637289031017357|0\.324607996437537|0\.5494817338561353|0\.8167510485877902|0\.6376586528178253|
+|novembre|0\.8122658949111644|0\.6702604203336356|0\.6517677034763694|0\.42456894356178443|0\.6565953361995259|0\.7559147725479458|0\.6599245188671674|
+|décembre|0\.5296233987530145|0\.7485203698504924|0\.6517677034763694|0\.7845218499756547|0\.6872420375766887|0\.6950784965081013|0\.496866519596742|
+
+On constate que le début de la colonne Mercredi n'a pu être interpolée puisqu'il n'y avait pas de valeur de précédente. On constate aussi que l'interpolation n'est faite qu'entre les deux valeurs encadrant les NaN, on verra par la suite comment faire des régressions afin de prendre en compte toutes les valeurs.
+
+# GroupBy
+Il permet de regrouper les lignes selon les valeurs d'une colonne appelée Catégorie et de produire un DataFrameGroupBy (un sous DataFrame "lazy") qui correspond à autant de sous DataFrame  qu'il y a de valeurs uniques dans la colonne des Catégories, puis d'appliquer sur chacun de ses sous DataFrame une fonction telle que `mean`, `sum`, `count` qui consomme le DataFrameGroupBy.
+```python
+df = pd.read_csv("/content/sample_data/california_housing_train.csv")
+hma = df.groupby("housing_median_age")
+hma.mean()
+```
+On peut faire un `groupeby` sur plusieurs colonnes en passant une liste à la fonction `groupby`.
+```python
+hma = df.groupby(["housing_median_age", "total_rooms"])
+hma.index
+```
+L'index devient une liste de tuples entre les deux noms de colonnes.
+```txt
+MultiIndex([( 1.0, 2062.0),
+            ( 1.0, 2254.0),
+            ( 2.0,   96.0),
+            ( 2.0,  227.0),
+            ( 2.0,  337.0),
+            ( 2.0,  556.0),
+            ( 2.0,  582.0),
+            ( 2.0,  647.0),
+            ( 2.0,  790.0),
+            ( 2.0,  838.0),
+```
+On peut appeler toutes les méthodes de description avec la méthode `describe`
+```python
+hma.head(100).describe # Limite l'exploration aux 100 premères lignes.
+```
+
+et va p our les colonne (longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, median_house_value) les lignes (count, mean, std, min, 25%, 50%, 75%, max)
+On peux interroger le nombre de valeurs avec `index.levels`
+On peux alors interroger le `DataFrame` index par index avec la méthode `loc`.
+```python
+hma.mean().loc[[1, 2]] # qui retournera les lignes pour les valeurs
+```
