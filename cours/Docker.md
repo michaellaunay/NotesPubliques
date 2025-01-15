@@ -34,7 +34,7 @@ En résumé, Docker est un système de virtualisation de conteneurs qui permet d
 # Installation
 Pour installer docker le plus simple est d'utiliser la version des dépôts et donc de faire : :
 ```bash
-apt install docker
+apt install docker.io
 ``` 
 
 Nous allons chercher notre première image ce qui permettra de vérifier notre installation de docker et notre accès au réseau :
@@ -1728,13 +1728,15 @@ Par défaut, Docker crée un **network namespace** pour chaque conteneur, isolan
 ### Port Mapping et NAT
 
 - **Exposition des Ports** : Pour accéder à un service dans un conteneur depuis l'extérieur, nous devons mapper un port du conteneur à un port de l'hôte.
+- **Attention à l'exposition des ports** : Si aucune adresse n'est précisée comme restriction, le port est accessible depuis l'extérieur de l'hôte.
 - **Commande** :
   ```bash
-  docker run -p <port_hôte>:<port_conteneur> mon_image
+  docker run -p <adresse_autorisée>:<port_hôte>:<port_conteneur> mon_image
   ```
 - **NAT (Network Address Translation)** :
   - Docker configure des règles iptables pour effectuer la traduction d'adresses entre l'hôte et le conteneur.
   - Permet aux paquets entrants sur l'hôte d'être redirigés vers le conteneur.
+  - `<adresse_autorisée>` est mis à 127.0.0.1 si l'on veut que seul l'hôte voit l'exposition du port du conteur.
 
 ### Réseaux Personnalisés
 
