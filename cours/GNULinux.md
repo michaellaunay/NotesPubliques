@@ -3278,6 +3278,8 @@ voir :
 
 ### ifconfig (déprécié)
 
+Depuis 20.04 il faut utiliser `netplan`.
+
 La commande **ifconfig** permet à la fois de consulter les paramètres réseau, mais également de configurer les interfaces.
 Cette commande est aujourd'hui obsolète et remplacée par **ip** que nous détaillerons
 ci-après, on peut l'installer avec **apt install net-tools**.
@@ -3291,13 +3293,12 @@ sudo ifconfig eth0 192.168.0.7 netmask 255.255.255.0
 
 La configuration ainsi réalisée n'est pas permanent, elle sera perdue au prochain démarrage.
 
-Pour modifier de façon permanente la configuration réseau il faut éditer */etc/network/interfaces*.
+Pour modifier de façon permanente la configuration réseau sur Ubuntu inférieur à 20.04 il faut éditer */etc/network/interfaces*.
 
 **`ifconfig`** est remplacé par la commande **ip addr** ou **ip a**
 **`ifconfig eth0 192.168.0.11`** est remplacé par **`ip addr add 192.168.0.11/255.255.255.0 dev enxe4b97aef38eb`**
 Les noms comme eth0 sont remplacés par la convention de nommage **ifname** pour éviter le
 changement de nom lors du reboot.
-
 ## iwconfig (déprécié)
 
 La commande **iwconfig** permet de configurer les cartes wifi.
@@ -3375,6 +3376,51 @@ sudo ip link add link DEVICE name NAME type vlan
 ```
 
 Voir <https://www.systutorials.com/docs/linux/man/8-ip-link/>
+
+### Netplan
+
+**Netplan** est un outil de configuration réseau introduit dans Ubuntu à partir de la version 17.10. Sur les versions récentes (dont Ubuntu 20.04, 22.04 et 24.04), Netplan se substitue à la configuration traditionnelle via le fichier `/etc/network/interfaces`.
+
+Il sert d’interface unifiée pour configurer la couche réseau (adresses IP, routes, passerelles, DNS, etc.) à l’aide de fichiers de configuration **au format YAML** stockés généralement dans `/etc/netplan/`. À partir de ces fichiers YAML, Netplan va générer une configuration compréhensible soit par **systemd-networkd** (souvent par défaut sur les serveurs) soit par **NetworkManager** (souvent sur les postes de travail).
+
+#### Fonctionnement de netplan
+
+1. **Fichier YAML**  
+    Nous éditons un (ou plusieurs) fichier(s) `.yaml` sous `/etc/netplan/`, par exemple :
+    
+    ```yaml
+    network:
+      version: 2
+      renderer: networkd
+      ethernets:
+        eth0:
+          addresses:
+            - 192.168.1.10/24
+          gateway4: 192.168.1.1
+          nameservers:
+            addresses: [8.8.8.8, 8.8.4.4]
+    ```
+    
+2. **Commande `netplan apply`**  
+    Nous appliquons la configuration en exécutant :
+    
+    ```bash
+    sudo netplan apply
+    ```
+    
+    Netplan va alors générer les fichiers de configuration pour l’outil choisi (systemd-networkd ou NetworkManager) et recharger la configuration réseau.
+    
+3. **Points clés**
+    
+    - **Syntaxe YAML** : indentation stricte et hiérarchisation par blocs (attention aux espaces vs tabulations).
+    - **Renderer** : indique qui gère la configuration (networkd ou NetworkManager).
+    - **Persistant** : une fois vos modifications enregistrées, elles seront conservées même après redémarrage.
+
+#### Avantages de Netplan
+
+- **Configuration centralisée** : plutôt que de configurer différents fichiers (pour `interfaces`, `resolv.conf`, etc.), nous n’éditons plus qu’un ou deux fichiers YAML sous `/etc/netplan/`.
+- **Flexibilité** : nous pouvons basculer entre `networkd` et `NetworkManager` en changeant simplement la valeur `renderer`.
+- **Simplicité** : la syntaxe YAML est plus lisible et plus compréhensible que l’ancien format, bien que cela puisse surprendre les habitués du vieux fichier `/etc/network/interfaces`.
 
 # Fixer le nom de machine
 
