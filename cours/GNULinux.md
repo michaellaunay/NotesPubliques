@@ -2333,6 +2333,25 @@ La commande **`jobs`** permet de lister les processus suspendus, nous pouvons al
 
 Les processus dont le père meure sans attendre le statut de ses enfants sont raccrochés à *init*.
 
+## Interrompre un processus pour le relancer en tâche de fond 
+
+Pour lancer en tâche de fond une commande qui s'exécute au premier plan, il faut :
+1. **Suspendre le processus** lancé depuis le terminal avec `Ctrl+Z`.
+    - Cela place le job en pause (en **Stopped**).
+3. **Relancer le job en tâche de fond** avec `bg`.
+    - Le job reprend alors son exécution en **arrière-plan** (Status : **Running**).
+3. **Détacher le processus** de notre terminal actuel pour qu’il ne se termine pas si nous fermons ce terminal avec la commande `disown`. De cette façon, le shell ne « possède » plus la tâche et nous pouvons alors fermer le terminal, la commande continuera de s’exécuter jusqu’à son terme.
+
+> **Remarque :** Après le `disown`, nous ne pourrons plus « reprendre » le job dans le même terminal via `fg`. Autrement dit, nous perdons la possibilité d’interagir directement avec ce job comme une tâche attachée.
+
+Si nous savons dès le départ que nous voulons qu’une commande tourne indépendamment du terminal nous pouvons la lancer avec `nohup`:
+
+```bash
+nohup ma_commande_longue &
+```
+
+ Elle sera automatiquement **détachée** du terminal qui l’a lancée (et redirige en général ses sorties vers un fichier `nohup.out` si nous ne le précisez pas nous-même).
+
 ## Modification des priorités
 
 Les processus ont des priorités fixées entre -20 (la plus haute) et +19.
