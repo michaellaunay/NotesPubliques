@@ -646,9 +646,11 @@ On peut appeler toutes les méthodes de description avec la méthode `describe`
 hma.head(100).describe # Limite l'exploration aux 100 premères lignes.
 ```
 
-et va p our les colonne (longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, median_house_value) les lignes (count, mean, std, min, 25%, 50%, 75%, max)
+et va pour les colonnes (longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, median_house_value) les lignes (count, mean, std, min, 25%, 50%, 75%, max)
 On peux interroger le nombre de valeurs avec `index.levels`
 On peux alors interroger le `DataFrame` index par index avec la méthode `loc`.
 ```python
 hma.mean().loc[[1, 2]] # qui retournera les lignes pour les valeurs
 ```
+
+xs Cross Schema
