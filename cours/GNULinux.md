@@ -5,7 +5,6 @@ licence : Cette création est mise à disposition selon le Contrat Paternité 2.
 content : GNU/Linux french training based on https://github.com/michaellaunay/CoursGNULinux
 
 ---
-
 # Objectif
 
 Cette formation a pour but de fournir les bases indispensables à l'utilisation et à l'administration des systèmes GNU/Linux.
@@ -3494,11 +3493,16 @@ cat /etc/hosts
 ```
 
 ```
-127.0.0.1 localhost griffon griffon.ecreall.com
+127.0.0.1 localhost
+127.0.0.1 griffon.ecreall.com griffon
 88.191.77.45    griffon.ecreall.com
 ```
 
 La modification est triviale puisqu'il suffit d'ajouter une ligne \$Adresse \$Nom1 \$Nom2.
+
+Pour ajouter le nom de domaine de la machine et avoir le "full qualified domaine name" (FQDN),  il suffit de l'ajouter à `/etc/hosts` avant le nom de la machine pour l'adresse `127.0.0.1`.
+
+Pour vérifier le `fqdn` nous utiliserons la commande `dnsdomainname` ou `hostname -f`.
 
 # Les outils et commandes de tests réseau
 

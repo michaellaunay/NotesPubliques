@@ -1730,13 +1730,21 @@ Par défaut, Docker crée un **network namespace** pour chaque conteneur, isolan
 - **Exposition des Ports** : Pour accéder à un service dans un conteneur depuis l'extérieur, nous devons mapper un port du conteneur à un port de l'hôte.
 - **Attention à l'exposition des ports** : Si aucune adresse n'est précisée comme restriction, le port est accessible depuis l'extérieur de l'hôte.
 - **Commande** :
-  ```bash
-  docker run -p <adresse_autorisée>:<port_hôte>:<port_conteneur> mon_image
-  ```
+```bash
+docker run \
+  -p <adresse_autorisée>:<port_hôte>:<port_conteneur> \
+  --expose <port_exposé_aux_autres_conteneurs> \
+  mon_image
+```
+- L'option `-p` expose un port sur l'interface réseau.
+- L'option `--expose` partage un port avec les autres conteneurs.
 - **NAT (Network Address Translation)** :
   - Docker configure des règles iptables pour effectuer la traduction d'adresses entre l'hôte et le conteneur.
   - Permet aux paquets entrants sur l'hôte d'être redirigés vers le conteneur.
   - `<adresse_autorisée>` est mis à 127.0.0.1 si l'on veut que seul l'hôte voit l'exposition du port du conteur.
+### Redirection de port en interne du conteneur
+Lorsque nous exposons les ports d'un conteneur, il peut être impératif de les router vers un autre port en interne du conteneur, sans passer par la redirection classique.
+
 
 ### Réseaux Personnalisés
 
