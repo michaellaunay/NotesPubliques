@@ -537,6 +537,16 @@ hexa = 0x123  # Entier en base 16
 binaire = 0b1010  # Entier en base 2
 ```
 
+On peut gérer des nombres très très long (qui dépassent la précision des ordinateurs):
+```python
+from decimal import Decimal, getcontext  
+from fractions import Fraction  
+getcontext().prec = 3000 # Pour afficher les 1000er triplets  
+f = Fraction(1, 998001)  # contient tous les triplet sauf 998
+d = Decimal(f.numerator) / Decimal(f.denominator)  
+s=str(d)[2:] # Pour supprimer le "0." du début de la chaine  
+print("\n".join([s[i:i+3] for i in range(0, len(s), 3)])) #Pour afficher les triplets
+```
 ## Booléens
 
 Le type `bool` est un sous-type d'entier qui ne peut prendre que deux valeurs : `True` (vrai) et `False` (faux).
