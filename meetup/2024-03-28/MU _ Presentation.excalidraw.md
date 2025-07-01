@@ -113,8 +113,8 @@ Présente `ctrl i` pour avoir un tcaht contextuel en ligne, puis le remettre dan
 Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.
 Pour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !
 Lorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.
-Là aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.
-Présente aussi VS Code Speech qui pemet de dicter ses prompts.
+Là aussi s'il y a des erreurs dans le terminal, il suffit de cliquer sur les étoiles.
+Il existe aussi VS Code Speech qui permet de dicter ses prompts.
 Dans la gestion des sources ("Souces Control"), il est facile de maintenant lui faire générer le message de commit. ^PpNItr3I
 
 ![[MU 70 RAG Retrieval-Augmented Generation]] ^z9mpH63P
@@ -256,8 +256,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 1063,
-			"versionNonce": 1217473403,
+			"version": 1064,
+			"versionNonce": 1065743445,
 			"isDeleted": false,
 			"id": "cnGyB8QR",
 			"fillStyle": "solid",
@@ -279,7 +279,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1731490583150,
+			"updated": 1751280588399,
 			"link": null,
 			"locked": false,
 			"fontSize": 117.35579256291358,
@@ -461,8 +461,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 1203,
-			"versionNonce": 1001248795,
+			"version": 1207,
+			"versionNonce": 1223397851,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -501,14 +501,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1731490586568,
+			"updated": 1751355294012,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 1540,
-			"versionNonce": 1175417499,
+			"version": 1544,
+			"versionNonce": 1824672859,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -528,7 +528,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1731490586577,
+			"updated": 1751355294017,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -544,8 +544,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 1836,
-			"versionNonce": 1578245307,
+			"version": 1840,
+			"versionNonce": 1995611771,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -567,7 +567,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586569,
+			"updated": 1751355294013,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -600,8 +600,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "rectangle",
-			"version": 603,
-			"versionNonce": 240936763,
+			"version": 607,
+			"versionNonce": 353241339,
 			"isDeleted": false,
 			"id": "5B2LuYMrj2ifGZV7bdh8F",
 			"fillStyle": "solid",
@@ -630,14 +630,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1731490586577,
+			"updated": 1751355294017,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 901,
-			"versionNonce": 1986119643,
+			"version": 905,
+			"versionNonce": 33108379,
 			"isDeleted": false,
 			"id": "4T0rdBAu",
 			"fillStyle": "solid",
@@ -659,7 +659,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1731490586577,
+			"updated": 1751355294017,
 			"link": "[[MU 03 Sujet]]",
 			"locked": false,
 			"fontSize": 38.41616766467066,
@@ -1491,8 +1491,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 602,
-			"versionNonce": 12897627,
+			"version": 606,
+			"versionNonce": 900667163,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1514,7 +1514,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586570,
+			"updated": 1751355294013,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1591,8 +1591,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 292,
-			"versionNonce": 274866891,
+			"version": 293,
+			"versionNonce": 1841467285,
 			"isDeleted": false,
 			"id": "fTaL7Ula",
 			"fillStyle": "solid",
@@ -1614,7 +1614,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1728989843996,
+			"updated": 1751354643785,
 			"link": null,
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1630,8 +1630,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 258,
-			"versionNonce": 945718117,
+			"version": 259,
+			"versionNonce": 824156219,
 			"isDeleted": false,
 			"id": "LXM2JDjP",
 			"fillStyle": "solid",
@@ -1653,7 +1653,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1728989843997,
+			"updated": 1751354643785,
 			"link": "https://platform.openai.com/docs/guides/prompt-engineering",
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1704,8 +1704,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 240,
-			"versionNonce": 1699320171,
+			"version": 241,
+			"versionNonce": 710268149,
 			"isDeleted": false,
 			"id": "nFHyxLGz",
 			"fillStyle": "solid",
@@ -1727,7 +1727,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1728989843997,
+			"updated": 1751354643785,
 			"link": "https://youtu.be/_ZvnD73m40o",
 			"locked": false,
 			"fontSize": 44.42926829268293,
@@ -1743,8 +1743,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 538,
-			"versionNonce": 1729653243,
+			"version": 542,
+			"versionNonce": 596868027,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -1766,7 +1766,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586570,
+			"updated": 1751355294013,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2158,8 +2158,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 682,
-			"versionNonce": 1144132731,
+			"version": 686,
+			"versionNonce": 1152796219,
 			"isDeleted": false,
 			"id": "exMOZyZXQFyvVhs9c_FmI",
 			"fillStyle": "solid",
@@ -2181,7 +2181,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586579,
+			"updated": 1751355294018,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -2992,8 +2992,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 379,
-			"versionNonce": 451071685,
+			"version": 380,
+			"versionNonce": 777380059,
 			"isDeleted": false,
 			"id": "B9n42z2j",
 			"fillStyle": "solid",
@@ -3016,7 +3016,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1728989844001,
+			"updated": 1751354643785,
 			"link": null,
 			"locked": false,
 			"fontSize": 34.907865168539324,
@@ -3723,8 +3723,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 350,
-			"versionNonce": 1645167057,
+			"version": 351,
+			"versionNonce": 341925013,
 			"isDeleted": false,
 			"id": "hsnLuyP3fkOGlttwSpI3q",
 			"fillStyle": "solid",
@@ -3737,8 +3737,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": 409.4654038005299,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 780.0714285714287,
-			"height": 477.21770471712875,
+			"width": 778.913998558407,
+			"height": 476.3288295197416,
 			"seed": 1679328401,
 			"groupIds": [],
 			"frameId": null,
@@ -3746,7 +3746,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1751287178355,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3772,15 +3772,15 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					115.35843186794705
 				],
 				[
-					780.0714285714287,
-					477.21770471712875
+					778.913998558407,
+					476.3288295197416
 				]
 			]
 		},
 		{
 			"type": "rectangle",
-			"version": 233,
-			"versionNonce": 2061189055,
+			"version": 234,
+			"versionNonce": 260999989,
 			"isDeleted": false,
 			"id": "c4YpVnANdwqbEwo22BOrY",
 			"fillStyle": "solid",
@@ -3789,8 +3789,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1114.2734521117577,
-			"y": 172.06193090657143,
+			"x": 1113.1160220987367,
+			"y": 170.90450089355056,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
 			"width": 2425.7887236679076,
@@ -3809,14 +3809,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711636137758,
+			"updated": 1751287178355,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "rectangle",
-			"version": 392,
-			"versionNonce": 591978417,
+			"version": 393,
+			"versionNonce": 227738101,
 			"isDeleted": false,
 			"id": "myS3xSRclPdM63GIxeD9t",
 			"fillStyle": "solid",
@@ -3825,8 +3825,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1250.6081736910924,
-			"y": 400.85868430038204,
+			"x": 1249.4507436780714,
+			"y": 399.70125428736117,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
 			"width": 2146.072811506928,
@@ -3845,14 +3845,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1711636137758,
+			"updated": 1751287178355,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 697,
-			"versionNonce": 972746719,
+			"version": 698,
+			"versionNonce": 807992149,
 			"isDeleted": false,
 			"id": "ldWyEkQ4",
 			"fillStyle": "solid",
@@ -3861,8 +3861,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1277.9951653820563,
-			"y": 461.4099410851668,
+			"x": 1276.8377353690353,
+			"y": 460.2525110721459,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
 			"width": 2091.298828125,
@@ -3874,7 +3874,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1751287178355,
 			"link": "[[MU 02 Étude de cas]]",
 			"locked": false,
 			"fontSize": 55.260848251182566,
@@ -3890,8 +3890,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 147,
-			"versionNonce": 344599563,
+			"version": 149,
+			"versionNonce": 1931046485,
 			"isDeleted": false,
 			"id": "ANWB3vFZ",
 			"fillStyle": "solid",
@@ -3900,8 +3900,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 2142.583653381793,
-			"y": 260.32180610299804,
+			"x": 2141.426223368772,
+			"y": 259.16437608997717,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffffff",
 			"width": 361.19293212890625,
@@ -3913,7 +3913,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1728989844003,
+			"updated": 1751354643786,
 			"link": null,
 			"locked": false,
 			"fontSize": 48.88239241648174,
@@ -3929,8 +3929,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "image",
-			"version": 344,
-			"versionNonce": 904895487,
+			"version": 345,
+			"versionNonce": 740813333,
 			"isDeleted": false,
 			"id": "k2ukDiKd",
 			"fillStyle": "hachure",
@@ -3939,8 +3939,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1440.2875967530276,
-			"y": 944.6429703091285,
+			"x": 1439.1301667400066,
+			"y": 943.4855402961076,
 			"strokeColor": "transparent",
 			"backgroundColor": "transparent",
 			"width": 1736.1735834312208,
@@ -3952,7 +3952,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137758,
+			"updated": 1751287178355,
 			"link": null,
 			"locked": false,
 			"status": "pending",
@@ -4621,8 +4621,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 244,
-			"versionNonce": 1977886321,
+			"version": 248,
+			"versionNonce": 557884507,
 			"isDeleted": false,
 			"id": "EPJeWtfk",
 			"fillStyle": "hachure",
@@ -4644,7 +4644,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1751354915182,
 			"link": "[[MU 07 Page HTML]]",
 			"locked": false,
 			"fontSize": 36,
@@ -5650,8 +5650,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 105,
-			"versionNonce": 181331867,
+			"version": 113,
+			"versionNonce": 1725969275,
 			"isDeleted": false,
 			"id": "s7efyDs-_91sKR4aShEhN",
 			"fillStyle": "solid",
@@ -5661,11 +5661,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -4780.0475753813735,
-			"y": 1855.972583128613,
+			"y": 1855.9730302253017,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 634.4444444444443,
-			"height": 10.6927248319289,
+			"height": 10.692978625435217,
 			"seed": 1496058591,
 			"groupIds": [],
 			"frameId": null,
@@ -5673,7 +5673,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586589,
+			"updated": 1751355294022,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5696,7 +5696,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-634.4444444444443,
-					-10.6927248319289
+					-10.692978625435217
 				]
 			]
 		},
@@ -5777,8 +5777,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 465,
-			"versionNonce": 1871183067,
+			"version": 473,
+			"versionNonce": 719311035,
 			"isDeleted": false,
 			"id": "w-QAzjhwrKBPvy1GeLG0U",
 			"fillStyle": "solid",
@@ -5788,11 +5788,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -8391.158686492483,
-			"y": -3509.2833361324883,
+			"y": -3509.2833361353196,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
 			"width": 618.3333333333321,
-			"height": 124.96149265027725,
+			"height": 124.9614926482136,
 			"seed": 1906058449,
 			"groupIds": [],
 			"frameId": null,
@@ -5800,7 +5800,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586591,
+			"updated": 1751355294023,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5823,7 +5823,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-618.3333333333321,
-					-124.96149265027725
+					-124.9614926482136
 				]
 			]
 		},
@@ -5871,8 +5871,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "text",
-			"version": 1347,
-			"versionNonce": 1369480849,
+			"version": 1358,
+			"versionNonce": 190843259,
 			"isDeleted": false,
 			"id": "PpNItr3I",
 			"fillStyle": "solid",
@@ -5892,24 +5892,24 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1751355253104,
 			"link": null,
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches\nsur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre\n'@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter\ndirectement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole\navec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nPrésente aussi VS Code Speech qui pemet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de\ncommit.",
-			"rawText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nPrésente aussi VS Code Speech qui pemet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de commit.",
+			"text": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches\nsur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre\n'@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter\ndirectement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole\navec la souris.\nLà aussi s'il y a des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nIl existe aussi VS Code Speech qui permet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de\ncommit.",
+			"rawText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il y a des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nIl existe aussi VS Code Speech qui permet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de commit.",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "3Rs2KGJIGpN0bJexjSAfs",
-			"originalText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il ya des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nPrésente aussi VS Code Speech qui pemet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de commit.",
+			"originalText": "Depuis  janvier 2024 Copilot utilise GPT 4 et n'est plus limité au contexte du prompt et peut faire des recherches sur l'ensemble du projet ainsi le '/explain' peut porter sur notre base de code, pour cela il faut mettre '@workspace' ce que l'on veut faire.\nPour sépcifier un contexte pour le prompt, il suffit de mettre `#`NomDuFichier et voilà !\nLorsque le tchat fait des propostions il est possible de sélectionner celle qui nous interresse et de l'exécuter directement dans le terminal en cliquant sur l'icone qui apparait sur le bloc de code code lorsqu'on le survole avec la souris.\nLà aussi s'il y a des erreurs dans le terminal, il suffit de cliquer sur les étoiles.\nIl existe aussi VS Code Speech qui permet de dicter ses prompts.\nDans la gestion des sources (\"Souces Control\"), il est facile de maintenant lui faire générer le message de commit.",
 			"lineHeight": 1.15,
 			"baseline": 447
 		},
 		{
 			"type": "arrow",
-			"version": 159,
-			"versionNonce": 711770651,
+			"version": 171,
+			"versionNonce": 2064195067,
 			"isDeleted": false,
 			"id": "mfzQFe3Fk8Dslm-t_xCHZ",
 			"fillStyle": "solid",
@@ -5918,12 +5918,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -8367.80587263967,
-			"y": -2401.347260080607,
+			"x": -8367.805872639672,
+			"y": -2401.3469460531887,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
-			"width": 565.8333333333339,
-			"height": 96.73539143663993,
+			"width": 565.8333333333321,
+			"height": 96.73554618024173,
 			"seed": 2046383825,
 			"groupIds": [],
 			"frameId": null,
@@ -5931,7 +5931,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586593,
+			"updated": 1751355294024,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5953,8 +5953,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-565.8333333333339,
-					-96.73539143663993
+					-565.8333333333321,
+					-96.73554618024173
 				]
 			]
 		},
@@ -6035,8 +6035,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 117,
-			"versionNonce": 822697115,
+			"version": 137,
+			"versionNonce": 271108219,
 			"isDeleted": false,
 			"id": "6BaaEWzPD99fGPFPc-a53",
 			"fillStyle": "solid",
@@ -6046,11 +6046,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -10783.242289668808,
-			"y": -2576.1046356177253,
+			"y": -2576.1046356153274,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
 			"width": 573.9285714285706,
-			"height": 19.990041596361607,
+			"height": 19.990041595079674,
 			"seed": 584611231,
 			"groupIds": [],
 			"frameId": null,
@@ -6058,7 +6058,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586602,
+			"updated": 1751355294025,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6081,14 +6081,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				],
 				[
 					-573.9285714285706,
-					19.990041596361607
+					19.990041595079674
 				]
 			]
 		},
 		{
 			"type": "embeddable",
-			"version": 89,
-			"versionNonce": 528784191,
+			"version": 90,
+			"versionNonce": 1001400501,
 			"isDeleted": false,
 			"id": "vQlFnlskjaidIFu4TmG6W",
 			"fillStyle": "solid",
@@ -6097,7 +6097,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -7780.028003954518,
+			"x": -7783.50029399358,
 			"y": -5480.779321362084,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "#a5d8ff",
@@ -6119,7 +6119,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1711636137759,
+			"updated": 1751359632127,
 			"link": "https://youtu.be/2q0BoioYSxQ",
 			"locked": false,
 			"scale": [
@@ -6129,8 +6129,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 39,
-			"versionNonce": 2098527281,
+			"version": 40,
+			"versionNonce": 1433618965,
 			"isDeleted": false,
 			"id": "iJ7NwNBkxkhnnzG20DSdP",
 			"fillStyle": "solid",
@@ -6143,8 +6143,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": -3750.7793213620844,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#a5d8ff",
-			"width": 990,
-			"height": 1230,
+			"width": 993.4722900390625,
+			"height": 1231.3393503614825,
 			"seed": 222751871,
 			"groupIds": [],
 			"frameId": null,
@@ -6152,7 +6152,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1711636137759,
+			"updated": 1751359632127,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6178,8 +6178,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					-700
 				],
 				[
-					-990,
-					-1230
+					-993.4722900390625,
+					-1231.3393503614825
 				]
 			]
 		},
@@ -6260,8 +6260,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		},
 		{
 			"type": "arrow",
-			"version": 60,
-			"versionNonce": 1734947291,
+			"version": 70,
+			"versionNonce": 1421707477,
 			"isDeleted": false,
 			"id": "xa0CyPXoYESqVPXobs52o",
 			"fillStyle": "solid",
@@ -6270,12 +6270,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -7792.073458499974,
-			"y": -4953.8259383443565,
+			"x": -7795.545748539036,
+			"y": -4953.909484767425,
 			"strokeColor": "#e03131",
 			"backgroundColor": "#ffc9c9",
-			"width": 626.6666666666661,
-			"height": 28.140643305843696,
+			"width": 623.1943766276036,
+			"height": 28.033391870917512,
 			"seed": 432208049,
 			"groupIds": [],
 			"frameId": null,
@@ -6283,7 +6283,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1731490586604,
+			"updated": 1751359632128,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6305,8 +6305,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					-626.6666666666661,
-					-28.140643305843696
+					-623.1943766276036,
+					-28.033391870917512
 				]
 			]
 		},
@@ -6868,10 +6868,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 7362.528003954519,
-		"scrollY": 6041.404384415912,
+		"scrollX": 9459.802428189543,
+		"scrollY": 7056.835704606341,
 		"zoom": {
-			"value": 0.1
+			"value": 0.2
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
