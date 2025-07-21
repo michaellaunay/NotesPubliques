@@ -653,4 +653,54 @@ On peux alors interroger le `DataFrame` index par index avec la méthode `loc`.
 hma.mean().loc[[1, 2]] # qui retournera les lignes pour les valeurs
 ```
 
-xs Cross Schema
+Il est possible de regrouper selon les valeurs de plusieurs colonnes ou d'indexes en passant lors de l'appel de `groupby` la liste des colonnes ou des indexes dans l'ordre de prédominance.
+On parle alors d'indexes multi-niveaux.
+```python
+df.groupby([index1, index2])
+```
+Une fois obtenu l'objet GroupeBy on peut lui appliquer l'une des méthodes de calcul comme `mean, std, min, max` etc.
+On peut aussi appliquer la méthode `.describe` qui calculera toutes ses méthodes et donne un "dataframe" résultat :
+```python
+my_dataframe = pd.DataFrame(
+data=np.random.rand(4,5),
+index=("janvier", "février", "mars", "avril"),
+columns=("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi")
+)
+my_dataframe.groupby(["Lundi","Mercredi"]).describe()
+```
+Qui affiche :
+```
+>>> print(my_dataframe.groupby(["Lundi","Mercredi"]).describe())
+                  Mardi                                              ... Vendredi                                                  
+                  count      mean std       min       25%       50%  ...      std       min       25%       50%       75%       max
+Lundi    Mercredi                                                    ...                                                           
+0.184091 0.001189   1.0  0.223771 NaN  0.223771  0.223771  0.223771  ...      NaN  0.930979  0.930979  0.930979  0.930979  0.930979
+0.222381 0.799661   1.0  0.734495 NaN  0.734495  0.734495  0.734495  ...      NaN  0.302624  0.302624  0.302624  0.302624  0.302624
+0.609272 0.319178   1.0  0.085001 NaN  0.085001  0.085001  0.085001  ...      NaN  0.872406  0.872406  0.872406  0.872406  0.872406
+0.890708 0.915961   1.0  0.689910 NaN  0.689910  0.689910  0.689910  ...      NaN  0.162610  0.162610  0.162610  0.162610  0.162610
+
+[4 rows x 24 columns]
+
+```
+La méthode `transpose` permet qu'en à elle d'inverser le colonnes et les lignes.
+
+La fonction `xs` "Cross Schema" permet de récupérer un sous section en fonction du nom du niveau `level` et d'une seule valeur de clé.
+
+Pour plusieurs valeurs de clé il faut utiliser `loc`, mais `loc` n'offre pas la même souplesse .
+
+Pour filtrer sur plusieurs valeurs de clés, il faut générer un nouveau "DataFrame" en utilisant les fonctions de filtre comme :
+```python
+df[df['années'].isin([1973,1975])]
+```
+La fonction `agg` permet d'appliquer des méthodes d'agrégation à des colonnes d'un dataframe.
+Lien vers la documentation des fonctions permettant de merger, joindre, concaténer et comparer des dataframe : https://pandas.pydata.org/docs/user_guide/merging.html
+Concaténation : 
+```python
+import numpy as np
+import pandas as pd
+data_d1 = ['A':('A0','A1','A2','A3'), 'B':('B0','B1','B2','B3')]
+data_d2 = ['C':('C0','C1','C2','C3'), 'D':('D0','D1','D2','D3')]
+d1 = pd.DataFrame(data_d1)
+d2 = pd.DataFrame(data_d2)
+pd.concat([d1, d2], axis=1)
+```

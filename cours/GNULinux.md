@@ -803,6 +803,16 @@ Visiter Chartres
 Visiter Nice
 Visiter Marseille
 ```
+Nous pouvons l'utiliser pour renommer des fichiers comme dans :
+```bash
+for f in *.pdf.pdf; do mv -- "$f" "${f%.pdf.pdf}.pdf"; done
+```
+où nous supprimons la redondance de l'extension `.pdf`, ici :
+
+- `for f in *.pdf.pdf`: boucle sur tous les fichiers qui se terminent par `.pdf.pdf`.
+- `mv -- "$f"`: renomme le fichier :
+  Le `--` dans la commande `mv` (et dans beaucoup d'autres commandes Unix/Linux) **sert à marquer la fin des options**. Tout ce qui vient après `--` est interprété **comme un nom de fichier**, même si ça commence par un tiret `-`. Le `--` est **une bonne pratique de sécurité**, surtout dans des scripts automatisés ou des boucles, car nous ne savons jamais si un nom de fichier commence par un tiret.
+  Le `%` de `f%`, permet de désigner le suffixe le plus court.
 
 ## Le choix multiple (case)
 
