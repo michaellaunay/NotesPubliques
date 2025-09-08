@@ -1,0 +1,18 @@
+Voici un extrait résumé d'une conférence du biologiste Pierre-Henri Gouyon, qui donne un éclairage saisissant sur les arbitrages de l'EFSA (Autorité européenne de sécurité des aliments) et qui permet de mieux comprendre le débat actuel sur la loi Duplomb :  
+En 2013, l’EFSA avait pris une décision majeure : ne plus se contenter d’évaluer la toxicité aiguë des pesticides sur les abeilles, mais intégrer également leurs effets chroniques, c’est-à-dire les conséquences d’une exposition répétée (une cigarette ne tue pas, mais une toutes les heures oui). Elle avait même proposé un protocole pour tester cette toxicité chronique.  
+Mais près de 10 ans plus tard, ce protocole n’a jamais été mis en œuvre. Les apiculteurs ont tenté d’accéder aux échanges entre États membres pour comprendre ce blocage. La Commission européenne a refusé. Et même après l’intervention favorable de la médiatrice européenne, Emily O'Reilly, elle a confirmé en 2019 qu’elle ne publierait pas les règles.  
+Pourquoi ce recul ? Stéphane Foucart (journaliste au sein du journal Le Monde) a mis en lumière un article de colloque signé par des scientifiques travaillant pour les principaux fabricants de pesticides. Ces industriels avaient eux-mêmes testé leurs produits selon le protocole de toxicité chronique proposé par l’EFSA. Leurs propres résultats sont édifiants :  
+ - 79 % des herbicides échoueraient au test,  
+ - 75 % des fongicides également,  
+ - Et 92 % des insecticides seraient interdits.  
+Autrement dit, 82 % des produits phytosanitaires actuels seraient jugés mortels pour les abeilles si l’on appliquait ce protocole.  
+Face à cela, les industriels ont alerté sur une perte de 80 % de leurs revenus. Leur message était clair : appliquer cette norme, c’est menacer tout un pan de l’économie.  
+Résultat : le protocole n’a jamais vu le jour. Ce cas illustre, de manière frappante, à quel point les intérêts économiques peuvent primer sur les impératifs écologiques. Un choix lourd de conséquences, à l’heure où les pollinisateurs disparaissent à un rythme alarmant.
+**La biodiversité s’est effondrée de 75 % en seulement 30 ans.** Une étude récente, fondée sur le nombre d’insectes écrasés sur les plaques d’immatriculation, révèle qu’en Angleterre, les populations d’insectes ont chuté de 60 % entre 2004 et 2021.
+**En France, plus de 1 140 substances actives phytosanitaires sont autorisées à la vente**, mais les laboratoires d’analyse de l’eau ne sont en mesure d’en détecter qu’environ **150**. Autrement dit, **près de 90 % des molécules potentiellement présentes dans notre environnement échappent à tout contrôle analytique**.
+
+Cette situation crée un aveuglement institutionnel : on ne détecte que ce que l’on cherche, et l’on ne cherche que ce que l’on est capable de détecter. Une réalité problématique à l’heure où les cocktails chimiques et les effets cumulés sont largement sous-estimés dans l’évaluation des risques.
+
+Si les pesticides sont utilisés depuis près d’un siècle, l’explosion de la mortalité des insectes semble étroitement corrélée à l’introduction, il y a 30 ans, des semences enrobées de pesticides. Ce procédé est d’autant plus problématique que **95 % du produit ne pénètre pas la plante** et se disperse dans l’environnement, contaminant sols, eau et insectes non ciblés.
+Il est urgent de repenser les règles d’évaluation des pesticides à l’échelle européenne, dans l’intérêt de notre biodiversité, de notre agriculture… et de notre avenir.
+La conférence : [Effondrement de la biodiversité : pourquoi on a tout faux ! Pierre-Henri Gouyon professeur au MNHN](https://www.youtube.com/watch?v=6FQT7b2ExP4)
