@@ -1,46 +1,144 @@
-Plan du cours sur l'architecture des logiciels. Ce cours explique comment les logiciels sont structurés et comment cette structure peut aider à faciliter la conception, l'implémentation et la maintenance des systèmes logiciels.
 
-1. **Introduction à l'architecture logicielle** : Nous commencerons par une introduction à l'architecture logicielle. Nous aborderons son importance, ses objectifs et ses avantages. Nous discuterons également de la relation entre l'architecture logicielle et la conception orientée objet.
+Le projet consiste à développer un **MVP (Minimum Viable Product)** d’une bibliothèque numérique en ligne.
 
-2. **Vue d'ensemble des styles d'architecture logicielle** : Nous explorerons différents styles d'architecture logicielle, tels que l'architecture monolithique, l'architecture en couches, l'architecture orientée services (SOA), l'architecture basée sur les événements, et l'architecture microservices.
+Pendant le cours, nous constituerons des **binômes hétérogènes** (associant des étudiants aux compétences et parcours différents) et travaillerons sur les différentes étapes de la **conception** et du **développement**.  
+L’objectif est que chaque binôme prenne en charge une partie du projet de manière autonome et responsable.
 
-3. **Patterns d'architecture** : Nous couvrirons plusieurs patterns d'architecture couramment utilisés tels que MVC (Modèle-Vue-Contrôleur), MVVM (Modèle-Vue-VueModèle), et CQRS (Command Query Responsibility Segregation). Nous discuterons de quand et comment utiliser ces patterns.
+À tour de rôle, les binômes auront également pour tâche **d’évaluer le travail des autres**. Cet exercice d’**évaluation croisée** permettra non seulement de développer un regard critique et constructif, mais aussi de tirer des enseignements pour améliorer leurs propres pratiques et la qualité de leur rendu.  
+L’évaluation des pairs fera pleinement partie de la **notation finale**.
 
-4. **Outils pour documenter l'architecture** : Nous proposons d'utiliser Obsidian ou Markdown Memo pour réaliser la documentation de conception.
+Pour cela, nous suivrons les principes de la méthode  **[Agile Unified Process](https://en.wikipedia.org/wiki/Agile_unified_process)  (AUP)**, proposée par Scott Ambler.  
+Cette approche constitue une **fusion entre les méthodes agiles et le cycle en Y**, en combinant la rigueur de la modélisation orientée objet avec la souplesse des itérations courtes et incrémentales.  
+Elle encourage également des pratiques collaboratives telles que le **Pair Programming**, favorisant la qualité du code, la diffusion des connaissances et la réduction des erreurs.
 
-5. **Documenter l'architecture logicielle** : Nous discuterons de l'importance de la documentation de l'architecture et présenterons des techniques et des outils pour le faire, tels que les diagrammes UML et les vues de l'architecture.
+Il est impératif de s’appuyer sur les extraits de mon cours d’[**Architecture des logiciels**](https://github.com/michaellaunay/NotesPubliques/blob/master/cours/Architecture%20des%20logiciels.md) fournis en annexes.
 
-6. **Qualité de l'architecture logicielle** : Nous aborderons les facteurs qui déterminent la qualité d'une architecture logicielle, y compris la performance, la sécurité, la maintenabilité, et l'évolutivité.
+# Sujet : Conception et architecture d’une bibliothèque numérique décentralisée
 
-7. **Évolution de l'architecture logicielle** : Nous étudierons comment les architectures logicielles peuvent évoluer avec le temps pour répondre à de nouveaux besoins ou défis. Nous parlerons également de la dette technique et comment la gérer.
+## Présentation générale
 
-8. **Études de cas et projets pratiques** : Nous appliquerons les concepts que nous avons appris à des études de cas et des projets réels. Cela vous donnera une expérience pratique de la conception de l'architecture logicielle.
+Le projet consiste à développer un **MVP (Minimum Viable Product)** d’une **bibliothèque numérique en ligne et décentralisée**.
 
-# 1. Introduction à l'architecture logicielle
+Pour des raisons de compatibilité avec l’existant, le langage de développement **imposé par le client est Python**.  
+Le **framework web** retenu côté serveur est **Pyramid**, et le langage de templates utilisé est **TAL/METAL** (hérité de Zope/Plone, garantissant la compatibilité avec l’historique).
 
-## 1.1 Définition de l'architecture logicielle
+Côté client, le choix est laissé aux développeurs :
+- soit **SolidJS**, un framework moderne « React-like » basé sur JSX, performant et flexible,  
+- soit **Bootstrap**, solution plus traditionnelle (« old school ») mais simple à mettre en œuvre et rapide pour prototyper.
+Les documents gérer par l'application doivent l'être à travers un dépot git et non une base de donnée traditionnelle pour la raison qu'à terme devra être développé une application permettant aux terminaux (oridnateur ou télphone mobile), de pouvoir disposer des textes sous forme d'une arborescence de fichier. Pour ceux qui ne sont pas à l'aise avec git, il existe une série de formations gratuites https://www.youtube.com/watch?v=0sGQgfUdCAY
 
-L'architecture logicielle fait référence à la structure fondamentale d'un système logiciel. Elle représente la manière dont ce système est organisé et comment ses différents composants interagissent entre eux. Le terme "architecture" est emprunté au domaine de l'architecture physique où il fait référence à la conception de bâtiments. De la même manière, en informatique, l'architecture logicielle représente la "conception" de notre logiciel. 
+Il est toutefois demandé que **chaque fonctionnalité soit développée de manière modulaire**, indépendante du reste du système, et puisse être **utilisée et testée en ligne de commande** afin de faciliter l’intégration continue et la validation unitaire.
 
-Une architecture logicielle englobe plusieurs aspects. Elle décrit les composants logiciels qui composent le système (par exemple, les classes dans une application orientée objet), leurs propriétés internes et leurs relations avec les autres composants. L'architecture couvre également les patrons de conception (design patterns) utilisés, les principes et les pratiques de conception adoptées, ainsi que les méthodes et outils employés pour réaliser le système.
+Compte tenu des délais, l’usage de l’**intelligence artificielle** est **fortement recommandé**, mais il doit être **entièrement documenté et traçable**. Les conversations (prompts) feront l’objet de débats en classe. Pour préparer cela, les étudiants doivent, avant le cours, regarder et comprendre la vidéo : [**Les 4 étapes pour entraîner un LLM**](https://www.youtube.com/watch?v=YcIbZGTRMjI).
 
-L'architecture logicielle définit également les interfaces par lesquelles les composants logiciels communiquent entre eux. Les interfaces jouent un rôle crucial dans la définition de la manière dont les composants interagissent et collaborent pour accomplir les tâches du système.
+Ce projet sert de support pédagogique pour aborder les notions d’**architecture logicielle orientée objet**, de **modélisation UML**, de **design patterns**, et de **documentation**.
 
-Il est important de noter que l'architecture logicielle ne se limite pas à la structure statique du système. Elle comprend également les aspects dynamiques du logiciel, comme la communication entre les composants à l'exécution, les modèles de concurrence et de synchronisation, et la manière dont le système réagit aux entrées et sorties.
+Pendant le cours, les étudiants travailleront en **binômes hétérogènes** (compétences et parcours différents). Chaque binôme aura pour mission de prendre en charge une partie de la conception et du développement, puis de présenter et de justifier ses choix.
 
-En somme, l'architecture logicielle donne une vue globale d'un système. Elle sert de plan directeur qui guide le développement du système, en fournissant une vue structurée de ses exigences fonctionnelles et non fonctionnelles. Une bonne architecture facilite la compréhension, le développement et la maintenance du système, tout en assurant que le système final répond aux exigences de qualité souhaitées comme la performance, la fiabilité, la sécurité, et la maintenabilité.
+Il est impératif de respecter les **extraits du cours d’Architecture des logiciels** donnés en annexes (rôles de l’architecte, conception OO, attributs de qualité, vues architecturales, documentation, importance du nommage, etc.).
 
-## 1.2 Importance de l'architecture logicielle
+---
 
-L'architecture logicielle joue un rôle central dans le développement et la maintenance de tout système logiciel. Voici quelques-unes des raisons pour lesquelles elle est si importante :
+### Contexte du projet
 
-**Faciliter la communication entre les parties prenantes** : L'architecture logicielle sert de langage commun qui facilite la communication entre toutes les parties prenantes d'un projet, y compris les développeurs, les gestionnaires de projet, les utilisateurs, les clients et les fournisseurs. Une représentation claire de l'architecture permet à toutes les parties prenantes de comprendre comment le système est construit et fonctionne, facilitant ainsi les discussions et la prise de décision.
+L’association **CultureDiffusion** souhaite réaliser une **bibliothèque numérique décentralisée**.
 
-**Prendre des décisions anticipées sur les attributs de qualité** : L'architecture logicielle aide à déterminer comment le système répondra à des attributs de qualité spécifiques, tels que la performance, la sécurité, la maintenabilité et l'évolutivité. Ces décisions sont souvent prises tôt dans le processus de développement, lors de la conception de l'architecture, et peuvent avoir un impact significatif sur la réussite du projet.
+#### Objectifs fonctionnels :
 
-**Gérer la complexité du logiciel** : La conception d'une architecture logicielle bien structurée permet de gérer la complexité inhérente au développement de logiciels. En décomposant le système en composants plus petits et plus gérables, l'architecture permet aux développeurs de comprendre, de développer et de tester chaque partie du système indépendamment des autres.
+- Permettre à chaque membre de numériser des œuvres au format pdf et de les proposer à l’emprunt.
+- Permettre la reconnaissance de texte des œuvres numérisés via plusieurs IA (Gemini, Pixtral).
+- Offrir un accès gratuit aux œuvres du domaine public.
+- Permettre la location d’œuvres "numérique" sous droits pour une période de deux semaines.
+- Diffuser automatiquement les œuvres devenues libres de droit à l’ensemble des membres disposant d’espace disque partagé.
+- Permettre le téléchargement des oeuvres au format Markdown.
+- Gérer le processus permettant aux bibliothécaires d'assurer la **modération** des œuvres déposées sur la plateforme par les membres (vérification, enrichissement des métadonnées, validation ou rejet).
+- Gérer les droits et les copies selon la législation en vigueur.
 
-**Faciliter l'évolution et la maintenance du logiciel** : Une bonne architecture logicielle facilite l'évolution du logiciel pour répondre aux besoins changeants des utilisateurs ou à l'évolution des technologies. Elle facilite également la maintenance du logiciel en permettant aux développeurs de comprendre rapidement comment le système fonctionne et où apporter des modifications ou des corrections.
+#### Structure du dépôt de la bibliothèque (métaphore de répertoires) :
+
+- `fond_commun` : œuvres libres de droits mises à disposition par l’association.
+- `emprunts` : œuvres sous droit empruntées, chiffrées avec la clé du membre.
+- `séquestre` : œuvres sous droit en attente, gérées par l’association, avec un accès restreint.
+- `a_moderer` : œuvres proposées par les membres, en attente de validation par un bibliothécaire.
+
+#### Classification des œuvres :
+
+- **Livres** : BD, Romans, Jeunesse, Techniques, Éducation, Culture, Santé, etc.
+- **Musique** : Classique, Jazz, Pop, Metal, etc.
+- **Vidéos** : SF, Histoire, Séries, Documentaires, etc.
+- **Articles**.  
+    Une œuvre peut appartenir à plusieurs catégories simultanément.
+
+### Travail demandé
+
+#### Partie 1 : Analyse et glossaire
+
+1. Identifier les **concepts** (entités, rôles, actions, propriétés) dans le cahier des charges.
+2. Élaborer un **glossaire métier** et un **glossaire technique** (définitions claires, classées alphabétiquement).
+3. Justifier vos choix de vocabulaire par rapport à l’importance du **noms et conventions de nommage (5.5)**.
+
+#### Partie 2 : Modélisation UML
+
+- Réaliser le **diagramme de cas d’utilisation** global.
+- Lister les **scénarios fondamentaux** de l’application, en ajouter si nécessaire.
+    - Exemple : installation de l’application, devenir membre, emprunter une œuvre, proposer une œuvre, reconnaître le texte et les schémas d’une œuvre, modérer une œuvre, consulter le fond commun, exporter une œuvre au format Markdown.
+- Trier les scénarios par ordre d’importance.
+- Produire **au moins 4 diagrammes de séquence système** des scénarios principaux, dont 2 qui n’auront été proposés par aucun autre binôme.
+- Réaliser **5 diagrammes de classes** associés aux scénarios les plus critiques. 
+- Produire un **diagramme de classes global** détaillant les associations et leurs cardinalités.
+- Donner des **diagrammes d’activités** permettant de comprendre les processus documentaires (workflows).
+
+#### Partie 3 : Choix d’architecture
+
+1. Décrire l’**architecture logicielle** choisie (ex. architecture en couches, orientée services, micro-services simplifiés).
+2. Justifier vos choix au regard des **attributs de qualité** (performance, sécurité, maintenabilité, modularité, évolutivité).
+3. Identifier les **design patterns** utilisés (ex. Singleton, Factory, Observer, Strategy) et justifier leur pertinence dans ce projet.
+4. Expliquer comment la **documentation** (chapitre 3 des annexes) sera intégrée dans le flux de travail du projet (usage de Markdown, Git, diagrammes UML intégrés).
+
+#### Partie 4 : Nommage et qualité
+
+1. Définir un **guide de nommage** adapté au projet (inspiré du §5.5 : cohérence, conventions, lisibilité).
+2. Vérifier la cohérence entre :
+    
+    - le glossaire métier,
+    - les classes et modules UML,
+    - les scénarios,
+    - la documentation.
+        
+3. Proposer l’usage d’**outils automatiques** (linters, règles de formatage, CI/CD pour la documentation) pour renforcer la qualité.
+    
+
+---
+
+### Contraintes
+
+- Utiliser **PlantUML** ou **Mermaid** ou **D2** pour vos diagrammes (l'IA peut faire de la conversion de diagramme, mais il faut vérifier la sémantique produite).
+- Respecter les principes de **conception orientée objet** (encapsulation, héritage, polymorphisme).
+- Intégrer explicitement les notions de **vues architecturales** (logique, processus, développement, physique).
+- Documenter vos choix dans un **dépôt Git structuré** (voir chapitre 5 des annexes).
+
+---
+
+### Livrables attendus
+
+1. Glossaire métier et technique (Markdown).
+2. Diagramme de cas d’utilisation + scénarios détaillés (Markdown + PlantUML).
+3. Diagrammes de séquence (PlantUML).
+4. Diagrammes de classes (scénarios et global).
+5. Document de justification des choix d’architecture et de design patterns.
+6. Guide de nommage (Markdown).
+7. Dépôt Git documenté avec arborescence conforme aux recommandations du cours.
+8. Implémentation sommaire des principales fonctionnalités sous forme de scripts indépendants pouvant être intégrés en un tout ou utilisé indépendamment (prévoir l'usage des .env pour le paramétrage des clés permettant d’interroger les IA).
+9. Tests unitaires
+10. Tests d'intégrations.
+11. Test de validations
+
+
+---
+
+# Annexes
+
+----
 
 **1.3 Rôles et responsabilités de l'architecte logiciel**
 
@@ -57,19 +155,6 @@ Un architecte logiciel joue un rôle crucial dans le développement de systèmes
 **Contrôle de la qualité architecturale** : L'architecte est également chargé de veiller à ce que l'architecture logicielle soit mise en œuvre correctement et maintenue au fil du temps. Cela implique d'évaluer l'architecture pour s'assurer qu'elle respecte les standards de qualité, d'identifier et de résoudre les problèmes architecturaux et de veiller à ce que les modifications apportées au système restent conformes à l'architecture.
 
 **Planification et gestion de la technologie** : L'architecte logiciel doit également prendre en compte l'évolution technologique. Cela implique de rester à jour sur les nouvelles technologies et méthodologies, de planifier l'intégration de nouvelles technologies dans l'architecture existante et de gérer l'évolution de l'architecture du système au fil du temps.
-
-## 1.4 Perspectives sur l'architecture logicielle
-
-Il existe plusieurs façons d'aborder l'architecture logicielle, et différentes perspectives peuvent mettre en lumière différents aspects du système. Voici trois perspectives couramment utilisées dans l'architecture logicielle : la perspective de conception, la perspective d'exécution et la perspective de code.
-
-**Perspective de conception** : Cette perspective se concentre sur les éléments de conception du système. Les éléments de conception sont des abstractions qui représentent des parties du système, comme les modules, les composants, les connecteurs, etc. Cette perspective aborde des questions comme : Quels sont les principaux composants du système ? Comment ces composants sont-ils organisés ? Comment interagissent-ils les uns avec les autres ? 
-
-**Perspective d'exécution** : Cette perspective se concentre sur les éléments d'exécution du système, c'est-à-dire les instances de composants et les interactions qui se produisent pendant l'exécution du logiciel. Les questions typiques de cette perspective pourraient être : Comment les composants du système sont-ils instanciés pendant l'exécution ? Comment ces instances interagissent-elles entre elles ? Comment les données sont-elles échangées ou partagées entre les instances ?
-
-**Perspective de code** : Cette perspective se concentre sur les éléments de code, comme les packages, les classes et les méthodes. Elle est particulièrement utile pour comprendre comment le système est structuré au niveau du code source. Les questions abordées pourraient être : Comment les classes et les packages sont-ils organisés ? Comment les méthodes et les attributs sont-ils utilisés dans les classes ? 
-
-Ces perspectives ne sont pas mutuellement exclusives, mais plutôt complémentaires. En combinant ces perspectives, nous pouvons obtenir une vue complète de l'architecture du système, de la conception à l'exécution et au code. Chacune de ces perspectives apporte des informations précieuses qui peuvent aider à comprendre, concevoir, développer et maintenir le système.
-
 ## 1.5 Relation entre l'architecture logicielle et la conception orientée objet
 
 La conception orientée objet (COO) est une méthode de conception et de développement logiciel qui utilise des "objets" - instances de classes, qui sont souvent des représentations de choses du monde réel. La COO intègre des concepts tels que l'encapsulation, l'héritage et le polymorphisme, pour favoriser une structuration plus naturelle et logique du code. Cette méthode de conception a un impact significatif sur l'architecture logicielle, car elle fournit les blocs de construction pour mettre en œuvre l'architecture du système.
@@ -108,37 +193,6 @@ L'évolutivité est la capacité d'un système à gérer une augmentation de la 
 
 Les attributs de qualité sont des considérations essentielles dans la conception de l'architecture logicielle. Ils guident les décisions architecturales et influencent la qualité globale du système. Un bon architecte doit comprendre ces attributs de qualité, savoir comment les équilibrer et prendre des décisions informées qui favorisent l'atteinte de ces objectifs de qualité.
 
-## 1.7 Les décisions architecturales
-
-Les décisions architecturales sont des choix qui sont faits lors de la conception de l'architecture d'un système logiciel. Elles ont un impact majeur sur la structure et le comportement du système, et une fois prises, elles peuvent être difficiles à changer. Examinons les facteurs qui influencent ces décisions et comment elles sont prises.
-
-### 1.7.1 Exigences fonctionnelles et non fonctionnelles
-
-Les exigences du système, à la fois fonctionnelles (ce que le système doit faire) et non fonctionnelles (comment le système doit le faire), sont des facteurs clés dans la prise de décisions architecturales. Par exemple, si une exigence non fonctionnelle est que le système doit être capable de gérer une charge de travail élevée, cela peut influencer la décision d'utiliser une architecture distribuée.
-
-### 1.7.2 Contraintes technologiques
-
-Les contraintes technologiques, comme la disponibilité de certaines technologies ou la nécessité d'intégrer le système avec d'autres systèmes existants, peuvent également influencer les décisions architecturales. Par exemple, si le système doit être développé en utilisant un certain langage de programmation ou une certaine plateforme, cela peut limiter les choix d'architecture disponibles.
-
-### 1.7.3 Compromis
-
-La prise de décisions architecturales implique souvent de faire des compromis entre différents objectifs ou exigences. Par exemple, augmenter la performance d'un système peut réduire sa maintenabilité, ou améliorer la sécurité peut réduire sa facilité d'utilisation. Un bon architecte doit être capable de trouver le bon équilibre entre ces différents facteurs.
-
-### 1.7.4 Stakeholders
-
-Les parties prenantes du système, comme les utilisateurs, les développeurs, les gestionnaires et les clients, ont également une influence sur les décisions architecturales. Leurs préférences, leurs besoins et leurs attentes doivent être pris en compte lors de la conception de l'architecture.
-
-### 1.7.5 Contexte
-
-Le contexte dans lequel le système sera utilisé peut également influencer les décisions architecturales. Par exemple, si le système est destiné à être utilisé dans un environnement à faible bande passante, cela peut influencer la décision d'utiliser une architecture légère et efficace.
-
-### 1.7.6 Expérience et connaissance
-
-L'expérience et les connaissances de l'architecte jouent un rôle important dans la prise de décisions architecturales. Une bonne compréhension des principes d'architecture, des patterns d'architecture et des technologies disponibles peut aider à prendre des décisions informées et efficaces.
-
-### 1.7.7 Conclusion sur les décisions architecturales
-
-La prise de décisions architecturales est un processus complexe qui implique de prendre en compte de nombreux facteurs différents et de faire des compromis. Un bon architecte doit être capable de naviguer dans ce processus, de prendre des décisions informées et de justifier ces décisions aux autres membres de l'équipe.
 
 ## 1.8 Les vues architecturales
 
@@ -174,166 +228,6 @@ La documentation des attributs de qualité et de la manière dont ils ont influe
 
 ### 1.9.4 Une nécessité
 La documentation en architecture logicielle n'est pas un luxe, mais une nécessité. Elle facilite la communication, soutient la prise de décisions, aide à maintenir la cohérence de l'architecture et facilite la maintenance et l'évolution du système. Dans le prochain chapitre, nous verrons comment créer une documentation efficace en architecture logicielle.
-
-## 2. Vue d'ensemble des styles d'architecture logicielle
-
-Dans ce chapitre, nous allons explorer différents styles d'architecture logicielle. Chaque style a ses propres caractéristiques, avantages et inconvénients, et est mieux adapté à certains types de systèmes et de problèmes. En comprenant ces différents styles, vous serez mieux équipés pour choisir l'architecture la plus appropriée pour vos propres projets.
-
-## 2.1 Introduction aux styles d'architecture logicielle
-
-L'architecture logicielle, comme nous l'avons déjà mentionné, est une discipline qui se concentre sur la manière dont les logiciels sont structurés et organisés. Un "style d'architecture", en revanche, est une approche spécifique ou un ensemble de principes qui guident la structuration et l'organisation d'un logiciel. Chaque style d'architecture a ses propres caractéristiques, avantages et inconvénients, et est conçu pour répondre à certains types de problèmes ou de situations.
-
-Pensez à un style d'architecture comme à un modèle pour la construction d'une maison. Chaque style, qu'il s'agisse d'un bungalow, d'une maison de ville, d'une maison en rangée ou d'une villa, a ses propres avantages, inconvénients et caractéristiques qui le rendent plus adapté à certains types de familles, de climats, de paysages et de modes de vie.
-
-De la même manière, chaque style d'architecture logicielle offre des avantages uniques qui le rendent approprié pour certains types de projets, de problèmes et de contextes. Par exemple, certains styles peuvent être plus adaptés aux systèmes à grande échelle, tandis que d'autres peuvent être plus appropriés pour les systèmes qui exigent une haute performance ou une sécurité renforcée. Certains styles peuvent également être plus faciles à comprendre, à modifier ou à maintenir que d'autres, ce qui peut influencer leur choix en fonction de la taille de l'équipe, de la durée du projet ou de la complexité du problème à résoudre.
-
-En comprenant les différents styles d'architecture disponibles, vous pouvez faire des choix plus éclairés lors de la conception de l'architecture de votre logiciel. Vous serez mieux équipé pour choisir un style qui correspond aux besoins de votre projet, à vos exigences en matière de qualité, à votre équipe et à votre environnement de travail.
-
-Dans les sections suivantes, nous examinerons quelques-uns des styles d'architecture logicielle les plus couramment utilisés, y compris l'architecture monolithique, l'architecture en couches, l'architecture orientée services (SOA), l'architecture basée sur les événements, et l'architecture microservices. Pour chaque style, nous discuterons de ses caractéristiques, de ses avantages et inconvénients, et de quand et pourquoi vous pourriez choisir d'utiliser ce style.
-
-## 2.2 Architecture Monolithique
-
-L'architecture monolithique est un style d'architecture logicielle dans lequel le logiciel est conçu et développé comme une seule unité indivisible. Toutes les fonctionnalités et tous les composants du système, y compris la base de données, les opérations sur les données, les règles métier, et l'interface utilisateur, sont interconnectés et interdépendants.
-
-### 2.2.1 Caractéristiques de l'architecture monolithique
-
-- **Unité de déploiement unique** : Dans une architecture monolithique, le logiciel est déployé en une seule unité. Toutes les fonctionnalités sont contenues dans une seule base de code, et tout changement nécessite un redéploiement complet de l'application.
-
-- **Cohésion forte** : Les différents composants du système sont étroitement liés et interdépendants. Ils partagent souvent des ressources, telles que la mémoire et les données, et un changement dans un composant peut avoir un impact sur l'ensemble du système.
-
-- **Simplicité de développement** : Avec une base de code unique, il est souvent plus facile et plus rapide de développer et de tester une application monolithique, surtout si le système est relativement petit.
-
-### 2.2.3 Avantages de l'architecture monolithique
-
-- **Facilité de développement** : Une architecture monolithique peut être plus simple à développer initialement, car il n'y a pas besoin de coordonner plusieurs bases de code ou services indépendants.
-
-- **Performance** : Dans une architecture monolithique, les appels entre différents composants du système sont souvent plus rapides que dans une architecture distribuée, car ils se font en mémoire plutôt que sur le réseau.
-
-### 2.2.4 Inconvénients de l'architecture monolithique
-
-- **Difficulté de mise à l'échelle** : Dans une architecture monolithique, la mise à l'échelle du système nécessite souvent de dupliquer l'ensemble de l'application, ce qui peut être coûteux en termes de ressources.
-
-- **Rigidité** : Les architectures monolithiques peuvent être difficiles à modifier ou à étendre, car un changement dans une partie du système peut nécessiter des modifications dans d'autres parties du système.
-
-- **Risque de panne** : Dans une architecture monolithique, une panne dans un composant peut entraîner l'arrêt de l'ensemble du système.
-
-L'architecture monolithique peut être appropriée pour les petits systèmes, ou pour les projets avec des équipes réduites, des délais serrés, ou des exigences simples et bien définies. Cependant, pour les systèmes plus grands, plus complexes, ou qui doivent être capables de changer et d'évoluer rapidement, d'autres styles d'architecture peuvent être plus appropriés.
-
-## 2.3 Architecture en couches
-
-L'architecture en couches est un style d'architecture logicielle qui organise le système en une série de couches, chaque couche fournissant des services à celle qui se trouve au-dessus d'elle. Chaque couche a une responsabilité spécifique et fonctionne de manière indépendante des autres.
-
-### 2.3.1 Caractéristiques de l'architecture en couches
-
-- **Couplage faible** : Chaque couche est indépendante et interagit seulement avec les couches directement au-dessus et en dessous d'elle. Cela permet une plus grande flexibilité et facilité de modification.
-
-- **Réutilisabilité** : Les services fournis par chaque couche peuvent être réutilisés par plusieurs composants ou systèmes.
-
-- **Séparation des préoccupations** : Chaque couche a une responsabilité spécifique, ce qui permet une meilleure organisation et une maintenance plus facile.
-
-### 2.3.2 Avantages de l'architecture en couches
-
-- **Maintenabilité** : L'architecture en couches permet une plus grande maintenabilité en isolant les modifications à une couche spécifique. Cela réduit l'impact des changements et facilite la maintenance.
-
-- **Evolutivité** : Grâce à sa nature modulaire, l'architecture en couches peut facilement être mise à l'échelle en ajoutant ou en modifiant des couches spécifiques.
-
-- **Flexibilité** : Les couches peuvent être réorganisées, modifiées ou remplacées de manière indépendante, ce qui offre une grande flexibilité.
-
-### 2.3.3 Inconvénients de l'architecture en couches
-
-- **Performance** : Les appels de fonction entre les couches peuvent réduire les performances, en particulier si le nombre de couches est élevé.
-
-- **Complexité** : Bien que l'architecture en couches puisse simplifier la conception du système, elle peut également introduire une complexité supplémentaire, en particulier lorsqu'il y a un grand nombre de couches.
-
-L'architecture en couches est souvent utilisée dans les systèmes d'entreprise ou les applications web, où elle peut aider à organiser le code en groupes logiques et à séparer les préoccupations. C'est un style d'architecture populaire en raison de sa flexibilité, de sa maintenabilité et de sa capacité à soutenir les principes de conception tels que l'encapsulation et la modularité.
-
-## 2.4 Architecture Orientée Services (SOA)
-
-L'Architecture Orientée Services (SOA) est un style d'architecture qui structure une application comme une collection de services. Ces services sont des unités autonomes de fonctionnalités qui peuvent être accédées et utilisées sans connaissance de leur fonctionnement interne.
-
-### 2.4.1 Caractéristiques de SOA
-
-- **Indépendance** : Les services dans une SOA sont autonomes, chaque service est indépendant des autres. Cela signifie qu'un service peut être modifié ou remplacé sans affecter les autres services du système.
-
-- **Communication** : Les services communiquent entre eux, généralement par des appels de réseau, pour accomplir une fonctionnalité ou un processus. Cette communication se fait souvent via un protocole standard tel que HTTP et un format de message standard tel que XML ou JSON.
-
-- **Réutilisabilité** : Les services sont conçus pour être réutilisés par plusieurs applications. Cela permet de réduire la duplication de code et de favoriser la cohérence dans l'ensemble du système.
-
-### 2.4.2 Avantages de SOA
-
-- **Flexibilité** : Grâce à leur indépendance, les services peuvent être modifiés, mis à jour ou remplacés sans affecter le reste du système. Cela rend le système plus flexible et plus facile à maintenir.
-
-- **Évolutivité** : SOA permet d'ajouter de nouvelles fonctionnalités en ajoutant de nouveaux services. Cela permet au système de se développer et de s'adapter facilement aux besoins changeants de l'entreprise.
-
-- **Interoperabilité** : Les services peuvent être construits en utilisant différentes technologies de plateforme et de programmation, ce qui rend SOA idéale pour les environnements hétérogènes.
-
-### 2.4.3 Inconvénients de SOA
-
-- **Complexité** : SOA peut être plus complexe à mettre en œuvre que d'autres styles d'architecture en raison de la nécessité de gérer la communication entre services.
-
-- **Performance** : La nécessité pour les services de communiquer entre eux peut entraîner des retards et affecter la performance du système.
-
-SOA est particulièrement bénéfique dans les grandes entreprises où plusieurs systèmes et technologies doivent interagir et communiquer entre eux. Il est également utile dans les environnements où les exigences changent fréquemment, car il permet d'ajouter, de modifier ou de remplacer des services de manière indépendante.
-
-## 2.5 Architecture Basée sur les Événements
-
-L'architecture basée sur les événements est un style d'architecture logicielle qui se concentre sur la production, la détection, la consommation et la réaction aux événements. Les événements sont définis comme des changements d'état significatifs dans un système.
-
-### 2.5.1 Caractéristiques de l'architecture basée sur les événements
-
-- **Réactivité** : Les systèmes basés sur des événements sont conçus pour réagir aux changements d'état qui se produisent dans le système. Ces réponses sont souvent exprimées sous la forme de callbacks ou de fonctions qui sont déclenchées en réponse à un événement.
-
-- **Asynchrone** : L'architecture basée sur les événements est intrinsèquement asynchrone. Elle permet aux systèmes de continuer à fonctionner pendant que les événements sont en cours de traitement.
-
-- **Décentralisation** : Dans une architecture basée sur les événements, aucun composant central n'est chargé de la gestion des événements. Au lieu de cela, chaque composant agit de manière indépendante en réponse aux événements qu'il reçoit.
-
-### 2.5.2 Avantages de l'architecture basée sur les événements
-
-- **Réactivité** : Les systèmes basés sur les événements sont naturellement réactifs et peuvent fournir des réponses en temps réel aux changements d'état.
-
-- **Scalabilité** : Comme ils peuvent fonctionner de manière asynchrone, les systèmes basés sur les événements peuvent facilement être mis à l'échelle pour gérer un grand nombre d'événements.
-
-- **Flexibilité** : Les systèmes basés sur les événements sont flexibles et peuvent facilement être adaptés pour répondre à de nouveaux types d'événements.
-
-### 2.5.3 Inconvénients de l'architecture basée sur les événements
-
-- **Complexité** : Les systèmes basés sur les événements peuvent être plus difficiles à comprendre et à déboguer que les systèmes synchrones, en raison de leur nature asynchrone et décentralisée.
-
-- **Gestion des erreurs** : La gestion des erreurs peut être difficile dans une architecture basée sur les événements, car il peut être difficile de déterminer où et quand une erreur s'est produite.
-
-L'architecture basée sur les événements est particulièrement utile dans les scénarios où le système doit réagir rapidement et efficacement à des changements d'état, tels que les systèmes de trading en temps réel, les systèmes de surveillance, les systèmes de flux de travail, les systèmes IoT (Internet des objets) et les applications Web interactives.
-
-## 2.6 Architecture Microservices
-
-L'architecture microservices est un style d'architecture qui structure une application comme une collection de petits services autonomes. Chaque service est une application autonome, fonctionnant dans son propre processus et communiquant avec les autres services par le biais d'interfaces bien définies.
-
-### 2.6.1 Caractéristiques de l'architecture Microservices
-
-- **Décentralisation** : Chaque service est indépendant et peut être développé, déployé et mis à l'échelle de manière indépendante.
-
-- **Distribution** : Les services peuvent être distribués sur plusieurs machines ou réseaux, ce qui permet une grande évolutivité.
-
-- **Autonomie** : Chaque service est responsable d'une seule fonctionnalité ou processus d'affaires. 
-
-### 2.6.2 Avantages de l'architecture Microservices
-
-- **Évolutivité** : Comme chaque service est indépendant, il peut être mis à l'échelle de manière indépendante en fonction de la demande.
-
-- **Résilience** : Si un service tombe en panne, il n'affectera pas les autres services.
-
-- **Déploiement indépendant** : Chaque microservice peut être déployé indépendamment des autres. Cela facilite le déploiement continu et la livraison continue (CI/CD).
-
-### 2.6.3 Inconvénients de l'architecture Microservices
-
-- **Complexité** : Gérer plusieurs services indépendants peut être plus complexe que de gérer une seule application monolithique.
-
-- **Communication inter-services** : Les services doivent communiquer entre eux, généralement par le biais de requêtes réseau, ce qui peut entraîner une latence accrue.
-
-- **Gestion des données** : La répartition des données entre les services peut être un défi.
-
-### 2.6.4 Synthèse
-
-L'architecture microservices est particulièrement bénéfique dans les grands systèmes d'entreprise qui nécessitent une haute évolutivité et une disponibilité constante. Cependant, il convient de noter que ce style d'architecture n'est pas approprié pour toutes les applications, en particulier celles de petite taille ou avec des exigences moins complexes.
 
 # 3. Documenter l'architecture logicielle
 
@@ -427,7 +321,7 @@ Mermaid est un outil de création de diagrammes basé sur JavaScript qui permet 
     \```
     ```
 
-3. Sauvegardez et visualisez votre fichier Markdown. Le diagramme Mermaid devrait être correctement rendu.
+2. Sauvegardez et visualisez votre fichier Markdown. Le diagramme Mermaid devrait être correctement rendu.
     ```mermaid
     graph TD;
         A-->B;
@@ -579,7 +473,6 @@ Il contient :
 Il contient :
 	- un fichier `_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
 	- Une description de toutes les fenêtres et écrans illustrés en utilisant des diagrammes Salt de PlantUML
-
 ## 5.5 L’importance du nommage dans l’architecture orientée objet
 
 Le nommage est un aspect souvent sous-estimé de l’architecture logicielle. Pourtant, des noms cohérents et explicites pour les classes, modules, attributs et relations favorisent la compréhension, la maintenabilité et la collaboration. Un bon nommage est une composante essentielle de la **qualité architecturale**.
@@ -664,6 +557,7 @@ Un nommage rigoureux a un impact direct sur plusieurs attributs de qualité :
 - **Collaboration** : un vocabulaire partagé (souvent désigné sous le terme _ubiquitous language_ en Domain-Driven Design) permet une meilleure communication entre développeurs et experts métier.
 
 Ainsi, le nommage n’est pas qu’un détail esthétique : il est un facteur structurant de la qualité du logiciel.
+
 ### 5.5.8 Conclusion sur le nommage
 
 Le nommage doit être considéré comme une **décision architecturale à part entière**.  
@@ -671,72 +565,6 @@ Il conditionne la compréhension du système, la fluidité du développement et 
 L’architecte logiciel doit veiller à établir un **guide de nommage** dès les premières phases du projet et en assurer le respect au fil des développements.
 
 Un système bien nommé est un système plus lisible, plus cohérent et plus facile à faire évoluer.
-
-# 6. Qualité de l'architecture logicielle
-
-## 6.1 Introduction
-
-L'architecture logicielle est la colonne vertébrale de tout système logiciel. Elle est le reflet de toutes les décisions prises par l'équipe de développement concernant le fonctionnement du logiciel, la façon dont les différentes parties interagissent entre elles et comment le logiciel s'adaptera aux changements futurs. Dans ce chapitre, nous allons aborder les critères qui déterminent la qualité d'une architecture logicielle.
-
-Il est essentiel de comprendre que la qualité d'une architecture logicielle n'est pas seulement une question de bonnes pratiques de programmation. Elle englobe une gamme plus large de considérations, notamment comment l'architecture répond aux besoins actuels et futurs des utilisateurs, comment elle facilite le développement et la maintenance, et comment elle se comporte face à différentes contraintes et exigences du système, comme la performance, la sécurité, la maintenabilité et l'évolutivité.
-
-Ces critères de qualité sont des indicateurs de la capacité de l'architecture à supporter les exigences du logiciel sur le long terme. Une architecture de haute qualité est celle qui est capable de s'adapter aux changements de manière fluide, tout en maintenant un haut niveau de performance et de sécurité.
-
-Cependant, il convient de noter que la qualité de l'architecture ne peut pas être mesurée en termes absolus. Elle dépend largement des exigences spécifiques du projet, du contexte dans lequel le logiciel est utilisé et des préférences et compétences de l'équipe de développement. Par conséquent, dans ce chapitre, nous ne fournirons pas une liste définitive de ce qui fait une "bonne" architecture. Au lieu de cela, nous examinerons les différents facteurs qui influencent la qualité de l'architecture et expliquerons comment ils peuvent être pris en compte pour améliorer la qualité globale de vos projets logiciels.
-
-## 6.2 Performance
-
-La performance est un aspect crucial de toute architecture logicielle. Elle fait référence à la capacité du système à gérer les demandes des utilisateurs de manière efficace et rapide. Cela implique de minimiser les temps de réponse, d'optimiser l'utilisation des ressources et de garantir que le système peut supporter des volumes de travail élevés sans ralentissement ni panne.
-
-La performance n'est pas uniquement liée à la rapidité. Elle implique aussi d'autres aspects tels que la fiabilité, l'efficacité et la robustesse. Un système peut être rapide, mais s'il n'est pas fiable ou s'il consomme excessivement des ressources, sa performance globale sera compromise.
-
-Pour assurer une bonne performance, l'architecture logicielle doit être conçue en tenant compte des exigences de performance dès le début. Cela peut impliquer de faire des choix sur la manière dont les données sont stockées et récupérées, comment les tâches sont réparties entre les différents composants du système, comment les ressources sont gérées, etc.
-
-Les techniques d'optimisation, telles que la mise en cache, la parallélisation, et le traitement asynchrone, peuvent également être utilisées pour améliorer la performance. Cependant, ces techniques doivent être utilisées avec précaution, car elles peuvent ajouter de la complexité à l'architecture et avoir des conséquences sur d'autres aspects de la qualité du logiciel.
-
-Enfin, il est essentiel de mesurer et de surveiller la performance de manière continue. Des outils et des techniques d'analyse de performance peuvent être utilisés pour identifier les goulots d'étranglement et les problèmes potentiels, permettant à l'équipe de développement d'apporter des améliorations proactives et d'ajuster l'architecture si nécessaire.
-
-## 6.3 Sécurité
-
-La sécurité est un autre facteur crucial dans la qualité de l'architecture logicielle. Elle désigne la capacité d'un système à résister aux attaques, à protéger les données sensibles, et à garantir l'intégrité et la disponibilité des services.
-
-Une architecture sécurisée doit tenir compte des menaces potentielles et incorporer des mécanismes de défense pour les prévenir ou les atténuer. Ces mécanismes peuvent inclure l'authentification et l'autorisation pour contrôler l'accès aux ressources, le chiffrement pour protéger les données sensibles, l'audit et la journalisation pour détecter les activités suspectes, etc.
-
-La sécurité doit être intégrée dans l'architecture dès le début, plutôt que d'être ajoutée après coup. C'est ce qu'on appelle l'approche de "sécurité par conception". Elle permet de s'assurer que les préoccupations de sécurité sont prises en compte à tous les niveaux de l'architecture et qu'elles sont intégrées dans toutes les décisions de conception.
-
-Il est également important de reconnaître que la sécurité n'est pas un état statique, mais un processus continu. Les menaces évoluent constamment, et de nouvelles vulnérabilités peuvent être découvertes à tout moment. Cela nécessite une veille constante, des tests de sécurité réguliers, et une capacité à adapter et à mettre à jour l'architecture en réponse aux nouvelles informations.
-
-Enfin, la sécurité ne doit pas être considérée comme une responsabilité isolée, mais comme une préoccupation partagée par toute l'équipe de développement. Cela nécessite une formation et une sensibilisation appropriées, ainsi qu'une culture qui valorise la sécurité et encourage les bonnes pratiques.
-
-## 6.4 Maintenabilité
-
-Un autre aspect crucial de la qualité de l'architecture logicielle est la maintenabilité. La maintenabilité fait référence à la facilité avec laquelle un logiciel peut être modifié pour corriger des défauts, améliorer ses performances, ou adapter ses fonctionnalités à de nouvelles exigences ou environnements.
-
-Pour favoriser la maintenabilité, il est essentiel d'avoir une architecture bien conçue et bien documentée. Une architecture clairement définie facilite la compréhension du système, ce qui rend plus facile pour les développeurs de localiser et de corriger les problèmes. De plus, une documentation détaillée peut aider les nouveaux membres de l'équipe à comprendre rapidement l'architecture et à contribuer efficacement au projet.
-
-L'utilisation de bonnes pratiques de codage, comme l'écriture de code propre et la mise en place de tests automatisés, peut également améliorer considérablement la maintenabilité. Le code propre est plus facile à comprendre et à modifier, tandis que les tests automatisés peuvent aider à détecter rapidement les régressions lorsque des modifications sont apportées.
-
-Il est également important d'adopter une approche modulaire de la conception de l'architecture. Les systèmes modulaires sont composés de composants indépendants qui peuvent être modifiés, testés et déployés de manière indépendante. Cela permet non seulement de localiser plus facilement les problèmes, mais aussi d'effectuer des modifications sans perturber l'ensemble du système.
-
-L'application des principes SOLID dans la conception orientée objet (COO) peut considérablement améliorer la maintenabilité des logiciels. Ces principes favorisent une structure de code modulaire et décentralisée, ce qui permet d'isoler et de minimiser l'impact des modifications. Cela facilite les tâches de maintenance, que ce soit pour corriger des bugs, ajouter de nouvelles fonctionnalités, ou adapter le logiciel à de nouvelles exigences. De plus, la COO basée sur SOLID rend le code plus lisible et compréhensible, ce qui facilite la transmission des connaissances entre les développeurs et réduit le coût global de la maintenance du logiciel. Attention à ne pas confondre l'acronyme SOLID en COO ([[Principes SOLID en COO]]) avec SOLID du web3 ([[SOLID]]).
-
-De même, l'emploi des design patterns est une stratégie clé pour améliorer la maintenabilité des logiciels. Ces modèles éprouvés offrent des solutions réutilisables à des problèmes courants de conception logicielle, favorisant une structure de code robuste, extensible et réutilisable. L'application des design patterns facilite la compréhension du code, réduit les risques d'erreurs, et accélère le processus de développement en évitant la nécessité de réinventer la roue. Ainsi, ils contribuent à une meilleure maintenabilité en simplifiant l'ajout de nouvelles fonctionnalités, la détection et la correction de bugs, et l'adaptation à de nouvelles exigences ou technologies. Voir note [[Design patterns]].
-
-Enfin, la maintenabilité dépend aussi de la capacité du logiciel à évoluer avec les changements technologiques. Par conséquent, une architecture logicielle de qualité doit être conçue de manière à pouvoir s'adapter aux nouvelles technologies et aux nouveaux outils, tout en conservant sa fonctionnalité et sa performance.
-
-## 6.5 Évolutivité
-
-L'évolutivité est une autre caractéristique essentielle d'une architecture logicielle de qualité. Elle se réfère à la capacité d'un système à gérer une augmentation de la charge de travail. Une architecture logicielle bien conçue doit pouvoir s'adapter à une augmentation de la demande sans compromettre ses performances ou sa stabilité.
-
-L'évolutivité peut être réalisée de plusieurs manières. Par exemple, on peut mettre en œuvre une architecture distribuée qui répartit les tâches sur plusieurs serveurs ou processeurs pour améliorer les performances et la résilience. Les architectures de microservices sont particulièrement bien adaptées à ce genre d'évolutivité car elles permettent de déployer, de mettre à l'échelle et de gérer indépendamment chaque service.
-
-Un autre aspect important de l'évolutivité est la capacité à gérer les données de manière efficace. Les systèmes qui doivent gérer de grandes quantités de données peuvent bénéficier d'architectures qui permettent le partitionnement des données, la mise en cache et les opérations de base de données distribuées.
-
-De plus, les systèmes doivent également être conçus pour évoluer avec le temps. Cela signifie qu'ils doivent être capables d'intégrer de nouvelles technologies, d'adopter de nouveaux paradigmes et de répondre à de nouveaux besoins métier. Par exemple, un système qui était initialement conçu pour fonctionner sur des serveurs physiques pourrait avoir besoin d'évoluer pour fonctionner dans le cloud.
-
-Enfin, une architecture logicielle évolutive doit également être capable de gérer les changements organisationnels. Par exemple, si une entreprise acquiert une autre entreprise, l'architecture du système doit être capable de s'adapter pour intégrer les systèmes de l'entreprise acquise.
-
-En résumé, l'évolutivité est un aspect crucial de la qualité de l'architecture logicielle qui permet aux systèmes de s'adapter et de prospérer dans un environnement en constante évolution.
 
 ## 7. Évolution de l'architecture logicielle
 
@@ -763,3 +591,174 @@ L'évolution de l'architecture logicielle est un processus continu qui nécessit
 Enfin, l'évolution de l'architecture logicielle doit également prendre en compte les perspectives d'avenir. 
 
 Cela inclut la prévision des tendances technologiques futures, l'anticipation des besoins futurs des utilisateurs et de l'entreprise, et la planification de la manière dont l'architecture pourra s'adapter à ces futurs changements.
+
+---
+# Agile Unified Process (AUP)
+
+# 1. Origine de l’AUP
+
+- Créé par **Scott Ambler (2005)**, l’Agile Unified Process est une **adaptation allégée** du **Rational Unified Process (RUP)**.
+    
+- Il conserve la structure du RUP (inception, élaboration, construction, transition), mais applique les **valeurs du Manifeste Agile (2001)** :
+    
+    - Interaction plutôt que processus lourds.
+    - Logiciel fonctionnel plutôt que documentation exhaustive.
+    - Collaboration avec le client plutôt que négociation contractuelle.
+    - Adaptation plutôt que suivi d’un plan figé.
+
+# 2. Principes fondamentaux de l’AUP
+
+### 2.1. Itératif et incrémental
+
+- Le projet est découpé en **itérations courtes** (souvent 2 à 6 semaines).
+- Chaque itération livre une **version fonctionnelle** du système.
+- Le cycle global (inception → élaboration → construction → transition) est **parcouru plusieurs fois** à petite échelle.
+
+### 2.2. Minimalisme documentaire
+
+- Documentation réduite au **minimum utile**.
+- UML est utilisé, mais de manière pragmatique (juste les diagrammes nécessaires pour communiquer).
+- Les artefacts lourds du RUP sont allégés ou remplacés par des outils collaboratifs (wiki, tickets, user stories).
+
+### 2.3. Automatisation et qualité
+
+- Tests unitaires, intégration continue et refactorings font partie du processus.
+- Forte attention à la **qualité du code** et à la **maintenabilité**.
+
+### 2.4. Adaptabilité
+
+- Les exigences peuvent **évoluer** en cours de projet (contrairement au cycle en V ou au Y, trop rigides).
+- La planification est **progressive**, revue à chaque itération.
+
+# 3. Les disciplines de l’AUP
+
+L’AUP reprend les disciplines du RUP, mais en simplifiant.
+
+### 3.1. Disciplines principales
+
+1. **Modélisation**
+    
+    - Compréhension du domaine métier et conception orientée objet.
+    - UML utilisé de manière pragmatique (diagrammes de cas d’utilisation, classes, séquences).
+    - Glossaire métier et technique.
+    
+2. **Implémentation**
+    
+    - Développement orienté objet, codage par binôme possible (XP).
+    - Respect du guide de nommage et des conventions de l’équipe.
+    
+3. **Tests**
+    
+    - Automatisation des tests unitaires et fonctionnels.
+    - Tests à chaque itération, pas seulement à la fin.
+    - Validation continue de la qualité architecturale.
+    
+4. **Déploiement**
+    
+    - Livraison fréquente (chaque itération produit une version exécutable).
+    - Usage d’outils d’intégration et de déploiement continus.
+
+### 3.2. Disciplines de support
+
+1. **Gestion de configuration** (code, documentation, modèles versionnés avec Git).
+2. **Gestion de projet** (planification légère, pilotée par la valeur métier, souvent via Kanban ou Scrum).
+3. **Environnement** (mise en place des outils de développement, tests, CI/CD).
+
+# 4. Les phases de l’AUP
+
+Comme dans le RUP, on retrouve 4 grandes phases, mais plus **agiles et itératives** :
+
+1. **Inception**
+    
+    - Compréhension du besoin, identification des acteurs et cas d’utilisation principaux.
+    - Vision partagée du projet, définition des priorités.
+    - Exemple : définir les grandes fonctionnalités de la bibliothèque numérique (emprunt, dépôt, modération).
+    
+2. **Élaboration**
+    
+    - Mise en place de l’architecture logicielle de base.
+    - Définition des scénarios critiques.
+    - Conception UML simplifiée (classes principales, diagramme d’architecture).
+        
+3. **Construction**
+    
+    - Développement itératif et incrémental des fonctionnalités.
+    - Chaque itération livre un **logiciel utilisable**.
+    - Tests automatisés intégrés dans le cycle.
+        
+4. **Transition**
+    
+    - Livraison finale au client.
+    - Formation, documentation minimale, retours utilisateurs.
+    - Stabilisation du produit.
+        
+
+Contrairement au RUP, ces phases ne sont pas strictement séquentielles : elles se recouvrent et reviennent à petite échelle dans chaque itération.
+
+# 5. Avantages de l’AUP
+
+- **Agile mais structuré** → combine l’OO, UML et la rigueur d’UP avec la souplesse de l’agile.
+- **Itératif** → feedback rapide du client.
+- **Pragmatique** → élimine la lourdeur documentaire du RUP.
+- **Qualité intégrée** → tests et refactorings dès le début.
+- **Adapté à l’enseignement** → garde les modèles UML et l’OO comme outils pédagogiques, tout en exposant les étudiants aux pratiques agiles modernes.
+
+# 6. Limites de l’AUP
+
+- Moins répandu que Scrum ou SAFe → peu d’outils/communautés.
+- Peut sembler « hybride bancal » si mal appliqué : trop lourd pour les agiles purs, trop léger pour les traditionnels.
+- Repose fortement sur la **discipline de l’équipe** (risque de dérive vers « no doc, no process »).
+
+# 7. Schéma de synthèse
+
+```
+         Vision            Architecture          Construction         Livraison
+      +-----------+     +----------------+     +---------------+     +-----------+
+      | Inception | --> | Élaboration    | --> | Construction  | --> | Transition|
+      +-----------+     +----------------+     +---------------+     +-----------+
+          |                   |                     |                    |
+          v                   v                     v                    v
+      Cas d’utilisation   Design OO UML        Dév. itératif        Livraison
+      Glossaire métier    Prototype archi      Tests auto           Support
+```
+
+```mermaid
+flowchart LR
+  %% Agile Unified Process — Synthese
+
+  subgraph P1 [Inception]
+    A1["Vision produit"]
+    A2["Acteurs et cas d'utilisation majeurs"]
+    A3["Glossaire metier/technique"]
+    A4["Backlog initial et priorites"]
+  end
+
+  subgraph P2 [Elaboration]
+    B1["Architecture candidate - OO + UML cible"]
+    B2["Gestion des risques et prototypes"]
+    B3["Modeles UML utiles (UC, classes, sequences)"]
+    B4["Plan d'iterations et criteres d'acceptation"]
+  end
+
+  subgraph P3 [Construction]
+    C1["Iterations courtes et increments"]
+    C2["Dev oriente objet et refactoring"]
+    C3["Tests auto et integration continue"]
+    C4["Documentation juste suffisante"]
+  end
+
+  subgraph P4 [Transition]
+    D1["Release et deploiement"]
+    D2["Formation, support, migration"]
+    D3["Feedback utilisateur et retrospective"]
+  end
+
+  P1 --> P2 --> P3 --> P4
+
+  P4 -. "boucle de feedback" .-> P2
+  B2 -. "prototypes / risques" .-> C1
+  C3 -. "validation continue" .-> B1
+
+```
+
+Chaque bloc est **itératif**, produit un livrable concret, et reste ouvert à l’adaptation.
