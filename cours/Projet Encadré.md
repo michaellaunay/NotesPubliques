@@ -17,25 +17,28 @@ Il est impératif de s’appuyer sur les extraits de mon cours d’[**Architectu
 
 ## Présentation générale
 
-Le projet consiste à développer un **MVP (Minimum Viable Product)** d’une **bibliothèque numérique en ligne et décentralisée**.
+Le projet consiste à développer une bibliothèque d'œuvres numérisées. Chaque utilisateur de la bibliothèque peut proposer des fichiers numériques et demander leur partage. Par exemple, les œuvres peuvent être des livres scannés au format PDF, **il** se pose alors le problème de la propriété intellectuelle qui sera alors **résolu** par une modération de la part de bibliothécaires.
 
-Pour des raisons de compatibilité avec l’existant, le langage de développement **imposé par le client est Python**.  
-Le **framework web** retenu côté serveur est **Pyramid**, et le langage de templates utilisé est **TAL/METAL** (hérité de Zope/Plone, garantissant la compatibilité avec l’historique).
+Pour des raisons de compatibilité avec l'existant, le langage de développement **imposé par le client est Python**.
+
+Le **framework web** retenu côté serveur est **Pyramid**, et le langage de templates utilisé est **TAL/METAL** (hérité de Zope/Plone, garantissant la compatibilité avec l'historique).
 
 Côté client, le choix est laissé aux développeurs :
-- soit **SolidJS**, un framework moderne « React-like » basé sur JSX, performant et flexible,  
+
+- soit **SolidJS**, un framework moderne « React-like » basé sur JSX, performant et flexible,
 - soit **Bootstrap**, solution plus traditionnelle (« old school ») mais simple à mettre en œuvre et rapide pour prototyper.
-Les documents gérer par l'application doivent l'être à travers un dépot git et non une base de donnée traditionnelle pour la raison qu'à terme devra être développé une application permettant aux terminaux (oridnateur ou télphone mobile), de pouvoir disposer des textes sous forme d'une arborescence de fichier. Pour ceux qui ne sont pas à l'aise avec git, il existe une série de formations gratuites https://www.youtube.com/watch?v=0sGQgfUdCAY
 
-Il est toutefois demandé que **chaque fonctionnalité soit développée de manière modulaire**, indépendante du reste du système, et puisse être **utilisée et testée en ligne de commande** afin de faciliter l’intégration continue et la validation unitaire.
+Les documents **gérés** par l'application doivent l'être à travers un dépôt Git et non une base de **données** traditionnelle pour la raison **qu'à** terme devra être développé**e** une application permettant aux terminaux (ordinateur ou téléphone mobile)**,** de pouvoir disposer des textes sous forme d'une arborescence de **fichiers**. Pour ceux qui ne sont pas à l'aise avec Git, il existe une série de formations gratuites **:** [https://www.youtube.com/watch?v=0sGQgfUdCAY](https://www.youtube.com/watch?v=0sGQgfUdCAY)
 
-Compte tenu des délais, l’usage de l’**intelligence artificielle** est **fortement recommandé**, mais il doit être **entièrement documenté et traçable**. Les conversations (prompts) feront l’objet de débats en classe. Pour préparer cela, les étudiants doivent, avant le cours, regarder et comprendre la vidéo : [**Les 4 étapes pour entraîner un LLM**](https://www.youtube.com/watch?v=YcIbZGTRMjI).
+Il est toutefois demandé que **chaque fonctionnalité soit développée de manière modulaire**, indépendante du reste du système, et puisse être **utilisée et testée en ligne de commande** afin de faciliter l'intégration continue et la validation unitaire.
 
-Ce projet sert de support pédagogique pour aborder les notions d’**architecture logicielle orientée objet**, de **modélisation UML**, de **design patterns**, et de **documentation**.
+Compte tenu des délais, l'usage de l'**intelligence artificielle** est **fortement recommandé**, mais il doit être **entièrement documenté et traçable**. Les conversations (prompts) feront l'objet de débats en classe. Pour préparer cela, les étudiants doivent, avant le cours, regarder et comprendre la vidéo : [**Les 4 étapes pour entraîner un LLM**](https://www.youtube.com/watch?v=YcIbZGTRMjI).
+
+Ce projet sert de support pédagogique pour aborder les notions d'**architecture logicielle orientée objet**, de **modélisation UML**, de **design patterns**, et de **documentation**.
 
 Pendant le cours, les étudiants travailleront en **binômes hétérogènes** (compétences et parcours différents). Chaque binôme aura pour mission de prendre en charge une partie de la conception et du développement, puis de présenter et de justifier ses choix.
 
-Il est impératif de respecter les **extraits du cours d’Architecture des logiciels** donnés en annexes (rôles de l’architecte, conception OO, attributs de qualité, vues architecturales, documentation, importance du nommage, etc.).
+Il est impératif de respecter les **extraits du cours d'Architecture des logiciels** donnés en annexes (rôles de l'architecte, conception OO, attributs de qualité, vues architecturales, documentation, importance du nommage, etc.).
 
 ---
 
