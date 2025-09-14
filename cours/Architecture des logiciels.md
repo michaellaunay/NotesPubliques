@@ -580,6 +580,98 @@ Il contient :
 	- un fichier `_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
 	- Une description de toutes les fenêtres et écrans illustrés en utilisant des diagrammes Salt de PlantUML
 
+## 5.5 L’importance du nommage dans l’architecture orientée objet
+
+Le nommage est un aspect souvent sous-estimé de l’architecture logicielle. Pourtant, des noms cohérents et explicites pour les classes, modules, attributs et relations favorisent la compréhension, la maintenabilité et la collaboration. Un bon nommage est une composante essentielle de la **qualité architecturale**.
+
+### 5.5.1 Lisibilité et compréhension du système
+
+- Un nom clair réduit le besoin de documentation supplémentaire.
+- Les noms doivent refléter le rôle, la responsabilité et le domaine métier de l’élément.
+- Exemple : `Utilisateur`, `BibliothequeNumerique`, `GestionPret` plutôt que `DataManager` ou `ObjX`.
+- Unicité de la langue : Les termes utilisés sont dans une seule et unique langue à l'exception des emprunts familiers multiculturelles et intergénérationnels (ex: OK, KO).
+
+### 5.5.2 Cohérence et conventions
+
+La cohérence des noms est indispensable pour éviter les ambiguïtés.  
+Elle repose sur des conventions de codage définies en amont et respectées par tous.
+
+Parmi les conventions les plus répandues :
+
+- **Classes** : PascalCase (ex. `GestionPret`)
+- **Méthodes et attributs** : camelCase (ex. `datePublication`, `authentifier()`)
+- **Constantes** : MAJUSCULES_AVEC_UNDERSCORE (ex. `MAX_EMPRUNTS`)
+
+La cohérence doit également exister entre le code et la documentation : un terme défini dans le glossaire métier doit être repris tel quel dans les classes correspondantes.
+
+- Utiliser des conventions **uniformes** pour tous les composants.
+- Assurer la cohérence entre le code, la documentation et les **diagrammes UML** (ce qui peut se heurter aux bonnes pratiques propres à un langage ; par exemple, **PEP 8** recommande `snake_case` pour Python, tandis que Java privilégie **CamelCase**).
+- Maintenir un **guide de nommage** partagé par l’équipe ; un **référentiel qualité** doit exister et être accessible en ligne. L’usage de **linters** configurés selon les standards de l’entreprise est un indispensable.
+
+### 5.5.3 Nommage des classes et modules
+
+Les classes représentent des **concepts métier** ou des entités logicielles clairement identifiables.  
+Elles doivent donc porter un **nom nominal** et explicite, évitant les termes génériques ou abstraits.
+
+- Exemple correct : `Livre`, `Catalogue`, `BibliothequeNumerique`.
+- Exemple à éviter : `DataManager`, `Processor`, `HelperClass`.
+
+Les **modules** regroupent les classes liées à une fonctionnalité donnée. Leur nom doit refléter cette fonctionnalité, par exemple `authentification`, `gestionPret`, `catalogue`.
+
+### 5.5.4 Nommage des attributs et méthodes
+
+Les **attributs** décrivent des caractéristiques propres à l’objet.  
+Ils doivent être simples, clairs et, dans la mesure du possible, se rapprocher du vocabulaire du domaine.
+
+- Exemple : `titre`, `auteur`, `datePublication`.
+
+Les **méthodes** expriment des actions. Leur nom doit donc être verbal et décrire précisément l’opération effectuée.
+
+- Exemple : `emprunter()`, `retourner()`, `authentifier()`.
+- Exemple flou : `doAction()`, `manageData()`.    
+
+Le nommage doit également refléter la granularité de la méthode : une méthode courte et ciblée peut être nommée avec un verbe simple, tandis qu’une méthode plus complexe peut utiliser une formulation descriptive.
+
+### 5.5.5 Nommage des relations et associations
+
+Dans les diagrammes UML, le nommage des relations et associations entre classes est tout aussi important que celui des classes elles-mêmes.  
+Un lien mal nommé peut induire en erreur sur la nature de la relation.
+
+- Exemple pertinent : `Livre — estEmpruntéPar —> Utilisateur`.
+- Exemple à éviter : `Livre — link —> User`.
+
+L’utilisation de noms explicites permet également de mieux comprendre la **cardinalité** et la **dépendance fonctionnelle** entre les classes.
+
+- `Bibliotheque — contient —> Livre`.
+- `Utilisateur — possède —> CarteDeBibliotheque`.
+### 5.5.6 Erreurs fréquentes de nommage
+
+Certaines pratiques doivent être évitées car elles nuisent à la clarté :
+
+- **Abréviations obscures** : `Usr`, `BkCat` (préférer `Utilisateur`, `Catalogue`).
+- **Noms trop génériques** : `Manager`, `Handler`, `Service`.
+- **Mélange de langues** : `Livre` et `Book` dans le même projet.
+- **Redondances inutiles** : `LivreLivre`, `BookClass`.
+
+Un nom doit être **suffisamment descriptif**, mais sans lourdeur inutile.
+
+### 5.5.7 Lien entre nommage et qualité logicielle
+
+Un nommage rigoureux a un impact direct sur plusieurs attributs de qualité :
+
+- **Maintenabilité** : un code lisible facilite les corrections et évolutions.
+- **Évolutivité** : des conventions claires permettent d’ajouter de nouvelles classes ou fonctionnalités sans incohérence.
+- **Collaboration** : un vocabulaire partagé (souvent désigné sous le terme _ubiquitous language_ en Domain-Driven Design) permet une meilleure communication entre développeurs et experts métier.
+
+Ainsi, le nommage n’est pas qu’un détail esthétique : il est un facteur structurant de la qualité du logiciel.
+### 5.5.8 Conclusion sur le nommage
+
+Le nommage doit être considéré comme une **décision architecturale à part entière**.  
+Il conditionne la compréhension du système, la fluidité du développement et la pérennité du code.  
+L’architecte logiciel doit veiller à établir un **guide de nommage** dès les premières phases du projet et en assurer le respect au fil des développements.
+
+Un système bien nommé est un système plus lisible, plus cohérent et plus facile à faire évoluer.
+
 # 6. Qualité de l'architecture logicielle
 
 ## 6.1 Introduction
