@@ -250,3 +250,35 @@ serie4 = pd.Series({f"a {str(x)}":x for x in range(0,5)}, dtype=float, name="Nom
 # Name: Nombres, dtype: float64
 # lors de la création d'une série on peut fixer son type et lui affecter un nom
 ```
+
+# DataFrame
+
+```python
+import pandas as pd
+import numpy as np
+np.random.seed(101)
+my_dataframe = pd.DataFrame(
+	data=np.random.rand(5,5),
+	index=("janvier", "février", "mars", "avril", "mai"),
+	columns=("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi")
+)
+my_dataframe
+```
+Ce qui donne
+||Lundi|Mardi|Mercredi|Jeudi|Vendredi|
+|---|---|---|---|---|---|
+|janvier|0.516399|0.570668|0.028474|0.171522|0.685277|
+|février|0.833897|0.306966|0.893613|0.721544|0.189939|
+|mars|0.554228|0.352132|0.181892|0.785602|0.965483|
+|avril|0.232354|0.083561|0.603548|0.728993|0.276239|
+|mai|0.685306|0.517867|0.048485|0.137869|0.186967|
+
+Dans une cellule Jupyter on peut interagir avec le résultat et par exemple tracer des courbes.
+
+# Lecture de fichier
+## Les csv
+En locale avec `conda`
+```bash
+conda install xlrd
+conda install openpyxl
+```
