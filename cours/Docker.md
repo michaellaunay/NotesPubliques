@@ -131,14 +131,14 @@ Pour utiliser le système de fichier du host à la place de celui du Contener, c
 
 # Les commandes de bases
 Les commandes de base les plus couramment utilisées sont :
--   `docker pull` : pour télécharger une image de conteneur depuis un registre
--   `docker run` : pour exécuter un conteneur à partir d'une image
--   `docker stop` : pour arrêter un conteneur en cours d'exécution
--   `docker start` : pour démarrer un conteneur qui a été arrêté
--   `docker rm` : pour supprimer un conteneur
--   `docker images` : pour lister les images de conteneurs locales
--   `docker ps` : pour lister les conteneurs en cours d'exécution
-
+- docker images : pour lister les images de conteneurs locales
+- docker init : pour créer un docker file avec l'assistant contextuel
+- docker ps : pour lister les conteneurs en cours d'exécution
+- docker pull : pour télécharger une image de conteneur depuis un registre
+- docker rm : pour supprimer un conteneur
+- docker run : pour exécuter un conteneur à partir d'une image
+- docker start : pour démarrer un conteneur qui a été arrêté
+- docker stop : pour arrêter un conteneur en cours d'exécution
 ## Exemples
 -   Télécharger l'image de conteneur `nginx` en utilisant la commande `docker pull nginx`
 -   Exécuter un conteneur à partir de l'image `nginx` en utilisant la commande `docker run --name mynginx -p 80:80 -d nginx`
@@ -363,14 +363,19 @@ Utilisation de Docker Compose pour définir et exécuter des applications multi-
 Docker Compose est un outil qui permet de définir et de gérer des applications multi-conteneurs en utilisant un fichier de configuration. Il facilite la création, la mise à l'échelle et la gestion des conteneurs d'une application complexe.
 
 ## Les concepts clés de Docker Compose
-	-   Services : les conteneurs d'une application qui sont gérés par Compose
-	-   Compose file : le fichier de configuration qui décrit les services, les réseaux et les volumes pour une application
-	-   Réseaux : les réseaux virtuels qui sont créés pour connecter les services entre eux
-	-   Volumes : les données partagées entre les services
-
+Le fichier `compose.yaml` est le cœur de la configuration d'une application multi-conteneurs.
+Il décrit tous les services, réseaux et volumes nécessaires pour faire fonctionner l'application. Quelques sections courantes d'un fichier Compose :
+- **services** : Définit les conteneurs qui constituent l'application. Chaque service peut être basé sur une image Docker existante ou construite à partir d'un `Dockerfile`.
+- **build** : Spécifie les instructions pour construire une image Docker à partir d'un `Dockerfile`. - **image** : Définit l'image Docker à utiliser pour un service.
+- **ports** : Expose des ports spécifiques du conteneur à l'hôte, permettant à des services externes d'accéder à l'application.
+- **volumes** : Monte des volumes pour partager des fichiers et des répertoires entre l'hôte et les conteneurs.
+- **environment** : Définit des variables d'environnement pour les services, souvent utilisées pour configurer les conteneurs au démarrage.
+- **depends_on** : Indique les dépendances entre les services, ce qui permet de spécifier l'ordre de démarrage des conteneurs.
+- **networks** : Définit les réseaux personnalisés sur lesquels les services communiqueront.
+- **watch** : Permet de synchroniser l'image avec les changements du code source, ce qui est particulièrement utile pour le développement en continu.
 ## Exemples
 Un exemple de Compose file qui définit une application web qui utilise un service Nginx :
-``` docker-compose.yml
+```yaml
     reverseproxy:
         image: reverseproxy
         ports:
