@@ -597,6 +597,58 @@ Ces propriétés définissent la structure même de notre grille.
 - **`grid-template-rows` :** De manière similaire, cette propriété nous permet de définir le nombre et la taille des rangées de notre grille.
   - **Exemple :** `grid-template-rows: 100px auto 100px;` créera une grille avec trois rangées. La première et la dernière auront une hauteur fixe de 100px, tandis que la rangée du milieu prendra tout l'espace restant.
 
+#### 6.5.2.4 Exemple simple
+Voici un exemple simple en **CSS Grid Layout** pour créer **deux colonnes** :
+
+```html
+<div class="grid-container">
+  <div class="item">Colonne 1</div>
+  <div class="item">Colonne 2</div>
+</div>
+```
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+  gap: 20px; /* Espace entre les colonnes */
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.item {
+  background-color: #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+```
+
+##### 6.5.2.5 Variante : colonnes de tailles différentes
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* La 1re colonne fait 2x la taille de la 2e */
+  gap: 20px;
+}
+```
+#### 6.5.2.6 Variante responsive (1 colonne sur mobile)
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Une seule colonne sur petit écran */
+  }
+}
+```
+
 # 7. Responsive Design avec CSS
 
 ## 7. Responsive Design avec CSS

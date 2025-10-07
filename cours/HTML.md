@@ -126,14 +126,20 @@ Pour organiser des informations, nous avons plusieurs options :
    <li>Pomme</li>
    <li>Banane</li>
    <li>Cerise</li>
-</ul>`
-
+</ul>
 ```
 
 - **Listes ordonnées** (numérotées) :
     
 
-`<ol>   <li>Étape 1</li>   <li>Étape 2</li>   <li>Étape 3</li> </ol>`
+```html
+<ol>
+  <li>Étape 1</li>
+  <li>Étape 2</li>
+  <li>Étape 3</li>
+</ol>
+```
+
 
 - **Tableaux simples** :
 ```html
