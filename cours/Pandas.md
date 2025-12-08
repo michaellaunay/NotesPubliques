@@ -704,3 +704,171 @@ d1 = pd.DataFrame(data_d1)
 d2 = pd.DataFrame(data_d2)
 pd.concat([d1, d2], axis=1)
 ```
+
+# Concat
+
+Pour concaténer, on utilise la méthode `concat` :
+```python
+>>> import numpy as np
+>>> import pandas as pd
+>>> data_one = {'A':['A0', 'A1', 'A2', 'A3'], 'B':['B0', 'B1', 'B2', 'B3']}
+>>> data_two = {'C':['C0', 'C1', 'C2', 'C3'], 'D':['D0', 'D1', 'D2', 'D3']}
+>>> one_df=pd.DataFrame(data_one)
+>>> two_df=pd.DataFrame(data_two)
+>>> one_df
+    A   B
+0  A0  B0
+1  A1  B1
+2  A2  B2
+3  A3  B3
+>>> two_df
+    C   D
+0  C0  D0
+1  C1  D1
+2  C2  D2
+3  C3  D3
+>>> pd.concat([one_df, two_df], axis=1)
+    A   B   C   D
+0  A0  B0  C0  D0
+1  A1  B1  C1  D1
+2  A2  B2  C2  D2
+3  A3  B3  C3  D3
+>>> pd.concat([one_df, two_df], axis=0)
+     A    B    C    D
+0   A0   B0  NaN  NaN
+1   A1   B1  NaN  NaN
+2   A2   B2  NaN  NaN
+3   A3   B3  NaN  NaN
+0  NaN  NaN   C0   D0
+1  NaN  NaN   C1   D1
+2  NaN  NaN   C2   D2
+3  NaN  NaN   C3   D3
+>>> two_df.columns=one_df.columns
+>>> two_df
+    A   B
+0  C0  D0
+1  C1  D1
+2  C2  D2
+3  C3  D3
+>>> result_df = pd.concat([one_df, two_df], axis=0)
+>>> result_df
+    A   B
+0  A0  B0
+1  A1  B1
+2  A2  B2
+3  A3  B3
+0  C0  D0
+1  C1  D1
+2  C2  D2
+3  C3  D3
+>>> result_df.index = range(len(result_df))
+>>> result_df
+    A   B
+0  A0  B0
+1  A1  B1
+2  A2  B2
+3  A3  B3
+4  C0  D0
+5  C1  D1
+6  C2  D2
+7  C3  D3
+```
+
+# Merge
+La fonction `merge()` est l’équivalent du mot-clé `JOIN` en SQL.  
+Elle permet de **fusionner deux DataFrames** selon une ou plusieurs colonnes communes, appelées _clés de jointure_.
+
+```python
+pandas.merge(
+    left, right,
+    how='inner',
+    on=None,
+    left_on=None,
+    right_on=None,
+    left_index=False,
+    right_index=False,
+    sort=False,
+    suffixes=('_x', '_y'),
+    copy=True,
+    indicator=False,
+    validate=None
+)
+```
+Paramètres :
+
+| Paramètre                   | Description                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| `left`, `right`             | Les deux DataFrames à fusionner.                                                |
+| `how`                       | Type de jointure : `'inner'`, `'outer'`, `'left'`, `'right'`.                   |
+| `on`                        | Nom(s) de colonne(s) commune(s).                                                |
+| `left_on`, `right_on`       | Permettent de préciser des clés différentes de chaque côté.                     |
+| `left_index`, `right_index` | Utilisent les index comme clés de jointure.                                     |
+| `suffixes`                  | Suffixes ajoutés aux noms de colonnes dupliquées.                               |
+| `indicator`                 | Si `True`, ajoute une colonne `_merge` indiquant la provenance de chaque ligne. |
+Exemple
+```python
+import pandas as pd
+
+df1 = pd.DataFrame({
+    'id': [1, 2, 3],
+    'nom': ['Alice', 'Bob', 'Charlie']
+})
+
+df2 = pd.DataFrame({
+    'id': [1, 2, 4],
+    'ville': ['Paris', 'Lyon', 'Toulouse']
+})
+
+resultat = pd.merge(df1, df2, on='id')
+print(resultat)
+```
+Ayant pour résultat
+```txt
+   id     nom   ville
+0   1   Alice   Paris
+1   2     Bob    Lyon
+```
+
+## Le paramètre `how`
+### 🔹 `inner` — intersection (défaut)
+
+Ne garde que les lignes dont les clés sont présentes dans les deux DataFrames.
+
+`pd.merge(df1, df2, on='id', how='inner')`
+
+### 🔹 `left` — jointure gauche
+
+Garde **toutes les lignes du DataFrame gauche**, même si aucune clé correspondante n’existe à droite.
+
+`pd.merge(df1, df2, on='id', how='left')`
+
+### 🔹 `right` — jointure droite
+
+Symétrique de la précédente.
+
+`pd.merge(df1, df2, on='id', how='right')`
+
+### 🔹 `outer` — union complète
+
+Garde **toutes les lignes des deux DataFrames**, en insérant des valeurs manquantes (`NaN`) lorsqu’une clé est absente d’un côté.
+
+`pd.merge(df1, df2, on='id', how='outer')`
+
+**Résumé :**
+
+|Type de jointure|Description|Exemple SQL équivalent|
+|---|---|---|
+|`'inner'`|Clés présentes dans les deux|`INNER JOIN`|
+|`'left'`|Toutes les clés du gauche|`LEFT JOIN`|
+|`'right'`|Toutes les clés du droit|`RIGHT JOIN`|
+|`'outer'`|Toutes les clés des deux|`FULL OUTER JOIN`|
+## Le paramètre `on`
+Il indique la colonne servant contenant les clés.
+Lorsque les clés portent des noms différents dans les deux DataFrames :
+
+```python
+df1 = pd.DataFrame({'client_id': [1, 2, 3], 'nom': ['Alice', 'Bob', 'Charlie']})
+df2 = pd.DataFrame({'id': [1, 3, 4], 'achat': ['Livre', 'PC', 'Stylo']})
+
+pd.merge(df1, df2, left_on='client_id', right_on='id', how='left')
+```
