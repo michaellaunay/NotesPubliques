@@ -2526,6 +2526,113 @@ Today is May 07, 2023
 >>> print(f"Today is {today:%m-%d-%Y}")  
 Today is 05-07-2023
 ```
+# Le Templating Avancé en Python – Des Méthodes Historiques aux T-strings (Python 3.14+)
+
+## Introduction
+
+La gestion dynamique des chaînes de caractères constitue un aspect fondamental de la programmation. Jusqu’à la version 3.14 de Python, trois approches principales permettaient l’insertion de variables au sein de chaînes de caractères. L’introduction des **T-strings** dans Python 3.14 marque une avancée significative, en apportant une gestion structurelle des modèles de texte, offrant davantage de sécurité, de flexibilité et de possibilités d’analyse.
+
+Ce chapitre a pour objectif d'examiner l’évolution des techniques de templating en Python, depuis les méthodes classiques jusqu’à la nouvelle approche structurée introduite par les T-strings.
+
+## Rétrospective : Les Méthodes Traditionnelles
+
+Avant d’aborder les T-strings, il convient d’analyser les limitations des méthodes antérieures, afin d’apprécier les apports de cette nouvelle fonctionnalité.
+
+### Les f-strings (Formatted String Literals)
+
+Introduites à partir de Python 3.6, les f-strings permettent l’interpolation directe de variables ou d’expressions à l’intérieur de chaînes, à l’aide du préfixe `f`.
+
+- **Syntaxe** : `f"Mon nom est {name}"`
+    
+- **Fonctionnement** : Le contenu des accolades est évalué immédiatement.
+    
+- **Avantages** : Syntaxe concise, lisibilité élevée, prise en charge d’expressions arbitrairement complexes.
+    
+- **Inconvénients** : La structure du modèle est perdue après évaluation. Le résultat est une chaîne de caractères simple (`str`), sans protection native contre les injections ou les manipulations non sécurisées. Il est également difficile de réutiliser le modèle.
+    
+
+### La méthode `str.format()`
+
+Cette méthode, antérieure aux f-strings, est compatible avec toutes les versions de Python 3.
+
+- **Syntaxe** : `"Mon nom est {} et j'ai {} ans".format(name, age)`
+    
+- **Avantages** : Compatibilité étendue, réorganisation possible des arguments.
+    
+- **Inconvénients** : Syntaxe plus verbeuse et moins lisible en présence de nombreuses variables. Comme pour les f-strings, la structure du modèle est perdue après évaluation.
+
+### La classe `string.Template`
+
+Cette approche repose sur la classe `Template` du module `string`, utilisant le symbole `$` pour les substitutions.
+
+- **Syntaxe** : `Hello $name`
+    
+- **Fonctionnement** : Création explicite d’un objet `Template`, suivi de l’appel à la méthode `.substitute()`.
+    
+- **Avantages** : Plus sécurisée, car elle interdit l’exécution de code arbitraire. Elle est donc adaptée à des contextes impliquant des utilisateurs finaux.
+    
+- **Inconvénients** : Syntaxe plus contraignante, impossibilité d’utiliser des expressions complexes, structure perdue après substitution.  
+
+## L’Avènement des T-strings (Python 3.14)
+
+Les **T-strings**, introduites en Python 3.14, adoptent une syntaxe proche des f-strings, avec le préfixe `t`, mais diffèrent radicalement par leur comportement. En effet, elles produisent un **objet `Template` structuré**, et non une simple chaîne de caractères.
+
+### Pourquoi un Objet `Template` ?
+
+Contrairement aux f-strings, qui concatènent immédiatement les parties textuelles et les valeurs, les T-strings préservent les composantes structurelles du modèle. Plus précisément, l’objet résultant conserve :
+
+1. Les parties littérales de la chaîne.
+    
+2. Les expressions interpolées (ex. : variables).
+    
+3. Les métadonnées associées (spécifications de format, conversions, etc.).
+
+### Anatomie d’une T-string
+
+Considérons l’exemple suivant :  
+`t"Bonjour {name}, vous avez {age} ans"`
+
+L’objet T-string généré expose une interface structurée permettant une inspection fine :
+
+- **`template.strings`** : Retourne les segments textuels statiques (par exemple : `"Bonjour "`, `", vous avez "`, `" ans"`).
+    
+- **`template.interpolations`** : Représente les expressions interpolées, incluant les informations de formatage et de conversion.
+    
+- **`template.values`** : Contient les valeurs évaluées des expressions (par exemple : `"Alice"`, `28`).
+    
+
+Cette structuration autorise le **rendu différé** (_deferred rendering_), c’est-à-dire la possibilité de post-traiter ou de filtrer les données avant de construire la chaîne finale.
+
+## Utilisation Pratique et Aspects de Sécurité
+
+Le fait que les T-strings soient des objets structurés offre de nouvelles possibilités en matière de traitement, de sécurisation et de transformation dynamique du contenu.
+
+### Reconstitution d’une Chaîne
+
+L’objet T-string se comporte comme un itérateur, fournissant de manière séquentielle les segments littéraux et les valeurs interpolées. La reconstitution finale d’une chaîne de caractères passe par une fonction de type _builder_, qui assemble ces éléments en tenant compte des règles de traitement définies.
+
+### Traitement Sécurisé des Données (_Sanitization_)
+
+Un atout majeur des T-strings réside dans leur capacité à intégrer des mécanismes de nettoyage des données interpolées. Cette fonctionnalité est essentielle dans les contextes exposés à des données potentiellement malveillantes (interfaces web, requêtes SQL, fichiers de logs, etc.).
+
+**Exemple :**  
+Lorsqu’un utilisateur saisit une chaîne contenant des balises HTML, une f-string les insérera sans filtrage. Avec une T-string, il est possible d’appliquer une fonction de nettoyage telle que `html.escape` uniquement sur les variables interpolées, tout en préservant l’intégrité du modèle de départ.
+
+> **Remarque importante** : Il convient de distinguer les T-strings du module `string.Template` historique. Bien que les noms soient proches, leurs usages diffèrent. La classe `Template` (avec `$`) vise la substitution simple ; les T-strings permettent, quant à elles, une gestion avancée et structurée des modèles.
+
+### Formatage Avancé
+
+Les T-strings prennent en charge les spécificateurs de format traditionnels de Python (tels que `:.2f` pour le formatage numérique). La méthode de reconstruction permet d’appliquer automatiquement ces formats lors de la transformation des valeurs en chaînes.
+
+## Synthèse Comparative
+
+| Caractéristique | f-strings (`f""`) | `str.format()` | `string.Template` (`$`) | **T-strings (`t""`)**    |
+| --------------- | ----------------- | -------------- | ----------------------- | ------------------------ |
+| **Résultat**    | Chaîne (`str`)    | Chaîne (`str`) | Chaîne (`str`)          | **Objet `Template`**     |
+| **Structure**   | Perdue            | Perdue         | Perdue                  | **Préservée**            |
+| **Sécurité**    | Faible            | Faible         | Moyenne                 | **Élevée (nettoyable)**  |
+| **Cas d’usage** | Scripts rapides   | Compatibilité  | Entrées utilisateur     | **Web, SQL, logs, etc.** |
+
 # Les descripteurs
 ```python
 class Descriptor:
