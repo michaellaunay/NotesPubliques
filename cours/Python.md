@@ -266,9 +266,10 @@ Si nous appelons  la fonction `help()` sans argument, cela lance une session int
 
 Exemple :
 
-```
+```python
 help()
-
+```
+```txt
 Welcome to Python help utility!
 
 help> print
@@ -329,7 +330,7 @@ def f(p:int=0)->int:
     >>> f(2)
         4
     """
-	return p**2
+    return p**2
 
 help(f)
 Help on function f in module __main__:
@@ -704,23 +705,23 @@ dico_fr_en = {'chien': 'dog', 'chat': 'cat', 'oiseau': 'bird'}
 ```
 
 - **Avec `in`** : Vérifier si 'chat' est une clé dans le dictionnaire.
-  ```python
-  print('chat' in dico_fr_en)  # Affiche True
+```python
+print('chat' in dico_fr_en)  # Affiche True
   ```
 
 - **Avec `keys()`** : Afficher toutes les clés du dictionnaire.
   ```python
-  print(dico_fr_en.keys())  # Affiche dict_keys(['chien', 'chat', 'oiseau'])
+print(dico_fr_en.keys())  # Affiche dict_keys(['chien', 'chat', 'oiseau'])
   ```
 
 - **Avec `values()`** : Afficher toutes les valeurs du dictionnaire.
   ```python
-  print(dico_fr_en.values())  # Affiche dict_values(['dog', 'cat', 'bird'])
+print(dico_fr_en.values())  # Affiche dict_values(['dog', 'cat', 'bird'])
   ```
 
 - **Avec `items()`** : Afficher les paires clé-valeur.
   ```python
-  for cle, valeur in dico_fr_en.items():
+for cle, valeur in dico_fr_en.items():
       print(f"{cle} se traduit par {valeur} en anglais.")
   ```
 
