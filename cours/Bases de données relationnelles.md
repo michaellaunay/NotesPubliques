@@ -41,7 +41,7 @@ Plan :
 
 Pour les 16 heures de travaux pratiques, nous feront des exercices pratiques et des projets qui mettent en pratique les concepts enseignés pendant les heures théoriques. 
 
-## Introduction aux bases de données relationnelles
+# Introduction aux bases de données relationnelles
 
 Un système de gestion de base de données (SGBD) est un logiciel conçu pour stocker, organiser et accéder de manière efficace aux données d'une base de données. Un SGBD est utilisé pour gérer les données d'une organisation et les rendre accessibles à différentes applications et utilisateurs.
 
@@ -72,7 +72,7 @@ Les SGBD NoSQL, comme MongoDB, Cassandra et Redis, utilisent des modèles de don
     
     -   Le modèle de données relationnel a été développé par Edgar F. Codd dans les années 1970. Il a été largement adopté dans les années 1980 grâce à l'apparition de SGBD relationnels tels que Oracle et SQL Server. Depuis, il est devenu l'un des modèles de données les plus populaires et est largement utilisé dans de nombreux domaines, notamment la gestion de bases de données de grande envergure pour les entreprises et les organisations.
 
-### Qu'est le modèle de données relationnel ?
+## Qu'est le modèle de données relationnel ?
 
 Le modèle de données relationnel est un modèle de stockage de données utilisé par les systèmes de gestion de base de données relationnels (SGBDR) pour représenter les données sous forme de tables de données organisées de manière à refléter les relations entre elles.
 
@@ -82,7 +82,7 @@ Le modèle de données relationnel est basé sur les mathématiques de l'algèbr
 
 Le modèle de données relationnel présente plusieurs avantages, notamment une structure de données rigoureuse et normalisée, une facilité de mise à jour et d'interrogation des données et une sécurité des données grâce à des contrôles de vérification et de gestion des transactions. Cependant, il a également quelques inconvénients, tels que des coûts de mise en place et de maintenance relativement élevés et des temps d'exécution des requêtes potentiellement longs en cas de bases de données de grande taille.
 
-## Modèle de données relationnelles
+# Modèle de données relationnelles
 
 -   Structure de données : tables, colonnes, lignes
     
@@ -100,7 +100,7 @@ Le modèle de données relationnel présente plusieurs avantages, notamment une 
     -   La normalisation des données consiste à structurer les données de manière à minimiser les redondances et les dépendances inutiles entre les différentes tables de la base de données. La normalisation des données permet d'améliorer la qualité des données et de rendre la base de données plus facile à maintenir et à mettre à jour.
     -   La dénormalisation des données consiste à ajouter de la redondance aux données dans le but de performance. La dénormalisation des données peut être utilisée pour améliorer les performances des requêtes sur les données, mais peut entraîner une augmentation de la taille de la base de données et une diminution de la qualité des données.
 
-## Langage de manipulation de données (DML)
+# Langage de manipulation de données (DML)
 
 -   Structures de contrôle de flux : SELECT, INSERT, UPDATE, DELETE
     
@@ -116,8 +116,9 @@ Le modèle de données relationnel présente plusieurs avantages, notamment une 
     
     -   Les fonctions permettent d'appliquer une transformation aux données sélectionnées (par exemple, calculer la moyenne d'un champ de données).
     -   Les agrégats permettent de calculer des valeurs sur l'ensemble des données sélectionnées (par exemple, calculer la somme de tous les enregistrements d'un champ de données).
-### Détails et exemples
-    *SELECT* : La clause SELECT permet de sélectionner les données à partir d'une ou plusieurs tables de la base de données. Elle peut être utilisée avec différentes clauses pour filtrer et trier les données sélectionnées.
+## Détails et exemples
+
+*SELECT* : La clause SELECT permet de sélectionner les données à partir d'une ou plusieurs tables de la base de données. Elle peut être utilisée avec différentes clauses pour filtrer et trier les données sélectionnées.
 
 Exemple de requête SELECT simple qui sélectionne tous les enregistrements de la table "employees" :
 ```sql
@@ -134,7 +135,7 @@ Exemple de requête SELECT avec la clause ORDER BY qui sélectionne tous les enr
 SELECT * FROM employees ORDER BY last_name ASC;
 ```
 
-    *INSERT* : La clause INSERT permet d'ajouter de nouvelles lignes dans une table de la base de données.
+*INSERT* : La clause INSERT permet d'ajouter de nouvelles lignes dans une table de la base de données.
 
 Exemple de requête INSERT qui ajoute un nouvel enregistrement dans la table "employees" :
 ```sql
@@ -161,7 +162,7 @@ DELETE FROM employees WHERE id = 1;
 
 Voici maintenant des exemples de jointures et de sous-requêtes :
 
-    *Jointures* : Les jointures permettent de combiner les données de plusieurs tables de la base de données en une seule requête. Il existe plusieurs types de jointures (inner join, outer join, etc.), chacun ayant ses propres règles de combinaison des données.
+*Jointures* : Les jointures permettent de combiner les données de plusieurs tables de la base de données en une seule requête. Il existe plusieurs types de jointures (inner join, outer join, etc.), chacun ayant ses propres règles de combinaison des données.
 
 Exemple de requête utilisant une jointure INNER JOIN qui combine les données de la table "employees" et de la table "departments" :
 ```sql
@@ -169,7 +170,7 @@ SELECT employees.*, departments.name as department_name FROM employees
 INNER JOIN departments ON employees.department_id = departments.id;
 ```
 
-    *Sous-requêtes* : Les sous-requêtes sont des requêtes imbriquées dans une autre requête. Elles peuvent être utilisées pour filtrer les données ou pour obtenir des données à utiliser dans la requête principale.
+*Sous-requêtes* : Les sous-requêtes sont des requêtes imbriquées dans une autre requête. Elles peuvent être utilisées pour filtrer les données ou pour obtenir des données à utiliser dans la requête principale.
 
 Exemple de requête utilisant une sous-requête qui sélectionne les enregistrements de la table "employees" dont le salaire est supérieur à la moyenne des salaires de la table "employees" :
 ```sql
@@ -178,14 +179,14 @@ SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
 
 Exemples de fonctions et d'agrégats :
 
-    *Fonctions* : Les fonctions permettent d'appliquer une transformation aux données sélectionnées (par exemple, calculer la moyenne d'un champ de données).
+*Fonctions* : Les fonctions permettent d'appliquer une transformation aux données sélectionnées (par exemple, calculer la moyenne d'un champ de données).
 
 Exemple de requête utilisant la fonction UPPER qui met en majuscules le champ "last_name" de tous les enregistrements de la table "employees" :
 ```sql
 SELECT UPPER(last_name) as last_name FROM employees;
 ```
 
-    *Agrégats* : Les agrégats permettent de calculer des valeurs sur l'ensemble des données sélectionnées (par exemple, calculer la somme de tous les enregistrements d'un champ de données).
+*Agrégats* : Les agrégats permettent de calculer des valeurs sur l'ensemble des données sélectionnées (par exemple, calculer la somme de tous les enregistrements d'un champ de données).
 
 Exemple de requête utilisant l'agrégat SUM qui calcule la somme des salaires de tous les enregistrements de la table "employees" :
 ```sql
@@ -194,17 +195,21 @@ SELECT SUM(salary) as total_salary FROM employees;
 Langage de définition de données (DDL)
 
  ###   Création et modification de tables
-        La syntaxe de création de table varie selon les SGBDR, mais en général elle permet de spécifier les colonnes de la table, leur type de données et leurs contraintes.
-        La syntaxe de modification de table permet de modifier les colonnes existantes ou d'ajouter de nouvelles colonnes à une table existante.
 
- ###   Vues
-        Les vues sont des objets de base de données qui représentent une requête enregistrée. Elles permettent de simplifier la syntaxe des requêtes complexes ou fréquemment utilisées en les encapsulant dans une vue, qui peut être utilisée comme une table.
+La syntaxe de création de table varie selon les SGBDR, mais en général elle permet de spécifier les colonnes de la table, leur type de données et leurs contraintes.
+La syntaxe de modification de table permet de modifier les colonnes existantes ou d'ajouter de nouvelles colonnes à une table existante.
 
- ###   Index
-        Les index sont des structures de données qui permettent d'accélérer les requêtes sur les données. Ils sont créés sur une ou plusieurs colonnes d'une table et permettent de trier rapidement les données pour faciliter la recherche.
+##   Vues
+ 
+Les vues sont des objets de base de données qui représentent une requête enregistrée. Elles permettent de simplifier la syntaxe des requêtes complexes ou fréquemment utilisées en les encapsulant dans une vue, qui peut être utilisée comme une table.
 
- ###   Contraintes
-        Les contraintes sont des règles qui s'appliquent aux données d'une table. Elles peuvent être utilisées pour s'assurer que les données sont valides et cohérentes (par exemple, une colonne "âge" ne peut contenir que des valeurs entières positives).
+##   Index
+
+Les index sont des structures de données qui permettent d'accélérer les requêtes sur les données. Ils sont créés sur une ou plusieurs colonnes d'une table et permettent de trier rapidement les données pour faciliter la recherche.
+
+#   Contraintes
+ 
+Les contraintes sont des règles qui s'appliquent aux données d'une table. Elles peuvent être utilisées pour s'assurer que les données sont valides et cohérentes (par exemple, une colonne "âge" ne peut contenir que des valeurs entières positives).
 
 Exemple de création de table avec le SGBDR MySQL :
 
@@ -241,7 +246,7 @@ Cette requête ajoute une contrainte de clé étrangère à la table "employees"
 
 Attention la syntaxe des différents SGBDR peut variée pour la création et la modification de tables, les vues, les index et les contraintes.
 
-## Transactions et isolation des données
+# Transactions et isolation des données
 
 -   Transactions
     
@@ -256,16 +261,21 @@ START TRANSACTION;  UPDATE accounts SET balance = balance - 100 WHERE id = 1; UP
 ```
 
 
-Sécurité des bases de données
+# Sécurité des bases de données
 
-    Droits d'accès et privilèges
-        Les droits d'accès et privilèges permettent de contrôler qui peut accéder aux données et aux objets de la base de données, ainsi que les actions que ces utilisateurs peuvent effectuer (lecture, écriture, suppression, etc.).
+## Droits d'accès et privilèges
 
-    Mots de passe et authentification
-        Les mots de passe et l'authentification permettent de sécuriser l'accès aux données et aux objets de la base de données en exigeant que les utilisateurs fournissent des informations d'identification avant de pouvoir accéder aux données.
+Les droits d'accès et privilèges permettent de contrôler qui peut accéder aux données et aux objets de la base de données, ainsi que les actions que ces utilisateurs peuvent effectuer (lecture, écriture, suppression, etc.).
 
-    Chiffrement
-        Le chiffrement des données permet de protéger les données sensibles en les rendant illisibles pour toute personne ne disposant pas de la clé de déchiffrement.
+## Mots de passe et authentification
+
+Les mots de passe et l'authentification permettent de sécuriser l'accès aux données et aux objets de la base de données en exigeant que les utilisateurs fournissent des informations d'identification avant de pouvoir accéder aux données.
+
+## Chiffrement
+
+Le chiffrement des données permet de protéger les données sensibles en les rendant illisibles pour toute personne ne disposant pas de la clé de déchiffrement.
+
+## Exemples
 
 Exemple de gestion des droits d'accès et privilèges avec le SGBDR MySQL :
 ```SQL
@@ -294,13 +304,15 @@ Il est également conseillé de sauvegarder régulièrement votre base de donné
 
 Enfin, il est important de respecter les réglementations et les lois en vigueur concernant la protection des données et la confidentialité. Cela peut inclure la mise en place de politiques de sécurité et de gestion des accès, la déclaration de fuites de données potentielles et la mise en place de mesures de protection pour les données sensibles.
 
-Optimisation des requêtes et des bases de données
+# Optimisation des requêtes et des bases de données
 
-    Optimisation des requêtes
-        L'optimisation des requêtes permet d'améliorer les performances des requêtes en utilisant les index et en sélectionnant judicieusement les données à récupérer. Il est important de prendre le temps d'analyser les requêtes et de les tester pour s'assurer qu'elles sont aussi efficaces que possible.
+## Optimisation des requêtes
+L'optimisation des requêtes permet d'améliorer les performances des requêtes en utilisant les index et en sélectionnant judicieusement les données à récupérer. Il est important de prendre le temps d'analyser les requêtes et de les tester pour s'assurer qu'elles sont aussi efficaces que possible.
 
-    Optimisation de la base de données
-        L'optimisation de la base de données permet d'améliorer les performances globales de la base de données en utilisant les index de manière efficace, en organisant les données de manière à minimiser les accès disques et en utilisant les paramètres de configuration optimaux.
+## Optimisation de la base de données
+L'optimisation de la base de données permet d'améliorer les performances globales de la base de données en utilisant les index de manière efficace, en organisant les données de manière à minimiser les accès disques et en utilisant les paramètres de configuration optimaux.
+
+## Exemples
 
 Voici un exemple d'optimisation de requête avec le SGBDR MySQL :
 ```SQL
@@ -326,20 +338,20 @@ Il est également recommandé de surveiller les performances de votre base de do
 
 Enfin, il est important de continuer à apprendre et à se tenir au courant des nouvelles technologies et des meilleures pratiques en matière d'optimisation de bases de données.
 
-## Outils de gestion de bases de données
+# Outils de gestion de bases de données
 
 Il existe de nombreux outils de gestion de bases de données disponibles pour vous aider à gérer et à interagir avec vos bases de données. Voici quelques exemples d'outils populaires :
 
-### Interfaces de ligne de commande (CLI)
+## Interfaces de ligne de commande (CLI)
 Les interfaces de ligne de commande, comme mysql ou psql, permettent d'exécuter des requêtes SQL et de gérer les bases de données depuis la ligne de commande.
 
-### Interfaces graphiques (GUI)
+## Interfaces graphiques (GUI)
 Les interfaces graphiques, comme MySQL Workbench ou pgAdmin, permettent d'interagir avec les bases de données de manière visuelle et de visualiser les données et les structures de données de manière intuitive.
 
-### Logiciels de développement intégré (IDE)
+## Logiciels de développement intégré (IDE)
 Les logiciels de développement intégré, comme PyCharm ou Visual Studio, permettent de créer et de déboguer des applications utilisant des bases de données, ainsi que de gérer les bases de données elles-mêmes.
 
-### Remarques
+## Remarques
 Il est recommandé de choisir l'outil de gestion de bases de données qui convient le mieux à vos besoins et à votre environnement de travail. Si vous êtes un développeur, par exemple, un IDE pourrait être l'outil le plus adapté, alors qu'une interface graphique pourrait être plus adaptée à un utilisateur non technique.
 
 Il est également important de se familiariser avec les différentes fonctionnalités et outils proposés par chaque outil de gestion de bases de données, afin de pouvoir en tirer le meilleur parti. Cela peut inclure la création et la modification de tables, la gestion des utilisateurs et des privilèges, la sauvegarde et la restauration de bases de données, etc.
