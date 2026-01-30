@@ -723,3 +723,126 @@ Nous retenons donc que la valeur de TOGAF ne réside pas uniquement dans la desc
 Les domaines d’architecture proposés par TOGAF offrent une **grille de lecture structurante** du système d’information. Ils permettent d’aborder la complexité sans la réduire artificiellement, en maintenant un équilibre entre spécialisation et vision globale.
 
 Dans la suite du cours, nous entrerons dans le **cœur opérationnel de TOGAF** en étudiant plus en détail l’**ADM**, et la manière dont ces domaines sont mobilisés concrètement au fil des phases de la méthode.
+
+# Partie III – L’ADM : méthode de développement de l’architecture
+
+## Chapitre 5 – Vue d’ensemble de l’ADM
+
+Ce chapitre marque une étape clé du cours : nous entrons dans le **cœur opérationnel de TOGAF**, à savoir l’**ADM (Architecture Development Method)**.  
+L’ADM n’est pas un simple enchaînement de phases, mais une **méthode de raisonnement et de pilotage** de l’architecture d’entreprise.
+
+![Image](https://www.researchgate.net/publication/224258195/figure/fig3/AS%3A654358022717441%401533022518145/The-ADM-cycle-in-TOGAF-18.png)
+
+![Image](https://miro.medium.com/0%2AC3OYil_iiDLIXBg6.gif)
+
+## 1. Principe itératif et cyclique
+
+Contrairement à une démarche linéaire classique (analyse → conception → réalisation), l’ADM repose sur un **principe fondamental : l’itération**.
+
+### Une démarche cyclique
+
+L’ADM est représenté sous la forme d’un **cycle**, et non d’une chaîne. Cela signifie que :
+
+- l’architecture n’est jamais considérée comme définitivement achevée,    
+- chaque itération permet d’ajuster, d’affiner ou de corriger les choix précédents,    
+- les retours du terrain (projets, contraintes, évolutions stratégiques) alimentent les cycles suivants.    
+
+Nous ne cherchons donc pas à produire une architecture parfaite, mais une architecture **progressivement maîtrisée**.
+
+### Adaptation au contexte
+
+Toutes les phases de l’ADM ne sont pas nécessairement utilisées avec la même intensité :
+
+- certaines organisations vont fortement investir les phases de cadrage,    
+- d’autres se concentreront sur la transformation et la gouvernance,    
+- certaines phases peuvent être regroupées ou allégées.    
+
+Cette souplesse est essentielle : **l’ADM est un cadre adaptable**, pas un processus rigide.
+
+## 2. Notion de baseline et de target architecture
+
+Un concept central de l’ADM est la distinction entre **l’existant** et **le futur souhaité**.
+
+### Baseline Architecture
+
+La _baseline architecture_ correspond à :
+
+- l’état actuel du système d’information,
+- tel qu’il est réellement, et non tel qu’il est supposé être,
+- incluant ses forces, ses incohérences et ses contraintes.
+
+Cette étape est souvent délicate, car :
+
+- la documentation est parfois incomplète ou obsolète,
+- le SI peut être historiquement fragmenté,
+- certaines décisions passées ne sont plus justifiées.
+
+Pourtant, une baseline mal comprise conduit presque systématiquement à des **architectures cibles irréalistes**.
+
+### Target Architecture
+
+La _target architecture_ décrit l’état futur visé :
+
+- aligné avec la stratégie de l’organisation,
+- cohérent entre les domaines métier, données, applicatif et technique,
+- soutenable dans le temps.
+
+Il ne s’agit pas d’une projection technologique idéalisée, mais d’un **objectif atteignable**, tenant compte :
+
+- des contraintes organisationnelles,
+- des capacités financières,
+- du rythme de transformation acceptable.
+
+### L’écart comme objet central
+
+L’ADM se concentre fortement sur l’**écart entre la baseline et la target** :
+
+- ce sont ces écarts qui justifient les projets,
+- ils structurent les roadmaps,
+- ils permettent de prioriser les actions.
+
+## 3. Gouvernance et pilotage de l’architecture
+
+Un point essentiel de l’ADM est l’intégration explicite de la **gouvernance**.  
+TOGAF ne se contente pas de définir une architecture : il cherche à **s’assurer qu’elle est respectée et maîtrisée dans le temps**.
+
+### Architecture et décision
+
+L’architecture devient un outil de pilotage :
+
+- elle éclaire les choix stratégiques,
+- elle permet d’arbitrer entre plusieurs solutions,
+- elle rend explicites les impacts des décisions.
+
+L’architecte n’est donc pas un simple concepteur, mais un **acteur de la gouvernance**.
+
+### Lien avec les projets
+
+Dans l’ADM :
+
+- les projets sont des **moyens** de mise en œuvre de l’architecture,    
+- ils ne doivent pas la redéfinir seuls,    
+- leur conformité architecturale est évaluée.    
+
+Cette logique permet d’éviter que le SI n’évolue uniquement sous la pression de projets isolés.
+
+### Amélioration continue
+
+Enfin, la gouvernance s’inscrit dans une logique d’**amélioration continue** :
+
+- retour d’expérience,    
+- mise à jour des principes,    
+- évolution des standards,    
+- adaptation aux nouveaux contextes.    
+
+L’ADM ne fige pas l’architecture ; il **organise son évolution**.
+
+### Conclusion du chapitre
+
+Nous retenons que l’ADM est avant tout :
+
+- une **méthode itérative**, orientée long terme,    
+- un cadre structurant pour passer de l’existant au futur,    
+- un outil de gouvernance autant que de conception.    
+
+Dans les chapitres suivants, nous entrerons dans le détail des **phases de l’ADM**, en analysant successivement le cadrage, la conception des différents domaines d’architecture, puis la transformation et la gouvernance.
