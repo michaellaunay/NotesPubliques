@@ -58,35 +58,23 @@
 ### Chapitre 7 – Phases B, C et D : conception de l’architecture
 
 - Phase B : architecture métier
-    
 - Phase C : données et applications
-    
 - Phase D : architecture technique
-    
 - Modélisation, cohérence et arbitrages
-    
 
 ### Chapitre 8 – Phases E et F : transformation et migration
 
 - Opportunités et solutions
-    
 - Scénarios de migration
-    
 - Roadmaps
-    
 - Gestion des risques et contraintes
-    
 
 ### Chapitre 9 – Phases G et H : gouvernance et amélioration continue
 
-- Gouvernance de l’architecture
-    
-- Conformité des projets
-    
-- Gestion du changement
-    
+- Gouvernance de l’architecture    
+- Conformité des projets    
+- Gestion du changement    
 - Capitalisation et amélioration continue
-    
 
 ## **Partie IV – Artefacts, livrables et gouvernance**
 
@@ -846,3 +834,465 @@ Nous retenons que l’ADM est avant tout :
 - un outil de gouvernance autant que de conception.    
 
 Dans les chapitres suivants, nous entrerons dans le détail des **phases de l’ADM**, en analysant successivement le cadrage, la conception des différents domaines d’architecture, puis la transformation et la gouvernance.
+
+## **Chapitre 6 – Phases préliminaire et Vision (Préliminaire & Phase A)**
+
+Dans ce chapitre, nous abordons les **premières étapes de l’ADM**, qui constituent les fondations de toute démarche d’architecture d’entreprise.  
+Avant de produire des modèles ou des diagrammes, TOGAF insiste sur un point essentiel : **l’architecture doit être cadrée, légitimée et alignée sur les enjeux métiers**.
+
+Les phases préliminaire et A visent donc à répondre à deux questions fondamentales :
+
+- _Dans quel cadre allons-nous faire de l’architecture ?_    
+- _Pourquoi cette architecture est-elle utile à l’organisation ?_    
+
+### **1. Mise en place du cadre d’architecture (Phase Préliminaire)**
+
+La phase préliminaire consiste à **installer la fonction architecture** au sein de l’organisation.  
+Il ne s’agit pas encore de concevoir une architecture cible, mais de définir :
+
+- le périmètre de la démarche,
+- les règles de gouvernance,
+- les rôles et responsabilités,
+- les processus de décision.
+
+Nous cherchons à créer un **cadre de travail stable**, au sein duquel les décisions d’architecture pourront être prises de manière cohérente et traçable.
+
+Cette phase comprend généralement :
+
+- l’évaluation de la **maturité architecturale** de l’organisation,
+- l’identification des pratiques existantes,
+- l’adaptation de TOGAF au contexte réel (taille, culture, contraintes),
+- la mise en place d’un **organe de gouvernance**, souvent appelé _Architecture Board_.
+
+Sans ce travail préparatoire, l’architecture risque d’être :
+
+- ignorée par les projets,
+- perçue comme une contrainte administrative,
+- ou contournée par les équipes opérationnelles.
+
+La phase préliminaire vise donc à **légitimer la fonction d’architecture** et à lui donner un cadre clair.
+
+### **2. Définition des principes d’architecture**
+
+Un des livrables majeurs de cette phase est la définition des **principes d’architecture**.
+
+Les principes sont des **règles directrices**, stables dans le temps, qui orientent les décisions. Ils permettent de garantir la cohérence du système d’information, même lorsque de nombreux projets sont menés en parallèle.
+
+Un principe d’architecture comporte généralement :
+
+- un **intitulé clair**,
+- une **description**,
+- une **justification métier**,
+- des **implications concrètes** sur les choix futurs.
+
+Exemples de principes courants :
+
+- priorité à la réutilisation des composants existants,
+- interopérabilité entre les systèmes,
+- centralité et qualité des données,
+- sécurité intégrée dès la conception,
+- préférence pour des standards ouverts.
+
+Nous insistons sur un point important :  
+les principes ne sont pas de simples déclarations d’intention. Ils servent d’**outil d’arbitrage**.  
+Lorsqu’un projet doit choisir entre plusieurs solutions, ce sont les principes qui permettent de trancher de manière cohérente.
+
+### **3. Identification et gestion des parties prenantes (Phase A)**
+
+La phase A introduit explicitement la notion de **parties prenantes** (_stakeholders_).  
+L’architecture d’entreprise ne se limite pas à une activité technique : elle implique des décisions qui affectent les processus, les organisations et les responsabilités.
+
+Nous devons donc identifier les acteurs concernés, par exemple :
+
+- la direction générale,
+- les responsables métiers,
+- les équipes informatiques,
+- les responsables de la sécurité et de la conformité,
+- les partenaires externes.
+
+Pour chaque partie prenante, nous analysons :
+
+- ses objectifs,
+- ses contraintes,
+- son niveau d’influence,
+- ses éventuelles résistances.
+
+L’objectif n’est pas seulement de dresser une liste d’acteurs, mais de construire une **stratégie d’adhésion**.  
+Une architecture, même techniquement parfaite, échoue si elle n’est pas acceptée par ceux qui doivent l’appliquer.
+
+### **4. Vision cible et valeur métier (Phase A)**
+
+La phase A se conclut par la formulation d’une **vision d’architecture**.
+
+Cette vision n’est pas encore une architecture détaillée. Elle constitue :
+
+- une **direction stratégique**,
+- un message clair sur les bénéfices attendus,
+- un point de référence pour les phases suivantes.
+
+Nous cherchons ici à répondre à une question centrale :
+
+> _Quelle valeur l’architecture apportera-t-elle à l’organisation ?_
+
+La vision doit être compréhensible par les décideurs et les métiers. Elle met en avant :
+
+- les gains d’efficacité,
+- la réduction des coûts ou des risques,
+- l’amélioration de la qualité des données,
+- la capacité d’adaptation aux évolutions futures.
+
+Elle peut s’exprimer sous la forme :
+
+- d’un document de synthèse,
+- d’une carte des capacités cibles,
+- d’un scénario d’évolution du SI.
+
+Cette vision sert de **fil conducteur** pour l’ensemble du cycle ADM. Elle permet d’éviter que la démarche d’architecture ne dérive vers un exercice purement technique ou documentaire.
+
+### **Conclusion du chapitre**
+
+Les phases préliminaire et Vision jouent un rôle fondamental dans l’ADM. Elles posent les bases :
+
+- organisationnelles,
+- stratégiques,
+- et politiques de la démarche d’architecture.
+
+Nous retenons que l’architecture d’entreprise commence non pas par des diagrammes, mais par :
+
+- un cadre de gouvernance,
+- des principes directeurs,
+- une compréhension des parties prenantes,
+- et une vision claire de la valeur métier.
+
+Dans le chapitre suivant, nous entrerons dans la **conception proprement dite de l’architecture**, en commençant par la **phase B : l’architecture métier**, qui constitue le socle des autres domaines.
+
+## **Chapitre 7 – Phases B, C et D : conception de l’architecture**
+
+Dans ce chapitre, nous entrons dans le **cœur de la conception architecturale** dans l’ADM.  
+Après avoir posé le cadre et défini une vision d’ensemble, les phases B, C et D visent à construire les **architectures cibles détaillées** pour chacun des grands domaines du système d’information.
+
+Ces phases correspondent à un mouvement logique :
+
+1. comprendre et structurer les **activités métier**,    
+2. organiser les **données et les applications** qui les supportent,    
+3. définir l’**infrastructure technique** permettant leur exécution.    
+
+L’objectif n’est pas de produire des documents isolés, mais de construire une **architecture cohérente entre ses différentes couches**.
+
+### **1. Phase B : architecture métier**
+
+La phase B consiste à décrire l’**architecture métier cible**, en cohérence avec la vision définie lors de la phase A.
+
+Nous cherchons ici à répondre à la question :
+
+> _Comment l’organisation doit-elle fonctionner pour atteindre ses objectifs stratégiques ?_
+
+Cette phase comprend généralement :
+
+- l’identification des **capacités métiers**,    
+- la modélisation des **processus clés**,    
+- la description des **acteurs et rôles**,    
+- l’analyse des écarts entre l’existant et la cible.    
+
+L’architecture métier sert de **fondation** pour les autres domaines.  
+Si elle est mal définie, les choix applicatifs et techniques risquent d’être incohérents ou inutiles.
+
+Les principaux livrables de cette phase peuvent inclure :
+
+- des cartes de processus,    
+- des modèles d’organisation,    
+- des catalogues d’acteurs et de capacités,    
+- une analyse des écarts entre la situation actuelle et la cible.    
+
+### **2. Phase C : architecture des données et des applications**
+
+La phase C est souvent divisée en deux sous-parties :
+
+- l’architecture des **données**,    
+- l’architecture **applicative**.    
+
+Ces deux dimensions sont étroitement liées, car les applications manipulent et produisent les données.
+
+#### **Architecture des données**
+
+L’architecture des données vise à structurer l’information nécessaire aux processus métiers.  
+Nous cherchons notamment à :
+
+- identifier les **objets de données clés**,
+- modéliser leurs relations,
+- décrire les flux d’information,
+- définir les règles de gouvernance des données.
+
+L’objectif est de garantir :
+
+- la cohérence des données,
+- leur qualité,
+- leur disponibilité pour les métiers.
+
+Cette étape est cruciale dans les organisations où la donnée constitue un **actif stratégique**.
+
+#### **Architecture applicative**
+
+L’architecture applicative décrit l’ensemble des applications et services nécessaires pour soutenir les processus métiers.
+
+Elle comprend :
+
+- l’inventaire des applications existantes,
+- la définition des applications cibles,    
+- la répartition des responsabilités fonctionnelles,
+- les interactions entre applications.
+
+Nous cherchons à répondre à des questions telles que :
+
+- quelle application supporte quel processus ?
+- quelles redondances existent dans le SI ?
+- quels systèmes doivent être modernisés ou remplacés ?
+
+Les livrables de cette phase peuvent inclure :
+
+- des cartographies applicatives,
+- des matrices processus/applications,    
+- des diagrammes d’interactions entre systèmes.
+
+### **3. Phase D : architecture technologique**
+
+La phase D consiste à définir l’**architecture technique cible**.  
+Elle décrit l’environnement dans lequel les applications seront déployées et exécutées.
+
+Cette phase couvre :
+
+- les infrastructures matérielles,
+- les environnements cloud ou on-premise,
+- les réseaux et la sécurité,
+- les plateformes techniques et middleware,
+- les standards technologiques.
+
+Nous cherchons ici à répondre à la question :
+
+> _Quelle infrastructure technique est nécessaire pour supporter l’architecture applicative et les besoins métiers ?_
+
+L’objectif n’est pas de choisir une technologie pour elle-même, mais de garantir :
+
+- la cohérence technique,
+- la maintenabilité,
+- la sécurité,
+- la performance,
+- la capacité d’évolution.
+
+### **4. Modélisation, cohérence et arbitrages**
+
+Les phases B, C et D ne doivent pas être menées de manière indépendante.  
+Leur valeur réside dans la **cohérence globale** de l’architecture.
+
+#### **La modélisation comme outil de communication**
+
+La modélisation permet :
+
+- de représenter les processus,
+- de visualiser les flux de données,
+- de comprendre les interactions entre systèmes.
+
+Les modèles servent avant tout à :
+
+- faciliter les échanges entre parties prenantes,
+- rendre visibles les dépendances,
+- soutenir la prise de décision.
+
+#### **La gestion des cohérences**
+
+Chaque domaine influence les autres :
+
+- un changement métier peut nécessiter de nouvelles applications,
+- une contrainte technique peut imposer une modification applicative,
+- un problème de données peut affecter plusieurs processus.
+
+L’architecte doit donc maintenir une **vision transversale**.
+
+#### **Les arbitrages architecturaux**
+
+Ces phases sont aussi des moments d’arbitrage :
+
+- standardisation ou spécialisation,
+- centralisation ou distribution,
+- achat ou développement interne,
+- modernisation ou maintien en l’état.
+
+Ces arbitrages doivent être :
+
+- justifiés par les principes d’architecture,
+- alignés sur la vision métier,
+- documentés et gouvernés.
+
+### **Conclusion du chapitre**
+
+Les phases B, C et D constituent le **noyau de la conception architecturale** dans TOGAF.  
+Elles permettent de construire une architecture cible cohérente, en partant des besoins métiers pour aboutir aux choix techniques.
+
+Nous retenons que :
+
+- l’architecture métier structure la réflexion,
+- l’architecture des données et des applications implémente les capacités,
+- l’architecture technique fournit le socle d’exécution,
+- la cohérence entre ces domaines est la responsabilité centrale de l’architecte.
+
+Dans le chapitre suivant, nous aborderons les phases E et F, qui concernent la **planification de la transformation** et la construction des trajectoires de migration vers l’architecture cible.
+
+## **Chapitre 8 – Phases E et F : transformation et migration**
+
+Dans ce chapitre, nous passons d’une logique de **conception architecturale** à une logique de **mise en œuvre concrète**.  
+Les phases B, C et D ont permis de définir une architecture cible cohérente. Les phases E et F répondent maintenant à une question essentielle :
+
+> _Comment passer de l’architecture actuelle à l’architecture cible, de manière réaliste, maîtrisée et gouvernable ?_
+
+Ces phases constituent le lien entre :
+
+- la **vision architecturale**,    
+- et les **projets réels** de transformation.
+## **1. Opportunités et solutions (Phase E)**
+
+La phase E consiste à identifier les **solutions concrètes** permettant de réduire l’écart entre l’architecture actuelle (_baseline_) et l’architecture cible (_target_).
+
+Nous partons de l’analyse des écarts réalisée dans les phases précédentes :
+
+- processus à transformer,
+- applications à remplacer ou à créer,
+- infrastructures à moderniser,
+- données à restructurer.
+
+Ces écarts deviennent des **opportunités de transformation**.
+
+### **Identification des solutions**
+
+Chaque écart peut donner lieu à plusieurs solutions possibles :
+
+- développement d’une nouvelle application,
+- acquisition d’une solution du marché,
+- refonte d’un processus métier,
+- migration vers une infrastructure cloud,
+- mise en place d’un référentiel de données.
+
+L’objectif n’est pas encore de planifier précisément les projets, mais de :
+
+- regrouper les actions en **solutions cohérentes**,
+- identifier les **grands chantiers**,
+- estimer les impacts organisationnels et techniques.
+
+### **Regroupement en blocs de solutions**
+
+TOGAF propose souvent de regrouper les actions en **work packages** ou **solution building blocks** :
+
+- modernisation du système de gestion des clients,
+- mise en place d’une plateforme de données,
+- refonte de l’infrastructure réseau,
+- rationalisation du parc applicatif.
+
+Ces blocs facilitent la compréhension globale et préparent la phase de planification.
+
+## **2. Scénarios de migration (Phase F)**
+
+Une fois les solutions identifiées, la phase F consiste à définir **comment et dans quel ordre** elles seront mises en œuvre.
+
+Nous ne cherchons pas une trajectoire unique et idéale, mais plusieurs **scénarios de migration** possibles.
+
+### **Construction de scénarios**
+
+Un scénario de migration décrit :
+
+- une séquence de projets,
+- un ordre de transformation,
+- un rythme de déploiement.
+
+Plusieurs scénarios peuvent être envisagés :
+
+- transformation rapide et centralisée,
+- migration progressive par domaine,
+- modernisation par priorités métiers,
+- transformation opportuniste liée aux projets existants.
+
+Chaque scénario est évalué selon :
+
+- les coûts,
+- les risques,
+- les délais,
+- les impacts organisationnels.
+
+## **3. Élaboration des roadmaps**
+
+À partir des scénarios retenus, nous construisons une **roadmap de transformation**.
+
+La roadmap est une représentation temporelle de :
+
+- l’enchaînement des projets,
+- les jalons principaux,
+- les dépendances entre initiatives.
+
+Elle permet de répondre à des questions concrètes :
+
+- quelles transformations doivent être réalisées en priorité ?
+- quels projets peuvent être menés en parallèle ?
+- quelles dépendances techniques ou organisationnelles existent ?
+
+### **Caractéristiques d’une bonne roadmap**
+
+Une roadmap efficace doit être :
+
+- **réaliste**, en tenant compte des capacités de l’organisation,
+- **lisible**, pour les décideurs et les métiers,
+- **priorisée**, selon la valeur métier et les risques,
+- **évolutive**, pour s’adapter aux changements.
+
+La roadmap constitue un **outil de pilotage stratégique**, et non un simple planning technique.
+
+## **4. Gestion des risques et des contraintes**
+
+Les phases E et F intègrent explicitement la **gestion des risques** et des contraintes.  
+Toute transformation architecturale comporte des incertitudes, qu’il est nécessaire d’anticiper.
+
+### **Types de risques**
+
+Les principaux types de risques rencontrés sont :
+
+- risques techniques (complexité, obsolescence, interopérabilité),
+- risques organisationnels (résistance au changement, manque de compétences),
+- risques financiers (dépassement de budget),
+- risques opérationnels (interruption de service, perte de données).
+
+### **Contraintes à prendre en compte**
+
+Les contraintes peuvent être :
+
+- budgétaires,
+- réglementaires,
+- contractuelles,
+- techniques,
+- organisationnelles.
+
+Une transformation idéale sur le papier peut être **irréalisable dans les faits** si ces contraintes ne sont pas prises en compte.
+
+### **Stratégies d’atténuation**
+
+Pour chaque risque identifié, nous définissons :
+
+- des mesures de réduction,
+- des plans de contingence,
+- des priorités de sécurisation.
+
+La gestion des risques est un élément central pour construire une trajectoire **crédible et acceptable**.
+
+## **Conclusion du chapitre**
+
+Les phases E et F marquent la transition entre :
+
+- l’architecture comme **vision et conception**,
+- et l’architecture comme **programme de transformation**.
+
+Nous retenons que ces phases visent à :
+
+- identifier les solutions concrètes,
+- construire des scénarios de migration,
+- établir une roadmap réaliste,
+- maîtriser les risques et contraintes.
+
+Elles traduisent l’architecture cible en **trajectoire opérationnelle**, reliant directement le travail des architectes aux projets de transformation.
+
+Dans le chapitre suivant, nous aborderons les phases G et H, consacrées à la **gouvernance de l’architecture** et à son **amélioration continue**.
