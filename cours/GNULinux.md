@@ -974,7 +974,7 @@ Et qui donne :
 
 ## Lecture des saisies clavier
 
-La commande **`read`** permet de lire la saisie clavier et de l'affecter avec une variable :
+La commande **`read`** permet de lire la saisie clavier et de l'affecter à une variable :
 
 ```bash
 read VAR
@@ -991,6 +991,54 @@ echo $VAR
 ```
 coucou
 ```
+
+On peut aussi utiliser `read` pour faire de l'analyse ligne par ligne d'un fichier par exemple : 
+
+```bash
+while IFS='=' read -r var content; do
+  echo "var="$var
+  echo "content="$content
+done < <(env)
+```
+Dans cette boucle on parcourt  **toutes les variables d’environnement**  et pour les couples (noms, valeurs) séparés par un `=`, on récupère le nom de la variable dans `var` et sa valeur dans `content`.
+### Explication détaillée de l'exemple
+
+La commande `env` affiche l’environnement sous la forme :
+
+```text
+HOME=/home/user
+PATH=/usr/bin:/bin
+SHELL=/bin/bash
+```
+
+La commande `<(env)` permet d'exécuter env dans un sous-shell et de transformer sa sortie en **pseudo-fichier**
+
+La dernière ligne de la commande `done < <(env)` permet de forcer la boucle`while` à lire son entrée depuis la sortie de env comme s'il s'agissait d'un fichier.
+
+La première ligne de la commande  `while IFS='=' read -r var content` va permettre de lire la redirection ligne par ligne. Cela en faisant un prétraitement grâce à `IFS='='`, qui va séparer les champs sur le caractère `=` . Puis  `read -r var content` lit une ligne de la redirection la  découpe selon `IFS` et met les morceaux dans des variables, la partie à gauche du `=` dans `var` la partie à droite dans `content`.
+Enfin, et pour chaque ligne lue, le `do ... done` va exécuter les deux `echo`, qui pour chaque variable d’environnement vont afficher des lignes telles que :
+
+```text
+var=HOME
+content=/home/michaellaunay
+
+var=PATH
+content=/usr/local/bin:/usr/bin:/bin
+
+var=SHELL
+content=/bin/bash
+```
+
+Alternative :
+
+```bash
+env | while IFS='=' read -r var content; do
+  echo "var=$var"
+  echo "content=$content"
+done
+```
+
+Mais cette version utilise un **sous-shell**, ce qui peut poser problème si l’on souhaite modifier des variables du shell parent dans la boucle, car ces modifications ne seront pas répercutées puisqu’elles sont exécutées dans un sous-shell.
 
 ## Exercice
 

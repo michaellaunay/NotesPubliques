@@ -775,8 +775,13 @@ Pour concaténer, on utilise la méthode `concat` :
 ```
 
 # Merge
-La fonction `merge()` est l’équivalent du mot-clé `JOIN` en SQL.  
-Elle permet de **fusionner deux DataFrames** selon une ou plusieurs colonnes communes, appelées _clés de jointure_.
+
+La fonction `merge()` est l’équivalent direct du mot-clé `JOIN` en SQL.  
+Elle nous permet de **fusionner deux DataFrames** en nous appuyant sur une ou plusieurs colonnes communes, appelées _clés de jointure_.
+
+C’est une opération **fondamentale en data science**, car dans la pratique, les données proviennent presque toujours de sources différentes : fichiers CSV, bases SQL, API, etc. Nous devons donc régulièrement les recoller pour reconstituer une information complète.
+
+## Signature de la fonction
 
 ```python
 pandas.merge(
@@ -794,18 +799,22 @@ pandas.merge(
     validate=None
 )
 ```
-Paramètres :
 
-| Paramètre                   | Description                                                                     |
-| --------------------------- | ------------------------------------------------------------------------------- |
-| `left`, `right`             | Les deux DataFrames à fusionner.                                                |
-| `how`                       | Type de jointure : `'inner'`, `'outer'`, `'left'`, `'right'`.                   |
-| `on`                        | Nom(s) de colonne(s) commune(s).                                                |
-| `left_on`, `right_on`       | Permettent de préciser des clés différentes de chaque côté.                     |
-| `left_index`, `right_index` | Utilisent les index comme clés de jointure.                                     |
-| `suffixes`                  | Suffixes ajoutés aux noms de colonnes dupliquées.                               |
-| `indicator`                 | Si `True`, ajoute une colonne `_merge` indiquant la provenance de chaque ligne. |
-Exemple
+## Paramètres principaux
+
+| Paramètre                   | Description                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| `left`, `right`             | Les deux DataFrames à fusionner.                                             |
+| `how`                       | Type de jointure : `'inner'`, `'outer'`, `'left'`, `'right'`.                |
+| `on`                        | Nom(s) de colonne(s) commune(s) servant de clé de jointure.                  |
+| `left_on`, `right_on`       | Permettent d’utiliser des noms de colonnes différents dans chaque DataFrame. |
+| `left_index`, `right_index` | Utilisent les index comme clés de jointure.                                  |
+| `suffixes`                  | Suffixes ajoutés aux colonnes dupliquées.                                    |
+| `indicator`                 | Si `True`, ajoute une colonne `_merge` indiquant l’origine de chaque ligne.  |
+| `validate`                  | Permet de vérifier la cardinalité de la jointure (`'1:1'`, `'1:m'`, etc.).   |
+
+## Exemple simple
+
 ```python
 import pandas as pd
 
@@ -822,53 +831,142 @@ df2 = pd.DataFrame({
 resultat = pd.merge(df1, df2, on='id')
 print(resultat)
 ```
-Ayant pour résultat
+
+Résultat :
+
 ```txt
    id     nom   ville
 0   1   Alice   Paris
 1   2     Bob    Lyon
 ```
 
+Nous observons ici que seule l’intersection des identifiants (`1` et `2`) est conservée.
+
 ## Le paramètre `how`
-### 🔹 `inner` — intersection (défaut)
 
-Ne garde que les lignes dont les clés sont présentes dans les deux DataFrames.
+Le paramètre `how` définit la **stratégie de jointure**, c’est-à-dire la manière dont les lignes sont conservées ou non.
 
-`pd.merge(df1, df2, on='id', how='inner')`
+### 🔹 `inner` — intersection (par défaut)
+
+Nous ne conservons que les lignes dont les clés existent dans **les deux DataFrames**.
+
+```python
+pd.merge(df1, df2, on='id', how='inner')
+```
+
+C’est la jointure la plus sûre lorsqu’on souhaite éviter les valeurs manquantes.
 
 ### 🔹 `left` — jointure gauche
 
-Garde **toutes les lignes du DataFrame gauche**, même si aucune clé correspondante n’existe à droite.
+Nous conservons **toutes les lignes du DataFrame de gauche**, même si aucune correspondance n’existe à droite.
 
-`pd.merge(df1, df2, on='id', how='left')`
+```python
+pd.merge(df1, df2, on='id', how='left')
+```
+
+Les valeurs manquantes seront remplacées par `NaN`.
 
 ### 🔹 `right` — jointure droite
 
-Symétrique de la précédente.
+Symétrique de la jointure gauche :  
+nous conservons toutes les lignes du DataFrame de droite.
 
-`pd.merge(df1, df2, on='id', how='right')`
+```python
+pd.merge(df1, df2, on='id', how='right')
+```
 
 ### 🔹 `outer` — union complète
 
-Garde **toutes les lignes des deux DataFrames**, en insérant des valeurs manquantes (`NaN`) lorsqu’une clé est absente d’un côté.
-
-`pd.merge(df1, df2, on='id', how='outer')`
-
-**Résumé :**
-
-|Type de jointure|Description|Exemple SQL équivalent|
-|---|---|---|
-|`'inner'`|Clés présentes dans les deux|`INNER JOIN`|
-|`'left'`|Toutes les clés du gauche|`LEFT JOIN`|
-|`'right'`|Toutes les clés du droit|`RIGHT JOIN`|
-|`'outer'`|Toutes les clés des deux|`FULL OUTER JOIN`|
-## Le paramètre `on`
-Il indique la colonne servant contenant les clés.
-Lorsque les clés portent des noms différents dans les deux DataFrames :
+Nous conservons **toutes les lignes des deux DataFrames**.
 
 ```python
-df1 = pd.DataFrame({'client_id': [1, 2, 3], 'nom': ['Alice', 'Bob', 'Charlie']})
-df2 = pd.DataFrame({'id': [1, 3, 4], 'achat': ['Livre', 'PC', 'Stylo']})
-
-pd.merge(df1, df2, left_on='client_id', right_on='id', how='left')
+pd.merge(df1, df2, on='id', how='outer')
 ```
+
+Les lignes sans correspondance recevront des `NaN`.
+
+## Tableau récapitulatif
+
+| Type de jointure | Description                  | Équivalent SQL    |
+| ---------------- | ---------------------------- | ----------------- |
+| `'inner'`        | Clés présentes dans les deux | `INNER JOIN`      |
+| `'left'`         | Toutes les clés du gauche    | `LEFT JOIN`       |
+| `'right'`        | Toutes les clés du droit     | `RIGHT JOIN`      |
+| `'outer'`        | Toutes les clés des deux     | `FULL OUTER JOIN` |
+
+## Le paramètre `on`
+
+Le paramètre `on` indique la colonne servant de clé de jointure lorsque **les deux DataFrames utilisent le même nom**.
+
+Lorsque les noms diffèrent, nous devons utiliser `left_on` et `right_on`.
+
+```python
+df1 = pd.DataFrame({
+    'client_id': [1, 2, 3],
+    'nom': ['Alice', 'Bob', 'Charlie']
+})
+
+df2 = pd.DataFrame({
+    'id': [1, 3, 4],
+    'achat': ['Livre', 'PC', 'Stylo']
+})
+
+resultat = pd.merge(
+    df1,
+    df2,
+    left_on='client_id',
+    right_on='id',
+    how='left'
+)
+
+print(resultat)
+```
+
+## Bonnes pratiques
+
+Dans les projets réels, nous devons être vigilants sur trois points :
+
+### 1) Vérifier la cardinalité
+
+Une jointure mal maîtrisée peut **multiplier les lignes**.
+
+```python
+pd.merge(df1, df2, on='id', validate='1:1')
+```
+
+Types possibles :
+
+- `'1:1'` : un-à-un
+- `'1:m'` : un-à-plusieurs
+- `'m:1'` : plusieurs-à-un
+- `'m:m'` : plusieurs-à-plusieurs
+
+### 2) Utiliser `indicator=True` pour diagnostiquer une jointure
+
+```python
+pd.merge(df1, df2, on='id', how='outer', indicator=True)
+```
+
+La colonne `_merge` indiquera :
+
+- `left_only`
+- `right_only`
+- `both`
+
+Très utile pour comprendre les pertes de données.
+
+### 3) Contrôler les doublons avant la jointure
+
+```python
+df1['id'].duplicated().sum()
+```
+
+Une jointure entre deux colonnes contenant des doublons produit souvent une **explosion combinatoire**.
+
+## À retenir
+
+Dans nos pipelines de data science :
+
+- `merge()` est l’opération centrale pour combiner des sources de données.
+- Le choix du `how` influence directement la qualité et la complétude du dataset final.
+- Une jointure doit toujours être **contrôlée et validée**, surtout dans un contexte analytique ou décisionnel.
