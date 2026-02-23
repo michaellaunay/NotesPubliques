@@ -922,6 +922,9 @@ resultat = pd.merge(
 print(resultat)
 ```
 
+## Le paramètre `suffixes`
+Lorsque deux `DataFrames` ont une colonne de même, pandas ajouteras par défaut un suffix `_x` et `_y` pendant le merge pour les conserver toutes les deux, toutefois il possible de les renommer lors de la fusion en passant le paramètre `suffixes` et en fournissant un tuple `suffixes=('_nom1', '_nom2')`.
+
 ## Bonnes pratiques
 
 Dans les projets réels, nous devons être vigilants sur trois points :
