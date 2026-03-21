@@ -973,3 +973,5 @@ Dans nos pipelines de data science :
 - `merge()` est l’opération centrale pour combiner des sources de données.
 - Le choix du `how` influence directement la qualité et la complétude du dataset final.
 - Une jointure doit toujours être **contrôlée et validée**, surtout dans un contexte analytique ou décisionnel.
+# Méthodes Text
+Voir la [documentation officielle](https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html)
