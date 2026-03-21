@@ -942,6 +942,46 @@ Affiche encore :
 un
 ```
 
+## Valeur par défaut lors de l'expansion : `:-` vs `-`
+
+L’expansion de paramètre permet également de définir des valeurs par défaut si une variable est absente ou vide.
+
+Syntaxe générale :
+
+```Shell
+${parameter:-word}
+${parameter-word}
+```
+
+| Syntaxe | Variable non définie | Variable vide     |
+| ------- | -------------------- | ----------------- |
+| `:-`    | valeur par défaut    | valeur par défaut |
+| `-`     | valeur par défaut    | **vide**          |
+
+`:-` est utilisé pour sécuriser les scripts :
+
+```Shell
+PORT=${PORT:-8080}
+```
+
+Permet de garantir une valeur exploitable.
+
+`-` est utilisé lorsque la distinction entre “vide” et “non défini” est importante :
+
+```Shell
+if [[ -z ${VAR+x} ]]; then
+  echo "VAR non définie"
+fi
+```
+
+### Variante avec affectation
+
+```Shell
+"${DEBUG_LDAP:=false}"
+```
+Assigne `false` à `DEBUG_LDAP` si elle est vide ou non définie.
+Que l'on retrouve en python et qui est appelé `Walrus operator`.
+
 ## Les scripts
 
 Un script est un fichier qui contient une suite de commandes.
