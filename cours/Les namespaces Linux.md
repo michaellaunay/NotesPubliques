@@ -21410,3 +21410,3770 @@ Nous avons compris pourquoi un conteneur privilégié, un montage de `/`, un acc
 Nous retenons surtout une méthode professionnelle : nous ne donnons jamais des privilèges “pour que ça marche”. Nous identifions le besoin exact, puis nous accordons le minimum nécessaire.
 
 Dans le chapitre suivant, nous étudions comment Docker et les runtimes de conteneurs assemblent concrètement namespaces, cgroups, capabilities, montages et processus pour construire un conteneur.
+
+# Chapitre 15 — Des namespaces aux conteneurs
+
+## Objectifs du chapitre
+
+Dans ce chapitre, nous relions les namespaces Linux au fonctionnement concret des conteneurs.
+
+Jusqu’ici, nous avons étudié les briques séparément :
+
+```text
+namespace PID
+namespace mount
+namespace network
+namespace UTS
+namespace IPC
+namespace user
+namespace cgroup
+namespace time
+cgroups
+capabilities
+seccomp
+AppArmor / SELinux
+```
+
+Nous allons maintenant comprendre comment un runtime de conteneur assemble ces mécanismes pour lancer une application dans un environnement isolé.
+
+À la fin de ce chapitre, nous savons :
+
+- expliquer ce qu’est réellement un conteneur Linux ;
+    
+- comprendre comment Docker combine les namespaces ;
+    
+- distinguer image, root filesystem et conteneur ;
+    
+- comprendre le rôle du runtime OCI ;
+    
+- expliquer le rôle de `runc`, `containerd` et Docker ;
+    
+- comprendre l’importance de l’entrypoint et du PID 1 ;
+    
+- comprendre les volumes et bind mounts ;
+    
+- comprendre le réseau bridge Docker ;
+    
+- observer un conteneur depuis l’hôte avec `/proc`, `lsns` et `nsenter`.
+    
+
+---
+
+# 15.1. Un conteneur n’est pas une machine virtuelle
+
+## 15.1.1. Rappel fondamental
+
+Un conteneur Linux n’exécute pas son propre noyau.
+
+Il utilise le noyau de l’hôte, mais avec des vues isolées.
+
+Nous devons retenir :
+
+```text
+Machine virtuelle : noyau invité séparé.
+Conteneur Linux   : noyau hôte partagé.
+```
+
+Dans une machine virtuelle, nous avons généralement :
+
+```text
+application
+système invité
+noyau invité
+matériel virtuel
+hyperviseur
+noyau hôte
+matériel réel
+```
+
+Dans un conteneur, nous avons plutôt :
+
+```text
+application
+rootfs isolé
+namespaces
+cgroups
+noyau Linux hôte
+matériel réel
+```
+
+---
+
+## 15.1.2. Pourquoi les conteneurs sont plus légers
+
+Les conteneurs sont plus légers parce qu’ils ne démarrent pas un système d’exploitation complet avec son propre noyau.
+
+Ils lancent simplement un ou plusieurs processus sur le noyau de l’hôte.
+
+Ce qui donne l’impression d’un système séparé vient de la combinaison :
+
+```text
+namespaces
+cgroups
+root filesystem
+capabilities
+seccomp
+profils de sécurité
+configuration réseau
+```
+
+Nous ne devons donc pas voir Docker comme une technologie magique, mais comme un orchestrateur de mécanismes Linux.
+
+---
+
+# 15.2. Qu’est-ce qu’un conteneur Linux ?
+
+## 15.2.1. Définition pratique
+
+Un conteneur Linux est un ou plusieurs processus lancés avec :
+
+- des namespaces isolés ;
+    
+- des limites cgroups ;
+    
+- un root filesystem spécifique ;
+    
+- des capabilities contrôlées ;
+    
+- des montages préparés ;
+    
+- une configuration réseau ;
+    
+- une politique de sécurité ;
+    
+- une commande de démarrage.
+    
+
+Autrement dit :
+
+```text
+Un conteneur est un processus isolé et configuré.
+```
+
+Il ne faut pas le confondre avec l’image.
+
+---
+
+## 15.2.2. Image et conteneur
+
+Une image est un modèle immuable ou quasi immuable contenant :
+
+- fichiers ;
+    
+- bibliothèques ;
+    
+- binaires ;
+    
+- métadonnées ;
+    
+- configuration par défaut ;
+    
+- entrypoint ;
+    
+- commande par défaut.
+    
+
+Un conteneur est une instance en cours d’exécution créée à partir d’une image.
+
+Nous pouvons résumer :
+
+```text
+Image      = modèle de fichiers et de configuration.
+Conteneur  = processus lancé à partir de cette image.
+```
+
+Exemple :
+
+```bash
+docker pull alpine
+docker run --rm -it alpine sh
+```
+
+`alpine` est l’image.
+
+Le shell lancé est un processus dans un conteneur créé à partir de cette image.
+
+---
+
+# 15.3. Ce que fait Docker au lancement d’un conteneur
+
+## 15.3.1. Commande simple
+
+Quand nous lançons :
+
+```bash
+docker run --rm -it alpine sh
+```
+
+Docker effectue beaucoup d’opérations.
+
+Il ne fait pas seulement :
+
+```text
+lancer /bin/sh
+```
+
+Il prépare un environnement d’exécution complet.
+
+---
+
+## 15.3.2. Étapes conceptuelles
+
+Docker ou son runtime prépare notamment :
+
+1. le root filesystem issu de l’image ;
+    
+2. un namespace mount ;
+    
+3. un namespace PID ;
+    
+4. un namespace network ;
+    
+5. un namespace UTS ;
+    
+6. un namespace IPC ;
+    
+7. parfois un namespace user ;
+    
+8. une configuration cgroup ;
+    
+9. des capabilities ;
+    
+10. un profil seccomp ;
+    
+11. éventuellement un profil AppArmor ou SELinux ;
+    
+12. les fichiers `/etc/hosts`, `/etc/resolv.conf`, `/etc/hostname` ;
+    
+13. les volumes et bind mounts ;
+    
+14. l’interface réseau virtuelle ;
+    
+15. le processus initial.
+    
+
+Nous voyons que Docker assemble les chapitres précédents.
+
+---
+
+# 15.4. Les namespaces utilisés par un conteneur
+
+## 15.4.1. Namespace PID
+
+Le conteneur a souvent son propre namespace PID.
+
+Dans le conteneur :
+
+```sh
+ps
+```
+
+nous pouvons voir :
+
+```text
+PID   USER     TIME  COMMAND
+1     root     0:00  sh
+```
+
+Mais sur l’hôte, le même processus a un autre PID.
+
+Nous pouvons vérifier :
+
+```bash
+docker run --rm -d --name pid-demo alpine sleep 1000
+pid=$(docker inspect --format '{{.State.Pid}}' pid-demo)
+
+ps -p "$pid" -o pid,ppid,comm,args
+sudo grep NSpid /proc/$pid/status
+
+docker exec pid-demo ps
+docker rm -f pid-demo
+```
+
+Le namespace PID permet au processus principal d’être PID 1 dans le conteneur.
+
+---
+
+## 15.4.2. Namespace mount
+
+Le conteneur a son propre namespace mount.
+
+Il voit comme `/` le root filesystem de l’image.
+
+Dans le conteneur :
+
+```sh
+ls /
+```
+
+nous voyons la racine de l’image, par exemple :
+
+```text
+bin
+dev
+etc
+home
+lib
+proc
+root
+sys
+tmp
+usr
+var
+```
+
+Ce n’est pas la racine de l’hôte.
+
+Docker prépare cette vue avec :
+
+- rootfs de l’image ;
+    
+- OverlayFS ou autre backend ;
+    
+- montage de `/proc` ;
+    
+- montage de `/sys` ;
+    
+- préparation de `/dev` ;
+    
+- volumes ;
+    
+- bind mounts.
+    
+
+---
+
+## 15.4.3. Namespace network
+
+Le conteneur a généralement son propre namespace réseau.
+
+Dans le conteneur :
+
+```sh
+ip addr
+```
+
+nous voyons souvent :
+
+```text
+lo
+eth0
+```
+
+`eth0` est souvent une extrémité d’une paire `veth`.
+
+L’autre extrémité est côté hôte, connectée au bridge Docker, souvent `docker0`.
+
+---
+
+## 15.4.4. Namespace UTS
+
+Docker donne souvent un hostname propre au conteneur.
+
+Exemple :
+
+```bash
+docker run --rm alpine hostname
+```
+
+Sortie possible :
+
+```text
+a1b2c3d4e5f6
+```
+
+Nous pouvons définir le hostname :
+
+```bash
+docker run --rm --hostname mon-conteneur alpine hostname
+```
+
+Le namespace UTS permet cette isolation du hostname.
+
+---
+
+## 15.4.5. Namespace IPC
+
+Docker crée généralement un namespace IPC propre au conteneur.
+
+Nous pouvons comparer :
+
+```bash
+docker run --rm -d --name ipc-demo alpine sleep 1000
+pid=$(docker inspect --format '{{.State.Pid}}' ipc-demo)
+
+sudo readlink /proc/$pid/ns/ipc
+readlink /proc/1/ns/ipc
+
+docker rm -f ipc-demo
+```
+
+Si les valeurs diffèrent, le conteneur a son propre namespace IPC.
+
+---
+
+## 15.4.6. Namespace user
+
+Le namespace user dépend de la configuration.
+
+Dans un conteneur Docker classique, le conteneur peut être root à l’intérieur, mais pas nécessairement avec un mapping user namespace complet.
+
+Avec les conteneurs rootless, ou certaines options de remapping, l’UID `0` interne peut correspondre à un UID non privilégié sur l’hôte.
+
+Nous observons avec :
+
+```bash
+cat /proc/<PID>/uid_map
+cat /proc/<PID>/gid_map
+```
+
+---
+
+## 15.4.7. Namespace cgroup
+
+Le namespace cgroup peut permettre au conteneur de voir une vue simplifiée de son rattachement cgroup.
+
+Dans le conteneur :
+
+```sh
+cat /proc/self/cgroup
+```
+
+nous pouvons voir une vue plus simple que depuis l’hôte.
+
+Mais les limites réelles sont appliquées par les cgroups eux-mêmes.
+
+---
+
+# 15.5. Le root filesystem du conteneur
+
+## 15.5.1. Définition
+
+Le root filesystem, ou rootfs, est l’arborescence vue comme `/` par le processus du conteneur.
+
+Il contient les fichiers nécessaires à l’exécution de l’application :
+
+```text
+/bin
+/etc
+/lib
+/usr
+/app
+/var
+/tmp
+```
+
+Dans Docker, ce rootfs provient de l’image.
+
+---
+
+## 15.5.2. Images en couches
+
+Les images Docker sont composées de couches.
+
+Exemple conceptuel :
+
+```text
+couche 1 : base Alpine
+couche 2 : installation de paquets
+couche 3 : copie de l’application
+couche 4 : configuration
+```
+
+Ces couches sont généralement en lecture seule.
+
+Quand nous lançons un conteneur, Docker ajoute une couche writable propre au conteneur.
+
+Nous obtenons :
+
+```text
+couches image en lecture seule
++
+couche writable du conteneur
+=
+rootfs visible dans le conteneur
+```
+
+---
+
+## 15.5.3. OverlayFS
+
+Sur beaucoup de systèmes, Docker utilise OverlayFS.
+
+Nous pouvons conceptualiser :
+
+```text
+lowerdir : couches en lecture seule
+upperdir : couche writable du conteneur
+merged   : vue finale présentée au conteneur
+```
+
+Le namespace mount présente ensuite `merged` comme racine `/` du conteneur.
+
+---
+
+## 15.5.4. Conséquence pratique
+
+Si nous créons un fichier dans un conteneur :
+
+```sh
+echo test > /tmp/fichier
+```
+
+ce fichier est écrit dans la couche writable du conteneur.
+
+Si nous supprimons le conteneur, cette couche disparaît, sauf si le fichier est dans un volume.
+
+Nous retenons :
+
+```text
+Le conteneur est éphémère.
+Les volumes servent à conserver des données.
+```
+
+---
+
+# 15.6. Volumes et bind mounts
+
+## 15.6.1. Pourquoi les volumes existent
+
+Un conteneur est souvent jetable.
+
+Mais certaines données doivent persister :
+
+- base de données ;
+    
+- fichiers uploadés ;
+    
+- cache durable ;
+    
+- configuration ;
+    
+- logs selon architecture ;
+    
+- artefacts produits.
+    
+
+Nous utilisons alors des volumes ou bind mounts.
+
+---
+
+## 15.6.2. Bind mount
+
+Un bind mount monte un chemin de l’hôte dans le conteneur.
+
+Exemple :
+
+```bash
+docker run --rm -it -v "$PWD":/app alpine sh
+```
+
+Dans le conteneur :
+
+```sh
+ls /app
+```
+
+Nous voyons le répertoire courant de l’hôte.
+
+Le conteneur et l’hôte accèdent au même contenu.
+
+---
+
+## 15.6.3. Volume Docker
+
+Un volume Docker est géré par Docker.
+
+Exemple :
+
+```bash
+docker volume create data-demo
+docker run --rm -it -v data-demo:/data alpine sh
+```
+
+Les données sont stockées dans l’espace géré par Docker.
+
+Nous pouvons lister les volumes :
+
+```bash
+docker volume ls
+```
+
+Et inspecter :
+
+```bash
+docker volume inspect data-demo
+```
+
+---
+
+## 15.6.4. Lecture seule
+
+Nous pouvons monter en lecture seule :
+
+```bash
+docker run --rm -it -v "$PWD":/app:ro alpine sh
+```
+
+Dans le conteneur, l’écriture dans `/app` doit échouer.
+
+C’est une bonne pratique lorsque le conteneur n’a besoin que de lire des fichiers.
+
+---
+
+## 15.6.5. Risques
+
+Les montages peuvent casser l’isolation.
+
+Montages dangereux :
+
+```bash
+-v /:/host
+-v /proc:/host/proc
+-v /sys:/host/sys
+-v /dev:/host/dev
+-v /var/run/docker.sock:/var/run/docker.sock
+```
+
+Nous ne les utilisons pas sans justification forte.
+
+---
+
+# 15.7. Le réseau Docker bridge
+
+## 15.7.1. Bridge par défaut
+
+Docker crée souvent un bridge nommé :
+
+```text
+docker0
+```
+
+Nous pouvons l’observer :
+
+```bash
+ip addr show docker0
+```
+
+Les conteneurs connectés au réseau bridge par défaut reçoivent une interface `eth0` dans leur namespace réseau.
+
+Côté hôte, une paire `veth` connecte le conteneur au bridge.
+
+---
+
+## 15.7.2. Schéma conceptuel
+
+```text
+conteneur
+  eth0
+   |
+ paire veth
+   |
+hôte
+  vethXXXX
+   |
+ docker0
+   |
+ réseau extérieur via routage/NAT
+```
+
+Le namespace réseau isole la pile réseau du conteneur.
+
+Le bridge permet la communication entre conteneurs et avec l’hôte.
+
+Le NAT permet souvent la sortie vers Internet.
+
+---
+
+## 15.7.3. Ports publiés
+
+Quand nous écrivons :
+
+```bash
+docker run -p 8080:80 image
+```
+
+nous demandons :
+
+```text
+port 8080 de l’hôte → port 80 du conteneur
+```
+
+Le conteneur peut écouter sur `80` dans son namespace réseau.
+
+L’hôte expose `8080` et redirige vers le conteneur.
+
+Nous distinguons donc :
+
+```text
+port interne du conteneur
+port exposé sur l’hôte
+```
+
+---
+
+## 15.7.4. Mode host network
+
+Avec :
+
+```bash
+docker run --network=host image
+```
+
+le conteneur partage le namespace réseau de l’hôte.
+
+Il n’a plus d’isolation réseau classique.
+
+Conséquences :
+
+- mêmes interfaces que l’hôte ;
+    
+- mêmes ports ;
+    
+- conflits possibles ;
+    
+- exposition plus directe ;
+    
+- diagnostic différent.
+    
+
+Nous utilisons ce mode avec prudence.
+
+---
+
+# 15.8. Entrypoint, command et PID 1
+
+## 15.8.1. Le processus initial
+
+Un conteneur démarre avec un processus initial.
+
+Ce processus devient généralement PID 1 dans le namespace PID du conteneur.
+
+Il peut venir de :
+
+```text
+ENTRYPOINT
+CMD
+commande passée à docker run
+```
+
+Exemple :
+
+```bash
+docker run --rm alpine sleep 1000
+```
+
+Ici, `sleep 1000` devient le processus principal du conteneur.
+
+---
+
+## 15.8.2. `ENTRYPOINT` et `CMD`
+
+Dans un Dockerfile :
+
+```dockerfile
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
+```
+
+La commande finale est :
+
+```text
+python3 app.py
+```
+
+Autre exemple :
+
+```dockerfile
+ENTRYPOINT ["./server"]
+CMD ["--port", "8080"]
+```
+
+`ENTRYPOINT` définit souvent le binaire principal.
+
+`CMD` définit les arguments par défaut.
+
+---
+
+## 15.8.3. PID 1 et signaux
+
+Le processus PID 1 doit gérer correctement les signaux.
+
+Quand nous faisons :
+
+```bash
+docker stop <container>
+```
+
+Docker envoie d’abord généralement `SIGTERM`.
+
+Si le processus ne s’arrête pas, Docker finit par envoyer `SIGKILL`.
+
+Une application mal conçue comme PID 1 peut ignorer ou mal gérer `SIGTERM`.
+
+---
+
+## 15.8.4. Processus zombies
+
+Le PID 1 doit aussi récolter les processus enfants terminés.
+
+Si l’application lance des sous-processus et ne les récolte pas, des zombies peuvent s’accumuler.
+
+Nous pouvons utiliser un init minimal :
+
+```bash
+docker run --init image
+```
+
+Docker ajoute alors un petit init, souvent `tini`, qui aide à gérer les signaux et les zombies.
+
+---
+
+# 15.9. Rôle de `runc`, containerd et Docker
+
+## 15.9.1. Docker n’est pas seul
+
+Quand nous utilisons Docker, plusieurs composants interviennent.
+
+Schéma simplifié :
+
+```text
+docker CLI
+   |
+dockerd
+   |
+containerd
+   |
+runc
+   |
+noyau Linux
+```
+
+Chaque composant a un rôle.
+
+---
+
+## 15.9.2. Docker CLI
+
+La commande :
+
+```bash
+docker run ...
+```
+
+est envoyée au démon Docker.
+
+Le client Docker n’est qu’une interface de commande.
+
+---
+
+## 15.9.3. `dockerd`
+
+Le démon Docker gère :
+
+- images ;
+    
+- conteneurs ;
+    
+- réseaux ;
+    
+- volumes ;
+    
+- API Docker ;
+    
+- intégration avec containerd ;
+    
+- configuration globale Docker.
+    
+
+---
+
+## 15.9.4. `containerd`
+
+`containerd` est un runtime de plus bas niveau qui gère le cycle de vie des conteneurs :
+
+- création ;
+    
+- démarrage ;
+    
+- arrêt ;
+    
+- supervision ;
+    
+- images ;
+    
+- snapshots ;
+    
+- interaction avec le runtime OCI.
+    
+
+Kubernetes utilise souvent `containerd` directement comme runtime CRI.
+
+---
+
+## 15.9.5. `runc`
+
+`runc` est un runtime OCI bas niveau.
+
+Il est responsable de créer concrètement le conteneur au niveau Linux :
+
+- namespaces ;
+    
+- cgroups ;
+    
+- capabilities ;
+    
+- montages ;
+    
+- rootfs ;
+    
+- processus initial.
+    
+
+`runc` applique une configuration conforme à la spécification OCI.
+
+---
+
+# 15.10. OCI : Open Container Initiative
+
+## 15.10.1. Pourquoi une spécification ?
+
+Avant la standardisation, chaque outil pouvait définir ses propres formats et comportements.
+
+L’OCI, Open Container Initiative, définit notamment :
+
+- une spécification d’image ;
+    
+- une spécification de runtime ;
+    
+- un format de configuration.
+    
+
+Cela permet à différents outils d’être compatibles.
+
+---
+
+## 15.10.2. Runtime OCI
+
+Un runtime OCI reçoit une configuration et lance le conteneur selon cette configuration.
+
+Cette configuration décrit notamment :
+
+- commande à exécuter ;
+    
+- environnement ;
+    
+- rootfs ;
+    
+- montages ;
+    
+- namespaces ;
+    
+- capabilities ;
+    
+- cgroups ;
+    
+- utilisateur ;
+    
+- limites ;
+    
+- hooks éventuels.
+    
+
+`runc` est l’implémentation de référence historique.
+
+---
+
+# 15.11. Observer un conteneur depuis l’hôte
+
+## 15.11.1. Lancer un conteneur de test
+
+Nous lançons :
+
+```bash
+docker run --rm -d --name ns-demo alpine sleep 1000
+```
+
+Nous récupérons le PID hôte :
+
+```bash
+pid=$(docker inspect --format '{{.State.Pid}}' ns-demo)
+echo "$pid"
+```
+
+---
+
+## 15.11.2. Observer ses namespaces
+
+Depuis l’hôte :
+
+```bash
+sudo ls -l /proc/$pid/ns
+```
+
+Nous comparons avec l’hôte :
+
+```bash
+ls -l /proc/1/ns
+```
+
+Nous pouvons voir quels namespaces sont différents.
+
+---
+
+## 15.11.3. Observer les PID
+
+```bash
+sudo grep NSpid /proc/$pid/status
+```
+
+Exemple :
+
+```text
+NSpid:  24531  1
+```
+
+Le même processus est PID `24531` sur l’hôte et PID `1` dans le conteneur.
+
+---
+
+## 15.11.4. Observer les cgroups
+
+```bash
+sudo cat /proc/$pid/cgroup
+```
+
+Et dans le conteneur :
+
+```bash
+docker exec ns-demo cat /proc/self/cgroup
+```
+
+Nous comparons la vue depuis l’hôte et la vue interne.
+
+---
+
+## 15.11.5. Observer les montages
+
+```bash
+sudo cat /proc/$pid/mountinfo | head
+```
+
+Ou :
+
+```bash
+sudo nsenter --target "$pid" --mount findmnt | head
+```
+
+Nous voyons les montages du conteneur.
+
+---
+
+## 15.11.6. Observer le réseau
+
+```bash
+sudo nsenter --target "$pid" --net ip addr
+sudo nsenter --target "$pid" --net ip route
+```
+
+Si `ip` n’est pas disponible dans le conteneur, nous pouvons l’utiliser depuis l’hôte avec `nsenter`.
+
+---
+
+## 15.11.7. Nettoyage
+
+```bash
+docker rm -f ns-demo
+```
+
+---
+
+# 15.12. `docker exec` et `nsenter`
+
+## 15.12.1. `docker exec`
+
+Quand nous utilisons :
+
+```bash
+docker exec -it ns-demo sh
+```
+
+Docker lance un nouveau processus dans le conteneur existant.
+
+Ce nouveau processus rejoint les namespaces du conteneur.
+
+Il partage donc généralement :
+
+- namespace PID ;
+    
+- namespace mount ;
+    
+- namespace network ;
+    
+- namespace UTS ;
+    
+- namespace IPC ;
+    
+- cgroups du conteneur.
+    
+
+---
+
+## 15.12.2. `nsenter`
+
+Avec `nsenter`, nous pouvons entrer dans les namespaces du processus principal depuis l’hôte :
+
+```bash
+sudo nsenter --target "$pid" \
+  --mount \
+  --uts \
+  --ipc \
+  --net \
+  --pid \
+  --fork \
+  sh
+```
+
+Cela est utile lorsque :
+
+- l’image ne contient pas de shell ;
+    
+- `docker exec` ne fonctionne pas ;
+    
+- nous voulons utiliser des outils de l’hôte ;
+    
+- nous voulons diagnostiquer un namespace précis.
+    
+
+---
+
+## 15.12.3. Différence pratique
+
+`docker exec` passe par Docker.
+
+`nsenter` passe directement par les namespaces exposés dans `/proc/<PID>/ns`.
+
+Les deux approches sont utiles, mais elles n’ont pas exactement le même niveau d’abstraction.
+
+---
+
+# 15.13. Variables d’environnement
+
+## 15.13.1. Définition
+
+Un conteneur reçoit souvent des variables d’environnement.
+
+Exemple :
+
+```bash
+docker run --rm -e APP_ENV=production alpine env
+```
+
+Elles peuvent configurer :
+
+- environnement ;
+    
+- URL de base de données ;
+    
+- chemins ;
+    
+- options applicatives ;
+    
+- mode debug ;
+    
+- secrets parfois, avec prudence.
+    
+
+---
+
+## 15.13.2. Observation
+
+Dans un conteneur :
+
+```sh
+env
+```
+
+Depuis l’hôte, selon les permissions :
+
+```bash
+sudo tr '\0' '\n' < /proc/$pid/environ
+```
+
+Nous devons nous souvenir que les variables d’environnement peuvent être visibles via `/proc`.
+
+---
+
+## 15.13.3. Prudence avec les secrets
+
+Passer des secrets en variables d’environnement est courant, mais pas parfait.
+
+Risques :
+
+- visibilité via `/proc` ;
+    
+- fuite dans des dumps ;
+    
+- affichage dans logs ;
+    
+- exposition par erreur dans une page debug ;
+    
+- transmission à des processus enfants.
+    
+
+En production, nous préférons des mécanismes de secrets adaptés et des permissions strictes.
+
+---
+
+# 15.14. Capabilities et sécurité dans un conteneur
+
+## 15.14.1. Root dans le conteneur
+
+Dans un conteneur :
+
+```sh
+id
+```
+
+peut afficher :
+
+```text
+uid=0(root) gid=0(root)
+```
+
+Mais cela ne signifie pas que le processus a tous les droits sur l’hôte.
+
+Nous devons vérifier :
+
+```sh
+grep Cap /proc/$$/status
+```
+
+---
+
+## 15.14.2. Réduire les capabilities
+
+Bonne pratique :
+
+```bash
+docker run --cap-drop=ALL image
+```
+
+Puis ajouter seulement ce qui est nécessaire :
+
+```bash
+docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE image
+```
+
+Nous appliquons le principe du moindre privilège.
+
+---
+
+## 15.14.3. Éviter `--privileged`
+
+`--privileged` donne beaucoup trop de droits.
+
+```bash
+docker run --privileged image
+```
+
+Nous l’évitons sauf cas très spécifique.
+
+Nous préférons identifier le besoin précis :
+
+```text
+capability manquante ?
+périphérique précis ?
+montage précis ?
+profil seccomp trop strict ?
+```
+
+---
+
+# 15.15. Seccomp, AppArmor et SELinux dans les conteneurs
+
+## 15.15.1. Seccomp
+
+Docker applique généralement un profil seccomp par défaut.
+
+Nous évitons :
+
+```bash
+docker run --security-opt seccomp=unconfined image
+```
+
+sauf diagnostic ou besoin justifié.
+
+---
+
+## 15.15.2. AppArmor
+
+Sur Ubuntu/Debian, Docker peut utiliser un profil AppArmor comme :
+
+```text
+docker-default
+```
+
+Nous pouvons observer :
+
+```bash
+cat /proc/<PID>/attr/current
+```
+
+---
+
+## 15.15.3. SELinux
+
+Sur Fedora, RHEL, Rocky, AlmaLinux ou CentOS Stream, SELinux peut confiner les conteneurs.
+
+Un problème de permission peut venir de SELinux même si les permissions Unix semblent correctes.
+
+Nous vérifions :
+
+```bash
+getenforce
+ls -Z
+ps -eZ
+```
+
+---
+
+# 15.16. Construire mentalement un conteneur
+
+## 15.16.1. Les briques
+
+Pour construire un conteneur, nous devons assembler :
+
+```text
+rootfs
+namespace mount
+namespace PID
+namespace UTS
+namespace IPC
+namespace network
+namespace user éventuellement
+cgroups
+capabilities
+seccomp
+AppArmor/SELinux
+processus initial
+```
+
+Ce n’est pas une seule technologie.
+
+C’est une composition.
+
+---
+
+## 15.16.2. Mini-conteneur conceptuel
+
+À la main, nous pourrions faire :
+
+```bash
+unshare --fork --pid --mount --uts --ipc bash
+```
+
+Puis :
+
+```bash
+mount --make-rprivate /
+mount -t proc proc /proc
+hostname mini-container
+```
+
+Mais il manquerait encore :
+
+- un rootfs propre ;
+    
+- un pivot_root ou chroot propre ;
+    
+- un réseau isolé configuré ;
+    
+- des cgroups ;
+    
+- des capabilities réduites ;
+    
+- une politique seccomp ;
+    
+- une gestion correcte du PID 1 ;
+    
+- un nettoyage fiable.
+    
+
+Docker automatise tout cela.
+
+---
+
+# 15.17. Exemple d’analyse complète d’un conteneur
+
+## 15.17.1. Lancement
+
+Nous lançons :
+
+```bash
+docker run --rm -d \
+  --name analyse-demo \
+  --hostname demo \
+  --memory=256m \
+  --pids-limit=128 \
+  alpine sleep 1000
+```
+
+Nous récupérons le PID :
+
+```bash
+pid=$(docker inspect --format '{{.State.Pid}}' analyse-demo)
+```
+
+---
+
+## 15.17.2. Namespaces
+
+```bash
+sudo ls -l /proc/$pid/ns
+```
+
+Nous comparons avec :
+
+```bash
+ls -l /proc/1/ns
+```
+
+Nous identifions les namespaces différents.
+
+---
+
+## 15.17.3. PID
+
+```bash
+sudo grep NSpid /proc/$pid/status
+docker exec analyse-demo ps
+```
+
+Nous observons le PID hôte et le PID interne.
+
+---
+
+## 15.17.4. Hostname
+
+```bash
+docker exec analyse-demo hostname
+sudo nsenter --target "$pid" --uts hostname
+```
+
+Nous vérifions le namespace UTS.
+
+---
+
+## 15.17.5. Réseau
+
+```bash
+sudo nsenter --target "$pid" --net ip addr
+sudo nsenter --target "$pid" --net ip route
+```
+
+Nous observons la pile réseau du conteneur.
+
+---
+
+## 15.17.6. Montages
+
+```bash
+sudo nsenter --target "$pid" --mount findmnt | head
+sudo cat /proc/$pid/mountinfo | head
+```
+
+Nous observons le rootfs et les montages spéciaux.
+
+---
+
+## 15.17.7. Cgroups
+
+```bash
+docker exec analyse-demo sh -c 'cat /proc/self/cgroup'
+docker exec analyse-demo sh -c 'cat /sys/fs/cgroup/memory.max 2>/dev/null || true'
+docker exec analyse-demo sh -c 'cat /sys/fs/cgroup/pids.max 2>/dev/null || true'
+```
+
+Nous vérifions les limites.
+
+---
+
+## 15.17.8. Capabilities
+
+```bash
+docker exec analyse-demo sh -c 'grep Cap /proc/$$/status'
+```
+
+Nous observons les capabilities.
+
+---
+
+## 15.17.9. Nettoyage
+
+```bash
+docker rm -f analyse-demo
+```
+
+---
+
+# 15.18. Pièges classiques
+
+## 15.18.1. Confondre image et conteneur
+
+Une image n’est pas un processus.
+
+Un conteneur est une instance lancée à partir d’une image.
+
+Nous pouvons avoir plusieurs conteneurs basés sur la même image.
+
+---
+
+## 15.18.2. Croire que le conteneur a son propre noyau
+
+Dans un conteneur :
+
+```sh
+uname -a
+```
+
+affiche le noyau de l’hôte.
+
+Le conteneur n’a pas son propre noyau.
+
+---
+
+## 15.18.3. Oublier le rôle du PID 1
+
+Si l’application est PID 1, elle doit gérer :
+
+- signaux ;
+    
+- arrêt propre ;
+    
+- processus enfants ;
+    
+- zombies.
+    
+
+Sinon, nous utilisons un init minimal :
+
+```bash
+docker run --init ...
+```
+
+---
+
+## 15.18.4. Confondre `EXPOSE` et publication de port
+
+Dans un Dockerfile :
+
+```dockerfile
+EXPOSE 8080
+```
+
+documente le port prévu.
+
+Mais cela ne publie pas automatiquement le port sur l’hôte.
+
+Pour publier :
+
+```bash
+docker run -p 8080:8080 image
+```
+
+---
+
+## 15.18.5. Croire qu’un volume est une copie
+
+Un bind mount n’est pas une copie.
+
+Si nous montons :
+
+```bash
+-v "$PWD":/app
+```
+
+le conteneur et l’hôte voient le même contenu.
+
+Une modification dans le conteneur peut modifier l’hôte.
+
+---
+
+## 15.18.6. Utiliser `--privileged` pour résoudre trop vite
+
+Si quelque chose ne marche pas, nous ne lançons pas directement :
+
+```bash
+docker run --privileged ...
+```
+
+Nous identifions le mécanisme en cause :
+
+- permissions fichiers ;
+    
+- UID/GID ;
+    
+- capability manquante ;
+    
+- seccomp ;
+    
+- AppArmor/SELinux ;
+    
+- montage absent ;
+    
+- périphérique nécessaire ;
+    
+- cgroup trop restrictif.
+    
+
+---
+
+# 15.19. Exercices
+
+## Exercice 1 — Observer les namespaces d’un conteneur
+
+Nous lançons :
+
+```bash
+docker run --rm -d --name ns-demo alpine sleep 1000
+pid=$(docker inspect --format '{{.State.Pid}}' ns-demo)
+
+sudo ls -l /proc/$pid/ns
+ls -l /proc/1/ns
+
+docker rm -f ns-demo
+```
+
+Nous répondons :
+
+1. Quels namespaces sont différents de ceux de l’hôte ?
+    
+2. Quels namespaces sont éventuellement partagés ?
+    
+3. Pourquoi un conteneur a-t-il besoin de plusieurs namespaces ?
+    
+
+---
+
+## Exercice 2 — Observer le PID interne et externe
+
+Nous lançons :
+
+```bash
+docker run --rm -d --name pid-demo alpine sleep 1000
+pid=$(docker inspect --format '{{.State.Pid}}' pid-demo)
+
+ps -p "$pid" -o pid,ppid,comm,args
+sudo grep NSpid /proc/$pid/status
+docker exec pid-demo ps
+
+docker rm -f pid-demo
+```
+
+Nous répondons :
+
+1. Quel est le PID du processus sur l’hôte ?
+    
+2. Quel est son PID dans le conteneur ?
+    
+3. Pourquoi les deux valeurs diffèrent-elles ?
+    
+
+---
+
+## Exercice 3 — Observer le réseau du conteneur
+
+Nous lançons :
+
+```bash
+docker run --rm -d --name net-demo alpine sleep 1000
+pid=$(docker inspect --format '{{.State.Pid}}' net-demo)
+
+sudo nsenter --target "$pid" --net ip addr
+sudo nsenter --target "$pid" --net ip route
+
+docker rm -f net-demo
+```
+
+Nous répondons :
+
+1. Quelles interfaces le conteneur voit-il ?
+    
+2. Quelle est sa route par défaut ?
+    
+3. Quel rôle joue le bridge Docker ?
+    
+
+---
+
+## Exercice 4 — Observer les montages du conteneur
+
+Nous lançons :
+
+```bash
+docker run --rm -d --name mnt-demo alpine sleep 1000
+pid=$(docker inspect --format '{{.State.Pid}}' mnt-demo)
+
+sudo nsenter --target "$pid" --mount findmnt | head
+sudo cat /proc/$pid/mountinfo | head
+
+docker rm -f mnt-demo
+```
+
+Nous répondons :
+
+1. Que représente `/` dans le conteneur ?
+    
+2. Voyons-nous `/proc`, `/sys` et `/dev` ?
+    
+3. Pourquoi le namespace mount est-il fondamental ?
+    
+
+---
+
+## Exercice 5 — Comparer volume et couche writable
+
+Nous lançons :
+
+```bash
+mkdir -p /tmp/docker-volume-test
+echo "depuis hote" > /tmp/docker-volume-test/fichier.txt
+
+docker run --rm -it -v /tmp/docker-volume-test:/data alpine sh
+```
+
+Dans le conteneur :
+
+```sh
+cat /data/fichier.txt
+echo "depuis conteneur" > /data/autre.txt
+exit
+```
+
+Sur l’hôte :
+
+```bash
+ls -l /tmp/docker-volume-test
+cat /tmp/docker-volume-test/autre.txt
+```
+
+Nous répondons :
+
+1. Le fichier créé dans le conteneur est-il visible sur l’hôte ?
+    
+2. Pourquoi ?
+    
+3. Quelle différence avec un fichier créé hors volume dans le conteneur ?
+    
+
+---
+
+## Exercice 6 — Observer les limites cgroups
+
+Nous lançons :
+
+```bash
+docker run --rm -d \
+  --name limits-demo \
+  --memory=256m \
+  --pids-limit=64 \
+  alpine sleep 1000
+
+docker exec limits-demo sh -c 'cat /sys/fs/cgroup/memory.max 2>/dev/null || true'
+docker exec limits-demo sh -c 'cat /sys/fs/cgroup/pids.max 2>/dev/null || true'
+
+docker rm -f limits-demo
+```
+
+Nous répondons :
+
+1. Quelle limite mémoire est visible ?
+    
+2. Quelle limite de processus est visible ?
+    
+3. Quel mécanisme applique ces limites ?
+    
+
+---
+
+## Exercice 7 — Analyser les capabilities
+
+Nous comparons :
+
+```bash
+docker run --rm alpine sh -c 'grep Cap /proc/$$/status'
+docker run --rm --cap-drop=ALL alpine sh -c 'grep Cap /proc/$$/status'
+```
+
+Nous répondons :
+
+1. Les capabilities changent-elles ?
+    
+2. Pourquoi est-ce important ?
+    
+3. Pourquoi être root dans le conteneur ne suffit-il pas à comprendre les droits ?
+    
+
+---
+
+# 15.20. Ce que nous devons retenir
+
+Nous retenons les points suivants :
+
+1. Un conteneur Linux est un processus isolé, pas une machine virtuelle.
+    
+2. Le conteneur partage le noyau de l’hôte.
+    
+3. Docker assemble des namespaces, cgroups, capabilities, montages et politiques de sécurité.
+    
+4. Une image est un modèle, un conteneur est une instance en cours d’exécution.
+    
+5. Le rootfs d’un conteneur vient des couches de l’image et d’une couche writable.
+    
+6. Le namespace mount présente ce rootfs comme `/`.
+    
+7. Le namespace PID permet au processus principal d’être PID 1 dans le conteneur.
+    
+8. Le PID 1 doit gérer les signaux et les processus enfants.
+    
+9. Le namespace network donne au conteneur sa propre pile réseau.
+    
+10. Le réseau bridge Docker repose sur des paires `veth`, un bridge et souvent du NAT.
+    
+11. Les volumes et bind mounts ajoutent des montages dans le conteneur.
+    
+12. Les bind mounts peuvent exposer l’hôte.
+    
+13. Les cgroups appliquent les limites CPU, mémoire et pids.
+    
+14. Les capabilities contrôlent les privilèges fins.
+    
+15. Seccomp, AppArmor et SELinux ajoutent des couches de sécurité.
+    
+16. `runc` crée concrètement les namespaces, montages, cgroups et processus.
+    
+17. `containerd` gère le cycle de vie des conteneurs à plus bas niveau.
+    
+18. Docker fournit une interface plus haut niveau.
+    
+19. `docker exec` lance un processus dans les namespaces du conteneur.
+    
+20. `nsenter` permet d’entrer directement dans les namespaces depuis l’hôte.
+    
+21. Pour diagnostiquer un conteneur, nous croisons `/proc`, `nsenter`, cgroups, montages, réseau et capabilities.
+    
+
+---
+
+# Conclusion du chapitre 15
+
+Nous avons relié les namespaces au fonctionnement concret des conteneurs.
+
+Nous savons maintenant qu’un conteneur n’est pas une machine virtuelle, mais un processus lancé dans un environnement soigneusement construit. Docker, Podman, containerd ou `runc` assemblent des namespaces, des cgroups, des montages, des capabilities et des politiques de sécurité pour produire cette isolation.
+
+Nous avons aussi compris la différence entre image, root filesystem et conteneur. L’image fournit les fichiers, le namespace mount présente ces fichiers comme racine, le namespace PID donne une vue de processus isolée, le namespace network fournit une pile réseau séparée, et les cgroups limitent les ressources.
+
+Nous retenons surtout qu’un conteneur est une composition de mécanismes Linux. Pour diagnostiquer ou sécuriser un conteneur, nous devons donc raisonner couche par couche : processus, montages, réseau, utilisateurs, cgroups, capabilities et sécurité.
+
+Dans le chapitre suivant, nous étudions les namespaces dans Kubernetes, où ces mêmes mécanismes sont utilisés à l’échelle de pods, de nœuds, de workloads et de clusters.
+
+# Chapitre 16 — Namespaces dans Kubernetes
+
+## Objectifs du chapitre
+
+Dans ce chapitre, nous étudions l’usage des namespaces Linux dans Kubernetes.
+
+Nous avons déjà compris que Docker, Podman et les runtimes OCI utilisent les namespaces pour isoler des processus. Kubernetes reprend ces mêmes mécanismes, mais à une échelle supérieure : il ne gère pas seulement des conteneurs isolés, il orchestre des pods sur un ensemble de nœuds.
+
+Le point central est le suivant :
+
+```text
+Dans Kubernetes, l’unité fondamentale n’est pas le conteneur seul.
+L’unité fondamentale d’exécution est le pod.
+```
+
+À la fin de ce chapitre, nous savons :
+
+- expliquer le rôle du pod comme unité d’isolation ;
+    
+- comprendre quels namespaces sont partagés entre conteneurs d’un même pod ;
+    
+- comprendre le rôle du pause container ;
+    
+- expliquer pourquoi les conteneurs d’un même pod partagent souvent le réseau ;
+    
+- comprendre les options `hostNetwork`, `hostPID` et `hostIPC` ;
+    
+- faire le lien entre CNI et namespaces réseau ;
+    
+- comprendre le rôle du `securityContext` ;
+    
+- utiliser les ephemeral containers pour le debug ;
+    
+- relier Kubernetes aux notions de namespaces, cgroups, capabilities et sécurité.
+    
+
+---
+
+# 16.1. Rappel : Kubernetes orchestre des conteneurs
+
+## 16.1.1. Kubernetes ne remplace pas le noyau Linux
+
+Kubernetes n’invente pas une nouvelle forme magique d’isolation.
+
+Il s’appuie sur les mécanismes Linux que nous avons étudiés :
+
+```text
+namespaces
+cgroups
+capabilities
+seccomp
+AppArmor ou SELinux
+mounts
+réseau virtuel
+runtimes de conteneurs
+```
+
+Kubernetes demande au runtime de conteneurs de créer les environnements d’exécution.
+
+Selon les installations, ce runtime peut être par exemple :
+
+```text
+containerd
+CRI-O
+```
+
+Ces runtimes utilisent ensuite des runtimes OCI comme `runc` ou d’autres implémentations compatibles.
+
+---
+
+## 16.1.2. Kubernetes travaille au niveau du pod
+
+Dans Docker seul, nous pensons souvent en termes de conteneur.
+
+Dans Kubernetes, nous pensons d’abord en termes de pod.
+
+Un pod peut contenir :
+
+- un seul conteneur ;
+    
+- plusieurs conteneurs applicatifs ;
+    
+- un conteneur principal et un ou plusieurs sidecars ;
+    
+- des init containers ;
+    
+- des ephemeral containers pour le debug.
+    
+
+Le pod est donc une enveloppe logique qui regroupe un ou plusieurs conteneurs partageant certaines ressources.
+
+---
+
+# 16.2. Qu’est-ce qu’un pod ?
+
+## 16.2.1. Définition
+
+Un pod est la plus petite unité déployable dans Kubernetes.
+
+Il représente un groupe de conteneurs qui doivent fonctionner ensemble sur le même nœud.
+
+Ces conteneurs partagent généralement :
+
+```text
+un namespace réseau
+une adresse IP de pod
+certains volumes
+une durée de vie commune
+un contexte de planification
+```
+
+Ils ne sont pas répartis sur plusieurs machines : tous les conteneurs d’un même pod s’exécutent sur le même nœud.
+
+---
+
+## 16.2.2. Exemple simple de pod à un conteneur
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-simple
+spec:
+  containers:
+    - name: app
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+```
+
+Ce pod contient un seul conteneur.
+
+Même dans ce cas simple, Kubernetes crée un environnement réseau, des montages, des cgroups et des namespaces autour de ce conteneur.
+
+---
+
+## 16.2.3. Exemple de pod avec sidecar
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-sidecar
+spec:
+  containers:
+    - name: app
+      image: mon-app:latest
+      ports:
+        - containerPort: 8080
+
+    - name: sidecar-logs
+      image: fluent-bit:latest
+```
+
+Ici, le pod contient deux conteneurs :
+
+```text
+app
+sidecar-logs
+```
+
+Ils vivent ensemble et peuvent partager certains volumes et le réseau du pod.
+
+---
+
+# 16.3. Namespaces Linux et namespaces Kubernetes
+
+## 16.3.1. Attention à l’ambiguïté du mot namespace
+
+Kubernetes utilise aussi le mot `namespace`.
+
+Mais un namespace Kubernetes n’est pas un namespace Linux.
+
+Nous devons distinguer :
+
+|Terme|Signification|
+|---|---|
+|Namespace Linux|mécanisme noyau d’isolation des processus|
+|Namespace Kubernetes|espace logique pour organiser les objets Kubernetes|
+
+Un namespace Kubernetes sert à organiser des objets comme :
+
+```text
+pods
+services
+deployments
+configmaps
+secrets
+roles
+```
+
+Exemples :
+
+```bash
+kubectl get namespaces
+kubectl get pods -n default
+kubectl get pods -n kube-system
+```
+
+Cela n’a pas le même sens que :
+
+```bash
+readlink /proc/$$/ns/net
+```
+
+---
+
+## 16.3.2. Exemple de namespace Kubernetes
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+```
+
+Ce namespace Kubernetes organise les ressources nommées `production`.
+
+Il ne crée pas directement un namespace Linux.
+
+Un pod dans le namespace Kubernetes `production` aura néanmoins ses propres namespaces Linux au moment de son exécution sur un nœud.
+
+---
+
+## 16.3.3. Règle de vocabulaire
+
+Nous retenons :
+
+```text
+Namespace Kubernetes = organisation logique du cluster.
+Namespace Linux = isolation noyau d’un processus.
+```
+
+Dans ce chapitre, quand nous parlons de namespaces sans précision, nous parlons des namespaces Linux utilisés par les pods et conteneurs.
+
+---
+
+# 16.4. Les namespaces Linux dans un pod
+
+## 16.4.1. Vue d’ensemble
+
+Un pod Kubernetes utilise plusieurs namespaces Linux.
+
+Selon la configuration, il peut utiliser :
+
+```text
+network namespace
+PID namespace
+mount namespace
+UTS namespace
+IPC namespace
+user namespace
+cgroup namespace
+time namespace selon runtime et noyau
+```
+
+Mais tous ne sont pas nécessairement partagés de la même manière entre les conteneurs du pod.
+
+---
+
+## 16.4.2. Partage classique
+
+Dans un pod classique :
+
+|Namespace Linux|Comportement typique|
+|---|---|
+|Network|partagé entre les conteneurs du pod|
+|Mount|propre à chaque conteneur, avec volumes communs montés|
+|PID|souvent séparé par conteneur, sauf option de partage|
+|IPC|généralement isolé du host, modalités selon runtime|
+|UTS|identité liée au pod/conteneur selon runtime|
+|User|dépend de la configuration et du support|
+|Cgroup|organisé par pod et conteneur|
+|Time|rarement manipulé directement|
+
+Le point le plus important est le partage du namespace réseau.
+
+---
+
+# 16.5. Le namespace réseau du pod
+
+## 16.5.1. Une IP par pod
+
+Dans Kubernetes, chaque pod reçoit généralement sa propre adresse IP.
+
+Cette IP appartient au pod, pas à chaque conteneur individuellement.
+
+Exemple :
+
+```bash
+kubectl get pod -o wide
+```
+
+Sortie possible :
+
+```text
+NAME        READY   STATUS    IP           NODE
+web-abc     1/1     Running   10.244.1.23  node-1
+```
+
+L’adresse `10.244.1.23` est l’IP du pod.
+
+---
+
+## 16.5.2. Les conteneurs d’un même pod partagent le réseau
+
+Si un pod contient deux conteneurs, ils partagent généralement le même namespace réseau.
+
+Cela signifie qu’ils partagent :
+
+```text
+la même IP
+les mêmes interfaces
+les mêmes routes
+le même loopback
+les mêmes ports
+la même pile réseau
+```
+
+Conséquence importante :
+
+```text
+Deux conteneurs d’un même pod peuvent communiquer via localhost.
+```
+
+---
+
+## 16.5.3. Exemple : app et sidecar
+
+Imaginons un pod :
+
+```text
+Pod
+├── app écoute sur 127.0.0.1:8080
+└── sidecar proxy
+```
+
+Le sidecar peut joindre l’application avec :
+
+```text
+http://127.0.0.1:8080
+```
+
+car il partage le même namespace réseau.
+
+C’est la base de nombreux modèles sidecar :
+
+- proxy service mesh ;
+    
+- collecteur de logs ;
+    
+- agent de supervision ;
+    
+- proxy de sécurité ;
+    
+- adaptateur réseau local.
+    
+
+---
+
+## 16.5.4. Conséquence sur les ports
+
+Comme les conteneurs d’un pod partagent le même namespace réseau, ils ne peuvent pas écouter sur le même port et la même adresse en même temps.
+
+Exemple problématique :
+
+```text
+container A écoute sur 0.0.0.0:8080
+container B essaie aussi d’écouter sur 0.0.0.0:8080
+```
+
+Le second échoue généralement avec :
+
+```text
+Address already in use
+```
+
+C’est normal : dans le pod, le port appartient au namespace réseau partagé.
+
+---
+
+# 16.6. Le pause container
+
+## 16.6.1. Pourquoi existe-t-il ?
+
+Kubernetes utilise généralement un conteneur spécial appelé `pause container`, ou conteneur sandbox.
+
+Son rôle est de maintenir certains namespaces du pod, en particulier le namespace réseau.
+
+Conceptuellement :
+
+```text
+pause container
+  détient le namespace réseau du pod
+
+container app
+  rejoint ce namespace réseau
+
+container sidecar
+  rejoint ce même namespace réseau
+```
+
+Le pause container est très minimal. Il ne fait presque rien, mais il sert d’ancrage aux namespaces du pod.
+
+---
+
+## 16.6.2. Pourquoi ne pas attacher le réseau au conteneur applicatif ?
+
+Si le namespace réseau était attaché uniquement au premier conteneur applicatif, que se passerait-il si ce conteneur redémarrait ?
+
+Kubernetes veut que le pod conserve une identité réseau stable pendant la durée de vie du pod.
+
+Le pause container aide à maintenir cette stabilité.
+
+Ainsi, les autres conteneurs peuvent redémarrer sans nécessairement recréer toute la sandbox réseau du pod.
+
+---
+
+## 16.6.3. Observer le pause container
+
+Sur un nœud, avec les outils du runtime, nous pouvons parfois voir des conteneurs pause.
+
+Avec `crictl`, par exemple :
+
+```bash
+sudo crictl ps -a
+```
+
+Nous pouvons voir des images ou noms liés à `pause`.
+
+Selon le runtime et la distribution Kubernetes, les détails peuvent varier.
+
+---
+
+# 16.7. CNI et namespace réseau
+
+## 16.7.1. Qu’est-ce que CNI ?
+
+CNI signifie Container Network Interface.
+
+C’est une spécification qui permet aux runtimes de déléguer la configuration réseau des pods à des plugins.
+
+Kubernetes ne configure pas directement toute la connectivité réseau. Il appelle un plugin CNI.
+
+Exemples de solutions CNI :
+
+```text
+Calico
+Cilium
+Flannel
+Canal
+Antrea
+Weave Net
+```
+
+---
+
+## 16.7.2. Ce que fait un plugin CNI
+
+Un plugin CNI configure généralement :
+
+- le namespace réseau du pod ;
+    
+- une interface dans le pod, souvent `eth0` ;
+    
+- une paire `veth` ;
+    
+- les routes ;
+    
+- la connectivité entre nœuds ;
+    
+- les règles de pare-feu ;
+    
+- éventuellement eBPF ;
+    
+- les NetworkPolicies.
+    
+
+Schéma conceptuel :
+
+```text
+pod network namespace
+  eth0
+   |
+veth
+   |
+nœud
+   |
+CNI / bridge / routage / eBPF / overlay
+   |
+réseau cluster
+```
+
+---
+
+## 16.7.3. Observer depuis un pod
+
+Dans un pod :
+
+```bash
+ip addr
+ip route
+cat /proc/net/dev
+```
+
+Nous voyons la pile réseau du pod.
+
+Mais dans une image minimale, `ip` peut manquer. Dans ce cas, nous pouvons utiliser un conteneur de debug ou entrer depuis le nœud avec `nsenter`.
+
+---
+
+## 16.7.4. NetworkPolicy
+
+Les NetworkPolicies Kubernetes permettent de définir quelles communications sont autorisées.
+
+Elles ne sont pas appliquées par les namespaces Linux seuls.
+
+Elles dépendent du plugin CNI.
+
+Nous retenons :
+
+```text
+Namespace réseau = isolation de la pile réseau.
+CNI = configuration de la connectivité.
+NetworkPolicy = politique de communication, si le CNI la supporte.
+```
+
+---
+
+# 16.8. PID namespace dans Kubernetes
+
+## 16.8.1. Vue par défaut
+
+Par défaut, les processus d’un conteneur sont généralement isolés des autres conteneurs et de l’hôte au niveau PID.
+
+Dans un conteneur :
+
+```bash
+ps
+```
+
+nous voyons souvent seulement les processus du conteneur.
+
+Mais Kubernetes peut configurer le partage de processus au niveau du pod.
+
+---
+
+## 16.8.2. `shareProcessNamespace`
+
+Kubernetes permet :
+
+```yaml
+spec:
+  shareProcessNamespace: true
+```
+
+Cela permet aux conteneurs d’un même pod de voir leurs processus respectifs.
+
+Exemple :
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pid-shared-demo
+spec:
+  shareProcessNamespace: true
+  containers:
+    - name: app
+      image: busybox
+      command: ["sh", "-c", "sleep 3600"]
+
+    - name: debug
+      image: busybox
+      command: ["sh", "-c", "sleep 3600"]
+```
+
+Dans le conteneur `debug`, nous pouvons voir les processus du conteneur `app`.
+
+---
+
+## 16.8.3. Pourquoi partager les processus ?
+
+Cela peut être utile pour :
+
+- debug ;
+    
+- sidecar de supervision ;
+    
+- agents de diagnostic ;
+    
+- collecte de traces ;
+    
+- gestion de processus entre conteneurs du même pod.
+    
+
+Mais cela réduit l’isolation entre conteneurs du pod.
+
+Nous l’activons seulement si le besoin est clair.
+
+---
+
+## 16.8.4. `hostPID`
+
+Kubernetes permet aussi :
+
+```yaml
+spec:
+  hostPID: true
+```
+
+Dans ce cas, le pod partage le namespace PID de l’hôte.
+
+C’est beaucoup plus sensible.
+
+Conséquences :
+
+- le pod voit les processus du nœud ;
+    
+- il peut exposer des informations sensibles ;
+    
+- il peut interagir avec certains processus selon permissions ;
+    
+- il réduit fortement l’isolation.
+    
+
+Nous évitons `hostPID: true` sauf cas spécifique, par exemple certains agents système.
+
+---
+
+# 16.9. Namespace network partagé avec l’hôte : `hostNetwork`
+
+## 16.9.1. Principe
+
+Kubernetes permet :
+
+```yaml
+spec:
+  hostNetwork: true
+```
+
+Dans ce cas, le pod partage le namespace réseau de l’hôte.
+
+Il ne reçoit pas une IP de pod classique de la même manière.
+
+Il utilise directement la pile réseau du nœud.
+
+---
+
+## 16.9.2. Conséquences
+
+Avec `hostNetwork: true` :
+
+- le pod voit les interfaces réseau du nœud ;
+    
+- il partage les ports du nœud ;
+    
+- il peut écouter directement sur les adresses du nœud ;
+    
+- il peut entrer en conflit avec d’autres services du nœud ;
+    
+- il contourne une partie de l’isolation réseau habituelle ;
+    
+- le diagnostic réseau change.
+    
+
+Exemple :
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostnetwork-demo
+spec:
+  hostNetwork: true
+  containers:
+    - name: app
+      image: nginx:alpine
+```
+
+---
+
+## 16.9.3. Cas d’usage possibles
+
+`hostNetwork` peut être utilisé pour :
+
+- agents réseau ;
+    
+- composants de monitoring bas niveau ;
+    
+- certains DaemonSets ;
+    
+- composants CNI ;
+    
+- outils qui doivent écouter directement sur le réseau du nœud.
+    
+
+Mais nous ne l’utilisons pas pour une application standard sans raison forte.
+
+---
+
+# 16.10. Namespace IPC dans Kubernetes
+
+## 16.10.1. Isolation IPC
+
+Les pods utilisent généralement une isolation IPC par rapport à l’hôte.
+
+Les ressources IPC de l’hôte ne sont pas directement visibles depuis les conteneurs ordinaires.
+
+---
+
+## 16.10.2. `hostIPC`
+
+Kubernetes permet :
+
+```yaml
+spec:
+  hostIPC: true
+```
+
+Dans ce cas, le pod partage le namespace IPC de l’hôte.
+
+C’est sensible.
+
+Conséquences :
+
+- visibilité sur certaines ressources IPC de l’hôte ;
+    
+- interaction possible avec des segments de mémoire partagée, sémaphores ou files de messages selon permissions ;
+    
+- réduction de l’isolation.
+    
+
+Nous l’évitons sauf besoin système très spécifique.
+
+---
+
+## 16.10.3. `/dev/shm`
+
+Certaines applications ont besoin d’un `/dev/shm` plus grand.
+
+Nous pouvons utiliser un volume `emptyDir` en mémoire :
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shm-demo
+spec:
+  volumes:
+    - name: dshm
+      emptyDir:
+        medium: Memory
+        sizeLimit: 1Gi
+  containers:
+    - name: app
+      image: mon-app:latest
+      volumeMounts:
+        - name: dshm
+          mountPath: /dev/shm
+```
+
+Cela évite d’utiliser `hostIPC` pour un simple problème de mémoire partagée.
+
+---
+
+# 16.11. Mount namespaces et volumes Kubernetes
+
+## 16.11.1. Chaque conteneur a sa vue de montages
+
+Chaque conteneur d’un pod a généralement son propre namespace mount.
+
+Cela signifie que chaque conteneur peut avoir une vue de fichiers adaptée.
+
+Mais Kubernetes peut monter les mêmes volumes dans plusieurs conteneurs.
+
+---
+
+## 16.11.2. Exemple de volume partagé
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-shared-demo
+spec:
+  volumes:
+    - name: shared-data
+      emptyDir: {}
+  containers:
+    - name: producer
+      image: busybox
+      command: ["sh", "-c", "echo hello > /data/message.txt && sleep 3600"]
+      volumeMounts:
+        - name: shared-data
+          mountPath: /data
+
+    - name: consumer
+      image: busybox
+      command: ["sh", "-c", "cat /data/message.txt; sleep 3600"]
+      volumeMounts:
+        - name: shared-data
+          mountPath: /data
+```
+
+Les deux conteneurs ont chacun leur namespace mount, mais ils voient le même volume à `/data`.
+
+---
+
+## 16.11.3. Types de volumes
+
+Kubernetes peut monter différents types de volumes :
+
+```text
+emptyDir
+configMap
+secret
+persistentVolumeClaim
+hostPath
+projected
+downwardAPI
+CSI volumes
+```
+
+Chaque volume est intégré dans la vue de montage du conteneur.
+
+---
+
+## 16.11.4. `hostPath`
+
+`hostPath` monte un chemin du nœud dans le pod.
+
+Exemple :
+
+```yaml
+volumes:
+  - name: host-logs
+    hostPath:
+      path: /var/log
+```
+
+C’est puissant, mais sensible.
+
+Risques :
+
+- exposition de fichiers du nœud ;
+    
+- modification accidentelle ;
+    
+- dépendance au nœud ;
+    
+- réduction de portabilité ;
+    
+- risque de sécurité si le chemin est critique.
+    
+
+Nous évitons `hostPath` sauf besoin bien justifié.
+
+---
+
+# 16.12. Cgroups dans Kubernetes
+
+## 16.12.1. Requests et limits
+
+Kubernetes utilise les cgroups pour appliquer les limites.
+
+Exemple :
+
+```yaml
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "500m"
+  limits:
+    memory: "512Mi"
+    cpu: "1"
+```
+
+Nous interprétons :
+
+```text
+request memory = mémoire demandée pour la planification
+limit memory   = mémoire maximale autorisée
+request cpu    = CPU demandé
+limit cpu      = CPU maximal autorisé
+```
+
+---
+
+## 16.12.2. Organisation par pod et conteneur
+
+Sur le nœud, les processus des pods sont organisés dans une hiérarchie cgroup.
+
+Nous pouvons voir des chemins liés à :
+
+```text
+kubepods
+burstable
+besteffort
+guaranteed
+pod UID
+container ID
+```
+
+Les détails dépendent de :
+
+- cgroups v1 ou v2 ;
+    
+- systemd ou cgroupfs ;
+    
+- runtime ;
+    
+- distribution ;
+    
+- configuration du cluster.
+    
+
+---
+
+## 16.12.3. OOMKilled
+
+Si un conteneur dépasse sa limite mémoire, le noyau peut tuer le processus.
+
+Kubernetes affiche alors souvent :
+
+```text
+OOMKilled
+```
+
+Nous diagnostiquons avec :
+
+```bash
+kubectl describe pod <pod>
+kubectl logs <pod> --previous
+kubectl top pod
+kubectl get events
+```
+
+Le mécanisme bas niveau est le contrôleur mémoire des cgroups.
+
+---
+
+# 16.13. SecurityContext
+
+## 16.13.1. Rôle
+
+Le `securityContext` permet de configurer des paramètres de sécurité au niveau du pod ou du conteneur.
+
+Il peut définir notamment :
+
+- utilisateur d’exécution ;
+    
+- groupe ;
+    
+- capabilities ;
+    
+- mode privilégié ;
+    
+- seccomp ;
+    
+- root filesystem en lecture seule ;
+    
+- élévation de privilèges ;
+    
+- SELinux ;
+    
+- AppArmor selon configuration.
+    
+
+---
+
+## 16.13.2. Exemple de conteneur durci
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secure-demo
+spec:
+  containers:
+    - name: app
+      image: nginx:alpine
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+        seccompProfile:
+          type: RuntimeDefault
+```
+
+Cette configuration applique plusieurs bonnes pratiques :
+
+```text
+non-root
+pas d’élévation de privilèges
+rootfs en lecture seule
+capabilities supprimées
+seccomp par défaut du runtime
+```
+
+---
+
+## 16.13.3. `privileged`
+
+Kubernetes permet :
+
+```yaml
+securityContext:
+  privileged: true
+```
+
+C’est très sensible.
+
+Un conteneur privilégié reçoit des droits très larges.
+
+Nous ne l’utilisons pas pour contourner rapidement un problème de permission. Nous cherchons d’abord le besoin exact :
+
+```text
+capability manquante
+périphérique nécessaire
+volume nécessaire
+profil seccomp trop restrictif
+AppArmor ou SELinux
+```
+
+---
+
+## 16.13.4. Capabilities
+
+Nous pouvons ajouter ou retirer des capabilities :
+
+```yaml
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+    add:
+      - NET_BIND_SERVICE
+```
+
+Nous préférons supprimer toutes les capabilities puis ajouter uniquement celles nécessaires.
+
+---
+
+# 16.14. User namespaces dans Kubernetes
+
+## 16.14.1. Pourquoi c’est utile
+
+Le user namespace permet de mapper l’UID `0` dans le conteneur vers un UID non privilégié sur l’hôte.
+
+Cela réduit l’impact potentiel d’une compromission.
+
+Dans Kubernetes, l’usage des user namespaces dépend du runtime, de la version du cluster, de la configuration des nœuds et des fonctionnalités activées.
+
+---
+
+## 16.14.2. Différence avec `runAsUser`
+
+`runAsUser` change l’utilisateur utilisé dans le conteneur.
+
+Exemple :
+
+```yaml
+securityContext:
+  runAsUser: 10001
+```
+
+Mais cela ne crée pas nécessairement un user namespace.
+
+Nous devons distinguer :
+
+```text
+runAsUser    = UID utilisé par le processus dans le conteneur
+user namespace = mapping UID/GID entre conteneur et hôte
+```
+
+Les deux mécanismes peuvent se compléter, mais ils ne sont pas identiques.
+
+---
+
+## 16.14.3. Problèmes avec les volumes
+
+Les user namespaces peuvent compliquer les permissions sur les volumes.
+
+Un fichier peut apparaître avec un UID différent selon :
+
+- le mapping UID/GID ;
+    
+- le type de volume ;
+    
+- le système de fichiers ;
+    
+- le runtime ;
+    
+- la politique de sécurité ;
+    
+- l’utilisateur d’exécution.
+    
+
+Nous diagnostiquons avec :
+
+```bash
+id
+ls -ln /chemin
+cat /proc/self/uid_map
+cat /proc/self/gid_map
+```
+
+---
+
+# 16.15. Ephemeral containers pour le debug
+
+## 16.15.1. Problème des images minimales
+
+Les images de production sont souvent minimales.
+
+Elles peuvent ne pas contenir :
+
+```text
+sh
+bash
+ip
+ss
+ps
+curl
+dig
+tcpdump
+strace
+```
+
+Cela complique le diagnostic.
+
+---
+
+## 16.15.2. Principe des ephemeral containers
+
+Les ephemeral containers permettent d’ajouter temporairement un conteneur de debug dans un pod existant.
+
+Nous pouvons utiliser :
+
+```bash
+kubectl debug -it <pod> --image=busybox --target=<container>
+```
+
+Selon le cluster et les permissions, cela ajoute un conteneur de debug qui peut partager certains namespaces avec le pod ou cibler un conteneur existant.
+
+---
+
+## 16.15.3. Intérêt
+
+Cela permet de diagnostiquer :
+
+- réseau du pod ;
+    
+- DNS ;
+    
+- montages ;
+    
+- processus selon configuration ;
+    
+- fichiers visibles ;
+    
+- environnement d’exécution.
+    
+
+Nous évitons ainsi de mettre des outils de debug dans les images de production.
+
+---
+
+## 16.15.4. Limites
+
+Les ephemeral containers :
+
+- nécessitent des droits Kubernetes ;
+    
+- ne sont pas faits pour exécuter une charge durable ;
+    
+- peuvent ne pas partager tous les namespaces selon configuration ;
+    
+- doivent respecter les politiques de sécurité du cluster ;
+    
+- ne résolvent pas tous les problèmes d’observabilité.
+    
+
+---
+
+# 16.16. Debug réseau dans Kubernetes
+
+## 16.16.1. Questions à se poser
+
+Quand un pod ne communique pas, nous demandons :
+
+```text
+Le pod a-t-il une IP ?
+L’interface eth0 est-elle présente ?
+La route par défaut existe-t-elle ?
+Le DNS fonctionne-t-il ?
+Le service Kubernetes pointe-t-il vers les bons endpoints ?
+La NetworkPolicy autorise-t-elle le trafic ?
+Le CNI fonctionne-t-il ?
+Le problème vient-il du pod, du service, du nœud ou du cluster ?
+```
+
+---
+
+## 16.16.2. Commandes utiles
+
+```bash
+kubectl get pod -o wide
+kubectl describe pod <pod>
+kubectl get svc
+kubectl get endpoints
+kubectl exec -it <pod> -- ip addr
+kubectl exec -it <pod> -- ip route
+kubectl exec -it <pod> -- nslookup kubernetes.default
+```
+
+Si l’image ne contient pas les outils :
+
+```bash
+kubectl debug -it <pod> --image=nicolaka/netshoot
+```
+
+Selon les politiques du cluster, l’image de debug peut être différente.
+
+---
+
+## 16.16.3. Comprendre `localhost`
+
+Dans un pod multi-conteneurs :
+
+```text
+localhost désigne le namespace réseau partagé du pod.
+```
+
+Donc si un conteneur `app` écoute sur `127.0.0.1:8080`, un sidecar du même pod peut le joindre avec :
+
+```text
+http://127.0.0.1:8080
+```
+
+Mais un autre pod ne peut pas utiliser ce `localhost`. Il doit utiliser l’IP du pod ou un Service Kubernetes.
+
+---
+
+# 16.17. Debug PID dans Kubernetes
+
+## 16.17.1. Voir les processus
+
+Dans un conteneur :
+
+```bash
+kubectl exec -it <pod> -- ps -ef
+```
+
+Nous voyons les processus visibles dans le namespace PID du conteneur ou du pod selon configuration.
+
+---
+
+## 16.17.2. Avec `shareProcessNamespace`
+
+Si le pod a :
+
+```yaml
+shareProcessNamespace: true
+```
+
+un conteneur de debug peut voir les processus des autres conteneurs du pod.
+
+Cela est utile pour :
+
+- observer un processus ;
+    
+- envoyer un signal ;
+    
+- lire `/proc/<PID>` selon permissions ;
+    
+- diagnostiquer des zombies ;
+    
+- analyser le PID 1.
+    
+
+---
+
+## 16.17.3. Avec `hostPID`
+
+Si le pod a :
+
+```yaml
+hostPID: true
+```
+
+il voit les processus du nœud.
+
+C’est utile pour certains agents système, mais sensible.
+
+Nous devons éviter cette option pour les applications standards.
+
+---
+
+# 16.18. Debug des montages dans Kubernetes
+
+## 16.18.1. Problèmes fréquents
+
+Les problèmes de montage peuvent venir de :
+
+- volume absent ;
+    
+- mauvais `mountPath` ;
+    
+- secret ou configMap non monté ;
+    
+- permissions incorrectes ;
+    
+- `readOnly` activé ;
+    
+- `subPath` mal utilisé ;
+    
+- PVC non attaché ;
+    
+- `hostPath` dépendant du nœud ;
+    
+- root filesystem en lecture seule.
+    
+
+---
+
+## 16.18.2. Commandes utiles
+
+```bash
+kubectl describe pod <pod>
+kubectl exec -it <pod> -- mount
+kubectl exec -it <pod> -- findmnt
+kubectl exec -it <pod> -- ls -la /chemin
+kubectl exec -it <pod> -- id
+kubectl exec -it <pod> -- ls -ln /chemin
+```
+
+Si `findmnt` n’est pas disponible, nous pouvons utiliser :
+
+```bash
+kubectl exec -it <pod> -- cat /proc/self/mountinfo
+```
+
+---
+
+## 16.18.3. `readOnlyRootFilesystem`
+
+Si nous activons :
+
+```yaml
+readOnlyRootFilesystem: true
+```
+
+l’application ne peut plus écrire partout.
+
+Nous devons prévoir des volumes pour les chemins nécessaires :
+
+```yaml
+volumeMounts:
+  - name: tmp
+    mountPath: /tmp
+volumes:
+  - name: tmp
+    emptyDir: {}
+```
+
+Nous devons donc connaître les besoins d’écriture de l’application.
+
+---
+
+# 16.19. Options sensibles dans Kubernetes
+
+## 16.19.1. `hostNetwork`
+
+```yaml
+hostNetwork: true
+```
+
+Risque :
+
+```text
+partage du réseau du nœud
+conflits de ports
+exposition directe
+réduction de l’isolation réseau
+```
+
+---
+
+## 16.19.2. `hostPID`
+
+```yaml
+hostPID: true
+```
+
+Risque :
+
+```text
+visibilité sur les processus du nœud
+fuite d’informations
+interactions possibles selon permissions
+```
+
+---
+
+## 16.19.3. `hostIPC`
+
+```yaml
+hostIPC: true
+```
+
+Risque :
+
+```text
+partage des IPC du nœud
+exposition possible de mémoire partagée ou sémaphores
+```
+
+---
+
+## 16.19.4. `privileged`
+
+```yaml
+securityContext:
+  privileged: true
+```
+
+Risque :
+
+```text
+capabilities étendues
+accès plus large aux périphériques
+affaiblissement de seccomp/AppArmor/SELinux selon configuration
+```
+
+---
+
+## 16.19.5. `hostPath`
+
+```yaml
+hostPath:
+  path: /
+```
+
+Risque :
+
+```text
+exposition du système de fichiers du nœud
+modifications accidentelles ou malveillantes
+dépendance forte au nœud
+```
+
+Nous traitons ces options comme des exceptions, pas comme des paramètres ordinaires.
+
+---
+
+# 16.20. Méthode d’analyse d’un pod
+
+## 16.20.1. Étape 1 : identifier le pod et le nœud
+
+```bash
+kubectl get pod <pod> -o wide
+kubectl describe pod <pod>
+```
+
+Nous regardons :
+
+- nœud ;
+    
+- IP du pod ;
+    
+- conteneurs ;
+    
+- événements ;
+    
+- volumes ;
+    
+- securityContext ;
+    
+- ressources ;
+    
+- redémarrages.
+    
+
+---
+
+## 16.20.2. Étape 2 : observer depuis le pod
+
+```bash
+kubectl exec -it <pod> -- hostname
+kubectl exec -it <pod> -- id
+kubectl exec -it <pod> -- cat /proc/self/cgroup
+kubectl exec -it <pod> -- ls -l /proc/self/ns
+kubectl exec -it <pod> -- ps -ef
+kubectl exec -it <pod> -- cat /proc/self/mountinfo
+```
+
+Selon l’image, certaines commandes peuvent manquer.
+
+---
+
+## 16.20.3. Étape 3 : utiliser un conteneur de debug
+
+```bash
+kubectl debug -it <pod> --image=busybox
+```
+
+ou une image plus riche :
+
+```bash
+kubectl debug -it <pod> --image=nicolaka/netshoot
+```
+
+Nous utilisons ce conteneur pour vérifier :
+
+- DNS ;
+    
+- réseau ;
+    
+- routes ;
+    
+- ports ;
+    
+- montages ;
+    
+- processus selon partage ;
+    
+- accès aux services.
+    
+
+---
+
+## 16.20.4. Étape 4 : analyser les options sensibles
+
+Nous cherchons dans le manifeste :
+
+```yaml
+hostNetwork: true
+hostPID: true
+hostIPC: true
+securityContext:
+  privileged: true
+hostPath:
+```
+
+Si ces options sont présentes, nous évaluons leur justification et leur impact.
+
+---
+
+# 16.21. Exemple complet de pod multi-conteneurs
+
+## 16.21.1. Manifeste
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-demo
+spec:
+  volumes:
+    - name: shared
+      emptyDir: {}
+
+  containers:
+    - name: app
+      image: busybox
+      command: ["sh", "-c", "echo hello > /shared/message.txt; nc -lk -p 8080"]
+      volumeMounts:
+        - name: shared
+          mountPath: /shared
+
+    - name: sidecar
+      image: busybox
+      command: ["sh", "-c", "while true; do cat /shared/message.txt; sleep 10; done"]
+      volumeMounts:
+        - name: shared
+          mountPath: /shared
+```
+
+Ce pod illustre :
+
+- volume partagé ;
+    
+- namespace réseau partagé ;
+    
+- conteneurs distincts ;
+    
+- durée de vie commune.
+    
+
+---
+
+## 16.21.2. Observations
+
+Nous pouvons tester :
+
+```bash
+kubectl apply -f pod.yaml
+kubectl get pod multi-container-demo -o wide
+kubectl exec -it multi-container-demo -c app -- hostname
+kubectl exec -it multi-container-demo -c sidecar -- cat /shared/message.txt
+```
+
+Pour tester le réseau partagé, si les outils sont disponibles :
+
+```bash
+kubectl exec -it multi-container-demo -c sidecar -- wget -qO- http://127.0.0.1:8080
+```
+
+Nous observons que le sidecar rejoint le service exposé localement par `app`, car ils partagent le namespace réseau du pod.
+
+---
+
+# 16.22. Travaux pratiques
+
+## TP 1 — Observer les namespaces d’un pod
+
+Dans un pod disposant de `ls` :
+
+```bash
+kubectl exec -it <pod> -- ls -l /proc/self/ns
+```
+
+Nous répondons :
+
+1. Quels namespaces voyons-nous ?
+    
+2. Le pod voit-il un namespace réseau ?
+    
+3. Le namespace PID est-il partagé avec les autres conteneurs ?
+    
+4. Que pouvons-nous déduire de `/proc/self/cgroup` ?
+    
+
+---
+
+## TP 2 — Vérifier le partage réseau dans un pod
+
+Nous créons un pod avec deux conteneurs :
+
+- `app` écoute sur `127.0.0.1:8080` ;
+    
+- `debug` tente de joindre `127.0.0.1:8080`.
+    
+
+Nous répondons :
+
+1. Pourquoi `localhost` fonctionne-t-il entre deux conteneurs du même pod ?
+    
+2. Pourquoi cela ne fonctionnerait-il pas depuis un autre pod ?
+    
+3. Quel namespace explique ce comportement ?
+    
+
+---
+
+## TP 3 — Tester `shareProcessNamespace`
+
+Nous créons un pod avec :
+
+```yaml
+shareProcessNamespace: true
+```
+
+Puis nous exécutons :
+
+```bash
+kubectl exec -it <pod> -c debug -- ps -ef
+```
+
+Nous répondons :
+
+1. Voyons-nous les processus de l’autre conteneur ?
+    
+2. Quel namespace est partagé ?
+    
+3. Quels sont les avantages et risques ?
+    
+
+---
+
+## TP 4 — Observer les volumes
+
+Nous créons un volume `emptyDir` monté dans deux conteneurs.
+
+Nous répondons :
+
+1. Le fichier créé par un conteneur est-il visible par l’autre ?
+    
+2. Les conteneurs partagent-ils nécessairement le même namespace mount ?
+    
+3. Comment Kubernetes rend-il le volume visible dans les deux conteneurs ?
+    
+
+---
+
+## TP 5 — Analyser un `securityContext`
+
+Nous analysons :
+
+```yaml
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+  seccompProfile:
+    type: RuntimeDefault
+```
+
+Nous répondons :
+
+1. Quel risque réduit chaque option ?
+    
+2. Quelle option concerne les capabilities ?
+    
+3. Quelle option concerne seccomp ?
+    
+4. Que devons-nous prévoir si le rootfs est en lecture seule ?
+    
+
+---
+
+## TP 6 — Identifier les options sensibles
+
+Nous analysons un manifeste contenant :
+
+```yaml
+hostNetwork: true
+hostPID: true
+hostIPC: true
+securityContext:
+  privileged: true
+volumes:
+  - name: host
+    hostPath:
+      path: /
+```
+
+Nous répondons :
+
+1. Quelles isolations sont réduites ?
+    
+2. Quels risques apparaissent ?
+    
+3. Quelles alternatives plus ciblées proposons-nous ?
+    
+
+---
+
+# 16.23. Pièges classiques
+
+## 16.23.1. Confondre namespace Kubernetes et namespace Linux
+
+Un namespace Kubernetes comme `production` n’est pas un namespace Linux.
+
+Il organise les objets du cluster.
+
+Les namespaces Linux isolent les processus sur les nœuds.
+
+---
+
+## 16.23.2. Croire qu’un conteneur d’un pod a sa propre IP
+
+Dans Kubernetes, l’IP est généralement celle du pod.
+
+Les conteneurs du même pod partagent le namespace réseau.
+
+Ils partagent donc la même IP.
+
+---
+
+## 16.23.3. Oublier les conflits de ports dans un pod
+
+Deux conteneurs d’un même pod ne peuvent pas écouter sur le même port et la même adresse en même temps.
+
+Ils partagent le même namespace réseau.
+
+---
+
+## 16.23.4. Utiliser `hostNetwork` pour résoudre trop vite un problème réseau
+
+Si un pod n’arrive pas à communiquer, nous ne devons pas passer immédiatement à :
+
+```yaml
+hostNetwork: true
+```
+
+Nous devons d’abord diagnostiquer :
+
+- CNI ;
+    
+- DNS ;
+    
+- Service ;
+    
+- Endpoints ;
+    
+- NetworkPolicy ;
+    
+- routes ;
+    
+- ports ;
+    
+- application.
+    
+
+---
+
+## 16.23.5. Utiliser `privileged` pour résoudre un problème de permission
+
+Même logique :
+
+```yaml
+privileged: true
+```
+
+ne doit pas être une solution réflexe.
+
+Nous cherchons le besoin précis :
+
+- capability ;
+    
+- volume ;
+    
+- user ;
+    
+- groupe ;
+    
+- périphérique ;
+    
+- profil seccomp ;
+    
+- SELinux/AppArmor.
+    
+
+---
+
+# 16.24. Ce que nous devons retenir
+
+Nous retenons les points suivants :
+
+1. Kubernetes utilise les namespaces Linux via les runtimes de conteneurs.
+    
+2. L’unité fondamentale d’exécution Kubernetes est le pod.
+    
+3. Un namespace Kubernetes n’est pas un namespace Linux.
+    
+4. Les conteneurs d’un même pod partagent généralement le namespace réseau.
+    
+5. Ils partagent donc la même IP et le même `localhost`.
+    
+6. Le pause container sert à maintenir certains namespaces du pod.
+    
+7. Le CNI configure le namespace réseau du pod et la connectivité cluster.
+    
+8. Les NetworkPolicies dépendent du support du plugin CNI.
+    
+9. Le namespace PID peut être partagé avec `shareProcessNamespace`.
+    
+10. `hostPID`, `hostNetwork` et `hostIPC` réduisent fortement l’isolation.
+    
+11. Les volumes Kubernetes sont montés dans les namespaces mount des conteneurs.
+    
+12. `hostPath` est puissant mais sensible.
+    
+13. Les cgroups appliquent les requests et limits.
+    
+14. `OOMKilled` vient généralement d’un dépassement de limite mémoire cgroup.
+    
+15. `securityContext` permet de configurer utilisateur, capabilities, seccomp et autres paramètres de sécurité.
+    
+16. Les ephemeral containers facilitent le debug sans modifier l’image applicative.
+    
+17. Pour diagnostiquer un pod, nous devons croiser namespaces, CNI, volumes, cgroups, securityContext et événements Kubernetes.
+    
+
+---
+
+# Conclusion du chapitre 16
+
+Nous avons étudié l’usage des namespaces Linux dans Kubernetes.
+
+Nous savons maintenant que Kubernetes ne remplace pas les mécanismes Linux : il les orchestre. Le pod est l’unité centrale, et plusieurs conteneurs d’un même pod partagent généralement le même namespace réseau, donc la même IP et le même `localhost`.
+
+Nous avons aussi compris le rôle du pause container, qui sert d’ancrage aux namespaces du pod, ainsi que le rôle du CNI, qui configure la connectivité réseau.
+
+Nous avons relié les namespaces aux options Kubernetes sensibles comme `hostNetwork`, `hostPID`, `hostIPC`, `privileged` et `hostPath`. Ces options peuvent être nécessaires dans certains cas système, mais elles réduisent fortement l’isolation et doivent donc être justifiées.
+
+Nous retenons surtout que diagnostiquer Kubernetes demande de raisonner à plusieurs niveaux : pod, conteneur, namespace Linux, cgroups, volumes, réseau CNI, sécurité et événements du cluster.
+
+Dans le chapitre suivant, nous passons aux travaux pratiques pour manipuler directement les namespaces et consolider l’ensemble du cours.
