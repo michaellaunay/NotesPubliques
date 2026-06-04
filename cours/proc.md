@@ -1744,7 +1744,6 @@ ls -l /proc/self
 
 La commande `ls` affiche le lien du point de vue du processus `ls`, pas forcément du shell.
 
-
 ### 2.7.2. Comparaison avec `$$`
 
 Dans un shell, nous pouvons faire :
@@ -1774,7 +1773,6 @@ Pour observer le shell, nous utilisons plutôt :
 ```bash
 ls /proc/$$
 ```
-
 
 ### 2.7.3. Utilité de `/proc/self`
 
@@ -1855,7 +1853,6 @@ Dans un programme multi-thread, ce lien permet à chaque thread d’accéder à 
 
 Cela est plus précis que `/proc/self`, qui désigne le processus.
 
-
 ### 2.8.3. Pourquoi c’est important ?
 
 Certains diagnostics nécessitent une observation au niveau des threads.
@@ -1874,7 +1871,6 @@ Par exemple :
     
 
 Nous n’entrons pas encore dans le détail, mais nous retenons que `/proc` ne représente pas seulement les processus : il permet aussi d’observer les threads.
-
 
 ## 2.9. Types d’entrées dans `/proc`
 
@@ -1901,7 +1897,6 @@ cat /proc/cpuinfo
 ```
 
 mais nous ne pouvons pas modifier ce fichier.
-
 
 ### 2.9.2. Fichiers modifiables
 
@@ -1932,7 +1927,6 @@ echo 10 | sudo tee /proc/sys/vm/swappiness
 ```
 
 Nous devons comprendre que cette écriture n’écrit pas un fichier sur disque. Elle demande au noyau de modifier un paramètre actif.
-
 
 ### 2.9.3. Répertoires
 
@@ -1969,7 +1963,6 @@ Ces liens peuvent pointer vers :
 
 Ces liens sont très utiles, mais ils peuvent aussi être sensibles du point de vue sécurité.
 
-
 ### 2.9.5. Fichiers spéciaux et contenus particuliers
 
 Certaines entrées ont un comportement spécial.
@@ -1994,7 +1987,6 @@ Tout ce qui est dans /proc peut être lu sans risque ni coût.
 
 Ce n’est pas vrai.
 
-
 ## 2.10. Lecture de `/proc` avec les outils Unix
 
 ### 2.10.1. Utiliser `cat`
@@ -2008,7 +2000,6 @@ cat /proc/version
 ```
 
 Elle convient aux fichiers courts.
-
 
 ### 2.10.2. Utiliser `less`
 
@@ -2032,7 +2023,6 @@ grep "model name" /proc/cpuinfo
 grep "^Threads:" /proc/$$/status
 ```
 
-
 ### 2.10.4. Utiliser `awk`
 
 `awk` permet de transformer les informations.
@@ -2049,7 +2039,6 @@ Nous pouvons calculer une valeur en Mio :
 awk '/MemAvailable/ { print int($2/1024) " MiB" }' /proc/meminfo
 ```
 
-
 ### 2.10.5. Utiliser `watch`
 
 Pour observer une valeur dans le temps :
@@ -2065,7 +2054,6 @@ watch -n 1 'grep MemAvailable /proc/meminfo'
 ```
 
 Nous voyons alors que `/proc` fournit une vue dynamique.
-
 
 ## 2.11. Bonnes pratiques de parsing
 
@@ -2088,7 +2076,6 @@ Un script trop fragile peut casser si :
 
 Nous devons parser prudemment.
 
-
 ### 2.11.2. Préférer les clés explicites
 
 Dans `/proc/meminfo`, nous avons des lignes de type :
@@ -2105,7 +2092,6 @@ awk '/^MemAvailable:/ { print $2 }' /proc/meminfo
 ```
 
 plutôt que de supposer que `MemAvailable` sera toujours à une ligne précise.
-
 
 ### 2.11.3. Gérer les erreurs
 
@@ -2142,11 +2128,9 @@ else
 fi
 ```
 
-
 ## 2.12. Mini-démonstration : explorer `/proc` proprement
 
 Nous pouvons proposer une première exploration guidée.
-
 ### 2.12.1. Identifier le montage
 
 ```bash
@@ -2154,7 +2138,6 @@ findmnt /proc
 ```
 
 Nous notons le type `proc`.
-
 
 ### 2.12.2. Voir les grandes catégories
 
@@ -2166,7 +2149,6 @@ ls /proc | grep -E '^[a-zA-Z_ -]+$' | head
 
 Nous distinguons les PID et les fichiers globaux.
 
-
 ### 2.12.3. Compter les processus visibles
 
 ```bash
@@ -2177,7 +2159,6 @@ Nous obtenons le nombre de processus visibles dans notre namespace PID.
 
 Nous précisons que dans un conteneur, ce nombre peut être très différent de celui de l’hôte.
 
-
 ### 2.12.4. Observer notre shell
 
 ```bash
@@ -2187,7 +2168,6 @@ cat /proc/$$/status | head
 ```
 
 Nous identifions notre shell comme un processus.
-
 
 ### 2.12.5. Observer les fichiers ouverts du shell
 
@@ -2204,7 +2184,6 @@ Nous voyons au minimum les descripteurs :
 ```
 
 Nous pouvons discuter de l’entrée standard, de la sortie standard et de la sortie d’erreur.
-
 
 ## 2.13. Ce que nous devons retenir
 
@@ -2233,12 +2212,10 @@ Nous retenons les idées suivantes :
 11. Certains fichiers sont lisibles, d’autres modifiables, d’autres sensibles.
     
 12. Les scripts qui lisent `/proc` doivent être robustes face aux changements dynamiques.
-    
-
 
 ## 2.14. Exercices
 
-## Exercice 1 — Identifier la nature de `/proc`
+### Exercice 1 — Identifier la nature de `/proc`
 
 Nous exécutons :
 
@@ -2256,10 +2233,8 @@ Nous répondons aux questions :
 3. Que signifient `nosuid`, `nodev` et `noexec` ?
     
 4. Pourquoi `/proc` n’est-il pas un système de fichiers classique ?
-    
 
-
-## Exercice 2 — Observer la taille apparente des fichiers
+### Exercice 2 — Observer la taille apparente des fichiers
 
 Nous exécutons :
 
@@ -2273,7 +2248,7 @@ Nous comparons la taille affichée par `ls` et le nombre d’octets lus par `wc`
 Nous expliquons la différence.
 
 
-## Exercice 3 — Observer le caractère dynamique
+### Exercice 3 — Observer le caractère dynamique
 
 Nous exécutons :
 
@@ -2294,7 +2269,7 @@ cat /proc/loadavg
 Nous expliquons pourquoi les valeurs changent.
 
 
-## Exercice 4 — Observer un processus temporaire
+### Exercice 4 — Observer un processus temporaire
 
 Nous lançons :
 
@@ -2321,7 +2296,7 @@ ls /proc/$pid
 Nous expliquons pourquoi le répertoire a disparu.
 
 
-## Exercice 5 — Comprendre `/proc/self`
+### Exercice 5 — Comprendre `/proc/self`
 
 Nous exécutons :
 
@@ -2334,7 +2309,7 @@ bash -c 'echo "PID bash interne: $$"; readlink /proc/self'
 Nous expliquons pourquoi `/proc/self` ne pointe pas toujours vers le PID que nous imaginons au départ.
 
 
-## Exercice 6 — Écrire un mini-script robuste
+### Exercice 6 — Écrire un mini-script robuste
 
 Nous écrivons un script Bash qui liste les processus visibles et affiche leur nom.
 
@@ -2490,7 +2465,6 @@ flags       : fpu vme de pse tsc msr pae mce cx8 apic ...
 
 Nous devons apprendre à distinguer les informations réellement utiles des détails très bas niveau.
 
-
 ### 3.2.2. Nombre de CPU logiques
 
 Chaque entrée `processor` correspond à un CPU logique vu par Linux.
@@ -2519,7 +2493,6 @@ nproc
 
 Mais ici, notre objectif est de comprendre la source d’information brute.
 
-
 ### 3.2.3. Modèle du processeur
 
 Pour afficher le nom du modèle :
@@ -2541,7 +2514,6 @@ Nous pouvons extraire uniquement la valeur :
 ```bash
 awk -F': ' '/model name/ { print $2; exit }' /proc/cpuinfo
 ```
-
 
 ### 3.2.4. Cœurs physiques et threads logiques
 
@@ -2585,7 +2557,6 @@ lscpu
 ```
 
 `lscpu` donne une vue plus lisible, mais s’appuie sur les informations fournies par le noyau.
-
 
 ### 3.2.5. Flags CPU
 
@@ -2634,8 +2605,6 @@ Ces informations peuvent être utiles pour :
 - comprendre pourquoi un binaire optimisé ne fonctionne pas ;
     
 - diagnostiquer un problème de performance lié aux instructions CPU.
-    
-
 
 ### 3.2.6. Limites de `/proc/cpuinfo`
 
@@ -2654,7 +2623,6 @@ Nous retenons donc :
 ```
 
 Pour les conteneurs modernes, nous devons aussi regarder les cgroups, par exemple dans `/sys/fs/cgroup`.
-
 
 ## 3.3. Mémoire système avec `/proc/meminfo`
 
@@ -2687,7 +2655,6 @@ Writeback:             0 kB
 
 Ce fichier est beaucoup plus riche que la simple sortie de `free`.
 
-
 ### 3.3.2. `MemTotal`
 
 `MemTotal` indique la quantité totale de mémoire RAM visible par le noyau.
@@ -2712,7 +2679,6 @@ awk '/^MemTotal:/ { printf "%.2f GiB\n", $2/1024/1024 }' /proc/meminfo
 
 Nous faisons attention : la valeur est exprimée en kilo-octets selon l’affichage de `/proc/meminfo`.
 
-
 ### 3.3.3. `MemFree`
 
 `MemFree` indique la mémoire complètement inutilisée.
@@ -2730,7 +2696,6 @@ Nous devons éviter l’erreur classique :
 ```text
 MemFree faible ≠ système forcément saturé
 ```
-
 
 ### 3.3.4. `MemAvailable`
 
@@ -2750,7 +2715,6 @@ awk '/^MemAvailable:/ { printf "%.0f MiB\n", $2/1024 }' /proc/meminfo
 
 Dans un diagnostic simple, nous privilégions souvent `MemAvailable` à `MemFree`.
 
-
 ### 3.3.5. `Buffers` et `Cached`
 
 Linux utilise la RAM pour accélérer les accès disque.
@@ -2769,7 +2733,6 @@ grep -E '^(Buffers|Cached):' /proc/meminfo
 Cette mémoire peut souvent être libérée si une application en a besoin.
 
 C’est pourquoi une machine Linux peut afficher peu de mémoire libre tout en ayant beaucoup de mémoire disponible.
-
 
 ### 3.3.6. `SwapTotal` et `SwapFree`
 
@@ -2800,7 +2763,6 @@ END { printf "Swap utilisé : %.0f MiB\n", (total-free)/1024 }
 
 Un peu de swap utilisé n’est pas forcément grave. En revanche, une utilisation massive et active du swap peut indiquer une pression mémoire importante.
 
-
 ### 3.3.7. `Dirty` et `Writeback`
 
 Deux champs sont utiles pour comprendre les écritures disque :
@@ -2817,7 +2779,6 @@ grep -E '^(Dirty|Writeback):' /proc/meminfo
 Si `Dirty` est très élevé, cela peut indiquer que le système accumule des écritures en attente.
 
 Dans certains incidents, nous pouvons observer une forte latence disque associée à une quantité importante de pages dirty.
-
 
 ### 3.3.8. Comparaison avec `free`
 
@@ -2840,7 +2801,6 @@ cat /proc/meminfo | head
 
 Notre objectif n’est pas de remplacer `free`, mais de comprendre ce qu’il résume.
 
-
 ### 3.3.9. Limites dans les conteneurs
 
 Dans certains environnements conteneurisés, `/proc/meminfo` peut présenter la mémoire de l’hôte, tandis que le conteneur est limité par cgroup.
@@ -2862,7 +2822,6 @@ alors que le conteneur est limité à :
 ```
 
 Pour diagnostiquer un conteneur, nous devons regarder aussi les limites cgroups dans `/sys/fs/cgroup`.
-
 
 ## 3.4. Version du noyau avec `/proc/version`
 
@@ -2891,8 +2850,6 @@ Nous pouvons y trouver :
 - la date ou les métadonnées de compilation ;
     
 - des informations de distribution.
-    
-
 
 ### 3.4.2. Comparaison avec `uname`
 
@@ -2922,7 +2879,6 @@ pour obtenir uniquement la version du noyau :
 
 `/proc/version` donne souvent plus de détails sur la compilation.
 
-
 ### 3.4.3. À ne pas confondre avec la version de distribution
 
 Le noyau Linux et la distribution sont deux choses différentes.
@@ -2949,7 +2905,6 @@ Nous retenons :
 
 Cette distinction est importante en support système.
 
-
 ## 3.5. Temps de fonctionnement avec `/proc/uptime`
 
 ### 3.5.1. Lire `/proc/uptime`
@@ -2970,7 +2925,6 @@ La première valeur représente le temps écoulé depuis le démarrage du systè
 
 La seconde représente le temps passé en idle par les CPU, cumulé.
 
-
 ### 3.5.2. Interpréter la première valeur
 
 La première valeur est l’uptime.
@@ -2989,7 +2943,6 @@ awk '{ printf "Uptime : %.2f jours\n", $1/86400 }' /proc/uptime
 
 Cette information permet de savoir depuis combien de temps le système n’a pas redémarré.
 
-
 ### 3.5.3. Interpréter la seconde valeur
 
 La seconde valeur correspond au temps idle cumulé sur tous les CPU.
@@ -3007,7 +2960,6 @@ Exemple :
 
 Nous devons donc éviter de comparer naïvement la seconde valeur à la première.
 
-
 ### 3.5.4. Comparaison avec `uptime`
 
 La commande :
@@ -3023,7 +2975,6 @@ affiche une sortie plus lisible :
 ```
 
 Elle combine notamment des informations issues de `/proc/uptime` et `/proc/loadavg`.
-
 
 ## 3.6. Charge système avec `/proc/loadavg`
 
@@ -3058,8 +3009,6 @@ Dans l’exemple :
 - `2/842` : 2 tâches exécutables sur 842 tâches totales ;
     
 - `15321` : dernier PID attribué.
-    
-
 
 ### 3.6.2. Que signifie la charge moyenne ?
 
@@ -3075,7 +3024,6 @@ La charge moyenne mesure le nombre moyen de tâches :
 Ce n’est pas simplement un pourcentage CPU.
 
 Une charge de `4.00` n’a pas le même sens sur une machine à 2 CPU logiques et sur une machine à 16 CPU logiques.
-
 
 ### 3.6.3. Interprétation selon le nombre de CPU
 
@@ -3104,7 +3052,6 @@ ou :
 grep -c '^processor' /proc/cpuinfo
 ```
 
-
 ### 3.6.4. Les trois valeurs : 1, 5 et 15 minutes
 
 Les trois valeurs permettent de voir la tendance.
@@ -3127,7 +3074,6 @@ La charge était élevée avant, mais elle redescend.
 
 Nous devons donc lire les trois valeurs ensemble.
 
-
 ### 3.6.5. Charge CPU ou attente I/O ?
 
 Une charge élevée ne signifie pas toujours que le CPU est saturé.
@@ -3145,7 +3091,6 @@ pidstat
 ```
 
 Mais `/proc/loadavg` nous donne le premier signal.
-
 
 ## 3.7. Ligne de commande du noyau avec `/proc/cmdline`
 
@@ -3176,8 +3121,6 @@ Nous y trouvons souvent :
 - des paramètres de debug ;
     
 - des options liées au matériel.
-    
-
 
 ### 3.7.2. Utilité pratique
 
@@ -3201,7 +3144,6 @@ cat /proc/cmdline | tr ' ' '\n'
 ```
 
 Cette commande affiche un paramètre par ligne.
-
 
 ## 3.8. Systèmes de fichiers avec `/proc/filesystems`
 
@@ -3228,7 +3170,6 @@ nodev   devpts
 
 Ce fichier indique les systèmes de fichiers connus par le noyau courant.
 
-
 ### 3.8.2. Signification de `nodev`
 
 La mention `nodev` indique que le système de fichiers ne correspond pas à un périphérique bloc classique.
@@ -3243,7 +3184,6 @@ nodev tmpfs
 
 `proc`, `sysfs` et `tmpfs` ne sont pas montés depuis une partition disque classique.
 
-
 ### 3.8.3. Utilité pratique
 
 Ce fichier peut nous aider à vérifier si un type de système de fichiers est supporté.
@@ -3257,7 +3197,6 @@ grep nfs /proc/filesystems
 ```
 
 Si un système de fichiers n’apparaît pas, il peut être absent, non chargé ou disponible via un module non encore chargé.
-
 
 ## 3.9. Points de montage avec `/proc/mounts`
 
@@ -3281,7 +3220,6 @@ ou utiliser directement :
 findmnt
 ```
 
-
 ### 3.9.2. Différence avec `/etc/fstab`
 
 `/etc/fstab` décrit les montages configurés de manière persistante.
@@ -3296,7 +3234,6 @@ Nous retenons :
 ```
 
 Il est possible qu’un montage actif ne soit pas dans `/etc/fstab`, et inversement qu’un montage dans `/etc/fstab` ne soit pas actuellement monté.
-
 
 ### 3.9.3. Lien avec `/proc/self/mounts`
 
@@ -3313,7 +3250,6 @@ ls -l /proc/mounts
 ```
 
 Cela signifie que les montages sont vus du point de vue du processus courant, ce qui est important avec les namespaces de montage dans les conteneurs.
-
 
 ## 3.10. Swap avec `/proc/swaps`
 
@@ -3343,8 +3279,6 @@ Ce fichier indique :
 - la quantité utilisée ;
     
 - sa priorité.
-    
-
 
 ### 3.10.2. Comparaison avec `swapon`
 
@@ -3370,7 +3304,6 @@ Si beaucoup de swap est utilisé et que la mémoire disponible est faible, nous 
 
 Mais nous devons compléter avec d’autres outils pour savoir si le système est en train de swapper activement.
 
-
 ## 3.11. Partitions avec `/proc/partitions`
 
 ### 3.11.1. Lire les partitions connues
@@ -3395,7 +3328,6 @@ major minor  #blocks  name
 
 Nous voyons les périphériques bloc et leurs partitions.
 
-
 ### 3.11.2. Limites
 
 Ce fichier donne une vue brute.
@@ -3409,7 +3341,6 @@ fdisk -l
 ```
 
 Mais `/proc/partitions` reste utile pour comprendre ce que le noyau voit.
-
 
 ## 3.12. Modules noyau avec `/proc/modules`
 
@@ -3431,7 +3362,6 @@ vboxdrv 655360 3 vboxnetadp,vboxnetflt,vboxpci, Live 0x0000000000000000
 
 Chaque ligne décrit un module noyau chargé.
 
-
 ### 3.12.2. Comparaison avec `lsmod`
 
 La commande :
@@ -3450,7 +3380,6 @@ Nous pouvons comparer :
 lsmod | head
 cat /proc/modules | head
 ```
-
 
 ### 3.12.3. Utilité pratique
 
@@ -3473,7 +3402,6 @@ Exemple :
 grep -E 'nvidia|amdgpu|i915' /proc/modules
 ```
 
-
 ## 3.13. Interruptions avec `/proc/interrupts`
 
 ### 3.13.1. Lire les interruptions
@@ -3495,7 +3423,6 @@ Extrait simplifié :
 
 Nous voyons combien d’interruptions chaque CPU a traité.
 
-
 ### 3.13.2. Utilité avancée
 
 Ce fichier devient utile lorsque nous analysons :
@@ -3512,7 +3439,6 @@ Ce fichier devient utile lorsque nous analysons :
     
 
 Dans un cours introductif à `/proc`, nous ne détaillons pas encore l’optimisation IRQ, mais nous retenons que `/proc/interrupts` donne une vue précieuse sur l’activité matérielle.
-
 
 ## 3.14. Statistiques globales avec `/proc/stat`
 
@@ -3539,7 +3465,6 @@ procs_blocked 0
 ```
 
 Ce fichier est utilisé par de nombreux outils de monitoring.
-
 
 ### 3.14.2. Champs utiles
 
@@ -3574,7 +3499,6 @@ Nous pouvons la convertir :
 date -d "@$(awk '/^btime/ {print $2}' /proc/stat)"
 ```
 
-
 ### 3.14.3. Pourquoi `/proc/stat` est plus difficile
 
 Contrairement à `/proc/meminfo`, `/proc/stat` est moins lisible directement.
@@ -3593,7 +3517,6 @@ vmstat
 ```
 
 Mais ces outils reposent en partie sur ces statistiques.
-
 
 ## 3.15. Construire une première synthèse système
 
@@ -3616,8 +3539,6 @@ Nous cherchons à afficher :
 - load average ;
     
 - nombre de processus visibles.
-    
-
 
 ### 3.15.2. Script Bash simple
 
@@ -3651,7 +3572,6 @@ chmod +x proc-summary.sh
 ./proc-summary.sh
 ```
 
-
 ### 3.15.3. Discussion sur la robustesse
 
 Ce script est volontairement simple.
@@ -3672,7 +3592,6 @@ Dans un environnement de production, nous devons améliorer plusieurs points :
     
 
 Mais ce script montre déjà que `/proc` permet de construire rapidement un outil d’observation système.
-
 
 ## 3.16. Étude de cas : première analyse d’un serveur
 
@@ -3697,7 +3616,6 @@ Nous ne savons pas encore si le problème vient :
 
 Nous utilisons uniquement quelques fichiers globaux de `/proc` pour une première analyse.
 
-
 ### 3.16.2. Étape 1 : version et uptime
 
 ```bash
@@ -3714,8 +3632,6 @@ Nous cherchons à savoir :
 - si l’uptime est très long ;
     
 - si un redémarrage récent peut expliquer un incident.
-    
-
 
 ### 3.16.3. Étape 2 : CPU visible
 
@@ -3727,7 +3643,6 @@ grep 'model name' /proc/cpuinfo | head -1
 Nous identifions la capacité CPU apparente.
 
 Si la charge moyenne est de `8` sur une machine à `2` CPU logiques, la situation est plus préoccupante que sur une machine à `32` CPU logiques.
-
 
 ### 3.16.4. Étape 3 : charge moyenne
 
@@ -3746,7 +3661,6 @@ Exemple :
 Si la machine a 4 CPU logiques, la charge est probablement élevée.
 
 Mais nous ne concluons pas encore que le CPU est seul responsable.
-
 
 ### 3.16.5. Étape 4 : mémoire disponible
 
@@ -3769,7 +3683,6 @@ Nous observons :
 
 Si `MemAvailable` est très bas et que le swap est largement utilisé, nous suspectons une pression mémoire.
 
-
 ### 3.16.6. Étape 5 : hypothèse initiale
 
 À partir de ces informations, nous pouvons formuler une première hypothèse :
@@ -3785,7 +3698,6 @@ La charge est faible, la mémoire disponible est correcte, et le swap n’est pa
 ```
 
 Nous ne cherchons pas encore à conclure définitivement. Nous construisons une première lecture du système.
-
 
 ## 3.17. Limites des informations globales
 
@@ -3815,7 +3727,6 @@ Pour aller plus loin, nous devons ensuite explorer :
 
 C’est l’objet des chapitres suivants.
 
-
 ### 3.17.2. Attention aux moyennes
 
 Les moyennes peuvent masquer des pics.
@@ -3837,8 +3748,6 @@ Nous devons toujours croiser :
 - logs ;
     
 - métriques applicatives.
-    
-
 
 ### 3.17.3. Attention aux environnements virtualisés
 
@@ -3858,10 +3767,9 @@ cat /proc/1/cgroup
 
 Dans Kubernetes, la lecture brute de `/proc` peut être trompeuse si nous oublions les limites CPU et mémoire du pod.
 
-
 ## 3.18. Exercices
 
-## Exercice 1 — Identifier le CPU
+### Exercice 1 — Identifier le CPU
 
 Nous exécutons :
 
@@ -3885,7 +3793,7 @@ Nous répondons aux questions :
     
 
 
-## Exercice 2 — Comprendre la mémoire
+### Exercice 2 — Comprendre la mémoire
 
 Nous exécutons :
 
@@ -3909,7 +3817,7 @@ Nous répondons aux questions :
     
 
 
-## Exercice 3 — Uptime et charge
+### Exercice 3 — Uptime et charge
 
 Nous exécutons :
 
@@ -3931,7 +3839,7 @@ Nous répondons aux questions :
     
 
 
-## Exercice 4 — Comparer fichiers bruts et commandes haut niveau
+### Exercice 4 — Comparer fichiers bruts et commandes haut niveau
 
 Nous comparons :
 
@@ -3957,7 +3865,7 @@ lsmod | head
 Nous expliquons ce que les commandes haut niveau ajoutent par rapport aux fichiers bruts.
 
 
-## Exercice 5 — Construire une synthèse système
+### Exercice 5 — Construire une synthèse système
 
 Nous écrivons un script qui affiche :
 
@@ -4138,7 +4046,6 @@ Nous retenons donc :
 Il signifie “le PID 1 dans le namespace PID courant”.
 ```
 
-
 ## 4.2. Structure générale de `/proc/<PID>`
 
 ### 4.2.1. Explorer un processus
@@ -4183,7 +4090,6 @@ task
 
 Chaque entrée expose une information différente.
 
-
 ### 4.2.2. Les catégories principales
 
 Nous pouvons regrouper les entrées de `/proc/<PID>` en plusieurs catégories.
@@ -4207,7 +4113,6 @@ Dans ce chapitre, nous nous concentrons surtout sur `cmdline`, `comm`, `status`,
 
 Les entrées `fd`, `maps`, `smaps` et `limits` sont approfondies dans les chapitres suivants.
 
-
 ## 4.3. `cmdline` : la ligne de commande du processus
 
 ### 4.3.1. Lire `/proc/<PID>/cmdline`
@@ -4229,7 +4134,6 @@ sleep1000
 En réalité, les arguments ne sont pas séparés par des espaces, mais par des caractères nuls `\0`.
 
 C’est pour cela que l’affichage brut avec `cat` n’est pas toujours lisible.
-
 
 ### 4.3.2. Affichage lisible de `cmdline`
 
@@ -4261,7 +4165,6 @@ sleep
 
 Cette représentation est plus fidèle : chaque ligne correspond à un argument.
 
-
 ### 4.3.3. Cas des processus noyau
 
 Certains processus ont une ligne de commande vide.
@@ -4277,7 +4180,6 @@ cat /proc/<PID>/cmdline
 qui ne produit aucune sortie.
 
 Cela ne signifie pas nécessairement que le processus n’existe pas. Cela peut signifier qu’il ne possède pas de ligne de commande utilisateur classique.
-
 
 ### 4.3.4. Risque de sécurité
 
@@ -4311,7 +4213,6 @@ Nous évitons de passer des secrets en arguments de ligne de commande.
 
 Nous privilégions des mécanismes plus sûrs : fichiers de secrets avec permissions strictes, gestionnaires de secrets, variables d’environnement maîtrisées ou sockets protégées selon le contexte.
 
-
 ## 4.4. `comm` : le nom court du processus
 
 ### 4.4.1. Lire `/proc/<PID>/comm`
@@ -4329,7 +4230,6 @@ sleep
 ```
 
 Ce nom est généralement court et ne contient pas toute la ligne de commande.
-
 
 ### 4.4.2. Différence entre `comm` et `cmdline`
 
@@ -4362,7 +4262,6 @@ cmdline = python manage.py runserver 0.0.0.0:8000
 ```
 
 Dans un diagnostic, `cmdline` est souvent plus utile pour identifier précisément le rôle du processus.
-
 
 ## 4.5. `status` : état lisible du processus
 
@@ -4398,7 +4297,6 @@ SigCgt: 0000000000000000
 ```
 
 Ce fichier est plus lisible que `stat`, car les champs sont nommés.
-
 
 ### 4.5.2. Les champs d’identification
 
@@ -5396,7 +5294,7 @@ pour comprendre précisément le processus.
 
 ## 4.15. Exercices
 
-## Exercice 1 — Observer le shell courant
+### Exercice 1 — Observer le shell courant
 
 Nous exécutons :
 
@@ -5426,7 +5324,7 @@ Nous répondons aux questions :
     
 
 
-## Exercice 2 — Lancer et analyser un processus
+### Exercice 2 — Lancer et analyser un processus
 
 Nous lançons :
 
@@ -5459,7 +5357,7 @@ ls /proc/$pid
 Nous expliquons pourquoi le répertoire disparaît.
 
 
-## Exercice 3 — Observer les états
+### Exercice 3 — Observer les états
 
 Nous lançons :
 
@@ -5497,7 +5395,7 @@ kill $pid
 Nous expliquons les états observés.
 
 
-## Exercice 4 — Lire les variables d’environnement
+### Exercice 4 — Lire les variables d’environnement
 
 Nous observons l’environnement du shell courant :
 
@@ -5517,7 +5415,7 @@ Nous répondons aux questions :
     
 
 
-## Exercice 5 — Mini-version de `ps`
+### Exercice 5 — Mini-version de `ps`
 
 Nous écrivons un script `mini-ps.sh` :
 
@@ -7064,7 +6962,7 @@ Les scripts robustes doivent tolérer ces erreurs.
 
 ## 5.18. Exercices
 
-## Exercice 1 — Observer les descripteurs du shell courant
+### Exercice 1 — Observer les descripteurs du shell courant
 
 Nous exécutons :
 
@@ -7084,7 +6982,7 @@ Nous répondons aux questions :
     
 
 
-## Exercice 2 — Observer les redirections
+### Exercice 2 — Observer les redirections
 
 Nous lançons :
 
@@ -7117,7 +7015,7 @@ kill $pid
 ```
 
 
-## Exercice 3 — Fichier supprimé mais ouvert
+### Exercice 3 — Fichier supprimé mais ouvert
 
 Nous créons un fichier :
 
@@ -7159,8 +7057,7 @@ Nous terminons :
 kill $pid
 ```
 
-
-## Exercice 4 — Compter les descripteurs ouverts
+### Exercice 4 — Compter les descripteurs ouverts
 
 Nous choisissons un processus actif, par exemple le shell :
 
@@ -7186,7 +7083,7 @@ Nous discutons :
     
 
 
-## Exercice 5 — Comparer `/proc` et `lsof`
+### Exercice 5 — Comparer `/proc` et `lsof`
 
 Nous exécutons :
 
@@ -7215,10 +7112,9 @@ Nous comparons :
 3. ce que `/proc` permet de voir directement ;
     
 4. pourquoi `lsof` est pratique en production.
-    
 
 
-## 5.19. Ce que nous devons retenir
+### 5.19. Ce que nous devons retenir
 
 Nous retenons les points suivants :
 
@@ -7241,7 +7137,6 @@ Nous retenons les points suivants :
 9. Lire ou écrire via `/proc/<PID>/fd/<FD>` peut avoir des effets et doit être fait avec prudence.
     
 10. Les scripts doivent gérer les permissions, les processus qui disparaissent et les ressources non classiques.
-    
 
 
 ## Conclusion du chapitre 5
@@ -7298,7 +7193,6 @@ Sous Linux, chaque processus possède une mémoire virtuelle. Cette mémoire vir
 - utiliser `/proc/<PID>/limits` pour comprendre les limites de ressources ;
     
 - construire un premier diagnostic mémoire sur un processus.
-    
 
 
 ## 6.1. Mémoire virtuelle et mémoire physique
@@ -8837,7 +8731,7 @@ Sinon, nous risquons de mal interpréter les limites mémoire.
 
 ## 6.18. Exercices
 
-## Exercice 1 — Observer `maps` sur le shell courant
+### Exercice 1 — Observer `maps` sur le shell courant
 
 Nous exécutons :
 
@@ -8859,7 +8753,7 @@ Nous répondons :
     
 
 
-## Exercice 2 — Comparer `VmSize` et `VmRSS`
+### Exercice 2 — Comparer `VmSize` et `VmRSS`
 
 Nous exécutons :
 
@@ -8879,7 +8773,7 @@ Nous répondons :
     
 
 
-## Exercice 3 — Créer un processus qui alloue de la mémoire
+### Exercice 3 — Créer un processus qui alloue de la mémoire
 
 Nous lançons :
 
@@ -8909,7 +8803,7 @@ kill $pid
 ```
 
 
-## Exercice 4 — Lister les bibliothèques chargées
+### Exercice 4 — Lister les bibliothèques chargées
 
 Nous choisissons un processus :
 
@@ -8935,7 +8829,7 @@ Nous répondons :
     
 
 
-## Exercice 5 — Observer les limites
+### Exercice 5 — Observer les limites
 
 Nous exécutons :
 
@@ -8952,10 +8846,9 @@ Nous répondons :
 3. Les core dumps sont-ils autorisés ?
     
 4. Quelle est la différence entre limite souple et limite dure ?
-    
 
 
-## Exercice 6 — Détecter une croissance mémoire
+### Exercice 6 — Détecter une croissance mémoire
 
 Nous lançons un programme Python qui alloue progressivement :
 
@@ -10702,7 +10595,7 @@ Pour une analyse complète, nous pouvons aussi utiliser :
 
 ## 7.16. Exercices
 
-## Exercice 1 — Observer les interfaces réseau
+### Exercice 1 — Observer les interfaces réseau
 
 Nous exécutons :
 
@@ -10730,7 +10623,7 @@ Nous répondons :
     
 
 
-## Exercice 2 — Observer les sockets TCP
+### Exercice 2 — Observer les sockets TCP
 
 Nous exécutons :
 
@@ -10756,7 +10649,7 @@ Nous répondons :
     
 
 
-## Exercice 3 — Lancer un serveur local et le retrouver
+### Exercice 3 — Lancer un serveur local et le retrouver
 
 Nous lançons un serveur HTTP simple :
 
@@ -10798,7 +10691,7 @@ kill $pid
 ```
 
 
-## Exercice 4 — Observer les sockets Unix
+### Exercice 4 — Observer les sockets Unix
 
 Nous exécutons :
 
@@ -10831,7 +10724,7 @@ Nous répondons :
     
 
 
-## Exercice 5 — Lire la table ARP
+### Exercice 5 — Lire la table ARP
 
 Nous exécutons :
 
@@ -10857,7 +10750,7 @@ Nous répondons :
     
 
 
-## Exercice 6 — Lire les routes
+### Exercice 6 — Lire les routes
 
 Nous exécutons :
 
@@ -12538,7 +12431,7 @@ Nous modifions un paramètre parce que nous avons :
 
 ## 8.18. Exercices
 
-## Exercice 1 — Explorer `/proc/sys`
+### Exercice 1 — Explorer `/proc/sys`
 
 Nous exécutons :
 
@@ -12556,10 +12449,9 @@ Nous répondons :
 3. Quels paramètres semblent liés à la mémoire ?
     
 4. Quels paramètres semblent liés au réseau ?
-    
 
 
-## Exercice 2 — Correspondance `/proc/sys` et `sysctl`
+### Exercice 2 — Correspondance `/proc/sys` et `sysctl`
 
 Nous comparons :
 
@@ -12585,7 +12477,7 @@ Nous répondons :
     
 
 
-## Exercice 3 — Lire des paramètres système
+### Exercice 3 — Lire des paramètres système
 
 Nous exécutons :
 
@@ -12611,7 +12503,7 @@ Nous répondons :
     
 
 
-## Exercice 4 — Modifier temporairement un paramètre non critique
+### Exercice 4 — Modifier temporairement un paramètre non critique
 
 Nous choisissons un paramètre raisonnable à modifier en environnement de test, par exemple `vm.swappiness`.
 
@@ -12647,7 +12539,7 @@ Nous répondons :
     
 
 
-## Exercice 5 — Comprendre l’erreur avec `sudo echo`
+### Exercice 5 — Comprendre l’erreur avec `sudo echo`
 
 Nous testons en environnement adapté :
 
@@ -12671,7 +12563,7 @@ Nous répondons :
     
 
 
-## Exercice 6 — Inotify
+### Exercice 6 — Inotify
 
 Nous lisons :
 
@@ -14073,7 +13965,7 @@ Nous devons donc contrôler :
 
 ## 9.16. Exercices
 
-## Exercice 1 — Observer les permissions
+### Exercice 1 — Observer les permissions
 
 Nous exécutons :
 
@@ -14097,7 +13989,7 @@ Nous répondons :
     
 
 
-## Exercice 2 — Observer les arguments d’un processus
+### Exercice 2 — Observer les arguments d’un processus
 
 Nous lançons volontairement un processus de test :
 
@@ -14136,7 +14028,7 @@ kill $pid
 ```
 
 
-## Exercice 3 — Variables d’environnement
+### Exercice 3 — Variables d’environnement
 
 Nous lançons :
 
@@ -14169,7 +14061,7 @@ kill $pid
 ```
 
 
-## Exercice 4 — Vérifier `hidepid`
+### Exercice 4 — Vérifier `hidepid`
 
 Nous exécutons :
 
@@ -14190,7 +14082,7 @@ Nous répondons :
     
 
 
-## Exercice 5 — Paramètres de sécurité `sysctl`
+### Exercice 5 — Paramètres de sécurité `sysctl`
 
 Nous exécutons :
 
@@ -14216,7 +14108,7 @@ Nous répondons :
     
 
 
-## Exercice 6 — `/proc` dans un conteneur
+### Exercice 6 — `/proc` dans un conteneur
 
 Dans un conteneur de test, nous exécutons :
 
@@ -15931,7 +15823,7 @@ Nous observons une croissance continue du RSS d’un processus applicatif, sans 
 
 ## 10.16. Exercices
 
-## Exercice 1 — Relier `ps` à `/proc`
+### Exercice 1 — Relier `ps` à `/proc`
 
 Nous exécutons :
 
@@ -15957,7 +15849,7 @@ Nous répondons :
     
 
 
-## Exercice 2 — Relier `free` à `/proc/meminfo`
+### Exercice 2 — Relier `free` à `/proc/meminfo`
 
 Nous exécutons :
 
@@ -15978,10 +15870,9 @@ Nous répondons :
 2. Pourquoi `available` est-il important ?
     
 3. Pourquoi `free` est-il plus lisible ?
-    
 
 
-## Exercice 3 — Relier `uptime` à `/proc`
+### Exercice 3 — Relier `uptime` à `/proc`
 
 Nous exécutons :
 
@@ -16001,7 +15892,7 @@ Nous répondons :
     
 
 
-## Exercice 4 — Observer un outil avec `strace`
+### Exercice 4 — Observer un outil avec `strace`
 
 Nous exécutons :
 
@@ -16022,10 +15913,9 @@ Nous répondons :
 2. Que prouve cette observation ?
     
 3. Pourquoi certains outils peuvent-ils aussi utiliser d’autres interfaces ?
-    
 
 
-## Exercice 5 — Comparer `/proc/<PID>/fd` et `lsof`
+### Exercice 5 — Comparer `/proc/<PID>/fd` et `lsof`
 
 Nous lançons :
 
@@ -16059,7 +15949,7 @@ kill $pid
 ```
 
 
-## Exercice 6 — Comparer `/proc/net/tcp` et `ss`
+### Exercice 6 — Comparer `/proc/net/tcp` et `ss`
 
 Nous lançons un serveur local :
 
@@ -16092,8 +15982,7 @@ Nous terminons :
 kill $pid
 ```
 
-
-## Exercice 7 — Construire un mini-outil
+### Exercice 7 — Construire un mini-outil
 
 Nous écrivons un script Bash ou Python qui affiche :
 
@@ -16169,10 +16058,65 @@ Cette compréhension est importante pour un niveau Master 2. Elle nous permet de
 
 Dans le chapitre suivant, nous passons à une série de travaux pratiques structurés pour consolider l’ensemble du cours sur `/proc`.
 
-------
----------------------------
-----------
+# 11. Travaux pratiques
 
+## TP 1 — Explorer `/proc`
+
+Nous devons répondre à une série de questions :
+
+- Quelle est la version du noyau ?
+- Combien de CPU logiques sont visibles ?
+- Quelle quantité de mémoire est disponible ?
+- Depuis combien de temps la machine est-elle démarrée ?
+- Combien de processus sont actifs ?
+
+Commandes de départ :
+
+```
+cat /proc/versioncat /proc/cpuinfocat /proc/meminfocat /proc/uptimels /proc | grep -E '^[0-9]+$' | wc -l
+```
+
+## TP 2 — Analyser un processus
+
+Nous lançons un processus simple :
+
+```
+sleep 1000
+```
+
+Puis nous récupérons son PID et nous analysons :
+
+```
+cat /proc/<PID>/statuscat /proc/<PID>/cmdlinels -l /proc/<PID>/fdcat /proc/<PID>/limitscat /proc/<PID>/maps
+```
+
+Nous expliquons ce que nous observons.
+
+## TP 3 — Retrouver un fichier supprimé mais encore ouvert
+
+Nous créons un fichier, nous l’ouvrons dans un processus, puis nous le supprimons.
+
+Nous observons que l’espace disque peut rester occupé tant que le processus garde le fichier ouvert.
+
+Nous utilisons :
+
+```
+ls -l /proc/<PID>/fd
+```
+
+Nous discutons d’un cas réel : logs supprimés mais toujours ouverts par un service.
+
+## TP 4 — Modifier temporairement un paramètre noyau
+
+Nous lisons puis modifions un paramètre réseau ou mémoire.
+
+Exemple :
+
+```
+cat /proc/sys/vm/swappinesssudo sysctl -w vm.swappiness=10cat /proc/sys/vm/swappiness
+```
+
+Nous expliquons pourquoi il faut être prudent avec ces modifications.
 
 # 12. Étude de cas : diagnostic d’un serveur
 
