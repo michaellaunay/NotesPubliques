@@ -1435,6 +1435,50 @@ match point:
 
 Dans cet exemple, `point` est une paire de coordonnées. L'instruction `match` est utilisée pour vérifier si le point est à l'origine, sur l'un des axes, ou à une position quelconque. Les variables `x` et `y` sont utilisées pour extraire les valeurs de la paire, que nous pouvons ensuite utiliser dans le corps de chaque cas.
 
+L'instruction `match` permet également de tester le **type** d'une variable grâce aux patterns de classe. Considérons un exemple avec deux classes `Cercle` et `Rectangle` :
+
+python
+
+```python
+class Cercle:
+    def __init__(self, rayon):
+        self.rayon = rayon
+
+class Rectangle:
+    def __init__(self, largeur, hauteur):
+        self.largeur = largeur
+        self.hauteur = hauteur
+
+forme = Cercle(5)
+match forme:
+    case Cercle():
+        print("C'est un cercle")
+    case Rectangle():
+        print("C'est un rectangle")
+    case _:
+        print("Forme inconnue")
+```
+
+La syntaxe `Cercle()` peut sembler surprenante, nous pourrions croire qu'elle crée une nouvelle instance. En réalité, dans le contexte d'un `match`, elle sert uniquement à vérifier que `forme` est bien une instance de `Cercle`, de manière équivalente à `isinstance(forme, Cercle)`. Aucune instanciation n'a lieu.
+
+Il est important de noter que `Cercle` sans parenthèses ne fonctionnerait pas comme nous pourrions nous y attendre : Python l'interpréterait comme une variable de capture qui correspondrait à n'importe quelle valeur, et non comme un test de type.
+
+Là où cette syntaxe devient particulièrement expressive, c'est lorsque nous combinons le test de type avec l'extraction d'attributs :
+
+python
+
+```python
+match forme:
+    case Cercle(rayon=r):
+        print(f"Cercle de rayon {r}")
+    case Rectangle(largeur=l, hauteur=h):
+        print(f"Rectangle de {l}x{h}")
+    case _:
+        print("Forme inconnue")
+```
+
+En un seul `case`, nous vérifions le type de `forme` **et** nous extrayons ses attributs dans des variables locales, ce qui évite d'avoir à les récupérer manuellement dans le corps du cas.
+
 Pour conclure, l'instruction `match` est utile pour structurer notre code de manière à gérer différents cas de façon claire et explicite. Il s'agit d'une avancée majeure dans le langage Python qui facilite l'écriture de code plus robuste et plus facile à comprendre.
 
 # Les fonctions
