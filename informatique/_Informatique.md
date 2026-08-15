@@ -9,65 +9,57 @@ domaines:
   - enseignement
 themes:
   - informatique
-resume: "Index manuel des notes techniques du dossier informatique."
+resume: "Index thématique des notes techniques du dossier informatique."
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-03
-date_modification: 2024-04-03
+date_modification: 2026-08-15
 confidentialite: publique
 publication:
   - notes-publiques
 rag: false
 metadata_verifiees: false
 ---
-## Informatique
-### SSO
-[[OAuth OpenID]]
-[[SAML]]
-[[Athentification web]]
 
-### IA
+Notes techniques, fiches et procédures. Les supports pédagogiques structurés sont dans [[_Cours]].
+
+## Numérisation, OCR et bibliothèques
+[[National Emergency Library]]
+
+## Développement web
+[[Ressources pour le web]]
+
+## Environnement, énergie et vivant
+[[Modèles climatiques]]
+
+## Informatique — général
+[[AirFlow]]
+[[Analyse sémantique]]
+[[Athentification web]]
+[[Chaîne complète de numérisation OCR Markdown traduction RAG local]]
+[[Chiffrement côté navigateur]]
+[[Copilot]]
+[[Crash github et publication de clé]]
+[[DevOps Project Manager]]
+[[F-Droid et Termux]]
+[[Forge de Mistral]]
 [[IA pour coder]]
 [[IA pour créer des Images]]
 [[IAs]]
-[[Copilot]]
-[[Suis-je une IA]]
-[[Agents IA]]
-
-## VR
-[[Solutions de VR]]
-[[Tutorial panoramique]]
-
-# Architecture et conception
-[[UML Ecore EMF Plantuml QVT Mermaid PyEcore]]
-[[Chiffrement côté navigateur]]
-
-# Culture
-[[DevOps Project Manager]]
-[[Émulation jeux d'arcade]]
-
-## Ressources
-[[Ressources pour le web]]
-
-# Virtualisation
-[[Virtualisation sur Android]]
-
-@TODO à trier
-
-[[AirFlow]]
-[[Analyse sémantique]]
-[[Crash github et publication de clé
-[[Émulation jeux d'arcade]]
-[[F-Droid et Termux
 [[Internationalisation]]
 [[LibGen]]
-[[LLM]]
-[[Modèles climatiques]]
-[[National Emergency Library]]
+[[informatique/LLM|LLM]]
+[[Microsoft]]
+[[Migration Plone 5.2 python 2.7 vers 3]]
+[[Outils pour préparer le RAG]]
 [[Présentation Nova-Ideo]]
 [[PyPdf]]
 [[Python GMail]]
 [[Recadrer les images des livres]]
+[[SAML]]
+[[Solutions de VR]]
 [[SPARQL et RDF]]
+[[UML Ecore EMF Plantuml QVT Mermaid PyEcore]]
 [[UML pour Visual code]]
+[[Émulation jeux d'arcade]]
