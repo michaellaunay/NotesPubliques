@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NX83AZQPTBAAC7TXTT"
+titre: "Le statut"
+aliases:
+  - "The Status Game"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - sociologie
+  - psychologie
+  - societe
+resume: "Synthèse du livre The Status Game de Will Storr sur le statut comme position relative dans le groupe et moteur du comportement."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Will Storr dans son livre "The status game" propose 
 
 # Quel est notre statut par rapport aux autres ?

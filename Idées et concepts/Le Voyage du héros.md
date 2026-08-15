@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1NX8ZDZMQ5VQKAWP116"
+titre: "Le Voyage du héros"
+aliases:
+  - "Monomythe"
+  - "Joseph Campbell"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - narration
+  - ecriture
+  - mythologie
+resume: "Étapes du monomythe de Joseph Campbell, schéma narratif commun à de nombreux récits."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Les étapes du monomythe, également connues sous le nom du "voyage du héros" de Joseph Campbell, sont un schéma narratif commun qui se retrouve dans de nombreux récits à travers différentes cultures. Principales étapes du monomythe :
 
 1. Le monde ordinaire : Le héros vit une vie normale avant que l'aventure ne commence. C'est son état initial, où il est souvent confronté à des désirs ou des frustrations.

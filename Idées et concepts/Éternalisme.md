@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1P09RRGVQH9N5KG5AJY"
+titre: "Éternalisme"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - philosophie
+  - physique
+  - temps
+  - relativite
+resume: "Théorie philosophique selon laquelle passé, présent et futur existent également, et son histoire de l'Antiquité à la relativité."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-04-03
+date_modification: 2025-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Voir [Personne ne sait ce qu'est le temps | @patrick_baud](https://youtube.com/shorts/DUhCOa0HDnc)
 
 L’**éternalisme** est une théorie philosophique sur la nature du temps qui affirme que **le passé, le présent et le futur existent également**. Contrairement à l’idée intuitive que seul le présent est réel (le **présentisme**), l’éternalisme suppose que **tous les moments du temps — passés, présents, futurs — sont tout aussi réels les uns que les autres**.

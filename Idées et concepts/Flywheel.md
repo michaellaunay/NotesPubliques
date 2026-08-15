@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NV64GK0TY5XZAD46ES"
+titre: "Flywheel"
+aliases:
+  - "Volant d'inertie"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - management
+  - strategie
+  - croissance
+resume: "Métaphore du volant d'inertie décrivant l'accélération progressive et auto-entretenue de la croissance d'une entreprise."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le concept de "flywheel" (volant d'inertie) est une métaphore utilisée pour décrire le processus d'accélération de la croissance d'une entreprise ou d'un projet. Il est souvent associé à la gestion stratégique et à la croissance d'entreprise. Ce concept a été popularisé par Jim Collins, un auteur et chercheur en management.
 
 Le volant d'inertie est un dispositif mécanique qui stocke de l'énergie cinétique sous forme de mouvement rotatif et qui continue de tourner une fois mis en mouvement. Dans le contexte de la gestion d'entreprise, le "flywheel" représente une série d'actions et de processus qui, une fois enclenchés, commencent à générer de l'élan et à accélérer la croissance de l'entreprise.

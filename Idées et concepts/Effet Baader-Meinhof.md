@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NVG9XD1JA8X2TVTJ6M"
+titre: "Effet Baader-Meinhof"
+aliases:
+  - "Illusion de fréquence"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - sciences-cognitives
+  - biais-cognitifs
+  - psychologie
+resume: "Biais de fréquence illusoire faisant paraître omniprésent ce que l'on vient d'apprendre."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-16
+date_modification: 2023-05-21
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 L'effet Baader-Meinhof, également connu sous le nom de "phénomène de fréquence illusoire" ou "biais de fréquence". L'effet Baader-Meinhof se produit lorsque vous apprenez quelque chose de nouveau, comme un mot ou une idée, et que vous commencez soudainement à le remarquer partout. Il donne l'impression que cette chose est devenue beaucoup plus fréquente alors qu'en réalité, c'est votre conscience de cette chose qui a augmenté.
 
 Cet effet est principalement dû à deux biais cognitifs :

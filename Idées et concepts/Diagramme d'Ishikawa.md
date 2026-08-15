@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1NTZA79C9F4CGPFMKKA"
+titre: "Diagramme d'Ishikawa"
+aliases:
+  - "Diagramme en arêtes de poisson"
+  - "Cause à effet"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - management
+  - qualite
+  - resolution-de-problemes
+resume: "Outil graphique de recherche des causes d'un effet, développé par Kaoru Ishikawa dans les années 1960."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-14
+date_modification: 2023-08-14
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le **diagramme d'Ishikawa**, également connu sous le nom de diagramme en arêtes de poisson ou diagramme de cause à effet, est un outil graphique utilisé pour explorer et afficher les causes potentielles d'un problème ou d'un effet spécifique. Il est particulièrement utile pour faciliter les sessions de brainstorming et aider les équipes à identifier les causes racines d'un problème.
 
 # Historique

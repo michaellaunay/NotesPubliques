@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1NVQDFQFCE590MTQS46"
+titre: "Jidoka"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - management
+  - lean
+  - toyota-production-system
+  - qualite
+resume: "Pilier du système de production Toyota : l'automatisation avec une touche humaine, qui arrête la production dès qu'un défaut apparaît."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-14
+date_modification: 2023-08-14
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 **Jidoka** est l'un des piliers fondamentaux du Système de Production Toyota (TPS). Le terme peut être traduit grossièrement par "automatisation avec une touche humaine" ou "automatisation intelligente". Jidoka signifie que lorsque un problème se produit dans un processus automatisé, l'équipement s'arrête immédiatement, empêchant ainsi la production de produits défectueux et signalant aux opérateurs ou aux équipes de maintenance de résoudre le problème.
 
 # Historique

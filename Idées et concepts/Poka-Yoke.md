@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1NY7GD3JDFMWCZCR8KT"
+titre: "Poka-Yoke"
+aliases:
+  - "Détrompeur"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - management
+  - lean
+  - qualite
+  - toyota-production-system
+resume: "Mécanisme lean à l'épreuve des erreurs, développé par Shigeo Shingo chez Toyota dans les années 1960."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-14
+date_modification: 2023-08-14
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le **Poka-yoke** est un terme japonais qui peut être traduit par "à l'épreuve des erreurs" ou "prévention des erreurs". Il s'agit d'un mécanisme dans un processus lean qui aide un opérateur à éviter (yokeru) les erreurs (poka). L'objectif est de créer un système dans lequel il est impossible de commettre des erreurs ou, si cela se produit, de les détecter immédiatement pour qu'elles puissent être corrigées avant de causer des problèmes plus importants.
 
 # Historique

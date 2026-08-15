@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1NTA7579VKP6T9ZA3XB"
+titre: "Analyse VA et NVA"
+aliases:
+  - "Valeur ajoutée"
+  - "NVA"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - management
+  - lean
+  - processus
+  - economie
+resume: "Méthode d'analyse des processus distinguant les activités à valeur ajoutée de celles qui n'en apportent pas."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-14
+date_modification: 2023-08-14
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 L'analyse de la valeur ajoutée (VA) et de la non-valeur ajoutée (NVA) est une approche utilisée pour examiner les processus et déterminer quelles activités ajoutent de la valeur du point de vue du client et lesquelles n'en ajoutent pas. C'est une technique essentielle dans la méthodologie Lean, visant à éliminer les gaspillages et à améliorer l'efficacité.
 
 # Historique

@@ -1,3 +1,27 @@
+---
+schema_version: 1
+uid: "01M02JG1NZ32500F641XEBGG4C"
+titre: "Société offshore"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - droit
+  - fiscalite
+  - entreprise
+resume: "Notions d'établissement stable et de siège de direction effective, déterminantes pour la fiscalité des sociétés créées à l'étranger."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-01
+date_modification: 2024-03-01
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Les notions d'établissement stable et de siège de direction effective sont essentielles pour comprendre la fiscalité et la réglementation applicable aux sociétés créées en offshore. Voici une explication de ces termes:
 
 ### Établissement Stable

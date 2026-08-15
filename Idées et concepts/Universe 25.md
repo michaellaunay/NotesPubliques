@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02JG1NZWD4140G46QE6SQCQ"
+titre: "Universe 25"
+type: source
+source_type: video
+source_titre: "The Universe 25 Mouse Experiment"
+source_auteurs:
+  - "sprout"
+source_url:
+  - "https://www.youtube.com/watch?v=7ReBJfxHjFU"
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - sociologie
+  - biologie
+  - surpopulation
+  - comportement
+resume: "Synthèse de l'expérience Universe 25 menée par John B. Calhoun en 1972 sur les effets de la surpopulation chez les souris."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-12-09
+date_modification: 2025-02-12
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 [The Universe 25 Mouse Experiement | sprout](https://www.youtube.com/watch?v=7ReBJfxHjFU)  20/04/2023 #Sociologie #Science 
 En 1972, le chercheur John B. Calhoun a mené une expérience pour étudier les effets de la surpopulation sur les comportements sociaux des souris. Il a créé un environnement utopique en laboratoire, appelé "Universe 25", offrant aux souris tout ce dont elles avaient besoin : nourriture, eau, abris et absence de prédateurs.
 
