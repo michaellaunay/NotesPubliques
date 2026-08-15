@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5ASV3GZ0Z2C98RG7SRJ"
+titre: "Algorithmes avancés en Python"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - algorithmique
+  - structures-de-donnees
+  - python
+resume: "Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme."
+niveau: avance
+prerequis:
+  - "[[Python]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-19
+date_modification: 2024-03-19
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Origine
 Le terme "algorithme" tire son origine du nom d'un mathématicien persan du IXe siècle, Abu Abdullah Muhammad ibn Musa al-Khwarizmi. Le mot "algorithme" est dérivé de la latinisation de son nom, Algoritmi, dans les traductions médiévales de ses travaux en Europe.
 

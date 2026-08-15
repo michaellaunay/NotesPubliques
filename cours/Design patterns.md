@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5AX6ANGSR1AX26WTBA7"
+titre: "Design patterns"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - genie-logiciel
+  - conception-orientee-objet
+  - design-patterns
+resume: "Cours sur les patrons de conception : définition et intérêt, catégorisation (création, structure, comportement) et étude détaillée des principaux patterns."
+niveau: intermediaire
+prerequis:
+  - "[[Principes SOLID en COO]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-13
+date_modification: 2023-09-07
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 **Plan** du cours :
 
 **[[#1. Introduction aux Design Patterns]]**

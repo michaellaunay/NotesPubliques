@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02EX5B18KFQ629QHS96MJT0"
+titre: "HTML"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - developpement-web
+  - html
+resume: "Cours d'introduction au HTML : bases du langage, organisation et sémantique du contenu, liens, images et ressources, bonnes pratiques et projet final."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2025-12-08
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 
 # 1. Introduction
 - **Objectif du cours** : Présentation des objectifs et des compétences visées.

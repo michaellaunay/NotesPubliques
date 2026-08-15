@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5C19W7XWY5MFJVW0AEE"
+titre: "PlantUML pour Obsidian"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - obsidian
+  - modelisation
+  - uml
+  - plantuml
+resume: "Procédure d'installation d'un serveur PlantUML local pour Obsidian, avec mise à jour du système, installation de Java et présentation de modeleurs graphiques générant du PlantUML."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-02
+date_modification: 2023-06-08
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 [[Obsidian]] possède un module permettant de visiualiser les diagrammes écrit avec la syntaxe de PlantUML.
 
 Il existe de nombreux outil de texte vers diagrammes comme le montre [[Outils de modélisation textuels]].

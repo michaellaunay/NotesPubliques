@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02EX5C4GRWP4Q699FKAESKA"
+titre: "Python"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - programmation
+  - python
+resume: "Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-10
+date_modification: 2026-06-11
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le scripting bash peut vite s'apparenter à du développement, alors pourquoi ne pas utiliser un vrai langage de programmation ?
 
 # Historique

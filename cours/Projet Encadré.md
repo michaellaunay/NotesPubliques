@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C2WQQ4NQ1VAY93BESD"
+titre: "Projet Encadré"
+type: projet
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - genie-logiciel
+  - architecture-logicielle
+  - projet-etudiant
+  - evaluation
+resume: "Sujet de projet encadré : conception et architecture d'une bibliothèque numérique décentralisée, réalisée en binômes hétérogènes avec évaluation croisée entre équipes."
+niveau: avance
+prerequis:
+  - "[[Architecture des logiciels]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-09-14
+date_modification: 2025-09-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 
 Le projet consiste à développer un **MVP (Minimum Viable Product)** d’une bibliothèque numérique en ligne.
 

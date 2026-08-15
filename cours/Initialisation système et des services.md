@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5B7ES318ZHXECH7A9JH"
+titre: "Initialisation système et des services"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - gnu-linux
+  - demarrage
+  - systemd
+resume: "Cours sur le démarrage d'un système GNU/Linux : séquence de boot, GRUB 2, paramètres du noyau, comparaison systemd / SysV init / upstart, targets et niveaux d'exécution."
+niveau: intermediaire
+prerequis:
+  - "[[GNULinux]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-28
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # La séquence de boot
 
 La séquence de boot est une étape clé dans le processus de démarrage de l'ordinateur. Lorsque l'ordinateur est allumé, le bios (basic input output system) recherche le périphérique d'amorçage en suivant une séquence de boot préétablie.

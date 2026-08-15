@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5BSTDSSEEXSQKCPRPGY"
+titre: "Matplotlib"
+aliases:
+  - "Matplotlib"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - visualisation
+  - matplotlib
+resume: "Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-06-10
+date_modification: 2025-05-16
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Mettre matplotlib en format SVG
 Par défaut, les graphiques de Matplotlib sont des images. Du coup, tout zoom dégrade leur qualité.
 Mais il est possible d'utiliser des graphiques vectoriels (SVG) (Scalable Vector Graphic). Les zooms n'affecteront pas la mise à l'échelle.

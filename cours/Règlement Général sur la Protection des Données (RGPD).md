@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5C70HV6DMYWV6S30YEB"
+titre: "Règlement Général sur la Protection des Données (RGPD)"
+aliases:
+  - "RGPD"
+  - "GDPR"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - droit
+  - donnees-personnelles
+  - rgpd
+  - conformite
+  - vie-privee
+resume: "Cours sur le RGPD : contexte et cadre juridique, principes fondamentaux (licéité, minimisation, exactitude, limitation de conservation, intégrité) et droits des personnes concernées."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-21
+date_modification: 2023-06-22
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Plan sur le Règlement Général sur la Protection des Données (RGPD) :
 
 1. **Introduction au RGPD**

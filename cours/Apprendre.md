@@ -1,3 +1,35 @@
+---
+schema_version: 1
+uid: "01M02EX5AS47RRCJ4G85QG43KW"
+titre: "Apprendre"
+type: source
+source_type: video
+source_titre: "Mieux Apprendre & étudier"
+source_auteurs:
+  - "Science étonnante"
+source_url:
+  - "https://youtu.be/RVB3PBPxMWg"
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - pedagogie
+  - apprentissage
+  - memoire
+  - sciences-cognitives
+resume: "Synthèse d'une vidéo de Science étonnante sur les mécanismes de l'apprentissage : mémoire de travail et à long terme, répétition espacée, auto-tests, diversification, apprentissage génératif et cartes mentales."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-09-02
+date_modification: 2023-09-01
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Synthèse de [Science étonnantes : Mieux Apprendre & étudier](https://youtu.be/RVB3PBPxMWg)
 
 [00:00](https://www.youtube.com/watch?v=RVB3PBPxMWg&t=0s) Introduction

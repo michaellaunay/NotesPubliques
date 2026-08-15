@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5ASFV4NJZAHYYKF5S5Y"
+titre: "Anaconda"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - data-science
+  - anaconda
+  - jupyter
+resume: "Histoire de la distribution Anaconda, présentation de Jupyter et du format IPYNB, installation sous Ubuntu et panorama des distributions dérivées."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-09-25
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 **Anaconda** est une distribution open-source de [[Python]] (et R) qui est spécialement conçue pour faciliter la gestion de packages et d'environnements, en particulier dans les domaines de la science des données, de l'apprentissage automatique et de l'analyse de données. Elle inclut une vaste collection de bibliothèques scientifiques, d'outils et de packages pour Python, tout en fournissant un environnement pratique pour gérer différentes versions de Python et de ses packages.
 
 ### Les principaux éléments d'Anaconda :

@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5B6GHDXC0F77CJ5RR8Y"
+titre: "IPFS"
+aliases:
+  - "InterPlanetary File System"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - reseaux
+  - decentralisation
+  - stockage
+  - ipfs
+resume: "Cours sur IPFS : enjeux de la décentralisation du stockage, comparaison avec le modèle client-serveur, Merkle DAG, adressage par contenu et fonctionnement technique du réseau."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-05-08
+date_modification: 2024-05-07
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Introduction à IPFS
 ## Objectifs du cours
 

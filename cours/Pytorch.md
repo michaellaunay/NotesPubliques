@@ -1,3 +1,36 @@
+---
+schema_version: 1
+uid: "01M02EX5C4HP6E6YFDJ49FK294"
+titre: "Pytorch"
+aliases:
+  - "PyTorch"
+type: cours
+statut: brouillon
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - apprentissage-profond
+  - python
+  - pytorch
+resume: "Proposition de plan de cours « Du tenseur au deep learning » avec PyTorch, et rappel des fondamentaux à maîtriser avant de coder."
+niveau: avance
+prerequis:
+  - "[[Python]]"
+  - "[[Numpy]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-07-13
+date_modification: 2026-06-07
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 ## Proposition de plan de cours : Du Tenseur au Deep Learning
 
 ### Chapitre 1 : Les Fondations Mathématiques et le Tenseur PyTorch

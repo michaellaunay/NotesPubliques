@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5CCVSC0EQMA5R83JJ92"
+titre: "Git"
+aliases:
+  - "Git"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - gestion-de-version
+  - git
+  - outils
+resume: "Cours sur Git : historique, installation et configuration du client, création d'un dépôt et principales commandes du quotidien."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2023-11-19
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Introduction
 
 Git est un outil de gestion de versions du code développé par **Linus Torval** fondateur de Linux pour gérer le développement du noyau Linux.

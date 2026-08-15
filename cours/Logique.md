@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02EX5BRSK0FWK4QAD4RXRFB"
+titre: "Logique"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - mathematiques
+  - logique
+  - informatique-theorique
+resume: "Cours de logique appliquée à l'informatique : logique propositionnelle, opérations de base, tautologies et inférence, puis logique des prédicats du premier ordre."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-13
+date_modification: 2023-06-13
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le cours est structuré comme suit :
 
 I. Introduction à la Logique

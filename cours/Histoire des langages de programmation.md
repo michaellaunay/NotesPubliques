@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02EX5B5DSZ8Y8YDJ72N03V3"
+titre: "Histoire des langages de programmation"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - histoire-informatique
+  - langages-de-programmation
+resume: "Cours d'histoire des langages de programmation : concepts de syntaxe et de sémantique, classification des langages, précurseurs, Fortran, COBOL, LISP, langages structurés et évolutions modernes."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-27
+date_modification: 2023-09-02
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Introduction aux Langages de Programmation
 
 Dans ce cours nous abordons l'histoire des langages de programmation. Nous explorons les racines, les évolutions et les innovations qui ont façonné l'univers complexe et fascinant de la programmation informatique.

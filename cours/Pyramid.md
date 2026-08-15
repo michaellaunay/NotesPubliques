@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C30AQ42BWV7D8MBK5K"
+titre: "Pyramid"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - developpement-web
+  - python
+  - pyramid
+resume: "Cours sur le framework web Pyramid : installation et structure d'une application, routes et vues, templates Chameleon, formulaires Deform, persistance et sécurité."
+niveau: avance
+prerequis:
+  - "[[Python]]"
+  - "[[HTTP]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-14
+date_modification: 2024-11-05
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Plan de cours structuré autour du développement d'une application d'authentification de membres utilisant Pyramid et OpenLDAP.
 
 **1. Introduction à Pyramid et au développement web Python**

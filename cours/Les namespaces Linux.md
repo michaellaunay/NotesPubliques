@@ -1,3 +1,38 @@
+---
+schema_version: 1
+uid: "01M02EX5BD9BVRTQDDF2WDT310"
+titre: "Les namespaces Linux"
+aliases:
+  - "namespaces"
+  - "espaces de noms Linux"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - gnu-linux
+  - noyau
+  - namespaces
+  - conteneurisation
+resume: "Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d'un processus, différence avec la virtualisation classique et étude de chaque type de namespace."
+niveau: avance
+prerequis:
+  - "[[GNULinux]]"
+  - "[[proc]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-05-24
+date_modification: 2026-05-24
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Objectifs généraux du cours
 
 À la fin du cours, nous savons expliquer le rôle des namespaces Linux, comprendre leur place dans l’isolation des processus, manipuler les principaux types de namespaces, et faire le lien avec les conteneurs, Docker, Kubernetes, systemd, `/proc`, les cgroups et la sécurité.

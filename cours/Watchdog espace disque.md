@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02EX5CBWW4RPBXNRV2M8Q6D"
+titre: "Watchdog espace disque"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - supervision
+  - bash
+resume: "Script de surveillance de l'occupation disque : paramétrage du seuil, récupération de l'utilisation et déclenchement d'une alerte."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-10
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Pour créer un script bash qui envoie un e-mail lorsque l'espace disque est utilisé à 70% ou plus, suivons les étapes ci-dessous:
 
 1.  Ouvrons notre éditeur de texte préféré et créons un nouveau fichier nommé `check_disk_usage.sh`.

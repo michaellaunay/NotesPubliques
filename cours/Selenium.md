@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5C8ABG29Z18H8HACTZR"
+titre: "Selenium"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - tests-logiciels
+  - automatisation
+  - python
+  - selenium
+resume: "Cours sur Selenium : intérêt de l'automatisation du web, installation et configuration des WebDriver, éléments de base, méthodes de WebDriver et WebElement."
+niveau: intermediaire
+prerequis:
+  - "[[Python]]"
+  - "[[HTML]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-07-24
+date_modification: 2023-07-26
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Selenium est à la fois un outil de tests des interfaces web et un outil de scraping permettant facilement l'exécution du code javascript dans l'environnement du navigateur web choisi.
 Plan du cours :
 

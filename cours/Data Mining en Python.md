@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5AWRSDE0RHRN96J9CKZ"
+titre: "Data Mining en Python"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - data-science
+  - data-mining
+  - python
+  - apprentissage-automatique
+resume: "Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, techniques et modèles, évaluation et optimisation, avec un projet d'analyse de fr.wikipedia.org."
+niveau: intermediaire
+prerequis:
+  - "[[Python]]"
+  - "[[Pandas]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-11-29
+date_modification: 2024-07-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Plan de cours
 
 ## I. Introduction au "data mining"

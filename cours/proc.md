@@ -1,3 +1,36 @@
+---
+schema_version: 1
+uid: "01M02EX5CEF7YK9JF8DK4YJZS8"
+titre: "/proc"
+aliases:
+  - "/proc"
+  - "procfs"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - gnu-linux
+  - noyau
+  - procfs
+resume: "Cours approfondi sur le système de fichiers /proc sous GNU/Linux : rôle pédagogique et opérationnel, différences avec /sys, /dev et /run, et exploration guidée des principaux fichiers."
+niveau: avance
+prerequis:
+  - "[[GNULinux]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-05-24
+date_modification: 2026-06-04
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Le système de fichiers `/proc` sous GNU/Linux
 
 ## Objectifs du cours

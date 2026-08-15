@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5B62FJ5N6D6XE7KZC04"
+titre: "InetOrgPerson"
+aliases:
+  - "inetOrgPerson"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - annuaire
+  - ldap
+  - inetorgperson
+resume: "Cours sur la classe d'objets inetOrgPerson dans LDAP : caractéristiques, attributs, exemples d'utilisation et survol de la RFC 2798."
+niveau: intermediaire
+prerequis:
+  - "[[LDAP]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-09-25
+date_modification: 2023-09-25
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Cours sur l'Object Class inetOrgPerson dans LDAP
 
 ## Objectifs du cours

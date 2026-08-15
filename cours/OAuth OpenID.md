@@ -1,4 +1,39 @@
-#Expérimentation #Informatique 
+---
+schema_version: 1
+uid: "01M02EX5BTF6J6TEGP8V0WXBAD"
+titre: "OAuth OpenID"
+aliases:
+  - "OAuth 2.0"
+  - "OpenID Connect"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - securite
+  - authentification
+  - oauth
+  - openid-connect
+  - keycloak
+tags:
+  - experimentation
+resume: "Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation."
+niveau: avance
+prerequis:
+  - "[[HTTP]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2022-12-29
+date_modification: 2024-06-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Introduction
 
 ## Présentation des objectifs du cours

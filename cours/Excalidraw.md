@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5AZ939RXR9542RWVJ2H"
+titre: "Excalidraw"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - obsidian
+  - excalidraw
+  - visualisation
+  - outils
+resume: "Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-23
+date_modification: 2024-04-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Liens
 [Excalidraw | Le MindMappeur](https://youtu.be/M6uzN6IHBLo)
 Installation de Excalidraw [Découverte du plugin Excalidraw dans Obsidian | 8 trucs vraiment cools !](https://youtu.be/aaaWXJFpwXw) et la vidéo officielle [Showcasing Excalidraw in Obsidian](https://youtu.be/o0exK-xFP3k)

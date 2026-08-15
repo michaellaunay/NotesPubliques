@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5B7CGA0SZHY0Y0XG7XB"
+titre: "Jupyter Notebook et Google Colab"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - data-science
+  - notebooks
+  - jupyter
+resume: "Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-24
+date_modification: 2026-02-18
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Jupyter est aujourd’hui l’un des outils les plus utilisés en data science, mais il n’est pas né directement sous ce nom. Son histoire est liée à l’évolution du langage Python et des besoins des chercheurs en calcul scientifique.
 
 # Origine : le projet IPython (2001)

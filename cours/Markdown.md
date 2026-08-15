@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5BRHTE5B8223N38ME6A"
+titre: "Markdown"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - markdown
+  - redaction
+  - obsidian
+resume: "Cours sur Markdown : formatage de base, apports des variantes GitHub et Obsidian, extensions, écriture de formules mathématiques et syntaxe étendue."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2024-06-24
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 ## Introduction
 
 Markdown est un langage de balisage léger créé en 2004 par John Gruber et Aaron Swartz pour Reddit. Le nom du langage est un clin d’œil aux langages de type "markup" (à balises) comme le HTML et le XHTML en soulignant que "markdown" est simple, a moins d’éléments structurants, et peut quand même être compris par un humain en l’absence de mise en forme. 

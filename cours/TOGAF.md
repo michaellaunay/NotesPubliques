@@ -1,3 +1,35 @@
+---
+schema_version: 1
+uid: "01M02EX5CA6AQFMBYX0PTV40NF"
+titre: "TOGAF"
+aliases:
+  - "The Open Group Architecture Framework"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - architecture-entreprise
+  - togaf
+  - gouvernance
+  - urbanisation
+resume: "Cours sur TOGAF : fondements de l'architecture d'entreprise, structure du cadre, méthode ADM, artefacts, livrables et gouvernance, mise en pratique et certifications."
+niveau: avance
+prerequis:
+  - "[[Architecture des logiciels]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-01-29
+date_modification: 2026-06-07
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Plan du cours : **TOGAF – Architecture d’Entreprise**
 
 ## **Introduction générale**

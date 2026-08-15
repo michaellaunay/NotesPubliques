@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C98Q8MW7J6C4M5TM6J"
+titre: "Sécurité avancée sous Linux"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - securite
+  - administration-systeme
+  - gnu-linux
+  - cryptographie
+resume: "Cours de sécurité Linux avancée : durcissement du système, contrôle d'accès avancé, authentification et accès réseau, cryptographie, détection d'intrusions, sécurité des conteneurs et usage des LLM."
+niveau: avance
+prerequis:
+  - "[[GNULinux]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-11
+date_modification: 2024-04-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Plan du cours
 ## Introduction à la sécurité Linux
 - Présentation du cours

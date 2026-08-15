@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5BEJNF043C7ZKR35C7W"
+titre: "Les protocoles de communications"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - reseaux
+  - protocoles
+  - tcp-ip
+  - internet
+resume: "Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-25
+date_modification: 2023-06-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Qu'est ce qu'un protocole de communication ?
 
 Quand nous croisons une connaissance, il est courant de commencer par un salut, souvent "Bonjour", puis d'engager une conversation. Une fois l'échange terminé, nous concluons généralement par un "Au revoir". Cette pratique, qui définit l'ouverture et la clôture d'une conversation avec des formules familières à chaque participant, est en fait un exemple de protocole de communication. Cette convention, que l'on peut appeler la "politesse", sert à instaurer un contexte propice à l'échange d'informations, informations qui ne font pas partie du protocole en tant que tel. D'autres protocoles humains existent, comme l'échange de courrier postal, qui est une analogie utile pour introduire le concept de protocole dans le domaine informatique. Tout comme les livres dont l'organisation suit généralement des standards "implicites" permettant au lecteur de savoir comment accéder à l'information contenue et qui dépend de la nature du livre selon qu'il s'agisse d'un roman, dictionnaire ou journal. Les protocoles informatiques ne font qu'émuler ces habitudes humaines extrêmement efficaces en les rationalisant.

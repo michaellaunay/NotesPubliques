@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5AT1VPB4GV6CEWWGA7A"
+titre: "Architecture des logiciels"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - genie-logiciel
+  - architecture-logicielle
+  - conception-orientee-objet
+resume: "Cours complet d'architecture logicielle : définitions, attributs de qualité, décisions et vues architecturales, styles d'architecture (monolithique, en couches, microservices, etc.) et documentation."
+niveau: avance
+prerequis:
+  - "[[Design patterns]]"
+  - "[[Principes SOLID en COO]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-14
+date_modification: 2025-09-09
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Plan du cours sur l'architecture des logiciels. Ce cours explique comment les logiciels sont structurés et comment cette structure peut aider à faciliter la conception, l'implémentation et la maintenance des systèmes logiciels.
 
 1. **Introduction à l'architecture logicielle** : Nous commencerons par une introduction à l'architecture logicielle. Nous aborderons son importance, ses objectifs et ses avantages. Nous discuterons également de la relation entre l'architecture logicielle et la conception orientée objet.

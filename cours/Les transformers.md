@@ -1,3 +1,38 @@
+---
+schema_version: 1
+uid: "01M02EX5BNFFY4EQ5SRE4WGWKW"
+titre: "Les transformers"
+aliases:
+  - "Transformers"
+  - "Attention is all you need"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - apprentissage-profond
+  - transformers
+  - attention
+  - llm
+resume: "Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète."
+niveau: avance
+prerequis:
+  - "[[Les CNN et RNN]]"
+  - "[[Pytorch]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-08
+date_modification: 2026-06-08
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ceci est un **cours de niveau Master** sur les **Transformers**, pensé comme une progression pédagogique complète.
 
 # Cours Master — Comprendre les Transformers

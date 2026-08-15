@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5B8BJXXVVE3N14WEJ3R"
+titre: "LDAP"
+aliases:
+  - "OpenLDAP"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - annuaire
+  - ldap
+  - openldap
+  - administration-systeme
+resume: "Cours sur LDAP et OpenLDAP : structure de l'annuaire, opérations, format LDIF, classes d'objets et RFC de référence."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-22
+date_modification: 2024-01-06
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Présentation
 
 LDAP est l'acronyme de Lightweight Directory Access Protocol. Il s'agit d'un protocole standard de l'industrie pour accéder et maintenir des services d'annuaire distribués sur Internet.

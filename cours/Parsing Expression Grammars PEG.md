@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C1CNG9WD8TJD18BY5Y"
+titre: "Parsing Expression Grammars PEG"
+aliases:
+  - "PEG"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - informatique-theorique
+  - grammaires
+  - analyse-syntaxique
+  - peg
+resume: "Fiche sur les Parsing Expression Grammars : non-terminaux, terminaux, règles de production, opérateurs de séquence, choix, répétition et prédicats, et gestion de la récursivité."
+niveau: avance
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-20
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Les Parsing Expression Grammars (PEG) sont une formalisation des grammaires pour décrire les langages formels, et sont particulièrement utiles pour décrire la syntaxe des langages de programmation, des formats de données, et des protocoles de communication. Les grammaires PEG sont basées sur des expressions de parsing, qui décrivent comment un texte d'entrée peut être décomposé en éléments syntaxiques.
 
 Voici les principes de base pour écrire une grammaire PEG :

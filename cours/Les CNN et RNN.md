@@ -1,3 +1,38 @@
+---
+schema_version: 1
+uid: "01M02EX5B9277GTFBM3ZWJ3DAK"
+titre: "Les CNN et RNN"
+aliases:
+  - "CNN"
+  - "RNN"
+  - "Réseaux convolutifs et récurrents"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - apprentissage-profond
+  - reseaux-de-neurones
+  - cnn
+  - rnn
+resume: "Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences."
+niveau: avance
+prerequis:
+  - "[[Machine Learning]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-08
+date_modification: 2026-06-08
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ceci est un **cours de niveau Master** sur les **CNN** et **RNN**, pensé comme une progression pédagogique complète.
 
 # Partie I — Les réseaux de neurones convolutifs (CNN)

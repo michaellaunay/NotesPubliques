@@ -1,3 +1,38 @@
+---
+schema_version: 1
+uid: "01M02EX5CA3GFKZNS8WWVQ0C1J"
+titre: "Sécurité des IOT en python avec SCADA"
+aliases:
+  - "Sécurité IoT"
+  - "SCADA"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - securite
+  - iot
+  - scada
+  - python
+  - systemes-industriels
+resume: "Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth."
+niveau: avance
+prerequis:
+  - "[[Python]]"
+  - "[[Les protocoles de communications]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-24
+date_modification: 2024-04-20
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ce cours sur la sécurité Python pour les systèmes IoT (Internet des Objets), tient compte des spécificités des systèmes SCADA (Supervisory Control and Data Acquisition).
 
 # 1. Introduction à la Sécurité Python pour les IoT

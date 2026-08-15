@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5B8FCN41RAHSC297FN9"
+titre: "LLM"
+aliases:
+  - "Large Language Model"
+  - "Grands modèles de langage"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - apprentissage-profond
+  - llm
+  - traitement-du-langage
+resume: "Cours sur les grands modèles de langage : place dans l'apprentissage profond, arbre généalogique des LLM, origines et évolutions, capacités, applications, fondations théoriques et défis."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-08
+date_modification: 2024-05-06
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Large Language Models
 
 # Le deeplearning un sous ensemble de l'IA
