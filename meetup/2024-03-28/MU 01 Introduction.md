@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1VQK2HBK1ND9EJGWWPC"
+titre: "MU 01 Introduction"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - intelligence-artificielle
+  - meetup
+resume: "Introduction du meetup : clarification du terme intelligence artificielle et distinction entre IA générale et IA appliquée au développement."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-28
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # Introduction
 - Présentation du potentiel de l'IA dans le développement logiciel.
 - Clarification du terme "Intelligence Artificielle" et distinction entre IA générale et IA appliquée au développement logiciel.

@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VPKF1H9SR3D07EKVQ8"
+titre: "MU 08 Fichiers Python"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - python
+  - intelligence-artificielle
+  - meetup
+resume: "Génération des fichiers Python du projet selon le plan défini, puis reprise du travail dans VS Code."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-28
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 **Moi**
 Selon le plan que nous avions défini : 
 

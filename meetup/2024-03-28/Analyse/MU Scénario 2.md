@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VM2VYJRVYP652E7W8A"
+titre: "MU Scénario 2"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - scenarios
+  - markdown
+  - html
+  - meetup
+resume: "Scénario de conversion de notes Markdown en HTML par un script Python."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # **Conversion de Notes Markdown en HTML**
 
 ## Résumé

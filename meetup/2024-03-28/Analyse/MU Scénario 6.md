@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VNCX9E3G0PFTB71GZ7"
+titre: "MU Scénario 6"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - scenarios
+  - obsidian
+  - regeneration
+  - meetup
+resume: "Scénario de mise à jour d'une note dans Obsidian et de régénération automatique du site."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # **Mise à Jour d'une Note dans Obsidian et Régénération du Site Web**
 
 ## Résumé

@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1VN23ZT9CZB9DC8VY37"
+titre: "MU Scénario 5"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - scenarios
+  - navigation-web
+  - meetup
+resume: "Scénario de consultation d'une note convertie en HTML sur le site généré."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 ### Titre
 **Consultation d'une Note Convertie en HTML**
 

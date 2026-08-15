@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VKJ68SHDR0Q45VFP70"
+titre: "MU Analyse par chat GPT"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - intelligence-artificielle
+  - analyse
+  - 2tup
+  - meetup
+resume: "Retranscription de la phase d'analyse menée conjointement avec ChatGPT selon la méthode 2TUP, de la génération du glossaire métier aux scénarios."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # Remarque générale
 L'analyse doit être menée conjointement par l'humain et l'IA, l'idéal étant de sélectionner une méthode pour ensuite la mettre en application avec ChatGPT. Il est crucial de vérifier les résultats générés et de corriger d'éventuelles hallucinations ou pertes de contexte, qui surviennent généralement tous les 7 ou 8 prompts.
 Nous avons opté ici pour la méthode 2TUP (2 Track Unified Process), qui est une approche orientée objet. La phase d'analyse dans cette méthode repose sur la création de cas d'utilisation, ce qui, en résumé, consiste à illustrer le manuel d'utilisation en décrivant des scénarios d'usage.
