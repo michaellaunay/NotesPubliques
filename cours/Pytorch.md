@@ -23,7 +23,7 @@ prerequis:
 auteurs:
   - "Michaël Launay"
 langue: fr
-date_creation: 2026-07-13
+date_creation: 2026-06-07
 date_modification: 2026-06-07
 confidentialite: publique
 publication:
