@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1WQ9ZB9VDNT9KP5QF2P"
+titre: "Écart type"
+aliases:
+  - "Déviation standard"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - mathematiques
+  - statistiques
+  - dispersion
+resume: "Définition de l'écart type et méthode de calcul à partir de la variance."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-12
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 L'**écart type** (ou **déviation standard**) est une mesure statistique qui exprime à quel point les valeurs d'un ensemble de données sont dispersées par rapport à la moyenne. Il est étroitement lié à la [[Variance]], car l'écart type est simplement la racine carrée de la variance.
 
 ### Formule de l'écart type
