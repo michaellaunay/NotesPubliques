@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WJY4RYZVPZ3BJSP08M"
+titre: "Peut-on éviter le chaos qui vient"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - societe
+  - economie
+  - environnement
+  - politique-publique
+resume: "Réflexion croisant la thèse de Peter Turchin sur les cycles de crise, la fiscalité du patrimoine et les crises climatique et du vivant."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-09-21
+date_modification: 2025-09-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Au moment où la taxe Zucman de 2 % sur le patrimoine des fortunes dépassant les 100 millions enflamme le débat, au moment où Peter Turchin dans _Le chaos qui vient_ rappelle que trois moteurs suffisent à précipiter une révolution, la pompe à richesse, l’affaiblissement de l’État et la surproduction d’élites, nous sommes encerclés par des crises multiples.
 
 Crise climatique, issue d’un dérèglement directement lié à nos activités. Crise du vivant, avec 60 % de la biodiversité éradiquée en vingt-cinq ans, broyée par les pesticides et l’artificialisation des sols. Crise politique, avec l’instabilité, la montée des extrêmes en Europe, la compétition frontale entre États-Unis et Chine, le monopole énergétique imposé par Trump, et l’impuissance internationale face au nettoyage de la bande de Gaza qui rappelle que les plaies de 1948 n’ont jamais cicatrisé. Crise chimique, avec les PFAS qui saturent nos eaux, les micropolluants jusque sur l’Himalaya, les perturbateurs endocriniens dans l’alimentation des enfants, la chute de la fertilité ignorée alors que tous nos modèles sociaux reposent sur des hypothèses de croissance démographique infinie. Et cette odeur de poudre aux frontières européennes. Pendant ce temps, les États-Unis basculent vers un régime ouvertement antidémocratique, franchissant toutes les lignes rouges internes et internationales, et nous regardons, fascinés et effarés, la fin annoncée de la « démocratie » dans un pays surarmé où les mouvements insurrectionnels se multiplient.

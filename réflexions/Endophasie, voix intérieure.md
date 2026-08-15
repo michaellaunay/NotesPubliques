@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1WFPYCTKT0AJ4FPR26H"
+titre: "Endophasie, voix intérieure"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - sciences-cognitives
+  - attention
+  - philosophie
+resume: "Réflexion sur la saturation informationnelle et sur ce qu'il reste de temps de cerveau disponible pour la voix intérieure."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-01
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Linkedin #Réflexion
 L'information nous arrive de toute part, nous obligeant à filtrer et nous condamnant à l'oubli pour ne pas être envahie.
 

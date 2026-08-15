@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1WCFPJQ1Z4NYK4RP3SZ"
+titre: "Algorithme de compression basé sur PI"
+type: idee
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - informatique
+  - algorithmique
+  - compression
+  - mathematiques
+resume: "Idée d'exercice pour le cours de Python : un algorithme de compression fondé sur la recherche de motifs dans les décimales de PI."
+maturite: a-experimenter
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-01-04
+date_modification: 2024-02-29
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Dans le série des exercices pour mon cours de [[Python]] 
 Je propose de faire un algorithme de compression qui se base sur la suite de décimale de PI.
 Ainsi nous pourrions chercher les morceaux de données à compresser dans une table des décimales de PI.

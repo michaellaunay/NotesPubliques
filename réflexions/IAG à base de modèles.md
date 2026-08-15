@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1WGWWA1V1SWKHNV35ZK"
+titre: "IAG à base de modèles"
+type: idee
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - informatique
+  - intelligence-artificielle
+  - ingenierie-des-modeles
+  - uml
+  - bpmn
+resume: "Idée de faire générer par un LLM des modèles UML et BPMN à partir de prompts, puis de les transformer en code Python exécutable et validé."
+maturite: exploree
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-06-18
+date_modification: 2024-07-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ici, je vais développer l'idée de faire générer des modèles UML et BPMN par un modèle de langage (LLM) à partir des prompts saisis, afin de les rendre actionnables par transformation successive en code Python. L'objectif est d'obtenir un code qui reflète le texte saisi, permettant ainsi d'exécuter ce code sur des données d'entrée pour produire des données de sortie qui seront comparées à des résultats attendus.
 
 - **Le sujet** : Automatisation de la génération de modèles UML et BPMN via un modèle de langage, leur transformation en code Python exécutable, et la validation de ce code par comparaison des résultats obtenus aux résultats attendus.

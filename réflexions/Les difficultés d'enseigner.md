@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1WHZF1T9VDAYWC0J368"
+titre: "Les difficultés d'enseigner"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - enseignement
+  - universite
+  - administration
+resume: "Témoignage sur les difficultés administratives et les délais de paiement rencontrés par les vacataires de l'université publique."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2023-06-16
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Post #Linkedin 
 Savez-vous que si vous décidez d'enseigner en université publique il vous faut vous attendre à n'être payé qu'en fin d'année scolaire après un long parcours d'aller-retour avec l'administration pour des demandes du style "Votre avis CFE doit être celui de 2022 et non 2021" alors que vous avez rempli votre dossier en octobre avant émission de l'avis de l'année en cours. Car oui l'administration a 4 mois de retard faisant que vos documents deviennent périmés.  
 Bref, vouloir enseigner dans le public est un sacerdoce digne des 12 travaux d'Astérix !  

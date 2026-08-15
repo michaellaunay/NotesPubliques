@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WMMT698V34Q6317JV2"
+titre: "Taille des bibliothèques"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - bibliotheques
+  - histoire
+  - patrimoine
+  - numerisation
+resume: "Recueil de chiffres et de repères historiques sur la taille des grandes bibliothèques, d'Assurbanipal à la BnF et à la Bibliothèque du Congrès."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2023-06-09
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 ## Le biblithèque Assurbanipal (-668 -627)
 On a retrouvé plus de 20 000 tablettes cunéifformes (Première traduction de Gilgamesh en 1872) https://youtu.be/pYkdudibadY
 

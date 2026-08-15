@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1WFKFP3M0YHGV258ADT"
+titre: "Haut Potentiel Intellectuel"
+aliases:
+  - "HPI"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - sciences-cognitives
+  - psychologie
+  - pedagogie
+resume: "Analyse nuancée des représentations françaises du haut potentiel intellectuel, entre le cliché du génie et celui du surdoué hypersensible."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-25
+date_modification: 2026-06-25
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Analyse nuancée : réalités psychologiques et cognitives des personnes à haut potentiel intellectuel
 
 L’imaginaire collectif associe souvent le haut quotient intellectuel à une forme d’intelligence immédiatement visible : assurance, rapidité, facilité scolaire, capacité à résoudre des problèmes complexes sans effort. Cette représentation est très réductrice. Le haut potentiel intellectuel ne se manifeste pas toujours par des signes spectaculaires ni par une réussite évidente. Il peut au contraire prendre des formes discrètes, ambivalentes, parfois même déroutantes : doute, ennui, décalage relationnel, exigence excessive, curiosité intense ou difficulté à se satisfaire d’explications superficielles.

@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WN1WG24C72V5NJMQJD"
+titre: "Un jardin, des lapins, des carottes, chat gpt et copilot"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - pedagogie
+  - intelligence-artificielle
+  - python
+  - enseignement
+resume: "Retour d'expérience sur huit heures de cours de Python à Polytech'Lille menées avec ChatGPT et Copilot."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2024-01-05
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Article #Linkedin  #Réflexion 
 J'ai donné 8h de cours de python à des étudiants de PolytechLille, où je leur ai d’abord passé la vidéo de Monsieur Phi https://youtu.be/R2fjRbc9Sa0 ) pour leur permettre de bien situer l'outil, puis nous avons généré du code en utilisant à la fois Copilot (c'est gratuit pour les étudiants) et Chatgpt3.
 

@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WNP9VCE6511XMZFB5P"
+titre: "Tutorial panoramique"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - video
+  - panoramique
+  - pedagogie
+  - multimedia
+resume: "Explication du fonctionnement des vidéos à 360 degrés et de leur détournement possible à des fins pédagogiques."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-16
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Rappel sur le panoramique
 Les vidéos que l'on peut explorer en modifiant son point de vue sont appelées des vidéos à 360 degrés ou vidéos panoramiques à 360 degrés. Ces vidéos sont tournées à l'aide de caméras spéciales équipées de plusieurs objectifs qui capturent l'environnement dans toutes les directions. Lorsque la vidéo est visualisée sur un écran d'ordinateur ou un appareil mobile, il est possible de faire pivoter la vue à l'aide d'un curseur ou d'un mouvement du doigt pour changer l'angle de vision. Cela permet à l'utilisateur de regarder la vidéo de tous les côtés et de se sentir immergé dans l'environnement capturé.
 

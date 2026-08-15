@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WE6CYX5Z9KYVRV55YP"
+titre: "Comment savoir si une IA est consciente ?"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - intelligence-artificielle
+  - philosophie
+  - conscience
+  - ethique
+resume: "Réflexion sur les critères permettant d'évaluer la conscience d'un dispositif technique, au-delà du test de Turing."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-05-19
+date_modification: 2025-05-19
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 En raison des progrès rapides du domaine de l'IA, savoir si un dispositif technique pourrait être conscient devient urgent. D'autant que le test de Turing ne semble pas suffisant à le déterminer.
 
 C'est dans ce contexte que plusieurs experts, comme Ilya Sutskever (ex-scientifique en chef d’OpenAI), ont suggéré que des modèles avancés pourraient être légèrement "conscients". Mais pour la communauté scientifique, cette affirmation soulève une question essentielle : comment évaluer objectivement la conscience d’un système d’IA ?
