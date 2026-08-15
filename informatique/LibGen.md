@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1VDDT6M215A2BNWDQGZ"
+titre: "LibGen"
+aliases:
+  - "Library Genesis"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - bibliotheques
+  - droit-auteur
+  - numerisation
+resume: "Fiche sur LibGen et scripts d'interrogation des API data.bnf.fr et LibGen pour déterminer le statut d'une œuvre."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-10
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 LibGen (Library Genesis) est une bibliothèque en ligne qui fournit un accès gratuit à des millions de livres, articles scientifiques et documents académiques. Elle permet aux utilisateurs de télécharger des livres électroniques, des articles scientifiques, des thèses, des documents de recherche, des manuels et des magazines gratuitement.
 
 Fondée en 2008, LibGen est devenue une plateforme populaire pour les étudiants, les universitaires, les chercheurs et les amateurs de livres du monde entier. La bibliothèque en ligne utilise des sources ouvertes et piratées pour fournir des documents et des livres gratuits à ses utilisateurs. Bien que cette pratique soit controversée et illégale dans de nombreux pays, LibGen a été maintes fois hébergée sur différents domaines et continue de fonctionner.

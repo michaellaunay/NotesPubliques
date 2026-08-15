@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VBDN3Q0MK1WJNNPQZR"
+titre: "Crash github et publication de clé"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - securite
+  - administration-systeme
+  - retour-experience
+  - git
+resume: "Retour d'expérience sur une migration de serveur ratée ayant conduit à la publication accidentelle d'une clé sur GitHub."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-08
+date_modification: 2023-06-12
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Il y a deux semaines, j'ai voulu migrer mon serveur Ubuntu 20.04 vers 22.04. Mon serveur est auto-hébergé, seul mon serveur de mails se trouve chez Online. Malheureusement, j'ai eu un crash. C'est rare, mais ça arrive, et souvent au pire des moments. Bref, le redémarrage s'est avéré impossible. Pas grave, j'ai suivi ma procédure habituelle (toujours écrire ce que l'on va faire avant de le faire et prévoir le pire). J'ai démarré sur un live USB, fait une sauvegarde du disque en milieu de migration et décidé de restituer ma sauvegarde faite juste avant la migration.
 
 Mais voilà, il s'agissait d'une sauvegarde incrémentale qui ne contenait que les données et non pas les logiciels. Pas très grave, me dis-je. J'avais fait la mise à jour du serveur juste avant de migrer le vendredi après midi. Il me suffisait donc de réinstaller le serveur, de le mettre à jour, de télécharger les paquets, de copier les données et voilà. Le serveur est remis en ligne pour le lundi. Sauf que tout cela fonctionne parfaitement pour les paquets de la distribution et mes CMS Plone d'intranets et d'extranets, mais pas pour le GitLab que j'héberge et qui contient de nombreux projets historiques, voire archéologiques, de ma société.

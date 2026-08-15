@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VFX5DPF0A3NBETC9YN"
+titre: "Python GMail"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - messagerie
+  - imap
+  - automatisation
+resume: "Exemple complet de script Python se connectant à Gmail pour rechercher, récupérer et archiver des messages selon leur objet."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Expérimentation #Informatique 
 # Python GMail
 Exemple de code python permettant de se connecter à son compte messagerie gmail, puis de récupérer dans un dossier tous les emails ayant la chaine "RAHEU" en objet et ayant été envoyer le 16 novembre 2022.

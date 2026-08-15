@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VCS6ME1Q0VWGXQGM2C"
+titre: "F-Droid et Termux"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - android
+  - logiciel-libre
+  - termux
+  - f-droid
+resume: "Présentation de F-Droid et de Termux, et procédure d'installation d'un environnement de développement sur Android, y compris VS Code."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-18
+date_modification: 2024-03-18
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # F-Droid
 F-Droid est un magasin d'applications pour les appareils Android, similaire au Google Play Store, mais avec quelques différences clés qui le rendent unique. Voici les principaux aspects de F-Droid :
 

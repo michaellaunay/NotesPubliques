@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1VHMTGX17BAAQY3AT09"
+titre: "UML pour Visual code"
+type: idee
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - ingenierie-des-modeles
+  - uml
+  - vscode
+  - outils
+resume: "Étude de faisabilité d'un modeleur UML sous forme d'extension Visual Studio Code."
+maturite: exploree
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-02
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Expérimentation #Informatique 
 il est possible de créer un modélisateur UML sous forme de plugin pour Visual Studio Code. Visual Studio Code est un éditeur de code source multiplateforme qui prend en charge l'intégration de plugins écrits dans plusieurs langages, y compris Python. Vous pouvez utiliser le kit de développement de plugins (SDK) de Visual Studio Code pour créer un plugin qui ajoute des fonctionnalités de modélisation UML à l'éditeur.
 

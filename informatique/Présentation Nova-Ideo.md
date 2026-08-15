@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02JG1VF3CAAN45WM2GXPJ0K"
+titre: "Présentation Nova-Ideo"
+aliases:
+  - "Nova-Ideo"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - nova-ideo
+  - ingenierie-des-modeles
+  - processus-metier
+  - recherche
+resume: "Présentation de Nova-Ideo et de la thèse d'Amen Souissi sur la modélisation centrée sur les processus métier."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-16
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # La thèse d'Amen Souissi
 Lors de son sujet de thèse l'ancien associé d'Ecréall Amen Souissi à publié sa thèse en contrat siffre intitulée "Modélisation centrée sur les processus métier pour la génération complète de portails collaboratifs". Elle porte sur la création de portails collaboratifs à partir de la modélisation de processus métier. L'objectif de la thèse est de proposer une approche qui permette de générer automatiquement des portails collaboratifs complets, en se basant sur la modélisation des processus métier de l'entreprise.
 

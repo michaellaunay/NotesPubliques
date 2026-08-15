@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VASYGZR9QJAK2NXVX6"
+titre: "Analyse sémantique"
+type: note
+statut: brouillon
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - traitement-du-langage
+  - semantique
+  - llm
+resume: "Transcription d'un échange avec ChatGPT sur l'analyse sémantique."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-19
+date_modification: 2024-03-19
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 https://chat.openai.com/share/988d63fa-6489-4ab2-b3ee-e8446f08df3e
 Moi : 
 ```md

@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VE294J3B6MB8G0AWKF"
+titre: "Modèles climatiques"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - climat
+  - simulation
+  - sciences
+  - calcul-intensif
+resume: "Repères historiques sur les modèles climatiques depuis le Cray I en 1972 et sur les projets de recherche associés."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-01-20
+date_modification: 2024-01-20
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Depuis 1972 et le super calculateur Cray I, les climatologues ont passé beaucoup de temps à simuler les évolutions de notre climat et ont démontré que la combustions des forets et l'usage des énergie fossile sont les causes les plus simples et efficaces du dérèglement climatique.
 
 Évolution des modèles et projets de recherches sur le sujet :

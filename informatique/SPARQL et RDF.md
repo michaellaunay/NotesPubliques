@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VGEBQ5WM5P4BK3V5RD"
+titre: "SPARQL et RDF"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - web-semantique
+  - rdf
+  - sparql
+  - donnees-liees
+resume: "Présentation de RDF comme modèle de graphe du W3C et de SPARQL comme langage d'interrogation associé."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-10
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 SPARQL et RDF sont deux technologies clés du web sémantique, une extension du World Wide Web qui vise à rendre les données plus facilement compréhensibles par les ordinateurs.
 
 RDF (Resource Description Framework) est une norme du W3C qui permet de représenter des données sous forme de graphes. Dans RDF, les données sont représentées sous forme de triplets qui se composent d'un sujet, d'un prédicat et d'un objet. Par exemple, pour représenter le fait que "John a un ami nommé Jane", on pourrait utiliser le triplet suivant:

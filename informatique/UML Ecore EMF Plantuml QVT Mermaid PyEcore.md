@@ -1,3 +1,36 @@
+---
+schema_version: 1
+uid: "01M02JG1VGF45E69TTSNA7EPQG"
+titre: "UML Ecore EMF Plantuml QVT Mermaid PyEcore"
+aliases:
+  - "Ecore"
+  - "EMF"
+  - "QVT"
+  - "PyEcore"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - ingenierie-des-modeles
+  - uml
+  - mof
+  - transformation-de-modeles
+resume: "Panorama de l'ingénierie dirigée par les modèles : UML, MDA, MOF, QVT, Ecore et EMF, et les outils PlantUML, Mermaid et PyEcore."
+niveau: avance
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-10
+date_modification: 2023-09-02
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # UML
 
 UML (Unified Modeling Language) est toujours utilisé dans le développement logiciel et est considéré comme l'un des langages de modélisation les plus couramment utilisés. Bien que de nouveaux outils et langages aient émergé ces dernières années, UML reste populaire pour sa capacité à communiquer efficacement des concepts de conception et à décrire les systèmes de manière claire et cohérente.

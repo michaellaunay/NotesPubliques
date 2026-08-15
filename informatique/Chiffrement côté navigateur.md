@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1VBMRPJMSQVR0F74J75"
+titre: "Chiffrement côté navigateur"
+type: idee
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - securite
+  - cryptographie
+  - vie-privee
+  - identite-numerique
+resume: "Piste de chiffrement côté navigateur pour transmettre une pièce d'identité sans exposer son contenu au service qui la vérifie."
+maturite: exploree
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-01
+date_modification: 2023-08-01
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 La solution consistant à téléverser ou transmettre par mail des numérisations de pièce d'identité n'est pas très satisfaisante, car elle envoie en clair par messagerie une pièce d'identité aux membres vérificateurs.
 Ce n'est pas un processus de validation qui respecte la confidentialité à la fois de la pièce d'identité mais si elle se fait par mail en plus elle permet au candidat de connaître l'adresse mail de membres certifiés sans qu'on sache encore qui est cette personne.
 Il y a donc un risque que le candidat puisse faire pression sur les vérificateurs.

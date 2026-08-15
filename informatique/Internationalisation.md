@@ -1,3 +1,35 @@
+---
+schema_version: 1
+uid: "01M02JG1VD3H7NEHRFZNDZFNN7"
+titre: "Internationalisation"
+aliases:
+  - "i18n"
+  - "l10n"
+  - "gettext"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - internationalisation
+  - gettext
+  - developpement-web
+  - python
+resume: "Cours sur la localisation et l'internationalisation des applications : définitions, concepts clés et fonctionnement de gettext."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-20
+date_modification: 2024-01-05
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Introduction à la localisation et à l'internationalisation
 
 ## 1.1 Définitions et concepts clés

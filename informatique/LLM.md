@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VDEEXGCN08Z7BGZ7ZK"
+titre: "LLM"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - llm
+  - llama-cpp
+  - inference-locale
+resume: "Notes opératoires pour récupérer et faire tourner des modèles GGUF en local avec llama.cpp."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-02-29
+date_modification: 2024-02-29
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Procédure de Vincent
 
 [https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/tree/main](https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/tree/main)

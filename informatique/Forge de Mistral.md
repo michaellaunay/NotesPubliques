@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1VCT37PGCPJBWS0CBV2"
+titre: "Forge de Mistral"
+aliases:
+  - "Mistral Forge"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - mistral
+  - entreprise
+resume: "Note de veille sur Forge, l'orientation annoncée par Mistral AI en mars 2026 pour l'usage de l'IA en entreprise."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-04-27
+date_modification: 2026-04-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Annonce majeure de mars 2026 : "Forge" est le nom de la nouvelle orientation de Mistral AI, conçue pour répondre à un enjeu central : permettre aux entreprises de créer et d’exploiter leurs propres systèmes d’IA à partir de leurs données privées.
 
 Voici ce qu'il faut retenir de Mistral Forge et pourquoi cela change la donne pour l’usage de l’IA en entreprise :
