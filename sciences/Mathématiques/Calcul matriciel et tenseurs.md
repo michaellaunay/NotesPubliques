@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1WPTJT38JSD7DQ71W6T"
+titre: "Calcul matriciel et tenseurs"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - mathematiques
+  - algebre-lineaire
+  - tenseurs
+  - calcul-matriciel
+resume: "Cours sur le calcul matriciel et les tenseurs, leurs définitions et leurs usages en mathématiques et en physique."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-12
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le calcul matriciel et les tenseurs sont deux concepts importants en mathématiques et en physique.
 
 

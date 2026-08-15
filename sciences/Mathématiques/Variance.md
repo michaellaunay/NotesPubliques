@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1WQASDWVC5NSTVR9YDF"
+titre: "Variance"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - mathematiques
+  - statistiques
+  - dispersion
+resume: "Définition de la variance comme mesure de dispersion et détail de son calcul."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-12
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 La **variance** est une mesure statistique qui quantifie la dispersion d'un ensemble de données par rapport à sa moyenne. Autrement dit, elle indique à quel point les valeurs d'un ensemble de données diffèrent en moyenne de la moyenne de cet ensemble.
 
 ### Calcul de la variance

@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1WQZ56WRK57VQEZT56S"
+titre: "Expérience sociale sur les rats de D Desor"
+aliases:
+  - "Expérience de Desor"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - sociologie
+  - ethologie
+  - comportement
+  - psychologie
+resume: "Analyse de l'expérience d'éthologie de Didier Desor montrant l'émergence spontanée de rôles sociaux chez des rats placés en situation de contrainte."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-12
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Analyse de l'expérience sociale sur les rats de D. Desor : "Fait comme des rats?"
 
 Dans le domaine captivant de l'éthologie, l'étude des comportements animaux au sein de conditions contrôlées peut révéler des dynamiques complexes, qui nous poussent parfois à réfléchir sur les comportements humains par analogie. Un exemple frappant de cette démarche scientifique nous est donné par l'expérience menée par D. Desor de l'Université Henri Poincaré de Nancy. Son étude, brillamment capturée dans le documentaire "Fait comme des rats?", explore les comportements sociaux des rats face à des défis progressivement plus ardues pour obtenir de la nourriture.
