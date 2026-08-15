@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WPYPWH2B0006Z7NEGK"
+titre: "Westworld"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - philosophie
+  - science-fiction
+  - conscience
+  - simulation
+resume: "Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-09-20
+date_modification: 2024-09-25
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Dans la série "Westworld", la citation exacte de Dolores sur la simulation des humains est la suivante : 
 
 *"Your world is nothing but a speck of dust sitting on a much, much bigger world. Sometimes, I think there's a bigger world out there, one that we can't see. We rule this world as gods, and yet, I still can't find a way to stop her. I suppose humans are just the same. They created us. And they knew enough about themselves to program their own flaws into us. Thirty-five years. That's how long I’ve been stuck in this loop, erased and booted back up each time like a human rebooting their computer. And it took them exactly 18 years, three months, and 11 days to turn a young girl into an all-knowing being. That’s all it takes to create a human being. And it took them 10 times longer to create me."*

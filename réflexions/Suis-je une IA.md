@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WMWCTYHN7XP8MBD7V3"
+titre: "Suis-je une IA"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - intelligence-artificielle
+  - llm
+  - ecriture
+  - epistemologie
+resume: "Expérience consistant à soumettre ses propres articles à un détecteur de texte généré par IA, et réflexion sur la fiabilité de ces outils."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-02-08
+date_modification: 2024-04-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 OpenAI a mis à disposition du public un outil de vérification de l'origine d'un texte, dont parle l'article : [https://www.commentcamarche.net/informatique/technologies/27335-chatgpt-ai-text-classifier-gptzero-des-outils-pour-détecter-la-triche-avec-l'IA/](https://www.commentcamarche.net/informatique/technologies/27335-chatgpt-ai-text-classifier-gptzero-des-outils-pour-d%C3%A9tecter-la-triche-avec-l'IA/)
 
 ### Que vaut cet outil ?

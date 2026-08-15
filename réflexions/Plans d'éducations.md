@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1WK7858Z150RJ4PWRK1"
+titre: "Plans d'éducations"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - pedagogie
+  - histoire
+  - politique-publique
+resume: "Notes sur les programmes éducatifs envisagés pendant la Révolution française, dont le plan de Lepeletier de Saint-Fargeau, et sur les conférences gesticulées de Franck Lepage."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-08
+date_modification: 2023-06-22
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Durant la Révolution française, plusieurs programmes éducatifs ont été envisagés pour le futur système d'éducation. Parmi eux le Plan d'éducation de [Lepeletier de Saint-Fargeau](https://www.amis-robespierre.org/Le-Plan-d-Education-de-Lepeletier)** en opposition au plan éducatif du célèbre philosophe et mathématicien Condorcet. Ces deux visions de l'éducation reflétaient les débats intellectuels de l'époque. Notre système scolaire hérite du modèle de Condorcet. 
 
 Franck Lepage, connu pour ses "conférences gesticulées" aborde des sujets de société de façon sérieuse et documentée, rendant ainsi l'information accessible et vivante pour le public. Il aborde à nouveau le sujet de l'éducation et de l’ascenseur social, dans [**Inculture 2**](https://youtu.be/WXFgNutNTN8), son nouveau spectacle.

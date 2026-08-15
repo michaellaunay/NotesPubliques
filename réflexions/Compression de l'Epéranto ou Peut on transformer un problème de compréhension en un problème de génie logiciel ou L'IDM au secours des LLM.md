@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02JG1WEYSBT12VD1KGZP89B"
+titre: "Compression de l'Epéranto ou Peut on transformer un problème de compréhension en un problème de génie logiciel ou L'IDM au secours des LLM"
+aliases:
+  - "IDM au secours des LLM"
+type: reflexion
+statut: brouillon
+para: ressource
+domaines:
+  - communication
+themes:
+  - intelligence-artificielle
+  - linguistique
+  - esperanto
+  - ingenierie-des-modeles
+  - traitement-du-langage
+resume: "Exploration, à partir d'échanges avec des LLM, de l'idée d'utiliser la régularité grammaticale de l'espéranto et l'ingénierie dirigée par les modèles pour ramener un problème de compréhension à un problème de génie logiciel."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-08-31
+date_modification: 2025-08-31
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Voici la copie de ma conversation avec Geminy sur l'Espéranto, puis sa critique avec chat GPT
 
 ---

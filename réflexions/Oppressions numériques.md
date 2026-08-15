@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1WJ8EZTJM0A23P2975G"
+titre: "Oppressions numériques"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - societe
+  - numerique
+  - vie-privee
+  - histoire
+  - reseaux-sociaux
+resume: "Parallèle entre l'histoire des camps d'internement et les mécanismes d'enfermement culturel à l'œuvre dans les réseaux sociaux."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-30
+date_modification: 2023-06-08
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 La notion de camp d'internement est synonyme d'oppression, car, contrairement à une sentence carcérale, elle n'est pas décidée par un juge, mais par l'administration ([voir](https://www-cairn-info.rp1.ensam.eu/revue-les-cahiers-de-la-shoah-2003-1-page-45.htm)).
 Avant de parler du numérique, jetons un coup de projecteur sur notre passé.
 

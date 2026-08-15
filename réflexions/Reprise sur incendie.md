@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1WKVHNT5YPGA3DS6Y91"
+titre: "Reprise sur incendie"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - informatique
+  - administration-systeme
+  - sauvegarde
+  - retour-experience
+resume: "Retour d'expérience sur la récupération d'un système de fichiers ext2 après un effacement complet de serveur, et sur les leçons de sauvegarde qui en découlent."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-07
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 En 2008 j'ai fait une boulette, j'avais effacé tout le contenu d'un serveur que je dé-commissionnais par "sudo rm -rf /*", j'avais copié son contenu sur mon nouveau serveur et fait des vérifications, mais il manquait un répertoire...
 
 J'ai passé 15h à récupérer le contenu du disque qui était au format ext2, donc sans journalisation.

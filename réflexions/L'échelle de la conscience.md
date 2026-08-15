@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1WGZFRM3B3B31X9N9SN"
+titre: "L'échelle de la conscience"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - philosophie
+  - conscience
+  - sciences-cognitives
+resume: "Notes sur l'échelle de conscience proposée par Paul Cherfuka, du sommeil profond aux niveaux supérieurs."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-29
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Salon Paul Cherfuka (2012)
 
 1. Sommeil profond : Pas de problème, pas de sujet seuls les fous contestent

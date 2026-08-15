@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1WG08MP6SS6F09QYRTQ"
+titre: "L'utopie de la Modélisation"
+aliases:
+  - "Utopie de la modélisation"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - ingenierie-des-modeles
+  - epistemologie
+  - genie-logiciel
+resume: "Série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-12-27
+date_modification: 2025-02-12
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 
 [L'utopie de la Modélisation, première partie, qu'est ce qu'un modèle ?](https://www.linkedin.com/pulse/lutopie-de-la-mod%2525C3%2525A9lisation-premi%2525C3%2525A8re-partie-quest-ce-quun-launay)
 

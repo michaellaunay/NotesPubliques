@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1WES094EWYC7TP139K0"
+titre: "Comparaison de l'assembleur RISC-V avec celui du Montorola 68000"
+aliases:
+  - "RISC-V vs 68000"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - informatique
+  - architecture-materielle
+  - assembleur
+  - risc-v
+resume: "Comparaison technique entre l'ISA modulaire et ouverte RISC-V et le jeu d'instructions du Motorola 68000 : modularité, pipeline, multitâche, compression, multi-cœur."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-07-18
+date_modification: 2025-07-18
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le **RISC-V** est une architecture **moderne**, conçue **40 ans après** le **68000**, avec une approche très différente : celle d’un **ISA minimaliste, modulaire, ouverte et extensible**.
 
 Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**, en termes de **concepts, design et fonctionnalités modernes**.

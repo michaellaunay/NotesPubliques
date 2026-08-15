@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1WKGN7G1T43JPJSQ5S0"
+titre: "Pour qui ai-je voté en  2022"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - communication
+themes:
+  - politique
+  - democratie
+  - societe
+resume: "Retour personnel sur les scrutins de 2022 et sur les limites de la démocratie représentative."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-03
+date_modification: 2024-04-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Linkedin #Personnel #Réflexion
 # Réflexion avant le premier tour de la présidentielle
 Tout d'abord, je suis anarchiste, je pense qu'aucune démocratie représentative n'est légitime, on finit toujours par être trahi par nos représentants. Seule la démocratie participative mérite le nom de démocratie.  
