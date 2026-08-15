@@ -19,7 +19,7 @@ niveau: avance
 auteurs:
   - "Michaël Launay"
 langue: fr
-date_creation: 2026-06-21
+date_creation: 2026-06-19
 date_modification: 2026-06-19
 confidentialite: publique
 publication:

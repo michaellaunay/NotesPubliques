@@ -22,7 +22,7 @@ resume: "Synthèse d'une vidéo de Science étonnante sur les mécanismes de l'a
 auteurs:
   - "Michaël Launay"
 langue: fr
-date_creation: 2023-09-02
+date_creation: 2023-09-01
 date_modification: 2023-09-01
 confidentialite: publique
 publication:

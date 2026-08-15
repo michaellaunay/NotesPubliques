@@ -10,33 +10,60 @@ domaines:
 themes:
   - informatique
   - pedagogie
-resume: "Index manuel listant l'ensemble des notes de cours du coffre."
+resume: "Index thématique des supports de cours, regroupés par domaine technique."
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2024-04-03
+date_modification: 2026-08-15
 confidentialite: publique
 publication:
   - notes-publiques
 rag: false
 metadata_verifiees: false
 ---
-[[Algorithmes avancés en Python]]
-[[Apache]]
+
+Index thématique des supports de cours. Voir aussi [[_Informatique]], [[_Expérimentation]] et [[_INDEX PRINCIPAL]].
+
+## Droit, normes et conformité
+[[Droits d'auteur]]
+[[Règlement Général sur la Protection des Données (RGPD)]]
+
+## Mathématiques et logique
+[[Logique]]
+[[Systèmes numériques]]
+
+## Langues et linguistique
+[[Esperanto]]
+
+## Pédagogie et apprentissage
 [[Apprendre]]
+
+## Marketing et communication
+[[SEO]]
+
+## Management, lean et productivité
+[[Getting things done]]
+
+## Informatique — général
+[[Agile Unified Process (AUP)]]
+[[Algorithmes avancés en Python]]
+[[Anaconda]]
+[[Apache]]
 [[Architecture des logiciels]]
 [[Bases de données relationnelles]]
+[[C++]]
 [[CSS]]
 [[Data Mining en Python]]
 [[Deform]]
 [[Design patterns]]
 [[Docker]]
-[[Droits d'auteur]]
+[[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]]
 [[Excalidraw]]
-[[Getting things done]]
 [[git]]
 [[GNULinux]]
+[[Google Colab]]
+[[Hermes Agent]]
 [[Histoire des langages de programmation]]
 [[Historique Linux]]
 [[HTML]]
@@ -46,32 +73,50 @@ metadata_verifiees: false
 [[Informatique]]
 [[Initialisation système et des services]]
 [[Installation Ubuntu]]
+[[IPFS]]
 [[Javascript]]
+[[Jupyter Notebook et Google Colab]]
 [[LDAP]]
+[[Les CNN et RNN]]
 [[Les distributions Linux]]
 [[Les méthodes agiles]]
+[[Les namespaces Linux]]
 [[Les protocoles de communications]]
-[[LLM]]
-[[Logique]]
+[[Les RAGs]]
+[[Les transformers]]
+[[cours/LLM|LLM]]
+[[Machine Learning]]
 [[Markdown]]
+[[Mathplotlib]]
 [[Mermaid pour Obsidian]]
 [[MindMap sous Obsidian]]
+[[Numpy]]
+[[OAuth OpenID]]
 [[Obsidian]]
+[[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]]
+[[Open Spec]]
 [[Outils de modélisation textuels]]
+[[Pandas]]
 [[Parsing Expression Grammars PEG]]
 [[PlantUML pour Obsidian]]
 [[Postfix]]
 [[Principes SOLID en COO]]
+[[proc]]
+[[Projet Encadré]]
 [[Pyramid]]
 [[Python]]
-[[Règlement Général sur la Protection des Données (RGPD)]]
-[[Sécurité avancée sous Linux]]
-[[Sécurité avec Python]]
+[[Pytorch]]
+[[RAG]]
+[[Regex]]
 [[Selenium]]
-[[SEO]]
 [[SOLID]]
 [[SQLAchemy]]
+[[Sécurité avancée sous Linux]]
+[[Sécurité avec Python]]
+[[Sécurité des IOT en python avec SCADA]]
 [[Tal et Metal]]
+[[TOGAF]]
+[[Travailler avec Claude]]
 [[Visual studio code]]
 [[Watchdog espace disque]]
 [[WSL2]]

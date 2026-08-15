@@ -18,7 +18,7 @@ resume: "Astuce pour produire des graphiques Matplotlib au format vectoriel SVG,
 auteurs:
   - "Michaël Launay"
 langue: fr
-date_creation: 2025-06-10
+date_creation: 2025-05-16
 date_modification: 2025-05-16
 confidentialite: publique
 publication:
