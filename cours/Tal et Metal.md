@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5CAH73032AGP7214PKZ"
+titre: "Tal et Metal"
+aliases:
+  - "TAL (Template Attribute Language)"
+  - "METAL"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - developpement-web
+  - python
+  - zope
+  - templating
+resume: "Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-15
+date_modification: 2023-06-15
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 TAL signifie Template Attribute Language, tandis que METAL signifie Macro Expansion TAL. Ensemble, ils offrent des fonctionnalités de réutilisation du code et de logique conditionnelle dans les templates.
 
 # TAL : Template Attribute Language

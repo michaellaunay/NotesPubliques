@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C7BG2HNVQYHHEH1VE8"
+titre: "SEO"
+aliases:
+  - "Référencement naturel"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+  - communication
+themes:
+  - marketing
+  - referencement
+  - seo
+  - developpement-web
+resume: "Cours sur le référencement naturel : fonctionnement des moteurs de recherche, indexation et algorithmes, optimisation on-page (titres, méta-descriptions, URL, contenu) et notions d'autorité."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-10
+date_modification: 2023-08-09
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Optimisation pour les moteurs de recherche (SEO)
 
 #### **1. Introduction au SEO**

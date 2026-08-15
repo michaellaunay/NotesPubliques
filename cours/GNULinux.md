@@ -1,9 +1,37 @@
 ---
-author : Michaël Launay <michaellaunay@ecreall.com>
-version : 2.0.0
-licence : Cette création est mise à disposition selon le Contrat Paternité 2.0 France disponible en ligne <http://creativecommons.org/licenses/by/2.0/fr/> 
-content : GNU/Linux french training based on https://github.com/michaellaunay/CoursGNULinux
-
+schema_version: 1
+uid: "01M02EX5B076XM10WC61BSNGRH"
+titre: "GNU/Linux"
+aliases:
+  - "GNU/Linux"
+  - "Linux"
+type: cours
+source_url:
+  - "https://github.com/michaellaunay/CoursGNULinux"
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - gnu-linux
+  - shell
+  - logiciel-libre
+resume: "Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+licence: "CC BY 2.0 FR"
+revision: "2.0.0"
+date_creation: 2023-03-03
+date_modification: 2026-03-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
 ---
 # Objectif
 

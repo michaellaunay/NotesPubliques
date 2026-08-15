@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5B4J8CZ1RHHXQHE08VW"
+titre: "Hermes Agent"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - agents-ia
+  - automatisation
+  - hermes-agent
+resume: "Cours approfondi sur Hermes Agent, agent IA persistant et extensible : mémoire persistante, recherche dans les conversations, création de skills, tâches planifiées, sous-agents isolés et compatibilité multi-fournisseurs."
+niveau: avance
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-21
+date_modification: 2026-06-19
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Hermes Agent : agent IA persistant, extensible et orienté automatisation
 
 ## Objectif général du cours

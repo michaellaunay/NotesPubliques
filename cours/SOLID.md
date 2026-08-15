@@ -1,3 +1,35 @@
+---
+schema_version: 1
+uid: "01M02EX5C743KQCWZ60WYSHSWN"
+titre: "SOLID"
+aliases:
+  - "Solid Project"
+  - "Social Linked Data"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - web-semantique
+  - decentralisation
+  - solid
+  - rdf
+  - vie-privee
+resume: "Cours sur SOLID, le projet de web décentralisé de Tim Berners-Lee : principe des pods, structuration des données, RDF et SPARQL, et mise en place d'un environnement de développement."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-25
+date_modification: 2023-06-25
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Introduction à SOLID
 
 ## 1.1 Qu'est-ce que SOLID ?

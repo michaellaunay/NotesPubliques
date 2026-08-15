@@ -1,3 +1,36 @@
+---
+schema_version: 1
+uid: "01M02EX5BZ0T1T3MHH880M1P2M"
+titre: "Open Spec"
+aliases:
+  - "OpenSpec"
+  - "Spec-Driven Development"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+  - veille
+themes:
+  - informatique
+  - genie-logiciel
+  - intelligence-artificielle
+  - agents-ia
+  - spec-driven-development
+  - openspec
+resume: "Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA."
+niveau: avance
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-08-13
+date_modification: 2026-08-13
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Plan : OpenSpec et le Spec-Driven Development
 
 # 1. Introduction au Spec-Driven Development

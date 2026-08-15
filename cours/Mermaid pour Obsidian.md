@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5BSZGMQZQQQDBSY3XTH"
+titre: "Mermaid pour Obsidian"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - obsidian
+  - diagrammes
+  - mermaid
+  - modelisation
+resume: "Cours sur Mermaid dans Obsidian : origines et adoption, installation, utilisation et principaux types de diagrammes (flux, séquence, Gantt, classes)."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-28
+date_modification: 2024-04-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Diagrammes Mermaid
 
 [Mermaid](https://mermaid.js.org/intro/) est un outil de génération de diagrammes et de graphiques basé sur du texte en Markdown.

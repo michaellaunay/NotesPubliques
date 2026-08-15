@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5B69KMGTX5WF6WCRQWS"
+titre: "Identité numérique européenne"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - identite-numerique
+  - eidas
+  - europe
+  - droit
+resume: "Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-01
+date_modification: 2023-08-01
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Qu'est ce que le portefeuille d'identité numérique ?
 
 Le portefeuille européen d'identité numérique est un système numérique personnel permettant aux citoyens de l'UE de s'identifier numériquement, de stocker et de gérer des données d'identification et des documents officiels sous format électronique. Ce portefeuille pourra inclure des éléments tels qu'un permis de conduire, une prescription médicale ou un diplôme d'études. Il sera accessible à tous les citoyens de l'UE et leur permettra d'établir leur identité lorsqu'ils accèdent à des services en ligne, de partager des documents numériques ou de prouver des attributs personnels spécifiques, comme l'âge, sans divulguer d'autres données personnelles. Les utilisateurs auront un contrôle total sur les données qu'ils partagent.

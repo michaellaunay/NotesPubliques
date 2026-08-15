@@ -1,3 +1,35 @@
+---
+schema_version: 1
+uid: "01M02EX5C813RHG8WWEQ0FC5CJ"
+titre: "SQLAlchemy"
+aliases:
+  - "SQLAlchemy"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - bases-de-donnees
+  - orm
+  - sqlalchemy
+resume: "Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD."
+niveau: intermediaire
+prerequis:
+  - "[[Bases de données relationnelles]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 SQLAlchemy est une bibliothèque de Python qui permet de travailler avec des bases de données relationnelles de manière transparente. Elle offre un moyen simple et intuitif de créer, lire, mettre à jour et supprimer des données dans une base de données, en utilisant une syntaxe proche de celle de SQL.
 
 Pour commencer à utiliser SQLAlchemy, vous devez d'abord l'installer en utilisant pip :

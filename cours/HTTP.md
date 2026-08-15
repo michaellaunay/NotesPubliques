@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5B1DR4D11GBB4334JX5"
+titre: "HTTP"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - reseaux
+  - protocoles
+  - http
+  - developpement-web
+resume: "Cours sur le protocole HTTP : contexte historique, architecture client-serveur, cycle requête-réponse, méthodes, en-têtes, codes de statut, HTTPS et sécurité."
+niveau: intermediaire
+prerequis:
+  - "[[Les protocoles de communications]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-25
+date_modification: 2023-06-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le protocole HTTP (Hypertext Transfer Protocol) est à le protocole utilisé par les sites web sur internet, nous allons voir ses fondamentaux.
 
 **1. Introduction au Protocole HTTP**

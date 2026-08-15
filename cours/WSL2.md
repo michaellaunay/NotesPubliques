@@ -1,4 +1,34 @@
-#Cours #Informatique 
+---
+schema_version: 1
+uid: "01M02EX5CBAEZ0AZM5AMV0J7W7"
+titre: "WSL2"
+aliases:
+  - "WSL 2"
+  - "Windows Subsystem for Linux"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - gnu-linux
+  - windows
+  - wsl
+  - virtualisation
+resume: "Procédure d'installation et d'usage de WSL 2, avec ses limitations et l'ajout d'une interface graphique."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Objectif
 WSL2 est un outil fournit avec windows qui permet de faire fonctionner une mahine virtuelle GNU/Linux.
 

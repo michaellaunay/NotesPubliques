@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5AY11W0XJQ58DDC2AE2"
+titre: "Droits d'auteur"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - droit
+  - propriete-intellectuelle
+  - droit-auteur
+  - logiciel-libre
+resume: "Cours sur la propriété intellectuelle et le droit d'auteur : distinction avec la propriété industrielle, brevets, œuvres originales, collectives et posthumes, licences informatiques et chronologie des durées de protection."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-22
+date_modification: 2025-05-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 En France, la durée de protection du droit d’auteur est passée de 50 ans (75 ans pour les auteurs « morts pour la patrie ») à 70 ans en 1994. Les œuvres déjà tombées dans le domaine public conservent ce statut.
 
 Liens :

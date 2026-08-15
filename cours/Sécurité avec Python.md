@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5C9CQC7J2174DSBY6N6"
+titre: "Sécurité avec Python"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - securite
+  - python
+  - developpement-web
+  - pyramid
+resume: "Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification et gestion des accès, sessions, modération de contenus soumis et principes de programmation sécurisée."
+niveau: intermediaire
+prerequis:
+  - "[[Python]]"
+  - "[[Pyramid]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-11-19
+date_modification: 2023-12-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ce cours vise à fournir aux étudiants en Master 2 Informatique une compréhension approfondie de la sécurité dans le développement et l'utilisation de logiciels écrits en Python. Le cours se concentrera sur les principes de base de la sécurité informatique, l'application de ces principes en Python, et les meilleures pratiques pour maintenir la sécurité dans les applications Python.
 Mais avant de commencer un petit [Guide d'hygiène informatique](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) et [Dix règles d'or préventives](https://cyber.gouv.fr/dix-regles-dor-preventives), voire de tester [Root Me](https://www.root-me.org/)
 

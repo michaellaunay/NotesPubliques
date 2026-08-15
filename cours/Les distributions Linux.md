@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5BAG2AX7CXR366J8BBE"
+titre: "Les distributions Linux"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - gnu-linux
+  - distributions
+resume: "Fiche définissant la notion de distribution GNU/Linux et présentant les principales familles de distributions."
+niveau: debutant
+prerequis:
+  - "[[GNULinux]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-24
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Qu'est-ce qu'une distribution ?
 
 Une distribution est un ensemble cohérent de logiciels fourni avec un noyau (Linux ou BSD). Les logiciels sont choisis pour utiliser les mêmes versions de bibliothèque et être ompatibles les uns avec les autres ce qui a pour conséquence d'augmenter la stabilité et d'améliorer

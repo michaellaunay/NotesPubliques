@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5C1057J2QBN3QCDV0N8"
+titre: "Outils de modélisation textuels"
+type: fiche
+source_url:
+  - "https://xosh.org/text-to-diagram/"
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - modelisation
+  - diagrammes
+  - outils
+resume: "Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-02
+date_modification: 2023-06-08
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 [Source](https://xosh.org/text-to-diagram/)
 A comprehensive list of various text to diagram tools.
 

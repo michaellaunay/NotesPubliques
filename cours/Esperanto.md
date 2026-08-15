@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02EX5AZRHPY8A2GE6ZV12ST"
+titre: "Esperanto"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - linguistique
+  - langues
+  - esperanto
+resume: "Cours d'espéranto orienté ingénierie : histoire et objectifs de la langue internationale, alphabet et prononciation, grammaire fondamentale et vocabulaire de base."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-07-08
+date_modification: 2024-07-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Introduction
 
 ## Préface : Pourquoi apprendre l'espéranto ?

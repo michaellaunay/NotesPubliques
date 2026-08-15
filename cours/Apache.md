@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5ASSYXAGZVA14CDPYP3"
+titre: "Apache"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - web
+  - apache
+resume: "Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-02
+date_modification: 2023-11-30
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Présentation
 
 Apache est un serveur web pouvant être utilisé comme proxy, cache, etc.

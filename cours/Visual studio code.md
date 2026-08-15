@@ -1,4 +1,33 @@
-#Cours #Informatique 
+---
+schema_version: 1
+uid: "01M02EX5CBC26X707W6QNATA18"
+titre: "Visual studio code"
+aliases:
+  - "VS Code"
+  - "VSCode"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - outils
+  - editeurs
+  - vscode
+resume: "Cours de prise en main de Visual Studio Code : historique, installation, interface et barre d'activités, panneaux, extensions utiles et réglages du quotidien."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2024-04-20
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Objectif
 Connaître les bases de Visual Code.
 Visual code est devenu l'outil d'édition de code incontournable, et nous allons voir comment l'utiliser et le configurer pour nos besoins.

@@ -1,3 +1,37 @@
+---
+schema_version: 1
+uid: "01M02EX5BAMEN15GB8B2S2QY9C"
+titre: "Les RAGs"
+aliases:
+  - "Graph RAG"
+  - "Agentic RAG"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - rag
+  - graph-rag
+  - agentic-rag
+resume: "Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle."
+niveau: intermediaire
+prerequis:
+  - "[[RAG]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-07-13
+date_modification: 2026-06-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le RAG n’est pas une seule **architecture**, c’est une famille de méthodes pour donner à un LLM accès à une connaissance externe au moment de répondre. Le papier fondateur de 2020 décrit déjà cette idée : combiner la mémoire “paramétrique” du modèle, c’est-à-dire ce qu’il a appris pendant l’entraînement, avec une mémoire externe récupérée par recherche documentaire. ([arXiv](https://arxiv.org/abs/2005.11401?utm_source=chatgpt.com "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"))
 
 ## 1. Le problème de départ : pourquoi le RAG existe

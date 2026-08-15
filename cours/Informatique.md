@@ -1,4 +1,29 @@
 ---
+schema_version: 1
+uid: "01M02EX5B79G1VT3G9K4VG4THP"
+titre: "Informatique"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - histoire-informatique
+  - genie-logiciel
+  - architecture-materielle
+resume: "Carte mentale de présentation générale de l'informatique : histoire du matériel, génie logiciel, cycle en V et architecture de von Neumann."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-02-08
+date_modification: 2023-08-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
 mindmap-plugin: basic
 ---
 

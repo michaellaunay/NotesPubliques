@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C2TKYX380BZWEXC6Q6"
+titre: "Postfix"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - messagerie
+  - postfix
+resume: "Cours sur le serveur de courrier Postfix : rôles de MTA, MDA et MUA, formats de boîtes aux lettres Mbox et Maildir, protocoles IMAP et POP3, configuration et sécurisation."
+niveau: intermediaire
+prerequis:
+  - "[[GNULinux]]"
+  - "[[Les protocoles de communications]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-05-30
+date_modification: 2026-08-13
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Présentation
 
 Postfix est un serveur de courrier électronique, que l'on appelle aussi **Mail Transfer Agent (MTA)**. Sa mission principale est de recevoir des e-mails par SMTP et de les relayer vers un autre serveur de courrier ou vers un mécanisme de livraison locale lorsque le destinataire est hébergé sur notre machine.

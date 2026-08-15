@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02EX5C18PFRKM85BF0KB29Z"
+titre: "Pandas"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - data-science
+  - pandas
+resume: "Cours sur la bibliothèque Pandas : structures de données Series et DataFrame, sélection, filtrage, agrégation et manipulation de jeux de données."
+niveau: debutant
+prerequis:
+  - "[[Python]]"
+  - "[[Numpy]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-12
+date_modification: 2026-03-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Introduction à la bibliothèque Pandas
 
 Pandas est une bibliothèque open-source de Python spécialement conçue pour la **manipulation de données** et l'analyse de grands ensembles de données. Elle est particulièrement utile dans des domaines comme la **data science**, le **machine learning**, et l'**analyse statistique**. Avec Pandas, nous pouvons gérer des structures de données tabulaires comme les feuilles de calcul, ce qui en fait un outil essentiel pour traiter et explorer des données complexes.

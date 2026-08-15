@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5BA51DF3MXPT8ATMX82"
+titre: "Les méthodes agiles"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - genie-logiciel
+  - methodes-agiles
+  - scrum
+  - kanban
+  - gestion-de-projet
+resume: "Cours sur les méthodes agiles : historique et Manifeste Agile, comparaison avec les méthodes traditionnelles, puis Scrum, XP, Kanban, DSDM, Crystal, FDD et Lean Software Development."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-27
+date_modification: 2023-06-27
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Plan du cours sur les méthodes agiles et à leur utilisation dans la gestion de projets informatiques. 
 
 I. Introduction aux méthodes agiles

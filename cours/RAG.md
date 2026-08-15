@@ -1,3 +1,37 @@
+---
+schema_version: 1
+uid: "01M02EX5C62Z5GBDT0J0X9JMNQ"
+titre: "RAG"
+aliases:
+  - "Retrieval-Augmented Generation"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - rag
+  - recherche-vectorielle
+  - llm
+  - embeddings
+resume: "Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation."
+niveau: avance
+prerequis:
+  - "[[LLM]]"
+  - "[[Les transformers]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-03
+date_modification: 2026-06-04
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Plan du cours
 
 # Cours : Comprendre, concevoir et évaluer un système RAG

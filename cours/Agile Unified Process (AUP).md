@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5ARM3BM4ZVR8931EM42"
+titre: "Agile Unified Process (AUP)"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - genie-logiciel
+  - methodes-agiles
+  - aup
+resume: "Présentation de l'Agile Unified Process : origine, principes, disciplines, phases, avantages et limites de cette version allégée du Rational Unified Process."
+niveau: intermediaire
+prerequis:
+  - "[[Les méthodes agiles]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-09-14
+date_modification: 2025-09-09
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 
 
 # 1. Origine de l’AUP

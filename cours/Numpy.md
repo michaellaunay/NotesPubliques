@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5BSXS8FXKF203CJRQSR"
+titre: "Numpy"
+aliases:
+  - "NumPy"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - calcul-scientifique
+  - numpy
+resume: "Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées."
+niveau: debutant
+prerequis:
+  - "[[Python]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-09-25
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 **NumPy** (Numerical Python) est une bibliothèque open-source fondamentale pour le calcul scientifique en Python. Elle fournit des outils puissants pour manipuler des tableaux multidimensionnels (appelés **arrays**) et effectuer des opérations mathématiques et algébriques de manière efficace. NumPy est au cœur de nombreuses autres bibliothèques utilisées en **data science**, **machine learning**, et **analyse de données** comme **Pandas**, **Matplotlib**, et **Scikit-learn**.
 
 ### Caractéristiques principales de NumPy :

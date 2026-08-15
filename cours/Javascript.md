@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5B759XA95C0Z8BPNRMS"
+titre: "Javascript"
+aliases:
+  - "JavaScript"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - developpement-web
+  - javascript
+resume: "Cours d'introduction à JavaScript : origines, rôle dans la pile technologique, historique d'ECMAScript, variables, types, opérateurs et concepts fondamentaux."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-18
+date_modification: 2023-11-17
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Plan de cours : Javascript - Des origines aux techniques avancées
 
 1. **Introduction à JavaScript**

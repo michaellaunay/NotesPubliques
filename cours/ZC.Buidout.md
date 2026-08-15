@@ -1,4 +1,37 @@
-#Cours #Informatique 
+---
+schema_version: 1
+uid: "01M02EX5CCGYQZBX1P5GJCGVT3"
+titre: "zc.buildout"
+aliases:
+  - "zc.buildout"
+  - "buildout"
+  - "ZC.Buildout"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - deploiement
+  - buildout
+  - zope
+resume: "Cours sur zc.buildout : intérêt de l'outil, installation depuis PyPI, configuration d'un buildout et utilisation pour l'assemblage d'environnements Python reproductibles."
+niveau: intermediaire
+prerequis:
+  - "[[Python]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Résumé
 Buildout est un système de construction logiciel très bien documenté.  
 Il utilise 'manuel' pour cela [https://pythonhosted.org/manuel/](https://pythonhosted.org/manuel/)  

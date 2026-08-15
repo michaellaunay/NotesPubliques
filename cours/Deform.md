@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5AW2Y3TPJPPT9FRJ0J2"
+titre: "Deform"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - developpement-web
+  - python
+  - pyramid
+  - deform
+resume: "Cours sur la bibliothèque de formulaires Deform sous Pyramid : schémas Colander, widgets, validation, rendu et personnalisation."
+niveau: avance
+prerequis:
+  - "[[Pyramid]]"
+  - "[[Python]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-10-13
+date_modification: 2024-05-01
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Introduction à Deform sous Pyramid
 
 Deform est une bibliothèque Python utilisée pour générer des formulaires HTML et valider les soumissions des formulaires. Dans le contexte de [[Pyramid]], Deform s'intègre naturellement pour fournir des capacités de rendu et de validation de formulaires. Dans ce cours, nous explorerons les concepts clés de Deform, tels que `deform.schema` et `deform.widget`, pour comprendre comment créer, valider et personnaliser des formulaires.

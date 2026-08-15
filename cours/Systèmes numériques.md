@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02EX5C8CK4QTX2J6FF9YP6S"
+titre: "Systèmes numériques"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - mathematiques
+  - numeration
+  - histoire-informatique
+  - bibi-binaire
+resume: "Cours sur les systèmes de numération : analyse des systèmes décimal et sexagésimal, critères d'un « meilleur » système et étude du bibi-binaire de Boby Lapointe."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-07-08
+date_modification: 2024-07-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Analyse du Système Décimal
 
 Le système décimal (base 10) est le plus couramment utilisé dans le monde aujourd'hui. Ses avantages sont principalement historiques et pratiques :

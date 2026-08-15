@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5B7KS75F157R5W7JZXC"
+titre: "Installation Ubuntu"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - gnu-linux
+  - ubuntu
+  - installation
+resume: "Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-30
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Installation
 
 Le choix d'une distribution doit se faire en fonction :

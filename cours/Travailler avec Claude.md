@@ -1,3 +1,34 @@
+---
+schema_version: 1
+uid: "01M02EX5CBG0HT1NTY8MDMJ5NH"
+titre: "Travailler avec Claude"
+aliases:
+  - "Claude Code"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - agents-ia
+  - claude-code
+  - assistance-au-developpement
+resume: "Formation à Claude Code en cinq couches : écosystème Anthropic, différence avec claude.ai, workflow agentique, système de permissions, modes d'opération et mémoire projet CLAUDE.md."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-08
+date_modification: 2026-06-09
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Formation Claude Code — 5 couches et 25 concepts fondamentaux à connaître
 
 ## Introduction

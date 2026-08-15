@@ -1,3 +1,37 @@
+---
+schema_version: 1
+uid: "01M02EX5C2CF5E630AQC7QTFHB"
+titre: "Principes SOLID en COO"
+aliases:
+  - "Principes SOLID"
+  - "SRP"
+  - "OCP"
+  - "LSP"
+  - "ISP"
+  - "DIP"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - genie-logiciel
+  - conception-orientee-objet
+  - design-patterns
+resume: "Fiche sur les cinq principes SOLID de conception orientée objet : responsabilité unique, ouvert/fermé, substitution de Liskov, ségrégation des interfaces et inversion des dépendances."
+niveau: intermediaire
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-06-14
+date_modification: 2023-06-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ces principes sont des bonnes pratiques de conception orientée objet, établies pour rendre notre code plus compréhensible, flexible et maintenable.
 
 1. **Principe de Responsabilité Unique (Single Responsibility Principle, SRP)** : Ce principe stipule qu'une classe doit avoir une seule raison de changer. En d'autres termes, chaque classe doit se concentrer sur une tâche spécifique ou une fonctionnalité. Cela augmente la cohésion, facilite la maintenance et favorise la lisibilité du code.

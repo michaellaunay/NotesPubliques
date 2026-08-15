@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5C7PYFHMG5GYPFKVD8D"
+titre: "Regex"
+aliases:
+  - "Expressions régulières"
+  - "Expressions rationnelles"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - expressions-regulieres
+  - traitement-de-texte
+resume: "Cours sur les expressions régulières : histoire, usages actuels, fonctionnement, caractères spéciaux, capture et substitution, avec un exemple concret sous Vim."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-12-27
+date_modification: 2025-02-12
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Histoire des regex
 
 Faisons un saut dans le temps, jusqu’aux **années 1940 et 1950**, période où l’informatique en était à ses balbutiements. Des chercheurs s’intéressaient déjà à la formalisation mathématique de divers concepts, dont l’**intelligence artificielle**. C’est dans ce contexte que naissent les **travaux de Stephen Kleene** (parfois orthographié “Kleen” ou “Kleene”), mathématicien et logicien, qui formule des modèles d’**automates finis** : des machines théoriques capables de reconnaître des langages dits « réguliers ».

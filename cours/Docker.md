@@ -1,4 +1,33 @@
-#Cours #Informatique 
+---
+schema_version: 1
+uid: "01M02EX5AXEGMZ9GRYT5W9E5XF"
+titre: "Docker"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - administration-systeme
+  - conteneurisation
+  - docker
+  - devops
+resume: "Cours sur Docker : définition et installation, terminologie (images, conteneurs), commandes de base, réseaux, volumes, Dockerfile et composition de services."
+niveau: intermediaire
+prerequis:
+  - "[[GNULinux]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2025-04-13
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Objectif
 Nous allons voir dans ce cours comment installer et utiliser Docker.
 Docker est un système de conteneurisation, c'est-à-dire qu'il permet de crée des images d'une autre distribution très légère qui utilisent ou partagent les ressources de l'ordinateur hôte.

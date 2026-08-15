@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02EX5B6S3VA583WXXYGA4NH"
+titre: "Historique Linux"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - histoire-informatique
+  - gnu-linux
+  - logiciel-libre
+resume: "Fiche chronologique sur les racines d'UNIX, la naissance de la Free Software Foundation, la GPL et le projet GNU."
+prerequis:
+  - "[[GNULinux]]"
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-22
+date_modification: 2023-05-30
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # Historique
 
 ## UNIX (les racines)

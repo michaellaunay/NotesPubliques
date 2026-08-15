@@ -1,4 +1,31 @@
-#Informatique #Cours
+---
+schema_version: 1
+uid: "01M02EX5BTPRQNXFAPEHX34QNN"
+titre: "Obsidian"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - obsidian
+  - gestion-des-connaissances
+  - markdown
+  - prise-de-notes
+resume: "Cours d'introduction à Obsidian : historique et philosophie, cas d'usage, outils similaires, installation sous GNU/Linux, création d'un coffre et prise en main de l'interface."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-02-03
+date_modification: 2023-11-19
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 # 1. Introduction
 
 Obsidian est une application de prise de notes et de gestion des connaissances qui favorise la création de liens entre les idées et les informations. Contrairement à d'autres applications de prise de notes, Obsidian stocke toutes nos notes sur notre ordinateur local sous la forme de fichiers Markdown, ce qui offre une grande flexibilité et un contrôle total sur nos données.

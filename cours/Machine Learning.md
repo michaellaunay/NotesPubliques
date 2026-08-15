@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02EX5BRG4TV377G42RM70TE"
+titre: "Machine Learning"
+aliases:
+  - "Apprentissage automatique"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - apprentissage-automatique
+  - data-science
+resume: "Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-09-25
+date_modification: 2024-09-25
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 ```mermaid
 graph LR
     A("Monde réel") --> B("Produit Data")
