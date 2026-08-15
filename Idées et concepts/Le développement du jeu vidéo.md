@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NXPX051VQ2PGH3G2DT"
+titre: "Le développement du jeu vidéo"
+type: idee
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - jeux-video
+  - game-design
+  - pedagogie
+  - economie
+resume: "Notes sur le game design et le financement du jeu vidéo, avec l'idée d'un jeu pédagogique inspiré de Zelda et Dragon Quest."
+maturite: exploree
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-12-27
+date_modification: 2024-02-29
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Voir l'histoire de Zelda pour avoir une idée du "game design" (faire des bosses qui soient des fantômes des savants et qui posent des défis de maths ou d'histoire, par exemple le fantôme d'Archimède qui pour se réveiller demande des artefacts grecs anciens ou demande qu'on lui parle de la guerre entre Rome et Syracuse  ce qui poussera à la quête du savoir ) [The Legend of Zelda, la naissance mystérieuse d'une saga légendaire | Documentaire sur Zelda 1 (NES) | Sakharu](https://youtu.be/0U5SmpJXLb0)
 
 Il faudrait s'inspirer du jeu Dragon Quest sur Nitendo des années 80, les PNJ raconte l'histoire, le joueur gagne des points d'expériences, les combats seraient des défis mathématiques. Les PNJ ont leur agenda et se déplacent. Voir comment Zelda 2 équilibre les points de statistiques à partir des points d'expériences [Zelda 2](https://youtu.be/34pcfYsFvEY)à la minute 40. En bref plus on a de points dans une catégorie plus il est difficile/chère de monter celle-ci.

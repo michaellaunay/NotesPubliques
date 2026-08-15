@@ -1,3 +1,27 @@
+---
+schema_version: 1
+uid: "01M02JG1NWE1FMWA49PVVQB3KN"
+titre: "L'arc narratif"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - narration
+  - ecriture
+  - game-design
+resume: "Structure en six temps de l'arc narratif, du monde ordinaire à la morale."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-18
+date_modification: 2023-08-18
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 La quête du héro :
 
 1. Le monde ordinaire

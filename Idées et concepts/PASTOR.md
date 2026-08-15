@@ -1,3 +1,27 @@
+---
+schema_version: 1
+uid: "01M02JG1NYKD2TMAQ9EJTVDVV5"
+titre: "PASTOR"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - marketing
+  - copywriting
+  - vente
+resume: "Framework PASTOR décrivant les étapes d'une présentation de vente."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 PASTOR est un acronyme utilisé pour décrire les étapes principales d'une stratégie de vente ou de présentation de vente. Chaque lettre de l'acronyme représente une étape du processus :
 
 - P : Présentation du produit ou du service.

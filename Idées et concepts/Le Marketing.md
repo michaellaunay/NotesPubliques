@@ -1,3 +1,27 @@
+---
+schema_version: 1
+uid: "01M02JG1NWXR9XN3MX1PH7PSKK"
+titre: "Le Marketing"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - marketing
+  - strategie
+  - economie
+resume: "Vue d'ensemble du marketing : identifier, anticiper et satisfaire les besoins des clients à partir d'une compréhension du marché."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le marketing est un domaine d'activité qui englobe un ensemble d'actions et de stratégies visant à identifier, anticiper et satisfaire les besoins et les désirs des clients ou des consommateurs, tout en atteignant les objectifs commerciaux d'une entreprise. Il est essentiellement axé sur la création, la communication, la distribution et la gestion de produits ou de services en vue de générer des échanges bénéfiques pour les parties prenantes, y compris l'entreprise, les clients et la société en général.
 
 Le marketing repose sur une compréhension approfondie du marché et des consommateurs. Il implique des activités variées telles que la recherche de marché, l'analyse des tendances, l'étude du comportement des consommateurs, la segmentation du marché, la conception de produits, la tarification, la promotion, la distribution, etc.

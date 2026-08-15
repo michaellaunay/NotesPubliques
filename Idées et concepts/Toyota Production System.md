@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1NZQ5PR5R0FXZAXAWN5"
+titre: "Toyota Production System"
+aliases:
+  - "TPS"
+  - "Lean"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - management
+  - lean
+  - toyota-production-system
+  - industrie
+resume: "Système de production Toyota reposant sur le jidoka et le juste-à-temps, à l'origine de la philosophie lean."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-14
+date_modification: 2023-08-14
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le **Toyota Production System (TPS)** est un système de gestion de la production développé par Toyota qui repose sur deux piliers fondamentaux : le "jidoka" (automatisation avec une touche d'humanité) et le "juste-à-temps". Le TPS vise à éliminer les gaspillages dans le processus de production, à améliorer la qualité des produits et à augmenter l'efficacité globale de la production. 
 
 Le TPS est à l'origine de la philosophie de production Lean (ou maigre), qui a été adoptée dans divers secteurs industriels à travers le monde. Le TPS identifie trois types principaux de gaspillages (ou "muda") : 

@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1NW091HXH3M2QDHV7RE"
+titre: "La Rhétorique"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - rhetorique
+  - communication
+  - argumentation
+  - philosophie
+resume: "Présentation de la rhétorique comme art de persuader par le langage, l'argumentation et les techniques de communication."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 La rhétorique est l'art de persuader, influencer et convaincre un public à travers l'utilisation efficace du langage, de l'argumentation et des techniques de communication. C'est une discipline qui remonte à l'Antiquité grecque, où elle était considérée comme une compétence essentielle pour les orateurs et les hommes d'État.
 
 Le principal objectif de la rhétorique est de susciter une réponse émotionnelle ou intellectuelle chez l'auditoire en utilisant des méthodes persuasives. Cela peut inclure l'utilisation d'arguments logiques, de preuves convaincantes, d'analogies, de métaphores, de figures de style et d'autres techniques linguistiques pour renforcer un point de vue ou pour susciter l'émotion de l'auditoire.

@@ -1,3 +1,27 @@
+---
+schema_version: 1
+uid: "01M02JG1NT0VPKCRB2JB92R0BX"
+titre: "ACCA"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - marketing
+  - copywriting
+  - redaction
+resume: "Framework de copywriting ACCA : Attention, Curiosité, Crédibilité, Action."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 ACCA est un framwork de [[Copywritting]]
  
 - A : Attention (Attention) : Capturer l'attention du lecteur dès le début du message pour qu'il soit engagé dans la suite du contenu.

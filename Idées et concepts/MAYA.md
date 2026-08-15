@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NY6WG0SBTPHZ84W0YM"
+titre: "MAYA"
+aliases:
+  - "Most Advanced Yet Acceptable"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - design
+  - innovation
+  - marketing
+resume: "Principe MAYA de Raymond Loewy : une innovation doit être la plus avancée possible tout en restant acceptable."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le framework MAYA (Most Advanced Yet Acceptable) est un concept couramment utilisé dans le domaine du design, du marketing et de l'innovation. Il a été popularisé par Raymond Loewy, un célèbre designer industriel du XXe siècle, et il est souvent utilisé pour décrire une approche d'innovation ou de conception qui vise à équilibrer la nouveauté et la familiarité pour maximiser l'acceptation du public.
 
 L'idée derrière le framework MAYA est que pour qu'une nouvelle idée, un nouveau produit ou un nouveau design soit bien accepté par le public, il doit être à la fois novateur et familier. S'il est trop novateur, il risque d'être rejeté car il est trop éloigné des attentes et des habitudes des gens. D'un autre côté, s'il est trop familier et conventionnel, il risque d'être perçu comme banal et ennuyeux, ce qui peut également entraîner un manque d'enthousiasme et d'intérêt de la part du public.

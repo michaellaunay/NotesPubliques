@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1NVYCSQ262W4X4AJPKA"
+titre: "Golden circle"
+aliases:
+  - "Cercle d'or"
+  - "Simon Sinek"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - marketing
+  - communication
+  - strategie
+resume: "Modèle de Simon Sinek articulant le pourquoi, le comment et le quoi d'une organisation."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le concept du "Golden Circle" a été popularisé par Simon Sinek, un auteur et conférencier américain en leadership et en développement personnel. Le "Golden Circle" est un modèle qui vise à expliquer comment les grandes entreprises et leaders inspirants réussissent à mobiliser et fédérer leur public autour de leur vision et de leur mission.
 
 Le modèle du "Golden Circle" se compose de trois axes, chacun répondant à une question spécifique :

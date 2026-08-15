@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02JG1NY7AZQRA6NH5JRADTH"
+titre: "Les Jumeaux Numériques Norem ISO 23247"
+aliases:
+  - "ISO 23247"
+  - "Digital Twin"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - jumeaux-numeriques
+  - normalisation
+  - industrie
+  - interoperabilite
+resume: "Présentation de la norme ISO 23247, cadre structurel de référence pour l'interopérabilité des jumeaux numériques dans la fabrication."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-04-03
+date_modification: 2026-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 La norme **ISO 23247**, publiée en 2021, est le texte de référence international pour la mise en œuvre des **jumeaux numériques (Digital Twins)** dans le secteur de la fabrication (manufacturing).
 
 Son but n'est pas de définir _comment_ coder un jumeau, mais de fournir un **cadre structurel** pour que tous les éléments d'une usine parlent la même langue.

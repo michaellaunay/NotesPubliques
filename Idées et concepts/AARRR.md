@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NTVJ7XHWNDGYVB39GW"
+titre: "AARRR"
+aliases:
+  - "Pirate Metrics"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - marketing
+  - growth-hacking
+  - metriques
+resume: "Framework AARRR, ou Pirate Metrics, qui suit le parcours client en cinq étapes : acquisition, activation, rétention, recommandation, revenu."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le framework AARRR, également appelé le modèle Pirate Metrics, est l'un des principaux outils utilisés dans le growth hacking pour suivre et analyser le parcours du client à travers différentes étapes du cycle de vie du client. Chaque lettre de l'acronyme AARRR représente une étape spécifique :
 
 1. Acquisition (Acquisition) : Cette étape concerne le processus d'acquisition de nouveaux utilisateurs ou clients. Les growth hackers cherchent à attirer l'attention du public cible et à les amener à découvrir le produit ou le service.

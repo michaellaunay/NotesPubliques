@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NWYY9VV3AZH3YVRKBG"
+titre: "La fenêtre d'Overton"
+aliases:
+  - "Overton"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - politique
+  - communication
+  - societe
+resume: "Concept décrivant la gamme d'idées jugées acceptables par le grand public à un moment donné, et son déplacement."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-08-02
+date_modification: 2023-08-02
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 La "fenêtre d'Overton" est un concept politique qui décrit la gamme d'idées et de politiques qui sont considérées comme acceptables ou faisables par le grand public à un moment donné. Cette notion a été développée par Joseph P. Overton, un analyste politique du Mackinac Center for Public Policy, dans les années 1990.
 
 L'idée centrale de la fenêtre d'Overton est que les idées et les politiques peuvent être représentées le long d'un spectre allant du "très radical" au "très acceptable". Au sein de cette fenêtre, les idées et les politiques qui tombent dans la zone d'acceptabilité sont considérées comme faisables et politiquement viables par le public, les médias et les décideurs politiques. En revanche, les idées en dehors de cette fenêtre sont généralement considérées comme trop extrêmes ou impopulaires pour être sérieusement envisagées ou mises en œuvre.

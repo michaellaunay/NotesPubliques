@@ -1,3 +1,27 @@
+---
+schema_version: 1
+uid: "01M02JG1NXSETFKCM4QBZ7YW1Z"
+titre: "Le miroir brisé"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - psychologie
+  - communication
+  - biais-cognitifs
+resume: "Concept désignant la tendance à s'en prendre au porteur d'une nouvelle qui déplaît plutôt qu'au message."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-07
+date_modification: 2023-05-21
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # Résumé
 Lorsque le message nous déplait, nous avons tendance à critiquer le porteur de la nouvelle.
 # Description

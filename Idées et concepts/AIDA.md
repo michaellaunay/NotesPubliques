@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1NT9AKC67VFR4YMW9D7"
+titre: "AIDA"
+aliases:
+  - "PAS"
+type: concept
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - marketing
+  - copywriting
+  - redaction
+resume: "Frameworks rédactionnels AIDA et PAS (Problème, Agitation, Solution) pour capter l'attention et déclencher l'action."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-04-16
+date_modification: 2023-05-21
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 **PAS** : Problème, agitation, solution
 
 La méthode PAS (Problème Agitation Solution) est une technique d'écriture de contenu utilisée pour captiver l'attention du lecteur et résoudre un problème ou répondre à une question. Cette méthode est souvent utilisée dans les domaines du marketing, de la publicité et du journalisme pour écrire des titres accrocheurs et des descriptions de produits convaincantes.
