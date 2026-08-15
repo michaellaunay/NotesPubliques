@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VEB0H5X199SABRMKM1"
+titre: "National Emergency Library"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - bibliotheques
+  - droit-auteur
+  - numerisation
+  - internet-archive
+resume: "Analyse du projet National Emergency Library lancé par Internet Archive en 2020 : mécanisme de prêt, statistiques et questions de droit d'auteur."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-29
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Le projet "National Emergency Library" de Webarchive a été lancé en 2020.
 
 En réponse à la pandémie de COVID-19, la Bibliothèque Internet Archive a créé la "National Emergency Library" pour permettre aux personnes confinées chez elles d'accéder à une grande quantité de livres numériques gratuitement. La bibliothèque a permis aux utilisateurs de créer un compte gratuit pour emprunter jusqu'à 10 livres simultanément sans avoir besoin de s'inscrire ou de donner d'informations de carte de crédit. La bibliothèque a également supprimé les listes d'attente pour les livres numériques populaires pour permettre un accès immédiat.

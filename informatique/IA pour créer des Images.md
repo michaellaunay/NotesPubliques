@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1VCCHHFAV2MNZ9FEGPF"
+titre: "IA pour créer des Images"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - generation-d-images
+resume: "Liste de services de génération d'images par IA : DALL·E, MidJourney et autres."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-01
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Informatique #IA
 OpenIA DalEE: https://openai.com/dall-e-2/
 MidJourney:  https://www.midjourney.com/

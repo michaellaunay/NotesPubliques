@@ -1,3 +1,26 @@
+---
+schema_version: 1
+uid: "01M02JG1VHEDRJXDPVKQMAB6NS"
+titre: "Index informatique"
+type: index
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+resume: "Index manuel des notes techniques du dossier informatique."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-03
+date_modification: 2024-04-03
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: false
+metadata_verifiees: false
+---
 ## Informatique
 ### SSO
 [[OAuth OpenID]]

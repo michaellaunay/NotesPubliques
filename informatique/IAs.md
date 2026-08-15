@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VCR12C27PKA3T0F7GV"
+titre: "IAs"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - llm
+  - epistemologie
+resume: "Notes et références critiques sur les IA génératives et l'évaluation de leur pertinence."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-02-08
+date_modification: 2023-09-01
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Une excellent critique des IAs [L'intelligence artificielle n'existe pas](https://youtu.be/yuDBSbng_8o)
 
 La pertinence de chat gpt a été évalué à 64%

@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02JG1VADWJNVTA96XN6WX5J"
+titre: "AirFlow"
+aliases:
+  - "Apache Airflow"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - orchestration
+  - donnees
+  - airflow
+resume: "Fiche sur Apache Airflow, orchestrateur de workflows open source écrit en Python : caractéristiques, concepts de base et cas d'usage."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-09-06
+date_modification: 2023-09-06
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 ### Introduction à Apache Airflow
 
 Apache [Airflow](https://fr.wikipedia.org/wiki/Apache_Airflow) est orchestrateur de workflows open-source écrit en python, initialement développée par Airbnb. Il est devenu l'un des outils les plus prisés pour la gestion de flux de travaux complexes, en particulier dans les environnements liés à la science des données et à l'ingénierie de données.

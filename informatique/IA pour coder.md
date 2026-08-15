@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1VC8GXPVBCA14RF8CA8"
+titre: "IA pour coder"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - veille
+themes:
+  - informatique
+  - intelligence-artificielle
+  - assistance-au-developpement
+resume: "Recensement d'outils d'IA pour la génération de code et de commentaires, dont Sketch2Code et Copilot."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2022-12-29
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Informatique
 Sketch2Code Permet à partir d'une photo d'une maquette de générer le html   
 

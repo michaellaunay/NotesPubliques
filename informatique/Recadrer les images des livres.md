@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VF9GE89SGHN1B4E47G"
+titre: "Recadrer les images des livres"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - numerisation
+  - traitement-d-images
+  - opencv
+  - python
+resume: "Procédure et script OpenCV pour redresser, recadrer et recentrer les pages de livres scannés avant assemblage en PDF."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-03-10
+date_modification: 2023-07-31
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Je scanne de nombreux vieux livres au format jpg puis les concatenne dans des pdf.
 Les images doivent être retravaillées pour recouper et recentrer les texte des pages.
 Je souhaite utiliser le ML en python .

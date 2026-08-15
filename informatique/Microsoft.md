@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02JG1VDW2X8CT5TQ9BJ9XFV"
+titre: "Microsoft"
+type: source
+source_type: article
+source_url:
+  - "https://www.linkedin.com/feed/update/urn:li:activity:7282059596507066369/"
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - histoire-informatique
+  - microsoft
+  - entreprise
+resume: "Traduction d'un article sur le rôle des parents de Bill Gates dans l'histoire de Microsoft."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2025-01-07
+date_modification: 2025-02-12
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 
 Traduction de https://www.linkedin.com/feed/update/urn:li:activity:7282059596507066369/
 

@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VFYG9W2DBC0S5R5DX7"
+titre: "Ressources pour le web"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - developpement-web
+  - design
+  - ressources
+  - outils
+resume: "Liste de ressources libres pour le web : banques de logos, illustrations et autres outils."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-02-08
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 
 Liens donné par https://www.linkedin.com/in/yoannlopez/
 Logodust, une librairie de logos libres de droits. Vous pourrez même y trouver le tout premier logo de Snowball -> Logodust : [https://logodust.com/](https://logodust.com/)  

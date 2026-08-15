@@ -1,3 +1,32 @@
+---
+schema_version: 1
+uid: "01M02JG1VBZZ1DFNE4H1T5ST2A"
+titre: "Copilot"
+aliases:
+  - "GitHub Copilot"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - intelligence-artificielle
+  - assistance-au-developpement
+  - vscode
+  - copilot
+resume: "Procédure d'installation et d'utilisation de l'extension GitHub Copilot dans Visual Studio Code."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-23
+date_modification: 2023-05-30
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Ajouter GitHub Copilot à Visual Studio Code
 
 # Introduction

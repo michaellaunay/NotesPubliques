@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02JG1VETJDV361Y3W8SM94V"
+titre: "Migration Plone 5.2 python 2.7 vers 3"
+aliases:
+  - "Migration ZODB Python 3"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - plone
+  - zope
+  - zodb
+  - python
+  - migration
+resume: "Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB et la migration de Plone 5.2 de Python 2.7 vers Python 3."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-10-12
+date_modification: 2024-10-14
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Traduction en français de https://community.plone.org/t/best-practice-documentation-on-zodb-debugging/12778
 
 ### Identifier ce qui est cassé  

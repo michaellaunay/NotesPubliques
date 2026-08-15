@@ -1,3 +1,33 @@
+---
+schema_version: 1
+uid: "01M02JG1VBRYPZZYJDSRMX8X2A"
+titre: "Chaîne complète de numérisation OCR Markdown traduction RAG local"
+aliases:
+  - "Chaîne de numérisation RAG"
+type: procedure
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - numerisation
+  - ocr
+  - rag
+  - traduction
+  - bibliotheques
+resume: "Conception d'une chaîne complète et locale de numérisation, OCR, conversion Markdown, traduction et indexation RAG pour constituer une bibliothèque personnelle interrogeable."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2026-06-09
+date_modification: 2026-06-09
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 Voici une **chaîne complète de numérisation + OCR + Markdown + traduction + RAG local** adaptée à mon cas : livres papier scannés, livres numériques HumbleBundle, OCR en deux phases, Markdown consolidé, traduction locale, chunking IA, embeddings locaux et base vectorielle.
 
 Objectif : **constituer une bibliothèque personnelle interrogeable en RAG**, avec conservation des sources, pages, chapitres, langue, version OCR et liens vers les PDF originaux. Point juridique important : pour les livres achetés, reste sur un usage personnel, ne contourne pas de DRM, ne redistribue ni les PDF ni les Markdown/traductions générées.

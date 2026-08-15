@@ -1,3 +1,31 @@
+---
+schema_version: 1
+uid: "01M02JG1VFCHPCVCDKA3HJZ2ZP"
+titre: "PyPdf"
+aliases:
+  - "pypdf"
+type: fiche
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - informatique
+  - python
+  - pdf
+  - extraction-de-donnees
+resume: "Comparaison de bibliothèques Python d'extraction de texte et de tableaux depuis des PDF, avec exemples d'usage de pypdf."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2023-01-27
+date_modification: 2023-05-21
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: false
+---
 #Expérimentation #Informatique 
 ## comment en python parcourir des documents pdf contenant du text et le récupérer dans des structure json ?
 
