@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VM3KT7RC0A4JARRXYN"
+titre: "MU Scénario 1"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - scenarios
+  - obsidian
+  - markdown
+  - meetup
+resume: "Scénario de création d'une note Markdown dans Obsidian : acteurs, prérequis et déroulement."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # **Création d'une Note Markdown dans Obsidian**
 
 ## Résumé

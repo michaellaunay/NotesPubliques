@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VRNRTCN3RZ84CDDMPD"
+titre: "MU 04 Cahier des charges"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - cahier-des-charges
+  - markdown
+  - obsidian
+  - meetup
+resume: "Cahier des charges de l'étude de cas de publication des notes Markdown."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-23
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # Cahier des charges
 Michaël Launay possède de nombreuses notes écrites en [[Markdown]] (le même format utilisé par ChatGPT pour ses réponses aux prompts que nous lui soumettons via le web) avec le logiciel de prise de notes [[Obsidian]].
 Ces notes sont dans un répertoire sur son ordinateur appelé Notes.

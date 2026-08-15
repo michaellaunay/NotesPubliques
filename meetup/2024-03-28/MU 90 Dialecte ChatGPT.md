@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VSHDV9H51N6WTYE6XB"
+titre: "MU 90 Dialecte ChatGPT"
+type: reflexion
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - intelligence-artificielle
+  - llm
+  - linguistique
+  - prompt-engineering
+  - meetup
+resume: "Expérience et réflexion sur l'existence d'un dialecte propre à ChatGPT, à partir d'un prompt initial et de sa réponse."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-26
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Existe-t-il un dialecte spécifique à ChatGPT ?
 
 Voici mon prompt initial et sa réponse.

@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VP9AAEA6DH3CBZV7X2"
+titre: "MU 07 Page HTML"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - html
+  - excalidraw
+  - intelligence-artificielle
+  - meetup
+resume: "Génération du HTML de l'interface à partir d'une maquette Excalidraw soumise à l'IA."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-28
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 **Moi**
 Voici un sketchup au format excalidraw de l'interface web devant servir de patron. Génère le HTML correspondant, en ajoutant un pied de page avec les coordonnées de Michaël. Utilise bootstrap 5
 ![[MU Sketch html.excalidraw]]

@@ -1,3 +1,30 @@
+---
+schema_version: 1
+uid: "01M02JG1VQN1AN78A4GQYRW304"
+titre: "MU 00 Développement Logiciel avec l'IA"
+aliases:
+  - "Meetup Développement Logiciel avec l'IA"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - intelligence-artificielle
+  - meetup
+resume: "Support principal du meetup : potentiel de l'IA dans le développement logiciel, déroulé, prérequis et étude de cas."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-23
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # Introduction
 - Présentation du potentiel de l'IA dans le développement logiciel.
 - Clarification du terme "Intelligence Artificielle" et distinction entre IA générale et IA appliquée au développement logiciel.

@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1VNC3FSHC5X588GQBXD"
+titre: "MU Scénario 7"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - scenarios
+  - gestion-des-erreurs
+  - meetup
+resume: "Scénario de gestion des erreurs rencontrées par le convertisseur lors du traitement d'un Markdown mal formé."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # **Gestion des Erreurs de Conversion**
 
 ## Résumé

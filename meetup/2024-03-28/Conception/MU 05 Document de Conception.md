@@ -1,3 +1,28 @@
+---
+schema_version: 1
+uid: "01M02JG1VPSG7NYZGFRF93QVNG"
+titre: "MU 05 Document de Conception"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - conception
+  - architecture-logicielle
+  - meetup
+resume: "Document de conception de l'étude de cas : architecture du système et technologies retenues."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 Le document de conception est un élément crucial dans le développement de logiciels, fournissant une vue d'ensemble détaillée de la structure technique, de l'architecture, des choix technologiques, et des fonctionnalités du projet. Voici une ébauche pour le document de conception de votre projet de conversion de notes Markdown en HTML.
 
 ---

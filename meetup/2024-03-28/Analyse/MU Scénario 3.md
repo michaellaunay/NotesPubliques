@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VMJ6HFE27573WKWRK1"
+titre: "MU Scénario 3"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - scenarios
+  - obsidian
+  - ressources
+  - meetup
+resume: "Scénario d'ajout d'une ressource, image ou PDF, à une note existante."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 # **Ajout d'une Ressource à une Note**
 
 ## Résumé

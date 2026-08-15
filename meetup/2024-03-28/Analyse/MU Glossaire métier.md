@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VKMZB8APRYT5QS8PD2"
+titre: "MU Glossaire métier"
+type: document
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - genie-logiciel
+  - glossaire
+  - markdown
+  - obsidian
+  - meetup
+resume: "Glossaire métier de l'étude de cas : Markdown, Obsidian et les autres termes du domaine."
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-25
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 - **Markdown** : Langage de balisage léger utilisé pour formater des documents texte. Markdown permet d'écrire en utilisant un format de texte simple qui peut être converti en HTML et d'autres formats. Il est souvent utilisé pour rédiger des fichiers README, pour la documentation de logiciels, et pour les messages dans des forums en ligne.
 
 - **Obsidian** : Application de prise de notes et de gestion de connaissances qui utilise le format Markdown pour les notes. Obsidian permet de créer des liens entre les notes, simulant ainsi une base de données de connaissances interconnectée.

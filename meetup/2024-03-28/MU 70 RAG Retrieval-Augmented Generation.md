@@ -1,3 +1,29 @@
+---
+schema_version: 1
+uid: "01M02JG1VR8NC6TJSM57P3JXRY"
+titre: "MU 70 RAG Retrieval-Augmented Generation"
+type: cours
+statut: actif
+para: ressource
+domaines:
+  - enseignement
+themes:
+  - intelligence-artificielle
+  - rag
+  - llm
+  - meetup
+resume: "Introduction au RAG présentée lors du meetup : principe de la recherche documentaire préalable à la génération."
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+langue: fr
+date_creation: 2024-03-28
+date_modification: 2024-04-03
+confidentialite: privee
+publication: []
+rag: true
+metadata_verifiees: false
+---
 RAG, ou Retrieval-Augmented Generation, est une technique dans le domaine de l'intelligence artificielle, particulièrement dans le traitement automatique du langage naturel (TALN), qui combine les méthodes de récupération d'informations (retrieval) avec des modèles de génération de texte pour améliorer la qualité et la pertinence des réponses fournies par les systèmes de questions-réponses ou les chatbots.
 
 L'idée derrière RAG est relativement simple mais puissante. Au lieu de générer une réponse à une question directement à partir d'un modèle de langage pré-entraîné, RAG commence par chercher dans un grand corpus de textes (comme Wikipedia ou un ensemble de documents spécifiques) pour trouver les passages les plus pertinents liés à la question posée. Ces passages sont ensuite utilisés comme contexte supplémentaire par le modèle de génération pour produire une réponse plus précise, détaillée et informée.
