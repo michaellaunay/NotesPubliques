@@ -24,7 +24,7 @@ metadata_verifiees: false
 
 # réflexions
 
-Index régénéré par `make index`. Vue graphique : [[_INDEX_réflexions.excalidraw]].
+Index régénéré par `make index` — ne pas éditer à la main. Vue graphique : [[_INDEX_réflexions.excalidraw]].
 
 ## Intelligence artificielle
 
