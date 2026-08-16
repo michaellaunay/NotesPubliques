@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WDCM0ACCS85RDXPHKB"
-titre: "Comment réponde à la loi Duplomb"
+uid: 01M02JG1WDCM0ACCS85RDXPHKB
+titre: Comment réponde à la loi Duplomb
 type: reflexion
 statut: brouillon
 para: ressource
@@ -12,13 +12,13 @@ themes:
   - agriculture
   - pesticides
   - politique-publique
-resume: "Notes issues d'une conférence de Pierre-Henri Gouyon sur les arbitrages de l'EFSA concernant l'évaluation de la toxicité des pesticides pour les abeilles."
+resume: Notes issues d'une conférence de Pierre-Henri Gouyon sur les arbitrages de l'EFSA concernant l'évaluation de la toxicité des pesticides pour les abeilles.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2025-07-22
 date_modification: 2025-07-22
-confidentialite: publique
+confidentialite: privee
 publication:
   - notes-publiques
 rag: true
