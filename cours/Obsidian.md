@@ -13,386 +13,1897 @@ themes:
   - gestion-des-connaissances
   - markdown
   - prise-de-notes
-resume: "Cours d'introduction à Obsidian : historique et philosophie, cas d'usage, outils similaires, installation sous GNU/Linux, création d'un coffre et prise en main de l'interface."
+resume: "Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation."
 niveau: debutant
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-02-03
-date_modification: 2023-11-19
+date_modification: 2026-08-16
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-# 1. Introduction
 
-Obsidian est une application de prise de notes et de gestion des connaissances qui favorise la création de liens entre les idées et les informations. Contrairement à d'autres applications de prise de notes, Obsidian stocke toutes nos notes sur notre ordinateur local sous la forme de fichiers Markdown, ce qui offre une grande flexibilité et un contrôle total sur nos données.
+> [!info] Version du cours
+> Cette version a été révisée le **16 août 2026** à partir du cours de 2023. Les éléments dépendant de l'interface et des fonctionnalités ont été vérifiés avec la documentation officielle d'Obsidian et la branche publique **Obsidian 1.13.x**.
+
+# 1. Introduction à Obsidian
+
+Obsidian est une application de prise de notes et de gestion des connaissances qui travaille principalement au-dessus d'un dossier de fichiers Markdown. Contrairement à de nombreux services de prise de notes centrés sur une base de données distante, nos notes restent des fichiers texte que nous pouvons lire, copier, versionner et modifier avec d'autres outils.
+
+Cette caractéristique est essentielle : **Obsidian n'est pas le propriétaire de nos notes**. Il constitue une interface particulièrement riche pour éditer, relier, rechercher et visualiser des fichiers qui restent sous notre contrôle.
 
 ## 1.1 Historique et philosophie d'Obsidian
 
-Obsidian a été créé par les développeurs de Dynalist, une application de liste de tâches populaire. Ils ont développé Obsidian avec l'idée de créer un "deuxième cerveau" numérique, où l'on peut stocker toutes ses idées et connaissances de manière interconnectée. Ils croient fermement à l'importance de la possession des données par l'utilisateur et c'est pourquoi Obsidian stocke toutes les notes localement dans le Markdown en texte brut.
+Obsidian a été créé par les développeurs de Dynalist avec l'idée de construire un environnement de connaissances personnelles centré sur des fichiers locaux et des liens entre les idées. La philosophie du logiciel repose notamment sur la pérennité des données, la portabilité et la possibilité de construire progressivement notre propre environnement de travail.
 
-## 1.2 Cas d'utilisation d'Obsidian
+Obsidian est souvent présenté comme un outil permettant de construire un **Second Cerveau** numérique. Cette expression désigne un système externe dans lequel nous conservons nos idées, références, décisions, projets et connaissances afin de ne pas dépendre uniquement de notre mémoire biologique.
 
-Obsidian peut être utilisé pour une multitude de cas d'utilisation :
-- Notes de cours;
-- Planification de projets;
-- Suivi des tâches;
-- Rédaction de documents;
-- Création d'un système de gestion des connaissances personnelles;
-Obsidian est un outil polyvalent qui peut s'adapter à de nombreux besoins.
+Cependant, Obsidian n'impose aucune méthode particulière d'organisation. Nous pouvons utiliser des dossiers, des liens, des tags, des propriétés, des Bases ou combiner ces mécanismes selon nos besoins.
 
-## 1.3 Autres outils similaires à Obsidian
+## 1.2 Local First et possession des données
 
-Il existe de nombreux autres outils de prise de notes et de gestion de connaissances que nous pourrions explorer, comme Roam Research, Notion, et Zettlr. Chacun de ces outils a ses propres forces et faiblesses, et le meilleur outil pour nous dépendra de nos besoins et de notre style de travail.
+Obsidian adopte une approche que nous pouvons qualifier de **Local First** : la donnée principale vit d'abord dans notre système de fichiers local. Un compte en ligne n'est pas nécessaire pour créer et utiliser un vault local.
 
-# 2. Installation et configuration d'Obsidian
+La plupart de nos notes sont de simples fichiers `.md` :
 
-Pour commencer avec Obsidian, nous téléchargeons d'abord l'application à partir de son site web officiel. Une fois le fichier téléchargé, nous l'ouvrons et suivons les instructions pour l'installer sur notre ordinateur. Une fois l'installation terminée, nous lançons Obsidian et arrivons à l'écran d'accueil. Ici, nous avons la possibilité de configurer Obsidian en fonction de nos besoins. Nous pouvons choisir le thème, l'organisation des panneaux, et beaucoup d'autres paramètres à partir du menu des préférences.
-
-## 2.1 Installation d'Obsidian sur GNU/Linux
-
-Il existe plusieurs façons d'installer Obsidian sur notre ordinateur. Voici deux méthodes couramment utilisées pour l'installation sur un système Linux.
-
-## 2.2 1ère façon: Installation via Snap
-
-La première méthode consiste à télécharger Obsidian à partir de son site web officiel, puis à utiliser Snap pour installer le fichier téléchargé.
-
-1. Téléchargons Obsidian à partir de [ce lien](https://help.obsidian.md/Getting+started/Download+and+install+Obsidian#Install+Obsidian+using+Snap).
-2. Ouvrons un terminal et naviguons vers l'emplacement du fichier téléchargé.
-3. Exécutons la commande `snap install <nom_du_fichier> --dangerous --classic` pour installer Obsidian. Il faut remplacer `<nom_du_fichier>` par le nom du fichier téléchargé.
-
-Plus d'informations sur l'utilisation de Snap pour installer Obsidian peuvent être trouvées [ici](https://help.obsidian.md/Getting+started/Download+and+install+Obsidian#Install+Obsidian+using+Snap).
-
-## 2.3 2ème façon: Installation via Flatpak
-
-La seconde méthode est d'utiliser Flatpak, un système de gestion de paquets pour Linux. Cette méthode nécessite que nous ayons Flatpak installé sur notre système.
-
-Installons Flatpak en exécutant la commande suivante dans un terminal :
-```shell
-sudo apt install flatpak
+```text
+MonVault/
+├── Cours.md
+├── Projet.md
+├── Réunion.md
+└── Ressources/
+    └── Markdown.md
 ```
 
-Mettons à jour les dépôts de Flatpak en exécutant la commande suivante :
+Cette architecture nous offre plusieurs avantages :
+
+- nous pouvons lire nos notes sans Obsidian ;
+- nous pouvons les modifier avec Vim, VS Code, Zettlr ou tout autre éditeur de texte ;
+- nous pouvons les sauvegarder avec les outils habituels du système ;
+- nous pouvons utiliser Git pour conserver leur historique ;
+- nous limitons notre dépendance à un éditeur particulier.
+
+Il faut toutefois nuancer l'idée selon laquelle « tout Obsidian est du Markdown ». Les **notes** sont en Markdown, mais Obsidian utilise également d'autres fichiers : configuration dans `.obsidian/`, Canvas en `.canvas`, Bases en `.base`, images, PDF, sons, etc.
+
+## 1.3 Le vault
+
+Obsidian appelle **vault**, ou coffre, le dossier qu'il utilise comme espace de travail. Un vault est donc d'abord un répertoire de notre système de fichiers.
+
+Par exemple :
+
+```text
+~/Documents/Notes/
+```
+
+peut devenir un vault Obsidian.
+
+À l'intérieur, Obsidian crée généralement un dossier caché :
+
+```text
+.obsidian/
+```
+
+Ce dossier contient la configuration propre au vault : préférences, plugins, thèmes, raccourcis, snippets CSS et autres données de configuration.
+
+## 1.4 Cas d'utilisation d'Obsidian
+
+Obsidian peut être utilisé pour de nombreux usages :
+
+- notes de cours ;
+- documentation technique ;
+- journal quotidien ;
+- recherche universitaire ;
+- préparation d'articles ;
+- gestion de projet ;
+- veille technologique ;
+- documentation logicielle ;
+- carnet de lecture ;
+- base documentaire personnelle ;
+- gestion d'un Second Cerveau ;
+- préparation de données destinées à des scripts ou des agents IA.
+
+Le même vault peut combiner plusieurs usages si nous conservons des conventions suffisamment claires.
+
+## 1.5 Obsidian face aux autres outils
+
+D'autres outils répondent à des besoins voisins : Notion, Roam Research, Logseq, Joplin, Zettlr ou encore des éditeurs Markdown classiques.
+
+La particularité d'Obsidian n'est pas simplement de savoir écrire en Markdown. Sa force vient de la combinaison de plusieurs éléments :
+
+```text
+Fichiers locaux
+      +
+Markdown
+      +
+Liens et backlinks
+      +
+Métadonnées structurées
+      +
+Vues et recherche
+      +
+Extensions
+```
+
+Le meilleur outil dépend toujours du besoin. Nous devons éviter de choisir un logiciel uniquement pour ses fonctionnalités spectaculaires : la pérennité et la simplicité des données sont souvent plus importantes.
+
+# 2. Installation et création de notre premier vault
+
+## 2.1 Plateformes prises en charge
+
+Obsidian existe sur les principales plateformes de bureau et mobiles : GNU/Linux, Windows, macOS, Android, iPhone et iPad.
+
+Dans ce cours nous détaillons surtout GNU/Linux, mais le fonctionnement du vault reste globalement identique sur les autres systèmes.
+
+## 2.2 Installation sous GNU/Linux avec Flatpak
+
+Si Flatpak est disponible sur notre distribution, nous pouvons installer Obsidian depuis Flathub :
+
 ```bash
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub md.obsidian.Obsidian
 ```
 
-Cherchons l'ID de l'application Obsidian en exécutant :
-```bash
-flatpak search Obsidian
-```
-L'ID devrait être quelque chose comme `md.obsidian.Obsidian`.
+Puis le lancer :
 
-Installons Obsidian en exécutant :
-```bash
-flatpak install md.obsidian.Obsidian
-```
-
-Exécutons Obsidian en exécutant 
 ```bash
 flatpak run md.obsidian.Obsidian
 ```
 
-Pour mettre à jour
+Pour mettre à jour les applications Flatpak :
+
 ```bash
 flatpak update
 ```
 
-Pour désinstaller
+Pour désinstaller Obsidian :
+
 ```bash
 flatpak uninstall md.obsidian.Obsidian
 ```
-Nous pouvons trouver plus d'informations sur l'utilisation de Flatpak pour installer des applications sur [doc.ubuntu-fr.org](https://doc.ubuntu-fr.org/flatpak).
 
-## 2.4 3ème façon: Utiliser un logiciel compatible
+## 2.3 Installation avec AppImage
 
-Sous [[Visual studio code]], il est possible d'installer une extension Open Source qui permet de lire et écrire les notes Obsidian et suivant les liens. Cette extension s'appelle [Mardown Memo](https://marketplace.visualstudio.com/items?itemName=svsool.markdown-memo)
+Nous pouvons télécharger l'AppImage depuis le site officiel, la rendre exécutable puis la lancer :
 
-# 3. Création de notre premier vault
-
-Dans Obsidian, les notes sont stockées dans ce qu'on appelle un "vault" (ou "coffre-fort" en français). Pour créer notre premier vault, nous sélectionnons "Nouveau vault" depuis l'écran d'accueil, puis nous lui donnons un nom et choisissons un emplacement sur notre ordinateur pour le stocker. Une fois le vault créé, nous pouvons commencer à y ajouter des notes. Il est possible de réaliser soi-même la fonctionnalité de partage, en gérant soit même un dépôt git.
-
-
-# 4. L'interface utilisateur d'Obsidian
-
-L'interface d'Obsidian est épurée et centrée sur le contenu. Elle comporte un menu de navigation latéral, une zone de rédaction et une zone de visualisation. Elle offre également une visualisation graphique qui permet de voir les connexions entre nos notes. Obsidian offre aussi une grande capacité de personnalisation, nous permettant d'adapter l'interface à nos besoins et à notre style de travail.
-
-## 4.1 Navigation entre les notes
-
-Dans Obsidian, nous avons plusieurs façons de naviguer entre nos notes. Nous pouvons utiliser la barre latérale pour parcourir les notes de notre vault. Nous pouvons également utiliser la barre de recherche en haut pour trouver rapidement une note. En outre, Obsidian offre la possibilité de voir un aperçu d'une note en passant simplement la souris sur un lien, ce qui peut grandement faciliter la navigation entre nos notes.
-
-## 4.2 Création de liens entre les notes
-
-L'un des aspects les plus puissants d'Obsidian est sa capacité à créer des liens entre les notes. Pour créer un lien vers une autre note, nous écrivons le nom de la note entre crochets doubles, comme ceci: `[[Nom de la note]]`. Une fois que nous avons créé un lien, nous pouvons cliquer dessus pour accéder à la note liée. De plus, Obsidian garde une trace de tous les liens entrants et sortants d'une note, ce qui nous aide à comprendre comment nos idées et nos informations sont interconnectées.
-
-## 4.3 Le Markdown d'Obsidian
-
-Le langage Markdown est un langage de balisage léger conçu pour être facile à lire et à écrire. Dans Obsidian, toutes nos notes sont écrites en Markdown. Pour créer un titre, par exemple, nous utilisons le symbole '#'. Par exemple, '# Titre' créera un titre de niveau 1, '## Sous-titre' un titre de niveau 2, et ainsi de suite. Pour mettre du texte en gras, nous entourons les mots avec deux astérisques, comme ceci: '**texte en gras**'. Pour créer une liste à puces, nous commençons chaque ligne par un tiret '-'. 
-
-Markdown supporte également les liens hypertextes et les images. Pour créer un lien, nous utilisons la syntaxe suivante: `[texte du lien](URL)`. Pour ajouter une image, nous utilisons une syntaxe similaire: `![texte alternatif](URL de l'image)`.
-
-Pour plus d'information voir [[Markdown]]
-
-## 4.4 Familiarisation avec les outils de rédaction d'Obsidian
-
-Obsidian fournit une gamme d'outils de rédaction qui rendent la création de notes très fluide. Par exemple, Obsidian propose un mode de prévisualisation qui nous permet de voir comment notre note apparaîtra une fois rendue. Il existe également un mode éditeur qui nous permet de voir et de modifier directement le code Markdown de notre note.
-
-Obsidian offre également une variété d'outils pour formater notre texte. Nous pouvons utiliser les boutons de la barre d'outils pour ajouter des titres, des listes, des citations, et plus encore. Nous pouvons même utiliser des raccourcis clavier pour accélérer le processus de rédaction.
-
-## 4.5 Organisation des notes avec les tags et les liens
-
-Obsidian offre plusieurs façons d'organiser nos notes. Une façon est d'utiliser des tags. Pour ajouter un tag à une note, nous utilisons le symbole '#'. Par exemple, `#tag` ajoute le tag 'tag' à notre note. Attention! il ne doit pas y avoir d'espace entre le dièse et nom du tag, sinon c'est un titre et non un tag!
-Nous pouvons ensuite cliquer sur un tag pour voir toutes les notes qui ont ce tag.
-
-Une autre façon d'organiser nos notes est d'utiliser des liens. Comme mentionné précédemment, nous pouvons créer des liens entre nos notes en utilisant la syntaxe `[[Nom de la note]]`. Obsidian trace ensuite ces liens, ce qui nous permet de voir comment nos notes sont connectées les unes aux autres.
-
-## 4.5 panneau de recherche
-
-Pour retrouver rapidement une note dans Obsidian, nous pouvons utiliser le panneau de recherche. Pour l'ouvrir, nous appuyons sur Ctrl+P (Cmd+P sur Mac), puis nous tapons les mots clés que nous recherchons. Obsidian affiche alors une liste de notes qui correspondent à notre recherche.
-
-Le panneau de recherche d'Obsidian est très puissant. Il peut rechercher non seulement les titres de notes, mais aussi leur contenu. De plus, il prend en charge la recherche par tags, ce qui signifie que nous pouvons rechercher toutes les notes avec un certain tag en tapant '#tag' dans le panneau de recherche.
-
-# 5. Les fonctionnalités avancées d'Obsidian
-
-## 5.1 visualisation graphique
-
-1. L'un des aspects les plus uniques d'Obsidian est son mode de visualisation graphique. Ce mode nous permet de voir une représentation visuelle de toutes nos notes et des liens entre elles. Chaque note est représentée par un point, et chaque lien par une ligne reliant deux points. Cette fonctionnalité peut nous aider à comprendre comment nos idées sont connectées et à découvrir de nouvelles connexions.
-
-2. Pour accéder au mode de visualisation graphique, nous cliquons sur l'icône en forme de graphe dans la barre latérale. Nous pouvons ensuite zoomer et dézoomer, et cliquer sur les points pour naviguer entre nos notes.
-
-## 5.2 Étendre Obsidian
-
-Obsidian prend en charge les plugins, ce qui nous permet d'étendre ses fonctionnalités en fonction de nos besoins. Il existe de nombreux plugins disponibles, qui ajoutent des fonctionnalités allant des graphiques à la gestion des tâches.
-
-Pour installer un plugin, nous allons dans le menu des paramètres, dans le sous menu "Modules Complémentaires", puis dans la section des "Modules Complémnetaires", bouton "Parcourir". Nous pouvons alors chercher des plugins et les installer directement à partir de là.
-
-## 5.3 Options de synchronisation et de sauvegarde
-
-Même si Obsidian stocke toutes nos notes localement, il offre plusieurs options pour synchroniser et sauvegarder nos notes. Nous pouvons, par exemple, stocker notre vault dans un dossier synchronisé avec un service cloud comme Dropbox ou Google Drive.
-
-Obsidian offre également un service de synchronisation intégré, Obsidian Sync. Ce service est payant, mais il offre plusieurs avantages, comme la synchronisation en temps réel, la prise en charge de plusieurs appareils, et la sauvegarde des versions précédentes de nos notes.
-
-## 5.4 Découverte des thèmes et de la personnalisation d'Obsidian
-
-Obsidian est personnalisable. Nous pouvons, par exemple, choisir entre un thème clair et un thème sombre, et nous pouvons personnaliser la disposition de notre interface utilisateur en déplaçant et en redimensionnant les panneaux.
-
-Obsidian prend également en charge les thèmes personnalisés, que nous pouvons télécharger et installer à partir de la communauté Obsidian. Ces thèmes peuvent changer l'apparence de notre interface utilisateur, de la couleur de fond aux icônes en passant par la typographie.
-
-Pour installer un thème personnalisé, nous allons dans le menu des "Paramètres", puis dans la section "Apparence". Nous pouvons alors chercher des thèmes et les installer directement à partir de là.
-
-## 5.5 Utiliser notre feuille de style CSS
-Obsidian, en plus de sa prise en charge du Markdown, permet d'injecter des balises HTML et du CSS personnalisé dans nos notes, ce qui permet de styliser nos notes de manière beaucoup plus sophistiquée.
-
-### 5.5.1 Personnalisation avec notre propre feuille de style CSS
-
-1. Nous devrons créer une feuille de style CSS personnalisée. Dans notre répertoire de travail ("vault"), créons un fichier par exemple `notes.css`. C'est dans ce fichier que nous allons écrire nos styles CSS personnalisés.
-
-2. Écrivons nos règles CSS dans ce fichier. Par exemple, si nous voulons que tous les titres de niveau 1 soient colorés en rouge et que les diagrammes Mermaid soient entièrement affichés, nous pouvons ajouter les règles suivantes:
-
-```css
-h1 {
-    color: red;
-}
-
-.mermaid svg {
-    max-width: 100% !important;
-    width: 100% !important;
-    height: auto;
-}
+```bash
+chmod u+x Obsidian-<version>.AppImage
+./Obsidian-<version>.AppImage --no-sandbox
 ```
 
-3. Tout d'abord, il faut activer le support du CSS personnalisé dans Obsidian. Pour cela, allons dans les paramètres (`Settings`), puis dans la section `Appearance` et activons l'option `Custom CSS`.
+L'AppImage est pratique lorsque nous souhaitons utiliser une application sans installation classique par le gestionnaire de paquets.
 
-4. Les changements que nous apportons à votre fichier `obsidian.css` seront automatiquement appliqués à toutes nos notes.
+## 2.4 Installation avec Snap
 
-### 5.5.2 Utilisation de balises HTML
+La documentation officielle fournit également un paquet Snap téléchargeable. Une fois le fichier récupéré :
 
-Obsidian supporte également l'utilisation de balises HTML dans nos notes. Cela signifie que nous pouvons utiliser des éléments comme `<span>` pour appliquer des styles spécifiques à des parties spécifiques de notre texte. Par exemple, si nous avons défini une classe CSS appelée `Classe1` dans notre fichier `obsidian.css` qui change la couleur du texte en bleu, nous pouvons utiliser cette classe dans une balise `<span>` pour faire apparaître du texte en bleu:
+```bash
+sudo snap install obsidian_<version>_<arch>.snap --dangerous --classic
+```
+
+Les options utilisées ici ont une signification importante : le paquet téléchargé directement n'est pas validé par le magasin Snap, d'où `--dangerous`, et `--classic` autorise un accès plus large au système de fichiers afin que l'application puisse travailler sur nos notes.
+
+## 2.5 Créer notre premier vault
+
+Au démarrage, nous pouvons créer un nouveau vault ou demander à Obsidian d'ouvrir un dossier existant comme vault.
+
+Pour créer un nouveau vault :
+
+1. choisissons **Créer un nouveau vault** ;
+2. donnons-lui un nom ;
+3. choisissons son emplacement ;
+4. validons.
+
+Nous pouvons par exemple créer :
+
+```text
+~/Documents/Notes/
+```
+
+Il est utile de choisir un emplacement que nous savons sauvegarder correctement.
+
+## 2.6 Ouvrir un dossier Markdown existant
+
+Nous ne sommes pas obligés de commencer avec un dossier vide. Un répertoire contenant déjà des fichiers Markdown peut devenir un vault.
+
+Cela constitue un point important pour la portabilité : nous pouvons construire notre documentation indépendamment d'Obsidian puis utiliser Obsidian comme interface de consultation et d'édition.
+
+## 2.7 Modifier un vault avec d'autres logiciels
+
+Comme les notes sont de simples fichiers, nous pouvons ouvrir le même dossier avec un éditeur externe :
+
+```bash
+code ~/Documents/Notes
+```
+
+ou :
+
+```bash
+vim ~/Documents/Notes/Cours.md
+```
+
+Nous devons cependant garder à l'esprit que certaines syntaxes propres à Obsidian, comme les Wikilinks `[[...]]`, ne seront pas nécessairement interprétées de la même manière par tous les éditeurs.
+
+# 3. Prendre en main l'interface
+
+L'interface d'Obsidian est centrée sur l'espace de travail. Elle peut être profondément personnalisée sans modifier les fichiers eux-mêmes.
+
+## 3.1 Les principales zones de l'interface
+
+Nous retrouvons généralement :
+
+- le ruban vertical ;
+- la barre latérale gauche ;
+- la zone centrale avec un ou plusieurs onglets ;
+- la barre latérale droite ;
+- la barre d'état ;
+- les panneaux de recherche, backlinks, propriétés, graphe, etc.
+
+Les panneaux peuvent être déplacés et réorganisés selon notre façon de travailler.
+
+## 3.2 Les onglets et groupes d'onglets
+
+Plusieurs notes peuvent être ouvertes simultanément sous forme d'onglets. Nous pouvons également diviser l'espace de travail afin de comparer deux notes, éditer une note tout en consultant une autre ou afficher une Base à côté d'un document.
+
+Cette approche est particulièrement utile pour la rédaction et la recherche.
+
+## 3.3 Mode édition et mode lecture
+
+Une note peut principalement être consultée selon plusieurs modes :
+
+- **Live Preview**, qui permet d'éditer le Markdown tout en affichant une partie de son rendu ;
+- **Source mode**, qui affiche plus directement la syntaxe Markdown ;
+- **Reading view**, destiné à la lecture du rendu final.
+
+Le mode Source est particulièrement utile lorsque nous travaillons sur du YAML ou lorsque nous voulons comprendre exactement ce qui est enregistré dans le fichier.
+
+## 3.4 La palette de commandes
+
+La palette de commandes permet d'exécuter rapidement les fonctions d'Obsidian et des plugins installés.
+
+Sous GNU/Linux et Windows :
+
+```text
+Ctrl + P
+```
+
+Sous macOS :
+
+```text
+Cmd + P
+```
+
+Nous pouvons ensuite saisir quelques lettres du nom d'une commande. La recherche est approximative, ce qui évite de connaître exactement son intitulé.
+
+La palette de commandes est l'un des outils les plus utiles à maîtriser : elle permet souvent d'éviter de parcourir les menus.
+
+## 3.5 Ouvrir rapidement une note
+
+Le raccourci habituel du **Quick Switcher** est :
+
+```text
+Ctrl + O
+```
+
+Nous saisissons ensuite une partie du nom de la note recherchée.
+
+## 3.6 Créer une note
+
+Le raccourci habituel est :
+
+```text
+Ctrl + N
+```
+
+Le comportement exact peut être personnalisé dans les paramètres des raccourcis.
+
+## 3.7 Recherche dans la note courante
+
+Pour rechercher du texte dans la note active :
+
+```text
+Ctrl + F
+```
+
+## 3.8 Recherche dans tout le vault
+
+La recherche globale est accessible avec :
+
+```text
+Ctrl + Shift + F
+```
+
+Cette distinction est importante :
+
+```text
+Ctrl + P         → palette de commandes
+Ctrl + F         → recherche dans le fichier actif
+Ctrl + Shift + F → recherche dans le vault
+Ctrl + O         → ouverture rapide d'une note
+```
+
+## 3.9 Les paramètres
+
+Les paramètres permettent notamment de gérer :
+
+- l'éditeur ;
+- les fichiers et les liens ;
+- l'apparence ;
+- les raccourcis ;
+- les modules principaux ;
+- les modules complémentaires ;
+- les paramètres propres aux plugins.
+
+Les versions récentes d'Obsidian disposent d'une recherche dans les paramètres, particulièrement utile lorsque de nombreux plugins sont installés.
+
+# 4. Écrire avec Markdown dans Obsidian
+
+## 4.1 Pourquoi Markdown ?
+
+Markdown est un langage de balisage léger conçu pour rester lisible même sans moteur de rendu.
+
+Par exemple :
+
+```markdown
+# Mon titre
+
+Voici un paragraphe avec du **gras** et de l'*italique*.
+```
+
+reste compréhensible dans n'importe quel éditeur de texte.
+
+Pour une présentation plus complète du langage, voir [[Markdown]].
+
+## 4.2 Titres
+
+```markdown
+# Titre de niveau 1
+## Titre de niveau 2
+### Titre de niveau 3
+#### Titre de niveau 4
+```
+
+Nous devons utiliser les niveaux de titres pour exprimer une hiérarchie logique et non uniquement pour modifier la taille du texte.
+
+## 4.3 Gras, italique et texte barré
+
+```markdown
+**texte en gras**
+*texte en italique*
+~~texte barré~~
+```
+
+## 4.4 Listes
+
+Liste à puces :
+
+```markdown
+- premier élément
+- deuxième élément
+- troisième élément
+```
+
+Liste ordonnée :
+
+```markdown
+1. premier élément
+2. deuxième élément
+3. troisième élément
+```
+
+## 4.5 Cases à cocher
+
+```markdown
+- [x] Tâche terminée
+- [ ] Tâche à faire
+```
+
+Ces tâches sont de simples lignes Markdown. Elles peuvent être recherchées par Obsidian et exploitées par certains plugins ou scripts.
+
+## 4.6 Citations
+
+```markdown
+> Une citation ou une information mise en retrait.
+```
+
+## 4.7 Blocs de code
+
+Nous pouvons insérer un bloc de code en utilisant trois accents graves :
+
+````markdown
+```python
+print("Bonjour")
+```
+````
+
+Obsidian effectue une coloration syntaxique pour de nombreux langages.
+
+## 4.8 Liens Web
+
+```markdown
+[Site officiel d'Obsidian](https://obsidian.md/)
+```
+
+## 4.9 Images
+
+En Markdown standard :
+
+```markdown
+![Description](image.png)
+```
+
+Avec la syntaxe de transclusion d'Obsidian :
+
+```markdown
+![[image.png]]
+```
+
+## 4.10 Tableaux
+
+```markdown
+| Nom | Statut |
+| --- | --- |
+| Projet A | actif |
+| Projet B | terminé |
+```
+
+Obsidian fournit aujourd'hui une édition plus confortable des tableaux directement dans l'éditeur, mais le fichier reste un tableau Markdown.
+
+## 4.11 Callouts
+
+Les callouts permettent de mettre en évidence une information :
+
+```markdown
+> [!note]
+> Ceci est une note importante.
+```
+
+Autres exemples :
+
+```markdown
+> [!warning]
+> Attention à cette opération.
+```
+
+```markdown
+> [!tip]
+> Une astuce utile.
+```
+
+## 4.12 Diagrammes Mermaid
+
+Obsidian sait rendre des diagrammes Mermaid à partir d'un bloc de code :
+
+````markdown
+```mermaid
+flowchart LR
+    A[Note A] --> B[Note B]
+    B --> C[Note C]
+```
+````
+
+Voir également [[Mermaid pour Obsidian]].
+
+## 4.13 HTML dans une note
+
+Obsidian peut interpréter certains éléments HTML directement dans une note :
 
 ```html
-<span class="Classe1">Un texte affiché avec le style de la classe Classe1</span>
+<span class="important">Texte important</span>
 ```
 
-Cela afficherait le texte "Un texte affiché avec le style de la classe Classe1" en bleu, en supposant que notre classe `Classe1` ressemble à ceci dans notre fichier `obsidian.css`:
+Nous devons utiliser cette possibilité avec modération : plus un document dépend de HTML spécifique à l'affichage, moins il reste portable comme simple Markdown.
+
+# 5. Relier et organiser nos connaissances
+
+## 5.1 Les liens internes ou Wikilinks
+
+Pour créer un lien vers une note :
+
+```markdown
+[[Nom de la note]]
+```
+
+Nous pouvons afficher un texte différent :
+
+```markdown
+[[Nom de la note|texte affiché]]
+```
+
+Obsidian peut mettre à jour automatiquement les liens internes lorsque nous renommons un fichier, si cette option est activée.
+
+## 5.2 Liens vers un titre
+
+Nous pouvons créer un lien vers une section précise :
+
+```markdown
+[[Nom de la note#Titre de la section]]
+```
+
+## 5.3 Liens vers un bloc
+
+Obsidian permet également de référencer un bloc précis. Après avoir créé ou sélectionné un identifiant de bloc, un lien peut prendre cette forme :
+
+```markdown
+[[Nom de la note#^identifiant]]
+```
+
+## 5.4 Transclusion
+
+Ajouter `!` devant un lien interne permet d'inclure le contenu lié dans la note courante :
+
+```markdown
+![[Nom de la note]]
+```
+
+Nous pouvons également inclure une section :
+
+```markdown
+![[Nom de la note#Une section]]
+```
+
+La transclusion évite de dupliquer une information qui existe déjà ailleurs.
+
+## 5.5 Backlinks
+
+Lorsqu'une note A contient :
+
+```markdown
+[[Note B]]
+```
+
+Obsidian peut afficher dans la Note B que la Note A pointe vers elle. Cette relation inverse est appelée **backlink**.
+
+Les backlinks sont très intéressants pour découvrir les contextes dans lesquels une information a été utilisée.
+
+## 5.6 Tags
+
+Un tag s'écrit avec un dièse collé au mot :
+
+```markdown
+#informatique
+```
+
+Un espace après le `#` créerait un titre Markdown et non un tag.
+
+Les tags peuvent être hiérarchiques :
+
+```markdown
+#informatique/linux
+```
+
+Ils servent bien pour des catégories transversales, mais nous devons éviter de transformer une collection de centaines de tags incohérents en second système de classement.
+
+## 5.7 Dossiers, tags, liens et propriétés
+
+Ces quatre mécanismes ne répondent pas au même besoin :
+
+```text
+Dossier    → où le fichier est rangé physiquement
+Tag        → marqueur transversal léger
+Lien       → relation vers une autre note
+Propriété  → attribut structuré de la note
+```
+
+Par exemple, un cours peut vivre dans `Cours/`, posséder la propriété `niveau: debutant`, être tagué `#markdown` et contenir un lien vers `[[YAML]]`.
+
+## 5.8 Les alias
+
+Les alias permettent de donner plusieurs noms à une même note. Ils sont désormais gérés comme une propriété native :
+
+```yaml
+---
+aliases:
+  - Utilisation Obsidian
+  - Raccourcis Obsidian
+---
+```
+
+Une recherche ou une création de lien peut alors retrouver la note à partir de ces alias.
+
+## 5.9 Le graphe
+
+Le module de graphe représente les notes par des nœuds et leurs liens par des arêtes.
+
+Il existe notamment :
+
+- un graphe global du vault ;
+- un graphe local centré sur la note active.
+
+Le graphe est très utile pour explorer les connexions, mais il ne remplace pas une bonne organisation. Un graphe dense peut être visuellement impressionnant tout en apportant peu d'information exploitable.
+
+# 6. Properties et Frontmatter YAML
+
+L'une des évolutions majeures d'Obsidian depuis le cours initial de 2023 est l'intégration des **Properties** comme mécanisme central pour manipuler les métadonnées des notes.
+
+## 6.1 Qu'est-ce qu'une propriété ?
+
+Une propriété associe un nom à une valeur structurée.
+
+Exemple :
+
+```yaml
+---
+type: cours
+statut: actif
+niveau: debutant
+---
+```
+
+Nous pouvons interpréter cette note comme un objet :
+
+```text
+type   = cours
+statut = actif
+niveau = debutant
+```
+
+## 6.2 Où les propriétés sont-elles stockées ?
+
+Les propriétés sont enregistrées en YAML au début du fichier Markdown, entre deux lignes `---` :
+
+```yaml
+---
+auteur: "Michaël Launay"
+date: 2026-08-16
+publie: true
+---
+```
+
+L'interface graphique d'Obsidian ne remplace donc pas le YAML : elle constitue une interface d'édition de données toujours présentes dans le fichier.
+
+## 6.3 Types de propriétés
+
+Obsidian prend en charge plusieurs types de propriétés, notamment :
+
+- texte ;
+- liste ;
+- nombre ;
+- case à cocher ;
+- date ;
+- date et heure ;
+- tags.
+
+Le choix du type influence la manière dont Obsidian édite, filtre et affiche la valeur.
+
+## 6.4 Exemple de note structurée
+
+```yaml
+---
+type: cours
+statut: actif
+niveau: debutant
+auteurs:
+  - "Michaël Launay"
+date_creation: 2023-02-03
+date_modification: 2026-08-16
+confidentialite: publique
+---
+```
+
+Nous pouvons ensuite ajouter le contenu Markdown normal :
+
+```markdown
+# Introduction
+
+Contenu du cours...
+```
+
+## 6.5 Valeurs texte
+
+```yaml
+---
+titre: "Introduction à Obsidian"
+---
+```
+
+Une propriété texte doit contenir une information courte et atomique. Le corps de la note reste préférable pour une explication longue.
+
+## 6.6 Listes
+
+```yaml
+---
+themes:
+  - obsidian
+  - markdown
+  - gestion-des-connaissances
+---
+```
+
+Les listes conviennent lorsque plusieurs valeurs peuvent être associées à la même propriété.
+
+## 6.7 Nombres
+
+```yaml
+---
+niveau_difficulte: 2
+---
+```
+
+Une propriété de type nombre doit contenir un nombre, et non une expression comme `1 + 1`.
+
+## 6.8 Booléens
+
+```yaml
+---
+publie: true
+archive: false
+---
+```
+
+## 6.9 Dates
+
+```yaml
+---
+date_creation: 2026-08-16
+---
+```
+
+Le format ISO `AAAA-MM-JJ` est particulièrement pratique pour les traitements automatiques.
+
+## 6.10 Liens dans les propriétés
+
+Une propriété texte ou une valeur d'une liste peut contenir un lien interne. En YAML nous devons être attentifs aux guillemets :
+
+```yaml
+---
+projet: "[[Projet OSIA]]"
+participants:
+  - "[[Alice Dupont]]"
+  - "[[Bob Martin]]"
+---
+```
+
+## 6.11 Propriétés par défaut
+
+Obsidian reconnaît notamment plusieurs propriétés particulières :
+
+```yaml
+---
+tags:
+  - cours
+  - obsidian
+aliases:
+  - Cours Obsidian
+cssclasses:
+  - cours-technique
+---
+```
+
+Les anciennes formes singulières `tag`, `alias` et `cssclass` ont été dépréciées au profit de `tags`, `aliases` et `cssclasses`.
+
+## 6.12 Les Properties comme modèle de données
+
+À partir du moment où nous utilisons des propriétés de manière cohérente, notre vault n'est plus seulement un ensemble de documents. Il devient une **base documentaire structurée**.
+
+Par exemple :
+
+```yaml
+---
+type: livre
+auteur: "Douglas Hofstadter"
+statut_lecture: en_cours
+note: 5
+---
+```
+
+et :
+
+```yaml
+---
+type: livre
+auteur: "Donald Knuth"
+statut_lecture: a_lire
+note:
+---
+```
+
+peuvent ensuite être filtrés, triés et présentés ensemble.
+
+## 6.13 Limites des propriétés
+
+Les Properties sont conçues pour des informations relativement simples et atomiques. Les structures YAML profondément imbriquées ne sont pas correctement prises en charge par l'éditeur graphique des propriétés.
+
+Nous devons donc éviter de transformer le Frontmatter en document complexe. Lorsque l'information devient narrative ou fortement structurée, le corps Markdown ou une note liée est souvent plus adapté.
+
+# 7. Rechercher et retrouver l'information
+
+## 7.1 Recherche plein texte
+
+La recherche globale permet de retrouver les occurrences d'un mot ou d'une expression dans le vault.
+
+Pour rechercher une phrase exacte :
+
+```text
+"gestion des connaissances"
+```
+
+## 7.2 Opérateurs de recherche
+
+Obsidian fournit des opérateurs spécialisés.
+
+Rechercher dans les noms de fichiers :
+
+```text
+file:Obsidian
+```
+
+Rechercher dans un chemin :
+
+```text
+path:Cours
+```
+
+Rechercher un tag :
+
+```text
+tag:#informatique
+```
+
+Rechercher une tâche non terminée :
+
+```text
+task-todo:Obsidian
+```
+
+## 7.3 Combiner les recherches
+
+```text
+markdown linux
+```
+
+recherche les fichiers contenant les deux termes.
+
+```text
+markdown OR linux
+```
+
+recherche ceux contenant au moins l'un des termes.
+
+Pour exclure :
+
+```text
+markdown -windows
+```
+
+## 7.4 Rechercher sur les propriétés
+
+Les propriétés peuvent être utilisées dans une requête.
+
+Notes possédant la propriété `aliases` :
+
+```text
+[aliases]
+```
+
+Notes dont le statut vaut `actif` :
+
+```text
+[statut:actif]
+```
+
+Combinaison :
+
+```text
+[type:cours] [statut:actif]
+```
+
+Nous voyons ici l'intérêt d'un vocabulaire cohérent : si nous utilisons successivement `actif`, `active`, `en_cours` et `courant` pour exprimer la même idée, nos requêtes deviennent inutilement compliquées.
+
+## 7.5 Expressions régulières
+
+La recherche accepte également des expressions régulières de style JavaScript.
+
+Par exemple, pour rechercher une date ISO :
+
+```text
+/\d{4}-\d{2}-\d{2}/
+```
+
+Cette possibilité devient intéressante pour l'audit et la maintenance de grands vaults.
+
+## 7.6 Recherche ou Base ?
+
+La recherche et les Bases sont complémentaires :
+
+```text
+Recherche → retrouver rapidement une information ou un ensemble de fichiers
+Base      → construire une vue durable et structurée sur un ensemble de notes
+```
+
+# 8. Templates et notes quotidiennes
+
+## 8.1 Le module Templates
+
+Templates est un module principal d'Obsidian. Il permet d'insérer un modèle prédéfini dans la note active.
+
+Nous commençons par créer un dossier, par exemple :
+
+```text
+Templates/
+```
+
+Puis dans les paramètres du module **Templates**, nous indiquons ce dossier comme emplacement des modèles.
+
+## 8.2 Premier template
+
+Créons :
+
+```text
+Templates/Cours.md
+```
+
+avec :
+
+```markdown
+---
+type: cours
+statut: actif
+date_creation: {{date:YYYY-MM-DD}}
+---
+
+# {{title}}
+
+## Objectifs
+
+## Cours
+
+## Ressources
+```
+
+Lors de l'insertion du template, Obsidian remplace les variables reconnues.
+
+## 8.3 Variables intégrées
+
+Le module Templates fournit notamment :
+
+```text
+{{title}}
+{{date}}
+{{time}}
+```
+
+Nous pouvons préciser un format :
+
+```text
+{{date:YYYY-MM-DD}}
+```
+
+## 8.4 Templates et propriétés
+
+Les propriétés du template sont fusionnées avec celles de la note lorsque le modèle est inséré.
+
+Cela permet de garantir une structure minimale commune à plusieurs types de notes.
+
+Par exemple, toutes nos fiches de cours peuvent commencer avec :
+
+```yaml
+---
+type: cours
+statut: actif
+niveau:
+---
+```
+
+## 8.5 Notes quotidiennes : intérêt
+
+Les notes quotidiennes permettent de créer une note correspondant à chaque journée. Elles sont utiles pour :
+
+- consigner les activités ;
+- capturer rapidement une idée ;
+- noter des décisions ;
+- suivre les tâches ;
+- conserver un journal ;
+- produire une mémoire chronologique.
+
+## 8.6 Mise en place des notes quotidiennes
+
+Nous activons le module principal **Daily notes / Notes quotidiennes**, puis nous configurons :
+
+- le format de date ;
+- le dossier de destination ;
+- éventuellement un template.
+
+Exemple de chemin :
+
+```text
+Journal/2026-08-16.md
+```
+
+## 8.7 Exemple de template quotidien
+
+```markdown
+---
+type: journal
+date: {{date:YYYY-MM-DD}}
+---
+
+# {{date:YYYY-MM-DD}}
+
+## À faire
+
+- [ ]
+
+## Notes
+
+## Décisions
+
+## Bilan
+```
+
+Le type `journal` est ici une convention de notre propre vault : Obsidian ne nous impose aucun vocabulaire métier.
+
+# 9. Bases : transformer le vault en base documentaire
+
+**Bases** est désormais un module principal d'Obsidian. Il permet de construire des vues proches d'une base de données sur nos fichiers et leurs propriétés.
+
+Le point fondamental est le suivant :
+
+> [!important]
+> Une Base ne déplace pas nos données dans une base de données propriétaire. Les données restent dans les fichiers Markdown et leurs Properties. La Base définit une vue sur ces données.
+
+## 9.1 Principe
+
+Imaginons plusieurs notes :
+
+```yaml
+---
+type: livre
+auteur: "Auteur A"
+statut_lecture: lu
+note: 5
+---
+```
+
+```yaml
+---
+type: livre
+auteur: "Auteur B"
+statut_lecture: a_lire
+note:
+---
+```
+
+Une Base peut les présenter sous forme de tableau :
+
+```text
+Nom              Auteur     Statut     Note
+------------------------------------------------
+Livre A          Auteur A   lu         5
+Livre B          Auteur B   a_lire
+```
+
+## 9.2 Fichiers `.base`
+
+Une Base peut être enregistrée dans un fichier portant l'extension :
+
+```text
+.base
+```
+
+Par exemple :
+
+```text
+Livres.base
+```
+
+La définition d'une Base peut également être intégrée dans une note Markdown.
+
+## 9.3 Filtrer les données
+
+Nous pouvons décider qu'une Base ne doit afficher que les notes répondant à certaines conditions, par exemple :
+
+```text
+type = livre
+```
+
+ou :
+
+```text
+type = projet
+statut = actif
+```
+
+## 9.4 Vue Table
+
+La vue Table représente généralement :
+
+```text
+une ligne    = un fichier
+une colonne  = une propriété ou une valeur calculée
+```
+
+Cette représentation convient particulièrement aux listes de projets, livres, personnes, ressources ou matériels.
+
+## 9.5 Vue Liste
+
+La vue Liste est plus compacte. Elle convient lorsque nous voulons principalement afficher un ensemble de notes sans utiliser de nombreuses colonnes.
+
+## 9.6 Vue Cartes
+
+La vue Cartes affiche les fichiers sous forme de cartes et peut notamment s'appuyer sur des images. Elle est adaptée aux collections visuelles : livres, films, recettes, lieux ou documentation de produits.
+
+## 9.7 Vue Carte géographique
+
+Les versions actuelles de Bases proposent également une vue de carte permettant d'afficher des fichiers comme des points géographiques lorsque leurs données sont adaptées à ce type de représentation.
+
+Cette vue illustre bien la séparation entre **donnée** et **présentation** : la note conserve ses propriétés ; plusieurs vues peuvent représenter les mêmes données différemment.
+
+## 9.8 Tri et regroupement
+
+Nous pouvons trier une vue par date, priorité, auteur, statut ou tout autre champ pertinent.
+
+Nous pouvons également regrouper les notes, par exemple :
+
+```text
+Projet
+├── actif
+├── en_pause
+└── termine
+```
+
+## 9.9 Formules
+
+Bases prend en charge des formules calculées à partir des propriétés.
+
+L'idée importante n'est pas de recopier une valeur calculable dans chaque note, mais de la dériver lorsque cela est pertinent.
+
+## 9.10 Plusieurs vues sur les mêmes données
+
+Une même collection de notes peut alimenter plusieurs vues :
+
+```text
+                 ┌── Vue Table
+Markdown + YAML ─┼── Vue Liste
+                 ├── Vue Cartes
+                 └── Vue Carte
+```
+
+Nous pouvons donc avoir une vue « Projets actifs », une vue « Projets par priorité » et une vue « Projets terminés » sans dupliquer les fichiers.
+
+## 9.11 Base et source de vérité
+
+Une Base est une **projection**. La donnée canonique reste dans la note et ses propriétés.
+
+Cette règle est précieuse pour la pérennité : si nous supprimons une Base, nous ne supprimons pas pour autant les notes qu'elle présentait.
+
+# 10. Canvas et représentation visuelle
+
+## 10.1 Qu'est-ce que Canvas ?
+
+Canvas est un module principal destiné à la prise de notes visuelle. Il fournit un espace bidimensionnel dans lequel nous pouvons disposer et relier :
+
+- des notes ;
+- des cartes de texte ;
+- des images ;
+- des PDF ;
+- d'autres médias ;
+- des pages Web.
+
+## 10.2 Le format JSON Canvas
+
+Obsidian enregistre les Canvas avec l'extension :
+
+```text
+.canvas
+```
+
+Le format utilisé est **JSON Canvas**, un format ouvert destiné à représenter ce type de tableau visuel.
+
+Cela correspond à la philosophie générale d'Obsidian : les informations importantes ne doivent pas rester enfermées dans un stockage opaque.
+
+## 10.3 Ajouter une note dans Canvas
+
+Nous pouvons glisser une note du vault vers le Canvas ou utiliser les commandes prévues à cet effet.
+
+La note reste un fichier Markdown normal. Le Canvas ne contient que les informations nécessaires pour la présenter dans l'espace visuel.
+
+## 10.4 Cartes de texte
+
+Canvas permet aussi de créer directement une carte de texte qui n'est pas immédiatement un fichier du vault.
+
+Il faut connaître une conséquence : une simple carte de texte ne participe pas au graphe de backlinks comme une véritable note. Si son contenu devient important et doit être durablement relié au reste du vault, nous pouvons la convertir en fichier.
+
+## 10.5 Relier des cartes
+
+Des lignes peuvent relier les cartes. Elles peuvent être orientées, colorées et porter une étiquette.
+
+Par exemple :
+
+```text
+[Problème] ──cause──> [Hypothèse]
+     │
+     └──solution──> [Décision]
+```
+
+## 10.6 Groupes
+
+Les cartes peuvent être regroupées visuellement. Cette fonction est utile pour le brainstorming, l'analyse d'architecture ou la préparation d'un cours.
+
+## 10.7 Canvas, Mind Map et graphe
+
+Ces outils ont des objectifs différents :
+
+```text
+Graphe Obsidian → représentation automatique des liens existants
+Canvas          → organisation visuelle manuelle d'éléments
+Mind Map        → structure principalement arborescente
+Mermaid         → diagramme décrit textuellement et reproductible
+```
+
+Le cours 2023 utilisait un plugin communautaire de Mind Map comme exemple principal. Aujourd'hui, Canvas couvre nativement une grande partie des besoins de cartographie visuelle. Un plugin de Mind Map peut toujours être utile, mais il n'est plus indispensable pour enseigner la visualisation dans Obsidian.
+
+# 11. Étendre et personnaliser Obsidian
+
+## 11.1 Modules principaux
+
+Les modules principaux, ou **Core plugins**, sont fournis avec Obsidian. Nous pouvons les activer ou les désactiver dans les paramètres.
+
+Parmi les fonctions importantes figurent notamment :
+
+- recherche ;
+- palette de commandes ;
+- graphe ;
+- backlinks ;
+- Templates ;
+- notes quotidiennes ;
+- Canvas ;
+- Bases ;
+- récupération de fichiers.
+
+La liste exacte évolue avec les versions.
+
+## 11.2 Modules communautaires
+
+La communauté développe de nombreux plugins permettant d'étendre Obsidian.
+
+Ils peuvent ajouter des fonctions de :
+
+- gestion de tâches ;
+- calendrier ;
+- publication ;
+- requêtes ;
+- visualisation ;
+- automatisation ;
+- intégration avec des outils externes.
+
+## 11.3 Risques des plugins communautaires
+
+Un plugin est du code exécuté dans notre application. Nous ne devons donc pas installer des plugins sans réfléchir à leur provenance et à leur maintenance.
+
+Quelques bonnes pratiques :
+
+- limiter le nombre de plugins ;
+- vérifier leur activité et leur réputation ;
+- supprimer ceux que nous n'utilisons plus ;
+- maintenir Obsidian et les plugins à jour ;
+- utiliser le mode restreint pour désactiver les plugins communautaires lorsque nécessaire.
+
+Plus notre vault contient des informations sensibles, plus cette discipline est importante.
+
+## 11.4 Thèmes
+
+Obsidian permet d'installer des thèmes communautaires depuis :
+
+```text
+Paramètres → Apparence → Thèmes
+```
+
+Nous devons distinguer le contenu des notes de leur rendu : changer de thème ne doit normalement pas modifier la donnée Markdown.
+
+## 11.5 CSS snippets
+
+La méthode moderne pour ajouter nos propres règles CSS consiste à créer des **CSS snippets** dans :
+
+```text
+<vault>/.obsidian/snippets/
+```
+
+Par exemple :
+
+```text
+.obsidian/snippets/cours.css
+```
+
+avec :
 
 ```css
-.Classe1 {
-    color: blue;
+.cours-important {
+    font-weight: bold;
 }
 ```
 
-Notons que l'utilisation de HTML et CSS dans Obsidian peut être très puissante, mais elle nécessite également une bonne compréhension de ces langages. Si nous n'êtes pas déjà familiarisé avec eux, il existe de nombreuses ressources en ligne pour nous aider à apprendre, tel [MDN](https://developer.mozilla.org/fr/docs/Web/CSS).
+Nous rechargeons ensuite la liste des snippets et activons celui qui nous intéresse depuis :
 
-## 5.6 Commandes
-
-`ctrl` ou `command` sur mac
-
-`ctrl + p` : Accès aux commandes que l'on trouvera par autocomplétion de la saisie.
-
-`ctrl + o` : Ouvrir un fichier
-
-`ctrl + n` : Créer une note
-
-` ctrl + f` : Recherche d'une chaîne de caractères
-
-`ctrl + maj + f` : Ouvre la barre de recherche sur tout Obsidian
-
-## 5.7 Synatxe
-
-C'est celle de markdown [[Markdown]]
-Lien : doubles crochets
-Tag : dièse collé au tag
-
-## 5.8 Case à cocher
-
-```makdown
-- [x] T1 La ligne est checked
-- [ ] T2
+```text
+Paramètres → Apparence → CSS snippets
 ```
 
-## 5.9 Templates
+## 11.6 La propriété `cssclasses`
 
-Créons un dossier par exemple "templates"
-Allons dans "Paramètres", puis "Modules principaux", activer "Modèles", paramètrer le module Modèles depuis "Modules principaux -> Modèles", préciser le nom du dossier créer
+Nous pouvons appliquer des styles à certaines notes avec la propriété :
 
-## 5.10 Alias
-
-Les alias sont généralement ajoutés en début de note et permettent à la recherche d'aboutir sur cette note pour les alias donnés?
-`
+```yaml
 ---
-aliases : [Utilisation Obsidian, raccourcis Obsidian]
+cssclasses:
+  - cours-technique
 ---
-`
-# 6. Modules intégrés
+```
 
-## 6.1 Note quotidienne
+Puis écrire un snippet adapté :
 
-### 6.1.1 Intérêt de la démarche
+```css
+.cours-technique h1 {
+    text-decoration: underline;
+}
+```
 
-Les notes quotidiennes, aussi appelées "journal quotidien" dans certains outils de prise de notes, sont un excellent moyen d'organiser nos pensées, nos idées et nos activités au jour le jour. Voici comment nous pouvons les utiliser efficacement.
+Cette approche est préférable à une personnalisation qui dépendrait du nom précis d'un fichier.
 
-1. **Nous démarrons chaque jour avec une nouvelle note :** En début de journée, nous ouvrons notre outil de prise de notes et créons une nouvelle note pour la journée. Nous la nommons généralement avec la date du jour pour la retrouver facilement plus tard.
+# 12. Synchroniser, sauvegarder et versionner
 
-2. **Nous consignons nos pensées et nos idées :** Tout au long de la journée, nous utilisons notre note quotidienne pour enregistrer nos pensées, nos idées, nos observations et nos intuitions. Il n'y a pas de format fixe à suivre - nous écrivons simplement ce qui nous vient à l'esprit.
+## 12.1 Synchronisation et sauvegarde ne sont pas synonymes
 
-3. **Nous suivons nos activités :** Nous utilisons également nos notes quotidiennes pour suivre ce que nous faisons chaque jour. Cela peut inclure les tâches que nous avons terminées, les réunions auxquelles nous avons assisté, les personnes que nous avons rencontrées, etc.
+Une synchronisation réplique des fichiers entre plusieurs appareils. Une erreur ou une suppression peut donc également être répliquée.
 
-4. **Nous réfléchissons à notre journée :** À la fin de la journée, nous aimons prendre un moment pour réfléchir à notre journée. Nous relisons notre note quotidienne et réfléchissons à ce que nous avons appris, ce que nous avons accompli et ce que nous voulons faire différemment demain.
+Une sauvegarde doit permettre de revenir à un état antérieur indépendant.
 
-5. **Nous relions nos notes quotidiennes à d'autres notes :** Si nous trouvons que certaines de nos pensées ou idées se rapportent à d'autres notes que nous avons prises, nous créons un lien entre ces notes. Cela nous aide à voir les connexions entre nos idées et à construire un réseau de connaissances interconnectées.
+Nous devons distinguer :
 
-6. **Nous revoyons nos notes quotidiennes :** De temps en temps, nous aimons parcourir nos anciennes notes quotidiennes. Cela nous donne une perspective sur notre développement et notre croissance au fil du temps, et nous aide souvent à trouver des idées ou des intuitions que nous avions oubliées.
+```text
+Synchronisation → disposer du même état sur plusieurs appareils
+Sauvegarde       → pouvoir restaurer après une perte ou une erreur
+Versionnement    → conserver l'histoire des modifications
+```
 
-En utilisant les notes quotidiennes de cette manière, nous constatons que nous sommes plus conscients de nos pensées et de nos activités, et que nous sommes mieux capables de réfléchir et d'apprendre de nos expériences.
+## 12.2 Obsidian Sync
 
-### 6.1.2 Mise en place dans Obsidian
+Obsidian propose un service officiel payant, Obsidian Sync, destiné à synchroniser des vaults entre plusieurs appareils. Le service fournit notamment un historique de versions et des fonctions de collaboration selon l'offre utilisée.
 
-Dans Obsidian, le concept de notes quotidiennes est intégré de manière assez profonde. Voici comment nous utilisons cette fonctionnalité :
+L'utilisation d'Obsidian Sync n'est pas obligatoire pour utiliser Obsidian.
 
-1. **Nous activons les notes quotidiennes :** Pour commencer, nous nous assurons que la fonctionnalité des notes quotidiennes est activée. Pour ce faire, nous allons dans Paramètres > Plugins de base, puis nous activons le plugin "Notes quotidiennes".
+## 12.3 Services de synchronisation externes
 
-2. **Nous configurons nos préférences :** Une fois le plugin activé, nous cliquons sur l'engrenage à côté de "Notes quotidiennes" pour accéder à ses paramètres. Ici, nous pouvons configurer le format de la date, le répertoire dans lequel les notes quotidiennes seront enregistrées, et d'autres préférences.
+Comme un vault est un dossier, nous pouvons utiliser certains outils de synchronisation de fichiers. Nous devons toutefois vérifier leur comportement avec les modifications concurrentes et les fichiers de configuration.
 
-3. **Nous créons notre note quotidienne :** Avec le plugin des notes quotidiennes activé, une nouvelle icône apparaît dans la barre latérale. En cliquant sur cette icône (qui ressemble à une feuille de calendrier), nous pouvons créer une nouvelle note pour la journée actuelle.
+Copier aveuglément le même vault entre plusieurs systèmes peut générer des conflits si deux appareils modifient le même fichier simultanément.
 
-4. **Nous utilisons la note quotidienne :** Comme nous l'avons expliqué précédemment, nous utilisons cette note pour consigner nos pensées, nos idées, nos activités et nos réflexions tout au long de la journée. Nous pouvons également créer des liens vers d'autres notes en tapant [[ suivi du nom de la note à laquelle nous voulons nous référer.
+## 12.4 Sauvegarde
 
-5. **Nous naviguons entre les notes quotidiennes :** Avec le plugin des notes quotidiennes, il est facile de naviguer entre nos différentes notes quotidiennes. Dans le mode de visualisation, nous voyons des flèches en haut de la note qui nous permettent de passer à la note de la journée précédente ou de la journée suivante.
+Une stratégie simple peut combiner :
 
-Avec ces étapes, nous avons une structure solide pour documenter et réfléchir à notre journée dans Obsidian. Cela nous permet de suivre notre progression, de retrouver facilement d'anciennes notes et de voir comment nos idées évoluent au fil du temps.
+- le vault sur le poste principal ;
+- une copie régulière sur un support différent ;
+- une sauvegarde distante ;
+- éventuellement Git pour l'historique textuel.
 
-# 7. Modules complémentaires
+L'objectif est d'éviter qu'une panne de disque, une erreur humaine ou une synchronisation défectueuse ne détruise l'unique copie de nos données.
 
-Ces modules sont proposés par la communauté, leur code source bien que souvent disponible peut présenter des risques de sécurités.
+## 12.5 Utiliser Git
 
-# 7.1 Utilisation du MindMapping sous Obsidian
+Les fichiers Markdown se prêtent très bien à Git.
 
-### 7.1.1 Installation
+Dans le dossier du vault :
 
-Pour commencer à utiliser les MindMaps dans Obsidian, nous devons d'abord installer l'un des plugins dédiés. Dans Obsidian, nous allons dans les paramètres, puis dans la section "Plugins de la communauté". Nous cherchons le plugin "EnhancedMindMap" et cliquons sur "Installer". Une fois installé, n'oublions pas de l'activer en basculant le bouton à côté de son nom dans la liste des plugins installés.
+```bash
+git init
+```
 
-### 7.1.2 Utilisation
+Puis :
 
-Avec le plugin EnhancedMindMap, nous avons deux façons principales de créer une MindMap.
+```bash
+git status
+```
 
-La première consiste à créer une note avec des titres et des éléments de liste. Le plugin convertira automatiquement ces éléments en nœuds sur une MindMap.
+Ajoutons les fichiers :
 
-La deuxième est d'utiliser directement la vue MindMap. Pour cela, nous cliquons avec le bouton droit sur l'espace de travail et sélectionnons "Nouveau MindMap". Cela créera une nouvelle note avec la vue MindMap activée.
+```bash
+git add .
+```
 
-Dans cette vue, nous pouvons ajouter des nœuds à notre MindMap en utilisant le clavier :
-- Nous appuyons sur 'Inser' pour ajouter un sous-nœud à un nœud sélectionné.
-- Nous appuyons sur 'Entrée' pour ajouter un nœud parent au même niveau que le nœud sélectionné.
+et créons un commit :
 
-### 7.1.3 Ajouter l'en-tête `mindmap-plugin: basic`
+```bash
+git commit -m "Initialisation du vault Obsidian"
+```
 
-Pour s'assurer que notre note est correctement interprétée comme une MindMap, nous devons ajouter l'en-tête `mindmap-plugin: basic` en haut de notre note. Cette étape est cruciale pour garantir la compatibilité de nos notes avec le plugin.
+## 12.6 Voir les modifications
 
-### 7.1.4 Astuces
+```bash
+git diff
+```
 
-Pour maximiser notre efficacité lors de l'utilisation des MindMaps dans Obsidian, voici quelques astuces :
-- Nous pouvons mettre deux fenêtres côte à côte : une avec la vue Enhanced MindMap pour voir notre MindMap se construire, et l'autre avec la vue Outils de base pour éditer en Markdown.
-- Cette disposition nous permet d'écrire et de structurer nos pensées en Markdown tout en visualisant instantanément notre MindMap.
+Nous pouvons ainsi vérifier précisément les changements effectués dans un fichier Markdown ou dans son Frontmatter.
 
-Avec ces étapes et astuces, nous sommes maintenant prêts à commencer à utiliser les MindMaps dans Obsidian, un outil puissant pour organiser nos pensées et structurer nos idées.
+Exemple :
 
-### 7.1.5 Exemple de Mindmap
+```diff
+-statut: brouillon
++statut: actif
+```
 
-Nous pouvons présenter ce cours sous forme de mindmapping .
-Activons le plugin MindMap et regardons comment s'affiche l'exemple suivant [[MindMap sous Obsidian]]
+## 12.7 Git n'est pas une sauvegarde complète
 
+Git est excellent pour l'historique des fichiers texte, mais ne constitue pas à lui seul une stratégie de sauvegarde complète.
 
-## 7.2 Diagrammes Mermaid
+Un dépôt Git présent uniquement sur le même disque que le vault sera perdu avec ce disque.
 
-Voir la note sur la création textuelle de diagrammes [[Mermaid pour Obsidian]]
+Il faut donc au minimum une autre copie indépendante, idéalement sur un autre support ou une autre machine.
 
+## 12.8 Que faire du dossier `.obsidian/` avec Git ?
 
-## 7.3 Diagrammes PlantUML
+Il n'existe pas une réponse universelle. Une partie de `.obsidian/` contient des réglages utiles que nous pouvons souhaiter versionner, notamment pour reproduire l'environnement du vault sur plusieurs postes. D'autres éléments peuvent être locaux, temporaires ou dépendre de la machine.
 
-Voir la note de Modélisation textuelle de diagrammes [[PlantUML pour Obsidian]]
+Nous devons donc décider explicitement ce que nous versionnons au lieu d'ignorer systématiquement tout `.obsidian/`.
 
+# 13. Capturer l'information avec Obsidian Web Clipper
 
-# 8. Exemples d'usages
+## 13.1 Présentation
 
-## 8.1 Développement d'un système de gestion de connaissances personnelles
+Obsidian Web Clipper est une extension officielle de navigateur permettant d'enregistrer du contenu Web dans notre vault.
 
-Avec Obsidian, nous pouvons créer un système de gestion de connaissances personnelles (Personal Knowledge Management, PKM) puissant et flexible. Nous commençons par créer des notes pour chaque idée ou information que nous voulons retenir. Nous pouvons alors lier ces notes entre elles, créant ainsi un réseau interconnecté de connaissances.
+Elle existe notamment pour Firefox, les navigateurs basés sur Chromium, Safari et Edge.
 
-Au fur et à mesure que notre réseau de notes grandit, nous commençons à voir des motifs et des connexions qui n'étaient pas évidents auparavant. Cela peut nous aider à développer une compréhension plus profonde et plus nuancée de notre domaine de connaissance.
+## 13.2 Pourquoi utiliser un Web Clipper ?
 
-## 8.2 Planification et réalisation d'un projet de recherche avec Obsidian
+Copier manuellement une page Web présente plusieurs défauts :
 
-Obsidian peut également être un outil précieux pour la planification et la réalisation de projets de recherche. Nous pouvons créer des notes pour chaque article que nous lisons, chaque idée que nous avons, et chaque hypothèse que nous voulons tester.
+- perte de la source ;
+- mise en forme incohérente ;
+- oubli de la date ;
+- absence de métadonnées ;
+- temps de traitement important.
 
-Nous pouvons ensuite utiliser les fonctionnalités de liaison et de visualisation d'Obsidian pour comprendre comment ces éléments sont connectés et pour définir la direction de notre recherche. Les plugins d'Obsidian, comme le plugin Kanban, peuvent également nous aider à gérer nos tâches et notre temps efficacement.
+Un Clipper permet de rendre cette capture reproductible.
 
-## 8.3 Création d'un journal numérique quotidien
+## 13.3 Capturer une page
 
-Enfin, Obsidian peut être utilisé pour créer un journal numérique quotidien. Nous pouvons créer une nouvelle note pour chaque jour, et y écrire nos pensées, nos idées, nos expériences et nos réflexions. 
+Nous pouvons enregistrer tout ou partie du contenu de la page dans une note Markdown de notre vault.
 
-Avec le temps, notre journal devient une précieuse ressource pour l'introspection et la réflexion personnelle. En plus, avec la fonction de recherche d'Obsidian, nous pouvons facilement retrouver et revisiter des entrées passées.
+Un modèle peut produire par exemple :
 
-# 6. Applications d'Obsidian
+```yaml
+---
+type: ressource_web
+titre: "Titre de la page"
+url: "https://example.org/article"
+date_capture: 2026-08-16
+---
+```
 
-Obsidian transforme la façon dont nous travaillons et apprenons. Par exemple, dans l'éducation, Obsidian aide les étudiants à développer une compréhension plus profonde et plus intégrée de leur domaine d'étude. Dans la recherche, Obsidian aide les chercheurs à gérer et à synthétiser une grande quantité d'information.
+puis le contenu extrait.
 
-# 7 Ressources
+Ici encore, `type: ressource_web` est une convention de notre propre modèle de données, pas un type imposé par Obsidian.
 
-## 7.1 La documentation officielle
+## 13.4 Surligneur
 
-[La documentation officielle d'Obsidian](https://help.obsidian.md/Home) est elle même écrite en markdown Obsidian et couvre toutes les fonctionnalités de base et avancées d'Obsidian.
+Le Web Clipper permet de sélectionner et surligner des passages importants avant de les enregistrer.
 
-## 7.2 La communauté
-[La communauté Obsidian](https://obsidian.md/community) est également une ressource précieuse. Il existe des forums et des groupes de discussion où les utilisateurs d'Obsidian partagent des conseils, des astuces et des idées sur la façon d'utiliser Obsidian.
+Cette approche est souvent préférable à la copie intégrale d'une longue page dont nous ne relirons jamais le contenu.
 
-## 7.3 Les tutoriels
+## 13.5 Templates du Web Clipper
 
-Il y a de nombreux tutoriels, cours en ligne, et livres qui approfondissent l'utilisation d'Obsidian. Certains se concentrent sur des sujets spécifiques, comme la gestion de connaissances personnelles, tandis que d'autres offrent une vue d'ensemble plus large de toutes les fonctionnalités d'Obsidian.
+Nous pouvons créer des templates adaptés à différents sites ou types de ressources.
 
-## 7.3 Liens
-Vidéo Thibaut Lopes https://youtu.be/nREnpgixe9U
-Vidéo Thibaut Lopes https://youtu.be/GZGvi3ez-HM
-Vidéo Bibliothèque UdeM (Omntréal) https://youtu.be/VFpFbD4BXtc
-Vidéo LeMindMappeur https://www.youtube.com/watch?v=LPxyEJeVsPg
+Par exemple :
+
+```text
+Article scientifique → auteur, date, DOI, résumé
+Documentation        → produit, version, URL
+Article de veille    → source, thème, date de capture
+```
+
+Le template devient alors une étape de normalisation de la donnée dès son entrée dans notre vault.
+
+## 13.6 Variables, filtres et logique
+
+Le Web Clipper permet d'utiliser des variables provenant de la page puis de transformer ces valeurs avant de les insérer dans le document.
+
+Cette possibilité est particulièrement intéressante pour créer des captures structurées plutôt qu'un simple copier-coller.
+
+## 13.7 Interpreter
+
+Le Web Clipper fournit aussi un **Interpreter** permettant d'utiliser des instructions en langage naturel pour extraire ou transformer certaines informations d'une page.
+
+Nous devons cependant conserver une distinction importante :
+
+```text
+Extraction déterministe disponible → préférer la règle ou la variable
+Interprétation sémantique nécessaire → l'IA peut être utile
+```
+
+Une information produite automatiquement doit rester vérifiable à partir de sa source lorsque son exactitude est importante.
+
+# 14. Automatiser Obsidian avec la CLI
+
+La **CLI officielle d'Obsidian** constitue une évolution importante pour les utilisateurs avancés, les développeurs et l'automatisation.
+
+## 14.1 Principe
+
+La CLI permet de contrôler Obsidian depuis un terminal pour :
+
+- rechercher ;
+- lire ou créer des notes ;
+- manipuler les notes quotidiennes ;
+- interroger les tâches ;
+- exploiter les tags et propriétés ;
+- interroger les Bases ;
+- accéder à l'historique ;
+- déclencher des commandes Obsidian ;
+- automatiser certaines tâches.
+
+## 14.2 Prérequis
+
+La CLI nécessite un installateur Obsidian compatible avec la génération 1.12 ou plus récente. Dans les versions actuelles, elle s'active dans les paramètres généraux sous l'option **Command line interface**.
+
+L'application Obsidian doit être disponible ; si elle n'est pas lancée, une commande peut la démarrer.
+
+## 14.3 Obtenir de l'aide
+
+```bash
+obsidian help
+```
+
+Pour ouvrir l'interface terminal interactive :
+
+```bash
+obsidian
+```
+
+## 14.4 Rechercher dans le vault
+
+```bash
+obsidian search query="gestion des connaissances"
+```
+
+## 14.5 Ouvrir la note quotidienne
+
+```bash
+obsidian daily
+```
+
+## 14.6 Ajouter une tâche à la note quotidienne
+
+```bash
+obsidian daily:append content="- [ ] Relire le cours Obsidian"
+```
+
+## 14.7 Créer une note depuis un template
+
+```bash
+obsidian create name="Cours Linux" template=Cours
+```
+
+## 14.8 Lister les tags
+
+```bash
+obsidian tags counts
+```
+
+## 14.9 Interroger une Base
+
+La CLI sait interroger une Base et retourner différents formats, notamment JSON, CSV, TSV, Markdown ou une liste de chemins.
+
+Exemple conceptuel :
+
+```bash
+obsidian base:query file=Livres format=json
+```
+
+Nous pouvons alors connecter Obsidian à un script Python, un shell ou un autre outil d'automatisation sans devoir parser nous-mêmes tous les fichiers.
+
+## 14.10 Cibler un vault
+
+Nous pouvons préciser le vault :
+
+```bash
+obsidian vault=Notes search query="Mermaid"
+```
+
+## 14.11 Cibler un fichier
+
+Selon les commandes, nous pouvons désigner un fichier par son nom :
+
+```bash
+obsidian read file=Obsidian
+```
+
+ou par son chemin exact :
+
+```bash
+obsidian read path="Cours/Obsidian.md"
+```
+
+## 14.12 Obsidian comme composant d'un système
+
+La CLI modifie profondément ce que nous pouvons construire autour d'Obsidian.
+
+Nous pouvons désormais envisager une chaîne :
+
+```mermaid
+flowchart LR
+    U[Utilisateur] --> O[Obsidian]
+    O --> V[Vault]
+    S[Script] --> C[CLI Obsidian]
+    C --> O
+    V --> G[Git]
+```
+
+Obsidian n'est donc plus uniquement une interface graphique : il peut devenir un composant pilotable d'un système documentaire plus large.
+
+## 14.13 Ouverture vers les agents IA
+
+Un agent IA ne devrait pas obtenir un accès arbitraire à tout notre système de fichiers simplement parce qu'il doit manipuler des notes. Une interface de commandes explicites permet de contrôler plus finement les opérations disponibles.
+
+Nous pouvons par exemple imaginer des capacités telles que :
+
+```text
+rechercher une note
+lire une note
+créer une note depuis un template
+modifier une propriété
+interroger une Base
+présenter les changements avant validation
+```
+
+Cette approche prépare naturellement un cours plus avancé sur les systèmes personnels augmentés par l'IA, tout en conservant les fichiers Markdown comme mémoire durable.
+
+# 15. Construire un système de gestion des connaissances
+
+## 15.1 Personal Knowledge Management
+
+Un système de gestion des connaissances personnelles, ou **Personal Knowledge Management (PKM)**, ne consiste pas à accumuler le plus grand nombre possible de notes.
+
+Un bon système doit nous permettre de :
+
+```text
+Capturer
+   ↓
+Structurer
+   ↓
+Relier
+   ↓
+Retrouver
+   ↓
+Réutiliser
+```
+
+Si une information ne peut jamais être retrouvée ou réutilisée, son accumulation apporte peu de valeur.
+
+## 15.2 Exemple : notes de cours
+
+Nous pouvons créer :
+
+```text
+Cours/
+├── Linux.md
+├── Git.md
+├── Obsidian.md
+└── Markdown.md
+```
+
+Chaque note peut disposer de propriétés :
+
+```yaml
+---
+type: cours
+statut: actif
+niveau: debutant
+themes:
+  - informatique
+---
+```
+
+Puis nous pouvons construire une Base listant automatiquement tous les cours.
+
+## 15.3 Exemple : planification d'un projet
+
+Une note projet :
+
+```yaml
+---
+type: projet
+statut: actif
+priorite: haute
+responsable: "[[Alice Dupont]]"
+---
+```
+
+peut contenir :
+
+```markdown
+# Projet A
+
+## Objectif
+
+## Décisions
+
+## Tâches
+
+- [ ] Première tâche
+- [ ] Deuxième tâche
+
+## Réunions
+
+- [[2026-08-16 Réunion Projet A]]
+```
+
+Une Base peut fournir une vue globale des projets tandis que les liens conservent les relations entre objets.
+
+## 15.4 Exemple : recherche universitaire
+
+Pour chaque publication :
+
+```yaml
+---
+type: publication_scientifique
+titre: "Titre de la publication"
+auteurs:
+  - "Auteur A"
+annee: 2026
+statut_lecture: a_lire
+---
+```
+
+Puis dans le corps :
+
+```markdown
+## Résumé
+
+## Méthode
+
+## Résultats
+
+## Limites
+
+## Citations utiles
+
+## Relations
+```
+
+Nous pouvons ensuite filtrer par auteur, année ou statut de lecture.
+
+## 15.5 Exemple : veille technologique
+
+Le Web Clipper peut créer une note structurée :
+
+```yaml
+---
+type: ressource_web
+url: "https://example.org/"
+date_capture: 2026-08-16
+statut: a_examiner
+---
+```
+
+Une Base « Veille à examiner » peut n'afficher que :
+
+```text
+type = ressource_web
+statut = a_examiner
+```
+
+Après lecture nous pouvons faire évoluer le statut au lieu de déplacer physiquement le fichier entre de nombreux dossiers.
+
+## 15.6 Exemple : journal numérique quotidien
+
+Les notes quotidiennes offrent un point d'entrée naturel pour capturer rapidement :
+
+- ce que nous faisons ;
+- ce que nous apprenons ;
+- les décisions prises ;
+- les idées apparues ;
+- les tâches à traiter.
+
+Lorsque l'une de ces informations devient importante, nous pouvons la transformer en note propre et la relier à la note quotidienne.
+
+## 15.7 Éviter le cimetière de notes
+
+Un problème fréquent des outils de Second Cerveau consiste à capturer toujours plus d'informations sans jamais les revoir.
+
+Nous devons donc construire des mécanismes de retour :
+
+- Bases montrant les contenus à traiter ;
+- notes quotidiennes ;
+- recherches enregistrées ;
+- tâches ;
+- revues périodiques ;
+- liens avec les projets actifs.
+
+Un vault utile n'est pas celui qui possède le plus de notes, mais celui dont les informations utiles peuvent être retrouvées au bon moment.
+
+## 15.8 Distinguer contenu, métadonnées et vues
+
+Nous pouvons résumer l'architecture moderne d'un vault ainsi :
+
+```text
+Markdown       → contenu durable
+Properties     → métadonnées structurées
+Liens          → relations
+Bases          → vues structurées
+Canvas         → représentation visuelle
+Recherche      → accès transversal
+Templates      → création cohérente
+Web Clipper    → capture
+CLI            → automatisation
+Git            → histoire et réversibilité
+```
+
+Cette séparation est fondamentale. Une vue n'est pas la donnée ; elle présente la donnée. Un Canvas n'est pas nécessairement la connaissance canonique ; il organise visuellement des éléments. Un plugin n'est pas notre base de connaissances ; il agit sur elle.
+
+## 15.9 Une architecture pérenne
+
+Nous pouvons représenter l'ensemble ainsi :
+
+```mermaid
+flowchart TD
+    M[Markdown] --> P[Properties YAML]
+    M --> L[Liens]
+    P --> B[Bases]
+    L --> G[Graphe]
+    M --> C[Canvas]
+    M --> R[Recherche]
+    T[Templates] --> M
+    W[Web Clipper] --> M
+    CLI[CLI] --> M
+    M --> Git[Git / sauvegarde]
+```
+
+Le centre du système reste le fichier que nous possédons.
+
+## 15.10 Conclusion
+
+Obsidian est passé d'un excellent éditeur de notes Markdown interconnectées à une plateforme documentaire beaucoup plus large. Les principes historiques restent valables : fichiers locaux, Markdown, liens et contrôle des données. Mais les Properties, Bases, Canvas, Web Clipper et la CLI permettent aujourd'hui de construire un véritable système d'information personnel.
+
+La bonne démarche consiste à partir du plus simple :
+
+```text
+1. écrire des notes lisibles ;
+2. créer des liens utiles ;
+3. ajouter quelques propriétés cohérentes ;
+4. construire des vues seulement lorsqu'elles répondent à un besoin ;
+5. automatiser seulement ce qui mérite de l'être.
+```
+
+Nous évitons ainsi de transformer notre outil de prise de notes en projet technique plus complexe que les connaissances qu'il devait nous aider à gérer.
+
+# 16. Ressources
+
+## 16.1 Documentation officielle
+
+La documentation officielle constitue la référence principale :
+
+- <https://help.obsidian.md/>
+- <https://obsidian.md/changelog/>
+
+## 16.2 Pages officielles utiles pour ce cours
+
+- Installation : <https://obsidian.md/help/install>
+- Paramètres : <https://obsidian.md/help/settings>
+- Properties : <https://obsidian.md/help/properties>
+- Recherche : <https://obsidian.md/help/plugins/search>
+- Palette de commandes : <https://obsidian.md/help/plugins/command-palette>
+- Templates : <https://obsidian.md/help/plugins/templates>
+- Canvas : <https://obsidian.md/help/plugins/canvas>
+- Bases : <https://obsidian.md/help/bases>
+- Web Clipper : <https://obsidian.md/help/web-clipper>
+- CLI : <https://obsidian.md/help/cli>
+
+## 16.3 Communauté
+
+La communauté Obsidian est également une ressource importante :
+
+- <https://obsidian.md/community>
+
+Les plugins et thèmes communautaires évoluent rapidement. Pour cette raison, il est préférable d'enseigner d'abord les mécanismes natifs d'Obsidian puis d'introduire les extensions lorsqu'elles répondent à un besoin précis.
+
+## 16.4 Ressources historiques du cours
+
+Les liens suivants figuraient dans le cours de 2023 et peuvent rester utiles comme ressources complémentaires. Leur contenu n'a pas été utilisé comme référence pour vérifier les fonctions 2026 :
+
+- Thibaut Lopes : <https://youtu.be/nREnpgixe9U>
+- Thibaut Lopes : <https://youtu.be/GZGvi3ez-HM>
+- Bibliothèque UdeM : <https://youtu.be/VFpFbD4BXtc>
+- LeMindMappeur : <https://www.youtube.com/watch?v=LPxyEJeVsPg>
