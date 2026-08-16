@@ -24,7 +24,7 @@ metadata_verifiees: false
 
 # informatique
 
-Index régénéré par `make index`. Vue graphique : [[_INDEX_informatique.excalidraw]].
+Index régénéré par `make index` — ne pas éditer à la main. Vue graphique : [[_INDEX_informatique.excalidraw]].
 
 ## Numérisation et documentation
 
