@@ -57,24 +57,12 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Arbre]] — Réflexion sur la séquestration du carbone par les arbres et sur ce que recouvre réellement la notion d'arbre.
 - [[Arnaques]] — Note sur les arnaques sentimentales et le marché que représentent les personnes célibataires dans les pays riches.
 - [[Bocage]] — Réflexion sur l'arrachage des haies et la destruction des bocages comme cause majeure de perte de biodiversité, et sur le statut juridique du vivant sauvage.
-- [[Comment réponde à la loi Duplomb]] — Notes issues d'une conférence de Pierre-Henri Gouyon sur les arbitrages de l'EFSA concernant l'évaluation de la toxicité des pesticides pour les abeilles.
-- [[GAZA]] — Notes de recherche sur le bilan humain du conflit israélo-palestinien et sur les sources permettant de l'estimer.
-- [[Je suis agnostique]] — Position personnelle : l'existence de Dieu est traitée comme un problème indécidable au sens mathématique.
 - [[L'échelle de la conscience]] — Notes sur l'échelle de conscience proposée par Paul Cherfuka, du sommeil profond aux niveaux supérieurs.
-- [[Le racisme]] — Notes et références vidéo sur l'histoire du racisme, de la guerre de Sécession au pillage d'Haïti.
 - [[Les freaks]] — Courte note sur la marginalisation des corps jugés monstrueux, à partir du film Freaks de Tod Browning.
 - [[Limites planétaires]] — Liste des principales limites planétaires : pollution, climat, biodiversité et ressources.
-- [[Oppressions numériques]] — Parallèle entre l'histoire des camps d'internement et les mécanismes d'enfermement culturel à l'œuvre dans les réseaux sociaux.
 - [[Peut-on éviter le chaos qui vient]] — Réflexion croisant la thèse de Peter Turchin sur les cycles de crise, la fiscalité du patrimoine et les crises climatique et du vivant.
-- [[Pour qui ai-je voté en  2022]] — Retour personnel sur les scrutins de 2022 et sur les limites de la démocratie représentative.
-- [[Si tu tiens une arme et que j'en tiens une autre]] — Analyse d'un mème composite sur le rapport entre égalité des forces, loi et règles, et ses échos philosophiques.
-- [[Souveraineté énergétique]] — Notes sur l'ARENH et sur les auditions de la commission d'enquête sur la souveraineté énergétique.
 - [[Une analogie pour la connaissance]] — Analogie présentant la connaissance comme une pyramide à laquelle chaque découverte ajoute un bloc.
 - [[Westworld]] — Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience.
-
-## Sciences
-
-- [[Tous véganes]] — Réflexion sur les frontières culturelles et philosophiques de la protection animale et sur l'impossibilité d'une activité humaine sans conséquence sur le vivant.
 
 ## Informatique — général
 
