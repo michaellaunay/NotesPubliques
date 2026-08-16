@@ -24,7 +24,7 @@ metadata_verifiees: false
 
 # sciences
 
-Index régénéré par `make index`. Vue graphique : [[_INDEX_sciences.excalidraw]].
+Index régénéré par `make index` — ne pas éditer à la main. Vue graphique : [[_INDEX_sciences.excalidraw]].
 
 ## Mathématiques et logique
 
