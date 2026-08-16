@@ -24,7 +24,7 @@ metadata_verifiees: false
 
 # cours
 
-Index régénéré par `make index`. Vue graphique : [[_INDEX_cours.excalidraw]].
+Index régénéré par `make index` — ne pas éditer à la main. Vue graphique : [[_INDEX_cours.excalidraw]].
 
 ## Droit et conformité
 
@@ -98,7 +98,7 @@ Index régénéré par `make index`. Vue graphique : [[_INDEX_cours.excalidraw]]
 - [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées.
 - [[OAuth OpenID]] — Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation.
 - [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] — Cours en trente chapitres et trois annexes sur la construction d'un système d'information personnel souverain : vault Obsidian, modèle de données par frontmatter, schéma et modèle métier, graphe sémantique, Git, puis couche agentique (constitution, domaines, skills, pipelines, mémoire, sécurité, tests, observabilité). L'annexe B traite l'application du modèle à un coffre existant, l'annexe C fournit une implémentation de référence testée, installée dans scripts/osia.
-- [[Obsidian]] — Cours d'introduction à Obsidian : historique et philosophie, cas d'usage, outils similaires, installation sous GNU/Linux, création d'un coffre et prise en main de l'interface.
+- [[Obsidian]] — Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation.
 - [[Open Spec]] — Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA.
 - [[Outils de modélisation textuels]] — Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres.
 - [[Pandas]] — Cours sur la bibliothèque Pandas : structures de données Series et DataFrame, sélection, filtrage, agrégation et manipulation de jeux de données.
