@@ -23,7 +23,7 @@ metadata_verifiees: false
 
 # Idées et concepts
 
-Index régénéré par `make index`. Vue graphique : [[_INDEX_Idées et concepts.excalidraw]].
+Index régénéré par `make index` — ne pas éditer à la main. Vue graphique : [[_INDEX_Idées et concepts.excalidraw]].
 
 ## Droit et conformité
 
