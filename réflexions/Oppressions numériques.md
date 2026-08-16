@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WJ8EZTJM0A23P2975G"
-titre: "Oppressions numériques"
+uid: 01M02JG1WJ8EZTJM0A23P2975G
+titre: Oppressions numériques
 type: reflexion
 statut: actif
 para: ressource
@@ -13,13 +13,13 @@ themes:
   - vie-privee
   - histoire
   - reseaux-sociaux
-resume: "Parallèle entre l'histoire des camps d'internement et les mécanismes d'enfermement culturel à l'œuvre dans les réseaux sociaux."
+resume: Parallèle entre l'histoire des camps d'internement et les mécanismes d'enfermement culturel à l'œuvre dans les réseaux sociaux.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-05-30
 date_modification: 2023-06-08
-confidentialite: publique
+confidentialite: privee
 publication:
   - notes-publiques
 rag: true

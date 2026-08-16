@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WNXK7V7GJKKWX1VADJ"
-titre: "Tous véganes"
+uid: 01M02JG1WNXK7V7GJKKWX1VADJ
+titre: Tous véganes
 type: reflexion
 statut: actif
 para: ressource
@@ -12,13 +12,13 @@ themes:
   - alimentation
   - biologie
   - societe
-resume: "Réflexion sur les frontières culturelles et philosophiques de la protection animale et sur l'impossibilité d'une activité humaine sans conséquence sur le vivant."
+resume: Réflexion sur les frontières culturelles et philosophiques de la protection animale et sur l'impossibilité d'une activité humaine sans conséquence sur le vivant.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-09-15
 date_modification: 2024-04-03
-confidentialite: publique
+confidentialite: privee
 publication:
   - notes-publiques
 rag: true

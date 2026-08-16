@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WKGN7G1T43JPJSQ5S0"
-titre: "Pour qui ai-je voté en  2022"
+uid: 01M02JG1WKGN7G1T43JPJSQ5S0
+titre: Pour qui ai-je voté en  2022
 type: reflexion
 statut: actif
 para: ressource
@@ -11,13 +11,13 @@ themes:
   - politique
   - democratie
   - societe
-resume: "Retour personnel sur les scrutins de 2022 et sur les limites de la démocratie représentative."
+resume: Retour personnel sur les scrutins de 2022 et sur les limites de la démocratie représentative.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-03
 date_modification: 2024-04-03
-confidentialite: publique
+confidentialite: privee
 publication:
   - notes-publiques
 rag: true
