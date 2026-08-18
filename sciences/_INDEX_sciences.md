@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-16
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -32,10 +32,10 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Variance]] — Définition de la variance comme mesure de dispersion et détail de son calcul.
 - [[Écart type]] — Définition de l'écart type et méthode de calcul à partir de la variance.
 
-## Société et économie
+## Histoire et société
 
 - [[Expérience sociale sur les rats de D Desor]] — Analyse de l'expérience d'éthologie de Didier Desor montrant l'émergence spontanée de rôles sociaux chez des rats placés en situation de contrainte.
 
-## Sciences
+## Environnement, énergie et vivant
 
 - [[Le Maïs Oloton]] — Fiche sur le maïs Oloton, capable de fixer l'azote atmosphérique, et sur les limites du catalogue officiel des variétés.
