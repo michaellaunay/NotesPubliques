@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-16
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -40,11 +40,11 @@ Variance
 
 Écart type
 
-Société et économie
+Histoire et société
 
 Expérience sociale sur les rats…
 
-Sciences
+Environnement, énergie et vivant
 
 Le Maïs Oloton
 
@@ -436,7 +436,7 @@ Le Maïs Oloton
    "baseline": 11
   },
   {
-   "id": "a35be36bf1c7711a",
+   "id": "85a95e81055471a2",
    "type": "rectangle",
    "x": 330.0,
    "y": 0.0,
@@ -465,7 +465,7 @@ Le Maïs Oloton
    "locked": false
   },
   {
-   "id": "6d3851ac92b5831c",
+   "id": "2ccf06d62b6d86f5",
    "type": "text",
    "x": 330.0,
    "y": 22.0,
@@ -490,20 +490,20 @@ Le Maïs Oloton
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Société et économie",
-   "rawText": "Société et économie",
-   "originalText": "Société et économie",
+   "text": "Histoire et société",
+   "rawText": "Histoire et société",
+   "originalText": "Histoire et société",
    "fontSize": 16,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "a35be36bf1c7711a",
+   "containerId": "85a95e81055471a2",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 14
   },
   {
-   "id": "bbcaa8813b27e0b5",
+   "id": "70311ea46a42d2a7",
    "type": "arrow",
    "x": 285.0,
    "y": -96.0,
@@ -614,7 +614,7 @@ Le Maïs Oloton
    "baseline": 11
   },
   {
-   "id": "df6f80e1ca1c13fd",
+   "id": "05aad258b41ceb63",
    "type": "rectangle",
    "x": 0.0,
    "y": 306.0,
@@ -643,7 +643,7 @@ Le Maïs Oloton
    "locked": false
   },
   {
-   "id": "8681c2129e49c78e",
+   "id": "eb31033ec02cf6cf",
    "type": "text",
    "x": 0.0,
    "y": 328.0,
@@ -668,20 +668,20 @@ Le Maïs Oloton
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Sciences",
-   "rawText": "Sciences",
-   "originalText": "Sciences",
+   "text": "Environnement, énergie et vivant",
+   "rawText": "Environnement, énergie et vivant",
+   "originalText": "Environnement, énergie et vivant",
    "fontSize": 16,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "df6f80e1ca1c13fd",
+   "containerId": "05aad258b41ceb63",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 14
   },
   {
-   "id": "fa465edc11f4ec42",
+   "id": "0d88d326f3e37654",
    "type": "arrow",
    "x": 285.0,
    "y": -96.0,

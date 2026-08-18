@@ -1,31 +1,31 @@
 ---
 schema_version: 1
-uid: "01M02JG1WQASDWVC5NSTVR9YDF"
-titre: "Variance"
+uid: 01M02JG1WQASDWVC5NSTVR9YDF
+titre: Variance
 type: fiche
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - mathematiques
-  - statistiques
-  - dispersion
-resume: "Définition de la variance comme mesure de dispersion et détail de son calcul."
+- mathematiques
+- statistiques
+- dispersion
+resume: Définition de la variance comme mesure de dispersion et détail de son calcul.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-10-12
-date_modification: 2024-10-14
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
 La **variance** est une mesure statistique qui quantifie la dispersion d'un ensemble de données par rapport à sa moyenne. Autrement dit, elle indique à quel point les valeurs d'un ensemble de données diffèrent en moyenne de la moyenne de cet ensemble.
 
-### Calcul de la variance
+# Calcul de la variance
 La variance \( \sigma^2 \) d'un ensemble de données se calcule en plusieurs étapes :
 
 1. **Calcul de la moyenne** (\( \mu \)) :
@@ -46,11 +46,11 @@ La variance \( \sigma^2 \) d'un ensemble de données se calcule en plusieurs ét
    \sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2
    $$
 
-### Interprétation
+# Interprétation
 - Une variance **faible** signifie que les valeurs sont proches de la moyenne, donc peu dispersées.
 - Une variance **élevée** indique que les valeurs sont largement dispersées autour de la moyenne.
 
-### Exemple :
+# Exemple :
 Si l’on prend les données suivantes : \( 2, 4, 6, 8, 10 \),
 - La moyenne est \( \mu = 6 \).
 - Les écarts par rapport à la moyenne sont \( -4, -2, 0, 2, 4 \).
