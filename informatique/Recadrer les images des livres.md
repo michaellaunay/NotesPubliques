@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-10
-date_modification: 2023-07-31
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -77,7 +77,7 @@ cv2.imwrite('chemin/vers/votre/image_recadree.jpg', warped)
 
 Ce code lit le premier page d'un fichier PDF, convertit l'image en niveaux de gris, applique un flou gaussien pour réduire le bruit, applique un seuillage adaptatif pour binariser l'image, trouve les contours des objets dans l'image, trouve le plus grand contour (le contour de la page), trouve les coins de la page, calcule la largeur et la hauteur de la page, définit les coins de la page cible, trouve la matrice de transformation perspective et applique la transformation perspective pour recadrer la page. Enfin, l'image recadrée est enregistrée dans un fichier.
 
-Je souhaite reconnaitre les lignes de textes d'une image au format jpg et pour chaque ligne de texte sa position dans l'image et la valeur de la chaine reconnue. Un ligne est une suite de mots n'ayant pas plus de 8 espaces entre deux mots. Pour reconnaître les lignes de texte d'une image au format jpg, il faut utiliser une bibliothèque de traitement d'image comme OpenCV et une bibliothèque de reconnaissance de texte comme Pytesseract.
+Je souhaite reconnaître les lignes de textes d'une image au format jpg et pour chaque ligne de texte sa position dans l'image et la valeur de la chaîne reconnue. Un ligne est une suite de mots n'ayant pas plus de 8 espaces entre deux mots. Pour reconnaître les lignes de texte d'une image au format jpg, il faut utiliser une bibliothèque de traitement d'image comme OpenCV et une bibliothèque de reconnaissance de texte comme Pytesseract.
 
 Voici le code Python pour reconnaître les lignes de texte d'une image au format jpg, pour chaque ligne de texte sa position dans l'image et la valeur de la chaîne reconnue :
 

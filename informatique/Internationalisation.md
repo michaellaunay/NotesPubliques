@@ -23,7 +23,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-20
-date_modification: 2024-01-05
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -215,7 +215,7 @@ Les fichiers `.mo` et `.po` sont utilisés par les outils de traduction, comme `
 
 Lorsque nous traduisons un projet, nous travaillons généralement avec des fichiers `.po`, qui sont plus faciles à lire et à modifier. Une fois que nous avons terminé la traduction, nous pouvons générer les fichiers `.mo` à partir des fichiers `.po` pour que l'application puisse les charger plus rapidement.
 
-Il est important de ne pas modifier directement les fichiers `.mo`, car ils sont au format binaire et ne sont pas lisibles par les humains. Si nous souhaitons apporter des modifications à la traduction, nous devons le faire dans les fichiers `.po` correspondants et regénérer les fichiers `.mo` à partir de ceux-ci.
+Il est important de ne pas modifier directement les fichiers `.mo`, car ils sont au format binaire et ne sont pas lisibles par les humains. Si nous souhaitons apporter des modifications à la traduction, nous devons le faire dans les fichiers `.po` correspondants et régénérer les fichiers `.mo` à partir de ceux-ci.
 
 ### 1.3.5 Création des fichiers po
 

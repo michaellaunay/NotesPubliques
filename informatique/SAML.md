@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2022-12-29
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -26,7 +26,7 @@ rag: true
 metadata_verifiees: false
 ---
 Le protocole SAML passe uniquement par des redirections du navigateur.
-Le credential est chiffré du coup le serveur d'identités doit connaitre la clé publique de l'Application (Service Provider) qui à  son tour doit connaître la clé du serveur d'identité
+Le credential est chiffré du coup le serveur d'identités doit connaître la clé publique de l'Application (Service Provider) qui à  son tour doit connaître la clé du serveur d'identité
 
 Links :
 https://www.udemy.com/course/enterprise-oauth-for-developers/learn/lecture/24196692#overview

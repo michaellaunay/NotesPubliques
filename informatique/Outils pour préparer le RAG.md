@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-12-27
-date_modification: 2025-02-12
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -26,4 +26,4 @@ metadata_verifiees: false
 ---
 MarkItDown outil Microsoft sous Licence MIT qui permet de transformer un fichier pdf, word en markdown https://github.com/microsoft/markitdown
 
-FireCrawl est un framwork open source de crawling utilisable aussi sous forme de service qui prend en entrée un site l'analyse et retourne un json exploitable par les LLM https://github.com/mendableai/firecrawl gère tous les aspects dynamiques.
+FireCrawl est un framework open source de crawling utilisable aussi sous forme de service qui prend en entrée un site l'analyse et retourne un json exploitable par les LLM https://github.com/mendableai/firecrawl gère tous les aspects dynamiques.

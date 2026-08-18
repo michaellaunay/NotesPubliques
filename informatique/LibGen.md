@@ -19,7 +19,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-10
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -30,12 +30,12 @@ LibGen (Library Genesis) est une bibliothèque en ligne qui fournit un accès gr
 
 Fondée en 2008, LibGen est devenue une plateforme populaire pour les étudiants, les universitaires, les chercheurs et les amateurs de livres du monde entier. La bibliothèque en ligne utilise des sources ouvertes et piratées pour fournir des documents et des livres gratuits à ses utilisateurs. Bien que cette pratique soit controversée et illégale dans de nombreux pays, LibGen a été maintes fois hébergée sur différents domaines et continue de fonctionner.
 En France seuls les documents tombés dans le domaines public ont le droit d'être téléchargée sans contrepartie données à l'auteur, généralement la maison d'édition rétribue l'auteur lors de l'achat des livres, mais avec la numérisation la copie des livres illégales des livres .
-Nous allons ici créer un scipt qui va donner le pourcentage d'oeuvres fançaises illégales dans libgen.
+Nous allons ici créer un script qui va donner le pourcentage d'oeuvres françaises illégales dans libgen.
 Pour cela nous devons :
 - récupérer le catalogue français libgen
 - tester chaque description d'oeuvre dans le site de la bnf pour savoir si l'oeuvre est dans le domaines.
 Pour vérifier qu'une oeuvre est dans le domaine public https://data.bnf.fr/
-On pêut intérroger le site de la bnf via la syntax sparql
+On peut interroger le site de la bnf via la syntax sparql
 https://api.bnf.fr/fr/sparql-endpoint-de-databnffr
 Exemple python pour savoir si un isbn est dans le domaine public
 ```python
