@@ -1,24 +1,24 @@
 ---
 schema_version: 1
-uid: "01M02JG1NWYY9VV3AZH3YVRKBG"
-titre: "La fenêtre d'Overton"
+uid: 01M02JG1NWYY9VV3AZH3YVRKBG
+titre: La fenêtre d'Overton
 aliases:
-  - "Overton"
+- Overton
 type: concept
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
+- communication
 themes:
-  - politique
-  - communication
-  - societe
-resume: "Concept décrivant la gamme d'idées jugées acceptables par le grand public à un moment donné, et son déplacement."
+- politique
+- societe
+resume: Concept décrivant la gamme d'idées jugées acceptables par le grand public à un moment donné, et son déplacement.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-08-02
-date_modification: 2023-08-02
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
