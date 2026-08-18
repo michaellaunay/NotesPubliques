@@ -1,21 +1,21 @@
 ---
 schema_version: 1
-uid: "01M02JG1VSHDV9H51N6WTYE6XB"
-titre: "MU 90 Dialecte ChatGPT"
+uid: 01M02JG1VSHDV9H51N6WTYE6XB
+titre: MU 90 Dialecte ChatGPT
 type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - intelligence-artificielle
-  - llm
-  - linguistique
-  - prompt-engineering
-  - meetup
-resume: "Expérience et réflexion sur l'existence d'un dialecte propre à ChatGPT, à partir d'un prompt initial et de sa réponse."
+- intelligence-artificielle
+- llm
+- linguistique
+- prompt-engineering
+- meetup
+resume: Expérience et réflexion sur l'existence d'un dialecte propre à ChatGPT, à partir d'un prompt initial et de sa réponse.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-03-26
 date_modification: 2026-08-18
@@ -124,7 +124,7 @@ Créer une grammaire BNF (Backus-Naur Form) pour le "SyntaxALGE" implique de dé
 
 Cette grammaire est une simplification et ne couvre pas toutes les complexités ou les nuances du langage naturel ou même du SyntaxALGE imaginé. Elle vise à offrir une structure de base, montrant comment des phrases pourraient être construites en utilisant un nombre limité de composants. La répétition d'informations est réduite en n'incluant pas d'accords de genre ou de nombre, et les mots de liaison sont omis ou simplifiés autant que possible.
 
-## Réflexions sur la réponse
+# Réflexions sur la réponse
 
 Je ne suis qu'au début de mon jeu sur SyntaxALGE, mais je me pose déjà plein de questions, telles que :
 
