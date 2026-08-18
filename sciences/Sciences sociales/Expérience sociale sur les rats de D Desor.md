@@ -19,7 +19,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-10-12
-date_modification: 2024-10-14
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -36,7 +36,7 @@ L'expérience débute simplement : des rats sont placés dans un dispositif avec
 
 # Émergence des rôles sociaux
 
-Ce qui commence comme une tâche simple se transforme en un test rigoureux de stratégies sociales et de survie. Les rats, numérotés pour l'observation, montrent deux types de comportements principaux : les "rapporteurs", qui bravent les obstacles pour récupérer la nouriture, et les "autres", qui attendent que les rapporteurs reviennent pour leur voler leur butin. Cette dynamique soulève des questions sur le partage des rôles et les stratégies adaptatives dans des conditions de ressources limitées.
+Ce qui commence comme une tâche simple se transforme en un test rigoureux de stratégies sociales et de survie. Les rats, numérotés pour l'observation, montrent deux types de comportements principaux : les "rapporteurs", qui bravent les obstacles pour récupérer la nourriture, et les "autres", qui attendent que les rapporteurs reviennent pour leur voler leur butin. Cette dynamique soulève des questions sur le partage des rôles et les stratégies adaptatives dans des conditions de ressources limitées.
 
 # Implications plus larges et interdisciplinarité
 
@@ -44,7 +44,7 @@ L'intégration de perspectives de plusieurs disciplines, incluant la psychologie
 
 L'expérience de Desor illustre parfaitement comment les comportements "égoïstes" ou "altruistes" peuvent émerger et se stabiliser au sein d'un groupe. Les "rapporteurs" risquent leur bien-être pour le groupe, tandis que les "autres" exploitent ces efforts sans s'exposer eux-mêmes. Cette étude offre ainsi un parallèle fascinant avec certaines structures sociales humaines où des individus ou des groupes peuvent être exploités par d'autres.
 
-# Ethique et réflexion
+# Éthique et réflexion
 
 Il est essentiel de mentionner les considérations éthiques inhérentes à de telles études. L'exposition de rats à des niveaux de stress élevés pour observer leurs réactions comportementales soulève des questions sur le bien-être animal et la justesse de telles méthodes. Cela nous pousse à réfléchir sur la balance entre la recherche scientifique et l'éthique dans le traitement des animaux de laboratoire.
 
