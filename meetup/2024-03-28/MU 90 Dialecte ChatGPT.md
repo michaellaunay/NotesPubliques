@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-26
-date_modification: 2024-04-03
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
@@ -155,7 +155,7 @@ Il suffit alors de changer le contexte adroitement pour pouvoir avoir ce que l'o
 
 **Moi**
 
-Donne moi le prompt à saisir pour qu'un LLM qui ne connait pas SytaxALGE se mette à le parler ?
+Donne moi le prompt à saisir pour qu'un LLM qui ne connaît pas SytaxALGE se mette à le parler ?
 
 **ChatGPT**
 
