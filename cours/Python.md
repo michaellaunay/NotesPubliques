@@ -1,26 +1,26 @@
 ---
 schema_version: 1
-uid: "01M02EX5C4GRWP4Q699FKAESKA"
-titre: "Python"
+uid: 01M02EX5C4GRWP4Q699FKAESKA
+titre: Python
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - programmation
-  - python
-resume: "Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard."
+- informatique
+- programmation
+- python
+resume: 'Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard.'
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-05-10
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -705,7 +705,7 @@ ma_liste = [1, 2, 3]
 print(type(ma_liste))  # Affiche "<class 'list'>"
 ```
 
-Dans cet exemple, `ma_liste` est une liste de trois éléments. Nous pouvez ajouter un élément à la liste avec `ma_liste.append(4)`, modifier un élément avec `ma_liste[0] = 0`, ou supprimer un élément avec `del ma_liste[2]`.
+Dans cet exemple, `ma_liste` est une liste de trois éléments. Nous pouvez ajouter un élément à la liste avec `ma_liste.append(4)`, modifier un élément avec `ma_liste = 0`, ou supprimer un élément avec `del ma_liste[2]`.
 
 ### Exercices sur le Slicing de Liste
 
@@ -886,9 +886,9 @@ L'emboîtement de listes en compréhension (ou nested list comprehension en angl
 Par exemple, supposons que nous ayons une liste de listes, et que nous voulions aplatir cette structure en une seule liste. Voici comment nous pourrions le faire avec une liste en compréhension imbriquée :
 
 ```python
-listes = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+listes = [,, [7, 8, 9]]
 aplati = [x for sous_liste in listes for x in sous_liste]
-print(aplati)  # Affiche [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(aplati)  # Affiche
 ```
 
 Notons l'ordre des boucles `for` dans la liste en compréhension : elles sont dans le même ordre que si nous avions écrit des boucles `for` traditionnelles :
@@ -904,7 +904,7 @@ Nous pouvons également utiliser des listes en compréhension imbriquées pour c
 
 ```python
 matrice = [[i * j for j in range(3)] for i in range(3)]
-print(matrice)  # Affiche [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
+print(matrice)  # Affiche [,, [0, 2, 4]]
 ```
 
 Dans cet exemple, la liste en compréhension externe crée les lignes de la matrice, et la liste en compréhension interne crée les éléments de chaque ligne.
@@ -1091,14 +1091,14 @@ slice(start, stop, step)
 
 ```python
 # Tranche standard
-liste = [0, 1, 2, 3, 4, 5]
+liste =
 sous_liste = liste[1:5:2]
-print(sous_liste)  # Sortie : [1, 3]
+print(sous_liste)  # Sortie :
 
 # Utilisation de slice
 tranche = slice(1, 5, 2)
 sous_liste = liste[tranche]
-print(sous_liste)  # Sortie : [1, 3]
+print(sous_liste)  # Sortie :
 ```
 
 #### **2. Passer une tranche comme argument de fonction :**
@@ -2096,8 +2096,8 @@ Groupe des éléments consécutifs de l'itérable par une clé donnée.
 ```python
 import itertools
 
-data = sorted([('A', 1), ('A', 2), ('B', 3), ('B', 4), ('C', 5)], key=lambda x: x[0])
-grouped = itertools.groupby(data, key=lambda x: x[0])
+data = sorted([('A', 1), ('A', 2), ('B', 3), ('B', 4), ('C', 5)], key=lambda x: x)
+grouped = itertools.groupby(data, key=lambda x: x)
 for key, group in grouped:
     print(key, list(group))
 ```
@@ -2123,7 +2123,7 @@ import functools
 def multiply(x, y):
     return x * y
 
-numbers = [1, 2, 3, 4, 5]
+numbers =
 product = functools.reduce(multiply, numbers)
 print(product)  # Output: 120
 ```

@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-16
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -26,6 +26,108 @@ metadata_verifiees: false
 
 Index régénéré par `make index` — ne pas éditer à la main. Vue graphique : [[_INDEX_cours.excalidraw]].
 
+## Intelligence artificielle
+
+- [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]] — Cours-atelier sur la construction d'une chaîne locale de numérisation : comparaison d'olmOCR 2 et d'Infinity-Parser2-Pro, architecture du pipeline, installation, backends d'inférence, ingestion des PDF et production d'un corpus exploitable.
+- [[Hermes Agent]] — Cours approfondi sur Hermes Agent, agent IA persistant et extensible : mémoire persistante, recherche dans les conversations, création de skills, tâches planifiées, sous-agents isolés et compatibilité multi-fournisseurs.
+- [[Les CNN et RNN]] — Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences.
+- [[Les RAGs]] — Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.
+- [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
+- [[cours/LLM|LLM]] — Cours sur les grands modèles de langage : place dans l'apprentissage profond, arbre généalogique des LLM, origines et évolutions, capacités, applications, fondations théoriques et défis.
+- [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
+- [[Pytorch]] — Proposition de plan de cours « Du tenseur au deep learning » avec PyTorch, et rappel des fondamentaux à maîtriser avant de coder.
+- [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
+- [[Travailler avec Claude]] — Formation à Claude Code en cinq couches : écosystème Anthropic, différence avec claude.ai, workflow agentique, système de permissions, modes d'opération et mémoire projet CLAUDE.md.
+
+## Systèmes et administration
+
+- [[Apache]] — Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage.
+- [[Docker]] — Cours sur Docker : définition et installation, terminologie (images, conteneurs), commandes de base, réseaux, volumes, Dockerfile et composition de services.
+- [[GNULinux]] — Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante.
+- [[InetOrgPerson]] — Cours sur la classe d'objets inetOrgPerson dans LDAP : caractéristiques, attributs, exemples d'utilisation et survol de la RFC 2798.
+- [[Initialisation système et des services]] — Cours sur le démarrage d'un système GNU/Linux : séquence de boot, GRUB 2, paramètres du noyau, comparaison systemd / SysV init / upstart, targets et niveaux d'exécution.
+- [[Installation Ubuntu]] — Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques.
+- [[LDAP]] — Cours sur LDAP et OpenLDAP : structure de l'annuaire, opérations, format LDIF, classes d'objets et RFC de référence.
+- [[Les distributions Linux]] — Fiche définissant la notion de distribution GNU/Linux et présentant les principales familles de distributions.
+- [[Les namespaces Linux]] — Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d'un processus, différence avec la virtualisation classique et étude de chaque type de namespace.
+- [[Postfix]] — Cours sur le serveur de courrier Postfix : rôles de MTA, MDA et MUA, formats de boîtes aux lettres Mbox et Maildir, protocoles IMAP et POP3, configuration et sécurisation.
+- [[proc]] — Cours approfondi sur le système de fichiers /proc sous GNU/Linux : rôle pédagogique et opérationnel, différences avec /sys, /dev et /run, et exploration guidée des principaux fichiers.
+- [[Watchdog espace disque]] — Script de surveillance de l'occupation disque : paramétrage du seuil, récupération de l'utilisation et déclenchement d'une alerte.
+- [[WSL2]] — Procédure d'installation et d'usage de WSL 2, avec ses limitations et l'ajout d'une interface graphique.
+
+## Réseaux et sécurité
+
+- [[HTTP]] — Cours sur le protocole HTTP : contexte historique, architecture client-serveur, cycle requête-réponse, méthodes, en-têtes, codes de statut, HTTPS et sécurité.
+- [[Identité numérique européenne]] — Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS.
+- [[IPFS]] — Cours sur IPFS : enjeux de la décentralisation du stockage, comparaison avec le modèle client-serveur, Merkle DAG, adressage par contenu et fonctionnement technique du réseau.
+- [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
+- [[OAuth OpenID]] — Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation.
+- [[Sécurité avancée sous Linux]] — Cours de sécurité Linux avancée : durcissement du système, contrôle d'accès avancé, authentification et accès réseau, cryptographie, détection d'intrusions, sécurité des conteneurs et usage des LLM.
+- [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification et gestion des accès, sessions, modération de contenus soumis et principes de programmation sécurisée.
+- [[Sécurité des IOT en python avec SCADA]] — Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth.
+
+## Programmation
+
+- [[Algorithmes avancés en Python]] — Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme.
+- [[Anaconda]] — Histoire de la distribution Anaconda, présentation de Jupyter et du format IPYNB, installation sous Ubuntu et panorama des distributions dérivées.
+- [[C++]] — Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.
+- [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé dans le cloud, accès aux GPU et TPU, environnement prêt à l'emploi et lien avec Google Cloud Platform.
+- [[Jupyter Notebook et Google Colab]] — Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites.
+- [[Mathplotlib]] — Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook.
+- [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées.
+- [[Pandas]] — Cours sur la bibliothèque Pandas : structures de données Series et DataFrame, sélection, filtrage, agrégation et manipulation de jeux de données.
+- [[Python]] — Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard.
+- [[Regex]] — Cours sur les expressions régulières : histoire, usages actuels, fonctionnement, caractères spéciaux, capture et substitution, avec un exemple concret sous Vim.
+- [[SQLAchemy]] — Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD.
+- [[ZC.Buidout]] — Cours sur zc.buildout : intérêt de l'outil, installation depuis PyPI, configuration d'un buildout et utilisation pour l'assemblage d'environnements Python reproductibles.
+
+## Développement web
+
+- [[CSS]] — Cours de CSS : historique, modes d'intégration, syntaxe, unités de mesure, sélecteurs, mise en forme et mise en page moderne.
+- [[Deform]] — Cours sur la bibliothèque de formulaires Deform sous Pyramid : schémas Colander, widgets, validation, rendu et personnalisation.
+- [[HTML]] — Cours d'introduction au HTML : bases du langage, organisation et sémantique du contenu, liens, images et ressources, bonnes pratiques et projet final.
+- [[Javascript]] — Cours d'introduction à JavaScript : origines, rôle dans la pile technologique, historique d'ECMAScript, variables, types, opérateurs et concepts fondamentaux.
+- [[Pyramid]] — Cours sur le framework web Pyramid : installation et structure d'une application, routes et vues, templates Chameleon, formulaires Deform, persistance et sécurité.
+- [[Selenium]] — Cours sur Selenium : intérêt de l'automatisation du web, installation et configuration des WebDriver, éléments de base, méthodes de WebDriver et WebElement.
+- [[Tal et Metal]] — Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope.
+
+## Génie logiciel
+
+- [[Agile Unified Process (AUP)]] — Présentation de l'Agile Unified Process : origine, principes, disciplines, phases, avantages et limites de cette version allégée du Rational Unified Process.
+- [[Architecture des logiciels]] — Cours complet d'architecture logicielle : définitions, attributs de qualité, décisions et vues architecturales, styles d'architecture (monolithique, en couches, microservices, etc.) et documentation.
+- [[Design patterns]] — Cours sur les patrons de conception : définition et intérêt, catégorisation (création, structure, comportement) et étude détaillée des principaux patterns.
+- [[Les méthodes agiles]] — Cours sur les méthodes agiles : historique et Manifeste Agile, comparaison avec les méthodes traditionnelles, puis Scrum, XP, Kanban, DSDM, Crystal, FDD et Lean Software Development.
+- [[Open Spec]] — Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA.
+- [[Outils de modélisation textuels]] — Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres.
+- [[Principes SOLID en COO]] — Fiche sur les cinq principes SOLID de conception orientée objet : responsabilité unique, ouvert/fermé, substitution de Liskov, ségrégation des interfaces et inversion des dépendances.
+- [[Projet Encadré]] — Sujet de projet encadré : conception et architecture d'une bibliothèque numérique décentralisée, réalisée en binômes hétérogènes avec évaluation croisée entre équipes.
+- [[TOGAF]] — Cours sur TOGAF : fondements de l'architecture d'entreprise, structure du cadre, méthode ADM, artefacts, livrables et gouvernance, mise en pratique et certifications.
+
+## Données et web sémantique
+
+- [[Bases de données relationnelles]] — Cours sur le modèle relationnel : modélisation des données, langage de manipulation SQL, vues, index, contraintes, transactions et isolation, sécurité et droits d'accès.
+- [[Data Mining en Python]] — Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, techniques et modèles, évaluation et optimisation, avec un projet d'analyse de fr.wikipedia.org.
+- [[SOLID]] — Cours sur SOLID, le projet de web décentralisé de Tim Berners-Lee : principe des pods, structuration des données, RDF et SPARQL, et mise en place d'un environnement de développement.
+
+## Connaissances et outils
+
+- [[Excalidraw]] — Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes.
+- [[git]] — Cours sur Git : historique, installation et configuration du client, création d'un dépôt et principales commandes du quotidien.
+- [[Markdown]] — Cours sur Markdown : formatage de base, apports des variantes GitHub et Obsidian, extensions, écriture de formules mathématiques et syntaxe étendue.
+- [[Mermaid pour Obsidian]] — Cours sur Mermaid dans Obsidian : origines et adoption, installation, utilisation et principaux types de diagrammes (flux, séquence, Gantt, classes).
+- [[MindMap sous Obsidian]] — Procédure d'installation et d'utilisation du greffon de cartes mentales dans Obsidian, avec quelques astuces.
+- [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] — Cours en trente chapitres et trois annexes sur la construction d'un système d'information personnel souverain : vault Obsidian, modèle de données par frontmatter, schéma et modèle métier, graphe sémantique, Git, puis couche agentique (constitution, domaines, skills, pipelines, mémoire, sécurité, tests, observabilité). L'annexe B traite l'application du modèle à un coffre existant, l'annexe C fournit une implémentation de référence testée, installée dans scripts/osia.
+- [[Obsidian]] — Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation.
+- [[PlantUML pour Obsidian]] — Procédure d'installation d'un serveur PlantUML local pour Obsidian, avec mise à jour du système, installation de Java et présentation de modeleurs graphiques générant du PlantUML.
+- [[Visual studio code]] — Cours de prise en main de Visual Studio Code : historique, installation, interface et barre d'activités, panneaux, extensions utiles et réglages du quotidien.
+
+## Histoire et matériel informatique
+
+- [[Histoire des langages de programmation]] — Cours d'histoire des langages de programmation : concepts de syntaxe et de sémantique, classification des langages, précurseurs, Fortran, COBOL, LISP, langages structurés et évolutions modernes.
+- [[Historique Linux]] — Fiche chronologique sur les racines d'UNIX, la naissance de la Free Software Foundation, la GPL et le projet GNU.
+- [[Informatique]] — Carte mentale de présentation générale de l'informatique : histoire du matériel, génie logiciel, cycle en V et architecture de von Neumann.
+- [[Parsing Expression Grammars PEG]] — Fiche sur les Parsing Expression Grammars : non-terminaux, terminaux, règles de production, opérateurs de séquence, choix, répétition et prédicats, et gestion de la récursivité.
+
 ## Droit et conformité
 
 - [[Droits d'auteur]] — Cours sur la propriété intellectuelle et le droit d'auteur : distinction avec la propriété industrielle, brevets, œuvres originales, collectives et posthumes, licences informatiques et chronologie des durées de protection.
@@ -36,93 +138,18 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Logique]] — Cours de logique appliquée à l'informatique : logique propositionnelle, opérations de base, tautologies et inférence, puis logique des prédicats du premier ordre.
 - [[Systèmes numériques]] — Cours sur les systèmes de numération : analyse des systèmes décimal et sexagésimal, critères d'un « meilleur » système et étude du bibi-binaire de Boby Lapointe.
 
-## Langues
+## Langues et linguistique
 
 - [[Esperanto]] — Cours d'espéranto orienté ingénierie : histoire et objectifs de la langue internationale, alphabet et prononciation, grammaire fondamentale et vocabulaire de base.
 
-## Pédagogie
+## Pédagogie et apprentissage
 
 - [[Apprendre]] — Synthèse d'une vidéo de Science étonnante sur les mécanismes de l'apprentissage : mémoire de travail et à long terme, répétition espacée, auto-tests, diversification, apprentissage génératif et cartes mentales.
 
-## Société et économie
+## Économie et entreprise
 
-- [[Getting things done]] — Fiche de synthèse sur la méthode Getting Things Done de David Allen : collecte, clarification, organisation, revue et engagement.
 - [[SEO]] — Cours sur le référencement naturel : fonctionnement des moteurs de recherche, indexation et algorithmes, optimisation on-page (titres, méta-descriptions, URL, contenu) et notions d'autorité.
 
-## Informatique — général
+## Management et productivité
 
-- [[Agile Unified Process (AUP)]] — Présentation de l'Agile Unified Process : origine, principes, disciplines, phases, avantages et limites de cette version allégée du Rational Unified Process.
-- [[Algorithmes avancés en Python]] — Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme.
-- [[Anaconda]] — Histoire de la distribution Anaconda, présentation de Jupyter et du format IPYNB, installation sous Ubuntu et panorama des distributions dérivées.
-- [[Apache]] — Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage.
-- [[Architecture des logiciels]] — Cours complet d'architecture logicielle : définitions, attributs de qualité, décisions et vues architecturales, styles d'architecture (monolithique, en couches, microservices, etc.) et documentation.
-- [[Bases de données relationnelles]] — Cours sur le modèle relationnel : modélisation des données, langage de manipulation SQL, vues, index, contraintes, transactions et isolation, sécurité et droits d'accès.
-- [[C++]] — Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.
-- [[CSS]] — Cours de CSS : historique, modes d'intégration, syntaxe, unités de mesure, sélecteurs, mise en forme et mise en page moderne.
-- [[Data Mining en Python]] — Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, techniques et modèles, évaluation et optimisation, avec un projet d'analyse de fr.wikipedia.org.
-- [[Deform]] — Cours sur la bibliothèque de formulaires Deform sous Pyramid : schémas Colander, widgets, validation, rendu et personnalisation.
-- [[Design patterns]] — Cours sur les patrons de conception : définition et intérêt, catégorisation (création, structure, comportement) et étude détaillée des principaux patterns.
-- [[Docker]] — Cours sur Docker : définition et installation, terminologie (images, conteneurs), commandes de base, réseaux, volumes, Dockerfile et composition de services.
-- [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]] — Cours-atelier sur la construction d'une chaîne locale de numérisation : comparaison d'olmOCR 2 et d'Infinity-Parser2-Pro, architecture du pipeline, installation, backends d'inférence, ingestion des PDF et production d'un corpus exploitable.
-- [[Excalidraw]] — Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes.
-- [[git]] — Cours sur Git : historique, installation et configuration du client, création d'un dépôt et principales commandes du quotidien.
-- [[GNULinux]] — Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante.
-- [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé dans le cloud, accès aux GPU et TPU, environnement prêt à l'emploi et lien avec Google Cloud Platform.
-- [[Hermes Agent]] — Cours approfondi sur Hermes Agent, agent IA persistant et extensible : mémoire persistante, recherche dans les conversations, création de skills, tâches planifiées, sous-agents isolés et compatibilité multi-fournisseurs.
-- [[Histoire des langages de programmation]] — Cours d'histoire des langages de programmation : concepts de syntaxe et de sémantique, classification des langages, précurseurs, Fortran, COBOL, LISP, langages structurés et évolutions modernes.
-- [[Historique Linux]] — Fiche chronologique sur les racines d'UNIX, la naissance de la Free Software Foundation, la GPL et le projet GNU.
-- [[HTML]] — Cours d'introduction au HTML : bases du langage, organisation et sémantique du contenu, liens, images et ressources, bonnes pratiques et projet final.
-- [[HTTP]] — Cours sur le protocole HTTP : contexte historique, architecture client-serveur, cycle requête-réponse, méthodes, en-têtes, codes de statut, HTTPS et sécurité.
-- [[Identité numérique européenne]] — Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS.
-- [[InetOrgPerson]] — Cours sur la classe d'objets inetOrgPerson dans LDAP : caractéristiques, attributs, exemples d'utilisation et survol de la RFC 2798.
-- [[Informatique]] — Carte mentale de présentation générale de l'informatique : histoire du matériel, génie logiciel, cycle en V et architecture de von Neumann.
-- [[Initialisation système et des services]] — Cours sur le démarrage d'un système GNU/Linux : séquence de boot, GRUB 2, paramètres du noyau, comparaison systemd / SysV init / upstart, targets et niveaux d'exécution.
-- [[Installation Ubuntu]] — Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques.
-- [[IPFS]] — Cours sur IPFS : enjeux de la décentralisation du stockage, comparaison avec le modèle client-serveur, Merkle DAG, adressage par contenu et fonctionnement technique du réseau.
-- [[Javascript]] — Cours d'introduction à JavaScript : origines, rôle dans la pile technologique, historique d'ECMAScript, variables, types, opérateurs et concepts fondamentaux.
-- [[Jupyter Notebook et Google Colab]] — Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites.
-- [[LDAP]] — Cours sur LDAP et OpenLDAP : structure de l'annuaire, opérations, format LDIF, classes d'objets et RFC de référence.
-- [[Les CNN et RNN]] — Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences.
-- [[Les distributions Linux]] — Fiche définissant la notion de distribution GNU/Linux et présentant les principales familles de distributions.
-- [[Les méthodes agiles]] — Cours sur les méthodes agiles : historique et Manifeste Agile, comparaison avec les méthodes traditionnelles, puis Scrum, XP, Kanban, DSDM, Crystal, FDD et Lean Software Development.
-- [[Les namespaces Linux]] — Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d'un processus, différence avec la virtualisation classique et étude de chaque type de namespace.
-- [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
-- [[Les RAGs]] — Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.
-- [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
-- [[cours/LLM|LLM]] — Cours sur les grands modèles de langage : place dans l'apprentissage profond, arbre généalogique des LLM, origines et évolutions, capacités, applications, fondations théoriques et défis.
-- [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
-- [[Markdown]] — Cours sur Markdown : formatage de base, apports des variantes GitHub et Obsidian, extensions, écriture de formules mathématiques et syntaxe étendue.
-- [[Mathplotlib]] — Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook.
-- [[Mermaid pour Obsidian]] — Cours sur Mermaid dans Obsidian : origines et adoption, installation, utilisation et principaux types de diagrammes (flux, séquence, Gantt, classes).
-- [[MindMap sous Obsidian]] — Procédure d'installation et d'utilisation du greffon de cartes mentales dans Obsidian, avec quelques astuces.
-- [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées.
-- [[OAuth OpenID]] — Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation.
-- [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] — Cours en trente chapitres et trois annexes sur la construction d'un système d'information personnel souverain : vault Obsidian, modèle de données par frontmatter, schéma et modèle métier, graphe sémantique, Git, puis couche agentique (constitution, domaines, skills, pipelines, mémoire, sécurité, tests, observabilité). L'annexe B traite l'application du modèle à un coffre existant, l'annexe C fournit une implémentation de référence testée, installée dans scripts/osia.
-- [[Obsidian]] — Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation.
-- [[Open Spec]] — Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA.
-- [[Outils de modélisation textuels]] — Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres.
-- [[Pandas]] — Cours sur la bibliothèque Pandas : structures de données Series et DataFrame, sélection, filtrage, agrégation et manipulation de jeux de données.
-- [[Parsing Expression Grammars PEG]] — Fiche sur les Parsing Expression Grammars : non-terminaux, terminaux, règles de production, opérateurs de séquence, choix, répétition et prédicats, et gestion de la récursivité.
-- [[PlantUML pour Obsidian]] — Procédure d'installation d'un serveur PlantUML local pour Obsidian, avec mise à jour du système, installation de Java et présentation de modeleurs graphiques générant du PlantUML.
-- [[Postfix]] — Cours sur le serveur de courrier Postfix : rôles de MTA, MDA et MUA, formats de boîtes aux lettres Mbox et Maildir, protocoles IMAP et POP3, configuration et sécurisation.
-- [[Principes SOLID en COO]] — Fiche sur les cinq principes SOLID de conception orientée objet : responsabilité unique, ouvert/fermé, substitution de Liskov, ségrégation des interfaces et inversion des dépendances.
-- [[proc]] — Cours approfondi sur le système de fichiers /proc sous GNU/Linux : rôle pédagogique et opérationnel, différences avec /sys, /dev et /run, et exploration guidée des principaux fichiers.
-- [[Projet Encadré]] — Sujet de projet encadré : conception et architecture d'une bibliothèque numérique décentralisée, réalisée en binômes hétérogènes avec évaluation croisée entre équipes.
-- [[Pyramid]] — Cours sur le framework web Pyramid : installation et structure d'une application, routes et vues, templates Chameleon, formulaires Deform, persistance et sécurité.
-- [[Python]] — Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard.
-- [[Pytorch]] — Proposition de plan de cours « Du tenseur au deep learning » avec PyTorch, et rappel des fondamentaux à maîtriser avant de coder.
-- [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
-- [[Regex]] — Cours sur les expressions régulières : histoire, usages actuels, fonctionnement, caractères spéciaux, capture et substitution, avec un exemple concret sous Vim.
-- [[Selenium]] — Cours sur Selenium : intérêt de l'automatisation du web, installation et configuration des WebDriver, éléments de base, méthodes de WebDriver et WebElement.
-- [[SOLID]] — Cours sur SOLID, le projet de web décentralisé de Tim Berners-Lee : principe des pods, structuration des données, RDF et SPARQL, et mise en place d'un environnement de développement.
-- [[SQLAchemy]] — Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD.
-- [[Sécurité avancée sous Linux]] — Cours de sécurité Linux avancée : durcissement du système, contrôle d'accès avancé, authentification et accès réseau, cryptographie, détection d'intrusions, sécurité des conteneurs et usage des LLM.
-- [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification et gestion des accès, sessions, modération de contenus soumis et principes de programmation sécurisée.
-- [[Sécurité des IOT en python avec SCADA]] — Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth.
-- [[Tal et Metal]] — Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope.
-- [[TOGAF]] — Cours sur TOGAF : fondements de l'architecture d'entreprise, structure du cadre, méthode ADM, artefacts, livrables et gouvernance, mise en pratique et certifications.
-- [[Travailler avec Claude]] — Formation à Claude Code en cinq couches : écosystème Anthropic, différence avec claude.ai, workflow agentique, système de permissions, modes d'opération et mémoire projet CLAUDE.md.
-- [[Visual studio code]] — Cours de prise en main de Visual Studio Code : historique, installation, interface et barre d'activités, panneaux, extensions utiles et réglages du quotidien.
-- [[Watchdog espace disque]] — Script de surveillance de l'occupation disque : paramétrage du seuil, récupération de l'utilisation et déclenchement d'une alerte.
-- [[WSL2]] — Procédure d'installation et d'usage de WSL 2, avec ses limitations et l'ajout d'une interface graphique.
-- [[ZC.Buidout]] — Cours sur zc.buildout : intérêt de l'outil, installation depuis PyPI, configuration d'un buildout et utilisation pour l'assemblage d'environnements Python reproductibles.
+- [[Getting things done]] — Fiche de synthèse sur la méthode Getting Things Done de David Allen : collecte, clarification, organisation, revue et engagement.

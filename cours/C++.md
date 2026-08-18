@@ -1,27 +1,27 @@
 ---
 schema_version: 1
-uid: "01M02EX5AV43KMZP49615V34WC"
-titre: "C++"
+uid: 01M02EX5AV43KMZP49615V34WC
+titre: C++
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - programmation
-  - cpp
-  - conception-orientee-objet
-resume: "Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées."
+- informatique
+- programmation
+- cpp
+- conception-orientee-objet
+resume: 'Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.'
 niveau: intermediaire
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-03-24
-date_modification: 2024-06-25
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -2507,8 +2507,8 @@ Les conteneurs associatifs stockent les éléments sous forme de paires clé-val
   #include <map>
   
   std::map<int, std::string> m;
-  m[1] = "one";
-  m[2] = "two";
+  m = "one";
+  m = "two";
   ```
 
 - **unordered_set** et **unordered_map** : Versions non ordonnées des conteneurs `set` et `map`, offrant des performances de recherche plus rapides.
@@ -2522,8 +2522,8 @@ Les conteneurs associatifs stockent les éléments sous forme de paires clé-val
   us.insert(6); // Ajoute un élément unique
   
   std::unordered_map<int, std::string> um;
-  um[1] = "one";
-  um[2] = "two";
+  um = "one";
+  um = "two";
   ```
 
 #### 5.1.2.3. Conteneurs adaptatifs

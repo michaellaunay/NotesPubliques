@@ -1,35 +1,35 @@
 ---
 schema_version: 1
-uid: "01M02EX5BD9BVRTQDDF2WDT310"
-titre: "Les namespaces Linux"
+uid: 01M02EX5BD9BVRTQDDF2WDT310
+titre: Les namespaces Linux
 aliases:
-  - "namespaces"
-  - "espaces de noms Linux"
+- namespaces
+- espaces de noms Linux
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - administration-systeme
-  - gnu-linux
-  - noyau
-  - namespaces
-  - conteneurisation
-resume: "Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d'un processus, différence avec la virtualisation classique et étude de chaque type de namespace."
+- informatique
+- administration-systeme
+- gnu-linux
+- noyau
+- namespaces
+- conteneurisation
+resume: 'Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d''un processus, différence avec la virtualisation classique et étude de chaque type de namespace.'
 niveau: avance
 prerequis:
-  - "[[GNULinux]]"
-  - "[[proc]]"
+- '[[GNULinux]]'
+- '[[proc]]'
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2026-05-24
-date_modification: 2026-05-24
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -1333,14 +1333,14 @@ ls -l /proc/$$/ns
 Sortie possible :
 
 ```text
-cgroup -> cgroup:[4026531835]
-ipc    -> ipc:[4026531839]
-mnt    -> mnt:[4026531841]
-net    -> net:[4026531840]
-pid    -> pid:[4026531836]
-time   -> time:[4026531834]
-user   -> user:[4026531837]
-uts    -> uts:[4026531838]
+cgroup -> cgroup:
+ipc    -> ipc:
+mnt    -> mnt:
+net    -> net:
+pid    -> pid:
+time   -> time:
+user   -> user:
+uts    -> uts:
 ```
 
 Chaque ligne correspond à un namespace différent.
@@ -1457,10 +1457,10 @@ Nous obtenons des liens symboliques spéciaux.
 Exemple :
 
 ```text
-mnt -> mnt:[4026531841]
-pid -> pid:[4026531836]
-net -> net:[4026531840]
-uts -> uts:[4026531838]
+mnt -> mnt:
+pid -> pid:
+net -> net:
+uts -> uts:
 ```
 
 Ces liens ne sont pas des fichiers ordinaires. Ils représentent les namespaces auxquels appartient le processus.
@@ -1480,7 +1480,7 @@ readlink /proc/$$/ns/pid
 Sortie possible :
 
 ```text
-pid:[4026531836]
+pid:
 ```
 
 Pour le namespace réseau :
@@ -1492,7 +1492,7 @@ readlink /proc/$$/ns/net
 Sortie possible :
 
 ```text
-net:[4026531840]
+net:
 ```
 
 Le nombre entre crochets identifie l’instance du namespace.
@@ -1511,8 +1511,8 @@ readlink /proc/1/ns/pid
 Si les deux valeurs sont identiques :
 
 ```text
-pid:[4026531836]
-pid:[4026531836]
+pid:
+pid:
 ```
 
 les deux processus partagent le même namespace PID.
@@ -1520,8 +1520,8 @@ les deux processus partagent le même namespace PID.
 Si elles sont différentes :
 
 ```text
-pid:[4026532501]
-pid:[4026531836]
+pid:
+pid:
 ```
 
 les deux processus ne sont pas dans le même namespace PID.
@@ -1566,7 +1566,7 @@ Ce type de comparaison est très utile quand nous analysons des conteneurs.
 Quand nous voyons :
 
 ```text
-pid:[4026531836]
+pid:
 ```
 
 nous voyons une représentation symbolique d’un namespace PID.
@@ -1586,8 +1586,8 @@ Nous comparons toujours les namespaces par type.
 Par exemple :
 
 ```text
-pid:[4026531836]
-net:[4026531836]
+pid:
+net:
 ```
 
 Même si les nombres étaient identiques, cela ne signifierait pas que ce sont le même objet, car les types sont différents.
@@ -4786,7 +4786,7 @@ readlink /proc/$$/ns/uts
 Sortie possible :
 
 ```text
-uts:[4026531838]
+uts:
 ```
 
 Pour le PID 1 :
@@ -4811,8 +4811,8 @@ echo "PID 1         : $(readlink /proc/1/ns/uts)"
 Exemple :
 
 ```text
-Shell courant : uts:[4026531838]
-PID 1         : uts:[4026531838]
+Shell courant : uts:
+PID 1         : uts:
 ```
 
 Cela signifie que les deux processus partagent le même namespace UTS.
@@ -4820,8 +4820,8 @@ Cela signifie que les deux processus partagent le même namespace UTS.
 Si nous voyons :
 
 ```text
-Shell courant : uts:[4026532500]
-PID 1         : uts:[4026531838]
+Shell courant : uts:
+PID 1         : uts:
 ```
 
 cela signifie que le shell courant est dans un namespace UTS différent de celui du PID 1.
@@ -4843,7 +4843,7 @@ Exemple :
 
 ```text
 machine-hote
-uts:[4026531838]
+uts:
 ```
 
 Nous créons ensuite un nouveau namespace UTS :
@@ -5790,7 +5790,7 @@ readlink /proc/$$/ns/pid
 Exemple :
 
 ```text
-pid:[4026531836]
+pid:
 ```
 
 Nous pouvons comparer avec le processus 1 :
@@ -5818,8 +5818,8 @@ readlink /proc/$pid_b/ns/pid
 Même valeur :
 
 ```text
-pid:[4026531836]
-pid:[4026531836]
+pid:
+pid:
 ```
 
 Les processus partagent le même namespace PID.
@@ -5827,8 +5827,8 @@ Les processus partagent le même namespace PID.
 Valeurs différentes :
 
 ```text
-pid:[4026532501]
-pid:[4026531836]
+pid:
+pid:
 ```
 
 Les processus sont dans des namespaces PID différents.
@@ -7045,7 +7045,7 @@ readlink /proc/$$/ns/mnt
 Exemple :
 
 ```text
-mnt:[4026531841]
+mnt:
 ```
 
 Pour le PID 1 :
@@ -7070,8 +7070,8 @@ echo "PID 1         : $(readlink /proc/1/ns/mnt)"
 Même valeur :
 
 ```text
-Shell courant : mnt:[4026531841]
-PID 1         : mnt:[4026531841]
+Shell courant : mnt:
+PID 1         : mnt:
 ```
 
 Les deux processus partagent le même namespace mount.
@@ -7079,8 +7079,8 @@ Les deux processus partagent le même namespace mount.
 Valeurs différentes :
 
 ```text
-Shell courant : mnt:[4026533000]
-PID 1         : mnt:[4026531841]
+Shell courant : mnt:
+PID 1         : mnt:
 ```
 
 Les deux processus ont des vues de montages différentes.
@@ -8952,7 +8952,7 @@ readlink /proc/$$/ns/net
 Exemple :
 
 ```text
-net:[4026531840]
+net:
 ```
 
 Nous pouvons comparer avec le PID 1 :
@@ -10990,7 +10990,7 @@ readlink /proc/$$/ns/ipc
 Exemple :
 
 ```text
-ipc:[4026531839]
+ipc:
 ```
 
 Nous comparons avec le PID 1 :
@@ -11015,8 +11015,8 @@ echo "PID 1         : $(readlink /proc/1/ns/ipc)"
 Même valeur :
 
 ```text
-Shell courant : ipc:[4026531839]
-PID 1         : ipc:[4026531839]
+Shell courant : ipc:
+PID 1         : ipc:
 ```
 
 Les deux processus partagent le même namespace IPC.
@@ -11024,8 +11024,8 @@ Les deux processus partagent le même namespace IPC.
 Valeurs différentes :
 
 ```text
-Shell courant : ipc:[4026533000]
-PID 1         : ipc:[4026531839]
+Shell courant : ipc:
+PID 1         : ipc:
 ```
 
 Les deux processus ont des vues IPC différentes.
@@ -12275,7 +12275,7 @@ readlink /proc/$$/ns/user
 Exemple :
 
 ```text
-user:[4026531837]
+user:
 ```
 
 Nous comparons avec le PID 1 :
@@ -13743,7 +13743,7 @@ readlink /proc/$$/ns/cgroup
 Exemple :
 
 ```text
-cgroup:[4026531835]
+cgroup:
 ```
 
 Nous pouvons comparer avec le PID 1 :
@@ -13768,8 +13768,8 @@ echo "PID 1         : $(readlink /proc/1/ns/cgroup)"
 Même valeur :
 
 ```text
-Shell courant : cgroup:[4026531835]
-PID 1         : cgroup:[4026531835]
+Shell courant : cgroup:
+PID 1         : cgroup:
 ```
 
 Les deux processus partagent le même namespace cgroup.
@@ -13777,8 +13777,8 @@ Les deux processus partagent le même namespace cgroup.
 Valeurs différentes :
 
 ```text
-Shell courant : cgroup:[4026533000]
-PID 1         : cgroup:[4026531835]
+Shell courant : cgroup:
+PID 1         : cgroup:
 ```
 
 Les deux processus ont une vue cgroup différente.
@@ -15283,7 +15283,7 @@ readlink /proc/$$/ns/time
 Exemple :
 
 ```text
-time:[4026531834]
+time:
 ```
 
 Nous comparons avec le PID 1 :
@@ -15307,7 +15307,7 @@ ls -l /proc/$$/ns/time_for_children
 Exemple :
 
 ```text
-time_for_children -> time:[4026531834]
+time_for_children -> time:
 ```
 
 Cette entrée indique le namespace time qui sera utilisé pour les processus enfants.
@@ -16483,14 +16483,14 @@ ls -l /proc/$$/ns
 Sortie possible :
 
 ```text
-cgroup -> cgroup:[4026531835]
-ipc    -> ipc:[4026531839]
-mnt    -> mnt:[4026531841]
-net    -> net:[4026531840]
-pid    -> pid:[4026531836]
-time   -> time:[4026531834]
-user   -> user:[4026531837]
-uts    -> uts:[4026531838]
+cgroup -> cgroup:
+ipc    -> ipc:
+mnt    -> mnt:
+net    -> net:
+pid    -> pid:
+time   -> time:
+user   -> user:
+uts    -> uts:
 ```
 
 Chaque lien symbolique représente le namespace du processus pour un type donné.
@@ -16513,10 +16513,10 @@ readlink /proc/$$/ns/user
 Sorties possibles :
 
 ```text
-pid:[4026531836]
-net:[4026531840]
-mnt:[4026531841]
-user:[4026531837]
+pid:
+net:
+mnt:
+user:
 ```
 
 Le nombre entre crochets identifie une instance de namespace.
@@ -16541,14 +16541,14 @@ done
 Exemple :
 
 ```text
-cgroup  shell=cgroup:[4026531835]   pid1=cgroup:[4026531835]
-ipc     shell=ipc:[4026531839]      pid1=ipc:[4026531839]
-mnt     shell=mnt:[4026531841]      pid1=mnt:[4026531841]
-net     shell=net:[4026531840]      pid1=net:[4026531840]
-pid     shell=pid:[4026531836]      pid1=pid:[4026531836]
-time    shell=time:[4026531834]     pid1=time:[4026531834]
-user    shell=user:[4026531837]     pid1=user:[4026531837]
-uts     shell=uts:[4026531838]      pid1=uts:[4026531838]
+cgroup  shell=cgroup:   pid1=cgroup:
+ipc     shell=ipc:      pid1=ipc:
+mnt     shell=mnt:      pid1=mnt:
+net     shell=net:      pid1=net:
+pid     shell=pid:      pid1=pid:
+time    shell=time:     pid1=time:
+user    shell=user:     pid1=user:
+uts     shell=uts:      pid1=uts:
 ```
 
 Si toutes les valeurs sont identiques, nous sommes probablement dans le même ensemble de namespaces que le PID 1 du système courant.
