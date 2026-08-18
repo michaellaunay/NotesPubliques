@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-12-27
-date_modification: 2024-02-29
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
@@ -31,7 +31,7 @@ Il faut mélanger cela avec le game design de SuperMario 3 [# Super Mario Bros. 
 
 Il pourrait être intéressant d'imaginer le joueur se créer son deuxième cerveau voir de le pré-remplir avec des fait et anecdotes découvertes en cours de partie.
 
-Le game desing de [Pokémon Rouge et Bleue](https://youtu.be/xG982kye57Q?si=-GgSteAQnq3llTlj) offre des choses très intéressantes comme l'évolution des monstres (on pourrait peut être faire le parallèle avec une collection d'opérateurs et de savoirs ?), un alter ego qui évolue plus vite et pousse par son arrogance à ce dépasser, de PNJ qui partagent des savoirs et objets.
+Le game design de [Pokémon Rouge et Bleue](https://youtu.be/xG982kye57Q?si=-GgSteAQnq3llTlj) offre des choses très intéressantes comme l'évolution des monstres (on pourrait peut être faire le parallèle avec une collection d'opérateurs et de savoirs ?), un alter ego qui évolue plus vite et pousse par son arrogance à ce dépasser, de PNJ qui partagent des savoirs et objets.
 
 Je me demande si une vue [isométrique](https://youtu.be/l0OZWeZMt9s) ne serait pas une bonne chose, ainsi qu'un monde ouvert. L'auteur de la vidéo explique pourquoi il vaut mieux préférer la perspective dimétrique à la 18,27minutes (losange de 2 de large sur 1 de haut avec des angles à la base de 26,6° et des hauteurs de sqr(5)/2)
 

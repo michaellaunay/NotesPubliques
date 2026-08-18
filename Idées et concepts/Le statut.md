@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-08-02
-date_modification: 2023-08-02
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
@@ -52,4 +52,4 @@ Ces trois jeux de statut sont souvent interconnectés. Par exemple, une personne
 
 En conclusion, le statut est une force puissante qui peut avoir un impact profond sur nos vies. Nous sommes tous motivés à améliorer notre statut, et nous pouvons le faire de différentes manières. Les trois grands jeux de statut sont la dominance, la vertu et le succès.
 
-Une bonne analyse à travers ce spectre : [Yann Leonardi : Sa petite entreprise ne connait pas la crise](https://youtu.be/aZubNxpKpI0)
+Une bonne analyse à travers ce spectre : [Yann Leonardi : Sa petite entreprise ne connaît pas la crise](https://youtu.be/aZubNxpKpI0)

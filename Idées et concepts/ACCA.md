@@ -16,13 +16,13 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-08-02
-date_modification: 2023-08-02
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
 metadata_verifiees: false
 ---
-ACCA est un framwork de [[Copywritting]]
+ACCA est un framework de [[Copywritting]]
  
 - A : Attention (Attention) : Capturer l'attention du lecteur dès le début du message pour qu'il soit engagé dans la suite du contenu.
 - C : Curiosité (Curiosity) : Susciter la curiosité du lecteur en lui présentant quelque chose d'intriguant ou de surprenant.

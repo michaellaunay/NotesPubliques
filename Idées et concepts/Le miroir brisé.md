@@ -16,14 +16,14 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-07
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
 metadata_verifiees: false
 ---
 # Résumé
-Lorsque le message nous déplait, nous avons tendance à critiquer le porteur de la nouvelle.
+Lorsque le message nous déplaît, nous avons tendance à critiquer le porteur de la nouvelle.
 # Description
 La belle mère de blanche neige apprenant qu'elle n'est plus la plus belle du royaume, brise le miroir.
 # Liens
