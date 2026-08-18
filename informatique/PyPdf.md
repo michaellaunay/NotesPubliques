@@ -1,33 +1,33 @@
 ---
 schema_version: 1
-uid: "01M02JG1VFCHPCVCDKA3HJZ2ZP"
-titre: "PyPdf"
+uid: 01M02JG1VFCHPCVCDKA3HJZ2ZP
+titre: PyPdf
 aliases:
-  - "pypdf"
+- pypdf
 type: fiche
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - python
-  - pdf
-  - extraction-de-donnees
-resume: "Comparaison de bibliothèques Python d'extraction de texte et de tableaux depuis des PDF, avec exemples d'usage de pypdf."
+- informatique
+- python
+- pdf
+- extraction-de-donnees
+resume: Comparaison de bibliothèques Python d'extraction de texte et de tableaux depuis des PDF, avec exemples d'usage de pypdf.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
 #Expérimentation #Informatique 
-## comment en python parcourir des documents pdf contenant du text et le récupérer dans des structure json ?
+# comment en python parcourir des documents pdf contenant du text et le récupérer dans des structure json ?
 
 Il existe plusieurs bibliothèques Python qui peuvent vous aider à parcourir des documents PDF et à extraire leur contenu en tant que texte ou en tant que structure JSON. L'une des bibliothèques les plus populaires pour cette tâche est PyPDF2. Pour utiliser PyPDF2, vous devez d'abord l'installer en utilisant pip:
 
@@ -64,7 +64,7 @@ with open(FILE_NAME, 'rb') as file:
 Il existe aussi d'autres bibliothèques comme pdfminer, pdfquery, slate qui peuvent vous aider pour cette tâche. Il est important de choisir celle qui convient le mieux à vos besoins.
 
 
-## Comment récupérer un tableau d'un pdf avec pypdf
+# Comment récupérer un tableau d'un pdf avec pypdf
 
 Il n'est pas facile de récupérer un tableau d'un PDF en utilisant PyPDF2 car il ne prend en charge que la lecture des fichiers PDF et l'extraction de leur contenu en tant que texte brut. Cependant, il existe d'autres bibliothèques Python qui peuvent vous aider à extraire les tableaux d'un PDF, telles que pdfplumber et tabula-py.
 

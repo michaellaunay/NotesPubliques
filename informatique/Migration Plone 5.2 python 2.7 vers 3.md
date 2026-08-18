@@ -1,36 +1,36 @@
 ---
 schema_version: 1
-uid: "01M02JG1VETJDV361Y3W8SM94V"
-titre: "Migration Plone 5.2 python 2.7 vers 3"
+uid: 01M02JG1VETJDV361Y3W8SM94V
+titre: Migration Plone 5.2 python 2.7 vers 3
 aliases:
-  - "Migration ZODB Python 3"
+- Migration ZODB Python 3
 type: procedure
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - plone
-  - zope
-  - zodb
-  - python
-  - migration
-resume: "Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB et la migration de Plone 5.2 de Python 2.7 vers Python 3."
+- informatique
+- plone
+- zope
+- zodb
+- python
+- migration
+resume: Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB et la migration de Plone 5.2 de Python 2.7 vers Python 3.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-10-12
-date_modification: 2024-10-14
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
 Traduction en français de https://community.plone.org/t/best-practice-documentation-on-zodb-debugging/12778
 
-### Identifier ce qui est cassé  
+# Identifier ce qui est cassé  
 **Vérifiez l'intégralité de votre base de données**
 
 Utilisez l'outil **zodbverify** (<https://github.com/plone/zodbverify>) pour vérifier une base de données ZODB en itérant et en chargeant tous les enregistrements. **zodbverify** est disponible sous forme de script autonome et comme add-on pour *plone.recipe.zope2instance*. Utilisez la version la plus récente !
@@ -73,7 +73,7 @@ ModuleNotFoundError: No module named 'Products.ResourceRegistries': 1
 
 Vous verrez tous les différents types d'erreurs et les objets qui les provoquent, référencés par leur *oid* dans ZODB. Consultez l'annexe pour savoir comment traiter les *oid*.
 
-### Examiner un objet cassé
+# Examiner un objet cassé
 
 Dans cet exemple, l'objet avec l'oid `0x376b77` semble être une instance de **FormThanksPage** provenant de **Products.PloneFormGen**. Mais attendez ! Vous avez supprimé tous ces objets, alors où se trouve-t-il sur le site ?
 
@@ -88,7 +88,7 @@ Cependant, il est souvent question d'un autre type d'objet, comme :
 
 La partie la plus difficile est de déterminer **ce qu'est l'objet cassé** et **où il se trouve** avant de pouvoir le supprimer ou le corriger.
 
-### Inspecter un objet
+# Inspecter un objet
 
 Pour examiner l'objet, passez l'*oid* et l'indicateur `-D` à zodbverify comme ceci :
 
@@ -114,7 +114,7 @@ Vous pouvez maintenant inspecter l'objet, par exemple :
 
 En inspectant son dictionnaire interne, vous pourriez voir des détails sur l'état de l'objet. Vous pouvez aussi utiliser le débogueur pour examiner en profondeur les données stockées et tenter de réparer l'objet.
 
-### Inspecter le chemin des références
+# Inspecter le chemin des références
 
 Maintenant que vous savez que l'objet **FormThanksPage** est cassé, vous ne savez toujours pas où il se trouve réellement dans la base de données.
 
@@ -141,19 +141,19 @@ Cela signifie qu'il existe une référence à un objet cassé dans l'outil **Int
 
 ---
 
-### Décider de la manière de résoudre le problème
+# Décider de la manière de résoudre le problème
 
 Dans ce cas précis, la solution est claire : il faut supprimer les références aux objets cassés dans l'outil **IntId**. Cependant, il existe plusieurs approches pour résoudre ces problèmes, selon la situation. Voici quelques options :
 
 ---
 
-#### Option 1 : Ignorer les erreurs
+## Option 1 : Ignorer les erreurs
 
 Il est possible d'ignorer ces erreurs, surtout dans le cas de bases de données anciennes migrées depuis Plone 2 ou 3. Si ces erreurs ne se manifestent jamais lors de l'utilisation du site et que le client n'a ni le budget ni l'intérêt de les corriger, vous pouvez les laisser telles quelles. Si elles n'ont aucun impact (par exemple, si vous pouvez toujours compacter la base de données ou si aucune fonctionnalité ne tombe en panne), il est parfois plus simple de les ignorer.
 
 ---
 
-#### Option 2 : Migrer/Modifier une base de données avec **zodbupdate**
+## Option 2 : Migrer/Modifier une base de données avec **zodbupdate**
 
 Utilisez cette option lorsque des modules ou des classes ont été déplacés ou renommés.
 
@@ -190,7 +190,7 @@ Vous pouvez définir vos propres mappings dans vos packages et les enregistrer d
 - **Exemple de mapping de décodage** : [ZopeVersionControl commit](https://github.com/zopefoundation/Products.ZopeVersionControl/commit/138cf39)
 
 
-### Option 3 : Contourner avec un patch
+# Option 3 : Contourner avec un patch
 
 Il est possible d'injecter un module pour contourner les classes ou modules manquants ou déplacés. 
 
@@ -241,7 +241,7 @@ Plus d'exemples :
 
 ---
 
-### Option 4 : Remplacer les objets cassés par des objets factices (dummies)
+# Option 4 : Remplacer les objets cassés par des objets factices (dummies)
 
 Si un objet est manquant (ex. : vous obtenez une erreur **POSKeyError**) ou s'il est trop corrompu pour être réparé, vous pouvez choisir de le remplacer par un objet factice.
 
@@ -268,7 +268,7 @@ transaction.commit()
 
 ---
 
-### Option 5 : Supprimer les objets cassés de la base de données
+# Option 5 : Supprimer les objets cassés de la base de données
 
 Vous pouvez également choisir de supprimer les objets cassés directement de la base de données :
 
@@ -288,11 +288,11 @@ transaction.commit()
 
 Cependant, cette approche présente des risques. En supprimant l'objet, vous enlevez son pickle mais pas nécessairement toutes les références qui y sont associées. Cela peut entraîner des erreurs **POSKeyError** par la suite. Il est donc recommandé d'utiliser cette méthode avec précaution.
 
-### Option 6 : Réparation manuelle
+# Option 6 : Réparation manuelle
 
 C'est généralement la meilleure méthode pour résoudre la majorité des problèmes.
 
-#### Étapes à suivre :
+## Étapes à suivre :
 
 1. Utilisez **zodbverify** pour identifier tous les objets cassés.
 2. Concentrez-vous sur un type d'erreur à la fois.
@@ -300,7 +300,7 @@ C'est généralement la meilleure méthode pour résoudre la majorité des probl
 4. Si nécessaire, utilisez le script **fsoids.py** pour suivre les références jusqu'à ce que vous trouviez où se situe l'objet dans l'arbre des objets. **zodbverify** essaiera de faire cela pour vous.
 5. Supprimez ou corrigez l'objet (en utilisant une étape de mise à jour, un débogueur comme **pdb** ou un mapping de renommage).
 
-#### Identification des objets cassés
+## Identification des objets cassés
 
 La version la plus récente de **zodbverify** possède une fonctionnalité qui automatise cette tâche (discutée dans l'exemple 1). En attendant que cette fonctionnalité soit intégrée, vous devez utiliser la branche `show_references` du pull-request : <https://github.com/plone/zodbverify/pull/8>.
 
@@ -308,7 +308,7 @@ Lorsqu'il inspecte un *oid*, **zodbverify** crée un dictionnaire de toutes les 
 
 Le résultat vous donnera une idée claire de l'emplacement de l'objet cassé dans l'arborescence des objets, et vous indiquera comment y accéder et le corriger.
 
-#### Exemple
+## Exemple
 
 Si l'*oid* `0x3b1d06` est cassé, vous pouvez l'inspecter avec **zodbverify** :
 
@@ -361,7 +361,7 @@ Ensuite, **zodbverify** construira un arbre de références pour cet objet :
 
 Grâce à cette sortie, vous pouvez constater que l'objet cassé fait partie du **RelationCatalog** de **zc.relation**. Consultez la section "Coupables fréquents" pour savoir comment traiter ces objets.
 
-### Exemple 1 d'utilisation de **fsoids.py**
+# Exemple 1 d'utilisation de **fsoids.py**
 
 Dans cet exemple, j'utilise le script **fsoids.py** pour localiser où se trouve réellement un objet cassé, afin que je puisse le supprimer ou le corriger. Bien que **zodbverify** soit plus facile à utiliser, cette approche est discutée ici car elle était la meilleure option avant l'extension de **zodbverify** et permet de mieux comprendre le fonctionnement des références dans ZODB.
 
@@ -452,13 +452,13 @@ référencé par 0x11c278 z3c.relationfield.index.RelationCatalog
 
 **Trouvé !** L'objet cassé est finalement situé dans le **RelationCatalog** de **z3c.relationfield.index**.
 
-### Exemple 2 d'utilisation de **fsoids.py**
+# Exemple 2 d'utilisation de **fsoids.py**
 
 Dans cet exemple, **zodbverify** a détecté une trace de **Products.PloneFormGen**, même si vous pensez avoir désinstallé correctement l'addon (par exemple, en utilisant [collective.migrationhelpers](https://github.com/collective/collective.migrationhelpers/blob/master/src/collective/migrationhelpers/addons.py#L11)).
 
 Nous allons maintenant suivre la piste des objets qui font référence à cet élément dans l'arborescence pour le localiser et le corriger.
 
-#### Étape 1 : Suivi des références de l'objet cassé
+## Étape 1 : Suivi des références de l'objet cassé
 
 ```bash
 ./bin/zopepy ./parts/packages/ZODB/scripts/fsoids.py var/filestorage/Data.fs 0x372d00
@@ -479,7 +479,7 @@ oid 0x372d00 Products.PloneFormGen.content.thanksPage.FormThanksPage 1 révision
 
 Nous voyons ici que cet objet est référencé par l'oid `0x2c1b51`. Poursuivons notre enquête.
 
-#### Étape 2 : Suivre les autres références
+## Étape 2 : Suivre les autres références
 
 Ensuite, examinons l'oid `0x2c1b51` :
 
@@ -507,7 +507,7 @@ oid 0x280184 five.intid.intid.IntIds 1 révision
 
 Ceci est le catalogue **IntId** de **zope.intid**. Le problème est similaire à celui du catalogue de relations (**zc.relation**), où des références à des objets cassés peuvent rester dans le catalogue et doivent être supprimées manuellement.
 
-#### Étape 3 : Suppression manuelle des objets cassés dans une session **pdb**
+## Étape 3 : Suppression manuelle des objets cassés dans une session **pdb**
 
 Voici un exemple de code pour supprimer tous les objets cassés du catalogue **IntIds** dans une session **pdb** :
 
@@ -526,7 +526,7 @@ Après avoir compacté la base de données, le problème devrait être résolu. 
 
 ---
 
-### Autres options pour l'inspection de ZODB
+# Autres options pour l'inspection de ZODB
 
 - **zodbbrowser** : Un outil Zope3 pour naviguer dans une base de données ZODB via un navigateur. Cependant, il peut être difficile à faire fonctionner avec une base de données ZODB Plone.
 - **zc.zodbdgc** : Cet outil valide les bases de données distribuées en partant de la racine et en vérifiant que tous les objets référencés sont accessibles.
@@ -534,7 +534,7 @@ Après avoir compacté la base de données, le problème devrait être résolu. 
 
 ---
 
-### Coupables fréquents : **IntIds** et **Relations**
+# Coupables fréquents : **IntIds** et **Relations**
 
 Les outils **IntId** et les catalogues de relations sont souvent à l'origine des problèmes, surtout si vous avez migré d'**Archetypes** vers **Dexterity**.
 
@@ -561,7 +561,7 @@ Pour plus de détails, consultez le code source : [collective.relationhelpers](h
 
 ---
 
-### Annotations
+# Annotations
 
 De nombreux addons et fonctionnalités de Plone stockent des données dans des annotations sur le portail ou sur du contenu. Il est conseillé de vérifier les annotations après une migration pour voir si certaines peuvent être supprimées en toute sécurité.
 
@@ -585,15 +585,15 @@ def cleanup_upload_annotation(context=None):
             del ann['file_upload_map'][uuid]
 ```
 
-### TODO
+# TODO
 
 à finir et merger avec  [https://github.com/plone/zodbverify/pull/8 9](https://github.com/plone/zodbverify/pull/8)
 
-### Annexe : Migration d'une ZODB de Python 2 à Python 3
+# Annexe : Migration d'une ZODB de Python 2 à Python 3
 
 Étant donné que les utilisateurs rencontrent souvent des problèmes après la migration de leur ZODB, voici un aperçu rapide de la migration d'une base de données ZODB de Python 2 vers Python 3.
 
-#### Étapes de la migration
+## Étapes de la migration
 
 1. **Exécuter zodbupdate avec l'option de conversion vers Python 3** :
    Utilisez le script **zodbupdate** en Python 3 avec le paramètre `--convert-py3`.
@@ -625,7 +625,7 @@ def cleanup_upload_annotation(context=None):
 
 ---
 
-#### Processus de migration résumé
+## Processus de migration résumé
 
 1. **D'abord, exécutez `zodbupdate` en Python 2** sans utiliser l'option de conversion vers Python 3 pour détecter et appliquer plusieurs règles de renommage explicites et implicites.
 
@@ -653,7 +653,7 @@ def cleanup_upload_annotation(context=None):
 
 ---
 
-#### Manipulation des oids
+## Manipulation des oids
 
 Voici quelques exemples utiles pour transformer les oids entre différents formats (entier, hexadécimal, texte) :
 
@@ -686,7 +686,7 @@ Voici quelques exemples utiles pour transformer les oids entre différents forma
 
 ---
 
-#### Obtenir le chemin des blobs
+## Obtenir le chemin des blobs
 
 Pour obtenir le chemin d'un blob en utilisant un oid :
 
@@ -700,7 +700,7 @@ return BushyLayout.oid_to_path(None, oid)
 
 ---
 
-#### Charger un objet à partir d'un oid dans une session **pdb**
+## Charger un objet à partir d'un oid dans une session **pdb**
 
 Pour charger un objet à partir de son oid dans une session **pdb** :
 
@@ -713,7 +713,7 @@ obj = app._p_jar.get(p64(oid))
 
 ---
 
-### Liens utiles
+# Liens utiles
 
 De nombreuses personnes de la communauté Plone/Zope ont écrit sur ce sujet. Voici quelques ressources utiles :
 

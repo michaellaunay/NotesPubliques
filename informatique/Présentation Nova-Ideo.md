@@ -1,29 +1,29 @@
 ---
 schema_version: 1
-uid: "01M02JG1VF3CAAN45WM2GXPJ0K"
-titre: "Présentation Nova-Ideo"
+uid: 01M02JG1VF3CAAN45WM2GXPJ0K
+titre: Présentation Nova-Ideo
 aliases:
-  - "Nova-Ideo"
+- Nova-Ideo
 type: fiche
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
+- recherche
 themes:
-  - informatique
-  - nova-ideo
-  - ingenierie-des-modeles
-  - processus-metier
-  - recherche
-resume: "Présentation de Nova-Ideo et de la thèse d'Amen Souissi sur la modélisation centrée sur les processus métier."
+- informatique
+- nova-ideo
+- ingenierie-des-modeles
+- processus-metier
+resume: Présentation de Nova-Ideo et de la thèse d'Amen Souissi sur la modélisation centrée sur les processus métier.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-04-16
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
