@@ -1,25 +1,25 @@
 ---
 schema_version: 1
-uid: "01M02JG1VP9AAEA6DH3CBZV7X2"
-titre: "MU 07 Page HTML"
+uid: 01M02JG1VP9AAEA6DH3CBZV7X2
+titre: MU 07 Page HTML
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - genie-logiciel
-  - html
-  - excalidraw
-  - intelligence-artificielle
-  - meetup
-resume: "Génération du HTML de l'interface à partir d'une maquette Excalidraw soumise à l'IA."
+- genie-logiciel
+- html
+- excalidraw
+- intelligence-artificielle
+- meetup
+resume: Génération du HTML de l'interface à partir d'une maquette Excalidraw soumise à l'IA.
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-03-28
-date_modification: 2024-04-03
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
@@ -141,7 +141,7 @@ Propose une feuile de style css élégante pour cette page et donne la balise à
 **Chat GPT**
 Pour donner à votre page un style plus élégant et personnalisé, vous pouvez créer une feuille de style CSS. Voici une proposition simple qui améliore l'apparence de votre page en utilisant des couleurs douces, des espacements agréables et une typographie plus soignée. 
 
-### Feuille de style CSS (`styles.css`)
+# Feuille de style CSS (`styles.css`)
 
 ```css
 body {
@@ -188,7 +188,7 @@ footer a:hover {
 
 Ce CSS ajoute des styles pour les textes, les liens, les listes et le pied de page pour créer une apparence cohérente et attrayante pour votre site. Les couleurs utilisées sont modérées pour ne pas distraire du contenu principal.
 
-### Ajouter la feuille de style à votre page HTML
+# Ajouter la feuille de style à votre page HTML
 
 Pour utiliser cette feuille de style, vous devez d'abord sauvegarder le CSS dans un fichier nommé `styles.css` et le placer dans un répertoire approprié. Si vous n'avez pas déjà un répertoire pour les fichiers CSS, vous pouvez en créer un nommé `css` dans votre répertoire `src`. 
 
