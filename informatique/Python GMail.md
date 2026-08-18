@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -27,7 +27,7 @@ metadata_verifiees: false
 ---
 #Expérimentation #Informatique 
 # Python GMail
-Exemple de code python permettant de se connecter à son compte messagerie gmail, puis de récupérer dans un dossier tous les emails ayant la chaine "RAHEU" en objet et ayant été envoyer le 16 novembre 2022.
+Exemple de code python permettant de se connecter à son compte messagerie gmail, puis de récupérer dans un dossier tous les emails ayant la chaîne "RAHEU" en objet et ayant été envoyer le 16 novembre 2022.
 
 Voici un exemple de code Python qui permet de se connecter à un compte Gmail, de récupérer les e-mails qui ont "RAHEU" dans l'objet et qui ont été envoyés le 16 novembre 2022, puis de les enregistrer dans un dossier:
 
