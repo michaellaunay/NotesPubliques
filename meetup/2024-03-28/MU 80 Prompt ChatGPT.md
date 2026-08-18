@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-25
-date_modification: 2026-01-09
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
@@ -620,4 +620,4 @@ On constate plusieurs erreurs, le style n'est pas chargé et mini.css renvoie su
 Le style proposé est moche.
 Les éléments ne sont pas dans l'ordre du sketch, mais le travail fournit par ChatGPT constitue une bonne base pour commencer.
 
-Pour contourner cela il faut basculer sur Visual Sutdio Code.
+Pour contourner cela il faut basculer sur Visual Studio Code.
