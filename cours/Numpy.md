@@ -1,31 +1,31 @@
 ---
 schema_version: 1
-uid: "01M02EX5BSXS8FXKF203CJRQSR"
-titre: "Numpy"
+uid: 01M02EX5BSXS8FXKF203CJRQSR
+titre: Numpy
 aliases:
-  - "NumPy"
+- NumPy
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - python
-  - calcul-scientifique
-  - numpy
-resume: "Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées."
+- informatique
+- python
+- calcul-scientifique
+- numpy
+resume: 'Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées.'
 niveau: debutant
 prerequis:
-  - "[[Python]]"
+- '[[Python]]'
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-09-25
-date_modification: 2024-10-14
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -40,7 +40,7 @@ metadata_verifiees: false
    Exemple d'un tableau NumPy :
    ```python
    import numpy as np
-   arr = np.array([1, 2, 3, 4, 5])
+   arr = np.array()
    print(arr)
    # Output: [1 2 3 4 5]
    ```
@@ -51,7 +51,7 @@ metadata_verifiees: false
 
    Exemple :
    ```python
-   arr = np.array([1, 2, 3, 4, 5])
+   arr = np.array()
    arr_squared = arr ** 2
    print(arr_squared)
    # Output: [ 1  4  9 16 25]
@@ -63,7 +63,7 @@ metadata_verifiees: false
 
    Exemple d'opération mathématique sur un tableau 2D :
    ```python
-   matrix = np.array([[1, 2], [3, 4]])
+   matrix = np.array([, [3, 4]])
    transposed = matrix.T
    print(transposed)
    # Output: [[1 3]
@@ -85,7 +85,7 @@ metadata_verifiees: false
 
    Exemple de manipulation :
    ```python
-   arr = np.array([10, 20, 30, 40, 50])
+   arr = np.array()
    sub_arr = arr[1:4]  # Accès aux éléments de l'index 1 à 3
    print(sub_arr)
    # Output: [20 30 40]
@@ -97,7 +97,7 @@ metadata_verifiees: false
 
    Exemple :
    ```python
-   arr = np.array([1, 2, 3, 4, 5])
+   arr = np.array()
    mean_value = np.mean(arr)
    print(mean_value)
    # Output: 3.0

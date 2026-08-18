@@ -1,26 +1,26 @@
 ---
 schema_version: 1
-uid: "01M02EX5BRSK0FWK4QAD4RXRFB"
-titre: "Logique"
+uid: 01M02EX5BRSK0FWK4QAD4RXRFB
+titre: Logique
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - mathematiques
-  - logique
-  - informatique-theorique
-resume: "Cours de logique appliquée à l'informatique : logique propositionnelle, opérations de base, tautologies et inférence, puis logique des prédicats du premier ordre."
+- mathematiques
+- logique
+- informatique-theorique
+resume: 'Cours de logique appliquée à l''informatique : logique propositionnelle, opérations de base, tautologies et inférence, puis logique des prédicats du premier ordre.'
 niveau: intermediaire
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-06-13
-date_modification: 2023-06-13
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -249,7 +249,7 @@ La logique floue, introduite par Lotfi Zadeh en 1965, est une logique multivalu�
 
 ## Ensembles Flous et Opérations:
 
-Un ensemble flou est un ensemble dont les éléments ont des degrés d'appartenance plutôt que des appartenances strictes ou non. Chaque élément d'un ensemble flou a un degré d'appartenance dans l'intervalle [0, 1], où 0 signifie qu'il n'appartient pas à l'ensemble et 1 signifie qu'il appartient pleinement à l'ensemble. Les degrés d'appartenance intermédiaires représentent des appartenances partielles à l'ensemble.
+Un ensemble flou est un ensemble dont les éléments ont des degrés d'appartenance plutôt que des appartenances strictes ou non. Chaque élément d'un ensemble flou a un degré d'appartenance dans l'intervalle, où 0 signifie qu'il n'appartient pas à l'ensemble et 1 signifie qu'il appartient pleinement à l'ensemble. Les degrés d'appartenance intermédiaires représentent des appartenances partielles à l'ensemble.
 
 Les opérations sur les ensembles flous sont des extensions des opérations sur les ensembles classiques. L'union floue, l'intersection floue et la complémentarité floue sont définies en termes de max, min et complément (1-x), respectivement.
 

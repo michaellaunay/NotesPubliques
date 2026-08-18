@@ -1,35 +1,35 @@
 ---
 schema_version: 1
-uid: "01M02EX5BNFFY4EQ5SRE4WGWKW"
-titre: "Les transformers"
+uid: 01M02EX5BNFFY4EQ5SRE4WGWKW
+titre: Les transformers
 aliases:
-  - "Transformers"
-  - "Attention is all you need"
+- Transformers
+- Attention is all you need
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - intelligence-artificielle
-  - apprentissage-profond
-  - transformers
-  - attention
-  - llm
-resume: "Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète."
+- informatique
+- intelligence-artificielle
+- apprentissage-profond
+- transformers
+- attention
+- llm
+resume: 'Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d''attention et architecture complète.'
 niveau: avance
 prerequis:
-  - "[[Les CNN et RNN]]"
-  - "[[Pytorch]]"
+- '[[Les CNN et RNN]]'
+- '[[Pytorch]]'
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2026-06-08
-date_modification: 2026-06-08
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -6708,13 +6708,13 @@ $$
 Première ligne :
 
 $$
-0.5[2,0] + 0.5[0,4] = [1,2]  
+0.5 + 0.5 =  
 $$
 
 Deuxième ligne :
 
 $$
-0.330[2,0] + 0.670[0,4] = [0.660,2.680]  
+0.330 + 0.670 = [0.660,2.680]  
 $$
 
 Donc :
@@ -6752,19 +6752,19 @@ Dans cet exemple :
 La première sortie :
 
 $$
-[1,2]  
+  
 $$
 
 est exactement la moyenne de :
 
 $$
-[2,0]  
+  
 $$
 
 et :
 
 $$
-[0,4]  
+  
 $$
 
 La deuxième sortie :

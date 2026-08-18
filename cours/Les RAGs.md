@@ -1,40 +1,40 @@
 ---
 schema_version: 1
-uid: "01M02EX5BAMEN15GB8B2S2QY9C"
-titre: "Les RAGs"
+uid: 01M02EX5BAMEN15GB8B2S2QY9C
+titre: Les RAGs
 aliases:
-  - "Graph RAG"
-  - "Agentic RAG"
+- Graph RAG
+- Agentic RAG
 type: fiche
 statut: actif
 para: ressource
 domaines:
-  - enseignement
-  - veille
+- enseignement
+- veille
 themes:
-  - informatique
-  - intelligence-artificielle
-  - rag
-  - graph-rag
-  - agentic-rag
-resume: "Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle."
+- informatique
+- intelligence-artificielle
+- rag
+- graph-rag
+- agentic-rag
+resume: 'Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.'
 niveau: intermediaire
 prerequis:
-  - "[[RAG]]"
+- '[[RAG]]'
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2026-06-03
-date_modification: 2026-06-03
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
 Le RAG n’est pas une seule **architecture**, c’est une famille de méthodes pour donner à un LLM accès à une connaissance externe au moment de répondre. Le papier fondateur de 2020 décrit déjà cette idée : combiner la mémoire “paramétrique” du modèle, c’est-à-dire ce qu’il a appris pendant l’entraînement, avec une mémoire externe récupérée par recherche documentaire. ([arXiv](https://arxiv.org/abs/2005.11401?utm_source=chatgpt.com "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"))
 
-## 1. Le problème de départ : pourquoi le RAG existe
+# 1. Le problème de départ : pourquoi le RAG existe
 
 Un LLM seul fonctionne comme un modèle qui a appris des régularités linguistiques et beaucoup de connaissances générales. Mais il a plusieurs limites :
 
@@ -66,7 +66,7 @@ Réponse du LLM basée sur ces passages
 
 Donc le LLM ne répond plus seulement “de mémoire”. Il répond avec un contexte documentaire fourni à la volée.
 
-## 2. Le RAG standard
+# 2. Le RAG standard
 
 Dans un RAG classique, les documents sont découpés en morceaux, souvent appelés **chunks**.
 
@@ -134,7 +134,7 @@ Réponse : L’API payments tourne sur cluster-3.
 
 La recherche vectorielle retrouve directement le bon passage.
 
-## 3. La limite du RAG standard
+# 3. La limite du RAG standard
 
 La newsletter donne un bon exemple.
 
@@ -192,7 +192,7 @@ C’est ce que montre la première image : le système récupère le fait 1 et l
 
 Le RAG standard récupère des morceaux pertinents **localement**, mais il ne garantit pas de récupérer le chemin logique complet.
 
-## 4. Graph RAG : ajouter une couche relationnelle
+# 4. Graph RAG : ajouter une couche relationnelle
 
 Graph RAG ajoute une structure au-dessus des documents : un **graphe de connaissances**.
 
@@ -264,11 +264,11 @@ Quel sous-graphe est pertinent ?
 
 Microsoft Research décrit GraphRAG comme une technique combinant extraction de texte, analyse de réseau, prompting LLM et résumé, afin de mieux comprendre des corpus textuels. ([Microsoft](https://www.microsoft.com/en-us/research/project/graphrag/?utm_source=chatgpt.com "Project GraphRAG - Microsoft Research")) Leur papier présente GraphRAG comme une approche adaptée aux questions sur des corpus privés, notamment quand la question nécessite une compréhension globale ou relationnelle du corpus. ([arXiv](https://arxiv.org/abs/2404.16130?utm_source=chatgpt.com "A Graph RAG Approach to Query-Focused Summarization"))
 
-## 5. Ce que fait concrètement un pipeline Graph RAG
+# 5. Ce que fait concrètement un pipeline Graph RAG
 
 La deuxième image montre le pipeline.
 
-### Étape 1 : ingestion des documents
+## Étape 1 : ingestion des documents
 
 On part de documents bruts :
 
@@ -282,7 +282,7 @@ logs
 notions d’architecture
 ```
 
-### Étape 2 : extraction par LLM
+## Étape 2 : extraction par LLM
 
 Un LLM lit les documents et extrait des triplets du type :
 
@@ -307,7 +307,7 @@ cluster-3:
   maintenance_date: Friday
 ```
 
-### Étape 3 : construction du graphe
+## Étape 3 : construction du graphe
 
 Les entités deviennent des nœuds.
 
@@ -319,7 +319,7 @@ Les relations deviennent des arêtes.
 (cluster-3) --maintenance--> (Friday)
 ```
 
-### Étape 4 : retrieval par parcours de graphe
+## Étape 4 : retrieval par parcours de graphe
 
 Au moment de la question, le système identifie les entités de la question :
 
@@ -337,7 +337,7 @@ checkout service
 → Friday maintenance
 ```
 
-### Étape 5 : génération
+## Étape 5 : génération
 
 Le LLM reçoit un contexte structuré :
 
@@ -355,7 +355,7 @@ Oui, le checkout service risque d’être affecté, car il dépend de payments A
 
 Le point important : **Graph RAG rend explicites les relations que le RAG standard espère retrouver implicitement par similarité vectorielle**.
 
-## 6. Graph RAG ne remplace pas forcément le RAG standard
+# 6. Graph RAG ne remplace pas forcément le RAG standard
 
 Il ne faut pas comprendre :
 
@@ -388,7 +388,7 @@ Graph RAG devient utile quand les questions ressemblent à :
 
 Là, il faut relier plusieurs morceaux d’information.
 
-## 7. Les coûts et difficultés du Graph RAG
+# 7. Les coûts et difficultés du Graph RAG
 
 Graph RAG est puissant, mais il a des contraintes.
 
@@ -421,7 +421,7 @@ base vectorielle
 
 Le graphe aide à naviguer dans la structure, mais le texte source reste nécessaire pour justifier la réponse.
 
-## 8. Agentic RAG : laisser un agent piloter la recherche
+# 8. Agentic RAG : laisser un agent piloter la recherche
 
 Agentic RAG est différent.
 
@@ -460,7 +460,7 @@ Ai-je besoin de vérifier la réponse ?
 
 LangChain décrit par exemple des retrieval agents capables de décider s’ils doivent récupérer du contexte depuis une vector store ou répondre directement. ([Documentation de LangChain](https://docs.langchain.com/oss/python/langgraph/agentic-rag?utm_source=chatgpt.com "Build a custom RAG agent with LangGraph")) Sa documentation distingue aussi le RAG “2-step”, où on récupère puis on répond, de l’Agentic RAG, où la récupération peut être exposée comme un outil utilisable par un agent. ([Documentation de LangChain](https://docs.langchain.com/oss/python/langchain/retrieval?utm_source=chatgpt.com "Retrieval - Docs by LangChain"))
 
-## 9. Exemple d’Agentic RAG
+# 9. Exemple d’Agentic RAG
 
 Question :
 
@@ -504,7 +504,7 @@ Agentic RAG répond à :
 "Décide toi-même quelles recherches et quels outils sont nécessaires pour accomplir la tâche."
 ```
 
-## 10. Comparaison synthétique
+# 10. Comparaison synthétique
 
 |Architecture|Principe|Très bon pour|Limite principale|
 |---|---|---|---|
@@ -512,11 +512,11 @@ Agentic RAG répond à :
 |Graph RAG|Graphe d’entités et de relations|Raisonnement multi-hop, dépendances, liens entre documents|Indexation plus complexe, extraction imparfaite|
 |Agentic RAG|Agent qui choisit outils et étapes|Tâches dynamiques, multi-sources, workflows|Plus coûteux, moins prévisible, plus difficile à évaluer|
 
-## 11. Single-hop, multi-hop, multi-source
+# 11. Single-hop, multi-hop, multi-source
 
 La newsletter utilise trois catégories utiles.
 
-### Single-hop factual lookup
+## Single-hop factual lookup
 
 Une seule étape suffit.
 
@@ -528,7 +528,7 @@ Réponse : cluster-3.
 
 RAG standard suffit.
 
-### Multi-hop relationship query
+## Multi-hop relationship query
 
 Il faut relier plusieurs faits.
 
@@ -541,7 +541,7 @@ checkout service
 
 Graph RAG est adapté.
 
-### Dynamic multi-source task
+## Dynamic multi-source task
 
 Il faut consulter plusieurs outils ou bases, dans un ordre qui dépend de ce qu’on découvre.
 
@@ -556,7 +556,7 @@ docs architecture
 
 Agentic RAG est adapté.
 
-## 12. Le piège : croire que la similarité vectorielle comprend tout
+# 12. Le piège : croire que la similarité vectorielle comprend tout
 
 La recherche vectorielle est souvent présentée comme “sémantique”, et c’est vrai dans une certaine mesure. Mais elle ne raisonne pas comme un humain.
 
@@ -590,7 +590,7 @@ Pourtant, il est nécessaire.
 
 C’est là que le graphe devient utile.
 
-## 13. Agentic RAG n’est pas magique non plus
+# 13. Agentic RAG n’est pas magique non plus
 
 Agentic RAG donne plus de liberté au système, mais cette liberté a un coût.
 
@@ -630,7 +630,7 @@ logs
 
 En ingénierie, l’Agentic RAG est puissant, mais il faut le traiter comme un orchestrateur probabiliste, pas comme un simple appel de fonction fiable.
 
-## 14. Une architecture réaliste en production
+# 14. Une architecture réaliste en production
 
 Dans une vraie architecture, on peut combiner les trois.
 
@@ -668,7 +668,7 @@ API pour les données temps réel
 Agent pour orchestrer certains cas complexes
 ```
 
-## 15. Exemple avec ton contexte informatique
+# 15. Exemple avec ton contexte informatique
 
 Imagine une base documentaire d’infrastructure Kubernetes.
 
@@ -683,7 +683,7 @@ fichiers Terraform
 logs d’exploitation
 ```
 
-### RAG standard
+## RAG standard
 
 Question :
 
@@ -693,7 +693,7 @@ Quelle variable d’environnement configure Redis dans l’API ?
 
 Le RAG standard suffit probablement. Il retrouve le chunk contenant la variable.
 
-### Graph RAG
+## Graph RAG
 
 Question :
 
@@ -714,7 +714,7 @@ services
 
 Graph RAG est plus adapté.
 
-### Agentic RAG
+## Agentic RAG
 
 Question :
 
@@ -736,7 +736,7 @@ proposer un patch
 
 C’est plutôt Agentic RAG.
 
-## 16. Comment lire la newsletter en une phrase
+# 16. Comment lire la newsletter en une phrase
 
 La newsletter dit ceci :
 
