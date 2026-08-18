@@ -18,7 +18,7 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-05-30
-date_modification: 2023-06-08
+date_modification: 2026-08-18
 confidentialite: privee
 publication:
   - notes-publiques
@@ -73,7 +73,7 @@ Non seulement les "frais d'internement" sont supportés par les "prisonniers" eu
 
 Cela donne aux multinationales une capacité d'influence et de contrôle sans précédent, qui dans de nombreux cas, dépasse celle des États. Non seulement elles peuvent modeler le comportement et les opinions à grande échelle, mais elles sont également capables de traverser les frontières et d'influencer les utilisateurs dans le monde entier. Par conséquent, il est crucial de réglementer ces multinationales pour permettre aux utilisateurs de protéger leurs droits et libertés.
 
-Entendons-nous bien, je ne demande pas la régulation coércitive, mais l'ouverture des choix pour les utilisateurs. Et pour pouvoir le faire, il est nécessaire que les plateformes aient l'obligation de fournir une information claire et juste sur leurs algorithmes dès lors qu'ils traitent des informations personnelles ou qu'ils font des propositions de contenus.
+Entendons-nous bien, je ne demande pas la régulation coercitive, mais l'ouverture des choix pour les utilisateurs. Et pour pouvoir le faire, il est nécessaire que les plateformes aient l'obligation de fournir une information claire et juste sur leurs algorithmes dès lors qu'ils traitent des informations personnelles ou qu'ils font des propositions de contenus.
 
 Les questions éthiques et juridiques entourant la régulation des géants du numérique sont complexe et cruciales. Les mesures prises par les gouvernements pour réglementer ces entreprises ont souvent du mal à suivre le rythme rapide du développement technologique. Cela s'avère particulièrement vrai lorsqu'il s'agit de protéger la vie privée des utilisateurs, de prévenir la désinformation, et d'assurer une concurrence équitable.
 

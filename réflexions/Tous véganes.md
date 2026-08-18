@@ -17,7 +17,7 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-09-15
-date_modification: 2024-04-03
+date_modification: 2026-08-18
 confidentialite: privee
 publication:
   - notes-publiques
@@ -25,7 +25,7 @@ rag: true
 metadata_verifiees: false
 ---
 Aucune activité humaine n'est totalement sans conséquences sur le bien-être animal. Si l'on étend notre conception de la protection animale pour inclure les insectes, aucun système de production ne peut être jugé pleinement éthique. Cultiver des fruits et des légumes perturbe l'habitat des invertébrés, par des pratiques allant de la déforestation à l'usage de pesticides. Nos pratiques ont contribué à une chute de 60% de la population d'insectes au cours des quatre dernières décennies. Petit, je faisais 100 km et le pare-brise de mon père était couvert d'insectes. J'attrapais des têtards à la main dans les cours d'eau, où il y avait aussi des poissons et des salamandres, les chemins étaient bordés de haie où les oiseaux chantaient.
-La frontière entre ce qui est considéré comme acceptable ou non est influencée par notre culture, la politique et la philosophique. Nous ne voyons que ce que l'on connait. Ces critères sont à la fois personnels et collectifs, et ils évoluent constamment. Ce qui est inimaginable aujourd'hui peut devenir acceptable demain (c.f. fenêtre d'Overton).
+La frontière entre ce qui est considéré comme acceptable ou non est influencée par notre culture, la politique et la philosophique. Nous ne voyons que ce que l'on connaît. Ces critères sont à la fois personnels et collectifs, et ils évoluent constamment. Ce qui est inimaginable aujourd'hui peut devenir acceptable demain (c.f. fenêtre d'Overton).
 Même un régime végétalien ne met pas fin aux critiques ou aux dilemmes éthiques. On pourrait vous accuser de contribuer à d'autres formes de dommages environnementaux ou sociaux, de méconnaissances, de sectarisme, d'être des urbains ou d'être incapable de vivre en autonomie totale, sans dégrader directement ou indirectement votre environnement. Chaque choix de vie a des répercussions, que ce soit sur d'autres humains ou sur différentes espèces.
 Je vis dans une caravane sur un terrain où je construis moi-même une maison bioclimatique. J'ai planté plus de 100 arbres et créé plus de 120 m de haies sur une parcelle de 3000 m². Je peux témoigner que viser l'autosuffisance alimentaire est quasiment impossible sans tomber dans la précarité. Des tâches simples, mais chronophages, comme gérer des toilettes sèches, peuvent prendre un temps considérable sans apporter de valeur ajoutée autre que de rendre à la terre ce qu'elle nous a offert, et d'avoir un usage de l'eau "SENSÉ" (qui peut jeter la première pierre ?).
 La quête d'autosuffisance — que ce soit en termes d'énergie, d'eau, d'alimentation ou même de vêtements — est un rappel brutal de nos limites et des compromis nécessaires pour une vie durable. Dans des conditions difficiles, comme lorsque l'eau est gelée à -6°C, la valeur nutritionnelle apportée par des produits animaux comme le lait ou le fromage est particulièrement appréciée, et j'affirme qu'il est impossible d'être végan chez les Inouits où chez les hommes du désert.

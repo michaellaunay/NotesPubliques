@@ -17,15 +17,15 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2023-06-09
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-## Le biblithèque Assurbanipal (-668 -627)
-On a retrouvé plus de 20 000 tablettes cunéifformes (Première traduction de Gilgamesh en 1872) https://youtu.be/pYkdudibadY
+## Le bibliothèque Assurbanipal (-668 -627)
+On a retrouvé plus de 20 000 tablettes cunéiformes (Première traduction de Gilgamesh en 1872) https://youtu.be/pYkdudibadY
 
 ## Combien de livres et documents sont archivés à la bibliothèque nationale de france (BNF) ?
 
