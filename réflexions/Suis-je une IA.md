@@ -1,32 +1,32 @@
 ---
 schema_version: 1
-uid: "01M02JG1WMWCTYHN7XP8MBD7V3"
-titre: "Suis-je une IA"
+uid: 01M02JG1WMWCTYHN7XP8MBD7V3
+titre: Suis-je une IA
 type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
 themes:
-  - intelligence-artificielle
-  - llm
-  - ecriture
-  - epistemologie
-resume: "Expérience consistant à soumettre ses propres articles à un détecteur de texte généré par IA, et réflexion sur la fiabilité de ces outils."
+- intelligence-artificielle
+- llm
+- ecriture
+- epistemologie
+resume: Expérience consistant à soumettre ses propres articles à un détecteur de texte généré par IA, et réflexion sur la fiabilité de ces outils.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-02-08
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
 OpenAI a mis à disposition du public un outil de vérification de l'origine d'un texte, dont parle l'article : [https://www.commentcamarche.net/informatique/technologies/27335-chatgpt-ai-text-classifier-gptzero-des-outils-pour-détecter-la-triche-avec-l'IA/](https://www.commentcamarche.net/informatique/technologies/27335-chatgpt-ai-text-classifier-gptzero-des-outils-pour-d%C3%A9tecter-la-triche-avec-l'IA/)
 
-### Que vaut cet outil ?
+# Que vaut cet outil ?
 
 Par curiosité, j'ai passé plusieurs de mes articles à la question, comme :
 
@@ -46,7 +46,7 @@ Car oui, j'ai fait le test avec plusieurs articles de Wikipedia qui sont indiqu�
 
 Du coup, Google va-t-il déréférencer Wikipedia ou toute encyclopédie, voire contenu structuré comme un article scientifique ?
 
-### Des faux positifs !
+# Des faux positifs !
 
 Je vois beaucoup d'enseignants qui luttent contre l'usage de l'IA au lieu de l'accompagner.
 
@@ -58,7 +58,7 @@ Le bilan est très favorable, certains de mes étudiants complètement réfracta
 
 La solution semble être le développement de l'esprit critique de ce que propose l'IA et de son incorporation pour dépasser les détails d'implémentation et ainsi gagner en productivité.
 
-### Conclusion
+# Conclusion
 
 Les IA génératives vont permettre aux créatifs de libérer leur potentiel en expérimentant très vite.
 

@@ -6,20 +6,19 @@ type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
 themes:
-  - politique
-  - democratie
-  - societe
+- politique
+- democratie
+- societe
 resume: Retour personnel sur les scrutins de 2022 et sur les limites de la démocratie représentative.
 auteurs:
-  - Michaël Launay
+- Michaël Launay
 langue: fr
 date_creation: 2023-03-03
-date_modification: 2024-04-03
+date_modification: 2026-08-18
 confidentialite: privee
-publication:
-  - notes-publiques
+publication: []
 rag: true
 metadata_verifiees: false
 ---

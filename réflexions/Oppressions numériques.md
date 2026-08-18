@@ -6,22 +6,21 @@ type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
 themes:
-  - societe
-  - numerique
-  - vie-privee
-  - histoire
-  - reseaux-sociaux
+- societe
+- numerique
+- vie-privee
+- histoire
+- reseaux-sociaux
 resume: Parallèle entre l'histoire des camps d'internement et les mécanismes d'enfermement culturel à l'œuvre dans les réseaux sociaux.
 auteurs:
-  - Michaël Launay
+- Michaël Launay
 langue: fr
 date_creation: 2023-05-30
 date_modification: 2026-08-18
 confidentialite: privee
-publication:
-  - notes-publiques
+publication: []
 rag: true
 metadata_verifiees: false
 ---
