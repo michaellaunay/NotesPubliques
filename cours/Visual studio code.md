@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-07
-date_modification: 2024-04-20
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -37,7 +37,7 @@ wikipedia : "Visual Studio Code est présenté lors de la conférence des dével
 
 Le 18 novembre 2015, Visual Studio Code a été publié sous la [licence MIT](https://fr.wikipedia.org/wiki/Licence_MIT "Licence MIT") et son code source publié sur [GitHub](https://fr.wikipedia.org/wiki/GitHub "GitHub"). Le support d'extensions a également été annoncé.
 
-VS Code est basé sur le framewok [Electron](https://fr.wikipedia.org/wiki/Electron_(framework) "Electron (framework)") qui permet de développer des applications [Node.js](https://fr.wikipedia.org/wiki/Node.js "Node.js") pour bureau et est exécuté sur le moteur de rendu [Blink](https://developer.mozilla.org/fr/docs/Glossary/Blink) . Il n'utilise pas [Atom](https://fr.wikipedia.org/wiki/Atom_(%C3%A9diteur_de_texte) "Atom (éditeur de texte)") mais le même composant éditeur (nommé Monaco) que celui utilisé dans Azure DevOps (anciennement appelé Visual Studio Online et Visual Studio Team Services).
+VS Code est basé sur le framework [Electron](https://fr.wikipedia.org/wiki/Electron_(framework) "Electron (framework)") qui permet de développer des applications [Node.js](https://fr.wikipedia.org/wiki/Node.js "Node.js") pour bureau et est exécuté sur le moteur de rendu [Blink](https://developer.mozilla.org/fr/docs/Glossary/Blink) . Il n'utilise pas [Atom](https://fr.wikipedia.org/wiki/Atom_(%C3%A9diteur_de_texte) "Atom (éditeur de texte)") mais le même composant éditeur (nommé Monaco) que celui utilisé dans Azure DevOps (anciennement appelé Visual Studio Online et Visual Studio Team Services).
 
 Le [code source](https://fr.wikipedia.org/wiki/Code_source "Code source") est fourni sous la [licence libre](https://fr.wikipedia.org/wiki/Licence_de_logiciel "Licence de logiciel") [MIT](https://fr.wikipedia.org/wiki/Licence_MIT "Licence MIT") sur le site du projet sur [Github](https://fr.wikipedia.org/wiki/GitHub "GitHub"). En revanche, l'exécutable est proposé sur le site officiel de Microsoft sous une [licence propriétaire](https://fr.wikipedia.org/wiki/Logiciel_propri%C3%A9taire "Logiciel propriétaire")[7](https://fr.wikipedia.org/wiki/Visual_Studio_Code#cite_note-7). Le projet VSCodium[8](https://fr.wikipedia.org/wiki/Visual_Studio_Code#cite_note-8) propose une compilation du logiciel sans les outils de [télémétrie](https://fr.wikipedia.org/wiki/T%C3%A9l%C3%A9m%C3%A9trie_(informatique) "Télémétrie (informatique)") inclus dans les binaires fournis par Microsoft."
 
@@ -69,7 +69,7 @@ Ctrl+Maj+P
 Relancer VS Code.
 
 ## Barre d'activités
-Pour faire apparaitre disparaitre la barre d'activités:
+Pour faire apparaître disparaître la barre d'activités:
 OPEN EDITORS
 	Settings
 		Activity bar :Visible

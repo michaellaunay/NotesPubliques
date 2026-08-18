@@ -19,7 +19,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-28
-date_modification: 2024-04-03
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -49,7 +49,7 @@ Aujourd'hui, Mermaid continue d'évoluer et de s'améliorer grâce aux efforts c
 
 # 2 Installation
 
-Avant de pouvoir utiliser Mermaid dans Obsidian, nous devons nous assurer que l'option est activée. Pour cela, nous allons dans les paramètres, puis dans l'onglet "Editeur". Nous cherchons l'option "Mermaid diagram and flowchart rendering" et nous activons le bouton à côté.
+Avant de pouvoir utiliser Mermaid dans Obsidian, nous devons nous assurer que l'option est activée. Pour cela, nous allons dans les paramètres, puis dans l'onglet "Éditeur". Nous cherchons l'option "Mermaid diagram and flowchart rendering" et nous activons le bouton à côté.
 
 # 3 Utilisation
 

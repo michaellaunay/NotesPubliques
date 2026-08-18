@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-04-28
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -42,7 +42,7 @@ Si le chargeur est GRUB 2, alors le MBR ne contient que la première partie de G
 
 Une fois "stage 2" chargé, il propose à l'utilisateur de choisir le système d'exploitation ou la version du noyau à démarrer à travers un menu. L'utilisateur peut également modifier la configuration de démarrage en éditant le menu (en appuyant sur "e").
 
-Ensuite, "stage 2" charge l'image du système d'exploitation choisi. Ces fichiers se trouvent dans "/boot". Le noyau en version minimaliste en version compressé est dans le fichier "vmlinuz-\*" (Virtual Memory Linux Compressed). Grub charge aussi en mémoire le fichier "initrd.img-\*" qui contient le système de fichiers tempraire pour permettre au noyau Linux de trouver les pilotes nécessaires (modules).
+Ensuite, "stage 2" charge l'image du système d'exploitation choisi. Ces fichiers se trouvent dans "/boot". Le noyau en version minimaliste en version compressé est dans le fichier "vmlinuz-\*" (Virtual Memory Linux Compressed). Grub charge aussi en mémoire le fichier "initrd.img-\*" qui contient le système de fichiers temporaire pour permettre au noyau Linux de trouver les pilotes nécessaires (modules).
 
 Le menu de démarrage passe quelques options à l'image du système, notamment le nom du périphérique contenant la racine, par exemple "root=/dev/sda1". Une fois le noyau lancé, il exécute "/sbin/init" avec 1 comme PID, à savoir que le PID 0 est celui de l'ordonnanceur (scheduler) qui permet de paralléliser et gérer les tâches.
 
@@ -99,7 +99,7 @@ Lors du démarrage avec GRUB 2, il est possible de passer des paramètres en uti
 
 Ces modifications ne sont que temporaires et ne seront pas persistantes entre les redémarrages.
 
-Pour connaitre les paramètres possibles :
+Pour connaître les paramètres possibles :
 ```bash
 man bootparam
 ```
@@ -121,7 +121,7 @@ Les principales options d'amorçage du noyau sont :
 
 # Systemd vs InitV vs upstart
 
-Une fois que Grub a terminé le stage 2, il passe la main au premier processus de Linux pour initialiser le noyau et dépendra de la distriubtion utilisée. Ce processus d'initialisation porte le numéro de processus (PID) 1 et est responsable de l'initialisation du système et du lancement de tous les autres processus.
+Une fois que Grub a terminé le stage 2, il passe la main au premier processus de Linux pour initialiser le noyau et dépendra de la distribution utilisée. Ce processus d'initialisation porte le numéro de processus (PID) 1 et est responsable de l'initialisation du système et du lancement de tous les autres processus.
 
 Systemd, InitV et Upstart sont des systèmes d'initialisation utilisés dans les distributions Linux pour démarrer le système et gérer les processus.
 Systemd est le plus utilisé.

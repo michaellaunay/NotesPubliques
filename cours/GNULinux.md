@@ -26,7 +26,7 @@ langue: fr
 licence: "CC BY 2.0 FR"
 revision: "2.0.0"
 date_creation: 2023-03-03
-date_modification: 2026-03-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -373,7 +373,7 @@ Pour un shell interactif non-login, les scripts suivants sont exécutés :
 
 Pour que les modifications de ces scripts soient prises en compte immédiatement dans le shell courant, nous devons utiliser la commande `source`.
 
-Lorsqu'un script est exécuté en mode non interactif, le shell tente alors d'exécuter le fichier désigné par la variable `BASH_ENV`, si celle-ci existe, pour connaitre son contenu nous pouvons faire :
+Lorsqu'un script est exécuté en mode non interactif, le shell tente alors d'exécuter le fichier désigné par la variable `BASH_ENV`, si celle-ci existe, pour connaître son contenu nous pouvons faire :
 ```bash
 echo $BASH_ENV
 ```
@@ -1971,7 +1971,7 @@ Vers                       Action      De
 80/tcp (v6)                ALLOW       Anywhere (v6)             
 443/tcp (v6)               ALLOW       Anywhere (v6) 
 ```
-Permettre le lancement au démarrrage:
+Permettre le lancement au démarrage:
 
 ```bash
 systemctl enable ufw
@@ -2871,7 +2871,7 @@ La commande **partprobe** permet d'avertir le système que l'nous avons modifié
 
 Le Filesystem Hierachy Standard est l'organisation standard Unix utilisée par Linux
 
-Tout est fichier. Les périphériques (scanner, imprimante, etc) sont manipulés sous forme de fichier dans lequel nous alons lire et écrire.
+Tout est fichier. Les périphériques (scanner, imprimante, etc) sont manipulés sous forme de fichier dans lequel nous allons lire et écrire.
 
 #### Arborescence de /
 
@@ -3233,7 +3233,7 @@ Informations :
 
 # Les montages en raid
 
-Le RAID (Redundant Array of Independant Disk) permet d'augmenter la tolérance aux pannes ou d'avoir un espace de stockage plus rapide ou plus grand que ce que nous obtiendrions avec un seul disque.
+Le RAID (Redundant Array of Indépendant Disk) permet d'augmenter la tolérance aux pannes ou d'avoir un espace de stockage plus rapide ou plus grand que ce que nous obtiendrions avec un seul disque.
 
 La tolérance est obtenue soit par mirroring, soit par calcul de parité.
 
@@ -3402,7 +3402,7 @@ masque 24 au périphérique em1.
 
 `ip link` : Gère et affiche toutes les interfaces réseaux.
 `ip link show dev em1` : Affiche les informations pour em1.
-`ip -s link` : ffiche les interfaces statiques.
+`ip -s link` : affiche les interfaces statiques.
 `ip link set dev eno12345678 up` : Met en fonctionnement l'interface eno12345678.
 `ip link set dev eno12345678 down` : Éteint l'interface eno12345678.
 
@@ -3588,7 +3588,7 @@ Il est possible aussi de modifier le nom de façon définitive via le fichier /e
 
 # Positionner le reverse
 
-Pour ne pas être considéré comme spameur lors de l'envoi de mail il faut positionner le \"reverse\" du serveur sur le même Full Qualified Domain Name (fqdn), c'est-à-dire que si on fait une recherche du nom de la machine à partir de son adresse ip, le résultat doit être le nom de la machine suivi de son domaine.
+Pour ne pas être considéré comme spammeur lors de l'envoi de mail il faut positionner le \"reverse\" du serveur sur le même Full Qualified Domain Name (fqdn), c'est-à-dire que si on fait une recherche du nom de la machine à partir de son adresse ip, le résultat doit être le nom de la machine suivi de son domaine.
 Pour cela il faut :
 
     - Vérifier que dans la zone DNS de notre registrar, là où on a enregistré le nom de notre domaine, on a bien un champ A qui corresponde à l'adresse de la machine ;
@@ -3834,7 +3834,7 @@ et donc de pouvoir l'installer.
 # MySQL
 ## Présentation
 
-MySQL est une base de données légère facile à mettre en œuvre est très utilisée par les sites web, on lui préfèrera MariaDB (<https://mariadb.com/fr/>) ou mieux PostgresSQL
+MySQL est une base de données légère facile à mettre en œuvre est très utilisée par les sites web, on lui préférera MariaDB (<https://mariadb.com/fr/>) ou mieux PostgresSQL
 (<https://www.postgresql.org/>). À noter que MariaDB possède des offres serverless.
 
 Son utilisation est libre, mais si les sources de l'application réalisée ne sont pas en GPL, il faut s'acquitter de l'achat d'une licence commerciale.

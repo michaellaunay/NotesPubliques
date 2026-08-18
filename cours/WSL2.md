@@ -22,7 +22,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-07
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -30,7 +30,7 @@ rag: true
 metadata_verifiees: false
 ---
 # Objectif
-WSL2 est un outil fournit avec windows qui permet de faire fonctionner une mahine virtuelle GNU/Linux.
+WSL2 est un outil fournit avec windows qui permet de faire fonctionner une machine virtuelle GNU/Linux.
 
 # Description
 WSL2 (Windows Subsystem for Linux 2) est une fonctionnalité de Windows 11 qui permet aux utilisateurs d'exécuter des distributions Linux directement sur Windows, sans avoir besoin d'installer un hyperviseur ou une machine virtuelle séparée. Il offre une compatibilité presque totale avec les applications Linux, ce qui permet aux utilisateurs de travailler sur des projets et des applications Linux directement sur leur système Windows.
@@ -52,7 +52,7 @@ Après avoir installé une nouvelle distribution Linux de notre choix, l'ouvrir 
 Il est possible de rajouter l'interface graphique en installant xorg, voir ci-après.
 
 # Limitations de wsl2
-WSL2 est disponible sur Windows 11 Familiale. Cependant, pour pouvoir utiliser WSL2 sur Windows 11 Familiale si sa version est suppérieur ou égale à 1903 (mise à jour de mai 2019). Toutes les fonctionnalités de WSL2 ne sont pas disponibles sur Windows 11 Familiale, comme le partage de fichiers avec Linux, qui nécessite une version professionnelle ou entreprise de Windows 11.
+WSL2 est disponible sur Windows 11 Familiale. Cependant, pour pouvoir utiliser WSL2 sur Windows 11 Familiale si sa version est supérieur ou égale à 1903 (mise à jour de mai 2019). Toutes les fonctionnalités de WSL2 ne sont pas disponibles sur Windows 11 Familiale, comme le partage de fichiers avec Linux, qui nécessite une version professionnelle ou entreprise de Windows 11.
 
 # Installation de l'interface graphique
 Lorsque nousinstallons Ubuntu via WSL2, l'interface graphique n'est pas incluse par défaut. Cependant, il est possible d'installer une interface graphique dans Ubuntu WSL2. Voici les étapes à suivre :
@@ -70,7 +70,7 @@ sudo apt install xorg
 ``` bash
 sudo apt install xfce4
 ```   
-- Exécutons la commande suivante pour installer un seveur VNC, comme TigerVNC :
+- Exécutons la commande suivante pour installer un serveur VNC, comme TigerVNC :
 ```bash
 sudo apt install tigervnc-common tigervnc-standalone-server
 ```
@@ -84,7 +84,7 @@ vncserver :1 -geometry 1024x768 -depth 24
 ```    
     Cette commande lance un serveur VNC sur le port 5901.
 - Téléchargons un client VNC pour Windows, tel que RealVNC ou TightVNC.
-- Lancons le client VNC et connectons-nousà l'adresse IP de notre machine Ubuntu WSL2, suivie du port 5901 (par exemple, 127.0.0.1:5901).
+- Lancons le client VNC et connectons-nous à l'adresse IP de notre machine Ubuntu WSL2, suivie du port 5901 (par exemple, 127.0.0.1:5901).
 -  Entrons le mot de passe VNC que nous avons défini précédemment et appuyons sur "Connexion".
 L'interface graphique de XFCE4 s'affiche dans la fenêtre du client VNC.
 Les performances de l'interface graphique peuvent être affectées en raison de la virtualisation de WSL2 et de la méthode d'accès à l'interface graphique via le réseau VNC.

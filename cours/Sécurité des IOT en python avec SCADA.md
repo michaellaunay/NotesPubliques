@@ -26,7 +26,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-24
-date_modification: 2024-04-20
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -648,7 +648,7 @@ En conclusion, l'implémentation d'IDS adaptés et bien configurés dans les ré
 
 L'analyse de logs et le monitoring en temps réel constituent des composantes essentielles de la surveillance de la sécurité et de la performance des systèmes IoT et SCADA. Grâce à Python, les développeurs peuvent tirer parti d'une gamme de bibliothèques et d'outils pour collecter, analyser et visualiser des données de logs, facilitant la détection rapide des anomalies, des erreurs et des menaces potentielles. 
 
-### 5.2.1. Collecte et Aggrégation des Logs
+### 5.2.1. Collecte et Agrégation des Logs
 
 Avant l'analyse, il est crucial de collecter et d'agréger efficacement les logs provenant de diverses sources (dispositifs IoT, serveurs SCADA, applications, etc.). Python offre plusieurs bibliothèques pour faciliter cette étape :
 

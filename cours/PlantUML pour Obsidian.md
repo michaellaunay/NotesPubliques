@@ -18,14 +18,14 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-02
-date_modification: 2023-06-08
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-[[Obsidian]] possède un module permettant de visiualiser les diagrammes écrit avec la syntaxe de PlantUML.
+[[Obsidian]] possède un module permettant de visualiser les diagrammes écrit avec la syntaxe de PlantUML.
 
 Il existe de nombreux outil de texte vers diagrammes comme le montre [[Outils de modélisation textuels]].
 

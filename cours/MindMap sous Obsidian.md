@@ -19,7 +19,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-02-03
-date_modification: 2023-06-28
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -39,7 +39,7 @@ mindmap-plugin: basic
 ### Soit créer une notes avec des titres et des items de listes
 
 ### Soit utiliser la vue minmap
-- Inser poour ajouter un sous noeud
+- Inser pour ajouter un sous noeud
 - Entrée pour ajouter un noeud parent
 
 ### Ajouter l'entête mindmap-plugin: basic

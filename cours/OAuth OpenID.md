@@ -27,7 +27,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2022-12-29
-date_modification: 2024-06-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -593,7 +593,7 @@ L'utilisation d'un environnement virtuel permet d'isoler les dépendances de not
    Une fois activé, le prompt de la ligne de commande devrait être préfixé par le nom de l'environnement virtuel (par exemple, `(myenv)`).
 
 4. **Installation des dépendances dans l'environnement virtuel** :
-   Avec l'environnement virtuel activé, nous pouvons maintenant installer les dépendances nécessaires pour notre projet Pyramid. Commencons par réinstaller Pyramid dans l'environnement virtuel :
+   Avec l'environnement virtuel activé, nous pouvons maintenant installer les dépendances nécessaires pour notre projet Pyramid. Commençons par réinstaller Pyramid dans l'environnement virtuel :
 
    ```bash
    pip install pyramid

@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-08-27
-date_modification: 2023-09-02
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -185,7 +185,7 @@ La création d'un compilateur, y compris le développement d'un analyseur syntax
 
 3. **Analyse Sémantique :** Après l'analyse syntaxique, l'analyse sémantique est effectuée pour vérifier la cohérence du code et détecter les erreurs sémantiques. Cela implique de vérifier que les types sont compatibles, que les variables sont correctement déclarées et utilisées, etc.
 
-4. **Génération de Code Intermediaire :** Le compilateur génère généralement un code intermédiaire, qui est une représentation intermédiaire du code source. Ce code intermédiaire est plus proche du langage machine et facilite l'optimisation et la génération du code final.
+4. **Génération de Code Intermédiaire :** Le compilateur génère généralement un code intermédiaire, qui est une représentation intermédiaire du code source. Ce code intermédiaire est plus proche du langage machine et facilite l'optimisation et la génération du code final.
 
 5. **Optimisation :** Après la génération du code intermédiaire, le compilateur peut effectuer des optimisations pour améliorer l'efficacité du code généré. Cela peut inclure la réduction de l'utilisation de la mémoire, l'optimisation des boucles, etc.
 
@@ -225,7 +225,7 @@ Dans le monde moderne de la programmation, les outils et environnements de déve
 
 Les IDE sont des plateformes logicielles complètes qui regroupent divers outils et fonctionnalités pour faciliter le développement de logiciels. Ils offrent un espace de travail centralisé où les développeurs peuvent écrire, éditer, tester et déboguer leur code. Les IDE fournissent souvent des fonctionnalités telles que la coloration syntaxique, l'autocomplétion, la gestion de version intégrée et des outils de débogage avancés. Des exemples populaires d'IDE comprennent , [[Visual studio code]], Eclipse, IntelliJ IDEA et Xcode.
 
-### 1.4.2 Editeurs de Texte Avancés
+### 1.4.2 Éditeurs de Texte Avancés
 
 Les éditeurs de texte avancés sont plus légers que les IDE, mais ils sont dotés de fonctionnalités puissantes pour la programmation. Ils offrent des fonctionnalités telles que la coloration syntaxique, l'autocomplétion, la prise en charge de plugins et la personnalisation de l'interface. Des éditeurs de texte comme Visual Studio Code, Sublime Text et Atom sont largement utilisés par les développeurs pour leur simplicité et leur extensibilité.
 
