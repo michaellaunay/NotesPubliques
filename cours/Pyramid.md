@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-14
-date_modification: 2024-11-05
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -2111,7 +2111,7 @@ pip install pyramid_mailer
 
 Nous devons alors configurer le serveur de messagerie :
 
-Pour configurer le port et l'adresse du serveur SMTP dans Pyramid Mailer, nous pouvonq utiliser les options de configuration disponibles dans les paramètres de notre application Pyramid. Ces paramètres peuvent être définis dans le fichier `.ini` de configuration de notre application ou passés en tant que dictionnaire lors de la création de l'application Pyramid. Pour les secrets voir [[Pyramid#3.5.4 Gestion des Secrets dans Pyramid - Utilisation d'un fichier .env]]
+Pour configurer le port et l'adresse du serveur SMTP dans Pyramid Mailer, nous pouvons utiliser les options de configuration disponibles dans les paramètres de notre application Pyramid. Ces paramètres peuvent être définis dans le fichier `.ini` de configuration de notre application ou passés en tant que dictionnaire lors de la création de l'application Pyramid. Pour les secrets voir [[Pyramid#3.5.4 Gestion des Secrets dans Pyramid - Utilisation d'un fichier .env]]
 
 Voici comment configurer le port et l'adresse du serveur SMTP dans Pyramid Mailer :
 
@@ -2190,5 +2190,5 @@ https://docs.pylonsproject.org/projects/pyramid_mailer/en/latest/index.html
 
 # 11.  Trucs et astuces
 ## Débogage en ligne à travers le navigateur
-### Utilisation de la toolbar de debogage dans Pyramid
+### Utilisation de la toolbar de débogage dans Pyramid
 Il suffit de cliquer sur le logo pyramid à droite du contenu et de naviguer dans les onglets.

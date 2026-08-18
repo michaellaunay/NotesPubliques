@@ -24,7 +24,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-05-24
-date_modification: 2026-06-04
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -5105,7 +5105,7 @@ strace -e openat ps -p $pid -o pid,ppid,state,comm,args
 
 Nous pouvons voir des ouvertures de fichiers sous `/proc`.
 
-Cette observation montre que les outils haut niveau ne sont pas magiques : ils lisent, agrègent et formattent des informations.
+Cette observation montre que les outils haut niveau ne sont pas magiques : ils lisent, agrègent et formatent des informations.
 
 
 ## 4.13. Cas pratiques

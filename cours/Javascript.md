@@ -19,7 +19,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-08-18
-date_modification: 2023-11-17
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -244,7 +244,7 @@ Dans un même bloc de code, il n'est pas possible de déclarer deux fois la mêm
 
 JavaScript est un langage à typage dynamique, ce qui signifie que vous n'avez pas besoin de déclarer le type de variable lors de sa création. Les types primitifs comprennent `Number`, `String`, `Boolean`, `Undefined`, `Null`, `BigInt`, et `Symbol`.
 
-Pour connaitre le type d'un objet, nous utilisons `typeof` :
+Pour connaître le type d'un objet, nous utilisons `typeof` :
 ```js
 a_string = "hello"
 typeof a_string

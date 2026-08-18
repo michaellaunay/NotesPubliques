@@ -18,7 +18,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-02-08
-date_modification: 2023-08-27
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -31,7 +31,7 @@ mindmap-plugin: basic
 
 ## Histoire
 - Histoire de l'Informatique
-   - 00 Les calculis
+   - 00 Les calculs
       - IV Milénaire av JV
       - Système d'enregistrement de l'information
       - Mésopotamie
@@ -174,14 +174,14 @@ mindmap-plugin: basic
       - Programmation impérative
       - Programmation structurée
       - Programmation procédurale
-   - Type de programation orientiée objets
+   - Type de programmation orientée objets
       - Programmation orientée objet
-      - Prgrammation orientée prototype
+      - Programmation orientée prototype
       - Programmation orientée classe
       - Programmation orientée composant
-   - Type de programmation déclarayive
+   - Type de programmation déclarative
       - Programmation déclarative
-      - Programmation fonctionelle au sens mathématique
+      - Programmation fonctionnelle au sens mathématique
       - Programmation logique
       - Programmation par contraintes
    - Autres
@@ -229,7 +229,7 @@ mindmap-plugin: basic
       -
       - https://wikiagile.cesi.fr/index.php?title=Qu%27est-ce_qu%27un_Produit_Minimum_Viable_%3F
 - Méthode Rache
-- Ingéniérie
+- Ingénierie
    - Spécification
       - Expression des besoins
       - Cahier des charges
@@ -357,7 +357,7 @@ mindmap-plugin: basic
 
 ## Architecture
 - 01 Qu'est ce qu'un ordinateur ?
-   - Arhitecture de Von Neumann
+   - Architecture de Von Neumann
 
 ## https://fr.wikipedia.org/wiki/Architecture_de_von_Neumann
 - Limite de Moore
@@ -369,7 +369,7 @@ mindmap-plugin: basic
    - https://youtu.be/iHPZ7TL9npU
 - Machine à base de nanotubes de carbone
    - https://fr.wikipedia.org/wiki/Carbon_Nanotube_Field_Effect_Transistor
-- Machine à base d'onde de spin (magnonique et spinotronique
+- Machine à base d'onde de spin (magnonique et spintronique
    - https://youtu.be/6vtztA43i_Y
    - https://youtu.be/L9eUoObVwGM
 - Machine photonique

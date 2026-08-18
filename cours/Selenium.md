@@ -22,7 +22,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-07-24
-date_modification: 2023-07-26
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -630,7 +630,7 @@ Selenium a une documentation assez complète qui est répartie en plusieurs endr
 
 3. **Documentation de Selenium Grid** : Si nous souhaitons en savoir plus sur Selenium Grid, nous pouvons consulter la documentation spécifique à Selenium Grid : https://www.selenium.dev/documentation/grid/
 
-4. **GitHub de Selenium** : Pour des informations encore plus détaillées, y compris des notes de version et du code source, nous pouveons consulter le dépôt GitHub de Selenium : https://github.com/SeleniumHQ/selenium
+4. **GitHub de Selenium** : Pour des informations encore plus détaillées, y compris des notes de version et du code source, nous pouvons consulter le dépôt GitHub de Selenium : https://github.com/SeleniumHQ/selenium
 
 # Liens
 

@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2025-04-13
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -138,24 +138,24 @@ Qui affichera la doc de TypeVar.
 
 Pour effacer le conteneur une fois terminé, mettre le flag `--rm`
 
-Pour utiliser le système de fichier du host à la place de celui du Contener, cela pour pouvoir conserver des données entre images il faut utiliser l'option `-v` : 
+Pour utiliser le système de fichier du host à la place de celui du Conteneur, cela pour pouvoir conserver des données entre images il faut utiliser l'option `-v` : 
 
     #lance le conteneur en -d detach -i interactive
     docker run -tid -p 8080:80 -v /var/host_nginx/:/usr/share/nginx/ --name web nginx:latest
 
-    #permet de se connecter au bash du Contener
+    #permet de se connecter au bash du Conteneur
     docker exec -ti web bash
 
-    # voir l'intégralité de la configuration du contener
+    # voir l'intégralité de la configuration du conteneur
     docker inspect web
 
     # voir l'état des conteners
     docker ps -a
 
-    # pour arrêter un contener
+    # pour arrêter un conteneur
     docker stop web
 
-    # pour démarrer le contener
+    # pour démarrer le conteneur
     docker start web
 
     # pour passer des variables d'environnement

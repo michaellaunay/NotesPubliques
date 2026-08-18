@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-25
-date_modification: 2023-06-27
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -274,7 +274,7 @@ graph TB
 
 ## 5.1 Les outils de débogage HTTP (comme Postman, curl, etc.)
 
-Dans le processus de développement web, l'utilisation d'outils de débogage HTTP est essentielle. Ils nous aident à comprendre, tester et débuguer la communication entre le client et le serveur.
+Dans le processus de développement web, l'utilisation d'outils de débogage HTTP est essentielle. Ils nous aident à comprendre, tester et déboguer la communication entre le client et le serveur.
 
 **Postman** est un outil populaire qui nous permet d'envoyer des requêtes HTTP vers nos serveurs et d'inspecter les réponses. Il offre une interface utilisateur intuitive qui facilite la configuration des requêtes, y compris la définition de l'URL, des paramètres, des en-têtes, et du corps des requêtes.
 

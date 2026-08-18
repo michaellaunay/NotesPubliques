@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-10-12
-date_modification: 2026-03-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -401,7 +401,7 @@ df.drop("Total", axis=1, inplace=True)
 ```
 Le paramètre `axis` précise si l'on doit supprimer une ligne (0) ou une colonne (1).
 `inplace` indique que l'on modifie le dataframe d'origine sans quoi seul l'objet retourné est modifié.
-Pour connaitre les dimensions de notre data frame on utilise aussi `shape`
+Pour connaître les dimensions de notre data frame on utilise aussi `shape`
 
 ## Changement des index
 
@@ -459,7 +459,7 @@ La fonction `max` donne la valeur maximale d'une colonne, alors que `idxmax` don
 
 Pour calculer le corrélation entre les colonnes deux par deux, on utilise `corr` qui retourne une valeur entre 1 si les données sont corrélées et 0 s'il n'y a pas de lien.
 
-La fonction `values_count` permet d'avoir le nombre d'exemplaire de chaque valeur distincte. Pour connaitre les valeurs uniques on utilise `unique`, `nunique` pour connaitre le nombre de valeurs unique et `counts` pour connaitre le nombre d’occurrence.
+La fonction `values_count` permet d'avoir le nombre d'exemplaire de chaque valeur distincte. Pour connaître les valeurs uniques on utilise `unique`, `nunique` pour connaître le nombre de valeurs unique et `counts` pour connaître le nombre d’occurrence.
 
 La méthode `replace`  permet de remplace une ou plusieurs valeurs d'une colonne.
 ```python

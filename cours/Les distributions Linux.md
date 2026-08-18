@@ -19,7 +19,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-04-24
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -28,7 +28,7 @@ metadata_verifiees: false
 ---
 # Qu'est-ce qu'une distribution ?
 
-Une distribution est un ensemble cohérent de logiciels fourni avec un noyau (Linux ou BSD). Les logiciels sont choisis pour utiliser les mêmes versions de bibliothèque et être ompatibles les uns avec les autres ce qui a pour conséquence d'augmenter la stabilité et d'améliorer
+Une distribution est un ensemble cohérent de logiciels fourni avec un noyau (Linux ou BSD). Les logiciels sont choisis pour utiliser les mêmes versions de bibliothèque et être compatibles les uns avec les autres ce qui a pour conséquence d'augmenter la stabilité et d'améliorer
 l'utilisation.
 
 Elles comprennent des outils d'installation et de configuration.

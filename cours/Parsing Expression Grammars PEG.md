@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-05-20
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -60,9 +60,9 @@ Number = "0" / [1-9] [0-9]*
 ```
 Dans cet exemple, la grammaire PEG définit des expressions arithmétiques composées de termes, de facteurs et d'opérations telles que l'addition, la soustraction, la multiplication et la division. Les règles de production décrivent comment les non-terminaux et les terminaux sont combinés pour former des expressions valides.
 
-Pour écrire une grammaire PEG, commencons par définir les non-terminaux et les terminaux qui représentent les éléments syntaxiques de notre langage. Ensuite, écrivons des règles de production pour décrire la structure de la grammaire à l'aide des opérateurs d'expression de parsing. Enfin, vérifions que notre grammaire est bien formée et qu'elle n'inclut pas de récursion à gauche directe.
+Pour écrire une grammaire PEG, commençons par définir les non-terminaux et les terminaux qui représentent les éléments syntaxiques de notre langage. Ensuite, écrivons des règles de production pour décrire la structure de la grammaire à l'aide des opérateurs d'expression de parsing. Enfin, vérifions que notre grammaire est bien formée et qu'elle n'inclut pas de récursion à gauche directe.
 
-Une fois que nous aveons défini notre grammaire PEG, nous pouvons l'utiliser pour analyser des chaînes de texte et générer une représentation structurée de ces chaînes, appelée arbre syntaxique abstrait (AST). Pour ce faire, nous aurons besoin d'un parseur PEG qui prend en charge les grammaires PEG, tel que le module Python Parsimonious, le module Python Arpeggio, ou le langage et l'outil de génération de parseur PEG.js pour JavaScript.
+Une fois que nous avons défini notre grammaire PEG, nous pouvons l'utiliser pour analyser des chaînes de texte et générer une représentation structurée de ces chaînes, appelée arbre syntaxique abstrait (AST). Pour ce faire, nous aurons besoin d'un parseur PEG qui prend en charge les grammaires PEG, tel que le module Python Parsimonious, le module Python Arpeggio, ou le langage et l'outil de génération de parseur PEG.js pour JavaScript.
 
 Voici quelques étapes supplémentaires pour travailler avec une grammaire PEG :
 

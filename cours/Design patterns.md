@@ -20,7 +20,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-13
-date_modification: 2023-09-07
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -1717,7 +1717,7 @@ Voici quelques exemples d'anti-patterns courants dans le développement logiciel
 
 4. **Premature Optimization** : C'est l'acte d'essayer d'optimiser votre code avant même de savoir où seront les véritables goulots d'étranglement.
 
-   *Solution* : Ecrivons d'abord le code pour qu'il fonctionne correctement, puis optimisons en fonction des besoins mesurés.
+   *Solution* : Écrivons d'abord le code pour qu'il fonctionne correctement, puis optimisons en fonction des besoins mesurés.
 
 5. **Cargo Cult Programming** : C'est l'acte de copier et coller du code sans comprendre comment il fonctionne.
 

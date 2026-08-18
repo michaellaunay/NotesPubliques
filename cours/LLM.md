@@ -22,7 +22,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-08
-date_modification: 2024-05-06
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -289,7 +289,7 @@ Vlog sur le développement avec l'IA
 Groq les puces dédiées à l'IA
 LeMondeInformatique
 [Groq défie Nvidia avec ses accélérateurs LPU - Le Monde Informatique](https://www.lemondeinformatique.fr/actualites/lire-groq-defie-nvidia-avec-ses-accelerateurs-lpu-92822.html)
-[NVidia vient de se faire détronné | Underscore](https://youtu.be/fvWZ2kjTo-Q)
+[NVidia vient de se faire détrôné | Underscore](https://youtu.be/fvWZ2kjTo-Q)
 
 Encore inconnu il y a un an, Groq est bien décidé à surfer sur la vague IA (générative ou autre) avec sa plateforme de calcul LPU taillée pour l'inférence (répondre au prompt).
 
@@ -299,7 +299,7 @@ Réponse de NVIDIA est de se positionner très fortement sur l'apprentissage et 
 
 Le futur de l'IDE **Cursor** [Using Cursor - the AI powered VS Code alt for the first time…| Huw prosser](https://youtu.be/n4DRPGWTmpc)
 
-Agrégation de textes du domaine public pour l'entrainement [common corpus des textes du domaine public pour entrainer des IA generatives](https://next.ink/131929/common-corpus-des-textes-du-domaine-public-pour-entrainer-des-ia-generatives/)
+Agrégation de textes du domaine public pour l'entrainement [common corpus des textes du domaine public pour entraîner des IA generatives](https://next.ink/131929/common-corpus-des-textes-du-domaine-public-pour-entrainer-des-ia-generatives/)
 
 (x**2 for x in range(5))# Les LLM en bref
 

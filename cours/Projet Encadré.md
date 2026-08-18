@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2025-09-14
-date_modification: 2025-09-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -243,7 +243,7 @@ Cette vue offre une perspective sur la manière dont le système est organisé d
 ### 1.8.4 Vue physique
 Cette vue présente la disposition du système sur l'infrastructure matérielle. Elle décrit comment le système est déployé sur l'infrastructure, comment les composants du système sont mappés sur les noeuds matériels, et comment les noeuds communiquent entre eux. Cette vue est souvent utilisée par les administrateurs de système pour comprendre comment le système est déployé et par les architectes pour prendre des décisions concernant le déploiement.
 
-### 1.8.5 Synthése
+### 1.8.5 Synthèse
 Chaque vue architecturale offre une perspective différente sur le système, et en combinant ces vues, nous pouvons obtenir une image complète de l'architecture du système. Il est important de noter que les vues doivent être cohérentes entre elles - c'est-à-dire que les informations présentées dans une vue ne doivent pas contredire les informations présentées dans une autre vue. Dans le prochain chapitre, nous examinerons comment créer et documenter ces vues.
 
 ## 1.9 Importance de la documentation en architecture logicielle
@@ -486,7 +486,7 @@ Jusqu’à obtenir une conception stable qui de toute façon bougera avec l’im
 
 Le répertoire contient :
 	- un ficher `_Diagrammes de classes.md` référençant tous les diagrammes
-	- Un fichier contenant le diagramme de classes général contenant toute les classes du projet et les associations entre classes, le tout réprésenté avec un bloc Mermaid ou PlantUML.
+	- Un fichier contenant le diagramme de classes général contenant toute les classes du projet et les associations entre classes, le tout représenté avec un bloc Mermaid ou PlantUML.
 	- Autant de diagrammes de classe qu’il y a de scénarios. Chaque diagramme détaille uniquement les classes (attributs, méthodes et associations) fournissant les services, méthodes et les données apparaissant dans le scénario ayant servi à établir ce diagramme. Si une classe est utilisée dans plusieurs scénarios les méthodes est attributs d’un diagramme de classe correspondent uniquement au scénario associé à son scénario, a écrire avec des blocs Mermaid ou PlantUML.
 
 ### 5.4.7 Répertoire `Diagrammes d'états transitions` 

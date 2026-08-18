@@ -22,7 +22,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-11-29
-date_modification: 2024-07-27
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -266,7 +266,7 @@ Python s'est établi comme un langage de choix dans le domaine du "data mining" 
 - **Scikit-learn :** Une bibliothèque de "machine learning" proposant une large gamme d'outils pour le "data mining", y compris des algorithmes de classification, de régression, de clustering et de réduction de dimension.
 - **Pandas :** Une bibliothèque offrant des structures de données et des outils d'analyse de données hautement performants et faciles à utiliser.
 
-#### Traitement et Aanalyse de données
+#### Traitement et Analyse de données
 
 - **NumPy :** Fondation pour le calcul scientifique en Python, offrant un puissant objet tableau pour les manipulations numériques.
 - **SciPy :** Utilisé pour des calculs scientifiques et techniques plus avancés.

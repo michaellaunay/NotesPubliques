@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-05-22
-date_modification: 2024-01-06
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -448,7 +448,7 @@ Voici pourquoi :
 
 3. Enfin, toutes les entrées LDAP doivent inclure la classe `top`, mais celle-ci est généralement incluse automatiquement lorsque nous déclarons une autre classe d'objet. Donc, en pratique, nous n'avons pas besoin de déclarer explicitement `top`.
 
-## Version otpimisée du fichier LDIF
+## Version optimisée du fichier LDIF
 
 Nous pouvons simplifier le fichier LDIF comme suit :
 ```ldif

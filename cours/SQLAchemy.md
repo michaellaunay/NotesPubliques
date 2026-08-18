@@ -23,7 +23,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -89,5 +89,5 @@ from sqlalchemy import and_
 users = session.query(User).filter(and_(User.name == 'John Doe')).all()
 ```
 
-SQLAlchemy offre également des fonctionnalités avancées telles que la gestion des transactions, la mise à jour en cascade, les jointures et les sous-requêtes, entre autres. Il est donc un outil trè
+SQLAlchemy offre également des fonctionnalités avancées telles que la gestion des transactions, la mise à jour en cascade, les jointures et les sous-requêtes, entre autres. Il est donc un outil très
 

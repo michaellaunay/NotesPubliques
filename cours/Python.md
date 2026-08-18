@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-05-10
-date_modification: 2026-06-11
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -2914,7 +2914,7 @@ Si notre fichier `demo.py` contient des violations de la norme PEP 8, `flake8` l
 
 Il est important de noter que `flake8` ne corrige pas les erreurs pour nous, il signale simplement leur présence. C'est à nous de corriger ces problèmes dans notre code.
 
-# Dégogage en ligne
+# Débogage en ligne
 
 Le débogage en ligne, également appelé débogage interactif ou débogage pas à pas, est une technique utilisée pour identifier et résoudre les problèmes dans le code en exécutant le programme pas à pas et en inspectant les valeurs des variables à différents points d'exécution. Python fournit plusieurs outils pour le débogage en ligne, dont les plus couramment utilisés sont `pdb` (Python Debugger) et les fonctionnalités intégrées aux environnements de développement intégrés (EDI) populaires tels que PyCharm, [[Visual studio code]] et Jupyter Notebook.
 

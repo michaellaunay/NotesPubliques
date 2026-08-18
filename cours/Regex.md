@@ -20,7 +20,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-12-27
-date_modification: 2025-02-12
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -67,7 +67,7 @@ afin de remplacer toutes les occurrences du motif par notre texte de remplacemen
 - **L’accent circonflexe (`^`)** : désigne le **début** de la ligne.
 - **Le symbole dollar (`$`)** : désigne la **fin** de la ligne.
 - **Les crochets (`[...]`)** : désignent une **classe de caractères**. Par exemple, `[0-9]` pour tous les chiffres de 0 à 9, `[a-zA-Z]` pour les lettres.
-- **L'accent circonflex à l’intérieur des crochets (`[^...]`)** : signifie la **négation** d’une classe de caractères. Par exemple, `[^0-9]` sélectionne tout caractère qui n’est pas un chiffre.
+- **L'accent circonflexe à l’intérieur des crochets (`[^...]`)** : signifie la **négation** d’une classe de caractères. Par exemple, `[^0-9]` sélectionne tout caractère qui n’est pas un chiffre.
 - **Le point d’interrogation (`?`)** : appliqué à un motif, il indique qu’on peut l’avoir **0 ou 1** fois.
 - **L’étoile (`*`)** : appliquée à un motif, elle indique **0 à N** répétitions.
 - **Le plus (`+`)** : appliqué à un motif, il indique **1 à N** répétitions.
