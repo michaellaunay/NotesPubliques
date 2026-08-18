@@ -1,19 +1,19 @@
 ---
 schema_version: 1
-uid: "01M02JG1NXSETFKCM4QBZ7YW1Z"
-titre: "Le miroir brisé"
+uid: 01M02JG1NXSETFKCM4QBZ7YW1Z
+titre: Le miroir brisé
 type: concept
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
+- communication
 themes:
-  - psychologie
-  - communication
-  - biais-cognitifs
-resume: "Concept désignant la tendance à s'en prendre au porteur d'une nouvelle qui déplaît plutôt qu'au message."
+- psychologie
+- biais-cognitifs
+resume: Concept désignant la tendance à s'en prendre au porteur d'une nouvelle qui déplaît plutôt qu'au message.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2026-08-18

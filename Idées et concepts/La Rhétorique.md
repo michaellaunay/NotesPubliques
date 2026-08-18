@@ -1,23 +1,23 @@
 ---
 schema_version: 1
-uid: "01M02JG1NW091HXH3M2QDHV7RE"
-titre: "La Rhétorique"
+uid: 01M02JG1NW091HXH3M2QDHV7RE
+titre: La Rhétorique
 type: concept
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
+- communication
 themes:
-  - rhetorique
-  - communication
-  - argumentation
-  - philosophie
-resume: "Présentation de la rhétorique comme art de persuader par le langage, l'argumentation et les techniques de communication."
+- rhetorique
+- argumentation
+- philosophie
+resume: Présentation de la rhétorique comme art de persuader par le langage, l'argumentation et les techniques de communication.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-08-02
-date_modification: 2023-08-02
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true

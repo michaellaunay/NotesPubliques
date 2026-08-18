@@ -1,25 +1,25 @@
 ---
 schema_version: 1
-uid: "01M02JG1NVYCSQ262W4X4AJPKA"
-titre: "Golden circle"
+uid: 01M02JG1NVYCSQ262W4X4AJPKA
+titre: Golden circle
 aliases:
-  - "Cercle d'or"
-  - "Simon Sinek"
+- Cercle d'or
+- Simon Sinek
 type: concept
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
+- communication
 themes:
-  - marketing
-  - communication
-  - strategie
-resume: "Modèle de Simon Sinek articulant le pourquoi, le comment et le quoi d'une organisation."
+- marketing
+- strategie
+resume: Modèle de Simon Sinek articulant le pourquoi, le comment et le quoi d'une organisation.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-08-02
-date_modification: 2023-08-02
+date_modification: 2026-08-18
 confidentialite: privee
 publication: []
 rag: true
