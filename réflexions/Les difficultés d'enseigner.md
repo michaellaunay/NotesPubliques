@@ -1,25 +1,25 @@
 ---
 schema_version: 1
-uid: "01M02JG1WHZF1T9VDAYWC0J368"
-titre: "Les difficultés d'enseigner"
+uid: 01M02JG1WHZF1T9VDAYWC0J368
+titre: Les difficultés d'enseigner
 type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
+- enseignement
 themes:
-  - enseignement
-  - universite
-  - administration
-resume: "Témoignage sur les difficultés administratives et les délais de paiement rencontrés par les vacataires de l'université publique."
+- universite
+- administration
+resume: Témoignage sur les difficultés administratives et les délais de paiement rencontrés par les vacataires de l'université publique.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-03-07
-date_modification: 2023-06-16
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---

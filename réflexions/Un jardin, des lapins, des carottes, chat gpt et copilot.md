@@ -1,26 +1,26 @@
 ---
 schema_version: 1
-uid: "01M02JG1WN1WG24C72V5NJMQJD"
-titre: "Un jardin, des lapins, des carottes, chat gpt et copilot"
+uid: 01M02JG1WN1WG24C72V5NJMQJD
+titre: Un jardin, des lapins, des carottes, chat gpt et copilot
 type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
+- enseignement
 themes:
-  - pedagogie
-  - intelligence-artificielle
-  - python
-  - enseignement
-resume: "Retour d'expérience sur huit heures de cours de Python à Polytech'Lille menées avec ChatGPT et Copilot."
+- pedagogie
+- intelligence-artificielle
+- python
+resume: Retour d'expérience sur huit heures de cours de Python à Polytech'Lille menées avec ChatGPT et Copilot.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---

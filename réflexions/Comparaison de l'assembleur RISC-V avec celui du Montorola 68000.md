@@ -1,28 +1,28 @@
 ---
 schema_version: 1
-uid: "01M02JG1WES094EWYC7TP139K0"
-titre: "Comparaison de l'assembleur RISC-V avec celui du Montorola 68000"
+uid: 01M02JG1WES094EWYC7TP139K0
+titre: Comparaison de l'assembleur RISC-V avec celui du Montorola 68000
 aliases:
-  - "RISC-V vs 68000"
+- RISC-V vs 68000
 type: fiche
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
 themes:
-  - informatique
-  - architecture-materielle
-  - assembleur
-  - risc-v
-resume: "Comparaison technique entre l'ISA modulaire et ouverte RISC-V et le jeu d'instructions du Motorola 68000 : modularité, pipeline, multitâche, compression, multi-cœur."
+- informatique
+- architecture-materielle
+- assembleur
+- risc-v
+resume: 'Comparaison technique entre l''ISA modulaire et ouverte RISC-V et le jeu d''instructions du Motorola 68000 : modularité, pipeline, multitâche, compression, multi-cœur.'
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2025-07-18
-date_modification: 2025-07-18
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -32,7 +32,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🧠 1. **Une architecture modulaire et extensible**
+# 🧠 1. **Une architecture modulaire et extensible**
 
 |Caractéristique|**RISC-V**|**68000**|
 |---|---|---|
@@ -57,7 +57,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 📚 2. **Une spécification claire, moderne, et standardisée**
+# 📚 2. **Une spécification claire, moderne, et standardisée**
 
 - **Spécifications formelles en machine-readable (Sail)**
     
@@ -70,7 +70,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🚀 3. **Une performance pipeline-friendly**
+# 🚀 3. **Une performance pipeline-friendly**
 
 |Fonction|RISC-V|68060|
 |---|---|---|
@@ -82,7 +82,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🛠️ 4. **Meilleure prise en charge du multitâche et des OS modernes**
+# 🛠️ 4. **Meilleure prise en charge du multitâche et des OS modernes**
 
 |Fonction|RISC-V|68k|
 |---|---|---|
@@ -93,7 +93,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 📉 5. **Compression et efficacité mémoire**
+# 📉 5. **Compression et efficacité mémoire**
 
 - **RISC-V "C"** : une extension d'instructions **compressées 16 bits**, pour économiser :
     
@@ -108,7 +108,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🧩 6. **Support natif du multi-cœur, des accès atomiques, de la vectorisation**
+# 🧩 6. **Support natif du multi-cœur, des accès atomiques, de la vectorisation**
 
 |Fonction|RISC-V|68060|
 |---|---|---|
@@ -118,7 +118,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🌐 7. **Écosystème open-source massif**
+# 🌐 7. **Écosystème open-source massif**
 
 - Outils libres :
     
@@ -149,7 +149,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🛡️ 8. **Conçu pour la sécurité moderne**
+# 🛡️ 8. **Conçu pour la sécurité moderne**
 
 - **Protection mémoire par design**
     
@@ -162,7 +162,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 🏁 Résumé
+# 🏁 Résumé
 
 |Capacité|RISC-V|Motorola 680x0|
 |---|---|---|
@@ -177,7 +177,7 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## ⚖️ Synthèse rapide
+# ⚖️ Synthèse rapide
 
 |Aspect|**Motorola 68k**|**RISC-V**|
 |---|---|---|
@@ -193,9 +193,9 @@ Voici donc **ce que RISC-V propose que le 68000 (et même le 68060) n’a pas**,
 
 ---
 
-## 📚 Exemple concret : Addition
+# 📚 Exemple concret : Addition
 
-### 🔹 Motorola 68k
+## 🔹 Motorola 68k
 
 ```asm
 MOVE.L  #5, D0       ; D0 = 5
@@ -203,7 +203,7 @@ MOVE.L  #10, D1      ; D1 = 10
 ADD.L   D1, D0       ; D0 = D0 + D1
 ```
 
-### 🔹 RISC-V
+## 🔹 RISC-V
 
 ```asm
 li x5, 5            # x5 = 5
@@ -218,16 +218,16 @@ add x7, x5, x6      # x7 = x5 + x6
 
 ---
 
-## 🧮 Exemple mémoire : lecture/sauvegarde
+# 🧮 Exemple mémoire : lecture/sauvegarde
 
-### 🔹 68k (complexe mais puissant)
+## 🔹 68k (complexe mais puissant)
 
 ```asm
 MOVE.L 100(A0), D0      ; D0 = [A0 + 100]
 MOVE.L D0, -(A7)        ; push D0 sur la pile (post-décrément)
 ```
 
-### 🔹 RISC-V (Load/Store only)
+## 🔹 RISC-V (Load/Store only)
 
 ```asm
 lw x5, 100(x10)         # x5 = [x10 + 100]
@@ -239,7 +239,7 @@ sw x5, 0(x2)            # push x5 sur pile
 
 ---
 
-## 🧩 Gestion de la pile
+# 🧩 Gestion de la pile
 
 |Action|68k|RISC-V|
 |---|---|---|
@@ -250,16 +250,16 @@ sw x5, 0(x2)            # push x5 sur pile
 
 ---
 
-## 🛠️ Fonctions et appels
+# 🛠️ Fonctions et appels
 
-### 🔹 68k
+## 🔹 68k
 
 ```asm
 JSR Subroutine         ; Jump to subroutine
 RTS                    ; Return from subroutine
 ```
 
-### 🔹 RISC-V
+## 🔹 RISC-V
 
 ```asm
 jal ra, subroutine     # Jump and link
@@ -271,9 +271,9 @@ Le **jal/jalr** du RISC-V est plus général et plus explicite.
 
 ---
 
-## ✅ Avantages et inconvénients
+# ✅ Avantages et inconvénients
 
-### 🔷 Motorola 68k
+## 🔷 Motorola 68k
 
 **Avantages :**
 
@@ -295,7 +295,7 @@ Le **jal/jalr** du RISC-V est plus général et plus explicite.
 
 ---
 
-### 🔶 RISC-V
+## 🔶 RISC-V
 
 **Avantages :**
 
@@ -317,7 +317,7 @@ Le **jal/jalr** du RISC-V est plus général et plus explicite.
 
 ---
 
-## 🏁 Conclusion
+# 🏁 Conclusion
 
 - Le **68k est une œuvre d'art d’architecture CISC** : expressif, compact, mais complexe    
 - Le **RISC-V est une base pédagogique et industrielle** : simple, prévisible, mais spartiate

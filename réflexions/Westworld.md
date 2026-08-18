@@ -1,26 +1,26 @@
 ---
 schema_version: 1
-uid: "01M02JG1WPYPWH2B0006Z7NEGK"
-titre: "Westworld"
+uid: 01M02JG1WPYPWH2B0006Z7NEGK
+titre: Westworld
 type: reflexion
 statut: actif
 para: ressource
 domaines:
-  - communication
+- communication
 themes:
-  - philosophie
-  - science-fiction
-  - conscience
-  - simulation
-resume: "Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience."
+- philosophie
+- science-fiction
+- conscience
+- simulation
+resume: Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience.
 auteurs:
-  - "Michaël Launay"
+- Michaël Launay
 langue: fr
 date_creation: 2024-09-20
-date_modification: 2024-09-25
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: false
 ---
@@ -30,7 +30,7 @@ Dans la série "Westworld", la citation exacte de Dolores sur la simulation des 
 
 La phrase souvent citée sur le nombre de paramètres nécessaires pour simuler un humain, bien que paraphrasée dans de nombreux commentaires, fait allusion à la complexité de l'esprit humain et à la capacité des créateurs de Westworld à modéliser le comportement humain de manière relativement simple. L'idée provient des concepts de modélisation comportementale et psychologique, où certains théoriciens et chercheurs dans le domaine de l'intelligence artificielle et de la psychologie cognitive ont tenté de réduire les comportements humains complexes à des ensembles de règles ou de paramètres gérables.
 
-### Base Théorique
+# Base Théorique
 La base théorique derrière cette idée provient de plusieurs domaines :
 
 1. **Psychologie Cognitive** : La psychologie cognitive tente de comprendre les processus mentaux en les modélisant. Des chercheurs comme Daniel Kahneman et Amos Tversky ont montré que des modèles relativement simples peuvent souvent expliquer des comportements humains apparemment complexes.
@@ -39,5 +39,5 @@ La base théorique derrière cette idée provient de plusieurs domaines :
 
 3. **Théorie des Systèmes Dynamiques** : Cette théorie propose que des systèmes complexes peuvent être décrits par un nombre relativement restreint de paramètres et de variables, ce qui peut s'appliquer aux systèmes biologiques et sociaux, y compris le comportement humain.
 
-### Conclusion
+# Conclusion
 La citation de Dolores et l'idée associée reflètent la tension entre la simplicité apparente des modèles utilisés pour simuler des comportements complexes et la réalité beaucoup plus nuancée de l'expérience humaine. C'est une exploration fascinante de la manière dont la science et la technologie tentent de capturer l'essence de ce que signifie être humain, souvent en simplifiant de manière significative les aspects complexes de notre nature.
