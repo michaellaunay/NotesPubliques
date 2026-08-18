@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-02-08
-date_modification: 2024-04-03
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -44,7 +44,7 @@ Mais on sent bien que l'on va rapidement aller vers une grosse difficulté à la
 
 Car oui, j'ai fait le test avec plusieurs articles de Wikipedia qui sont indiqués comme "The classifier considers the text to be likely AI-generated."
 
-Du coup, Google va-t-il déférencer Wikipedia ou toute encyclopédie, voire contenu structuré comme un article scientifique ?
+Du coup, Google va-t-il déréférencer Wikipedia ou toute encyclopédie, voire contenu structuré comme un article scientifique ?
 
 ### Des faux positifs !
 
@@ -68,6 +68,6 @@ Mon inquiétude est qu'ayant manqué les opportunités comme les pédagogies Mon
 
 Ne peut-on faire confiance aux nouvelles générations, car qui utiliserait un marteau pour planter une vis ?
 
-Pour mise en abime, ce texte original est analysé par OpenAI comme "The classifier considers the text to be **possibly** AI-generated."
+Pour mise en abyme, ce texte original est analysé par OpenAI comme "The classifier considers the text to be **possibly** AI-generated."
 
 [#chatgpt](https://www.linkedin.com/feed/hashtag/chatgpt) [#ia](https://www.linkedin.com/feed/hashtag/ia) [#enseignement](https://www.linkedin.com/feed/hashtag/enseignement) #Linkedin 

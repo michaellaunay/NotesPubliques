@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-03-07
-date_modification: 2024-01-05
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -60,7 +60,7 @@ https://fr.wikipedia.org/wiki/%C3%89quations_de_pr%C3%A9dation_de_Lotka-Volterra
 
 Ce qui a le plus bluffé les étudiants est qu'il n'aura fallu qu'une vingtaine de minutes en jouant entre Copilot et Chatgpt pour avoir un programme qui s'exécute et fait la plupart des choses demandées.
 
-Bien sûr, le fait de savoir ce que l'on veut et de bien connaitre Python permet d'éviter des bogues comme lorsque la notation des paramètres d'une fonction fait appel à un type défini en dessous (Il ne nous a pas proposé de faire une interface EtreVivant). Dans ce cas là, il suffisait de poser la bonne question à Chatgpt pour savoir qu'il suffisait d'importer Type de typing.
+Bien sûr, le fait de savoir ce que l'on veut et de bien connaître Python permet d'éviter des bogues comme lorsque la notation des paramètres d'une fonction fait appel à un type défini en dessous (Il ne nous a pas proposé de faire une interface EtreVivant). Dans ce cas là, il suffisait de poser la bonne question à Chatgpt pour savoir qu'il suffisait d'importer Type de typing.
 
 L'une des questions de l'une de mes élèves a alors été, "Monsieur, à quoi allez-vous servir ?" et moi de répondre, "à vous guider et non plus à essayer de vous enfoncer le savoir dans le crâne".
 

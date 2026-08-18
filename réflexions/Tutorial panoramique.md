@@ -17,7 +17,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-04-16
-date_modification: 2023-05-21
+date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
@@ -28,7 +28,7 @@ metadata_verifiees: false
 Les vidéos que l'on peut explorer en modifiant son point de vue sont appelées des vidéos à 360 degrés ou vidéos panoramiques à 360 degrés. Ces vidéos sont tournées à l'aide de caméras spéciales équipées de plusieurs objectifs qui capturent l'environnement dans toutes les directions. Lorsque la vidéo est visualisée sur un écran d'ordinateur ou un appareil mobile, il est possible de faire pivoter la vue à l'aide d'un curseur ou d'un mouvement du doigt pour changer l'angle de vision. Cela permet à l'utilisateur de regarder la vidéo de tous les côtés et de se sentir immergé dans l'environnement capturé.
 
 # détournement à des fins pédagogiques
-Si l'on regarde la vidéo de présentation de la bibliothèque des Médecis à Florence https://youtu.be/vCKsck7doXU , on voit qu'elle est panoramique et que l'on peut déplacer son point de vue tout en continuant à écouter la guide. Si j'ai bien compris on génère ce genre de fichier via un appareil photo panoramique.
+Si l'on regarde la vidéo de présentation de la bibliothèque des Médicis à Florence https://youtu.be/vCKsck7doXU , on voit qu'elle est panoramique et que l'on peut déplacer son point de vue tout en continuant à écouter la guide. Si j'ai bien compris on génère ce genre de fichier via un appareil photo panoramique.
 Mes questions sont donc les suivantes :
 1) pourrait-on utiliser la panoramique pour faire des vidéos de tutoriels où en se déplaçant on pourrait ainsi approfondir certains points du tutorial ou revenir sur des points que l'on n'a pas compris ?
 2) Est-il alors possible de changer l'audio selon le point de vue que l'on a pris ? Peux-t-on rendre contextuel ce que l'on voit ?
