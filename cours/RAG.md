@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02EX5C62Z5GBDT0J0X9JMNQ"
-titre: "RAG"
+uid: 01M02EX5C62Z5GBDT0J0X9JMNQ
+titre: RAG
 aliases:
-  - "Retrieval-Augmented Generation"
+  - Retrieval-Augmented Generation
 type: cours
 statut: actif
 para: ressource
@@ -22,7 +22,7 @@ prerequis:
   - "[[LLM]]"
   - "[[Les transformers]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2026-06-03
 date_modification: 2026-06-04
@@ -30,7 +30,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Plan du cours
 
