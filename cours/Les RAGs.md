@@ -3,36 +3,38 @@ schema_version: 1
 uid: 01M02EX5BAMEN15GB8B2S2QY9C
 titre: Les RAGs
 aliases:
-- Graph RAG
-- Agentic RAG
+  - Graph RAG
+  - Agentic RAG
 type: fiche
 statut: actif
 para: ressource
 domaines:
-- enseignement
-- veille
+  - enseignement
+  - veille
 themes:
-- informatique
-- intelligence-artificielle
-- rag
-- graph-rag
-- agentic-rag
-resume: 'Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.'
+  - informatique
+  - intelligence-artificielle
+  - rag
+  - graph-rag
+  - agentic-rag
+resume: "Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle."
 niveau: intermediaire
 prerequis:
-- '[[RAG]]'
+  - "[[RAG]]"
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2026-06-03
-date_modification: 2026-08-18
+date_modification: 2026-08-21
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Le RAG n’est pas une seule **architecture**, c’est une famille de méthodes pour donner à un LLM accès à une connaissance externe au moment de répondre. Le papier fondateur de 2020 décrit déjà cette idée : combiner la mémoire “paramétrique” du modèle, c’est-à-dire ce qu’il a appris pendant l’entraînement, avec une mémoire externe récupérée par recherche documentaire. ([arXiv](https://arxiv.org/abs/2005.11401?utm_source=chatgpt.com "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"))
+
+Cette note n'est qu'une introduction au cours sur le [[RAG]]. Elle permet de comprendre les bases du RAG et  les problèmes liés à l'enrichissement de la réponse générée par les LLM et pourquoi il n'existe pas d'architecture unique de RAG.
 
 # 1. Le problème de départ : pourquoi le RAG existe
 
@@ -136,7 +138,7 @@ La recherche vectorielle retrouve directement le bon passage.
 
 # 3. La limite du RAG standard
 
-La newsletter donne un bon exemple.
+Voici un bon exemple.
 
 On a trois faits :
 
@@ -514,7 +516,7 @@ Agentic RAG répond à :
 
 # 11. Single-hop, multi-hop, multi-source
 
-La newsletter utilise trois catégories utiles.
+Voici trois catégories utiles.
 
 ## Single-hop factual lookup
 
@@ -572,7 +574,7 @@ Elle ne sait pas toujours dire :
 Ce passage ne ressemble pas directement à la question, mais il est indispensable pour relier deux autres passages.
 ```
 
-C’est exactement le problème du fait 2 dans la newsletter.
+C’est exactement le type de problème rencontré en production.
 
 Le fait :
 
@@ -736,9 +738,7 @@ proposer un patch
 
 C’est plutôt Agentic RAG.
 
-# 16. Comment lire la newsletter en une phrase
-
-La newsletter dit ceci :
+# 16. En une phrase
 
 Le **RAG standard** retrouve des passages similaires à la question ; le **Graph RAG** retrouve des chemins de relations entre entités ; l’**Agentic RAG** laisse un agent décider dynamiquement quelles recherches, sources et outils utiliser.
 
@@ -747,3 +747,7 @@ C’est une bonne synthèse.
 Mais il faut ajouter la nuance d’ingénierie :
 
 En production, ces architectures sont souvent combinées, et le vrai sujet n’est pas seulement “quelle architecture est la plus avancée”, mais “quel type de question dois-je servir, avec quel niveau de coût, de latence, de fiabilité et d’explicabilité ?”
+
+# 17. Conclusion
+D'autres architectures de RAG vont émerger.
+Les détails de la technologie RAG sont abordés dans le cours [RAG]]
