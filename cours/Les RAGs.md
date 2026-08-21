@@ -750,4 +750,4 @@ En production, ces architectures sont souvent combinées, et le vrai sujet n’e
 
 # 17. Conclusion
 D'autres architectures de RAG vont émerger.
-Les détails de la technologie RAG sont abordés dans le cours [RAG]]
+Les détails de la technologie RAG sont abordés dans le cours [[RAG]].
