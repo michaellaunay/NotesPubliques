@@ -25,7 +25,7 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2026-06-03
-date_modification: 2026-06-04
+date_modification: 2026-08-22
 confidentialite: publique
 publication:
   - notes-publiques
@@ -180,7 +180,7 @@ Sans mécanisme de recherche et de citation, le LLM agit comme une boîte noire.
 
 Avec le RAG, nous pouvons associer chaque réponse aux passages documentaires utilisés.
 
-### 21..5. Le modèle ne sait pas toujours dire “je ne sais pas”
+### 1.2.5. Le modèle ne sait pas toujours dire “je ne sais pas”
 
 Un bon système documentaire doit être capable de dire :
 
