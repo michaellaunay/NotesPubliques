@@ -11,13 +11,14 @@ themes:
 - informatique
 - programmation
 - python
-resume: 'Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard.'
+resume: "Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage."
 niveau: debutant
 auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2023-05-10
-date_modification: 2026-08-18
+date_modification: 2026-08-28
+date_verification: 2026-08-28
 confidentialite: publique
 publication:
 - notes-publiques
@@ -1632,6 +1633,89 @@ Cela affiche le dictionnaire des annotations de la fonction :
 
 Cependant, bien que les annotations soient une fonctionnalité puissante et flexible, il est important de noter qu'elles ne remplacent pas les docstrings pour la documentation des fonctions. Les docstrings peuvent fournir des informations beaucoup plus détaillées et explicatives que les annotations. Les deux outils peuvent être utilisés ensemble pour rendre nos fonctions aussi claires et compréhensibles que possible.
 
+## Écrire des annotations modernes
+
+La syntaxe des annotations a nettement évolué. Les formes suivantes, longtemps
+nécessaires, sont aujourd'hui obsolètes :
+
+```python
+from typing import List, Dict, Optional, Union
+
+def compter(mots: List[str]) -> Dict[str, int]: ...
+def chercher(cle: str) -> Optional[int]: ...
+def convertir(v: Union[int, float]) -> str: ...
+```
+
+Depuis Python 3.9, les types intégrés sont eux-mêmes génériques ; depuis 3.10,
+l'opérateur `|` remplace `Union` et `Optional` :
+
+```python
+def compter(mots: list[str]) -> dict[str, int]: ...
+def chercher(cle: str) -> int | None: ...
+def convertir(v: int | float) -> str: ...
+```
+
+Le module `typing` reste utile pour ce que la syntaxe ne couvre pas :
+
+```python
+from typing import Any, Callable, Iterable, Literal, Self, TypedDict
+
+Mode = Literal["lecture", "ecriture"]
+
+def appliquer(f: Callable[[int], str], valeurs: Iterable[int]) -> list[str]:
+    return [f(v) for v in valeurs]
+
+class Config(TypedDict):
+    nom: str
+    actif: bool
+```
+
+Depuis Python 3.12, les fonctions et classes génériques ont une syntaxe dédiée,
+sans déclaration préalable de `TypeVar` :
+
+```python
+def premier[T](valeurs: list[T]) -> T | None:
+    return valeurs[0] if valeurs else None
+```
+
+## Vérifier les types
+
+Python n'exécute aucune vérification : les annotations ne servent que si un outil
+les lit. Le plus répandu est `mypy` :
+
+```bash
+python3 -m pip install mypy
+mypy mon_module.py
+```
+
+```text
+mon_module.py:12: error: Argument 1 to "addition" has incompatible type "str";
+                         expected "int"  [arg-type]
+```
+
+`pyright` et `ty` remplissent le même rôle avec des compromis différents de
+rapidité et de sévérité.
+
+Une annotation fausse est pire qu'une annotation absente : elle affirme quelque
+chose de faux au lecteur comme à l'outil. Si un doute subsiste sur le type d'une
+valeur, mieux vaut l'annoter `Any` explicitement que mentir.
+
+## L'évaluation différée des annotations
+
+Une annotation était historiquement évaluée à la définition de la fonction, ce qui
+interdisait de référencer une classe pas encore définie et obligeait à recourir
+aux guillemets :
+
+```python
+class Noeud:
+    def enfant(self) -> "Noeud": ...      # guillemets nécessaires
+```
+
+Python 3.14 rend l'évaluation paresseuse ([PEP 649](https://peps.python.org/pep-0649/)) :
+les annotations ne sont calculées qu'à la demande, les références en avant
+fonctionnent sans guillemets, et le coût d'importation d'un module fortement
+annoté diminue.
+
 # Les Classes
 
 Une classe est une structure qui nous permet de regrouper des données, que nous appelons des attributs, et des fonctions, que nous appelons des méthodes, qui opèrent sur ces données. Les classes sont définies avec le mot-clé `class`.
@@ -2786,6 +2870,446 @@ La méthode [`__delete__`](command:_github.copilot.openSymbolFromReferences?%5B%
 La classe [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") utilise l'attribut [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition") de type [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition"). Lorsqu'une instance de [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") est créée avec une valeur donnée, la méthode [`__init__`](command:_github.copilot.openSymbolFromReferences?%5B%22__init__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A19%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") est appelée. Dans cet exemple, la méthode [`__init__`](command:_github.copilot.openSymbolFromReferences?%5B%22__init__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A19%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") affecte la valeur donnée à l'attribut [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition") de l'instance.
 
 Enfin, le code crée une instance de [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") avec une valeur de 10, puis imprime la valeur de l'attribut [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition") de cette instance. Lorsque l'attribut est accédé, la méthode [`__get__`](command:_github.copilot.openSymbolFromReferences?%5B%22__get__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") de [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") est appelée, ce qui imprime un message et retourne la valeur de l'attribut.
+# L'opérateur d'affectation d'expression `:=`
+
+Introduit par la [PEP 572](https://peps.python.org/pep-0572/) en Python 3.8, l'opérateur `:=` — surnommé « morse » à cause de sa ressemblance avec les yeux et les défenses de l'animal — permet d'affecter une variable **à l'intérieur** d'une expression.
+
+Sans lui, nous sommes souvent contraints d'écrire deux fois le même appel, ou de dupliquer une ligne avant la boucle :
+
+```python
+ligne = fichier.readline()
+while ligne:
+    traiter(ligne)
+    ligne = fichier.readline()
+```
+
+Avec lui, l'affectation et le test tiennent en une expression :
+
+```python
+while ligne := fichier.readline():
+    traiter(ligne)
+```
+
+Il est particulièrement utile lorsqu'un calcul coûteux sert à la fois de condition et de valeur :
+
+```python
+if (resultat := calcul_long(donnees)) is not None:
+    print(f"Trouvé : {resultat}")
+```
+
+et dans les listes en compréhension, pour ne pas appeler deux fois la même fonction :
+
+```python
+# sans l'opérateur : coûteux(x) est évalué deux fois par élément retenu
+[couteux(x) for x in valeurs if couteux(x) > 0]
+
+# avec : une seule évaluation
+[y for x in valeurs if (y := couteux(x)) > 0]
+```
+
+Attention cependant : l'opérateur crée une variable dans la portée englobante. Utilisé sans discernement, il rend le code plus dense mais moins lisible. La règle raisonnable est de ne l'employer que lorsqu'il **supprime une répétition**, jamais pour gagner une ligne.
+
+---
+
+# Les dataclasses
+
+Écrire une classe qui ne fait que porter des données demande, en Python classique, beaucoup de code répétitif : un `__init__` qui recopie chaque paramètre dans un attribut, un `__repr__` pour l'affichage, un `__eq__` pour la comparaison.
+
+```python
+class Point:
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f"Point(x={self.x}, y={self.y})"
+
+    def __eq__(self, autre):
+        if not isinstance(autre, Point):
+            return NotImplemented
+        return (self.x, self.y) == (autre.x, autre.y)
+```
+
+Le module `dataclasses`, ajouté en Python 3.7 par la [PEP 557](https://peps.python.org/pep-0557/), engendre ces méthodes à partir des seules annotations :
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Point:
+    x: float
+    y: float
+```
+
+Les deux versions se comportent identiquement :
+
+```python
+p = Point(1.0, 2.0)
+print(p)          # Point(x=1.0, y=2.0)
+print(p == Point(1.0, 2.0))   # True
+```
+
+## Les options du décorateur
+
+```python
+@dataclass(frozen=True, order=True, slots=True)
+class Point:
+    x: float
+    y: float
+```
+
+- `frozen=True` rend l'instance immuable : toute affectation d'attribut lève `FrozenInstanceError`. L'objet devient alors hachable, donc utilisable comme clé de dictionnaire ou dans un ensemble.
+- `order=True` engendre `__lt__`, `__le__`, `__gt__` et `__ge__`, qui comparent les champs dans l'ordre de déclaration.
+- `slots=True`, disponible depuis Python 3.10, engendre `__slots__` : les instances consomment nettement moins de mémoire et l'ajout d'un attribut imprévu devient une erreur au lieu d'un bogue silencieux.
+
+## Le piège de la valeur par défaut mutable
+
+```python
+@dataclass
+class Panier:
+    articles: list[str] = []      # TypeError à la définition de la classe
+```
+
+Python refuse ce code, et c'est heureux : une liste déclarée ainsi serait **partagée entre toutes les instances**, ce qui est le défaut classique des arguments par défaut mutables vu au chapitre sur les fonctions. La solution est une fabrique :
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Panier:
+    articles: list[str] = field(default_factory=list)
+```
+
+## Le traitement après initialisation
+
+La méthode `__post_init__` est appelée à la fin de l'`__init__` engendré. C'est là que se placent les validations et les champs calculés :
+
+```python
+@dataclass
+class Segment:
+    debut: float
+    fin: float
+    longueur: float = field(init=False)
+
+    def __post_init__(self):
+        if self.fin < self.debut:
+            raise ValueError("fin doit être supérieure à debut")
+        self.longueur = self.fin - self.debut
+```
+
+## Quand ne pas les utiliser
+
+Une dataclass reste une classe ordinaire : elle accepte des méthodes, de l'héritage, des propriétés. Mais si l'objet a surtout un **comportement** et peu d'état, une classe classique exprime mieux l'intention. Et si les données viennent de l'extérieur — un fichier JSON, une réponse HTTP — et doivent être **validées**, une bibliothèque comme Pydantic fait ce que `dataclasses` ne fait pas : vérifier à l'exécution que les types annoncés sont respectés.
+
+Pour un enregistrement immuable et minimal, `typing.NamedTuple` reste plus léger encore.
+
+---
+
+# Le module `pathlib`
+
+Manipuler des chemins de fichiers avec `os.path` revient à assembler des chaînes de caractères :
+
+```python
+import os
+
+racine = "/home/utilisateur"
+chemin = os.path.join(racine, "documents", "rapport.txt")
+if os.path.exists(chemin) and os.path.isfile(chemin):
+    with open(chemin) as fh:
+        contenu = fh.read()
+nom = os.path.splitext(os.path.basename(chemin))[0]
+```
+
+Le module `pathlib`, introduit en Python 3.4 par la [PEP 428](https://peps.python.org/pep-0428/), traite un chemin comme un **objet** plutôt que comme une chaîne :
+
+```python
+from pathlib import Path
+
+chemin = Path("/home/utilisateur") / "documents" / "rapport.txt"
+if chemin.is_file():
+    contenu = chemin.read_text(encoding="utf-8")
+nom = chemin.stem
+```
+
+L'opérateur `/` est surchargé pour la concaténation de chemins — un bon exemple du polymorphisme vu plus haut — et il gère seul le séparateur propre au système, ce qui rend le code portable entre Windows et les systèmes Unix.
+
+## Les attributs d'un chemin
+
+```python
+p = Path("/home/utilisateur/documents/rapport.txt")
+
+p.name        # 'rapport.txt'    nom complet du fichier
+p.stem        # 'rapport'        nom sans l'extension
+p.suffix      # '.txt'           extension
+p.parent      # Path('/home/utilisateur/documents')
+p.parents[1]  # Path('/home/utilisateur')
+p.parts       # ('/', 'home', 'utilisateur', 'documents', 'rapport.txt')
+p.is_absolute()   # True
+```
+
+## Les opérations courantes
+
+```python
+p.exists()                  # le chemin existe-t-il ?
+p.is_file()                 # est-ce un fichier ordinaire ?
+p.is_dir()                  # est-ce un répertoire ?
+p.read_text(encoding="utf-8")
+p.write_text("bonjour", encoding="utf-8")
+p.read_bytes()
+
+Path("dossier/sous-dossier").mkdir(parents=True, exist_ok=True)
+p.rename(p.with_suffix(".bak"))
+p.unlink(missing_ok=True)   # suppression, sans erreur si absent
+```
+
+`read_text` et `write_text` ouvrent, lisent et referment le fichier : pour un petit fichier, ils remplacent avantageusement le bloc `with open(...)`. Pour un gros fichier, on garde `with p.open()` afin de traiter ligne à ligne sans tout charger en mémoire.
+
+## Parcourir une arborescence
+
+```python
+dossier = Path("cours")
+
+for fichier in dossier.iterdir():        # contenu direct, non récursif
+    print(fichier.name)
+
+for md in dossier.glob("*.md"):          # motif, non récursif
+    print(md.stem)
+
+for md in dossier.rglob("*.md"):         # motif, récursif
+    print(md.relative_to(dossier))
+```
+
+`glob` et `rglob` retournent des **générateurs** : l'arborescence n'est pas chargée en mémoire, ce qui compte dès qu'un dossier contient des milliers de fichiers.
+
+## Une précaution d'encodage
+
+```python
+p.read_text()                      # encodage dépendant de la machine
+p.read_text(encoding="utf-8")      # encodage explicite
+```
+
+Jusqu'à Python 3.14 inclus, l'encodage par défaut à l'ouverture d'un fichier dépend de la configuration régionale du système : un script qui fonctionne sous Linux peut échouer sous Windows sur un simple accent. **Indiquons donc toujours `encoding="utf-8"`.** La [PEP 686](https://peps.python.org/pep-0686/), qui fait de l'UTF-8 l'encodage par défaut, est prévue pour Python 3.15 ; d'ici là, et pour la compatibilité avec les versions antérieures, l'habitude reste indispensable.
+
+---
+
+# La programmation asynchrone : `async` et `await`
+
+Un programme passe souvent l'essentiel de son temps à **attendre** : une réponse réseau, une lecture disque, une requête de base de données. Pendant cette attente, le processeur ne fait rien.
+
+La programmation asynchrone, formalisée par le module `asyncio` et les mots-clés `async` et `await` ([PEP 492](https://peps.python.org/pep-0492/), Python 3.5), permet à un programme **à un seul fil d'exécution** de démarrer une attente, de passer à autre chose, et de revenir quand la réponse arrive.
+
+## Un premier exemple
+
+```python
+import asyncio
+
+async def bonjour(nom: str, delai: float) -> str:
+    await asyncio.sleep(delai)       # attente sans bloquer les autres tâches
+    return f"Bonjour {nom}"
+
+async def principal():
+    resultats = await asyncio.gather(
+        bonjour("Alice", 2),
+        bonjour("Bob", 2),
+        bonjour("Claire", 2),
+    )
+    print(resultats)
+
+asyncio.run(principal())
+```
+
+Ce programme s'exécute en **deux secondes**, non en six : les trois attentes se recouvrent.
+
+Trois éléments à retenir :
+
+- `async def` définit une **coroutine**. L'appeler ne l'exécute pas, cela crée un objet à exécuter.
+- `await` cède la main à la boucle d'événements le temps de l'attente. Il n'est utilisable qu'à l'intérieur d'un `async def`.
+- `asyncio.run()` démarre la boucle d'événements et attend la fin de la coroutine passée.
+
+## Le groupe de tâches
+
+Depuis Python 3.11, `TaskGroup` est préférable à `gather` : si une tâche échoue, les autres sont annulées proprement, et les erreurs sont regroupées.
+
+```python
+async def principal():
+    async with asyncio.TaskGroup() as groupe:
+        t1 = groupe.create_task(bonjour("Alice", 2))
+        t2 = groupe.create_task(bonjour("Bob", 1))
+    print(t1.result(), t2.result())
+```
+
+## Ce que l'asynchrone n'est pas
+
+C'est le point que les débutants comprennent de travers, et il vaut la peine d'être posé clairement.
+
+> **L'asynchrone ne rend pas un calcul plus rapide.** Il ne sert qu'à recouvrir des attentes.
+
+Une boucle qui calcule des nombres premiers ne gagnera rien à devenir `async` : il n'y a aucune attente à recouvrir, et le programme reste sur un seul cœur. Pour du calcul, il faut `multiprocessing` — ou, depuis Python 3.13, l'interpréteur sans verrou global en version expérimentale.
+
+Pire, un appel bloquant glissé dans une coroutine **gèle toute la boucle** :
+
+```python
+async def mauvais():
+    time.sleep(2)              # bloque tout le programme pendant 2 secondes
+    requests.get(url)          # idem : bibliothèque synchrone
+
+async def correct():
+    await asyncio.sleep(2)
+    async with httpx.AsyncClient() as client:
+        await client.get(url)
+```
+
+Passer à l'asynchrone impose donc de remplacer chaque bibliothèque d'entrée-sortie par son équivalent asynchrone : `httpx` ou `aiohttp` au lieu de `requests`, `asyncpg` au lieu de `psycopg2` en mode bloquant. C'est une décision d'architecture, pas un mot-clé que l'on ajoute.
+
+Pour appeler malgré tout du code bloquant sans figer la boucle :
+
+```python
+resultat = await asyncio.to_thread(fonction_bloquante, argument)
+```
+
+---
+
+# Tester son code
+
+Un programme sans tests n'est pas un programme fiable : c'est un programme dont personne n'a encore constaté les défauts. Écrire des tests n'est pas une contrainte administrative, c'est ce qui permet de modifier du code sans crainte.
+
+## `unittest`, dans la bibliothèque standard
+
+```python
+import unittest
+
+def addition(a: int, b: int) -> int:
+    return a + b
+
+class TestAddition(unittest.TestCase):
+    def test_entiers(self):
+        self.assertEqual(addition(2, 3), 5)
+
+    def test_negatifs(self):
+        self.assertEqual(addition(-1, -1), -2)
+
+    def test_type_incorrect(self):
+        with self.assertRaises(TypeError):
+            addition("2", 3)
+
+if __name__ == "__main__":
+    unittest.main()
+```
+
+```bash
+python3 -m unittest discover
+```
+
+## `pytest`, la norme de fait
+
+`pytest` n'est pas dans la bibliothèque standard, mais c'est l'outil que la communauté utilise. Il reconnaît les tests écrits pour `unittest` et permet d'écrire les siens avec de simples fonctions et l'instruction `assert` :
+
+```python
+# tests/test_addition.py
+import pytest
+from calcul import addition
+
+def test_entiers():
+    assert addition(2, 3) == 5
+
+def test_type_incorrect():
+    with pytest.raises(TypeError):
+        addition("2", 3)
+```
+
+```bash
+pip install pytest
+pytest -q
+```
+
+## Les tests paramétrés
+
+Plutôt que d'écrire dix fonctions quasi identiques :
+
+```python
+@pytest.mark.parametrize("a, b, attendu", [
+    (2, 3, 5),
+    (0, 0, 0),
+    (-1, 1, 0),
+    (10**18, 1, 10**18 + 1),
+])
+def test_addition(a, b, attendu):
+    assert addition(a, b) == attendu
+```
+
+Chaque jeu de valeurs devient un test distinct, avec son propre verdict — un échec sur le grand nombre ne masque pas les autres.
+
+## Les fixtures
+
+Une *fixture* prépare un contexte et le nettoie après usage :
+
+```python
+@pytest.fixture
+def fichier_temporaire(tmp_path):
+    chemin = tmp_path / "donnees.txt"
+    chemin.write_text("ligne 1\nligne 2\n", encoding="utf-8")
+    return chemin
+
+def test_lecture(fichier_temporaire):
+    assert len(fichier_temporaire.read_text(encoding="utf-8").splitlines()) == 2
+```
+
+`tmp_path` est une fixture intégrée qui fournit un répertoire temporaire propre à chaque test — et c'est un objet `pathlib.Path`.
+
+## La couverture de code
+
+```bash
+pip install pytest-cov
+pytest --cov=mon_paquet --cov-report=term-missing
+```
+
+La couverture indique quelles lignes n'ont jamais été exécutées par les tests. C'est un indicateur utile, à condition de ne pas en faire un objectif : **100 % de couverture ne signifie pas que le code est correct**, seulement que chaque ligne a été traversée au moins une fois. Un test qui exécute une ligne sans rien vérifier compte autant qu'un bon test.
+
+## Que tester en priorité
+
+```text
+les cas limites          liste vide, zéro, chaîne vide, valeur maximale
+les erreurs attendues    ce que le code doit refuser
+les régressions          tout bogue corrigé mérite son test
+```
+
+Le dernier point est le plus rentable : un bogue qui revient est un bogue dont personne n'avait écrit le test.
+
+---
+
+# Les versions de Python et leur cycle de vie
+
+Depuis Python 3.9, une version majeure sort **chaque année en octobre**. Chacune reçoit deux ans de support complet, puis trois ans de correctifs de sécurité — soit cinq ans de vie utile.
+
+| Version | Sortie | Fin de vie | À retenir |
+| --- | --- | --- | --- |
+| 3.10 | oct. 2021 | oct. 2026 | `match`, opérateur `\|` pour les unions de types |
+| 3.11 | oct. 2022 | oct. 2027 | net gain de performances, `TaskGroup`, `Self` |
+| 3.12 | oct. 2023 | oct. 2028 | syntaxe des génériques `def f[T]()` |
+| 3.13 | oct. 2024 | oct. 2029 | REPL amélioré, interpréteur sans GIL (expérimental) |
+| 3.14 | oct. 2025 | oct. 2030 | chaînes de gabarit `t""`, annotations à évaluation différée |
+| 3.15 | oct. 2026 | oct. 2031 | UTF-8 par défaut, nouveau profileur |
+
+Au moment de la rédaction de ce cours, **Python 3.14.7 est la dernière version stable** et Python 3.15 est en phase de publication candidate.
+
+Deux conséquences pratiques.
+
+**Python 3.9 est mort en octobre 2025**, et 3.10 s'éteint en octobre 2026 : un code écrit aujourd'hui peut sans remords utiliser `match`, `TaskGroup`, la syntaxe `list[int]` et l'opérateur `|` pour les unions de types.
+
+**La version installée par le système n'est pas toujours la plus récente.** Une distribution stable fige souvent une version ancienne. La commande qui tranche est :
+
+```bash
+python3 --version
+```
+
+et, en cas de doute sur la version qui exécutera réellement notre script :
+
+```bash
+python3 -c "import sys; print(sys.version)"
+```
+
+---
+
 # Les principaux modules
 
 Voici une liste de quelques-uns des modules Python les plus couramment utilisés, ainsi qu'une brève description de leurs fonctionnalités :
@@ -2865,7 +3389,52 @@ mkvirtualenv qt6_env -p python3
 ```
     
 
-Depuis Python 3.6, il existe un outil, `pipenv`, qui combine `pip` et `virtualenv`.
+`virtualenvwrapper` et `pipenv` restent fonctionnels, mais l'usage a changé :
+le module `venv`, présent dans la bibliothèque standard depuis Python 3.3, suffit
+dans la très grande majorité des cas et n'exige aucune installation préalable.
+
+```bash
+python3 -m venv .venv                 # créer
+source .venv/bin/activate             # activer   (Unix)
+.venv\Scripts\activate                # activer   (Windows)
+python3 -m pip install -r requirements.txt
+deactivate                            # quitter
+```
+
+Placer l'environnement dans un dossier `.venv` **à la racine du projet** est la
+convention retenue par la plupart des éditeurs, qui le détectent alors seuls. Ce
+dossier n'a évidemment pas à être versionné : une ligne `.venv/` dans le
+`.gitignore`.
+
+Depuis 2024, l'outil `uv`, écrit en Rust, remplace avantageusement l'ensemble
+`pip` + `venv` + `pip-tools` : il résout et installe les dépendances un à deux
+ordres de grandeur plus vite, et gère aussi l'installation des interpréteurs.
+
+```bash
+uv venv                    # crée .venv
+uv pip install requests    # installe
+uv run script.py           # exécute dans l'environnement, sans l'activer
+```
+
+Le format de déclaration des dépendances a lui aussi convergé. `requirements.txt`
+reste répandu, mais la norme est désormais le fichier `pyproject.toml`
+([PEP 621](https://peps.python.org/pep-0621/)) :
+
+```toml
+[project]
+name = "mon-projet"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32",
+    "pydantic>=2.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.0", "mypy>=1.10"]
+```
+
+Pour mémoire, l'outil historique `pipenv`, qui combinait `pip` et `virtualenv` :
 
 Pour installer `pipenv`, nous utilisons :
 
@@ -2887,6 +3456,21 @@ Et pour activer l'environnement virtuel créé, nous utilisons :
     pipenv shell
 
 # Les linters
+
+Depuis 2023, `ruff` — écrit en Rust — réunit en un seul outil ce que faisaient
+`flake8`, `isort`, `pyupgrade` et une partie de `pylint`, avec un temps
+d'exécution de l'ordre de la centaine de millisecondes sur un projet entier.
+
+```bash
+python3 -m pip install ruff
+ruff check .          # signaler
+ruff check --fix .    # corriger ce qui est corrigible
+ruff format .         # formater (compatible avec le style de black)
+```
+
+Les outils décrits ci-dessous restent parfaitement utilisables, et `pylint`
+conserve une analyse plus profonde que `ruff` sur certains points.
+
 
 Un "linter" est un outil qui analyse le code source d'un programme afin de signaler les erreurs, les bugs, les problèmes stylistiques et les constructions suspectes. Le terme provient de "lint", un outil de vérification de code pour le langage C créé dans les années 70. L'idée est de "dépoussiérer" le code, d'où le nom "lint" (peluches/moutons/minous en anglais).
 
@@ -2973,12 +3557,33 @@ Bien sûr, voici une liste de ressources en ligne pour vous aider à approfondir
 
 Il est préférable de commencer par des ressources adaptées à notre niveau actuel, puis d'ajouter des défis supplémentaires à mesure que vous progressez.
 
-# Installation de bibliothèques directement dans python
-Depuis Python 3.9 il est possible d'installer les bibliothèques comme suit
-```shell
-python3 -m install matplotlib
-```
-Création d'un environnement virtuel
+# Installer une bibliothèque
+
+La commande correcte invoque le module `pip`, et non un module `install` qui
+n'existe pas :
+
 ```bash
-python3 -m venv ~/venv
+python3 -m pip install matplotlib
+```
+
+La forme `python3 -m pip` est préférable au simple `pip` : elle garantit que la
+bibliothèque est installée pour **l'interpréteur que nous venons de nommer**, et
+non pour un autre `python` présent dans le `PATH`. C'est la cause la plus
+fréquente du célèbre « je viens de l'installer et il ne la trouve pas ».
+
+Depuis Python 3.11, installer un paquet dans l'interpréteur du système est
+refusé sur la plupart des distributions ([PEP 668](https://peps.python.org/pep-0668/)) :
+
+```text
+error: externally-managed-environment
+```
+
+Ce refus est une protection, non un obstacle : il évite qu'un `pip install`
+n'écrase une bibliothèque dont le système dépend. La réponse n'est pas
+`--break-system-packages`, mais un environnement virtuel :
+
+```bash
+python3 -m venv ~/venvs/mon_projet
+source ~/venvs/mon_projet/bin/activate
+python3 -m pip install matplotlib
 ```
