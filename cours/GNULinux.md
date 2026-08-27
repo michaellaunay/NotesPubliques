@@ -1,13 +1,13 @@
 ---
 schema_version: 1
-uid: "01M02EX5B076XM10WC61BSNGRH"
-titre: "GNU/Linux"
+uid: 01M02EX5B076XM10WC61BSNGRH
+titre: GNU/Linux
 aliases:
-  - "GNU/Linux"
-  - "Linux"
+  - GNU/Linux
+  - Linux
 type: cours
 source_url:
-  - "https://github.com/michaellaunay/CoursGNULinux"
+  - https://github.com/michaellaunay/CoursGNULinux
 statut: actif
 para: ressource
 domaines:
@@ -21,17 +21,17 @@ themes:
 resume: "Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
-licence: "CC BY 2.0 FR"
-revision: "2.0.0"
+licence: CC BY 2.0 FR
+revision: 2.0.0
 date_creation: 2023-03-03
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Objectif
 
