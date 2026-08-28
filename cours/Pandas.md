@@ -12,7 +12,8 @@ themes:
   - python
   - data-science
   - pandas
-resume: "Cours sur la bibliothèque Pandas : structures de données Series et DataFrame, sélection, filtrage, agrégation et manipulation de jeux de données."
+  - donnees
+resume: "Cours sur la bibliothèque Pandas : structures Series et DataFrame, sélection, filtrage, valeurs manquantes, groupement, concaténation et jointures, puis les ruptures de pandas 3.0 — Copy-on-Write, type str adossé à Arrow, pd.col() et migration."
 niveau: debutant
 prerequis:
   - "[[Python]]"
@@ -21,7 +22,8 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-10-12
-date_modification: 2026-08-18
+date_modification: 2026-08-28
+date_verification: 2026-08-28
 confidentialite: publique
 publication:
   - notes-publiques
@@ -33,6 +35,19 @@ metadata_verifiees: false
 Pandas est une bibliothèque open-source de Python spécialement conçue pour la **manipulation de données** et l'analyse de grands ensembles de données. Elle est particulièrement utile dans des domaines comme la **data science**, le **machine learning**, et l'**analyse statistique**. Avec Pandas, nous pouvons gérer des structures de données tabulaires comme les feuilles de calcul, ce qui en fait un outil essentiel pour traiter et explorer des données complexes.
 
 Dans ce cours, nous allons aborder les bases de Pandas, depuis la création et la manipulation des structures de données jusqu'aux opérations avancées d'analyse.
+
+> **Version.** Ce cours vise **pandas 3.0**, publié le 21 janvier 2026. Cette
+> version impose le *Copy-on-Write*, remplace le type `object` par un type `str`
+> dédié pour le texte et transforme l'affectation chaînée en erreur. Le chapitre
+> « Pandas 3.0 » en fin de cours détaille ces ruptures et la marche à suivre pour
+> migrer du code écrit pour les versions 1.x et 2.x.
+
+```bash
+python3 -m pip install "pandas>=3.0" pyarrow
+```
+
+`pyarrow` n'est pas obligatoire, mais son absence prive des gains de performance
+sur les colonnes de texte — un facteur cinq à dix.
 
 # 1. Les structures de données dans Pandas
 
@@ -162,10 +177,13 @@ Les données manquantes (ou "NaN") sont fréquentes en analyse de données. Pand
 print(df.isna().sum())
 
 # Remplacer les valeurs manquantes par une valeur par défaut
-df['Age'].fillna(0, inplace=True)
+# Attention : df['Age'].fillna(0, inplace=True) est une affectation chaînée.
+# Elle lève ChainedAssignmentError depuis pandas 3.0 — et, avant, elle ne
+# modifiait déjà pas toujours le DataFrame d'origine.
+df['Age'] = df['Age'].fillna(0)
 
 # Supprimer les lignes avec des valeurs manquantes
-df.dropna(inplace=True)
+df = df.dropna()
 ```
 
 # 4. Opérations sur les données
@@ -238,11 +256,10 @@ import pandas as pd
 mon_index = ["USA", "France", "Méxique", "Canada"]
 mes_datas = [1776, 1789, 1821, 1867]
 ma_serie = pd.Series(data=mes_datas, index=mon_index)
-ma_serie[0] == ma_serie["USA"]
-# Ceci ne sera plus valable avec le prochaine version de panda
-# Il faut faire :
-ma_serie.iloc[0] == ma_serie["USA"] # retourne np.True_
-ma_seie.keys() # donne la liste des clés
+# L'accès positionnel par [] sur une Series à index non entier a été retiré :
+# depuis pandas 3.0, ma_serie[0] cherche la CLÉ 0 et lève une KeyError.
+ma_serie.iloc[0] == ma_serie["USA"]   # retourne np.True_
+ma_serie.keys()                       # donne la liste des clés
 # le broadcasting de numpy est effectif sur les séries pandas
 serie_1 = pd.Series({"un":1,"deux":2, "trois":3})
 # >>> serie_1
@@ -397,7 +414,7 @@ df['Total']=df.sum(axis=1)
 On peut utiliser les fonction de numpy sur les colonnes ou les lignes.
 Pour supprimer une ligne ou une colonne on utilise `drop`
 ```python
-df.drop("Total", axis=1, inplace=True)
+df = df.drop("Total", axis=1)
 ```
 Le paramètre `axis` précise si l'on doit supprimer une ligne (0) ou une colonne (1).
 `inplace` indique que l'on modifie le dataframe d'origine sans quoi seul l'objet retourné est modifié.
@@ -418,7 +435,7 @@ df = pd.DataFrame({
 	'col2':[444,555,666,444],
 	'col3':['abc','def','ghi','xyz'],
 	'col4':['un', 'deux', 'trois', 'quatre']})
-df.set_index('col3', inplace=True)
+df = df.set_index('col3')
 df.iloc[0] == df.loc["abc"]
 ```
 On peut slicer avec `iloc`
@@ -503,7 +520,7 @@ dtype: bool
 ```
 Il est possible de supprimer les lignes dupliquées avec `drop_duplicates`
 ```python
-df.drop_duplicates(inplace=True)
+df = df.drop_duplicates()
 ```
 
 La méthode de colonne `between` permet de récupérer les valeurs dans un intervalle en précisant si l'on veut ou non les limites :
@@ -917,6 +934,24 @@ Les lignes sans correspondance recevront des `NaN`.
 
 ## Tableau récapitulatif
 
+```mermaid
+flowchart TB
+    subgraph inner["how='inner'"]
+        i1["clés communes<br/>seulement"]
+    end
+    subgraph left["how='left'"]
+        l1["toutes les clés<br/>de gauche"]
+        l2["+ NaN si absente<br/>à droite"]
+    end
+    subgraph right["how='right'"]
+        r1["toutes les clés<br/>de droite"]
+        r2["+ NaN si absente<br/>à gauche"]
+    end
+    subgraph outer["how='outer'"]
+        o1["toutes les clés<br/>des deux côtés"]
+    end
+```
+
 | Type de jointure | Description                  | Équivalent SQL    |
 | ---------------- | ---------------------------- | ----------------- |
 | `'inner'`        | Clés présentes dans les deux | `INNER JOIN`      |
@@ -1003,5 +1038,134 @@ Dans nos pipelines de data science :
 - `merge()` est l’opération centrale pour combiner des sources de données.
 - Le choix du `how` influence directement la qualité et la complétude du dataset final.
 - Une jointure doit toujours être **contrôlée et validée**, surtout dans un contexte analytique ou décisionnel.
+# Pandas 3.0 : ce qui a changé en janvier 2026
+
+Pandas 3.0, publié le **21 janvier 2026**, est la refonte la plus profonde de la bibliothèque depuis la série 1.x. Trois changements affectent du code qui fonctionnait la veille. Ce chapitre les traite ensemble, parce qu'un cours qui les ignorerait enseignerait des habitudes qui échouent aujourd'hui.
+
+Prérequis relevés au passage : Python 3.11 minimum, NumPy 1.26 minimum.
+
+## 1. Le *Copy-on-Write* devient le seul mode
+
+Pendant plus de dix ans, la question « cette opération me rend-elle une vue ou une copie ? » n'avait pas de réponse fiable, d'où le célèbre `SettingWithCopyWarning` — un avertissement que personne ne savait interpréter avec certitude.
+
+Le *Copy-on-Write* tranche : **toute modification d'un objet ne se répercute jamais sur un autre.** Une copie n'est réellement effectuée qu'au moment où l'on écrit, d'où le nom.
+
+```mermaid
+flowchart LR
+    A["df"] -->|"sous = df[df.age > 30]"| B["sous<br/>partage la mémoire de df"]
+    B -->|"lecture"| C["aucune copie<br/>rapide"]
+    B -->|"écriture"| D["copie effectuée<br/>df reste intact"]
+```
+
+Conséquence directe : l'affectation chaînée ne lève plus un avertissement, elle lève une **erreur**.
+
+```python
+# pandas 2.x : avertissement, effet imprévisible
+# pandas 3.0 : ChainedAssignmentError
+df[df["age"] > 30]["ville"] = "Paris"
+
+# la forme correcte, dans toutes les versions
+df.loc[df["age"] > 30, "ville"] = "Paris"
+```
+
+C'est une bonne nouvelle déguisée en régression : le code qui échoue aujourd'hui est du code qui, hier, ne faisait déjà pas ce que son auteur croyait.
+
+Deux corollaires pratiques :
+
+- les `.copy()` défensifs semés un peu partout par prudence sont devenus inutiles, et coûtent de la mémoire ;
+- `inplace=True` n'apporte plus de gain de performance. Il n'a jamais évité la copie autant qu'on le croyait, et il empêche le chaînage. La forme par réassignation est désormais préférable en toutes circonstances.
+
+```python
+# à éviter
+df.drop("Total", axis=1, inplace=True)
+
+# à préférer
+df = df.drop("Total", axis=1)
+
+# ou, en chaîne
+df = (df.drop("Total", axis=1)
+        .set_index("col3")
+        .drop_duplicates())
+```
+
+## 2. Un type dédié pour les chaînes de caractères
+
+Historiquement, une colonne de texte était stockée en `object` — un tableau de pointeurs vers des objets Python, capable de contenir n'importe quoi. Pandas 3.0 introduit un type `str` dédié, adossé à **Apache Arrow** si `pyarrow` est installé.
+
+```python
+ser = pd.Series(["a", "b"])
+
+ser.dtype        # pandas 2.x : object
+                 # pandas 3.0 : str
+```
+
+Les gains annoncés sont substantiels : opérations de chaînes cinq à dix fois plus rapides, empreinte mémoire réduite de moitié sur les colonnes textuelles. La raison tient à la représentation : Arrow stocke les chaînes dans un tampon binaire contigu, là où `object` stockait un pointeur par cellule.
+
+`pyarrow` n'est pas une dépendance obligatoire, mais son absence fait retomber sur une implémentation NumPy plus lente. **Il faut donc l'installer explicitement** :
+
+```bash
+python3 -m pip install "pandas>=3.0" pyarrow
+```
+
+Le point d'attention pour du code existant : tout test de la forme `if df["col"].dtype == "object"` pour reconnaître du texte devient faux.
+
+```python
+# ancien réflexe, désormais inexact
+colonnes_texte = df.select_dtypes(include="object").columns
+
+# forme correcte en 3.0
+colonnes_texte = df.select_dtypes(include="str").columns
+```
+
+## 3. Les expressions de colonnes avec `pd.col()`
+
+Écrire un filtre sur un DataFrame intermédiaire obligeait jusqu'ici à nommer cet intermédiaire, ou à passer par un `lambda` :
+
+```python
+resultat = (df.assign(marge=lambda d: d["prix"] - d["cout"])
+              .loc[lambda d: d["marge"] > 0])
+```
+
+`pd.col()` désigne une colonne sans avoir à nommer le DataFrame qui la porte :
+
+```python
+resultat = (df.assign(marge=pd.col("prix") - pd.col("cout"))
+              .loc[pd.col("marge") > 0])
+```
+
+L'expression est construite avant d'être évaluée, ce qui la rend lisible dans une chaîne d'opérations — et ouvre la voie à des optimisations que le `lambda`, opaque, interdisait.
+
+## 4. Les dates infèrent leur résolution
+
+Pandas convertissait tout en nanosecondes, ce qui bornait les dates représentables à l'intervalle 1677-2262 — gênant en histoire comme en astronomie. La résolution est désormais **inférée** de l'entrée, la microseconde servant de défaut usuel.
+
+Le code qui supposait des entiers en nanosecondes lors d'une conversion doit être vérifié.
+
+## 5. Migrer sans douleur
+
+La démarche recommandée par l'équipe pandas tient en trois étapes :
+
+```mermaid
+flowchart LR
+    A["pandas 2.3<br/>version de transition"] --> B["corriger les avertissements<br/>de dépréciation"]
+    B --> C["activer le CoW<br/>pd.options.mode.copy_on_write = True"]
+    C --> D["pandas 3.0"]
+```
+
+```bash
+python3 -m pip install "pandas~=2.3"
+python3 -W error::FutureWarning mon_script.py
+```
+
+Faire des avertissements des erreurs est le moyen le plus rapide de savoir ce qui casse, avant de casser.
+
+## Ce que cela dit du reste de l'écosystème
+
+Ces changements ne sont pas de simples arbitrages internes : ils rapprochent pandas du modèle **colonnaire Arrow**, que partagent Polars, DuckDB et Spark. Le format commun permet un échange de données sans recopie ni sérialisation entre ces outils.
+
+Autrement dit, le choix n'est plus « pandas ou Polars » comme deux mondes séparés : les deux lisent la même mémoire. Pour un cours de science des données, cela signifie que ce qui s'apprend ici sur les structures de données reste valable au-delà de la bibliothèque.
+
+---
+
 # Méthodes Text
 Voir la [documentation officielle](https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html)

@@ -13,19 +13,28 @@ themes:
   - data-science
   - anaconda
   - jupyter
-resume: "Histoire de la distribution Anaconda, présentation de Jupyter et du format IPYNB, installation sous Ubuntu et panorama des distributions dérivées."
+  - conda
+  - licences-libres
+resume: "Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi."
 niveau: debutant
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-09-25
-date_modification: 2024-10-14
+date_modification: 2026-08-28
+date_verification: 2026-08-28
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
+> **Avertissement de licence.** Depuis mars 2024, la distribution Anaconda et
+> son canal `defaults` exigent une licence payante pour toute organisation de
+> plus de 200 employés ou sous-traitants — organismes publics et associations
+> compris. `conda` lui-même et le canal `conda-forge` restent libres. Voir le
+> chapitre « La licence Anaconda » plus bas avant toute installation.
+
 **Anaconda** est une distribution open-source de [[Python]] (et R) qui est spécialement conçue pour faciliter la gestion de packages et d'environnements, en particulier dans les domaines de la science des données, de l'apprentissage automatique et de l'analyse de données. Elle inclut une vaste collection de bibliothèques scientifiques, d'outils et de packages pour Python, tout en fournissant un environnement pratique pour gérer différentes versions de Python et de ses packages.
 
 ### Les principaux éléments d'Anaconda :
@@ -86,6 +95,26 @@ Aujourd'hui, **Anaconda Inc.** (anciennement Continuum Analytics) continue de d�
 En 2020, Anaconda a atteint plus de **25 millions d'utilisateurs** dans le monde. Il est largement utilisé non seulement par les chercheurs et les scientifiques de données, mais aussi par les développeurs d’IA, les analystes financiers, les entreprises et les gouvernements pour effectuer des analyses complexes, créer des modèles de machine learning et manipuler des ensembles de données massifs.
 
 Avec son engagement dans l'open-source et son évolution constante, Anaconda continue de jouer un rôle central dans l'écosystème Python et dans le développement de la science des données et de l'intelligence artificielle.
+
+### 7. **Le tournant de la licence (2020-2024)**
+
+En avril 2020, Anaconda Inc. introduit des conditions commerciales pour les
+grandes organisations, puis précise en septembre le seuil de 200 employés. À
+l'époque, universités, associations et organismes de recherche en sont
+explicitement exemptés.
+
+En mars 2024, ces exemptions disparaissent : l'obligation s'étend aux
+organismes publics et aux associations, et ne subsiste pour les établissements
+d'enseignement que dans le cadre strict des cours. Cette évolution a poussé une
+grande partie de la communauté scientifique vers **Miniforge** et
+**conda-forge**, qui restent hors du périmètre de la licence.
+
+### 8. **La concurrence de la nouvelle génération d'outils (2024-2026)**
+
+L'arrivée d'outils écrits en Rust — `uv` pour l'écosystème PyPI, `pixi` pour
+l'écosystème conda — a déplacé le débat. La lenteur historique de la résolution
+de dépendances, longtemps acceptée comme une fatalité, ne l'est plus : `mamba`
+puis `pixi` résolvent en secondes ce que `conda` mettait des minutes à calculer.
 
 # Jupyter Notebook
 **Jupyter** est une plateforme open-source qui permet de créer et de partager des documents interactifs contenant du **code**, du **texte explicatif**, des **visualisations** de données, et d'autres éléments multimédias. Le projet Jupyter est particulièrement populaire dans les domaines de la **science des données**, de la **recherche scientifique**, de l'enseignement, et du **machine learning**. Il fournit un environnement où les utilisateurs peuvent écrire et exécuter du code tout en intégrant des explications, des analyses et des graphiques dans un seul document, appelé **notebook**.
@@ -235,8 +264,224 @@ Le format **IPYNB** (Jupyter Notebook) est le format de fichier utilisé par Jup
 
 ### Conclusion :
 Le format IPYNB est un fichier JSON qui sert de conteneur pour des cellules de code, de texte et de résultats d'exécution. Il est principalement utilisé dans les environnements Jupyter et est devenu un format standard pour l'expérimentation interactive, la recherche en data science, et l'enseignement, en raison de sa flexibilité et de sa compatibilité avec de nombreux outils et plateformes.
-# Installer Anaconda sur Ubuntu
-Anaconda n'est pas fourni avec Ubuntu, il faut alors
+# Installer Anaconda ou Miniforge sur Ubuntu
+
+Anaconda n'est pas fourni avec Ubuntu : il faut le télécharger.
+
+## Miniforge — recommandé
+
+C'est l'installateur communautaire : même `conda`, même `mamba`, canal
+`conda-forge` par défaut, aucune obligation de licence.
+
+```bash
+cd /tmp
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+bash Miniforge3-Linux-x86_64.sh -b -p "$HOME/miniforge3"
+"$HOME/miniforge3/bin/conda" init bash    # ou zsh, fish…
+exec "$SHELL"
+conda --version
+```
+
+L'option `-b` accepte la licence sans dialogue et `-p` fixe le chemin
+d'installation ; sans elles, l'installateur pose une série de questions.
+
+## Distribution Anaconda complète
+
+À réserver aux cas où l'on veut réellement les 1 500 paquets et l'interface
+Navigator, et où la licence ne pose pas de problème.
+
+```bash
+cd /tmp
+wget https://repo.anaconda.com/archive/Anaconda3-2025.06-1-Linux-x86_64.sh
+sha256sum Anaconda3-2025.06-1-Linux-x86_64.sh   # à comparer à la page des archives
+bash Anaconda3-2025.06-1-Linux-x86_64.sh
+```
+
+La vérification de l'empreinte n'est pas une formalité : le script téléchargé
+s'exécute avec nos droits d'utilisateur et écrit dans notre `.bashrc`. Les
+empreintes officielles sont publiées sur <https://repo.anaconda.com/archive/>.
+
+## Désactiver l'activation automatique
+
+Par défaut, `conda init` active l'environnement `base` à chaque ouverture de
+terminal, ce qui masque le Python du système et surprend au premier `which
+python3` :
+
+```bash
+conda config --set auto_activate_base false
+```
+
+## Désinstaller proprement
+
+```bash
+conda init --reverse --all      # retire les lignes ajoutées aux fichiers du shell
+rm -rf "$HOME/miniforge3" "$HOME/.condarc" "$HOME/.conda"
+```
+
+
+# La licence Anaconda : ce qu'il faut savoir avant d'installer
+
+C'est aujourd'hui la première question à se poser, avant même de télécharger quoi que ce soit. Elle n'existait pas lorsque ce cours a été écrit.
+
+## Le changement de 2024
+
+En mars 2024, Anaconda Inc. a modifié la définition de l'« usage organisationnel » dans ses conditions d'utilisation. Depuis, **toute organisation de plus de 200 employés ou sous-traitants doit acheter une licence** pour utiliser la distribution Anaconda ou les paquets provenant des canaux gérés par Anaconda.
+
+Trois précisions qui surprennent souvent :
+
+- le seuil compte **tous** les employés de l'organisation, filiales comprises, pas seulement ceux qui utilisent l'outil ;
+- les organismes publics et les associations à but non lucratif ne sont **pas** exemptés ;
+- les établissements d'enseignement le sont pour l'usage **pédagogique**, mais pas pour la recherche hors cursus.
+
+Un laboratoire de recherche rattaché à une université de plus de 200 personnes se trouve donc, du jour au lendemain, en infraction s'il utilise `conda install` sans précaution.
+
+## Ce qui reste libre, et ce qui ne l'est pas
+
+La confusion vient de ce que le mot « Anaconda » désigne quatre choses distinctes, dont deux seulement sont concernées.
+
+```mermaid
+flowchart TB
+    subgraph libre["Libre, sans licence commerciale"]
+        conda["conda<br/>le gestionnaire de paquets"]
+        forge["conda-forge, bioconda<br/>canaux communautaires"]
+        mini["Miniforge, Micromamba, Pixi<br/>installateurs communautaires"]
+    end
+    subgraph payant["Licence requise au-delà de 200 employés"]
+        distro["Distribution Anaconda<br/>l'installateur complet"]
+        repo["repo.anaconda.com<br/>canal « defaults »"]
+    end
+    mini --> forge
+    distro --> repo
+```
+
+> **`conda` est libre. Le canal `defaults` ne l'est pas.** Ce que la licence couvre, c'est l'accès au dépôt d'Anaconda Inc., pas l'outil qui l'interroge.
+
+## La conséquence pratique : préférer Miniforge
+
+Pour un usage professionnel, ou simplement pour ne pas avoir à compter les employés de son employeur, l'installation recommandée aujourd'hui est **Miniforge** : le même `conda`, le même `mamba`, mais avec `conda-forge` comme canal par défaut et aucune obligation de licence.
+
+```bash
+# Installateur communautaire, canal conda-forge par défaut
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh
+```
+
+Sur une installation Anaconda ou Miniconda existante, on obtient le même résultat en changeant les canaux :
+
+```bash
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+conda config --remove channels defaults
+```
+
+`channel_priority strict` est la ligne qui compte : sans elle, conda peut retomber sur le canal `defaults` en résolvant une dépendance, et l'obligation de licence s'applique de nouveau sans que rien ne le signale.
+
+## Vérifier sa configuration
+
+```bash
+conda config --show channels
+```
+
+Si `defaults` ou `https://repo.anaconda.com/` apparaît dans la liste, l'installation interroge le dépôt sous licence.
+
+Une précaution utile en équipe : les fichiers `environment.yml` partagés doivent nommer explicitement leur canal, faute de quoi ils réintroduisent `defaults` chez celui qui les recrée.
+
+```yaml
+name: analyse
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pandas
+  - jupyterlab
+```
+
+---
+
+# Conda, mamba, uv, pixi : lequel choisir
+
+L'outillage a beaucoup bougé depuis la rédaction de ce cours. Le tableau suivant aide à choisir plutôt qu'à suivre l'habitude.
+
+| Outil | Installe | Pour qui | Remarque |
+| --- | --- | --- | --- |
+| `pip` + `venv` | paquets Python | tout projet purement Python | dans la bibliothèque standard |
+| `uv` | paquets Python, interpréteurs | idem, en beaucoup plus rapide | écrit en Rust, remplace pip, venv et pip-tools |
+| `conda` | Python, R, **et binaires non Python** | calcul scientifique, CUDA, compilateurs | résolution historiquement lente |
+| `mamba` | idem `conda` | idem | réimplémentation rapide de conda, en C++ |
+| `pixi` | idem `conda` | projets à environnement reproductible | fichier de verrouillage, canal conda-forge par défaut |
+
+Le critère de choix est simple à énoncer :
+
+> **Si toutes vos dépendances sont sur PyPI, `uv` ou `pip` suffisent.** Conda ne devient nécessaire que lorsqu'un paquet apporte des binaires que pip ne sait pas installer proprement — CUDA, GDAL, un solveur Fortran, R.
+
+C'est le cas en géomatique, en bio-informatique et en apprentissage profond ; ce ne l'est presque jamais pour un projet web ou un script d'analyse ordinaire.
+
+## Le piège du mélange
+
+```bash
+conda activate mon_env
+pip install une_bibliotheque      # possible, mais conda ne le sait pas
+```
+
+`conda` ne connaît pas ce que `pip` a installé dans son environnement : à la mise à jour suivante, il peut écraser la bibliothèque sans avertissement. Si un mélange est inévitable, il doit être déclaré dans `environment.yml` :
+
+```yaml
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - une_bibliotheque
+```
+
+---
+
+# Le cycle de vie d'un environnement conda
+
+```mermaid
+flowchart LR
+    A["conda create -n projet python=3.12"] --> B["conda activate projet"]
+    B --> C["conda install pandas jupyterlab"]
+    C --> D["conda env export --from-history > environment.yml"]
+    D --> E["conda env create -f environment.yml"]
+    B --> F["conda deactivate"]
+    E -.recréation ailleurs.-> B
+```
+
+Les commandes essentielles :
+
+```bash
+conda create -n analyse python=3.12      # créer
+conda activate analyse                   # activer
+conda install pandas matplotlib          # installer
+conda list                               # inventorier
+conda env export --from-history > environment.yml
+conda deactivate                         # quitter
+conda env remove -n analyse              # supprimer
+```
+
+L'option `--from-history` mérite d'être retenue : sans elle, `conda env export` écrit **toutes** les dépendances résolues, avec leurs numéros de version exacts et leur plateforme, ce qui produit un fichier illisible et souvent irrecréable sur une autre machine. Avec elle, seul ce que vous avez explicitement demandé est écrit.
+
+---
+
+# Anaconda dans l'enseignement : ce qui a changé
+
+Deux évolutions ont réduit l'intérêt d'Anaconda pour un cours d'introduction.
+
+**L'installation de bibliothèques scientifiques par `pip` ne pose plus problème.** L'argument fondateur d'Anaconda en 2012 — compiler NumPy et SciPy sous Windows était pénible — a disparu avec les *wheels* binaires : `pip install numpy scipy pandas` fonctionne aujourd'hui sur les trois systèmes sans compilateur.
+
+**Le poids reste considérable.** La distribution complète occupe plusieurs gigaoctets et installe plus de 1 500 paquets dont un étudiant en utilisera cinq.
+
+Pour un cours d'introduction à Python, la voie la plus simple reste donc :
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install jupyterlab pandas matplotlib
+```
+
+Anaconda garde tout son sens dans deux situations : lorsque les dépendances ne sont pas seulement Python — R, CUDA, bibliothèques géospatiales — et lorsqu'un parc de machines hétérogènes doit être aligné sans droits d'administration.
+
+---
 
 # Dérivés
 [[Google Colab]]
