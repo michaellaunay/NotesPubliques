@@ -772,7 +772,7 @@ dico_fr_en = {'chien': 'dog', 'chat': 'cat', 'oiseau': 'bird'}
 - **Avec `in`** : Vérifier si 'chat' est une clé dans le dictionnaire.
 ```python
 print('chat' in dico_fr_en)  # Affiche True
-  ```
+```
 
 - **Avec `keys()`** : Afficher toutes les clés du dictionnaire.
   ```python

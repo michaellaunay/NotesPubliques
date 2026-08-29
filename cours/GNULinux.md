@@ -1144,7 +1144,7 @@ Ce qui affiche la chaîne de caractères "date" :
 Quelle est la date ?
 ``` 
 Mais nous pouvons lancer la commande `date`  en utilisant **\`**:
- ```bash
+```bash
 echo Aujourd\'hui nous sommes le `date`
 ```
 Ce qui affiche :

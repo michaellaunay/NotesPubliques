@@ -1252,7 +1252,6 @@ Nous avons vu que les namespaces permettent à des processus de voir des réalit
 Nous avons aussi posé une distinction essentielle : les namespaces ne sont pas des machines virtuelles. Ils isolent certaines vues du système, mais ils ne remplacent ni les cgroups, ni les mécanismes de sécurité, ni une isolation complète par hyperviseur.
 
 Dans le chapitre suivant, nous étudions l’architecture générale des namespaces : comment un processus appartient à plusieurs namespaces, comment nous les observons avec `/proc/<PID>/ns`, comment ils sont créés avec `clone` ou `unshare`, et comment nous pouvons entrer dans un namespace existant avec `setns` ou `nsenter`.
-```
 
 ---
 
