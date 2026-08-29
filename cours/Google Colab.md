@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5B11G3TP4FA19D6J9JJ"
-titre: "Google Colab"
+uid: 01M02EX5B11G3TP4FA19D6J9JJ
+titre: Google Colab
 type: fiche
 statut: actif
 para: ressource
@@ -18,7 +18,7 @@ themes:
 resume: "Fiche sur Google Colab : notebook Jupyter hébergé, GPU et TPU, lien avec Google Cloud Platform, puis l'intégration de Gemini et du Data Science Agent, le modèle des unités de calcul, les règles de confidentialité et les alternatives."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-09-25
 date_modification: 2026-08-28
@@ -27,7 +27,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 **Google Colab** (ou Google Collaboratory) est un environnement de développement interactif basé sur Jupyter Notebook, hébergé par Google. Il permet d'écrire et d'exécuter du code Python directement dans le cloud, sans nécessiter d'installation locale. Colab est principalement conçu pour la **science des données**, le **machine learning** et d'autres applications d'intelligence artificielle, et il est particulièrement apprécié pour sa simplicité et l'accès gratuit aux ressources de calcul GPU et TPU.
 

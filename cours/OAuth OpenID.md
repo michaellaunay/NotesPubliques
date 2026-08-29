@@ -5,6 +5,7 @@ titre: "OAuth OpenID"
 aliases:
   - "OAuth 2.0"
   - "OpenID Connect"
+  - "OAuth 2.1"
 type: cours
 statut: actif
 para: ressource
@@ -19,1483 +20,2699 @@ themes:
   - keycloak
 tags:
   - experimentation
-resume: "Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation."
+resume: "Cours complet sur OAuth 2.0, l'évolution OAuth 2.1, OpenID Connect, JWT/JOSE, PKCE, DPoP, PAR/JAR, les architectures BFF et l'intégration moderne avec Keycloak et Pyramid."
 niveau: avance
 prerequis:
   - "[[HTTP]]"
+  - "[[Sécurité avancée sous Linux]]"
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2022-12-29
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
+
 # Introduction
 
-## Présentation des objectifs du cours
+OAuth et OpenID Connect sont aujourd'hui au cœur de très nombreux systèmes de connexion et de protection d'API : connexion à une application avec un fournisseur d'identité, Single Sign-On, applications mobiles, API internes, architectures microservices, applications web, objets connectés, accès machine-to-machine, etc.
 
-Dans ce cours, nous avons pour objectif de comprendre et maîtriser les concepts d'authentification et d'autorisation dans le contexte des applications modernes. Plus précisément, nous allons :
+Ils résolvent cependant **des problèmes différents** :
 
-1. Découvrir les principes fondamentaux de OAuth et OpenID Connect.
-2. Explorer l'utilisation de Keycloak en tant que serveur d'autorisation.
-3. Apprendre à intégrer Keycloak dans une application Python Pyramid.
-4. Comprendre et manipuler les JSON Web Tokens (JWT) pour sécuriser les échanges.
+- **OAuth** est un cadre de **délégation d'autorisation** : il permet à un client d'obtenir un droit d'accès limité à une ressource ;
+- **OpenID Connect (OIDC)** ajoute à OAuth une couche standardisée d'**authentification** et d'identité ;
+- **WebAuthn / passkeys** répondent à la question *comment l'utilisateur s'authentifie auprès du fournisseur d'identité* ;
+- les rôles, ACL, RBAC ou ABAC répondent à la question *que peut faire l'identité authentifiée dans l'application*.
 
-Au terme de ce cours, nous serons en mesure de mettre en œuvre une solution d'authentification robuste et de gérer les permissions au sein d'une application web.
+Le point le plus important à retenir dès le début est donc :
 
-## Importance de l'authentification et de l'autorisation dans les applications modernes
+> **OAuth n'est pas un protocole de connexion utilisateur. OpenID Connect est le protocole d'identité construit au-dessus d'OAuth.**
 
-L'authentification et l'autorisation sont des éléments cruciaux pour assurer la sécurité et la confidentialité des données dans les applications modernes. En effet, elles permettent de :
+Ce cours s'appuie sur les recommandations de sécurité actuelles, notamment le **OAuth 2.0 Security Best Current Practice (RFC 9700)**. Il décrit aussi OAuth 2.1, mais il faut être précis : **au 29 août 2026, OAuth 2.1 est encore un Internet-Draft et non un RFC final**. Les recommandations qu'il consolide sont néanmoins déjà largement applicables en production.
 
-1. Vérifier l'identité des utilisateurs et garantir que seuls les utilisateurs légitimes accèdent aux ressources.
-2. Restreindre l'accès aux fonctionnalités et aux données en fonction des rôles et des permissions attribués aux utilisateurs.
-3. Protéger les données sensibles contre les accès non autorisés et les attaques potentielles.
-4. Assurer la conformité avec les réglementations en matière de protection des données, telles que le RGPD (Règlement Général sur la Protection des Données).
+## Objectifs
 
-En maîtrisant ces concepts, nous serons capables de concevoir des applications sécurisées, offrant une expérience utilisateur fluide tout en protégeant efficacement les données et les ressources.
+À la fin du cours, nous devons être capables de :
 
-# 1. Concepts de Base
+1. distinguer authentification, autorisation, délégation et fédération d'identité ;
+2. comprendre le rôle de chaque acteur OAuth ;
+3. choisir le bon grant OAuth selon le type de client ;
+4. mettre en œuvre Authorization Code avec PKCE correctement ;
+5. comprendre OpenID Connect, ses ID Tokens, ses scopes et son mécanisme de Discovery ;
+6. valider correctement un JWT sans confondre décodage et vérification ;
+7. comprendre les JWK, JWKS, la rotation des clés et les algorithmes de signature ;
+8. sécuriser les redirect URIs, refresh tokens et sessions ;
+9. comprendre DPoP, mTLS, PAR, JAR, introspection et révocation ;
+10. choisir une architecture adaptée à une SPA ou une application web ;
+11. configurer un serveur Keycloak récent ;
+12. intégrer Keycloak/OIDC à une application Pyramid moderne ;
+13. protéger une API à partir d'un access token ;
+14. diagnostiquer les erreurs OAuth/OIDC les plus fréquentes.
 
-## 1.1. Introduction à l'authentification et à l'autorisation
+# Sommaire
 
-### 1.1.1. Définitions
+1. [[#1. Authentification, autorisation, délégation et fédération]]
+2. [[#2. OAuth 2.0 et OAuth 2.1]]
+3. [[#3. Les acteurs et objets OAuth]]
+4. [[#4. Authorization Code avec PKCE]]
+5. [[#5. Les autres grants et mécanismes OAuth]]
+6. [[#6. OpenID Connect]]
+7. [[#7. JWT, JOSE, JWK et JWKS]]
+8. [[#8. Sécurité OAuth et OIDC]]
+9. [[#9. Applications navigateur, SPA et BFF]]
+10. [[#10. Extensions OAuth modernes]]
+11. [[#11. Keycloak moderne]]
+12. [[#12. Configuration d'un realm Keycloak]]
+13. [[#13. Intégration OIDC dans Pyramid]]
+14. [[#14. Autorisation dans Pyramid et protection d'API]]
+15. [[#15. Machine-to-machine et services]]
+16. [[#16. Passkeys, MFA et niveau d'authentification]]
+17. [[#17. Exploitation et durcissement de Keycloak]]
+18. [[#18. Tests, diagnostic et observabilité]]
+19. [[#19. Migration d'une ancienne implémentation OAuth/OIDC]]
+20. [[#20. Travaux pratiques]]
 
-**Authentification** : L'authentification est le processus par lequel un système vérifie l'identité d'un utilisateur ou d'un dispositif. Elle permet de s'assurer que l'utilisateur est bien celui qu'il prétend être. Les méthodes courantes d'authentification incluent l'utilisation de mots de passe, de jetons (tokens), de certificats numériques, de biométrie (empreintes digitales, reconnaissance faciale), etc.
+# 1. Authentification, autorisation, délégation et fédération
 
-**Autorisation** : L'autorisation, quant à elle, est le processus qui détermine les droits et les permissions d'un utilisateur authentifié au sein d'un système. Une fois l'utilisateur authentifié, le système vérifie quelles actions il est autorisé à effectuer et quelles ressources il peut accéder. L'autorisation est souvent gérée par des rôles et des permissions attribués aux utilisateurs.
+## 1.1. Authentification
 
-### 1.1.2. Différences entre authentification et autorisation
+L'**authentification** consiste à établir l'identité d'un utilisateur ou d'un service.
 
-Bien que les termes authentification et autorisation soient souvent utilisés de manière interchangeable, ils désignent des concepts distincts :
+Exemples :
 
-1. **Ordre des processus** :
-   - L'authentification est toujours réalisée en premier. Le système doit d'abord confirmer l'identité de l'utilisateur avant de pouvoir décider de ses droits.
-   - L'autorisation se produit après l'authentification. Une fois que l'identité de l'utilisateur est confirmée, le système évalue les permissions attribuées à cet utilisateur.
+- mot de passe ;
+- mot de passe + TOTP ;
+- certificat client ;
+- passkey/WebAuthn ;
+- carte à puce ;
+- identité déjà établie par un fournisseur d'identité externe.
 
-2. **Objectif** :
-   - L'objectif de l'authentification est de s'assurer que l'utilisateur est bien celui qu'il prétend être.
-   - L'objectif de l'autorisation est de déterminer ce que l'utilisateur est autorisé à faire après avoir été authentifié.
+Une authentification produit généralement une identité de session, mais elle ne dit pas automatiquement ce que cette identité a le droit de faire.
 
-3. **Exemples** :
-   - Authentification : Lorsqu'un utilisateur se connecte à un site web avec son nom d'utilisateur et son mot de passe.
-   - Autorisation : Une fois connecté, l'utilisateur peut accéder à certaines pages et fonctionnalités en fonction de son rôle (par exemple, utilisateur standard vs administrateur).
+## 1.2. Autorisation
 
-En résumé, l'authentification et l'autorisation sont deux processus complémentaires qui jouent un rôle crucial dans la sécurité des systèmes informatiques. Tandis que l'authentification se concentre sur la vérification de l'identité, l'autorisation gère les droits et les accès au sein du système.
-## 1.2. Présentation de OAuth
+L'**autorisation** décide si une identité peut effectuer une action sur une ressource.
 
-### 1.2.1. Historique et évolution de OAuth
+Exemples :
 
-OAuth, qui signifie "Open Authorization," est un standard ouvert d'autorisation utilisé pour fournir un accès délégué sécurisé. OAuth a été créé pour répondre aux besoins de sécurité des applications modernes tout en permettant un partage des ressources plus flexible. Voici un aperçu de son évolution :
+- `alice` peut lire le document 42 ;
+- le rôle `admin` peut supprimer un utilisateur ;
+- un service de facturation peut appeler `/api/invoices` mais pas `/api/hr` ;
+- un token portant le scope `photos:read` autorise uniquement la lecture des photos.
 
-- **OAuth 1.0** : La première version d'OAuth a été publiée en 2007. OAuth 1.0 offrait un protocole pour la délégation d'accès utilisant des signatures cryptographiques pour la sécurité. Cependant, sa complexité et ses problèmes de sécurité ont conduit à l'élaboration d'une version améliorée.
+L'autorisation peut utiliser différents modèles :
 
-- **OAuth 2.0** : Publiée en 2012, OAuth 2.0 simplifie le processus de délégation d'accès en utilisant des jetons (tokens) et en éliminant les signatures cryptographiques complexes. OAuth 2.0 est devenu rapidement le standard de facto pour l'autorisation dans les applications web, mobiles et d'API. Il est plus flexible et extensible que son prédécesseur, permettant une intégration plus facile avec d'autres protocoles de sécurité tels que OpenID Connect.
+- **RBAC** : Role-Based Access Control ;
+- **ABAC** : Attribute-Based Access Control ;
+- ACL ;
+- politiques contextuelles ;
+- scopes OAuth ;
+- permissions propres à l'application.
 
-### 1.2.2. Les principaux acteurs de OAuth
+Les scopes OAuth ne remplacent pas nécessairement les rôles applicatifs. Ils décrivent généralement **la capacité accordée au client**, tandis que les rôles décrivent souvent les capacités de l'utilisateur dans un domaine métier.
 
-OAuth implique plusieurs acteurs clés qui interagissent pour permettre un accès sécurisé aux ressources :
+## 1.3. Délégation
 
-- **Resource Owner (Propriétaire de la Ressource)** : L'utilisateur qui possède les données ou les ressources à protéger. Par exemple, un utilisateur d'un réseau social qui souhaite partager ses photos avec une application tierce.
+OAuth répond avant tout à un problème de **délégation**.
 
-- **Client** : L'application tierce qui demande l'accès aux ressources protégées au nom du Resource Owner. Par exemple, une application qui souhaite accéder aux photos de l'utilisateur sur un réseau social.
+Exemple :
 
-- **Resource Server (Serveur de Ressources)** : Le serveur qui héberge les ressources protégées et répond aux demandes d'accès du Client après validation de l'autorisation. Par exemple, le serveur du réseau social qui stocke les photos de l'utilisateur.
+> Une application d'impression souhaite lire certaines photos d'un utilisateur sans connaître le mot de passe de son compte photo.
 
-- **Authorization Server (Serveur d'Autorisation)** : Le serveur responsable de l'authentification du Resource Owner et de la délivrance des jetons d'accès au Client. Ce serveur peut être distinct ou intégré au Resource Server.
+L'utilisateur autorise l'application à obtenir un access token limité à une opération ou à un ensemble de scopes.
 
-### 1.2.3. Les flux de OAuth
+Le mot de passe reste chez le fournisseur de service.
 
-OAuth 2.0 définit plusieurs flux d'autorisation (grant types) pour répondre à différents cas d'utilisation. Les quatre principaux flux sont :
+## 1.4. Fédération d'identité
 
-- **Authorization Code Grant** : Ce flux est le plus couramment utilisé pour les applications web. Il implique une redirection de l'utilisateur vers le Authorization Server pour l'authentification, suivi par une demande de jeton d'accès par le Client. Ce flux utilise un code d'autorisation intermédiaire qui est échangé contre un jeton d'accès. Il offre une sécurité accrue car le jeton d'accès n'est jamais exposé au navigateur de l'utilisateur.
+La **fédération** permet à plusieurs systèmes de faire confiance à un fournisseur d'identité commun ou à des fournisseurs reliés entre eux.
+
+OpenID Connect peut être utilisé pour :
+
+- le SSO ;
+- la connexion avec un fournisseur externe ;
+- l'Identity Brokering ;
+- la fédération entre organisations.
+
+OpenID Federation est un ensemble de spécifications distinct qui permet de construire des relations de confiance à grande échelle entre entités OIDC.
+
+## 1.5. Tableau récapitulatif
+
+| Question | Mécanisme typique |
+|---|---|
+| Qui est l'utilisateur ? | OIDC, SAML, WebAuthn, MFA |
+| Le client peut-il accéder à cette API ? | OAuth |
+| Quel droit possède l'utilisateur ? | RBAC, ABAC, ACL, rôles métier |
+| Comment un utilisateur autorise-t-il une application tierce ? | OAuth |
+| Comment partager une identité entre applications ? | OIDC / fédération |
+
+# 2. OAuth 2.0 et OAuth 2.1
+
+## 2.1. OAuth 2.0
+
+OAuth 2.0 est défini historiquement par le **RFC 6749** de 2012, complété par de nombreuses extensions et recommandations.
+
+OAuth 2.0 a volontairement été conçu comme un **framework extensible** plutôt que comme un protocole unique et rigide.
+
+Cette souplesse a permis son adoption massive, mais a aussi conduit à de nombreuses implémentations faibles ou incompatibles.
+
+## 2.2. Pourquoi OAuth 2.1 ?
+
+OAuth 2.1 vise à consolider dans une nouvelle base les pratiques devenues standard depuis OAuth 2.0.
+
+Au 29 août 2026 :
+
+- OAuth 2.0 reste le standard publié ;
+- le RFC 9700 constitue le **Best Current Practice** de sécurité ;
+- OAuth 2.1 est encore un **Internet-Draft** ;
+- il ne faut donc pas écrire qu'« OAuth 2.1 a été publié en 2021 ».
+
+OAuth 2.1 reprend notamment les choix modernes suivants :
+
+- Authorization Code avec **PKCE** ;
+- suppression de l'Implicit Grant ;
+- suppression du Resource Owner Password Credentials Grant ;
+- exigences renforcées sur les redirect URIs ;
+- durcissement des refresh tokens ;
+- consolidation des recommandations apparues après RFC 6749.
+
+## 2.3. OAuth est HTTP/TLS
+
+OAuth repose sur HTTP et exige en pratique TLS pour les échanges de production.
+
+Exemple simplifié d'appel d'API :
+
+```http
+GET /v1/profile HTTP/1.1
+Host: api.example.com
+Authorization: Bearer eyJ...
+```
+
+Le serveur de ressources valide le jeton, puis applique sa politique d'autorisation.
+
+# 3. Les acteurs et objets OAuth
+
+## 3.1. Resource Owner
+
+Le **Resource Owner** est l'entité capable d'accorder l'accès à une ressource.
+
+Dans un flux utilisateur, il s'agit généralement de l'utilisateur final.
+
+## 3.2. Client
+
+Le **Client** est l'application qui demande un droit d'accès.
+
+Un client OAuth n'est pas nécessairement un navigateur : il peut s'agir d'un backend, d'une application mobile, d'une CLI ou d'un service.
+
+### Client public
+
+Un **public client** ne peut pas conserver un secret de manière fiable.
+
+Exemples :
+
+- application mobile distribuée aux utilisateurs ;
+- application desktop ;
+- application JavaScript exécutée dans le navigateur.
+
+Un secret embarqué dans le binaire ou le JavaScript n'est pas un véritable secret.
+
+### Client confidentiel
+
+Un **confidential client** peut protéger ses credentials.
+
+Exemples :
+
+- backend serveur ;
+- BFF ;
+- service machine-to-machine.
+
+## 3.3. Authorization Server
+
+L'**Authorization Server (AS)** :
+
+- reçoit les demandes d'autorisation ;
+- authentifie éventuellement l'utilisateur ;
+- recueille le consentement lorsque nécessaire ;
+- délivre les access tokens ;
+- délivre éventuellement des refresh tokens ;
+- dans OIDC, joue également le rôle d'OpenID Provider.
+
+Keycloak remplit ce rôle.
+
+## 3.4. Resource Server
+
+Le **Resource Server (RS)** héberge l'API ou les ressources protégées.
+
+Il reçoit l'access token et doit vérifier qu'il est valide **pour cette ressource et pour l'opération demandée**.
+
+## 3.5. Access token
+
+Un **access token** représente une délégation d'accès.
+
+Il peut être :
+
+- opaque ;
+- au format JWT ;
+- lié à un émetteur/une clé via un mécanisme comme DPoP ou mTLS.
+
+Il ne faut pas supposer qu'un access token est nécessairement un JWT.
+
+## 3.6. Refresh token
+
+Un **refresh token** permet d'obtenir de nouveaux access tokens sans refaire l'intégralité du flux d'autorisation.
+
+Il doit être considéré comme un secret de grande valeur.
+
+Bonnes pratiques :
+
+- rotation des refresh tokens lorsque l'AS la supporte ;
+- détection de réutilisation ;
+- stockage serveur ou stockage OS sécurisé ;
+- révocation à la déconnexion ou en cas de compromission ;
+- durée de vie limitée selon le niveau de risque.
+
+## 3.7. Authorization code
+
+Le **code d'autorisation** est :
+
+- de courte durée ;
+- à usage unique ;
+- échangé côté client contre des tokens ;
+- lié à la transaction et, avec PKCE, à un `code_verifier`.
+
+Il n'est pas lui-même un access token.
+
+## 3.8. Scopes
+
+Un **scope** représente une capacité demandée ou accordée.
+
+Exemples :
+
+```text
+photos:read
+photos:write
+calendar:read
+openid
+profile
+email
+```
+
+En OIDC, le scope `openid` est spécial : sa présence transforme la requête OAuth en requête OpenID Connect.
+
+# 4. Authorization Code avec PKCE
+
+Authorization Code est le flux principal pour les applications interactives modernes.
+
+## 4.1. Vue générale
 
 ```mermaid
 sequenceDiagram
-    participant U as Utilisateur
-    participant A as Authorization Server
+    participant U as Navigateur
     participant C as Client
+    participant AS as Authorization Server
     participant RS as Resource Server
 
-    U->>A: 1. Demande d'autorisation
-    A->>U: 2. Redirection avec code d'autorisation
-    U->>C: 3. Redirection avec code d'autorisation
-    C->>A: 4. Échange du code contre un token
-    A->>C: 5. Accès au token
-    C->>RS: 6. Accès aux ressources avec token
-    RS->>C: 7. Données protégées
-    C->>U: 8. Données protégées
-
+    U->>C: Accès à l'application
+    C->>C: Génère state, nonce, code_verifier
+    C->>AS: /authorize + code_challenge
+    AS->>U: Authentification / consentement
+    AS->>C: redirect_uri?code=...&state=...
+    C->>C: Vérifie state
+    C->>AS: POST /token + code + code_verifier
+    AS->>C: access_token (+ id_token / refresh_token)
+    C->>RS: Authorization: Bearer access_token
+    RS->>C: Ressource protégée
 ```
 
-- **Implicit Grant** : Utilisé principalement pour les applications côté client (SPA - Single Page Applications). Dans ce flux, le jeton d'accès est directement retourné au Client via une redirection du navigateur, sans passer par un code d'autorisation intermédiaire. Ce flux est moins sécurisé car le jeton d'accès est exposé dans l'URL.
-  
-```mermaid
-  sequenceDiagram
-    participant U as Utilisateur
-    participant A as Authorization Server
-    participant C as Client
-    participant RS as Resource Server
+## 4.2. PKCE
 
-    U->>A: 1. Demande d'autorisation
-    A->>U: 2. Redirection avec access token
-    U->>C: 3. Redirection avec access token
-    C->>RS: 4. Accès aux ressources avec access token
-    RS->>C: 5. Données protégées
-    C->>U: 6. Données protégées
+PKCE signifie **Proof Key for Code Exchange**.
 
+Le client génère un secret aléatoire temporaire :
+
+```text
+code_verifier
 ```
 
-- **Resource Owner Password Credentials Grant** : Ce flux permet au Client d'obtenir un jeton d'accès en utilisant directement le nom d'utilisateur et le mot de passe du Resource Owner. Il est généralement utilisé dans des situations de haute confiance, par exemple, entre une application mobile et son backend.
-```mermaid
-sequenceDiagram
-    participant U as Utilisateur
-    participant A as Authorization Server
-    participant C as Client
-    participant RS as Resource Server
+Il calcule ensuite :
 
-    U->>C: 1. Fournit les identifiants (username et password)
-    C->>A: 2. Demande d'access token avec les identifiants de l'utilisateur
-    A->>C: 3. Réponse avec access token
-    C->>RS: 4. Accès aux ressources avec access token
-    RS->>C: 5. Données protégées
-    C->>U: 6. Données protégées
-
+```text
+code_challenge = BASE64URL(SHA256(code_verifier))
 ```
 
-- **Client Credentials Grant** : Utilisé pour les communications entre serveurs, ce flux permet au Client d'obtenir un jeton d'accès en utilisant ses propres identifiants (client ID et secret), sans l'intervention du Resource Owner. Idéal pour les services d'API et les tâches d'administration.
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant A as Authorization Server
-    participant RS as Resource Server
+La requête d'autorisation contient :
 
-    C->>A: 1. Demande d'access token avec client ID et secret
-    A->>C: 2. Réponse avec access token
-    C->>RS: 3. Accès aux ressources avec access token
-    RS->>C: 4. Données protégées
-
+```text
+code_challenge=...
+code_challenge_method=S256
 ```
 
-En comprenant ces différents flux, nous serons en mesure de choisir et d'implémenter le type d'autorisation approprié pour diverses situations dans nos applications.
-## 1.3. Présentation de OpenID Connect
+Au token endpoint, le client envoie le `code_verifier` original.
 
-### 1.3.1. Relation entre OAuth et OpenID Connect
+Le serveur vérifie qu'il correspond au challenge.
 
-OpenID Connect (OIDC) est une couche d'identité construite sur le protocole OAuth 2.0. Tandis que OAuth 2.0 fournit un cadre pour l'autorisation, permettant aux applications d'obtenir un accès limité aux ressources de l'utilisateur sans exposer ses identifiants, OpenID Connect ajoute des capacités d'authentification à ce cadre. En d'autres termes, OpenID Connect utilise les mécanismes d'autorisation de OAuth 2.0 pour authentifier les utilisateurs et fournir des informations supplémentaires sur eux.
+### Ce que PKCE protège
 
-La principale relation entre OAuth et OpenID Connect réside dans le fait que :
+PKCE réduit notamment les risques liés à l'interception ou à l'injection d'un authorization code.
 
-- OAuth 2.0 se concentre sur l'autorisation : il permet aux applications d'agir pour le compte de l'utilisateur, en accédant aux ressources protégées.
-- OpenID Connect se concentre sur l'authentification : il permet aux applications de vérifier l'identité de l'utilisateur et d'obtenir des informations de profil de base.
+### Ce que PKCE ne fait pas
 
-### 1.3.2. Les composants supplémentaires de OpenID Connect
+PKCE :
 
-OpenID Connect introduit plusieurs composants supplémentaires qui étendent les capacités de OAuth 2.0 pour inclure l'authentification :
+- **ne remplace pas le grant Authorization Code** ;
+- ne remplace pas systématiquement l'authentification d'un client confidentiel ;
+- ne remplace pas TLS ;
+- n'est pas un mécanisme de chiffrement de token ;
+- n'authentifie pas l'utilisateur.
 
-- **ID Token** : C'est un jeton JSON Web Token (JWT) qui contient des informations sur l'utilisateur (le "subject") et sur le mode d'authentification utilisé. L'ID Token est délivré par le serveur d'autorisation et peut être utilisé par le client pour obtenir des informations sur l'utilisateur authentifié. Les champs typiques de l'ID Token incluent l'identifiant de l'utilisateur, l'émetteur du token (issuer), l'audience, la date d'émission et la date d'expiration.
-
-- **UserInfo Endpoint** : C'est une API sécurisée exposée par le serveur d'autorisation qui permet au client d'obtenir des informations supplémentaires sur l'utilisateur. Après avoir obtenu l'ID Token, le client peut appeler le UserInfo Endpoint avec un jeton d'accès pour récupérer des informations de profil détaillées telles que le nom, l'adresse email, et d'autres attributs utilisateur.
-
-### 1.3.3. Cas d'utilisation de OpenID Connect
-
-OpenID Connect est particulièrement utile dans plusieurs scénarios courants où l'authentification sécurisée et centralisée est nécessaire :
-
-1. **Authentification des utilisateurs pour les applications web et mobiles** : OpenID Connect permet aux utilisateurs de se connecter à des applications web ou mobiles en utilisant leurs identifiants d'un fournisseur d'identité (comme Google, Microsoft, ou un serveur d'identité interne).
-
-2. **Fédération d'identité** : Dans les entreprises et les organisations, OpenID Connect permet la fédération d'identité, où les utilisateurs peuvent se connecter à plusieurs systèmes et applications en utilisant un seul ensemble d'identifiants, améliorant ainsi l'expérience utilisateur et la gestion des identités.
-
-3. **Single Sign-On (SSO)** : OpenID Connect facilite le Single Sign-On, permettant aux utilisateurs de se connecter une fois et d'accéder à plusieurs applications sans avoir à se reconnecter. Cela améliore la commodité pour les utilisateurs et réduit la charge de gestion des mots de passe.
-
-4. **Accès aux APIs sécurisées** : En conjonction avec OAuth 2.0, OpenID Connect permet l'accès sécurisé aux APIs tout en fournissant des informations d'identité fiables sur l'utilisateur accédant aux APIs. Cela est crucial pour les applications qui doivent personnaliser les réponses basées sur l'utilisateur.
-
-En résumé, OpenID Connect étend les capacités de OAuth 2.0 pour inclure l'authentification, fournissant ainsi une solution complète pour l'autorisation et l'authentification des utilisateurs dans les applications modernes.
-## 1.4. Introduction aux Tokens JWT
-
-### 1.4.1. Définition et utilisation des JWT (JSON Web Tokens)
-
-Les JSON Web Tokens (JWT) sont des jetons de sécurité basés sur le format JSON, utilisés pour représenter de manière sécurisée des informations entre deux parties. Les JWT sont souvent utilisés pour l'authentification et l'autorisation dans les applications web et les API. Ils permettent de transmettre des informations vérifiables et sécurisées sans nécessiter de stockage côté serveur.
-Ils sont souvent transmis sous forme de suite d'octets encodés en base64url.
-
-**Utilisations courantes des JWT :**
-- **Authentification** : Après que l'utilisateur se soit authentifié avec succès, un JWT est généré et envoyé au client. Le client utilise ce JWT pour accéder aux ressources protégées.
-- **Autorisation** : Les JWT peuvent contenir des informations sur les permissions et les rôles de l'utilisateur, permettant aux serveurs de vérifier les autorisations sans effectuer de requêtes supplémentaires à une base de données.
-- **Échange sécurisé de données** : Les JWT sont signés numériquement, garantissant que les informations n'ont pas été modifiées en transit.
-
-### 1.4.2. Structure des JWT : Header, Payload, Signature
-
-Un JWT est composé de trois parties distinctes, chacune encodée en Base64 et séparée par des points (.)
-
-1. **Header (En-tête)** :
-   - Contient des informations sur le type de jeton et l'algorithme de signature utilisé.
-   - Exemple :
-     ```json
-     {
-       "alg": "HS256",
-       "typ": "JWT"
-     }
-     ```
-
-2. **Payload (Charge utile)** :
-   - Contient les données de l'utilisateur et les déclarations (claims). Les claims peuvent être standards (comme `sub`, `iat`, `exp`) ou personnalisées.
-   - Exemple :
-     ```json
-     {
-       "sub": "1234567890",
-       "name": "John Doe",
-       "admin": true
-     }
-     ```
-
-3. **Signature** :
-   - Générée en prenant l'en-tête encodé, la charge utile encodée, en les concaténant et en appliquant un algorithme de cryptographie avec une clé secrète.
-   - Exemple de génération de la signature :
-     ```
-     HMACSHA256(
-       base64UrlEncode(header) + "." + base64UrlEncode(payload),
-       secret
-     )
-     ```
-
-### 1.4.3. Signatures et algorithmes de chiffrement
-
-Les JWT utilisent des algorithmes de signature pour assurer l'intégrité et l'authenticité des informations contenues dans le jeton. Les algorithmes courants incluent :
-
-- **HMAC (HS256, HS384, HS512)** : Utilise une clé secrète partagée pour signer le jeton. C'est simple et rapide, mais nécessite que la clé soit connue par les deux parties.
-- **RSA (RS256, RS384, RS512)** : Utilise une paire de clés privée et publique. La clé privée signe le jeton, et la clé publique vérifie la signature. Cela permet de distribuer largement la clé publique tout en gardant la clé privée secrète.
-- **ECDSA (ES256, ES384, ES512)** : Utilise des courbes elliptiques pour générer les signatures, offrant une sécurité comparable à RSA mais avec des clés plus petites et des performances améliorées.
-
-### 1.4.4. Vérification et validation des JWT
-
-Pour vérifier un JWT, les étapes suivantes sont suivies :
-
-1. **Décoder le jeton** : Séparer les trois parties (header, payload, signature) et les décoder de Base64.
-2. **Vérifier la signature** : Utiliser l'algorithme et la clé appropriés pour recalculer la signature et la comparer à la signature présente dans le jeton.
-3. **Vérifier les claims** : Vérifier les déclarations (claims) standard comme `exp` (expiration), `iat` (issued at), et `nbf` (not before) pour s'assurer que le jeton est valide dans le temps.
-4. **Vérification des permissions** : Vérifier les claims personnalisés pour s'assurer que l'utilisateur a les droits nécessaires pour accéder à la ressource.
-
-### 1.4.5. Avantages et inconvénients des JWT
-
-**Avantages :**
-- **Sans état (stateless)** : Les JWT ne nécessitent pas de stockage côté serveur, ce qui permet une meilleure scalabilité.
-- **Autocontrôlés** : Toutes les informations nécessaires sont contenues dans le jeton, réduisant le besoin de requêtes supplémentaires.
-- **Simplicité d'utilisation** : Facilement utilisables dans différents contextes (HTTP headers, URL parameters, etc.).
-- **Sécurisé** : Utilisation de signatures cryptographiques pour garantir l'intégrité et l'authenticité des données.
-
-**Inconvénients :**
-- **Taille du jeton** : Les JWT peuvent devenir volumineux, surtout avec des claims personnalisés, impactant la performance en transit.
-- **Non révocable** : Une fois délivré, un JWT est valide jusqu'à son expiration, sauf si des mécanismes supplémentaires de révocation sont implémentés.
-- **Sécurité des clés** : La sécurité des JWT repose sur la sécurité de la clé utilisée pour les signer. Si la clé est compromise, tous les jetons signés avec cette clé le sont également.
-
-En comprenant ces aspects, nous serons capables de tirer pleinement parti des JWT tout en étant conscients des précautions à prendre pour en assurer une utilisation sécurisée.
-
-# 2. Keycloak comme Serveur d'Autorisation
-
-## 2.1. Introduction à Keycloak
-
-### 2.1.1. Qu'est-ce que Keycloak ?
-
-Keycloak est une solution open-source de gestion des identités et des accès (IAM) développée par Red Hat. Il offre une manière sécurisée et simple de gérer l'authentification et l'autorisation des utilisateurs dans les applications modernes. Keycloak fournit des fonctionnalités d'authentification unique (SSO), de fédération d'identités, de gestion des utilisateurs, et bien plus encore, facilitant l'intégration des mécanismes de sécurité dans les applications.
-
-**Caractéristiques principales de Keycloak :**
-
-1. **Authentification unique (SSO)** : Keycloak permet aux utilisateurs de se connecter une fois et d'accéder à plusieurs applications sans avoir à se reconnecter. Cette fonctionnalité améliore l'expérience utilisateur et réduit la charge de gestion des mots de passe.
-
-2. **Fédération d'identités** : Keycloak peut fédérer des identités provenant de différents fournisseurs d'identité, tels que les annuaires LDAP, les serveurs Kerberos, et les fournisseurs d'identité sociaux comme Google, Facebook, et Twitter. Cela permet aux utilisateurs de se connecter en utilisant leurs identifiants existants, simplifiant ainsi le processus de connexion.
-
-3. **Gestion des utilisateurs** : Keycloak offre une interface utilisateur intuitive pour la gestion des utilisateurs, des rôles et des groupes. Les administrateurs peuvent facilement créer, modifier et supprimer des utilisateurs, ainsi que leur attribuer des rôles et des permissions spécifiques.
-
-4. **Protocoles standardisés** : Keycloak supporte plusieurs protocoles standardisés, tels que OAuth 2.0, OpenID Connect, et SAML 2.0. Cela garantit une intégration facile avec une large gamme d'applications et de services, tout en assurant la sécurité des échanges.
-
-5. **Extensibilité** : Keycloak est conçu pour être extensible et personnalisable. Les développeurs peuvent créer des extensions pour ajouter des fonctionnalités supplémentaires ou pour adapter le comportement de Keycloak à des besoins spécifiques. Les SPI (Service Provider Interfaces) de Keycloak permettent d'intégrer des composants personnalisés pour la gestion des utilisateurs, l'authentification, et d'autres fonctionnalités.
-
-6. **Gestion des sessions** : Keycloak offre des fonctionnalités avancées de gestion des sessions, permettant aux administrateurs de visualiser et de contrôler les sessions utilisateur en temps réel. Les administrateurs peuvent également révoquer des sessions spécifiques pour renforcer la sécurité.
-
-7. **Intégration avec les applications** : Keycloak fournit des adaptateurs pour une intégration facile avec des applications développées dans différents langages et frameworks, tels que Java, JavaScript, Node.js, et Spring Boot. Cela simplifie l'intégration de Keycloak dans les environnements existants.
-
-8. **Sécurité** : Keycloak offre des mécanismes de sécurité avancés, y compris la protection contre les attaques par force brute, la gestion des politiques de mot de passe, et l'authentification à facteurs multiples (MFA). Cela renforce la sécurité globale des applications et des données utilisateur.
-
-9. **Interface utilisateur personnalisable** : Les interfaces de connexion et de gestion de Keycloak peuvent être personnalisées pour correspondre à l'identité visuelle de l'organisation, offrant une expérience utilisateur cohérente et professionnelle.
-
-10. **Administration centralisée** : Keycloak propose une console d'administration centralisée où les administrateurs peuvent gérer tous les aspects de la sécurité des utilisateurs, y compris les configurations des clients, les mappings des rôles, et les politiques d'authentification.
-
-En résumé, Keycloak est une solution complète et flexible pour la gestion des identités et des accès, conçue pour répondre aux besoins des applications modernes tout en assurant un haut niveau de sécurité et une expérience utilisateur optimisée.
-
-# 2. Keycloak comme Serveur d'Autorisation
-
-## 2.2. Installation et configuration de Keycloak
-
-### 2.2.1. Installation de Keycloak sur Ubuntu 22.04
-
-L'installation de Keycloak sur Ubuntu 22.04 est un processus relativement simple qui implique l'installation de Java, le téléchargement de Keycloak, et la configuration initiale. Voici les étapes détaillées :
-
-1. **Installer Java** :
-   Keycloak nécessite Java pour fonctionner. Nous devons installer OpenJDK 11.
-
-   ```bash
-   sudo apt update
-   sudo apt install openjdk-11-jdk -y
-   ```
-
-   Vérifions l'installation de Java :
-
-   ```bash
-   java -version
-   ```
-
-2. **Télécharger Keycloak** :
-   Téléchargeons la dernière version de Keycloak depuis le site officiel ou via la ligne de commande. À ce jour, Keycloak 19.0.3 est utilisé comme exemple.
-
-   ```bash
-   wget https://github.com/keycloak/keycloak/releases/download/19.0.3/keycloak-19.0.3.tar.gz
-   ```
-
-3. **Extraire l'archive téléchargée** :
-
-   ```bash
-   tar -xvzf keycloak-19.0.3.tar.gz
-   ```
-
-4. **Déplacer le dossier extrait dans `/opt`** :
-
-   ```bash
-   sudo mv keycloak-19.0.3 /opt/keycloak
-   ```
-
-5. **Créer un utilisateur dédié à Keycloak** :
-
-   ```bash
-   sudo adduser --system --no-create-home --group keycloak
-   sudo chown -R keycloak:keycloak /opt/keycloak
-   ```
-
-6. **Configurer Keycloak pour démarrer en tant que service** :
-   Créons un fichier de service systemd pour Keycloak.
-
-   ```bash
-   sudo nano /etc/systemd/system/keycloak.service
-   ```
-
-   Ajoutons-y les informations suivantes :
-   
-```ini
-   [Unit]
-   Description=Keycloak Server
-   After=syslog.target network.target
-
-   [Service]
-   User=keycloak
-   Group=keycloak
-   Environment=JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-   ExecStart=/opt/keycloak/bin/kc.sh start
-   Restart=on-failure
-
-   [Install]
-   WantedBy=multi-user.target
-```
-
-7. **Démarrer et activer le service Keycloak** :
-
-   ```bash
-   sudo systemctl daemon-reload
-   sudo systemctl start keycloak
-   sudo systemctl enable keycloak
-   ```
-
-8. **Accéder à la console d'administration de Keycloak** :
-   Par défaut, Keycloak est accessible sur le port 8080. Ouvrons un navigateur et accédons à `http://localhost:8080`. Suivons les instructions pour créer un compte administrateur.
-
-### 2.2.2. Configuration initiale de Keycloak (création d'un Realm, d'un Client, et d'un Utilisateur)
-
-Une fois Keycloak installé et en cours d'exécution, nous devons effectuer la configuration initiale qui comprend la création d'un Realm, d'un Client, et d'un Utilisateur.
-
-1. **Connexion à la console d'administration** :
-   Accédons à la console d'administration via `http://localhost:8080` et connectons-vous avec les identifiants de l'administrateur créés lors de l'installation.
-
-2. **Création d'un Realm** :
-   Un Realm dans Keycloak est une unité de gestion qui regroupe des utilisateurs, des rôles, et des applications. 
-
-   - Dans la console d'administration, cliquons sur "Add Realm".
-   - Donnons un nom à votre Realm (par exemple, "myrealm") et cliquons sur "Create".
-
-3. **Création d'un Client** :
-   Les Clients représentent les applications qui utilisent Keycloak pour l'authentification.
-
-   - Sélectionnons votre Realm nouvellement créé.
-   - Cliquons sur "Clients" dans le menu de gauche.
-   - Cliquons sur "Create".
-   - Remplissons les champs nécessaires :
-     - **Client ID** : Nom unique du client (par exemple, "myclient").
-     - **Client Protocol** : Sélectionnons "openid-connect".
-     - **Root URL** : L'URL de base de l'application client.
-   - Cliquons sur "Save".
-
-   Après la création, configurons les paramètres supplémentaires tels que les redirections et les credentials selon les besoins de votre application.
-
-4. **Création d'un Utilisateur** :
-   Les Utilisateurs sont les entités qui se connectent et utilisent les applications sécurisées par Keycloak.
-
-   - Sélectionnons votre Realm.
-   - Cliquons sur "Users" dans le menu de gauche.
-   - Cliquons sur "Add User".
-   - Remplissons les informations de l'utilisateur (par exemple, nom d'utilisateur, email) et cliquons sur "Save".
-
-   Une fois l'utilisateur créé, définissons un mot de passe :
-
-   - Sélectionnons l'utilisateur nouvellement créé dans la liste des utilisateurs.
-   - Allons dans l'onglet "Credentials".
-   - Entrons un mot de passe et cliquons sur "Set Password".
-   - Assurons-nous de sélectionner "Temporary" sur "Off" si nous ne souhaitons pas que l'utilisateur soit obligé de changer son mot de passe à la première connexion.
-
-Cette configuration de base permet à Keycloak de gérer les utilisateurs et les clients pour un Realm donné. Des configurations supplémentaires peuvent être effectuées selon les besoins spécifiques de l'application, comme l'ajout de rôles, la configuration de l'authentification multi-facteurs, et l'intégration avec des fournisseurs d'identité externes.
-
-# 2. Keycloak comme Serveur d'Autorisation
-
-## 2.3. Concepts clés de Keycloak
-
-Keycloak repose sur plusieurs concepts clés qui structurent la gestion des identités et des accès. Ces concepts incluent les Realms, les Clients, les Roles, les Users, et les Groups.
-
-### Realms
-
-**Definition** : Un Realm est une unité de gestion dans Keycloak qui regroupe et isole les utilisateurs, les clients, les rôles et les groupes. Chaque Realm est autonome et possède ses propres configurations et données, permettant de gérer de manière isolée les différents environnements ou applications.
-
-**Utilisation** :
-- **Multi-tenant** : Les organisations peuvent utiliser des Realms pour séparer les environnements de développement, de test et de production, ou pour offrir une solution de gestion d'identité multi-locataires.
-- **Isolation des données** : Les données d'un Realm ne sont pas accessibles par d'autres Realms, garantissant ainsi une isolation complète.
-
-### Clients
-
-**Definition** : Les Clients représentent les applications ou les services qui utilisent Keycloak pour l'authentification et l'autorisation. Un Client peut être une application web, une application mobile, ou une API.
-
-**Utilisation** :
-- **Authentification** : Les Clients utilisent Keycloak pour authentifier les utilisateurs, en obtenant des tokens (access token, refresh token, ID token) pour accéder aux ressources protégées.
-- **Configuration** : Chaque Client peut avoir des configurations spécifiques telles que les redirections, les scopes, et les protocoles d'authentification (OpenID Connect, SAML).
-
-### Roles
-
-**Definition** : Les Roles sont des ensembles de permissions qui peuvent être attribués aux utilisateurs ou aux groupes. Ils définissent ce que les utilisateurs peuvent faire dans une application.
-
-**Types de rôles** :
-- **Realm Roles** : Ces rôles sont globaux pour le Realm et peuvent être attribués à n'importe quel utilisateur ou groupe dans ce Realm.
-- **Client Roles** : Ces rôles sont spécifiques à un Client et ne sont applicables qu'à ce Client particulier. Ils permettent de définir des permissions spécifiques à une application.
-
-**Utilisation** :
-- **Contrôle d'accès** : Les rôles sont utilisés pour gérer le contrôle d'accès aux différentes parties des applications, en fonction des permissions attribuées.
-
-### Users
-
-**Definition** : Les Users sont les entités qui se connectent et interagissent avec les applications sécurisées par Keycloak. Chaque utilisateur a un profil qui peut inclure des informations telles que le nom, l'email, et les attributs personnalisés.
-
-**Utilisation** :
-- **Authentification** : Les utilisateurs se connectent via Keycloak pour accéder aux applications. Ils peuvent être authentifiés avec des mots de passe, des certificats, ou d'autres mécanismes d'authentification.
-- **Gestion des utilisateurs** : Les administrateurs peuvent créer, modifier et supprimer des utilisateurs, gérer leurs mots de passe, et définir leurs rôles et permissions.
-
-### Groups
-
-**Definition** : Les Groups sont des collections d'utilisateurs qui partagent des rôles et des attributs communs. Les groupes facilitent la gestion des permissions et des configurations pour plusieurs utilisateurs en même temps.
-
-**Utilisation** :
-- **Gestion collective** : Les groupes permettent d'attribuer des rôles et des permissions à plusieurs utilisateurs en une seule opération. Les utilisateurs héritent des rôles et des attributs des groupes auxquels ils appartiennent.
-- **Structure hiérarchique** : Les groupes peuvent être organisés de manière hiérarchique, permettant une gestion plus fine et structurée des permissions et des configurations.
-
-En comprenant et en utilisant ces concepts clés, nous pouvons configurer et gérer efficacement Keycloak pour répondre aux besoins spécifiques de nos applications en matière de gestion des identités et des accès.
-
-## 3. Intégration de Keycloak dans une Application Python Pyramid
-
-## 3.1. Préparation de l'environnement de développement
-
-### 3.1.1. Installation de Python 3.10 et de Pyramid
-
-Pour commencer le développement d'une application Pyramid intégrant Keycloak, nous devons installer Python 3.10 et le framework Pyramid. Voici les étapes à suivre :
-
-1. **Installation de Python 3.10** :
-   Si Python 3.10 n'est pas déjà installé sur votre système Ubuntu 22.04, suivons ces instructions :
-
-   - Mettonsà jour les dépôts de paquets :
-
-     ```bash
-     sudo apt update
-     ```
-
-   - Installons les dépendances requises pour ajouter un nouveau PPA :
-
-     ```bash
-     sudo apt install software-properties-common -y
-     ```
-
-   - Ajoutons le PPA de Deadsnakes qui contient les versions plus récentes de Python :
-
-     ```bash
-     sudo add-apt-repository ppa:deadsnakes/ppa
-     ```
-
-   - Installons Python 3.10 :
-
-     ```bash
-     sudo apt install python3.10 -y
-     ```
-
-   - Vérifions l'installation de Python 3.10 :
-
-     ```bash
-     python3.10 --version
-     ```
-
-2. **Installation de Pyramid** :
-   Pyramid est un framework web en Python. Pour l'installer, nous devons d'abord installer `pip`, le gestionnaire de paquets pour Python, et ensuite utiliser `pip` pour installer Pyramid.
-
-   - Installons `pip` :
-
-     ```bash
-     sudo apt install python3-pip -y
-     ```
-
-   - Installons Pyramid en utilisant `pip` :
-
-     ```bash
-     pip install pyramid
-     ```
-
-### 3.1.2. Configuration de l'environnement virtuel
-
-L'utilisation d'un environnement virtuel permet d'isoler les dépendances de notre projet, évitant ainsi les conflits avec d'autres projets ou les paquets installés globalement. Voici les étapes pour configurer un environnement virtuel pour notre projet Pyramid :
-
-1. **Installation de `venv`** :
-   `venv` est un module de la bibliothèque standard de Python utilisé pour créer des environnements virtuels. Il est inclus avec Python 3.10, donc nous n'avons pas besoin de l'installer séparément.
-
-2. **Création de l'environnement virtuel** :
-   Dans le répertoire de votre projet, créons un environnement virtuel :
-
-   ```bash
-   python3.10 -m venv myenv
-   ```
-
-   Cela créera un répertoire `myenv` contenant un environnement Python isolé.
-
-3. **Activation de l'environnement virtuel** :
-   Avant d'installer les dépendances de notre projet, nous devons activer l'environnement virtuel :
-
-   - Sous Linux et macOS :
-
-     ```bash
-     source myenv/bin/activate
-     ```
-
-   - Sous Windows :
-
-     ```bash
-     myenv\Scripts\activate
-     ```
-
-   Une fois activé, le prompt de la ligne de commande devrait être préfixé par le nom de l'environnement virtuel (par exemple, `(myenv)`).
-
-4. **Installation des dépendances dans l'environnement virtuel** :
-   Avec l'environnement virtuel activé, nous pouvons maintenant installer les dépendances nécessaires pour notre projet Pyramid. Commençons par réinstaller Pyramid dans l'environnement virtuel :
-
-   ```bash
-   pip install pyramid
-   ```
-
-5. **Création d'un projet Pyramid** :
-   Utilisons l'outil `cookiecutter` de Pyramid pour créer la structure de base de notre projet :
-
-   ```bash
-   pip install cookiecutter
-   cookiecutter gh:Pylons/pyramid-cookiecutter-starter
-   ```
-
-   Suivons les instructions interactives pour configurer le projet (nom du projet, nom du package, etc.).
-
-6. **Installation des dépendances du projet** :
-   Naviguons dans le répertoire du projet créé et installons les dépendances :
-
-   ```bash
-   cd <nom_du_projet>
-   pip install -e .
-   ```
-
-En suivant ces étapes, nous avons configuré un environnement de développement isolé pour notre projet Pyramid et installé toutes les dépendances nécessaires. Nous sommes maintenant prêts à configurer notre application Pyramid pour utiliser Keycloak.
-
-## 3.2. Configuration de Pyramid pour utiliser Keycloak
-
-### 3.2.1. Installation des dépendances nécessaires (requests, python-keycloak, etc.)
-
-Pour intégrer Keycloak avec notre application Pyramid, nous devons installer plusieurs dépendances qui faciliteront la communication avec le serveur Keycloak et la gestion des jetons. Voici les étapes pour installer ces dépendances :
-
-1. **Activation de l'environnement virtuel** :
-   Assurons-nous que votre environnement virtuel est activé. Si ce n'est pas déjà fait, activons-le :
-
-   - Sous Linux et macOS :
-
-     ```bash
-     source myenv/bin/activate
-     ```
-
-   - Sous Windows :
-
-     ```bash
-     myenv\Scripts\activate
-     ```
-
-2. **Installation de `requests`** :
-   `requests` est une bibliothèque HTTP simple et élégante pour Python. Nous en aurons besoin pour interagir avec les endpoints de Keycloak.
-
-   ```bash
-   pip install requests
-   ```
-
-3. **Installation de `python-keycloak`** :
-   `python-keycloak` est un client Python pour Keycloak. Il simplifie l'interaction avec l'API REST de Keycloak.
-
-   ```bash
-   pip install python-keycloak
-   ```
-
-4. **Installation des autres dépendances éventuelles** :
-   Selon les besoins spécifiques de votre projet, vous pourrions avoir besoin d'autres bibliothèques. Voici quelques exemples courants :
-
-   - `python-jose` pour la gestion des JWT :
-
-     ```bash
-     pip install python-jose
-     ```
-
-   - `PyJWT` pour la manipulation des JWT :
-
-     ```bash
-     pip install PyJWT
-     ```
-
-En suivant ces étapes, nous avons installé toutes les bibliothèques nécessaires pour intégrer Keycloak avec notre application Pyramid.
-
-### 3.2.2. Configuration des paramètres de connexion à Keycloak dans Pyramid
-
-Après avoir installé les dépendances, nous devons configurer notre application Pyramid pour qu'elle puisse se connecter à Keycloak et utiliser ses services d'authentification et d'autorisation. Voici comment procéder :
-
-1. **Configuration du fichier `development.ini`** :
-
-   Ajoutons les paramètres de configuration nécessaires à votre fichier `development.ini`. Ces paramètres incluent l'URL de votre serveur Keycloak, les informations du Realm, et les identifiants du client.
-
-```ini
-   [app:main]
-   use = egg:YourProject
-
-   # Configuration Keycloak
-   keycloak.server_url = http://localhost:8080/auth/
-   keycloak.realm_name = yourrealm
-   keycloak.client_id = yourclient
-   keycloak.client_secret = yourclientsecret
-   keycloak.callback_url = http://localhost:6543/callback
-```
-
-1. **Mise en place de la connexion à Keycloak dans votre application** :
-   Dans votre fichier de configuration Pyramid (par exemple, `__init__.py`), configurons les paramètres de Keycloak en utilisant les valeurs définies dans `development.ini`.
+## 4.3. Génération PKCE en Python
 
 ```python
-   from pyramid.config import Configurator
-   from keycloak import KeycloakOpenID
-
-   def main(global_config, **settings):
-       config = Configurator(settings=settings)
-
-       # Configuration Keycloak
-       keycloak_openid = KeycloakOpenID(
-           server_url=settings['keycloak.server_url'],
-           client_id=settings['keycloak.client_id'],
-           realm_name=settings['keycloak.realm_name'],
-           client_secret_key=settings['keycloak.client_secret']
-       )
-
-       config.registry.keycloak_openid = keycloak_openid
-
-       # Ajoutons nos configurations Pyramid ici
-       config.include('pyramid_jinja2')
-       config.add_static_view('static', 'static', cache_max_age=3600)
-       config.add_route('home', '/')
-       config.scan()
-
-       return config.make_wsgi_app()
-   ```
-
-3. **Gestion des routes de redirection** :
-   Configurons les routes nécessaires pour gérer les redirections vers et depuis Keycloak. Par exemple, ajoutons une route pour la redirection après authentification.
-
-   ```python
-   def includeme(config):
-       config.add_route('callback', '/callback')
-       config.add_view(callback_view, route_name='callback')
-
-   def callback_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-
-       code = request.params.get('code')
-       token = keycloak_openid.token(code=code, redirect_uri=request.registry.settings['keycloak.callback_url'])
-
-       # Stockons les tokens dans la session ou gérons-les selon nos besoins
-       request.session['access_token'] = token['access_token']
-       request.session['refresh_token'] = token['refresh_token']
-       request.session['id_token'] = token['id_token']
-
-       return HTTPFound(location=request.route_url('home'))
-   ```
-
-4. **Protéger les routes avec des permissions basées sur les rôles** :
-   Utilisons les informations du token JWT pour vérifier les rôles et les permissions de l'utilisateur et protéger les routes de votre application.
-
-   ```python
-   def protected_view(request):
-       token = request.session.get('access_token')
-       if not token:
-           raise HTTPUnauthorized()
-
-       keycloak_openid = request.registry.keycloak_openid
-       userinfo = keycloak_openid.userinfo(token)
-
-       # Vérifions les rôles et les permissions
-       if 'your_role' not in userinfo['roles']:
-           raise HTTPForbidden()
-
-       # Logique de votre vue ici
-       return Response('Content protected by role')
-   ```
-
-En suivant ces étapes, nous avons configuré notre application Pyramid pour utiliser Keycloak comme serveur d'authentification et d'autorisation, permettant ainsi une gestion sécurisée et centralisée des identités.
-
-## 3.3. Implémentation de l'authentification avec OAuth2
-
-### 3.3.1. Implémentation du flux Authorization Code dans Pyramid
-
-Le flux Authorization Code est le plus couramment utilisé dans les applications web. Il offre un bon équilibre entre sécurité et facilité d'utilisation. Voici les étapes détaillées pour implémenter ce flux dans une application Pyramid :
-
-1. **Configuration des routes de redirection** :
-   Ajoutons les routes pour l'initiation de l'authentification et pour la réception du code d'autorisation après la redirection de Keycloak.
-
-   ```python
-   def includeme(config):
-       config.add_route('login', '/login')
-       config.add_route('callback', '/callback')
-       config.add_view(login_view, route_name='login')
-       config.add_view(callback_view, route_name='callback')
-   ```
-
-2. **Vue pour initier l'authentification** :
-   Créons une vue qui redirige l'utilisateur vers Keycloak pour l'authentification.
-
-   ```python
-   from pyramid.httpexceptions import HTTPFound
-
-   def login_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-       auth_url = keycloak_openid.auth_url(redirect_uri=request.registry.settings['keycloak.callback_url'])
-       return HTTPFound(location=auth_url)
-   ```
-
-3. **Vue pour gérer le callback de Keycloak** :
-   Créons une vue pour gérer la redirection après l'authentification et échanger le code d'autorisation contre des tokens.
-
-   ```python
-   from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
-
-   def callback_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-       code = request.params.get('code')
-
-       if not code:
-           return HTTPUnauthorized()
-
-       token = keycloak_openid.token(code=code, redirect_uri=request.registry.settings['keycloak.callback_url'])
-
-       # Stockons les tokens dans la session ou gérons-les selon nos besoins
-       request.session['access_token'] = token['access_token']
-       request.session['refresh_token'] = token['refresh_token']
-       request.session['id_token'] = token['id_token']
-
-       return HTTPFound(location=request.route_url('home'))
-   ```
-
-### 3.3.2. Gestion des tokens (access token, refresh token, ID token)
-
-Les tokens sont essentiels pour l'authentification et l'autorisation. Voici comment gérer les différents types de tokens dans Pyramid :
-
-1. **Stockage des tokens** :
-   Stockons les tokens dans la session utilisateur après l'authentification réussie.
-
-   ```python
-   def callback_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-       code = request.params.get('code')
-
-       if not code:
-           return HTTPUnauthorized()
-
-       token = keycloak_openid.token(code=code, redirect_uri=request.registry.settings['keycloak.callback_url'])
-
-       # Stockage des tokens dans la session
-       request.session['access_token'] = token['access_token']
-       request.session['refresh_token'] = token['refresh_token']
-       request.session['id_token'] = token['id_token']
-
-       return HTTPFound(location=request.route_url('home'))
-   ```
-
-2. **Renouvellement du token d'accès** :
-   Utilisons le refresh token pour obtenir un nouveau token d'accès lorsque l'actuel expire.
-
-   ```python
-   def refresh_access_token(request):
-       keycloak_openid = request.registry.keycloak_openid
-       refresh_token = request.session.get('refresh_token')
-
-       if not refresh_token:
-           return HTTPUnauthorized()
-
-       new_token = keycloak_openid.refresh_token(refresh_token)
-       
-       # Mise à jour des tokens dans la session
-       request.session['access_token'] = new_token['access_token']
-       request.session['refresh_token'] = new_token['refresh_token']
-       request.session['id_token'] = new_token['id_token']
-
-       return new_token['access_token']
-   ```
-
-3. **Extraction des informations de l'ID token** :
-   Utilisons l'ID token pour obtenir des informations sur l'utilisateur authentifié.
-
-   ```python
-   def get_user_info(request):
-       id_token = request.session.get('id_token')
-
-       if not id_token:
-           return None
-
-       keycloak_openid = request.registry.keycloak_openid
-       user_info = keycloak_openid.decode_token(id_token, key=keycloak_openid.public_key(), options={"verify_signature": True})
-
-       return user_info
-   ```
-
-### 3.3.3. Protection des routes avec des permissions basées sur les rôles
-
-Pour protéger les routes dans votre application Pyramid en utilisant des permissions basées sur les rôles, vous pouvons suivre ces étapes :
-
-1. **Définir les permissions dans Pyramid** :
-   Configurons les autorisations nécessaires pour les vues protégées.
-
-   ```python
-   def includeme(config):
-       config.add_route('protected', '/protected')
-       config.add_view(protected_view, route_name='protected', permission='view')
-
-       config.add_permission('view')
-   ```
-
-2. **Vérifier les rôles de l'utilisateur** :
-   Implémentons une politique de sécurité pour vérifier les rôles de l'utilisateur à partir du token JWT.
-
-   ```python
-   from pyramid.security import Allow, Authenticated
-
-   class RootFactory:
-       __acl__ = [
-           (Allow, Authenticated, 'view')
-       ]
-
-       def __init__(self, request):
-           pass
-
-   def groupfinder(userid, request):
-       token = request.session.get('access_token')
-
-       if not token:
-           return None
-
-       keycloak_openid = request.registry.keycloak_openid
-       userinfo = keycloak_openid.userinfo(token)
-
-       roles = userinfo.get('roles', [])
-       return ['role:' + role for role in roles]
-
-   def protected_view(request):
-       token = request.session.get('access_token')
-
-       if not token:
-           raise HTTPUnauthorized()
-
-       keycloak_openid = request.registry.keycloak_openid
-       userinfo = keycloak_openid.userinfo(token)
-
-       if 'your_role' not in userinfo['roles']:
-           raise HTTPForbidden()
-
-       return Response('Content protected by role')
-   ```
-
-3. **Configurer la politique d'authentification et d'autorisation** :
-   Utilisons la configuration de sécurité Pyramid pour activer la politique d'authentification et d'autorisation basée sur les tokens JWT.
-
-   ```python
-   def main(global_config, **settings):
-       config = Configurator(settings=settings)
-       
-       # Configuration de la politique de sécurité
-       from pyramid.authentication import SessionAuthenticationPolicy
-       from pyramid.authorization import ACLAuthorizationPolicy
-
-       authn_policy = SessionAuthenticationPolicy(callback=groupfinder)
-       authz_policy = ACLAuthorizationPolicy()
-
-       config.set_authentication_policy(authn_policy)
-       config.set_authorization_policy(authz_policy)
-       config.set_root_factory(RootFactory)
-
-       config.include('pyramid_jinja2')
-       config.add_static_view('static', 'static', cache_max_age=3600)
-       config.add_route('home', '/')
-       config.scan()
-
-       return config.make_wsgi_app()
-   ```
-
-En suivant ces étapes, nous avons configuré notre application Pyramid pour utiliser le flux Authorization Code de OAuth2 avec Keycloak, gérer les tokens d'accès et de rafraîchissement, et protéger les routes en utilisant des permissions basées sur les rôles. Cela garantit une authentification et une autorisation sécurisées et centralisées dans notre application.
-
-## 3.4. Implémentation de l'authentification avec OpenID Connect
-
-### 3.4.1. Intégration de OpenID Connect avec Pyramid
-
-L'intégration de OpenID Connect (OIDC) avec Pyramid permet de simplifier le processus d'authentification et de gérer les identités de manière sécurisée. OpenID Connect est une couche d'identité construite sur le protocole OAuth 2.0 qui permet d'authentifier les utilisateurs et de récupérer leurs informations de profil.
-
-1. **Configurer les dépendances** :
-   Assurons-nous que les dépendances `requests` et `python-keycloak` sont installées, comme mentionné précédemment.
-
-2. **Configurer les paramètres OIDC dans `development.ini`** :
-   Assurons-nous que les paramètres de connexion à Keycloak sont définis dans votre fichier de configuration `development.ini`.
-   
-```ini
-   [app:main]
-   use = egg:YourProject
-
-   # Configuration Keycloak
-   keycloak.server_url = http://localhost:8080/auth/
-   keycloak.realm_name = yourrealm
-   keycloak.client_id = yourclient
-   keycloak.client_secret = yourclientsecret
-   keycloak.callback_url = http://localhost:6543/callback
+import base64
+import hashlib
+import secrets
+
+
+def generate_pkce() -> tuple[str, str]:
+    verifier = secrets.token_urlsafe(64)
+    digest = hashlib.sha256(verifier.encode("ascii")).digest()
+    challenge = base64.urlsafe_b64encode(digest).rstrip(b"=").decode("ascii")
+    return verifier, challenge
 ```
 
-3. **Ajouter les routes de redirection** :
-   Ajoutons les routes pour l'initiation de l'authentification et pour la réception du code d'autorisation après la redirection de Keycloak.
+Utiliser `S256`, et non `plain`, sauf contrainte d'interopérabilité exceptionnelle.
 
-   ```python
-   def includeme(config):
-       config.add_route('login', '/login')
-       config.add_route('callback', '/callback')
-       config.add_view(login_view, route_name='login')
-       config.add_view(callback_view, route_name='callback')
-   ```
+## 4.4. `state`
 
-4. **Vue pour initier l'authentification** :
-   Créons une vue qui redirige l'utilisateur vers Keycloak pour l'authentification en utilisant OpenID Connect.
+`state` est une valeur aléatoire liée à la session de navigation.
 
-   ```python
-   from pyramid.httpexceptions import HTTPFound
+Elle permet notamment :
 
-   def login_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-       auth_url = keycloak_openid.auth_url(redirect_uri=request.registry.settings['keycloak.callback_url'])
-       return HTTPFound(location=auth_url)
-   ```
+- de corréler le callback à la requête initiée ;
+- de participer à la protection contre les attaques CSRF et les réponses inattendues.
 
-5. **Vue pour gérer le callback de Keycloak** :
-   Créons une vue pour gérer la redirection après l'authentification et échanger le code d'autorisation contre des tokens, y compris l'ID Token.
+Exemple :
 
-   ```python
-   from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
-
-   def callback_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-       code = request.params.get('code')
-
-       if not code:
-           return HTTPUnauthorized()
-
-       token = keycloak_openid.token(code=code, redirect_uri=request.registry.settings['keycloak.callback_url'])
-
-       # Stockons les tokens dans la session ou gérons-les selon nos besoins
-       request.session['access_token'] = token['access_token']
-       request.session['refresh_token'] = token['refresh_token']
-       request.session['id_token'] = token['id_token']
-
-       return HTTPFound(location=request.route_url('home'))
-   ```
-
-### 3.4.2. Extraction et utilisation des informations de l'ID Token
-
-L'ID Token fourni par OpenID Connect contient des informations sur l'utilisateur authentifié. Voici comment extraire et utiliser ces informations dans votre application Pyramid :
-
-1. **Extraction des informations de l'ID Token** :
-   Utilisons la bibliothèque `python-keycloak` pour décoder l'ID Token et extraire les informations de l'utilisateur.
-
-   ```python
-   def get_user_info(request):
-       id_token = request.session.get('id_token')
-
-       if not id_token:
-           return None
-
-       keycloak_openid = request.registry.keycloak_openid
-       user_info = keycloak_openid.decode_token(id_token, key=keycloak_openid.public_key(), options={"verify_signature": True})
-
-       return user_info
-   ```
-
-2. **Utilisation des informations de l'ID Token** :
-   Utilisons les informations extraites pour personnaliser l'expérience utilisateur ou pour vérifier les permissions et les rôles.
-
-   ```python
-   def protected_view(request):
-       user_info = get_user_info(request)
-
-       if not user_info:
-           raise HTTPUnauthorized()
-
-       if 'your_role' not in user_info['roles']:
-           raise HTTPForbidden()
-
-       return Response(f"Welcome {user_info['name']}!")
-   ```
-
-3. **Stockage des informations utilisateur dans la session** :
-   Stockons les informations de l'utilisateur dans la session pour une utilisation facile dans toute l'application.
-
-   ```python
-   def callback_view(request):
-       keycloak_openid = request.registry.keycloak_openid
-       code = request.params.get('code')
-
-       if not code:
-           return HTTPUnauthorized()
-
-       token = keycloak_openid.token(code=code, redirect_uri=request.registry.settings['keycloak.callback_url'])
-
-       # Stockons les tokens dans la session ou gérons-les selon nos besoins
-       request.session['access_token'] = token['access_token']
-       request.session['refresh_token'] = token['refresh_token']
-       request.session['id_token'] = token['id_token']
-
-       user_info = keycloak_openid.decode_token(token['id_token'], key=keycloak_openid.public_key(), options={"verify_signature": True})
-       request.session['user_info'] = user_info
-
-       return HTTPFound(location=request.route_url('home'))
-   ```
-
-4. **Utilisation des informations utilisateur stockées** :
-   Utilisons les informations stockées pour personnaliser les vues et les contrôles d'accès.
-
-   ```python
-   def home_view(request):
-       user_info = request.session.get('user_info')
-       
-       if not user_info:
-           raise HTTPUnauthorized()
-       
-       return Response(f"Welcome {user_info['name']}!")
-   ```
-
-En suivant ces étapes, nous avons intégré OpenID Connect avec notre application Pyramid, permettant une authentification sécurisée et l'extraction des informations utilisateur à partir de l'ID Token. Cela permet de personnaliser l'expérience utilisateur et de gérer les accès en fonction des rôles et des permissions.
-
-## 4. Sécurisation et Bonnes Pratiques
-
-# 4. Sécurisation et Bonnes Pratiques
-
-## 4.1. Sécurisation des communications
-
-### 4.1.1. Utilisation de HTTPS
-
-L'utilisation de HTTPS (HyperText Transfer Protocol Secure) est essentielle pour sécuriser les communications entre les clients et le serveur. HTTPS chiffre les données transmises, empêchant les attaquants d'intercepter ou de modifier les informations échangées. Voici les étapes pour configurer HTTPS pour votre application Pyramid :
-
-1. **Obtenir un certificat SSL/TLS** :
-   - Vous pouvez obtenir un certificat SSL/TLS auprès d'une autorité de certification (CA) comme Let's Encrypt, qui offre des certificats gratuits.
-   - Générer un certificat auto-signé pour les environnements de développement :
-
-     ```bash
-     openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
-     ```
-
-2. **Configurer Pyramid pour utiliser HTTPS** :
-   - Utilisez un serveur web comme Nginx ou Apache pour gérer les connexions HTTPS. Voici un exemple de configuration Nginx :
-
-     ```nginx
-     server {
-         listen 443 ssl;
-         server_name yourdomain.com;
-
-         ssl_certificate /path/to/cert.pem;
-         ssl_certificate_key /path/to/key.pem;
-
-         location / {
-             proxy_pass http://localhost:6543;
-             proxy_set_header Host $host;
-             proxy_set_header X-Real-IP $remote_addr;
-             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-             proxy_set_header X-Forwarded-Proto $scheme;
-         }
-     }
-
-     server {
-         listen 80;
-         server_name yourdomain.com;
-         return 301 https://$host$request_uri;
-     }
-     ```
-
-   - Assurez-vous que votre application Pyramid est configurée pour fonctionner derrière le proxy inverse.
-
-     ```python
-     def main(global_config, **settings):
-         config = Configurator(settings=settings)
-
-         # Configuration pour supporter HTTPS derrière un proxy
-         config.add_settings({'http_proxy': 'http://localhost:6543'})
-
-         config.include('pyramid_jinja2')
-         config.add_static_view('static', 'static', cache_max_age=3600)
-         config.add_route('home', '/')
-         config.scan()
-
-         return config.make_wsgi_app()
-     ```
-
-### 4.1.2. Meilleures pratiques pour le stockage des tokens
-
-Les tokens (access token, refresh token, ID token) sont essentiels pour l'authentification et l'autorisation des utilisateurs. Il est crucial de les stocker et de les gérer de manière sécurisée pour éviter tout risque de compromission. Voici quelques bonnes pratiques pour le stockage des tokens :
-
-1. **Stocker les tokens dans des cookies sécurisés** :
-   - Utilisez des cookies HTTPOnly et Secure pour stocker les tokens. Les cookies HTTPOnly ne sont pas accessibles via JavaScript, ce qui réduit les risques d'attaques XSS (Cross-Site Scripting).
-   - Les cookies Secure ne sont envoyés que sur des connexions HTTPS, empêchant leur interception sur des connexions non sécurisées.
-
-     ```python
-     from pyramid.response import Response
-     from pyramid.httpexceptions import HTTPFound
-
-     def set_cookie(response, name, value, max_age=None):
-         response.set_cookie(
-             name,
-             value,
-             httponly=True,
-             secure=True,
-             max_age=max_age,
-             samesite='Lax'
-         )
-
-     def callback_view(request):
-         keycloak_openid = request.registry.keycloak_openid
-         code = request.params.get('code')
-
-         if not code:
-             return HTTPUnauthorized()
-
-         token = keycloak_openid.token(code=code, redirect_uri=request.registry.settings['keycloak.callback_url'])
-
-         response = HTTPFound(location=request.route_url('home'))
-         set_cookie(response, 'access_token', token['access_token'])
-         set_cookie(response, 'refresh_token', token['refresh_token'])
-         set_cookie(response, 'id_token', token['id_token'])
-
-         return response
-     ```
-
-2. **Ne pas stocker les tokens dans le localStorage** :
-   - Le localStorage est accessible via JavaScript, ce qui le rend vulnérable aux attaques XSS. Évitez de stocker des informations sensibles telles que des tokens dans le localStorage.
-
-3. **Utiliser des tokens à durée de vie courte** :
-   - Configurez les tokens d'accès avec une durée de vie courte et utilisez des tokens de rafraîchissement pour obtenir de nouveaux tokens. Cela réduit l'impact en cas de compromission d'un token d'accès.
-
-```ini
-     # Configuration dans Keycloak
-     accessTokenLifespan = 5m
-     refreshTokenLifespan = 30d
+```python
+state = secrets.token_urlsafe(32)
+request.session["oauth_state"] = state
 ```
 
-4. **Rafraîchissement des tokens** :
-   - Implémentez la logique de rafraîchissement des tokens pour assurer une session utilisateur continue sans nécessiter de nouvelle authentification.
-
-     ```python
-     def refresh_access_token(request):
-         keycloak_openid = request.registry.keycloak_openid
-         refresh_token = request.cookies.get('refresh_token')
-
-         if not refresh_token:
-             return HTTPUnauthorized()
-
-         new_token = keycloak_openid.refresh_token(refresh_token)
-         
-         response = Response('Token refreshed')
-         set_cookie(response, 'access_token', new_token['access_token'])
-         set_cookie(response, 'refresh_token', new_token['refresh_token'])
-         set_cookie(response, 'id_token', new_token['id_token'])
-
-         return response
-     ```
-
-5. **Invalider les tokens à la déconnexion** :
-   - Lorsque l'utilisateur se déconnecte, invalidez les tokens en supprimant les cookies.
-
-     ```python
-     def logout_view(request):
-         response = HTTPFound(location=request.route_url('home'))
-         response.delete_cookie('access_token')
-         response.delete_cookie('refresh_token')
-         response.delete_cookie('id_token')
-
-         return response
-     ```
-
-En suivant ces meilleures pratiques, nous assurons la sécurité et la confidentialité des tokens utilisés pour l'authentification et l'autorisation des utilisateurs dans notre application Pyramid.
-
-## 4.2. Gestion des permissions et des rôles
-
-### 4.2.1. Définition des rôles dans Keycloak
-
-Les rôles dans Keycloak sont utilisés pour gérer les permissions et le contrôle d'accès. Il existe deux types principaux de rôles : les rôles de Realm et les rôles de Client.
-
-1. **Rôles de Realm** :
-   Les rôles de Realm sont globaux et peuvent être attribués à n'importe quel utilisateur ou groupe dans le Realm. Ils sont utiles pour définir des permissions générales applicables à plusieurs clients.
-
-   **Création de rôles de Realm** :
-   - Connectez-vous à la console d'administration de Keycloak.
-   - Sélectionnez le Realm souhaité.
-   - Dans le menu de gauche, cliquez sur "Roles".
-   - Cliquez sur "Add Role".
-   - Donnez un nom au rôle (par exemple, "admin" ou "user") et cliquez sur "Save".
-
-2. **Rôles de Client** :
-   Les rôles de Client sont spécifiques à un client particulier et sont utilisés pour définir des permissions pour cette application ou service particulier.
-
-   **Création de rôles de Client** :
-   - Connectez-vous à la console d'administration de Keycloak.
-   - Sélectionnez le Realm souhaité.
-   - Dans le menu de gauche, cliquez sur "Clients".
-   - Sélectionnez le client pour lequel vous souhaitez créer des rôles.
-   - Cliquez sur l'onglet "Roles".
-   - Cliquez sur "Add Role".
-   - Donnez un nom au rôle et cliquez sur "Save".
-
-### 4.2.2. Attribution des rôles aux utilisateurs
-
-Une fois les rôles définis, ils peuvent être attribués aux utilisateurs. Cela peut être fait individuellement pour chaque utilisateur ou de manière collective en utilisant des groupes.
-
-1. **Attribution individuelle de rôles** :
-   - Connectez-vous à la console d'administration de Keycloak.
-   - Sélectionnez le Realm souhaité.
-   - Dans le menu de gauche, cliquez sur "Users".
-   - Sélectionnez l'utilisateur auquel vous souhaitez attribuer un rôle.
-   - Allez dans l'onglet "Role Mappings".
-   - Sélectionnez les rôles que vous souhaitez attribuer dans la liste des rôles disponibles et cliquez sur "Add selected".
+Au callback :
 
-2. **Attribution de rôles via des groupes** :
-   - Créez un groupe et attribuez-lui des rôles.
-     - Connectez-vous à la console d'administration de Keycloak.
-     - Sélectionnez le Realm souhaité.
-     - Dans le menu de gauche, cliquez sur "Groups".
-     - Cliquez sur "New" pour créer un nouveau groupe.
-     - Donnez un nom au groupe et cliquez sur "Save".
-     - Sélectionnez le groupe et allez dans l'onglet "Role Mappings".
-     - Ajoutez les rôles souhaités au groupe.
-   - Ajoutez des utilisateurs au groupe.
-     - Sélectionnez l'utilisateur que vous souhaitez ajouter au groupe.
-     - Allez dans l'onglet "Groups".
-     - Cliquez sur "Join" pour ajouter l'utilisateur au groupe.
+```python
+if not secrets.compare_digest(
+    request.params.get("state", ""),
+    request.session.pop("oauth_state", ""),
+):
+    raise ValueError("OAuth state invalide")
+```
 
-### 4.2.3. Vérification des rôles dans l'application Pyramid
+## 4.5. `nonce`
 
-Pour vérifier les rôles des utilisateurs dans une application Pyramid, nous devons utiliser les tokens JWT (JSON Web Tokens) fournis par Keycloak. Voici comment procéder :
+`nonce` est une notion OpenID Connect.
 
-1. **Configurer les politiques d'authentification et d'autorisation** :
-   Configurez les politiques d'authentification et d'autorisation dans Pyramid pour utiliser les rôles définis dans Keycloak.
+Le client envoie un nonce dans la requête d'authentification, puis vérifie que l'ID Token reçu contient le même nonce.
 
-   ```python
-   from pyramid.authentication import SessionAuthenticationPolicy
-   from pyramid.authorization import ACLAuthorizationPolicy
-   from pyramid.security import Allow, Authenticated
+Il protège contre certains scénarios de rejeu et de confusion de réponse.
 
-   class RootFactory:
-       __acl__ = [
-           (Allow, Authenticated, 'view'),
-           (Allow, 'role:admin', 'admin'),
-           (Allow, 'role:user', 'user')
-       ]
+```python
+nonce = secrets.token_urlsafe(32)
+request.session["oidc_nonce"] = nonce
+```
 
-       def __init__(self, request):
-           pass
+## 4.6. Redirect URI
 
-   def groupfinder(userid, request):
-       token = request.session.get('access_token')
+Les redirect URIs doivent être enregistrées précisément.
 
-       if not token:
-           return None
+En production :
 
-       keycloak_openid = request.registry.keycloak_openid
-       userinfo = keycloak_openid.userinfo(token)
+```text
+https://app.example.com/oidc/callback
+```
 
-       roles = userinfo.get('roles', [])
-       return ['role:' + role for role in roles]
+Éviter :
 
-   def main(global_config, **settings):
-       config = Configurator(settings=settings)
+```text
+https://app.example.com/*
+https://*.example.com/*
+```
 
-       authn_policy = SessionAuthenticationPolicy(callback=groupfinder)
-       authz_policy = ACLAuthorizationPolicy()
+La recommandation moderne est la **comparaison exacte** de la redirect URI, avec l'exception prévue pour le port loopback dynamique de certaines applications natives.
 
-       config.set_authentication_policy(authn_policy)
-       config.set_authorization_policy(authz_policy)
-       config.set_root_factory(RootFactory)
+## 4.7. Exemple de requête d'autorisation
 
-       config.include('pyramid_jinja2')
-       config.add_static_view('static', 'static', cache_max_age=3600)
-       config.add_route('home', '/')
-       config.scan()
+```http
+GET /realms/demo/protocol/openid-connect/auth?
+    client_id=myapp&
+    response_type=code&
+    scope=openid%20profile%20email&
+    redirect_uri=https%3A%2F%2Fapp.example.com%2Foidc%2Fcallback&
+    state=...&
+    nonce=...&
+    code_challenge=...&
+    code_challenge_method=S256 HTTP/1.1
+Host: sso.example.com
+```
 
-       return config.make_wsgi_app()
-   ```
+# 5. Les autres grants et mécanismes OAuth
 
-2. **Protéger les vues avec des permissions basées sur les rôles** :
-   Utilisez des décorateurs ou des politiques d'autorisation pour protéger les vues spécifiques en fonction des rôles de l'utilisateur.
+## 5.1. Client Credentials
 
-   ```python
-   from pyramid.view import view_config
-   from pyramid.httpexceptions import HTTPForbidden
+Le **Client Credentials Grant** sert aux communications machine-to-machine lorsqu'un service agit **en son propre nom**.
 
-   @view_config(route_name='home', renderer='json', permission='view')
-   def home_view(request):
-       return {'message': 'Welcome to the home page'}
+```mermaid
+sequenceDiagram
+    participant C as Service client
+    participant AS as Authorization Server
+    participant RS as API
 
-   @view_config(route_name='admin', renderer='json', permission='admin')
-   def admin_view(request):
-       return {'message': 'Welcome to the admin page'}
+    C->>AS: POST /token + credentials client
+    AS->>C: access_token
+    C->>RS: Authorization: Bearer access_token
+    RS->>C: Réponse
+```
 
-   @view_config(route_name='user', renderer='json', permission='user')
-   def user_view(request):
-       return {'message': 'Welcome to the user page'}
-   ```
+Ce grant ne représente pas un utilisateur final.
 
-3. **Vérifier les rôles manuellement dans les vues** :
-   Dans certaines situations, il peut être nécessaire de vérifier les rôles manuellement dans les vues pour une logique plus complexe.
+## 5.2. Device Authorization Grant
 
-   ```python
-   def protected_view(request):
-       token = request.session.get('access_token')
+Le **Device Authorization Grant** (RFC 8628) est adapté aux équipements qui ont peu ou pas de capacité de saisie :
 
-       if not token:
-           raise HTTPForbidden()
+- téléviseur ;
+- console ;
+- CLI ;
+- appareil embarqué.
 
-       keycloak_openid = request.registry.keycloak_openid
-       userinfo = keycloak_openid.userinfo(token)
+L'appareil affiche généralement :
 
-       if 'admin' not in userinfo['roles']:
-           raise HTTPForbidden()
+- une URL ;
+- un code utilisateur.
 
-       return Response('This is a protected resource for admins only')
-   ```
+L'utilisateur s'authentifie sur un autre appareil.
 
-En suivant ces étapes, nous pouvons définir et gérer les rôles dans Keycloak, attribuer des rôles aux utilisateurs, et vérifier les rôles dans notre application Pyramid pour assurer un contrôle d'accès basé sur les permissions. Cela permet de sécuriser les ressources et de s'assurer que seuls les utilisateurs autorisés peuvent accéder à certaines fonctionnalités ou informations.
+## 5.3. Refresh Token Grant
 
-# Remarques
+Le refresh token est présenté au token endpoint pour obtenir un nouvel access token.
 
-Ne pas confondre Authentification (Qui est le membre) et Autorisation (Quels sont les groupes et les permissions du membre).
+```http
+POST /token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
 
-OAuth est un framework en version 2 (Protocole en version 1) qui permet la délégation d'autorisation mais n'est pas conçu pour l'authentification. OpenID Connect est utilisé pour l'authentification.
+grant_type=refresh_token&refresh_token=...
+```
 
-## Authorization Code Flow
-Le client se connecte au serveur d'autorisation (AS) et lui fournit l'URL de redirection. L'AS vérifie l'identité de l'utilisateur et s'assure qu'il fait confiance à cette URL (enregistrement préalable des serveurs de ressources). Il redirige ensuite l'utilisateur en passant un code d'authentification valable pour une courte période. Ce code, inclus dans l'URL de redirection, permet au client de récupérer le token via une requête POST, évitant ainsi de stocker le token dans l'URL, ce qui pourrait compromettre sa sécurité via les historiques et les logs. Pour vérifier qu'il n'y a pas eu d'interception (attaque de type man-in-the-middle) entre la requête GET et le POST, une signature avec PKCE (Proof Key for Code Exchange) est utilisée.
+Pour les clients publics, les recommandations modernes imposent des mécanismes qui permettent de détecter le rejeu, comme la rotation des refresh tokens ou des tokens contraints à l'émetteur.
 
-L'utilisation du flux Authorization Code avec PKCE est recommandée dans la spécification OAuth 2.1, publiée en 2021.
+## 5.4. Token Exchange
 
-Pour des raisons de sécurité, même si OAuth le permet, il est déconseillé d'utiliser des caractères génériques (*) pour les URL et les paramètres de redirection.
+OAuth Token Exchange (RFC 8693) permet d'échanger un token contre un autre dans certains scénarios de délégation ou d'impersonation contrôlée.
 
-## Bibliothèques et Sécurité
-L'IETF propose des bibliothèques standard pour l'implémentation de OAuth 2.1 dans tous les langages. Les clés utilisées ne sont pas uniques ; chaque token possède un champ "kid" (Key ID) qui indique quelle clé utiliser. Un endpoint "Keys" permet de récupérer ces clés.
+Cas d'usage :
 
-Attention, comme le JWT contient des informations sur le client, si celles-ci sont mises à jour sur l'OIDC, les informations dans le JWT ne seront plus à jour jusqu'à l'expiration du token.
+- service A appelle service B pour le compte d'un utilisateur ;
+- changement d'audience ;
+- fédération de domaines de confiance.
 
-## Types de Tokens
-Il existe deux types de tokens utilisés entre le client, le serveur d'autorisation et le serveur de ressources : le Bearer token (jeton au porteur) et le JWT token. Le Bearer token est simplement une chaîne de caractères qui doit être protégée ; le serveur de ressources contacte le serveur d'autorisation pour vérifier ce token. Le JWT token, quant à lui, contient les données du scope. Il est signé par le serveur d'autorisation avec une clé privée ; le serveur de ressources doit vérifier la validité du token en utilisant la clé publique, accessible via un endpoint du serveur d'autorisation. Le JWT token est un JSON encodé ; une fois décodé, il contient notamment les entrées "exp" (date d'expiration du token), "scp" (scope, qui contient les noms des permissions), et "sub" (utilisateur ayant fait la demande).
+Il faut éviter de construire une chaîne de délégation sans bornes : audience, scope, durée et identité du demandeur doivent rester contrôlés.
 
-## PKCE
-PKCE (Proof Key for Code Exchange) remplace les grants pour éviter de passer par le navigateur. Ainsi, les credentials ne sont plus nécessaires.
+## 5.5. Grants obsolètes ou déconseillés
 
-## Vocabulaire
-En OAuth, on parle de "token", tandis qu'en OpenID Connect, on parle d'"ID_token".
+### Implicit Grant
 
-## Enregistrement et Découverte
-Les utilisateurs sont enregistrés sur l'OpenID Connect avec le Dynamic Registration Endpoint, qui permet la création, la consultation et la modification des utilisateurs. Le Discovery Endpoint permet de découvrir les données de configuration, les endpoints, les scopes supportés, les algorithmes de chiffrement et les signatures.
+L'Implicit Grant renvoyait directement un access token dans le navigateur.
 
-## Remarques supplémentaires
-Google cherche à décentraliser la gestion des autorisations (ACL) avec son projet Zanzibar.
+Il est aujourd'hui **déconseillé** au profit d'Authorization Code + PKCE.
 
-Les SPA (Single Page Applications) gèrent des cookies qui leur permettent, lors de la redirection, de renouveler le token sans avoir besoin d'un token de rafraîchissement et de rediriger vers l'application sans redemander les credentials.
+### Resource Owner Password Credentials
 
-Voir les recommandations OAuth 2 OpenID Connect de l'IETF.
+Le Resource Owner Password Credentials Grant consistait à transmettre le mot de passe de l'utilisateur au client.
 
-## Liens Utiles
+Cette pratique détruit une grande partie des bénéfices de la fédération d'identité :
 
-- [Cours sur Udemy](https://www.udemy.com/course/enterprise-oauth-for-developers/learn/lecture/24162340#overview)
-- Survol en français :
-  - [Vidéo 1](https://www.youtube.com/watch?v=IzZF7WdBp4o&ab_channel=PoitouJug)
-  - [Vidéo 2](https://www.youtube.com/watch?v=PhQJKKrV5i0)
-- [Recommandations de sécurité de l'IETF](https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-17.html)
-- [Guide de sécurisation de l'ANSSI](https://www.ssi.gouv.fr/uploads/2020/09/anssi-guide-recommandations_pour_la_securisation_de_la_mise_en_oeuvre_du_protocole_openid_connect-v1.0.pdf)
+- le client voit le mot de passe ;
+- MFA et authentification adaptative sont difficiles à intégrer ;
+- le phishing est favorisé ;
+- le fournisseur d'identité ne maîtrise plus l'expérience d'authentification.
 
-https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-17.html
+Il ne fait pas partie de la cible OAuth 2.1.
 
-https://www.ssi.gouv.fr/uploads/2020/09/anssi-guide-recommandations_pour_la_securisation_de_la_mise_en_oeuvre_du_protocole_openid_connect-v1.0.pdf
+# 6. OpenID Connect
 
-# Conclusion du Cours
+## 6.1. Rôle d'OIDC
 
-Au terme de ce cours, nous avons exploré en profondeur les concepts fondamentaux de l'authentification et de l'autorisation dans le contexte des applications modernes. Nous avons étudié les protocoles OAuth 2.0 et OpenID Connect, en mettant l'accent sur leur utilisation pour sécuriser les applications web.
+OpenID Connect ajoute une couche d'identité standardisée au-dessus d'OAuth.
 
-## Récapitulatif des Points Clés
+Une requête OIDC contient le scope :
 
-### Concepts de Base
+```text
+openid
+```
 
-Nous avons commencé par comprendre les différences entre l'authentification (vérifier l'identité d'un utilisateur) et l'autorisation (déterminer les permissions d'un utilisateur). Nous avons également étudié la structure et l'utilisation des JSON Web Tokens (JWT) pour sécuriser les échanges d'informations.
+Elle peut demander d'autres scopes standard :
 
-### OAuth 2.0 et OpenID Connect
+```text
+profile
+email
+address
+phone
+```
 
-Nous avons approfondi les mécanismes de OAuth 2.0, y compris les flux d'autorisation tels que le flux Authorization Code et l'utilisation de PKCE pour améliorer la sécurité. Nous avons ensuite exploré OpenID Connect, qui ajoute une couche d'authentification à OAuth 2.0, permettant de vérifier l'identité des utilisateurs et d'obtenir des informations de profil de manière sécurisée.
+## 6.2. OpenID Provider et Relying Party
 
-### Keycloak
+Dans OIDC :
 
-Nous avons introduit Keycloak comme solution de gestion des identités et des accès (IAM), détaillant son installation, sa configuration initiale, et les concepts clés tels que les Realms, les Clients, les Rôles, les Utilisateurs et les Groupes. Keycloak nous permet de centraliser la gestion des utilisateurs et des permissions tout en facilitant l'intégration avec nos applications.
+- l'**OpenID Provider (OP)** authentifie l'utilisateur ;
+- la **Relying Party (RP)** est l'application qui fait confiance à l'OP.
 
-### Intégration de Keycloak avec Pyramid
+Un Keycloak configuré en OIDC est l'OP.
 
-Nous avons mis en pratique l'intégration de Keycloak avec une application Pyramid, couvrant :
+L'application Pyramid est la RP.
 
-- La préparation de l'environnement de développement.
-- La configuration de Pyramid pour utiliser Keycloak.
-- L'implémentation du flux Authorization Code pour l'authentification avec OAuth2.
-- La gestion des tokens et la protection des routes en fonction des rôles des utilisateurs.
-- L'intégration de OpenID Connect et l'extraction des informations de l'ID Token.
+## 6.3. ID Token
 
-### Sécurisation et Bonnes Pratiques
+L'**ID Token** est un JWT qui décrit l'événement d'authentification.
 
-Nous avons discuté des meilleures pratiques pour sécuriser les communications et gérer les tokens, notamment l'utilisation de HTTPS, le stockage sécurisé des tokens, et le renouvellement des tokens. Nous avons également couvert la gestion des permissions et des rôles, en définissant des rôles dans Keycloak, en attribuant ces rôles aux utilisateurs, et en vérifiant les rôles dans notre application Pyramid.
+Exemple de claims :
 
-## Importance de l'Authentification et de l'Autorisation
+```json
+{
+  "iss": "https://sso.example.com/realms/demo",
+  "sub": "248289761001",
+  "aud": "myapp",
+  "exp": 1788000000,
+  "iat": 1787999700,
+  "nonce": "...",
+  "auth_time": 1787999695,
+  "acr": "1"
+}
+```
 
-L'authentification et l'autorisation sont essentielles pour assurer la sécurité et la confidentialité des données dans les applications modernes. En utilisant des protocoles standardisés comme OAuth 2.0 et OpenID Connect, nous pouvons fournir des solutions robustes et évolutives pour gérer les identités et les accès, tout en offrant une expérience utilisateur fluide et sécurisée.
+L'ID Token est destiné au **client/RP**.
 
-## Prochaines Étapes
+> **Il ne faut pas utiliser un ID Token comme access token pour appeler une API.**
 
-Pour approfondir vos connaissances et compétences, nous vous encourageons à :
+## 6.4. `sub`
 
-- Explorer des scénarios avancés d'authentification et d'autorisation.
-- Intégrer Keycloak avec d'autres frameworks et langages de programmation.
-- Étudier les recommandations de sécurité de l'IETF et de l'ANSSI pour OAuth 2.0 et OpenID Connect.
-- Expérimenter avec d'autres fonctionnalités de Keycloak, telles que l'authentification multifactorielle et la fédération d'identités.
+`sub` est l'identifiant du sujet chez l'émetteur.
 
-Nous espérons que ce cours vous a fourni une compréhension approfondie et des compétences pratiques pour sécuriser vos applications en utilisant OAuth 2.0, OpenID Connect et Keycloak. La maîtrise de ces technologies vous permettra de créer des applications robustes et sécurisées, répondant aux exigences actuelles en matière de sécurité et de gestion des identités.
+Il faut préférer `(iss, sub)` comme clé d'identité fédérée plutôt qu'une adresse email, car :
+
+- une adresse email peut changer ;
+- elle peut être réattribuée ;
+- elle n'est pas nécessairement vérifiée ;
+- plusieurs fournisseurs peuvent utiliser le même `sub`.
+
+## 6.5. UserInfo endpoint
+
+Le UserInfo endpoint permet d'obtenir des claims sur l'utilisateur à partir d'un access token OIDC.
+
+```http
+GET /realms/demo/protocol/openid-connect/userinfo HTTP/1.1
+Authorization: Bearer eyJ...
+```
+
+L'ID Token suffit souvent à établir la session de connexion. UserInfo est utile lorsque l'application a besoin de claims supplémentaires ou actualisés selon les scopes accordés.
+
+## 6.6. Discovery
+
+OIDC définit un mécanisme de **Discovery**.
+
+Pour Keycloak :
+
+```text
+https://sso.example.com/realms/demo/.well-known/openid-configuration
+```
+
+Le document contient notamment :
+
+- `issuer` ;
+- `authorization_endpoint` ;
+- `token_endpoint` ;
+- `userinfo_endpoint` ;
+- `jwks_uri` ;
+- `end_session_endpoint` lorsqu'il est exposé ;
+- scopes et algorithmes pris en charge.
+
+Il vaut mieux utiliser Discovery plutôt que coder en dur tous les endpoints.
+
+## 6.7. Dynamic Client Registration
+
+Le Dynamic Client Registration Protocol permet d'enregistrer **des clients OAuth/OIDC**.
+
+Il ne sert pas à créer des utilisateurs.
+
+Cette distinction corrige une confusion fréquente :
+
+```text
+Dynamic Registration -> enregistrement de clients
+User provisioning     -> SCIM, API d'administration, LDAP, etc.
+```
+
+## 6.8. Logout
+
+Le logout OIDC ne se résume pas à supprimer un cookie local.
+
+Selon l'architecture, plusieurs mécanismes existent :
+
+- RP-Initiated Logout ;
+- Front-Channel Logout ;
+- Back-Channel Logout ;
+- invalidation de la session locale ;
+- révocation de refresh token.
+
+Une application doit distinguer :
+
+1. fin de session locale ;
+2. fin de session chez l'OP ;
+3. révocation des tokens.
+
+# 7. JWT, JOSE, JWK et JWKS
+
+## 7.1. JWT n'est pas synonyme de token OAuth
+
+JWT signifie **JSON Web Token**.
+
+C'est un format permettant de transporter des claims.
+
+Un OAuth access token peut être un JWT, mais peut également être opaque.
+
+Inversement, un JWT n'est pas nécessairement un access token OAuth.
+
+## 7.2. JWS et JWE
+
+Le terme JOSE regroupe plusieurs standards JSON de cryptographie.
+
+- **JWS** : JSON Web Signature ;
+- **JWE** : JSON Web Encryption ;
+- **JWK** : JSON Web Key ;
+- **JWT** : conteneur de claims.
+
+Un JWT signé classique est généralement un JWS compact.
+
+### Signature ≠ chiffrement
+
+Un JWT signé :
+
+- protège l'intégrité ;
+- permet d'authentifier l'émetteur si la clé est fiable ;
+- **ne cache pas le payload**.
+
+N'importe qui possédant le token peut décoder les parties Base64URL.
+
+Ne pas placer de secret dans un JWT simplement parce qu'il est signé.
+
+## 7.3. Structure compacte
+
+Un JWS compact contient :
+
+```text
+base64url(header).base64url(payload).base64url(signature)
+```
+
+Exemple d'en-tête :
+
+```json
+{
+  "alg": "RS256",
+  "typ": "JWT",
+  "kid": "2026-08-key-1"
+}
+```
+
+## 7.4. Claims standards
+
+Claims importants :
+
+| Claim | Signification |
+|---|---|
+| `iss` | issuer |
+| `sub` | subject |
+| `aud` | audience |
+| `exp` | expiration |
+| `nbf` | not before |
+| `iat` | issued at |
+| `jti` | identifiant du JWT |
+| `azp` | authorized party dans certains contextes OIDC |
+| `nonce` | corrélation OIDC |
+| `acr` | niveau/classe d'authentification |
+| `amr` | méthodes d'authentification utilisées |
+
+## 7.5. JWK et JWKS
+
+Une **JWK** est une représentation JSON d'une clé cryptographique.
+
+Un **JWKS** est un ensemble de JWK.
+
+Exemple de endpoint :
+
+```text
+https://sso.example.com/realms/demo/protocol/openid-connect/certs
+```
+
+Extrait simplifié :
+
+```json
+{
+  "keys": [
+    {
+      "kid": "2026-08-key-1",
+      "kty": "RSA",
+      "alg": "RS256",
+      "use": "sig",
+      "n": "...",
+      "e": "AQAB"
+    }
+  ]
+}
+```
+
+Le `kid` aide le vérificateur à sélectionner une clé parmi plusieurs pendant les rotations.
+
+## 7.6. Validation d'un JWT
+
+**Décoder** un JWT ne signifie pas le **valider**.
+
+Une validation correcte vérifie au minimum :
+
+1. signature ;
+2. algorithme attendu ;
+3. `iss` ;
+4. `aud` ;
+5. `exp` ;
+6. `nbf` si présent ;
+7. contexte d'utilisation ;
+8. éventuellement `nonce`, `azp`, `typ`, `acr`, etc.
+
+### Liste blanche d'algorithmes
+
+Le serveur doit décider quels algorithmes sont autorisés.
+
+Ne jamais faire confiance aveuglément à :
+
+```json
+{"alg": "..."}
+```
+
+fourni par le token lui-même.
+
+## 7.7. Exemple PyJWT avec JWKS
+
+```python
+import jwt
+from jwt import PyJWKClient
+
+ISSUER = "https://sso.example.com/realms/demo"
+AUDIENCE = "api-example"
+JWKS_URL = f"{ISSUER}/protocol/openid-connect/certs"
+
+jwks_client = PyJWKClient(JWKS_URL)
+
+
+def validate_access_token(token: str) -> dict:
+    signing_key = jwks_client.get_signing_key_from_jwt(token)
+    return jwt.decode(
+        token,
+        signing_key.key,
+        algorithms=["RS256"],
+        audience=AUDIENCE,
+        issuer=ISSUER,
+        options={"require": ["exp", "iss", "sub"]},
+    )
+```
+
+En production, gérer :
+
+- cache JWKS ;
+- rotation ;
+- erreurs réseau ;
+- horloge ;
+- algorithmes réellement configurés ;
+- audience propre à l'API.
+
+## 7.8. Bearer et JWT : deux dimensions différentes
+
+Une ancienne confusion consiste à dire :
+
+> « Il existe les Bearer tokens et les JWT tokens. »
+
+C'est faux.
+
+**Bearer** décrit la sémantique : *celui qui possède le token peut l'utiliser*.
+
+**JWT** décrit un format.
+
+Un access token peut donc être :
+
+- opaque + bearer ;
+- JWT + bearer ;
+- JWT + sender-constrained ;
+- autre format + sender-constrained.
+
+# 8. Sécurité OAuth et OIDC
+
+## 8.1. RFC 9700
+
+Le RFC 9700, publié en 2025, constitue le Best Current Practice de sécurité OAuth 2.0.
+
+Il formalise des recommandations issues de nombreuses années d'expérience opérationnelle.
+
+## 8.2. Authorization Code + PKCE
+
+Pour les clients publics, PKCE est obligatoire selon les recommandations modernes.
+
+Pour les clients confidentiels, PKCE est également recommandé.
+
+## 8.3. Implicit et Password Grant
+
+À ne plus choisir pour un nouveau projet :
+
+- Implicit Grant ;
+- Resource Owner Password Credentials Grant.
+
+## 8.4. Redirect URI exacte
+
+Le serveur doit comparer les redirect URIs enregistrées de façon stricte.
+
+Une redirect URI permissive peut permettre le vol de code ou de token.
+
+## 8.5. `state`, `nonce` et `iss`
+
+Ces paramètres n'ont pas exactement le même rôle :
+
+- `state` : corrélation de transaction / défense CSRF ;
+- `nonce` : corrélation de l'ID Token OIDC ;
+- `iss` : permet notamment de défendre contre certaines attaques de mix-up lorsque plusieurs AS sont utilisés.
+
+## 8.6. Mix-Up Attack
+
+Une application capable d'utiliser plusieurs Authorization Servers doit s'assurer que la réponse provient du serveur attendu.
+
+Contre-mesures :
+
+- vérification stricte de l'issuer ;
+- mécanismes d'issuer dans la réponse ;
+- Discovery correctement lié à la configuration ;
+- séparation des callbacks si nécessaire.
+
+## 8.7. Access tokens courts
+
+Un access token doit avoir une durée adaptée au risque.
+
+Un access token de courte durée limite l'impact d'un vol, mais ne remplace pas :
+
+- la protection contre l'exfiltration ;
+- la révocation ;
+- la détection ;
+- les tokens sender-constrained.
+
+## 8.8. Refresh token rotation
+
+Principe :
+
+1. le client utilise `refresh_token_A` ;
+2. l'AS renvoie `refresh_token_B` ;
+3. `A` devient invalide ;
+4. si `A` réapparaît, le serveur peut détecter une réutilisation suspecte.
+
+## 8.9. Sender-constrained tokens
+
+Un Bearer token volé peut être rejoué par l'attaquant.
+
+Deux mécanismes importants réduisent ce risque :
+
+- **mTLS** ;
+- **DPoP**.
+
+Ils lient l'utilisation du token à une preuve cryptographique supplémentaire.
+
+## 8.10. Ne pas envoyer les tokens dans l'URL
+
+Éviter :
+
+```text
+https://api.example.com/data?access_token=...
+```
+
+Risques :
+
+- logs ;
+- historique ;
+- Referer ;
+- analytics ;
+- captures d'écran ;
+- proxy.
+
+Préférer :
+
+```http
+Authorization: Bearer ...
+```
+
+## 8.11. Stockage navigateur
+
+Le problème du stockage navigateur n'est pas résolu par une règle magique « cookie bon / localStorage mauvais ».
+
+Il faut raisonner selon les menaces :
+
+- XSS ;
+- CSRF ;
+- exfiltration ;
+- fixation de session ;
+- origine ;
+- durée de vie ;
+- capacités du frontend.
+
+Pour les applications sensibles, l'architecture **BFF** permet de ne pas exposer les tokens OAuth au JavaScript du navigateur.
+
+## 8.12. ID Token et API
+
+Ne pas envoyer l'ID Token comme credential d'API.
+
+L'API doit recevoir un **access token** émis pour elle ou pour l'audience appropriée.
+
+## 8.13. Validation côté Resource Server
+
+Deux grandes approches :
+
+### Validation locale
+
+Le RS valide un JWT à l'aide du JWKS de l'AS.
+
+Avantages :
+
+- faible latence ;
+- pas d'appel réseau par requête.
+
+Limites :
+
+- révocation moins immédiate ;
+- il faut gérer correctement la rotation des clés et les claims.
+
+### Introspection
+
+Le RS interroge l'Authorization Server via l'endpoint d'introspection.
+
+Avantages :
+
+- adapté aux tokens opaques ;
+- état centralisé ;
+- révocation visible rapidement selon l'implémentation.
+
+Limites :
+
+- dépendance réseau ;
+- charge sur l'AS ;
+- nécessité d'authentifier le RS.
+
+# 9. Applications navigateur, SPA et BFF
+
+## 9.1. Évolution des recommandations
+
+Les SPA ont longtemps été présentées comme des clients OAuth purement navigateur.
+
+Les recommandations actuelles distinguent trois architectures principales :
+
+1. **Backend for Frontend (BFF)** ;
+2. backend médiateur de token ;
+3. client OAuth entièrement dans le navigateur.
+
+L'ordre correspond globalement à un niveau de sécurité décroissant.
+
+## 9.2. Backend for Frontend
+
+Le BFF :
+
+- est le client OAuth confidentiel ;
+- conserve access et refresh tokens côté serveur ;
+- expose au navigateur une session basée sur cookie ;
+- relaie les appels aux APIs.
+
+```mermaid
+sequenceDiagram
+    participant B as Browser
+    participant F as BFF
+    participant AS as Authorization Server
+    participant API as Resource Server
+
+    B->>F: GET /login
+    F->>AS: Authorization Code + PKCE
+    AS->>F: code
+    F->>AS: échange code
+    AS->>F: tokens
+    F->>F: tokens en stockage serveur
+    F->>B: cookie de session HttpOnly
+    B->>F: GET /api/profile + cookie
+    F->>API: Bearer access_token
+    API->>F: données
+    F->>B: données
+```
+
+### Avantages
+
+- tokens non accessibles au JavaScript ;
+- refresh tokens côté serveur ;
+- client confidentiel ;
+- centralisation des protections OAuth.
+
+### Contraintes
+
+- le BFF devient un composant critique ;
+- il doit être protégé contre CSRF et SSRF ;
+- il ajoute de la latence et de la charge ;
+- les cookies de session doivent être durcis.
+
+## 9.3. Cookies de session BFF
+
+Exemple conceptuel :
+
+```http
+Set-Cookie: session=...; Secure; HttpOnly; SameSite=Lax; Path=/
+```
+
+Selon l'architecture, utiliser également :
+
+- préfixe `__Host-` ;
+- anti-CSRF ;
+- rotation de session ;
+- durée courte ;
+- protection contre fixation de session.
+
+## 9.4. Browser-only client
+
+Un client OAuth exécuté entièrement dans le navigateur reste possible selon les contraintes.
+
+Il doit au minimum utiliser :
+
+- Authorization Code ;
+- PKCE ;
+- redirect URIs strictes ;
+- protection XSS forte ;
+- CSP ;
+- aucune hypothèse de secret client.
+
+Il faut néanmoins accepter qu'un code JavaScript compromis s'exécute dans le même contexte que l'application.
+
+# 10. Extensions OAuth modernes
+
+## 10.1. Authorization Server Metadata
+
+Le RFC 8414 standardise les métadonnées d'un Authorization Server.
+
+OIDC Discovery fournit un mécanisme voisin et complémentaire.
+
+L'objectif est d'éviter les endpoints codés en dur et d'améliorer l'interopérabilité.
+
+## 10.2. PAR — Pushed Authorization Requests
+
+PAR (RFC 9126) permet au client d'envoyer d'abord les paramètres de la requête d'autorisation **directement à l'AS**.
+
+Le serveur renvoie un `request_uri`.
+
+Le navigateur ne transporte ensuite qu'une référence.
+
+Bénéfices :
+
+- moins de paramètres sensibles dans l'URL ;
+- validation précoce de la demande ;
+- meilleure intégrité ;
+- utile dans les profils de haute sécurité.
+
+## 10.3. JAR — JWT-Secured Authorization Request
+
+JAR (RFC 9101) encapsule des paramètres d'autorisation dans un JWT signé ou chiffré.
+
+Cela permet notamment de protéger :
+
+- intégrité ;
+- provenance ;
+- éventuellement confidentialité de la requête.
+
+PAR et JAR peuvent être combinés.
+
+## 10.4. DPoP
+
+DPoP (RFC 9449) permet de **lier un token à une clé détenue par le client**.
+
+Pour chaque requête protégée, le client fournit une preuve DPoP signée.
+
+Un token volé seul devient alors moins utile car l'attaquant ne possède pas la clé privée associée.
+
+DPoP n'est pas un remplacement de TLS.
+
+## 10.5. mTLS
+
+OAuth mTLS lie le client ou le token à un certificat TLS client.
+
+Il est particulièrement utilisé dans les environnements à haut niveau de confiance ou réglementés.
+
+## 10.6. Resource Indicators
+
+Le RFC 8707 permet au client d'indiquer la ressource/audience cible.
+
+Exemple :
+
+```text
+resource=https://api.example.com/
+```
+
+Cela aide à éviter de produire un token trop large destiné à plusieurs APIs sans nécessité.
+
+## 10.7. Token Introspection
+
+RFC 7662 :
+
+```http
+POST /introspect HTTP/1.1
+Authorization: Basic ...
+Content-Type: application/x-www-form-urlencoded
+
+token=...
+```
+
+Réponse simplifiée :
+
+```json
+{
+  "active": true,
+  "scope": "profile api:read",
+  "sub": "248289761001",
+  "exp": 1788000000
+}
+```
+
+## 10.8. Token Revocation
+
+RFC 7009 définit un endpoint de révocation.
+
+Il est particulièrement utile pour les refresh tokens.
+
+## 10.9. Private Key JWT
+
+Pour authentifier un client confidentiel auprès du token endpoint, il est préférable dans les environnements exigeants d'utiliser une authentification asymétrique telle que :
+
+```text
+private_key_jwt
+```
+
+plutôt qu'un secret symétrique partagé de longue durée.
+
+# 11. Keycloak moderne
+
+## 11.1. Présentation
+
+Keycloak est une solution IAM open source qui fournit notamment :
+
+- OpenID Connect ;
+- OAuth 2.0 ;
+- SAML 2.0 ;
+- SSO ;
+- fédération LDAP/Kerberos ;
+- Identity Brokering ;
+- MFA ;
+- WebAuthn/passkeys ;
+- gestion des sessions ;
+- rôles et groupes ;
+- service accounts ;
+- événements et audit ;
+- politiques d'autorisation avancées.
+
+## 11.2. Version de référence du cours
+
+Ce cours est mis à jour avec **Keycloak 26.7.2**, publié en août 2026.
+
+Il ne faut plus suivre les anciens tutoriels basés sur :
+
+- Keycloak 19 ;
+- Java 11 ;
+- l'ancienne distribution WildFly ;
+- l'URL racine `/auth/` ;
+- les anciens adaptateurs spécifiques à chaque framework.
+
+Keycloak moderne est basé sur Quarkus.
+
+## 11.3. Endpoints modernes
+
+L'issuer d'un realm `demo` ressemble à :
+
+```text
+https://sso.example.com/realms/demo
+```
+
+Et non :
+
+```text
+https://sso.example.com/auth/realms/demo
+```
+
+si aucun chemin relatif personnalisé n'est configuré.
+
+Discovery :
+
+```text
+https://sso.example.com/realms/demo/.well-known/openid-configuration
+```
+
+## 11.4. Démarrage avec Docker
+
+Pour un environnement **de développement uniquement** :
+
+```bash
+docker run --rm \
+  --name keycloak \
+  -p 127.0.0.1:8080:8080 \
+  -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
+  -e KC_BOOTSTRAP_ADMIN_PASSWORD='change-me' \
+  quay.io/keycloak/keycloak:26.7.2 \
+  start-dev
+```
+
+> `start-dev` n'est pas destiné à la production.
+
+## 11.5. Installation ZIP
+
+La documentation Keycloak 26.7.2 recommande un JDK récent ; OpenJDK 17, 21 et 25 font partie des configurations supportées, avec OpenJDK 25 recommandé pour bénéficier des évolutions récentes. L'image conteneur officielle reste basée sur OpenJDK 21.
+
+Exemple :
+
+```bash
+unzip keycloak-26.7.2.zip
+cd keycloak-26.7.2
+bin/kc.sh start-dev
+```
+
+Pour la production, il faut préférer :
+
+- `kc.sh build` lorsque des options de build sont nécessaires ;
+- `kc.sh start` ;
+- base de données de production ;
+- TLS ;
+- hostname correct ;
+- secrets externes ;
+- supervision.
+
+## 11.6. `start-dev` contre `start`
+
+| Mode | Usage |
+|---|---|
+| `start-dev` | développement local |
+| `start` | production |
+
+`start-dev` active des comportements pratiques mais non adaptés au durcissement de production.
+
+# 12. Configuration d'un realm Keycloak
+
+## 12.1. Realm
+
+Un **realm** constitue un domaine d'identité isolé.
+
+Il contient notamment :
+
+- utilisateurs ;
+- groupes ;
+- rôles ;
+- clients ;
+- clients scopes ;
+- fournisseurs d'identité ;
+- politiques d'authentification ;
+- clés.
+
+Éviter d'utiliser le realm `master` pour les applications métiers.
+
+## 12.2. Client OIDC
+
+Pour une application web serveur :
+
+- Client type : OpenID Connect ;
+- Standard Flow : activé ;
+- client authentication : activée pour un client confidentiel ;
+- redirect URIs exactes ;
+- Web Origins minimales ;
+- PKCE activé/forcé selon la politique retenue.
+
+## 12.3. Public vs confidential dans Keycloak
+
+Une SPA browser-only ou une application native est un client public.
+
+Un backend/BFF peut être un client confidentiel.
+
+Ne jamais mettre un client secret dans du JavaScript livré au navigateur.
+
+## 12.4. Client scopes
+
+Les **client scopes** de Keycloak permettent de factoriser :
+
+- protocol mappers ;
+- scopes OIDC ;
+- claims ;
+- configurations partagées entre clients.
+
+Distinguer :
+
+- default client scopes ;
+- optional client scopes.
+
+## 12.5. Realm roles et client roles
+
+### Realm role
+
+Rôle transversal au realm.
+
+### Client role
+
+Rôle attaché à une application/client.
+
+Pour une autorisation métier, les client roles sont souvent plus précis.
+
+## 12.6. Groupes
+
+Les groupes facilitent :
+
+- attribution collective de rôles ;
+- organisation hiérarchique ;
+- mapping depuis LDAP ;
+- politiques par population.
+
+## 12.7. Service accounts
+
+Pour Client Credentials, activer un service account sur le client concerné.
+
+Puis attribuer uniquement les rôles nécessaires à ce service.
+
+Appliquer le principe du moindre privilège.
+
+## 12.8. Mappers
+
+Les Protocol Mappers permettent d'ajouter ou transformer des claims.
+
+Attention à ne pas transformer l'access token en « profil utilisateur complet » :
+
+- taille du token ;
+- fuite de données ;
+- données périmées ;
+- exposition inutile à plusieurs resource servers.
+
+## 12.9. Clés et rotation
+
+Keycloak gère des clés de signature par realm.
+
+Une rotation sûre implique une période pendant laquelle :
+
+- la nouvelle clé signe ;
+- l'ancienne clé peut encore rester publiée pour vérifier les tokens non expirés.
+
+C'est précisément l'intérêt du `kid` et du JWKS.
+
+# 13. Intégration OIDC dans Pyramid
+
+## 13.1. Pyramid moderne
+
+Le vieux cours utilisait :
+
+```python
+SessionAuthenticationPolicy
+ACLAuthorizationPolicy
+set_authentication_policy(...)
+set_authorization_policy(...)
+```
+
+Ces APIs sont **dépréciées depuis Pyramid 2.0**.
+
+Pyramid 2.x utilise une **Security Policy** unique via `ISecurityPolicy` / `set_security_policy()`.
+
+## 13.2. Dépendances
+
+Exemple d'environnement moderne :
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install 'pyramid>=2.1' requests PyJWT cryptography
+```
+
+On peut également utiliser une bibliothèque OAuth/OIDC reconnue comme Authlib plutôt que de réimplémenter le protocole.
+
+Principe général :
+
+> **Utiliser une bibliothèque maintenue et vérifier sa configuration plutôt que réécrire OAuth soi-même.**
+
+Les exemples suivants restent volontairement explicites afin de comprendre le protocole.
+
+## 13.3. Configuration
+
+Exemple `development.ini` :
+
+```ini
+[app:main]
+use = egg:myapp
+
+session.secret = CHANGER_EN_PRODUCTION
+oidc.issuer = https://sso.example.com/realms/demo
+oidc.client_id = pyramid-app
+oidc.client_secret = %(OIDC_CLIENT_SECRET)s
+oidc.redirect_uri = https://app.example.com/oidc/callback
+oidc.scope = openid profile email
+```
+
+En production, ne pas conserver les secrets réels dans Git.
+
+Utiliser :
+
+- variables d'environnement ;
+- secret manager ;
+- vault ;
+- fichier protégé injecté au déploiement.
+
+## 13.4. Charger Discovery
+
+```python
+import requests
+
+
+def discover(issuer: str) -> dict:
+    issuer = issuer.rstrip("/")
+    response = requests.get(
+        f"{issuer}/.well-known/openid-configuration",
+        timeout=5,
+    )
+    response.raise_for_status()
+    document = response.json()
+
+    if document["issuer"] != issuer:
+        raise ValueError("Issuer OIDC inattendu")
+
+    return document
+```
+
+Toujours vérifier que l'issuer retourné est celui attendu.
+
+## 13.5. Initiation du login
+
+Exemple pédagogique :
+
+```python
+from urllib.parse import urlencode
+
+from pyramid.httpexceptions import HTTPFound
+
+
+def login_view(request):
+    oidc = request.registry.oidc
+
+    state = oidc.random_urlsafe(32)
+    nonce = oidc.random_urlsafe(32)
+    verifier, challenge = oidc.generate_pkce()
+
+    request.session["oidc_state"] = state
+    request.session["oidc_nonce"] = nonce
+    request.session["pkce_verifier"] = verifier
+
+    query = urlencode(
+        {
+            "client_id": oidc.client_id,
+            "response_type": "code",
+            "scope": "openid profile email",
+            "redirect_uri": oidc.redirect_uri,
+            "state": state,
+            "nonce": nonce,
+            "code_challenge": challenge,
+            "code_challenge_method": "S256",
+        }
+    )
+
+    return HTTPFound(f"{oidc.authorization_endpoint}?{query}")
+```
+
+## 13.6. Callback
+
+Étapes minimales :
+
+1. vérifier l'absence d'erreur OAuth ;
+2. vérifier `state` ;
+3. extraire le code ;
+4. récupérer le `code_verifier` ;
+5. appeler le token endpoint côté serveur ;
+6. valider l'ID Token ;
+7. vérifier `nonce` ;
+8. créer une session applicative ;
+9. supprimer les données temporaires du flux.
+
+Exemple simplifié :
+
+```python
+import secrets
+
+import requests
+from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
+
+
+def callback_view(request):
+    if "error" in request.params:
+        raise HTTPBadRequest(request.params.get("error_description", "Erreur OIDC"))
+
+    expected_state = request.session.pop("oidc_state", None)
+    received_state = request.params.get("state", "")
+
+    if not expected_state or not secrets.compare_digest(expected_state, received_state):
+        raise HTTPBadRequest("state invalide")
+
+    code = request.params.get("code")
+    verifier = request.session.pop("pkce_verifier", None)
+
+    if not code or not verifier:
+        raise HTTPBadRequest("Code ou verifier manquant")
+
+    oidc = request.registry.oidc
+
+    response = requests.post(
+        oidc.token_endpoint,
+        data={
+            "grant_type": "authorization_code",
+            "code": code,
+            "redirect_uri": oidc.redirect_uri,
+            "client_id": oidc.client_id,
+            "client_secret": oidc.client_secret,
+            "code_verifier": verifier,
+        },
+        timeout=5,
+    )
+    response.raise_for_status()
+    tokens = response.json()
+
+    claims = oidc.validate_id_token(tokens["id_token"])
+
+    expected_nonce = request.session.pop("oidc_nonce", None)
+    if claims.get("nonce") != expected_nonce:
+        raise HTTPBadRequest("nonce invalide")
+
+    request.session.invalidate()
+    request.session["user"] = {
+        "issuer": claims["iss"],
+        "subject": claims["sub"],
+        "name": claims.get("name"),
+        "email": claims.get("email"),
+    }
+
+    # Dans une architecture BFF, les tokens restent côté serveur.
+    request.session["oauth_tokens"] = tokens
+
+    return HTTPFound(location=request.route_url("home"))
+```
+
+> Cet exemple est pédagogique. Une vraie application doit utiliser une session serveur ou un stockage qui ne sérialise pas directement tous les tokens sensibles dans un cookie lisible/rejouable côté client.
+
+## 13.7. Ne pas confondre session et tokens
+
+Une bonne architecture web peut avoir :
+
+```text
+Navigateur -> cookie de session opaque -> application Pyramid
+                                          |
+                                          +-> stockage serveur des tokens
+```
+
+Le navigateur n'a alors pas besoin de posséder le refresh token.
+
+## 13.8. Logout
+
+Le logout doit :
+
+1. supprimer/invalider la session locale ;
+2. éventuellement révoquer le refresh token ;
+3. éventuellement appeler l'`end_session_endpoint` OIDC.
+
+Ne pas considérer :
+
+```python
+response.delete_cookie("access_token")
+```
+
+comme une révocation du token côté Authorization Server.
+
+# 14. Autorisation dans Pyramid et protection d'API
+
+## 14.1. Security Policy Pyramid 2.x
+
+Pyramid 2.x regroupe authentification et autorisation dans une Security Policy.
+
+Schéma simplifié :
+
+```python
+class SecurityPolicy:
+    def identity(self, request):
+        ...
+
+    def authenticated_userid(self, request):
+        ...
+
+    def permits(self, request, context, permission):
+        ...
+
+    def remember(self, request, userid, **kw):
+        ...
+
+    def forget(self, request, **kw):
+        ...
+```
+
+Puis :
+
+```python
+config.set_security_policy(SecurityPolicy(...))
+```
+
+## 14.2. Identité locale
+
+Il est souvent préférable de mapper l'identité OIDC vers un utilisateur local :
+
+```text
+(issuer, subject) -> user interne
+```
+
+Exemple :
+
+```python
+@dataclass
+class Identity:
+    user_id: int
+    issuer: str
+    subject: str
+    roles: frozenset[str]
+```
+
+Cela évite de faire dépendre tout le modèle métier de la structure exacte du token d'un IdP.
+
+## 14.3. Autorisation métier
+
+Exemple :
+
+```python
+def can(identity, permission: str) -> bool:
+    if identity is None:
+        return False
+
+    if permission == "invoice:view":
+        return bool(identity.roles & {"accountant", "admin"})
+
+    if permission == "invoice:delete":
+        return "admin" in identity.roles
+
+    return False
+```
+
+## 14.4. Protéger une API Pyramid par access token
+
+Pseudo-flux :
+
+```text
+Authorization header
+      |
+      v
+extract Bearer token
+      |
+      v
+validate signature + issuer + audience + exp
+      |
+      v
+check scopes/roles
+      |
+      v
+execute view
+```
+
+Extraction simple :
+
+```python
+def bearer_token(request) -> str | None:
+    header = request.headers.get("Authorization", "")
+    scheme, _, value = header.partition(" ")
+    if scheme.lower() != "bearer" or not value:
+        return None
+    return value
+```
+
+## 14.5. Vérifier l'audience
+
+Une API ne doit pas accepter n'importe quel token valide émis par le même realm.
+
+Elle doit vérifier qu'il lui est destiné.
+
+Exemple conceptuel :
+
+```text
+aud = api-billing
+```
+
+Un token destiné à :
+
+```text
+aud = api-photos
+```
+
+ne doit pas être automatiquement accepté par l'API billing.
+
+## 14.6. Scopes et rôles
+
+Une politique peut combiner :
+
+```text
+scope = invoices:write
+role  = accountant
+```
+
+Les rôles peuvent représenter les droits de l'utilisateur, tandis que les scopes représentent les droits consentis/délégués au client.
+
+# 15. Machine-to-machine et services
+
+## 15.1. Client Credentials avec Keycloak
+
+Exemple :
+
+```bash
+curl --fail-with-body \
+  -X POST \
+  'https://sso.example.com/realms/demo/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=client_credentials' \
+  -d 'client_id=billing-worker' \
+  -d 'client_secret=...'
+```
+
+Réponse :
+
+```json
+{
+  "access_token": "...",
+  "expires_in": 300,
+  "token_type": "Bearer"
+}
+```
+
+## 15.2. Secrets clients
+
+Un `client_secret` est un mot de passe applicatif.
+
+Pratiques :
+
+- pas dans Git ;
+- rotation ;
+- Secret Manager ;
+- permissions minimales ;
+- journalisation sans secret ;
+- durée de vie / procédures de rotation.
+
+Pour les environnements plus exigeants, préférer l'authentification asymétrique :
+
+- `private_key_jwt` ;
+- mTLS ;
+- mécanismes de workload identity selon l'infrastructure.
+
+## 15.3. Pas d'utilisateur fantôme
+
+Avec Client Credentials, le token représente principalement le client/service.
+
+Ne pas inventer un utilisateur humain simplement pour réutiliser un modèle d'autorisation prévu pour les humains.
+
+## 15.4. Service-to-service
+
+Pour une architecture microservices, réfléchir à :
+
+- identité du service ;
+- identité de l'utilisateur d'origine ;
+- délégation ;
+- audience ;
+- token exchange ;
+- limitation des scopes ;
+- traçabilité.
+
+# 16. Passkeys, MFA et niveau d'authentification
+
+## 16.1. OAuth ne définit pas le mot de passe
+
+OAuth/OIDC ne dicte pas précisément comment le fournisseur d'identité authentifie l'utilisateur.
+
+L'OP peut utiliser :
+
+- mot de passe ;
+- TOTP ;
+- passkey ;
+- smartcard ;
+- certificat ;
+- fournisseur externe ;
+- authentification adaptative.
+
+## 16.2. Passkeys et WebAuthn
+
+Keycloak supporte WebAuthn et les passkeys.
+
+Les passkeys permettent une authentification résistante au phishing lorsqu'elles sont correctement déployées.
+
+Elles utilisent de la cryptographie asymétrique liée au Relying Party ID.
+
+Le serveur ne stocke pas un secret équivalent à un mot de passe réutilisable par l'utilisateur.
+
+## 16.3. `acr`
+
+OIDC peut exprimer une Authentication Context Class Reference via `acr`.
+
+Cela permet de représenter un niveau ou une classe d'authentification.
+
+Exemple métier :
+
+- connexion simple pour consulter un profil ;
+- authentification renforcée avant un virement important.
+
+## 16.4. `amr`
+
+`amr` peut renseigner les méthodes d'authentification utilisées.
+
+Exemple conceptuel :
+
+```json
+{
+  "amr": ["pwd", "otp"]
+}
+```
+
+Ne pas baser une sécurité critique sur une interprétation non documentée des valeurs propres à un fournisseur.
+
+## 16.5. Step-up authentication
+
+Le **step-up** consiste à demander une authentification plus forte lorsqu'une action sensible est déclenchée.
+
+Exemples :
+
+- modifier le mot de passe ;
+- enregistrer une nouvelle passkey ;
+- afficher une clé API ;
+- valider un paiement ;
+- changer une adresse de récupération.
+
+# 17. Exploitation et durcissement de Keycloak
+
+## 17.1. Mettre à jour Keycloak
+
+Keycloak reçoit régulièrement :
+
+- correctifs fonctionnels ;
+- correctifs de sécurité ;
+- mises à jour de dépendances.
+
+La version 26.7.2 contient plusieurs correctifs de sécurité. Un IAM doit donc faire partie des composants patchés rapidement.
+
+## 17.2. Base de données
+
+En production, utiliser une base supportée et persistante telle que PostgreSQL.
+
+Planifier :
+
+- backups ;
+- restauration testée ;
+- chiffrement ;
+- haute disponibilité ;
+- supervision ;
+- migration de schéma lors des upgrades.
+
+## 17.3. TLS
+
+La terminaison TLS peut être :
+
+- dans Keycloak ;
+- au reverse proxy ;
+- au load balancer.
+
+Mais Keycloak doit connaître correctement :
+
+- hostname externe ;
+- schéma externe ;
+- headers proxy de confiance.
+
+Une mauvaise configuration provoque souvent des redirect URIs erronées ou des failles de confiance dans des headers forgés.
+
+## 17.4. Reverse proxy
+
+Ne faire confiance aux headers proxy que si la requête provient réellement d'un proxy contrôlé.
+
+Protéger l'interface d'administration :
+
+- réseau dédié ou restriction d'accès ;
+- MFA ;
+- rôles d'administration minimaux ;
+- journalisation ;
+- comptes nominaux.
+
+## 17.5. Secrets
+
+Secrets à protéger :
+
+- mots de passe base ;
+- client secrets ;
+- clés privées ;
+- credentials SMTP ;
+- secrets de fédération ;
+- tokens d'administration.
+
+Éviter les secrets dans :
+
+- images Docker ;
+- Dockerfile ;
+- Git ;
+- logs ;
+- variables visibles à des utilisateurs non autorisés.
+
+## 17.6. Brute force et rate limiting
+
+Configurer :
+
+- détection de brute force ;
+- MFA ;
+- protections en périphérie ;
+- alertes ;
+- rate limits adaptés.
+
+Veiller à ne pas introduire un déni de service facile via une politique de verrouillage trop agressive.
+
+## 17.7. Rotation des clés
+
+Documenter :
+
+1. création d'une nouvelle clé ;
+2. passage en clé active ;
+3. conservation temporaire de l'ancienne clé de vérification ;
+4. expiration des anciens tokens ;
+5. retrait de l'ancienne clé.
+
+## 17.8. Sessions
+
+Définir :
+
+- durée idle ;
+- durée maximale ;
+- durée des access tokens ;
+- durée/rotation des refresh tokens ;
+- politique Remember Me ;
+- comportement de logout.
+
+## 17.9. Événements
+
+Activer et exploiter les événements pertinents :
+
+- login réussi/échoué ;
+- logout ;
+- erreur de token ;
+- changement de credentials ;
+- actions administratives.
+
+Éviter de journaliser les tokens eux-mêmes.
+
+# 18. Tests, diagnostic et observabilité
+
+## 18.1. Vérifier Discovery
+
+```bash
+curl --fail-with-body \
+  'https://sso.example.com/realms/demo/.well-known/openid-configuration' \
+  | jq .
+```
+
+Vérifier :
+
+- `issuer` exact ;
+- endpoints HTTPS ;
+- `jwks_uri` ;
+- méthodes PKCE ;
+- algorithmes attendus.
+
+## 18.2. Vérifier JWKS
+
+```bash
+curl --fail-with-body \
+  'https://sso.example.com/realms/demo/protocol/openid-connect/certs' \
+  | jq '.keys[] | {kid, kty, alg, use}'
+```
+
+## 18.3. Erreur `invalid_redirect_uri`
+
+Causes fréquentes :
+
+- schéma HTTP/HTTPS différent ;
+- port différent ;
+- slash final ;
+- hostname interne au lieu de l'externe ;
+- redirect URI non enregistrée.
+
+Ne pas corriger ce problème en ajoutant un wildcard trop permissif.
+
+## 18.4. Erreur `invalid_grant`
+
+Causes possibles :
+
+- code déjà utilisé ;
+- code expiré ;
+- mauvaise redirect URI au token endpoint ;
+- `code_verifier` incorrect ;
+- mauvais client ;
+- refresh token révoqué.
+
+## 18.5. `401` contre `403`
+
+- **401 Unauthorized** : authentification/credential absent ou invalide ;
+- **403 Forbidden** : identité connue mais droit insuffisant.
+
+Exemples :
+
+```text
+Token expiré             -> 401
+Audience incorrecte      -> 401
+Scope insuffisant        -> 403
+Rôle métier insuffisant  -> 403
+```
+
+## 18.6. Horloges
+
+Les tokens contiennent des timestamps.
+
+Les machines doivent être synchronisées via NTP/chrony.
+
+Une dérive d'horloge peut provoquer :
+
+- `token not yet valid` ;
+- `token expired` immédiat ;
+- erreurs difficiles à reproduire.
+
+## 18.7. Ne jamais coller un token de production dans un outil public
+
+Un JWT est souvent décodable sans secret.
+
+Les outils publics de debug peuvent recevoir :
+
+- données personnelles ;
+- scopes ;
+- informations internes ;
+- tokens encore valides.
+
+Pour déboguer :
+
+- utiliser un environnement local ;
+- utiliser des tokens de test ;
+- masquer les signatures/claims sensibles ;
+- révoquer un token exposé.
+
+## 18.8. Tests automatisés
+
+Tester au minimum :
+
+- callback avec `state` invalide ;
+- callback sans code ;
+- ID Token avec mauvais issuer ;
+- mauvaise audience ;
+- token expiré ;
+- mauvais nonce ;
+- clé inconnue puis rafraîchissement JWKS ;
+- scopes insuffisants ;
+- refresh token révoqué ;
+- logout ;
+- erreur réseau Discovery/JWKS.
+
+Exemple pytest simplifié :
+
+```python
+import pytest
+
+
+def test_wrong_audience_is_rejected(token_factory, validator):
+    token = token_factory(aud="another-api")
+
+    with pytest.raises(Exception):
+        validator(token)
+```
+
+# 19. Migration d'une ancienne implémentation OAuth/OIDC
+
+Ce chapitre sert de checklist lorsqu'un projet a été construit à partir d'anciens tutoriels.
+
+## 19.1. Supprimer `/auth/` des URLs Keycloak historiques
+
+Ancienne configuration fréquente :
+
+```ini
+keycloak.server_url = https://sso.example.com/auth/
+```
+
+Configuration moderne typique :
+
+```ini
+oidc.issuer = https://sso.example.com/realms/demo
+```
+
+Laisser Discovery déterminer les endpoints.
+
+## 19.2. Remplacer Java 11
+
+Les anciens tutoriels Keycloak 19 recommandent souvent OpenJDK 11.
+
+Keycloak 26.7.2 supporte des JDK beaucoup plus récents et la documentation de démarrage actuelle utilise OpenJDK 25.
+
+## 19.3. Remplacer Implicit par Code + PKCE
+
+Avant :
+
+```text
+response_type=token
+```
+
+Après :
+
+```text
+response_type=code
+code_challenge=...
+code_challenge_method=S256
+```
+
+## 19.4. Supprimer Password Grant
+
+Avant :
+
+```text
+grant_type=password
+username=...
+password=...
+```
+
+Après :
+
+- redirection Authorization Code + PKCE ;
+- Device Authorization pour un dispositif adapté ;
+- Client Credentials pour un service sans utilisateur.
+
+## 19.5. Remplacer les anciennes policies Pyramid
+
+Avant :
+
+```python
+config.set_authentication_policy(authn_policy)
+config.set_authorization_policy(authz_policy)
+```
+
+Après :
+
+```python
+config.set_security_policy(security_policy)
+```
+
+## 19.6. Ne plus décoder les JWT sans validation complète
+
+Avant :
+
+```python
+claims = jwt.decode(token, options={"verify_signature": False})
+```
+
+Après :
+
+- signature ;
+- issuer ;
+- audience ;
+- expiration ;
+- algorithmes autorisés ;
+- claims liés au contexte.
+
+## 19.7. Ne plus mettre les tokens dans trois cookies séparés sans architecture
+
+Avant :
+
+```text
+access_token cookie
+refresh_token cookie
+id_token cookie
+```
+
+Approche recommandée pour une application serveur :
+
+```text
+cookie de session opaque -> session serveur -> tokens OAuth
+```
+
+## 19.8. Ne plus prendre les rôles dans UserInfo par hypothèse
+
+La présence de rôles dans :
+
+```text
+userinfo["roles"]
+```
+
+n'est pas une garantie du protocole OIDC.
+
+Avec Keycloak, la structure des rôles dépend des mappers et du type de token.
+
+Le code doit être aligné avec une configuration explicitement documentée.
+
+## 19.9. Corriger les anciennes affirmations
+
+### Faux
+
+> « Un JWT est sécurisé car il est chiffré. »
+
+### Correct
+
+Un JWT signé n'est pas chiffré ; son contenu est lisible.
+
+---
+
+### Faux
+
+> « Le Bearer token est opaque et le JWT est un autre type de token. »
+
+### Correct
+
+Bearer décrit la possession nécessaire à l'usage ; JWT décrit un format.
+
+---
+
+### Faux
+
+> « PKCE remplace les grants. »
+
+### Correct
+
+PKCE est une extension qui protège notamment Authorization Code.
+
+---
+
+### Faux
+
+> « Dynamic Registration permet de créer des utilisateurs. »
+
+### Correct
+
+OIDC Dynamic Client Registration sert à enregistrer des clients.
+
+---
+
+### Faux
+
+> « OAuth 2.1 a été publié en 2021. »
+
+### Correct
+
+OAuth 2.1 est toujours un Internet-Draft au 29 août 2026.
+
+# 20. Travaux pratiques
+
+## TP 1 — Explorer un serveur OIDC
+
+### Objectif
+
+Comprendre Discovery et JWKS.
+
+### Travail
+
+1. lancer Keycloak localement ;
+2. créer un realm `cours` ;
+3. récupérer :
+
+```text
+/realms/cours/.well-known/openid-configuration
+```
+
+4. identifier :
+   - authorization endpoint ;
+   - token endpoint ;
+   - UserInfo ;
+   - JWKS ;
+   - logout ;
+5. télécharger le JWKS ;
+6. identifier les `kid`.
+
+### Questions
+
+- pourquoi l'issuer doit-il être vérifié exactement ?
+- que se passe-t-il lors d'une rotation de clé ?
+- quels algorithmes sont annoncés ?
+
+## TP 2 — Authorization Code + PKCE
+
+### Objectif
+
+Visualiser chaque étape du flux.
+
+### Travail
+
+1. créer un client public de test ;
+2. générer `state`, `nonce`, `code_verifier` ;
+3. calculer `code_challenge` ;
+4. ouvrir la requête `/authorize` ;
+5. récupérer le code ;
+6. échanger le code ;
+7. vérifier le contenu de la réponse token ;
+8. recommencer avec un mauvais `code_verifier`.
+
+### Résultat attendu
+
+La seconde tentative doit être rejetée.
+
+## TP 3 — Valider un ID Token
+
+### Objectif
+
+Ne plus confondre décodage et validation.
+
+### Travail
+
+Écrire :
+
+```python
+def validate_id_token(token: str) -> dict:
+    ...
+```
+
+Vérifier :
+
+- signature ;
+- issuer ;
+- audience ;
+- expiration ;
+- nonce.
+
+Créer ensuite des tokens de test invalides.
+
+## TP 4 — Protéger une API Pyramid
+
+### Objectif
+
+Valider un access token côté Resource Server.
+
+Routes :
+
+```text
+GET /api/public
+GET /api/profile
+POST /api/admin/reindex
+```
+
+Règles :
+
+```text
+/api/public         -> anonyme
+/api/profile        -> access token valide + scope profile:read
+/api/admin/reindex  -> rôle admin + scope admin:write
+```
+
+Tester les réponses 200, 401 et 403.
+
+## TP 5 — Construire un mini-BFF
+
+### Objectif
+
+Ne pas exposer les tokens au JavaScript.
+
+Architecture :
+
+```text
+Browser
+   |
+   | cookie de session
+   v
+Pyramid BFF
+   |
+   | access token
+   v
+API
+```
+
+Le navigateur ne doit jamais recevoir le refresh token.
+
+## TP 6 — Client Credentials
+
+### Objectif
+
+Créer une identité de service.
+
+1. créer `report-worker` ;
+2. activer service account ;
+3. accorder uniquement `reports:generate` ;
+4. récupérer un token Client Credentials ;
+5. vérifier que l'accès à une autre API est refusé.
+
+## TP 7 — Rotation de clé
+
+### Objectif
+
+Comprendre `kid` et JWKS.
+
+1. obtenir un token signé avec clé A ;
+2. observer `kid=A` ;
+3. introduire clé B ;
+4. signer les nouveaux tokens avec B ;
+5. vérifier que A reste publiée tant que les anciens tokens doivent être validables ;
+6. retirer A après expiration contrôlée.
+
+## TP 8 — Passkey
+
+### Objectif
+
+Comprendre le rôle de WebAuthn par rapport à OIDC.
+
+1. activer WebAuthn/passwordless dans Keycloak ;
+2. enregistrer une passkey ;
+3. effectuer un login OIDC ;
+4. observer l'ID Token ;
+5. comparer l'expérience à un login par mot de passe.
+
+Question : le protocole OAuth a-t-il changé ?
+
+Réponse attendue : non, c'est principalement la méthode d'authentification chez l'OP qui change.
+
+## TP 9 — Audit d'une configuration volontairement faible
+
+Trouver les erreurs :
+
+```text
+redirect_uri = https://*.example.com/*
+Implicit Flow = enabled
+Direct Access Grants = enabled sans nécessité
+access token = 24 h
+refresh token = très longue durée sans rotation
+client secret dans Git
+/admin exposé sans restriction
+HTTP entre proxy et Keycloak sur un réseau non maîtrisé
+aucune vérification d'audience côté API
+```
+
+Proposer une correction pour chacune.
+
+## TP 10 — Projet final
+
+Construire une application comprenant :
+
+- Keycloak ;
+- Pyramid ;
+- une API séparée ;
+- Authorization Code + PKCE ;
+- OIDC ;
+- BFF ;
+- rôles et scopes ;
+- refresh token serveur ;
+- logout ;
+- tests automatisés ;
+- journalisation sans tokens ;
+- documentation d'exploitation.
+
+Livrables :
+
+1. diagramme d'architecture ;
+2. modèle de menace ;
+3. configuration Keycloak exportable ;
+4. code ;
+5. tests ;
+6. procédure de rotation des clés/secrets ;
+7. procédure de révocation d'urgence.
+
+# Fiche de choix rapide
+
+## Application web serveur classique
+
+Choix recommandé :
+
+```text
+OIDC Authorization Code + PKCE
+client confidentiel
+session serveur
+```
+
+## SPA métier sensible
+
+Choix recommandé :
+
+```text
+BFF
+Authorization Code + PKCE
+cookie de session durci
+OAuth tokens côté backend
+```
+
+## Application mobile/native
+
+Choix :
+
+```text
+Authorization Code + PKCE
+client public
+navigateur système
+stockage sécurisé OS
+```
+
+## CLI / télévision
+
+Selon UX :
+
+```text
+Device Authorization Grant
+```
+
+## Service sans utilisateur
+
+Choix :
+
+```text
+Client Credentials
+```
+
+## API
+
+Choix :
+
+```text
+access token
+validation issuer + audience + expiration + scopes
+JWT local ou introspection selon architecture
+```
+
+# Glossaire
+
+**AS — Authorization Server**
+Serveur qui délivre les tokens OAuth.
+
+**RS — Resource Server**
+API ou serveur hébergeant les ressources protégées.
+
+**RP — Relying Party**
+Client OpenID Connect qui fait confiance à un OpenID Provider.
+
+**OP — OpenID Provider**
+Fournisseur d'identité OpenID Connect.
+
+**Access token**
+Credential permettant d'accéder à une ressource protégée.
+
+**Refresh token**
+Credential permettant d'obtenir de nouveaux access tokens.
+
+**ID Token**
+JWT OIDC décrivant l'authentification de l'utilisateur auprès de la RP.
+
+**PKCE**
+Proof Key for Code Exchange, protection du flux Authorization Code.
+
+**JWS**
+JSON Web Signature.
+
+**JWE**
+JSON Web Encryption.
+
+**JWK**
+JSON Web Key.
+
+**JWKS**
+JSON Web Key Set.
+
+**DPoP**
+Demonstrating Proof of Possession, mécanisme de sender-constrained token.
+
+**PAR**
+Pushed Authorization Requests.
+
+**JAR**
+JWT-Secured Authorization Request.
+
+**BFF**
+Backend for Frontend.
+
+**Scope**
+Capacité OAuth demandée/accordée.
+
+**Audience**
+Destinataire prévu d'un token.
+
+**Issuer**
+Entité qui a émis le token.
+
+**`sub`**
+Identifiant du sujet chez l'issuer.
+
+# Références normatives et ressources
+
+## OAuth
+
+- RFC 6749 — The OAuth 2.0 Authorization Framework
+- RFC 6750 — Bearer Token Usage
+- RFC 7009 — Token Revocation
+- RFC 7636 — PKCE
+- RFC 7662 — Token Introspection
+- RFC 8252 — OAuth 2.0 for Native Apps
+- RFC 8414 — Authorization Server Metadata
+- RFC 8628 — Device Authorization Grant
+- RFC 8693 — Token Exchange
+- RFC 8705 — Mutual-TLS Client Authentication and Certificate-Bound Access Tokens
+- RFC 8707 — Resource Indicators
+- RFC 9101 — JWT-Secured Authorization Request (JAR)
+- RFC 9126 — Pushed Authorization Requests (PAR)
+- RFC 9207 — Authorization Server Issuer Identification
+- RFC 9449 — DPoP
+- RFC 9700 — Best Current Practice for OAuth 2.0 Security
+- RFC 10017 — OAuth 2.0 for Browser-Based Applications
+- OAuth 2.1 — Internet-Draft `draft-ietf-oauth-v2-1`
+
+## OpenID Connect
+
+- OpenID Connect Core 1.0 incorporating errata set 2
+- OpenID Connect Discovery 1.0
+- OpenID Connect Dynamic Client Registration 1.0
+- OpenID Connect RP-Initiated Logout
+- OpenID Connect Back-Channel Logout
+- OpenID Federation 1.1
+
+## Logiciels
+
+- Documentation officielle Keycloak
+- Documentation Pyramid
+- Documentation PyJWT
+- Documentation Authlib
+
+# Conclusion
+
+OAuth et OpenID Connect doivent être abordés comme un **ensemble de protocoles de sécurité**, pas comme une simple redirection vers une page de login.
+
+Les principes à conserver sont :
+
+1. OAuth sert à la délégation d'autorisation ; OIDC ajoute l'identité ;
+2. Authorization Code + PKCE constitue la base des flux interactifs modernes ;
+3. Implicit et Password Grant ne doivent plus être choisis pour de nouveaux systèmes ;
+4. un JWT signé n'est pas chiffré ;
+5. un access token n'est pas forcément un JWT ;
+6. Bearer et JWT décrivent deux dimensions différentes ;
+7. vérifier signature, issuer, audience et durée de vie est indispensable ;
+8. un ID Token est destiné au client, pas à l'API ;
+9. les redirect URIs doivent être strictes ;
+10. les refresh tokens doivent être protégés comme des secrets ;
+11. pour une application navigateur sensible, le BFF réduit fortement l'exposition des tokens ;
+12. Keycloak doit être maintenu, durci et supervisé comme un composant de sécurité critique ;
+13. dans Pyramid moderne, utiliser une Security Policy plutôt que les anciennes authentication/authorization policies ;
+14. privilégier des bibliothèques OAuth/OIDC maintenues et des standards plutôt qu'une implémentation maison.
+
+La réussite d'une architecture OAuth/OIDC ne se mesure pas uniquement au fait que « le login fonctionne », mais à sa capacité à résister aux erreurs de configuration, aux vols de tokens, aux attaques de redirection, aux replays, aux rotations de clés et aux évolutions du système sur plusieurs années.

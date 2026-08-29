@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5AZRHPY8A2GE6ZV12ST"
-titre: "Esperanto"
+uid: 01M02EX5AZRHPY8A2GE6ZV12ST
+titre: Esperanto
 type: cours
 statut: actif
 para: ressource
@@ -14,7 +14,7 @@ themes:
 resume: "Cours d'espéranto orienté ingénierie : histoire et objectifs de la langue internationale, alphabet et prononciation, grammaire fondamentale et vocabulaire de base."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-07-03
 date_modification: 2024-07-03
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Introduction
 
