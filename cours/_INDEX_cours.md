@@ -85,8 +85,8 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[CSS]] — Cours de CSS : historique, modes d'intégration, syntaxe, unités de mesure, sélecteurs, mise en forme et mise en page moderne.
 - [[Deform]] — Cours moderne sur Deform 3 sous Pyramid : schémas Colander, widgets, validation, rendu, CSRF, fichiers, formulaires dynamiques et personnalisation.
-- [[HTML]] — Cours d'introduction au HTML : bases du langage, organisation et sémantique du contenu, liens, images et ressources, bonnes pratiques et projet final.
-- [[Javascript]] — Cours d'introduction à JavaScript : origines, rôle dans la pile technologique, historique d'ECMAScript, variables, types, opérateurs et concepts fondamentaux.
+- [[HTML]] — Cours complet de HTML moderne : structure, sémantique, formulaires, médias, accessibilité, SEO, performance, sécurité et fonctionnalités natives du HTML Living Standard.
+- [[Javascript]] — Cours complet de JavaScript moderne : ECMAScript, types, fonctions, objets, modules, asynchronisme, DOM, Web APIs, Node.js, tests, sécurité, performance et pratiques de développement actuelles.
 - [[Pyramid]] — Cours sur le framework web Pyramid : installation et structure d'une application, routes et vues, templates Chameleon, formulaires Deform, persistance et sécurité.
 - [[Selenium]] — Cours complet sur Selenium 4 avec Python : WebDriver, Selenium Manager, sélecteurs, interactions, attentes, fenêtres et iframes, actions avancées, Page Object Model, pytest, Grid 4, WebDriver BiDi et bonnes pratiques.
 - [[Tal et Metal]] — Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope.
@@ -119,7 +119,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] — Cours en trente chapitres et trois annexes sur la construction d'un système d'information personnel souverain : vault Obsidian, modèle de données par frontmatter, schéma et modèle métier, graphe sémantique, Git, puis couche agentique (constitution, domaines, skills, pipelines, mémoire, sécurité, tests, observabilité). L'annexe B traite l'application du modèle à un coffre existant, l'annexe C fournit une implémentation de référence testée, installée dans scripts/osia.
 - [[Obsidian]] — Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation.
 - [[PlantUML pour Obsidian]] — Procédure d'installation d'un serveur PlantUML local pour Obsidian, avec mise à jour du système, installation de Java et présentation de modeleurs graphiques générant du PlantUML.
-- [[Visual studio code]] — Cours de prise en main de Visual Studio Code : historique, installation, interface et barre d'activités, panneaux, extensions utiles et réglages du quotidien.
+- [[Visual studio code]] — Cours complet et actualisé sur Visual Studio Code : interface, configuration, navigation, Git, terminal, tâches, débogage, Python, développement distant, Dev Containers, sécurité, Copilot, agents et MCP.
 
 ## Histoire et matériel informatique
 
