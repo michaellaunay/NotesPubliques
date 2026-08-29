@@ -4,6 +4,7 @@ uid: "01M02JG1VBRYPZZYJDSRMX8X2A"
 titre: "Chaîne complète de numérisation OCR Markdown traduction RAG local"
 aliases:
   - "Chaîne de numérisation RAG"
+  - "Recadrer les images des livres"
 type: procedure
 statut: actif
 para: ressource
@@ -21,7 +22,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-06-09
-date_modification: 2026-06-09
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
@@ -219,6 +220,98 @@ magick
 ```
 
 L’objectif n’est pas de rendre l’image jolie, mais de rendre le texte facilement lisible par l’OCR.
+
+## Redresser et recadrer par script (OpenCV)
+
+Quand ScanTailor ne convient pas (lot de photographies de pages, traitement dans un pipeline Python), le recadrage se fait en quelques lignes d'OpenCV : on isole la page, claire sur un fond plus sombre, par un seuillage d'Otsu, on prend le plus grand contour, son rectangle orienté englobant, et on corrige la perspective. Ce script remplace la note « Recadrer les images des livres » de 2023 ; il a été exécuté sur une page de test tournée de 7 degrés (restituée à un pixel près).
+
+```bash
+python -m pip install opencv-python-headless numpy pdf2image     # pdf2image exige poppler-utils
+```
+
+```python
+"""Redresse et recadre une page de livre photographiée ou scannée de travers (OpenCV)."""
+from pathlib import Path
+
+import cv2
+import numpy as np
+
+
+def recadrer_page(chemin_entree: Path, chemin_sortie: Path) -> tuple[int, int]:
+    """Détecte le plus grand quadrilatère clair (la page), corrige la perspective et enregistre le résultat."""
+    image = cv2.imread(str(chemin_entree))
+    gris = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    flou = cv2.GaussianBlur(gris, (5, 5), 0)
+    # la page est claire sur un fond plus sombre : seuillage global d'Otsu
+    _, masque = cv2.threshold(flou, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    masque = cv2.morphologyEx(masque, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8))
+    contours, _ = cv2.findContours(masque, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    page = max(contours, key=cv2.contourArea)
+
+    rect = cv2.minAreaRect(page)                       # rectangle orienté englobant
+    boite = cv2.boxPoints(rect).astype(np.float32)
+    # ordonner les coins : haut-gauche, haut-droit, bas-droit, bas-gauche
+    somme = boite.sum(axis=1)
+    diff = np.diff(boite, axis=1).ravel()
+    coins = np.array([boite[np.argmin(somme)], boite[np.argmin(diff)],
+                      boite[np.argmax(somme)], boite[np.argmax(diff)]], dtype=np.float32)
+    largeur = int(max(np.linalg.norm(coins[0] - coins[1]), np.linalg.norm(coins[3] - coins[2])))
+    hauteur = int(max(np.linalg.norm(coins[0] - coins[3]), np.linalg.norm(coins[1] - coins[2])))
+    cible = np.array([[0, 0], [largeur - 1, 0], [largeur - 1, hauteur - 1], [0, hauteur - 1]], dtype=np.float32)
+    matrice = cv2.getPerspectiveTransform(coins, cible)
+    redressee = cv2.warpPerspective(image, matrice, (largeur, hauteur))
+    cv2.imwrite(str(chemin_sortie), redressee)
+    return largeur, hauteur
+
+
+if __name__ == "__main__":
+    for entree in sorted(Path("brut").glob("*.png")):
+        print(entree.name, recadrer_page(entree, Path("recadre") / entree.name))
+```
+
+Pour partir d'un PDF, `pdf2image.convert_from_path("livre.pdf", dpi=300)` renvoie une image PIL par page, à convertir avec `cv2.cvtColor(np.array(page), cv2.COLOR_RGB2BGR)` avant traitement. Limites : une page courbée près de la reliure exige un *dewarping* (ScanTailor, ou `page-dewarp`), et une double page doit d'abord être coupée en deux (le plus grand contour serait la double page).
+
+## Localiser les lignes de texte (Tesseract)
+
+Avant l'OCR multimodale des étapes suivantes, Tesseract suffit pour repérer la position des lignes — utile pour découper une page en zones, détecter les en-têtes et les numéros de page, ou mesurer la qualité du prétraitement. `image_to_data` renvoie chaque mot avec sa boîte et ses numéros de bloc, paragraphe et ligne ; il reste à regrouper :
+
+```bash
+sudo apt install tesseract-ocr tesseract-ocr-fra
+python -m pip install pytesseract pillow
+```
+
+```python
+"""Localiser les lignes de texte d'une page avec Tesseract (pytesseract)."""
+from collections import defaultdict
+
+import pytesseract
+from PIL import Image
+
+
+def lignes_de_texte(chemin: str, langue: str = "fra"):
+    """Renvoie [(texte, (x0, y0, x1, y1))] par ligne, dans l'ordre de lecture."""
+    donnees = pytesseract.image_to_data(Image.open(chemin), lang=langue, config="--psm 6",
+                                        output_type=pytesseract.Output.DICT)
+    lignes = defaultdict(list)
+    for i, mot in enumerate(donnees["text"]):
+        if mot.strip() and int(donnees["conf"][i]) >= 0:
+            cle = (donnees["block_num"][i], donnees["par_num"][i], donnees["line_num"][i])
+            lignes[cle].append((donnees["left"][i], donnees["top"][i], donnees["width"][i], donnees["height"][i], mot))
+    resultat = []
+    for cle in sorted(lignes):
+        mots = lignes[cle]
+        x0 = min(m[0] for m in mots); y0 = min(m[1] for m in mots)
+        x1 = max(m[0] + m[2] for m in mots); y1 = max(m[1] + m[3] for m in mots)
+        resultat.append((" ".join(m[4] for m in mots), (x0, y0, x1, y1)))
+    return resultat
+
+
+if __name__ == "__main__":
+    for texte, boite in lignes_de_texte("page.png"):
+        print(boite, texte)
+```
+
+Sortie sur une page de test à trois lignes : `(64, 68, 582, 106) Le chapitre commence ici.` puis les deux lignes suivantes, dans l'ordre. Le mode `--psm 6` suppose un bloc de texte uniforme ; `--psm 4` convient aux colonnes, `--psm 11` au texte épars.
 
 ---
 
