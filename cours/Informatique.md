@@ -56,6 +56,48 @@ Elle étudie notamment :
 
 ---
 
+# Sommaire
+
+1. Qu'est-ce que l'informatique ?
+2. Représenter l'information
+3. Une histoire condensée de l'informatique
+4. Architecture matérielle
+5. Logique numérique
+6. Systèmes d'exploitation
+7. Réseaux
+8. Langages de programmation
+9. Algorithmique
+10. Théorie du calcul
+11. Données et bases de données
+12. Génie logiciel
+13. Méthodes de développement
+14. Versionnement et collaboration
+15. Architecture logicielle
+16. Web
+17. Systèmes distribués et cloud
+18. Cybersécurité
+19. Vie privée et droit
+20. Logiciel libre et open source
+21. Intelligence artificielle
+22. Données, statistique et science des données
+23. Parallélisme et concurrence
+24. Embarqué, IoT et temps réel
+25. Informatique quantique et autres architectures émergentes
+26. Systèmes d'information et organisations
+27. Modélisation et systémique
+28. Qualité et dette technique
+29. Débogage et résolution de problèmes
+30. Sécurité opérationnelle de base
+31. Éthique, accessibilité et impacts
+32. Une carte des disciplines informatiques
+33. Boîte à outils minimale
+34. Comment apprendre l'informatique
+35. Travaux pratiques
+36. Projet final — Comprendre un système de bout en bout
+37. Checklist de culture informatique générale
+38. Glossaire
+39. Références et cours liés
+
 # 1. Qu'est-ce que l'informatique ?
 
 ## 1.1 Une science de l'information et du calcul

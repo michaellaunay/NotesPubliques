@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Systèmes numériques et systèmes de numération
+
+> [!abstract] Objectif
+> Comprendre comment les nombres et l'information sont représentés dans les machines : bases et systèmes de numération, binaire, octal et hexadécimal, conversions, entiers signés, virgule fixe et flottante (IEEE 754), codage des caractères, erreurs d'arrondi et de dépassement, avec des exercices en Python.
+
+Voir aussi : [[Python]], [[Informatique]], [[Logique]], [[C++]], [[Numpy]].
 
 > [!summary]
 > Un **nombre** est une idée mathématique ; son **écriture** dépend d'un système de numération. Le même nombre peut s'écrire `42`, `101010₂`, `52₈`, `2A₁₆` ou encore avec les symboles du système bibi-binaire. Ce cours étudie la représentation des nombres, les conversions entre bases et les représentations réellement utilisées par les ordinateurs.
@@ -53,6 +57,49 @@ Ce cours ne traite pas principalement des circuits logiques. Pour l'architecture
 - comparer des bases selon leurs propriétés mathématiques et pratiques ;
 - comprendre le système bibi-binaire de Boby Lapointe ;
 - reconnaître les représentations qui ne sont **pas** des systèmes de numération : Gray, BCD, ASCII, etc.
+
+# Sommaire
+
+1. Nombre, chiffre, représentation et codage
+2. Bref historique des systèmes de numération
+3. Numération positionnelle en base b
+4. Bases importantes
+5. Convertir une base quelconque vers le décimal
+6. Convertir un entier décimal vers une base b
+7. Conversion directe binaire ↔ octal ↔ hexadécimal
+8. Fractions dans une base positionnelle
+9. Arithmétique en base quelconque
+10. Analyse du système décimal
+11. Analyse du système duodécimal
+12. Analyse du système sexagésimal
+13. Quelle serait la « meilleure » base ?
+14. Le binaire en informatique
+15. Hexadécimal en pratique
+16. Représentation des entiers non signés
+17. Représenter les entiers négatifs
+18. Débordement signé
+19. Opérations bit à bit
+20. Virgule fixe
+21. Virgule flottante
+22. Pourquoi 0,1 est difficile en binaire
+23. Comparer correctement des flottants
+24. Endianness : ordre des octets
+25. BCD — Binary-Coded Decimal
+26. Code Gray
+27. Base équilibrée et ternaire équilibré
+28. Bases négatives
+29. Système bibi-binaire de Boby Lapointe
+30. Conversion avec Python
+31. Représenter un entier dans un nombre précis de bits
+32. Inspecter un float
+33. Erreurs fréquentes
+34. Tableau de référence rapide
+35. Travaux pratiques
+36. Projet final — Laboratoire de numération
+37. Checklist de maîtrise
+38. Glossaire
+39. Références et approfondissements
+40. À retenir
 
 # 1. Nombre, chiffre, représentation et codage
 

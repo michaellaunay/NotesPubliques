@@ -30,8 +30,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Les méthodes agiles
+
+> [!abstract] Objectif
+> Comprendre l'agilité comme une manière de décider sous incertitude plutôt qu'un rituel : Manifeste, Scrum 2020, XP, Kanban, Lean et discovery produit, estimation et prévision, métriques de flux et DORA, pratiques d'ingénierie et DevOps, leadership et mise à l'échelle — avec un regard critique sur ce qui marche et ce qui a dérivé.
+
+Voir aussi : [[Agile Unified Process (AUP)]], [[git]], [[Docker]], [[Architecture des logiciels]], [[TOGAF]].
 
 > [!important]
 > **Agile n'est ni un outil de ticketing, ni une succession de réunions, ni un synonyme de Scrum.**
