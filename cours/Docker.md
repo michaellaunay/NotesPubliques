@@ -97,7 +97,7 @@ Nous voyons que docker a été chercher l'image sur dockerhub, puis l'a exécut�
 
 Il est possible de faire les étapes d'exécution individuellement : :
 
- ```bash
+```bash
 docker pull hello-world
 docker create --name docker-hello hello-world
 docker start --attach docker-hello

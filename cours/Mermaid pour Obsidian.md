@@ -55,15 +55,14 @@ Avant de pouvoir utiliser Mermaid dans Obsidian, nous devons nous assurer que l'
 
 Mermaid permet de créer des diagrammes et des graphiques à partir de texte dans Markdown. Pour utiliser Mermaid dans une note Obsidian, nous encadrons notre code Mermaid avec des balises de code \`\`\` (trois apostrophes de code) et spécifions  `mermaid` après la première série de balises de code. Par exemple :
 
-`
-```markdow
+````markdown
 ```mermaid
 graph TD
 A[Commencer] --> B{Fonctionne-t-il?}
 B -->|Oui| C[Terminé]
 B -->|Non| A
-`` `
 ```
+````
 
 Cela créera un simple diagramme de flux avec une boucle et s'affiche comme cela :
 ```mermaid
@@ -82,13 +81,13 @@ Mermaid peut être utilisé pour créer une variété de diagrammes, dont des di
 Les diagrammes de flux sont idéaux pour représenter visuellement les processus et les flux de travail. Ils peuvent montrer les différentes étapes d'un processus et comment elles sont connectées. Dans Mermaid, vous pouvez facilement créer des diagrammes de flux avec des nœuds et des flèches.
 
 Exemple :
-```
+````markdown
 ```mermaid
 graph LR
     A[Etape 1] --> B[Etape 2]
     B --> C[Etape 3]
-`` `
 ```
+````
 
 Ce qui donne :
 ```mermaid
@@ -102,15 +101,15 @@ graph LR
 Les diagrammes de séquence sont utilisés pour illustrer les interactions entre différents objets ou composants au fil du temps. Ils sont souvent utilisés pour modéliser les scénarios d'utilisation d'un système.
 
 Exemple :
-```
+````markdown
 ```mermaid
 sequenceDiagram
     participant Utilisateur
     participant Système
     Utilisateur->>Système: Faire une requête
     Système-->>Utilisateur: Retourner la réponse
-`` `
 ```
+````
 
 Ce qui donne :
 
@@ -126,7 +125,7 @@ sequenceDiagram
 
 Les graphiques de Gantt sont un excellent moyen de représenter visuellement le planning d'un projet. Ils permettent de voir les différentes tâches, leur durée et leur ordre.
 
-```mardown
+````markdown
 ```mermaid
 gantt
 	title Exemple de Gantt
@@ -136,8 +135,8 @@ gantt
 	Task2 :after a1, 20d
 	section Section2
 	Task3 :2023-07-15, 20d
-`` `
 ```
+````
 
 Ce qui donne 
 ```mermaid
@@ -156,14 +155,14 @@ gantt
 Les diagrammes de classe sont utilisés dans la modélisation orientée objet pour montrer les classes et les relations entre elles. Ils sont un outil essentiel pour comprendre l'architecture d'un système.
 
 Exemple :
-```
+````markdown
 ```mermaid
 classDiagram
     Classe1 <|-- Classe2
     Classe1 : +Méthode1()
     Classe2 : +Méthode2()
-`` `
 ```
+````
 
 Ce qui donne :
 ```mermaid
@@ -179,13 +178,13 @@ classDiagram
 Les diagrammes d'état représentent les états d'un objet et les transitions entre ces états. Ils sont particulièrement utiles pour comprendre le comportement d'un système ou d'un processus.
 
 Exemple :
-```markdown
+````markdown
 ```mermaid
 stateDiagram
     Etat1 --> Etat2
     Etat2 --> Etat3
-`` `
 ```
+````
 
 Ce qui donne :
 
