@@ -14,13 +14,16 @@ themes:
   - informatique
   - intelligence-artificielle
   - apprentissage-profond
+  - reseaux-de-neurones
   - python
   - pytorch
+  - tenseurs
 resume: "Cours complet de PyTorch 2.x : tenseurs, appareils de calcul, autograd, nn.Module, fonctions de perte, optimisation, Dataset et DataLoader, boucles d'entraînement, validation, checkpoints, CNN, transfert d'apprentissage, AMP, torch.compile, profilage, entraînement distribué et export."
 niveau: avance
 prerequis:
   - "[[Python]]"
   - "[[Numpy]]"
+  - "[[notions d algèbre linéaire et de dérivation]]"
 auteurs:
   - Michaël Launay
 langue: fr
