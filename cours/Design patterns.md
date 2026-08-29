@@ -12,1742 +12,2503 @@ themes:
   - genie-logiciel
   - conception-orientee-objet
   - design-patterns
-resume: "Cours sur les patrons de conception : définition et intérêt, catégorisation (création, structure, comportement) et étude détaillée des principaux patterns."
+resume: "Cours complet sur les patrons de conception : patterns GoF, idiomes Python modernes, patterns d'architecture et d'entreprise, événements, résilience, concurrence, anti-patterns et méthode de choix pragmatique."
 niveau: intermediaire
 prerequis:
   - "[[Principes SOLID en COO]]"
+  - "[[Architecture des logiciels]]"
 auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-06-13
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: true
 ---
-**Plan** du cours :
 
-**[[#1. Introduction aux Design Patterns]]**
-   - [[#1.1 Qu'est-ce qu'un design pattern ?]]
-   - [[#1.2 Pourquoi les design patterns sont-ils importants ?]]
-   - [[#1.3 Les principes fondamentaux des design patterns]].
+# Sommaire
 
-**[[#2. Catégorisation des Design Patterns]]**
-   - [[#2.1 Création de patterns]]
-   - [[#2.2 Patterns structurels]]
-   - [[#2.3 Patterns comportementaux]]
+1. [[#1. Comprendre les design patterns]]
+2. [[#2. Comment choisir un pattern sans sur-concevoir]]
+3. [[#3. Patterns de création GoF]]
+4. [[#4. Patterns structurels GoF]]
+5. [[#5. Patterns comportementaux GoF]]
+6. [[#6. Les patterns à l'épreuve de Python moderne]]
+7. [[#7. Injection de dépendances et composition]]
+8. [[#8. Patterns de domaine et d'application]]
+9. [[#9. Patterns de persistance]]
+10. [[#10. Patterns événementiels et de messagerie]]
+11. [[#11. Patterns de résilience]]
+12. [[#12. Patterns de concurrence et d'asynchronisme]]
+13. [[#13. Patterns d'interface et de présentation]]
+14. [[#14. Patterns pour les systèmes distribués]]
+15. [[#15. Patterns de sécurité]]
+16. [[#16. Tests et testabilité des patterns]]
+17. [[#17. Refactoring vers un pattern]]
+18. [[#18. Anti-patterns]]
+19. [[#19. Études de cas]]
+20. [[#20. Guide de décision]]
+21. [[#21. Travaux pratiques]]
+22. [[#22. Projet final]]
+23. [[#23. Checklist]]
+24. [[#24. Glossaire]]
+25. [[#25. Ressources]]
 
-**[[#3. Design Patterns de Création]]**
-   - [[#3.1 Singleton]]
-   - [[#3.2 Builder]]
-   - [[#3.3 Prototype]]
-   - [[#3.4 Factory Method]]
-   - [[#3.5 Abstract Factory]]
+# 1. Comprendre les design patterns
 
-**[[# 4. Design Patterns Structurels]]**
-   - [[#4.1 Adapter]]
-   - [[#4.2 Bridge]]
-   - [[#4.3 Composite]]
-   - [[#4.4 Decorator]]
-   - [[#4.5 Facade]]
-   - [[#4.6 Flyweight]]
-   - [[#4.7 Proxy]]
+## 1.1 Définition
 
-**[[#5. Design Patterns Comportementaux]]**
-   - [[#5.1 Chain of Responsibility]]
-   - [[#5.2 Command]]
-   - [[#5.3 Interpreter]]
-   - [[#5.4 Iterator]]
-   - [[#5.5 Mediator]]
-   - [[#5.6 Memento]]
-   - [[#5.7 Observer]]
-   - [[#5.8 State]]
-   - [[#5.9 Strategy]]
-   - [[#5.10 Template Method]]
-   - [[#5.11 Visitor]]
+Un **design pattern** — ou patron de conception — est une solution générale et réutilisable à un problème de conception récurrent dans un contexte donné.
 
-**[[#6. Etude de cas]]**
-   - Application des design patterns dans des projets de programmation réels.
-   - Analyse de codes existants : identification et amélioration avec des design patterns.
+Un pattern n'est donc pas :
 
-**[[#7. Anti-patterns]]**
-   - Qu'est-ce qu'un anti-pattern ?
-   - Anti-patterns communs et comment les éviter.
+- une bibliothèque ;
+- un fragment de code à copier aveuglément ;
+- une règle obligatoire ;
+- une architecture complète ;
+- une preuve qu'une conception est bonne.
 
-**[[#8. Projet Final]]**
-   - Conception et développement d'un projet en utilisant plusieurs design patterns.
+Un pattern décrit plutôt :
 
-**[[#9. Ressources]]**
-  - Livres
-  - Ressources en ligne
-  - Cours en ligne
+1. un **contexte** ;
+2. un **problème** récurrent ;
+3. les **forces** et contraintes qui s'opposent ;
+4. une **structure de solution** ;
+5. les **conséquences** et compromis de cette solution.
 
-# 1. Introduction aux Design Patterns
-
-## 1.1 Qu'est-ce qu'un design pattern?
-
-Un design pattern est une solution éprouvée à un problème courant de conception de logiciels. Il n'est pas un morceau de code réutilisable, mais plutôt un guide pour résoudre certains problèmes de manière générale. Les patterns peuvent accélérer le processus de développement en fournissant des paradigmes de test, des modèles de développement éprouvés.
+Le mot important est **compromis**. Un pattern résout certains problèmes en ajoutant généralement de nouvelles abstractions, de l'indirection ou des objets supplémentaires.
 
 ```mermaid
 graph LR
-    A[Problèmes de Conception] -->|Résolution| B[Design Patterns]
-    B --> C{Catégories de Design Patterns}
-    C --> D[Création]
-    C --> E[Structurel]
-    C --> F[Comportemental]
+    A[Contexte] --> B[Problème récurrent]
+    B --> C[Forces / contraintes]
+    C --> D[Pattern]
+    D --> E[Bénéfices]
+    D --> F[Coûts]
 ```
 
-## 1.2 Pourquoi les design patterns sont-ils importants?
+## 1.2 Origine du vocabulaire
 
-Les design patterns sont importants parce qu'ils fournissent des solutions testées et éprouvées à des problèmes de conception fréquemment rencontrés, ils améliorent la lisibilité du code et peuvent rendre le code plus facile à maintenir ou à adapter.
+Le concept de pattern vient des travaux de l'architecte Christopher Alexander sur les formes récurrentes dans l'architecture des bâtiments.
+
+En génie logiciel, l'ouvrage le plus célèbre est :
+
+> *Design Patterns: Elements of Reusable Object-Oriented Software* — Erich Gamma, Richard Helm, Ralph Johnson et John Vlissides, 1994.
+
+Ces quatre auteurs sont souvent appelés le **Gang of Four**, ou **GoF**.
+
+Ils ont catalogué **23 patterns orientés objet**, répartis en trois familles :
+
+- création ;
+- structure ;
+- comportement.
+
+Ces patterns restent utiles, mais il faut les replacer dans leur contexte historique : C++ et Smalltalk au début des années 1990. Les langages modernes possèdent parfois directement des mécanismes qui rendent certaines implémentations beaucoup plus simples.
+
+## 1.3 Pattern, idiome, principe et architecture
+
+Ces termes ne sont pas synonymes.
+
+| Notion | Échelle | Exemple |
+|---|---|---|
+| Idiome | Très locale, liée au langage | context manager Python |
+| Principe | Règle de conception | Dependency Inversion |
+| Design pattern | Collaboration de composants | Strategy |
+| Pattern architectural | Organisation d'une application | Hexagonal Architecture |
+| Architecture | Ensemble cohérent de décisions | monolithe modulaire événementiel |
+
+Un pattern peut appliquer un principe. Par exemple, **Strategy** peut aider à respecter Open/Closed et Dependency Inversion, mais le simple fait d'utiliser Strategy ne garantit pas le respect de SOLID.
+
+Voir aussi [[Principes SOLID en COO]] et [[Architecture des logiciels]].
+
+## 1.4 Les trois familles GoF
 
 ```mermaid
 graph TD
-    A[Design Patterns] --> B[Solutions Éprouvées]
-    A --> C[Lisibilité du Code]
-    A --> D[Maintenance du Code]
+    DP[Design Patterns GoF]
+    DP --> C[Création]
+    DP --> S[Structure]
+    DP --> B[Comportement]
+    C --> C1[Factory Method]
+    C --> C2[Abstract Factory]
+    C --> C3[Builder]
+    C --> C4[Prototype]
+    C --> C5[Singleton]
+    S --> S1[Adapter]
+    S --> S2[Bridge]
+    S --> S3[Composite]
+    S --> S4[Decorator]
+    S --> S5[Facade]
+    S --> S6[Flyweight]
+    S --> S7[Proxy]
+    B --> B1[Chain of Responsibility]
+    B --> B2[Command]
+    B --> B3[Interpreter]
+    B --> B4[Iterator]
+    B --> B5[Mediator]
+    B --> B6[Memento]
+    B --> B7[Observer]
+    B --> B8[State]
+    B --> B9[Strategy]
+    B --> B10[Template Method]
+    B --> B11[Visitor]
 ```
 
-## 1.3 Les principes fondamentaux des design patterns
+## 1.5 Pourquoi apprendre les patterns ?
 
-Il y a quelques principes fondamentaux que tous les design patterns suivent. Ces principes sont :
-   
-   - **L'Encapsulation** : Les détails spécifiques sont cachés derrière une interface.
-   - **La Composition** : Les objets sont composés pour obtenir de nouvelles fonctionnalités.
-   - **Le Polymorphisme** : Les entités de base peuvent être remplacées par des entités dérivées.
+Le premier bénéfice est **le vocabulaire commun**.
 
-```mermaid
-graph LR
-    A[Principes Fondamentaux] --> B{Principes}
-    B --> D[Encapsulation]
-    B --> E[Composition]
-    B --> F[Polymorphisme]
+Dire :
+
+> « Ici nous avons un Adapter entre notre domaine et le SDK fournisseur. »
+
+est plus précis que :
+
+> « Nous avons cette classe qui convertit un truc en un autre truc. »
+
+Les patterns permettent aussi :
+
+- de reconnaître des structures existantes ;
+- de comparer plusieurs solutions ;
+- de communiquer des intentions ;
+- d'améliorer une conception par refactoring ;
+- de comprendre les frameworks et bibliothèques ;
+- de reconnaître les coûts de certaines abstractions.
+
+## 1.6 Le danger : Patternitis
+
+La **Patternitis** consiste à introduire des patterns partout, même en l'absence de problème réel.
+
+Exemple excessif :
+
+```text
+UserServiceFactory
+  -> UserServiceBuilder
+    -> UserRepositoryAdapter
+      -> UserRepositoryProxy
+        -> UserRepositoryFacade
 ```
 
-Dans les prochaines sections, nous explorerons les divers types de design patterns et nous plongerons dans des exemples spécifiques de chacun.
+alors qu'une fonction et une classe simples auraient suffi.
 
-# 2. Catégorisation des Design Patterns
+Une bonne règle est :
 
-Les design patterns sont généralement catégorisés en trois types : Création de patterns (ou Creation), Patterns Structurels (ou Structural) et Patterns Comportementaux (ou Behavioral).
+> Commencer simple. Introduire un pattern lorsque la pression du changement rend son coût justifié.
 
-```mermaid
-graph LR
-    A{Design Patterns} --> B[Création de Patterns]
-    A --> C[Patterns Structurels]
-    A --> D[Patterns Comportementaux]
-```
+# 2. Comment choisir un pattern sans sur-concevoir
 
-## **2.1 Création de patterns (Creational Patterns)**
+## 2.1 Partir du changement attendu
 
-Les patterns de création sont conçus pour traiter les problèmes de création d'objets. Ils résolvent ce problème en contrôlant de manière appropriée le processus de création d'objets. Les principaux patterns de cette catégorie incluent : Singleton, Builder, Prototype, Factory Method, et Abstract Factory.
+On ne choisit pas un pattern parce qu'il est élégant. On le choisit pour isoler une **variation**.
 
-```mermaid
-graph TD
-    A[Création de Patterns] --> B[Singleton]
-    A --> C[Builder]
-    A --> D[Prototype]
-    A --> E[Factory Method]
-    A --> F[Abstract Factory]
-```
+Questions utiles :
 
-## **2.2 Patterns Structurels (Structural Patterns)**
+- Qu'est-ce qui varie réellement ?
+- Qu'est-ce qui doit rester stable ?
+- Qu'est-ce qui risque de changer souvent ?
+- Qui doit connaître ce changement ?
+- Peut-on résoudre le problème avec une fonction simple ?
 
-Les patterns structurels se préoccupent de la composition des classes et des objets pour former des structures plus grandes. Ils aident à assurer que lorsque les parties d'un système changent, l'ensemble du système n'a pas besoin de changer. Les principaux patterns de cette catégorie incluent : Adapter, Bridge, Composite, Decorator, Facade, Flyweight, et Proxy.
+Exemple : si le mode de calcul des frais de livraison change selon le transporteur, **Strategy** peut isoler cet axe de variation.
 
-```mermaid
-graph TD
-    A[Patterns Structurels] --> B[Adapter]
-    A --> C[Bridge]
-    A --> D[Composite]
-    A --> E[Decorator]
-    A --> F[Facade]
-    A --> G[Flyweight]
-    A --> H[Proxy]
-```
+## 2.2 Composition avant héritage
 
-## **2.3 Patterns Comportementaux (Behavioral Patterns)**
+Une idée centrale des patterns GoF est :
 
-Les patterns comportementaux sont concernés par la communication entre les objets, comment ils interagissent et se répartissent les responsabilités. Les principaux patterns de cette catégorie incluent : Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, et Visitor.
+> Favoriser la composition d'objets plutôt que l'héritage de classes.
 
-```mermaid
-graph TD
-    A[Patterns Comportementaux] --> B[Chain of Responsibility]
-    A --> C[Command]
-    A --> D[Interpreter]
-    A --> E[Iterator]
-    A --> F[Mediator]
-    A --> G[Memento]
-    A --> H[Observer]
-    A --> I[State]
-    A --> J[Strategy]
-    A --> K[Template Method]
-    A --> L[Visitor]
-```
+L'héritage crée un couplage fort entre parent et enfant.
 
-Dans les sections suivantes, nous aborderons plus en détail chaque catégorie et chaque pattern spécifique.
+La composition permet généralement :
 
-# 3. Design Patterns de Création
+- de remplacer un comportement à l'exécution ;
+- de tester chaque composant séparément ;
+- de combiner plusieurs comportements ;
+- d'éviter les hiérarchies profondes.
 
-Les Design Patterns de Création se focalisent sur le contrôle de la création des instances. Ces modèles encapsulent la connaissance sur quels objets spécifiques du système doivent être créés, comment ces objets sont créés, et comment ils sont associés.
+## 2.3 Programmer vers un contrat
 
-```mermaid
-graph LR
-    A{Design Patterns de Création} --> B[Singleton]
-    A --> C[Builder]
-    A --> D[Prototype]
-    A --> E[Factory Method]
-    A --> F[Abstract Factory]
-```
+En Python moderne, le contrat peut être :
 
-## 3.1 Singleton
-
-Le Singleton est un pattern de conception qui limite l'instanciation d'une classe à un seul objet. Il est utilisé lorsque vous voulez vous assurer qu'une classe n'a qu'une seule instance, et que vous voulez fournir un point d'accès global à cette instance.
-
-```mermaid
-classDiagram
-    class Singleton {
-        -static instance : Singleton
-        -Singleton() : constructor
-        +static getInstance() : Singleton
-    }
-    Singleton --> Singleton : Uses
-```
-
-Exemple en python :
-
-Le Singleton peut être implémenté de plusieurs façons. L'une des façons les plus simples est d'utiliser un module. En voici un exemple :
+- une classe abstraite (`abc.ABC`) ;
+- un `typing.Protocol` ;
+- un simple contrat implicite lorsque le contexte est suffisamment local.
 
 ```python
-class Singleton:
-    _instance = None
+from typing import Protocol
 
-    @staticmethod
-    def getInstance():
-        if Singleton._instance == None:
-            Singleton()
-        return Singleton._instance
+class Sender(Protocol):
+    def send(self, message: str) -> None: ...
 
-    def __init__(self):
-        if Singleton._instance != None:
-            raise Exception("Cette classe est un singleton !")
-        else:
-            Singleton._instance = self
+class EmailSender:
+    def send(self, message: str) -> None:
+        print(f"email: {message}")
 
-s = Singleton.getInstance()
-print(s)
-
+def notify(sender: Sender, message: str) -> None:
+    sender.send(message)
 ```
 
+`EmailSender` n'a pas besoin d'hériter explicitement de `Sender`. C'est du **sous-typage structurel**.
 
-## 3.2 Builder
+Cela rend beaucoup de patterns GoF plus légers en Python.
 
-Le pattern Builder ou Constructeur en français est utilisé pour construire des objets complexes étape par étape. Il sépare le code de construction d'un objet de la représentation de cet objet, de sorte que le même code de construction peut créer différents types d'objets.
+## 2.4 Mesurer le coût de l'indirection
 
-```mermaid
-classDiagram
-    class Director {
-        +construct() : void
-    }
-    class Builder {
-        +buildPartA() : void
-        +buildPartB() : void
-        +getResult() : Product
-    }
-    Director --> Builder : Uses
-    Builder <-- ConcreteBuilder : Inherits
-    class ConcreteBuilder {
-        +buildPartA() : void
-        +buildPartB() : void
-        +getResult() : Product
-    }
+Chaque abstraction ajoute un coût cognitif.
+
+Un pattern est intéressant lorsque :
+
+```text
+bénéfice du découplage > coût de l'indirection
 ```
 
-Le pattern Builder peut être implémenté comme suit :
+Signaux qu'une abstraction est peut-être prématurée :
+
+- une seule implémentation sans variation prévue ;
+- aucune frontière externe ;
+- aucun test rendu plus simple ;
+- plusieurs classes qui ne font que déléguer ;
+- noms génériques sans sens métier : `Manager`, `Handler`, `Processor` ;
+- pattern impossible à expliquer par un problème concret.
+
+# 3. Patterns de création GoF
+
+Les patterns de création contrôlent **comment les objets apparaissent**.
+
+## 3.1 Factory Method
+
+## Intention
+
+Déléguer la création d'un objet afin que le code appelant dépende d'un contrat plutôt que d'une classe concrète.
+
+## Exemple moderne
 
 ```python
-class Director:
-    __builder = None
+from typing import Protocol
 
-    def setBuilder(self, builder):
-        self.__builder = builder
+class Storage(Protocol):
+    def put(self, key: str, data: bytes) -> None: ...
 
-    def getCar(self):
-        car = Car()
+class LocalStorage:
+    def put(self, key: str, data: bytes) -> None:
+        print(f"write {key} locally")
 
-        # Build parts
-        body = self.__builder.getBody()
-        car.setBody(body)
+class S3Storage:
+    def put(self, key: str, data: bytes) -> None:
+        print(f"upload {key} to S3")
 
-        engine = self.__builder.getEngine()
-        car.setEngine(engine)
 
-        return car
-
-# The whole product
-class Car:
-    def __init__(self):
-        self.__engine = None
-        self.__body = None
-
-    def setBody(self, body):
-        self.__body = body
-
-    def setEngine(self, engine):
-        self.__engine = engine
-
-# Abstract Builder
-class Builder:
-    def getEngine(self): pass
-    def getBody(self): pass
-
-# Concrete Builder 
-class CarBuilder(Builder):
-    def getEngine(self):
-        return "Sport engine"
-
-    def getBody(self):
-        return "Sport body"
-
-director = Director()
-director.setBuilder(CarBuilder())
-
-car = director.getCar()
-print(car)
+def create_storage(kind: str) -> Storage:
+    match kind:
+        case "local":
+            return LocalStorage()
+        case "s3":
+            return S3Storage()
+        case _:
+            raise ValueError(f"Unknown storage: {kind}")
 ```
 
-## 3.3 Prototype
+En Python, une **fonction factory** suffit souvent. Il n'est pas nécessaire de reproduire la hiérarchie de classes de l'exemple GoF original.
 
-Le pattern Prototype est utilisé lorsque la création d'un nouvel objet est coûteuse. Il offre un mécanisme pour copier un objet original ou prototype, et ainsi éviter une création coûteuse.
+## Utiliser Factory Method lorsque
 
-```mermaid
-classDiagram
-    class Prototype {
-        +clone() : Prototype
-    }
-    Prototype <-- ConcretePrototype : Inherits
-```
+- le choix de l'implémentation dépend de la configuration ;
+- le constructeur concret ne doit pas fuiter dans le domaine ;
+- plusieurs implémentations partagent un contrat ;
+- la création contient une logique significative.
 
-Le pattern Prototype peut être implémenté grâce à la fonction de copie :
+## Ne pas l'utiliser lorsque
 
 ```python
-import copy
-
-class Prototype:
-
-    def __init__(self):
-        self._objects = {}
-
-    def registerObject(self, name, obj):
-        self._objects[name] = obj
-
-    def unregisterObject(self, name):
-        del self._objects[name]
-
-    def clone(self, name, **attr):
-        obj = copy.deepcopy(self._objects.get(name))
-        obj.__dict__.update(attr)
-        return obj
-
-class Car:
-    def __init__(self):
-        self.name = "Car"
-        self.color = "Red"
-        self.options = "Ex"
-
-car = Car()
-prototype = Prototype()
-prototype.registerObject("car1", car)
-
-car2 = prototype.clone("car1")
-print(car2)
+thing = Thing()
 ```
 
-## 3.4 Factory Method
+est déjà toute la logique nécessaire.
 
-Le Factory Method est un pattern qui définit une interface pour créer un objet, mais laisse les sous-classes décider quelles classes instancier. Il permet à une classe de déléguer l'instanciation à des sous-classes.
+## 3.2 Abstract Factory
 
-```mermaid
-classDiagram
-    class Creator {
-        +abstract factoryMethod() : Product
-    }
-    class Product {
-    }
-    Creator <-- ConcreteCreator : Inherits
-    Product <-- ConcreteProduct : Inherits
-    ConcreteCreator --> ConcreteProduct : Creates
-```
+## Intention
 
-Le pattern Factory Method peut être implémenté de la manière suivante :
+Créer des **familles cohérentes d'objets liés** sans exposer leurs classes concrètes.
+
+Exemple : un moteur de rendu doit créer un bouton et une boîte de dialogue appartenant au même thème.
 
 ```python
-class Dog:
-    def __init__(self, name):
-        self._name = name
+from typing import Protocol
 
-    def speak(self):
-        return "Woof!"
+class Button(Protocol):
+    def render(self) -> str: ...
 
-class Cat:
-    def __init__(self, name):
-        self._name = name
+class Dialog(Protocol):
+    def render(self) -> str: ...
 
-    def speak(self):
-        return "Meow!"
-
-def get_pet(pet="dog"):
-    pets = dict(dog=Dog("Hope"), cat=Cat("Peace"))
-    return pets[pet]
-
-d = get_pet("dog")
-print(d.speak())
-
-c = get_pet("cat")
-print(c.speak())
+class UIFactory(Protocol):
+    def button(self) -> Button: ...
+    def dialog(self) -> Dialog: ...
 ```
 
-## 3.5 Abstract Factory
+Le pattern devient intéressant lorsque plusieurs objets doivent évoluer **ensemble**.
 
-L'Abstract Factory est un pattern qui fournit une interface pour créer des familles d'objets liés ou dépendants sans spécifier leurs classes concrètes.
+Sinon, plusieurs factories indépendantes sont souvent plus simples.
 
-```mermaid
-classDiagram
-    class AbstractFactory {
-        +abstract createProductA() : AbstractProductA
-        +abstract createProductB() : AbstractProductB
-    }
-    class AbstractProductA {
-    }
-    class AbstractProductB {
-    }
-    AbstractFactory <-- ConcreteFactory : Inherits
-    AbstractProductA <-- ConcreteProductA1 : Inherits
-    AbstractProductA <-- ConcreteProductA2 : Inherits
-    AbstractProductB <-- ConcreteProductB1 : Inherits
-    AbstractProductB <-- ConcreteProductB2 : Inherits
-```
+## 3.3 Builder
 
-Le pattern Abstract Factory peut être implémenté  comme suit :
+## Intention
+
+Construire progressivement un objet complexe, en séparant le processus de construction de la représentation finale.
 
 ```python
-class Dog:
-    def __init__(self, name):
-        self._name = name
+from dataclasses import dataclass, field
 
-    def speak(self):
-        return "Woof!"
+@dataclass(frozen=True)
+class Query:
+    table: str
+    filters: tuple[str, ...] = field(default_factory=tuple)
+    limit: int | None = None
 
-class Cat:
-    def __init__(self, name):
-        self._name = name
+class QueryBuilder:
+    def __init__(self, table: str) -> None:
+        self._table = table
+        self._filters: list[str] = []
+        self._limit: int | None = None
 
-    def speak(self):
-        return "Meow!"
+    def where(self, expression: str) -> "QueryBuilder":
+        self._filters.append(expression)
+        return self
 
-class DogFactory:
-    def get_pet(self):
-        return Dog("Hope")
+    def limit(self, value: int) -> "QueryBuilder":
+        self._limit = value
+        return self
 
-    def get_food(self):
-        return "Dog Food"
-
-class CatFactory:
-    def get_pet(self):
-        return Cat("Peace")
-
-    def get_food(self):
-        return "Cat Food"
-
-class PetStore:
-    def __init__(self, pet_factory=None):
-        self._pet_factory = pet_factory
-
-    def show_pet(self):
-        pet = self._pet_factory.get_pet()
-        pet_food = self._pet_factory.get_food()
-
-        print("Our pet is '{}'!".format(pet))
-        print("Our pet says hello by '{}'".format(pet.speak()))
-        print("Its food is '{}'!".format(pet_food))
-
-#Create a Concrete Factory
-factory = DogFactory()
-
-#Create a pet store housing our Abstract Factory
-shop = PetStore(factory)
-
-#Invoke the utility method to show the details of our pet
-shop.show_pet()
+    def build(self) -> Query:
+        return Query(self._table, tuple(self._filters), self._limit)
 ```
-Dans cet exemple, le `DogFactory` et le `CatFactory` sont les fabriques concrètes qui produisent des produits cohérents (le `Dog` et la `Dog Food` pour `DogFactory`, le `Cat` et la `Cat Food` pour `CatFactory`). Le `PetStore` est une application qui utilise une Abstract Factory pour créer ses produits.
 
-# 4. Design Patterns Structurels
+Usage :
 
-Les Design Patterns Structurels se focalisent sur la façon dont les classes et les objets sont composés pour former de plus grandes structures. 
-
-```mermaid
-graph LR
-    A{Design Patterns Structurels} --> B[Adapter]
-    A --> C[Bridge]
-    A --> D[Composite]
-    A --> E[Decorator]
-    A --> F[Facade]
-    A --> G[Flyweight]
-    A --> H[Proxy]
+```python
+query = (
+    QueryBuilder("users")
+    .where("active = true")
+    .where("age >= 18")
+    .limit(100)
+    .build()
+)
 ```
+
+### Builder ou simple constructeur ?
+
+Avec les arguments nommés et les `dataclass`, beaucoup de builders Java classiques sont inutiles en Python :
+
+```python
+config = Config(host="localhost", port=5432, debug=True)
+```
+
+Builder reste utile lorsque :
+
+- la construction comporte plusieurs étapes ;
+- certaines combinaisons sont invalides ;
+- on veut une API fluide ;
+- la construction est différente de l'objet final.
+
+## 3.4 Prototype
+
+## Intention
+
+Créer un objet à partir d'un objet existant.
+
+Python fournit déjà des mécanismes adaptés :
+
+```python
+from copy import copy, deepcopy
+```
+
+Avec une `dataclass`, on peut préférer `dataclasses.replace()` :
+
+```python
+from dataclasses import dataclass, replace
+
+@dataclass(frozen=True)
+class ReportConfig:
+    format: str
+    include_details: bool
+    language: str
+
+base = ReportConfig("pdf", True, "fr")
+english = replace(base, language="en")
+```
+
+Le pattern conceptuel reste utile pour expliquer l'intention, mais une classe `Prototype` explicite n'est généralement pas nécessaire en Python.
+
+## 3.5 Singleton
+
+## Intention historique
+
+Garantir qu'une classe ne possède qu'une seule instance et fournir un point d'accès global.
+
+## Pourquoi le Singleton est souvent problématique
+
+Il introduit un **état global caché** :
+
+- dépendances invisibles ;
+- ordre des tests important ;
+- concurrence difficile ;
+- initialisation implicite ;
+- difficulté à remplacer l'objet.
+
+En Python, un module est déjà chargé une seule fois par interpréteur :
+
+```python
+# settings.py
+CACHE_SIZE = 1024
+```
+
+Pour une dépendance applicative, l'injection explicite est généralement préférable :
+
+```python
+class Application:
+    def __init__(self, cache: Cache) -> None:
+        self.cache = cache
+```
+
+## Cas acceptables
+
+- objet réellement stateless ;
+- registre purement technique ;
+- contrainte imposée par une API externe ;
+- ressource explicitement gérée au niveau du processus.
+
+Même dans ces cas, il faut éviter que le Singleton devienne un **Service Locator global**.
+
+## 3.6 Comparatif des patterns de création
+
+| Pattern | Question principale |
+|---|---|
+| Factory Method | Quelle implémentation créer ? |
+| Abstract Factory | Quelle famille cohérente créer ? |
+| Builder | Comment construire progressivement ? |
+| Prototype | Comment dériver d'une instance existante ? |
+| Singleton | Comment garantir une instance unique ? |
+
+# 4. Patterns structurels GoF
+
+Les patterns structurels organisent les relations entre composants.
 
 ## 4.1 Adapter
 
-L'Adapter est un pattern structurel qui permet à des interfaces incompatibles de collaborer. Il convertit l'interface d'une classe en une autre interface que les clients attendent.
+## Intention
 
-```mermaid
-classDiagram
-    class Target {
-        +request() : void
-    }
-    Target <-- Adapter
-    class Adaptee {
-        +specificRequest() : void
-    }
-    Adapter --> Adaptee : Uses
-```
-
-Exemple en Python :
+Faire correspondre une interface externe avec le contrat attendu par l'application.
 
 ```python
-class EuropeanSocketInterface:
-    def voltage(self): pass
+from typing import Protocol
 
-class Socket(EuropeanSocketInterface):
-    def voltage(self):
-        return 230
+class PaymentGateway(Protocol):
+    def charge(self, amount_cents: int) -> str: ...
 
-class AmericanSocketInterface:
-    def voltage(self): pass
+class LegacyBankSDK:
+    def make_payment(self, amount_euros: float) -> dict[str, str]:
+        return {"transaction": "abc123"}
 
-class Adapter(EuropeanSocketInterface):
-    def __init__(self, socket):
-        self.socket = socket
+class BankAdapter:
+    def __init__(self, sdk: LegacyBankSDK) -> None:
+        self._sdk = sdk
 
-    def voltage(self):
-        return 110
-
-american_socket = Adapter(Socket())
-print(american_socket.voltage())
+    def charge(self, amount_cents: int) -> str:
+        result = self._sdk.make_payment(amount_cents / 100)
+        return result["transaction"]
 ```
+
+L'Adapter constitue une excellente **frontière anti-corruption** entre le domaine et un SDK fournisseur.
+
+## Adapter vs Facade
+
+- Adapter **change le contrat** ;
+- Facade **simplifie le contrat**.
 
 ## 4.2 Bridge
 
-Le Bridge est un pattern qui permet de séparer l'abstraction d'une implémentation, de telle sorte que les deux peuvent être modifiées indépendamment.
+## Intention
 
-```mermaid
-classDiagram
-    class Abstraction {
-        +operation() : void
-    }
-    class Implementation {
-        +operationImpl() : void
-    }
-    Abstraction o--> Implementation : Uses
-    class RefinedAbstraction {
-        +operation() : void
-    }
-    Abstraction <|-- RefinedAbstraction
-    class ConcreteImplementationA {
-        +operationImpl() : void
-    }
-    Implementation <|-- ConcreteImplementationA
-    class ConcreteImplementationB {
-        +operationImpl() : void
-    }
-    Implementation <|-- ConcreteImplementationB
+Séparer deux axes de variation afin qu'ils puissent évoluer indépendamment.
+
+Exemple :
+
+- type de notification : alerte, résumé ;
+- canal : mail, SMS, push.
+
+Sans Bridge, on risque :
+
+```text
+EmailAlert
+SmsAlert
+PushAlert
+EmailDigest
+SmsDigest
+PushDigest
 ```
 
-Exemple en Python :
+Avec composition :
 
 ```python
-class ImplementationInterface:
-    def operation_implementation(self):
-        pass
-
-class Abstraction:
-    def __init__(self, implementation):
-        self.implementation = implementation
-
-    def operation(self):
-        self.implementation.operation_implementation()
-
-class ImplementationA(ImplementationInterface):
-    def operation_implementation(self):
-        return 'Implementation A'
-
-class ImplementationB(ImplementationInterface):
-    def operation_implementation(self):
-        return 'Implementation B'
-
-a = Abstraction(ImplementationA())
-b = Abstraction(ImplementationB())
-print(a.operation())
-print(b.operation())
+class Notification:
+    def __init__(self, channel: Channel) -> None:
+        self.channel = channel
 ```
+
+Bridge est utile lorsque deux dimensions indépendantes provoqueraient une explosion combinatoire des sous-classes.
 
 ## 4.3 Composite
 
-Le Composite est un pattern de conception qui permet de traiter les objets individuels et les compositions d'objets de manière uniforme.
+## Intention
 
-```mermaid
-classDiagram
-    class Component {
-        +operation() : void
-    }
-    class Leaf {
-        +operation() : void
-    }
-    Component <|-- Leaf
-    class Composite {
-        +add(component : Component) : void
-        +remove(component : Component) : void
-        +operation() : void
-    }
-    Component <|-- Composite
-    Component <.. Composite : Contains
-```
-
-Exemple en Python :
-Pardon pour l'interruption précédente. Je vais reprendre l'exemple du Composite en Python.
+Traiter uniformément un objet individuel et une composition d'objets.
 
 ```python
-class Component:
-    def __init__(self, name):
-        self._name = name
+from dataclasses import dataclass, field
+from typing import Protocol
 
-    def component_function(self):
-        print(f"{self._name}")
+class Node(Protocol):
+    def size(self) -> int: ...
 
-class Child(Component):
-    def __init__(self, name):
-        super().__init__(name)
+@dataclass
+class File:
+    bytes_count: int
 
-    def component_function(self):
-        super().component_function()
+    def size(self) -> int:
+        return self.bytes_count
 
-class Composite(Component):
-    def __init__(self, name):
-        super().__init__(name)
-        self._children = []
+@dataclass
+class Directory:
+    children: list[Node] = field(default_factory=list)
 
-    def add(self, child):
-        self._children.append(child)
-
-    def remove(self, child):
-        self._children.remove(child)
-
-    def component_function(self):
-        print(f"{self._name}")
-        for i in self._children:
-            i.component_function()
-
-sub1 = Composite("submenu1")
-sub11 = Child("sub_submenu 11")
-sub12 = Child("sub_submenu 12")
-
-sub1.add(sub11)
-sub1.add(sub12)
-
-top = Composite("top_menu")
-sub2 = Child("submenu2")
-
-top.add(sub1)
-top.add(sub2)
-top.component_function()
+    def size(self) -> int:
+        return sum(child.size() for child in self.children)
 ```
+
+Composite convient naturellement :
+
+- arbres syntaxiques ;
+- systèmes de fichiers ;
+- interfaces graphiques ;
+- organisations hiérarchiques.
 
 ## 4.4 Decorator
 
-Le Decorator est un pattern de conception qui permet d'ajouter de nouveaux comportements à des objets en les plaçant dans des objets enveloppeurs spéciaux.
+## Intention
 
-```mermaid
-classDiagram
-    class Component {
-        +operation() : void
-    }
-    class ConcreteComponent {
-        +operation() : void
-    }
-    Component <|-- ConcreteComponent
-    class Decorator {
-        -component : Component
-        +Decorator(c : Component) : void
-        +operation() : void
-    }
-    Component <|-- Decorator
-    Decorator o--> Component
-    class ConcreteDecoratorA {
-        -addedState : string
-        +operation() : void
-    }
-    Decorator <|-- ConcreteDecoratorA
-```
-
-Exemple en Python :
+Ajouter dynamiquement un comportement autour d'un objet sans modifier son interface principale.
 
 ```python
-class Component:
-    def operation(self):
-        pass
+class LoggingStorage:
+    def __init__(self, wrapped: Storage) -> None:
+        self._wrapped = wrapped
 
-class ConcreteComponent(Component):
-    def operation(self):
-        return "ConcreteComponent"
-
-class Decorator(Component):
-    _component = None
-
-    def __init__(self, component):
-        self._component = component
-
-    def operation(self):
-        self._component.operation()
-
-class ConcreteDecoratorA(Decorator):
-    def operation(self):
-        return f"ConcreteDecoratorA({self._component.operation()})"
-
-simple = ConcreteComponent()
-decorator = ConcreteDecoratorA(simple)
-print(decorator.operation())
+    def put(self, key: str, data: bytes) -> None:
+        print(f"put {key}")
+        self._wrapped.put(key, data)
 ```
+
+On peut empiler les décorateurs :
+
+```text
+MetricsStorage
+    -> LoggingStorage
+        -> RetryStorage
+            -> S3Storage
+```
+
+### Ne pas confondre
+
+Le **Decorator pattern** est une structure d'objets.
+
+Le décorateur Python `@decorator` est une syntaxe permettant de transformer une fonction ou une classe. Il peut implémenter le pattern Decorator, mais les deux notions ne sont pas identiques.
 
 ## 4.5 Facade
 
-La Facade est un pattern de conception structurel qui offre une interface simplifiée à une bibliothèque, un framework ou tout autre ensemble complexe de classes.
+## Intention
 
-```mermaid
-classDiagram
-    class Facade {
-        +operation() : void
-    }
-    class ComplexSubsystemClass1 {
-        +operation1() : void
-    }
-    class ComplexSubsystemClass2 {
-        +operation2() : void
-    }
-    Facade --> ComplexSubsystemClass1 : Uses
-    Facade --> ComplexSubsystemClass2 : Uses
-```
-
-Exemple en Python :
+Exposer une interface simple devant un sous-système complexe.
 
 ```python
-class ComplexSubsystem1:
-    def operation1(self):
-        return "Subsystem1: Ready!"
+class CheckoutFacade:
+    def __init__(self, inventory, payments, shipping) -> None:
+        self.inventory = inventory
+        self.payments = payments
+        self.shipping = shipping
 
-class ComplexSubsystem2:
-    def operation1(self):
-        return "Subsystem2: Ready!"
-
-class Facade:
-    def __init__(self, subsystem1, subsystem2):
-        self._subsystem1 = subsystem1 or ComplexSubsystem1()
-        self._subsystem2 = subsystem2 or ComplexSubsystem2()
-
-    def operation(self):
-        results = []
-        results.append(self._subsystem1.operation1())
-        results.append(self._subsystem2.operation1())
-        return "\n".join(results)
-
-subsystem1 = ComplexSubsystem1()
-subsystem2 = ComplexSubsystem2()
-facade = Facade(subsystem1, subsystem2)
-print(facade.operation())
+    def checkout(self, order) -> str:
+        self.inventory.reserve(order)
+        payment_id = self.payments.charge(order.total)
+        self.shipping.schedule(order)
+        return payment_id
 ```
+
+Une Facade peut devenir une **Application Service** lorsque l'opération orchestre plusieurs capacités applicatives.
 
 ## 4.6 Flyweight
 
-Le Flyweight est un pattern de conception structurel qui permet d'adapter plus d'objets dans la quantité de RAM disponible en partageant des parties communes des états d'objets entre plusieurs objets.
+## Intention
 
-```mermaid
-classDiagram
-    class Flyweight {
-        -intrinsicState : string
-        +operation(extrinsicState) : void
-    }
-    class UnsharedConcreteFlyweight {
-        -allState : string
-        +operation(extrinsicState) : void
-    }
-    Flyweight <|-- UnsharedConcreteFlyweight
-    class FlyweightFactory {
-        -flyweights : dict
-        +getFlyweight(key) : Flyweight
-    }
-    FlyweightFactory o--> Flyweight
+Partager un état immuable commun entre un très grand nombre d'objets.
+
+Exemples :
+
+- glyphes de polices ;
+- tuiles d'un jeu ;
+- métadonnées communes ;
+- objets valeur internés.
+
+La distinction essentielle :
+
+```text
+état intrinsèque  = partagé
+état extrinsèque  = fourni par le contexte
 ```
 
-Exemple en Python :
-
-```python
-class Flyweight:
-    def operation(self, extrinsic_state):
-        pass
-
-class ConcreteFlyweight(Flyweight):
-    def operation(self, extrinsic_state):
-        return f"ConcreteFlyweight: {str(extrinsic_state)}"
-
-class FlyweightFactory:
-    _flyweights = {}
-
-    def get_flyweight(self, key):
-        try:
-            flyweight = self._flyweights[key]
-        except KeyError:
-            flyweight = ConcreteFlyweight()
-            self._flyweights[key] = flyweight
-        return flyweight
-
-factory = FlyweightFactory()
-flyweight = factory.get_flyweight("key")
-print(flyweight.operation([1, 2, 3]))
-```
+Python applique déjà certaines formes d'interning à des objets internes, mais il ne faut pas compter sur les détails d'implémentation pour la logique métier.
 
 ## 4.7 Proxy
 
-Le Proxy est un pattern de conception structurel qui offre un substitut ou un espace réservé pour un autre objet. Un Proxy contrôle l'accès à l'objet original, permettant d'effectuer quelque chose soit avant soit après la demande atteint l'objet original.
+## Intention
 
-```mermaid
-classDiagram
-    class Subject {
-        +request() : void
-    }
-    class RealSubject {
-        +request() : void
-    }
-    Subject <|-- RealSubject
-    class Proxy {
-        -realSubject : RealSubject
-        +request() : void
-    }
-    Subject <|-- Proxy
-    Proxy o--> RealSubject
-```
+Interposer un objet possédant le même contrat qu'un objet cible afin de contrôler l'accès.
 
-Exemple en Python :
+Types courants :
 
-Excusez-moi pour l'interruption. Je vais reprendre avec l'exemple de Proxy en Python :
+- virtual proxy : chargement paresseux ;
+- protection proxy : contrôle d'accès ;
+- remote proxy : accès distant ;
+- caching proxy ;
+- monitoring proxy.
 
 ```python
-class RealSubject:
-    def request(self):
-        return "RealSubject: Handling request."
+class CachingCatalog:
+    def __init__(self, origin: Catalog) -> None:
+        self.origin = origin
+        self.cache: dict[str, Product] = {}
 
-class Proxy:
-    def __init__(self, real_subject):
-        self._real_subject = real_subject
-
-    def request(self):
-        if self.check_access():
-            self._real_subject.request()
-            self.log_access()
-
-    def check_access(self):
-        print("Proxy: Checking access prior to firing a real request.")
-        return True
-
-    def log_access(self):
-        print("Proxy: Logging the time of request.", end="")
-
-real_subject = RealSubject()
-proxy = Proxy(real_subject)
-proxy.request()
-```
-Dans cet exemple, le `Proxy` est utilisé pour contrôler l'accès à `RealSubject`. Avant de transmettre la demande à `RealSubject`, `Proxy` effectue d'autres actions comme la vérification des droits d'accès et le journalisation.
-
-# 5. Design Patterns Comportementaux
-
-Ces modèles sont centrés sur la communication et la délégation de responsabilités entre les objets.
-
-```mermaid
-graph LR
-    A{Design Patterns Comportementaux} --> B[Chain of Responsibility]
-    A --> C[Command]
-    A --> D[Interpreter]
-    A --> E[Iterator]
-    A --> F[Mediator]
-    A --> G[Memento]
-    A --> H[Observer]
-    A --> I[State]
-    A --> J[Strategy]
-    A --> K[Template Method]
-    A --> L[Visitor]
+    def get(self, product_id: str) -> Product:
+        if product_id not in self.cache:
+            self.cache[product_id] = self.origin.get(product_id)
+        return self.cache[product_id]
 ```
 
-Commençons par le premier de notre liste.
+## Proxy vs Decorator
+
+Ils peuvent avoir une structure similaire.
+
+La différence est surtout **l'intention** :
+
+- Decorator : enrichir le comportement ;
+- Proxy : contrôler l'accès à la cible.
+
+# 5. Patterns comportementaux GoF
 
 ## 5.1 Chain of Responsibility
 
-Ce modèle crée une chaîne d'objets récepteurs pour une requête. Cette chaîne de responsabilité passe la requête le long de la chaîne jusqu'à ce qu'un objet la traite.
+## Intention
 
-```mermaid
-classDiagram
-    class Handler {
-        +set_next(handler : Handler) : Handler
-        +handle(request) : string
-    }
-    Handler <|-- ConcreteHandler1
-    Handler <|-- ConcreteHandler2
-    class Client {
-        -handler : Handler
-        +Client() : void
-        +do_something() : void
-    }
-    Client o--> Handler : Uses >
-```
-
-Voici un exemple de ce modèle en Python :
+Faire passer une requête à travers une chaîne de handlers jusqu'à ce qu'elle soit traitée ou que la chaîne soit terminée.
 
 ```python
-class Handler:
-    _next_handler = None
+from typing import Protocol
 
-    def set_next(self, handler):
-        self._next_handler = handler
-        return handler
-
-    def handle(self, request):
-        if self._next_handler:
-            return self._next_handler.handle(request)
-        return None
-
-class ConcreteHandler1(Handler):
-    def handle(self, request):
-        if request == "request1":
-            return "ConcreteHandler1"
-        else:
-            return super().handle(request)
-
-class ConcreteHandler2(Handler):
-    def handle(self, request):
-        if request == "request2":
-            return "ConcreteHandler2"
-        else:
-            return super().handle(request)
-
-handler1 = ConcreteHandler1()
-handler2 = ConcreteHandler2()
-handler1.set_next(handler2)
-
-print(handler1.handle("request2"))
+class Handler(Protocol):
+    def handle(self, request: dict) -> dict: ...
 ```
 
-Dans cet exemple, nous avons deux gestionnaires : `ConcreteHandler1` et `ConcreteHandler2`. Chaque gestionnaire vérifie si elle peut traiter la requête. Si elle ne le peut pas, elle passe la requête au prochain gestionnaire de la chaîne.
+Exemples réels :
+
+- middleware HTTP ;
+- pipelines de validation ;
+- filtres de logs ;
+- authentification/autorisation ;
+- traitement documentaire.
+
+Attention aux chaînes dont l'ordre devient implicite et fragile.
 
 ## 5.2 Command
 
-Le modèle de Commande transforme une requête en un objet autonome qui contient toute l'information nécessaire à la requête. Cette transformation permet de paramétrer des méthodes avec des files d'attente, des demandes et des opérations, de retarder l'exécution d'une commande et de soutenir les opérations réversibles.
+## Intention
 
-```mermaid
-classDiagram
-    class Invoker {
-        -command : Command
-        +set_command(c : Command) : void
-        +do_something() : void
-    }
-    class Command {
-        +execute() : void
-    }
-    Command <|-- ConcreteCommand
-    class Receiver {
-        +do_something() : void
-    }
-    ConcreteCommand --> Receiver
-    Invoker o--> Command
-```
-
-Voici un exemple de ce modèle en Python :
+Représenter une action comme une valeur manipulable.
 
 ```python
-class Command:
-    def execute(self):
-        pass
+from dataclasses import dataclass
 
-class ConcreteCommand(Command):
-    def __init__(self, receiver):
-        self._receiver = receiver
-
-    def execute(self):
-        self._receiver.do_something()
-
-class Receiver:
-    def do_something(self):
-        print("Receiver is doing something.")
-
-class Invoker:
-    def set_command(self, command):
-        self._command = command
-
-    def do_something(self):
-        self._command.execute()
-
-receiver = Receiver()
-command = ConcreteCommand(receiver)
-invoker = Invoker()
-invoker.set_command(command)
-invoker.do_something()
+@dataclass(frozen=True)
+class CreateUser:
+    email: str
+    display_name: str
 ```
+
+Un handler exécute la commande :
+
+```python
+class CreateUserHandler:
+    def __init__(self, users: UserRepository) -> None:
+        self.users = users
+
+    def __call__(self, command: CreateUser) -> None:
+        self.users.add(User(command.email, command.display_name))
+```
+
+Command permet :
+
+- files d'attente ;
+- audit ;
+- retry contrôlé ;
+- undo dans certains domaines ;
+- séparation intention/exécution.
+
+En Python, une fonction ou un callable suffit souvent comme commande.
 
 ## 5.3 Interpreter
 
-L'Interpréteur est un modèle de conception comportemental qui spécifie comment évaluer des phrases dans une langue. Ce modèle implique la mise en œuvre d'un processeur de langage de programmation, peut être utilisé pour développer un compilateur ou un interpréteur.
+## Intention
 
-```mermaid
-classDiagram
-    class AbstractExpression {
-        +interpret(context : Context) : void
-    }
-    class TerminalExpression {
-        +interpret(context : Context) : void
-    }
-    class NonterminalExpression {
-        +interpret(context : Context) : void
-    }
-    AbstractExpression <|-- TerminalExpression
-    AbstractExpression <|-- NonterminalExpression
-    class Context {
-        -input : string
-        -output : string
-    }
-    NonterminalExpression o--> Context
-    TerminalExpression o--> Context
-```
+Représenter une grammaire simple et son interprétation.
 
-Exemple en Python :
+Exemples :
 
-```python
-class Context:
-    def __init__(self, input):
-        self.input = input
-        self.output = 0
+- DSL de règles ;
+- filtres ;
+- expressions de recherche ;
+- règles métier configurables.
 
-class AbstractExpression:
-    def interpret(self, context):
-        pass
+Pour une grammaire complexe, utiliser un vrai parseur est généralement préférable : Lark, ANTLR, PEG, etc.
 
-class NonterminalExpression(AbstractExpression):
-    def interpret(self, context):
-        context.output = int(context.input) * 2
-
-class TerminalExpression(AbstractExpression):
-    def interpret(self, context):
-        context.output = int(context.input) + 1
-
-context = Context("5")
-list_of_expressions = []
-list_of_expressions.append(NonterminalExpression())
-list_of_expressions.append(TerminalExpression())
-
-for expression in list_of_expressions:
-    expression.interpret(context)
-
-print(context.output)
-```
-Dans cet exemple, `NonterminalExpression` double la valeur de `input` et `TerminalExpression` l'incrémente.
+Interpreter GoF n'est pas un substitut à une infrastructure de parsing robuste.
 
 ## 5.4 Iterator
 
-L'itérateur est un modèle de conception comportemental qui permet de parcourir les éléments d'un objet complexe sans exposer sa représentation sous-jacente.
+## Intention
 
-```mermaid
-classDiagram
-    class Iterator {
-        +next() : Element
-        +has_next() : boolean
-    }
-    class ConcreteIterator {
-        -collection : Collection
-        -position : int
-        +next() : Element
-        +has_next() : boolean
-    }
-    Iterator <|-- ConcreteIterator
-    class Aggregate {
-        +create_iterator() : Iterator
-    }
-    class ConcreteAggregate {
-        -elements : list
-        +create_iterator() : Iterator
-    }
-    Aggregate <|-- ConcreteAggregate
-    Aggregate o--> Iterator : Creates >
-    ConcreteIterator --> ConcreteAggregate : Uses >
-```
+Parcourir une collection sans exposer sa représentation interne.
 
-Exemple en Python :
-Attention ! Ce code est donné à titre d'exemple, car le patron de modèle "Iterator" fait parti de la définition du langage python, en conséquence il est préférable d'utiliser ceux fournis par les bibliothèques standards.
+En Python, le pattern est directement intégré au langage :
+
 ```python
-class Iterator:
-    def next(self):
-        pass
+class Countdown:
+    def __init__(self, start: int) -> None:
+        self.start = start
 
-    def has_next(self):
-        pass
-
-class ConcreteIterator(Iterator):
-    def __init__(self, collection):
-        self._collection = collection
-        self._position = 0
-
-    def next(self):
-        try:
-            result = self._collection[self._position]
-            self._position += 1
-        except IndexError:
-            result = None
-        return result
-
-    def has_next(self):
-        return self._position < len(self._collection)
-
-class Aggregate:
-    def create_iterator(self):
-        pass
-
-class ConcreteAggregate(Aggregate):
-    def __init__(self):
-        self._elements = ["Element 1", "Element 2", "Element 3"]
-
-    def create_iterator(self):
-        return ConcreteIterator(self._elements)
-
-aggregate = ConcreteAggregate()
-iterator = aggregate.create_iterator()
-
-while iterator.has_next():
-    print(iterator.next())
+    def __iter__(self):
+        current = self.start
+        while current > 0:
+            yield current
+            current -= 1
 ```
 
-Dans cet exemple, `ConcreteIterator` itère sur `ConcreteAggregate`, qui est une collection d'éléments de chaînes.
+On préfère souvent un **générateur** à une classe Iterator complète.
+
+```python
+def countdown(start: int):
+    for current in range(start, 0, -1):
+        yield current
+```
 
 ## 5.5 Mediator
 
-Le modèle Mediator définit un objet qui encapsule comment un ensemble d'objets interagit. Il est utile pour promouvoir un couplage faible en évitant que les objets communiquent explicitement entre eux.
+## Intention
 
-```mermaid
-classDiagram
-    class Mediator {
-        +notify(sender : Component, event : string) : void
-    }
-    class ConcreteMediator {
-        -component1 : Component1
-        -component2 : Component2
-        +notify(sender : Component, event : string) : void
-    }
-    Mediator <|-- ConcreteMediator
-    class Component {
-        -mediator : Mediator
-        +set_mediator(mediator : Mediator) : void
-    }
-    class Component1 {
-        +do_something() : void
-        +do_something_else() : void
-    }
-    class Component2 {
-        +do_something() : void
-        +do_something_else() : void
-    }
-    Component <|-- Component1
-    Component <|-- Component2
-    Component1 --> Mediator
-    Component2 --> Mediator
-    ConcreteMediator --> Component1 : Knows >
-    ConcreteMediator --> Component2 : Knows >
-```
+Centraliser les interactions entre plusieurs composants afin qu'ils ne se connaissent pas directement.
 
-Exemple en Python :
+Exemples :
 
-```python
-class Mediator:
-    def notify(self, sender, event):
-        pass
+- dialogue GUI ;
+- bus de commandes interne ;
+- orchestrateur de workflow.
 
-class ConcreteMediator(Mediator):
-    def notify(self, sender, event):
-        if sender == "component1" and event == "event1":
-            print("Mediator reacts on event1 and triggers following operations:")
-        elif sender == "component2" and event == "event2":
-            print("Mediator reacts on event2 and triggers following operations:")
+Risque : transformer le Mediator en **God Object** connaissant tout le système.
 
-class Component:
-    def __init__(self, mediator):
-        self._mediator = mediator
-
-class Component1(Component):
-    def do_something(self):
-        self._mediator.notify("component1", "event1")
-
-class Component2(Component):
-    def do_something(self):
-        self._mediator.notify("component2", "event2")
-
-mediator = ConcreteMediator()
-component1 = Component1(mediator)
-component2 = Component2(mediator)
-component1.do_something()
-component2.do_something()
-```
-Dans cet exemple, `ConcreteMediator` coordonne les actions entre `Component1` et `Component2` en réponse à des notifications.
+Une règle utile : le Mediator doit orchestrer, pas absorber toute la logique métier.
 
 ## 5.6 Memento
 
-Le modèle Memento est utilisé pour restaurer l'état d'un objet à un moment précédent.
+## Intention
 
-```mermaid
-classDiagram
-    class Originator {
-        -state : string
-        +do_something() : void
-        +save() : Memento
-        +restore(memento : Memento) : void
-    }
-    class Memento {
-        -state : string
-        +get_state() : string
-    }
-    class Caretaker {
-        -mementos : list
-        -originator : Originator
-        +backup() : void
-        +undo() : void
-    }
-    Caretaker o--> Originator
-    Originator --> Memento
-    Caretaker --> Memento
-```
+Capturer l'état d'un objet afin de pouvoir le restaurer sans exposer tous ses détails internes.
 
-Exemple en Python :
+Exemples :
+
+- undo/redo ;
+- éditeur ;
+- simulation ;
+- checkpoint local.
 
 ```python
-import datetime
+from dataclasses import dataclass
 
-class Memento:
-    def __init__(self, state):
-        self._state = state
-        self._date = str(datetime.datetime.now())
-
-    def get_state(self):
-        return self._state
-
-class Originator:
-    _state = ""
-
-    def do_something(self):
-        self._state = "new state"
-
-    def save(self):
-        return Memento(self._state)
-
-    def restore(self, memento):
-        self._state = memento.get_state()
-
-class Caretaker:
-    def __init__(self, originator):
-        self._mementos = []
-        self._originator = originator
-
-    def backup(self):
-        self._mementos.append(self._originator.save())
-
-    def undo(self):
-        if not len(self._mementos):
-            return
-        memento = self._mementos.pop()
-        self._originator.restore(memento)
-
-originator = Originator()
-caretaker = Caretaker(originator)
-
-originator.do_something()
-caretaker.backup()
-
-originator.do_something()
-caretaker.backup()
-
-caretaker.undo()
+@dataclass(frozen=True)
+class EditorSnapshot:
+    text: str
+    cursor: int
 ```
 
-Dans cet exemple, chaque fois que `originator` fait quelque chose, `caretaker` fait une sauvegarde. `Caretaker` peut annuler les actions de `originator` en restaurant son état à partir d'un memento.
+Pour de gros états, copier tout l'objet peut être coûteux. On peut préférer :
+
+- journal de commandes ;
+- événements ;
+- structures persistantes ;
+- snapshots périodiques + delta.
 
 ## 5.7 Observer
 
-L'Observer est un modèle de conception comportemental qui permet de définir un mécanisme de souscription pour notifier plusieurs objets des événements qui se produisent dans l'objet qu'ils observent.
+## Intention
 
-```mermaid
-classDiagram
-    class Subject {
-        +attach(observer : Observer) : void
-        +detach(observer : Observer) : void
-        +notify() : void
-    }
-    class ConcreteSubject {
-        -state : int
-        +attach(observer : Observer) : void
-        +detach(observer : Observer) : void
-        +notify() : void
-        +do_something() : void
-    }
-    Subject <|-- ConcreteSubject
-    class Observer {
-        +update(subject : Subject) : void
-    }
-    class ConcreteObserverA {
-        +update(subject : Subject) : void
-    }
-    class ConcreteObserverB {
-        +update(subject : Subject) : void
-    }
-    Observer <|-- ConcreteObserverA
-    Observer <|-- ConcreteObserverB
-    ConcreteSubject --> Observer : Notifies >
-    Observer --> ConcreteSubject : Observes >
-```
-
-Exemple en Python :
+Notifier plusieurs abonnés lorsqu'un sujet change.
 
 ```python
-class Subject:
-    def attach(self, observer):
-        pass
+from collections.abc import Callable
 
-    def detach(self, observer):
-        pass
+class Event:
+    def __init__(self) -> None:
+        self._subscribers: list[Callable[[str], None]] = []
 
-    def notify(self):
-        pass
+    def subscribe(self, callback: Callable[[str], None]) -> None:
+        self._subscribers.append(callback)
 
-class ConcreteSubject(Subject):
-    _state = None
-    _observers = []
-
-    def attach(self, observer):
-        self._observers.append(observer)
-
-    def detach(self, observer):
-        self._observers.remove(observer)
-
-    def notify(self):
-        for observer in self._observers:
-            observer.update(self)
-
-    def do_something(self):
-        self._state = "new state"
-        self.notify()
-
-class Observer:
-    def update(self, subject):
-        pass
-
-class ConcreteObserverA(Observer):
-    def update(self, subject):
-        print(f"ConcreteObserverA: Reacted to {subject._state}")
-
-class ConcreteObserverB(Observer):
-    def update(self, subject):
-        print(f"ConcreteObserverB: Reacted to {subject._state}")
-
-subject = ConcreteSubject()
-observer_a = ConcreteObserverA()
-subject.attach(observer_a)
-observer_b = ConcreteObserverB()
-subject.attach(observer_b)
-
-subject.do_something()
+    def publish(self, message: str) -> None:
+        for callback in tuple(self._subscribers):
+            callback(message)
 ```
-Dans cet exemple, `ConcreteObserverA` et `ConcreteObserverB` sont attachés à `ConcreteSubject`. Lorsque `ConcreteSubject` change d'état, il notifie tous les observateurs attachés.
+
+Observer synchrone dans un processus est différent d'un **event bus distribué** comme Kafka ou RabbitMQ.
+
+Risques :
+
+- ordre des callbacks implicite ;
+- exceptions d'un observateur ;
+- fuite mémoire si l'abonnement n'est jamais retiré ;
+- effets de bord difficiles à tracer.
 
 ## 5.8 State
 
-Le modèle State permet à un objet de modifier son comportement lorsque son état interne change. Il semble que l'objet ait modifié sa classe.
+## Intention
 
-```mermaid
-classDiagram
-    class Context {
-        -state : State
-        +request1() : void
-        +request2() : void
-    }
-    class State {
-        +handle1() : void
-        +handle2() : void
-    }
-    class ConcreteStateA {
-        +handle1() : void
-        +handle2() : void
-    }
-    class ConcreteStateB {
-        +handle1() : void
-        +handle2() : void
-    }
-    Context --> State : Has a >
-    State <|-- ConcreteStateA
-    State <|-- ConcreteStateB
-```
-
-Exemple en Python :
+Faire varier le comportement d'un objet selon son état courant sans accumuler des `if state == ...` partout.
 
 ```python
-class State:
-    def handle1(self):
-        pass
+from enum import Enum, auto
 
-    def handle2(self):
-        pass
-
-class ConcreteStateA(State):
-    def handle1(self):
-        print("ConcreteStateA handles request1.")
-        print("ConcreteStateA wants to change the state of the context.")
-
-    def handle2(self):
-        print("ConcreteStateA handles request2.")
-
-class ConcreteStateB(State):
-    def handle1(self):
-        print("ConcreteStateB handles request1.")
-
-    def handle2(self):
-        print("ConcreteStateB handles request2.")
-        print("ConcreteStateB wants to change the state of the context.")
-
-class Context:
-    _state = None
-
-    def __init__(self, state: State) -> None:
-        self.transition_to(state)
-
-    def transition_to(self, state: State):
-        print(f"Context: Transition to {type(state).__name__}")
-        self._state = state
-        self._state.context = self
-
-    def request1(self):
-        self._state.handle1()
-
-    def request2(self):
-        self._state.handle2()
-
-context = Context(ConcreteStateA())
-context.request1()
-context.request2()
+class OrderState(Enum):
+    DRAFT = auto()
+    PAID = auto()
+    SHIPPED = auto()
+    CANCELLED = auto()
 ```
 
-Dans cet exemple, `Context` alterne entre `ConcreteStateA` et `ConcreteStateB`. L'état actuel est conservé dans le `Context`.
+Pour un workflow simple, un `Enum` + une table de transitions peut être suffisant.
+
+State devient utile lorsque chaque état possède beaucoup de comportements propres.
+
+```text
+DRAFT --pay--> PAID --ship--> SHIPPED
+  |               |
+cancel          refund
+  v               v
+CANCELLED       CANCELLED
+```
 
 ## 5.9 Strategy
 
-Le modèle Strategy définit une famille d'algorithmes, les encapsule chacun et les rend interchangeables. Ce modèle permet à l'algorithme de varier indépendamment des clients qui l'utilisent.
+## Intention
 
-```mermaid
-classDiagram
-    class Context {
-        -strategy : Strategy
-        +Context(strategy : Strategy) : void
-        +do_something() : void
-    }
-    class Strategy {
-        +do_algorithm() : void
-    }
-    class ConcreteStrategyA {
-        +do_algorithm() : void
-    }
-    class ConcreteStrategyB {
-        +do_algorithm() : void
-    }
-    Context --> Strategy : Has a >
-    Strategy <|-- ConcreteStrategyA
-    Strategy <|-- ConcreteStrategyB
-```
+Encapsuler plusieurs algorithmes interchangeables derrière un contrat commun.
 
-Exemple en Python :
+En Python, les stratégies peuvent être de simples fonctions :
 
 ```python
-from abc import ABC, abstractmethod
-from typing import List
+from collections.abc import Callable
 
-class Context:
-    def __init__(self, strategy):
-        self._strategy = strategy
+Discount = Callable[[int], int]
 
-    def do_something(self, data: List):
-        result = self._strategy.do_algorithm(data)
-        print(",".join(result))
+def no_discount(total: int) -> int:
+    return total
 
-class Strategy(ABC):
-    @abstractmethod
-    def do_algorithm(self, data: List):
-        pass
+def ten_percent(total: int) -> int:
+    return int(total * 0.90)
 
-class ConcreteStrategyA(Strategy):
-    def do_algorithm(self, data: List):
-        return sorted(data)
-
-class ConcreteStrategyB(Strategy):
-    def do_algorithm(self, data: List):
-        return reversed(sorted(data))
-
-data = ["a", "b", "c", "d", "e"]
-
-context = Context(ConcreteStrategyA())
-context.do_something(data)
-
-context = Context(ConcreteStrategyB())
-context.do_something(data)
+def checkout(total: int, discount: Discount) -> int:
+    return discount(total)
 ```
 
-Dans cet exemple, `Context` utilise une instance de `Strategy` pour effectuer une opération. Les `ConcreteStrategyA` et `ConcreteStrategyB` implémentent cette opération de manière différente.
+Une classe Strategy est utile si la stratégie porte :
+
+- un état ;
+- plusieurs opérations ;
+- des dépendances ;
+- une configuration complexe.
 
 ## 5.10 Template Method
 
-Le modèle Template Method définit le squelette d'un algorithme dans la méthode de superclasse mais laisse les sous-classes redéfinir certaines étapes de l'algorithme sans changer sa structure globale.
+## Intention
 
-```mermaid
-classDiagram
-    class AbstractClass {
-        +template_method() : void
-        +base_operation1() : void
-        +base_operation2() : void
-        +required_operations1() : void
-        +required_operations2() : void
-        +hook1() : void
-        +hook2() : void
-    }
-    class ConcreteClass1 {
-        +required_operations1() : void
-        +required_operations2() : void
-        +hook1() : void
-    }
-    class ConcreteClass2 {
-        +required_operations1() : void
-        +required_operations2() : void
-        +hook1() : void
-    }
-    AbstractClass <|-- ConcreteClass1
-    AbstractClass <|-- ConcreteClass2
-```
-
-Exemple en Python :
+Définir le squelette d'un algorithme dans une classe de base, en laissant certaines étapes aux sous-classes.
 
 ```python
 from abc import ABC, abstractmethod
 
-class AbstractClass(ABC):
-    def template_method(self):
-        self.base_operation1()
-        self.required_operations1()
-        self.base_operation2()
-        self.hook1()
-
-    def base_operation1(self):
-        print("AbstractClass says: I am doing the bulk of the work")
-
-    def base_operation2(self):
-        print("AbstractClass says: But I let subclasses override some operations")
+class Importer(ABC):
+    def run(self, raw: bytes) -> None:
+        data = self.parse(raw)
+        self.validate(data)
+        self.persist(data)
 
     @abstractmethod
-    def required_operations1(self):
+    def parse(self, raw: bytes): ...
+
+    def validate(self, data) -> None:
         pass
 
-    def hook1(self):
-        pass
-
-class ConcreteClass1(AbstractClass):
-    def required_operations1(self):
-        print("ConcreteClass1 says: Implemented Operation1")
-
-    def hook1(self):
-        print("ConcreteClass1 says: Overridden Hook1")
-
-class ConcreteClass2(AbstractClass):
-    def required_operations1(self):
-        print("ConcreteClass2 says: Implemented Operation2")
-
-    def hook1(self):
-        print("ConcreteClass2 says: Overridden Hook1")
-
-concrete_class = ConcreteClass1()
-concrete_class.template_method()
-
-print("\n")
-
-concrete_class = ConcreteClass2()
-concrete_class.template_method()
+    @abstractmethod
+    def persist(self, data) -> None: ...
 ```
 
-Dans cet exemple, `ConcreteClass1` et `ConcreteClass2` utilisent `template_method()` de `AbstractClass` mais redéfinissent `required_operations1()` et `hook1()`.
+En Python, on peut souvent remplacer Template Method par **composition + callbacks**, surtout lorsque la hiérarchie n'apporte aucune autre valeur.
 
 ## 5.11 Visitor
 
-Le modèle Visitor permet d'effectuer des opérations sur des éléments d'un ensemble d'objets. Avec Visitor, vous pouvez définir une nouvelle opération sans changer les classes des éléments sur lesquels elle opère.
+## Intention
 
-```mermaid
-classDiagram
-    class Component {
-        +accept(visitor : Visitor) : void
-    }
-    class ConcreteComponentA {
-        +accept(visitor : Visitor) : void
-        +exclusive_method_of_concrete_component_a() : string
-    }
-    class ConcreteComponentB {
-        +accept(visitor : Visitor) : void
-        +special_method_of_concrete_component_b() : string
-    }
-    Component <|-- ConcreteComponentA
-    Component <|-- ConcreteComponentB
-    class Visitor {
-        +visit_concrete_component_a(element) : void
-        +visit_concrete_component_b(element) : void
-    }
-    class ConcreteVisitor1 {
-        +visit_concrete_component_a(element) : void
-        +visit_concrete_component_b(element) : void
-    }
-    class ConcreteVisitor2 {
-        +visit_concrete_component_a(element) : void
-        +visit_concrete_component_b(element) : void
-    }
-    Visitor <|-- ConcreteVisitor1
-    Visitor <|-- ConcreteVisitor2
-    ConcreteComponentA --> Visitor : accept >
-    ConcreteComponentB --> Visitor : accept >
-    Visitor --> ConcreteComponentA : visit >
-    Visitor --> ConcreteComponentB : visit >
-```
+Ajouter une opération à une structure d'objets stable sans modifier toutes ses classes.
 
-Exemple en Python :
+Visitor est surtout utile lorsque :
+
+- les types de nœuds changent rarement ;
+- les opérations changent souvent ;
+- on travaille sur un AST ou une structure hétérogène.
+
+Inconvénient : ajouter un nouveau type de nœud oblige souvent à modifier tous les visiteurs.
+
+Python propose plusieurs alternatives :
+
+- pattern matching `match` ;
+- `functools.singledispatch` ;
+- méthodes polymorphes ;
+- dictionnaire de handlers.
 
 ```python
-from abc import ABC, abstractmethod
+from functools import singledispatch
 
-class Component(ABC):
-    @abstractmethod
-    def accept(self, visitor):
-        pass
+@singledispatch
+def render(node) -> str:
+    raise TypeError(type(node))
 
-class ConcreteComponentA(Component):
-    def accept(self, visitor):
-        visitor.visit_concrete_component_a(self)
+@render.register
+def _(node: TextNode) -> str:
+    return node.text
 
-    def exclusive_method_of_concrete_component_a(self):
-        return "A"
-
-class ConcreteComponentB(Component):
-    def accept(self, visitor):
-        visitor.visit_concrete_component_b(self)
-
-    def special_method_of_concrete_component_b(self):
-        return "B"
-
-class Visitor(ABC):
-    @abstractmethod
-    def visit_concrete_component_a(self, element):
-        pass
-
-    @abstractmethod
-    def visit_concrete_component_b(self, element):
-        pass
-
-class ConcreteVisitor1(Visitor):
-    def visit_concrete_component_a(self, element):
-        print(f"{element.exclusive_method_of_concrete_component_a()} + ConcreteVisitor1")
-
-    def visit_concrete_component_b(self, element):
-        print(f"{element.special_method_of_concrete_component_b()} + ConcreteVisitor1")
-
-class ConcreteVisitor2(Visitor):
-    def visit_concrete_component_a(self, element):
-        print(f"{element.exclusive_method_of_concrete_component_a()} + ConcreteVisitor2")
-
-    def visit_concrete_component_b(self, element):
-        print(f"{element.special_method_of_concrete_component_b()} + ConcreteVisitor2")
-
-component_a = ConcreteComponentA()
-component_b = ConcreteComponentB()
-
-visitor1 = ConcreteVisitor1()
-visitor2 = ConcreteVisitor2()
-
-component_a.accept(visitor1)
-component_a.accept(visitor2)
-component_b.accept(visitor1)
-component_b.accept(visitor2)
+@render.register
+def _(node: BoldNode) -> str:
+    return f"<strong>{render(node.child)}</strong>"
 ```
 
-Dans cet exemple, `ConcreteComponentA` et `ConcreteComponentB` acceptent n'importe quel objet qui hérite de `Visitor`. `ConcreteVisitor1` et `ConcreteVisitor2` sont deux visiteurs qui effectuent différentes opérations sur `ConcreteComponentA` et `ConcreteComponentB`.
+## 5.12 Tableau récapitulatif des patterns comportementaux
 
-## 6. Étude de cas
+| Pattern | Problème principal |
+|---|---|
+| Chain of Responsibility | pipeline de handlers |
+| Command | représenter une action |
+| Interpreter | interpréter une petite grammaire |
+| Iterator | parcourir une structure |
+| Mediator | réduire les dépendances croisées |
+| Memento | capturer/restaurer un état |
+| Observer | diffuser des notifications |
+| State | comportement dépendant de l'état |
+| Strategy | algorithme interchangeable |
+| Template Method | squelette d'algorithme par héritage |
+| Visitor | opérations sur structure stable |
 
-Voir [[Conception orientée objet]]
+# 6. Les patterns à l'épreuve de Python moderne
 
-# 7. Anti-patterns
+Les patterns ne disparaissent pas, mais leur **forme** change avec le langage.
 
-## 7.1 Qu'est-ce qu'un anti-pattern ?
+## 6.1 Protocol plutôt qu'une hiérarchie artificielle
 
-Un anti-pattern est un modèle couramment utilisé mais inefficace et/ou contre-productif dans la pratique. Les anti-patterns sont des "leçons apprises à la dure", et sont généralement le résultat de gestionnaires ou de développeurs qui ne reconnaissent pas les inadéquations d'un processus ou d'une technique de développement.
+`typing.Protocol` permet un sous-typage structurel : un objet respecte le contrat s'il fournit les opérations attendues.
 
-## 7.2 Anti-patterns communs et comment les éviter
+```python
+from typing import Protocol
 
-Voici quelques exemples d'anti-patterns courants dans le développement logiciel :
+class Clock(Protocol):
+    def now(self) -> float: ...
+```
 
-1. **God Object** : Il s'agit d'un objet qui connaît trop ou fait trop de choses. L'objet est si central que pratiquement toutes les autres fonctionnalités du système dépendent de lui. 
+Cela convient très bien à Adapter, Strategy, Repository et ports hexagonaux.
 
-   *Solution* : Découpons les responsabilités en objets plus petits et spécialisés.
+## 6.2 Fonctions de première classe
 
-2. **Spaghetti Code** : C'est un code avec peu ou pas de structure ou de conception. Cela rend le code difficile à comprendre et à maintenir.
+Une classe Strategy n'est pas nécessaire lorsque le comportement tient dans une fonction.
 
-   *Solution* : Utilisons des design patterns appropriés, et assurons-nous que votre code est bien structuré et commenté.
+Une classe Command n'est pas nécessaire lorsque :
 
-3. **Golden Hammer** : Il s'agit d'essayer d'adapter toutes les situations à un outil ou une technologie particulière, même si ce n'est pas le meilleur choix pour la tâche.
+```python
+def command() -> None:
+    ...
+```
 
-   *Solution* : Essayons de choisir la meilleure technologie pour chaque tâche. Ne vous limitons pas à ce que vous connaissons déjà.
+suffit.
 
-4. **Premature Optimization** : C'est l'acte d'essayer d'optimiser votre code avant même de savoir où seront les véritables goulots d'étranglement.
+Utiliser une classe lorsque le comportement a besoin d'identité, d'état, de sérialisation ou de plusieurs opérations.
 
-   *Solution* : Écrivons d'abord le code pour qu'il fonctionne correctement, puis optimisons en fonction des besoins mesurés.
+## 6.3 Décorateurs Python
 
-5. **Cargo Cult Programming** : C'est l'acte de copier et coller du code sans comprendre comment il fonctionne.
+```python
+from collections.abc import Callable
+from functools import wraps
 
-   *Solution* : Prenons le temps de comprendre le code que vous utilisons. Cela vous aidera à éviter des problèmes inattendus plus tard.
 
-En reconnaissant ces anti-patterns et en comprenant comment les éviter, nous pouvons améliorer la qualité de notre code et rendre notre processus de développement plus efficace.
+def traced(fn: Callable):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        print(f"call {fn.__name__}")
+        return fn(*args, **kwargs)
+    return wrapper
+```
 
-# 8. Projet final
+Ce mécanisme peut implémenter des préoccupations transverses :
 
-Voir [[Conception ]]
+- logs ;
+- métriques ;
+- cache ;
+- auth ;
+- retry.
 
-# 9. Ressources
+Attention à ne pas cacher des effets de bord critiques derrière trop de décorateurs.
 
-Voici quelques livres et ressources en ligne pour approfondir vos connaissances sur les design patterns, les anti-patterns, et le développement logiciel en général :
+## 6.4 Context Manager
 
-## 9.1 Livres
+Le protocole `with` encapsule acquisition et libération d'une ressource.
 
-   - "Design Patterns: Elements of Reusable Object-Oriented Software" par Erich Gamma, Richard Helm, Ralph Johnson, et John Vlissides (aussi connu sous le nom de "Gang of Four").
-   - "Refactoring: Improving the Design of Existing Code" par Martin Fowler.
-   - "Clean Code: A Handbook of Agile Software Craftsmanship" par Robert C. Martin.
-   - "AntiPatterns: Refactoring Software, Architectures, and Projects in Crisis" par William J. Brown, Raphael C. Malveau, Hays W. "Skip" McCormick, et Thomas J. Mowbray.
+```python
+from contextlib import contextmanager
 
-## 9.2 Ressources en ligne
+@contextmanager
+def transaction(db):
+    try:
+        yield db
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+```
 
-   - [Refactoring Guru](https://refactoring.guru/design-patterns) : Un site web dédié aux design patterns et au refactoring. Il contient des descriptions détaillées des différents design patterns, ainsi que des exemples de code en plusieurs langages.
-   - [SourceMaking](https://sourcemaking.com/) : Un autre excellent site web pour apprendre les design patterns, le refactoring, et les anti-patterns.
-   - [Wikipedia](https://en.wikipedia.org/wiki/Software_design_pattern) : Les pages Wikipedia sur les design patterns, les anti-patterns et le développement logiciel contiennent généralement de bonnes informations de base, ainsi que des liens vers d'autres ressources.
+Il remplace de nombreuses implémentations manuelles de type « execute around ».
 
-## 9.3 Cours en ligne
+## 6.5 Dataclasses et Value Objects
 
-   - Les plateformes comme [Coursera](https://www.coursera.org/), [edX](https://www.edx.org/), et [Udemy](https://www.udemy.com/) offrent de nombreux cours sur le développement logiciel, y compris les design patterns.
+```python
+from dataclasses import dataclass
 
-N'oublions pas que la meilleure façon d'apprendre est par la pratique. Donc, après avoir étudié ces ressources, essayons d'appliquer ce que nous avons appris dans nos projets.
+@dataclass(frozen=True, slots=True)
+class Money:
+    cents: int
+    currency: str
+```
+
+`frozen=True` ne rend pas récursivement tous les objets contenus immuables, mais convient bien aux petits objets valeur si leurs champs sont eux-mêmes traités comme immuables.
+
+## 6.6 Pattern matching
+
+Le `match` peut être une alternative claire à Visitor ou State dans des structures fermées et locales.
+
+```python
+def area(shape) -> float:
+    match shape:
+        case Circle(radius=r):
+            return 3.14159 * r * r
+        case Rectangle(width=w, height=h):
+            return w * h
+        case _:
+            raise TypeError(shape)
+```
+
+Si de nouveaux types apparaissent très souvent et sont fournis par des plugins, le polymorphisme reste généralement plus extensible.
+
+## 6.7 singledispatch
+
+`functools.singledispatch` fournit du dispatch générique sur le type du premier argument.
+
+C'est une excellente alternative légère à Visitor lorsque le modèle de données ne doit pas dépendre des opérations ajoutées.
+
+## 6.8 Iterator et générateurs
+
+Le pattern Iterator est pratiquement natif en Python grâce à :
+
+- `iter()` ;
+- `next()` ;
+- `yield` ;
+- générateurs ;
+- comprehensions.
+
+Il faut connaître le pattern conceptuel, sans pour autant créer systématiquement une classe `ConcreteIterator`.
+
+# 7. Injection de dépendances et composition
+
+L'injection de dépendances n'est pas l'un des 23 GoF mais elle est fondamentale dans les systèmes modernes.
+
+## 7.1 Injection par constructeur
+
+```python
+class InvoiceService:
+    def __init__(
+        self,
+        repository: InvoiceRepository,
+        clock: Clock,
+        sender: Sender,
+    ) -> None:
+        self.repository = repository
+        self.clock = clock
+        self.sender = sender
+```
+
+Les dépendances sont visibles et remplaçables.
+
+## 7.2 Composition Root
+
+La **Composition Root** est l'endroit où l'application assemble les implémentations concrètes.
+
+```python
+repository = PostgresInvoiceRepository(pool)
+clock = SystemClock()
+sender = SmtpSender(settings.smtp)
+service = InvoiceService(repository, clock, sender)
+```
+
+Le domaine ne doit pas connaître la Composition Root.
+
+## 7.3 Service Locator : prudence
+
+Un Service Locator ressemble à :
+
+```python
+mailer = services.get("mailer")
+```
+
+Il masque les dépendances et rend les tests plus difficiles.
+
+Préférer l'injection explicite, sauf contraintes spécifiques d'un framework/plugin system.
+
+# 8. Patterns de domaine et d'application
+
+## 8.1 Value Object
+
+Un **Value Object** est défini par sa valeur plutôt que par une identité persistante.
+
+Exemples :
+
+- Money ;
+- EmailAddress ;
+- DateRange ;
+- Coordinates.
+
+Caractéristiques habituelles :
+
+- petit ;
+- cohérent ;
+- valide dès construction ;
+- souvent immuable.
+
+## 8.2 Entity
+
+Une Entity possède une identité qui reste significative lorsque ses attributs changent.
+
+```python
+@dataclass
+class Customer:
+    id: CustomerId
+    name: str
+```
+
+## 8.3 Aggregate
+
+Un Aggregate regroupe des objets métier dont la cohérence transactionnelle est protégée par une racine.
+
+```text
+Order (Aggregate Root)
+├── OrderLine
+├── ShippingAddress
+└── Money
+```
+
+Une règle métier doit idéalement être protégée par l'Aggregate lui-même.
+
+## 8.4 Domain Service
+
+Un Domain Service contient une opération métier qui ne correspond naturellement à aucune Entity ou Value Object.
+
+Il ne doit pas devenir un fourre-tout de logique procédurale.
+
+## 8.5 Application Service
+
+L'Application Service orchestre :
+
+- chargement des objets ;
+- appel du domaine ;
+- transaction ;
+- publication d'événements ;
+- réponse.
+
+Il ne devrait pas contenir les règles métier principales.
+
+## 8.6 Specification
+
+Une Specification représente une règle ou un prédicat métier composable.
+
+```python
+from typing import Protocol, TypeVar
+
+T = TypeVar("T")
+
+class Specification(Protocol[T]):
+    def is_satisfied_by(self, candidate: T) -> bool: ...
+```
+
+Attention à ne pas construire un mini-langage abstrait si quelques prédicats suffisent.
+
+# 9. Patterns de persistance
+
+Voir aussi [[Bases de données relationnelles]].
+
+## 9.1 Repository
+
+Le Repository fournit une interface orientée domaine pour accéder à un ensemble d'objets persistés.
+
+```python
+from typing import Protocol
+
+class UserRepository(Protocol):
+    def get(self, user_id: str) -> User | None: ...
+    def add(self, user: User) -> None: ...
+```
+
+Le Repository n'est pas simplement un wrapper systématique autour de chaque table.
+
+Il est particulièrement utile lorsque :
+
+- le domaine doit rester indépendant de l'ORM ;
+- plusieurs sources de données existent ;
+- les requêtes représentent des concepts métier ;
+- les tests doivent utiliser un faux stockage.
+
+## 9.2 Unit of Work
+
+Unit of Work suit les changements d'une transaction métier et coordonne leur persistance.
+
+```python
+class UnitOfWork(Protocol):
+    users: UserRepository
+
+    def commit(self) -> None: ...
+    def rollback(self) -> None: ...
+```
+
+Une implémentation peut être un context manager :
+
+```python
+with uow_factory() as uow:
+    user = uow.users.get(user_id)
+    user.rename(new_name)
+    uow.commit()
+```
+
+## 9.3 Data Mapper
+
+Data Mapper sépare les objets du domaine de la représentation de stockage.
+
+Il s'oppose conceptuellement à Active Record, où l'objet porte lui-même ses opérations de persistance.
+
+## 9.4 Active Record
+
+```text
+user.save()
+user.delete()
+```
+
+Avantages :
+
+- très productif pour CRUD simple ;
+- API facile à comprendre.
+
+Inconvénients :
+
+- domaine couplé à la persistence ;
+- tests purs plus difficiles ;
+- logique complexe susceptible de se disperser.
+
+## 9.5 Identity Map
+
+Identity Map garantit qu'une même entité chargée plusieurs fois dans une unité de travail correspond à une même instance en mémoire.
+
+De nombreux ORM implémentent ce mécanisme dans leur session.
+
+## 9.6 Lazy Load
+
+Lazy Load retarde le chargement d'une donnée jusqu'à son utilisation.
+
+Risque majeur : le **N+1 query problem**.
+
+Le pattern est utile, mais il doit être accompagné de :
+
+- profiling SQL ;
+- eager loading lorsqu'il est approprié ;
+- limites de frontières de session claires.
+
+# 10. Patterns événementiels et de messagerie
+
+## 10.1 Domain Event
+
+Un événement de domaine décrit un **fait métier passé** :
+
+```python
+@dataclass(frozen=True)
+class OrderPaid:
+    order_id: str
+    amount_cents: int
+```
+
+Nommer un événement au passé évite de le confondre avec une commande.
+
+```text
+Commande : PayOrder
+Événement : OrderPaid
+```
+
+## 10.2 Event Bus
+
+Un Event Bus route les événements vers les handlers.
+
+Dans un seul processus, cela peut rester synchrone.
+
+Dans un système distribué, il faut gérer :
+
+- livraison au moins une fois ;
+- doublons ;
+- ordre ;
+- retry ;
+- dead-letter queue ;
+- observabilité.
+
+## 10.3 Publish/Subscribe
+
+Un producteur publie sans connaître les consommateurs.
+
+```mermaid
+graph LR
+    P[Producer] --> T[Topic]
+    T --> C1[Consumer A]
+    T --> C2[Consumer B]
+    T --> C3[Consumer C]
+```
+
+Découplage logique ne signifie pas absence de couplage : le schéma de l'événement reste un contrat.
+
+## 10.4 Transactional Outbox
+
+Problème classique :
+
+```text
+1. COMMIT base de données
+2. publier événement
+```
+
+Si l'application tombe entre les deux opérations, les données et les événements divergent.
+
+Transactional Outbox écrit dans la même transaction :
+
+```text
+transaction
+├── tables métier
+└── outbox
+```
+
+Un worker publie ensuite l'outbox vers le broker.
+
+## 10.5 Idempotent Consumer
+
+Comme un message peut être livré plusieurs fois, le consumer doit souvent être idempotent.
+
+Techniques :
+
+- clé d'idempotence ;
+- table des messages traités ;
+- contrainte UNIQUE ;
+- transition métier qui refuse naturellement le doublon.
+
+## 10.6 Saga
+
+Une Saga coordonne une transaction métier distribuée par une suite de transactions locales et d'actions compensatoires.
+
+Deux styles :
+
+- orchestration ;
+- chorégraphie.
+
+Saga n'offre pas magiquement les propriétés ACID d'une transaction locale.
+
+# 11. Patterns de résilience
+
+## 11.1 Timeout
+
+Toute dépendance distante devrait avoir une limite de temps explicite.
+
+```python
+async with asyncio.timeout(2.0):
+    await remote_call()
+```
+
+Un appel sans timeout peut immobiliser indéfiniment une ressource.
+
+## 11.2 Retry avec backoff
+
+Retry convient surtout aux erreurs **transitoires**.
+
+```text
+100 ms → 200 ms → 400 ms → 800 ms
+```
+
+Ajouter du **jitter** évite que tous les clients réessayent simultanément.
+
+Ne pas retry aveuglément :
+
+- validation 400 ;
+- permission 403 ;
+- opération non idempotente sans clé d'idempotence.
+
+## 11.3 Circuit Breaker
+
+États classiques :
+
+```text
+CLOSED -> OPEN -> HALF_OPEN -> CLOSED
+```
+
+Lorsque les erreurs dépassent un seuil, le circuit s'ouvre afin d'éviter de saturer une dépendance déjà défaillante.
+
+## 11.4 Bulkhead
+
+Bulkhead isole les ressources de plusieurs flux :
+
+- pools séparés ;
+- queues séparées ;
+- limites de concurrence ;
+- quotas.
+
+La panne d'un client ne doit pas consommer toutes les ressources.
+
+## 11.5 Rate Limiting
+
+Patterns fréquents :
+
+- token bucket ;
+- leaky bucket ;
+- fenêtre fixe ;
+- fenêtre glissante.
+
+Le choix dépend du compromis entre simplicité, burst autorisé et équité.
+
+## 11.6 Cache-Aside
+
+```text
+1. lire le cache
+2. si miss -> lire la source
+3. remplir le cache
+4. retourner
+```
+
+Le problème le plus difficile n'est pas de remplir le cache, mais son **invalidation**.
+
+## 11.7 Hedging : prudence
+
+Envoyer une requête secondaire lorsque la première est trop lente peut réduire la latence de queue, mais augmente la charge.
+
+À réserver aux systèmes mesurés et maîtrisés.
+
+# 12. Patterns de concurrence et d'asynchronisme
+
+## 12.1 Producer / Consumer
+
+```python
+import asyncio
+
+async def producer(queue: asyncio.Queue[int]) -> None:
+    for item in range(10):
+        await queue.put(item)
+
+async def consumer(queue: asyncio.Queue[int]) -> None:
+    while True:
+        item = await queue.get()
+        try:
+            print(item)
+        finally:
+            queue.task_done()
+```
+
+Une queue bornée introduit de la **backpressure**.
+
+## 12.2 Structured Concurrency
+
+En Python moderne, `asyncio.TaskGroup` permet de gérer un groupe de tâches comme une unité structurée.
+
+```python
+import asyncio
+
+async def main() -> None:
+    async with asyncio.TaskGroup() as tg:
+        tg.create_task(fetch_user())
+        tg.create_task(fetch_orders())
+```
+
+L'objectif est d'éviter les tâches orphelines dont le cycle de vie est difficile à suivre.
+
+## 12.3 Worker Pool
+
+Un nombre borné de workers consomme une file de tâches.
+
+Bon pour :
+
+- limiter la concurrence ;
+- protéger une API distante ;
+- réguler CPU/mémoire.
+
+## 12.4 Actor Model
+
+Un actor possède son état et reçoit des messages.
+
+Les actors réduisent le partage direct de mémoire, mais introduisent :
+
+- messages ;
+- supervision ;
+- ordering ;
+- partitionnement ;
+- distribution éventuelle.
+
+## 12.5 Immutable Data
+
+L'immuabilité réduit le besoin de synchronisation.
+
+Elle ne garantit cependant pas à elle seule qu'une opération distribuée ou multi-thread est correcte.
+
+# 13. Patterns d'interface et de présentation
+
+## 13.1 MVC
+
+Model-View-Controller sépare :
+
+- modèle ;
+- présentation ;
+- traitement des interactions.
+
+Les frameworks modernes utilisent souvent des variantes du modèle original.
+
+## 13.2 MVP et MVVM
+
+MVP et MVVM déplacent l'orchestration pour faciliter binding ou testabilité dans certaines interfaces graphiques.
+
+Il est plus important de comprendre les responsabilités que de forcer chaque framework dans une étiquette exacte.
+
+## 13.3 Presenter
+
+Un Presenter prépare des données déjà adaptées à la vue.
+
+```python
+@dataclass(frozen=True)
+class InvoiceView:
+    number: str
+    total_label: str
+    overdue: bool
+```
+
+Cela évite de charger les templates avec de la logique métier.
+
+## 13.4 Front Controller
+
+Un Front Controller fournit un point d'entrée commun pour les requêtes : routing, auth, middleware, logs, etc.
+
+Les frameworks Web modernes implémentent souvent ce pattern implicitement.
+
+# 14. Patterns pour les systèmes distribués
+
+Voir aussi [[Architecture des logiciels]] et [[Les protocoles de communications]].
+
+## 14.1 API Gateway
+
+Point d'entrée commun pour plusieurs services :
+
+- routing ;
+- auth ;
+- quotas ;
+- observabilité ;
+- transformation limitée.
+
+Éviter d'y recréer toute la logique métier.
+
+## 14.2 Backend for Frontend
+
+Un BFF adapte l'API à un type de client :
+
+```text
+Web --> Web BFF ----\
+                    > services
+Mobile -> Mobile BFF/
+```
+
+Utile lorsque les besoins d'agrégation et de sécurité diffèrent fortement.
+
+## 14.3 Strangler Fig
+
+Moderniser un système progressivement :
+
+```text
+ancien système <--- routeur ---> nouveau système
+```
+
+On déplace capacité après capacité plutôt qu'effectuer une réécriture totale.
+
+## 14.4 Anti-Corruption Layer
+
+Une ACL protège le modèle du domaine contre le modèle d'un système externe.
+
+Adapter est souvent l'un de ses constituants.
+
+## 14.5 Sidecar
+
+Un processus auxiliaire accompagne le service principal pour une capacité transverse : proxy, logs, sécurité, etc.
+
+Le pattern ajoute néanmoins des coûts d'exploitation et ne doit pas être utilisé pour chaque petite préoccupation.
+
+# 15. Patterns de sécurité
+
+## 15.1 Policy Enforcement Point
+
+Séparer :
+
+- décision de sécurité ;
+- application de la décision.
+
+```text
+request -> PEP -> PDP -> décision
+```
+
+Cette séparation apparaît dans de nombreux systèmes IAM et Zero Trust.
+
+## 15.2 Secure by Default
+
+Le chemin par défaut doit être le plus sûr :
+
+- deny by default ;
+- moindre privilège ;
+- configuration explicite pour élargir les droits.
+
+## 15.3 Capability Pattern
+
+Donner un objet/capability spécifique plutôt qu'un accès global à tout un service limite les pouvoirs disponibles.
+
+Exemple : fournir un `ReadOnlyRepository` plutôt qu'une connexion SQL arbitraire.
+
+## 15.4 Secrets Provider Adapter
+
+Le domaine ne devrait pas connaître Vault, AWS Secrets Manager ou un fichier `.env`.
+
+```python
+class SecretProvider(Protocol):
+    def get(self, name: str) -> str: ...
+```
+
+## 15.5 Audit Log
+
+Un audit log doit permettre de répondre à :
+
+- qui ?
+- quoi ?
+- quand ?
+- sur quelle ressource ?
+- avec quel résultat ?
+
+Attention : un audit log n'est pas un dump complet des secrets et données sensibles.
+
+# 16. Tests et testabilité des patterns
+
+## 16.1 Tester le comportement, pas le dessin UML
+
+Un test ne devrait pas échouer simplement parce qu'une classe a été renommée ou qu'un pattern a été remplacé par un idiome plus simple.
+
+Tester :
+
+- règles métier ;
+- contrats ;
+- effets observables ;
+- invariants.
+
+## 16.2 Fake, Stub, Mock et Spy
+
+## Fake
+
+Implémentation fonctionnelle simplifiée :
+
+```python
+class InMemoryUserRepository:
+    def __init__(self) -> None:
+        self.users: dict[str, User] = {}
+
+    def add(self, user: User) -> None:
+        self.users[user.id] = user
+```
+
+## Stub
+
+Retourne des valeurs prédéfinies.
+
+## Spy
+
+Enregistre les appels pour inspection.
+
+## Mock
+
+Vérifie des interactions attendues.
+
+Ne pas sur-mocker : des tests qui connaissent chaque appel interne rendent le refactoring pénible.
+
+## 16.3 Contract Tests
+
+Si plusieurs Adapters implémentent le même port, exécuter les mêmes tests de contrat sur chacun.
+
+```text
+UserRepositoryContract
+├── InMemoryUserRepository
+├── PostgresUserRepository
+└── ApiUserRepository
+```
+
+## 16.4 Property-Based Testing
+
+Les Value Objects et stratégies algorithmiques se prêtent bien aux tests de propriétés :
+
+- total jamais négatif ;
+- sérialisation réversible ;
+- tri idempotent ;
+- invariant préservé.
+
+# 17. Refactoring vers un pattern
+
+Le meilleur moment pour introduire un pattern est souvent lorsque le code montre une **douleur répétée**.
+
+## 17.1 Conditionnelle répétée → Strategy
+
+Avant :
+
+```python
+if provider == "stripe":
+    ...
+elif provider == "paypal":
+    ...
+elif provider == "bank":
+    ...
+```
+
+Lorsque cette condition apparaît dans plusieurs fonctions, isoler le comportement devient pertinent.
+
+## 17.2 SDK externe qui fuit partout → Adapter
+
+Avant :
+
+```text
+Controller -> Stripe SDK
+Service -> Stripe SDK
+Job -> Stripe SDK
+```
+
+Après :
+
+```text
+Controller -> PaymentPort <- StripeAdapter
+Service ----^
+Job --------^
+```
+
+## 17.3 Constructeur énorme → Builder ou Factory
+
+Un constructeur avec 15 paramètres peut signaler :
+
+- objet trop gros ;
+- manque d'objets valeur ;
+- plusieurs responsabilités ;
+- besoin éventuel de Builder.
+
+Ne choisir Builder qu'après avoir vérifié les trois premières causes.
+
+## 17.4 Héritage combinatoire → Bridge/Strategy
+
+Si le nombre de classes est le produit de plusieurs axes indépendants, préférer la composition.
+
+## 17.5 Effets transverses dupliqués → Decorator/Middleware
+
+Logs, métriques, auth ou tracing peuvent être extraits vers une chaîne de décorateurs/middleware, à condition de garder l'ordre visible et testable.
+
+# 18. Anti-patterns
+
+## 18.1 God Object
+
+Une classe concentre :
+
+- logique métier ;
+- persistence ;
+- HTTP ;
+- logs ;
+- cache ;
+- configuration.
+
+Symptômes :
+
+- fichier énorme ;
+- beaucoup de dépendances ;
+- tests difficiles ;
+- changements non liés dans la même classe.
+
+## 18.2 Golden Hammer
+
+> « Nous savons utiliser Kafka, donc chaque problème est un problème Kafka. »
+
+Ou :
+
+> « Nous faisons toujours des microservices. »
+
+Un outil ou pattern familier ne devient pas optimal pour chaque contexte.
+
+## 18.3 Singleton global
+
+Un singleton mutable accessible partout devient une dépendance cachée et complique les tests.
+
+## 18.4 Service Locator
+
+Dépendances récupérées dynamiquement au lieu d'être explicites.
+
+## 18.5 Anemic Domain Model
+
+Des objets ne portent que des données tandis que toutes les règles métier sont regroupées dans d'énormes services procéduraux.
+
+Ce n'est pas toujours mauvais : pour une application CRUD simple, un modèle anémique peut être parfaitement raisonnable.
+
+L'anti-pattern apparaît lorsque le domaine est complexe mais que ses invariants ne sont protégés nulle part.
+
+## 18.6 Speculative Generality
+
+Créer des abstractions « au cas où » :
+
+- cinq interfaces pour une implémentation ;
+- plugin system jamais utilisé ;
+- generic framework interne avant le premier besoin réel.
+
+Appliquer **YAGNI**.
+
+## 18.7 Lava Flow
+
+Code ancien jamais supprimé parce que personne ne sait s'il est encore utilisé.
+
+Solution :
+
+- instrumentation ;
+- tests ;
+- feature flags temporaires ;
+- suppression progressive.
+
+## 18.8 Shotgun Surgery
+
+Un changement fonctionnel impose de modifier beaucoup de fichiers non liés.
+
+Cela signale souvent une responsabilité mal localisée.
+
+## 18.9 Primitive Obsession
+
+Utiliser des `str`, `int`, `dict` pour représenter tous les concepts métier :
+
+```python
+send_email("user@example.org")
+```
+
+alors qu'un `EmailAddress` validé pourrait protéger les invariants.
+
+## 18.10 Abstract Factory Factory
+
+Multiplier les couches d'abstraction sans besoin réel.
+
+Un système trop abstrait peut être aussi difficile à modifier qu'un système trop couplé.
+
+## 18.11 Event-Driven Spaghetti
+
+Tout devient un événement, les dépendances sont invisibles et l'ordre des effets devient incompréhensible.
+
+Remèdes :
+
+- conventions de nommage ;
+- observabilité ;
+- schémas versionnés ;
+- documentation des flux ;
+- limiter les événements aux faits réellement utiles.
+
+## 18.12 Distributed Monolith
+
+Microservices fortement couplés :
+
+- déploiements synchronisés ;
+- appels en chaîne ;
+- base partagée ;
+- contrats instables.
+
+C'est souvent pire qu'un monolithe modulaire.
+
+# 19. Études de cas
+
+## 19.1 Paiement multi-fournisseurs
+
+## Problème
+
+Une application doit supporter :
+
+- Stripe ;
+- PayPal ;
+- banque interne.
+
+Le domaine ne doit pas dépendre des SDK fournisseurs.
+
+## Solution
+
+```mermaid
+graph LR
+    C[CheckoutService] --> P[PaymentGateway Protocol]
+    P --> S[StripeAdapter]
+    P --> PP[PayPalAdapter]
+    P --> B[BankAdapter]
+```
+
+Patterns :
+
+- Adapter pour les SDK ;
+- Strategy pour choisir le fournisseur ;
+- Factory dans la Composition Root ;
+- Outbox pour l'événement `PaymentCompleted`.
+
+## 19.2 Génération de documents
+
+Besoin : PDF, HTML et e-mail, avec plusieurs thèmes.
+
+Patterns possibles :
+
+- Abstract Factory si chaque thème doit produire une famille cohérente de composants ;
+- Strategy pour le format de rendu ;
+- Builder si le document se construit en plusieurs étapes ;
+- Composite pour l'arbre du document ;
+- Visitor pour exporter une structure stable vers plusieurs formats.
+
+Le meilleur choix dépend de l'axe de variation réel.
+
+## 19.3 Workflow de commande
+
+```text
+DRAFT -> PAID -> PREPARING -> SHIPPED
+   \        \
+    -> CANCELLED
+```
+
+Pour quelques transitions, `Enum + table` suffit.
+
+Si chaque état possède de nombreuses règles et opérations, **State** peut devenir pertinent.
+
+## 19.4 Application métier avec base de données
+
+```mermaid
+graph TB
+    HTTP[HTTP Adapter] --> APP[Application Service]
+    APP --> DOMAIN[Domain]
+    APP --> PORT[Repository Port]
+    PORT --> DB[Postgres Adapter]
+    APP --> UOW[Unit of Work]
+```
+
+Patterns :
+
+- Ports/Adapters ;
+- Repository ;
+- Unit of Work ;
+- Domain Events ;
+- Outbox.
+
+Le but n'est pas d'utiliser beaucoup de patterns, mais de protéger les frontières qui changent indépendamment.
+
+# 20. Guide de décision
+
+## 20.1 Je dois changer un algorithme
+
+→ **Strategy**.
+
+Mais une fonction passée en paramètre peut suffire.
+
+## 20.2 Je dois intégrer une API au contrat incompatible
+
+→ **Adapter**.
+
+## 20.3 Je veux simplifier un sous-système complexe
+
+→ **Facade**.
+
+## 20.4 Je veux ajouter des couches de comportement
+
+→ **Decorator**.
+
+## 20.5 Je veux contrôler l'accès à un objet
+
+→ **Proxy**.
+
+## 20.6 Je crée des objets selon une configuration
+
+→ Factory Method.
+
+## 20.7 Je crée plusieurs objets qui doivent appartenir à la même famille
+
+→ Abstract Factory.
+
+## 20.8 Je construis un objet en plusieurs étapes
+
+→ Builder.
+
+## 20.9 Je dois représenter une action dans une queue ou un journal
+
+→ Command.
+
+## 20.10 Mon comportement dépend fortement de l'état courant
+
+→ State.
+
+## 20.11 Plusieurs consommateurs doivent réagir à un événement
+
+→ Observer ou Pub/Sub selon la frontière de processus.
+
+## 20.12 Je dois isoler le domaine de la base de données
+
+→ Repository + éventuellement Unit of Work.
+
+## 20.13 J'hésite entre plusieurs patterns
+
+Écrire d'abord la version simple.
+
+Puis comparer :
+
+1. nombre de variantes réelles ;
+2. fréquence de changement ;
+3. besoin de tests ;
+4. frontière externe ;
+5. coût de l'indirection ;
+6. compétence de l'équipe.
+
+## 20.14 Tableau de synthèse
+
+| Symptôme | Pattern candidat | Alternative simple |
+|---|---|---|
+| gros `if` sur un algorithme | Strategy | fonction |
+| SDK externe partout | Adapter | wrapper local |
+| construction compliquée | Builder | dataclass + kwargs |
+| familles cohérentes | Abstract Factory | plusieurs factories |
+| arbre uniforme | Composite | récursion simple |
+| comportement transversal | Decorator | fonction décoratrice |
+| accès contrôlé | Proxy | fonction wrapper |
+| pipeline | Chain | boucle de fonctions |
+| action sérialisable | Command | callable |
+| état complexe | State | Enum + table |
+| diffusion locale | Observer | callbacks |
+| source persistante | Repository | accès direct ORM |
+| transaction métier | Unit of Work | transaction framework |
+
+# 21. Travaux pratiques
+
+## TP 1 — Reconnaître les patterns
+
+À partir d'un projet existant :
+
+1. identifier trois structures ressemblant à des patterns ;
+2. nommer le problème résolu ;
+3. vérifier si le pattern est réellement utile ;
+4. proposer une version plus simple si possible.
+
+## TP 2 — Strategy fonctionnelle
+
+Créer un calculateur de prix avec :
+
+- prix normal ;
+- remise étudiant ;
+- remise fidélité ;
+- remise promotionnelle.
+
+Première version : fonctions.
+
+Deuxième version : classes Strategy avec configuration.
+
+Comparer les deux.
+
+## TP 3 — Adapter
+
+Créer un port :
+
+```python
+class WeatherProvider(Protocol):
+    def temperature_celsius(self, city: str) -> float: ...
+```
+
+Puis adapter deux API fictives aux formats différents.
+
+## TP 4 — Decorator
+
+Créer :
+
+```text
+Storage
+```
+
+puis empiler :
+
+```text
+MetricsStorage
+ -> LoggingStorage
+   -> InMemoryStorage
+```
+
+Vérifier l'ordre des effets.
+
+## TP 5 — State
+
+Implémenter le cycle de vie d'un ticket :
+
+```text
+OPEN -> IN_PROGRESS -> RESOLVED -> CLOSED
+```
+
+Comparer :
+
+- `Enum + match` ;
+- classes State.
+
+## TP 6 — Repository et Unit of Work
+
+Implémenter :
+
+- `InMemoryRepository` ;
+- `SqliteRepository` ;
+- mêmes tests de contrat ;
+- `UnitOfWork` comme context manager.
+
+## TP 7 — Domain Events
+
+Créer :
+
+```text
+OrderCreated
+OrderPaid
+OrderCancelled
+```
+
+Puis gérer plusieurs handlers sans coupler l'entité aux infrastructures.
+
+## TP 8 — Outbox
+
+Créer une table :
+
+```sql
+CREATE TABLE outbox (
+    id TEXT PRIMARY KEY,
+    event_type TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    published_at TEXT
+);
+```
+
+Écrire la donnée métier et l'outbox dans la même transaction.
+
+## TP 9 — Résilience
+
+Construire un client HTTP simulé avec :
+
+- timeout ;
+- retry exponentiel ;
+- jitter ;
+- circuit breaker.
+
+Injecter des erreurs et mesurer le comportement.
+
+## TP 10 — Refactoring anti-pattern
+
+Partir d'une classe `ApplicationManager` réalisant :
+
+- SQL ;
+- envoi d'e-mail ;
+- validation ;
+- logique métier ;
+- génération PDF.
+
+Refactorer uniquement les frontières réellement utiles.
+
+## TP 11 — Visitor vs singledispatch
+
+Construire un mini AST :
+
+```text
+Number
+Add
+Multiply
+```
+
+Implémenter :
+
+- évaluation ;
+- affichage ;
+- export JSON.
+
+Comparer Visitor classique et `singledispatch`.
+
+## TP 12 — Architecture d'un service métier
+
+Concevoir un petit service de réservation avec :
+
+- domaine ;
+- Repository ;
+- Unit of Work ;
+- Adapter de paiement ;
+- événements ;
+- Outbox ;
+- tests de contrat.
+
+Justifier chaque pattern dans un ADR court.
+
+# 22. Projet final
+
+## 22.1 Sujet
+
+Construire un **service de commandes e-commerce** sans framework métier imposé.
+
+Fonctionnalités :
+
+- créer une commande ;
+- ajouter des lignes ;
+- calculer une remise ;
+- payer ;
+- expédier ;
+- annuler selon les règles métier ;
+- notifier le client ;
+- publier les événements métier.
+
+## 22.2 Contraintes
+
+Le projet doit contenir au maximum les abstractions justifiées par les besoins.
+
+Patterns candidats :
+
+- Value Object : `Money`, `EmailAddress` ;
+- Aggregate : `Order` ;
+- Strategy : remise ;
+- Adapter : paiement ;
+- Repository : persistance ;
+- Unit of Work : transaction ;
+- State ou table de transitions : cycle de commande ;
+- Domain Event ;
+- Transactional Outbox ;
+- Decorator : métriques/logs autour du gateway.
+
+Il n'est **pas obligatoire** de tous les utiliser.
+
+## 22.3 Livrables
+
+- code ;
+- tests ;
+- diagramme de composants ;
+- 3 ADR minimum ;
+- README expliquant les patterns retenus et refusés ;
+- section « dette et simplifications possibles ».
+
+## 22.4 Critères d'évaluation
+
+| Critère | Poids |
+|---|---:|
+| Correction métier | 25 % |
+| Simplicité de la conception | 20 % |
+| Justification des patterns | 20 % |
+| Tests | 15 % |
+| Lisibilité | 10 % |
+| Documentation des compromis | 10 % |
+
+Le projet n'obtient pas plus de points parce qu'il contient plus de patterns.
+
+# 23. Checklist
+
+Avant d'introduire un pattern :
+
+- [ ] Le problème existe réellement.
+- [ ] Je peux décrire l'axe de variation.
+- [ ] Une fonction ou une classe simple ne suffit pas.
+- [ ] L'abstraction réduit un couplage réel.
+- [ ] Le pattern améliore les tests ou la maintenabilité.
+- [ ] L'équipe pourra le comprendre.
+- [ ] Les coûts sont connus.
+
+Pour une frontière externe :
+
+- [ ] Le SDK externe reste dans un Adapter.
+- [ ] Le domaine ne dépend pas de types fournisseurs.
+- [ ] Les erreurs externes sont traduites.
+- [ ] Les timeouts sont explicites.
+- [ ] Les retries sont limités et justifiés.
+
+Pour les événements :
+
+- [ ] Une commande exprime une intention.
+- [ ] Un événement exprime un fait passé.
+- [ ] Le schéma est versionné.
+- [ ] Les consommateurs supportent les doublons lorsque nécessaire.
+- [ ] L'ordre n'est supposé que s'il est garanti.
+- [ ] Les erreurs sont observables.
+
+Pour la persistence :
+
+- [ ] Le Repository correspond à un besoin du domaine.
+- [ ] La transaction est clairement bornée.
+- [ ] Les tests de contrat couvrent les implémentations.
+- [ ] Le lazy loading ne provoque pas de N+1 invisible.
+
+Pour les tests :
+
+- [ ] Je teste le comportement et non la forme exacte du pattern.
+- [ ] Je préfère les fakes simples aux mocks excessifs.
+- [ ] Les contrats sont testés sur chaque Adapter important.
+
+# 24. Glossaire
+
+**Adapter**
+Convertit le contrat d'une interface en un autre.
+
+**Aggregate**
+Frontière de cohérence métier autour d'une racine.
+
+**Anti-pattern**
+Solution récurrente séduisante mais produisant généralement de mauvaises conséquences dans son contexte.
+
+**Command**
+Objet ou valeur représentant une intention d'action.
+
+**Composition Root**
+Emplacement où les dépendances concrètes d'une application sont assemblées.
+
+**Decorator**
+Ajoute du comportement autour d'un objet conservant le même contrat.
+
+**Domain Event**
+Fait métier significatif ayant déjà eu lieu.
+
+**Facade**
+Interface simplifiée devant un sous-système.
+
+**Factory**
+Abstraction de la création d'objets.
+
+**Flyweight**
+Partage un état intrinsèque commun entre de nombreux objets.
+
+**GoF**
+Gang of Four, auteurs du catalogue classique des 23 patterns.
+
+**Idempotence**
+Propriété selon laquelle répéter une opération produit le même effet pertinent qu'une seule exécution.
+
+**Memento**
+Snapshot permettant de restaurer un état.
+
+**Observer**
+Diffuse une notification à plusieurs abonnés.
+
+**Outbox**
+Table transactionnelle contenant les événements à publier après commit.
+
+**Pattern**
+Structure de solution récurrente à un problème dans un contexte donné.
+
+**Port**
+Contrat exprimant ce dont le cœur applicatif a besoin ou ce qu'il expose.
+
+**Proxy**
+Objet interposé contrôlant l'accès à une cible.
+
+**Repository**
+Abstraction orientée domaine pour accéder à des objets persistés.
+
+**Saga**
+Coordination d'une transaction métier distribuée par transactions locales et compensations.
+
+**State**
+Encapsule un comportement dépendant de l'état courant.
+
+**Strategy**
+Algorithme interchangeable.
+
+**Unit of Work**
+Coordonne les changements d'une transaction métier et leur persistance.
+
+**Value Object**
+Objet défini par sa valeur plutôt que par son identité.
+
+# 25. Ressources
+
+## 25.1 Ouvrages fondateurs
+
+- Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides — *Design Patterns: Elements of Reusable Object-Oriented Software*, Addison-Wesley, 1994.
+- Frank Buschmann et al. — *Pattern-Oriented Software Architecture, Volume 1*, Wiley, 1996.
+- Martin Fowler — *Patterns of Enterprise Application Architecture*, Addison-Wesley, 2002.
+- Eric Evans — *Domain-Driven Design*, Addison-Wesley, 2003.
+- Gregor Hohpe, Bobby Woolf — *Enterprise Integration Patterns*, Addison-Wesley, 2003.
+
+## 25.2 Python moderne
+
+Documentation Python :
+
+- `typing.Protocol` : https://docs.python.org/3/library/typing.html#typing.Protocol
+- `functools.singledispatch` : https://docs.python.org/3/library/functools.html#functools.singledispatch
+- `contextlib` : https://docs.python.org/3/library/contextlib.html
+- `asyncio.TaskGroup` : https://docs.python.org/3/library/asyncio-task.html#task-groups
+- `dataclasses` : https://docs.python.org/3/library/dataclasses.html
+
+Ces mécanismes sont importants parce qu'ils permettent d'exprimer certains patterns de manière beaucoup plus légère que les implémentations orientées objet historiques.
+
+## 25.3 Patterns d'entreprise
+
+Catalogue de Martin Fowler :
+
+- Repository : https://martinfowler.com/eaaCatalog/repository.html
+- Unit of Work : https://martinfowler.com/eaaCatalog/unitOfWork.html
+- catalogue complet : https://martinfowler.com/eaaCatalog/
+
+## 25.4 Pour aller plus loin
+
+Étudier ensuite :
+
+- [[Principes SOLID en COO]] ;
+- [[Architecture des logiciels]] ;
+- [[Bases de données relationnelles]] ;
+- [[Les protocoles de communications]] ;
+- [[Python]].
+
+# Conclusion
+
+Les design patterns sont avant tout un **langage de conception**.
+
+La compétence importante n'est pas de réciter 23 diagrammes UML, mais de savoir répondre aux questions suivantes :
+
+1. Quel problème est réellement présent ?
+2. Qu'est-ce qui varie ?
+3. Quelle abstraction réduit ce couplage ?
+4. Le langage fournit-il déjà un idiome plus simple ?
+5. Quels coûts introduit la solution ?
+6. Comment pourra-t-on la tester et la supprimer si elle ne sert plus ?
+
+Un bon design ne cherche pas à maximiser le nombre de patterns. Il cherche à rendre **les changements probables faciles, les invariants visibles et le code compréhensible**.
