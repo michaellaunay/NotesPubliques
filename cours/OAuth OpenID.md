@@ -6,6 +6,9 @@ aliases:
   - "OAuth 2.0"
   - "OpenID Connect"
   - "OAuth 2.1"
+  - "SAML"
+  - "Authentification web"
+  - "Athentification web"
 type: cours
 statut: actif
 para: ressource
@@ -41,7 +44,7 @@ metadata_verifiees: false
 > [!abstract] Objectif
 > Distinguer authentification, autorisation, délégation et fédération ; maîtriser OAuth 2.0/2.1 (Authorization Code + PKCE, autres grants), OpenID Connect, JWT/JOSE et les recommandations de sécurité actuelles ; mettre en œuvre le tout avec Keycloak et Pyramid, des passkeys au machine-to-machine.
 
-Voir aussi : [[Pyramid]], [[LDAP]], [[InetOrgPerson]], [[Athentification web]], [[Identité numérique européenne]].
+Voir aussi : [[Pyramid]], [[LDAP]], [[InetOrgPerson]], [[Identité numérique européenne]].
 
 ## Introduction
 
@@ -175,6 +178,47 @@ OpenID Federation est un ensemble de spécifications distinct qui permet de cons
 | Quel droit possède l'utilisateur ? | RBAC, ABAC, ACL, rôles métier |
 | Comment un utilisateur autorise-t-il une application tierce ? | OAuth |
 | Comment partager une identité entre applications ? | OIDC / fédération |
+
+## 1.6. SAML 2.0 : la fédération historique des entreprises et de l'enseignement
+
+**SAML 2.0** (*Security Assertion Markup Language*, OASIS, 2005) a précédé OpenID Connect de dix ans et reste le protocole de fédération le plus déployé dans les grandes organisations et dans l'enseignement supérieur. Il répond à la même question que l'OIDC — *qui est l'utilisateur, selon une autorité de confiance ?* — avec des moyens différents : du XML signé, transporté par le navigateur.
+
+### 1.6.1. Acteurs et objets
+
+- le **fournisseur d'identité** (*Identity Provider*, IdP) authentifie l'utilisateur et émet une **assertion** ;
+- le **fournisseur de service** (*Service Provider*, SP) est l'application qui consomme l'assertion ;
+- l'**assertion SAML** est un document XML contenant l'identité de l'utilisateur, ses **attributs** (courriel, affiliation, groupes…), les conditions de validité (audience, fenêtre temporelle) et une **signature XML** de l'IdP ; elle peut en outre être chiffrée pour le SP ;
+- les **métadonnées** sont un document XML publié par chaque partie : identifiant (`entityID`), URL des points de terminaison, **certificats** de signature et de chiffrement. C'est par l'échange de métadonnées que l'IdP connaît la clé publique du SP et réciproquement — sans ce préalable, rien ne fonctionne.
+
+### 1.6.2. Le flux
+
+1. l'utilisateur ouvre l'application ; le SP le redirige vers l'IdP avec une **requête d'authentification** (`AuthnRequest`), le plus souvent par le *binding* HTTP-Redirect (paramètre compressé dans l'URL) ;
+2. l'IdP authentifie l'utilisateur (mot de passe, MFA, session existante) ;
+3. l'IdP renvoie la **réponse** contenant l'assertion signée, par le *binding* HTTP-POST : un formulaire auto-soumis par le navigateur vers l'*Assertion Consumer Service* du SP ;
+4. le SP vérifie la signature avec le certificat des métadonnées, contrôle audience, horodatage et identifiant de réponse (anti-rejeu), puis ouvre une session locale.
+
+Tout passe par le navigateur ; le SP n'appelle pas l'IdP (sauf le *binding* Artifact, rare). Un flux **initié par l'IdP** existe aussi (portail d'entreprise qui envoie l'utilisateur vers l'application), plus exposé aux attaques par falsification de requête.
+
+### 1.6.3. SAML et OIDC
+
+| | SAML 2.0 | OpenID Connect |
+|---|---|---|
+| Format | XML, signatures XML-DSig | JSON, JWT (JWS/JWE) |
+| Transport | redirections et formulaires navigateur | redirections, puis appels HTTP directs (token endpoint) |
+| Clients | applications web côté serveur | web, SPA, mobiles, CLI, machine-à-machine |
+| Découverte | métadonnées XML échangées à la main ou par fédération | découverte `.well-known`, JWKS |
+| Autorisation d'API | non (fédération d'identité seulement) | oui, avec OAuth 2.x |
+| Difficulté | canonicalisation et validation XML délicates | plus simple, bibliothèques mieux maintenues |
+| Où on le rencontre | SSO d'entreprise (Entra ID, Okta, Ping), progiciels, **fédérations académiques** | applications et API modernes, mobiles |
+
+En France, la **Fédération Éducation-Recherche** opérée par Renater relie les établissements (universités, écoles, organismes) par SAML avec les logiciels **Shibboleth** : un étudiant se connecte aux ressources d'un autre établissement avec le compte du sien, sur la base d'attributs normalisés (`eduPersonPrincipalName`, `eduPersonAffiliation`) ; **eduGAIN** interconnecte ces fédérations à l'échelle internationale. Un enseignant déployant une application pour des étudiants rencontrera donc SAML avant OIDC.
+
+### 1.6.4. En pratique
+
+- **Keycloak** est à la fois IdP SAML et courtier : il présente OIDC aux applications modernes et parle SAML avec les fédérations et les progiciels (chapitre 11) — la voie recommandée pour ne pas coder de SAML dans une application.
+- En Python, quand il faut un SP directement : **python3-saml** (OneLogin) ou **pysaml2** ; générer les métadonnées du SP, importer celles de l'IdP, et **valider la signature** avec une bibliothèque, jamais à la main.
+- Sécurité : les attaques classiques visent la validation XML (*XML Signature Wrapping*, entités externes, canonicalisation), le rejeu d'assertions et l'absence de contrôle d'audience ; tenir les bibliothèques à jour, synchroniser les horloges (les assertions sont valables quelques minutes) et journaliser l'`entityID` émetteur.
+- Règle de choix : SAML si l'IdP de l'organisation ou la fédération l'impose ; OIDC pour tout le reste ; les deux via un courtier quand il faut servir les deux mondes.
 
 # 2. OAuth 2.0 et OAuth 2.1
 
