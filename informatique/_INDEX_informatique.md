@@ -34,6 +34,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[IA pour créer des Images]] — Liste de services de génération d'images par IA : DALL·E, MidJourney et autres.
 - [[IAs]] — Notes et références critiques sur les IA génératives et l'évaluation de leur pertinence.
 - [[informatique/LLM|LLM]] — Notes opératoires pour récupérer et faire tourner des modèles GGUF en local avec llama.cpp.
+- [[NotebookLM]] — Fiche sur NotebookLM, renommé Gemini Notebook en juillet 2026 : un RAG géré par Google, strictement ancré sur les documents fournis et citant ses sources, avec ses formats de restitution, ses quotas, ses limites structurelles et ce qu'il implique en matière de confidentialité.
 - [[Outils pour préparer le RAG]] — Recensement d'outils de préparation de corpus pour le RAG, notamment MarkItDown et FireCrawl.
 
 ## Numérisation et documentation
