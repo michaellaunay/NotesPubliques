@@ -2,8 +2,8 @@
 schema_version: 1
 uid: "01M02JG1VASYGZR9QJAK2NXVX6"
 titre: "Analyse sémantique"
-type: note
-statut: brouillon
+type: capture
+statut: capture
 para: ressource
 domaines:
   - enseignement
@@ -17,13 +17,16 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-19
-date_modification: 2024-03-19
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
+> [!info] Capture
+> Transcription d'un échange avec ChatGPT du 19 mars 2024 sur l'analyse grammaticale d'une phrase, conservée telle quelle ; requalifiée en `capture` le 29 août 2026 (l'audit du dossier la classait à tort en note de travail).
+
 https://chat.openai.com/share/988d63fa-6489-4ab2-b3ee-e8446f08df3e
 Moi : 
 ```md
