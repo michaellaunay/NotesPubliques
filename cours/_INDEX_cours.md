@@ -57,7 +57,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Réseaux et sécurité
 
-- [[HTTP]] — Cours sur le protocole HTTP : contexte historique, architecture client-serveur, cycle requête-réponse, méthodes, en-têtes, codes de statut, HTTPS et sécurité.
+- [[HTTP]] — Cours complet sur HTTP : sémantique, HTTP/1.1, HTTP/2, HTTP/3 et QUIC, méthodes, statuts, en-têtes, cache, cookies, authentification, HTTPS/TLS, CORS, sécurité, API, performances et diagnostic.
 - [[Identité numérique européenne]] — Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS.
 - [[IPFS]] — Cours sur IPFS : enjeux de la décentralisation du stockage, comparaison avec le modèle client-serveur, Merkle DAG, adressage par contenu et fonctionnement technique du réseau.
 - [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
@@ -107,7 +107,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Bases de données relationnelles]] — Cours sur le modèle relationnel : modélisation des données, langage de manipulation SQL, vues, index, contraintes, transactions et isolation, sécurité et droits d'accès.
 - [[Data Mining en Python]] — Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, fouille de texte avec NLTK et spaCy, techniques et modèles, évaluation, puis la fuite de données, les chaînes scikit-learn, l'écosystème Arrow et le cadre juridique RGPD et règlement IA.
-- [[SOLID]] — Cours sur SOLID, le projet de web décentralisé de Tim Berners-Lee : principe des pods, structuration des données, RDF et SPARQL, et mise en place d'un environnement de développement.
+- [[SOLID]] — Cours complet sur Solid : Pods, WebID, RDF/Linked Data, protocole HTTP, Solid-OIDC, WAC/ACP, Community Solid Server, développement d'applications, notifications, sécurité et interopérabilité.
 
 ## Connaissances et outils
 
