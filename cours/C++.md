@@ -12,28 +12,70 @@ themes:
   - programmation
   - cpp
   - conception-orientee-objet
-resume: "Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées."
+resume: "Cours complet de C++ moderne : fondamentaux, RAII, STL, templates, concurrence, C++20/C++23, aperçu C++26, CMake, tests, sécurité mémoire et projets."
 niveau: intermediaire
 auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2024-03-24
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: true
 ---
-# Introduction au C++
+# C++
 
-## 1 Présentation du C++ : Histoire et applications
+> [!abstract] Objectif
+> Apprendre à écrire du **C++ moderne (C++20/C++23) sûr, testable et maintenable** : maîtriser le noyau du langage et la programmation orientée objet, puis laisser RAII, la bibliothèque standard et l'outillage (CMake, sanitizers, tests) prendre en charge les ressources et la qualité.
 
-### 1.1. Histoire du C++
+Ce cours suit une progression du langage vers l'ingénierie logicielle moderne :
+
+1. histoire, outils, compilation et structure d'un programme ;
+2. types, variables, opérateurs, structures de contrôle, fonctions et fondamentaux du C++ moderne ;
+3. programmation orientée objet ;
+4. durée de vie, ownership, RAII, pointeurs et mémoire ;
+5. bibliothèque standard, conteneurs, chaînes et fichiers ;
+6. templates, exceptions, concurrence et fonctionnalités de C++20/C++23 ;
+7. projets et travaux pratiques ;
+8. bonnes pratiques, chaîne d'outils, tests et ressources.
+
+À l'issue du cours, l'objectif n'est pas seulement de savoir écrire du C++ syntaxiquement valide, mais de savoir écrire du **C++ moderne, sûr, testable et maintenable**, en limitant l'utilisation de `new`/`delete` explicites et en laissant les abstractions de la bibliothèque standard gérer les ressources autant que possible.
+
+> [!important]
+> Les exemples historiques utilisant des pointeurs bruts, `new`, `delete` ou `using namespace std;` restent utiles pour comprendre le langage et lire du code existant. Ils ne constituent pas la forme recommandée pour un nouveau projet ; les sections 2.5 et 3.5 présentent les idiomes attendus aujourd'hui.
+
+Voir aussi : [[Histoire des langages de programmation]], [[Principes SOLID en COO]], [[Design patterns]], [[Visual studio code]], [[git]].
+
+# Sommaire
+
+1. Introduction au C++ : histoire, environnement, compilation et structure d'un programme
+2. Bases du langage : types, opérateurs, structures de contrôle, fonctions, fondamentaux du C++ moderne
+3. Programmation orientée objet : classes, encapsulation, héritage, polymorphisme, classes modernes
+4. Gestion de la mémoire : allocation dynamique, pointeurs et références, RAII, fuites
+5. Bibliothèque standard : STL, conteneurs, itérateurs et algorithmes, chaînes et fichiers, choix d'un conteneur
+6. Développement avancé : templates, exceptions, espaces de noms, concurrence, C++20/C++23, aperçu de C++26, qualité et performance
+7. Projets et travaux pratiques
+8. Bonnes pratiques, chaîne d'outils, ressources et checklist
+
+# 1. Introduction au C++
+
+## 1.1. Présentation du C++ : histoire et applications
+
+### 1.1.1. Histoire du C++
 
 Le C++ est un langage de programmation de haut niveau qui a été développé par Bjarne Stroustrup au début des années 1980, au sein des laboratoires Bell de AT&T. Il est conçu comme une extension du langage C, dans le but d'ajouter des fonctionnalités orientées objet tout en conservant l'efficacité et la flexibilité du C. La première version officielle du C++ est apparue en 1983, et le langage a depuis subi de nombreuses évolutions et standardisations.
 
-En 1998, le premier standard ISO/IEC pour le C++ a été publié, connu sous le nom de C++98. Ce standard a été suivi par plusieurs révisions majeures, notamment C++03, C++11, C++14, C++17, et plus récemment C++20. Chaque nouvelle version a apporté des améliorations significatives en termes de fonctionnalités, de performance et de sécurité.
+En 1998, le premier standard ISO/IEC pour le C++ a été publié sous le nom de C++98. Il a été suivi par C++03, C++11, C++14, C++17, C++20 puis C++23. C++23 a été finalisé en 2023 et publié par l'ISO en 2024 (ISO/IEC 14882:2024). Le comité WG21 a achevé le travail technique sur **C++26** le 28 mars 2026 ; le texte a été enregistré comme *Draft International Standard* en juin 2026 et sa publication officielle par l'ISO est attendue d'ici la fin de l'année. À la date de mise à jour de ce cours (août 2026), les compilateurs implémentent déjà une part importante de C++26 — GCC 16.1 propose par exemple la réflexion (`-freflection`) et les contrats (`-fcontracts`) — mais cette prise en charge reste inégale et souvent qualifiée d'expérimentale.
+
+Pour un nouveau projet, ce cours recommande :
+
+- **C++23** lorsque la chaîne de compilation ciblée implémente les fonctionnalités nécessaires ;
+- **C++20** lorsqu'une compatibilité plus large est requise ;
+- **C++26** uniquement après vérification précise du support du compilateur et de la bibliothèque standard.
+
+Le C++ moderne ne se résume pas à « ajouter de la programmation orientée objet au C ». Depuis C++11, son style idiomatique repose fortement sur **RAII**, la bibliothèque standard, les valeurs et références, les algorithmes, les templates, les lambdas, les concepts, les ranges et une gestion explicite de l'ownership.
 
 ### 1.1.2. Applications du C++
 
@@ -61,152 +103,161 @@ Le C++ est utilisé dans les domaines scientifiques et d'ingénierie pour des si
 
 ## 1.2. Installation de l'environnement de développement
 
-Pour débuter avec le développement en C++ sur Ubuntu, nous allons installer et configurer l'environnement de développement. Nous utiliserons la version d'Ubuntu 24.04 (ou 22.04 à défaut) et l'éditeur de code Visual Studio Code (VS Code). Ce processus comprend plusieurs étapes : l'installation du compilateur C++, l'installation de VS Code et la configuration de l'éditeur pour le développement en C++.
+Les exemples de ce cours ciblent principalement GNU/Linux. Ubuntu 24.04 LTS et Ubuntu 26.04 LTS constituent des bases adaptées ; les commandes sont similaires sur Debian et ses dérivées.
 
-### 1.2.1. Installation du compilateur C++
-
-#### 1.2.1.1. Mise à jour du système
-
-Avant d'installer le compilateur, il est conseillé de mettre à jour la liste des paquets et de mettre à jour les paquets existants. Ouvrons un terminal et exécutons les commandes suivantes :
+### 1.2.1. Installer une chaîne de compilation minimale
 
 ```bash
 sudo apt update
-sudo apt upgrade
+sudo apt install build-essential gdb cmake ninja-build pkg-config
 ```
 
-#### 1.2.1.2. Installation de g++
+Le paquet `build-essential` installe notamment `g++`, `gcc` et `make`.
 
-Le compilateur GNU C++ (g++) est inclus dans le paquet `build-essential` qui contient les outils nécessaires pour le développement en C et C++. Installons ce paquet avec la commande suivante :
-
-```bash
-sudo apt install build-essential
-```
-
-Nous pouvons vérifier l'installation de g++ en exécutant la commande :
+Vérifions les outils :
 
 ```bash
 g++ --version
+gdb --version
+cmake --version
+ninja --version
 ```
 
-Cette commande doit afficher la version de g++ installée.
-
-### 1.2.2. Installation de Visual Studio Code
-
-#### 1.2.2.1. Téléchargement de VS Code
-
-Pour installer Visual Studio Code, nous devons d'abord ajouter le dépôt de Microsoft à notre système. Téléchargeons et installons la clé GPG de Microsoft avec les commandes suivantes :
+Il est utile d'avoir **plus d'un compilateur** lors du développement : des diagnostics différents permettent de détecter davantage de problèmes.
 
 ```bash
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+sudo apt install clang clangd clang-format clang-tidy
 ```
 
-Ensuite, ajoutons le dépôt de VS Code à notre liste de sources :
+### 1.2.2. Choisir explicitement le dialecte C++
+
+Un compilateur n'active pas nécessairement le standard désiré par défaut : GCC 11 à 15 compilent en `gnu++17`, GCC 16 en `gnu++20`, et le dialecte `gnu++` active des extensions non standard. Pour ce cours, nous indiquons donc explicitement le dialecte :
 
 ```bash
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+g++ -std=c++23 main.cpp -o programme
 ```
 
-#### 1.2.2.2. Installation de VS Code
-
-Maintenant, nous pouvons installer Visual Studio Code en exécutant :
+Pour viser C++20 :
 
 ```bash
-sudo apt update
-sudo apt install code
+g++ -std=c++20 main.cpp -o programme
 ```
 
-#### 1.2.2.3. Vérification de l'installation
-
-Pour vérifier que Visual Studio Code a été correctement installé, lançons l'application en tapant :
+Pour expérimenter C++26 avec GCC récent :
 
 ```bash
-code
+g++ -std=c++26 main.cpp -o programme
 ```
 
-Plus de détails sont donnés dans la note [[Visual studio code]].
+Le support de C++26 est encore à considérer comme **expérimental** : une fonctionnalité du langage peut être implémentée alors que la partie correspondante de la bibliothèque standard ne l'est pas encore.
 
-### 1.2.3. Configuration de Visual Studio Code pour le C++
+### 1.2.3. Activer les avertissements
 
-#### 1.2.3.1. Installation des extensions nécessaires
+Une compilation sans avertissement est un premier niveau de contrôle qualité. Pendant le développement :
 
-Visual Studio Code nécessite certaines extensions pour faciliter le développement en C++. Les extensions recommandées sont "C/C++" de Microsoft et "Code Runner". Pour les installer, ouvrons VS Code, accédons à l'onglet des extensions (ou appuyons sur `Ctrl+Shift+X`), puis recherchons et installons les extensions suivantes :
+```bash
+g++ -std=c++23 \
+    -Wall -Wextra -Wpedantic \
+    -Wconversion -Wshadow \
+    -g \
+    main.cpp -o programme
+```
 
-- `C/C++` par Microsoft
-- `Code Runner`
+Les avertissements ne sont pas tous des erreurs ; il faut les comprendre avant de décider de les ignorer.
 
-#### 1.2.3.2. Configuration des tâches de build
+### 1.2.4. Utiliser les sanitizers en développement
 
-Pour compiler et exécuter des programmes C++ directement depuis VS Code, nous devons configurer les tâches de build. Créons un nouveau fichier de configuration de tâches en naviguant dans le menu `Terminal` > `Configure Tasks...` > `Create tasks.json file from template` > `Others`.
+Les sanitizers permettent de détecter de nombreuses erreurs qui peuvent autrement produire un comportement indéfini silencieux.
 
-Ajoutons la configuration suivante dans le fichier `tasks.json` :
+```bash
+g++ -std=c++23 \
+    -Wall -Wextra -Wpedantic \
+    -g -O1 \
+    -fsanitize=address,undefined \
+    -fno-omit-frame-pointer \
+    main.cpp -o programme
 
-```json
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "type": "shell",
-            "command": "/usr/bin/g++",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": ["$gcc"],
-            "detail": "Generated task by Debugger."
-        }
-    ]
+./programme
+```
+
+Les deux sanitizers les plus utiles pour commencer sont :
+
+- **AddressSanitizer (ASan)** : dépassements de tampon, use-after-free, etc. ;
+- **UndefinedBehaviorSanitizer (UBSan)** : de nombreux comportements indéfinis.
+
+ThreadSanitizer (`-fsanitize=thread`) est utile pour rechercher les data races, mais il ne se combine généralement pas avec AddressSanitizer dans la même exécution.
+
+### 1.2.5. Visual Studio Code
+
+La configuration générale de VS Code est détaillée dans [[Visual studio code]]. Pour C++, les extensions les plus utiles sont :
+
+- **C/C++** ou **clangd** pour l'analyse du code ;
+- **CMake Tools** pour les projets CMake ;
+- éventuellement **clang-format** / **clang-tidy** selon la chaîne choisie.
+
+Pour un vrai projet, il est préférable de laisser **CMake** décrire la compilation plutôt que de maintenir manuellement une commande différente dans `tasks.json`, l'IDE, la CI et la documentation.
+
+### 1.2.6. Premier projet avec CMake
+
+Arborescence minimale :
+
+```text
+bonjour/
+├── CMakeLists.txt
+└── src/
+    └── main.cpp
+```
+
+`src/main.cpp` :
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Bonjour C++ !\n";
 }
 ```
 
-#### 1.2.3.3. Configuration du débogueur
+`CMakeLists.txt` :
 
-Pour configurer le débogueur, nous devons créer un fichier `launch.json`. Accédons au menu `Run` > `Add Configuration...`, puis sélectionnons `C++ (GDB/LLDB)` et ensuite `g++ - Build and debug active file`. Cette action générera une configuration de lancement automatique.
+```cmake
+cmake_minimum_required(VERSION 3.25)
+project(BonjourCpp LANGUAGES CXX)
 
-Le fichier `launch.json` doit contenir une configuration similaire à ceci :
+add_executable(bonjour src/main.cpp)
+target_compile_features(bonjour PRIVATE cxx_std_23)
 
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "g++ - Build and debug active file",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "internalConsoleOptions": "openOnSessionStart"
-        }
-    ]
-}
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(bonjour PRIVATE -Wall -Wextra -Wpedantic)
+endif()
 ```
+
+Configuration et compilation :
+
+```bash
+cmake -S . -B build -G Ninja
+cmake --build build
+./build/bonjour
+```
+
+L'approche **target-based** (`target_compile_features`, `target_link_libraries`, etc.) est préférable à la modification globale de variables comme `CMAKE_CXX_FLAGS`.
+
+### 1.2.7. Organisation conseillée d'un projet
+
+```text
+mon-projet/
+├── CMakeLists.txt
+├── cmake/
+├── include/
+│   └── monprojet/
+├── src/
+├── tests/
+├── apps/
+├── README.md
+└── .clang-format
+```
+
+Les fichiers générés par CMake restent dans `build/`, qui ne doit généralement pas être versionné.
 
 ## 1.3. Structure d'un programme C++
 
@@ -236,6 +287,9 @@ La directive `#define` permet de définir des macros, qui sont des fragments de 
 
 Cette ligne définit une constante nommée `PI` avec la valeur `3.14159`.
 
+> [!tip]
+> En C++ moderne, une constante se déclare avec `constexpr` plutôt qu'avec une macro : `constexpr double pi = 3.14159;`, ou `std::numbers::pi` depuis C++20 (`<numbers>`). Une constante typée respecte les portées et les espaces de noms, apparaît dans le débogueur et ne subit pas les pièges de la substitution textuelle des macros (voir section 2.5.7). `#define` reste utile pour la compilation conditionnelle (`#if`, `#ifdef`) et les *feature-test macros*.
+
 ### 1.3.2. Espace de noms
 
 En C++, les espaces de noms (namespaces) sont utilisés pour organiser le code et éviter les conflits de noms. Le plus courant est le namespace `std`, qui contient toutes les fonctionnalités standard de la bibliothèque C++. Par exemple :
@@ -245,6 +299,9 @@ using namespace std;
 ```
 
 Cette ligne permet d'utiliser les éléments du namespace `std` sans avoir à le préfixer chaque fois.
+
+> [!warning]
+> `using namespace std;` est pratique dans un petit exemple pédagogique, mais il est déconseillé au niveau global d'un programme réel et particulièrement dans un fichier d'en-tête. Préférer `std::cout`, `std::string`, etc., ou des déclarations `using std::cout;` ciblées dans une portée locale.
 
 ### 1.3.3. Fonction principale `main`
 
@@ -392,14 +449,16 @@ Une fois le code écrit, nous devons le compiler pour obtenir un fichier exécut
 Ouvrons un terminal et naviguons jusqu'au répertoire contenant notre fichier `bonjour.cpp`. Utilisons la commande suivante pour compiler le programme :
 
 ```bash
-g++ bonjour.cpp -o bonjour
+g++ -std=c++23 -Wall -Wextra -Wpedantic bonjour.cpp -o bonjour
 ```
 
 Cette commande appelle g++ pour compiler `bonjour.cpp` et génère un exécutable nommé `bonjour`. Voici une explication des options utilisées :
 
-- `g++` : le compilateur C++ de GNU.
-- `bonjour.cpp` : le fichier source à compiler.
-- `-o bonjour` : spécifie le nom du fichier exécutable généré (dans ce cas, `bonjour`).
+- `g++` : le compilateur C++ de GNU ;
+- `-std=c++23` : sélectionne le dialecte du langage ;
+- `-Wall -Wextra -Wpedantic` : active un ensemble utile d'avertissements ;
+- `bonjour.cpp` : le fichier source à compiler ;
+- `-o bonjour` : spécifie le nom du fichier exécutable généré.
 
 #### 1.4.2.2. Vérification de la compilation
 
@@ -421,84 +480,20 @@ Cette commande lance le programme `bonjour`, et le message "Bonjour, le monde!" 
 
 ### 1.4.4. Compilation et exécution avec Visual Studio Code
 
-VS Code permet également de compiler et d'exécuter des programmes C++ directement à partir de l'éditeur, en utilisant les extensions appropriées.
+Pour un fichier isolé, VS Code peut lancer directement une commande de compilation. Pour un projet réel, il est préférable d'utiliser la même configuration **CMake** dans le terminal, l'éditeur et la CI.
 
-#### 1.4.4.1. Configuration des tâches de build
+Avec l'extension **CMake Tools** :
 
-Nous devons configurer les tâches de build dans VS Code pour compiler notre programme. Pour ce faire, créons ou modifions le fichier `tasks.json` dans le dossier `.vscode` de notre projet :
+1. ouvrir le dossier contenant `CMakeLists.txt` ;
+2. sélectionner un kit/compiler si nécessaire ;
+3. lancer `CMake: Configure` ;
+4. lancer `CMake: Build` ;
+5. utiliser `Run and Debug` pour déboguer la cible sélectionnée.
 
-```json
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "type": "shell",
-            "command": "/usr/bin/g++",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": ["$gcc"],
-            "detail": "Generated task by Debugger."
-        }
-    ]
-}
-```
+Cette approche évite de recopier les options du compilateur dans plusieurs fichiers `tasks.json` et réduit les écarts entre le build local et le build automatisé.
 
-#### 1.4.4.2. Configuration du débogueur
+Pour les détails sur les profils, les tâches, le débogage et les environnements distants, voir [[Visual studio code]].
 
-Pour exécuter et déboguer notre programme dans VS Code, configurons le fichier `launch.json` :
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "g++ - Build and debug active file",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "internalConsoleOptions": "openOnSessionStart"
-        }
-    ]
-}
-```
-
-#### 1.4.4.3. Compilation et exécution dans VS Code
-
-Pour compiler et exécuter le programme, suivons les étapes suivantes :
-
-1. Ouvrons le fichier `bonjour.cpp` dans VS Code.
-2. Appuyons sur `F5` pour lancer le débogueur. VS Code va automatiquement compiler le programme en utilisant la tâche de build configurée, puis exécuter l'exécutable généré.
 # 2. Bases du Langage
 
 ## 2.1. Types de données et variables
@@ -549,7 +544,7 @@ bool estVrai = true;
 bool estFaux = false;
 ```
 
-### 2.1.2.Types de données dérivés
+### 2.1.2. Types de données dérivés
 
 En plus des types primitifs, C++ permet de créer des types de données dérivés, tels que les tableaux, les pointeurs, et les références.
 
@@ -560,6 +555,8 @@ Un tableau est une collection de variables du même type, stockées en séquence
 ```cpp
 int nombres[5] = {1, 2, 3, 4, 5};
 ```
+
+En C++ moderne, on préfère `std::array<int, 5>` (taille fixe) ou `std::vector<int>` (taille dynamique) aux tableaux C, qui ne connaissent pas leur taille et se dégradent en simple pointeur dès qu'on les passe à une fonction (voir section 2.5.5).
 
 #### 2.1.2.2. Pointeurs
 
@@ -955,13 +952,11 @@ for (int i = 0; i < 10; i++) {
 }
 ```
 
-# Module 2 : Bases du Langage
-
-## 2.4 Fonctions : Déclaration, définition et appel
+## 2.4. Fonctions : Déclaration, définition et appel
 
 Les fonctions en C++ sont des blocs de code réutilisables qui permettent de réaliser des tâches spécifiques. Elles facilitent la structuration, la lisibilité et la maintenance du code. Cette section explique comment déclarer, définir et appeler des fonctions en C++.
 
-### 2.4.1 Déclaration de fonctions
+### 2.4.1. Déclaration de fonctions
 
 La déclaration d'une fonction indique au compilateur l'existence de cette fonction et son prototype, c'est-à-dire son type de retour et ses paramètres. La déclaration d'une fonction se fait généralement dans un fichier d'en-tête (.h) ou au début d'un fichier source (.cpp).
 
@@ -978,7 +973,7 @@ int addition(int a, int b);
 void afficherMessage();
 ```
 
-### 2.4.2 Définition de fonctions
+### 2.4.2. Définition de fonctions
 
 La définition d'une fonction fournit le corps de la fonction, c'est-à-dire le code qui sera exécuté lorsque la fonction sera appelée. La définition d'une fonction se fait généralement dans un fichier source (.cpp).
 
@@ -1002,7 +997,7 @@ void afficherMessage() {
 }
 ```
 
-### 2.4.3 Appel de fonctions
+### 2.4.3. Appel de fonctions
 
 L'appel d'une fonction exécute le code défini dans cette fonction. Pour appeler une fonction, il suffit d'utiliser son nom suivi de parenthèses contenant les arguments nécessaires.
 
@@ -1019,7 +1014,7 @@ int resultat = addition(5, 3);
 afficherMessage();
 ```
 
-### 2.4.4 Fonctions avec paramètres
+### 2.4.4. Fonctions avec paramètres
 
 Les paramètres d'une fonction permettent de passer des valeurs à cette fonction pour qu'elle les utilise dans son traitement. Les paramètres sont spécifiés dans la liste de paramètres lors de la déclaration et de la définition de la fonction.
 
@@ -1033,7 +1028,7 @@ int multiplier(int a, int b) {
 int resultat = multiplier(4, 5); // résultat vaut 20
 ```
 
-### 2.4.5 Fonctions sans paramètres
+### 2.4.5. Fonctions sans paramètres
 
 Une fonction peut ne pas nécessiter de paramètres. Dans ce cas, les parenthèses sont laissées vides.
 
@@ -1047,7 +1042,7 @@ void direBonjour() {
 direBonjour();
 ```
 
-### 2.4.6 Fonctions avec valeurs de retour
+### 2.4.6. Fonctions avec valeurs de retour
 
 Une fonction peut renvoyer une valeur à l'aide de l'instruction `return`. Le type de la valeur de retour doit correspondre au type de retour spécifié dans la déclaration de la fonction.
 
@@ -1061,7 +1056,7 @@ double calculerMoyenne(double note1, double note2) {
 double moyenne = calculerMoyenne(15.5, 18.0); // moyenne vaut 16.75
 ```
 
-### 2.4.7 Fonctions void
+### 2.4.7. Fonctions void
 
 Les fonctions qui ne renvoient aucune valeur utilisent le type de retour `void`.
 
@@ -1075,7 +1070,7 @@ void afficherBienvenue() {
 afficherBienvenue();
 ```
 
-### 2.4.8 Surcharge de fonctions
+### 2.4.8. Surcharge de fonctions
 
 La surcharge de fonctions permet de définir plusieurs fonctions avec le même nom mais des listes de paramètres différentes. Le compilateur détermine quelle fonction appeler en fonction des arguments fournis.
 
@@ -1094,7 +1089,7 @@ int resultatInt = addition(2, 3);    // Appelle la version int de addition
 double resultatDouble = addition(2.5, 3.5); // Appelle la version double de addition
 ```
 
-### 2.4.9 Fonctions récursives
+### 2.4.9. Fonctions récursives
 
 Une fonction récursive est une fonction qui s'appelle elle-même. La récursion est utile pour résoudre des problèmes qui peuvent être divisés en sous-problèmes plus petits de nature similaire.
 
@@ -1111,6 +1106,240 @@ int factorielle(int n) {
 
 int resultat = factorielle(5); // résultat vaut 120
 ```
+
+## 2.5. Fondamentaux du C++ moderne
+
+Les sections précédentes présentent le noyau du langage tel qu'il existe depuis C++98. Depuis C++11, un ensemble de mots-clés et d'idiomes est devenu la base de tout code C++ actuel. La suite du cours les utilise sans les réexpliquer ; cette section les regroupe.
+
+### 2.5.1. Déduction de type avec `auto`
+
+`auto` demande au compilateur de déduire le type d'une variable à partir de son initialiseur. Il évite de recopier des noms de types longs (itérateurs, lambdas, types de retour de la bibliothèque standard) et rend le code plus robuste aux changements de type.
+
+```cpp
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+
+int main() {
+    auto entier = 42;                 // int
+    auto reel = 3.14;                 // double
+    auto texte = std::string{"Ada"};  // std::string
+
+    std::map<std::string, std::vector<int>> notes{{"Ada", {18, 20}}};
+    auto it = notes.find("Ada");      // std::map<std::string, std::vector<int>>::iterator
+
+    const auto& premiere = it->second.front();   // référence constante, sans copie
+    std::cout << entier << ' ' << reel << ' ' << texte << ' ' << premiere << '\n';
+}
+```
+
+Règles pratiques :
+
+- `auto` seul déduit une **valeur**, donc une copie : écrire `auto&` ou `const auto&` pour obtenir une référence ;
+- `auto` abandonne le `const` et la référence de l'initialiseur ; `decltype(auto)` les conserve ;
+- garder un type explicite lorsque celui-ci porte une information importante (`double moyenne = total / n;` évite une division entière surprise).
+
+### 2.5.2. Initialisation par accolades
+
+C++11 généralise l'initialisation par accolades (*uniform initialization*). Elle refuse les conversions rétrécissantes (*narrowing*) et `{}` fournit une valeur par défaut bien définie :
+
+```cpp
+#include <vector>
+
+int main() {
+    int a{42};                    // OK
+    int b{};                      // 0 : initialisation de valeur, jamais indéterminée
+    double d{3.5};
+    // int c{3.5};                // erreur de compilation : conversion rétrécissante
+    std::vector<int> v{1, 2, 3};  // liste d'initialisation : trois éléments 1, 2, 3
+    std::vector<int> w(3, 7);     // parenthèses : trois éléments valant 7
+    return a + b + static_cast<int>(d) + static_cast<int>(v.size() + w.size());
+}
+```
+
+> [!warning]
+> Une variable locale de type fondamental déclarée sans initialiseur (`int n;`) contient une valeur indéterminée ; la lire est un comportement indéfini (C++26 requalifie ce cas en « comportement erroné », diagnosticable mais toujours à proscrire). Toujours initialiser : `int n{};`.
+
+### 2.5.3. `nullptr`
+
+`nullptr` remplace `NULL` et `0` pour désigner un pointeur nul. Son type, `std::nullptr_t`, ne se convertit pas en entier, ce qui supprime des ambiguïtés de surcharge.
+
+```cpp
+void f(int);
+void f(const char*);
+
+void exemple() {
+    int* p = nullptr;
+    f(nullptr);   // appelle f(const char*) ; f(0) appellerait f(int)
+    f(p != nullptr);
+}
+```
+
+### 2.5.4. Énumérations fortement typées : `enum class`
+
+```cpp
+#include <cstdint>
+
+enum class Couleur { rouge, vert, bleu };
+enum class Feu : std::uint8_t { rouge, orange, vert };   // type sous-jacent explicite
+
+int code(Couleur c) {
+    switch (c) {                       // -Wall signale les cas oubliés
+    case Couleur::rouge: return 1;
+    case Couleur::vert:  return 2;
+    case Couleur::bleu:  return 3;
+    }
+    return 0;
+}
+
+int main() {
+    Couleur c = Couleur::vert;
+    // int n = c;                      // erreur : pas de conversion implicite vers int
+    int n = static_cast<int>(c);
+    return code(c) + n + static_cast<int>(Feu::orange);
+}
+```
+
+Contrairement aux `enum` classiques, les énumérateurs sont **qualifiés** (`Couleur::vert`), ne polluent pas la portée englobante, ne se convertissent pas implicitement en entier et peuvent préciser leur type sous-jacent.
+
+### 2.5.5. `std::array`, `std::vector` et boucle `for` sur une plage
+
+Un tableau C (`int t[5]`) se dégrade en pointeur dès qu'on le passe à une fonction, ne connaît pas sa taille et ne se copie pas. Le C++ moderne lui préfère `std::array` (taille fixe connue à la compilation, aucune allocation) et `std::vector` (taille dynamique).
+
+```cpp
+#include <array>
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::array<int, 3> fixe{1, 2, 3};
+    std::vector<int> dynamique{4, 5, 6};
+    dynamique.push_back(7);
+
+    for (int x : fixe) {               // copie chaque élément (fine pour un int)
+        std::cout << x << ' ';
+    }
+    for (const auto& x : dynamique) {  // sans copie, sans modification
+        std::cout << x << ' ';
+    }
+    for (auto& x : dynamique) {        // modification en place
+        x *= 2;
+    }
+    std::cout << '\n' << fixe.size() << ' ' << dynamique.size() << '\n';
+}
+```
+
+La boucle `for` sur une plage (*range-based for*, C++11) parcourt tout objet exposant `begin()` et `end()` : conteneurs standard, tableaux C, chaînes, vues `ranges`. Elle élimine les erreurs d'indice et exprime l'intention.
+
+> [!warning]
+> Ne jamais ajouter ni supprimer d'éléments d'un conteneur pendant qu'on le parcourt avec une boucle sur une plage : les itérateurs peuvent être invalidés (voir section 5.5.3).
+
+### 2.5.6. Types entiers de taille fixe et `std::size_t`
+
+`int`, `long`... n'ont pas de taille garantie par le standard. Lorsque la taille compte (protocoles réseau, fichiers binaires, registres matériels), utiliser les alias de `<cstdint>` :
+
+```cpp
+#include <cstddef>
+#include <cstdint>
+#include <vector>
+
+int main() {
+    std::uint8_t  octet{0xFF};
+    std::int32_t  entier32{-1};
+    std::uint64_t compteur{};
+
+    std::vector<int> v(10);
+    std::size_t taille = v.size();     // type non signé retourné par sizeof et size()
+    for (std::size_t i = 0; i < taille; ++i) {
+        v[i] = static_cast<int>(i);
+    }
+    return octet + entier32 + static_cast<int>(compteur) + v.back();
+}
+```
+
+`std::size_t` est le type des tailles et des indices dans la bibliothèque standard. Comparer un entier signé et un entier non signé produit un avertissement (`-Wsign-compare`) et des bugs classiques (`-1 < v.size()` est faux) ; C++20 fournit `std::ssize()` et les fonctions `std::cmp_less`, `std::cmp_equal`... de `<utility>` pour comparer correctement.
+
+### 2.5.7. Calcul à la compilation : `constexpr`, `consteval` et `static_assert`
+
+```cpp
+#include <numbers>
+
+constexpr double pi = std::numbers::pi;          // constante évaluée à la compilation
+
+constexpr int carre(int x) { return x * x; }      // utilisable à la compilation comme à l'exécution
+
+consteval int cube(int x) { return x * x * x; }   // C++20 : uniquement à la compilation
+
+static_assert(carre(12) == 144, "carre est incorrecte");
+static_assert(cube(3) == 27);
+static_assert(sizeof(int) >= 4, "int de moins de 32 bits non pris en charge");
+
+int main() {
+    int n = 7;
+    return carre(n) > pi ? 0 : 1;                  // appel à l'exécution
+}
+```
+
+`constexpr` remplace les macros `#define` pour les constantes : la constante est typée, respecte les portées et les espaces de noms, et se voit dans le débogueur. `static_assert` vérifie un invariant dès la compilation.
+
+### 2.5.8. Liaisons structurées et `if` avec initialisation (C++17)
+
+```cpp
+#include <iostream>
+#include <map>
+#include <string>
+
+int main() {
+    std::map<std::string, int> ages{{"Ada", 36}, {"Linus", 56}};
+
+    for (const auto& [nom, age] : ages) {                // liaison structurée sur la paire clé/valeur
+        std::cout << nom << " : " << age << '\n';
+    }
+
+    if (auto it = ages.find("Ada"); it != ages.end()) {  // if avec initialisation
+        std::cout << it->second << '\n';
+    }
+
+    auto [position, insere] = ages.insert({"Grace", 85});
+    std::cout << std::boolalpha << insere << ' ' << position->first << '\n';
+}
+```
+
+Les liaisons structurées décomposent une paire, un tuple, un tableau ou une structure simple en variables nommées. L'instruction `if` (et `switch`) avec initialisation limite la portée d'une variable au bloc conditionnel.
+
+### 2.5.9. Attributs utiles
+
+```cpp
+[[nodiscard]] int lire_configuration();       // avertit si le résultat est ignoré
+
+void traiter(int code, [[maybe_unused]] int niveau_debug) {
+    switch (code) {
+    case 1:
+        // préparation
+        [[fallthrough]];                      // chute volontaire vers le cas suivant
+    case 2:
+        // exécution
+        break;
+    default:
+        break;
+    }
+}
+```
+
+`[[nodiscard]]` (C++17) est recommandé sur toute fonction dont ignorer le résultat est presque toujours une erreur : codes d'erreur, `std::expected`, fonctions « pures » comme `empty()`. `[[fallthrough]]` documente une chute volontaire dans un `switch` et fait taire `-Wimplicit-fallthrough`.
+
+### 2.5.10. Passer des paramètres : valeur, référence, référence constante
+
+| Situation | Signature conseillée |
+|---|---|
+| Petit type bon marché à copier (`int`, `double`, pointeur, `std::string_view`) | par valeur : `int n` |
+| Objet coûteux à copier, lecture seule | `const T&` : `const std::string& s` |
+| Objet que la fonction doit modifier | `T&` : `std::vector<int>& v` |
+| Objet dont la fonction prend possession (stockage dans un membre) | par valeur puis `std::move(s)` |
+| Argument optionnel sans transfert de possession | `std::optional<T>` ou pointeur non propriétaire |
+
+Ces conventions suivent les *C++ Core Guidelines* (règles F.15 à F.20). Retourner par valeur est la norme : le compilateur élide les copies (RVO) et les types standard se déplacent efficacement (section 6.5).
 
 # 3. Programmation Orientée Objet (POO)
 
@@ -1596,6 +1825,8 @@ Pour redéfinir une méthode, il suffit de déclarer une méthode avec la même 
 ```cpp
 class Personne {
 public:
+    virtual ~Personne() = default;
+
     virtual void sePresenter() const {
         cout << "Bonjour, je suis une personne." << endl;
     }
@@ -1689,15 +1920,15 @@ Lorsqu'une fonction virtuelle est appelée via un pointeur ou une référence à
 **Exemple :**
 
 ```cpp
+#include <memory>
+
 int main() {
-    Personne* p = new Etudiant();
+    std::unique_ptr<Personne> p = std::make_unique<Etudiant>();
     p->sePresenter(); // Affiche "Bonjour, je suis un étudiant."
-    delete p;
-    return 0;
 }
 ```
 
-Dans cet exemple, bien que `p` soit un pointeur de type `Personne`, la fonction `sePresenter` de la classe `Etudiant` est appelée grâce au mécanisme des fonctions virtuelles.
+Dans cet exemple, `p` possède un `Etudiant` via l'interface `Personne`. Le dispatch virtuel appelle `Etudiant::sePresenter()` et `std::unique_ptr` libère automatiquement l'objet. Une classe destinée à être détruite polymorphiquement doit avoir un **destructeur virtuel**.
 
 ### 3.4.2. Classes abstraites
 
@@ -1719,6 +1950,7 @@ public:
 ```cpp
 class Animal {
 public:
+    virtual ~Animal() = default;
     virtual void parler() const = 0; // Fonction virtuelle pure
 };
 ```
@@ -1752,17 +1984,17 @@ Les classes abstraites permettent de définir une interface commune pour un ense
 **Exemple :**
 
 ```cpp
+#include <memory>
+#include <vector>
+
 int main() {
-    Animal* a1 = new Chien();
-    Animal* a2 = new Chat();
+    std::vector<std::unique_ptr<Animal>> animaux;
+    animaux.push_back(std::make_unique<Chien>());
+    animaux.push_back(std::make_unique<Chat>());
 
-    a1->parler(); // Affiche "Le chien aboie."
-    a2->parler(); // Affiche "Le chat miaule."
-
-    delete a1;
-    delete a2;
-
-    return 0;
+    for (const auto& animal : animaux) {
+        animal->parler();
+    }
 }
 ```
 
@@ -1772,11 +2004,205 @@ Le polymorphisme en C++ est généralement implémenté à l'aide de tables de v
 
 Lorsqu'un objet est créé, un pointeur vers la vtable de sa classe est placé dans l'objet. Lorsque la fonction virtuelle est appelée, la vtable est consultée pour déterminer quelle version de la fonction doit être exécutée.
 
+## 3.5. Classes en C++ moderne
+
+Les mécanismes présentés jusqu'ici existent depuis le C++ d'origine. C++11 et ses successeurs ont ajouté des outils qui rendent les classes plus sûres et plus concises ; ils sont attendus dans tout nouveau code.
+
+### 3.5.1. Initialisation des membres
+
+Un membre peut recevoir un initialiseur par défaut directement dans la classe ; les constructeurs n'ont alors à mentionner que ce qui diffère.
+
+```cpp
+#include <string>
+#include <utility>
+#include <vector>
+
+class Compte {
+public:
+    Compte() = default;
+    explicit Compte(std::string titulaire, double solde = 0.0)
+        : titulaire_{std::move(titulaire)}, solde_{solde} {}
+
+    const std::string& titulaire() const { return titulaire_; }
+    double solde() const { return solde_; }
+
+private:
+    std::string titulaire_{"inconnu"};   // initialiseur de membre par défaut
+    double solde_{};                     // 0.0
+    std::vector<double> mouvements_;     // vide
+};
+
+int main() {
+    Compte anonyme;
+    Compte ada{"Ada", 100.0};
+    return anonyme.titulaire() == "inconnu" && ada.solde() == 100.0 ? 0 : 1;
+}
+```
+
+La **liste d'initialisation** (`: membre{valeur}`) initialise les membres directement, au lieu de les construire par défaut puis de les affecter dans le corps du constructeur. Les membres sont toujours initialisés dans l'ordre de leur **déclaration**, pas dans l'ordre de la liste (`-Wreorder` signale les incohérences).
+
+### 3.5.2. `explicit`
+
+Un constructeur appelable avec un seul argument et non marqué `explicit` définit une **conversion implicite** vers la classe :
+
+```cpp
+class Duree {
+public:
+    explicit Duree(int secondes) : secondes_{secondes} {}
+    int secondes() const { return secondes_; }
+private:
+    int secondes_;
+};
+
+int attendre(const Duree& d) { return d.secondes(); }
+
+int main() {
+    // attendre(30);              // erreur grâce à explicit : que signifie 30 ?
+    return attendre(Duree{30});   // intention claire
+}
+```
+
+Par défaut, marquer `explicit` tout constructeur pouvant être appelé avec un seul argument ; ne conserver une conversion implicite que lorsqu'elle est réellement naturelle (`std::string` construit depuis `const char*`).
+
+### 3.5.3. `override` et `final`
+
+```cpp
+#include <numbers>
+#include <string>
+
+class Forme {
+public:
+    virtual ~Forme() = default;
+    virtual double aire() const = 0;
+    virtual std::string nom() const { return "forme"; }
+};
+
+class Cercle final : public Forme {          // final : Cercle ne peut plus être dérivée
+public:
+    explicit Cercle(double rayon) : rayon_{rayon} {}
+    double aire() const override { return std::numbers::pi * rayon_ * rayon_; }
+    std::string nom() const override { return "cercle"; }
+private:
+    double rayon_;
+};
+```
+
+`override` demande au compilateur de vérifier qu'une méthode redéfinit bien une méthode virtuelle de la classe de base : une faute de frappe ou une signature différente (oubli d'un `const`) devient une **erreur de compilation** au lieu de créer silencieusement une nouvelle méthode sans rapport. `final` interdit toute redéfinition ultérieure d'une méthode, ou toute dérivation lorsqu'il s'applique à la classe.
+
+### 3.5.4. `= default` et `= delete`
+
+```cpp
+#include <string>
+
+class Fichier {
+public:
+    explicit Fichier(const std::string& chemin);
+    ~Fichier();
+
+    Fichier(const Fichier&) = delete;              // non copiable
+    Fichier& operator=(const Fichier&) = delete;
+
+    Fichier(Fichier&&) noexcept = default;         // déplaçable
+    Fichier& operator=(Fichier&&) noexcept = default;
+
+private:
+    int descripteur_{-1};
+};
+```
+
+`= default` demande explicitement l'implémentation générée par le compilateur : cela documente l'intention et permet de rétablir une opération que le compilateur n'aurait plus générée implicitement. `= delete` interdit une opération : c'est ainsi que l'on rend une classe non copiable, ou que l'on refuse une surcharge indésirable (`void f(double) = delete;` empêche l'appel de `f(int)` avec un `double`).
+
+Ces déclarations s'articulent avec les règles de zéro, de trois et de cinq (section 6.5).
+
+### 3.5.5. Constance et méthodes `const`
+
+Une méthode qui ne modifie pas l'état observable de l'objet doit être déclarée `const` : elle peut alors être appelée sur un objet ou une référence constante, et le compilateur vérifie qu'elle ne modifie aucun membre.
+
+```cpp
+#include <vector>
+
+class Pile {
+public:
+    void empiler(int v) { donnees_.push_back(v); }
+    [[nodiscard]] int sommet() const { return donnees_.back(); }
+    [[nodiscard]] bool vide() const noexcept { return donnees_.empty(); }
+private:
+    std::vector<int> donnees_;
+};
+
+int lire(const Pile& p) {
+    // p.empiler(1);                // erreur : p est const, empiler() ne l'est pas
+    return p.vide() ? 0 : p.sommet();   // OK : vide() et sommet() sont const
+}
+```
+
+La **const-correctness** se propage : une fonction qui reçoit un `const T&` ne peut appeler que les méthodes `const` de `T`. Le mot-clé `mutable` autorise exceptionnellement un membre (cache, mutex) à être modifié dans une méthode `const`.
+
+### 3.5.6. `struct`, agrégats et initialisation désignée
+
+`struct` et `class` sont identiques à une différence près : l'accès par défaut est `public` pour `struct` et `private` pour `class`. Par convention, `struct` sert aux **agrégats** — regroupements de données sans invariant à protéger — et `class` aux types qui encapsulent un invariant.
+
+```cpp
+struct Point {
+    double x{};
+    double y{};
+};
+
+int main() {
+    Point p1{1.0, 2.0};
+    Point p2{.x = 1.0, .y = 2.0};   // C++20 : initialisation désignée, plus lisible
+    Point p3{.y = 5.0};             // x vaut 0.0
+    return p1.x + p2.y + p3.x > 0 ? 0 : 1;
+}
+```
+
+### 3.5.7. Comparaisons : `==` et `<=>` (C++20)
+
+C++20 permet de faire générer les opérateurs de comparaison par le compilateur :
+
+```cpp
+#include <compare>
+
+struct Version {
+    int majeur{};
+    int mineur{};
+    int correctif{};
+
+    auto operator<=>(const Version&) const = default;  // génère <, <=, >, >=, == et !=
+};
+
+static_assert(Version{1, 2, 0} < Version{1, 10, 0});
+static_assert(Version{2, 0, 0} == Version{2, 0, 0});
+```
+
+L'opérateur `<=>` (*three-way comparison*, dit « vaisseau spatial ») compare les membres un à un dans l'ordre de déclaration. Lorsque seule l'égalité a un sens, déclarer uniquement `bool operator==(const Version&) const = default;`.
+
+### 3.5.8. Composition, interfaces et conception
+
+Toute relation entre types n'a pas vocation à devenir un héritage. Les *C++ Core Guidelines* recommandent :
+
+- l'**héritage public** uniquement pour exprimer une relation d'interface (« est un », substituable) ;
+- la **composition** (un membre) pour réutiliser une implémentation ;
+- une **classe abstraite** avec destructeur virtuel pour définir une interface ;
+- l'héritage multiple d'**interfaces** plutôt que de classes concrètes.
+
+Ces principes rejoignent [[Principes SOLID en COO]] et les [[Design patterns]]. Le polymorphisme d'exécution par fonctions virtuelles n'est d'ailleurs pas le seul possible en C++ : les templates (section 6.1) et `std::variant` (section 6.9) offrent un polymorphisme **statique**, résolu à la compilation et souvent plus performant.
+
 # 4. Gestion de la Mémoire
 
 ## 4.1. Allocation dynamique de la mémoire
 
-L'allocation dynamique de la mémoire est une technique essentielle en programmation qui permet de gérer efficacement la mémoire durant l'exécution d'un programme. Contrairement à l'allocation statique, où la taille de la mémoire est déterminée à la compilation, l'allocation dynamique permet de réserver et de libérer de la mémoire à la demande pendant l'exécution. En C++, cela se fait principalement à l'aide des opérateurs `new` et `delete`.
+L'allocation dynamique permet de créer des objets dont la durée de vie ou la taille ne sont pas connues à la compilation. Les opérateurs `new` et `delete` font partie du langage et doivent être compris, notamment pour lire du code ancien ou écrire certaines abstractions bas niveau.
+
+En **C++ moderne**, un code applicatif ne devrait cependant presque jamais posséder directement une ressource avec un `new`/`delete` nu. On privilégie :
+
+1. les objets à durée de vie automatique ;
+2. `std::vector`, `std::string` et les autres conteneurs ;
+3. RAII ;
+4. `std::unique_ptr` pour un ownership unique ;
+5. `std::shared_ptr` uniquement lorsque l'ownership est réellement partagé.
+
+Autrement dit : apprendre `new` et `delete` est nécessaire, mais leur absence dans le code métier est souvent un bon signe.
 
 ### 4.1.1. Opérateur `new`
 
@@ -2001,15 +2427,16 @@ Les références sont souvent utilisées comme paramètres de fonction pour évi
 **Exemple :**
 
 ```cpp
+#include <iostream>
+
 void incrementer(int& ref) {
-    ref++;
+    ++ref;
 }
 
 int main() {
     int x = 10;
     incrementer(x);
-    cout << x << endl; // Affiche 11
-    return 0;
+    std::cout << x << '\n'; // Affiche 11
 }
 ```
 
@@ -2020,14 +2447,15 @@ Les références constantes permettent de référencer une variable sans pouvoir
 **Exemple :**
 
 ```cpp
+#include <iostream>
+
 void afficher(const int& ref) {
-    cout << ref << endl;
+    std::cout << ref << '\n';
 }
 
 int main() {
     int y = 30;
     afficher(y); // Affiche 30
-    return 0;
 }
 ```
 
@@ -2238,15 +2666,16 @@ Un `std::unique_ptr` possède une ressource de manière exclusive. Lorsque le `s
 **Exemple :**
 
 ```cpp
+#include <iostream>
 #include <memory>
 
 class Exemple {
 public:
     Exemple() {
-        cout << "Constructeur" << endl;
+        std::cout << "Constructeur\n";
     }
     ~Exemple() {
-        cout << "Destructeur" << endl;
+        std::cout << "Destructeur\n";
     }
 };
 
@@ -2265,15 +2694,16 @@ Un `std::shared_ptr` permet à plusieurs pointeurs de partager la même ressourc
 **Exemple :**
 
 ```cpp
+#include <iostream>
 #include <memory>
 
 class Exemple {
 public:
     Exemple() {
-        cout << "Constructeur" << endl;
+        std::cout << "Constructeur\n";
     }
     ~Exemple() {
-        cout << "Destructeur" << endl;
+        std::cout << "Destructeur\n";
     }
 };
 
@@ -2306,7 +2736,7 @@ Il existe plusieurs techniques et bonnes pratiques pour prévenir les fuites de 
 
 #### 4.4.2.1. Utilisation appropriée de `delete` et `delete[]`
 
-Chaque appel à `new` doit être apparié avec un appel à `delete`, et chaque appel à `new[]` doit être apparié avec un appel à `delete[]`.
+Dans du code bas niveau ou ancien, chaque allocation effectuée par `new` doit avoir une désallocation cohérente par `delete` (`new[]` avec `delete[]`). Dans du nouveau code applicatif, il vaut mieux éviter d'avoir à assurer manuellement cette correspondance en utilisant RAII, les conteneurs et les pointeurs intelligents.
 
 **Exemple :**
 
@@ -3281,6 +3711,75 @@ int main() {
 }
 ```
 
+## 5.5. Choisir un conteneur et gérer les itérateurs
+
+### 5.5.1. Quel conteneur ?
+
+| Besoin | Conteneur | Remarques |
+|---|---|---|
+| Séquence, cas général | `std::vector` | Le choix par défaut : stockage contigu, parcours très rapide, `push_back` en O(1) amorti |
+| Taille fixe connue à la compilation | `std::array` | Aucune allocation dynamique |
+| Insertions et suppressions fréquentes aux deux extrémités | `std::deque` | Accès indexé conservé |
+| Dictionnaire, ordre sans importance | `std::unordered_map` | Table de hachage, recherche en O(1) en moyenne |
+| Dictionnaire trié, parcours ordonné, recherche par bornes | `std::map` | Arbre équilibré, O(log n) |
+| Ensemble de valeurs uniques | `std::unordered_set` / `std::set` | Mêmes critères que les dictionnaires |
+| Petit dictionnaire lu bien plus souvent que modifié | `std::flat_map` (C++23) | Stockage contigu, très bonne localité |
+| Pile, file | `std::stack`, `std::queue` | Adaptateurs au-dessus d'un autre conteneur |
+| Liste chaînée | `std::list` | Rarement le meilleur choix : la localité mémoire de `std::vector` l'emporte presque toujours |
+
+En cas de doute, commencer par `std::vector` et ne changer qu'après mesure (section 6.17).
+
+### 5.5.2. Réserver et construire sur place
+
+```cpp
+#include <string>
+#include <vector>
+
+int main() {
+    std::vector<std::string> noms;
+    noms.reserve(1000);                   // évite les réallocations successives
+    noms.emplace_back("Ada");             // construit l'élément directement dans le conteneur
+    noms.push_back(std::string{"Linus"}); // construit puis déplace
+    return static_cast<int>(noms.size());
+}
+```
+
+### 5.5.3. Invalidation des itérateurs
+
+Un itérateur, un pointeur ou une référence vers un élément peut devenir invalide après une modification du conteneur :
+
+- `std::vector` : toute insertion susceptible de réallouer invalide tout ; `erase` invalide les éléments situés après ;
+- `std::deque` : une insertion aux extrémités invalide les itérateurs mais pas les références ;
+- `std::map`, `std::set`, `std::list` : seul l'élément supprimé est invalidé ;
+- `std::unordered_map` : une réorganisation (*rehash*) invalide les itérateurs mais pas les références.
+
+Code incorrect classique :
+
+```cpp
+for (auto it = v.begin(); it != v.end(); ++it) {
+    if (*it % 2 == 0) {
+        v.erase(it);   // it est invalidé : comportement indéfini à l'itération suivante
+    }
+}
+```
+
+Forme correcte :
+
+```cpp
+#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> v{1, 2, 3, 4, 5, 6};
+    std::erase_if(v, [](int x) { return x % 2 == 0; });          // C++20
+    // avant C++20, idiome erase-remove :
+    // v.erase(std::remove_if(v.begin(), v.end(), pred), v.end());
+    return static_cast<int>(v.size());
+}
+```
+
+AddressSanitizer (section 1.2.4) détecte la plupart de ces erreurs à l'exécution ; les itérateurs de débogage de libstdc++ (`-D_GLIBCXX_DEBUG`) et le durcissement de la bibliothèque (`-D_GLIBCXX_ASSERTIONS`) en signalent d'autres dès l'accès fautif.
+
 # 6. Développement Avancé
 
 ## 6.1. Programmation générique avec les templates
@@ -3857,6 +4356,8 @@ Les espaces de noms peuvent être imbriqués pour créer une hiérarchie logique
 **Exemple :**
 
 ```cpp
+#include <iostream>
+
 namespace Entreprise {
     namespace Projet {
         void afficherMessage() {
@@ -3899,13 +4400,970 @@ int main() {
 - **Privilégier les alias d'espaces de noms pour la clarté et la simplicité** : Les alias permettent de réduire la longueur des noms tout en maintenant la lisibilité du code.
 - **Utiliser des noms d'espaces de noms significatifs** : Les noms d'espaces de noms doivent refléter la structure logique et l'organisation du projet.
 
-## 6.4. Introduction à la programmation multithread
+## 6.4. Concurrence et programmation multithread
+
+La concurrence permet à plusieurs tâches de progresser pendant une même période. Elle est utile pour exploiter plusieurs cœurs, masquer des attentes d'E/S ou structurer certains systèmes réactifs. Elle introduit aussi une catégorie de bugs difficiles : **data races**, deadlocks, starvation et problèmes d'ordre mémoire.
+
+### 6.4.1. `std::thread` et `std::jthread`
+
+Depuis C++11, `std::thread` représente un thread natif. Un `std::thread` encore *joinable* lors de sa destruction provoque `std::terminate()`, ce qui impose de toujours appeler `join()` ou `detach()`.
+
+C++20 apporte `std::jthread`, généralement plus sûr : il effectue automatiquement le `join` et intègre un mécanisme de demande d'arrêt.
+
+```cpp
+#include <chrono>
+#include <iostream>
+#include <thread>
+
+using namespace std::chrono_literals;
+
+int main() {
+    std::jthread worker([] {
+        std::this_thread::sleep_for(100ms);
+        std::cout << "Travail terminé\n";
+    });
+} // join automatique
+```
+
+Pour du nouveau code, `std::jthread` est souvent préférable à `std::thread` lorsqu'un thread dédié est réellement nécessaire.
+
+### 6.4.2. Arrêt coopératif avec `std::stop_token`
+
+```cpp
+#include <chrono>
+#include <iostream>
+#include <stop_token>
+#include <thread>
+
+using namespace std::chrono_literals;
+
+int main() {
+    std::jthread worker([](std::stop_token stop) {
+        while (!stop.stop_requested()) {
+            std::cout << "." << std::flush;
+            std::this_thread::sleep_for(100ms);
+        }
+    });
+
+    std::this_thread::sleep_for(350ms);
+    worker.request_stop();
+}
+```
+
+La demande d'arrêt est **coopérative** : le code du worker doit observer le token et sortir proprement.
+
+### 6.4.3. Data race
+
+Une data race se produit lorsque plusieurs threads accèdent concurremment à la même zone mémoire, qu'au moins un accès est une écriture et qu'aucune synchronisation adaptée n'ordonne ces accès. Une data race entraîne un **comportement indéfini**.
+
+Code incorrect :
+
+```cpp
+int compteur = 0;
+
+// Deux threads exécutent ceci en même temps : data race.
+for (int i = 0; i < 1000; ++i) {
+    ++compteur;
+}
+```
+
+### 6.4.4. Mutex et verrouillage RAII
+
+```cpp
+#include <mutex>
+#include <vector>
+
+class Journal {
+public:
+    void ajouter(int valeur) {
+        std::lock_guard verrou{mutex_};
+        valeurs_.push_back(valeur);
+    }
+
+private:
+    std::mutex mutex_;
+    std::vector<int> valeurs_;
+};
+```
+
+`std::lock_guard` libère le mutex automatiquement, y compris lorsqu'une exception traverse la portée.
+
+Pour verrouiller plusieurs mutex sans créer un ordre incohérent :
+
+```cpp
+std::scoped_lock verrou{mutex_a, mutex_b};
+```
+
+### 6.4.5. `std::condition_variable`
+
+Une variable de condition permet à un thread d'attendre qu'un état partagé devienne vrai sans effectuer une boucle active.
+
+```cpp
+#include <condition_variable>
+#include <mutex>
+#include <queue>
+
+std::mutex mutex;
+std::condition_variable cv;
+std::queue<int> file;
+bool termine = false;
+
+void consommateur() {
+    std::unique_lock verrou{mutex};
+    cv.wait(verrou, [] { return !file.empty() || termine; });
+
+    if (!file.empty()) {
+        const int valeur = file.front();
+        file.pop();
+        // traiter valeur
+    }
+}
+```
+
+Toujours utiliser un **prédicat** avec `wait` afin de gérer correctement les réveils intempestifs.
+
+### 6.4.6. Atomiques
+
+Pour une donnée simple, un type atomique peut éviter un mutex :
+
+```cpp
+#include <atomic>
+
+std::atomic<int> compteur{0};
+
+void incrementer() {
+    compteur.fetch_add(1, std::memory_order_relaxed);
+}
+```
+
+`memory_order_relaxed` garantit l'atomicité mais n'ajoute pas de synchronisation avec d'autres données. Les ordres mémoire constituent un sujet avancé : utiliser l'ordre par défaut (`seq_cst`) ou une abstraction plus haut niveau tant que l'on n'a pas démontré la nécessité d'une optimisation plus faible.
+
+### 6.4.7. Futures et tâches asynchrones
+
+```cpp
+#include <future>
+#include <iostream>
+
+int calcul_lourd() {
+    return 42;
+}
+
+int main() {
+    auto resultat = std::async(std::launch::async, calcul_lourd);
+    std::cout << resultat.get() << '\n';
+}
+```
+
+`std::future` transporte soit une valeur, soit l'exception produite par la tâche.
+
+### 6.4.8. Bonnes pratiques de concurrence
+
+- minimiser l'état mutable partagé ;
+- préférer le passage de messages et les objets immuables lorsque c'est possible ;
+- ne pas utiliser `detach()` par défaut ;
+- documenter l'ownership et le protocole d'arrêt ;
+- verrouiller avec RAII ;
+- fixer un ordre de verrouillage ou utiliser `std::scoped_lock` ;
+- tester avec ThreadSanitizer lorsque la plateforme le permet ;
+- mesurer avant de paralléliser : davantage de threads ne signifie pas automatiquement davantage de performances.
+
+## 6.5. Sémantique de déplacement et catégories de valeurs
+
+La sémantique de déplacement, introduite en C++11, est fondamentale pour comprendre le C++ moderne. Elle permet de **transférer** des ressources au lieu de les copier.
+
+### 6.5.1. Lvalue et rvalue
+
+De manière simplifiée :
+
+- une **lvalue** désigne généralement un objet identifiable et réutilisable ;
+- une **rvalue** représente souvent une valeur temporaire ou une valeur dont les ressources peuvent être transférées.
+
+```cpp
+#include <string>
+#include <utility>
+
+std::string nom = "Ada";              // nom est une lvalue
+std::string copie = nom;              // copie
+std::string deplace = std::move(nom); // autorise le déplacement
+```
+
+`std::move` **ne déplace rien par lui-même** : il convertit son argument en une expression pouvant sélectionner une opération de déplacement.
+
+Après un déplacement, l'objet source reste **valide mais dans un état non spécifié**, sauf garantie plus précise du type.
+
+### 6.5.2. Règle de zéro
+
+Lorsqu'une classe est composée de membres qui gèrent eux-mêmes correctement leurs ressources (`std::string`, `std::vector`, `std::unique_ptr`...), la meilleure stratégie consiste souvent à ne déclarer **aucun** destructeur, constructeur de copie ou de déplacement personnalisé.
+
+```cpp
+#include <string>
+#include <vector>
+
+class Utilisateur {
+public:
+    std::string nom;
+    std::vector<int> scores;
+};
+```
+
+C'est la **Rule of Zero**.
+
+### 6.5.3. Règles de trois et de cinq
+
+Une classe qui gère directement une ressource bas niveau peut devoir définir :
+
+- destructeur ;
+- constructeur de copie ;
+- opérateur d'affectation par copie ;
+- constructeur de déplacement ;
+- opérateur d'affectation par déplacement.
+
+Mais il faut d'abord se demander si cette gestion ne devrait pas être déléguée à un type RAII existant.
+
+### 6.5.4. Perfect forwarding
+
+Dans du code générique, `std::forward` permet de préserver la catégorie de valeur d'un argument :
+
+```cpp
+#include <utility>
+
+template <class F, class T>
+decltype(auto) appliquer(F&& f, T&& valeur) {
+    return std::forward<F>(f)(std::forward<T>(valeur));
+}
+```
+
+Ce mécanisme est puissant, mais inutile dans la majorité du code applicatif. Il apparaît surtout dans les bibliothèques génériques et les factories.
+
+## 6.6. Lambdas et objets appelables
+
+Les lambdas sont devenues un outil central du C++ moderne, notamment avec les algorithmes et les ranges.
+
+```cpp
+#include <vector>
+
+int main() {
+    std::vector<int> valeurs{1, 2, 3, 4, 5};
+
+    std::erase_if(valeurs, [](int valeur) {   // supprime les valeurs paires
+        return valeur % 2 == 0;
+    });
+}
+```
+
+### 6.6.1. Captures
+
+```cpp
+int seuil = 10;
+
+auto superieur = [seuil](int valeur) {
+    return valeur > seuil;
+};
+```
+
+- `[seuil]` : capture par valeur ;
+- `[&seuil]` : capture par référence ;
+- `[=]` : capture implicite par valeur ;
+- `[&]` : capture implicite par référence.
+
+Préférer des captures explicites lorsque la durée de vie devient non triviale, notamment en asynchrone.
+
+### 6.6.2. Lambda générique
+
+```cpp
+auto additionner = [](const auto& a, const auto& b) {
+    return a + b;
+};
+```
+
+### 6.6.3. `std::function` et alternatives
+
+`std::function` réalise un effacement de type pratique pour stocker plusieurs types d'objets appelables sous une même interface :
+
+```cpp
+#include <functional>
+
+std::function<int(int, int)> operation =
+    [](int a, int b) { return a + b; };
+```
+
+Il peut entraîner une allocation ou un coût d'indirection. Pour du code générique interne, un template ou `auto` est souvent plus léger. C++23 ajoute aussi `std::move_only_function` pour les callables non copiables.
+
+## 6.7. Concepts et contraintes — C++20
+
+Les **concepts** permettent d'exprimer les contraintes d'un template dans son interface. Ils remplacent de nombreux usages difficiles à lire de SFINAE.
+
+```cpp
+#include <concepts>
+
+template <std::integral T>
+T doubler(T valeur) {
+    return valeur * 2;
+}
+```
+
+Forme avec `requires` :
+
+```cpp
+#include <concepts>
+
+template <class T>
+requires std::floating_point<T>
+T moyenne(T a, T b) {
+    return (a + b) / T{2};
+}
+```
+
+### 6.7.1. Concept personnalisé
+
+```cpp
+#include <concepts>
+
+template <class T>
+concept Additionnable = requires(T a, T b) {
+    { a + b } -> std::convertible_to<T>;
+};
+
+template <Additionnable T>
+T somme(T a, T b) {
+    return a + b;
+}
+```
+
+Les concepts améliorent :
+
+- la lisibilité des interfaces ;
+- les diagnostics du compilateur ;
+- la documentation implicite des attentes d'un template.
+
+## 6.8. Ranges et vues — C++20/C++23
+
+La bibliothèque ranges permet de composer des transformations sans écrire explicitement toute la mécanique des itérateurs.
+
+```cpp
+#include <iostream>
+#include <ranges>
+#include <vector>
+
+int main() {
+    std::vector<int> valeurs{1, 2, 3, 4, 5, 6};
+
+    auto resultat = valeurs
+        | std::views::filter([](int x) { return x % 2 == 0; })
+        | std::views::transform([](int x) { return x * x; });
+
+    for (int x : resultat) {
+        std::cout << x << ' ';
+    }
+}
+```
+
+Une **view** est généralement paresseuse : elle décrit une transformation et calcule les éléments au moment où ils sont parcourus.
+
+### 6.8.1. Algorithmes ranges
+
+```cpp
+#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> valeurs{4, 1, 3, 2};
+    std::ranges::sort(valeurs);                       // pas de couple begin()/end()
+    auto pos = std::ranges::find(valeurs, 3);
+    return pos != valeurs.end() ? 0 : 1;
+}
+```
+
+Le modèle ranges réduit certains couples `begin()` / `end()` et permet de mieux exprimer l'intention.
+
+### 6.8.2. Durée de vie des vues
+
+Une vue peut référencer un objet existant. Il faut donc s'assurer que cet objet vit assez longtemps. Éviter de conserver une vue vers un temporaire lorsque l'API ne garantit pas la sécurité de cette utilisation.
+
+## 6.9. Types vocabulaire : `optional`, `variant` et `expected`
+
+### 6.9.1. `std::optional`
+
+Utiliser `std::optional<T>` lorsqu'une valeur peut légitimement être absente.
+
+```cpp
+#include <optional>
+#include <string>
+
+std::optional<int> trouver_age(const std::string& nom) {
+    if (nom == "Ada") {
+        return 36;
+    }
+    return std::nullopt;
+}
+```
+
+### 6.9.2. `std::variant`
+
+`std::variant` représente une valeur qui appartient à un ensemble fermé de types :
+
+```cpp
+#include <string>
+#include <variant>
+
+using Valeur = std::variant<int, double, std::string>;
+```
+
+Contrairement à une union C traditionnelle, `std::variant` connaît le type actif.
+
+### 6.9.3. `std::expected` — C++23
+
+`std::expected<T, E>` représente soit un résultat, soit une erreur attendue :
+
+```cpp
+#include <charconv>
+#include <expected>
+#include <string_view>
+
+std::expected<int, std::string_view> convertir(std::string_view texte) {
+    int valeur{};
+    const auto [ptr, ec] = std::from_chars(
+        texte.data(), texte.data() + texte.size(), valeur
+    );
+
+    if (ec != std::errc{} || ptr != texte.data() + texte.size()) {
+        return std::unexpected("entier invalide");
+    }
+    return valeur;
+}
+```
+
+Les exceptions et `std::expected` ne sont pas des solutions concurrentes absolues :
+
+- une exception convient bien à une erreur qui rompt le flux normal et doit remonter plusieurs couches ;
+- `expected` convient bien à une opération dont l'échec fait partie du contrat normal et doit être traité explicitement.
+
+## 6.10. `std::span`, `std::string_view` et vues non propriétaires
+
+Une vue non propriétaire permet de lire des données sans les copier, mais ne prolonge pas leur durée de vie.
+
+### 6.10.1. `std::span`
+
+```cpp
+#include <span>
+
+int somme(std::span<const int> valeurs) {
+    int total = 0;
+    for (int v : valeurs) {
+        total += v;
+    }
+    return total;
+}
+```
+
+Cette fonction accepte naturellement un `std::array`, un `std::vector` ou une zone contiguë compatible.
+
+### 6.10.2. `std::string_view`
+
+```cpp
+#include <string_view>
+
+bool commence_par_http(std::string_view texte) {
+    return texte.starts_with("http://") || texte.starts_with("https://");
+}
+```
+
+Ne jamais retourner une `string_view` qui référence une chaîne locale détruite à la sortie de la fonction.
+
+## 6.11. Bibliothèque standard moderne : formatage, temps et système de fichiers
+
+### 6.11.1. `std::format` et `std::print`
+
+C++20 fournit `std::format` et C++23 ajoute `<print>` :
+
+```cpp
+#include <print>
+#include <string>
+
+int main() {
+    std::string nom = "Ada";
+    std::println("Bonjour {}, réponse = {}", nom, 42);
+}
+```
+
+Le support exact de `<print>` dépend de la version de la bibliothèque standard, pas seulement du compilateur.
+
+### 6.11.2. `std::chrono`
+
+```cpp
+#include <chrono>
+#include <thread>
+
+using namespace std::chrono_literals;
+
+std::this_thread::sleep_for(250ms);
+```
+
+Les types de `std::chrono` rendent les unités explicites et évitent les interfaces basées sur des entiers ambigus.
+
+### 6.11.3. `std::filesystem`
+
+```cpp
+#include <filesystem>
+#include <iostream>
+
+namespace fs = std::filesystem;
+
+int main() {
+    for (const auto& entree : fs::directory_iterator{"."}) {
+        std::cout << entree.path() << '\n';
+    }
+}
+```
+
+## 6.12. Coroutines — C++20
+
+Une coroutine est une fonction qui peut suspendre son exécution et la reprendre ultérieurement. Le langage fournit trois mots-clés :
+
+- `co_await` ;
+- `co_yield` ;
+- `co_return`.
+
+C++20 standardise le **mécanisme**, mais ne fournit pas à lui seul un runtime asynchrone universel. Une coroutine dépend d'un type de retour et d'une `promise_type` qui définissent son comportement.
+
+C++23 introduit notamment `std::generator`, qui exploite les coroutines pour produire une séquence paresseuse, mais son support dans les bibliothèques standard peut rester incomplet selon la chaîne de compilation.
+
+Utilisations typiques :
+
+- générateurs ;
+- E/S asynchrones ;
+- pipelines ;
+- moteurs de jeux ;
+- systèmes événementiels.
+
+Une coroutine n'est **pas nécessairement un thread** et n'implique pas automatiquement du parallélisme.
+
+## 6.13. Modules — C++20
+
+Les modules cherchent à réduire certains problèmes du modèle historique `#include` : temps de compilation, dépendances textuelles et macros traversant les frontières.
+
+Interface simplifiée :
+
+```cpp
+export module calcul;
+
+export int addition(int a, int b) {
+    return a + b;
+}
+```
+
+Utilisation :
+
+```cpp
+import calcul;
+
+int main() {
+    return addition(20, 22) == 42 ? 0 : 1;
+}
+```
+
+> [!warning]
+> En 2026, le support des modules dépend encore fortement du compilateur, de sa version, de la bibliothèque standard et du système de build. Les commandes exactes diffèrent entre GCC, Clang et MSVC. Il faut tester la chaîne de compilation ciblée avant d'imposer les modules à un projet multiplateforme.
+
+Avec GCC 16, les modules restent activés par l'option `-fmodules` et le module standard `std` (C++23, `import std;`) se prépare avec `--compile-std-module`. CMake sait décrire les unités de module depuis la version 3.28 (`target_sources(cible PUBLIC FILE_SET CXX_MODULES FILES ...)`) avec les générateurs Ninja et Visual Studio.
+
+Les headers classiques et les include guards restent donc indispensables à connaître.
+
+## 6.14. Nouveautés importantes de C++23
+
+C++23 est une évolution incrémentale importante de C++20. Parmi les ajouts utiles :
+
+- `std::expected` ;
+- `std::print` / `std::println` ;
+- `std::mdspan` pour représenter des vues multidimensionnelles ;
+- `std::flat_map` et `std::flat_set` ;
+- `std::generator` ;
+- `std::move_only_function` ;
+- nouvelles opérations ranges et nouveaux adaptateurs de vues ;
+- `if consteval` ;
+- déduction de `this` (*explicit object parameter*) ;
+- amélioration de `constexpr` ;
+- nouveaux outils de la bibliothèque autour des tuples, chaînes et conteneurs.
+
+### 6.14.1. Exemple de `std::mdspan`
+
+`std::mdspan` est une **vue non propriétaire** multidimensionnelle sur une mémoire existante :
+
+```cpp
+#include <mdspan>
+#include <vector>
+
+int main() {
+    std::vector<int> donnees(12);
+    std::mdspan matrice(donnees.data(), 3, 4);   // vue 3 × 4 sur les 12 entiers
+    matrice[1, 2] = 42;                          // opérateur [] multidimensionnel (C++23)
+    return donnees[1 * 4 + 2] == 42 ? 0 : 1;
+}
+```
+
+La disponibilité de chaque composant C++23 doit être vérifiée dans la **bibliothèque standard** utilisée (`libstdc++`, `libc++` ou MSVC STL).
+
+## 6.15. Aperçu de C++26
+
+Le travail technique sur C++26 s'est achevé le 28 mars 2026 (réunion WG21 de Londres) ; le document est soumis au vote d'approbation des organismes nationaux (*Draft International Standard*) et sa publication par l'ISO est attendue fin 2026. Le contenu du standard ne changera donc plus, mais il faut distinguer :
+
+- ce que le texte de C++26 spécifie ;
+- ce que le compilateur **et** sa bibliothèque standard implémentent réellement ;
+- ce qui n'est activé que par une option explicite (`-freflection`, `-fcontracts`, `-fmodules`...).
+
+Parmi les évolutions majeures de C++26 :
+
+- **contrats** : préconditions `pre`, postconditions `post` et assertions `contract_assert` vérifiées à l'exécution ;
+- **réflexion statique** (`^^T`, `<meta>`) : introspection et génération de code à la compilation ;
+- **exécution asynchrone** `std::execution` (modèle *senders/receivers*) ;
+- nouveaux conteneurs `std::inplace_vector` et `std::hive` ;
+- `std::optional<T&>`, `std::function_ref`, `std::copyable_function` ;
+- bibliothèque SIMD (`<simd>`) et algèbre linéaire (`<linalg>`) ;
+- outils de concurrence tels que hazard pointers et RCU ;
+- durcissement (*hardening*) de la bibliothèque standard et requalification de certains comportements indéfinis en « comportements erronés », par exemple la lecture d'une variable non initialisée ;
+- nouvelles possibilités `constexpr`.
+
+Exemple de contrats, compilable avec GCC 16.1 (`-std=c++26 -fcontracts`) :
+
+```cpp
+#include <cmath>
+
+double racine(double x)
+    pre (x >= 0.0)          // précondition : vérifiée avant l'appel
+    post (r : r >= 0.0)     // postcondition : r désigne la valeur retournée
+{
+    return std::sqrt(x);
+}
+```
+
+Un contrat exprime une **erreur de programmation** (appel incorrect) ; il ne remplace ni les exceptions ni `std::expected`, qui traitent des échecs attendus à l'exécution.
+
+### 6.15.1. Ne pas écrire du code « C++26 » à l'aveugle
+
+Avant d'utiliser une fonctionnalité récente :
+
+1. vérifier le statut de la proposition ;
+2. vérifier le support du compilateur ;
+3. vérifier le support de sa bibliothèque standard ;
+4. vérifier les plateformes de CI et de production ;
+5. éventuellement tester une macro de fonctionnalité.
+
+Exemple :
+
+```cpp
+#if defined(__cpp_lib_expected) && __cpp_lib_expected >= 202202L
+// fonctionnalité disponible
+#endif
+```
+
+Les **feature-test macros** sont préférables à un simple test de version du compilateur.
+
+## 6.16. Comportement indéfini et sécurité mémoire
+
+Le C++ autorise des opérations très proches du matériel. Certaines erreurs ne produisent pas une exception : elles provoquent un **comportement indéfini (UB)**, c'est-à-dire que le standard n'impose plus le comportement du programme.
+
+Exemples classiques :
+
+- accès hors limites ;
+- dereferencement d'un pointeur invalide ;
+- use-after-free ;
+- signed integer overflow ;
+- data race ;
+- utilisation de certaines valeurs indéterminées ;
+- violation des règles de durée de vie ou d'aliasing.
+
+### 6.16.1. Prévention
+
+- préférer les types qui expriment la durée de vie et l'ownership ;
+- utiliser `std::span` plutôt qu'un couple pointeur + taille lorsque possible ;
+- préférer `std::vector` et `std::array` aux tableaux manuels ;
+- compiler avec des avertissements élevés ;
+- tester avec ASan/UBSan/TSan ;
+- utiliser `clang-tidy` et l'analyse statique ;
+- effectuer du fuzzing sur les parseurs et entrées non fiables ;
+- relire avec les C++ Core Guidelines.
+
+## 6.17. Performance : mesurer avant d'optimiser
+
+Le C++ permet des optimisations fines, mais l'optimisation prématurée rend souvent le code plus complexe sans bénéfice mesurable.
+
+### 6.17.1. Build Debug et Release
+
+Avec CMake :
+
+```bash
+cmake -S . -B build-debug -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build-debug
+
+cmake -S . -B build-release -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build-release
+```
+
+Pour les générateurs multi-configuration, la sélection de configuration s'effectue autrement ; ne pas supposer que `CMAKE_BUILD_TYPE` s'applique partout.
+
+### 6.17.2. Benchmark
+
+Un benchmark doit :
+
+- isoler ce que l'on mesure ;
+- empêcher le compilateur d'éliminer le travail ;
+- être répété ;
+- prendre en compte les warmups et la variance ;
+- comparer des builds équivalents.
+
+Google Benchmark est une bibliothèque courante pour automatiser cette démarche.
+
+### 6.17.3. Profilage
+
+Outils courants sous Linux :
+
+```bash
+perf record ./programme
+perf report
+```
+
+Valgrind reste utile pour certains diagnostics, mais ASan est souvent plus rapide pendant le développement. Les outils ne se remplacent pas tous : chacun observe une classe de problèmes différente.
+
+## 6.18. Qualité : formatage, analyse statique et tests
+
+### 6.18.1. `clang-format`
+
+```bash
+clang-format -i src/*.cpp include/monprojet/*.hpp
+```
+
+Stocker un `.clang-format` à la racine garantit une mise en forme cohérente entre développeurs et CI.
+
+### 6.18.2. `clang-tidy`
+
+```bash
+clang-tidy src/main.cpp -- -std=c++23
+```
+
+Sur un projet CMake, exporter la base de compilation améliore fortement la précision :
+
+```bash
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+clang-tidy -p build src/main.cpp
+```
+
+### 6.18.3. Tests
+
+Un test doit vérifier le **contrat observable** plutôt que l'implémentation interne. Les frameworks courants comprennent GoogleTest, Catch2 et doctest.
+
+Avec CMake/CTest :
+
+```cmake
+include(CTest)
+enable_testing()
+
+add_executable(test_calcul tests/test_calcul.cpp)
+target_link_libraries(test_calcul PRIVATE monprojet)
+add_test(NAME calcul COMMAND test_calcul)
+```
+
+Puis :
+
+```bash
+ctest --test-dir build --output-on-failure
+```
 
 # 7. Projets et Applications Pratiques
 
-## 7.1. Développement d'une application console simple
-## 7.2. Création d'une application avec interface graphique (optionnel)
-## 7.3. Projet de fin de cours : Application C++ intégrant les concepts appris
+Les projets suivants doivent être réalisés avec une chaîne de compilation moderne, des avertissements activés et un historique Git propre. L'objectif est de pratiquer autant la **conception** que la syntaxe.
+
+## 7.1. Projet 1 — Gestionnaire de tâches en console
+
+### Objectifs
+
+Mettre en pratique :
+
+- classes et encapsulation ;
+- `std::vector` ;
+- `std::string` ;
+- `std::chrono` ;
+- algorithmes/ranges ;
+- lecture/écriture de fichiers ;
+- tests ;
+- CMake.
+
+### Fonctionnalités minimales
+
+Le programme doit permettre de :
+
+1. créer une tâche ;
+2. lister les tâches ;
+3. marquer une tâche comme terminée ;
+4. supprimer une tâche ;
+5. filtrer les tâches par état ;
+6. sauvegarder les données ;
+7. recharger les données au démarrage.
+
+Modèle de départ :
+
+```cpp
+#pragma once
+
+#include <cstdint>
+#include <string>
+
+struct Tache {
+    std::uint64_t id{};
+    std::string titre;
+    bool terminee{false};
+};
+```
+
+Le stockage peut d'abord utiliser un format texte simple. L'exercice consiste à séparer :
+
+- domaine ;
+- persistance ;
+- interface utilisateur.
+
+### Critères de qualité
+
+- aucune possession via pointeur brut ;
+- pas de variable globale mutable ;
+- erreurs d'entrée utilisateur traitées ;
+- tests sur les opérations du domaine ;
+- build hors source ;
+- compilation sans warning avec le profil choisi.
+
+## 7.2. Projet 2 — Indexeur de fichiers
+
+Créer un outil qui parcourt un répertoire et produit des statistiques :
+
+- nombre de fichiers ;
+- taille totale ;
+- extensions les plus fréquentes ;
+- plus gros fichiers ;
+- recherche par extension ou motif.
+
+Concepts à utiliser :
+
+- `std::filesystem` ;
+- `std::error_code` ou exceptions ;
+- ranges/algorithmes ;
+- `std::unordered_map` ;
+- vues non propriétaires lorsque pertinentes ;
+- tests sur un répertoire temporaire.
+
+### Extension
+
+Paralléliser **uniquement après mesure** certains traitements coûteux. Comparer la version séquentielle et la version concurrente.
+
+## 7.3. Projet 3 — File de travaux concurrente
+
+Construire une petite file de travaux avec :
+
+- plusieurs workers ;
+- arrêt coopératif ;
+- attente sans boucle active ;
+- remontée des erreurs ;
+- tests de concurrence.
+
+Une première version peut utiliser :
+
+- `std::jthread` ;
+- `std::mutex` ;
+- `std::condition_variable` ;
+- `std::queue` ;
+- `std::stop_token`.
+
+Le projet doit répondre explicitement aux questions :
+
+- qui possède les workers ?
+- comment l'arrêt est-il déclenché ?
+- que se passe-t-il pour les tâches restantes ?
+- comment les exceptions sont-elles observées ?
+- quelles données sont protégées par quel mutex ?
+
+## 7.4. Projet graphique optionnel
+
+Pour une application graphique multiplateforme, **Qt 6** constitue une solution courante en C++. L'objectif n'est pas d'apprendre l'ensemble de Qt, mais de relier une interface à un domaine C++ déjà testé.
+
+Architecture conseillée :
+
+```text
+UI Qt
+  ↓
+services applicatifs
+  ↓
+domaine C++ indépendant de Qt
+  ↓
+persistance
+```
+
+Éviter de placer toute la logique métier directement dans les callbacks de l'interface.
+
+## 7.5. Projet final — Application C++ complète
+
+Le projet final doit intégrer au minimum :
+
+- C++20 ou C++23 ;
+- CMake target-based ;
+- tests automatiques ;
+- RAII ;
+- STL et algorithmes/ranges ;
+- gestion d'erreur cohérente ;
+- persistance ou interaction réseau ;
+- documentation d'architecture ;
+- CI compilant avec au moins un compilateur supplémentaire si possible.
+
+### Exemple de sujet
+
+Un gestionnaire de corpus local :
+
+- indexation de fichiers ;
+- métadonnées ;
+- recherche ;
+- cache ;
+- tâches asynchrones ;
+- export des résultats.
+
+Le projet peut ensuite servir de support à des extensions : interface graphique, serveur HTTP, base de données ou calcul intensif.
+
+## 7.6. Travaux pratiques progressifs
+
+### TP 1 — Compilation et diagnostics
+
+Compiler volontairement du code imparfait avec plusieurs niveaux d'avertissement et expliquer chaque diagnostic.
+
+### TP 2 — Valeurs, références et durée de vie
+
+Écrire plusieurs fonctions utilisant valeur, `const&`, `&` et déplacement ; justifier le choix de chaque signature.
+
+### TP 3 — RAII
+
+Écrire une classe qui gère une ressource simple, puis remplacer sa gestion manuelle par une abstraction standard et comparer.
+
+### TP 4 — STL et algorithmes
+
+Transformer un programme basé sur des boucles indexées en version utilisant algorithmes et ranges.
+
+### TP 5 — Templates et concepts
+
+Écrire une fonction générique non contrainte, observer ses diagnostics sur un type incompatible, puis introduire un concept.
+
+### TP 6 — Gestion d'erreur
+
+Implémenter la même opération avec exception puis avec `std::expected` et comparer les contrats.
+
+### TP 7 — Concurrence
+
+Créer un producteur/consommateur correctement synchronisé, puis vérifier le programme avec ThreadSanitizer.
+
+### TP 8 — Tests et CMake
+
+Créer une bibliothèque, un exécutable et une cible de test séparée avec CTest.
+
+### TP 9 — Analyse dynamique
+
+Introduire volontairement un accès hors limites et un use-after-free dans un exercice isolé, puis les retrouver avec ASan.
+
+### TP 10 — Projet final
+
+Assembler les notions précédentes et documenter les choix de design, d'ownership, d'erreur et de build.
 
 # 8. Conclusion et Ressources pour Aller Plus Loin
 
@@ -3934,6 +5392,7 @@ Les pointeurs intelligents (`std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr
 **Exemple :**
 
 ```cpp
+#include <iostream>
 #include <memory>
 
 void utiliserPointeurIntelligent() {
@@ -3997,9 +5456,11 @@ Respecter les conventions d'indentation et d'espacement pour améliorer la lisib
 **Exemple :**
 
 ```cpp
+#include <iostream>
+
 int main() {
     if (true) {
-        std::cout << "Bonjour, le monde!" << std::endl;
+        std::cout << "Bonjour, le monde!\n";
     }
     return 0;
 }
@@ -4090,229 +5551,244 @@ v.reserve(100);
 std::generate_n(std::back_inserter(v), 100, []{ return rand() % 100; });
 ```
 
-## 8.2. Outils de développement et environnements intégrés (IDE)
+## 8.2. Chaîne d'outils moderne
 
-Le choix des outils de développement et des environnements intégrés (IDE) est crucial pour optimiser le flux de travail et améliorer la productivité des développeurs C++. Sur Ubuntu, une combinaison de gcc (GNU Compiler Collection) et Visual Studio Code (VS Code) constitue un environnement de développement puissant et flexible.
+Un projet C++ fiable ne dépend pas d'un IDE particulier. L'IDE doit s'appuyer sur une chaîne reproductible utilisable aussi en terminal et en CI.
 
-### 8.2.1. GCC (GNU Compiler Collection)
+### 8.2.1. GCC et Clang
 
-GCC est un ensemble de compilateurs pour différents langages de programmation, dont C et C++. C'est l'un des compilateurs les plus populaires et largement utilisés dans le monde Linux.
-
-#### 8.2.1.1. Installation de GCC
-
-Sur Ubuntu, GCC peut être installé via le gestionnaire de paquets `apt`.
-
-**Commande :**
+Deux compilateurs permettent de détecter des hypothèses de portabilité :
 
 ```bash
-sudo apt update
-sudo apt install build-essential
+g++ -std=c++23 -Wall -Wextra -Wpedantic src/main.cpp -o app
+clang++ -std=c++23 -Wall -Wextra -Wpedantic src/main.cpp -o app
 ```
 
-Le paquet `build-essential` inclut GCC, G++ (le compilateur C++), ainsi que d'autres outils de développement nécessaires.
+Le support d'une révision du standard comporte deux dimensions :
 
-#### 8.2.1.2. Compilation avec GCC
+1. le **langage** implémenté par le compilateur ;
+2. la **bibliothèque standard** (`libstdc++`, `libc++`, MSVC STL).
 
-Pour compiler un programme C++ avec GCC, on utilise la commande `g++`.
+Une option `-std=c++23` acceptée ne garantit donc pas que tous les headers C++23 soient disponibles.
 
-**Exemple :**
+### 8.2.2. Profils de compilation
 
-```cpp
-// fichier main.cpp
-#include <iostream>
-
-int main() {
-    std::cout << "Bonjour, le monde!" << std::endl;
-    return 0;
-}
-```
-
-**Commande de compilation :**
+#### Développement
 
 ```bash
-g++ -o monprogramme main.cpp
+g++ -std=c++23 \
+    -Wall -Wextra -Wpedantic -Wconversion -Wshadow \
+    -g -O0 \
+    src/main.cpp -o app
 ```
 
-Cette commande compile `main.cpp` et génère un exécutable nommé `monprogramme`.
-
-#### 8.2.1.3. Options courantes de GCC
-
-- **`-Wall`** : Active les messages d'avertissement.
-- **`-O2`** : Active les optimisations de niveau 2.
-- **`-g`** : Génère des informations de débogage.
-- **`-std=c++17`** : Utilise la norme C++17.
-
-**Exemple :**
+#### Diagnostic mémoire
 
 ```bash
-g++ -Wall -O2 -g -std=c++17 -o monprogramme main.cpp
+g++ -std=c++23 \
+    -Wall -Wextra -Wpedantic \
+    -g -O1 \
+    -fsanitize=address,undefined \
+    -fno-omit-frame-pointer \
+    src/main.cpp -o app
 ```
 
-### 8.2.2. Visual Studio Code (VS Code)
-
-Visual Studio Code est un éditeur de code source développé par Microsoft. Il est léger, extensible et supporte de nombreux langages de programmation, dont C++. Il est particulièrement populaire pour son interface utilisateur intuitive et ses nombreuses extensions.
-
-#### 8.2.2.1. Installation de VS Code
-
-Sur Ubuntu, VS Code peut être installé via le gestionnaire de paquets `snap` ou `apt`.
-
-**Commande snap :**
+#### Release
 
 ```bash
-sudo snap install --classic code
+g++ -std=c++23 -O2 -DNDEBUG src/main.cpp -o app
 ```
 
-**Commande apt :**
+Ne pas copier aveuglément une collection de flags entre compilateurs : certaines options sont spécifiques à GCC ou Clang.
 
-```bash
-sudo apt update
-sudo apt install code
-```
+### 8.2.3. CMake target-based
 
-#### 8.2.2.2. Configuration de VS Code pour C++
-
-Après l'installation, quelques extensions et configurations supplémentaires sont nécessaires pour optimiser VS Code pour le développement C++.
-
-**Extensions recommandées :**
-
-- **C/C++** : Fournit un support de base pour le langage, y compris IntelliSense, le débogage et la gestion des configurations de build.
-- **CMake Tools** : Simplifie la gestion des projets CMake.
-- **Code Runner** : Permet d'exécuter rapidement des snippets de code.
-
-**Installation des extensions :**
-
-1. Ouvrir VS Code.
-2. Aller dans l'onglet Extensions (icône des blocs sur la barre latérale gauche).
-3. Rechercher et installer les extensions mentionnées ci-dessus.
-
-#### 8.2.2.3. Configuration de IntelliSense
-
-IntelliSense offre des fonctionnalités d'autocomplétion, de vérification de syntaxe et de documentation contextuelle.
-
-**Configurer `c_cpp_properties.json` :**
-
-1. Ouvrir la palette de commandes (Ctrl+Shift+P).
-2. Taper `C/C++: Edit Configurations (UI)` et sélectionner l'option.
-3. Configurer les chemins d'inclusion et les options du compilateur.
-
-**Exemple :**
-
-```json
-{
-    "configurations": [
-        {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "/usr/include",
-                "/usr/local/include"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/g++",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
-        }
-    ],
-    "version": 4
-}
-```
-
-#### 8.2.2.4. Débogage avec VS Code
-
-VS Code dispose d'un débogueur intégré puissant. Pour configurer le débogueur pour un projet C++ :
-
-1. Ouvrir la palette de commandes (Ctrl+Shift+P).
-2. Taper `Debug: Open launch.json` et sélectionner l'option.
-3. Ajouter une configuration de débogage.
-
-**Exemple :**
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Déboguer C++",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/monprogramme",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Activer l'impression jpretty",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "logging": {
-                "engineLogging": true
-            }
-        }
-    ]
-}
-```
-
-### 8.2.3. Intégration avec CMake
-
-CMake est un outil de génération de build qui gère la compilation de projets multi-plateformes. Il est souvent utilisé en combinaison avec GCC et VS Code pour gérer des projets C++ complexes.
-
-#### 8.2.3.1. Installation de CMake
-
-**Commande :**
-
-```bash
-sudo apt install cmake
-```
-
-#### 8.2.3.2. Configuration de CMake
-
-Créer un fichier `CMakeLists.txt` à la racine de votre projet.
-
-**Exemple :**
+Exemple de projet avec une bibliothèque et un exécutable :
 
 ```cmake
-cmake_minimum_required(VERSION 3.10)
-project(MonProjet)
+cmake_minimum_required(VERSION 3.25)
+project(MonProjet VERSION 1.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+add_library(monprojet
+    src/calcul.cpp
+)
 
-add_executable(monprogramme main.cpp)
+target_include_directories(monprojet
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
+
+target_compile_features(monprojet PUBLIC cxx_std_23)
+
+add_executable(monapp apps/main.cpp)
+target_link_libraries(monapp PRIVATE monprojet)
 ```
 
-#### 8.2.3.3. Intégration de CMake dans VS Code
+Éviter autant que possible :
 
-1. Installer l'extension **CMake Tools**.
-2. Ouvrir la palette de commandes (Ctrl+Shift+P).
-3. Taper `CMake: Configure` pour configurer le projet.
-4. Taper `CMake: Build` pour construire le projet.
-5. Taper `CMake: Run Without Debugging` pour exécuter le projet.
+```cmake
+set(CMAKE_CXX_FLAGS "...")
+include_directories(...)
+link_libraries(...)
+```
 
-# Module 8 : Conclusion et Ressources pour Aller Plus Loin
+Les propriétés attachées à des **targets** se propagent de façon plus précise et composable.
 
-## 8.3 Ressources pour approfondir ses connaissances en C++
+### 8.2.4. CMake Presets
 
-Pour devenir un expert en C++, il est essentiel d'explorer une variété de ressources d'apprentissage. Les livres, les cours en ligne, les tutoriels, et les documentations officielles sont autant de moyens efficaces pour approfondir ses connaissances. Voici une liste de ressources recommandées pour les développeurs C++ souhaitant améliorer leurs compétences.
+`CMakePresets.json` permet de versionner des configurations communes :
 
-### 8.3.1 Livres
+```json
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    }
+  ]
+}
+```
+
+Utilisation :
+
+```bash
+cmake --preset debug
+cmake --build --preset debug
+```
+
+### 8.2.5. Ninja
+
+Ninja est un générateur de build rapide couramment utilisé avec CMake :
+
+```bash
+cmake -S . -B build -G Ninja
+cmake --build build
+```
+
+### 8.2.6. Dépendances : package managers
+
+Pour un projet non trivial, éviter de copier manuellement des bibliothèques dans le dépôt sans stratégie de mise à jour.
+
+Deux solutions courantes sont :
+
+- **Conan** ;
+- **vcpkg**.
+
+Le choix dépend de l'écosystème, des plateformes cibles, de la CI et de la politique de reproductibilité. Une dépendance doit être versionnée explicitement et faire l'objet d'une surveillance de sécurité.
+
+### 8.2.7. VS Code
+
+La note [[Visual studio code]] couvre l'éditeur en détail. Pour un projet C++ :
+
+- utiliser **CMake Tools** lorsque CMake gère le build ;
+- utiliser C/C++ ou clangd pour l'analyse ;
+- laisser l'IDE lire `compile_commands.json` ou la configuration CMake ;
+- ne pas dupliquer tous les paramètres de compilation dans `tasks.json`.
+
+Un `launch.json` minimal avec GDB peut ressembler à :
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug app",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/debug/monapp",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb"
+    }
+  ]
+}
+```
+
+### 8.2.8. Débogueurs
+
+#### GDB
+
+```bash
+gdb ./app
+```
+
+Commandes utiles :
+
+```text
+break main
+run
+next
+step
+print variable
+bt
+continue
+```
+
+#### LLDB
+
+LLDB est l'alternative du projet LLVM/Clang et fournit les mêmes grandes fonctions : breakpoints, inspection de pile, variables et stepping.
+
+### 8.2.9. Analyse statique
+
+- diagnostics du compilateur ;
+- `clang-tidy` ;
+- analyseurs intégrés des IDE ;
+- éventuellement des outils spécialisés comme cppcheck.
+
+La compilation doit idéalement générer `compile_commands.json` afin que les outils disposent des vrais include paths et options :
+
+```bash
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+```
+
+### 8.2.10. Tests et CI
+
+Une CI C++ utile peut exécuter plusieurs jobs :
+
+1. GCC Debug + tests ;
+2. Clang Debug + tests ;
+3. sanitizers ;
+4. `clang-tidy` ;
+5. build Release.
+
+L'objectif est de détecter tôt les divergences entre compilateurs et les erreurs dynamiques.
+
+## 8.3. Ressources pour approfondir ses connaissances en C++
+
+Le C++ évolue tous les trois ans. Une ressource peut donc rester excellente sur un concept fondamental tout en étant dépassée sur les pratiques modernes. Toujours distinguer **référence normative**, **référence technique** et **tutoriel**.
+
+### 8.3.1. Références prioritaires
+
+- [WG21 — comité de standardisation C++](https://www.open-std.org/jtc1/sc22/wg21/) : working drafts et propositions ;
+- [cppreference](https://en.cppreference.com/) : référence pratique du langage et de la bibliothèque standard ;
+- [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) : recommandations de conception et de sécurité ;
+- [GCC C++ status](https://gcc.gnu.org/projects/cxx-status.html) : niveau d'implémentation du langage ;
+- [Clang C++ status](https://clang.llvm.org/cxx_status.html) : niveau d'implémentation du langage ;
+- [Compiler Explorer](https://godbolt.org/) : comparaison des compilateurs, options et code machine ;
+- [CMake Documentation](https://cmake.org/cmake/help/latest/) : référence du système de build.
+
+> [!important]
+> `cppreference` est une excellente référence technique, mais le texte normatif du standard et les documents WG21 restent la source ultime lorsqu'une question de conformité est litigieuse.
+
+
+### 8.3.2. Livres
 
 Les livres offrent une source d'information approfondie et structurée. Voici quelques ouvrages de référence pour le développement en C++.
 
-#### 8.3.1.1 "The C++ Programming Language" par Bjarne Stroustrup
+#### 8.3.2.1. "The C++ Programming Language" par Bjarne Stroustrup
 
 Ce livre est écrit par le créateur du langage C++, Bjarne Stroustrup. Il couvre en détail les concepts fondamentaux et avancés du C++.
 
@@ -4323,9 +5799,9 @@ Ce livre est écrit par le créateur du langage C++, Bjarne Stroustrup. Il couvr
 - Programmation orientée objet
 - Bibliothèque standard C++
 
-#### 8.3.1.2 "Effective Modern C++" par Scott Meyers
+#### 8.3.2.2. "Effective Modern C++" par Scott Meyers
 
-Ce livre est indispensable pour les développeurs souhaitant maîtriser les nouvelles fonctionnalités introduites dans les versions modernes de C++ (C++11 et C++14).
+Ce livre reste très utile pour comprendre le virage du C++ moderne, mais il cible principalement **C++11 et C++14**. Il faut donc compléter ses recommandations par des ressources couvrant C++17, C++20 et C++23.
 
 **Points clés :**
 - Utilisation des nouvelles fonctionnalités de C++11 et C++14
@@ -4333,7 +5809,7 @@ Ce livre est indispensable pour les développeurs souhaitant maîtriser les nouv
 - Gestion des ressources et des exceptions
 - Programmation concurrente
 
-#### 8.3.1.3 "C++ Primer" par Stanley B. Lippman, Josée Lajoie, et Barbara E. Moo
+#### 8.3.2.3. "C++ Primer" par Stanley B. Lippman, Josée Lajoie, et Barbara E. Moo
 
 Ce livre est parfait pour les débutants ainsi que pour les développeurs ayant une certaine expérience en C++.
 
@@ -4344,11 +5820,11 @@ Ce livre est parfait pour les débutants ainsi que pour les développeurs ayant 
 - Templates et STL
 - Programmation avancée
 
-### 8.3.2 Cours en ligne et tutoriels
+### 8.3.3. Cours en ligne et tutoriels
 
 Les cours en ligne et les tutoriels offrent une approche interactive pour l'apprentissage du C++. Voici quelques plateformes et cours recommandés.
 
-#### 8.3.2.1 Coursera
+#### 8.3.3.1. Coursera
 
 **Cours recommandés :**
 - **"C++ For C Programmers, Part A"** par l'Université de Californie, Santa Cruz
@@ -4356,7 +5832,7 @@ Les cours en ligne et les tutoriels offrent une approche interactive pour l'appr
 
 Ces cours couvrent les bases du C++ pour les développeurs ayant déjà une expérience en C.
 
-#### 8.3.2.2 edX
+#### 8.3.3.2. edX
 
 **Cours recommandés :**
 - **"Introduction to C++"** par Microsoft
@@ -4364,7 +5840,7 @@ Ces cours couvrent les bases du C++ pour les développeurs ayant déjà une exp�
 
 Ces cours offrent une introduction complète au C++ ainsi que des sujets avancés pour les développeurs expérimentés.
 
-#### 8.3.2.3 Udemy
+#### 8.3.3.3. Udemy
 
 **Cours recommandés :**
 - **"Beginning C++ Programming - From Beginner to Beyond"** par Tim Buchalka
@@ -4372,14 +5848,14 @@ Ces cours offrent une introduction complète au C++ ainsi que des sujets avancé
 
 Ces cours sont parfaits pour les débutants ainsi que pour ceux intéressés par le développement de jeux vidéo avec C++.
 
-#### 8.3.2.4 FUN MOOC
+#### 8.3.3.4. FUN MOOC
 
 **Cours recommandés :**
 
 - **"Programmation en C++"** par l'Institut Mines-Télécom
     - Ce cours couvre les concepts fondamentaux de la programmation en C++ et est idéal pour les débutants et les intermédiaires.
 
-#### 8.3.2.5 Developpez.com
+#### 8.3.3.5. Developpez.com
 
 **Ressources recommandées :**
 
@@ -4387,18 +5863,18 @@ Ces cours sont parfaits pour les débutants ainsi que pour ceux intéressés par
     - Tutoriels C++
     - Articles C++
 
-#### 8.3.2.7 OpenClassrooms
+#### 8.3.3.6. OpenClassrooms
 
 **Cours recommandés :**
 
 - **["Apprenez à programmer en C++"](https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c)** : Ce cours gratuit d'OpenClassrooms couvre les bases du langage C++ et permet de se familiariser avec les concepts fondamentaux.
-### 8.3.3 Documentation et sites web
+### 8.3.4. Documentation et sites web
 
 La documentation officielle et les sites web dédiés sont des ressources essentielles pour rester à jour avec les dernières évolutions du langage C++.
 
-#### 8.3.3.1 Documentation officielle
+#### 8.3.4.1. Documentation officielle
 
-**[cppreference.com ](cppreference.com):**
+**[cppreference](https://en.cppreference.com/)**
 - Une référence complète pour les bibliothèques C++ standard et les fonctionnalités du langage.
 - Inclut des exemples de code et des explications détaillées.
 
@@ -4406,7 +5882,7 @@ La documentation officielle et les sites web dédiés sont des ressources essent
 - Un site web dédié aux tutoriels et à la documentation C++.
 - Inclut des guides de référence pour la bibliothèque standard C++.
 
-#### 8.3.3.2 Stack Overflow
+#### 8.3.4.2. Stack Overflow
 
 Stack Overflow est une communauté en ligne où les développeurs peuvent poser des questions et obtenir des réponses sur divers sujets de programmation, y compris C++.
 
@@ -4415,7 +5891,7 @@ Stack Overflow est une communauté en ligne où les développeurs peuvent poser 
 - Poser des questions spécifiques et obtenir des réponses de la communauté.
 - Participer aux discussions et aider d'autres développeurs.
 
-#### 8.3.3.3 GitHub
+#### 8.3.4.3. GitHub
 
 GitHub est une plateforme de développement collaboratif où les développeurs peuvent héberger et partager leur code.
 
@@ -4424,19 +5900,54 @@ GitHub est une plateforme de développement collaboratif où les développeurs p
 - Contribuer à des projets existants.
 - Apprendre des meilleures pratiques en étudiant le code des autres développeurs.
 
-### 8.3.4 Forums et communautés
+### 8.3.5. Forums et communautés
 
 Les forums et les communautés en ligne offrent des opportunités de réseautage et d'apprentissage continu.
 
-#### 8.3.4.1. Reddit
+#### 8.3.5.1. Reddit
 
 **Subreddits recommandés :**
 - **r/cpp** : Un subreddit dédié aux discussions sur C++.
 - **r/learnprogramming** : Un subreddit pour les débutants en programmation.
 
-#### 8.3.4.2. C++ Forum
+#### 8.3.5.2. C++ Forum
 
 **[cplusplus.com ](https://cplusplus.com):**
 - Un forum dédié aux discussions sur C++.
 - Inclut des sections pour les débutants, les questions avancées, et les discussions générales.
 
+## 8.4. Checklist d'un projet C++ moderne
+
+Avant de considérer un projet prêt à être livré :
+
+- [ ] le standard C++ minimal est explicitement documenté ;
+- [ ] le projet compile avec des warnings élevés ;
+- [ ] les warnings importants sont corrigés plutôt que masqués ;
+- [ ] l'ownership des ressources est explicite ;
+- [ ] `new`/`delete` nus sont absents du code applicatif sauf justification ;
+- [ ] RAII protège fichiers, verrous, sockets et autres ressources ;
+- [ ] les interfaces évitent les copies inutiles sans introduire de dangling references ;
+- [ ] les tests sont lancés par CTest ou un mécanisme automatisé équivalent ;
+- [ ] ASan/UBSan sont exécutés régulièrement ;
+- [ ] TSan est utilisé sur les parties concurrentes lorsque possible ;
+- [ ] la CI construit au moins les plateformes et compilateurs réellement supportés ;
+- [ ] les dépendances sont versionnées et mises à jour ;
+- [ ] les performances critiques ont été mesurées ;
+- [ ] le comportement sur erreur est documenté ;
+- [ ] le build peut être reproduit sans l'IDE du développeur.
+
+## 8.5. À retenir
+
+Le C++ moderne privilégie l'expression de l'intention et de la durée de vie dans les **types** :
+
+- un objet local plutôt qu'une allocation dynamique inutile ;
+- `std::vector` plutôt qu'un tableau alloué manuellement ;
+- `std::unique_ptr` plutôt qu'un pointeur propriétaire ambigu ;
+- `std::span` ou `std::string_view` pour une vue non propriétaire ;
+- concepts pour documenter les templates ;
+- ranges pour composer des traitements ;
+- `std::expected` lorsque l'erreur fait naturellement partie du résultat ;
+- `std::jthread` et RAII pour les threads ;
+- CMake target-based, tests et analyse statique pour l'ingénierie du projet.
+
+La règle la plus importante reste : **ne pas confondre contrôle bas niveau et obligation d'écrire du code bas niveau**. La force du C++ moderne vient précisément de sa capacité à encapsuler les détails dangereux dans des abstractions à coût maîtrisé.
