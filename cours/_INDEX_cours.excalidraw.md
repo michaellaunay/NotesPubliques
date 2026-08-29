@@ -124,7 +124,7 @@ Regex
 
 SQLAchemy
 
-ZC.Buidout
+ZC.Buildout
 
 Développement web
 
@@ -3562,7 +3562,7 @@ Getting things done
    "baseline": 11
   },
   {
-   "id": "5af760813bc02031",
+   "id": "8bd8b5c17ac5f918",
    "type": "rectangle",
    "x": 1014.0,
    "y": 662.0,
@@ -3587,11 +3587,11 @@ Getting things done
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[ZC.Buidout]]",
+   "link": "[[ZC.Buildout]]",
    "locked": false
   },
   {
-   "id": "5096065fadfa5763",
+   "id": "ca9f0aad8e48364b",
    "type": "text",
    "x": 1014.0,
    "y": 673.0,
@@ -3616,14 +3616,14 @@ Getting things done
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "ZC.Buidout",
-   "rawText": "ZC.Buidout",
-   "originalText": "ZC.Buidout",
+   "text": "ZC.Buildout",
+   "rawText": "ZC.Buildout",
+   "originalText": "ZC.Buildout",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "5af760813bc02031",
+   "containerId": "8bd8b5c17ac5f918",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
