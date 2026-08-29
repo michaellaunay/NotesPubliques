@@ -33,7 +33,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Les CNN et RNN]] — Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences.
 - [[Les RAGs]] — Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.
 - [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
-- [[cours/LLM|LLM]] — Cours complet sur les grands modèles de langage : histoire, tokenisation, Transformers, pré-entraînement et post-entraînement, prompting, RAG, outils et agents, raisonnement, multimodalité, évaluation, sécurité, déploiement et choix d'un modèle.
+- [[LLM]] — Cours complet sur les grands modèles de langage : histoire, tokenisation, Transformers, pré-entraînement et post-entraînement, prompting, RAG, outils et agents, raisonnement, multimodalité, évaluation, sécurité, déploiement et choix d'un modèle.
 - [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
 - [[Pytorch]] — Cours complet de PyTorch 2.x : tenseurs, appareils de calcul, autograd, nn.Module, fonctions de perte, optimisation, Dataset et DataLoader, boucles d'entraînement, validation, checkpoints, CNN, transfert d'apprentissage, AMP, torch.compile, profilage, entraînement distribué et export.
 - [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
@@ -64,7 +64,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[OAuth OpenID]] — Cours complet sur OAuth 2.0, l'évolution OAuth 2.1, OpenID Connect, JWT/JOSE, PKCE, DPoP, PAR/JAR, les architectures BFF et l'intégration moderne avec Keycloak et Pyramid.
 - [[Sécurité avancée sous Linux]] — Cours avancé et pratique de sécurisation d'un système GNU/Linux : modèle de menace, permissions et capabilities, durcissement du noyau et de systemd, SELinux/AppArmor/Landlock/seccomp, SSH et réseau, LUKS2, journalisation et audit, réponse à incident, sécurité des conteneurs, chaîne d'approvisionnement et usages de l'IA.
 - [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification, sessions, cryptographie, injections SQL, XSS et CSRF, analyse de journaux, puis les vulnérabilités propres au langage (pickle, eval, sous-processus), la gestion des secrets et la sécurité de la chaîne d'approvisionnement.
-- [[Sécurité des IOT en python avec SCADA]] — Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth.
+- [[Sécurité des IOT en python avec SCADA]] — Cours avancé sur la cybersécurité IoT, OT et SCADA avec Python : architecture, segmentation, IEC 62443, MQTT, Modbus, OPC UA, BLE, PKI/TLS, supervision, réponse à incident, développement sécurisé et cadre réglementaire européen.
 
 ## Programmation
 
@@ -123,7 +123,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Histoire et matériel informatique
 
-- [[Histoire des langages de programmation]] — Cours d'histoire des langages de programmation : concepts de syntaxe et de sémantique, classification des langages, précurseurs, Fortran, COBOL, LISP, langages structurés et évolutions modernes.
+- [[Histoire des langages de programmation]] — Cours d'histoire des langages de programmation : concepts fondamentaux, paradigmes, grandes familles de langages, évolution des années 1950 à 2026, runtimes, systèmes de types, WebAssembly, sûreté mémoire et tendances contemporaines.
 - [[Historique Linux]] — Fiche chronologique sur les racines d'UNIX, la naissance de la Free Software Foundation, la GPL et le projet GNU.
 - [[Informatique]] — Carte mentale de présentation générale de l'informatique : histoire du matériel, génie logiciel, cycle en V et architecture de von Neumann.
 - [[Parsing Expression Grammars PEG]] — Fiche sur les Parsing Expression Grammars : non-terminaux, terminaux, règles de production, opérateurs de séquence, choix, répétition et prédicats, et gestion de la récursivité.
