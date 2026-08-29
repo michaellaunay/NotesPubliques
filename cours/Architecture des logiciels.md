@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5AT1VPB4GV6CEWWGA7A"
-titre: "Architecture des logiciels"
+uid: 01M02EX5AT1VPB4GV6CEWWGA7A
+titre: Architecture des logiciels
 type: cours
 statut: actif
 para: ressource
@@ -18,7 +18,7 @@ prerequis:
   - "[[Design patterns]]"
   - "[[Principes SOLID en COO]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-06-14
 date_modification: 2026-08-18
@@ -26,7 +26,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Plan du cours sur l'architecture des logiciels. Ce cours explique comment les logiciels sont structurés et comment cette structure peut aider à faciliter la conception, l'implémentation et la maintenance des systèmes logiciels.
 

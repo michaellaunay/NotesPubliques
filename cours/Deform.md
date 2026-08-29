@@ -13,7 +13,7 @@ themes:
   - python
   - pyramid
   - deform
-resume: "Cours sur la bibliothèque de formulaires Deform sous Pyramid : schémas Colander, widgets, validation, rendu et personnalisation."
+resume: "Cours moderne sur Deform 3 sous Pyramid : schémas Colander, widgets, validation, rendu, CSRF, fichiers, formulaires dynamiques et personnalisation."
 niveau: avance
 prerequis:
   - "[[Pyramid]]"
@@ -22,452 +22,1583 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-10-13
-date_modification: 2024-05-01
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-# Introduction à Deform sous Pyramid
+# Deform sous Pyramid
 
-Deform est une bibliothèque Python utilisée pour générer des formulaires HTML et valider les soumissions des formulaires. Dans le contexte de [[Pyramid]], Deform s'intègre naturellement pour fournir des capacités de rendu et de validation de formulaires. Dans ce cours, nous explorerons les concepts clés de Deform, tels que `deform.schema` et `deform.widget`, pour comprendre comment créer, valider et personnaliser des formulaires.
+> [!info]
+> Ce cours cible **Deform 3.x**, et plus particulièrement Deform **3.0.1**, publié en février 2026.
+> Deform 3 apporte notamment le passage à **Bootstrap 5**, une mise à jour des bibliothèques JavaScript et la prise en charge de la validation HTML5.
 
-## Plan du cours
+Deform est une bibliothèque Python de génération et de traitement de formulaires HTML côté serveur. Elle permet de :
 
-### 1. Introduction à Deform
+- décrire les données attendues avec **Colander** ;
+- générer automatiquement les champs HTML correspondants ;
+- convertir une soumission HTTP en structures Python ;
+- valider les données côté serveur ;
+- afficher les erreurs au niveau des champs ;
+- gérer des structures imbriquées et des listes dynamiques ;
+- personnaliser le rendu avec des widgets et des templates ;
+- intégrer des formulaires dans [[Pyramid]] ou dans un autre framework web.
 
-#### 1.1. Qu'est-ce que Deform?
+Deform ne remplace ni Pyramid ni Colander : il se place entre le schéma de données et le navigateur.
 
-- Présentation de Deform et de son rôle dans le développement web.
-- Relation entre Pyramid et Deform.
+```text
+Navigateur
+    │
+    │ POST multipart/form-data ou application/x-www-form-urlencoded
+    ▼
+Pyramid / WebOb
+    │
+    │ request.POST.items()
+    ▼
+Deform + Peppercorn
+    │
+    │ pstruct → cstruct
+    ▼
+Colander
+    │
+    │ désérialisation + validation
+    ▼
+appstruct Python
+```
 
-#### 1.2. Installation et configuration
+Les trois bibliothèques importantes à retenir sont donc :
 
-- Installation de Deform sous un environnement Pyramid.
-- Configuration initiale pour son intégration avec Pyramid.
+| Bibliothèque | Rôle |
+|---|---|
+| **Deform** | rendu des formulaires, widgets et gestion des erreurs |
+| **Colander** | schémas, sérialisation, désérialisation et validation |
+| **Peppercorn** | conversion des contrôles HTML en structures imbriquées compréhensibles par Deform |
 
-### 2. Comprendre `deform.schema`
+# Plan du cours
 
-#### 2.1. Introduction aux schémas
+1. [[#1. Architecture et concepts fondamentaux]]
+2. [[#2. Installation et intégration avec Pyramid]]
+3. [[#3. Définir les schémas avec Colander]]
+4. [[#4. Widgets et rendu HTML]]
+5. [[#5. Construire et traiter un formulaire]]
+6. [[#6. Validation avancée]]
+7. [[#7. Schémas imbriqués et collections dynamiques]]
+8. [[#8. Sécurité des formulaires]]
+9. [[#9. Fichiers, choix dynamiques et données contextuelles]]
+10. [[#10. Personnalisation des templates et ressources]]
+11. [[#11. Internationalisation et accessibilité]]
+12. [[#12. Tests et architecture applicative]]
+13. [[#13. Migration de Deform 2 vers Deform 3]]
+14. [[#14. Bonnes pratiques et pièges fréquents]]
+15. [[#15. Exemple complet avec Pyramid]]
+16. [[#16. Conclusion et ressources]]
 
-- Qu'est-ce qu'un schéma dans le contexte de Deform?
-- Utilité des schémas dans la validation des données.
+# 1. Architecture et concepts fondamentaux
 
-#### 2.2. Création de schémas simples
+## 1.1. Ce que fait Deform
 
-- Utilisation de types de données de base.
-- Ajout de contraintes et de validations.
+Un formulaire Deform est construit à partir d'un **schéma Colander**. Deform transforme les nœuds du schéma en objets `Field`, associe un widget à chacun d'eux, puis rend le formulaire en HTML.
 
-#### 2.3. Schémas imbriqués et complexes
+À la soumission, le chemin inverse est parcouru :
 
-- Comment imbriquer plusieurs schémas.
-- Gérer les collections et les listes.
+1. le navigateur envoie des couples nom/valeur ;
+2. Deform et Peppercorn reconstruisent une structure imbriquée ;
+3. les widgets désérialisent leur représentation HTML ;
+4. Colander convertit les valeurs vers les types Python attendus ;
+5. Colander exécute les validateurs ;
+6. Deform retourne l'**appstruct** si tout est valide ;
+7. sinon, Deform lève `deform.ValidationFailure` et peut rendre le formulaire avec les erreurs.
 
-### 3. Explorer `deform.widget`
+## 1.2. `pstruct`, `cstruct` et `appstruct`
 
-#### 3.1. Qu'est-ce qu'un widget?
+Ces trois termes reviennent fréquemment dans la documentation.
 
-- Définition et utilité des widgets dans Deform.
-- Relation entre un schéma et un widget.
+### `pstruct`
 
-#### 3.2. Utilisation des widgets par défaut
+Le **pstruct** est la structure issue de la soumission du formulaire, avant conversion par les widgets.
 
-- Exploration des widgets les plus courants (par exemple, TextInputWidget, CheckboxWidget).
-- Comment associer un widget à un schéma.
+Les valeurs sont encore proches du protocole HTML.
 
-#### 3.3. Personnalisation des widgets
+### `cstruct`
 
-- Modification du comportement et de l'apparence des widgets.
-- Création de widgets personnalisés.
+Le **cstruct** est la représentation sérialisée manipulée entre Deform et Colander.
 
-### 4. Mise en pratique : Création d'un formulaire complet
+Par exemple, une date Python peut être représentée par une chaîne lors du rendu HTML.
 
-#### 4.1. Définition du schéma du formulaire
+### `appstruct`
 
-- Exemple pratique : Création d'un schéma pour un formulaire d'inscription.
+L'**appstruct** est la structure Python finale utilisable par l'application.
 
-#### 4.2. Association de widgets au schéma
+Exemple :
 
-- Choix et personnalisation des widgets appropriés pour chaque champ.
+```python
+{
+    "name": "Ada",
+    "age": 36,
+    "newsletter": True,
+}
+```
 
-#### 4.3. Rendu et validation du formulaire
+Le développeur travaille principalement avec l'`appstruct`.
 
-- Intégration du formulaire dans une vue Pyramid.
-- Gestion des soumissions et validation des données.
+## 1.3. Schéma, champ et widget
 
-### 5. Bonnes pratiques et astuces avancées
+Il faut distinguer trois objets :
 
-#### 5.1. Gestion des erreurs et des messages
+- le **schema node** décrit la donnée et ses contraintes ;
+- le **Field** représente le champ Deform durant une requête ;
+- le **Widget** décrit comment cette donnée est affichée et lue dans le navigateur.
 
-- Affichage élégant des messages d'erreur.
-- Personnalisation des messages de validation.
+```text
+colander.SchemaNode
+        │
+        ▼
+   deform.Field
+        │
+        ▼
+   deform.Widget
+        │
+        ▼
+       HTML
+```
 
-#### 5.2. Internationalisation et localisation
+Un `Field` n'est normalement pas un objet global réutilisé entre les requêtes : Deform le considère comme un objet de durée de vie limitée à une requête HTTP.
 
-- Utilisation de la prise en charge i18n de Deform.
-- Traduction des messages et labels.
+## 1.4. Deform n'est pas lié exclusivement à Pyramid
 
-#### 5.3. Conseils pour l'optimisation des performances
+Deform s'intègre particulièrement bien avec Pyramid mais reste une bibliothèque indépendante du framework.
 
-- Rendu efficace des formulaires complexes.
-- Réutilisation des schémas et des widgets.
+Il est donc possible de l'utiliser avec :
 
-### 6. Conclusion et perspectives
+- Pyramid ;
+- une application WSGI personnalisée ;
+- d'autres frameworks capables d'exposer les données POST à Deform.
 
-#### 6.1. Résumé des concepts clés
+Dans ce cours nous utiliserons Pyramid, car c'est l'intégration la plus naturelle dans notre contexte.
 
-- Rappel des éléments essentiels de Deform.
+# 2. Installation et intégration avec Pyramid
 
-#### 6.2. Ressources complémentaires
+## 2.1. Créer un environnement virtuel
 
-- Livres, tutoriels et documentation pour approfondir ses connaissances.
-
-# 1. Introduction à Deform
-
-Deform est une bibliothèque de rendu et de validation de formulaires pour Python qui est largement utilisée dans les applications web. Elle fournit des outils pour générer des formulaires HTML et pour valider les soumissions des formulaires côté serveur. La bibliothèque est conçue pour être extensible et personnalisable, offrant aux développeurs la flexibilité de définir leurs propres schémas, widgets et styles.
-
-## 1.1. Qu'est-ce que Deform?
-
-### Présentation de Deform et de son rôle dans le développement web
-
-Deform facilite la création de formulaires complexes et leur validation en utilisant des schémas définis par le développeur. Les schémas décrivent la structure et les contraintes des données attendues. Une fois qu'un schéma est défini, Deform peut générer automatiquement un formulaire HTML à partir de celui-ci, simplifiant ainsi le processus de rendu. De plus, lorsqu'un utilisateur soumet un formulaire, Deform peut valider la soumission par rapport au schéma, s'assurant que les données reçues sont conformes aux attentes.
-
-### Relation entre Pyramid et Deform
-
-Pyramid est un framework web en Python qui est conçu pour être minimaliste et extensible. Deform, bien que pouvant fonctionner indépendamment de Pyramid, est souvent utilisé avec ce dernier pour gérer le rendu et la validation des formulaires. Pyramid et Deform partagent une philosophie similaire en matière d'extensibilité, ce qui rend leur intégration naturelle. Avec Pyramid, il est facile d'intégrer Deform pour gérer des parties spécifiques de l'application, telles que la soumission et la validation de formulaires.
-
-## 1.2. Installation et configuration
-
-### Installation de Deform sous un environnement Pyramid
-
-Pour installer Deform dans un projet Pyramid, vous pouvez utiliser l'outil de gestion de paquets Python, `pip`. Dans votre environnement virtuel associé à votre projet Pyramid, exécutez :
+Utiliser un environnement virtuel évite de mélanger les dépendances du projet avec celles du système.
 
 ```bash
-pip install deform
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
 ```
 
-Cela installera la dernière version de Deform ainsi que ses dépendances nécessaires.
+Sous Windows :
 
-### Configuration initiale pour son intégration avec Pyramid
+```powershell
+.venv\Scripts\Activate.ps1
+```
 
-Après avoir installé Deform, vous devrez effectuer quelques étapes de configuration pour l'intégrer à votre application Pyramid.
+## 2.2. Installer Deform
 
-1. **Inclusion de Deform** : Ajoutez l'inclusion de Deform dans votre application Pyramid. Dans votre fichier de configuration principal (`__init__.py` ou similaire), ajoutez la ligne suivante :
+```bash
+python -m pip install "deform>=3,<4"
+```
+
+Pour une application Pyramid :
+
+```bash
+python -m pip install "pyramid>=2" "deform>=3,<4" pyramid-chameleon
+```
+
+Deform installe notamment Colander et Peppercorn comme dépendances.
+
+Dans un projet de production, les versions doivent être verrouillées par le mécanisme choisi par le projet : fichier de contraintes, lockfile, [[ZC.Buidout|Buildout]], `uv`, `pip-tools`, etc.
+
+## 2.3. Intégration minimale avec Pyramid
+
+Deform fournit ses propres templates Chameleon pour ses widgets. Le template de la **page** qui contient le formulaire peut cependant être écrit avec Chameleon, Jinja2 ou un autre moteur.
+
+Une configuration Pyramid minimale ressemble à :
 
 ```python
-config.include('deform.renderer')
+from deform.renderer import configure_zpt_renderer
+from pyramid.config import Configurator
+from pyramid.session import SignedCookieSessionFactory
+
+
+def main(global_config, **settings):
+    session_factory = SignedCookieSessionFactory(
+        settings["session.secret"],
+        httponly=True,
+        secure=True,
+        samesite="Lax",
+    )
+
+    config = Configurator(
+        settings=settings,
+        session_factory=session_factory,
+    )
+
+    config.include("pyramid_chameleon")
+
+    configure_zpt_renderer()
+
+    config.add_static_view(
+        name="static_deform",
+        path="deform:static",
+        cache_max_age=3600,
+    )
+
+    config.scan()
+    return config.make_wsgi_app()
 ```
 
-2. **Ressources statiques** : Deform utilise un certain nombre de ressources statiques (CSS, JavaScript, etc.). Assurez-vous d'inclure ces ressources dans votre application. Cela peut être fait en ajoutant le chemin vers les ressources Deform dans votre fichier de configuration.
+> [!warning]
+> `secure=True` suppose que l'application est servie en HTTPS. En développement local sans HTTPS, il faudra adapter cette option.
 
-3. **Configuration du renderer** : Si vous utilisez un moteur de templates autre que celui par défaut (Chameleon), vous devrez configurer Deform pour utiliser ce moteur. Par exemple, pour utiliser Jinja2, vous définiriez le renderer approprié :
+## 2.4. Ressources CSS et JavaScript
+
+Certains widgets nécessitent des ressources CSS ou JavaScript.
+
+Après création du formulaire :
 
 ```python
-from deform import Form
-Form.set_default_renderer('deform.renderer:Jinja2Renderer')
+resources = form.get_widget_resources()
 ```
 
-Une fois ces étapes terminées, Deform devrait être correctement configuré pour fonctionner avec votre application Pyramid. Vous pouvez maintenant commencer à définir des schémas, à rendre des formulaires et à valider les soumissions.
-
-# 2. Comprendre `deform.schema`
-
-Le module `deform.schema` est l'un des piliers de Deform. Il permet aux développeurs de définir explicitement la structure et les attentes des données de formulaire, offrant ainsi une base solide pour le rendu et la validation.
-
-## 2.1. Introduction aux schémas
-
-### Qu'est-ce qu'un schéma dans le contexte de Deform?
-
-Un schéma, dans le contexte de Deform, est une définition formelle de la structure des données attendues d'un formulaire. Il décrit non seulement les champs attendus, mais aussi leur type, leurs contraintes et leurs validations. Le schéma est une représentation Python de ce à quoi devrait ressembler une soumission valide, offrant ainsi un moyen programmatique de définir et de valider les données.
-
-### Utilité des schémas dans la validation des données
-
-La force des schémas réside dans leur capacité à valider automatiquement les soumissions de formulaires pour une structure définie. Lorsqu'un utilisateur soumet un formulaire, Deform utilise le schéma associé pour s'assurer que les données soumises correspondent à ce qui est attendu, tant en termes de présence de champs que de conformité des données. Les schémas éliminent ainsi la nécessité d'écrire manuellement de nombreuses validations.
-
-## 2.2. Création de schémas simples
-
-### Utilisation de types de données de base
-
-Deform fournit un ensemble de types de données de base que nous pouvons utiliser pour définir nos schémas. Voici quelques-uns des types les plus courants :
-
-- **String** : représente une chaîne de caractères.
-- **Integer** : représente un entier.
-- **Float** : représente un nombre à virgule flottante.
-- **Bool** : représente une valeur booléenne (vrai/faux).
-
-Exemple de définition d'un schéma simple :
+Le résultat a la forme :
 
 ```python
-from deform.schema import Schema, String, Integer
-
-class PersonSchema(Schema):
-    name = String(title="Nom", description="Entrez votre nom complet.")
-    age = Integer(title="Âge", description="Entrez votre âge.")
+{
+    "css": [...],
+    "js": [...],
+}
 ```
 
-### Ajout de contraintes et de validations
+Ces ressources doivent être incluses par le template de page lorsque le formulaire utilise des widgets qui en ont besoin.
 
-Les types de données de base peuvent être personnalisés avec des contraintes et des validations. Par exemple, nous pouvons exiger qu'une chaîne ait une longueur minimale ou maximale, ou que des nombres soient dans une plage spécifique.
+Une approche simple consiste à retourner ces deux listes dans le dictionnaire de la vue :
+
+```python
+values = {
+    "form": form.render(),
+    **form.get_widget_resources(),
+}
+```
+
+Il faut ensuite générer les URLs avec `request.static_url()` si les ressources sont fournies sous forme d'asset specifications.
+
+# 3. Définir les schémas avec Colander
+
+## 3.1. Correction importante : les schémas sont des schémas Colander
+
+Le code moderne ne doit pas présenter `deform.schema.Schema`, `deform.schema.String` ou `deform.schema.Integer` comme l'API générale de définition des champs.
+
+Deform utilise **Colander** pour ses schémas.
+
+L'import typique est :
+
+```python
+import colander
+```
+
+Puis :
+
+```python
+class PersonSchema(colander.MappingSchema):
+    name = colander.SchemaNode(
+        colander.String(),
+        title="Nom",
+    )
+
+    age = colander.SchemaNode(
+        colander.Integer(),
+        title="Âge",
+        validator=colander.Range(0, 130),
+    )
+```
+
+## 3.2. `MappingSchema`
+
+Un formulaire Deform racine doit normalement représenter une **mapping**, c'est-à-dire une structure clé/valeur analogue à un dictionnaire Python.
+
+```python
+class ProfileSchema(colander.MappingSchema):
+    username = colander.SchemaNode(colander.String())
+    age = colander.SchemaNode(colander.Integer())
+```
+
+Une fois validé, l'`appstruct` ressemble à :
+
+```python
+{
+    "username": "grace",
+    "age": 28,
+}
+```
+
+## 3.3. Les types courants
+
+Quelques types Colander utiles :
+
+| Type | Valeur Python typique |
+|---|---|
+| `colander.String()` | `str` |
+| `colander.Integer()` | `int` |
+| `colander.Float()` | `float` |
+| `colander.Decimal()` | `Decimal` |
+| `colander.Boolean()` | `bool` |
+| `colander.Date()` | `datetime.date` |
+| `colander.DateTime()` | `datetime.datetime` |
+| `colander.Mapping()` | `dict` |
+| `colander.Sequence()` | `list` |
+| `colander.Tuple()` | `tuple` |
+
+## 3.4. Champs obligatoires et facultatifs
+
+Par défaut, l'absence d'une valeur obligatoire provoque une erreur de validation.
+
+Pour rendre un champ facultatif :
+
+```python
+nickname = colander.SchemaNode(
+    colander.String(),
+    missing=colander.drop,
+)
+```
+
+Avec `colander.drop`, le champ absent n'est pas ajouté à l'`appstruct`.
+
+On peut également utiliser :
+
+```python
+missing=None
+```
+
+mais cela signifie alors explicitement que la valeur Python sera `None`.
+
+Il ne faut pas confondre :
+
+- `default` : valeur utilisée lors de la **sérialisation/rendu** si elle manque ;
+- `missing` : valeur utilisée lors de la **désérialisation** si l'entrée manque.
+
+## 3.5. `title`, `description` et métadonnées
+
+```python
+email = colander.SchemaNode(
+    colander.String(),
+    title="Adresse électronique",
+    description="Une adresse utilisée pour les notifications.",
+    validator=colander.Email(),
+)
+```
+
+Ces métadonnées sont exploitées par les templates Deform pour produire :
+
+- le label ;
+- l'aide contextuelle ;
+- certaines informations accessibles à l'utilisateur.
+
+## 3.6. Validateurs fournis par Colander
+
+Colander fournit de nombreux validateurs :
+
+```python
+colander.Length(min=3, max=50)
+colander.Range(min=0, max=120)
+colander.Email()
+colander.Regex(r"^[a-z0-9_-]+$")
+colander.OneOf(["admin", "editor", "reader"])
+colander.ContainsOnly([...])
+colander.url
+colander.uuid
+```
 
 Exemple :
 
 ```python
-from deform.schema import Schema, String, Integer, Range
-
-class PersonSchema(Schema):
-    name = String(title="Nom", description="Entrez votre nom complet.", min_length=2, max_length=50)
-    age = Integer(title="Âge", description="Entrez votre âge.", validator=Range(min=0, max=120))
+username = colander.SchemaNode(
+    colander.String(),
+    validator=colander.All(
+        colander.Length(min=3, max=32),
+        colander.Regex(r"^[a-zA-Z0-9_-]+$"),
+    ),
+)
 ```
 
-## 2.3. Schémas imbriqués et complexes
+## 3.7. Préparer une valeur avec `preparer`
 
-### Comment imbriquer plusieurs schémas
-
-Les schémas peuvent être imbriqués les uns dans les autres pour représenter des structures de données plus complexes. Par exemple, un schéma pour une "Adresse" pourrait être imbriqué dans un schéma pour une "Personne".
-
-Exemple :
+Le `preparer` transforme une donnée **après sa désérialisation mais avant sa validation**.
 
 ```python
-from deform.schema import Schema, String
+def normalize_email(value):
+    return value.strip().lower()
 
-class AddressSchema(Schema):
-    street = String(title="Rue")
-    city = String(title="Ville")
-    postal_code = String(title="Code postal")
 
-class PersonSchema(Schema):
-    name = String(title="Nom")
+email = colander.SchemaNode(
+    colander.String(),
+    preparer=normalize_email,
+    validator=colander.Email(),
+)
+```
+
+Le `preparer` est utile pour :
+
+- supprimer les espaces inutiles ;
+- normaliser la casse ;
+- convertir un format utilisateur vers un format canonique ;
+- nettoyer une donnée avant validation.
+
+Il ne doit pas servir à cacher une validation de sécurité insuffisante.
+
+# 4. Widgets et rendu HTML
+
+## 4.1. Rôle d'un widget
+
+Un widget Deform réalise trois opérations principales :
+
+1. sérialiser un `cstruct` vers du HTML ;
+2. désérialiser les valeurs reçues dans le formulaire vers un `cstruct` ;
+3. gérer l'affichage des erreurs de validation.
+
+Un schéma décrit **ce qu'est la donnée** ; un widget décrit **comment l'utilisateur interagit avec elle**.
+
+## 4.2. Widgets courants
+
+```python
+from deform import widget
+```
+
+Quelques widgets :
+
+- `widget.TextInputWidget` ;
+- `widget.TextAreaWidget` ;
+- `widget.PasswordWidget` ;
+- `widget.CheckboxWidget` ;
+- `widget.SelectWidget` ;
+- `widget.RadioChoiceWidget` ;
+- `widget.CheckboxChoiceWidget` ;
+- `widget.DateInputWidget` ;
+- `widget.DateTimeInputWidget` ;
+- `widget.FileUploadWidget` ;
+- `widget.HiddenWidget` ;
+- `widget.RichTextWidget` ;
+- `widget.SequenceWidget`.
+
+La liste exacte dépend de la version de Deform. Il faut consulter l'API de la version utilisée avant de s'appuyer sur un widget spécialisé.
+
+## 4.3. Associer explicitement un widget
+
+```python
+class MessageSchema(colander.MappingSchema):
+    subject = colander.SchemaNode(
+        colander.String(),
+        widget=widget.TextInputWidget(),
+    )
+
+    body = colander.SchemaNode(
+        colander.String(),
+        widget=widget.TextAreaWidget(rows=12),
+    )
+```
+
+Il n'est pas nécessaire de définir un widget pour chaque champ : Deform sait choisir un widget par défaut pour de nombreux types.
+
+## 4.4. Mot de passe
+
+```python
+password = colander.SchemaNode(
+    colander.String(),
+    widget=widget.PasswordWidget(redisplay=False),
+)
+```
+
+`redisplay=False` évite de réafficher le mot de passe après une erreur de validation.
+
+> [!important]
+> Un mot de passe reçu depuis un formulaire doit être **haché** avec un algorithme adapté aux mots de passe, par exemple Argon2id, avant stockage. Deform n'effectue pas ce travail métier.
+
+## 4.5. Liste de choix
+
+```python
+role = colander.SchemaNode(
+    colander.String(),
+    validator=colander.OneOf(["reader", "editor", "admin"]),
+    widget=widget.SelectWidget(
+        values=[
+            ("reader", "Lecteur"),
+            ("editor", "Éditeur"),
+            ("admin", "Administrateur"),
+        ]
+    ),
+)
+```
+
+La validation serveur reste indispensable même si la liste HTML empêche normalement l'utilisateur de sélectionner une autre valeur.
+
+Un client HTTP peut fabriquer manuellement une requête POST.
+
+## 4.6. Attributs HTML
+
+Les widgets permettent généralement de transmettre des attributs HTML :
+
+```python
+widget.TextInputWidget(
+    attributes={
+        "autocomplete": "email",
+        "inputmode": "email",
+        "placeholder": "nom@example.org",
+    }
+)
+```
+
+Les attributs HTML améliorent l'ergonomie, mais ne remplacent pas la validation côté serveur.
+
+# 5. Construire et traiter un formulaire
+
+## 5.1. Créer le formulaire
+
+```python
+import deform
+
+schema = ProfileSchema()
+form = deform.Form(
+    schema,
+    buttons=("submit",),
+)
+```
+
+Le schéma racine transmis à `Form` doit représenter une mapping.
+
+## 5.2. Afficher un formulaire vide
+
+```python
+html = form.render()
+```
+
+Le résultat est une chaîne HTML.
+
+## 5.3. Préremplir un formulaire
+
+Pour modifier un objet existant :
+
+```python
+appstruct = {
+    "username": "ada",
+    "age": 36,
+}
+
+html = form.render(appstruct)
+```
+
+L'`appstruct` doit contenir des **valeurs Python**, pas les chaînes déjà sérialisées pour HTML.
+
+## 5.4. Valider une soumission
+
+```python
+from deform import ValidationFailure
+
+controls = request.POST.items()
+
+try:
+    appstruct = form.validate(controls)
+except ValidationFailure as exc:
+    html = exc.render()
+else:
+    save_profile(appstruct)
+```
+
+`form.validate()` retourne l'`appstruct` validé.
+
+En cas d'erreur, `ValidationFailure.render()` reconstruit le formulaire avec :
+
+- les valeurs saisies ;
+- les erreurs associées aux champs ;
+- les erreurs globales éventuelles.
+
+## 5.5. Le modèle POST/Redirect/GET
+
+Après une soumission réussie, il est recommandé d'effectuer une redirection :
+
+```python
+from pyramid.httpexceptions import HTTPFound
+
+return HTTPFound(
+    location=request.route_url("profile")
+)
+```
+
+Cela évite notamment qu'un rafraîchissement du navigateur renvoie le formulaire.
+
+```text
+GET /profile/edit
+    ↓
+formulaire
+    ↓
+POST /profile/edit
+    ↓ validation OK
+HTTP 302
+    ↓
+GET /profile
+```
+
+# 6. Validation avancée
+
+## 6.1. Validateur personnalisé d'un champ
+
+Un validateur reçoit au minimum le nœud et la valeur.
+
+```python
+def validate_username(node, value):
+    if value.lower() in {"admin", "root", "system"}:
+        raise colander.Invalid(
+            node,
+            "Ce nom d'utilisateur est réservé.",
+        )
+```
+
+Puis :
+
+```python
+username = colander.SchemaNode(
+    colander.String(),
+    validator=validate_username,
+)
+```
+
+## 6.2. Accéder à la requête dans un validateur
+
+Pour les validations dépendant de l'application, on peut **binder** le schéma à la requête.
+
+```python
+def validate_unique_email(node, value):
+    request = node.bindings["request"]
+
+    if request.dbsession.query(User).filter_by(email=value).first():
+        raise colander.Invalid(
+            node,
+            "Cette adresse est déjà utilisée.",
+        )
+```
+
+Schéma :
+
+```python
+class RegistrationSchema(colander.MappingSchema):
+    email = colander.SchemaNode(
+        colander.String(),
+        validator=validate_unique_email,
+    )
+```
+
+Dans la vue :
+
+```python
+schema = RegistrationSchema().bind(request=request)
+```
+
+Cette technique évite d'utiliser des variables globales pour accéder à la base de données.
+
+## 6.3. Validation portant sur plusieurs champs
+
+Pour comparer deux valeurs, il est souvent plus clair de valider le schéma entier.
+
+```python
+class RegistrationSchema(colander.MappingSchema):
+    password = colander.SchemaNode(
+        colander.String(),
+        widget=widget.PasswordWidget(redisplay=False),
+    )
+
+    password_confirm = colander.SchemaNode(
+        colander.String(),
+        widget=widget.PasswordWidget(redisplay=False),
+    )
+
+    def validator(self, node, appstruct):
+        if appstruct["password"] != appstruct["password_confirm"]:
+            raise colander.Invalid(
+                node["password_confirm"],
+                "Les deux mots de passe sont différents.",
+            )
+```
+
+Cette validation est plus cohérente qu'un validateur attaché au seul champ `password` qui essaierait d'accéder à un autre champ.
+
+## 6.4. Erreurs découvertes après la validation
+
+Certaines erreurs ne sont connues qu'après `form.validate()` :
+
+- rejet par une API distante ;
+- violation d'une contrainte métier ;
+- conflit concurrent ;
+- erreur de paiement ;
+- échec d'une opération externe.
+
+Dans ce cas, il peut être utile de convertir l'erreur métier en erreur de formulaire et de réafficher celui-ci au lieu de retourner une erreur HTTP générique.
+
+La documentation Deform prévoit des mécanismes pour positionner une erreur après validation sur le formulaire ou un champ.
+
+## 6.5. Validation HTML5 et validation serveur
+
+Deform 3 peut générer des contraintes de validation HTML5.
+
+C'est utile pour l'expérience utilisateur, mais :
+
+> [!danger]
+> **Toute validation côté navigateur est contournable.**
+> Le schéma Colander doit rester la source de vérité côté serveur.
+
+# 7. Schémas imbriqués et collections dynamiques
+
+## 7.1. Mapping imbriquée
+
+```python
+class AddressSchema(colander.MappingSchema):
+    street = colander.SchemaNode(colander.String())
+    city = colander.SchemaNode(colander.String())
+    postal_code = colander.SchemaNode(colander.String())
+
+
+class PersonSchema(colander.MappingSchema):
+    name = colander.SchemaNode(colander.String())
     address = AddressSchema(title="Adresse")
 ```
 
-### Gérer les collections et les listes
+L'`appstruct` résultant :
 
-Pour gérer des collections, comme les listes ou les séquences de données, Deform fournit le type `Sequence`. Cela nous permet de représenter des ensembles d'objets similaires dans notre schéma.
+```python
+{
+    "name": "Ada Lovelace",
+    "address": {
+        "street": "...",
+        "city": "London",
+        "postal_code": "...",
+    },
+}
+```
+
+## 7.2. Séquence de valeurs simples
+
+```python
+class TagsSchema(colander.SequenceSchema):
+    tag = colander.SchemaNode(colander.String())
+
+
+class ArticleSchema(colander.MappingSchema):
+    title = colander.SchemaNode(colander.String())
+    tags = TagsSchema()
+```
+
+## 7.3. Séquence de mappings
+
+```python
+class PhoneSchema(colander.MappingSchema):
+    label = colander.SchemaNode(
+        colander.String(),
+        validator=colander.OneOf(["home", "work", "mobile"]),
+    )
+    number = colander.SchemaNode(colander.String())
+
+
+class PhonesSchema(colander.SequenceSchema):
+    phone = PhoneSchema()
+
+
+class ContactSchema(colander.MappingSchema):
+    name = colander.SchemaNode(colander.String())
+    phones = PhonesSchema()
+```
+
+Deform sait rendre des séquences auxquelles l'utilisateur peut ajouter ou retirer des éléments.
+
+C'est l'un de ses principaux avantages par rapport à un formulaire HTML entièrement codé à la main.
+
+## 7.4. Ne pas transformer tout formulaire en structure profondément imbriquée
+
+La possibilité de créer des structures complexes ne signifie pas qu'il faut tout mettre dans un seul formulaire.
+
+Un formulaire trop volumineux augmente :
+
+- le risque d'erreur utilisateur ;
+- la complexité du code métier ;
+- le coût du rendu ;
+- la difficulté des tests ;
+- la difficulté de conserver une transaction cohérente.
+
+Il est souvent préférable de découper une opération en plusieurs écrans cohérents.
+
+# 8. Sécurité des formulaires
+
+## 8.1. CSRF
+
+Une requête POST qui modifie des données doit être protégée contre les attaques **Cross-Site Request Forgery**.
+
+Deform fournit `CSRFSchema` :
+
+```python
+import colander
+from deform.schema import CSRFSchema
+
+
+class ProfileSchema(CSRFSchema):
+    display_name = colander.SchemaNode(colander.String())
+```
+
+Le schéma doit être lié à la requête :
+
+```python
+schema = ProfileSchema().bind(request=request)
+```
+
+Pour que cette approche fonctionne, Pyramid doit disposer d'une session correctement configurée.
+
+Pyramid possède également son propre mécanisme de protection CSRF et peut effectuer la validation au niveau des vues. Dans une application moderne, il faut choisir une stratégie cohérente et l'appliquer à toutes les opérations mutables.
+
+## 8.2. Ne jamais faire confiance aux valeurs d'un widget
+
+Les choix possibles d'un `SelectWidget` ne constituent pas un contrôle de sécurité.
 
 Exemple :
 
 ```python
-from deform.schema import Schema, String, Sequence
-
-class PersonSchema(Schema):
-    name = String(title="Nom")
-    hobbies = Sequence(String(), title="Loisirs", description="Liste de loisirs.")
+role = colander.SchemaNode(
+    colander.String(),
+    validator=colander.OneOf(["reader", "editor"]),
+    widget=widget.SelectWidget(
+        values=[
+            ("reader", "Lecteur"),
+            ("editor", "Éditeur"),
+        ]
+    ),
+)
 ```
 
-En résumé, les schémas sont au cœur de la manière dont Deform gère le rendu et la validation des formulaires. En comprenant comment définir et utiliser des schémas, nous pouvons efficacement contrôler et valider les données entrantes de notre application.
+Sans `OneOf`, un attaquant pourrait envoyer manuellement :
 
-# 3. Explorer `deform.widget`
+```text
+role=admin
+```
 
-Les widgets, au sein de Deform, jouent un rôle crucial dans la représentation visuelle des champs de formulaire. Ils déterminent comment les champs définis dans un schéma sont rendus et comment l'utilisateur interagit avec ces champs.
+Même avec `OneOf`, il faut encore vérifier que **l'utilisateur connecté a le droit** d'effectuer l'opération demandée.
 
-## 3.1. Qu'est-ce qu'un widget?
+Validation des données et autorisation sont deux problèmes différents.
 
-### Définition et utilité des widgets dans Deform
+## 8.3. XSS
 
-Un widget est une composante de Deform qui détermine comment un champ de formulaire est présenté à l'utilisateur. En d'autres termes, il est responsable de la transformation d'un champ de schéma en une représentation visuelle concrète, généralement sous forme de code HTML.
+Deform et son moteur de templates échappent normalement les valeurs selon le contexte de rendu, mais il faut être particulièrement prudent avec :
 
-L'utilité des widgets est multiple :
+- les éditeurs de texte riche ;
+- les fragments HTML ;
+- les templates personnalisés ;
+- les données réinjectées via `structure` ou un équivalent qui désactive l'échappement.
 
-1. **Rendu visuel** : Un widget transforme un champ de schéma en une représentation HTML, permettant ainsi à l'utilisateur d'entrer des données.
-2. **Validation côté client** : Certains widgets offrent une validation immédiate du côté client pour fournir une rétroaction instantanée.
-3. **Adaptabilité** : Les widgets peuvent être personnalisés ou remplacés pour s'adapter à des besoins spécifiques.
+Un champ HTML riche doit être nettoyé par une politique explicite si son contenu est ensuite rendu comme HTML.
 
-### Relation entre un schéma et un widget
+## 8.4. Mass assignment
 
-Chaque champ dans un schéma peut être associé à un widget. Si aucun widget n'est explicitement spécifié, Deform choisira un widget par défaut en fonction du type du champ. Par exemple, un champ de type `String` pourrait utiliser le `TextInputWidget` par défaut.
-
-## 3.2. Utilisation des widgets par défaut
-
-### Exploration des widgets les plus courants
-
-Deform fournit un large éventail de widgets pour répondre à la plupart des besoins courants :
-
-- **TextInputWidget** : Un champ de saisie de texte standard.
-- **CheckboxWidget** : Une case à cocher simple.
-- **TextAreaWidget** : Une zone de texte pour des entrées plus longues.
-- **SelectWidget** : Une liste déroulante pour sélectionner parmi plusieurs options.
-... et bien d'autres.
-
-### Comment associer un widget à un schéma
-
-Pour spécifier un widget pour un champ donné dans un schéma, il suffit d'utiliser l'argument `widget` lors de la définition du champ :
+Ne transmettez pas aveuglément l'`appstruct` complet à un ORM :
 
 ```python
-from deform.schema import Schema, String
-from deform.widget import TextAreaWidget
-
-class CommentSchema(Schema):
-    content = String(widget=TextAreaWidget(rows=4, cols=40))
+# À éviter si la structure du formulaire n'est pas strictement maîtrisée.
+for key, value in appstruct.items():
+    setattr(user, key, value)
 ```
 
-Ici, le champ `content` utilisera un `TextAreaWidget` pour le rendu au lieu du widget par défaut pour un champ `String`.
+Préférez une affectation explicite :
 
-## 3.3. Personnalisation des widgets
+```python
+user.display_name = appstruct["display_name"]
+user.email = appstruct["email"]
+```
 
-### Modification du comportement et de l'apparence des widgets
+Cela évite qu'un champ inattendu permette de modifier un attribut sensible.
 
-Chaque widget fourni par Deform est hautement configurable. En passant différents arguments lors de l'instanciation d'un widget, nous pouvons ajuster son comportement et son apparence. Par exemple, le nombre de rangées et de colonnes d'un `TextAreaWidget` peut être ajusté à l'aide des arguments `rows` et `cols` comme illustré précédemment.
+## 8.5. Mots de passe et secrets
 
-### Création de widgets personnalisés
+Un formulaire peut transporter un secret mais ne doit jamais :
 
-Si les widgets standard ne répondent pas à nos besoins, nous pouvons créer notre propre widget en héritant de la classe de base `Widget` fournie par Deform. 
+- le journaliser en clair ;
+- le stocker en clair ;
+- le réafficher inutilement après validation ;
+- l'inclure dans une URL ;
+- l'insérer dans des messages d'erreur.
+
+# 9. Fichiers, choix dynamiques et données contextuelles
+
+## 9.1. Téléversement de fichiers
+
+Deform propose `FileUploadWidget`.
+
+Le widget a besoin d'un **temporary store** capable de conserver temporairement les fichiers pendant le cycle de validation du formulaire.
+
+Une implémentation minimale peut ressembler à un dictionnaire :
+
+```python
+class MemoryTmpStore(dict):
+    def preview_url(self, name):
+        return None
+```
+
+Mais cette implémentation ne convient généralement **pas à la production** :
+
+- les fichiers non fiables seraient conservés en RAM ;
+- aucun mécanisme d'expiration n'est fourni automatiquement ;
+- un attaquant pourrait provoquer une consommation mémoire excessive.
+
+En production, le stockage temporaire doit :
+
+- limiter la taille des fichiers ;
+- expirer les données inutilisées ;
+- utiliser un emplacement non exécutable ;
+- générer ses propres noms de fichiers ;
+- ne pas faire confiance au nom fourni par le navigateur ;
+- contrôler le contenu réel du fichier lorsque la sécurité l'exige.
+
+## 9.2. Type MIME et extension
+
+Une extension `.jpg` ou un `Content-Type: image/jpeg` fourni par le client ne prouve pas qu'un fichier est une image JPEG.
+
+Selon le niveau de risque, il faut éventuellement :
+
+- détecter le type réel ;
+- décoder puis réencoder une image ;
+- appliquer un antivirus ;
+- refuser les formats actifs ;
+- stocker les fichiers hors du répertoire statique public.
+
+## 9.3. Valeurs de choix provenant de la base de données
+
+Les listes de choix dépendent souvent du contexte courant.
+
+Colander permet d'utiliser le **schema binding** pour construire ou adapter un schéma par requête.
+
+Principe :
+
+```python
+schema = SomeSchema().bind(
+    request=request,
+    categories=categories,
+)
+```
+
+Le schéma ou ses valeurs différées peuvent alors exploiter ces données.
+
+Cela évite :
+
+- les variables globales ;
+- les requêtes exécutées au moment de l'import du module ;
+- les données partagées accidentellement entre utilisateurs.
+
+# 10. Personnalisation des templates et ressources
+
+## 10.1. Le rendu par défaut
+
+Les widgets Deform utilisent par défaut des templates **Chameleon/ZPT**.
+
+Deform 3 utilise une présentation basée sur **Bootstrap 5**.
+
+Cela ne signifie pas que la page Pyramid doit obligatoirement être en Chameleon.
+
+Un formulaire rendu par Deform est finalement une chaîne HTML :
+
+```python
+rendered_form = form.render()
+```
+
+Elle peut donc être intégrée dans une page Jinja2, Chameleon ou autre.
+
+## 10.2. Ajouter ses propres templates Deform
+
+```python
+from deform.renderer import configure_zpt_renderer
+
+configure_zpt_renderer([
+    "myapp:templates/deform",
+])
+```
+
+Un répertoire personnalisé placé avant les templates par défaut permet de surcharger certains templates.
+
+Il vaut mieux surcharger uniquement les templates nécessaires plutôt que copier l'ensemble des templates Deform, car une copie complète devient rapidement difficile à maintenir lors des mises à jour.
+
+## 10.3. Renderer spécifique à un formulaire
+
+Il est possible de fournir un renderer directement au formulaire :
+
+```python
+form = deform.Form(
+    schema,
+    renderer=my_renderer,
+)
+```
+
+Cette approche évite de modifier un renderer global lorsque plusieurs composants de l'application ont des besoins différents.
+
+## 10.4. Créer un widget personnalisé
+
+Un widget personnalisé est utile lorsque les widgets intégrés ne suffisent réellement pas.
+
+Un widget doit généralement savoir :
+
+- rendre un `cstruct` ;
+- lire le `pstruct` reçu ;
+- signaler ou gérer une erreur ;
+- déclarer ses ressources CSS/JS éventuelles.
+
+Pseudo-structure :
 
 ```python
 from deform.widget import Widget
 
-class CustomSliderWidget(Widget):
-    template = "my_slider_template"  # Pointe vers un template personnalisé
+
+class MyWidget(Widget):
+    template = "my_widget"
+    readonly_template = "readonly/my_widget"
 
     def serialize(self, field, cstruct, **kw):
-        # Implémentez la logique de rendu ici
-        return render("my_slider_template", values=cstruct)
+        return field.renderer(
+            self.template,
+            field=field,
+            cstruct=cstruct,
+            **kw,
+        )
 
     def deserialize(self, field, pstruct):
-        # Implémentez la logique pour transformer la donnée reçue en une structure utilisable
-        return pstruct['value']
+        return pstruct
 ```
 
-En héritant de `Widget`, nous aurons la flexibilité de définir exactement comment notre widget doit se comporter et s'afficher.
+Avant d'écrire un widget, vérifier si le besoin peut être satisfait par :
 
-En somme, les widgets sont des éléments essentiels de Deform, offrant la flexibilité et la puissance nécessaires pour représenter visuellement des champs de formulaire de manière intuitive et efficace.
-# 4. Mise en pratique : Création d'un formulaire complet
+- un widget existant ;
+- des attributs HTML ;
+- un template surchargé ;
+- un petit composant JavaScript autour d'un champ standard.
 
-La création d'un formulaire complet avec Deform nécessite plusieurs étapes interdépendantes. Dans cette section, nous construirons un formulaire d'inscription typique pour illustrer le processus.
+# 11. Internationalisation et accessibilité
 
-## 4.1. Définition du schéma du formulaire
+## 11.1. Internationalisation
 
-### Exemple pratique : Création d'un schéma pour un formulaire d'inscription
+Deform et Colander disposent de catalogues de traduction.
 
-Considérons que nous souhaitons créer un formulaire d'inscription avec les champs suivants : nom d'utilisateur, adresse e-mail, mot de passe et confirmation du mot de passe.
-
-```python
-from deform.schema import Schema, String, Email, Function, Invalid
-
-def passwords_match(password, cstruct):
-    if cstruct.get('password') != cstruct.get('password_confirm'):
-        raise Invalid(password, "Les mots de passe doivent correspondre.")
-    return cstruct.get('password')
-
-class RegistrationSchema(Schema):
-    username = String(title="Nom d'utilisateur", min_length=4, max_length=32)
-    email = Email(title="Adresse e-mail")
-    password = String(title="Mot de passe", validator=passwords_match)
-    password_confirm = String(title="Confirmer le mot de passe")
-```
-
-## 4.2. Association de widgets au schéma
-
-### Choix et personnalisation des widgets appropriés pour chaque champ
-
-Maintenant que nous avons notre schéma, nous pouvons associer des widgets spécifiques à chaque champ. Pour notre exemple, nous utiliserons principalement le `TextInputWidget`, mais nous devons personnaliser le champ du mot de passe pour qu'il soit de type `password` en HTML.
+Dans Pyramid, il est possible d'ajouter les répertoires de traduction :
 
 ```python
-from deform.widget import TextInputWidget, PasswordWidget
-
-class RegistrationSchema(Schema):
-    username = String(title="Nom d'utilisateur", widget=TextInputWidget(size=32))
-    email = Email(title="Adresse e-mail", widget=TextInputWidget(size=32))
-    password = String(title="Mot de passe", widget=PasswordWidget(size=32), validator=passwords_match)
-    password_confirm = String(title="Confirmer le mot de passe", widget=PasswordWidget(size=32))
-```
-
-## 4.3. Rendu et validation du formulaire
-
-### Intégration du formulaire dans une vue Pyramid
-
-Pour intégrer notre formulaire dans une vue Pyramid, nous devons d'abord créer une instance du formulaire à l'aide de notre schéma, puis le rendre.
-
-```python
-from deform import Form
-from pyramid.view import view_config
-
-@view_config(route_name='register', renderer='templates/register.pt')
-def register_view(request):
-    schema = RegistrationSchema()
-    form = Form(schema, buttons=('submit',))
-
-    if 'submit' in request.POST:
-        controls = request.POST.items()
-        try:
-            appstruct = form.validate(controls)
-            # ... Sauvegardez les données de l'utilisateur ...
-            return HTTPFound(location=request.route_url('home'))
-
-        except ValidationFailure as e:
-            return {'form': e.render()}
-
-    return {'form': form.render()}
-```
-
-Dans le template associé (`register.pt`), nous pouvons rendre le formulaire en utilisant simplement `${form}`.
-
-### Gestion des soumissions et validation des données
-
-Lorsque l'utilisateur soumet le formulaire, Pyramid captera la requête POST. Notre vue récupérera les données soumises, et Deform tentera de les valider en utilisant le schéma et les widgets que nous avons définis.
-
-Si la validation échoue (par exemple, les mots de passe ne correspondent pas), Deform renverra une erreur, que nous pourrons ensuite afficher à l'utilisateur. Si la validation réussit, nous pouvons procéder à l'enregistrement des données de l'utilisateur.
-
-En suivant ces étapes, nous avons créé un formulaire d'inscription complet avec Deform, en définissant un schéma, en choisissant des widgets et en intégrant le formulaire dans une vue Pyramid.
-
-# 5. Bonnes pratiques et astuces avancées
-
-Lors de la création de formulaires avec Deform, il est essentiel de connaître certaines bonnes pratiques et astuces pour garantir une expérience utilisateur fluide et optimiser les performances de notre application.
-
-## 5.1. Gestion des erreurs et des messages
-
-### Affichage élégant des messages d'erreur
-
-Deform fournit par défaut des messages d'erreur, mais nous pouvons et devons les personnaliser pour qu'ils correspondent au ton et au style de notre application. Voici quelques étapes pour afficher élégamment les messages d'erreur :
-
-1. **Utiliser des CSS personnalisés** : Styler les erreurs pour qu'elles se démarquent visuellement, mais sans être trop intrusives.
-2. **Incorporer des icônes ou des images** : Une petite icône d'erreur peut aider à attirer l'attention sur le problème.
-3. **Positionner les erreurs de manière logique** : Placer les erreurs près des champs concernés, de préférence juste en dessous ou à côté, pour une identification rapide.
-
-### Personnalisation des messages de validation
-
-Deform nous permet de personnaliser les messages d'erreur pour chaque type de validation. Cela peut être fait en définissant l'argument `messages` pour un type de champ :
-
-```python
-from deform.schema import String
-
-username = String(
-    title="Nom d'utilisateur",
-    messages={'required': "Veuillez entrer un nom d'utilisateur."}
+config.add_translation_dirs(
+    "colander:locale",
+    "deform:locale",
+    "myapp:locale",
 )
 ```
 
-## 5.2. Internationalisation et localisation
+Les labels et messages propres à l'application doivent eux aussi utiliser le système i18n du projet.
 
-### Utilisation de la prise en charge i18n de Deform
+## 11.2. Ne pas confondre traduction et locale
 
-Deform offre une prise en charge intégrée pour l'internationalisation (i18n) et la localisation (l10n). Cela nous permet de traduire les messages et les labels dans différentes langues.
+L'i18n des messages ne règle pas automatiquement :
 
-1. **Configurer l'outil de traduction** : Assurons-nous d'avoir un outil de traduction configuré pour notre application Pyramid.
-2. **Utiliser des chaînes marquées** : Pour les messages et les labels que nous souhaitons traduire, utilisons des chaînes marquées dans notre schéma et nos widgets.
+- le format des dates ;
+- le format des nombres ;
+- les fuseaux horaires ;
+- l'ordre prénom/nom ;
+- les formats d'adresse.
 
-### Traduction des messages et labels
+Ces questions relèvent de la localisation de l'application et doivent être pensées séparément.
 
-Une fois que nous avons configuré i18n et l10n pour notre application, traduire les messages et les labels est assez simple. Pour chaque chaîne de caractères que nous souhaitons traduire, entourons-la de la fonction `_` (un raccourci courant pour "traduire") :
+## 11.3. Accessibilité
+
+Un formulaire accessible doit au minimum préserver :
+
+- un `label` clairement associé à chaque champ ;
+- des messages d'erreur compréhensibles ;
+- une navigation complète au clavier ;
+- un ordre de tabulation cohérent ;
+- un contraste suffisant ;
+- une information qui ne dépend pas uniquement de la couleur ;
+- des regroupements explicites pour les groupes de choix.
+
+Les templates Deform fournissent une base, mais toute personnalisation CSS ou de template doit être testée avec les critères d'accessibilité du projet.
+
+# 12. Tests et architecture applicative
+
+## 12.1. Tester le schéma indépendamment de la vue
+
+La logique de validation peut être testée directement avec Colander.
 
 ```python
-from deform.schema import String
+import pytest
+import colander
 
-username = String(title=_("Nom d'utilisateur"))
+
+def test_age_must_be_positive():
+    schema = PersonSchema()
+
+    with pytest.raises(colander.Invalid):
+        schema.deserialize({
+            "name": "Ada",
+            "age": "-10",
+        })
 ```
 
-Deform s'occupera ensuite de chercher la traduction appropriée pour chaque chaîne marquée en fonction de la langue active.
+Ce test est rapide et ne nécessite pas de navigateur.
 
-## 5.3. Conseils pour l'optimisation des performances
+## 12.2. Tester la vue
 
-### Rendu efficace des formulaires complexes
+Il faut ensuite tester :
 
-Pour les formulaires complexes avec de nombreux champs ou des logiques métier compliquées, il est essentiel de minimiser le temps de rendu. Quelques astuces :
+- `GET` du formulaire ;
+- `POST` invalide ;
+- affichage des erreurs ;
+- `POST` valide ;
+- redirection ;
+- modification effective en base ;
+- autorisations ;
+- CSRF selon la configuration choisie.
 
-1. **Pré-rendez les parties statiques** : Si des sections de notre formulaire ne changent pas dynamiquement, envisageons de les pré-rendre et de les mettre en cache.
-2. **Limitez l'utilisation de widgets complexes** : Certains widgets, comme les sélecteurs de date ou les listes déroulantes dynamiques, peuvent être plus lents. Utilisons-les judicieusement.
+## 12.3. Éviter la logique métier dans les widgets
 
-### Réutilisation des schémas et des widgets
+Un widget ne devrait pas :
 
-Si nous avons des schémas ou des widgets qui sont souvent utilisés dans différentes parties de notre application, envisageons de les modulariser et de les réutiliser. Non seulement cela améliorera la cohérence et la maintenabilité de notre code, mais cela pourrait aussi offrir des avantages en matière de performances, en particulier si vous pouvez mettre en cache certaines parties.
+- exécuter une transaction ;
+- envoyer un e-mail ;
+- modifier un utilisateur ;
+- appeler directement un système métier complexe.
 
-En suivant ces bonnes pratiques et astuces avancées, nous pouvons garantir que nos formulaires Deform sont à la fois efficaces et offrent une excellente expérience utilisateur.
+L'architecture recommandée est plutôt :
+
+```text
+Vue Pyramid
+    │
+    ├─ crée/bind le schéma
+    ├─ crée le formulaire
+    ├─ valide avec Deform
+    │
+    ▼
+Service métier
+    │
+    ├─ autorisations métier
+    ├─ invariants métier
+    ├─ transaction
+    └─ effets externes
+```
+
+## 12.4. Créer le formulaire par requête
+
+Éviter :
+
+```python
+FORM = deform.Form(ProfileSchema())
+```
+
+au niveau global si le formulaire contient ou peut contenir un état lié à la requête.
+
+Préférer :
+
+```python
+def make_profile_form(request):
+    schema = ProfileSchema().bind(request=request)
+    return deform.Form(schema, buttons=("save",))
+```
+
+Les objets `Field` servent notamment de support à l'état temporaire des widgets pendant une requête.
+
+# 13. Migration de Deform 2 vers Deform 3
+
+Deform 3.0 est sorti en février 2026 après une longue période où Deform 2.x était la branche courante.
+
+## 13.1. Bootstrap 5
+
+Le changement visuel majeur est le passage à **Bootstrap 5**.
+
+Les applications qui surchargeaient les templates Deform 2 doivent vérifier :
+
+- classes CSS ;
+- structure du markup ;
+- formulaires horizontaux ;
+- boutons ;
+- groupes d'input ;
+- messages d'erreur ;
+- JavaScript qui sélectionne des éléments via des classes Bootstrap.
+
+Une surcharge de templates écrite pour Bootstrap 3 ne doit pas être supposée compatible avec Deform 3.
+
+## 13.2. Validation HTML5
+
+Deform 3 ajoute la validation HTML5.
+
+Après migration, tester notamment :
+
+- champs obligatoires ;
+- nombres ;
+- dates ;
+- adresses e-mail ;
+- attributs générés par les widgets ;
+- interaction entre validation navigateur et messages serveur.
+
+## 13.3. Bibliothèques JavaScript
+
+Deform 3 met à jour plusieurs bibliothèques JavaScript, notamment celles utilisées par certains widgets comme l'éditeur riche.
+
+Toute personnalisation JavaScript dépendant d'une version interne précise doit être réévaluée.
+
+## 13.4. Versions de Python
+
+Deform 3 a abandonné les anciennes versions de Python prises en charge par la branche précédente. Le projet PyPI actuel annonce notamment Python 3.10, 3.11, 3.12 et 3.13 dans ses classifiers.
+
+Lors d'une migration, mettre à jour **ensemble** :
+
+- Python ;
+- Pyramid ;
+- Deform ;
+- Colander ;
+- les templates personnalisés ;
+- les bibliothèques CSS/JavaScript du frontend.
+
+## 13.5. Méthode de migration recommandée
+
+1. inventorier les formulaires et widgets personnalisés ;
+2. inventorier les templates Deform surchargés ;
+3. relever les dépendances CSS/JS manuelles ;
+4. créer une branche dédiée ;
+5. mettre à jour les dépendances ;
+6. lancer les tests unitaires ;
+7. comparer visuellement tous les formulaires ;
+8. tester les séquences dynamiques ;
+9. tester les fichiers ;
+10. tester les erreurs de validation ;
+11. vérifier l'accessibilité ;
+12. déployer sur un environnement de préproduction.
+
+# 14. Bonnes pratiques et pièges fréquents
+
+## 14.1. Utiliser Colander comme source de vérité
+
+Ne dupliquez pas les mêmes règles dans :
+
+- le template ;
+- JavaScript ;
+- la vue ;
+- le schéma.
+
+La validation serveur doit rester centralisée autant que possible dans le schéma ou la couche métier.
+
+La validation HTML/JavaScript peut dupliquer certaines contraintes **pour l'ergonomie**, mais ne doit jamais devenir la seule validation.
+
+## 14.2. Distinguer validation et autorisation
+
+Un formulaire valide ne signifie pas que l'utilisateur a le droit de réaliser l'action.
+
+```python
+# Validation de format
+user_id = colander.SchemaNode(colander.Integer())
+```
+
+ne remplace pas :
+
+```python
+if not request.has_permission("edit", user):
+    raise HTTPForbidden()
+```
+
+## 14.3. Ne pas utiliser `request.params` par réflexe
+
+Pour une soumission Deform classique, `request.POST.items()` rend explicite que l'on traite le corps POST du formulaire.
+
+Cela évite de mélanger involontairement paramètres GET et POST.
+
+## 14.4. Éviter `except Exception`
+
+Pour la validation Deform :
+
+```python
+try:
+    appstruct = form.validate(request.POST.items())
+except deform.ValidationFailure as exc:
+    ...
+```
+
+N'attrapez pas toutes les exceptions comme si elles représentaient une erreur utilisateur. Une panne de base de données ou une erreur de programmation doit rester visible comme une véritable erreur applicative.
+
+## 14.5. Ne pas optimiser le rendu prématurément
+
+Le coût dominant d'une soumission est souvent ailleurs :
+
+- base de données ;
+- réseau ;
+- API externes ;
+- templates de page ;
+- traitements métier.
+
+Avant de mettre en cache des fragments de formulaire, profiler l'application.
+
+Le cache de formulaires dépendant d'une requête, d'un token CSRF ou d'options utilisateur peut en plus introduire des erreurs de sécurité.
+
+## 14.6. Préférer des fonctions de fabrique
+
+```python
+def make_registration_form(request):
+    schema = RegistrationSchema().bind(request=request)
+
+    return deform.Form(
+        schema,
+        buttons=(
+            deform.Button(
+                "register",
+                title="Créer le compte",
+                css_class="btn-primary",
+            ),
+        ),
+    )
+```
+
+Cela facilite :
+
+- les tests ;
+- le binding ;
+- l'injection de dépendances ;
+- la personnalisation par requête.
+
+# 15. Exemple complet avec Pyramid
+
+Nous allons créer un formulaire d'inscription simple.
+
+## 15.1. Schéma
+
+```python
+import colander
+import deform
+from deform import widget
+from deform.schema import CSRFSchema
+
+
+def validate_unique_email(node, value):
+    request = node.bindings["request"]
+
+    if request.dbsession.query(User).filter_by(email=value).first():
+        raise colander.Invalid(
+            node,
+            "Un compte utilise déjà cette adresse.",
+        )
+
+
+class RegistrationSchema(CSRFSchema):
+    username = colander.SchemaNode(
+        colander.String(),
+        title="Nom d'utilisateur",
+        validator=colander.All(
+            colander.Length(min=3, max=32),
+            colander.Regex(r"^[A-Za-z0-9_-]+$"),
+        ),
+        widget=widget.TextInputWidget(
+            attributes={
+                "autocomplete": "username",
+            }
+        ),
+    )
+
+    email = colander.SchemaNode(
+        colander.String(),
+        title="Adresse électronique",
+        preparer=lambda value: value.strip().lower(),
+        validator=colander.All(
+            colander.Email(),
+            validate_unique_email,
+        ),
+        widget=widget.TextInputWidget(
+            attributes={
+                "autocomplete": "email",
+                "inputmode": "email",
+            }
+        ),
+    )
+
+    password = colander.SchemaNode(
+        colander.String(),
+        title="Mot de passe",
+        validator=colander.Length(min=12),
+        widget=widget.PasswordWidget(
+            redisplay=False,
+            attributes={
+                "autocomplete": "new-password",
+            },
+        ),
+    )
+
+    password_confirm = colander.SchemaNode(
+        colander.String(),
+        title="Confirmation",
+        widget=widget.PasswordWidget(
+            redisplay=False,
+            attributes={
+                "autocomplete": "new-password",
+            },
+        ),
+    )
+
+    newsletter = colander.SchemaNode(
+        colander.Boolean(),
+        title="Recevoir la newsletter",
+        missing=False,
+    )
+
+    def validator(self, node, appstruct):
+        if appstruct["password"] != appstruct["password_confirm"]:
+            raise colander.Invalid(
+                node["password_confirm"],
+                "Les mots de passe ne correspondent pas.",
+            )
+```
+
+> [!note]
+> Une contrainte `Length(min=12)` n'est qu'un exemple pédagogique. Une politique de mot de passe réelle doit tenir compte du modèle de menace et des recommandations de sécurité applicables au projet.
+
+## 15.2. Fabrique du formulaire
+
+```python
+def make_registration_form(request):
+    schema = RegistrationSchema().bind(request=request)
+
+    return deform.Form(
+        schema,
+        buttons=(
+            deform.Button(
+                "register",
+                title="Créer mon compte",
+                css_class="btn-primary",
+            ),
+        ),
+    )
+```
+
+## 15.3. Vue Pyramid
+
+```python
+import deform
+from pyramid.httpexceptions import HTTPFound
+from pyramid.view import view_config
+
+
+@view_config(
+    route_name="register",
+    renderer="myapp:templates/register.pt",
+    request_method=("GET", "POST"),
+)
+def register_view(request):
+    form = make_registration_form(request)
+
+    if request.method == "POST" and "register" in request.POST:
+        try:
+            appstruct = form.validate(request.POST.items())
+        except deform.ValidationFailure as exc:
+            rendered_form = exc.render()
+        else:
+            user = User(
+                username=appstruct["username"],
+                email=appstruct["email"],
+                newsletter=appstruct["newsletter"],
+            )
+
+            user.set_password(appstruct["password"])
+            request.dbsession.add(user)
+            request.dbsession.flush()
+
+            return HTTPFound(
+                request.route_url("registration_done")
+            )
+    else:
+        rendered_form = form.render()
+
+    return {
+        "form": rendered_form,
+        **form.get_widget_resources(),
+    }
+```
+
+## 15.4. Template Chameleon simplifié
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Inscription</title>
+</head>
+<body>
+    <main>
+        <h1>Créer un compte</h1>
+        <div tal:replace="structure form"></div>
+    </main>
+</body>
+</html>
+```
+
+Dans une application réelle, il faut également inclure les ressources CSS/JS requises par le formulaire et la feuille Bootstrap adaptée au rendu Deform 3.
+
+## 15.5. Ce que cet exemple illustre
+
+Le schéma contient :
+
+- les types ;
+- les contraintes de forme ;
+- la validation inter-champs ;
+- la validation dépendant de la base via le `binding` ;
+- la protection CSRF ;
+- les widgets et attributs HTML.
+
+La vue contient :
+
+- le contrôle du cycle HTTP ;
+- la construction du formulaire ;
+- l'appel à `validate()` ;
+- la gestion de `ValidationFailure` ;
+- l'appel de la couche de persistance ;
+- la redirection après succès.
+
+La méthode métier `set_password()` contient :
+
+- le hachage du mot de passe ;
+- éventuellement la politique de sécurité propre à l'application.
+
+Cette séparation rend le code plus facile à tester et à maintenir.
+
+# 16. Conclusion et ressources
+
+Deform reste particulièrement intéressant pour les applications Pyramid qui ont besoin de formulaires serveur :
+
+- fortement validés ;
+- imbriqués ;
+- dynamiques ;
+- générés à partir de schémas ;
+- maintenables sans recréer manuellement toute la mécanique HTML et POST.
+
+Les idées essentielles à retenir sont :
+
+1. **Deform rend les formulaires, Colander décrit et valide les données.**
+2. Le schéma racine d'un `Form` représente normalement une mapping.
+3. `form.render()` reçoit un `appstruct` Python.
+4. `form.validate(request.POST.items())` retourne un `appstruct` validé.
+5. `ValidationFailure` permet de réafficher le formulaire avec ses erreurs.
+6. Les widgets déterminent la représentation HTML, pas les règles d'autorisation.
+7. La validation navigateur ne remplace jamais la validation serveur.
+8. Les schémas liés avec `.bind()` permettent d'injecter le contexte d'une requête.
+9. CSRF, autorisations, XSS et upload de fichiers doivent être traités explicitement.
+10. Une migration vers Deform 3 doit vérifier particulièrement les templates et le passage à Bootstrap 5.
+
+## Ressources officielles
+
+- Documentation Deform : <https://docs.pylonsproject.org/projects/deform/en/latest/>
+- Utilisation de base : <https://docs.pylonsproject.org/projects/deform/en/latest/basics.html>
+- Validation : <https://docs.pylonsproject.org/projects/deform/en/latest/validation.html>
+- Widgets : <https://docs.pylonsproject.org/projects/deform/en/latest/widget.html>
+- Templates : <https://docs.pylonsproject.org/projects/deform/en/latest/templates.html>
+- Historique des versions : <https://docs.pylonsproject.org/projects/deform/en/latest/changes.html>
+- Documentation Colander : <https://docs.pylonsproject.org/projects/colander/en/latest/>
+- Documentation Pyramid : <https://docs.pylonsproject.org/projects/pyramid/en/latest/>
+- Démonstrations Deform : <https://deformdemo.pylonsproject.org/>
+- PyPI : <https://pypi.org/project/deform/>
+
+## Voir aussi
+
+- [[Pyramid]]
+- [[Python]]
+- [[HTML]]
+- [[CSS]]
+- [[Sécurité avec Python]]

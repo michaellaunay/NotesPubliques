@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5ATSDQA63DZAW1X8FXN"
-titre: "Bases de données relationnelles"
+uid: 01M02EX5ATSDQA63DZAW1X8FXN
+titre: Bases de données relationnelles
 type: cours
 statut: actif
 para: ressource
@@ -15,7 +15,7 @@ themes:
 resume: "Cours sur le modèle relationnel : modélisation des données, langage de manipulation SQL, vues, index, contraintes, transactions et isolation, sécurité et droits d'accès."
 niveau: intermediaire
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-01-02
 date_modification: 2026-01-18
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Objectif: Comprendre les bases de données relationnelles
 

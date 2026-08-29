@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5ASSYXAGZVA14CDPYP3"
-titre: "Apache"
+uid: 01M02EX5ASSYXAGZVA14CDPYP3
+titre: Apache
 type: fiche
 statut: actif
 para: ressource
@@ -15,7 +15,7 @@ themes:
 resume: "Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-06-02
 date_modification: 2023-11-30
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Présentation
 
