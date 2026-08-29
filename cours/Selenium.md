@@ -13,7 +13,7 @@ themes:
   - automatisation
   - python
   - selenium
-resume: "Cours sur Selenium : intérêt de l'automatisation du web, installation et configuration des WebDriver, éléments de base, méthodes de WebDriver et WebElement."
+resume: "Cours complet sur Selenium 4 avec Python : WebDriver, Selenium Manager, sélecteurs, interactions, attentes, fenêtres et iframes, actions avancées, Page Object Model, pytest, Grid 4, WebDriver BiDi et bonnes pratiques."
 niveau: intermediaire
 prerequis:
   - "[[Python]]"
@@ -22,616 +22,1951 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-07-24
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-Selenium est à la fois un outil de tests des interfaces web et un outil de scraping permettant facilement l'exécution du code javascript dans l'environnement du navigateur web choisi.
-Plan du cours :
+# Cours — Automatiser un navigateur avec Selenium
 
-1. **Introduction à Selenium et à l'automatisation du Web**
-   - Importance de l'automatisation du Web
-   - Présentation de Selenium : définition, avantages et cas d'utilisation
+**Selenium** est un projet open source permettant de piloter de vrais navigateurs Web de manière automatisée. Son usage principal est le **test fonctionnel de bout en bout** (*end-to-end*, E2E), mais il peut également servir à automatiser des tâches répétitives ou, lorsque cela est pertinent, à collecter des données sur des pages nécessitant l'exécution de JavaScript.
 
-2. **Installation et Configuration**
-   - Installation de Python et Selenium
-   - Configuration des WebDriver : Chrome, Firefox, Safari
-   - Importance du PATH system et comment le configurer
+Selenium ne remplace ni les tests unitaires, ni les tests d'intégration, ni un client HTTP spécialisé. Il intervient lorsque nous avons réellement besoin de reproduire le comportement d'un utilisateur dans un navigateur.
 
-3. **Principes de base de Selenium**
-   - Les quatre éléments de base de Selenium: WebDriver, WebElement, DesiredCapabilities, Exceptions
-   - Introduction aux méthodes et aux attributs de WebDriver et WebElement
+> [!important]
+> Selenium pilote un **navigateur réel** à travers le standard W3C WebDriver. Un test Selenium est donc plus proche de l'expérience utilisateur qu'un simple appel HTTP, mais il est aussi plus lent, plus coûteux et plus sensible à l'environnement.
 
-4. **Interagir avec le navigateur**
-   - Manipulation des fenêtres et des onglets du navigateur
-   - Navigation et actualisation de la page
-   - Gestion des cookies
+> [!note] État du cours
+> Ce cours a été révisé le **29 août 2026** pour Selenium 4. Au moment de cette révision, le paquet Python stable est **Selenium 4.48.0** et nécessite Python 3.10 ou supérieur. Il faut toujours vérifier la version courante avant de figer une dépendance dans un projet.
 
-5. **Localiser les éléments**
-   - Différentes méthodes pour localiser les éléments : ID, Name, Class Name, Tag Name, Link Text, Partial Link Text, CSS Selector, XPath
-   - Stratégies pour trouver les meilleurs sélecteurs
+# Sommaire
 
-6. **Interagir avec les éléments Web**
-   - Interactions avec les formulaires : entrée de texte, click, sélection d'options dans les menus déroulants
-   - Gestion des alertes JavaScript
+1. Introduction à Selenium et à l'automatisation Web
+2. Installation et premier script
+3. Architecture de Selenium et configuration du navigateur
+4. Navigation et cycle de vie d'une session
+5. Localiser les éléments
+6. Interagir avec les éléments et le navigateur
+7. Synchronisation et attentes
+8. Fenêtres, onglets, frames et Shadow DOM
+9. Actions avancées et JavaScript
+10. Structurer des tests maintenables avec pytest
+11. Selenium Grid et exécution distante
+12. WebDriver BiDi, réseau et événements du navigateur
+13. Débogage, erreurs fréquentes et stabilité
+14. Selenium pour l'automatisation et la collecte de données
+15. Projet final et synthèse
 
-7. **Attentes implicites et explicites**
-   - Différence entre attentes implicites et explicites
-   - Utilisation des attentes pour résoudre les problèmes de synchronisation
+---
 
-8. **Travailler avec des cadres et des fenêtres multiples**
-   - Manipulation de fenêtres multiples et de cadres
-   - Stratégies pour gérer les fenêtres contextuelles et les annonces
+# 1. Introduction à Selenium et à l'automatisation Web
 
-9. **Actions avancées avec Selenium**
-   - Glisser-déposer, clic droit, double clic et autres actions avancées avec ActionChains
-   - Automatisation du scroll
-   - Capture d'écran
+## 1.1. Pourquoi automatiser un navigateur ?
 
-10. **Introduction au Selenium Grid**
-    - Utilisation de Selenium Grid pour exécuter des tests en parallèle
-    - Configuration de Selenium Grid
+Une application Web moderne est souvent composée de plusieurs couches :
 
-11. **Bonnes pratiques et débogage**
-    - Présentation des bonnes pratiques de codage et des techniques de débogage avec Selenium
-    - Gestion des erreurs et exceptions 
+- HTML et CSS ;
+- JavaScript exécuté dans le navigateur ;
+- appels HTTP vers des API ;
+- stockage local, cookies et sessions ;
+- composants asynchrones ;
+- authentification ;
+- parfois plusieurs fenêtres, frames ou domaines.
 
-12. **Projet final interactif**
-    - Application des compétences acquises à un projet d'automatisation Web
-    - Présentation des travaux, discussion et feedback
+Un simple test HTTP ne permet donc pas toujours de vérifier le comportement réellement observé par l'utilisateur.
 
+L'automatisation du navigateur permet notamment de tester un scénario complet :
 
-# 1. Introduction à Selenium et à l'Automatisation du Web
+```text
+ouvrir le site
+   ↓
+saisir un identifiant
+   ↓
+se connecter
+   ↓
+naviguer vers une page
+   ↓
+modifier une donnée
+   ↓
+vérifier le résultat affiché
+```
 
-## 1.1 Importance de l'automatisation du Web
+## 1.2. Les composants du projet Selenium
 
-L'automatisation Web est utilisée dans une variété de contextes, notamment le test de logiciels, l'analyse de données et le web scraping. Il peut également être utilisé pour effectuer des tâches répétitives, comme remplir des formulaires Web ou cliquer sur des boutons.
-Elle aide à identifier les régressions et les erreurs plus rapidement que les tests manuels. 
+Le projet Selenium comprend plusieurs briques.
 
-## 1.2 Présentation de Selenium
+### Selenium WebDriver
 
-Selenium est un logiciel open source qui permet aux développeurs de contrôler un navigateur Web de manière programmatique, en utilisant une variété de langages de programmation, dont Python.
+C'est l'API principale utilisée dans ce cours. Elle permet de contrôler un navigateur depuis Python, Java, JavaScript, C#, Ruby, etc.
 
-Selenium est particulièrement apprécié pour sa capacité à intégrer des tests dans le navigateur, ce qui permet de simuler le comportement de l'utilisateur final. Il est compatible avec de nombreux navigateurs, y compris Chrome, Firefox et Safari.
+### Selenium Grid
 
-## 1.3 Avantages de Selenium
+Grid permet d'exécuter des sessions WebDriver sur d'autres machines et de paralléliser les tests sur plusieurs navigateurs, versions ou systèmes d'exploitation.
 
-Voici les avantages spécifiques de l'utilisation de Selenium pour l'automatisation du Web :
+### Selenium IDE
 
-- **Compatibilité cross-browser** : Selenium supporte une large gamme de navigateurs, ce qui permet aux développeurs de tester leurs applications sur différents navigateurs à partir d'une seule plateforme.
-- **Support pour plusieurs langages de programmation** : Selenium peut être utilisé avec une variété de langages de programmation, dont Python, Java, C#, et Ruby.
-- **Flexibilité** : Selenium permet d'automatiser de nombreuses actions, comme cliquer sur un bouton, remplir un formulaire, ou naviguer à travers une série de pages. Il permet également d'interagir avec des éléments complexes comme des menus déroulants, des sliders et des fenêtres contextuelles.
+Selenium IDE est une extension de navigateur permettant d'enregistrer et rejouer des interactions. Elle peut être utile pour découvrir Selenium ou prototyper un scénario, mais les suites de tests maintenables sont généralement écrites dans un langage de programmation.
 
-## 1.4 Cas d'utilisation de Selenium
+## 1.3. Selenium n'est pas seulement une bibliothèque Python
 
-Cas d'utilisation les plus courants de Selenium :
+Avec Python, nous utilisons le **binding Python** de Selenium :
 
-- **Tests d'interface utilisateur** : Selenium est couramment utilisé pour automatiser les tests d'interface utilisateur, en particulier pour les applications Web. Il permet de vérifier que les éléments de l'interface utilisateur fonctionnent comme prévu.
-- **Web scraping** : Bien que Selenium ne soit pas un outil de web scraping en soi, il peut être utilisé pour automatiser la navigation et l'interaction avec les sites Web lors de l'exécution de tâches de web scraping.
-- **Automatisation de tâches répétitives** : Selenium peut être utilisé pour automatiser les tâches qui nécessitent une interaction répétitive avec un navigateur Web, comme remplir et soumettre des formulaires ou cliquer sur des liens.
+```text
+notre programme Python
+        ↓
+API Selenium Python
+        ↓
+WebDriver / WebDriver BiDi
+        ↓
+navigateur
+```
 
-# 2. Installation et Configuration
+Le navigateur reste un programme distinct. Selenium ne « rend » pas lui-même les pages.
 
-## 2.1. Installation de Selenium
+## 1.4. Principaux cas d'utilisation
 
-Avant de pouvoir commencer à utiliser Selenium, nous devons installer deux éléments essentiels: Python et Selenium.
+### Tests E2E
 
-Pour l'installation de Python voir le cours [[Python]]
+Exemple : vérifier qu'un utilisateur peut créer un compte, recevoir l'état attendu dans l'interface puis se déconnecter.
 
-Une fois Python installé, nous pouvons installer Selenium. Pour ce faire, nous utiliserons pip, le gestionnaire de paquets de Python.
+### Tests multi-navigateurs
 
-   - Ouvrons une invite de commandes (ou un terminal pour les utilisateurs de Mac/Linux).
-   - Tapons la commande suivante :
+Un même scénario peut être exécuté avec Chrome/Chromium, Firefox, Edge ou Safari selon l'environnement.
+
+### Automatisation de tâches répétitives
+
+Par exemple :
+
+- remplir un formulaire interne ;
+- télécharger un rapport ;
+- vérifier périodiquement un écran métier ;
+- reproduire automatiquement une suite d'actions pour un diagnostic.
+
+### Collecte de données sur des applications JavaScript
+
+Selenium peut être utile si les données n'apparaissent qu'après exécution du JavaScript ou après une interaction. Pour une page statique ou une API, `requests`/`httpx` et un parseur HTML sont souvent plus simples et plus rapides.
+
+## 1.5. Quand ne pas utiliser Selenium ?
+
+Selenium est rarement le premier choix lorsque :
+
+- une API publique ou interne fournit directement les données ;
+- nous voulons tester une fonction Python isolée ;
+- nous voulons seulement vérifier une réponse HTTP ;
+- le besoin peut être couvert par un test unitaire ou d'intégration plus rapide ;
+- nous voulons analyser des milliers de pages statiques sans interaction navigateur.
+
+Une stratégie de tests saine contient généralement **peu de tests E2E**, mais ceux-ci couvrent les parcours les plus importants.
+
+---
+
+# 2. Installation et premier script
+
+## 2.1. Créer un environnement Python isolé
+
+Voir également [[Python]].
+
+Sous Linux/macOS :
+
 ```bash
-pip install selenium
-```  
-   - Appuyons sur Entrée. pip téléchargera et installera le package Selenium.
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install selenium
+```
 
-## 2.2. Configuration des WebDriver : Chrome, Firefox, Safari
+Sous Windows PowerShell :
 
-Après avoir installé Python et Selenium, le prochain élément clé est le WebDriver. Chaque navigateur a son propre WebDriver. Pour automatiser un navigateur spécifique, nous devons télécharger et configurer le WebDriver correspondant.
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install selenium
+```
 
-### 2.2.1 WebDriver de Chrome (ChromeDriver)
-   
-   - Allons sur le site officiel de ChromeDriver à l'adresse suivante : https://sites.google.com/a/chromium.org/chromedriver/downloads.
-   - Téléchargeons la version de ChromeDriver correspondant à votre version de Chrome. Décompressons le fichier téléchargé.
+Pour vérifier la version installée :
 
-### 2.2.2 WebDriver de Firefox (GeckoDriver)
+```bash
+python -c "import selenium; print(selenium.__version__)"
+```
 
-   - Rendons-nous sur le site officiel de GeckoDriver à l'adresse suivante : https://github.com/mozilla/geckodriver/releases.
-   - Téléchargons la dernière version de GeckoDriver. Décompressons le fichier téléchargé.
+Dans un projet réel, la version doit être suivie dans le gestionnaire de dépendances du projet.
 
-### 2.2.3 WebDriver de Safari (SafariDriver)
+## 2.2. Selenium Manager : ne plus installer systématiquement les drivers à la main
 
-   - Pour Safari, le WebDriver est déjà intégré dans le navigateur. Nous pouvons l'activer en allant dans les préférences de développement de Safari.
+Historiquement, il fallait :
 
-## 2.3. Importance du PATH system et comment le configurer
+1. connaître la version de Chrome ou Firefox ;
+2. télécharger ChromeDriver ou GeckoDriver ;
+3. rendre l'exécutable accessible ;
+4. l'ajouter au `PATH` ou renseigner son chemin dans le code ;
+5. recommencer lors d'un changement de version du navigateur.
 
-Le PATH système est une variable d'environnement qui indique au système d'exploitation où chercher les exécutables. Pour que votre système puisse trouver les WebDriver que nous venons d'installer, nous devons ajouter leurs emplacements à votre PATH système.
+Cette procédure apparaît encore dans de nombreux anciens tutoriels.
 
-### 2.3.1 Ajout du WebDriver au PATH (Windows)
+Avec les versions modernes de Selenium 4, **Selenium Manager** gère normalement automatiquement la découverte et la mise à disposition du driver nécessaire lorsque nous créons le WebDriver.
 
-   - Localisons le fichier exécutable du WebDriver que nous avons téléchargé et décompressé (ChromeDriver ou GeckoDriver).
-   - Copions l'emplacement du dossier contenant le WebDriver.
-   - Allons dans les variables d'environnement système (recherchons "variables d'environnement" dans le menu Démarrer).
-   - Trouvons la variable "Path" dans la liste des variables d'environnement système et cliquons sur "Modifier".
-   - Cliquons sur "Nouveau" et collons l'emplacement du dossier contenant le WebDriver. Cliquons sur "OK".
+Le cas simple devient donc :
 
-### 2.3.2 Ajout du WebDriver au PATH (Mac/Linux)
+```python
+from selenium import webdriver
 
-   - Ouvrons un terminal.
-   - Utilisons la commande `export PATH=$PATH:/path/to/directory` où "/path/to/directory" est l'emplacement du dossier contenant le WebDriver.
-   - Pour rendre cette modification permanente, ajoutons la ligne de commande précédente à votre fichier .bashrc ou .bash_profile.
+with webdriver.Chrome() as driver:
+    driver.get("https://www.selenium.dev/")
+    print(driver.title)
+```
 
-Après avoir suivi toutes ces étapes, nous devrions être prêt à commencer à utiliser Selenium pour automatiser les navigateurs Web avec Python. 
+Pour Firefox :
 
-# 3. Principes de base de Selenium
+```python
+from selenium import webdriver
 
-## 3.1 Les quatre éléments de base de Selenium
+with webdriver.Firefox() as driver:
+    driver.get("https://www.selenium.dev/")
+    print(driver.title)
+```
 
-Selenium est construit autour de quatre concepts clés qui forment la base de son fonctionnement :
+> [!important]
+> Installer manuellement ChromeDriver/GeckoDriver et modifier le `PATH` reste possible et parfois nécessaire dans des environnements contrôlés, hors ligne ou particuliers. Ce n'est cependant plus la procédure normale à enseigner pour une installation locale récente.
 
-### 3.1.1 WebDriver
+## 2.3. Le navigateur reste nécessaire
 
-   Le WebDriver est l'interface principale pour interagir avec le navigateur. Il contient des méthodes pour effectuer des tâches telles que la navigation vers une URL, l'obtention du titre de la page, la manipulation des cookies et bien d'autres. Chaque navigateur a son propre WebDriver distinct (ChromeDriver, GeckoDriver, etc.).
+Selenium Manager simplifie la gestion des drivers et peut également aider à gérer des navigateurs dans certains scénarios, mais il ne faut pas confondre :
 
-### 3.1.2 WebElement
+- **le navigateur** : Chrome, Chromium, Firefox, Edge, Safari… ;
+- **le driver WebDriver** : couche permettant à Selenium de contrôler ce navigateur ;
+- **la bibliothèque Selenium** : API utilisée par notre code Python.
 
-   Un WebElement représente un élément HTML dans la page web. Les WebElements sont retournés par les méthodes de recherche du WebDriver. Ils contiennent des méthodes pour interagir avec l'élément, comme cliquer sur l'élément, obtenir ou définir la valeur d'un champ de saisie, obtenir le texte d'un élément, etc.
+## 2.4. Premier test complet
 
-### 3.1.3 DesiredCapabilities
+```python
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
-   Les DesiredCapabilities sont un ensemble de préférences utilisées pour configurer le WebDriver. Elles peuvent être utilisées pour définir des options comme le chemin d'exécution du navigateur, la taille de la fenêtre du navigateur, les paramètres de proxy, etc. 
+with webdriver.Chrome() as driver:
+    driver.get("https://www.selenium.dev/selenium/web/web-form.html")
 
-### 3.1.4 Exceptions
+    title = driver.title
+    assert "Web form" in title
 
-   Selenium définit une série d'exceptions spécifiques qui sont levées lorsque des erreurs se produisent pendant l'exécution d'un script Selenium. Ces exceptions nous aident à comprendre ce qui ne va pas dans notre script et comment le corriger.
+    text_box = driver.find_element(By.NAME, "my-text")
+    submit_button = driver.find_element(By.CSS_SELECTOR, "button")
 
-## 3.2 Introduction aux méthodes et aux attributs de WebDriver et WebElement
+    text_box.send_keys("Selenium")
+    submit_button.click()
 
-Explorons quelques-unes des méthodes et des attributs les plus couramment utilisés de WebDriver et WebElement.
+    message = driver.find_element(By.ID, "message")
+    assert message.text == "Received!"
+```
 
-### 3.2.1 Méthodes et attributs communs de WebDriver
+Nous retrouvons déjà les quatre étapes fondamentales d'un test WebDriver :
 
-   - `get(url)` : Cette méthode est utilisée pour naviguer vers une URL spécifique.
-   - `title` : Cet attribut renvoie le titre de la page courante.
-   - `current_url` : Cet attribut renvoie l'URL de la page courante.
-   - `find_element_by_*` : Ces méthodes sont utilisées pour localiser un élément sur la page. Le * peut être remplacé par différentes stratégies de localisation comme id, name, class_name, tag_name, etc.
+1. créer une session ;
+2. naviguer ;
+3. localiser et manipuler des éléments ;
+4. vérifier un résultat puis fermer la session.
 
-### 3.2.2 Méthodes et attributs communs de WebElement
+## 2.5. Toujours fermer le navigateur
 
-   - `click()` : Cette méthode est utilisée pour cliquer sur un élément.
-   - `send_keys(value)` : Cette méthode est utilisée pour entrer une valeur dans un champ de saisie.
-   - `text` : Cet attribut renvoie le texte de l'élément.
-   - `get_attribute(name)` : Cette méthode est utilisée pour obtenir la valeur d'un attribut spécifique de l'élément.
+La méthode :
 
-Ces concepts de base vont nous permettre d'écrire des scripts Selenium pour automatiser diverses tâches dans le navigateur.
+```python
+driver.quit()
+```
 
-# 4. Localiser les éléments
+ferme toute la session WebDriver et les fenêtres associées.
 
-L'une des tâches les plus importantes lors de l'utilisation de Selenium est de localiser les éléments sur la page web avec lesquels nous souhaitons interagir. Selenium fournit plusieurs méthodes pour localiser les éléments.
+Une construction `with` est particulièrement pratique :
 
-## 4.1 Différentes méthodes pour localiser les éléments
+```python
+with webdriver.Chrome() as driver:
+    driver.get("https://example.org")
+```
 
-### 4.1.1 ID
+La session est fermée à la sortie du bloc.
 
-   L'ID est l'identifiant unique d'un élément dans une page HTML. Lorsqu'un élément a un attribut ID, nous pouvons utiliser la méthode `find_element_by_id` pour le localiser.
+Dans pytest, nous préférerons généralement une **fixture** avec `yield`, vue plus loin.
 
-### 4.1.2 Name
+---
 
-   Le nom est un autre attribut souvent utilisé pour identifier les éléments dans une page HTML, surtout pour les champs de formulaire. Nous pouvons utiliser la méthode `find_element_by_name` pour localiser un élément par son nom.
+# 3. Architecture de Selenium et configuration du navigateur
 
-### 4.1.3 Class Name
+## 3.1. WebDriver
 
-   Les classes sont utilisées en HTML pour appliquer un style CSS à un groupe d'éléments. Nous pouvons utiliser la méthode `find_element_by_class_name` pour localiser un élément par sa classe.
+`WebDriver` représente une session contrôlant un navigateur.
 
-### 4.1.4 Tag Name
+Exemples de classes concrètes :
 
-   Le nom de la balise est le nom de l'élément HTML, comme `a` pour les liens, `input` pour les champs de saisie, etc. Nous pouvons utiliser la méthode `find_element_by_tag_name` pour localiser un élément par son nom de balise.
+```python
+webdriver.Chrome()
+webdriver.Firefox()
+webdriver.Edge()
+webdriver.Safari()
+```
 
-### 4.1.5 Link Text
+Pour une session distante :
 
-   Pour les liens, nous pouvons également les localiser par le texte du lien visible. Nous pouvons utiliser la méthode `find_element_by_link_text` pour cela.
+```python
+webdriver.Remote(...)
+```
 
-### 4.1.6 Partial Link Text
+## 3.2. WebElement
 
-   Si nous ne voulons pas ou ne pouvons pas correspondre au texte complet d'un lien, nous pouvons utiliser la méthode `find_element_by_partial_link_text` pour localiser un lien par une partie de son texte.
+Un `WebElement` représente un élément du DOM retourné par Selenium.
 
-### 4.1.7 CSS Selector
+```python
+from selenium.webdriver.common.by import By
 
-   Les sélecteurs CSS sont une manière puissante de localiser les éléments en fonction de leur relation avec d'autres éléments, de leurs attributs, de leur classe, etc. Nous pouvons utiliser la méthode `find_element_by_css_selector` pour localiser un élément par son sélecteur CSS.
+element = driver.find_element(By.ID, "login")
+```
 
-### 4.1.8 XPath
+Nous pouvons ensuite :
 
-   XPath est une langue pour naviguer dans les documents XML, qui peut aussi être utilisée pour naviguer dans les documents HTML. Nous pouvons utiliser la méthode `find_element_by_xpath` pour localiser un élément par son XPath.
+```python
+element.click()
+element.send_keys("texte")
+print(element.text)
+print(element.get_attribute("href"))
+```
 
-## 4.2 Stratégies pour trouver les meilleurs sélecteurs
+Un `WebElement` n'est pas une copie permanente de l'élément HTML. Il s'agit d'une **référence distante** vers un élément du DOM de la page courante. Si le DOM est reconstruit, cette référence peut devenir périmée et provoquer `StaleElementReferenceException`.
 
-Trouver les meilleurs sélecteurs peut être un défi. Voici quelques stratégies que nous pouvons utiliser :
+## 3.3. Les classes `Options` remplacent l'ancien usage de `DesiredCapabilities`
 
-### 4.2.1 Utiliser les ID et les noms lorsque c'est possible
+Avec Selenium 3, les tutoriels utilisaient souvent `DesiredCapabilities`.
 
-   Les ID et les noms sont les moyens les plus simples et les plus directs de localiser les éléments. Ils sont également les plus rapides car ils sont indexés par le navigateur.
+Avec Selenium 4, il faut préférer les classes d'options propres aux navigateurs :
 
-### 4.2.2 Préférer les sélecteurs CSS aux XPath
+```python
+from selenium import webdriver
 
-   Les sélecteurs CSS sont généralement plus lisibles et plus faciles à écrire que les XPath. Ils sont aussi plus rapides dans la plupart des navigateurs.
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--window-size=1920,1080")
 
-### 4.2.3 Éviter les sélecteurs trop spécifiques
+driver = webdriver.Chrome(options=options)
+```
 
-   Si un sélecteur est trop spécifique, il peut facilement être brisé si la structure de la page change légèrement. Essayons de trouver un équilibre entre spécificité et robustesse.
+Pour Firefox :
 
-### 4.2.4 Utiliser des outils de développement
+```python
+options = webdriver.FirefoxOptions()
+options.add_argument("-headless")
 
-   Les outils de développement de notre navigateur peuvent être très utiles pour trouver les meilleurs sélecteurs. Ils nous permettent d'inspecter les éléments et de tester nos sélecteurs en temps réel.
+driver = webdriver.Firefox(options=options)
+```
 
-En maîtrisant ces techniques de localisation, nous serons en mesure d'interagir efficacement avec n'importe quel élément sur une page web.
+## 3.4. Quelques options communes
+
+### Stratégie de chargement de page
+
+```python
+options = webdriver.ChromeOptions()
+options.page_load_strategy = "eager"
+```
+
+Valeurs principales :
+
+- `normal` : attend l'événement `load` ;
+- `eager` : poursuit après `DOMContentLoaded` ;
+- `none` : attend le moins possible et laisse le code gérer la synchronisation.
+
+Le choix `eager` ou `none` peut accélérer certains scénarios, mais il exige une bonne stratégie d'attente.
+
+### Certificats non fiables
+
+Pour un environnement de test uniquement :
+
+```python
+options.accept_insecure_certs = True
+```
+
+Il ne faut pas masquer un problème de certificat en production simplement pour faire passer un test.
+
+### Mode headless
+
+Le mode **headless** exécute le navigateur sans fenêtre graphique visible :
+
+```python
+options.add_argument("--headless")
+```
+
+Il est utile en CI. Il reste néanmoins prudent d'exécuter aussi les scénarios critiques dans un navigateur visible, car un environnement graphique et un environnement headless peuvent révéler des comportements différents.
+
+## 3.5. Capabilities
+
+Une session WebDriver est négociée à l'aide de **capabilities** conformes au protocole WebDriver.
+
+Nous utilisons généralement les classes `Options` au lieu de construire manuellement un dictionnaire de capabilities :
+
+```python
+options = webdriver.ChromeOptions()
+options.browser_version = "stable"
+options.platform_name = "any"
+```
+
+Pour une infrastructure distante, ces informations servent au Grid ou au fournisseur distant à choisir un navigateur compatible.
+
+## 3.6. Service et chemin de driver manuel
+
+Si Selenium Manager ne doit pas être utilisé, nous pouvons spécifier explicitement le driver :
+
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
+service = Service("/opt/webdrivers/chromedriver")
+driver = webdriver.Chrome(service=service)
+```
+
+Cela doit être réservé aux environnements où le cycle de vie du driver est volontairement administré par l'équipe.
+
+---
+
+# 4. Navigation et cycle de vie d'une session
+
+## 4.1. Naviguer vers une URL
+
+```python
+driver.get("https://example.org")
+```
+
+Informations utiles :
+
+```python
+print(driver.title)
+print(driver.current_url)
+print(driver.page_source)
+```
+
+`page_source` fournit la source telle que WebDriver l'expose à ce moment. Pour analyser précisément un DOM dynamique complexe, il est souvent préférable de travailler directement avec les éléments Selenium.
+
+## 4.2. Historique du navigateur
+
+```python
+driver.back()
+driver.forward()
+driver.refresh()
+```
+
+## 4.3. Taille et position de la fenêtre
+
+```python
+driver.set_window_size(1280, 900)
+driver.maximize_window()
+```
+
+Fixer une taille déterministe est utile pour les tests sensibles au responsive design.
+
+## 4.4. Cookies
+
+Créer un cookie :
+
+```python
+driver.add_cookie({"name": "theme", "value": "dark"})
+```
+
+Lire les cookies :
+
+```python
+print(driver.get_cookies())
+print(driver.get_cookie("theme"))
+```
+
+Supprimer :
+
+```python
+driver.delete_cookie("theme")
+driver.delete_all_cookies()
+```
+
+Le domaine du cookie doit être compatible avec la page actuellement ouverte.
+
+## 4.5. Timeouts de session
+
+Exemples :
+
+```python
+driver.set_page_load_timeout(30)
+driver.set_script_timeout(10)
+```
+
+L'attente de localisation d'élément est abordée au chapitre 7.
+
+## 4.6. `close()` et `quit()`
+
+```python
+driver.close()
+```
+
+ferme la fenêtre ou l'onglet actuellement contrôlé.
+
+```python
+driver.quit()
+```
+
+termine la session entière.
+
+Dans un teardown de test, c'est presque toujours `quit()` qui est attendu.
+
+---
 
 # 5. Localiser les éléments
 
-L'un des aspects fondamentaux de l'utilisation de Selenium est la capacité de localiser efficacement les éléments au sein d'une page Web. Pour interagir avec ces éléments, nous devons être capables de les localiser précisément. Dans ce chapitre, nous allons examiner les différentes méthodes pour localiser les éléments et les stratégies pour trouver les meilleurs sélecteurs.
+Localiser correctement les éléments est l'un des points les plus importants pour obtenir des tests stables.
 
-## 5.1 Différentes méthodes pour localiser les éléments
+## 5.1. API moderne : `By`
 
-Il existe plusieurs façons de localiser un élément dans une page Web. Certaines des méthodes les plus couramment utilisées sont :
-
-### 5.1.1 ID
-
-Chaque élément peut avoir un attribut id unique. Par exemple, pour localiser un élément avec l'id 'my-id', nous pouvons utiliser la méthode `find_element_by_id`:
-
-   ```python
-   element = driver.find_element_by_id('my-id')
-   ```
-
-### 5.1.2 Name
-
-Nous pouvons aussi localiser un élément par son attribut name. Par exemple:
-
-   ```python
-   element = driver.find_element_by_name('my-name')
-   ```
-
-### 5.1.3 Class Name
-
-Pour localiser un élément par son attribut class, nous utilisons la méthode `find_element_by_class_name`:
-
-   ```python
-   element = driver.find_element_by_class_name('my-class')
-   ```
-
-### 5.1.4 Tag Name
-
-Nous pouvons également localiser un élément par son nom de balise:
-
-   ```python
-   element = driver.find_element_by_tag_name('div')
-   ```
-
-### 5.1.5 Link Text et Partial Link Text
-
-Pour les liens, nous pouvons les localiser soit par leur texte complet (`find_element_by_link_text`) soit par une partie de leur texte (`find_element_by_partial_link_text`).
-
-### 5.1.6 CSS Selector
-
-Nous pouvons utiliser les sélecteurs CSS pour localiser un élément :
-
-   ```python
-   element = driver.find_element_by_css_selector('#my-id')
-   ```
-
-### 5.1.7 XPath
-
-XPath est une autre façon puissante de localiser un élément :
-
-   ```python
-   element = driver.find_element_by_xpath('//div[@id="my-id"]')
-   ```
-
-## 5.2 Stratégies pour écrire de meilleurs sélecteurs
-
-Pour avoir un code qui ne doit pas être adapté à chaque changement fait par l'éditeur du site, il faut:
-
-1. **Préférer les sélecteurs uniques** : Lorsque c'est possible, nous devrions utiliser des id, des noms ou d'autres attributs qui sont uniques pour l'élément que nous voulons localiser.
-
-2. **Utiliser des sélecteurs courts et robustes** : Les sélecteurs courts sont généralement plus efficaces et moins susceptibles d'être affectés par les changements dans la structure de la page.
-
-3. **Éviter de compter sur la position** : La position d'un élément dans la page peut changer, donc nous devrions éviter de localiser les éléments en se basant uniquement sur leur position.
-
-# 6. Interagir avec les éléments Web
-
-L'une des principales utilisations de Selenium est d'automatiser les interactions avec les éléments sur une page web. Maintenant que nous savons comment localiser ces éléments, nous allons apprendre à interagir avec eux.
-
-## 6.1 Interactions avec les formulaires
-
-Les formulaires web sont une composante essentielle de nombreux sites web, que ce soit pour se connecter, pour s'inscrire, pour remplir un questionnaire, etc. Selenium nous permet d'automatiser toutes ces tâches.
-
-## 6.1.1 Entrée de texte
-
-   Pour entrer du texte dans un champ de saisie, nous utilisons la méthode `send_keys`. Par exemple, si nous avons localisé un champ de saisie dans la variable `input_field`, nous pouvons entrer le texte "Hello, world!" de cette façon : 
+Les anciennes méthodes Python telles que :
 
 ```python
-input_field.send_keys("Hello, world!")
+# Ancien code — à ne plus utiliser
+# driver.find_element_by_id("login")
+# driver.find_element_by_xpath("//button")
 ```
 
-### 6.1.2 Click
+ont disparu de l'API moderne.
 
-   Pour cliquer sur un bouton ou un lien, nous utilisons la méthode `click`. Par exemple, si nous avons localisé un bouton dans la variable `button`, nous pouvons cliquer sur ce bouton de cette façon :
- 
+Nous utilisons :
+
+```python
+from selenium.webdriver.common.by import By
+
+driver.find_element(By.ID, "login")
+driver.find_element(By.XPATH, "//button")
+```
+
+## 5.2. Les huit stratégies classiques
+
+### ID
+
+```python
+driver.find_element(By.ID, "username")
+```
+
+### Name
+
+```python
+driver.find_element(By.NAME, "email")
+```
+
+### Class name
+
+```python
+driver.find_element(By.CLASS_NAME, "notification")
+```
+
+`CLASS_NAME` attend **un seul nom de classe**, pas une expression comme `"btn primary"`.
+
+Pour plusieurs classes, utiliser un sélecteur CSS :
+
+```python
+driver.find_element(By.CSS_SELECTOR, ".btn.primary")
+```
+
+### Tag name
+
+```python
+driver.find_element(By.TAG_NAME, "h1")
+```
+
+### Link text
+
+```python
+driver.find_element(By.LINK_TEXT, "Documentation")
+```
+
+### Partial link text
+
+```python
+driver.find_element(By.PARTIAL_LINK_TEXT, "Doc")
+```
+
+### CSS selector
+
+```python
+driver.find_element(By.CSS_SELECTOR, "form#login button[type='submit']")
+```
+
+### XPath
+
+```python
+driver.find_element(By.XPATH, "//button[@type='submit']")
+```
+
+## 5.3. `find_element` et `find_elements`
+
+```python
+element = driver.find_element(By.CSS_SELECTOR, ".item")
+```
+
+renvoie le premier élément correspondant ou lève `NoSuchElementException`.
+
+```python
+elements = driver.find_elements(By.CSS_SELECTOR, ".item")
+```
+
+renvoie une liste, éventuellement vide.
+
+Exemple :
+
+```python
+for item in driver.find_elements(By.CSS_SELECTOR, "ul.results > li"):
+    print(item.text)
+```
+
+## 5.4. Rechercher à partir d'un élément
+
+Nous pouvons limiter la recherche à une sous-partie du DOM :
+
+```python
+form = driver.find_element(By.ID, "login-form")
+username = form.find_element(By.NAME, "username")
+password = form.find_element(By.NAME, "password")
+```
+
+Cette approche rend souvent le code plus lisible.
+
+## 5.5. Comment choisir un sélecteur robuste ?
+
+Un bon sélecteur doit exprimer l'identité fonctionnelle de l'élément sans dépendre inutilement de la mise en page.
+
+Ordre de préférence indicatif :
+
+1. identifiant stable prévu pour le test ;
+2. attribut métier stable (`data-testid`, `data-test`, etc.) ;
+3. `name`, rôle ou attribut sémantique stable ;
+4. CSS simple ;
+5. XPath lisible lorsque CSS ne suffit pas.
+
+Exemple d'attribut volontairement prévu pour les tests :
+
+```html
+<button data-testid="save-profile">Enregistrer</button>
+```
+
+```python
+save_button = driver.find_element(
+    By.CSS_SELECTOR,
+    "[data-testid='save-profile']",
+)
+```
+
+> [!tip]
+> Dans une application que nous développons nous-mêmes, ajouter des identifiants de test stables est souvent bien plus fiable que d'essayer de deviner des sélecteurs à partir de classes CSS générées par le framework.
+
+## 5.6. Éviter les sélecteurs fragiles
+
+À éviter :
+
+```python
+driver.find_element(
+    By.CSS_SELECTOR,
+    "body > div:nth-child(3) > div > div:nth-child(2) > button",
+)
+```
+
+ou :
+
+```python
+driver.find_element(By.XPATH, "/html/body/div[2]/div[1]/button[3]")
+```
+
+Ces sélecteurs décrivent la **position** actuelle de l'élément et cassent au moindre changement de structure.
+
+## 5.7. CSS ou XPath ?
+
+Il n'existe pas de règle absolue imposant CSS dans tous les cas.
+
+CSS est excellent pour :
+
+- les classes ;
+- les attributs ;
+- les relations parent/enfant simples ;
+- les sélecteurs courts et lisibles.
+
+XPath est particulièrement utile pour :
+
+- exprimer des relations complexes ;
+- rechercher à partir du texte ;
+- remonter ou parcourir certains axes du DOM.
+
+Exemple :
+
+```python
+driver.find_element(
+    By.XPATH,
+    "//label[normalize-space()='Adresse']/following::input[1]",
+)
+```
+
+Le meilleur sélecteur est surtout celui qui reste **stable, explicite et maintenable**.
+
+## 5.8. Centraliser les locators
+
+Au lieu d'éparpiller :
+
+```python
+driver.find_element(By.ID, "username")
+```
+
+partout dans les tests, nous pouvons déclarer :
+
+```python
+USERNAME = (By.ID, "username")
+LOGIN_BUTTON = (By.CSS_SELECTOR, "button[type='submit']")
+```
+
+puis :
+
+```python
+driver.find_element(*USERNAME)
+```
+
+Cette pratique est particulièrement utile avec le Page Object Model.
+
+---
+
+# 6. Interagir avec les éléments et le navigateur
+
+## 6.1. Cliquer
+
 ```python
 button.click()
 ```
 
-### 6.1.3 Sélection d'options dans les menus déroulants
+Il est préférable de laisser Selenium effectuer un vrai clic WebDriver plutôt que de remplacer systématiquement l'interaction par JavaScript.
 
-   Pour sélectionner une option dans un menu déroulant, nous devons d'abord localiser l'élément `select`, puis utiliser la classe `Select` de Selenium. Par exemple, si nous avons localisé un menu déroulant dans la variable `dropdown`, nous pouvons sélectionner l'option avec la valeur "option1" de cette façon :
+## 6.2. Saisir du texte
+
+```python
+input_element.send_keys("Bonjour")
+```
+
+Effacer puis saisir :
+
+```python
+input_element.clear()
+input_element.send_keys("nouvelle valeur")
+```
+
+Touches spéciales :
+
+```python
+from selenium.webdriver.common.keys import Keys
+
+input_element.send_keys("recherche", Keys.ENTER)
+```
+
+## 6.3. Lire l'état d'un élément
+
+```python
+print(element.text)
+print(element.is_displayed())
+print(element.is_enabled())
+print(element.is_selected())
+```
+
+Attribut HTML :
+
+```python
+href = element.get_attribute("href")
+```
+
+Selenium expose également des API permettant de distinguer attributs DOM et propriétés lorsque cela est nécessaire.
+
+## 6.4. Menus `<select>` natifs
 
 ```python
 from selenium.webdriver.support.ui import Select
 
-select = Select(dropdown)
-select.select_by_value("option1")
+select_element = driver.find_element(By.ID, "country")
+select = Select(select_element)
+
+select.select_by_visible_text("France")
+# ou
+select.select_by_value("fr")
+# ou
+select.select_by_index(2)
 ```
 
-## 6.2 Gestion des alertes JavaScript
+`Select` ne fonctionne que sur une vraie balise HTML `<select>`. Les composants graphiques qui imitent une liste déroulante doivent être manipulés comme des éléments ordinaires.
 
-Les alertes JavaScript sont des fenêtres contextuelles qui apparaissent pour demander une confirmation ou fournir une information. Selenium peut automatiser la gestion de ces alertes.
-
-Pour interagir avec une alerte JavaScript, nous utilisons l'objet `Alert` de Selenium. Par exemple, pour accepter une alerte, nous pouvons faire comme suit :
+## 6.5. Cases à cocher et boutons radio
 
 ```python
-from selenium.webdriver.common.alert import Alert
+checkbox = driver.find_element(By.ID, "terms")
+if not checkbox.is_selected():
+    checkbox.click()
+```
 
-alert = Alert(driver)
+## 6.6. Alertes JavaScript
+
+Une alerte JavaScript native est gérée via `switch_to.alert` :
+
+```python
+alert = driver.switch_to.alert
+print(alert.text)
 alert.accept()
 ```
 
-Et pour refuser une alerte, nous pouvons faire comme ceci :
+Refuser :
 
 ```python
 alert.dismiss()
 ```
 
-Nous savons maintenant comment interagir avec les éléments web en utilisant Selenium.
-
-# 7. Attentes implicites et explicites
-
-En travaillant avec des pages web, nous devons souvent attendre qu'un certain état soit atteint avant de pouvoir interagir avec la page ou ses éléments. Par exemple, nous devons parfois attendre qu'une page soit complètement chargée, qu'un élément soit rendu, qu'un élément disparaisse, etc. Selenium nous offre deux mécanismes pour gérer ces situations : les attentes implicites et explicites.
-
-## 7.1 Différence entre attentes implicites et explicites
-
-### 7.1.1 Attentes implicites
-
-Une attente implicite indique à WebDriver d'attendre un certain temps par défaut avant de lancer une exception si l'élément n'est pas trouvé. Il s'agit d'une attente globale qui s'applique à toutes les tentatives de localisation d'éléments. Voici comment nous définissons une attente implicite :
+Pour un `prompt()` :
 
 ```python
-driver.implicitly_wait(10)  # attend jusqu'à 10 secondes
+alert.send_keys("une valeur")
+alert.accept()
 ```
 
-Dans cet exemple, si WebDriver ne trouve pas immédiatement un élément, il attendra jusqu'à 10 secondes avant de lancer une `NoSuchElementException`.
+Une modale HTML créée par Bootstrap, React, Vue, etc. **n'est pas une alerte JavaScript native** : elle doit être localisée dans le DOM comme les autres éléments.
 
-### 7.1.2 Attentes explicites
+## 6.7. Envoyer un fichier
 
-Une attente explicite est une attente spécifique pour une certaine condition. Contrairement à l'attente implicite, elle ne s'applique qu'à une seule tentative de localisation d'élément. Les attentes explicites sont généralement préférées aux attentes implicites, car elles permettent une plus grande flexibilité et peuvent résoudre des problèmes de synchronisation plus complexes. Voici comment nous définissons une attente explicite :
+Pour un champ :
+
+```html
+<input type="file">
+```
+
+nous pouvons fournir directement un chemin :
+
+```python
+file_input = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+file_input.send_keys("/home/user/image.png")
+```
+
+Selenium ne doit pas tenter de piloter la boîte de dialogue native du système si nous pouvons envoyer directement le chemin au champ.
+
+## 6.8. Captures d'écran
+
+Page :
+
+```python
+driver.save_screenshot("page.png")
+```
+
+Élément :
+
+```python
+element.screenshot("element.png")
+```
+
+Les captures sont particulièrement utiles dans un rapport de test en cas d'échec.
+
+---
+
+# 7. Synchronisation et attentes
+
+La synchronisation est probablement la principale source de tests Selenium instables.
+
+Une page moderne peut afficher un élément avant qu'il soit cliquable, reconstruire un composant après un appel API, ou modifier le DOM plusieurs fois après `DOMContentLoaded`.
+
+## 7.1. Ne pas utiliser `sleep()` comme stratégie principale
+
+```python
+import time
+
+time.sleep(5)
+```
+
+est simple mais problématique :
+
+- 5 secondes peuvent être insuffisantes sur une machine lente ;
+- elles sont inutiles si l'élément est prêt en 100 ms ;
+- les tests deviennent plus longs et toujours fragiles.
+
+Un `sleep()` ponctuel peut servir au diagnostic, mais il ne doit pas remplacer une condition d'attente.
+
+## 7.2. Attente implicite
+
+```python
+driver.implicitly_wait(5)
+```
+
+L'attente implicite s'applique globalement aux recherches d'éléments pendant la session.
+
+La valeur par défaut est 0.
+
+## 7.3. Attente explicite
+
+Les attentes explicites sont généralement plus précises :
+
+```python
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+wait = WebDriverWait(driver, 10)
+
+button = wait.until(
+    EC.element_to_be_clickable((By.ID, "save"))
+)
+button.click()
+```
+
+## 7.4. Conditions courantes
+
+Présence dans le DOM :
+
+```python
+EC.presence_of_element_located((By.ID, "result"))
+```
+
+Visible :
+
+```python
+EC.visibility_of_element_located((By.ID, "result"))
+```
+
+Cliquable :
+
+```python
+EC.element_to_be_clickable((By.ID, "save"))
+```
+
+Texte présent :
+
+```python
+EC.text_to_be_present_in_element((By.ID, "status"), "Terminé")
+```
+
+Disparition :
+
+```python
+EC.invisibility_of_element_located((By.CSS_SELECTOR, ".spinner"))
+```
+
+Nombre de fenêtres :
+
+```python
+EC.number_of_windows_to_be(2)
+```
+
+## 7.5. Conditions personnalisées
+
+`WebDriverWait.until()` accepte une fonction :
+
+```python
+wait = WebDriverWait(driver, 10)
+
+wait.until(
+    lambda d: d.find_element(By.ID, "counter").text == "10"
+)
+```
+
+Nous pouvons donc attendre un **état métier**, pas seulement la présence d'un élément.
+
+## 7.6. Ne pas mélanger implicitement attente implicite et explicite
+
+La documentation Selenium avertit que mélanger des délais implicites et explicites peut provoquer des temps d'attente imprévisibles.
+
+Une convention robuste consiste à :
+
+- laisser l'attente implicite à 0 ;
+- utiliser des attentes explicites aux endroits où l'état asynchrone le nécessite.
+
+## 7.7. Présent, visible et cliquable ne signifient pas la même chose
+
+Un élément peut :
+
+1. exister dans le DOM ;
+2. être caché par CSS ;
+3. être visible mais recouvert par une autre couche ;
+4. être visible et interactif.
+
+Choisir `presence_of_element_located` alors que nous voulons cliquer peut donc être insuffisant.
+
+## 7.8. `StaleElementReferenceException`
+
+Exemple classique :
+
+```python
+button = driver.find_element(By.ID, "save")
+# le framework JavaScript reconstruit le DOM ici
+button.click()  # peut lever StaleElementReferenceException
+```
+
+La référence `button` pointe vers un élément qui n'existe plus.
+
+La bonne stratégie est souvent de **relocaliser l'élément après la modification** :
+
+```python
+button = wait.until(
+    EC.element_to_be_clickable((By.ID, "save"))
+)
+button.click()
+```
+
+Éviter de conserver longtemps des références `WebElement` sur des pages très dynamiques.
+
+---
+
+# 8. Fenêtres, onglets, frames et Shadow DOM
+
+## 8.1. Handles de fenêtres
+
+Chaque contexte de fenêtre possède un identifiant :
+
+```python
+current = driver.current_window_handle
+all_windows = driver.window_handles
+```
+
+## 8.2. Ouvrir un nouvel onglet ou une nouvelle fenêtre
+
+Selenium 4 fournit directement :
+
+```python
+driver.switch_to.new_window("tab")
+```
+
+ou :
+
+```python
+driver.switch_to.new_window("window")
+```
+
+Il n'est donc plus nécessaire d'utiliser l'ancienne astuce :
+
+```python
+# À éviter lorsque new_window convient
+# driver.execute_script("window.open();")
+```
+
+## 8.3. Gérer une fenêtre ouverte par l'application
 
 ```python
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 
-wait = WebDriverWait(driver, 10)
-element = wait.until(EC.presence_of_element_located((By.ID, 'someid')))
-```
+original = driver.current_window_handle
 
-Dans cet exemple, WebDriver attendra jusqu'à 10 secondes que l'élément avec l'ID 'someid' soit présent dans la page. Si l'élément est trouvé avant l'expiration du délai, il est immédiatement retourné. Si le délai expire avant que l'élément soit trouvé, une `TimeoutException` est lancée.
+driver.find_element(By.LINK_TEXT, "Ouvrir").click()
 
-## 7.2 Utilisation des attentes pour résoudre les problèmes de synchronisation
+WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))
 
-Les problèmes de synchronisation se produisent lorsque WebDriver tente d'interagir avec un élément qui n'est pas encore prêt. Cela peut se produire pour diverses raisons, comme lorsque l'élément n'est pas encore rendu, lorsque l'élément est rendu mais pas encore visible, lorsque l'élément est en cours de chargement, etc.
-
-Les attentes nous permettent de résoudre ces problèmes en retardant l'interaction avec l'élément jusqu'à ce qu'il soit prêt. Par exemple, si nous voulons cliquer sur un bouton qui est initialement désactivé et qui est activé après quelques secondes, nous pouvons utiliser une attente explicite pour attendre que le bouton soit activé :
-
-```python
-wait = WebDriverWait(driver, 10)
-button = wait.until(EC.element_to_be_clickable((By.ID, 'someid')))
-button.click()
-```
-
-Dans cet exemple, WebDriver attendra jusqu'à 10 secondes que le bouton soit cliquable avant de tenter de cliquer dessus.
-
-En maîtrisant les attentes implicites et explicites, nous pouvons résoudre de nombreux problèmes de synchronisation et rendre nos scripts Selenium plus robustes et fiables.
-
-# 8. Travailler avec des cadres et des fenêtres multiples
-
-Lorsque nous travaillons avec des applications web modernes, il n'est pas rare d'avoir à interagir avec plusieurs fenêtres, onglets ou cadres (également connus sous le nom d'iframes) dans la même session. Selenium nous offre plusieurs outils pour gérer ces situations.
-
-## 8.1 Manipulation de fenêtres multiples et de cadres
-
-### 8.1.1 Fenêtres multiples
-
-Chaque fenêtre ou onglet ouvert dans une session de navigateur a un identifiant unique appelé "handle". Nous pouvons utiliser ces handles pour passer d'une fenêtre ou d'un onglet à un autre. Voici comment nous pouvons faire cela :
-
-```python
-# Stocker le handle de la fenêtre principale
-main_window = driver.current_window_handle
-
-# Ouvrir une nouvelle fenêtre ou un nouvel onglet
-... # Faire des actions qui déclenche l'ouverture
-# Ou si nous souhaitons forcer l'ouverture
-driver.execute_script("window.open();")
-
-# Passer à la nouvelle fenêtre ou onglet
-new_window = [window for window in driver.window_handles if window != main_window][0]
+new_window = (set(driver.window_handles) - {original}).pop()
 driver.switch_to.window(new_window)
 
-# Interagir avec la nouvelle fenêtre ou onglet
-...
+# actions dans la nouvelle fenêtre
 
-# Retourner à la fenêtre principale
-driver.switch_to.window(main_window)
+driver.close()
+driver.switch_to.window(original)
 ```
 
-Normalement l'ouverture d'une nouvelle fenêtre est la conséquence d'une action. Ici nous avons "forcer" l'ouverture avec `driver.execute_script("window.open();")` qui est une astuce. Lorsque nous travaillons avec des navigateurs Web dans Selenium, nous n'avons pas directement de méthode pour ouvrir une nouvelle fenêtre ou un nouvel onglet. Cependant, nous pouvons contourner cette limitation en utilisant la méthode `execute_script` pour exécuter un peu de JavaScript dans le contexte de la page Web.
+## 8.4. Iframes
 
-L'instruction `window.open();` est une commande JavaScript qui ouvre une nouvelle fenêtre ou un nouvel onglet dans le navigateur. En l'exécutant avec la méthode `execute_script`, nous pouvons utiliser Selenium pour simuler le comportement d'un utilisateur qui ouvre une nouvelle fenêtre ou un nouvel onglet. Cela peut être utile dans divers scénarios de test, tels que tester comment notre application se comporte lorsque l'utilisateur travaille avec plusieurs fenêtres ou onglets.
+Un `<iframe>` contient un contexte de document différent. Avant de chercher ses éléments, il faut y entrer.
 
-### 8.1.2 Cadres
-
-Les cadres sont des pages web à l'intérieur d'autres pages web. Pour interagir avec les éléments à l'intérieur d'un cadre, nous devons d'abord passer au cadre. Voici comment nous pouvons faire cela :
+Par identifiant ou nom :
 
 ```python
-# Passer au cadre
-driver.switch_to.frame("frame_name_or_id")
+driver.switch_to.frame("payment-frame")
+```
 
-# Interagir avec les éléments à l'intérieur du cadre
-...
+Par élément :
 
-# Revenir au contenu principal
+```python
+frame = driver.find_element(By.CSS_SELECTOR, "iframe.payment")
+driver.switch_to.frame(frame)
+```
+
+Retour au document principal :
+
+```python
 driver.switch_to.default_content()
 ```
 
-## 8.2 Stratégies pour gérer les fenêtres contextuelles et les annonces
-
-Les fenêtres contextuelles et les annonces peuvent souvent interférer avec nos scripts Selenium. Voici quelques stratégies que nous pouvons utiliser pour les gérer :
-
-### 8.2.1 Attendre la fenêtre contextuelle ou l'annonce
-
-Nous pouvons utiliser des attentes explicites pour attendre que la fenêtre contextuelle ou l'annonce apparaisse, puis interagir avec elle (par exemple, la fermer).
-
-### 8.2.2 Désactiver les fenêtres contextuelles et les annonces
-
-Dans certains cas, nous pouvons configurer le navigateur pour désactiver les fenêtres contextuelles et les annonces. Cela dépend du navigateur et de la nature de la fenêtre contextuelle ou de l'annonce.
-
-### 8.2.3 Ignorer les fenêtres contextuelles et les annonces
-
-Si la fenêtre contextuelle ou l'annonce n'affecte pas nos scripts, nous pouvons choisir de l'ignorer.
-
-En maîtrisant la manipulation de fenêtres multiples et de cadres, et en élaborant des stratégies pour gérer les fenêtres contextuelles et les annonces, nous savons maintenant interagir efficacement avec des applications web complexes.
-
-# 9 Actions avancées avec Selenium
-
-Au-delà des interactions de base avec les éléments web, Selenium fournit également des outils pour réaliser des actions plus avancées, telles que le glisser-déposer, le clic droit, le double clic et plus encore. De plus, Selenium nous permet d'automatiser le défilement de la page et de prendre des captures d'écran.
-
-## 9.1 Glisser-déposer, clic droit, double clic et autres actions avancées avec ActionChains
-
-### 9.1.1 Glisser-déposer
-
-   Pour réaliser une action de glisser-déposer, nous utilisons la classe `ActionChains` de Selenium. Voici comment nous pouvons faire cela :
-
-   ```python
-   from selenium.webdriver import ActionChains
-
-   action_chains = ActionChains(driver)
-   action_chains.drag_and_drop(element, target).perform()
-   ```
-
-   Dans cet exemple, `element` est l'élément que nous voulons glisser et `target` est l'endroit où nous voulons déposer l'élément.
-
-### 9.1.2  Clic droit
-
-   Pour réaliser un clic droit, nous utilisons également la classe `ActionChains`. Voici comment nous pouvons faire cela :
-
-   ```python
-   action_chains.context_click(element).perform()
-   ```
-
-   Dans cet exemple, `element` est l'élément sur lequel nous voulons faire un clic droit.
-
-### 9.1.3 Double clic
-
-   Pour réaliser un double clic, nous utilisons également la classe `ActionChains`. Voici comment nous pouvons faire cela :
-
-   ```python
-   action_chains.double_click(element).perform()
-   ```
-
-   Dans cet exemple, `element` est l'élément sur lequel nous voulons double-cliquer.
-
-## 9.2 Automatisation du scroll
-
-Pour automatiser le défilement de la page, nous pouvons utiliser la méthode `execute_script` de WebDriver pour exécuter un script JavaScript. Par exemple, pour défiler jusqu'au bas de la page, nous pouvons faire comme suit :
+Retour d'un niveau :
 
 ```python
-driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+driver.switch_to.parent_frame()
 ```
 
-Et pour défiler jusqu'à un certain élément, nous pouvons faire comme ceci :
+Attendre puis entrer dans une frame :
 
 ```python
-element = driver.find_element_by_id('someid')
-driver.execute_script("arguments[0].scrollIntoView();", element)
+wait.until(
+    EC.frame_to_be_available_and_switch_to_it((By.ID, "payment-frame"))
+)
 ```
 
-## 9.3 Capture d'écran
+## 8.5. Shadow DOM
 
-Pour prendre une capture d'écran, nous utilisons la méthode `save_screenshot` de WebDriver. Par exemple, pour prendre une capture d'écran et la sauvegarder dans un fichier appelé "screenshot.png", nous pouvons faire comme suit :
+Les Web Components peuvent encapsuler leur DOM dans une **shadow root**.
+
+Exemple :
+
+```python
+host = driver.find_element(By.CSS_SELECTOR, "my-component")
+shadow = host.shadow_root
+button = shadow.find_element(By.CSS_SELECTOR, "button")
+button.click()
+```
+
+Un sélecteur CSS ordinaire exécuté sur le document principal ne traverse pas automatiquement les limites d'un Shadow DOM.
+
+---
+
+# 9. Actions avancées et JavaScript
+
+## 9.1. ActionChains
+
+`ActionChains` permet de composer des interactions proches des périphériques utilisateur.
+
+```python
+from selenium.webdriver import ActionChains
+
+actions = ActionChains(driver)
+actions.move_to_element(element).click().perform()
+```
+
+## 9.2. Double clic
+
+```python
+ActionChains(driver).double_click(element).perform()
+```
+
+## 9.3. Clic contextuel
+
+```python
+ActionChains(driver).context_click(element).perform()
+```
+
+## 9.4. Glisser-déposer
+
+```python
+ActionChains(driver).drag_and_drop(source, target).perform()
+```
+
+Selon l'application, les bibliothèques JavaScript de glisser-déposer peuvent nécessiter une séquence plus fine de mouvements et d'appuis.
+
+## 9.5. Survol
+
+```python
+ActionChains(driver).move_to_element(menu).perform()
+```
+
+Utile pour révéler un sous-menu au survol.
+
+## 9.6. Clavier
+
+```python
+from selenium.webdriver.common.keys import Keys
+
+ActionChains(driver) \
+    .key_down(Keys.CONTROL) \
+    .send_keys("a") \
+    .key_up(Keys.CONTROL) \
+    .perform()
+```
+
+Le raccourci dépend du système et du scénario ; les tests doivent éviter les hypothèses inutiles sur la plateforme.
+
+## 9.7. Défilement
+
+Selenium fournit des actions de scroll, mais nous pouvons aussi faire défiler jusqu'à un élément avec JavaScript lorsqu'il y a une raison précise :
+
+```python
+driver.execute_script(
+    "arguments[0].scrollIntoView({block: 'center'});",
+    element,
+)
+```
+
+## 9.8. Exécuter du JavaScript
+
+```python
+result = driver.execute_script("return document.title")
+```
+
+ou :
+
+```python
+visible = driver.execute_script(
+    "return arguments[0].getBoundingClientRect().height > 0;",
+    element,
+)
+```
+
+> [!warning]
+> `execute_script()` est puissant, mais il ne faut pas l'utiliser pour contourner systématiquement WebDriver. Par exemple, un `arguments[0].click()` JavaScript peut réussir alors qu'un vrai utilisateur ne pourrait pas cliquer sur l'élément. Nous risquerions alors de masquer un défaut réel de l'interface.
+
+## 9.9. Capture d'informations pour le diagnostic
+
+Lors d'un échec, il est souvent utile de conserver :
+
+- l'URL ;
+- le titre ;
+- une capture d'écran ;
+- éventuellement le HTML ;
+- les logs du navigateur ;
+- le message et la pile d'exception ;
+- les informations de version du navigateur et de Selenium.
+
+---
+
+# 10. Structurer des tests maintenables avec pytest
+
+Selenium fournit l'automatisation du navigateur. Un framework comme **pytest** fournit l'organisation des tests, fixtures, assertions, rapports et paramétrage.
+
+## 10.1. Installer pytest
+
+```bash
+python -m pip install pytest selenium
+```
+
+## 10.2. Une fixture WebDriver
+
+```python
+import pytest
+from selenium import webdriver
+
+
+@pytest.fixture
+def driver():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--window-size=1280,900")
+
+    driver = webdriver.Chrome(options=options)
+    yield driver
+    driver.quit()
+```
+
+Test :
+
+```python
+def test_homepage_title(driver):
+    driver.get("https://www.selenium.dev/")
+    assert "Selenium" in driver.title
+```
+
+L'avantage de la fixture est que le navigateur sera fermé même si l'assertion échoue, grâce à la reprise après `yield`.
+
+## 10.3. AAA : Arrange, Act, Assert
+
+Un test gagne en lisibilité lorsqu'il distingue :
+
+```python
+# Arrange : préparer l'état
+# Act     : effectuer l'action testée
+# Assert  : vérifier le résultat
+```
+
+Exemple :
+
+```python
+def test_login(driver):
+    # Arrange
+    driver.get("https://example.test/login")
+
+    # Act
+    driver.find_element(By.NAME, "username").send_keys("alice")
+    driver.find_element(By.NAME, "password").send_keys("secret")
+    driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
+
+    # Assert
+    WebDriverWait(driver, 10).until(
+        EC.url_contains("/dashboard")
+    )
+    assert driver.find_element(By.TAG_NAME, "h1").text == "Tableau de bord"
+```
+
+## 10.4. Un test doit être indépendant
+
+Éviter :
+
+```text
+test_1 crée le compte
+      ↓
+test_2 suppose que test_1 est passé
+      ↓
+test_3 suppose que test_2 est passé
+```
+
+Sinon :
+
+- l'ordre des tests devient obligatoire ;
+- un seul échec provoque une cascade ;
+- la parallélisation devient difficile.
+
+Un test doit préparer son propre état ou utiliser des fixtures contrôlées.
+
+## 10.5. Ne pas utiliser l'interface pour préparer tout l'état
+
+Si le but est de tester la modification d'un profil, nous n'avons pas forcément intérêt à créer l'utilisateur via 15 écrans Selenium avant chaque test.
+
+Si l'application fournit une API ou un accès de test permettant de créer l'état initial de manière fiable, nous pouvons l'utiliser pour la phase **Arrange**, puis réserver Selenium à l'interaction réellement testée.
+
+Cela rend les tests :
+
+- plus rapides ;
+- plus ciblés ;
+- moins fragiles.
+
+## 10.6. Page Object Model
+
+Le **Page Object Model** (POM) consiste à représenter une page ou un composant par une classe.
+
+Exemple :
+
+```python
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+class LoginPage:
+    USERNAME = (By.NAME, "username")
+    PASSWORD = (By.NAME, "password")
+    SUBMIT = (By.CSS_SELECTOR, "button[type='submit']")
+
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
+
+    def open(self):
+        self.driver.get("https://example.test/login")
+        return self
+
+    def login(self, username, password):
+        self.driver.find_element(*self.USERNAME).send_keys(username)
+        self.driver.find_element(*self.PASSWORD).send_keys(password)
+        self.driver.find_element(*self.SUBMIT).click()
+        self.wait.until(EC.url_contains("/dashboard"))
+```
+
+Test :
+
+```python
+def test_login(driver):
+    page = LoginPage(driver).open()
+    page.login("alice", "secret")
+
+    assert "/dashboard" in driver.current_url
+```
+
+Les avantages sont :
+
+- locators centralisés ;
+- intention métier plus lisible ;
+- modifications de l'interface moins dispersées dans les tests.
+
+## 10.7. Ce qu'un Page Object ne doit pas devenir
+
+Un mauvais Page Object peut devenir une gigantesque classe contenant chaque détail du DOM.
+
+Nous pouvons également créer des **Component Objects** pour des composants réutilisables :
+
+- barre de navigation ;
+- tableau ;
+- calendrier ;
+- modale ;
+- sélecteur personnalisé.
+
+## 10.8. Assertions
+
+Selenium effectue des actions et récupère des valeurs ; c'est le framework de test qui porte l'assertion :
+
+```python
+assert status.text == "Enregistré"
+```
+
+Il faut vérifier **le résultat métier important**, pas simplement que le clic n'a pas levé d'exception.
+
+## 10.9. Paramétrer les navigateurs
+
+Un projet peut sélectionner le navigateur via une option pytest, une variable d'environnement ou une configuration CI.
+
+Exemple simplifié :
+
+```python
+import os
+import pytest
+from selenium import webdriver
+
+
+@pytest.fixture
+def driver():
+    browser = os.getenv("BROWSER", "chrome")
+
+    if browser == "firefox":
+        driver = webdriver.Firefox()
+    elif browser == "chrome":
+        driver = webdriver.Chrome()
+    else:
+        raise ValueError(f"Navigateur non pris en charge: {browser}")
+
+    yield driver
+    driver.quit()
+```
+
+Puis :
+
+```bash
+BROWSER=firefox pytest
+```
+
+---
+
+# 11. Selenium Grid et exécution distante
+
+## 11.1. Pourquoi Grid ?
+
+Selenium Grid permet de lancer WebDriver sur une infrastructure distante afin de :
+
+- paralléliser les tests ;
+- utiliser plusieurs navigateurs ;
+- utiliser plusieurs versions ;
+- tester sur plusieurs systèmes ;
+- centraliser les navigateurs d'une CI.
+
+## 11.2. Grid 4 n'est plus le Grid Selenium 3 des anciens tutoriels
+
+Un ancien tutoriel peut montrer :
+
+```bash
+# Ancien Selenium 3 — ne pas utiliser comme exemple moderne
+# java -jar selenium-server-standalone-3.x.y.jar -role hub
+# java -jar selenium-server-standalone-3.x.y.jar -role node ...
+```
+
+Selenium Grid 4 possède une architecture différente et plusieurs modes de déploiement.
+
+## 11.3. Mode Standalone
+
+Pour apprendre ou pour une petite CI :
+
+```bash
+java -jar selenium-server-<version>.jar standalone
+```
+
+Le serveur écoute par défaut sur :
+
+```text
+http://localhost:4444
+```
+
+Prérequis courants :
+
+- Java 11 ou supérieur ;
+- un navigateur ;
+- le serveur Selenium ;
+- un driver détectable, ou l'utilisation de Selenium Manager selon la configuration.
+
+## 11.4. Se connecter avec `Remote`
+
+```python
+from selenium import webdriver
+
+options = webdriver.ChromeOptions()
+
+driver = webdriver.Remote(
+    command_executor="http://localhost:4444",
+    options=options,
+)
+
+try:
+    driver.get("https://www.selenium.dev/")
+    print(driver.title)
+finally:
+    driver.quit()
+```
+
+Les anciennes constructions utilisant `desired_capabilities=` doivent être remplacées par des objets `Options` adaptés.
+
+## 11.5. Hub et Node
+
+Démarrer le Hub :
+
+```bash
+java -jar selenium-server-<version>.jar hub
+```
+
+Démarrer un Node sur la même infrastructure :
+
+```bash
+java -jar selenium-server-<version>.jar node --hub http://<hub-ip>:4444
+```
+
+Grid 4 contient plusieurs composants internes : Router, Distributor, Session Map, New Session Queue, Event Bus, Node, etc. En mode Hub/Node, plusieurs de ces composants sont regroupés pour simplifier le déploiement.
+
+## 11.6. Mode distribué
+
+Dans une grande infrastructure, les composants de Grid peuvent être lancés séparément. Ce mode est réservé aux besoins où l'exploitation d'une grille importante justifie cette complexité.
+
+## 11.7. Grid avec Docker
+
+Docker est fréquemment utilisé pour isoler les navigateurs et faciliter le provisionnement d'une infrastructure Selenium.
+
+Il faut cependant distinguer :
+
+- la documentation officielle Selenium Grid ;
+- les images Docker du projet Selenium ;
+- la configuration réseau, ressources et sécurité propre à notre infrastructure.
+
+Voir [[Docker]].
+
+## 11.8. Dimensionnement
+
+Un navigateur consomme de la mémoire et du CPU. Lancer 50 sessions en parallèle n'accélère pas automatiquement une suite si la machine ne peut réellement en exécuter que 10 correctement.
+
+Le nombre de sessions doit être déterminé par mesure :
+
+- CPU ;
+- mémoire ;
+- temps moyen de session ;
+- stabilité ;
+- débit réseau ;
+- capacité de l'application testée.
+
+## 11.9. Sécurité du Grid
+
+> [!danger]
+> Un Selenium Grid ne doit pas être exposé directement à Internet.
+
+Une personne capable de créer librement des sessions sur le Grid peut potentiellement :
+
+- accéder à des applications internes depuis le navigateur ;
+- exploiter les accès réseau du Grid ;
+- interagir avec des données auxquelles le navigateur a accès ;
+- abuser de la capacité d'exécution de l'infrastructure.
+
+Il faut protéger le Grid par le réseau, les pare-feux et les mécanismes d'accès adaptés.
+
+---
+
+# 12. WebDriver BiDi, réseau et événements du navigateur
+
+## 12.1. Limitation du WebDriver classique
+
+Le modèle classique est principalement :
+
+```text
+client → commande → navigateur
+client ← réponse  ← navigateur
+```
+
+Mais certaines informations sont naturellement **événementielles** :
+
+- message `console.log` ;
+- erreur JavaScript ;
+- requête réseau ;
+- événement de navigation ;
+- création d'un contexte de navigation.
+
+## 12.2. WebDriver BiDi
+
+**WebDriver BiDi** est le protocole W3C bidirectionnel destiné à apporter une API standard, événementielle et multi-navigateurs.
+
+Il utilise notamment une connexion WebSocket permettant au navigateur d'envoyer des événements vers le client sans attendre une commande classique.
+
+```text
+              commandes
+client ─────────────────────► navigateur
+       ◄─────────────────────
+              événements
+```
+
+## 12.3. Activer BiDi en Python
+
+Selon les API utilisées :
+
+```python
+from selenium import webdriver
+
+options = webdriver.ChromeOptions()
+options.enable_bidi = True
+
+driver = webdriver.Chrome(options=options)
+```
+
+La surface de l'API BiDi évolue encore. Il faut donc consulter la documentation correspondant à la version de Selenium installée.
+
+## 12.4. Domaines d'utilisation
+
+Les API BiDi couvrent progressivement des domaines tels que :
+
+- **browsing context** ;
+- **log** ;
+- **network** ;
+- **script** ;
+- événements d'entrée et de navigation.
+
+Elles permettent par exemple de réagir à des messages de console ou à des événements réseau.
+
+## 12.5. BiDi et Chrome DevTools Protocol
+
+Selenium propose historiquement des accès au **Chrome DevTools Protocol (CDP)** pour certaines fonctions avancées de Chromium.
+
+Cependant :
+
+- CDP est lié à Chromium/Chrome ;
+- ses versions suivent le navigateur ;
+- Selenium considère son support CDP comme une solution transitoire pour les fonctions progressivement couvertes par WebDriver BiDi.
+
+Pour du nouveau code multi-navigateurs, **préférer les API WebDriver/BiDi de haut niveau lorsqu'elles couvrent le besoin**.
+
+## 12.6. Éviter de dépendre des API BiDi internes
+
+Les classes de bas niveau du binding Python peuvent être marquées comme internes. Elles reflètent directement la structure du protocole et sont plus susceptibles de changer.
+
+Lorsque Selenium fournit une API de haut niveau pour le réseau ou les scripts, celle-ci doit être préférée.
+
+---
+
+# 13. Débogage, erreurs fréquentes et stabilité
+
+## 13.1. `NoSuchElementException`
+
+Le locator ne trouve aucun élément.
+
+Causes possibles :
+
+- locator faux ;
+- élément pas encore chargé ;
+- mauvais iframe ;
+- mauvaise fenêtre ;
+- élément dans un Shadow DOM ;
+- DOM différent de celui attendu.
+
+Diagnostic :
+
+1. vérifier l'URL ;
+2. inspecter le DOM ;
+3. vérifier le contexte frame/fenêtre ;
+4. essayer le locator dans les DevTools ;
+5. ajouter une attente explicite si l'élément est asynchrone.
+
+## 13.2. `TimeoutException`
+
+Une condition de `WebDriverWait` n'a pas été satisfaite dans le délai imparti.
+
+Ne pas répondre immédiatement en passant le timeout de 10 à 60 secondes. Il faut d'abord savoir **quelle condition** ne devient jamais vraie et pourquoi.
+
+## 13.3. `ElementClickInterceptedException`
+
+Un autre élément reçoit le clic :
+
+- overlay ;
+- bannière de cookies ;
+- animation ;
+- menu ;
+- loader ;
+- élément hors zone visible.
+
+La solution est de corriger l'état de la page ou l'attente, pas de transformer automatiquement tous les clics en JavaScript.
+
+## 13.4. `ElementNotInteractableException`
+
+L'élément existe mais ne peut pas être utilisé dans son état actuel.
+
+Vérifier :
+
+- visibilité ;
+- `disabled` ;
+- bon élément parmi plusieurs correspondances ;
+- animation ;
+- contexte.
+
+## 13.5. `StaleElementReferenceException`
+
+Le DOM a été remplacé depuis l'obtention de la référence. Voir chapitre 7.
+
+## 13.6. Session ou navigateur impossible à démarrer
+
+Vérifier :
+
+```bash
+python -c "import selenium; print(selenium.__version__)"
+```
+
+puis :
+
+- navigateur disponible ;
+- architecture système ;
+- droits d'exécution ;
+- proxy ;
+- accès réseau nécessaire à Selenium Manager ;
+- logs du driver ;
+- compatibilité des versions dans un environnement géré manuellement.
+
+## 13.7. Tests « flaky »
+
+Un test **flaky** réussit ou échoue sans changement fonctionnel correspondant.
+
+Causes classiques :
+
+- `sleep()` arbitraires ;
+- locators dépendant de la position ;
+- état partagé entre tests ;
+- animations ;
+- ordre de tests implicite ;
+- données de test non déterministes ;
+- environnement surchargé ;
+- appels externes non maîtrisés ;
+- éléments localisés avant reconstruction du DOM.
+
+## 13.8. Principes pour réduire la flakiness
+
+1. Utiliser des locators stables.
+2. Attendre l'état réellement nécessaire.
+3. Rendre les tests indépendants.
+4. Contrôler les données de test.
+5. Éviter les dépendances externes inutiles.
+6. Ne pas mélanger attente implicite et explicite.
+7. Capturer assez d'informations lors d'un échec.
+8. Garder les scénarios E2E ciblés.
+9. Ne pas utiliser JavaScript pour masquer un comportement utilisateur impossible.
+10. Mesurer les causes d'échec au lieu d'ajouter aveuglément des retries.
+
+## 13.9. Les retries ne sont pas une réparation
+
+Relancer automatiquement un test défaillant peut être utile pour distinguer certains incidents d'infrastructure, mais un test qui ne passe que « au deuxième essai » reste un signal à analyser.
+
+Les retries ne doivent pas devenir une manière d'accepter une suite instable.
+
+---
+
+# 14. Selenium pour l'automatisation et la collecte de données
+
+## 14.1. Selenium n'est pas un parseur de pages
+
+Pour une page statique :
+
+```text
+HTTP → HTML → parseur
+```
+
+est généralement plus efficace que :
+
+```text
+HTTP → navigateur complet → JavaScript → DOM → Selenium
+```
+
+Selenium est pertinent lorsque le navigateur apporte réellement quelque chose :
+
+- rendu JavaScript ;
+- interaction ;
+- session ;
+- navigation complexe ;
+- authentification interactive ;
+- comportement dépendant du navigateur.
+
+## 14.2. Préférer une API lorsqu'elle existe
+
+Si l'application appelle une API JSON documentée et autorisée, utiliser cette API peut être :
+
+- plus rapide ;
+- plus stable ;
+- moins consommateur ;
+- plus simple à tester.
+
+Il ne faut cependant pas contourner des restrictions d'accès ou utiliser une API privée sans en respecter les conditions.
+
+## 14.3. Respecter le site automatisé
+
+Avant d'automatiser un service tiers, vérifier notamment :
+
+- ses conditions d'utilisation ;
+- les limitations d'accès ;
+- les contraintes légales applicables ;
+- la charge provoquée par l'automatisation ;
+- le traitement des données personnelles ;
+- les mécanismes d'authentification et d'autorisation.
+
+Automatiser techniquement une action ne signifie pas automatiquement que nous sommes autorisés à la réaliser à grande échelle.
+
+## 14.4. Ne pas utiliser Selenium pour contourner une protection
+
+Les mécanismes anti-bot, CAPTCHA, restrictions d'accès ou contrôles de sécurité sont des limites explicites du service. Le but d'un cours Selenium est d'apprendre l'automatisation et les tests légitimes, pas de contourner ces protections.
+
+---
+
+# 15. Projet final et synthèse
+
+## 15.1. Projet proposé
+
+Construire une petite suite de tests pour une application Web de démonstration comprenant :
+
+1. ouverture de la page ;
+2. connexion ;
+3. vérification de l'écran principal ;
+4. création ou modification d'une donnée ;
+5. interaction avec une modale ou une seconde fenêtre ;
+6. vérification d'un résultat asynchrone ;
+7. capture d'écran en cas d'échec ;
+8. exécution sur Chrome puis Firefox ;
+9. exécution locale puis sur Selenium Grid.
+
+## 15.2. Contraintes pédagogiques
+
+Le projet doit :
+
+- utiliser `By` et non les anciennes méthodes `find_element_by_*` ;
+- utiliser Selenium Manager dans le cas local normal ;
+- utiliser au moins une attente explicite ;
+- ne pas utiliser `time.sleep()` comme synchronisation principale ;
+- centraliser les locators importants ;
+- utiliser une fixture pytest ;
+- être composé de tests indépendants ;
+- comporter au moins un Page Object ou Component Object ;
+- fermer proprement chaque session ;
+- documenter les commandes pour lancer les tests.
+
+## 15.3. Exemple d'arborescence
+
+```text
+project/
+├── pages/
+│   ├── __init__.py
+│   ├── login_page.py
+│   └── dashboard_page.py
+├── tests/
+│   ├── conftest.py
+│   ├── test_login.py
+│   └── test_profile.py
+├── pyproject.toml
+└── README.md
+```
+
+## 15.4. Ce qu'il faut retenir
+
+### Selenium sert à piloter un navigateur réel
+
+Il est particulièrement utile pour les tests E2E et multi-navigateurs.
+
+### Selenium 4 a modernisé plusieurs pratiques historiques
+
+En particulier :
+
+- **Selenium Manager** prend normalement en charge la gestion des drivers ;
+- les locators Python utilisent `find_element(By.…)` ;
+- les paramètres de navigateur passent par les classes `Options` ;
+- `switch_to.new_window()` gère directement onglets et fenêtres ;
+- Grid 4 possède une nouvelle architecture ;
+- WebDriver BiDi apporte progressivement les événements bidirectionnels standardisés.
+
+### Les attentes sont fondamentales
+
+La qualité d'une suite Selenium dépend davantage d'une bonne synchronisation que d'une multiplication de `sleep()`.
+
+### Un bon test vérifie un comportement métier
+
+Il ne suffit pas de réussir à cliquer. Nous devons vérifier l'effet observable attendu.
+
+### Les tests E2E doivent rester ciblés
+
+Ils sont indispensables pour certains parcours, mais coûtent plus cher que les tests de niveaux inférieurs.
+
+---
+
+# Aide-mémoire Selenium Python
+
+## Créer un navigateur
+
+```python
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+```
+
+## Naviguer
+
+```python
+driver.get("https://example.org")
+driver.back()
+driver.forward()
+driver.refresh()
+```
+
+## Localiser
+
+```python
+from selenium.webdriver.common.by import By
+
+element = driver.find_element(By.ID, "id")
+elements = driver.find_elements(By.CSS_SELECTOR, ".item")
+```
+
+## Interagir
+
+```python
+element.click()
+element.clear()
+element.send_keys("texte")
+```
+
+## Attendre
+
+```python
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+wait = WebDriverWait(driver, 10)
+element = wait.until(
+    EC.element_to_be_clickable((By.ID, "save"))
+)
+```
+
+## Nouvelle fenêtre
+
+```python
+driver.switch_to.new_window("tab")
+```
+
+## Iframe
+
+```python
+driver.switch_to.frame("frame-id")
+driver.switch_to.default_content()
+```
+
+## Capture
 
 ```python
 driver.save_screenshot("screenshot.png")
 ```
 
-Nous savons maintenant interagir avec les applications web d'une manière plus sophistiquée et réaliser des tâches d'automatisation plus complexes.
-
-# 10. Introduction au Selenium Grid
-
-Alors que Selenium WebDriver nous permet d'exécuter des tests sur un seul navigateur à la fois, Selenium Grid nous permet d'exécuter des tests sur plusieurs navigateurs et systèmes d'exploitation en parallèle. Cela peut nous aider à augmenter la vitesse de nos tests et à assurer que nos applications fonctionnent correctement sur différentes configurations.
-
-## 10.1 Utilisation de Selenium Grid pour exécuter des tests en parallèle
-
-Pour utiliser Selenium Grid, nous devons d'abord configurer un "hub" et un ou plusieurs "nodes". Le hub est le serveur central qui gère la distribution des tests aux nodes. Chaque node est une machine (qui peut être le même ordinateur que le hub ou un ordinateur différent) qui exécute les tests.
-
-Lorsque nous exécutons un test avec Selenium Grid, nous spécifions la configuration du navigateur et du système d'exploitation que nous souhaitons tester. Le hub distribue ensuite le test à un node qui correspond à cette configuration.
-
-Voici un exemple de code pour exécuter un test avec Selenium Grid :
+## Fermer
 
 ```python
-from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-hub_url = "http://localhost:4444/wd/hub"  # Remplacer par l'URL de notre hub
-desired_cap = DesiredCapabilities.CHROME  # Remplacer par le navigateur souhaité
-
-driver = webdriver.Remote(command_executor=hub_url, desired_capabilities=desired_cap)
-
-# Écrivons ici notre code de test
-
 driver.quit()
 ```
 
-## 10.2 Configuration de Selenium Grid
+---
 
-Pour configurer Selenium Grid, nous devons d'abord télécharger le fichier JAR de Selenium Server (qui contient Selenium Grid) depuis le site web de Selenium. Ensuite, nous devons démarrer le hub et les nodes avec les commandes appropriées.
+# Documentation et sources
 
-Pour démarrer le hub, nous utilisons la commande suivante :
+## Documentation officielle
 
-```bash
-java -jar selenium-server-standalone-3.x.y.jar -role hub
-```
+- Documentation Selenium : https://www.selenium.dev/documentation/
+- Documentation WebDriver : https://www.selenium.dev/documentation/webdriver/
+- Stratégies de localisation : https://www.selenium.dev/documentation/webdriver/elements/locators/
+- Attentes : https://www.selenium.dev/documentation/webdriver/waits/
+- Fenêtres et onglets : https://www.selenium.dev/documentation/webdriver/interactions/windows/
+- Selenium Grid : https://www.selenium.dev/documentation/grid/
+- Démarrage de Grid : https://www.selenium.dev/documentation/grid/getting_started/
+- WebDriver BiDi : https://www.selenium.dev/documentation/webdriver/bidi/
+- API Python : https://www.selenium.dev/selenium/docs/api/py/
 
-Et pour démarrer un node, nous utilisons la commande suivante :
+## Projet et versions
 
-```bash
-java -jar selenium-server-standalone-3.x.y.jar -role node -hub http://localhost:4444/grid/register
-```
+- Dépôt Selenium : https://github.com/SeleniumHQ/selenium
+- Paquet Python Selenium : https://pypi.org/project/selenium/
 
-Notons que dans ces commandes, "3.x.y" doit être remplacé par le numéro de version de Selenium Server que nous avons téléchargé, et "localhost:4444" doit être remplacé par l'adresse et le port de votre hub.
+## Pour aller plus loin
 
-En maîtrisant Selenium Grid, nous pouvons automatiser des fermes de navigateurs de tests et ainsi paramétrer des scénarios très complexes de validation.
-
-# Documentation
-
-Selenium a une documentation assez complète qui est répartie en plusieurs endroits, voici les principaux liens vers ces ressources :
-
-1. **Documentation principale de Selenium** : Nous trouverons des guides, des tutoriels, des références d'API et d'autres ressources pour Selenium sur la page principale de la documentation de Selenium : https://www.selenium.dev/documentation/
-
-2. **Référence de l'API Python pour Selenium** : La référence de l'API Python pour Selenium donne des informations détaillées sur toutes les classes, méthodes et fonctions disponibles dans le binding Python de Selenium. Vous pouvez la trouver ici : https://www.selenium.dev/selenium/docs/api/py/
-
-3. **Documentation de Selenium Grid** : Si nous souhaitons en savoir plus sur Selenium Grid, nous pouvons consulter la documentation spécifique à Selenium Grid : https://www.selenium.dev/documentation/grid/
-
-4. **GitHub de Selenium** : Pour des informations encore plus détaillées, y compris des notes de version et du code source, nous pouvons consulter le dépôt GitHub de Selenium : https://github.com/SeleniumHQ/selenium
-
-# Liens
-
-Une démo [Xavki](https://youtu.be/ecFpzceYmD4)
+- [[Python]]
+- [[HTML]]
+- [[CSS]]
+- [[Javascript]]
+- [[Docker]]
+- [[git]]
