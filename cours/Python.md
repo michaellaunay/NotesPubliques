@@ -775,20 +775,20 @@ print('chat' in dico_fr_en)  # Affiche True
 ```
 
 - **Avec `keys()`** : Afficher toutes les clés du dictionnaire.
-  ```python
+```python
 print(dico_fr_en.keys())  # Affiche dict_keys(['chien', 'chat', 'oiseau'])
-  ```
+```
 
 - **Avec `values()`** : Afficher toutes les valeurs du dictionnaire.
-  ```python
+```python
 print(dico_fr_en.values())  # Affiche dict_values(['dog', 'cat', 'bird'])
-  ```
+```
 
 - **Avec `items()`** : Afficher les paires clé-valeur.
-  ```python
+```python
 for cle, valeur in dico_fr_en.items():
       print(f"{cle} se traduit par {valeur} en anglais.")
-  ```
+```
 
 ### Exercice : Création et Utilisation d'un Dictionnaire Français-Anglais
 
