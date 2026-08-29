@@ -2,6 +2,10 @@
 schema_version: 1
 uid: "01M02JG1VCS6ME1Q0VWGXQGM2C"
 titre: "F-Droid et Termux"
+aliases:
+  - "Termux"
+  - "F-Droid"
+  - "Linux sur Android"
 type: procedure
 statut: actif
 para: ressource
@@ -10,100 +14,155 @@ domaines:
 themes:
   - informatique
   - android
-  - logiciel-libre
   - termux
-  - f-droid
-resume: "Présentation de F-Droid et de Termux, et procédure d'installation d'un environnement de développement sur Android, y compris VS Code."
+  - logiciel-libre
+  - ligne-de-commande
+resume: "Procédure pour installer un environnement de développement Linux sur Android en 2026 : F-Droid (magasin libre, dépôts, alternatives), Termux (sources officielles F-Droid et GitHub, différences de la version Google Play, versions 0.118.3 et 0.119 bêta), installation pas à pas, premiers réglages (pkg, stockage, SSH, Python, git), dépôt TUR et code-server pour VS Code, limites d'Android 12 à 16 et vérification des développeurs annoncée par Google."
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-18
-date_modification: 2024-03-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-# F-Droid
-F-Droid est un magasin d'applications pour les appareils Android, similaire au Google Play Store, mais avec quelques différences clés qui le rendent unique. Voici les principaux aspects de F-Droid :
+# F-Droid et Termux
 
-### Open Source
-- **Entièrement Open Source** : Toutes les applications disponibles sur F-Droid sont open source, ce qui signifie que leur code source est accessible et modifiable par quiconque. Cela favorise la transparence, la sécurité et la possibilité pour les utilisateurs de contribuer aux applications qu'ils utilisent.
+> [!abstract] Objectif
+> Transformer un téléphone ou une tablette Android en poste de travail Linux d'appoint, sans accès root : installer **F-Droid** (magasin d'applications libres), puis **Termux** depuis une source officielle, configurer l'environnement (paquets, stockage, SSH, Python, git), ajouter un éditeur (VS Code par code-server) et connaître les limites imposées par Android.
 
-### Sécurité et Vie Privée
-- **Respect de la vie privée** : F-Droid accorde une grande importance à la vie privée et à la sécurité. Il ne suit pas les utilisateurs, ne requiert pas un compte pour télécharger des applications, et fournit des informations détaillées sur les autorisations et les trackers éventuels dans les applications.
-- **Vérification des applications** : Les applications soumises à F-Droid sont vérifiées et compilées à partir de leurs sources par les équipes de F-Droid, ce qui réduit les risques de malware comparé aux APK téléchargés à partir de sources inconnues.
+> [!info] État de la procédure
+> Vérifiée le 29 août 2026 sur la documentation de Termux et de F-Droid : Termux 0.118.3 (mai 2025) en version stable sur F-Droid et GitHub, 0.119.0 en bêta, version Google Play distincte (2026.01.07) ; client F-Droid 1.23. La procédure de 2024 demandait d'activer le mode développeur, ce qui n'est pas nécessaire pour installer une application ; l'étape a été retirée.
 
-### Communauté et Développement
-- **Communauté** : F-Droid est soutenu par une communauté de développeurs et d'utilisateurs qui contribuent non seulement au développement des applications mais aussi à celui de la plateforme F-Droid elle-même.
-- **Pas de centralisation** : Contrairement au Google Play Store, F-Droid permet aux utilisateurs de configurer et d'ajouter des dépôts (repositories) tiers, favorisant ainsi un écosystème moins centralisé.
+Voir aussi : [[git]] (chapitre 26, Git sur Android avec Termux), [[Visual studio code]], [[Sécurité avancée sous Linux]], [[Python]].
 
-### Gratuité
-- **Applications gratuites** : Toutes les applications sur F-Droid sont gratuites. Bien que des dons aux développeurs soient encouragés, nous n'aurons pas à payer pour télécharger des applications.
+# 1. F-Droid
 
-### Pourquoi utiliser F-Droid ?
-- **Vie privée et sécurité** : Si nous sommes préoccupé par votre vie privée et sécurité, F-Droid fournit une plateforme où nous pouvons télécharger des applications en étant moins inquiet sur le suivi et le malware.
-- **Soutien au logiciel libre** : En utilisant F-Droid, nous soutenons le mouvement du logiciel libre et open source, en contribuant à un écosystème qui valorise la transparence et la communauté.
-- **Accès à des applications uniques** : Certaines applications sont disponibles uniquement sur F-Droid et pas sur d'autres plateformes de téléchargement d'applications, souvent en raison de leur engagement fort envers l'open source et la vie privée.
-# Termux
+**F-Droid** est un magasin d'applications Android libres : le client lui-même, le serveur et les quelque 3 800 applications sont sous licences libres, compilées de façon reproductible par l'équipe F-Droid à partir des sources, sans compte utilisateur, sans traceur et avec la liste des *anti-fonctionnalités* (publicité, dépendance à un service non libre) affichée pour chaque application.
 
-Termux est une application de terminal pour Android qui offre un environnement de ligne de commande puissant directement sur votre appareil mobile. Elle permet aux utilisateurs d'accéder à un large éventail d'outils Linux, de faire du développement de logiciels, de gérer des fichiers, et d'effectuer diverses tâches de programmation et de réseautage sans avoir besoin de root ou de configuration supplémentaire. Voici quelques points clés concernant Termux :
+- **Dépôts** : le dépôt principal, plus des dépôts tiers ajoutés dans les paramètres (IzzyOnDroid pour les binaires publiés par les développeurs, dépôts d'un projet ou d'une organisation) ; c'est le mécanisme de **décentralisation** de F-Droid.
+- **F-Droid Basic** : variante allégée du client, sans le partage de proximité, qui gère les mises à jour automatiques sur Android 12+.
+- **Obtainium** (disponible sur F-Droid) installe et met à jour des applications directement depuis leurs pages GitHub, GitLab ou leur site : utile quand une application est publiée hors F-Droid.
 
-### Environnement Linux complet
-- Termux fournit un environnement Linux qui fonctionne directement sur votre appareil Android, sans nécessiter d'accès root. Cela signifie que nous pouvons utiliser des commandes Unix standard et installer des centaines de paquets disponibles via son gestionnaire de paquets `pkg` ou `apt`.
+> [!warning] Vérification des développeurs par Google
+> Google a annoncé qu'à partir de septembre 2026, d'abord dans quelques pays, les applications installées sur les appareils Android certifiés devront provenir de développeurs vérifiés auprès de Google, y compris hors Play Store ; F-Droid a répondu par une lettre ouverte (février 2026, *Keep Android Open*). Selon la mise en œuvre, l'installation d'applications libres non enregistrées pourrait être bloquée ou limitée : suivre f-droid.org et keepandroidopen.org avant d'équiper une flotte d'appareils.
 
-### Outils de développement
-- Avec Termux, nous pouvons écrire, compiler et exécuter du code dans plusieurs langages de programmation, tels que Python, PHP, Ruby, et bien d'autres. Il est particulièrement apprécié des développeurs et des passionnés de technologie pour la flexibilité et la liberté qu'il offre pour coder et tester des scripts directement sur leurs appareils Android.
+# 2. Termux
 
-### Personnalisation et scripts
-- Les utilisateurs peuvent personnaliser leur environnement Termux, écrire et exécuter des scripts, et automatiser des tâches grâce à des outils de script comme Bash, Zsh ou Fish. Cela permet une personnalisation poussée et la création de workflows efficaces.
+**Termux** est un émulateur de terminal qui installe un environnement Linux en espace utilisateur (bibliothèques et outils recompilés pour Android, chemin `/data/data/com.termux/files/usr`) : bash ou zsh, `pkg`/`apt` avec plus de 1 000 paquets (Python, Node.js, Git, SSH, GCC/Clang, Rust, Go, Vim, tmux…), sans root. Les greffons **Termux:API** (accès aux capteurs, notifications, presse-papiers, SMS), **Termux:Boot**, **Termux:Widget**, **Termux:Styling** et **Termux:X11** l'étendent.
 
-### Accès au système de fichiers
-- Termux offre un accès au système de fichiers de l'appareil, permettant ainsi la gestion des fichiers et dossiers. Bien qu'il n'ait pas besoin de droits superutilisateur pour fonctionner, Termux fournit des fonctionnalités puissantes à ses utilisateurs tout en respectant les limites de sécurité d'Android.
+## 2.1 D'où l'installer
 
-### Connectivité réseau
-- L'application inclut des outils pour l'inspection réseau et la communication, tels que ssh, scp, curl, et wget. Cela en fait un outil précieux pour les administrateurs système et les professionnels de la sécurité informatique pour effectuer des diagnostics et gérer des systèmes à distance.
+| Source | État en 2026 | Remarques |
+|---|---|---|
+| **F-Droid** (`com.termux`) | source officielle, version stable 0.118.3 | APK universel (~180 Mo installé) ; les greffons doivent venir de la même source |
+| **GitHub Releases** | source officielle, 0.118.3 stable et 0.119.0 bêta | APK par architecture (`arm64-v8a` pour presque tous les appareils actuels), variantes `apt-android-7` pour Android 7+ ; certains constructeurs refusent ces APK « conçus pour une ancienne version d'Android » : prendre alors F-Droid |
+| **Google Play** | version distincte maintenue par le créateur de Termux dans l'organisation `termux-play-store` (2026.01.07), Android 11+ | clé de signature différente : **incompatible** avec les installations F-Droid/GitHub (désinstaller avant de changer de source) ; Termux:Boot et Widget intégrés à l'application ; l'équipe principale ne la considère pas comme officielle |
 
-### Extensible via des add-ons
-- Termux peut être étendu avec des add-ons, permettant par exemple d'accéder à l'API Android, de contrôler votre appareil Android via des commandes, ou d'ajouter une interface graphique à certains programmes.
+Règle : **F-Droid** pour la simplicité, **GitHub** pour choisir l'architecture ou tester la bêta, **Google Play** seulement si l'appareil interdit tout autre canal — et ne jamais mélanger les sources.
 
-### Communauté et open source
-- Étant un projet open source, Termux bénéficie du soutien d'une communauté active de développeurs et d'utilisateurs qui contribuent à son amélioration continue. Il a une documentation riche et des forums où les utilisateurs peuvent obtenir de l'aide et partager leurs connaissances.
-# Installation
-Installer Termux via F-Droid sur un appareil Android nécessite plusieurs étapes, notamment l'activation du mode développeur et la confiance envers l'application F-Droid. Voici un guide étape par étape pour nous aider à le faire :
+## 2.2 Ce qu'Android impose
 
-### 1. Activer le mode développeur
-1. **Ouvrir les paramètres** de notre appareil Android.
-2. Faire défiler vers le bas et sélectionner **À propos du téléphone**.
-3. Trouver **Numéro de build** ou **Version du logiciel** et **taper dessus 7 fois**. Nous devrons peut-être entrer notre code PIN ou mot de passe.
-4. Un message apparaîtra indiquant que nous sommes maintenant des développeurs.
+- **Pas de root** : Termux ne modifie pas le système ; les outils qui l'exigent (`ping` brut, capture réseau, montage) ne fonctionnent pas ou passent par Termux:API.
+- **Tueur de processus fantômes** (Android 12+) : le système peut tuer les processus en arrière-plan d'une application au-delà d'un plafond ; les tâches longues (serveur, compilation) doivent tourner dans une session visible avec un verrou de réveil (`termux-wake-lock`) ; le plafond se relève par `adb` sur un ordinateur (documentation Termux, « Phantom processes »).
+- **Stockage** : l'accès aux fichiers de l'utilisateur passe par `termux-setup-storage`, qui crée `~/storage/` (Android 11+ demande l'autorisation « Accès à tous les fichiers » pour certains dossiers).
+- **Exécution** depuis Android 10 : seuls les binaires installés par `pkg` ou compilés dans le préfixe Termux s'exécutent ; un binaire téléchargé dans `~/storage/downloads` doit être copié dans `$PREFIX/bin` ou `~`.
+- **Pages de 16 Kio** (Android 15+ sur certains appareils) : prises en charge par les versions de 2025 et suivantes ; mettre à jour l'application et les paquets.
 
-### 2. Activer les sources inconnues (optionnel selon la version d'Android)
-Dans les versions d'Android antérieures à Android 8 (Oreo), il est nécessaire d'autoriser l'installation d'applications en dehors du Google Play Store :
-1. Revenir aux **Paramètres** et sélectionner **Sécurité**.
-2. Activer l'option **Sources inconnues** pour permettre l'installation d'applications en dehors du Google Play Store.
+# 3. Installer
 
-Sur Android 8 (Oreo) et versions ultérieures, cette option est gérée au cas par cas lors de l'installation d'une application.
+## 3.1 F-Droid
 
-### 3. Installer F-Droid
-1. Sur notre appareil Android, ouvrir un navigateur web et aller sur le site officiel de F-Droid ([https://f-droid.org/](https://f-droid.org/)).
-2. Télécharger l'**APK de F-Droid**.
-3. Une fois le téléchargement terminé, ouvrir le fichier APK. Nous devrons peut-être autoriser notre navigateur à installer des applications de sources inconnues si nous ne l'avons pas déjà fait.
-4. Suivre les instructions à l'écran pour installer F-Droid.
+1. Sur l'appareil, ouvrir <https://f-droid.org/> dans le navigateur et télécharger l'APK du client (ou de F-Droid Basic).
+2. Ouvrir le fichier téléchargé ; Android 8+ demande d'autoriser **ce navigateur** à installer des applications inconnues — autorisation donnée par application, pas globalement.
+3. Lancer F-Droid, laisser l'index se télécharger (la première synchronisation prend une minute), puis dans les paramètres activer les mises à jour automatiques si l'appareil le permet.
 
-### 4. Installer Termux via F-Droid
-1. Ouvrir **F-Droid** une fois installé.
-2. Utiliser la fonction de recherche pour trouver **Termux**.
-3. Sélectionner Termux dans les résultats de recherche et cliquer sur **Installer**.
+Aucun mode développeur n'est requis : il ne sert qu'au débogage par `adb`.
 
-### 5. Mettre à jour les paquets de Termux (optionnel mais recommandé)
-Après avoir installé Termux, il est bon de mettre à jour les paquets :
-1. Ouvrir Termux.
-2. Taper `pkg update` et appuyer sur Entrée pour mettre à jour la liste des paquets.
-3. Taper `pkg upgrade` et appuyer sur Entrée pour mettre à jour les paquets installés.
+## 3.2 Termux
 
-Ceci nous permettra d'avoir la dernière version de Termux et de tous les outils ou paquets que nous souhaitons utiliser. Notez que la disponibilité de Termux sur F-Droid peut varier et qu'il est toujours conseillé de vérifier les sources officielles pour obtenir les informations les plus à jour.
+1. Dans F-Droid, rechercher **Termux**, installer ; installer de la même façon **Termux:API** si l'on veut piloter l'appareil depuis le shell.
+2. Ouvrir Termux : le système de base se déploie (quelques dizaines de secondes).
+3. Mettre à jour :
 
-# Installation de VS Code sur Android
-https://www.codewithharry.com/blogpost/install-vs-code-in-android/
+```bash
+pkg update && pkg upgrade -y
+```
+
+4. Donner accès au stockage, puis vérifier :
+
+```bash
+termux-setup-storage           # crée ~/storage/{shared,downloads,dcim,...}
+ls ~/storage/shared
+```
+
+5. Installer l'essentiel :
+
+```bash
+pkg install -y git openssh python nodejs vim tmux termux-api
+python --version && git --version
+```
+
+## 3.3 Réglages utiles
+
+- **Clavier** : la barre de touches supplémentaires (Échap, Tab, Ctrl, flèches) se règle dans `~/.termux/termux.properties` (`extra-keys`) ; un clavier Bluetooth ou USB fonctionne directement.
+- **SSH vers l'appareil** : `sshd` écoute sur le port **8022** ; définir un mot de passe (`passwd`) ou copier une clé dans `~/.ssh/authorized_keys`, puis `ssh -p 8022 utilisateur@adresse` depuis l'ordinateur (`whoami` donne le nom, `ifconfig` l'adresse).
+- **Sauvegarde** : `termux-backup ~/storage/downloads/termux.tar.xz` et `termux-restore` archivent tout l'environnement.
+- **Dépôts supplémentaires** : `pkg install tur-repo` ajoute le **Termux User Repository** (paquets communautaires, dont code-server) ; `pkg install x11-repo` les applications graphiques pour Termux:X11.
+- **Distribution complète** : `pkg install proot-distro && proot-distro install debian && proot-distro login debian` donne un Debian ou Ubuntu émulé (plus lent, mais avec `apt` classique) pour les logiciels absents de Termux.
+
+# 4. VS Code sur Android
+
+Deux voies, sans passer par des tutoriels tiers :
+
+**code-server dans Termux** — l'éditeur VS Code servi par un navigateur, sur l'appareil lui-même :
+
+```bash
+pkg install tur-repo
+pkg install code-server
+code-server --auth none --bind-addr 127.0.0.1:8080
+```
+
+puis ouvrir <http://127.0.0.1:8080> dans le navigateur (Chrome, Firefox, ou un navigateur en mode « application » pour le plein écran). Les extensions viennent de la place de marché Open VSX ; l'accès distant d'un autre appareil impose `--auth password` et un tunnel SSH.
+
+**Développement distant** — l'inverse : l'appareil Android sert de terminal et de client, le code s'exécute ailleurs. Termux fournit `ssh` et `mosh` ; VS Code sur l'ordinateur se connecte à l'appareil par **Remote-SSH** sur le port 8022 pour éditer les fichiers de Termux avec l'éditeur complet (voir [[Visual studio code]], chapitre sur le développement distant).
+
+# 5. Premier projet : Python et git
+
+```bash
+mkdir -p ~/projets/demo && cd ~/projets/demo
+git init && git config user.name "Prénom Nom" && git config user.email "prenom.nom@example.org"
+python -m venv .venv && . .venv/bin/activate
+pip install requests
+cat > main.py <<'PY'
+import platform, requests
+print(platform.machine(), requests.__version__)
+PY
+python main.py
+git add . && git commit -m "Premier commit depuis Termux"
+```
+
+Les dépôts distants se clonent et se poussent avec `ssh` ou `https` exactement comme sur un ordinateur ; les particularités (agent SSH, clés, `safe.directory`) sont dans [[git]], chapitre 26.
+
+# 6. Dépannage
+
+| Symptôme | Cause | Remède |
+|---|---|---|
+| « Application non installée » ou « conçue pour une ancienne version d'Android » | APK GitHub refusé par le constructeur, ou source différente déjà installée | installer depuis F-Droid ; désinstaller l'ancienne source avant d'en changer |
+| `pkg` échoue sur les miroirs | miroir hors ligne | `termux-change-repo` pour en choisir un autre |
+| Processus tué en arrière-plan | tueur de processus fantômes | `termux-wake-lock`, session au premier plan, plafond relevé par `adb` |
+| `Permission denied` sur `~/storage` | autorisation non accordée | relancer `termux-setup-storage`, vérifier « Fichiers et médias » dans les paramètres de l'application |
+| Binaire téléchargé non exécutable | restriction d'exécution Android 10+ | le placer dans `$PREFIX/bin` ou `~`, `chmod +x` |
+| Google Play propose une mise à jour d'un Termux F-Droid | versions confondues | désactiver la mise à jour automatique de Termux dans Play, ou ignorer |
+
+# 7. Sources
+
+- Termux, documentation et installation : <https://termux.dev/> ; dépôt <https://github.com/termux/termux-app> ; wiki <https://wiki.termux.com/>
+- Termux sur Google Play (organisation `termux-play-store`) et journal des différences : <https://github.com/termux-play-store>
+- Termux User Repository : <https://github.com/termux-user-repository/tur>
+- F-Droid : <https://f-droid.org/> ; lettre ouverte *Keep Android Open* : <https://keepandroidopen.org/>
+- code-server : <https://coder.com/docs/code-server>
+- proot-distro : <https://github.com/termux/proot-distro>
