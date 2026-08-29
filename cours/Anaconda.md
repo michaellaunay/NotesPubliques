@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5ASFV4NJZAHYYKF5S5Y"
-titre: "Anaconda"
+uid: 01M02EX5ASFV4NJZAHYYKF5S5Y
+titre: Anaconda
 type: cours
 statut: actif
 para: ressource
@@ -18,7 +18,7 @@ themes:
 resume: "Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-09-25
 date_modification: 2026-08-28
@@ -27,7 +27,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 > **Avertissement de licence.** Depuis mars 2024, la distribution Anaconda et
 > son canal `defaults` exigent une licence payante pour toute organisation de

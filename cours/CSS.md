@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5AW7312ZYMNHY8DBZ1W"
-titre: "CSS"
+uid: 01M02EX5AW7312ZYMNHY8DBZ1W
+titre: CSS
 type: cours
 statut: actif
 para: ressource
@@ -16,7 +16,7 @@ niveau: debutant
 prerequis:
   - "[[HTML]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-08-10
 date_modification: 2025-12-08
@@ -24,7 +24,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Plan du Cours
 

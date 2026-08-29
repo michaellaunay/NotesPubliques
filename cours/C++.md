@@ -6,24 +6,24 @@ type: cours
 statut: actif
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- informatique
-- programmation
-- cpp
-- conception-orientee-objet
-resume: 'Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.'
+  - informatique
+  - programmation
+  - cpp
+  - conception-orientee-objet
+resume: "Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-24
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Introduction au C++
 
