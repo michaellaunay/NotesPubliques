@@ -34,6 +34,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+# Sécurité des IoT en Python avec SCADA
+
+> [!abstract] Objectif
+> Concevoir, développer, déployer, superviser et maintenir une architecture IoT/IIoT/OT sécurisée avec Python : vocabulaire et modèle de menace OT, segmentation en zones et conduits, protocoles industriels (MQTT, Modbus, OPC UA, BLE) manipulés de façon sûre, cryptographie et PKI, détection, réponse à incident, normes ISA/IEC 62443, NIST SP 800-82 et Cyber Resilience Act.
+
+Voir aussi : [[Sécurité avec Python]], [[Sécurité avancée sous Linux]], [[Les protocoles de communications]], [[Docker]].
 
 Ce cours présente la sécurité des systèmes **IoT**, **IIoT**, **OT** et **SCADA** avec un angle pratique en Python.
 

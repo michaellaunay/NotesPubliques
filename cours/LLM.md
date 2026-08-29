@@ -31,6 +31,11 @@ metadata_verifiees: true
 ---
 # Cours — Comprendre les grands modèles de langage (LLM)
 
+> [!abstract] Objectif
+> Comprendre ce qu'est un grand modèle de langage — tokens, embeddings, Transformer, entraînement et post-entraînement — puis savoir l'utiliser, l'augmenter (RAG, outils, agents), l'évaluer et le déployer en connaissant ses limites et ses risques.
+
+Voir aussi : [[Les transformers]], [[RAG]], [[Les CNN et RNN]], [[Travailler avec Claude]].
+
 Les **LLM**, pour *Large Language Models* ou **grands modèles de langage**, sont des modèles d'apprentissage profond entraînés à traiter et à générer des séquences de tokens. Ils sont devenus une brique centrale de nombreuses applications d'intelligence artificielle : assistants conversationnels, génération et analyse de code, recherche documentaire, traduction, extraction d'information, systèmes multimodaux et agents capables d'utiliser des outils.
 
 Un LLM ne doit toutefois pas être confondu avec l'application qui l'entoure. Un assistant moderne est généralement un **système** composé d'un modèle, d'un prompt système, d'outils, d'une mémoire, éventuellement d'un RAG, de règles de sécurité et de code d'orchestration.

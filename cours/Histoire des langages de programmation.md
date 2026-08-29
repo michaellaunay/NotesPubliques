@@ -24,8 +24,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Histoire des langages de programmation
+
+> [!abstract] Objectif
+> Situer les langages de programmation dans leur histoire — des machines aux langages de haut niveau, des paradigmes structuré, objet, logique et fonctionnel aux langages du XXIe siècle — pour comprendre pourquoi ils se ressemblent, s'influencent et coexistent, et choisir un langage en connaissance de cause en 2026.
+
+Voir aussi : [[C++]], [[Python]], [[Javascript]], [[Logique]], [[Informatique]].
 
 L'histoire des langages de programmation n'est pas une succession linéaire où un langage en remplace simplement un autre. C'est plutôt une histoire de **problèmes**, de **compromis** et d'**idées** qui réapparaissent sous de nouvelles formes : abstraction, portabilité, sûreté mémoire, expressivité, performances, concurrence, vérification, interopérabilité ou productivité.
 
