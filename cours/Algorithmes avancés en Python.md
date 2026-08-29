@@ -12,7 +12,7 @@ themes:
   - algorithmique
   - structures-de-donnees
   - python
-resume: "Cours d'algorithmique avancée illustré en Python : histoire, tris et recherches, arbres, tas et graphes, puis Dijkstra, Kruskal et Floyd-Warshall, programmation dynamique, retour sur trace et gloutons, recherche de sous-chaînes et arbres de préfixes, et ce que la bibliothèque standard fournit déjà."
+resume: "Cours complet d'algorithmique avancée en Python : tris, structures de données et graphes, plus courts chemins et arbres couvrants, programmation dynamique, retour sur trace et gloutons, chaînes de caractères, géométrie computationnelle, optimisation combinatoire, parallélisme et verrou global, k-moyennes et arbres de décision, et projet de fin de cours."
 niveau: avance
 prerequis:
   - "[[Python]]"
@@ -1183,11 +1183,731 @@ Le trie illustre un principe qui dépasse son cas : une structure de données ne
 
 ---
 
-# 7. Ce que la bibliothèque standard fournit déjà
+# 7. Algorithmes en géométrie computationnelle
+
+La géométrie computationnelle a une particularité : les énoncés y sont visuellement évidents et les mises en œuvre pleines de pièges. Un point est-il *sur* un segment ou juste à côté ? La réponse dépend de la représentation des flottants, pas de la géométrie.
+
+D'où le principe directeur de cette partie :
+
+> **Ramener toute question géométrique à un test de signe sur des entiers, chaque fois que c'est possible.**
+
+## 7.1. Le produit vectoriel, brique de base
+
+Trois points *A*, *B*, *C* forment un virage à gauche, à droite, ou sont alignés. Le produit vectoriel des vecteurs *AB* et *AC* répond aux trois cas d'un seul signe :
+
+```python
+def orientation(a: tuple, b: tuple, c: tuple) -> int:
+    """> 0 : virage à gauche (sens trigonométrique)
+       < 0 : virage à droite
+       = 0 : les trois points sont alignés"""
+    return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+```
+
+Sur des coordonnées entières, ce calcul est **exact** : aucune division, aucun arrondi. C'est ce qui permet de bâtir dessus des algorithmes robustes.
+
+```mermaid
+flowchart LR
+    A["orientation(A,B,C)"] --> B{"signe ?"}
+    B -->|"> 0"| C["C est à gauche de AB"]
+    B -->|"< 0"| D["C est à droite de AB"]
+    B -->|"= 0"| E["A, B, C alignés"]
+```
+
+## 7.2. Enveloppe convexe
+
+### 7.2.1. Principe
+
+L'enveloppe convexe d'un nuage de points est le plus petit polygone convexe les contenant tous — l'élastique tendu autour des punaises. Elle sert à délimiter une zone, à détecter des collisions, à réduire un nuage à sa forme extérieure.
+
+L'algorithme de la **chaîne monotone** d'Andrew procède en deux passes :
+
+```text
+1. trier les points par abscisse, puis ordonnée
+2. construire l'enveloppe inférieure de gauche à droite
+3. construire l'enveloppe supérieure de droite à gauche
+4. concaténer, en retirant les extrémités dupliquées
+```
+
+À chaque ajout, on retire du sommet de la pile tout point qui ne « tourne » pas dans le bon sens.
+
+### 7.2.2. Mise en œuvre en Python
+
+```python
+def enveloppe_convexe(points: list[tuple]) -> list[tuple]:
+    """Chaîne monotone d'Andrew. Retourne les sommets en sens trigonométrique.
+
+    Complexité O(n log n), dominée par le tri.
+    """
+    points = sorted(set(points))
+    if len(points) <= 2:
+        return points
+
+    def demi_enveloppe(sequence):
+        pile = []
+        for point in sequence:
+            while len(pile) >= 2 and orientation(pile[-2], pile[-1], point) <= 0:
+                pile.pop()
+            pile.append(point)
+        return pile
+
+    inferieure = demi_enveloppe(points)
+    superieure = demi_enveloppe(reversed(points))
+    return inferieure[:-1] + superieure[:-1]
+```
+
+Le `<= 0` mérite un mot : avec `< 0`, les points alignés sur un bord seraient conservés. Selon l'usage, on veut l'un ou l'autre — les garder pour dessiner le contour, les écarter pour compter les sommets.
+
+### 7.2.3. Exemple d'utilisation
+
+```python
+nuage = [(0, 0), (1, 1), (2, 2), (2, 0), (0, 2), (1, 0), (3, 1)]
+print(enveloppe_convexe(nuage))
+# [(0, 0), (2, 0), (3, 1), (2, 2), (0, 2)]
+```
+
+Les points intérieurs — `(1, 1)` — et ceux alignés sur un bord — `(1, 0)` — sont écartés.
+
+### 7.2.4. Propriétés
+
+- **Complexité :** O(n log n) ; le tri domine, la double passe est linéaire.
+- **Robustesse :** exacte sur des entiers, à surveiller sur des flottants.
+- **Alternatives :** le parcours de Graham, de même complexité, trie par angle polaire — ce qui introduit un `atan2` et donc des flottants. La chaîne monotone lui est préférable pour cette seule raison.
+
+## 7.3. Intersection de segments
+
+### 7.3.1. Le test par orientation
+
+Deux segments *[P1P2]* et *[P3P4]* se croisent si *P3* et *P4* sont de part et d'autre de la droite *(P1P2)*, **et** réciproquement.
+
+```python
+def sur_segment(p, q, r) -> bool:
+    """q est-il dans le rectangle englobant de [pr] ? (utilisé quand alignés)"""
+    return (min(p[0], r[0]) <= q[0] <= max(p[0], r[0])
+            and min(p[1], r[1]) <= q[1] <= max(p[1], r[1]))
+
+
+def segments_se_croisent(p1, p2, p3, p4) -> bool:
+    d1 = orientation(p3, p4, p1)
+    d2 = orientation(p3, p4, p2)
+    d3 = orientation(p1, p2, p3)
+    d4 = orientation(p1, p2, p4)
+
+    if ((d1 > 0) != (d2 > 0)) and ((d3 > 0) != (d4 > 0)):
+        return True                          # cas général
+
+    # cas dégénérés : un point aligné avec l'autre segment
+    if d1 == 0 and sur_segment(p3, p1, p4):
+        return True
+    if d2 == 0 and sur_segment(p3, p2, p4):
+        return True
+    if d3 == 0 and sur_segment(p1, p3, p2):
+        return True
+    if d4 == 0 and sur_segment(p1, p4, p2):
+        return True
+    return False
+```
+
+Les quatre derniers tests représentent la moitié du code pour des cas que l'intuition oublie : segments colinéaires qui se chevauchent, extrémité posée exactement sur l'autre segment. **En géométrie computationnelle, les cas dégénérés ne sont pas des exceptions rares : ce sont les données réelles.** Des coordonnées issues d'une grille, d'un plan cadastral ou d'un maillage produisent des alignements en permanence.
+
+### 7.3.2. Exemple d'utilisation
+
+```python
+segments_se_croisent((0, 0), (4, 4), (0, 4), (4, 0))   # True  — croisement en (2,2)
+segments_se_croisent((0, 0), (1, 1), (2, 2), (3, 3))   # False — alignés, disjoints
+segments_se_croisent((0, 0), (2, 2), (1, 1), (3, 3))   # True  — alignés, chevauchants
+segments_se_croisent((0, 0), (2, 0), (2, 0), (4, 0))   # True  — extrémité commune
+```
+
+### 7.3.3. Détecter toutes les intersections : le balayage
+
+Tester toutes les paires coûte O(n²). L'algorithme de Bentley-Ottmann balaie le plan avec une droite verticale et ne compare que les segments **voisins dans l'ordre vertical**, atteignant O((n + k) log n) pour k intersections.
+
+```mermaid
+flowchart LR
+    A["événements triés<br/>par abscisse"] --> B["extrémité gauche :<br/>insérer le segment"]
+    A --> C["extrémité droite :<br/>retirer le segment"]
+    A --> D["intersection :<br/>échanger l'ordre"]
+    B --> E["tester les nouveaux<br/>voisins verticaux"]
+    C --> E
+    D --> E
+```
+
+Sa mise en œuvre complète dépasse le cadre de ce cours ; `shapely`, adossé à la bibliothèque GEOS, la fournit — de même que les opérations booléennes sur les polygones.
+
+```python
+from shapely.geometry import LineString
+
+a = LineString([(0, 0), (4, 4)])
+b = LineString([(0, 4), (4, 0)])
+print(a.intersects(b), a.intersection(b))    # True POINT (2 2)
+```
+
+---
+
+# 8. Optimisation combinatoire
+
+Les problèmes de cette partie ont un espace de solutions **fini mais gigantesque**. Choisir un sous-ensemble parmi 100 objets, c'est 2¹⁰⁰ possibilités — davantage qu'il n'y a d'atomes dans la Voie lactée. L'énumération est donc exclue, et il faut soit une structure exploitable, soit renoncer à l'optimalité.
+
+## 8.1. Le problème du sac à dos
+
+### 8.1.1. Énoncé et variantes
+
+Étant donné des objets ayant chacun un poids et une valeur, et un sac de capacité limitée, maximiser la valeur emportée.
+
+| Variante | Règle | Méthode | Complexité |
+| --- | --- | --- | --- |
+| Fractionnaire | on peut couper un objet | glouton | O(n log n) |
+| 0/1 | chaque objet entier, une fois | programmation dynamique | O(n·W) |
+| Non borné | chaque objet en quantité libre | programmation dynamique | O(n·W) |
+
+La première ligne est instructive : rendre le problème **plus permissif** le rend beaucoup plus facile. C'est fréquent en optimisation.
+
+### 8.1.2. La variante fractionnaire : un glouton correct
+
+```python
+def sac_fractionnaire(objets: list[tuple], capacite: float) -> float:
+    """`objets` : liste de (valeur, poids). Retourne la valeur maximale."""
+    total = 0.0
+    for valeur, poids in sorted(objets, key=lambda o: o[0] / o[1], reverse=True):
+        if capacite <= 0:
+            break
+        pris = min(poids, capacite)
+        total += valeur * pris / poids
+        capacite -= pris
+    return total
+```
+
+Trier par **densité de valeur** — valeur par unité de poids — est optimal, et l'argument tient en une ligne : si l'on remplaçait une fraction de l'objet le plus dense par un autre, on perdrait de la valeur à poids égal.
+
+### 8.1.3. La variante 0/1 : programmation dynamique
+
+Le glouton échoue ici. Contre-exemple : capacité 10, trois objets.
+
+| Objet | Valeur | Poids | Densité |
+| --- | ---: | ---: | ---: |
+| A | 10 | 6 | 1,67 |
+| B | 7 | 5 | 1,40 |
+| C | 7 | 5 | 1,40 |
+
+Le glouton prend A — la meilleure densité — puis il ne reste que 4 de capacité : ni B ni C n'entrent. Total : **10**. L'optimum prend B et C, soit **14**.
+
+L'objet le plus dense n'est donc pas toujours dans la solution optimale : c'est l'indivisibilité qui brise la propriété du choix glouton.
+
+```python
+def sac_01(objets: list[tuple], capacite: int) -> tuple[int, list[int]]:
+    """Retourne (valeur maximale, indices des objets retenus)."""
+    n = len(objets)
+    table = [[0] * (capacite + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        valeur, poids = objets[i - 1]
+        for c in range(capacite + 1):
+            table[i][c] = table[i - 1][c]                    # ne pas prendre
+            if poids <= c:
+                table[i][c] = max(table[i][c],
+                                  table[i - 1][c - poids] + valeur)   # prendre
+
+    # remonter la table pour retrouver les objets choisis
+    retenus, c = [], capacite
+    for i in range(n, 0, -1):
+        if table[i][c] != table[i - 1][c]:
+            retenus.append(i - 1)
+            c -= objets[i - 1][1]
+
+    return table[n][capacite], retenus[::-1]
+```
+
+```python
+objets = [(10, 6), (7, 5), (7, 5)]
+print(sac_01(objets, 10))              # (14, [1, 2])  — les deux derniers
+print(sac_fractionnaire(objets, 10))   # 15.6 — on coupe, donc on fait mieux
+```
+
+L'écart entre 14 et 15,6 mesure exactement le coût de l'indivisibilité.
+
+### 8.1.4. La complexité pseudo-polynomiale
+
+O(n·W) semble polynomial. Il ne l'est pas : `W` est une **valeur**, pas une taille de donnée. Une capacité de 10⁹ tient sur dix caractères mais engendre un milliard de colonnes.
+
+> **Une complexité qui dépend de la valeur d'un nombre, et non du nombre de chiffres qui l'écrivent, est dite *pseudo-polynomiale*.** Le sac à dos 0/1 reste NP-difficile.
+
+C'est la distinction que les étudiants manquent le plus souvent, et elle décide de l'applicabilité réelle de l'algorithme.
+
+## 8.2. Le problème du voyageur de commerce
+
+### 8.2.1. Énoncé
+
+Visiter n villes une fois chacune et revenir au départ, en minimisant la distance totale. L'énumération naïve coûte (n−1)!/2 tournées : 181 440 pour 10 villes, plus de 10⁶⁰ pour 50.
+
+### 8.2.2. La solution exacte : Held-Karp
+
+```python
+from functools import cache
+
+
+def tsp_exact(distances: list[list[float]]) -> tuple[float, list[int]]:
+    """Programmation dynamique sur les sous-ensembles. O(n²·2ⁿ).
+
+    L'état est (ensemble de villes visitées, ville courante). Le masque de bits
+    représente l'ensemble : la ville i est visitée si le bit i vaut 1.
+    """
+    n = len(distances)
+    complet = (1 << n) - 1
+
+    @cache
+    def parcourir(visitees: int, ville: int) -> float:
+        if visitees == complet:
+            return distances[ville][0]
+        return min(
+            distances[ville][suivante] + parcourir(visitees | (1 << suivante), suivante)
+            for suivante in range(n)
+            if not visitees & (1 << suivante)
+        )
+
+    cout = parcourir(1, 0)
+
+    # reconstruction de la tournée
+    tournee, visitees, ville = [0], 1, 0
+    while visitees != complet:
+        suivante = min(
+            (v for v in range(n) if not visitees & (1 << v)),
+            key=lambda v: distances[ville][v] + parcourir(visitees | (1 << v), v),
+        )
+        tournee.append(suivante)
+        visitees |= 1 << suivante
+        ville = suivante
+
+    return cout, tournee
+```
+
+```python
+distances = [[0, 10, 15, 20],
+             [10, 0, 35, 25],
+             [15, 35, 0, 30],
+             [20, 25, 30, 0]]
+print(tsp_exact(distances))      # (80, [0, 1, 3, 2])
+```
+
+O(n²·2ⁿ) est un progrès considérable sur O(n!) — mais reste exponentiel. En pratique, la limite se situe vers vingt villes.
+
+### 8.2.3. Les heuristiques
+
+Au-delà, on renonce à l'optimalité pour une bonne solution. Deux briques suffisent à obtenir des résultats honorables.
+
+```python
+def plus_proche_voisin(distances: list[list[float]], depart: int = 0) -> list[int]:
+    """Construction gloutonne. Rapide, typiquement 25 % au-dessus de l'optimum."""
+    n = len(distances)
+    tournee = [depart]
+    restantes = set(range(n)) - {depart}
+    while restantes:
+        courante = tournee[-1]
+        suivante = min(restantes, key=lambda v: distances[courante][v])
+        tournee.append(suivante)
+        restantes.remove(suivante)
+    return tournee
+
+
+def longueur(distances, tournee) -> float:
+    return sum(distances[tournee[i]][tournee[(i + 1) % len(tournee)]]
+               for i in range(len(tournee)))
+
+
+def deux_opt(distances: list[list[float]], tournee: list[int]) -> list[int]:
+    """Amélioration locale : décroiser les arêtes qui se croisent.
+
+    Tant qu'un échange réduit la longueur, on le fait. On s'arrête sur un
+    optimum local — pas global.
+    """
+    ameliore = True
+    while ameliore:
+        ameliore = False
+        for i in range(1, len(tournee) - 1):
+            for j in range(i + 1, len(tournee)):
+                candidate = tournee[:i] + tournee[i:j + 1][::-1] + tournee[j + 1:]
+                if longueur(distances, candidate) < longueur(distances, tournee):
+                    tournee = candidate
+                    ameliore = True
+    return tournee
+```
+
+L'intuition de 2-opt est géométrique : dans le plan euclidien, **une tournée optimale ne se croise jamais elle-même**. Chaque croisement peut être défait en inversant un tronçon, ce qui raccourcit toujours le trajet.
+
+### 8.2.4. Que retenir
+
+| Taille | Approche |
+| --- | --- |
+| n ≤ 20 | Held-Karp, solution exacte |
+| n ≤ 100 000 | heuristiques : plus proche voisin, puis 2-opt ou Lin-Kernighan |
+| en production | un solveur : OR-Tools, Concorde |
+
+Et la leçon générale de la partie 8 :
+
+> Face à un problème NP-difficile, la question n'est pas « quel algorithme le résout », mais **« que suis-je prêt à abandonner »** : l'optimalité, la généralité, ou le temps.
+
+---
+
+# 9. Algorithmes parallèles et concurrents
+
+## 9.1. Le verrou global, et ce qu'il devient
+
+Pendant trente ans, la réponse à « pourquoi mes fils d'exécution Python n'utilisent-ils qu'un cœur ? » a été le **verrou global de l'interpréteur** (*GIL*) : un seul fil exécute du bytecode Python à la fois.
+
+Ce n'est plus une fatalité. La PEP 703 a conçu une version sans verrou, la PEP 779 l'a promue de « expérimentale » à **officiellement prise en charge** dans Python 3.14, sorti en octobre 2025.
+
+```bash
+python3.14t --version        # le suffixe « t » désigne la version sans verrou
+```
+
+État des lieux à connaître :
+
+- surcoût sur du code mono-fil : **5 à 10 %**, contre environ 40 % au stade expérimental de 3.13 ;
+- accélération observée sur du calcul multi-fil : d'un facteur **2 à 4** sur quatre cœurs ;
+- consommation mémoire supérieure de 15 à 20 % ;
+- **la version reste optionnelle** : elle n'est pas installée par défaut ;
+- si une extension C non déclarée compatible est importée, l'interpréteur **réactive silencieusement le verrou** pour tout le processus. Les fils continuent de tourner, mais plus en parallèle.
+
+Le dernier point est celui qui compte en pratique : dans un projet réel avec NumPy, Pandas et quelques bibliothèques compilées, la garantie de parallélisme dépend de la pile complète, pas de notre code.
+
+La feuille de route prévoit une phase III où la version sans verrou deviendrait celle par défaut, sans date arrêtée.
+
+## 9.2. Choisir le bon outil
+
+```mermaid
+flowchart TB
+    A["Ma tâche est-elle limitée par..."] --> B["l'attente<br/>réseau, disque, base"]
+    A --> C["le calcul<br/>processeur saturé"]
+    B --> D["asyncio<br/>un fil, milliers de tâches"]
+    B --> E["ThreadPoolExecutor<br/>si bibliothèque synchrone"]
+    C --> F["ProcessPoolExecutor<br/>fonctionne partout"]
+    C --> G["fils sur 3.14t<br/>si toute la pile est compatible"]
+    C --> H["NumPy vectorisé<br/>souvent la vraie réponse"]
+```
+
+La branche `H` mérite d'être posée d'emblée : avant de paralléliser une boucle Python, il faut se demander si elle ne doit pas simplement disparaître. Une opération vectorisée NumPy est déjà en C, souvent multi-fils, et généralement plus rapide que la même boucle répartie sur quatre processus.
+
+## 9.3. `concurrent.futures`, l'interface unique
+
+Le module offre la même interface pour les fils et les processus, ce qui permet de changer d'avis en modifiant un mot.
+
+```python
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+import math
+
+
+def est_premier(n: int) -> bool:
+    if n < 2:
+        return False
+    for d in range(2, math.isqrt(n) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+
+nombres = [112_272_535_095_293, 112_582_705_942_171, 115_280_095_190_773,
+           115_797_848_077_099, 1_099_726_899_285_419]
+
+if __name__ == "__main__":
+    # calcul : les processus contournent le verrou global
+    with ProcessPoolExecutor() as executeur:
+        resultats = list(executeur.map(est_premier, nombres))
+```
+
+```python
+# attente : les fils suffisent, ils sont bien moins coûteux
+with ThreadPoolExecutor(max_workers=32) as executeur:
+    pages = list(executeur.map(telecharger, urls))
+```
+
+Trois précautions avec les processus :
+
+- les arguments et résultats sont **sérialisés** par `pickle` — un objet non sérialisable échoue, et de gros tableaux coûtent cher à transmettre ;
+- la création d'un processus coûte des millisecondes : sur des tâches courtes, la parallélisation ralentit ;
+- sous Windows et macOS, le code de premier niveau est réexécuté dans chaque processus enfant, d'où la nécessité du `if __name__ == "__main__":` ci-dessus.
+
+## 9.4. Le parallélisme de données : diviser pour régner
+
+Le tri fusion de la partie 2 se parallélise naturellement, ses deux moitiés étant indépendantes.
+
+```python
+from concurrent.futures import ProcessPoolExecutor
+
+
+def tri_fusion_parallele(tableau: list, profondeur: int = 2) -> list:
+    """Parallélise les `profondeur` premiers niveaux de récursion, puis
+    bascule en séquentiel : au-delà, le coût de création des processus
+    dépasse le gain."""
+    if len(tableau) <= 1:
+        return tableau
+    if profondeur == 0:
+        return tri_fusion(tableau)
+
+    milieu = len(tableau) // 2
+    with ProcessPoolExecutor(max_workers=2) as executeur:
+        gauche = executeur.submit(tri_fusion_parallele, tableau[:milieu], profondeur - 1)
+        droite = executeur.submit(tri_fusion_parallele, tableau[milieu:], profondeur - 1)
+        return fusionner(gauche.result(), droite.result())
+```
+
+Le paramètre `profondeur` illustre une règle générale : **la granularité fait tout**. Trop fine, le coût de coordination absorbe le gain ; trop grosse, les cœurs restent inoccupés.
+
+## 9.5. La loi d'Amdahl
+
+Si une fraction *p* du programme est parallélisable, l'accélération maximale sur *n* cœurs vaut :
+
+```text
+            1
+S(n) = ─────────────
+       (1 − p) + p/n
+```
+
+Avec 90 % de code parallélisable et une infinité de cœurs, l'accélération plafonne à **10**. Avec 95 %, à 20.
+
+```python
+def amdahl(p: float, n: int) -> float:
+    return 1 / ((1 - p) + p / n)
+
+
+amdahl(0.90, 4)      # 3.08
+amdahl(0.90, 64)     # 8.77
+amdahl(0.90, 10**6)  # 9.99 — le plafond
+```
+
+> **Optimiser la partie séquentielle rapporte souvent davantage que d'ajouter des cœurs.** C'est le contre-argument le plus utile à opposer à un projet de parallélisation.
+
+## 9.6. Les sous-interpréteurs
+
+Stabilisés par la PEP 734 dans Python 3.14, ils offrent une voie intermédiaire : plusieurs interpréteurs dans un même processus, chacun avec son propre état et son propre verrou. On obtient l'isolation mémoire des processus avec un coût de création bien moindre — utile pour un serveur web ou une file de tâches.
+
+---
+
+# 10. Intelligence artificielle et algorithmes d'apprentissage
+
+Cette partie n'est pas un cours d'apprentissage automatique — voir [[Data Mining en Python]] — mais un examen **algorithmique** de deux méthodes classiques. La question n'est pas « comment s'en servir » mais « qu'est-ce qui est calculé, à quel coût, et pourquoi cela converge ».
+
+## 10.1. Le partitionnement en k moyennes
+
+### 10.1.1. L'algorithme de Lloyd
+
+```text
+1. choisir k centres initiaux
+2. répéter :
+       affecter chaque point au centre le plus proche
+       recalculer chaque centre comme barycentre de son groupe
+   jusqu'à stabilisation
+```
+
+```python
+import random
+
+
+def distance2(a, b) -> float:
+    return sum((x - y) ** 2 for x, y in zip(a, b))
+
+
+def barycentre(points: list[tuple]) -> tuple:
+    n = len(points)
+    return tuple(sum(coord) / n for coord in zip(*points))
+
+
+def kmeans(points: list[tuple], k: int, iterations: int = 100,
+           graine: int = 42) -> tuple[list, list]:
+    rng = random.Random(graine)
+    centres = rng.sample(points, k)
+
+    for _ in range(iterations):
+        groupes = [[] for _ in range(k)]
+        for point in points:
+            indice = min(range(k), key=lambda i: distance2(point, centres[i]))
+            groupes[indice].append(point)
+
+        nouveaux = [barycentre(g) if g else centres[i]
+                    for i, g in enumerate(groupes)]
+        if nouveaux == centres:
+            return centres, groupes          # convergence
+        centres = nouveaux
+
+    return centres, groupes
+```
+
+`distance2` retourne le carré de la distance : la racine ne change pas l'ordre des comparaisons, et l'éviter économise un calcul par point et par centre.
+
+### 10.1.2. Pourquoi cela converge, et vers quoi
+
+Chacune des deux étapes **diminue** l'inertie — la somme des distances au carré de chaque point à son centre. Comme le nombre de partitions est fini et que l'inertie décroît tant que l'affectation change, l'algorithme s'arrête.
+
+Mais il converge vers un **minimum local**, qui dépend des centres initiaux :
+
+```python
+kmeans(nuage, 3, graine=1)      # une partition
+kmeans(nuage, 3, graine=2)      # possiblement une autre
+```
+
+D'où l'initialisation **k-means++**, qui choisit des centres initiaux éloignés les uns des autres, et l'usage courant de plusieurs exécutions dont on garde la meilleure — `n_init` dans scikit-learn.
+
+### 10.1.3. Limites
+
+- **k doit être fixé d'avance.** La méthode du coude et le score de silhouette aident, sans trancher.
+- **Les groupes sont supposés sphériques et de tailles comparables.** Sur deux croissants imbriqués, k-means échoue là où DBSCAN réussit.
+- **Complexité :** O(n·k·d·i) pour n points en dimension d et i itérations.
+- **La normalisation est indispensable** : une variable exprimée en euros écrase une variable exprimée en années.
+
+```python
+from sklearn.cluster import KMeans
+
+modele = KMeans(n_clusters=3, n_init=10, random_state=42).fit(donnees)
+```
+
+## 10.2. Les arbres de décision
+
+### 10.2.1. Le critère de découpe
+
+Un arbre de décision pose des questions successives sur les variables. Toute la difficulté est de choisir, à chaque nœud, **quelle question produit la meilleure séparation**.
+
+L'impureté de Gini mesure le désordre d'un ensemble : 0 si tous les éléments portent la même étiquette, maximale si elles sont équiréparties.
+
+```python
+from collections import Counter
+
+
+def gini(etiquettes: list) -> float:
+    n = len(etiquettes)
+    if n == 0:
+        return 0.0
+    return 1 - sum((c / n) ** 2 for c in Counter(etiquettes).values())
+```
+
+```python
+gini(["a", "a", "a", "a"])        # 0.0   — pur
+gini(["a", "a", "b", "b"])        # 0.5   — équiréparti
+gini(["a", "a", "a", "b"])        # 0.375
+```
+
+Le **gain** d'une découpe est la réduction d'impureté qu'elle produit, pondérée par la taille des branches :
+
+```python
+def gain(parent: list, gauche: list, droite: list) -> float:
+    n = len(parent)
+    return gini(parent) - (len(gauche) / n * gini(gauche)
+                           + len(droite) / n * gini(droite))
+```
+
+### 10.2.2. Construction récursive
+
+```python
+def meilleure_decoupe(donnees: list[tuple], etiquettes: list):
+    """Cherche exhaustivement (variable, seuil) maximisant le gain.
+
+    Coût : O(variables × valeurs distinctes × n). C'est là que passe
+    l'essentiel du temps d'entraînement.
+    """
+    meilleur, choix = 0.0, None
+    for variable in range(len(donnees[0])):
+        for seuil in sorted({ligne[variable] for ligne in donnees}):
+            gauche = [e for l, e in zip(donnees, etiquettes) if l[variable] <= seuil]
+            droite = [e for l, e in zip(donnees, etiquettes) if l[variable] > seuil]
+            if not gauche or not droite:
+                continue
+            g = gain(etiquettes, gauche, droite)
+            if g > meilleur:
+                meilleur, choix = g, (variable, seuil)
+    return choix, meilleur
+```
+
+L'algorithme est **glouton** : il choisit la meilleure découpe locale sans jamais reconsidérer. Trouver l'arbre optimal est NP-difficile — nous retrouvons la partie 5.3, et sa mise en garde.
+
+### 10.2.3. Le surapprentissage, et l'élagage
+
+Un arbre non contraint continue de découper jusqu'à ce que chaque feuille soit pure. Il obtient alors 100 % sur l'entraînement et se généralise mal : il a mémorisé, il n'a pas appris.
+
+Trois garde-fous :
+
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+modele = DecisionTreeClassifier(
+    max_depth=5,               # profondeur maximale
+    min_samples_leaf=20,       # taille minimale d'une feuille
+    ccp_alpha=0.01,            # élagage par complexité de coût
+    random_state=42,
+)
+```
+
+> **Un arbre profond n'est pas un arbre savant.** La profondeur mesure la finesse du découpage, pas la qualité de la généralisation — et les deux varient en sens inverse au-delà d'un certain point.
+
+### 10.2.4. Des arbres à la forêt
+
+Un arbre unique est instable : changer quelques exemples change sa structure. Les méthodes d'ensemble exploitent cette instabilité au lieu de la subir.
+
+| Méthode | Principe |
+| --- | --- |
+| Forêt aléatoire | plusieurs arbres sur des échantillons et des variables tirés au hasard, vote majoritaire |
+| Gradient boosting | arbres construits en séquence, chacun corrigeant les erreurs du précédent |
+
+Le prix est l'interprétabilité : un arbre unique se lit et s'explique — argument décisif face au droit à l'explication du RGPD — là où une forêt de cinq cents arbres ne se lit plus.
+
+---
+
+# 11. Projet de fin de cours
+
+## 11.1. Objectif
+
+Le projet vise à faire ce que les exercices isolés ne permettent pas : **choisir** un algorithme, justifier ce choix, mesurer ce qu'il produit et reconnaître ses limites.
+
+L'attendu n'est pas d'écrire le code le plus rapide, mais de savoir dire pourquoi il l'est — ou pourquoi il ne l'est pas.
+
+## 11.2. Sujets proposés
+
+Chacun mobilise au moins trois parties du cours.
+
+**Planificateur d'itinéraire multimodal.** À partir d'un extrait d'OpenStreetMap, calculer le meilleur trajet en combinant marche et transports. *Parties 3, 4, 9.* Le sujet devient intéressant lorsque le coût dépend de l'heure — un arc n'a plus un poids fixe.
+
+**Correcteur orthographique.** Proposer des corrections pour un mot absent d'un dictionnaire, classées par vraisemblance. *Parties 5, 6.* Trie pour les candidats par préfixe, distance d'édition pour le classement, et une contrainte de temps de réponse.
+
+**Ordonnanceur de production.** Répartir des tâches sur des machines en minimisant la durée totale. *Parties 5, 8.* NP-difficile : une heuristique et une borne inférieure sont attendues, pas l'optimum.
+
+**Détection de communautés.** Sur un graphe de collaborations, identifier les groupes. *Parties 3, 4, 10.* L'occasion de confronter une approche par graphe et une approche par partitionnement.
+
+**Enveloppe et collisions.** Détecter les collisions entre objets mobiles dans le plan. *Parties 7, 9.* Enveloppes convexes, tests d'intersection, et partitionnement de l'espace pour éviter le O(n²).
+
+## 11.3. Attendus
+
+```text
+1. Énoncé du problème et modélisation retenue
+2. Choix des algorithmes, avec justification et complexité annoncée
+3. Mise en œuvre commentée, testée
+4. Mesures : temps réel selon la taille des données
+5. Comparaison de la mesure à la complexité théorique, et explication des écarts
+6. Limites connues et pistes d'amélioration
+```
+
+Le point 5 est le cœur de l'exercice. Un écart entre O(n log n) annoncé et une courbe qui n'y ressemble pas a toujours une cause : constante cachée, cache processeur, allocation mémoire, ou complexité mal analysée. **L'identifier vaut mieux que d'obtenir une belle courbe.**
+
+## 11.4. Critères d'évaluation
+
+| Critère | Poids |
+| --- | ---: |
+| Justesse de la modélisation et du choix algorithmique | 30 % |
+| Correction de la mise en œuvre, présence de tests | 25 % |
+| Qualité de la mesure et de son analyse | 25 % |
+| Lucidité sur les limites | 10 % |
+| Clarté du code et de la restitution | 10 % |
+
+Un projet qui reconnaît honnêtement une limite obtient davantage qu'un projet qui la dissimule. En algorithmique comme ailleurs, **savoir ce que l'on ne sait pas fait partie du résultat**.
+
+## 11.5. Une mise en garde méthodologique
+
+Un assistant de code produira sans peine une implémentation de Dijkstra ou de KMP. Ce n'est pas ce qui est évalué. Ce qui l'est : le choix de la structure de données, l'analyse de complexité, la conception du protocole de mesure et l'interprétation des résultats.
+
+C'est aussi ce que le métier demande. Écrire un tri est un exercice d'école ; savoir qu'il ne faut pas l'écrire, et pourquoi, est une compétence professionnelle.
+
+---
+
+# 12. Ce que la bibliothèque standard fournit déjà
 
 Les parties précédentes réimplémentent des structures et des algorithmes que Python fournit. Ce n'est pas contradictoire : **on les écrit pour les comprendre, on utilise les modules pour produire**. Encore faut-il savoir ce qui existe.
 
-## 7.1. Le tableau de correspondance
+## 12.1. Le tableau de correspondance
 
 | Écrit dans ce cours | À employer en production | Remarque |
 | --- | --- | --- |
@@ -1199,7 +1919,7 @@ Les parties précédentes réimplémentent des structures et des algorithmes que
 | comptage d'occurrences | `collections.Counter` | avec `most_common` |
 | graphes complets | `networkx` | Dijkstra, Kruskal, flots, communautés |
 
-## 7.2. Deux pièges de performance
+## 12.2. Deux pièges de performance
 
 **`list.pop(0)` est en O(n).** Une file d'attente implémentée avec une liste dégrade un BFS de O(V + E) à O(V²). `collections.deque` corrige cela sans rien changer d'autre.
 
@@ -1223,7 +1943,7 @@ for morceau in morceaux:
 resultat = "".join(morceaux)
 ```
 
-## 7.3. Mesurer avant d'optimiser
+## 12.3. Mesurer avant d'optimiser
 
 ```python
 import timeit
