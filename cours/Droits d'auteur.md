@@ -26,8 +26,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Droit d'auteur
+
+> [!abstract] Objectif
+> Comprendre le droit d'auteur français et européen tel qu'il s'applique en 2026 à un développeur, un enseignant ou un auteur : originalité, droit moral et droits patrimoniaux, régime particulier du logiciel et des bases de données, licences libres, domaine public, exceptions (fouille de textes et de données, enseignement), contrats, et les questions ouvertes par l'IA générative et l'AI Act.
+
+Voir aussi : [[Règlement Général sur la Protection des Données (RGPD)]], [[LibGen]], [[National Emergency Library]], [[Outils IA]], [[LLM]].
 
 > [!warning] Portée du cours
 > Ce cours expose les principes généraux du droit français et européen au **29 août 2026**. Il ne remplace pas une consultation juridique : un contrat, une licence, une chaîne de droits ou une durée de protection peuvent dépendre de faits précis, de la loi applicable et de la jurisprudence.
@@ -368,7 +372,7 @@ Il ne faut pas utiliser cette règle lorsque l'identité réelle de l'auteur est
 
 Le droit d'auteur français comprend deux grandes familles de prérogatives.
 
-# 6.1 Le droit moral
+## 6.1 Le droit moral
 
 Le droit moral protège le lien personnel entre l'auteur et son œuvre.
 

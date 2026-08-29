@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Architecture des logiciels
+
+> [!abstract] Objectif
+> Apprendre à décider en architecture logicielle : attributs de qualité et compromis, styles (monolithe modulaire, hexagonal, microservices, événementiel), modularité et DDD, systèmes distribués et résilience, sécurité, observabilité, documentation (C4, ADR) et gouvernance des évolutions.
+
+Voir aussi : [[Design patterns]], [[Principes SOLID en COO]], [[TOGAF]], [[Docker]], [[HTTP]], [[Bases de données relationnelles]].
 
 L'architecture logicielle est l'ensemble des **structures, décisions, contraintes et principes** qui déterminent comment un système est organisé et comment il peut évoluer. Elle ne consiste pas à choisir le plus grand nombre possible de technologies ni à produire de beaux diagrammes : elle sert avant tout à rendre les **compromis explicites** et à préserver les qualités importantes du système dans le temps.
 

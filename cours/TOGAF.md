@@ -30,170 +30,177 @@ publication:
 rag: true
 metadata_verifiees: false
 ---
-# Plan du cours : **TOGAF – Architecture d’Entreprise**
+# TOGAF
 
-## **Introduction générale**
+> [!abstract] Objectif
+> Comprendre l'architecture d'entreprise et le TOGAF Standard, 10th Edition : la méthode ADM phase par phase, la gestion des exigences, le contenu et le référentiel d'architecture, la gouvernance, les capacités métier et les feuilles de route, l'articulation avec les pratiques Agile, produit et cloud, les métiers et les certifications.
 
-- Pourquoi l’architecture d’entreprise est devenue centrale
-- Place de TOGAF parmi les cadres existants
-- Présentation de **The Open Group** et de la philosophie TOGAF
-- Objectifs pédagogiques du cours
+Voir aussi : [[Architecture des logiciels]], [[Les méthodes agiles]], [[Design patterns]], [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]].
 
-## **Partie I – Fondements de l’architecture d’entreprise**
+# Plan du cours
 
-### Chapitre 1 – Qu’est-ce que l’architecture d’entreprise ?
+**Introduction générale**
 
-- Définition et périmètre
-- Différence entre architecture logicielle, technique et d’entreprise
-- Enjeux stratégiques (alignement métier / SI, transformation numérique)
-- Cas typiques : administrations, grandes entreprises, SI complexes
+  - Pourquoi l’architecture d’entreprise est devenue centrale
+  - Place de TOGAF parmi les cadres existants
+  - Présentation de **The Open Group** et de la philosophie TOGAF
+  - Objectifs pédagogiques du cours
 
-### Chapitre 2 – Historique et positionnement de TOGAF
+**Partie I – Fondements de l’architecture d’entreprise**
 
-- Origines de TOGAF    
-- Évolutions majeures (TOGAF 10.x, TOGAF Standard)    
-- Comparaison rapide avec Zachman, ITIL, COBIT    
-- Forces et limites de TOGAF
+- **Chapitre 1 – Qu’est-ce que l’architecture d’entreprise ?**
+
+  - Définition et périmètre
+  - Différence entre architecture logicielle, technique et d’entreprise
+  - Enjeux stratégiques (alignement métier / SI, transformation numérique)
+  - Cas typiques : administrations, grandes entreprises, SI complexes
+
+- **Chapitre 2 – Historique et positionnement de TOGAF**
+
+  - Origines de TOGAF    
+  - Évolutions majeures (TOGAF 10.x, TOGAF Standard)    
+  - Comparaison rapide avec Zachman, ITIL, COBIT    
+  - Forces et limites de TOGAF
     
-## **Partie II – Structure générale de TOGAF**
+**Partie II – Structure générale de TOGAF**
 
-### Chapitre 3 – Les composants de TOGAF
+- **Chapitre 3 – Les composants de TOGAF**
 
-- Le cadre global TOGAF    
-- Le rôle de l’ADM (Architecture Development Method)    
-- Le continuum d’entreprise    
-- Les référentiels et artefacts    
+  - Le cadre global TOGAF    
+  - Le rôle de l’ADM (Architecture Development Method)    
+  - Le continuum d’entreprise    
+  - Les référentiels et artefacts    
 
-### Chapitre 4 – Les domaines d’architecture
+- **Chapitre 4 – Les domaines d’architecture**
 
-- Architecture métier    
-- Architecture des données    
-- Architecture applicative    
-- Architecture technologique    
-- Relations et dépendances entre domaines
+  - Architecture métier    
+  - Architecture des données    
+  - Architecture applicative    
+  - Architecture technologique    
+  - Relations et dépendances entre domaines
 
-# **Partie III – L’ADM : méthode de développement de l’architecture**
+**Partie III – L’ADM : méthode de développement de l’architecture**
 
-### Chapitre 5 – Vue d’ensemble de l’ADM
+- **Chapitre 5 – Vue d’ensemble de l’ADM**
 
-- Principe itératif et cyclique    
-- Notion de baseline et target architecture    
-- Gouvernance et pilotage    
+  - Principe itératif et cyclique    
+  - Notion de baseline et target architecture    
+  - Gouvernance et pilotage    
 
-### Chapitre 6 – Phases préliminaire et Vision (Préliminaire & Phase A)
+- **Chapitre 6 – Phases préliminaire et Vision (Préliminaire & Phase A)**
 
-- Mise en place du cadre d’architecture
-- Principes d’architecture
-- Parties prenantes
-- Vision cible et valeur métier
+  - Mise en place du cadre d’architecture
+  - Principes d’architecture
+  - Parties prenantes
+  - Vision cible et valeur métier
 
-### Chapitre 7 – Phases B, C et D : conception de l’architecture
+- **Chapitre 7 – Phases B, C et D : conception de l’architecture**
 
-- Phase B : architecture métier
-- Phase C : données et applications
-- Phase D : architecture technique
-- Modélisation, cohérence et arbitrages
+  - Phase B : architecture métier
+  - Phase C : données et applications
+  - Phase D : architecture technique
+  - Modélisation, cohérence et arbitrages
 
-### Chapitre 8 – Phases E et F : transformation et migration
+- **Chapitre 8 – Phases E et F : transformation et migration**
 
-- Opportunités et solutions
-- Scénarios de migration
-- Roadmaps
-- Gestion des risques et contraintes
+  - Opportunités et solutions
+  - Scénarios de migration
+  - Roadmaps
+  - Gestion des risques et contraintes
 
-### Chapitre 9 – Phases G et H : gouvernance et amélioration continue
+- **Chapitre 9 – Phases G et H : gouvernance et amélioration continue**
 
-- Gouvernance de l’architecture    
-- Conformité des projets    
-- Gestion du changement    
-- Capitalisation et amélioration continue
+  - Gouvernance de l’architecture    
+  - Conformité des projets    
+  - Gestion du changement    
+  - Capitalisation et amélioration continue
 
-## Partie IV – Artefacts, livrables et gouvernance
+**Partie IV – Artefacts, livrables et gouvernance**
 
-### Chapitre 10 – Artefacts TOGAF
+- **Chapitre 10 – Artefacts TOGAF**
 
-- Catalogues, matrices, diagrammes
+  - Catalogues, matrices, diagrammes
     
-- Exemples de livrables concrets
+  - Exemples de livrables concrets
     
-- Bonnes pratiques de documentation
-    
-
-### Chapitre 11 – Gouvernance de l’architecture
-
-- Rôles et responsabilités
-    
-- Architecture Board
-    
-- Indicateurs de conformité
-    
-- Gestion des dérogations
+  - Bonnes pratiques de documentation
     
 
-## **Partie V – TOGAF en pratique**
+- **Chapitre 11 – Gouvernance de l’architecture**
 
-### Chapitre 12 – TOGAF et les approches modernes
-
-- TOGAF et Agile
+  - Rôles et responsabilités
     
-- TOGAF et DevOps
+  - Architecture Board
     
-- TOGAF et microservices
+  - Indicateurs de conformité
     
-- TOGAF et Cloud / Kubernetes
+  - Gestion des dérogations
     
 
-### Chapitre 13 – Études de cas
+**Partie V – TOGAF en pratique**
 
-- Cas d’une université
-    
-- Cas d’une administration publique
-    
-- Cas d’une entreprise SaaS
-    
-- Analyse critique des choix d’architecture
-    
+- **Chapitre 12 – TOGAF et les approches modernes**
 
-## **Partie VI – Perspectives professionnelles et certifications**
-
-### Chapitre 14 – Métiers et usages professionnels
-
-- Architecte d’entreprise
+  - TOGAF et Agile
     
-- Urbaniste SI
+  - TOGAF et DevOps
     
-- Consultant en transformation numérique
+  - TOGAF et microservices
     
-- Interaction avec les équipes de développement
+  - TOGAF et Cloud / Kubernetes
     
 
-### Chapitre 15 – Certifications TOGAF
+- **Chapitre 13 – Études de cas**
 
-- TOGAF Foundation
+  - Cas d’une université
     
-- TOGAF Certified
+  - Cas d’une administration publique
     
-- Intérêt et limites des certifications
+  - Cas d’une entreprise SaaS
     
-
-## **Conclusion générale**
-
-- Apports réels de TOGAF
-    
-- Conditions de succès
-    
-- Limites et dérives possibles
-    
-- Place de TOGAF dans le paysage actuel de l’ingénierie logicielle
+  - Analyse critique des choix d’architecture
     
 
-## **Évaluation**
+**Partie VI – Perspectives professionnelles et certifications**
 
-- Étude de cas écrite
+- **Chapitre 14 – Métiers et usages professionnels**
+
+  - Architecte d’entreprise
     
-- Présentation orale d’une architecture cible
+  - Urbaniste SI
     
-- Analyse critique d’un SI existant à l’aide de TOGAF
+  - Consultant en transformation numérique
+    
+  - Interaction avec les équipes de développement
+    
+
+- **Chapitre 15 – Certifications TOGAF**
+
+  - TOGAF Foundation
+    
+  - TOGAF Certified
+    
+  - Intérêt et limites des certifications
+    
+
+**Conclusion générale**
+
+  - Apports réels de TOGAF
+    
+  - Conditions de succès
+    
+  - Limites et dérives possibles
+    
+  - Place de TOGAF dans le paysage actuel de l’ingénierie logicielle
+    
+
+**Évaluation**
+
+  - Étude de cas écrite
+    
+  - Présentation orale d’une architecture cible
+    
+  - Analyse critique d’un SI existant à l’aide de TOGAF
     
 
 # Introduction générale
@@ -984,7 +991,7 @@ Une manière pratique de découper le travail est la suivante :
 
 Les horizons ne sont pas imposés par TOGAF. Ils illustrent simplement la nécessité d’**adapter la granularité** de l’ADM.
 
-## **Chapitre 6 – Phases préliminaire et Vision (Préliminaire & Phase A)**
+## Chapitre 6 – Phases préliminaire et Vision (Préliminaire & Phase A)
 
 Dans ce chapitre, nous abordons les **premières étapes de l’ADM**, qui constituent les fondations de toute démarche d’architecture d’entreprise.  
 Avant de produire des modèles ou des diagrammes, TOGAF insiste sur un point essentiel : **l’architecture doit être cadrée, légitimée et alignée sur les enjeux métiers**.
@@ -994,7 +1001,7 @@ Les phases préliminaire et A visent donc à répondre à deux questions fondame
 - _Dans quel cadre allons-nous faire de l’architecture ?_    
 - _Pourquoi cette architecture est-elle utile à l’organisation ?_    
 
-### **III.6.1. Mise en place du cadre d’architecture (Phase Préliminaire)**
+### III.6.1. Mise en place du cadre d’architecture (Phase Préliminaire)
 
 La phase préliminaire consiste à **installer la fonction architecture** au sein de l’organisation.  
 Il ne s’agit pas encore de concevoir une architecture cible, mais de définir :
@@ -1021,7 +1028,7 @@ Sans ce travail préparatoire, l’architecture risque d’être :
 
 La phase préliminaire vise donc à **légitimer la fonction d’architecture** et à lui donner un cadre clair.
 
-### **III.6.2. Définition des principes d’architecture**
+### III.6.2. Définition des principes d’architecture
 
 Un des livrables majeurs de cette phase est la définition des **principes d’architecture**.
 
@@ -1046,7 +1053,7 @@ Nous insistons sur un point important :
 les principes ne sont pas de simples déclarations d’intention. Ils servent d’**outil d’arbitrage**.  
 Lorsqu’un projet doit choisir entre plusieurs solutions, ce sont les principes qui permettent de trancher de manière cohérente.
 
-### **III.6.3. Identification et gestion des parties prenantes (Phase A)**
+### III.6.3. Identification et gestion des parties prenantes (Phase A)
 
 La phase A introduit explicitement la notion de **parties prenantes** (_stakeholders_).  
 L’architecture d’entreprise ne se limite pas à une activité technique : elle implique des décisions qui affectent les processus, les organisations et les responsabilités.
@@ -1069,7 +1076,7 @@ Pour chaque partie prenante, nous analysons :
 L’objectif n’est pas seulement de dresser une liste d’acteurs, mais de construire une **stratégie d’adhésion**.  
 Une architecture, même techniquement parfaite, échoue si elle n’est pas acceptée par ceux qui doivent l’appliquer.
 
-### **III.6.4. Vision cible et valeur métier (Phase A)**
+### III.6.4. Vision cible et valeur métier (Phase A)
 
 La phase A se conclut par la formulation d’une **vision d’architecture**.
 
@@ -1098,7 +1105,7 @@ Elle peut s’exprimer sous la forme :
 
 Cette vision sert de **fil conducteur** pour l’ensemble du cycle ADM. Elle permet d’éviter que la démarche d’architecture ne dérive vers un exercice purement technique ou documentaire.
 
-#### **Conclusion du chapitre**
+#### Conclusion du chapitre
 
 Les phases préliminaire et Vision jouent un rôle fondamental dans l’ADM. Elles posent les bases :
 
@@ -1115,7 +1122,7 @@ Nous retenons que l’architecture d’entreprise commence non pas par des diagr
 
 Dans le chapitre suivant, nous entrerons dans la **conception proprement dite de l’architecture**, en commençant par la **phase B : l’architecture métier**, qui constitue le socle des autres domaines.
 
-## **Chapitre 7 – Phases B, C et D : conception de l’architecture**
+## Chapitre 7 – Phases B, C et D : conception de l’architecture
 
 Dans ce chapitre, nous entrons dans le **cœur de la conception architecturale** dans l’ADM.  
 Après avoir posé le cadre et défini une vision d’ensemble, les phases B, C et D visent à construire les **architectures cibles détaillées** pour chacun des grands domaines du système d’information.
@@ -1128,7 +1135,7 @@ Ces phases correspondent à un mouvement logique :
 
 L’objectif n’est pas de produire des documents isolés, mais de construire une **architecture cohérente entre ses différentes couches**.
 
-### **III.7.1. Phase B : architecture métier**
+### III.7.1. Phase B : architecture métier
 
 La phase B consiste à décrire l’**architecture métier cible**, en cohérence avec la vision définie lors de la phase A.
 
@@ -1153,7 +1160,7 @@ Les principaux livrables de cette phase peuvent inclure :
 - des catalogues d’acteurs et de capacités,    
 - une analyse des écarts entre la situation actuelle et la cible.    
 
-### **III.7.2. Phase C : architecture des données et des applications**
+### III.7.2. Phase C : architecture des données et des applications
 
 La phase C est souvent divisée en deux sous-parties :
 
@@ -1162,7 +1169,7 @@ La phase C est souvent divisée en deux sous-parties :
 
 Ces deux dimensions sont étroitement liées, car les applications manipulent et produisent les données.
 
-#### **Architecture des données**
+#### Architecture des données
 
 L’architecture des données vise à structurer l’information nécessaire aux processus métiers.  
 Nous cherchons notamment à :
@@ -1180,7 +1187,7 @@ L’objectif est de garantir :
 
 Cette étape est cruciale dans les organisations où la donnée constitue un **actif stratégique**.
 
-#### **Architecture applicative**
+#### Architecture applicative
 
 L’architecture applicative décrit l’ensemble des applications et services nécessaires pour soutenir les processus métiers.
 
@@ -1203,7 +1210,7 @@ Les livrables de cette phase peuvent inclure :
 - des matrices processus/applications,    
 - des diagrammes d’interactions entre systèmes.
 
-### **III.7.3. Phase D : architecture technologique**
+### III.7.3. Phase D : architecture technologique
 
 La phase D consiste à définir l’**architecture technique cible**.  
 Elle décrit l’environnement dans lequel les applications seront déployées et exécutées.
@@ -1228,12 +1235,12 @@ L’objectif n’est pas de choisir une technologie pour elle-même, mais de gar
 - la performance,
 - la capacité d’évolution.
 
-### **III.7.4. Modélisation, cohérence et arbitrages**
+### III.7.4. Modélisation, cohérence et arbitrages
 
 Les phases B, C et D ne doivent pas être menées de manière indépendante.  
 Leur valeur réside dans la **cohérence globale** de l’architecture.
 
-#### **La modélisation comme outil de communication**
+#### La modélisation comme outil de communication
 
 La modélisation permet :
 
@@ -1247,7 +1254,7 @@ Les modèles servent avant tout à :
 - rendre visibles les dépendances,
 - soutenir la prise de décision.
 
-#### **La gestion des cohérences**
+#### La gestion des cohérences
 
 Chaque domaine influence les autres :
 
@@ -1257,7 +1264,7 @@ Chaque domaine influence les autres :
 
 L’architecte doit donc maintenir une **vision transversale**.
 
-#### **Les arbitrages architecturaux**
+#### Les arbitrages architecturaux
 
 Ces phases sont aussi des moments d’arbitrage :
 
@@ -1272,7 +1279,7 @@ Ces arbitrages doivent être :
 - alignés sur la vision métier,
 - documentés et gouvernés.
 
-#### **Conclusion du chapitre**
+#### Conclusion du chapitre
 
 Les phases B, C et D constituent le **noyau de la conception architecturale** dans TOGAF.  
 Elles permettent de construire une architecture cible cohérente, en partant des besoins métiers pour aboutir aux choix techniques.
@@ -1286,7 +1293,7 @@ Nous retenons que :
 
 Dans le chapitre suivant, nous aborderons les phases E et F, qui concernent la **planification de la transformation** et la construction des trajectoires de migration vers l’architecture cible.
 
-## **Chapitre 8 – Phases E et F : transformation et migration**
+## Chapitre 8 – Phases E et F : transformation et migration
 
 Dans ce chapitre, nous passons d’une logique de **conception architecturale** à une logique de **mise en œuvre concrète**.  
 Les phases B, C et D ont permis de définir une architecture cible cohérente. Les phases E et F répondent maintenant à une question essentielle :
@@ -1297,7 +1304,7 @@ Ces phases constituent le lien entre :
 
 - la **vision architecturale**,    
 - et les **projets réels** de transformation.
-### **III.8.1. Opportunités et solutions (Phase E)**
+### III.8.1. Opportunités et solutions (Phase E)
 
 La phase E consiste à identifier les **solutions concrètes** permettant de réduire l’écart entre l’architecture actuelle (_baseline_) et l’architecture cible (_target_).
 
@@ -1310,7 +1317,7 @@ Nous partons de l’analyse des écarts réalisée dans les phases précédentes
 
 Ces écarts deviennent des **opportunités de transformation**.
 
-### **Identification des solutions**
+### Identification des solutions
 
 Chaque écart peut donner lieu à plusieurs solutions possibles :
 
@@ -1326,7 +1333,7 @@ L’objectif n’est pas encore de planifier précisément les projets, mais de 
 - identifier les **grands chantiers**,
 - estimer les impacts organisationnels et techniques.
 
-### **Regroupement en blocs de solutions**
+### Regroupement en blocs de solutions
 
 TOGAF propose souvent de regrouper les actions en **work packages** ou **solution building blocks** :
 
@@ -1337,13 +1344,13 @@ TOGAF propose souvent de regrouper les actions en **work packages** ou **solutio
 
 Ces blocs facilitent la compréhension globale et préparent la phase de planification.
 
-### **III.8.2. Scénarios de migration (Phase F)**
+### III.8.2. Scénarios de migration (Phase F)
 
 Une fois les solutions identifiées, la phase F consiste à définir **comment et dans quel ordre** elles seront mises en œuvre.
 
 Nous ne cherchons pas une trajectoire unique et idéale, mais plusieurs **scénarios de migration** possibles.
 
-### **Construction de scénarios**
+### Construction de scénarios
 
 Un scénario de migration décrit :
 
@@ -1365,7 +1372,7 @@ Chaque scénario est évalué selon :
 - les délais,
 - les impacts organisationnels.
 
-### **III.8.3. Élaboration des roadmaps**
+### III.8.3. Élaboration des roadmaps
 
 À partir des scénarios retenus, nous construisons une **roadmap de transformation**.
 
@@ -1381,7 +1388,7 @@ Elle permet de répondre à des questions concrètes :
 - quels projets peuvent être menés en parallèle ?
 - quelles dépendances techniques ou organisationnelles existent ?
 
-### **Caractéristiques d’une bonne roadmap**
+### Caractéristiques d’une bonne roadmap
 
 Une roadmap efficace doit être :
 
@@ -1392,12 +1399,12 @@ Une roadmap efficace doit être :
 
 La roadmap constitue un **outil de pilotage stratégique**, et non un simple planning technique.
 
-### **III.8.4. Gestion des risques et des contraintes**
+### III.8.4. Gestion des risques et des contraintes
 
 Les phases E et F intègrent explicitement la **gestion des risques** et des contraintes.  
 Toute transformation architecturale comporte des incertitudes, qu’il est nécessaire d’anticiper.
 
-### **Types de risques**
+### Types de risques
 
 Les principaux types de risques rencontrés sont :
 
@@ -1406,7 +1413,7 @@ Les principaux types de risques rencontrés sont :
 - risques financiers (dépassement de budget),
 - risques opérationnels (interruption de service, perte de données).
 
-### **Contraintes à prendre en compte**
+### Contraintes à prendre en compte
 
 Les contraintes peuvent être :
 
@@ -1418,7 +1425,7 @@ Les contraintes peuvent être :
 
 Une transformation idéale sur le papier peut être **irréalisable dans les faits** si ces contraintes ne sont pas prises en compte.
 
-### **Stratégies d’atténuation**
+### Stratégies d’atténuation
 
 Pour chaque risque identifié, nous définissons :
 
@@ -1428,7 +1435,7 @@ Pour chaque risque identifié, nous définissons :
 
 La gestion des risques est un élément central pour construire une trajectoire **crédible et acceptable**.
 
-### **Conclusion du chapitre**
+### Conclusion du chapitre
 
 Les phases E et F marquent la transition entre :
 
@@ -1446,7 +1453,7 @@ Elles traduisent l’architecture cible en **trajectoire opérationnelle**, reli
 
 Dans le chapitre suivant, nous aborderons les phases G et H, consacrées à la **gouvernance de l’architecture** et à son **amélioration continue**.
 
-## **Chapitre 9 – Phases G et H : gouvernance et amélioration continue**
+## Chapitre 9 – Phases G et H : gouvernance et amélioration continue
 
 Dans les chapitres précédents, nous avons étudié :
 
@@ -1468,9 +1475,9 @@ Les phases G et H de l’ADM répondent précisément à cette problématique. E
 
 Ces phases sont fondamentales, car elles rappellent que l’architecture d’entreprise n’est pas un exercice ponctuel de documentation, mais un **processus permanent de pilotage et d’adaptation**.
 
-### **III.9.1. Gouvernance de l’architecture (Phase G)**
+### III.9.1. Gouvernance de l’architecture (Phase G)
 
-#### **III.9.1.1 Définition de la gouvernance d’architecture**
+#### III.9.1.1 Définition de la gouvernance d’architecture
 
 La gouvernance d’architecture désigne l’ensemble des mécanismes permettant :
 
@@ -1496,11 +1503,11 @@ Sans gouvernance :
 - et le système d’information perd progressivement sa cohérence.
     
 
-#### **III.9.1.2 Objectifs de la gouvernance**
+#### III.9.1.2 Objectifs de la gouvernance
 
 La gouvernance poursuit plusieurs objectifs complémentaires.
 
-### **Assurer la cohérence globale**
+### Assurer la cohérence globale
 
 Les projets doivent s’inscrire dans une trajectoire commune et respecter :
 
@@ -1511,7 +1518,7 @@ Les projets doivent s’inscrire dans une trajectoire commune et respecter :
 - les architectures cibles.
     
 
-### **Encadrer les décisions structurantes**
+### Encadrer les décisions structurantes
 
 Les choix techniques ou organisationnels ayant un impact important doivent être :
 
@@ -1522,7 +1529,7 @@ Les choix techniques ou organisationnels ayant un impact important doivent être
 - validés collectivement.
     
 
-### **Maîtriser la complexité**
+### Maîtriser la complexité
 
 La gouvernance permet de limiter :
 
@@ -1533,7 +1540,7 @@ La gouvernance permet de limiter :
 - les dépendances incontrôlées.
     
 
-### **Soutenir la stratégie**
+### Soutenir la stratégie
 
 L’architecture doit rester alignée avec :
 
@@ -1544,11 +1551,11 @@ L’architecture doit rester alignée avec :
 - les objectifs de transformation.
     
 
-#### **III.9.1.3 Les acteurs de la gouvernance**
+#### III.9.1.3 Les acteurs de la gouvernance
 
 La gouvernance d’architecture mobilise plusieurs catégories d’acteurs.
 
-### **L’Architecture Board**
+### L’Architecture Board
 
 TOGAF recommande généralement la mise en place d’un **comité d’architecture** (_Architecture Board_).
 
@@ -1576,7 +1583,7 @@ Son rôle est notamment :
 - de superviser la cohérence globale du SI.
     
 
-### **Les architectes**
+### Les architectes
 
 Les architectes jouent un rôle transversal :
 
@@ -1591,9 +1598,9 @@ Les architectes jouent un rôle transversal :
 
 Ils ne sont pas uniquement des modélisateurs, mais des **acteurs de gouvernance**.
 
-### **III.9.2. Conformité des projets**
+### III.9.2. Conformité des projets
 
-#### **III.9.2.1 Pourquoi contrôler la conformité ?**
+#### III.9.2.1 Pourquoi contrôler la conformité ?
 
 Dans TOGAF, les projets sont considérés comme les **vecteurs de transformation** de l’architecture.
 
@@ -1617,7 +1624,7 @@ La conformité architecturale vise à réduire ce risque.
 
 ---
 
-#### **III.9.2.2 Les revues d’architecture**
+#### III.9.2.2 Les revues d’architecture
 
 La conformité des projets est généralement évaluée au travers de **revues d’architecture**.
 
@@ -1647,7 +1654,7 @@ Les revues portent notamment sur :
 
 ---
 
-#### **III.9.2.3 Les dérogations architecturales**
+#### III.9.2.3 Les dérogations architecturales
 
 Dans la réalité, certains projets ne peuvent pas respecter entièrement l’architecture cible.
 
@@ -1690,9 +1697,9 @@ L’objectif n’est pas d’interdire les écarts, mais de les rendre :
 
 ---
 
-### **III.9.3. Gestion du changement (Phase H)**
+### III.9.3. Gestion du changement (Phase H)
 
-#### **III.9.3.1 L’architecture comme processus vivant**
+#### III.9.3.1 L’architecture comme processus vivant
 
 Une architecture d’entreprise n’est jamais définitive.
 
@@ -1718,7 +1725,7 @@ L’architecture doit donc être capable :
 
 ---
 
-#### **III.9.3.2 Objectifs de la gestion du changement**
+#### III.9.3.2 Objectifs de la gestion du changement
 
 La phase H vise à :
 
@@ -1735,7 +1742,7 @@ Cette phase transforme l’architecture d’entreprise en **démarche continue**
 
 ---
 
-#### **III.9.3.3 Surveillance et veille**
+#### III.9.3.3 Surveillance et veille
 
 La gestion du changement implique également une activité de veille :
 
@@ -1752,9 +1759,9 @@ L’objectif est d’anticiper les évolutions susceptibles d’affecter le syst
 
 ---
 
-### **III.9.4. Capitalisation et amélioration continue**
+### III.9.4. Capitalisation et amélioration continue
 
-#### **III.9.4.1 La capitalisation des connaissances**
+#### III.9.4.1 La capitalisation des connaissances
 
 Chaque cycle ADM produit :
 
@@ -1778,7 +1785,7 @@ TOGAF encourage fortement la capitalisation de ces éléments afin de :
 
 ---
 
-#### **III.9.4.2 Les référentiels d’architecture**
+#### III.9.4.2 Les référentiels d’architecture
 
 Les éléments capitalisés sont intégrés dans les référentiels :
 
@@ -1797,7 +1804,7 @@ Ces référentiels deviennent un patrimoine stratégique pour l’organisation.
 
 ---
 
-#### **III.9.4.3 L’amélioration continue**
+#### III.9.4.3 L’amélioration continue
 
 L’amélioration continue repose sur plusieurs mécanismes :
 
@@ -1823,7 +1830,7 @@ L’objectif est de rendre l’architecture :
 
 ---
 
-#### **Conclusion du chapitre**
+#### Conclusion du chapitre
 
 Les phases G et H clôturent le cycle ADM en introduisant :
 
@@ -1953,7 +1960,7 @@ Les catalogues sont particulièrement utiles dans les environnements complexes o
 
 #### IV.10.2.2. Exemples de catalogues
 
-### **Catalogue des applications**
+### Catalogue des applications
 
 Il recense :
 
@@ -1970,7 +1977,7 @@ Il recense :
 
 ---
 
-### **Catalogue des acteurs métier**
+### Catalogue des acteurs métier
 
 Il décrit :
 
@@ -1985,7 +1992,7 @@ Il décrit :
 
 ---
 
-### **Catalogue des technologies**
+### Catalogue des technologies
 
 Il référence :
 
@@ -2040,7 +2047,7 @@ Les matrices jouent un rôle central dans les analyses transversales.
 
 #### IV.10.3.2. Exemples de matrices
 
-#### **Matrice processus / applications**
+#### Matrice processus / applications
 
 Elle permet d’identifier :
 
@@ -2051,7 +2058,7 @@ Elle permet d’identifier :
 - les zones de dépendance critique.
     
 
-#### **Matrice applications / données**
+#### Matrice applications / données
 
 Elle décrit :
 
@@ -2071,7 +2078,7 @@ Cette matrice est essentielle pour :
 - l’analyse des impacts.
     
 
-#### **Matrice acteurs / processus**
+#### Matrice acteurs / processus
 
 Elle représente :
 
@@ -2116,7 +2123,7 @@ Les diagrammes sont souvent les artefacts les plus visibles de l’architecture 
 
 #### IV.10.4.2. Types de diagrammes
 
-### **Diagrammes métier**
+### Diagrammes métier
 
 Ils représentent :
 
@@ -2129,7 +2136,7 @@ Ils représentent :
 
 ---
 
-### **Diagrammes applicatifs**
+### Diagrammes applicatifs
 
 Ils décrivent :
 
@@ -2142,7 +2149,7 @@ Ils décrivent :
 
 ---
 
-### **Diagrammes techniques**
+### Diagrammes techniques
 
 Ils montrent :
 
@@ -2157,7 +2164,7 @@ Ils montrent :
 
 ---
 
-### **Diagrammes de données**
+### Diagrammes de données
 
 Ils permettent de représenter :
 
@@ -2274,7 +2281,7 @@ Il est donc nécessaire :
 
 ---
 
-#### **Conclusion du chapitre**
+#### Conclusion du chapitre
 
 Les artefacts TOGAF constituent le support concret de l’architecture d’entreprise.  
 Ils permettent de :

@@ -26,6 +26,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+# CSS
+
+> [!abstract] Objectif
+> Écrire du CSS moderne et maintenable : cascade et sélecteurs, responsive design, Flexbox et Grid, container queries, nesting et scope, couleurs modernes, animations et transitions de vue, accessibilité, performance et architecture CSS.
+
+Voir aussi : [[HTML]], [[Javascript]], [[SEO]], [[Ressources pour le web]], [[Visual studio code]].
 
 # Plan du cours
 

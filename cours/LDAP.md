@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # LDAP et OpenLDAP
+
+> [!abstract] Objectif
+> Comprendre LDAPv3 et exploiter OpenLDAP : arbre d'annuaire, DN et schémas, filtres et LDIF, TLS et SASL, contrôle d'accès, politiques de mots de passe, réplication, sauvegarde et supervision, puis intégrer l'annuaire dans les applications et les fédérations d'identité.
+
+Voir aussi : [[OAuth OpenID]], [[InetOrgPerson]], [[Pyramid]], [[Sécurité avancée sous Linux]], [[Postfix]].
 
 LDAP signifie **Lightweight Directory Access Protocol**. LDAPv3 est un protocole standard permettant de consulter et de modifier un **service d'annuaire**.
 
