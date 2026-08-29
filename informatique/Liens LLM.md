@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02JG1VDEEXGCN08Z7BGZ7ZK"
-titre: "LLM"
+uid: 01M02JG1VDEEXGCN08Z7BGZ7ZK
+titre: Liens LLM
 type: procedure
-statut: actif
+statut: archive
 para: ressource
 domaines:
   - enseignement
@@ -13,9 +13,9 @@ themes:
   - llm
   - llama-cpp
   - inference-locale
-resume: "Notes opératoires pour récupérer et faire tourner des modèles GGUF en local avec llama.cpp."
+resume: Notes opératoires pour récupérer et faire tourner des modèles GGUF en local avec llama.cpp.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-02-29
 date_modification: 2024-02-29
