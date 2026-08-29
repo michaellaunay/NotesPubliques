@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5ASV3GZ0Z2C98RG7SRJ"
-titre: "Algorithmes avancés en Python"
+uid: 01M02EX5ASV3GZ0Z2C98RG7SRJ
+titre: Algorithmes avancés en Python
 type: cours
 statut: actif
 para: ressource
@@ -12,20 +12,21 @@ themes:
   - algorithmique
   - structures-de-donnees
   - python
-resume: "Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme."
+resume: "Cours d'algorithmique avancée illustré en Python : histoire, tris et recherches, arbres, tas et graphes, puis Dijkstra, Kruskal et Floyd-Warshall, programmation dynamique, retour sur trace et gloutons, recherche de sous-chaînes et arbres de préfixes, et ce que la bibliothèque standard fournit déjà."
 niveau: avance
 prerequis:
   - "[[Python]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-19
-date_modification: 2024-03-19
+date_modification: 2026-08-29
+date_verification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Origine
 Le terme "algorithme" tire son origine du nom d'un mathématicien persan du IXe siècle, Abu Abdullah Muhammad ibn Musa al-Khwarizmi. Le mot "algorithme" est dérivé de la latinisation de son nom, Algoritmi, dans les traductions médiévales de ses travaux en Europe.
@@ -516,3 +517,723 @@ Le parcours DFS de ce graphe, en commençant par 'A', pourrait ressembler à A B
 ### 3.3.4.4. Conclusion
 
 La représentation et le parcours des graphes sont des outils essentiels en informatique, permettant de modéliser et d'explorer efficacement des données complexes. La compréhension profonde de ces concepts est cruciale pour résoudre des problèmes algorithmiques avancés et pour l'application pratique dans des domaines tels que l'analyse de réseau, la planification de chemin, et au-delà.
+
+---
+
+# 4. Algorithmes sur les graphes
+
+Les parcours de la partie précédente répondent à « peut-on aller de A à B ». Les algorithmes qui suivent répondent à « **par où**, et à quel coût ».
+
+Tous s'appuient sur la même représentation : un dictionnaire d'adjacence associant à chaque sommet la liste de ses voisins et le poids de l'arête.
+
+```python
+graphe = {
+    "A": {"B": 4, "C": 2},
+    "B": {"C": 5, "D": 10},
+    "C": {"E": 3},
+    "D": {"F": 11},
+    "E": {"D": 4},
+    "F": {},
+}
+```
+
+## 4.1. Algorithme de Dijkstra pour les plus courts chemins
+
+### 4.1.1. Principe de fonctionnement
+
+Dijkstra maintient une distance provisoire pour chaque sommet, initialement infinie sauf pour la source. À chaque étape, il **extrait le sommet non traité de plus petite distance connue**, le déclare définitif, et met à jour ses voisins — c'est la *relaxation* d'arête.
+
+```mermaid
+flowchart LR
+    A["distances initialisées<br/>source = 0, autres = ∞"] --> B["extraire le sommet<br/>de distance minimale"]
+    B --> C["relaxer chacun<br/>de ses voisins"]
+    C --> D{"file vide ?"}
+    D -->|non| B
+    D -->|oui| E["distances définitives"]
+```
+
+L'algorithme est **glouton** : il ne revient jamais sur une décision. Cette hardiesse repose sur une hypothèse précise, énoncée plus bas.
+
+### 4.1.2. Propriétés
+
+- **Complexité :** O((V + E) log V) avec un tas binaire, où V est le nombre de sommets et E celui d'arêtes.
+- **Correction :** garantie uniquement si **tous les poids sont positifs ou nuls**.
+- **Sortie :** les distances depuis une source vers tous les sommets, et l'arbre des plus courts chemins.
+
+> **Une arête de poids négatif casse Dijkstra.** Un sommet déclaré définitif pourrait être amélioré plus tard par un détour au coût négatif, ce que l'algorithme ne réexamine jamais. Il faut alors Bellman-Ford, en O(V·E).
+
+C'est le point que les étudiants retiennent le moins et qui compte le plus : connaître la condition de validité d'un algorithme importe autant que son fonctionnement.
+
+### 4.1.3. Mise en œuvre en Python
+
+```python
+import heapq
+
+
+def dijkstra(graphe: dict, source: str) -> tuple[dict, dict]:
+    """Distances minimales depuis `source`, et prédécesseurs pour reconstruire.
+
+    `heapq` fournit un tas-min : la file de priorité de la partie 3.2 sans
+    avoir à la réécrire.
+    """
+    distances = {sommet: float("inf") for sommet in graphe}
+    distances[source] = 0
+    predecesseurs: dict[str, str | None] = {source: None}
+    file = [(0, source)]
+    visites = set()
+
+    while file:
+        distance, sommet = heapq.heappop(file)
+        if sommet in visites:          # entrée périmée, laissée dans le tas
+            continue
+        visites.add(sommet)
+
+        for voisin, poids in graphe[sommet].items():
+            candidate = distance + poids
+            if candidate < distances[voisin]:
+                distances[voisin] = candidate
+                predecesseurs[voisin] = sommet
+                heapq.heappush(file, (candidate, voisin))
+
+    return distances, predecesseurs
+
+
+def chemin(predecesseurs: dict, cible: str) -> list[str]:
+    route = []
+    while cible is not None:
+        route.append(cible)
+        cible = predecesseurs.get(cible)
+    return route[::-1]
+```
+
+Le test `if sommet in visites: continue` mérite une explication : `heapq` ne sait pas diminuer la clef d'un élément déjà présent. On empile donc une nouvelle entrée et on ignore les anciennes au moment de les extraire. C'est la version dite *paresseuse*, plus simple et aussi rapide en pratique.
+
+### 4.1.4. Exemple d'utilisation
+
+```python
+distances, predecesseurs = dijkstra(graphe, "A")
+print(distances)              # {'A': 0, 'B': 4, 'C': 2, 'D': 9, 'E': 5, 'F': 20}
+print(chemin(predecesseurs, "F"))   # ['A', 'C', 'E', 'D', 'F']
+```
+
+Le chemin vers `D` passe par `C` et `E` pour un coût de 9, alors que l'arête directe `B → D` coûterait 14. C'est exactement ce qu'un parcours en largeur, aveugle aux poids, aurait manqué.
+
+### 4.1.5. Conclusion
+
+Dijkstra est l'algorithme de routage par excellence : calcul d'itinéraire, protocoles OSPF et IS-IS, planification de trajectoire. Sa limite — les poids négatifs — n'est pas théorique : un « gain » modélisé comme un coût négatif suffit à invalider le résultat sans le moindre message d'erreur.
+
+---
+
+## 4.2. Algorithme de Kruskal pour les arbres couvrants minimaux
+
+### 4.2.1. Principe de fonctionnement
+
+Un **arbre couvrant minimal** relie tous les sommets d'un graphe non orienté au coût total le plus faible, sans cycle. Kruskal procède par tri :
+
+```text
+1. trier toutes les arêtes par poids croissant
+2. pour chaque arête, dans l'ordre :
+       si elle relie deux composantes distinctes, la retenir
+       sinon, l'écarter — elle créerait un cycle
+3. s'arrêter à V − 1 arêtes retenues
+```
+
+Toute la difficulté tient dans « deux composantes distinctes », qu'il faut savoir décider vite.
+
+### 4.2.2. La structure union-find
+
+Elle maintient une partition de l'ensemble des sommets sous deux opérations : trouver le représentant d'un élément, et fusionner deux classes.
+
+```python
+class UnionFind:
+    """Partition avec compression de chemin et union par rang.
+
+    Ces deux optimisations amènent le coût amorti d'une opération à
+    O(α(n)), où α est l'inverse de la fonction d'Ackermann — inférieure
+    à 5 pour tout n physiquement représentable. Autrement dit :
+    constant en pratique.
+    """
+
+    def __init__(self, elements):
+        self.parent = {e: e for e in elements}
+        self.rang = {e: 0 for e in elements}
+
+    def trouver(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.trouver(self.parent[x])   # compression
+        return self.parent[x]
+
+    def unir(self, a, b) -> bool:
+        ra, rb = self.trouver(a), self.trouver(b)
+        if ra == rb:
+            return False                    # déjà dans la même classe
+        if self.rang[ra] < self.rang[rb]:
+            ra, rb = rb, ra
+        self.parent[rb] = ra
+        if self.rang[ra] == self.rang[rb]:
+            self.rang[ra] += 1
+        return True
+```
+
+### 4.2.3. Mise en œuvre en Python
+
+```python
+def kruskal(sommets: list, aretes: list[tuple]) -> list[tuple]:
+    """`aretes` est une liste de (poids, u, v)."""
+    partition = UnionFind(sommets)
+    arbre = []
+    for poids, u, v in sorted(aretes):
+        if partition.unir(u, v):
+            arbre.append((poids, u, v))
+            if len(arbre) == len(sommets) - 1:
+                break
+    return arbre
+```
+
+### 4.2.4. Exemple d'utilisation
+
+```python
+sommets = ["A", "B", "C", "D", "E"]
+aretes = [(1, "A", "B"), (3, "A", "C"), (4, "B", "C"),
+          (2, "C", "D"), (5, "B", "E"), (7, "D", "E")]
+
+arbre = kruskal(sommets, aretes)
+print(arbre)                              # [(1,'A','B'), (2,'C','D'), (3,'A','C'), (5,'B','E')]
+print(sum(p for p, _, _ in arbre))        # 11
+```
+
+### 4.2.5. Propriétés et conclusion
+
+- **Complexité :** O(E log E), dominée par le tri des arêtes.
+- **Alternative :** l'algorithme de Prim, en O(E log V) avec un tas, préférable sur un graphe **dense** ; Kruskal l'emporte sur un graphe **creux**.
+
+Applications : réseaux de distribution — électricité, fibre, eau —, classification hiérarchique en apprentissage non supervisé, et segmentation d'images.
+
+---
+
+## 4.3. Algorithme de Floyd-Warshall
+
+### 4.3.1. Principe de fonctionnement
+
+Là où Dijkstra part d'**une** source, Floyd-Warshall calcule les plus courts chemins entre **toutes les paires** de sommets. Son idée est d'une simplicité remarquable :
+
+> Pour chaque sommet intermédiaire `k`, vérifier si passer par `k` améliore le trajet de `i` à `j`.
+
+```python
+for k in sommets:
+    for i in sommets:
+        for j in sommets:
+            if d[i][k] + d[k][j] < d[i][j]:
+                d[i][j] = d[i][k] + d[k][j]
+```
+
+L'ordre des boucles n'est pas interchangeable : `k` doit être la boucle **externe**, car l'invariant est « `d[i][j]` est optimal en n'utilisant que les intermédiaires déjà traités ». C'est un exemple de programmation dynamique, sujet de la partie 5.
+
+### 4.3.2. Mise en œuvre en Python
+
+```python
+def floyd_warshall(graphe: dict) -> dict:
+    sommets = list(graphe)
+    d = {i: {j: (0 if i == j else float("inf")) for j in sommets} for i in sommets}
+
+    for i in graphe:
+        for j, poids in graphe[i].items():
+            d[i][j] = min(d[i][j], poids)
+
+    for k in sommets:
+        for i in sommets:
+            if d[i][k] == float("inf"):
+                continue                     # aucun chemin i → k, on saute
+            for j in sommets:
+                if d[i][k] + d[k][j] < d[i][j]:
+                    d[i][j] = d[i][k] + d[k][j]
+
+    for i in sommets:
+        if d[i][i] < 0:
+            raise ValueError("cycle de poids négatif détecté")
+
+    return d
+```
+
+### 4.3.3. Propriétés
+
+- **Complexité :** O(V³) en temps, O(V²) en mémoire.
+- **Poids négatifs :** admis, contrairement à Dijkstra. Le contrôle final `d[i][i] < 0` **détecte** les cycles négatifs, pour lesquels aucun plus court chemin n'existe.
+- **Choix :** sur un graphe creux, exécuter Dijkstra depuis chaque sommet coûte O(V·E log V), souvent moins que V³. Floyd-Warshall l'emporte sur les graphes denses et sur les petits graphes, où sa simplicité prime.
+
+### 4.3.4. Conclusion
+
+Retenons la grille de décision, qui vaut mieux que trois algorithmes mémorisés séparément :
+
+| Question | Poids | Algorithme |
+| --- | --- | --- |
+| Une source, tous les sommets | positifs | Dijkstra |
+| Une source, tous les sommets | quelconques | Bellman-Ford |
+| Toutes les paires | quelconques | Floyd-Warshall |
+| Relier tout au moindre coût | non orienté | Kruskal ou Prim |
+| Le plus court en nombre d'arêtes | non pondéré | parcours en largeur |
+
+La dernière ligne est celle qu'on oublie : sur un graphe non pondéré, un simple BFS donne le plus court chemin, sans tas ni tri.
+
+---
+
+# 5. Techniques algorithmiques avancées
+
+Les trois techniques de cette partie ne sont pas des algorithmes mais des **méthodes de conception**. Elles se distinguent par la manière dont elles traitent les choix.
+
+```mermaid
+flowchart TB
+    A["un choix à faire"] --> B["Glouton<br/>choisir le meilleur localement<br/>ne jamais revenir"]
+    A --> C["Programmation dynamique<br/>explorer tous les choix<br/>mémoriser les résultats"]
+    A --> D["Retour sur trace<br/>essayer, et défaire<br/>si l'on aboutit à une impasse"]
+    B --> E["rapide, correct<br/>seulement si la structure s'y prête"]
+    C --> F["optimal, coût mémoire"]
+    D --> G["exhaustif, élagage indispensable"]
+```
+
+## 5.1. Programmation dynamique
+
+### 5.1.1. Les deux conditions
+
+La programmation dynamique s'applique lorsqu'un problème vérifie deux propriétés :
+
+- **sous-structure optimale** : la solution optimale se compose de solutions optimales de sous-problèmes ;
+- **chevauchement des sous-problèmes** : les mêmes sous-problèmes reviennent plusieurs fois.
+
+Sans la seconde, il s'agit simplement de « diviser pour régner » — le tri fusion de la partie 2 en est un exemple, et mémoriser n'y apporterait rien.
+
+### 5.1.2. Mémoïsation : l'approche descendante
+
+La suite de Fibonacci en fournit l'illustration canonique.
+
+```python
+def fibonacci_naif(n: int) -> int:
+    if n < 2:
+        return n
+    return fibonacci_naif(n - 1) + fibonacci_naif(n - 2)
+```
+
+Cette version recalcule `fibonacci(30)` des milliers de fois : sa complexité est exponentielle, en O(φⁿ). Une ligne suffit à la corriger :
+
+```python
+from functools import cache
+
+
+@cache
+def fibonacci(n: int) -> int:
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```
+
+`functools.cache`, disponible depuis Python 3.9, mémorise les résultats déjà calculés. La complexité passe d'exponentielle à **linéaire**, sans changer une ligne de la logique.
+
+```python
+import timeit
+
+timeit.timeit(lambda: fibonacci_naif(30), number=1)   # ≈ 0,3 s
+timeit.timeit(lambda: fibonacci(30), number=1)        # ≈ 10⁻⁵ s
+```
+
+Deux précautions : le cache est illimité — `functools.lru_cache(maxsize=1000)` le borne — et les arguments doivent être **hachables**, ce qui interdit de passer une liste. On transmet alors un tuple, ou des indices.
+
+### 5.1.3. Tabulation : l'approche ascendante
+
+```python
+def fibonacci_table(n: int) -> int:
+    if n < 2:
+        return n
+    precedent, courant = 0, 1
+    for _ in range(n - 1):
+        precedent, courant = courant, precedent + courant
+    return courant
+```
+
+La version ascendante remplit un tableau du plus petit sous-problème au plus grand. Elle évite la pile de récursion — donc la limite de profondeur de Python, fixée à 1 000 par défaut — et permet ici de ne conserver que deux valeurs au lieu de n.
+
+| | Mémoïsation | Tabulation |
+| --- | --- | --- |
+| Écriture | proche de la définition | demande de trouver l'ordre de remplissage |
+| Calculs | seulement les sous-problèmes atteints | tous |
+| Pile | profondeur récursive | aucune |
+| Mémoire | dictionnaire complet | souvent réductible à quelques lignes |
+
+### 5.1.4. Un exemple moins scolaire : la distance d'édition
+
+Combien d'insertions, suppressions ou substitutions faut-il pour transformer un mot en un autre ? C'est la distance de Levenshtein, au cœur des correcteurs orthographiques et de l'alignement de séquences.
+
+```python
+def distance_edition(a: str, b: str) -> int:
+    ligne_precedente = list(range(len(b) + 1))
+
+    for i, ca in enumerate(a, 1):
+        ligne = [i]
+        for j, cb in enumerate(b, 1):
+            cout = 0 if ca == cb else 1
+            ligne.append(min(
+                ligne_precedente[j] + 1,        # suppression
+                ligne[j - 1] + 1,               # insertion
+                ligne_precedente[j - 1] + cout, # substitution
+            ))
+        ligne_precedente = ligne
+
+    return ligne_precedente[-1]
+```
+
+```python
+distance_edition("chaton", "chien")     # 3
+```
+
+Trois opérations : `a → i`, `t → e`, puis suppression du `o`. Le décompte se
+vérifie à la main, et c'est un bon réflexe : une distance d'édition fausse passe
+inaperçue, contrairement à un tri incorrect.
+
+Complexité O(m·n) en temps ; en mémoire, O(n) au lieu de O(m·n) car seule la ligne précédente est conservée — une optimisation classique de la tabulation.
+
+## 5.2. Retour sur trace
+
+### 5.2.1. Principe
+
+Le *backtracking* construit une solution par étapes et **défait** le dernier choix dès qu'une contrainte est violée. C'est un parcours en profondeur de l'arbre des possibilités, avec élagage.
+
+```text
+choisir      → poser une valeur candidate
+explorer     → descendre dans la suite du problème
+défaire      → retirer la valeur si l'exploration a échoué
+```
+
+### 5.2.2. Les huit dames
+
+```python
+def dames(n: int = 8) -> list[list[int]]:
+    """Retourne toutes les dispositions de n dames sans prise mutuelle.
+
+    `position[colonne] = ligne`. Le codage par un seul entier par colonne
+    élimine d'emblée les conflits de colonne : la moitié des contraintes
+    disparaît du simple fait de la représentation choisie.
+    """
+    solutions = []
+    position: list[int] = []
+
+    def compatible(ligne: int) -> bool:
+        colonne = len(position)
+        return all(
+            l != ligne and abs(l - ligne) != colonne - c
+            for c, l in enumerate(position)
+        )
+
+    def explorer():
+        if len(position) == n:
+            solutions.append(position.copy())
+            return
+        for ligne in range(n):
+            if compatible(ligne):
+                position.append(ligne)      # choisir
+                explorer()                  # explorer
+                position.pop()              # défaire
+        return
+
+    explorer()
+    return solutions
+```
+
+```python
+print(len(dames(8)))       # 92 solutions
+```
+
+> **Le choix de la représentation fait la moitié du travail.** Une grille 8×8 de booléens aurait exigé de vérifier lignes, colonnes et diagonales ; une liste d'entiers rend les conflits de colonne impossibles par construction. C'est une leçon qui dépasse le retour sur trace.
+
+### 5.2.3. Quand l'élagage devient indispensable
+
+Sans contrainte, le retour sur trace est une recherche exhaustive : 8⁸ ≈ 16 millions de positions pour les huit dames. L'élagage par `compatible` ramène l'exploration à quelques milliers de nœuds.
+
+L'efficacité d'un retour sur trace ne tient donc pas à l'algorithme mais à la **qualité des contraintes** et à leur détection **au plus tôt** — dès qu'un choix est fait, jamais à la fin.
+
+## 5.3. Algorithmes gloutons
+
+### 5.3.1. Principe et condition de validité
+
+Un algorithme glouton fait à chaque étape le choix qui paraît le meilleur localement, sans jamais revenir dessus. Il est rapide ; il n'est correct que si le problème possède la **propriété du choix glouton** : un optimum local mène à un optimum global.
+
+Dijkstra et Kruskal, vus plus haut, sont gloutons — et corrects, propriété qui se démontre.
+
+### 5.3.2. Le rendu de monnaie : quand cela marche, et quand cela échoue
+
+```python
+def rendre(montant: int, pieces: list[int]) -> list[int]:
+    rendu = []
+    for piece in sorted(pieces, reverse=True):
+        while montant >= piece:
+            rendu.append(piece)
+            montant -= piece
+    return rendu
+```
+
+```python
+rendre(63, [1, 2, 5, 10, 20, 50])     # [50, 10, 2, 1] — optimal
+rendre(6,  [1, 3, 4])                 # [4, 1, 1] — trois pièces
+                                      # l'optimum est [3, 3], deux pièces
+```
+
+Le système euro est *canonique* : l'approche gloutonne y est toujours optimale. Un système quelconque ne l'est pas, et il faut alors la programmation dynamique.
+
+> **C'est l'exemple à retenir de toute la partie 5.** Le même algorithme, sur le même problème, est optimal ou faux selon les données. Un glouton doit toujours s'accompagner de la preuve — ou au moins de l'énoncé — de sa condition de validité.
+
+### 5.3.3. Un glouton qui se démontre : la sélection d'activités
+
+Choisir le plus grand nombre d'activités compatibles parmi des créneaux qui se chevauchent.
+
+```python
+def selectionner(activites: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    """`activites` : liste de (debut, fin). Trier par fin croissante."""
+    retenues = []
+    fin_courante = float("-inf")
+    for debut, fin in sorted(activites, key=lambda a: a[1]):
+        if debut >= fin_courante:
+            retenues.append((debut, fin))
+            fin_courante = fin
+    return retenues
+```
+
+Le critère de tri est tout l'algorithme : trier par **fin croissante** est optimal, trier par durée ou par début ne l'est pas. Choisir l'activité qui se termine le plus tôt laisse le maximum de temps disponible pour la suite — et cet argument constitue la preuve.
+
+---
+
+# 6. Algorithmes de traitement de chaînes de caractères
+
+## 6.1. Recherche de sous-chaînes
+
+### 6.1.1. Le coût de l'approche naïve
+
+```python
+def recherche_naive(texte: str, motif: str) -> int:
+    n, m = len(texte), len(motif)
+    for i in range(n - m + 1):
+        if texte[i:i + m] == motif:
+            return i
+    return -1
+```
+
+Complexité O(n·m) dans le pire cas. Le cas dégénéré s'obtient facilement : chercher `"aaaab"` dans une chaîne de mille `"a"` compare quatre caractères avant d'échouer, mille fois de suite.
+
+L'observation qui fonde l'algorithme de Knuth-Morris-Pratt tient en une phrase :
+
+> Lorsqu'une comparaison échoue après avoir reconnu `k` caractères, on connaît déjà ces `k` caractères — il est inutile de revenir en arrière dans le texte.
+
+### 6.1.2. La table des préfixes
+
+KMP précalcule, pour chaque position du motif, la longueur du plus long préfixe qui soit aussi un suffixe. Cette table indique de combien décaler sans rien perdre.
+
+```python
+def table_prefixes(motif: str) -> list[int]:
+    table = [0] * len(motif)
+    longueur = 0
+    for i in range(1, len(motif)):
+        while longueur and motif[i] != motif[longueur]:
+            longueur = table[longueur - 1]
+        if motif[i] == motif[longueur]:
+            longueur += 1
+            table[i] = longueur
+    return table
+```
+
+```python
+table_prefixes("ABABCABAB")     # [0, 0, 1, 2, 0, 1, 2, 3, 4]
+```
+
+### 6.1.3. L'algorithme complet
+
+```python
+def kmp(texte: str, motif: str) -> list[int]:
+    """Toutes les positions d'apparition de `motif` dans `texte`."""
+    if not motif:
+        return []
+    table = table_prefixes(motif)
+    positions = []
+    j = 0                                   # caractères du motif reconnus
+
+    for i, caractere in enumerate(texte):
+        while j and caractere != motif[j]:
+            j = table[j - 1]                # décalage sans reculer dans le texte
+        if caractere == motif[j]:
+            j += 1
+        if j == len(motif):
+            positions.append(i - j + 1)
+            j = table[j - 1]                # poursuivre pour les chevauchements
+
+    return positions
+```
+
+```python
+kmp("ABABDABACDABABCABAB", "ABABCABAB")     # [10]
+kmp("aaaaa", "aa")                          # [0, 1, 2, 3] — chevauchements inclus
+```
+
+### 6.1.4. Propriétés
+
+- **Complexité :** O(n + m), contre O(n·m) pour l'approche naïve.
+- **L'indice `i` ne recule jamais** : c'est ce qui rend l'algorithme utilisable sur un flux qu'on ne peut pas relire.
+- **Alternatives :** Boyer-Moore, souvent plus rapide en pratique sur du texte naturel car il saute vers l'avant ; Rabin-Karp, qui compare des empreintes et se généralise bien à la recherche simultanée de plusieurs motifs.
+
+### 6.1.5. En pratique, en Python
+
+```python
+"chaîne".find("aîn")          # C optimisé, à préférer pour un motif unique
+import re
+re.finditer(r"motif", texte)  # pour un motif complexe
+```
+
+La méthode `str.find` de CPython emploie un algorithme hybride, plus rapide que toute réimplémentation en Python pur. **KMP s'étudie pour comprendre, pas pour remplacer `find`.** Il redevient utile lorsqu'on travaille sur autre chose que des chaînes — une séquence d'événements, un flux d'octets — ou lorsqu'on doit borner le pire cas.
+
+## 6.2. L'arbre de préfixes
+
+### 6.2.1. Principe
+
+Un *trie* stocke un ensemble de mots dans un arbre où chaque chemin de la racine à un nœud représente un préfixe. Deux mots partageant un préfixe partagent le début de leur chemin.
+
+```mermaid
+flowchart TB
+    R(( )) --> C["c"]
+    C --> A["a"]
+    A --> R2["r"]
+    R2 --> T["t"]
+    T --> E["e ✓"]
+    R2 --> O["o ✓"]
+    A --> S["s ✓"]
+    C --> H["h"]
+    H --> A2["a"]
+    A2 --> T2["t ✓"]
+```
+
+Les mots stockés sont ici *carte*, *caro*, *cas* et *chat* — les nœuds terminaux sont marqués.
+
+### 6.2.2. Mise en œuvre en Python
+
+```python
+class Trie:
+    def __init__(self):
+        self.enfants: dict[str, "Trie"] = {}
+        self.terminal = False
+
+    def inserer(self, mot: str) -> None:
+        noeud = self
+        for lettre in mot:
+            noeud = noeud.enfants.setdefault(lettre, Trie())
+        noeud.terminal = True
+
+    def _descendre(self, prefixe: str) -> "Trie | None":
+        noeud = self
+        for lettre in prefixe:
+            noeud = noeud.enfants.get(lettre)
+            if noeud is None:
+                return None
+        return noeud
+
+    def contient(self, mot: str) -> bool:
+        noeud = self._descendre(mot)
+        return noeud is not None and noeud.terminal
+
+    def par_prefixe(self, prefixe: str) -> list[str]:
+        """Tous les mots commençant par `prefixe` — l'opération qui justifie
+        la structure : aucun autre conteneur ne la rend efficace."""
+        depart = self._descendre(prefixe)
+        if depart is None:
+            return []
+
+        trouves = []
+
+        def parcourir(noeud: "Trie", courant: str) -> None:
+            if noeud.terminal:
+                trouves.append(courant)
+            for lettre, enfant in sorted(noeud.enfants.items()):
+                parcourir(enfant, courant + lettre)
+
+        parcourir(depart, prefixe)
+        return trouves
+```
+
+### 6.2.3. Exemple d'utilisation
+
+```python
+dictionnaire = Trie()
+for mot in ["carte", "caro", "cas", "chat", "chien"]:
+    dictionnaire.inserer(mot)
+
+dictionnaire.contient("cas")        # True
+dictionnaire.contient("ca")         # False — préfixe, pas un mot
+dictionnaire.par_prefixe("ca")      # ['caro', 'carte', 'cas']
+dictionnaire.par_prefixe("ch")      # ['chat', 'chien']
+```
+
+### 6.2.4. Propriétés et comparaison
+
+| Opération | Trie | `set` | Liste triée |
+| --- | --- | --- | --- |
+| Recherche exacte | O(m) | O(m) en moyenne | O(m log n) |
+| Recherche par préfixe | **O(m + k)** | O(n) | O(m log n + k) |
+| Mémoire | élevée | moyenne | faible |
+
+`m` est la longueur du mot, `n` le nombre de mots, `k` le nombre de résultats.
+
+Sur la recherche exacte, un `set` fait aussi bien pour beaucoup moins de mémoire. **La seule raison d'employer un trie est la recherche par préfixe** : autocomplétion, correction orthographique, tables de routage IP, filtrage d'URL.
+
+### 6.2.5. Conclusion
+
+Le trie illustre un principe qui dépasse son cas : une structure de données ne se choisit pas pour ce qu'elle stocke, mais pour **l'opération qu'on répétera le plus souvent**. Stocker un dictionnaire dans un trie pour ne faire que des recherches exactes est un gaspillage ; y stocker les mêmes mots pour proposer des complétions est le bon choix.
+
+---
+
+# 7. Ce que la bibliothèque standard fournit déjà
+
+Les parties précédentes réimplémentent des structures et des algorithmes que Python fournit. Ce n'est pas contradictoire : **on les écrit pour les comprendre, on utilise les modules pour produire**. Encore faut-il savoir ce qui existe.
+
+## 7.1. Le tableau de correspondance
+
+| Écrit dans ce cours | À employer en production | Remarque |
+| --- | --- | --- |
+| `quicksort`, `mergesort` | `sorted`, `list.sort` | Timsort, stable, O(n log n), écrit en C |
+| `binary_search` | `bisect.bisect_left` | insertion et recherche dans une liste triée |
+| classe `Tas` | `heapq` | tas-min sur une liste ordinaire |
+| file pour le BFS | `collections.deque` | `popleft` en O(1), là où `list.pop(0)` est en O(n) |
+| mémoïsation manuelle | `functools.cache` | une ligne |
+| comptage d'occurrences | `collections.Counter` | avec `most_common` |
+| graphes complets | `networkx` | Dijkstra, Kruskal, flots, communautés |
+
+## 7.2. Deux pièges de performance
+
+**`list.pop(0)` est en O(n).** Une file d'attente implémentée avec une liste dégrade un BFS de O(V + E) à O(V²). `collections.deque` corrige cela sans rien changer d'autre.
+
+```python
+from collections import deque
+
+file = deque(["A"])
+sommet = file.popleft()      # O(1)
+file.append("B")             # O(1)
+```
+
+**La concaténation de chaînes dans une boucle est quadratique.** Chaque `+=` recopie toute la chaîne.
+
+```python
+# O(n²)
+resultat = ""
+for morceau in morceaux:
+    resultat += morceau
+
+# O(n)
+resultat = "".join(morceaux)
+```
+
+## 7.3. Mesurer avant d'optimiser
+
+```python
+import timeit
+timeit.timeit(lambda: ma_fonction(donnees), number=100)
+```
+
+```bash
+python3 -m cProfile -s cumtime mon_script.py    # où passe le temps
+```
+
+> **Un algorithme en O(n log n) écrit en Python peut être plus lent qu'un O(n²) écrit en C pour les tailles usuelles.** La complexité décrit le comportement asymptotique, pas la performance sur vos données. Un `sorted` sur dix mille éléments bat toute implémentation manuelle, quelle que soit son élégance.
+
+La règle de travail qui en découle : écrire d'abord la version la plus simple et la plus lisible, mesurer, puis n'optimiser que ce que la mesure désigne.
