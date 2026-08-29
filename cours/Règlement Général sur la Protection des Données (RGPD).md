@@ -29,8 +29,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Règlement Général sur la Protection des Données — RGPD
+
+> [!abstract] Objectif
+> Comprendre le RGPD comme un cadre opérationnel et non comme une liste de formalités : notions et acteurs, principes et bases légales, droits des personnes, accountability, sécurité et violations, AIPD, transferts internationaux, cookies, développement logiciel, cloud, intelligence artificielle et AI Act, sanctions — jusqu'aux réformes en discussion en 2026.
+
+Voir aussi : [[Droits d'auteur]], [[Sécurité avec Python]], [[LLM]], [[Identité numérique européenne]], [[SEO]].
 
 > [!important]
 > Ce cours présente le RGPD dans une perspective pédagogique et opérationnelle, avec un accent sur la France et l'Union européenne. Il ne constitue pas un avis juridique personnalisé. Pour un traitement à fort risque, un contentieux ou une situation sectorielle réglementée, il faut vérifier les textes applicables et, si nécessaire, consulter un DPO ou un juriste spécialisé.
@@ -146,6 +150,21 @@ Le RGPD ne s'applique pas de la même manière à tous les traitements. Parmi le
 - les traitements des autorités compétentes à des fins pénales, régis notamment par la directive « Police-Justice » 2016/680.
 
 ---
+
+## 1.6 Une réforme en discussion : le « Digital Omnibus »
+
+Le 19 novembre 2025, la Commission européenne a présenté le paquet **Digital Omnibus**, une proposition de règlement modifiant d'un bloc le RGPD, la directive ePrivacy, le règlement sur les données (*Data Act*), la directive NIS 2 et le règlement 2018/1725, au nom de la simplification et de la compétitivité. Parmi les modifications proposées pour le RGPD :
+
+- une **définition des données personnelles** appréciée du point de vue de chaque responsable de traitement, avec des critères de réidentification précisés par actes d'exécution, ce qui restreindrait le champ d'application pour les données pseudonymisées ;
+- l'intégration des règles sur les **cookies et traceurs** dans le RGPD : refus aussi simple que l'acceptation, interdiction de redemander le consentement pendant six mois après un refus, prise en compte des préférences exprimées dans le navigateur ;
+- pour les **violations de données**, un seuil de notification relevé aux seules violations à risque élevé, un délai porté de 72 à 96 heures et un portail de signalement unique commun au RGPD, à NIS 2 et à DORA ;
+- une simplification des **AIPD** et de la documentation associée ;
+- une reconnaissance explicite de l'**intérêt légitime** pour l'entraînement de systèmes d'IA, sous conditions.
+
+Le 11 février 2026, le CEPD et le CEPD-EDPS ont adopté un avis conjoint (2/2026) : ils soutiennent l'objectif de simplification mais jugent que plusieurs mesures abaisseraient le niveau de protection et créeraient de l'insécurité juridique ; les associations de défense des droits numériques (noyb notamment) sont nettement plus critiques.
+
+> [!important]
+> Le Digital Omnibus est une **proposition** en cours d'examen par le Parlement européen et le Conseil. À la date de mise à jour de ce cours (août 2026), aucune obligation du RGPD n'a changé ; les premiers effets, si le texte est adopté, ne sont pas attendus avant fin 2026 ou 2027. Pour un projet, on continue d'appliquer le RGPD tel qu'il est, en suivant la procédure législative.
 
 # 2. Données personnelles, anonymisation et pseudonymisation
 

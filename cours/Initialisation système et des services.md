@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Initialisation système et gestion des services sous GNU/Linux
+
+> [!abstract] Objectif
+> Comprendre toute la chaîne de démarrage d'un système Linux — firmware, chargeur d'amorçage, noyau, initramfs, PID 1 — puis administrer les services avec systemd tel qu'il existe en 2026 : unités et drop-ins, cibles, dépendances, timers, journalisation, durcissement, conteneurs et outils modernes, en sachant situer SysV et Upstart dans l'histoire.
+
+Voir aussi : [[GNULinux]], [[Les distributions Linux]], [[Sécurité avancée sous Linux]], [[Les namespaces Linux]], [[proc]], [[Docker]].
 
 > [!note] État du cours
 > Ce cours décrit principalement **systemd**, qui est le gestionnaire de système et de services par défaut de nombreuses distributions GNU/Linux modernes. Les exemples visent une distribution récente de type Debian/Ubuntu, Fedora ou Arch Linux. Les versions réellement livrées par une distribution peuvent être plus anciennes que la version amont.
@@ -188,7 +192,7 @@ Le chemin `/sbin/init` peut être un lien symbolique vers systemd.
 
 # 2. BIOS, UEFI et Secure Boot
 
-# 2.1 BIOS classique
+## 2.1 BIOS classique
 
 Sur une machine BIOS classique, le firmware lit traditionnellement le premier secteur amorçable d'un disque.
 
@@ -200,7 +204,7 @@ Historiquement, le **MBR** fait 512 octets et contient :
 
 Cette contrainte de taille explique les architectures historiques en plusieurs étapes.
 
-# 2.2 UEFI
+## 2.2 UEFI
 
 UEFI ne fonctionne pas comme un BIOS qui exécute simplement le code contenu dans le MBR.
 
@@ -228,7 +232,7 @@ EFI/ubuntu/grubx64.efi
 
 Le nom exact dépend de la distribution et de l'architecture.
 
-# 2.3 Entrées UEFI
+## 2.3 Entrées UEFI
 
 Sous Linux, on peut inspecter les entrées de démarrage UEFI avec :
 
@@ -238,7 +242,7 @@ efibootmgr -v
 
 La commande nécessite généralement les privilèges administrateur pour certaines opérations de modification.
 
-# 2.4 Secure Boot
+## 2.4 Secure Boot
 
 **UEFI Secure Boot** vérifie une chaîne de confiance cryptographique avant d'exécuter certains composants du démarrage.
 
@@ -282,7 +286,7 @@ GRUB 2 sait notamment :
 - charger dynamiquement des modules ;
 - lire LVM et diverses configurations RAID selon les modules disponibles.
 
-# 3.1 Ne pas confondre GRUB Legacy et GRUB 2
+## 3.1 Ne pas confondre GRUB Legacy et GRUB 2
 
 L'ancien cours décrivait GRUB 2 avec :
 
@@ -301,7 +305,7 @@ Dans GRUB 2 :
 
 En UEFI, GRUB est exécuté sous forme d'application EFI.
 
-# 3.2 Fichiers importants
+## 3.2 Fichiers importants
 
 Sur Debian/Ubuntu :
 
@@ -332,7 +336,7 @@ sudo update-grub
 
 Cette commande est un wrapper autour des outils GRUB appropriés.
 
-# 3.3 Examiner la configuration
+## 3.3 Examiner la configuration
 
 ```bash
 grep -v '^#' /etc/default/grub
@@ -346,7 +350,7 @@ grep '^menuentry ' /boot/grub/grub.cfg
 
 Le format exact peut varier.
 
-# 3.4 Modifier temporairement la ligne du noyau
+## 3.4 Modifier temporairement la ligne du noyau
 
 Depuis le menu GRUB :
 
@@ -358,7 +362,7 @@ Depuis le menu GRUB :
 
 La modification ne persiste pas après le redémarrage.
 
-# 3.5 Paramètres du noyau utiles
+## 3.5 Paramètres du noyau utiles
 
 Exemples :
 
@@ -381,7 +385,7 @@ Pour voir la ligne réellement reçue par le noyau :
 cat /proc/cmdline
 ```
 
-# 3.6 Identifier le noyau et l'initramfs
+## 3.6 Identifier le noyau et l'initramfs
 
 ```bash
 uname -r
@@ -394,7 +398,7 @@ Sur d'autres distributions, les noms et emplacements peuvent varier.
 
 # 4. Le noyau et l'initramfs
 
-# 4.1 Pourquoi un initramfs ?
+## 4.1 Pourquoi un initramfs ?
 
 Le noyau ne peut pas toujours monter immédiatement le vrai système racine.
 
@@ -409,7 +413,7 @@ Il peut avoir besoin de :
 
 L'**initramfs** fournit alors un petit espace utilisateur temporaire en RAM.
 
-# 4.2 initrd et initramfs
+## 4.2 initrd et initramfs
 
 Les termes sont parfois utilisés de manière interchangeable dans les noms de fichiers, mais techniquement :
 
@@ -418,7 +422,7 @@ Les termes sont parfois utilisés de manière interchangeable dans les noms de f
 
 Un fichier nommé `initrd.img-*` sur Debian/Ubuntu peut donc contenir un initramfs moderne.
 
-# 4.3 Inspecter un initramfs
+## 4.3 Inspecter un initramfs
 
 Sur Debian/Ubuntu :
 
@@ -434,7 +438,7 @@ sudo update-initramfs -u
 
 Sur Fedora/RHEL, l'outil courant est plutôt `dracut`.
 
-# 4.4 Passage au vrai système racine
+## 4.4 Passage au vrai système racine
 
 Après préparation du stockage, l'early userspace bascule vers le vrai `/` puis lance le vrai PID 1.
 
@@ -454,7 +458,7 @@ Il doit notamment :
 - récolter les processus terminés qui lui sont rattachés ;
 - gérer l'arrêt et le redémarrage du système.
 
-# 5.1 Identifier PID 1
+## 5.1 Identifier PID 1
 
 ```bash
 ps -p 1 -o comm=
@@ -466,7 +470,7 @@ ou :
 readlink -f /sbin/init
 ```
 
-# 5.2 Quelques init systems
+## 5.2 Quelques init systems
 
 On rencontre notamment :
 
@@ -479,7 +483,7 @@ On rencontre notamment :
 
 Ce cours se concentre sur systemd.
 
-# 5.3 Correction historique : Debian et Upstart
+## 5.3 Correction historique : Debian et Upstart
 
 Debian **n'a pas utilisé Upstart comme système d'initialisation par défaut**.
 
@@ -493,13 +497,13 @@ systemd est l'init par défaut de Debian depuis **Debian 8 Jessie**.
 
 Upstart a été utilisé principalement par Ubuntu pendant plusieurs années avant le passage d'Ubuntu à systemd avec Ubuntu 15.04.
 
-# 5.4 Compatibilité SysV et systemd moderne
+## 5.4 Compatibilité SysV et systemd moderne
 
 Historiquement, systemd savait convertir automatiquement certains scripts SysV `/etc/init.d/*` en unités transitoires.
 
-Cependant, **systemd 260 a supprimé en amont le support des scripts de service System V**.
+Cependant, **systemd 260 (17 mars 2026) a supprimé en amont le support des scripts de service System V** : `systemd-sysv-generator`, `systemd-sysv-install` et `rc-local.service` ont disparu.
 
-Cela ne signifie pas que tous les systèmes Linux ont immédiatement perdu la compatibilité :
+Cela ne signifie pas que tous les systèmes Linux ont immédiatement perdu la compatibilité — Ubuntu 26.04 LTS et Fedora 44 sont sortis avec systemd 259, qui la conserve encore :
 
 - les distributions peuvent livrer des versions antérieures ;
 - elles peuvent conserver des mécanismes de compatibilité propres ;
@@ -529,13 +533,13 @@ Parmi eux :
 
 Toutes les distributions n'activent pas tous ces composants.
 
-# 6.1 systemd et D-Bus
+## 6.1 systemd et D-Bus
 
 systemd expose une API via **D-Bus**.
 
 `systemctl` n'est donc pas simplement un wrapper qui exécute des scripts shell : il dialogue avec le gestionnaire systemd.
 
-# 6.2 systemd et cgroups
+## 6.2 systemd et cgroups
 
 systemd organise les processus dans la hiérarchie des **control groups**.
 
@@ -552,7 +556,7 @@ Pour observer la hiérarchie :
 systemd-cgls
 ```
 
-# 6.3 Activation à la demande
+## 6.3 Activation à la demande
 
 Un service ne doit pas nécessairement démarrer dès le boot.
 
@@ -574,7 +578,7 @@ L'objet central de systemd est l'**unité** (*unit*).
 
 Une unité possède un nom avec un suffixe indiquant son type.
 
-# 7.1 Principaux types
+## 7.1 Principaux types
 
 | Suffixe | Rôle |
 |---|---|
@@ -592,7 +596,7 @@ Une unité possède un nom avec un suffixe indiquant son type.
 
 Il existe d'autres types plus spécialisés.
 
-# 7.2 Voir les unités chargées
+## 7.2 Voir les unités chargées
 
 ```bash
 systemctl list-units
@@ -610,7 +614,7 @@ Unités en échec :
 systemctl --failed
 ```
 
-# 7.3 Unités chargées et fichiers d'unités
+## 7.3 Unités chargées et fichiers d'unités
 
 Ne pas confondre :
 
@@ -641,7 +645,7 @@ Une organisation fréquente est :
 /etc/systemd/system/       configuration administrateur locale
 ```
 
-# 8.1 Règle essentielle
+## 8.1 Règle essentielle
 
 Il ne faut généralement **pas modifier directement** l'unité fournie sous `/usr/lib/systemd/system` ou `/lib/systemd/system`.
 
@@ -652,7 +656,7 @@ On crée plutôt :
 - une unité locale dans `/etc/systemd/system/` ;
 - ou un **drop-in**.
 
-# 8.2 Voir l'unité effective
+## 8.2 Voir l'unité effective
 
 ```bash
 systemctl cat ssh.service
@@ -660,7 +664,7 @@ systemctl cat ssh.service
 
 Le nom du service SSH peut être `ssh.service` ou `sshd.service` selon la distribution.
 
-# 8.3 Modifier avec un drop-in
+## 8.3 Modifier avec un drop-in
 
 ```bash
 sudo systemctl edit exemple.service
@@ -689,7 +693,7 @@ sudo systemctl restart exemple.service
 
 `systemctl edit` lance généralement le `daemon-reload` nécessaire lorsqu'il termine avec succès, mais comprendre explicitement cette étape reste important.
 
-# 8.4 Voir les propriétés calculées
+## 8.4 Voir les propriétés calculées
 
 ```bash
 systemctl show exemple.service
@@ -706,7 +710,7 @@ systemctl show exemple.service -p ActiveState -p SubState
 
 # 9. Administrer les services avec systemctl
 
-# 9.1 État
+## 9.1 État
 
 ```bash
 systemctl status nginx.service
@@ -718,7 +722,7 @@ Le suffixe `.service` peut souvent être omis :
 systemctl status nginx
 ```
 
-# 9.2 Démarrer et arrêter
+## 9.2 Démarrer et arrêter
 
 ```bash
 sudo systemctl start nginx
@@ -726,7 +730,7 @@ sudo systemctl stop nginx
 sudo systemctl restart nginx
 ```
 
-# 9.3 Recharger la configuration du daemon
+## 9.3 Recharger la configuration du daemon
 
 Si le programme sait relire sa configuration sans redémarrer :
 
@@ -742,7 +746,7 @@ sudo systemctl daemon-reload
 
 `daemon-reload` demande **à systemd** de relire les fichiers d'unités.
 
-# 9.4 Différence entre start et enable
+## 9.4 Différence entre start et enable
 
 `start` agit maintenant :
 
@@ -764,7 +768,7 @@ Pour faire les deux :
 sudo systemctl enable --now nginx
 ```
 
-# 9.5 Désactiver
+## 9.5 Désactiver
 
 ```bash
 sudo systemctl disable nginx
@@ -776,7 +780,7 @@ ou désactiver et arrêter :
 sudo systemctl disable --now nginx
 ```
 
-# 9.6 Mask
+## 9.6 Mask
 
 `mask` est plus fort que `disable`.
 
@@ -792,7 +796,7 @@ Pour annuler :
 sudo systemctl unmask exemple.service
 ```
 
-# 9.7 Tester les états dans un script
+## 9.7 Tester les états dans un script
 
 ```bash
 systemctl is-active --quiet nginx.service
@@ -802,7 +806,7 @@ systemctl is-failed --quiet nginx.service
 
 Le code de retour est exploitable par un script shell.
 
-# 9.8 Presets
+## 9.8 Presets
 
 Les **presets** expriment la politique par défaut d'une distribution ou d'un administrateur sur l'activation des unités.
 
@@ -822,7 +826,7 @@ Prenons une application fictive :
 /usr/local/bin/demo-worker
 ```
 
-# 10.1 Exemple simple
+## 10.1 Exemple simple
 
 Créer :
 
@@ -854,7 +858,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now demo-worker.service
 ```
 
-# 10.2 Les sections principales
+## 10.2 Les sections principales
 
 Une unité service contient souvent :
 
@@ -875,7 +879,7 @@ Une unité service contient souvent :
 
 `[Install]` indique comment l'unité est rattachée lors d'un `enable`.
 
-# 10.3 ExecStart n'est pas un shell
+## 10.3 ExecStart n'est pas un shell
 
 C'est une règle fondamentale.
 
@@ -895,7 +899,7 @@ ExecStart=/bin/sh -c 'echo bonjour > /tmp/message'
 
 Mais il vaut mieux éviter d'ajouter un shell si le programme peut être lancé directement.
 
-# 10.4 Plusieurs commandes
+## 10.4 Plusieurs commandes
 
 Pour les services qui l'acceptent :
 
@@ -908,7 +912,7 @@ ExecStopPost=/usr/local/bin/demo-cleanup
 
 Les règles dépendent du `Type=` du service.
 
-# 10.5 Variables d'environnement
+## 10.5 Variables d'environnement
 
 Directement :
 
@@ -925,7 +929,7 @@ EnvironmentFile=/etc/demo-worker/environment
 > [!warning]
 > Les variables d'environnement ne sont pas une bonne solution pour tous les secrets. Elles peuvent être exposées dans divers contextes. Pour des secrets, voir plus loin les **credentials systemd** et les mécanismes dédiés de l'application.
 
-# 10.6 Utilisateur de service
+## 10.6 Utilisateur de service
 
 ```ini
 User=demo
@@ -934,7 +938,7 @@ Group=demo
 
 Un daemon réseau n'a pas besoin d'être root simplement parce qu'il tourne en arrière-plan.
 
-# 10.7 Répertoires gérés par systemd
+## 10.7 Répertoires gérés par systemd
 
 ```ini
 RuntimeDirectory=demo-worker
@@ -951,7 +955,7 @@ Cela évite souvent des scripts `mkdir/chown` fragiles.
 
 `Type=` indique à systemd comment déterminer que le service a démarré.
 
-# 11.1 Type=exec
+## 11.1 Type=exec
 
 Pour de nombreux nouveaux services simples :
 
@@ -962,7 +966,7 @@ ExecStart=/usr/local/bin/demo-worker
 
 `Type=exec` attend que l'exécution du binaire ait réussi avant de considérer la phase de lancement comme franchie.
 
-# 11.2 Type=simple
+## 11.2 Type=simple
 
 ```ini
 Type=simple
@@ -971,7 +975,7 @@ ExecStart=/usr/local/bin/demo-worker
 
 Le processus configuré devient le processus principal et systemd ne réalise pas une synchronisation supplémentaire de disponibilité.
 
-# 11.3 Type=oneshot
+## 11.3 Type=oneshot
 
 Pour une tâche qui s'exécute puis se termine :
 
@@ -989,7 +993,7 @@ RemainAfterExit=yes
 
 l'unité peut rester considérée active après la fin du processus.
 
-# 11.4 Type=notify
+## 11.4 Type=notify
 
 Une application intégrée à `sd_notify()` peut informer systemd lorsqu'elle est réellement prête :
 
@@ -1000,7 +1004,7 @@ NotifyAccess=main
 
 C'est préférable à des délais arbitraires lorsque l'application sait émettre une notification de readiness.
 
-# 11.5 Type=forking
+## 11.5 Type=forking
 
 Utilisé pour certains daemons historiques qui se détachent eux-mêmes :
 
@@ -1011,7 +1015,7 @@ PIDFile=/run/ancien-daemon.pid
 
 Pour un nouveau programme, il est généralement plus simple de **rester au premier plan** et de laisser systemd superviser le processus.
 
-# 11.6 Redémarrage automatique
+## 11.6 Redémarrage automatique
 
 Pour un service long :
 
@@ -1030,7 +1034,7 @@ StartLimitIntervalSec=60s
 StartLimitBurst=5
 ```
 
-# 11.7 Watchdog
+## 11.7 Watchdog
 
 Les applications compatibles peuvent utiliser le watchdog systemd :
 
@@ -1051,7 +1055,7 @@ C'est l'une des parties les plus mal comprises de systemd.
 > [!important]
 > **Dépendance** et **ordre** sont deux notions orthogonales.
 
-# 12.1 Wants et Requires
+## 12.1 Wants et Requires
 
 ```ini
 Wants=postgresql.service
@@ -1067,7 +1071,7 @@ exprime une dépendance plus forte.
 
 Mais cela ne signifie pas à lui seul : « démarre obligatoirement après PostgreSQL ».
 
-# 12.2 After et Before
+## 12.2 After et Before
 
 L'ordre s'exprime séparément :
 
@@ -1083,11 +1087,11 @@ Requires=postgresql.service
 After=postgresql.service
 ```
 
-# 12.3 Pourquoi cette séparation ?
+## 12.3 Pourquoi cette séparation ?
 
 Elle permet à systemd de démarrer en parallèle les unités qui n'ont pas de contrainte d'ordre entre elles.
 
-# 12.4 Autres relations utiles
+## 12.4 Autres relations utiles
 
 Quelques directives importantes :
 
@@ -1102,7 +1106,7 @@ Quelques directives importantes :
 
 Elles n'ont pas toutes la même sémantique.
 
-# 12.5 PartOf
+## 12.5 PartOf
 
 Exemple :
 
@@ -1113,7 +1117,7 @@ PartOf=demo.target
 
 Cela peut permettre de propager certaines opérations d'arrêt/redémarrage depuis l'unité indiquée.
 
-# 12.6 Réseau : network.target n'est pas “Internet prêt”
+## 12.6 Réseau : network.target n'est pas “Internet prêt”
 
 Un piège fréquent :
 
@@ -1139,7 +1143,7 @@ mais cette synchronisation peut ralentir le boot et doit être utilisée uniquem
 
 Un serveur qui **fournit** un service réseau n'a généralement pas besoin d'attendre `network-online.target`.
 
-# 12.7 Voir les dépendances
+## 12.7 Voir les dépendances
 
 ```bash
 systemctl list-dependencies demo-worker.service
@@ -1166,7 +1170,7 @@ Exemples :
 - `emergency.target` ;
 - `shutdown.target`.
 
-# 13.1 Target par défaut
+## 13.1 Target par défaut
 
 ```bash
 systemctl get-default
@@ -1184,7 +1188,7 @@ ou :
 sudo systemctl set-default graphical.target
 ```
 
-# 13.2 Changer la target courante
+## 13.2 Changer la target courante
 
 ```bash
 sudo systemctl isolate multi-user.target
@@ -1193,7 +1197,7 @@ sudo systemctl isolate multi-user.target
 > [!warning]
 > `isolate` peut arrêter les unités qui ne font pas partie de la nouvelle target. Il ne faut pas l'utiliser à distance sans comprendre les conséquences, notamment sur le réseau et la session SSH.
 
-# 13.3 Runlevels SysV
+## 13.3 Runlevels SysV
 
 Historiquement, SysVinit utilise des niveaux numériques.
 
@@ -1211,7 +1215,7 @@ Une représentation classique est :
 
 Il est faux de considérer les niveaux 2, 3 et 5 comme universellement identiques sur tous les Unix/Linux.
 
-# 13.4 Aliases de compatibilité systemd
+## 13.4 Aliases de compatibilité systemd
 
 systemd fournit historiquement des aliases tels que :
 
@@ -1222,7 +1226,7 @@ runlevel5.target → graphical.target
 
 Le modèle natif à utiliser reste cependant celui des **targets nommées**.
 
-# 13.5 Modes rescue et emergency
+## 13.5 Modes rescue et emergency
 
 Pour basculer en mode secours :
 
@@ -1249,7 +1253,7 @@ Ces commandes perturbent fortement le système courant.
 - messages syslog transférés ;
 - métadonnées sur les unités et processus.
 
-# 14.1 Logs d'un service
+## 14.1 Logs d'un service
 
 ```bash
 journalctl -u nginx.service
@@ -1261,7 +1265,7 @@ Suivre en temps réel :
 journalctl -fu nginx.service
 ```
 
-# 14.2 Boot courant
+## 14.2 Boot courant
 
 ```bash
 journalctl -b
@@ -1279,7 +1283,7 @@ Lister les boots connus :
 journalctl --list-boots
 ```
 
-# 14.3 Messages du noyau
+## 14.3 Messages du noyau
 
 ```bash
 journalctl -k
@@ -1291,7 +1295,7 @@ journalctl -k
 journalctl -k -b
 ```
 
-# 14.4 Priorité
+## 14.4 Priorité
 
 Uniquement `err` et plus grave :
 
@@ -1305,7 +1309,7 @@ Depuis aujourd'hui :
 journalctl --since today
 ```
 
-# 14.5 Logs structurés
+## 14.5 Logs structurés
 
 Le journal conserve des champs comme :
 
@@ -1321,7 +1325,7 @@ Exemple :
 journalctl _SYSTEMD_UNIT=sshd.service
 ```
 
-# 14.6 Persistance
+## 14.6 Persistance
 
 Selon la configuration, le journal peut être :
 
@@ -1355,7 +1359,7 @@ Les timers peuvent remplacer de nombreux usages de cron tout en bénéficiant :
 - de la persistance optionnelle ;
 - d'un délai aléatoire contrôlé.
 
-# 15.1 Service associé
+## 15.1 Service associé
 
 `/etc/systemd/system/demo-backup.service` :
 
@@ -1368,7 +1372,7 @@ Type=oneshot
 ExecStart=/usr/local/sbin/demo-backup
 ```
 
-# 15.2 Timer
+## 15.2 Timer
 
 `/etc/systemd/system/demo-backup.timer` :
 
@@ -1392,25 +1396,25 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now demo-backup.timer
 ```
 
-# 15.3 Voir les timers
+## 15.3 Voir les timers
 
 ```bash
 systemctl list-timers --all
 ```
 
-# 15.4 Tester une expression OnCalendar
+## 15.4 Tester une expression OnCalendar
 
 ```bash
 systemd-analyze calendar 'Mon..Fri 08:00'
 ```
 
-# 15.5 Persistent=true
+## 15.5 Persistent=true
 
 Si le timer aurait dû s'exécuter pendant l'arrêt de la machine, `Persistent=true` permet généralement de déclencher la tâche après le prochain démarrage.
 
 Cela concerne les timers calendaires concernés, pas toutes les formes de timer.
 
-# 15.6 RandomizedDelaySec
+## 15.6 RandomizedDelaySec
 
 Sur une flotte de milliers de machines, on évite de lancer une tâche exactement à la même seconde partout :
 
@@ -1420,7 +1424,7 @@ RandomizedDelaySec=30m
 
 Cela réduit les effets de troupeau (*thundering herd*).
 
-# 15.7 Monotonic timers
+## 15.7 Monotonic timers
 
 Exemples :
 
@@ -1435,7 +1439,7 @@ Ces timers ne reposent pas uniquement sur l'heure du calendrier.
 
 # 16. Activation par socket et par chemin
 
-# 16.1 Socket activation
+## 16.1 Socket activation
 
 systemd peut ouvrir une socket avant le daemon.
 
@@ -1456,13 +1460,13 @@ Cette technique peut :
 - lancer un service à la demande ;
 - conserver un point d'écoute pendant certains redémarrages.
 
-# 16.2 Voir les sockets
+## 16.2 Voir les sockets
 
 ```bash
 systemctl list-sockets
 ```
 
-# 16.3 Path activation
+## 16.3 Path activation
 
 Une unité `.path` peut déclencher une unité lorsqu'un chemin change.
 
@@ -1483,7 +1487,7 @@ Activer :
 sudo systemctl enable --now demo-import.path
 ```
 
-# 16.4 Limites de Path units
+## 16.4 Limites de Path units
 
 Ce mécanisme ne remplace pas un bus d'événements fiable pour tous les besoins.
 
@@ -1500,7 +1504,7 @@ Il faut réfléchir à :
 
 systemd transforme de nombreuses ressources système en unités.
 
-# 17.1 Mount units
+## 17.1 Mount units
 
 Un montage `/srv/data` correspond à :
 
@@ -1516,19 +1520,19 @@ Pour le calculer :
 systemd-escape --path --suffix=mount /srv/data
 ```
 
-# 17.2 /etc/fstab et générateurs
+## 17.2 /etc/fstab et générateurs
 
 systemd utilise des **générateurs** au démarrage et lors de certains reloads pour produire des unités à partir de sources externes comme `/etc/fstab`.
 
 Ainsi, conserver `/etc/fstab` est parfaitement compatible avec systemd.
 
-# 17.3 Voir les montages systemd
+## 17.3 Voir les montages systemd
 
 ```bash
 systemctl list-units --type=mount
 ```
 
-# 17.4 Automount
+## 17.4 Automount
 
 Une unité `.automount` permet de retarder le montage jusqu'au premier accès.
 
@@ -1538,7 +1542,7 @@ Cela peut être utile pour :
 - systèmes de fichiers réseau ;
 - ressources rarement utilisées.
 
-# 17.5 Dépendances réseau des montages distants
+## 17.5 Dépendances réseau des montages distants
 
 Les systèmes de fichiers réseau sont traités spécialement et peuvent tirer `network-online.target` selon leur configuration.
 
@@ -1550,7 +1554,7 @@ Il faut éviter de fabriquer manuellement des dépendances réseau contradictoir
 
 systemd existe aussi au niveau de l'utilisateur.
 
-# 18.1 Gestionnaire utilisateur
+## 18.1 Gestionnaire utilisateur
 
 Une session peut avoir son propre :
 
@@ -1564,7 +1568,7 @@ Les commandes s'exécutent avec :
 systemctl --user status
 ```
 
-# 18.2 Emplacement des unités utilisateur
+## 18.2 Emplacement des unités utilisateur
 
 Emplacement courant :
 
@@ -1578,7 +1582,7 @@ Exemple :
 ~/.config/systemd/user/sync-notes.service
 ```
 
-# 18.3 Exemple
+## 18.3 Exemple
 
 ```ini
 [Unit]
@@ -1596,7 +1600,7 @@ systemctl --user daemon-reload
 systemctl --user start sync-notes.service
 ```
 
-# 18.4 Linger
+## 18.4 Linger
 
 Normalement, la vie du gestionnaire utilisateur dépend des sessions et de la politique de logind.
 
@@ -1608,7 +1612,7 @@ loginctl enable-linger "$USER"
 
 Cette décision a des conséquences en ressources et en sécurité.
 
-# 18.5 Variables de session
+## 18.5 Variables de session
 
 Un service `--user` ne récupère pas automatiquement tout l'environnement interactif du shell.
 
@@ -1624,13 +1628,13 @@ Il faut donc éviter de supposer que :
 
 Sur un système moderne, systemd s'appuie sur les **cgroups**, souvent en hiérarchie unifiée cgroup v2.
 
-# 19.1 Voir l'arbre
+## 19.1 Voir l'arbre
 
 ```bash
 systemd-cgls
 ```
 
-# 19.2 Slices
+## 19.2 Slices
 
 Les services sont organisés dans des slices.
 
@@ -1642,28 +1646,28 @@ user.slice
 machine.slice
 ```
 
-# 19.3 Limiter la mémoire
+## 19.3 Limiter la mémoire
 
 ```ini
 [Service]
 MemoryMax=512M
 ```
 
-# 19.4 Limiter le CPU
+## 19.4 Limiter le CPU
 
 ```ini
 [Service]
 CPUQuota=50%
 ```
 
-# 19.5 Limiter le nombre de tâches
+## 19.5 Limiter le nombre de tâches
 
 ```ini
 [Service]
 TasksMax=200
 ```
 
-# 19.6 Appliquer une propriété temporairement
+## 19.6 Appliquer une propriété temporairement
 
 Exemple :
 
@@ -1673,13 +1677,13 @@ sudo systemctl set-property demo-worker.service MemoryMax=512M
 
 Selon les options utilisées, la modification peut être persistante.
 
-# 19.7 Observer les ressources
+## 19.7 Observer les ressources
 
 ```bash
 systemd-cgtop
 ```
 
-# 19.8 Pourquoi limiter ?
+## 19.8 Pourquoi limiter ?
 
 Un daemon défaillant ne devrait pas pouvoir :
 
@@ -1693,7 +1697,7 @@ La limite systemd complète les contrôles applicatifs et la supervision.
 
 # 20. Identité, répertoires et credentials
 
-# 20.1 DynamicUser
+## 20.1 DynamicUser
 
 Pour certains services qui n'ont pas besoin d'une identité Unix permanente :
 
@@ -1712,7 +1716,7 @@ CacheDirectory=demo
 LogsDirectory=demo
 ```
 
-# 20.2 RuntimeDirectory
+## 20.2 RuntimeDirectory
 
 ```ini
 RuntimeDirectory=demo
@@ -1720,7 +1724,7 @@ RuntimeDirectory=demo
 
 crée un emplacement approprié sous `/run` pour le service.
 
-# 20.3 Credentials systemd
+## 20.3 Credentials systemd
 
 Les versions modernes de systemd proposent un mécanisme de **credentials** pour transmettre des données sensibles ou de configuration à un service sous forme de fichiers contrôlés.
 
@@ -1736,7 +1740,7 @@ Le programme reçoit un répertoire de credentials via l'environnement défini p
 
 Il faut quand même protéger correctement le fichier source et comprendre le modèle de menace.
 
-# 20.4 systemd-creds
+## 20.4 systemd-creds
 
 `systemd-creds` permet notamment de manipuler des credentials et, selon la plateforme et la configuration, de les chiffrer/sceller.
 
@@ -1758,7 +1762,7 @@ systemd fournit de nombreuses directives qui exploitent des mécanismes du noyau
 > [!important]
 > Le durcissement doit être **testé**. Activer aveuglément toutes les options peut casser le service.
 
-# 21.1 NoNewPrivileges
+## 21.1 NoNewPrivileges
 
 ```ini
 NoNewPrivileges=yes
@@ -1766,7 +1770,7 @@ NoNewPrivileges=yes
 
 empêche le processus et ses descendants de gagner de nouveaux privilèges par certains mécanismes comme setuid/setgid et capabilities de fichiers.
 
-# 21.2 PrivateTmp
+## 21.2 PrivateTmp
 
 ```ini
 PrivateTmp=yes
@@ -1774,7 +1778,7 @@ PrivateTmp=yes
 
 isole les espaces temporaires du service.
 
-# 21.3 ProtectSystem
+## 21.3 ProtectSystem
 
 ```ini
 ProtectSystem=strict
@@ -1784,7 +1788,7 @@ rend de larges parties du système de fichiers en lecture seule ou inaccessibles
 
 On ouvre ensuite précisément les zones d'écriture nécessaires avec les directives prévues à cet effet.
 
-# 21.4 ProtectHome
+## 21.4 ProtectHome
 
 ```ini
 ProtectHome=yes
@@ -1792,7 +1796,7 @@ ProtectHome=yes
 
 réduit l'accès aux répertoires utilisateurs.
 
-# 21.5 PrivateDevices
+## 21.5 PrivateDevices
 
 ```ini
 PrivateDevices=yes
@@ -1800,7 +1804,7 @@ PrivateDevices=yes
 
 limite l'accès aux périphériques.
 
-# 21.6 Protection du noyau
+## 21.6 Protection du noyau
 
 Exemples :
 
@@ -1811,7 +1815,7 @@ ProtectKernelLogs=yes
 ProtectControlGroups=yes
 ```
 
-# 21.7 Capabilities
+## 21.7 Capabilities
 
 Pour un service qui doit simplement écouter sur un port privilégié, il est souvent inutile de lui donner tous les privilèges root.
 
@@ -1824,7 +1828,7 @@ AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 Il faut comprendre les implications des capabilities avant de les attribuer.
 
-# 21.8 RestrictAddressFamilies
+## 21.8 RestrictAddressFamilies
 
 Pour un service uniquement IPv4/IPv6 :
 
@@ -1832,7 +1836,7 @@ Pour un service uniquement IPv4/IPv6 :
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 ```
 
-# 21.9 RestrictNamespaces
+## 21.9 RestrictNamespaces
 
 ```ini
 RestrictNamespaces=yes
@@ -1840,7 +1844,7 @@ RestrictNamespaces=yes
 
 peut empêcher la création de namespaces supplémentaires si le service n'en a pas besoin.
 
-# 21.10 SystemCallFilter
+## 21.10 SystemCallFilter
 
 systemd peut limiter les familles d'appels système via seccomp :
 
@@ -1850,7 +1854,7 @@ SystemCallFilter=@system-service
 
 Il faut vérifier la compatibilité réelle avec le programme.
 
-# 21.11 Exemple durci
+## 21.11 Exemple durci
 
 ```ini
 [Unit]
@@ -1890,7 +1894,7 @@ WantedBy=multi-user.target
 
 `MemoryDenyWriteExecute=yes` peut être incompatible avec certains runtimes JIT. Il faut alors adapter le profil plutôt que désactiver sans analyse l'ensemble du durcissement.
 
-# 21.12 Évaluer le durcissement
+## 21.12 Évaluer le durcissement
 
 ```bash
 systemd-analyze security demo-api.service
@@ -1900,7 +1904,7 @@ Le score obtenu est **un indicateur**, pas une preuve que le service est sécuri
 
 Une application vulnérable reste vulnérable même dans une sandbox bien configurée.
 
-# 21.13 Voir le sandboxing effectif
+## 21.13 Voir le sandboxing effectif
 
 ```bash
 systemctl show demo-api.service \
@@ -1915,7 +1919,7 @@ systemctl show demo-api.service \
 
 # 22. Analyse des performances de démarrage
 
-# 22.1 Temps global
+## 22.1 Temps global
 
 ```bash
 systemd-analyze time
@@ -1927,7 +1931,7 @@ Sortie typique :
 Startup finished in ... (kernel) + ... (userspace) = ...
 ```
 
-# 22.2 Services les plus longs
+## 22.2 Services les plus longs
 
 ```bash
 systemd-analyze blame
@@ -1936,7 +1940,7 @@ systemd-analyze blame
 > [!warning]
 > Une unité longue dans `blame` n'est pas forcément la cause du retard global : des unités peuvent s'exécuter en parallèle.
 
-# 22.3 Chemin critique
+## 22.3 Chemin critique
 
 ```bash
 systemd-analyze critical-chain
@@ -1950,7 +1954,7 @@ systemd-analyze critical-chain graphical.target
 
 Le **critical chain** est souvent plus utile que `blame` pour comprendre ce qui bloque réellement une target.
 
-# 22.4 Graphe SVG
+## 22.4 Graphe SVG
 
 ```bash
 systemd-analyze plot > boot.svg
@@ -1958,7 +1962,7 @@ systemd-analyze plot > boot.svg
 
 On peut ensuite ouvrir `boot.svg` dans un navigateur.
 
-# 22.5 Vérifier une unité
+## 22.5 Vérifier une unité
 
 ```bash
 systemd-analyze verify /etc/systemd/system/demo-worker.service
@@ -1970,7 +1974,7 @@ Cette validation détecte plusieurs erreurs de configuration, mais pas toutes le
 
 # 23. Diagnostic et récupération
 
-# 23.1 Méthode de diagnostic
+## 23.1 Méthode de diagnostic
 
 Lorsqu'un service ne démarre pas :
 
@@ -1984,31 +1988,31 @@ Lorsqu'un service ne démarre pas :
 8. vérifier les limites de ressources ;
 9. vérifier l'environnement réellement disponible.
 
-# 23.2 État détaillé
+## 23.2 État détaillé
 
 ```bash
 systemctl status demo-worker.service
 ```
 
-# 23.3 Logs
+## 23.3 Logs
 
 ```bash
 journalctl -u demo-worker.service -b --no-pager
 ```
 
-# 23.4 Configuration effective
+## 23.4 Configuration effective
 
 ```bash
 systemctl cat demo-worker.service
 ```
 
-# 23.5 Propriétés
+## 23.5 Propriétés
 
 ```bash
 systemctl show demo-worker.service
 ```
 
-# 23.6 Reset failed
+## 23.6 Reset failed
 
 Après correction :
 
@@ -2018,14 +2022,14 @@ sudo systemctl reset-failed demo-worker.service
 
 Cela réinitialise l'état failed et certains compteurs associés ; cela ne corrige pas la cause de la panne.
 
-# 23.7 Processus du service
+## 23.7 Processus du service
 
 ```bash
 systemctl status demo-worker.service
 systemd-cgls /system.slice/demo-worker.service
 ```
 
-# 23.8 Pourquoi “ça marche dans mon shell” mais pas dans systemd ?
+## 23.8 Pourquoi “ça marche dans mon shell” mais pas dans systemd ?
 
 Causes fréquentes :
 
@@ -2042,7 +2046,7 @@ Causes fréquentes :
 
 Un bon service utilise des **chemins absolus** et un environnement explicite.
 
-# 23.9 Emergency target depuis GRUB
+## 23.9 Emergency target depuis GRUB
 
 On peut ajouter temporairement à la ligne du noyau :
 
@@ -2058,7 +2062,7 @@ systemd.unit=rescue.target
 
 La différence entre rescue et emergency doit être connue avant usage : emergency fournit un environnement encore plus minimal.
 
-# 23.10 Boot qui échoue à cause d'un montage
+## 23.10 Boot qui échoue à cause d'un montage
 
 Examiner :
 
@@ -2081,13 +2085,13 @@ blkid
 
 `systemd-run` permet de lancer un programme dans une unité créée dynamiquement.
 
-# 24.1 Lancer une commande supervisée
+## 24.1 Lancer une commande supervisée
 
 ```bash
 systemd-run --unit=demo-date /usr/bin/date
 ```
 
-# 24.2 Avec limite mémoire
+## 24.2 Avec limite mémoire
 
 ```bash
 systemd-run --unit=demo-job \
@@ -2095,7 +2099,7 @@ systemd-run --unit=demo-job \
   /usr/local/bin/demo-job
 ```
 
-# 24.3 Scope interactif
+## 24.3 Scope interactif
 
 Pour exécuter une commande dans un scope :
 
@@ -2103,7 +2107,7 @@ Pour exécuter une commande dans un scope :
 systemd-run --scope /usr/bin/bash
 ```
 
-# 24.4 Timer transitoire
+## 24.4 Timer transitoire
 
 ```bash
 systemd-run --on-active=10m /usr/local/bin/demo-job
@@ -2130,7 +2134,7 @@ Il doit :
 - disposer de limites de ressources ;
 - ne pas accéder aux répertoires personnels.
 
-# 25.1 Unité complète
+## 25.1 Unité complète
 
 ```ini
 [Unit]
@@ -2172,7 +2176,7 @@ TasksMax=256
 WantedBy=multi-user.target
 ```
 
-# 25.2 Questionner chaque directive
+## 25.2 Questionner chaque directive
 
 Même dans cet exemple, il faut se demander :
 
@@ -2185,7 +2189,7 @@ Même dans cet exemple, il faut se demander :
 
 Une unité de production est un **contrat explicite de dépendances et de privilèges**.
 
-# 25.3 Déploiement
+## 25.3 Déploiement
 
 Après installation :
 
@@ -2203,7 +2207,7 @@ journalctl -u myapi.service -b
 systemd-analyze security myapi.service
 ```
 
-# 25.4 Mise à jour atomique
+## 25.4 Mise à jour atomique
 
 Lors d'un déploiement applicatif :
 
@@ -2222,7 +2226,7 @@ systemd ne remplace pas un mécanisme de déploiement, mais fournit une supervis
 
 Ce chapitre est principalement historique et sert à comprendre de vieux systèmes.
 
-# 26.1 SysVinit
+## 26.1 SysVinit
 
 SysVinit s'organise traditionnellement autour de :
 
@@ -2233,7 +2237,7 @@ SysVinit s'organise traditionnellement autour de :
 
 Les scripts commencent souvent par des liens `Sxx` ou `Kxx` selon le démarrage ou l'arrêt.
 
-# 26.2 Pourquoi systemd a changé le modèle
+## 26.2 Pourquoi systemd a changé le modèle
 
 Les limites des approches traditionnelles comprennent notamment :
 
@@ -2245,7 +2249,7 @@ Les limites des approches traditionnelles comprennent notamment :
 
 systemd propose au contraire un graphe d'unités déclaratif et une supervision basée sur les cgroups.
 
-# 26.3 Upstart
+## 26.3 Upstart
 
 Upstart était un init **événementiel** développé initialement par Canonical.
 
@@ -2260,7 +2264,7 @@ Concepts historiques :
 
 Il ne faut pas apprendre Upstart comme solution recommandée pour une nouvelle distribution moderne.
 
-# 26.4 systemd 260 et fin du convertisseur SysV amont
+## 26.4 systemd 260 et fin du convertisseur SysV amont
 
 Une évolution importante de 2026 : systemd 260 a retiré le support natif amont des scripts de service SysV.
 
@@ -2268,7 +2272,7 @@ Conséquence pratique pour un éditeur logiciel :
 
 > fournir une vraie unité `.service` et ne plus supposer qu'un `/etc/init.d/mon-service` sera automatiquement traduit par toutes les versions futures de systemd.
 
-# 26.5 OpenRC, runit et s6
+## 26.5 OpenRC, runit et s6
 
 systemd n'est pas l'unique modèle possible.
 
@@ -2529,7 +2533,7 @@ Choisir un vrai service et produire une fiche avec :
 
 # 28. Checklist et commandes de référence
 
-# 28.1 Avant de créer un service
+## 28.1 Avant de créer un service
 
 - [ ] Le programme peut-il rester au premier plan ?
 - [ ] Quel utilisateur doit l'exécuter ?
@@ -2546,7 +2550,7 @@ Choisir un vrai service et produire une fiche avec :
 - [ ] Comment vérifier sa disponibilité ?
 - [ ] Comment revenir à la version précédente ?
 
-# 28.2 Commandes quotidiennes
+## 28.2 Commandes quotidiennes
 
 ```bash
 systemctl status SERVICE
@@ -2564,7 +2568,7 @@ systemctl show SERVICE
 systemctl --failed
 ```
 
-# 28.3 Après modification d'une unité
+## 28.3 Après modification d'une unité
 
 ```bash
 sudo systemctl daemon-reload
@@ -2574,7 +2578,7 @@ systemctl status mon-service.service
 journalctl -u mon-service.service -b
 ```
 
-# 28.4 Diagnostic du boot
+## 28.4 Diagnostic du boot
 
 ```bash
 systemd-analyze time
@@ -2585,14 +2589,14 @@ journalctl -b -1
 systemctl --failed
 ```
 
-# 28.5 Timers
+## 28.5 Timers
 
 ```bash
 systemctl list-timers --all
 systemd-analyze calendar daily
 ```
 
-# 28.6 Ressources
+## 28.6 Ressources
 
 ```bash
 systemd-cgls
@@ -2600,7 +2604,7 @@ systemd-cgtop
 systemctl show SERVICE -p MemoryCurrent -p MemoryMax -p TasksCurrent -p TasksMax
 ```
 
-# 28.7 Sécurité
+## 28.7 Sécurité
 
 ```bash
 systemd-analyze security SERVICE

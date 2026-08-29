@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Pyramid
+
+> [!abstract] Objectif
+> Construire une application Web avec Pyramid 2.1 en comprenant ce que fait le framework : WSGI, configuration déclarative, routes et traversal, vues et rendus, sécurité moderne (security policy, permissions, CSRF), sessions, formulaires avec Deform, persistance SQLAlchemy ou ZODB, authentification LDAP et OIDC, tests et déploiement.
+
+Voir aussi : [[Python]], [[Deform]], [[SQLAchemy]], [[ZC.Buildout]], [[OAuth OpenID]], [[LDAP]], [[Apache]].
 
 > [!info] Version de référence
 > Ce cours est mis à jour pour **Pyramid 2.1**, publié en mars 2026. Pyramid 2.1 nécessite **Python 3.10 ou plus récent** et prend officiellement en charge Python 3.10 à 3.14. La branche de développement de Pyramid peut déjà documenter des fonctions destinées à une future version 2.2 : elles ne doivent pas être considérées comme disponibles dans la version stable 2.1 tant qu'elles ne sont pas publiées.

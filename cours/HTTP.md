@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # HTTP
+
+> [!abstract] Objectif
+> Maîtriser HTTP tel qu'il est spécifié et déployé en 2026 : sémantique (RFC 9110), méthodes dont le nouveau QUERY, en-têtes, codes, négociation, cache (RFC 9111), HTTP/1.1, HTTP/2 et HTTP/3 sur QUIC, TLS, sécurité des applications Web, performance et outils de diagnostic.
+
+Voir aussi : [[HTML]], [[Javascript]], [[SEO]], [[Apache]], [[Les protocoles de communications]], [[OAuth OpenID]], [[IPFS]].
 
 HTTP, **Hypertext Transfer Protocol**, est la famille de protocoles applicatifs au cœur du Web. Il fournit une interface générique permettant à un client d'interagir avec des **ressources** au moyen de requêtes et de réponses.
 
