@@ -15,616 +15,1864 @@ themes:
   - ldap
   - openldap
   - administration-systeme
-resume: "Cours sur LDAP et OpenLDAP : structure de l'annuaire, opérations, format LDIF, classes d'objets et RFC de référence."
+resume: "Cours complet sur LDAPv3 et OpenLDAP : DIT, DN, schémas, filtres, LDIF, TLS/SASL, ACL, mots de passe, réplication, sauvegarde, supervision et intégration applicative."
 niveau: intermediaire
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-05-22
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-# Présentation
 
-LDAP est l'acronyme de Lightweight Directory Access Protocol. Il s'agit d'un protocole standard de l'industrie pour accéder et maintenir des services d'annuaire distribués sur Internet.
-Un annuaire, est une sorte de base de données optimisée pour la lecture, la recherche et la navigation, plutôt que pour les opérations d'écriture et de modification.
+# LDAP et OpenLDAP
 
-# OpenLDAP
+LDAP signifie **Lightweight Directory Access Protocol**. LDAPv3 est un protocole standard permettant de consulter et de modifier un **service d'annuaire**.
 
-OpenLDAP est une implémentation libre et ouverte du protocole LDAP. Il est utilisé pour développer des applications de gestion d'annuaires. OpenLDAP permet de centraliser les informations des utilisateurs, telles que les identifiants, les coordonnées et les autorisations d'accès. Cela facilite grandement l'administration des systèmes et des applications.
+Un annuaire n'est pas simplement une base SQL exposée autrement. Il est particulièrement adapté aux données :
 
-# Structure de l'annuaire LDAP
+- fortement structurées ;
+- organisées hiérarchiquement ;
+- très souvent lues ;
+- partagées entre de nombreuses applications ;
+- associées à des identités, groupes, machines, services ou politiques.
 
-Un annuaire LDAP est structuré comme un arbre, avec un nœud racine appelé Base Distinguished Name (ou Base DN). Sous cette racine, nous pouvons avoir plusieurs branches représentant des organisations, des unités organisationnelles, des individus, etc.
+Exemples classiques :
 
-# Représentation
+- annuaire des utilisateurs d'une organisation ;
+- carnet d'adresses ;
+- groupes et rôles ;
+- inventaire de machines ;
+- paramètres d'authentification ;
+- backend d'identités pour un serveur SSO.
 
-LDAP peut représenter les objets dans une hiérarchie ou une arborescence, ce qui le rend idéal pour les organisations qui ont une structure hiérarchique claire.
+> [!important]
+> LDAP est un **protocole d'annuaire**, pas un protocole SSO moderne. Pour une application Web, on préfère souvent exposer l'identité via **OpenID Connect** et laisser l'Identity Provider interroger LDAP en arrière-plan. Voir [[OAuth OpenID]].
 
-Voici un exemple simplifié de ce à quoi une arborescence LDAP pourrait ressembler :
+## Versions de référence en 2026
+
+Au 29 août 2026 :
+
+- **OpenLDAP 2.6.14** est la branche **LTS** ;
+- **OpenLDAP 2.7.0** est la branche **Feature Release** ;
+- LDAPv3 reste défini principalement par la famille de RFC 4510 à 4519.
+
+Pour un serveur de production, la version fournie et maintenue par la distribution reste généralement le choix le plus simple. Il faut distinguer la version *upstream* d'OpenLDAP de la version maintenue par Debian, Ubuntu, Red Hat, etc.
+
+# Sommaire
+
+1. [[#1. Comprendre un service d'annuaire]]
+2. [[#2. Le modèle LDAP]]
+3. [[#3. DIT, DN, RDN et attributs]]
+4. [[#4. Schémas LDAP]]
+5. [[#5. Les opérations LDAP]]
+6. [[#6. Rechercher avec LDAP]]
+7. [[#7. Le format LDIF]]
+8. [[#8. Installation d'OpenLDAP]]
+9. [[#9. cn=config et configuration dynamique]]
+10. [[#10. Construire un annuaire propre]]
+11. [[#11. Gérer les utilisateurs et groupes]]
+12. [[#12. Authentification LDAP]]
+13. [[#13. TLS, StartTLS et LDAPS]]
+14. [[#14. Contrôle d'accès ACL]]
+15. [[#15. Mots de passe et politiques de mot de passe]]
+16. [[#16. Index et performances]]
+17. [[#17. Contraintes d'unicité et intégrité]]
+18. [[#18. Étendre le schéma et gérer les OID]]
+19. [[#19. Réplication avec syncrepl]]
+20. [[#20. Sauvegarde et restauration]]
+21. [[#21. Supervision et diagnostic]]
+22. [[#22. Haute disponibilité et lloadd]]
+23. [[#23. Intégration Linux, applications et SSO]]
+24. [[#24. LDAP dans une application Python]]
+25. [[#25. Sécurité et durcissement]]
+26. [[#26. Migration d'un ancien OpenLDAP]]
+27. [[#27. Travaux pratiques]]
+28. [[#28. Projet final]]
+29. [[#29. Checklist de production]]
+30. [[#30. RFC et références]]
+
+# 1. Comprendre un service d'annuaire
+
+## 1.1 Annuaire vs base relationnelle
+
+Une base relationnelle organise principalement ses données en tables reliées entre elles. LDAP organise les entrées dans un **arbre d'information**, le **DIT** (*Directory Information Tree*).
+
+| Besoin | LDAP | SGBD relationnel |
+|---|---:|---:|
+| Recherche d'identités | Excellent | Possible |
+| Lecture fréquente | Excellent | Excellent |
+| Hiérarchie naturelle | Native | À modéliser |
+| Transactions complexes | Limité | Excellent |
+| Agrégations analytiques | Faible | Excellent |
+| Jointures arbitraires | Non | Oui |
+| Schéma standard d'identités | Oui | Non imposé |
+| Réplication d'annuaire | Native selon serveur | Variable |
+
+LDAP n'est donc pas un remplacement universel de PostgreSQL ou MariaDB.
+
+## 1.2 Quand LDAP est pertinent
+
+LDAP est pertinent lorsqu'une même identité doit être reconnue par plusieurs systèmes :
+
+```text
+                       +------------------+
+                       |   Identity       |
+                       |   Provider       |
+                       +---------+--------+
+                                 |
+                              LDAP
+                                 |
+                +----------------+----------------+
+                |                                 |
+        +-------v-------+                 +-------v-------+
+        |   OpenLDAP    |                 | Replica LDAP  |
+        +-------+-------+                 +---------------+
+                |
+       +--------+--------+----------------+
+       |                 |                |
++------v------+   +------v------+  +------v------+
+| application |   | Unix/PAM    |  | outils     |
+| métier      |   | NSS         |  | internes   |
++-------------+   +-------------+  +-------------+
+```
+
+## 1.3 Quand LDAP n'est pas le meilleur choix
+
+Éviter d'utiliser LDAP comme :
+
+- base de données métier générale ;
+- stockage de gros blobs ;
+- moteur analytique ;
+- queue de messages ;
+- remplacement direct d'OAuth 2.0/OIDC ;
+- stockage de secrets sans architecture dédiée.
+
+# 2. Le modèle LDAP
+
+LDAPv3 définit un ensemble de modèles complémentaires :
+
+- **modèle d'information** : entrées, attributs, schémas ;
+- **modèle de nommage** : DN et RDN ;
+- **modèle fonctionnel** : Search, Add, Modify, Delete, Bind… ;
+- **modèle de sécurité** : authentification, autorisation, TLS, SASL.
+
+Une entrée LDAP est un ensemble d'attributs identifié par un DN.
+
+Exemple conceptuel :
+
+```ldif
+dn: uid=ada,ou=people,dc=example,dc=org
+objectClass: inetOrgPerson
+uid: ada
+cn: Ada Lovelace
+sn: Lovelace
+givenName: Ada
+mail: ada@example.org
+```
+
+# 3. DIT, DN, RDN et attributs
+
+## 3.1 DIT
+
+Le **DIT** est l'arbre logique des entrées.
 
 ```mermaid
-graph TD;
-    A["dc=monEntreprise, dc=com"]
-    B["ou=Utilisateurs"]
-    C["ou=Groupes"]
-    D["ou=Ordinateurs"]
-    E["cn=John Doe"]
-    F["cn=Jane Doe"]
-    G["cn=Admins"]
-    H["cn=Utilisateurs"]
-    I["cn=Ordinateur1"]
-    J["cn=Ordinateur2"]
-    A-->B;
-    A-->C;
-    A-->D;
-    B-->E;
-    B-->F;
-    C-->G;
-    C-->H;
-    D-->I;
-    D-->J;
+graph TD
+  A["dc=example,dc=org"]
+  B["ou=people"]
+  C["ou=groups"]
+  D["uid=ada"]
+  E["uid=grace"]
+  F["cn=admins"]
+  G["cn=developers"]
+  A --> B
+  A --> C
+  B --> D
+  B --> E
+  C --> F
+  C --> G
 ```
 
-Dans cet exemple, `dc=monEntreprise, dc=com` est le sommet de l'arborescence, qui se divise ensuite en plusieurs unités organisationnelles (ou=) : "Utilisateurs", "Groupes" et "Ordinateurs". Chaque unité organisationnelle contient des noms communs (cn=), qui sont les entrées individuelles dans l'annuaire.
+## 3.2 Distinguished Name
 
-- Sous "Utilisateurs", nous avons "John Doe" et "Jane Doe".
-- Sous "Groupes", nous avons les groupes "Admins" et "Utilisateurs".
-- Sous "Ordinateurs", nous avons "Ordinateur1" et "Ordinateur2".
+Le **DN** identifie une entrée dans le DIT :
 
-# Opérations LDAP
+```text
+uid=ada,ou=people,dc=example,dc=org
+```
 
-Les opérations les plus courantes en LDAP sont : 
-1. **Recherche (Search)** : Chercher et retrouver des entrées dans l'annuaire.
-2. **Ajout (Add)** : Ajouter des entrées à l'annuaire.
-3. **Suppression (Delete)** : Supprimer des entrées de l'annuaire.
-4. **Modification (Modify)** : Modifier des entrées existantes dans l'annuaire.
+Il est formé de plusieurs **RDN** (*Relative Distinguished Names*).
 
-Ces opérations sont effectuées à l'aide des outils et commandes fournis par OpenLDAP, tels que `ldapsearch`, `ldapadd`, `ldapdelete`, et `ldapmodify`.
+Pour l'entrée précédente :
 
-# Le format LDIF
+```text
+RDN = uid=ada
+parent = ou=people,dc=example,dc=org
+DN = uid=ada,ou=people,dc=example,dc=org
+```
 
-LDIF signifie "LDAP Data Interchange Format". Il s'agit d'un format standard utilisé pour représenter les données LDAP sous forme de texte ASCII. Les fichiers LDIF sont utilisés pour l'échange de données entre différents serveurs LDAP, pour l'importation et l'exportation de données, et pour la gestion des modifications des données.
+Le DN n'est pas une simple chaîne à concaténer naïvement : des règles d'échappement et de normalisation s'appliquent. Les bibliothèques LDAP doivent être utilisées pour construire ou analyser des DN lorsque les valeurs viennent d'utilisateurs.
 
-Un fichier LDIF est une collection d'enregistrements séparés par des lignes vides. Chaque enregistrement représente soit une entrée LDAP, soit une modification d'une entrée existante. 
+## 3.3 Attributs mono et multivalués
 
-Une entrée typique pourrait ressembler à ceci :
+Un attribut LDAP peut être multivalué :
 
 ```ldif
-dn: cn=John Doe,dc=example,dc=com
-objectClass: inetOrgPerson
-cn: John Doe
-sn: Doe
-mail: john.doe@example.com
-```
-
-## Les mots clés du format LDIF
-
-- `dn`: "Distinguished Name". C'est l'identifiant unique de l'entrée dans l'annuaire. Il est généralement composé de plusieurs parties, telles que `cn` (Common Name), `dc` (Domain Component), `ou` (Organizational Unit), etc.
-  
-- `objectClass`: C'est le type d'objet de l'entrée. Il définit les attributs que l'entrée peut ou doit avoir. Les classes d'objet courantes comprennent `top`, `person`, `inetOrgPerson`, `organizationalPerson`, etc.
-
-- `cn`: "Common Name". C'est souvent le nom  ou les noms telle que les abréviations de l'utilisateur ou de l'objet. `cn` peut être multi-valeurs et dans ce cas répété.
-  
-- `sn`: "Surname". Il représente généralement le nom de famille d'une personne.
-  
-- `mail`: L'adresse e-mail de l'utilisateur.
-
-Dans le cadre de modifications, les fichiers LDIF peuvent également inclure les instructions suivantes :
-
-- `add`: Ajoute un nouvel attribut à une entrée existante.
-- `delete`: Supprime un attribut d'une entrée existante.
-- `replace`: Remplace la valeur d'un attribut existant.
-- `changetype`: Spécifie le type de modification à effectuer.
-
-Un exemple de modification pourrait être :
-
-```ldif
-dn: cn=John Doe,dc=example,dc=com
-changetype: modify
-replace: mail
-mail: john.newmail@example.com
-```
-Ceci remplacera l'adresse e-mail de l'utilisateur "John Doe". 
-
-## Multi-valeurs exemple de `cn`
-Dans un annuaire LDAP, une personne peut avoir un attribut `cn` (Common Name) qui contient plusieurs noms. Voici un exemple pour illustrer cela :
-
-Supposons qu'une personne s'appelle "Jean Dupont" mais est également connue sous d'autres noms ou titres. Son attribut `cn` pourrait contenir plusieurs de ces noms. Voici à quoi cela pourrait ressembler dans une entrée LDAP :
-
-```
-dn: uid=jeand,ou=people,dc=example,dc=com
 cn: Jean Dupont
 cn: Jean P. Dupont
-cn: Dr. Jean Dupont
-cn: J. Dupont
-mail: jean.dupont@example.com
-uid: jeand
+cn: Dr Jean Dupont
 ```
 
-Dans cet exemple, l'attribut `cn` est multivalué, ce qui signifie qu'il contient plusieurs valeurs différentes pour représenter le même individu :
+Il ne faut donc pas modéliser mentalement une entrée LDAP comme un dictionnaire `clé -> chaîne`, mais plutôt comme :
 
-- "Jean Dupont" : le nom complet de la personne.
-- "Jean P. Dupont" : une variante du nom avec l'initiale du deuxième prénom.
-- "Dr. Jean Dupont" : le nom avec un titre professionnel.
-- "J. Dupont" : une forme abrégée du nom.
+```text
+attribut -> ensemble ordonné ou non de valeurs selon les usages
+```
 
-Cela permet de capturer différentes façons dont le nom de la personne peut être utilisé ou reconnu, tout en les associant à la même entrée dans l'annuaire LDAP.
-# Les classes d'objets
+## 3.4 `uid` n'est pas automatiquement unique
 
-Les classes d'objets en LDAP sont définies dans les schémas LDAP. Un schéma LDAP est une collection de définitions et de règles concernant les types d'informations qui peuvent être stockées dans l'annuaire.
+L'attribut `uid` sert très souvent d'identifiant de connexion, mais le protocole LDAP n'impose pas qu'une valeur `uid` soit globalement unique dans tout le DIT.
 
-Dans le contexte de LDAP, un schéma définit plusieurs types d'informations :
+Pour obtenir une vraie contrainte d'unicité dans OpenLDAP, utiliser notamment l'overlay **unique** et choisir son périmètre.
 
-- Les **classes d'objets**, qui déterminent les types d'objets que nous pouvons créer dans l'annuaire.
-- Les **attributs** disponibles pour chaque classe d'objet.
-- Les règles concernant les attributs requis et optionnels pour chaque classe d'objet.
+# 4. Schémas LDAP
 
-Les classes d'objets comme `top`, `person`, `inetOrgPerson`, `organizationalPerson`, etc., sont définies dans des fichiers de schéma standard inclus avec la plupart des distributions de serveurs LDAP, y compris OpenLDAP.
+Un schéma définit :
 
-Par exemple, dans le cas d'OpenLDAP, ces définitions de classes d'objets se trouvent généralement dans des fichiers de schéma dans le répertoire `/etc/ldap/schema/` ou `/etc/openldap/schema/` selon notre installation.
+- les **attribute types** ;
+- les **object classes** ;
+- les syntaxes ;
+- les matching rules ;
+- les relations d'héritage ;
+- les attributs `MUST` et `MAY`.
 
-Chaque fichier de schéma contient des définitions pour une ou plusieurs classes d'objets et attributs. Ces définitions incluent le nom de la classe d'objet, la description, l'OID (Object Identifier), la liste des attributs obligatoires (MUST) et la liste des attributs optionnels (MAY).
+## 4.1 Classes STRUCTURAL, AUXILIARY et ABSTRACT
 
-Par exemple, la définition de la classe d'objet `person` peut ressembler à ceci :
+Une objectClass peut être :
+
+- **ABSTRACT** : sert de base à d'autres classes ;
+- **STRUCTURAL** : représente la nature principale de l'entrée ;
+- **AUXILIARY** : ajoute des attributs complémentaires.
+
+Une entrée possède une chaîne de classes structurelles cohérente et peut recevoir plusieurs classes auxiliaires.
+
+## 4.2 `person`, `organizationalPerson`, `inetOrgPerson`
+
+La hiérarchie classique est :
+
+```text
+top
+└── person
+    └── organizationalPerson
+        └── inetOrgPerson
+```
+
+`inetOrgPerson` hérite donc des classes précédentes. Dans un LDIF, il est généralement suffisant d'écrire :
+
+```ldif
+objectClass: inetOrgPerson
+```
+
+Le serveur connaît l'héritage du schéma.
+
+Voir aussi [[InetOrgPerson]].
+
+## 4.3 MUST et MAY
+
+Exemple simplifié :
+
 ```schema
-objectclass ( 2.5.6.6 NAME 'person'
-    DESC 'RFC2256: a person'
-    SUP top STRUCTURAL
+objectclass ( 2.5.6.6
+    NAME 'person'
+    SUP top
+    STRUCTURAL
     MUST ( sn $ cn )
     MAY ( userPassword $ telephoneNumber $ seeAlso $ description ) )
 ```
 
-Dans cet exemple, `sn` et `cn` sont des attributs obligatoires, tandis que `userPassword`, `telephoneNumber`, `seeAlso`, et `description` sont des attributs optionnels pour la classe d'objet `person`.
+`MUST` signifie que l'attribut doit être présent. `MAY` signifie qu'il est autorisé mais facultatif.
 
-# Les RFC de LDAP et LDIF
+## 4.4 OID
 
-LDAP et LDIF sont définis par plusieurs documents de la série RFC (Request for Comments), qui est une série de notes techniques et d'organisations qui décrit les différents aspects des technologies Internet.
-Ces documents sont le cœur des standards pour LDAP et LDIF, mais il y a beaucoup d'autres documents RFC qui décrivent des extensions et des améliorations à ces protocoles.
-Voici quelques-uns des plus importants pour LDAP et LDIF :
+Les définitions de schéma utilisent des **Object Identifiers** uniques.
 
-## RFC pour LDAP (Lightweight Directory Access Protocol)
+Exemple :
 
-1. RFC 4510 : "Lightweight Directory Access Protocol (LDAP): Technical Specification Road Map". C'est le document qui résume les différents documents techniques qui définissent LDAP. Lien : [https://tools.ietf.org/html/rfc4510](https://tools.ietf.org/html/rfc4510)
+```text
+1.3.6.1.4.1.<PEN>.<branche>.<objet>
+```
 
-2. RFC 4511 : "Lightweight Directory Access Protocol (LDAP): The Protocol". Ce document définit le protocole LDAP lui-même. Lien : [https://tools.ietf.org/html/rfc4511](https://tools.ietf.org/html/rfc4511)
+Le préfixe `1.3.6.1.4.1` correspond aux **Private Enterprise Numbers** de l'IANA.
 
-3. RFC 4512 : "Lightweight Directory Access Protocol (LDAP): Directory Information Models". Ce document décrit les modèles d'information de l'annuaire utilisés par LDAP. Lien : [https://tools.ietf.org/html/rfc4512](https://tools.ietf.org/html/rfc4512)
+> [!warning]
+> Ne jamais choisir un PEN arbitraire comme `77777` pour un schéma publié ou de production sous prétexte qu'il semble libre. Vérifier le registre et demander son propre PEN, l'attribution étant gratuite.
 
-4. RFC 4513 : "Lightweight Directory Access Protocol (LDAP): Authentication Methods and Security Mechanisms". Ce document définit les méthodes d'authentification et les mécanismes de sécurité utilisés par LDAP. Lien : [https://tools.ietf.org/html/rfc4513](https://tools.ietf.org/html/rfc4513)
+# 5. Les opérations LDAP
 
-Il existe également d'autres RFCs qui décrivent d'autres aspects de LDAP, comme la recherche de chaînes, la syntaxe des filtres de recherche, etc.
+Les principales opérations LDAPv3 sont :
 
-## RFC pour LDIF (LDAP Data Interchange Format)
+- **Bind** : établir une identité d'authentification ;
+- **Unbind** : terminer proprement la session ;
+- **Search** : rechercher des entrées ;
+- **Compare** : tester une valeur ;
+- **Add** : ajouter une entrée ;
+- **Delete** : supprimer une entrée ;
+- **Modify** : modifier des attributs ;
+- **Modify DN** : renommer ou déplacer une entrée ;
+- **Extended Operation** : extension générique, par exemple StartTLS ou Password Modify.
 
-RFC 2849 : "The LDAP Data Interchange Format (LDIF) - Technical Specification". Ce document définit le format LDIF utilisé pour représenter les données LDAP en tant que texte ASCII. Lien : [https://tools.ietf.org/html/rfc2849](https://tools.ietf.org/html/rfc2849)
+La commande OpenLDAP associée n'est pas le protocole lui-même :
 
-# Installation et configuration d'OpenLDAP
+| Opération | Outil courant |
+|---|---|
+| Search | `ldapsearch` |
+| Add | `ldapadd` |
+| Modify | `ldapmodify` |
+| Delete | `ldapdelete` |
+| Modify DN | `ldapmodrdn` |
+| Password Modify | `ldappasswd` |
+| Who am I? | `ldapwhoami` |
 
-Ldap est un annuaire qui permet de gérer l'utilisateur d'un service
-sans créer un compte unix.
+# 6. Rechercher avec LDAP
 
-1. Mettons à jour la liste des paquets disponibles sur notre système:
+## 6.1 Base et scope
+
+Une recherche comporte notamment :
+
+- un **base DN** ;
+- un **scope** ;
+- un **filter** ;
+- une liste d'attributs à retourner.
+
+Les scopes principaux sont :
+
+```text
+base      : l'entrée de base uniquement
+one       : enfants directs
+sub       : tout le sous-arbre
+children  : descendants, sans l'entrée de base
+```
+
+Exemple :
 
 ```bash
-sudo apt-get update
+ldapsearch -LLL -x \
+  -H ldap://127.0.0.1 \
+  -b 'ou=people,dc=example,dc=org' \
+  -s sub \
+  '(objectClass=inetOrgPerson)' \
+  uid cn mail
 ```
 
-2. Installons le paquet OpenLDAP:
+## 6.2 Filtres LDAP
 
-```bash
-sudo apt-get install slapd ldap-utils
+Syntaxe de base :
+
+```text
+(uid=ada)
+(mail=*@example.org)
+(&(objectClass=inetOrgPerson)(uid=ada))
+(|(uid=ada)(uid=grace))
+(!(accountStatus=disabled))
 ```
 
-4. Pendant l'installation, on nous demandera de définir un mot de passe pour l'administrateur du serveur LDAP.
+Un filtre plus complet :
 
-5. Une fois l'installation terminée, nous pouvons vérifier que le serveur LDAP fonctionne correctement en exécutant la commande suivante:
-
-```bash
-sudo service slapd status
+```text
+(&(objectClass=inetOrgPerson)(|(uid=ada)(mail=ada@example.org)))
 ```
 
-Nous devrions voir que le service slapd est en cours d'exécution.
-   
-6. Modification de la configuration
-```bash
-dpkg-reconfigure slapd
+## 6.3 Ne jamais concaténer un filtre utilisateur
+
+Mauvais :
+
+```python
+filterstr = f"(uid={username})"
 ```
 
-Suivons les instructions à l'écran pour configurer notre serveur. Nous aurons besoin de définir un DN de base pour notre annuaire, par exemple, "dc=monentreprise,dc=com".
+Une valeur contrôlée par l'utilisateur doit être **échappée selon la syntaxe des filtres LDAP**. Une injection LDAP n'est pas une injection SQL, mais le principe de défense est analogue.
 
-Par exemple pour ecreall.com :
-- saisie de "ecreall.com" comme domaine
-- saisie de "people" comme organization
-- saisie du mot de passe (un truc super compliqué comme celui de l'utilisateur michaellaunay, mais pour LDAP)
+Avec `ldap3` :
 
+```python
+from ldap3.utils.conv import escape_filter_chars
 
-Attention ! Configurer LTS pour chiffrer les connexions si elles sont extérieures à la machine, car les mots de passe circulent en clair (voir <https://wiki.debian.org/LDAP/OpenLDAPSetup#Enable_TLS.2FSSL>)!
-
-Activer le service au démarrage :
-
-```bash
-systemctl enable slapd
+safe_uid = escape_filter_chars(username)
+filterstr = f"(uid={safe_uid})"
 ```
 
-Rendre \"ldap\" accessible en éditant \"/etc/ldap/ldap.conf\" en ajoutant :
-```
-BASE    dc=ecreall,dc=com
-URI     ldap://127.0.0.1
-```
+## 6.4 Recherche paginée
 
-## Vérifications
+Les serveurs imposent souvent une limite de taille. Pour de gros annuaires, préférer le contrôle **Simple Paged Results** plutôt que d'augmenter sans fin `sizelimit`.
 
-Vérifions que nous avons bien installé les paquets nécessaires. Si ce n'est pas le cas, voici les pré-requis pour l'installation d'OpenLDAP:
+# 7. Le format LDIF
 
-- Un système Linux ou Unix : OpenLDAP est généralement utilisé sur ces systèmes, bien qu'il soit possible de l'utiliser sur d'autres systèmes d'exploitation.
-- Les paquets slapd et ldap-utils : Ces paquets sont nécessaires pour installer OpenLDAP.
+LDIF signifie **LDAP Data Interchange Format** et est défini par la RFC 2849.
 
-Dans OpenLDAP, la configuration est stockée dans un format spécial appelé LDIF (LDAP Data Interchange Format). La configuration est stockée dans un sous-arbre de l'annuaire LDAP lui-même, généralement sous "cn=config" (c'est le nom du répertoire).
+Il sert à :
 
-Pour afficher la configuration actuelle, nous pouvons utiliser la commande suivante:
+- importer/exporter des entrées ;
+- décrire des modifications ;
+- sauvegarder des données logiquement ;
+- versionner des changements de configuration ou de schéma.
 
-```bash
-sudo ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:/// -b cn=config
-```
-
-Cela devrait afficher une grande quantité de données en format LDIF. Ne nous inquiétons pas, nous allons passer en revue ces informations et les comprendre ensemble.
-
-# Comprendre le schéma de données LDAP
-
-## Qu'est-ce qu'un schéma de données LDAP et pourquoi est-il important ?
-
-Un schéma LDAP est une collection de définitions et de règles qui déterminent la structure des données du service d'annuaire LDAP. Il sert de "plan" pour les données et définit les attributs et les types d'objets qui peuvent être créés et stockés dans l'annuaire.
-
-## Exploration des composants clés d'un schéma de données LDAP : objets, attributs, classes.
-
-Un schéma LDAP comprend des définitions pour les éléments suivants :
-   - **Attributs :** Ce sont les informations de base stockées pour un objet. Par exemple, un attribut pourrait être "mail" pour stocker une adresse e-mail, ou "cn" pour le nom commun d'un objet.
-   - **Classes d'objets :** Une classe d'objet est un regroupement d'attributs qui définissent un type d'objet particulier. Par exemple, une classe d'objet "personne" peut inclure des attributs comme le nom, le prénom et l'adresse e-mail.
-   - **Types de données :** Chaque attribut a un type de données associé qui contrôle le type d'information qu'il peut stocker.
-
-## Comment définir et modifier un schéma de données LDAP dans OpenLDAP.
-
-Dans OpenLDAP, nous pouvons définir et modifier notre schéma de données en utilisant le format LDIF que nous avons introduit. Par exemple, pour ajouter une nouvelle classe d'objet à notre schéma, nous pourrions utiliser une entrée LDIF comme celle-ci :
+## 7.1 Ajouter une entrée
 
 ```ldif
-dn: cn={5}custom,cn=schema,cn=config
-objectClass: olcSchemaConfig
-cn: {5}custom
-olcAttributeTypes: ( 1.3.6.1.4.1.99999.1 NAME 'customAttribute' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
-olcObjectClasses: ( 1.3.6.1.4.1.99999.2 NAME 'customObject' SUP inetOrgPerson STRUCTURAL MUST customAttribute )
-```
-
-Cela crée une nouvelle classe d'objet "customObject" qui hérite de la classe "inetOrgPerson" et qui a un nouvel attribut obligatoire "customAttribute".
-
-Autre exemple mais avec plus de champs:
-Votre description pour ajouter un schéma à OpenLDAP est assez claire, mais voici quelques améliorations pour la rendre encore plus explicite et précise :
-
----
-
-Pour ajouter un schéma personnalisé à OpenLDAP, il est important de respecter la syntaxe correcte dans le fichier LDIF. En particulier, les définitions de `olcObjectClasses` doivent utiliser le symbole `$` comme séparateur entre les champs. Voici un exemple corrigé pour le schéma `alirpunktoPerson` :
-
-```ldif
-olcAttributeTypes: ( 1.3.6.1.4.1.99999.1.13
-  NAME 'isMemberOfMediationArbitrationCouncil' 
-  DESC 'Indicates if the user is a member of the Mediation Arbitration Council' 
-  EQUALITY booleanMatch 
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
-
-olcObjectClasses: ( 1.3.6.1.4.1.99999.2.2.1
-  NAME 'alirpunktoPerson' 
-  DESC 'AlirPunkto specific person object class' 
-  SUP inetOrgPerson 
-  STRUCTURAL 
-  MUST (
-    uid $ cn $ mail $ employeeType $ isActive $ isOrdinaryMember $
-    isCooperatorMember $ isBoardMember $
-    isMemberOfMediationArbitrationCouncil )
-  MAY (
-    sn $ gn $ nationality $ birthdate $ preferredLanguage $
-    secondLanguage $ thirdLanguage $ cooperativeBehaviourMark $
-    lastUpdateBehaviour $ userProfileText $ userProfileImage $
-    thirdLanguage )
-)
-```
-
-### Processus d'Ajout du Schéma
-
-1. **Préparation** :
-   - Assurez-vous que le fichier LDIF (`alirpunkto_schema.ldif`) contenant la définition du schéma est correctement formaté avec des séparateurs `$`.
-
-2. **Installation de `schema2ldif` et `ldap-schema-manager`** :
-   - Sur votre serveur Ubuntu, installez les outils nécessaires :
-     ```bash
-     sudo apt install schema2ldif ldap-schema-manager
-     ```
-
-3. **Intégration du Schéma** :
-   - Pour initialiser l'ajout du schéma, utilisez :
-     ```bash
-     sudo -i
-     ldap-schema-manager -i /home/michaellaunay/workspace/alirpunkto/alirpunkto/alirpunkto_schema.ldif
-     ```
-   - Cette étape peut ne pas signaler d'erreurs même si le fichier LDIF a des problèmes de syntaxe.
-
-4. **Vérification et Mise à Jour du Schéma** :
-   - Pour vérifier et mettre à jour le schéma, exécutez :
-     ```bash
-     ldap-schema-manager -m /home/michaellaunay/workspace/alirpunkto/alirpunkto/alirpunkto_schema.ldif -n
-     ```
-   - Cette commande tentera de mettre à jour le schéma et signalera des erreurs spécifiques, telles que l'erreur `80` en cas de problèmes de syntaxe (par exemple, l'absence de `$`).
-
-### Notes Importantes
-
-- Il est crucial de s'assurer que la syntaxe du fichier LDIF est correcte pour éviter les erreurs lors de l'ajout ou de la mise à jour du schéma.
-- Gardez toujours une sauvegarde de votre configuration LDAP actuelle avant d'apporter des modifications.
-- Testez les modifications dans un environnement de développement avant de les appliquer sur un serveur de production.
-
-# Ajout d'une Organisation à LDAP
-
-Prenons l'exemple d'Ecréall
-Créer un fichier ecreall.ldif contenant :
-```
-dn: ou=People,dc=ecreall,dc=com
-ou: People
-objectClass: top
-objectClass: organizationalUnit
-
-dn: ou=Group,dc=ecreall,dc=com
-ou: Group
-objectClass: top
-objectClass: organizationalUnit
-
-dn: cn=Gérant,dc=ecreall,dc=com
-objectclass: organizationalRole
-cn: Gérant
-```
-
-```bash
-ldapadd -x -D "cn=admin,dc=ecreall,dc=com" -W -f ecreall.ldif
-```
-
-Mettre à jour l'index (cache) :
-```bash
-systemctl stop slapd
-slapindex
-chown -R openldap:openldap /var/lib/ldap
-chown -R openldap:openldap /var/lib/ldap
-chmod -R 700 /var/lib/ldap
-systemctl start slapd
-```
-
-Vérification :
-```bash
-ldapsearch -x -b 'dc=ecreall,dc=com' '(objectclass=*)'
-```
-
-# Ajouter une OrganizationUnit
-
-Créer un fichier \"e-services.ldif\" et y mettre :
-
-```ldif
-dn: ou=Etudes,dc=ecreall,dc=com
-objectClass: organizationalUnit
-ou: Etudes
-```
->
-```bash
-ldapadd -x -D "cn=admin,dc=ecreall,dc=com" -W -f e-services.ldif
-```
-
-# Ajouter une personne
-
-## Version non optimisée
-
-Exemple "non optimisé" pour ajouter Michaël Launay, créer un fichier
-> \"ldif\_files/michaellaunay.ldif\" :
-```ldif
-dn: uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com
-objectclass: top
-objectclass: person
-objectclass: organizationalPerson
-objectclass: inetorgperson
-cn: Michael Launay
-sn: Launay
-gn: Michael
-uid: michaellaunay
-title: Gerant
-mail: michaellaunay@ecreall.com
-telephoneNumber: 0320793290
-postalAddress: 11 A Avenue de l'Harmonie
-postalCode: 59650
-l: Villeneuve d ASCQ
-```
-Il y a une certaine redondance dans ce fichier LDIF, en particulier dans la déclaration des classes d'objet (objectClass).
-Voici pourquoi :
-1. `inetOrgPerson` est une classe d'objet qui hérite des classes d'objet `organizationalPerson` et `person`. Donc, si nous déclarons `inetOrgPerson`, nous n'avons pas besoin de déclarer également `person` et `organizationalPerson`.
-
-2. De même, `organizationalPerson` hérite de la classe `person`, donc si nous déclarons `organizationalPerson`, nous n'avons pas besoin de déclarer `person`.
-
-3. Enfin, toutes les entrées LDAP doivent inclure la classe `top`, mais celle-ci est généralement incluse automatiquement lorsque nous déclarons une autre classe d'objet. Donc, en pratique, nous n'avons pas besoin de déclarer explicitement `top`.
-
-## Version optimisée du fichier LDIF
-
-Nous pouvons simplifier le fichier LDIF comme suit :
-```ldif
-dn: uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com
+dn: uid=ada,ou=people,dc=example,dc=org
 objectClass: inetOrgPerson
-cn: Michael Launay
-sn: Launay
-gn: Michael
-uid: michaellaunay
-title: Gerant
-mail: michaellaunay@ecreall.com
-telephoneNumber: 0320793290
-postalAddress: 11 A Avenue de l'Harmonie
-postalCode: 59650
-l: Villeneuve d ASCQ
+uid: ada
+cn: Ada Lovelace
+sn: Lovelace
+givenName: Ada
+mail: ada@example.org
 ```
 
-De cette façon, l'entrée conserve les mêmes propriétés, mais sans redondance dans le fichier LDIF.
-
-## Ajouter l'entrée à l'annuaire
-```bash
-ldapadd -x -D "cn=admin,dc=ecreall,dc=com" -W -f ldif_files/michaellaunay.ldif
-```
-
-## Enregistrer le mot de passe du nouvel utilisateur :
-```bash
-ldappasswd -D "cn=admin,dc=ecreall,dc=com" -W "cn=Prenom Nom,ou=People,dc=ecreall,dc=com" -S
-```
-
-## Modifier le mot de passe d'un utilisateur existant
-
-Pour modifier le mot de passe d'un utilisateur existant dans LDAP, nous pouvons utiliser la commande `ldappasswd`. Voici la syntaxe générale de cette commande :
-
-```bash
-ldappasswd -H ldap://localhost -x -D "cn=admin,dc=ecreall,dc=com" -W -S "uid=utilisateur,ou=People,dc=ecreall,dc=com"
-```
-
-Dans le cas de l'utilisateur michaellaunay, nous avons :
-```bash
-ldappasswd -D "cn=admin,dc=ecreall,dc=com" -W "uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com" -S
-# Que l'on peut vérifier
-ldapwhoami -x -D  "uid=michaellaunay,ou=Etudes,dc=ecreall,dc=com" -W
-```
-Décortiquons cette commande :
-
-- `-H ldap://localhost` spécifie l'URI du serveur LDAP.
-- `-x` utilise une authentification simple au lieu de SASL.
-- `-D "cn=admin,dc=ecreall,dc=com"` spécifie l'identifiant de l'utilisateur qui a les droits d'administrateur pour effectuer les modifications.
-- `-W` demande le mot de passe de l'utilisateur spécifié après `-D`.
-- `-S "uid=utilisateur,ou=People,dc=ecreall,dc=com"` spécifie l'utilisateur dont nous voulons changer le mot de passe. Vous devrez remplacer "utilisateur" par le nom d'utilisateur réel.
-
-Après avoir exécuté cette commande, elle vous demandera d'entrer le nouveau mot de passe deux fois pour confirmation. Si tout se passe bien, le mot de passe de l'utilisateur sera changé.
-
-# Stockage du login et du nom complet de l'utilisateur
-Généralement l'entrée `uid` permet de gérer le login il doit être unique et ne pas contenir d'espace.
-`cn` peut contenir des espaces et peut être multi-valeurs, il suffit alors de répéter l'entrée `cn` au temps de fois que nécessaire.
-# Stockage des mots de passe dans OpenLDAP
-
-OpenLDAP stocke les mots de passe en utilisant des hachages plutôt qu'en clair, conformément aux exigences de sécurité et de confidentialité, y compris celles du Règlement Général sur la Protection des Données (RGPD).
-
-Lorsqu'un mot de passe est fourni à OpenLDAP (par exemple, lors de la création ou de la modification d'un compte utilisateur), le serveur LDAP ne stocke pas le mot de passe lui-même. Au lieu de cela, il utilise une fonction de hachage pour transformer le mot de passe en une "empreinte" de hachage, qui est ce qui est réellement stocké. Lorsque l'utilisateur se connecte, le mot de passe qu'il fournit est à nouveau haché et comparé à l'empreinte de hachage stockée.
-
-Ce processus de hachage est unidirectionnel, ce qui signifie qu'il n'est pas possible de retrouver le mot de passe original à partir de l'empreinte de hachage. Ainsi, même si quelqu'un parvenait à accéder aux données stockées par le serveur LDAP, il ne pourrait pas retrouver les mots de passe des utilisateurs.
-
-OpenLDAP supporte plusieurs schémas de hachage, y compris SHA-2, SHA-1, et MD5. Il est recommandé d'utiliser le schéma de hachage le plus fort possible pour améliorer la sécurité. À partir de la version 2.4, OpenLDAP utilise par défaut SSHA (Salted SHA), une variante de SHA qui inclut un "sel" pour rendre les attaques par force brute ou par table de hachage plus difficiles.
-
-Le hachage des mots de passe ne dispense pas de l'importance de l'utilisation du chiffrement (par exemple, TLS) pour les connexions au serveur LDAP. Le hachage protège les mots de passe stockés, mais sans chiffrement, les mots de passe peuvent être interceptés en clair lors de leur transmission au serveur.
-
-# Enrichir LDAP
-
-Pour enrichir le schéma ldap, il faut obtenir un numéro d'entreprise unique dont le numéro s'obtient au prés de l'IANA.
-
-Pour ajouter un nouvel attribut `CandidatureType` à notre fichier de schéma LDIF, nous devrons ajouter une nouvelle entrée `attributeTypes`. `CandidatureType` sera stocké comme une chaîne de caractères et utilisons la syntaxe `1.3.6.1.4.1.1466.115.121.1.15` qui est pour `DirectoryString`.
+## 7.2 Modifier une entrée
 
 ```ldif
-attributeTypes: ( 1.3.6.1.4.1.OUR_OID_NUMBER.1
-  NAME 'candidatureNumber'
-  DESC 'Candidature Number for the user'
-  EQUALITY numericStringMatch
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.36
-  SINGLE-VALUE )
+dn: uid=ada,ou=people,dc=example,dc=org
+changetype: modify
+replace: mail
+mail: ada.lovelace@example.org
+-
+add: description
+description: Compte de démonstration
+```
 
-attributeTypes: ( 1.3.6.1.4.1.OUR_OID_NUMBER.2
-  NAME 'CandidatureType'
-  DESC 'Type of Candidature for the user'
+Le tiret `-` sépare les modifications d'une même entrée.
+
+## 7.3 Supprimer un attribut
+
+```ldif
+dn: uid=ada,ou=people,dc=example,dc=org
+changetype: modify
+delete: telephoneNumber
+```
+
+## 7.4 Base64 dans LDIF
+
+Une ligne utilisant `::` contient une valeur encodée en Base64 :
+
+```ldif
+description:: w4l0dWRlIGLDqW7DqWZpY2U=
+```
+
+L'encodage Base64 **n'est pas du chiffrement**.
+
+# 8. Installation d'OpenLDAP
+
+Les commandes exactes dépendent de la distribution. Sur Debian/Ubuntu :
+
+```bash
+sudo apt update
+sudo apt install slapd ldap-utils
+```
+
+État du service :
+
+```bash
+systemctl status slapd
+```
+
+Activation au démarrage si nécessaire :
+
+```bash
+sudo systemctl enable --now slapd
+```
+
+Sur Debian/Ubuntu, l'assistant peut être relancé avec :
+
+```bash
+sudo dpkg-reconfigure slapd
+```
+
+Il faut choisir soigneusement :
+
+- le suffixe, par exemple `dc=example,dc=org` ;
+- le nom d'organisation ;
+- les secrets administratifs ;
+- la politique de sauvegarde ;
+- la stratégie TLS.
+
+> [!warning]
+> Éviter de construire un nouveau DIT à partir du nom juridique ou de l'organigramme si ceux-ci changent souvent. Un suffixe basé sur un domaine stable est généralement plus durable.
+
+# 9. cn=config et configuration dynamique
+
+OpenLDAP moderne utilise principalement la configuration **runtime** `cn=config`.
+
+`cn=config` n'est pas « le nom du répertoire de configuration ». Il s'agit d'un **DIT spécial de configuration**, persisté par `slapd` dans des fichiers LDIF gérés par le serveur.
+
+## 9.1 Lire la configuration locale
+
+L'interface Unix `ldapi:///` combinée à SASL EXTERNAL permet généralement d'administrer `cn=config` localement sans envoyer de mot de passe :
+
+```bash
+sudo ldapsearch -Q -LLL \
+  -Y EXTERNAL \
+  -H ldapi:/// \
+  -b cn=config dn
+```
+
+## 9.2 Trouver la base MDB
+
+Ne pas supposer qu'elle s'appelle forcément `{1}mdb` :
+
+```bash
+sudo ldapsearch -Q -LLL \
+  -Y EXTERNAL \
+  -H ldapi:/// \
+  -b cn=config \
+  '(olcDatabase=*)' \
+  dn olcDatabase olcSuffix
+```
+
+Les indices `{0}`, `{1}`, etc. dépendent de la configuration réelle.
+
+## 9.3 Modifier `cn=config`
+
+Préparer un LDIF :
+
+```ldif
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+replace: olcSizeLimit
+olcSizeLimit: 5000
+```
+
+Puis, **après avoir remplacé le DN par celui découvert sur le serveur** :
+
+```bash
+sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f change.ldif
+```
+
+> [!danger]
+> Ne pas éditer directement les fichiers internes de `slapd.d` avec un éditeur tant que `slapd` les gère. Utiliser LDAP (`ldapmodify`) ou les outils prévus pour une restauration hors ligne.
+
+# 10. Construire un annuaire propre
+
+## 10.1 Une structure simple
+
+```text
+dc=example,dc=org
+├── ou=people
+├── ou=groups
+├── ou=services
+└── ou=policies
+```
+
+LDIF :
+
+```ldif
+dn: dc=example,dc=org
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+dc: example
+o: Example Organization
+
+dn: ou=people,dc=example,dc=org
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=example,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=services,dc=example,dc=org
+objectClass: organizationalUnit
+ou: services
+
+dn: ou=policies,dc=example,dc=org
+objectClass: organizationalUnit
+ou: policies
+```
+
+## 10.2 Ne pas recopier l'organigramme
+
+Un DIT trop proche de l'organisation humaine entraîne des renommages de DN lors de chaque restructuration.
+
+Préférer parfois :
+
+```text
+ou=people
+ou=groups
+ou=applications
+```
+
+et stocker les informations organisationnelles dans des attributs.
+
+## 10.3 Choisir un RDN stable
+
+Pour une personne :
+
+```text
+uid=ada,ou=people,dc=example,dc=org
+```
+
+est souvent plus stable que :
+
+```text
+cn=Ada Lovelace,ou=people,dc=example,dc=org
+```
+
+car un nom complet peut changer et peut contenir des caractères nécessitant un échappement.
+
+# 11. Gérer les utilisateurs et groupes
+
+## 11.1 `inetOrgPerson`
+
+Exemple minimal :
+
+```ldif
+dn: uid=ada,ou=people,dc=example,dc=org
+objectClass: inetOrgPerson
+uid: ada
+cn: Ada Lovelace
+sn: Lovelace
+givenName: Ada
+mail: ada@example.org
+```
+
+`inetOrgPerson` exige notamment `cn` et `sn`. `uid` est ici une convention de nommage et d'identification applicative.
+
+## 11.2 Ajouter l'entrée
+
+```bash
+ldapadd -x \
+  -H ldaps://ldap.example.org \
+  -D 'cn=admin,dc=example,dc=org' \
+  -W \
+  -f ada.ldif
+```
+
+Pour l'administration distante, **TLS est obligatoire en pratique** si un secret de bind est utilisé.
+
+## 11.3 Groupes
+
+Deux schémas fréquents :
+
+### `groupOfNames`
+
+```ldif
+dn: cn=developers,ou=groups,dc=example,dc=org
+objectClass: groupOfNames
+cn: developers
+member: uid=ada,ou=people,dc=example,dc=org
+member: uid=grace,ou=people,dc=example,dc=org
+```
+
+Les membres sont des DN.
+
+### `posixGroup`
+
+Utilisé dans certains environnements Unix avec `gidNumber` et éventuellement `memberUid`.
+
+Le choix dépend des clients : il ne faut pas supposer que tous les logiciels comprennent les mêmes classes de groupe.
+
+## 11.4 Renommer une entrée
+
+```bash
+ldapmodrdn -x \
+  -H ldaps://ldap.example.org \
+  -D 'cn=admin,dc=example,dc=org' \
+  -W \
+  'uid=old,ou=people,dc=example,dc=org' \
+  'uid=new'
+```
+
+Tester l'impact sur les références : les attributs contenant des DN ne sont pas nécessairement tous réécrits automatiquement.
+
+# 12. Authentification LDAP
+
+## 12.1 Bind anonyme
+
+Un serveur peut autoriser certaines lectures anonymes. En production, limiter fortement ce qui est visible sans authentification.
+
+## 12.2 Simple Bind
+
+Le **Simple Bind** envoie un DN/identifiant et un mot de passe. Le mécanisme ne protège pas lui-même le secret contre l'écoute réseau.
+
+Il doit donc être utilisé :
+
+- sur `ldapi:///` local ;
+- ou sur une session TLS vérifiée.
+
+Test :
+
+```bash
+ldapwhoami -x \
+  -H ldaps://ldap.example.org \
+  -D 'uid=ada,ou=people,dc=example,dc=org' \
+  -W
+```
+
+## 12.3 SASL
+
+LDAP peut utiliser SASL pour différents mécanismes d'authentification.
+
+Le cas local le plus utile avec OpenLDAP est souvent :
+
+```bash
+sudo ldapwhoami -Q -Y EXTERNAL -H ldapi:///
+```
+
+Le serveur peut alors utiliser les credentials Unix du socket local.
+
+D'autres environnements peuvent utiliser Kerberos/GSSAPI.
+
+## 12.4 Bind DN de service
+
+Une application qui recherche un utilisateur peut utiliser un compte de service dédié :
+
+```text
+uid=app-directory-reader,ou=services,dc=example,dc=org
+```
+
+Ce compte doit avoir :
+
+- un mot de passe ou mécanisme d'authentification distinct ;
+- les droits de lecture strictement nécessaires ;
+- aucun droit d'administration global ;
+- une rotation de secret ;
+- une journalisation adaptée.
+
+# 13. TLS, StartTLS et LDAPS
+
+LDAP peut être protégé de deux façons courantes :
+
+### StartTLS
+
+Connexion initiale LDAP puis négociation TLS :
+
+```text
+ldap://ldap.example.org:389
+            |
+         StartTLS
+            v
+      canal TLS
+```
+
+Commande exigeant le succès de StartTLS :
+
+```bash
+ldapsearch -x -ZZ \
+  -H ldap://ldap.example.org \
+  -b 'dc=example,dc=org' \
+  '(objectClass=*)'
+```
+
+### LDAPS
+
+TLS est établi dès l'ouverture :
+
+```bash
+ldapsearch -x \
+  -H ldaps://ldap.example.org \
+  -b 'dc=example,dc=org' \
+  '(objectClass=*)'
+```
+
+## 13.1 Ne jamais désactiver la vérification de certificat en production
+
+Mauvais :
+
+```text
+TLS_REQCERT never
+```
+
+ou toute option équivalente contournant la chaîne de confiance.
+
+Le certificat doit :
+
+- être émis par une CA reconnue par le client ;
+- correspondre au nom utilisé pour joindre le serveur ;
+- normalement contenir ce nom dans le **Subject Alternative Name** ;
+- être renouvelé avant expiration.
+
+## 13.2 Configuration TLS côté serveur
+
+Exemple conceptuel `cn=config` :
+
+```ldif
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/tls/ldap.example.org.crt
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/tls/ldap.example.org.key
+-
+replace: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ldap/tls/ca.crt
+```
+
+Les chemins, permissions et options exactes dépendent de la distribution et de la bibliothèque TLS utilisée.
+
+## 13.3 Tester TLS
+
+```bash
+openssl s_client \
+  -connect ldap.example.org:636 \
+  -servername ldap.example.org \
+  -showcerts
+```
+
+Pour StartTLS LDAP :
+
+```bash
+openssl s_client \
+  -connect ldap.example.org:389 \
+  -starttls ldap \
+  -servername ldap.example.org
+```
+
+# 14. Contrôle d'accès ACL
+
+Une authentification réussie ne donne pas automatiquement le droit de tout lire ou modifier.
+
+OpenLDAP applique des **ACL**.
+
+## 14.1 Protéger `userPassword`
+
+Exemple conceptuel :
+
+```ldif
+olcAccess: to attrs=userPassword
+  by self write
+  by anonymous auth
+  by * none
+```
+
+L'anonyme peut avoir le droit `auth` nécessaire à un bind sans pour autant pouvoir lire la valeur.
+
+## 14.2 Lecture de son propre profil
+
+```text
+to dn.subtree="ou=people,dc=example,dc=org"
+  by self read
+  by dn.exact="uid=directory-reader,ou=services,dc=example,dc=org" read
+  by * none
+```
+
+## 14.3 Ordre des ACL
+
+Les ACL OpenLDAP sont évaluées selon leur ordre et leur logique propre. Une ACL trop large placée trop tôt peut rendre les règles suivantes inutiles.
+
+Toujours :
+
+1. documenter l'intention ;
+2. tester avec plusieurs identités ;
+3. vérifier les attributs sensibles séparément ;
+4. versionner les LDIF de configuration ;
+5. prévoir un accès local d'administration pour la récupération.
+
+## 14.4 Le rootDN n'est pas un utilisateur ordinaire
+
+Le `olcRootDN` d'une base possède des privilèges particuliers et n'est pas soumis aux ACL normales de cette base.
+
+Ne jamais l'utiliser comme compte d'une application.
+
+# 15. Mots de passe et politiques de mot de passe
+
+## 15.1 Hash stocké vs protection réseau
+
+Deux problèmes différents :
+
+```text
+mot de passe en transit  -> TLS / SASL protège le canal
+mot de passe au repos    -> stockage / hash / contrôle d'accès
+```
+
+Un bon hash ne protège pas un mot de passe envoyé sur une connexion LDAP non chiffrée.
+
+## 15.2 `userPassword`
+
+`userPassword` est un attribut LDAP sensible. OpenLDAP peut y stocker différentes formes, souvent préfixées :
+
+```text
+{SSHA}...
+{CRYPT}...
+```
+
+> [!warning]
+> Les schémas historiques rapides comme SHA-1/SSHA, SHA ou MD5 ne correspondent plus aux recommandations modernes de dérivation de mots de passe. Ne pas écrire « SSHA est fort » simplement parce qu'il est salé.
+
+OpenLDAP dispose de mécanismes et modules variables selon la version et la distribution, notamment des modules contrib pour des schémas plus modernes comme Argon2. Il faut vérifier ce que **le paquet réellement déployé** supporte.
+
+Dans une architecture moderne, il peut aussi être préférable de déléguer l'authentification interactive à un Identity Provider dédié, LDAP restant l'annuaire d'identités.
+
+## 15.3 Générer un hash
+
+`slappasswd` génère une valeur reconnue par le serveur :
+
+```bash
+slappasswd
+```
+
+Éviter :
+
+```bash
+slappasswd -s 'mot-de-passe-en-clair'
+```
+
+car le secret peut apparaître dans l'historique shell ou dans la liste des processus selon le contexte.
+
+## 15.4 Modifier le mot de passe via l'opération dédiée
+
+```bash
+ldappasswd -x \
+  -H ldaps://ldap.example.org \
+  -D 'uid=ada,ou=people,dc=example,dc=org' \
+  -W \
+  -S
+```
+
+Pour qu'un administrateur réinitialise un autre compte :
+
+```bash
+ldappasswd -x \
+  -H ldaps://ldap.example.org \
+  -D 'cn=admin,dc=example,dc=org' \
+  -W \
+  -S \
+  'uid=ada,ou=people,dc=example,dc=org'
+```
+
+## 15.5 Overlay `ppolicy`
+
+Le Password Policy overlay permet notamment :
+
+- âge minimal/maximal ;
+- longueur minimale ;
+- historique ;
+- compteur d'échecs ;
+- verrouillage ;
+- expiration ;
+- changement obligatoire.
+
+Il ne remplace pas :
+
+- TLS ;
+- MFA ;
+- surveillance ;
+- protections anti-bruteforce en amont ;
+- politiques de mots de passe adaptées au contexte.
+
+OpenLDAP 2.7 ajoute notamment des améliorations autour du rehash de mots de passe lors d'un Simple Bind, mais les paramètres disponibles doivent être vérifiés dans la documentation de la version déployée.
+
+# 16. Index et performances
+
+## 16.1 Pourquoi indexer
+
+Un index évite que le serveur doive parcourir un grand nombre d'entrées pour certaines recherches.
+
+Exemples d'attributs fréquemment indexés :
+
+```text
+objectClass
+uid
+mail
+entryUUID
+```
+
+Mais « indexer tout » est une mauvaise stratégie :
+
+- consommation disque ;
+- coût supplémentaire lors des écritures ;
+- temps de maintenance ;
+- index inutilisés.
+
+## 16.2 Exemple `olcDbIndex`
+
+```ldif
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+replace: olcDbIndex
+olcDbIndex: objectClass eq
+olcDbIndex: uid eq
+olcDbIndex: mail eq,sub
+```
+
+Le DN `{1}mdb` est à remplacer par celui de la machine.
+
+## 16.3 `slapindex`
+
+`slapindex` reconstruit des index hors ligne dans des situations précises.
+
+Il **ne faut pas** arrêter `slapd` et exécuter `slapindex` après chaque simple `ldapadd`. Les écritures normales maintiennent les index elles-mêmes.
+
+Une utilisation hors ligne typique nécessite :
+
+```bash
+sudo systemctl stop slapd
+sudo -u openldap slapindex
+sudo systemctl start slapd
+```
+
+Les options et l'utilisateur dépendent du packaging. Sauvegarder avant une opération de maintenance lourde.
+
+## 16.4 Lire les logs et mesurer
+
+Une recherche lente peut venir de :
+
+- filtre non indexable ;
+- mauvais scope ;
+- pagination absente ;
+- index manquant ;
+- ACL complexes ;
+- backend saturé ;
+- réplication en difficulté ;
+- limites de ressources.
+
+# 17. Contraintes d'unicité et intégrité
+
+## 17.1 Overlay `unique`
+
+Un attribut `uid` ou `mail` peut être rendu unique dans un sous-arbre avec l'overlay `unique`.
+
+Le point important est le **périmètre** de la contrainte :
+
+```text
+uid unique dans ou=people
+mail unique dans ou=people
+```
+
+n'est pas la même chose qu'une unicité sur tout le suffixe.
+
+## 17.2 Références
+
+Des attributs contenant des DN peuvent devenir incohérents lors de suppressions/renommages si aucune logique ne les maintient.
+
+Selon le besoin, étudier les overlays tels que :
+
+- `refint` ;
+- `memberof` ;
+- `unique`.
+
+Ne les activer qu'après avoir compris leur modèle et leur coût.
+
+# 18. Étendre le schéma et gérer les OID
+
+## 18.1 Avant de créer un attribut
+
+Vérifier d'abord si un attribut standard existe déjà :
+
+- RFC 4519 ;
+- inetOrgPerson ;
+- schémas POSIX ;
+- schémas applicatifs reconnus.
+
+Réutiliser une définition standard améliore l'interopérabilité.
+
+## 18.2 Obtenir un Private Enterprise Number
+
+L'IANA attribue gratuitement des **PEN**.
+
+Avec un PEN hypothétique `12345` :
+
+```text
+1.3.6.1.4.1.12345.1       attributs
+1.3.6.1.4.1.12345.2       objectClasses
+1.3.6.1.4.1.12345.3       autres objets
+```
+
+Ne pas réutiliser le PEN d'une autre organisation.
+
+## 18.3 Exemple d'attribut
+
+```schema
+attributetype ( 1.3.6.1.4.1.12345.1.1
+  NAME 'exampleAccountStatus'
+  DESC 'Account lifecycle status'
   EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
   SINGLE-VALUE )
 ```
 
-Ici le OID a été modifié en `.2` pour `CandidatureType` afin de le distinguer de `candidatureNumber` qui a `.1`. Chaque OID doit être unique !
+## 18.4 Exemple d'objectClass auxiliaire
 
-Explication du fichier LDIF :
+Lorsqu'on veut **enrichir** une personne standard, une classe `AUXILIARY` peut être plus appropriée qu'une nouvelle classe `STRUCTURAL` héritant d'`inetOrgPerson` :
 
-1. **attributeTypes**: Il définit un nouvel attribut pour le schéma LDAP. C'est une extension standard pour décrire les objets dans un annuaire LDAP.
+```schema
+objectclass ( 1.3.6.1.4.1.12345.2.1
+  NAME 'examplePersonExtensions'
+  DESC 'Example application attributes for a person'
+  SUP top
+  AUXILIARY
+  MAY ( exampleAccountStatus ) )
+```
 
-2. **NAME**: Le nom de l'attribut tel qu'il apparaîtra dans les entrées LDAP.
+Cette approche évite de redéfinir inutilement la nature structurelle de l'entrée.
 
-3. **DESC**: Une brève description de ce que fait cet attribut.
+## 18.5 `cn=config` et schémas
 
-4. **EQUALITY**: Cela détermine comment les valeurs de cet attribut seront comparées. Par exemple, `caseIgnoreMatch` est couramment utilisé pour les chaînes de caractères où la casse n'a pas d'importance.
+Les schémas chargés dynamiquement apparaissent sous :
 
-5. **SYNTAX**: Ceci spécifie le type de données pour l'attribut. Par exemple, `1.3.6.1.4.1.1466.115.121.1.15` est pour une chaîne de caractères.
+```text
+cn=schema,cn=config
+```
 
-6. **SINGLE-VALUE**: Cela signifie que l'attribut ne peut avoir qu'une seule valeur. Si nous voulons que l'attribut puisse avoir plusieurs valeurs, il faudra omettre cette option.
+Lister :
 
-N'oublions pas de remplacer `OUR_OID_NUMBER` par le nombre OID que nous avons obtenu pour notre organisation ou application. L'OID doit être unique à votre organisation pour éviter les conflits avec d'autres extensions de schéma.
-
-## ldapvi
-`ldapvi` est un outil très pratique est simple d'utilisation de LDAP.
-exemple:
 ```bash
-ldapvi --discover
+sudo ldapsearch -Q -LLL \
+  -Y EXTERNAL \
+  -H ldapi:/// \
+  -b 'cn=schema,cn=config' \
+  '(objectClass=olcSchemaConfig)' \
+  dn cn
 ```
 
-Pour modifier les entrées ldap, il faut se connecter en tant qu'administrateur :
+> [!warning]
+> Modifier un schéma déjà utilisé est délicat. Les OID et la sémantique des attributs publiés doivent être considérés comme une interface durable.
+
+# 19. Réplication avec syncrepl
+
+La réplication OpenLDAP moderne utilise principalement **LDAP Sync / syncrepl**.
+
+La terminologie actuelle préfère :
+
+- **provider** ;
+- **consumer** ;
+- **multi-provider**.
+
+Les anciens termes *master/slave* et même *multimaster* sont dépréciés dans la documentation OpenLDAP au profit de ces rôles plus précis.
+
+## 19.1 Principe
+
+```mermaid
+graph LR
+  P[Provider]
+  C1[Consumer 1]
+  C2[Consumer 2]
+  P -->|syncrepl| C1
+  P -->|syncrepl| C2
 ```
-ldapvi --discover --host ldap://127.0.0.1 -D "cn=admin,dc=ecreall,dc=com" -w "Un mot de passe"
+
+Le consumer maintient un état de synchronisation et récupère les changements du provider.
+
+## 19.2 Modes
+
+### `refreshOnly`
+
+Le consumer interroge périodiquement le provider.
+
+### `refreshAndPersist`
+
+Après le rafraîchissement initial, la connexion reste active pour recevoir les changements.
+
+## 19.3 Exemple conceptuel
+
+```text
+olcSyncrepl: rid=001
+  provider=ldaps://ldap1.example.org
+  bindmethod=simple
+  binddn="uid=replicator,ou=services,dc=example,dc=org"
+  credentials=<secret>
+  searchbase="dc=example,dc=org"
+  type=refreshAndPersist
+  retry="5 5 300 +"
 ```
 
-Après modification dans vim et une fois enregistré les modifications avec `w`, `ldapvi` demande `Action? [yYqQvVebB*rsf+?]`, car `ldapvi` propose différentes options pour agir sur les changements apportés. Voici leur signification :
+En production :
 
-1. **y** : Oui, appliquer les changements.
-2. **Y** : Oui, appliquer les changements et quittez.
-3. **q** : Quitter sans appliquer les changements.
-4. **Q** : Quitter immédiatement sans appliquer les changements, même s'il y a des modifications non enregistrées.
-5. **v** : Ouvrir un éditeur pour revoir et éventuellement modifier les modifications en attente.
-6. **V** : Afficher les modifications en attente dans un format plus détaillé pour examen.
-7. **e** : Rééditer les entrées (retourne à l'écran d'édition).
-8. **b** : Annuler le dernier changement (comme un retour en arrière).
-9. **B** : Annuler tous les changements.
-10. **\*** : Sauvegarder les modifications dans un fichier.
-11. **r** : Rafraîchisser les entrées depuis le serveur LDAP (utile si d'autres modifications ont été faites sur le serveur pendant que vous étiez en train d'éditer).
-12. **s** : Basculer entre l'affichage simple et l'affichage LDIF. LDIF est un format standard pour représenter les entrées LDAP sous forme de texte.
-13. **f** : Force l'application des changements sans demander de confirmation pour chaque entrée.
-14. **+** : Appliquer les changements et continuer à éditer.
-15. **?** : Afficher l'aide sur ces options.
+- ne pas stocker un secret en clair dans un document partagé ;
+- utiliser TLS avec validation de certificat ;
+- donner au compte de réplication uniquement les droits nécessaires ;
+- surveiller le retard de réplication ;
+- tester les scénarios de panne.
 
-## Comment avoir un OID unique
+## 19.4 Réplication ≠ sauvegarde
 
-L'OID (Object Identifier) est une chaîne de nombres qui identifie de manière unique un type d'objet ou un attribut dans divers standards, dont LDAP. 
+Une suppression accidentelle peut être répliquée immédiatement.
 
-Pour une entreprise nous devons faire une demande 
-2. **IANA Private Enterprise Numbers**: Si nous ne disposons pas d'un préfixe OID, une solution courante est d'utiliser notre Private Enterprise Number (PEN) attribué par l'Internet Assigned Numbers Authority (IANA). Vous pouvez demander un PEN gratuitement auprès de l'IANA. Une fois que vous avez un PEN, vous pouvez utiliser ce nombre comme base pour vos OIDs en ajoutant vos propres sous-identifiants. Par exemple, si votre PEN est `12345`, vous pourriez avoir des OIDs comme `1.3.6.1.4.1.77777.1`, `1.3.6.1.4.1.77777.2`, etc.
+Il faut donc **à la fois** :
 
-   - Pour demander un PEN, allons sur le [site de l'IANA](https://www.iana.org/assignments/enterprise-numbers/).
+- réplication ;
+- sauvegardes indépendantes ;
+- restauration testée.
 
-3. **Générer un OID temporaire**: Si nous développons uniquement pour des tests internes et n'avons pas l'intention de publier ou de partager notre schéma, nous pourrions utiliser un OID généré de manière arbitraire. Cependant, c'est risqué pour la production ou pour des environnements où le schéma pourrait être partagé, car il pourrait y avoir des collisions.
+# 20. Sauvegarde et restauration
 
-4. **Registres nationaux**: Certains pays ont des registres nationaux où vous pouvez demander un OID. Cependant, les processus et la disponibilité peuvent varier.
+## 20.1 Sauvegarde logique avec `slapcat`
 
-Il faut obtenir un OID officiel pour publier son code en open source sans risque de conflit ou si nous prévoyons de déployer notre schéma dans un environnement de production.
-
-Disponibilité des PEN
-
-Lorsque nous demandons un PEN, nous pouvons utiliser un PEN libre comme 77777 tant qu'il n'est pas attribué (à vérifier sur le site de l'IANA.
-Exemple
-```ldif
-attributeTypes: ( 1.3.6.1.4.1.77777.1
-  NAME 'candidatureNumber'
-  DESC 'Candidature Number for the user'
-  EQUALITY numericStringMatch
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.36
-  SINGLE-VALUE )
+```bash
+sudo slapcat -n 1 -l data-$(date +%F).ldif
 ```
-Les numéros indiqués sont des Object Identifiers (OIDs), qui sont définis dans plusieurs normes et RFCs.
 
-## Signification de 1.3.6.1.4.1
-   - `1.3.6.1.4.1` est le préfixe d'OID pour les Private Enterprise Numbers, qui sont attribués par l'Internet Assigned Numbers Authority (IANA). Ce préfixe est défini dans la [RFC 1155](https://datatracker.ietf.org/doc/html/rfc1155), qui spécifie la structure de management information (SMI).
+L'indice de base doit être vérifié :
 
-## Signification de 1.3.6.1.4.1.1466.115.121.1.36
-   - Cet OID est lié à la syntaxe des attributs LDAP, et est défini dans la [RFC 4517](https://datatracker.ietf.org/doc/html/rfc4517), qui est une partie des normes LDAPv3. La partie `1.3.6.1.4.1.1466.115.121.1` est le préfixe pour les syntaxes d'attributs LDAP, et `36` est l'identifiant pour la syntaxe de chaîne numérique (`Numeric String`).
+```bash
+sudo slapcat -n 0 | head
+```
 
-Pour travailler avec des schémas LDAP et pour comprendre les détails des OIDs utilisés, la RFC 4517 (et les autres RFCs liées à LDAPv3, comme la [RFC 4519](https://datatracker.ietf.org/doc/html/rfc4519) qui définit des types d'attributs standards) peuvent être utiles.
-# Liens
+Selon le packaging, `-n 0` peut correspondre à `cn=config` et les autres numéros aux bases de données ; **ne pas deviner**.
 
-> <https://wiki.debian.org/LDAP/OpenLDAPSetup>
-> <https://guide.ubuntu-fr.org/server/openldap-server.html>
-> <http://www-sop.inria.fr/members/Laurent.Mirtain/ldap-livre.html>
+## 20.2 Sauvegarder aussi la configuration
+
+Exemple :
+
+```bash
+sudo slapcat -n 0 -l config-$(date +%F).ldif
+```
+
+Une sauvegarde des données sans les schémas, ACL, overlays et paramètres TLS peut être insuffisante pour reconstruire le service.
+
+## 20.3 Restauration hors ligne
+
+Principe :
+
+1. sauvegarder l'état actuel ;
+2. arrêter `slapd` ;
+3. vider ou déplacer proprement le backend ciblé ;
+4. utiliser `slapadd` avec les bons paramètres ;
+5. restaurer ownership/permissions ;
+6. redémarrer ;
+7. vérifier les index et la réplication ;
+8. tester fonctionnellement.
+
+Ne pas recopier une recette aveuglément : les chemins et numéros de base diffèrent selon les distributions.
+
+## 20.4 LMDB et OpenLDAP 2.7
+
+Le backend **MDB** est le backend principal moderne d'OpenLDAP. OpenLDAP 2.7 s'appuie sur LMDB 1.0 et ajoute notamment des capacités nouvelles côté backend, mais une migration de version doit rester précédée d'une sauvegarde logique testée.
+
+# 21. Supervision et diagnostic
+
+## 21.1 Vérifications simples
+
+```bash
+systemctl status slapd
+journalctl -u slapd --since today
+ss -ltnp | grep -E ':(389|636)\b'
+```
+
+## 21.2 Vérifier le Root DSE
+
+```bash
+ldapsearch -LLL -x \
+  -H ldaps://ldap.example.org \
+  -b '' \
+  -s base \
+  '(objectClass=*)' \
+  namingContexts supportedLDAPVersion supportedExtension supportedControl
+```
+
+Le **Root DSE** donne des capacités importantes du serveur.
+
+## 21.3 Tester l'identité
+
+```bash
+ldapwhoami -x \
+  -H ldaps://ldap.example.org \
+  -D 'uid=ada,ou=people,dc=example,dc=org' \
+  -W
+```
+
+## 21.4 Codes de résultat
+
+Quelques erreurs fréquentes :
+
+| Code / message | Signification courante |
+|---|---|
+| `Invalid credentials (49)` | identité/secret incorrect ou compte verrouillé |
+| `No such object (32)` | base DN ou parent absent |
+| `Insufficient access (50)` | ACL |
+| `Object class violation (65)` | schéma non respecté |
+| `Already exists (68)` | DN déjà présent |
+| `Constraint violation (19)` | contrainte schéma/overlay |
+| `Confidentiality required (13)` | opération exigeant un canal protégé |
+
+## 21.5 `ldapsearch -d`
+
+Pour du diagnostic client ponctuel :
+
+```bash
+ldapsearch -d 1 ...
+```
+
+Attention : les logs de debug peuvent exposer des informations sensibles.
+
+# 22. Haute disponibilité et lloadd
+
+OpenLDAP fournit **`lloadd`**, un proxy/load balancer LDAP dédié.
+
+Architecture possible :
+
+```mermaid
+graph LR
+  C[Clients]
+  L[lloadd]
+  P1[Provider A]
+  P2[Provider B]
+  C --> L
+  L --> P1
+  L --> P2
+```
+
+OpenLDAP 2.7 continue de faire évoluer `lloadd`.
+
+La haute disponibilité nécessite toutefois une conception complète :
+
+- placement des écritures ;
+- réplication ;
+- cohérence attendue ;
+- health checks ;
+- TLS de bout en bout ;
+- bascule ;
+- DNS/VIP/load balancer ;
+- comportement des clients lors d'une panne.
+
+Un load balancer ne rend pas automatiquement deux annuaires cohérents.
+
+# 23. Intégration Linux, applications et SSO
+
+## 23.1 PAM/NSS
+
+Un système Linux peut utiliser LDAP pour certaines identités Unix via des composants tels que SSSD ou nslcd selon l'architecture.
+
+Cela demande notamment :
+
+- schémas POSIX (`uidNumber`, `gidNumber`, etc.) ;
+- TLS ;
+- cache offline selon le besoin ;
+- politique claire si LDAP est indisponible ;
+- comptes locaux de secours.
+
+## 23.2 Applications Web
+
+Deux architectures :
+
+### Bind LDAP direct
+
+```text
+Application -> LDAP
+```
+
+Simple, mais chaque application doit gérer :
+
+- recherche de DN ;
+- bind ;
+- TLS ;
+- groupes ;
+- erreurs ;
+- éventuellement MFA hors LDAP.
+
+### Identity Provider devant LDAP
+
+```text
+Application
+    |
+  OIDC
+    |
+Identity Provider
+    |
+  LDAP
+    |
+ OpenLDAP
+```
+
+Cette seconde architecture est généralement préférable pour des applications Web modernes :
+
+- SSO ;
+- MFA ;
+- passkeys ;
+- sessions centralisées ;
+- protocoles modernes ;
+- LDAP reste caché derrière l'IdP.
+
+Voir [[OAuth OpenID]].
+
+# 24. LDAP dans une application Python
+
+Deux bibliothèques courantes dans l'écosystème Python sont notamment `ldap3` (pur Python) et `python-ldap` (bindings natifs OpenLDAP).
+
+## 24.1 Exemple avec `ldap3`
+
+```python
+import os
+from ldap3 import Server, Connection, Tls
+from ldap3.utils.conv import escape_filter_chars
+import ssl
+
+LDAP_URI = "ldap.example.org"
+BIND_DN = "uid=app-reader,ou=services,dc=example,dc=org"
+BASE_DN = "ou=people,dc=example,dc=org"
+
+
+def find_user(username: str):
+    tls = Tls(validate=ssl.CERT_REQUIRED)
+    server = Server(LDAP_URI, port=636, use_ssl=True, tls=tls)
+
+    with Connection(
+        server,
+        user=BIND_DN,
+        password=os.environ["LDAP_BIND_PASSWORD"],
+        auto_bind=True,
+    ) as conn:
+        safe = escape_filter_chars(username)
+        conn.search(
+            BASE_DN,
+            f"(&(objectClass=inetOrgPerson)(uid={safe}))",
+            attributes=["uid", "cn", "mail"],
+            size_limit=2,
+        )
+        return conn.entries
+```
+
+Points importants :
+
+- secret hors du code ;
+- validation TLS ;
+- filtre échappé ;
+- attributs explicitement demandés ;
+- limite de résultats ;
+- compte de service en lecture seule.
+
+## 24.2 Vérifier un mot de passe utilisateur
+
+Une méthode classique consiste à :
+
+1. chercher le DN avec un compte de service ;
+2. vérifier qu'il existe exactement un résultat ;
+3. effectuer un bind séparé avec ce DN et le secret fourni ;
+4. ne jamais comparer soi-même `userPassword`.
+
+```text
+username
+   |
+search sécurisé
+   v
+DN exact
+   |
+bind avec secret utilisateur
+   v
+succès / échec
+```
+
+## 24.3 Pooling et résilience
+
+Pour une application à fort trafic :
+
+- configurer des timeouts ;
+- limiter les retries ;
+- utiliser du pooling si la bibliothèque le permet ;
+- prévoir la panne de l'annuaire ;
+- ne pas faire une recherche LDAP lourde à chaque requête HTTP si un cache d'identité sûr suffit ;
+- surveiller la latence.
+
+# 25. Sécurité et durcissement
+
+## 25.1 Menaces principales
+
+- interception d'un Simple Bind sans TLS ;
+- injection de filtres LDAP ;
+- ACL trop permissives ;
+- compte applicatif administrateur ;
+- fuite du `userPassword` ;
+- exposition publique inutile de 389/636 ;
+- mots de passe faibles ;
+- brute force ;
+- réplication non chiffrée ;
+- sauvegardes non protégées ;
+- certificat non vérifié ;
+- schéma personnalisé mal conçu ;
+- DoS par recherches coûteuses.
+
+## 25.2 Checklist de durcissement
+
+- [ ] TLS avec vérification de certificat ;
+- [ ] aucun simple bind sensible en clair ;
+- [ ] bind anonyme limité ou désactivé selon besoin ;
+- [ ] ACL minimales ;
+- [ ] `userPassword` non lisible ;
+- [ ] comptes de services distincts ;
+- [ ] secrets rotatifs ;
+- [ ] politique de mot de passe ;
+- [ ] protections anti-bruteforce ;
+- [ ] limites de taille/temps ;
+- [ ] réseau segmenté ;
+- [ ] réplication chiffrée ;
+- [ ] sauvegardes chiffrées et testées ;
+- [ ] logs sans secrets ;
+- [ ] mises à jour de sécurité ;
+- [ ] accès administratif via `ldapi:///` privilégié lorsque possible.
+
+Voir également [[Sécurité avancée sous Linux]].
+
+## 25.3 Pare-feu
+
+Ne publier LDAP que vers les réseaux et systèmes qui en ont réellement besoin.
+
+Exemple conceptuel :
+
+```text
+Internet
+   X
+   |
+[firewall]
+   |
+réseau applicatif ----> LDAP
+réseau administration -> LDAP
+```
+
+Un annuaire interne n'a généralement aucune raison d'être accessible à tout Internet.
+
+# 26. Migration d'un ancien OpenLDAP
+
+Une mise à niveau majeure ne se réduit pas à remplacer le paquet.
+
+## 26.1 Avant migration
+
+Inventorier :
+
+```text
+version OpenLDAP
+backend utilisé
+schémas personnalisés
+overlays
+ACL
+index
+TLS
+SASL
+réplication
+clients
+bind DNs
+extensions LDAP
+sauvegardes
+```
+
+## 26.2 De vieux backends
+
+Le backend **MDB** est la cible moderne. Certaines fonctionnalités historiques ont été retirées au fil des versions.
+
+OpenLDAP 2.7 retire notamment :
+
+- `back-sql` ;
+- `back-perl`.
+
+GnuTLS est également annoncé comme déprécié dans 2.7 upstream et prévu pour retrait ultérieur ; cela concerne la manière dont OpenLDAP est compilé et ne signifie pas qu'il faille désactiver TLS.
+
+## 26.3 Procédure générale
+
+1. mettre à jour l'ancien serveur dans une version supportée si nécessaire ;
+2. produire des sauvegardes `slapcat` ;
+3. sauvegarder certificats et secrets séparément ;
+4. documenter tous les modules ;
+5. construire un serveur de test ;
+6. charger les schémas ;
+7. restaurer la configuration et les données de manière contrôlée ;
+8. vérifier les ACL ;
+9. tester tous les clients ;
+10. tester la réplication ;
+11. tester les performances ;
+12. prévoir le rollback.
+
+# 27. Travaux pratiques
+
+## TP 1 — Explorer un DIT
+
+Objectif : savoir lire un annuaire sans le modifier.
+
+1. interroger le Root DSE ;
+2. identifier les `namingContexts` ;
+3. rechercher le suffixe ;
+4. comparer les scopes `base`, `one`, `sub` ;
+5. limiter les attributs retournés.
+
+## TP 2 — Construire un mini-annuaire
+
+Créer :
+
+```text
+dc=lab,dc=example
+├── ou=people
+├── ou=groups
+└── ou=services
+```
+
+Ajouter trois utilisateurs et deux groupes.
+
+## TP 3 — Filtres
+
+Écrire des filtres pour :
+
+1. tous les `inetOrgPerson` ;
+2. une adresse `@example.org` ;
+3. `ada` ou `grace` ;
+4. les comptes actifs ;
+5. une recherche combinée par groupe et service selon le schéma choisi.
+
+## TP 4 — LDIF de modification
+
+Modifier :
+
+- `mail` ;
+- `description` ;
+- un attribut multivalué ;
+- supprimer un ancien numéro de téléphone.
+
+Effectuer un rollback avec un second LDIF.
+
+## TP 5 — TLS
+
+1. configurer une CA de laboratoire ;
+2. produire un certificat serveur avec SAN ;
+3. configurer OpenLDAP ;
+4. tester LDAPS ;
+5. tester StartTLS avec `-ZZ` ;
+6. vérifier qu'un certificat invalide est refusé.
+
+## TP 6 — ACL
+
+Créer :
+
+- un utilisateur ;
+- un compte lecteur ;
+- un compte administrateur de sous-arbre.
+
+Vérifier précisément ce que chacun peut lire/modifier.
+
+## TP 7 — Sécurité des mots de passe
+
+1. protéger `userPassword` avec les ACL ;
+2. configurer `ppolicy` en laboratoire ;
+3. provoquer plusieurs échecs ;
+4. observer le verrouillage ;
+5. documenter les différences entre hash, TLS et MFA.
+
+## TP 8 — Index
+
+1. créer un jeu de données significatif ;
+2. effectuer une recherche non optimisée ;
+3. ajouter l'index utile ;
+4. mesurer l'effet ;
+5. vérifier le coût des écritures.
+
+## TP 9 — Schéma personnalisé
+
+1. demander ou utiliser un PEN de laboratoire réservé à l'exercice ;
+2. définir un attribut ;
+3. définir une classe `AUXILIARY` ;
+4. charger le schéma ;
+5. créer une entrée ;
+6. provoquer volontairement une violation de schéma.
+
+> [!warning]
+> Pour un schéma réellement publié, utiliser un PEN officiellement attribué, pas une valeur inventée.
+
+## TP 10 — Réplication
+
+Déployer deux instances de laboratoire :
+
+```text
+provider -> consumer
+```
+
+Tester :
+
+- ajout ;
+- modification ;
+- suppression ;
+- panne du consumer ;
+- resynchronisation ;
+- monitoring.
+
+## TP 11 — Sauvegarde et restauration
+
+1. `slapcat` des données ;
+2. `slapcat` de `cn=config` ;
+3. détruire volontairement l'instance de laboratoire ;
+4. reconstruire ;
+5. restaurer ;
+6. comparer le nombre d'entrées ;
+7. vérifier les ACL et TLS.
+
+## TP 12 — Application Python
+
+Créer une petite API qui :
+
+- reçoit un `uid` ;
+- échappe correctement le filtre ;
+- recherche l'utilisateur ;
+- retourne seulement `uid`, `cn` et `mail` ;
+- applique des timeouts ;
+- ne logue aucun mot de passe ;
+- vérifie TLS.
+
+Ajouter des tests contre un serveur LDAP de laboratoire.
+
+# 28. Projet final
+
+## Objectif
+
+Concevoir un service d'annuaire pour une organisation fictive comportant :
+
+- 500 utilisateurs ;
+- 50 groupes ;
+- 10 applications ;
+- deux serveurs LDAP ;
+- un Identity Provider OIDC ;
+- des postes Linux ;
+- une politique de sauvegarde.
+
+## Architecture cible
+
+```mermaid
+graph TD
+  U[Utilisateurs]
+  A1[Applications Web]
+  L[Postes Linux]
+  IDP[Identity Provider]
+  LB[lloadd ou mécanisme HA]
+  P[LDAP Provider]
+  C[LDAP Consumer]
+  B[Backups]
+
+  U --> A1
+  A1 -->|OIDC| IDP
+  IDP -->|LDAP TLS| LB
+  L -->|SSSD / LDAP TLS| LB
+  LB --> P
+  LB --> C
+  P -->|syncrepl| C
+  P --> B
+  C --> B
+```
+
+## Livrables
+
+1. diagramme d'architecture ;
+2. description du DIT ;
+3. choix de schémas ;
+4. LDIF initial ;
+5. stratégie de nommage ;
+6. ACL ;
+7. TLS ;
+8. comptes de service ;
+9. politique de mot de passe ;
+10. réplication ;
+11. sauvegarde/restauration ;
+12. monitoring ;
+13. procédure de migration ;
+14. tests d'intégration ;
+15. analyse des risques.
+
+## Critères de réussite
+
+- aucun secret en clair dans Git ;
+- aucun bind sensible non chiffré ;
+- privilèges minimaux ;
+- filtres applicatifs échappés ;
+- `userPassword` non lisible ;
+- restauration testée ;
+- panne d'un nœud prévue ;
+- schéma documenté ;
+- SSO séparé de LDAP ;
+- procédure d'exploitation reproductible.
+
+# 29. Checklist de production
+
+## Conception
+
+- [ ] suffixe stable ;
+- [ ] DIT simple ;
+- [ ] RDN stables ;
+- [ ] schémas standards privilégiés ;
+- [ ] OID officiels pour les extensions ;
+- [ ] attributs sensibles identifiés.
+
+## Sécurité
+
+- [ ] TLS activé ;
+- [ ] certificat vérifié ;
+- [ ] Simple Bind non protégé refusé ou impossible ;
+- [ ] ACL revues ;
+- [ ] rootDN jamais utilisé par une application ;
+- [ ] comptes de service distincts ;
+- [ ] secrets rotatifs ;
+- [ ] filtre LDAP échappé côté application ;
+- [ ] `userPassword` protégé ;
+- [ ] politique anti-bruteforce.
+
+## Exploitation
+
+- [ ] logs centralisés ;
+- [ ] limites de recherche ;
+- [ ] index adaptés aux requêtes réelles ;
+- [ ] supervision de la capacité ;
+- [ ] monitoring de réplication ;
+- [ ] certificats surveillés ;
+- [ ] sauvegardes automatiques ;
+- [ ] restauration régulièrement testée ;
+- [ ] documentation des dépendances clientes.
+
+## Mise à jour
+
+- [ ] branche OpenLDAP supportée ;
+- [ ] changelog lu avant upgrade ;
+- [ ] modules/overlays vérifiés ;
+- [ ] compatibilité des schémas testée ;
+- [ ] rollback disponible.
+
+# 30. RFC et références
+
+## Standards LDAP
+
+- [RFC 4510 — LDAP Technical Specification Road Map](https://www.rfc-editor.org/rfc/rfc4510)
+- [RFC 4511 — LDAP: The Protocol](https://www.rfc-editor.org/rfc/rfc4511)
+- [RFC 4512 — Directory Information Models](https://www.rfc-editor.org/rfc/rfc4512)
+- [RFC 4513 — Authentication Methods and Security Mechanisms](https://www.rfc-editor.org/rfc/rfc4513)
+- [RFC 4514 — String Representation of Distinguished Names](https://www.rfc-editor.org/rfc/rfc4514)
+- [RFC 4515 — String Representation of Search Filters](https://www.rfc-editor.org/rfc/rfc4515)
+- [RFC 4516 — LDAP URLs](https://www.rfc-editor.org/rfc/rfc4516)
+- [RFC 4517 — Syntaxes and Matching Rules](https://www.rfc-editor.org/rfc/rfc4517)
+- [RFC 4519 — Schema for User Applications](https://www.rfc-editor.org/rfc/rfc4519)
+- [RFC 2849 — LDIF](https://www.rfc-editor.org/rfc/rfc2849)
+- [RFC 4533 — LDAP Content Synchronization Operation](https://www.rfc-editor.org/rfc/rfc4533)
+
+## OpenLDAP
+
+- [Documentation OpenLDAP](https://www.openldap.org/doc/)
+- [OpenLDAP 2.7 Administrator's Guide](https://www.openldap.org/doc/admin27/)
+- [OpenLDAP 2.6 Administrator's Guide](https://www.openldap.org/doc/admin26/)
+- [OpenLDAP downloads et versions supportées](https://www.openldap.org/software/download/)
+
+## OID
+
+- [IANA Private Enterprise Numbers](https://www.iana.org/assignments/enterprise-numbers/)
+- [Demander un PEN IANA](https://www.iana.org/assignments/enterprise-numbers/assignment/apply/)
+
+# Conclusion
+
+LDAP reste une technologie très pertinente pour les **annuaires d'identités et de ressources**, mais son bon usage en 2026 demande de le replacer dans une architecture moderne :
+
+```text
+LDAP        = annuaire et protocole de directory
+OpenLDAP    = implémentation serveur/client
+TLS/SASL    = protection et authentification du transport/session
+ACL         = autorisation LDAP
+OIDC        = protocole moderne pour exposer l'identité aux applications Web
+IdP         = couche SSO/MFA pouvant utiliser LDAP comme source d'identités
+```
+
+Les points essentiels à retenir sont :
+
+1. concevoir un DIT stable et simple ;
+2. utiliser les schémas standards avant d'en inventer ;
+3. comprendre précisément DN, RDN, scope et filtres ;
+4. protéger **tous les secrets en transit avec TLS** ;
+5. appliquer le moindre privilège avec les ACL ;
+6. ne jamais confondre hash de mot de passe et chiffrement du canal ;
+7. sauvegarder `cn=config` autant que les données ;
+8. considérer la réplication comme de la disponibilité, pas comme une sauvegarde ;
+9. tester les restaurations et les scénarios de panne ;
+10. utiliser OIDC/SSO devant LDAP lorsque les applications Web modernes le justifient.
