@@ -17,786 +17,1940 @@ themes:
   - scada
   - python
   - systemes-industriels
-resume: "Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth."
+resume: "Cours avancé sur la cybersécurité IoT, OT et SCADA avec Python : architecture, segmentation, IEC 62443, MQTT, Modbus, OPC UA, BLE, PKI/TLS, supervision, réponse à incident, développement sécurisé et cadre réglementaire européen."
 niveau: avance
 prerequis:
   - "[[Python]]"
   - "[[Les protocoles de communications]]"
+  - "[[Sécurité avancée sous Linux]]"
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-24
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-Ce cours sur la sécurité Python pour les systèmes IoT (Internet des Objets), tient compte des spécificités des systèmes SCADA (Supervisory Control and Data Acquisition).
 
-# 1. Introduction à la Sécurité Python pour les IoT
+Ce cours présente la sécurité des systèmes **IoT**, **IIoT**, **OT** et **SCADA** avec un angle pratique en Python.
 
-## 1.1. Présentation des concepts clés : IoT, SCADA, et leur importance dans l'industrie moderne
+L'objectif n'est pas d'apprendre à « attaquer un automate », mais de savoir **concevoir, développer, déployer, superviser et maintenir** une architecture industrielle connectée sans transformer un équipement de terrain en point d'entrée vers le système de contrôle.
 
-L'Internet des Objets (IoT) et les systèmes de Contrôle et d'Acquisition de Données Supervisées (SCADA) représentent deux piliers technologiques essentiels dans le paysage industriel moderne. Ces technologies, bien que distinctes, partagent un objectif commun : l'automatisation et l'optimisation des processus industriels à travers une collecte de données avancée et une commande à distance. Leur rôle dans l'amélioration de l'efficacité opérationnelle, la réduction des coûts et l'augmentation de la production ne peut être sous-estimé.
+> [!warning] Sécurité OT et sûreté de fonctionnement
+> Un test acceptable sur une application web peut être dangereux sur un procédé physique. Une perte de communication, une commande inattendue ou un redémarrage peuvent provoquer un arrêt de production, une dégradation d'équipement ou un risque humain. Les manipulations actives de ce cours doivent être réalisées sur **simulateur, banc de test ou environnement explicitement autorisé**, jamais sur un système de production.
 
-### IoT : Connexion et Intelligence à l'Échelle Globale
+Le cours s'appuie notamment sur les principes du **NIST SP 800-82 Rev. 3**, de la série **ISA/IEC 62443**, du standard **ETSI EN 303 645** pour l'IoT grand public et des spécifications officielles MQTT, Modbus et OPC UA.
 
-L'IoT désigne le réseau interconnecté d'appareils physiques dotés de capteurs, de logiciels et d'autres technologies dans le but d'échanger des données avec d'autres dispositifs et systèmes via Internet. Des appareils ménagers intelligents aux capteurs industriels complexes, l'IoT englobe une gamme étendue d'objets. Sa capacité à collecter, transmettre et analyser des données en temps réel offre des avantages significatifs tels que la maintenance prédictive, la gestion énergétique optimisée et l'automatisation des tâches.
+# Sommaire
 
-### SCADA : Supervision et Contrôle pour l'Industrie
+1. [[#1. IoT, IIoT, OT et SCADA : vocabulaire et architecture]]
+2. [[#2. Modèle de menace et objectifs de sécurité OT]]
+3. [[#3. Architecture défensive : zones, conduits et segmentation]]
+4. [[#4. Inventaire, identité des actifs et chaîne d'approvisionnement]]
+5. [[#5. Protocoles industriels et IoT]]
+6. [[#6. Cryptographie, TLS et PKI industrielle]]
+7. [[#7. Identités, autorisations et accès distant]]
+8. [[#8. Développement Python sécurisé pour l'IoT et l'OT]]
+9. [[#9. MQTT sécurisé avec Python]]
+10. [[#10. Modbus avec Python : observer avant de commander]]
+11. [[#11. OPC UA et Python]]
+12. [[#12. Bluetooth Low Energy avec Bleak]]
+13. [[#13. Journalisation, détection et observabilité OT]]
+14. [[#14. Réponse à incident et continuité d'activité]]
+15. [[#15. Durcissement des équipements et cycle de vie]]
+16. [[#16. Normes et réglementation]]
+17. [[#17. Architecture de référence du mini-projet]]
+18. [[#18. Travaux pratiques]]
+19. [[#19. Checklists opérationnelles]]
+20. [[#20. Ressources et conclusion]]
 
-Les systèmes SCADA, en tant que composante cruciale de l'automatisation industrielle, permettent le contrôle centralisé et la supervision des processus industriels à distance. Typiquement, un système SCADA recueille des données en temps réel provenant de capteurs situés sur le terrain, les transmet à un logiciel central, puis utilise ces informations pour contrôler les équipements automatiquement ou par intervention humaine. Les systèmes SCADA sont largement utilisés dans divers secteurs tels que l'énergie, l'eau, le pétrole et le gaz, où ils jouent un rôle vital dans la surveillance des opérations, l'assurance de la sécurité et l'amélioration de l'efficacité.
+# 1. IoT, IIoT, OT et SCADA : vocabulaire et architecture
 
-### Importance dans l'Industrie Moderne
+## 1.1. IoT, IIoT et OT ne sont pas synonymes
 
-L'importance de l'IoT et des systèmes SCADA dans l'industrie moderne ne peut être surestimée. Ils facilitent une transformation numérique profonde en permettant une visibilité en temps réel sur les opérations, une prise de décision basée sur les données, et une réactivité accrue face aux conditions changeantes du marché ou de l'environnement. Cette capacité à intégrer des processus physiques avec des analyses numériques avancées ouvre la voie à des industries plus intelligentes, plus sûres et plus durables. En somme, l'IoT et les SCADA sont des moteurs clés de l'Industrie 4.0, marquant une nouvelle ère d'innovation et d'efficacité dans le secteur industriel.
+**IoT** (*Internet of Things*) désigne des objets physiques connectés capables de mesurer, calculer, communiquer ou agir.
 
-## 1.2. Vue d'ensemble de la sécurité dans les systèmes IoT : enjeux, défis, et terminologie de base
+**IIoT** (*Industrial Internet of Things*) applique ces principes aux environnements industriels : capteurs, compteurs, passerelles, équipements de maintenance conditionnelle, suivi énergétique, etc.
 
-### Enjeux de sécurité dans les systèmes IoT
+**OT** (*Operational Technology*) est un périmètre plus large. Il regroupe les systèmes qui **détectent ou provoquent un changement dans le monde physique** : automates, systèmes de contrôle, chaînes de production, traitement d'eau, distribution électrique, bâtiment, transport, etc.
 
-La sécurité dans les systèmes IoT englobe la protection des données, la sûreté de fonctionnement des dispositifs, et la garantie de la confidentialité et de l'intégrité des informations échangées. Les enjeux sont multiples :
-- **Confidentialité** : Assurer que les données sensibles ne soient accessibles qu'aux entités autorisées.
-- **Intégrité** : Garantir que les données ne sont pas altérées, intentionnellement ou accidentellement.
-- **Disponibilité** : Assurer que les services et les données soient disponibles lorsque nécessaires, particulièrement crucial dans les systèmes SCADA où le temps réel est souvent un impératif.
+Un équipement OT peut donc ne pas être connecté à Internet et rester néanmoins critique du point de vue cybersécurité.
 
-### Défis de la sécurité dans les systèmes IoT
+## 1.2. SCADA, DCS, PLC, RTU et HMI
 
-Les systèmes IoT sont caractérisé par :
-- **Hétérogénéité des dispositifs** : La diversité des dispositifs IoT, avec leurs propres capacités et systèmes d'exploitation, rend l'uniformisation des mesures de sécurité complexe.
-- **Ressources limitées** : De nombreux dispositifs IoT sont contraints en termes de puissance de calcul, mémoire, et énergie, limitant l'utilisation de solutions de sécurité traditionnelles.
-- **Connectivité étendue** : La nature interconnectée des systèmes IoT expose à un risque accru d'attaques réseau.
-- **Cycle de vie prolongé** : Les dispositifs IoT sont souvent déployés pour de longues durées, nécessitant une maintenance et des mises à jour de sécurité sur le long terme.
+Quelques termes fondamentaux :
 
-### Terminologie de base en sécurité des systèmes IoT
+| Élément | Rôle typique |
+|---|---|
+| **PLC / API** | automate programmable pilotant localement un procédé |
+| **RTU** | unité distante collectant des mesures et pilotant des équipements |
+| **HMI / IHM** | interface opérateur permettant de visualiser et commander |
+| **SCADA** | supervision, historisation et contrôle à l'échelle d'un site ou de plusieurs sites |
+| **DCS** | contrôle distribué, fréquent dans les procédés industriels continus |
+| **Historian** | base spécialisée dans les séries temporelles industrielles |
+| **Engineering workstation** | poste de configuration/programming des automates et systèmes de contrôle |
+| **Safety system / SIS** | système indépendant lié à la sûreté de fonctionnement |
 
-- **Attaque** : Toute action visant à compromettre la sécurité d'un système IoT, que ce soit en ciblant la confidentialité, l'intégrité, ou la disponibilité des données ou des services.
-- **Vulnérabilité** : Une faiblesse dans la conception, l'implémentation, ou la configuration d'un système IoT qui pourrait être exploitée pour compromettre sa sécurité.
-- **Menace** : Potentiel de violation de la sécurité, qui pourrait être intentionnelle (par des attaquants) ou accidentelle (due à des défaillances systèmes).
-- **Mesures de sécurité** : Ensemble de techniques, pratiques, et politiques mises en place pour protéger les systèmes IoT contre les menaces et attaques.
+Un SCADA n'est donc pas « un serveur qui contrôle des capteurs ». C'est un **ensemble de fonctions et de composants**, souvent composé de technologies anciennes et récentes qui doivent coexister pendant des décennies.
 
-Comprendre ces enjeux, défis, et la terminologie de base est essentiel pour aborder la sécurité dans les systèmes IoT, notamment dans les contextes critiques tels que les systèmes SCADA. La suite du cours se penchera sur des stratégies spécifiques et des outils disponibles pour adresser ces problématiques, en mettant l'accent sur l'utilisation de Python pour développer des solutions de sécurité efficaces et adaptées aux particularités des systèmes IoT.
-## 1.3. Introduction à Python pour l'IoT : Pourquoi Python ?
+## 1.3. Pourquoi l'OT est différent de l'IT classique
 
-Python est devenu l'un des langages de programmation les plus populaires et les plus appréciés pour le développement d'applications dans divers domaines, y compris l'Internet des Objets (IoT). Son adoption croissante dans le domaine de l'IoT peut être attribuée à plusieurs de ses caractéristiques fondamentales, qui le rendent particulièrement adapté pour répondre aux défis uniques que présente l'IoT.
+Une politique de sécurité OT doit tenir compte de contraintes particulières :
 
-### 1.3.1. Facilité d'apprentissage et de lecture
+- disponibilité et déterminisme ;
+- durée de vie longue des équipements ;
+- fenêtres de maintenance rares ;
+- dépendance à des constructeurs et firmwares propriétaires ;
+- protocoles historiquement conçus pour des réseaux de confiance ;
+- conséquences physiques d'une commande erronée ;
+- exigences de sûreté, de qualité ou de certification ;
+- forte sensibilité aux scans agressifs et aux outils intrusifs.
 
-Python est renommé pour sa syntaxe claire et concise, qui facilite la compréhension et le développement de code, même pour les débutants dans le domaine de la programmation. Cette caractéristique réduit la courbe d'apprentissage et permet aux développeurs de se concentrer sur la résolution des problèmes de fond plutôt que sur la complexité du langage lui-même.
+Dans l'IT, on peut parfois redémarrer rapidement un service pour appliquer un correctif. Dans l'OT, un redémarrage peut nécessiter l'arrêt d'une ligne entière et une procédure de remise en service.
 
-### 1.3.2. Large écosystème de bibliothèques
+## 1.4. Architecture simplifiée
 
-L'un des avantages majeurs de Python réside dans son vaste écosystème de bibliothèques et de frameworks. Pour l'IoT, des bibliothèques telles que Paho-MQTT pour la messagerie MQTT, PyModbus pour la communication Modbus, ou encore TensorFlow et Keras pour l'apprentissage automatique, offrent des outils puissants et flexibles pour le développement rapide d'applications IoT robustes et sécurisées.
-#### 1.3.1.1 Le protocole MQTT
+```mermaid
+flowchart TB
+    Cloud[Services cloud / SI métier]
+    IT[IT de l'entreprise]
+    DMZ[DMZ industrielle]
+    SCADA[SCADA / Historian / supervision]
+    CTRL[PLC / RTU / contrôleurs]
+    FIELD[Capteurs / actionneurs]
 
-Le protocole MQTT (Message Queuing Telemetry Transport) est un protocole de messagerie léger, idéal pour les applications IoT, conçu pour les réseaux avec bande passante limitée ou fiabilité réduite. Il repose sur le modèle de publication/abonnement, offrant un moyen efficace et simplifié de communiquer entre les dispositifs IoT et les serveurs ou les applications de contrôle.
+    Cloud --> IT
+    IT --> DMZ
+    DMZ --> SCADA
+    SCADA --> CTRL
+    CTRL --> FIELD
+```
 
-**Caractéristiques principales :**
-- **Léger** : Utilise peu de bande passante et de ressources, essentiel pour les dispositifs IoT avec des capacités limitées.
-- **Fiable** : Supporte divers niveaux de qualité de service (QoS) pour garantir la livraison des messages.
-- **Sécurisé** : Permet l'implémentation de mécanismes de sécurité tels que le SSL/TLS pour chiffrer les communications.
+Ce diagramme est volontairement simplifié. Le point important est que la connexion entre l'IT et le contrôle industriel doit être **maîtrisée**, et non réduite à un simple routage IP bidirectionnel.
 
-**Fonctionnement du protocole MQTT :**
-- **Broker MQTT** : Serveur central qui reçoit tous les messages, les filtre, et les redistribue aux clients abonnés.
-- **Client** : Dispositif ou application qui peut publier des messages à un topic spécifique ou s'abonner à un topic pour recevoir des messages.
+## 1.5. Python dans ce contexte
 
-Voici un diagramme simplifié illustrant le fonctionnement du protocole MQTT :
+Python est particulièrement utile pour :
+
+- collecter de la télémétrie ;
+- écrire des passerelles et adaptateurs ;
+- interroger des API ;
+- automatiser des contrôles de configuration ;
+- analyser des journaux et fichiers PCAP ;
+- fabriquer des simulateurs pour les tests ;
+- intégrer MQTT, Modbus ou OPC UA ;
+- enrichir un SIEM ;
+- écrire des outils de validation de certificats ou d'inventaire.
+
+Python est en revanche rarement le bon choix pour une boucle de contrôle temps réel dur ou une fonction de sûreté certifiée.
+
+# 2. Modèle de menace et objectifs de sécurité OT
+
+## 2.1. CIA, mais pas seulement
+
+La triade classique reste utile :
+
+- **confidentialité** : empêcher une lecture non autorisée ;
+- **intégrité** : empêcher une modification non autorisée ;
+- **disponibilité** : conserver la capacité à rendre le service.
+
+Dans un environnement OT s'ajoutent notamment :
+
+- **sûreté** (*safety*) ;
+- **authenticité** des équipements et commandes ;
+- **traçabilité** des actions ;
+- **résilience** et capacité de retour à un état sûr ;
+- **fraîcheur** d'une mesure ou d'une commande pour limiter les rejeux ;
+- **maîtrise du procédé** même en situation dégradée.
+
+## 2.2. Menace, vulnérabilité, exposition et risque
+
+Une **vulnérabilité** est une faiblesse.
+
+Une **menace** est une cause potentielle d'incident.
+
+L'**exposition** décrit à quel point un actif est atteignable ou utilisable par la menace.
+
+Le **risque** combine la vraisemblance et l'impact.
+
+Il faut éviter de prioriser les vulnérabilités uniquement par un score CVSS. Dans un atelier, un service peu exposé avec un CVSS élevé peut être moins urgent qu'un accès distant mal segmenté donnant directement accès au réseau de contrôle.
+
+## 2.3. Sources de menace
+
+Les incidents ne viennent pas uniquement d'un attaquant externe :
+
+- identifiants compromis ;
+- prestataire distant ;
+- erreur de configuration ;
+- ordinateur de maintenance infecté ;
+- clé USB ;
+- dépendance logicielle compromise ;
+- firmware vulnérable ;
+- compte oublié ;
+- équipement exposé accidentellement ;
+- défaut matériel ou réseau ;
+- action interne malveillante.
+
+## 2.4. Surfaces d'attaque
+
+Une architecture IoT/SCADA possède souvent plusieurs surfaces simultanées :
+
+1. matériel et accès physique ;
+2. bootloader et firmware ;
+3. système d'exploitation ;
+4. services réseau ;
+5. protocoles industriels ;
+6. API et applications web ;
+7. broker MQTT ou passerelle ;
+8. cloud ;
+9. application mobile ;
+10. chaîne de mise à jour ;
+11. dépendances et chaîne de build ;
+12. comptes humains et machines.
+
+## 2.5. Threat modeling
+
+Une méthode simple consiste à documenter pour chaque flux :
+
+- source ;
+- destination ;
+- protocole ;
+- identité attendue ;
+- données transportées ;
+- besoin de confidentialité ;
+- besoin d'intégrité ;
+- action possible ;
+- conséquence d'un échec ;
+- contrôles existants ;
+- journalisation disponible.
+
+Exemple :
+
+| Flux | Risque principal | Contrôles attendus |
+|---|---|---|
+| capteur → broker MQTT | usurpation / donnée fausse | identité machine, TLS, ACL topic |
+| HMI → PLC | commande non autorisée | segmentation, ACL, identité, logique de sûreté |
+| IT → historian | mouvement latéral | DMZ, flux unidirectionnel si possible, compte dédié |
+| poste maintenance → OT | compromission prestataire | bastion, MFA, fenêtre d'accès, enregistrement |
+
+## 2.6. Security by design et fail-safe
+
+La sécurité ne doit pas être ajoutée après coup.
+
+Il faut définir dès la conception :
+
+- l'état sûr attendu lors d'une panne ;
+- les commandes autorisées ;
+- les limites physiques ;
+- la stratégie de mise à jour ;
+- la révocation des identités ;
+- la récupération après perte de connectivité ;
+- l'observabilité nécessaire pour diagnostiquer un incident.
+
+Une règle essentielle : **la cybersécurité ne doit pas supprimer les mécanismes de sûreté indépendants**.
+
+# 3. Architecture défensive : zones, conduits et segmentation
+
+## 3.1. Du modèle Purdue aux zones et conduits
+
+Le modèle Purdue reste un outil pédagogique utile pour comprendre les niveaux industriels, mais une architecture moderne ne doit pas être figée dans des numéros de couches.
+
+La série ISA/IEC 62443 raisonne notamment en **zones** et **conduits** :
+
+- une **zone** regroupe des actifs ayant des besoins de sécurité comparables ;
+- un **conduit** représente les communications autorisées entre zones.
+
+Cette approche force à documenter **pourquoi un flux existe**.
+
+## 3.2. Exemple de zones
+
+```mermaid
+flowchart LR
+    Internet((Internet))
+    IT[Zone IT]
+    DMZ[DMZ industrielle]
+    SUP[Zone supervision]
+    CTRL[Zone contrôle]
+    SAFETY[Zone sûreté]
+
+    Internet -. accès contrôlé .-> IT
+    IT -->|flux explicitement autorisés| DMZ
+    DMZ -->|flux limités| SUP
+    SUP -->|protocoles nécessaires| CTRL
+    CTRL -. séparation forte .- SAFETY
+```
+
+## 3.3. Principes de segmentation
+
+Une bonne segmentation cherche à :
+
+- réduire le nombre de systèmes capables de joindre directement un automate ;
+- limiter les ports et protocoles à ceux réellement nécessaires ;
+- séparer administration, supervision et contrôle ;
+- isoler les équipements anciens ;
+- interdire le routage arbitraire depuis le réseau bureautique ;
+- journaliser les passages entre zones ;
+- empêcher un équipement IoT compromis de devenir une passerelle générale.
+
+## 3.4. DMZ industrielle
+
+La DMZ industrielle peut héberger :
+
+- relais de données ;
+- proxy/reverse proxy ;
+- serveur de transfert ;
+- collecteur de logs ;
+- réplique d'historian ;
+- relais de mises à jour ;
+- bastion d'administration.
+
+L'objectif est d'éviter une relation de confiance directe **IT ↔ réseau de contrôle**.
+
+## 3.5. Pare-feu et listes blanches de flux
+
+En OT, une approche en liste blanche est souvent réaliste parce que les flux sont plus prévisibles.
+
+Exemple de matrice :
+
+| Source | Destination | Service | Autorisé |
+|---|---|---|---|
+| passerelle IoT | broker | MQTT/TLS | oui |
+| HMI | PLC | Modbus TCP | si nécessaire |
+| poste bureautique | PLC | tout | non |
+| SIEM | équipement OT | connexion entrante | généralement non |
+| équipement OT | collecteur NTP | NTP | oui, contrôlé |
+
+## 3.6. Microsegmentation et Zero Trust
+
+« Zero Trust » ne signifie pas supprimer les réseaux ou placer un agent EDR sur chaque automate.
+
+Les idées transposables à l'OT sont :
+
+- aucune confiance fondée uniquement sur l'emplacement réseau ;
+- identité explicite ;
+- moindre privilège ;
+- vérification des flux ;
+- journalisation ;
+- segmentation fine lorsque les équipements la supportent.
+
+## 3.7. Flux unidirectionnels
+
+Pour certains cas critiques, un **data diode** ou une architecture logiquement unidirectionnelle peut réduire fortement le risque de commande depuis un réseau moins sûr.
+
+Cela ne convient pas à tous les usages : il faut vérifier les besoins d'acquittement, de commande et de maintenance.
+
+# 4. Inventaire, identité des actifs et chaîne d'approvisionnement
+
+## 4.1. On ne protège pas ce qu'on ne connaît pas
+
+L'inventaire doit inclure :
+
+- type et fonction ;
+- propriétaire ;
+- fabricant et modèle ;
+- numéro de série ;
+- version firmware/OS ;
+- adresses réseau ;
+- protocoles ;
+- certificats ;
+- dépendances critiques ;
+- zone réseau ;
+- date de fin de support ;
+- criticité ;
+- méthode de sauvegarde/restauration.
+
+## 4.2. Inventaire passif avant scan actif
+
+Dans un réseau industriel, l'observation passive est souvent préférable :
+
+- tables des commutateurs ;
+- logs DHCP/DNS ;
+- firewall ;
+- SPAN/TAP ;
+- inventaire constructeur ;
+- CMDB ;
+- captures réseau autorisées.
+
+Un scanner actif doit être testé et validé avant usage sur des équipements fragiles ou anciens.
+
+## 4.3. SBOM
+
+Une **Software Bill of Materials** liste les composants logiciels d'un produit.
+
+Elle facilite :
+
+- la recherche d'une dépendance vulnérable ;
+- l'évaluation de l'impact d'un CVE ;
+- la gestion du cycle de vie ;
+- la conformité ;
+- la réponse rapide à une compromission de supply chain.
+
+Formats courants :
+
+- CycloneDX ;
+- SPDX.
+
+## 4.4. Provenance et signatures
+
+Une chaîne de mise à jour robuste devrait permettre de répondre à :
+
+- qui a construit le firmware ?
+- à partir de quel code ?
+- avec quelles dépendances ?
+- l'artefact a-t-il été modifié ?
+- l'appareil vérifie-t-il sa signature ?
+- peut-on revenir à une version vulnérable ?
+
+## 4.5. Gestion des vulnérabilités
+
+En OT, « patcher immédiatement » n'est pas toujours possible.
+
+Le processus doit prévoir :
+
+1. qualification de l'actif concerné ;
+2. analyse de l'exposition réelle ;
+3. test du correctif ;
+4. validation constructeur ;
+5. plan de retour arrière ;
+6. fenêtre de maintenance ;
+7. mesures compensatoires si le patch est différé.
+
+Une mesure compensatoire peut être une règle de pare-feu, une isolation supplémentaire ou la suppression d'un service inutile.
+
+# 5. Protocoles industriels et IoT
+
+## 5.1. Une règle : le protocole ne remplace pas l'architecture
+
+Même un protocole chiffré ne corrige pas :
+
+- un compte administrateur partagé ;
+- un poste de maintenance compromis ;
+- un certificat non vérifié ;
+- une ACL trop large ;
+- une application vulnérable ;
+- une absence de segmentation.
+
+## 5.2. MQTT 5.0
+
+MQTT est un protocole **client/serveur publish/subscribe** léger.
+
+Les clients publient sur des **topics** et s'abonnent aux topics nécessaires. Un broker distribue les messages.
 
 ```mermaid
 sequenceDiagram
-    participant D as Dispositif IoT
-    participant B as Broker MQTT
-    participant A as Application
+    participant S as Capteur
+    participant B as Broker
+    participant H as Historian
 
-    D->>B: Publie sur topic/sensor1
-    A->>B: S'abonne à topic/sensor1
-    B->>A: Redistribue le message
+    S->>B: CONNECT authentifié
+    H->>B: SUBSCRIBE usine/+/temperature
+    S->>B: PUBLISH usine/l1/temperature
+    B->>H: PUBLISH usine/l1/temperature
 ```
 
-Dans cet exemple :
-1. Un **dispositif IoT** publie des données, comme des lectures de capteurs, à un **topic** spécifique sur le **broker MQTT**.
-2. Une **application** s'abonne au même **topic** sur le **broker**.
-3. Lorsque le **broker** reçoit un message pour ce **topic**, il le redistribue automatiquement à tous les clients abonnés à ce topic, assurant ainsi une communication efficace et ciblée entre les dispositifs.
+### QoS
 
-Le protocole MQTT est largement utilisé dans les applications IoT pour sa simplicité, son efficacité, et sa capacité à fonctionner dans des environnements avec des contraintes sévères en termes de ressources et de connectivité.
+- **0** : au plus une fois ;
+- **1** : au moins une fois, donc doublons possibles ;
+- **2** : exactement une fois au niveau du protocole MQTT, avec davantage d'échanges.
 
-#### 1.3.1.2. Communication Modbus
+Le QoS ne remplace pas l'idempotence applicative.
 
-Le protocole Modbus est l'un des protocoles de communication les plus anciens et les plus répandus utilisés dans les systèmes de contrôle industriel et les applications IoT. Développé dans les années 1970, Modbus est devenu un standard de facto pour la communication entre les équipements automatisés. Il permet la transmission d'informations entre de nombreux dispositifs sur le même réseau, comme des capteurs, des contrôleurs, et d'autres unités de traitement, en utilisant une structure de message simple.
+### Sécurité MQTT
 
-**Caractéristiques principales :**
-- **Simplicité** : Facile à comprendre et à implémenter, avec une structure de paquet minimaliste.
-- **Flexibilité** : Peut être utilisé sur divers types de réseaux, y compris série (RTU) et Ethernet (TCP/IP).
-- **Interopérabilité** : Permet la communication entre équipements de différents fabricants.
+À prévoir :
 
-**Fonctionnement de Modbus :**
-- **Maître/esclave** : Fonctionne selon un modèle maître/esclave où le maître envoie des requêtes aux esclaves, qui répondent avec les données demandées ou un accusé de réception.
-- **Adressage** : Utilise des adresses pour identifier les registres des esclaves, permettant la lecture ou l'écriture de valeurs spécifiques.
-- **Fonctions** : Supporte plusieurs fonctions pour lire et écrire des données, ainsi que pour effectuer des diagnostics.
+- TLS ;
+- authentification par certificat ou mécanisme adapté ;
+- identités distinctes par équipement ;
+- ACL par topic ;
+- limitation des droits de publication ;
+- limitation de débit/taille ;
+- journalisation ;
+- révocation des identifiants ;
+- pas de broker anonyme exposé à Internet.
 
-Illustration de la communication Modbus :
+## 5.3. Modbus
+
+Modbus est très répandu dans les systèmes industriels.
+
+La terminologie actuelle utilise **client/serveur** plutôt que maître/esclave.
+
+Le Modbus TCP historique sur le port 502 ne fournit pas nativement :
+
+- chiffrement ;
+- authentification forte ;
+- intégrité cryptographique ;
+- autorisation fine.
+
+Il doit donc être protégé par l'architecture réseau lorsque les équipements ne supportent pas de mécanisme plus moderne.
+
+### Modbus Security
+
+La spécification **Modbus Security** combine Modbus avec TLS et des certificats X.509v3. Elle utilise le port 802 et peut transporter des informations de rôles pour l'autorisation.
+
+Cela ne signifie pas que tous les équipements Modbus du marché supportent Modbus Security.
+
+## 5.4. OPC UA
+
+OPC UA a été conçu avec un modèle de sécurité plus riche :
+
+- certificats d'application ;
+- SecureChannel ;
+- signature et chiffrement ;
+- authentification utilisateur ;
+- autorisation ;
+- audit ;
+- profils de sécurité.
+
+La version 1.05.06 de la partie 2 de la spécification décrit le modèle de sécurité courant.
+
+Une erreur fréquente consiste à déployer OPC UA en mode anonyme et sans sécurité « parce que le réseau est interne ». Cela annule une partie importante de son intérêt.
+
+## 5.5. HTTP et APIs
+
+Les passerelles IoT exposent souvent des APIs HTTP.
+
+Il faut alors appliquer les contrôles web classiques :
+
+- HTTPS ;
+- authentification ;
+- autorisation objet par objet ;
+- validation des entrées ;
+- protection CSRF si cookies ;
+- limitation de débit ;
+- journalisation ;
+- gestion des secrets ;
+- mises à jour des dépendances.
+
+## 5.6. CoAP
+
+CoAP est conçu pour des environnements contraints. Selon l'architecture, sa sécurité peut s'appuyer sur DTLS, OSCORE ou des mécanismes définis par l'écosystème utilisé.
+
+La contrainte de ressources n'est pas une justification pour transmettre des commandes sensibles sans authentification.
+
+## 5.7. Bluetooth Low Energy
+
+BLE utilise notamment :
+
+- advertising ;
+- connexions ;
+- GATT ;
+- services et caractéristiques ;
+- pairing/bonding selon les usages.
+
+Le niveau de sécurité réel dépend du mode d'association, du matériel, de l'application et de la validation de l'identité.
+
+## 5.8. Réseau sans fil
+
+Wi-Fi, LTE/5G, LoRaWAN, Zigbee, Thread ou autres technologies peuvent être pertinentes selon le cas.
+
+Pour chacune, il faut distinguer :
+
+- identité radio ;
+- chiffrement du lien ;
+- identité applicative ;
+- sécurité de bout en bout ;
+- gestion et rotation des clés.
+
+# 6. Cryptographie, TLS et PKI industrielle
+
+## 6.1. Chiffrer n'est pas authentifier
+
+La cryptographie sert plusieurs propriétés :
+
+- confidentialité ;
+- intégrité ;
+- authentification ;
+- signature ;
+- échange de clés.
+
+Une connexion chiffrée vers le mauvais serveur reste dangereuse.
+
+## 6.2. TLS
+
+TLS protège un canal client/serveur contre l'écoute et la modification lorsque :
+
+- le protocole et les algorithmes sont correctement configurés ;
+- le certificat est vérifié ;
+- le nom/identité est vérifié ;
+- la clé privée est protégée ;
+- la chaîne de certification est gérée ;
+- les versions obsolètes sont désactivées lorsque le parc le permet.
+
+## 6.3. mTLS
+
+Le **mutual TLS** authentifie également le client par certificat.
+
+Pour l'IoT, cela permet d'avoir une identité cryptographique par appareil plutôt qu'un mot de passe partagé par toute une gamme de produits.
+
+## 6.4. PKI industrielle
+
+Une PKI implique :
+
+- autorité de certification ;
+- enrôlement ;
+- stockage de la clé privée ;
+- rotation ;
+- renouvellement ;
+- révocation ;
+- horloge suffisamment fiable ;
+- procédure de remplacement d'un équipement.
+
+## 6.5. Clés dans le matériel
+
+Lorsque le niveau de risque le justifie :
+
+- TPM ;
+- secure element ;
+- HSM ;
+- TrustZone ou mécanisme matériel équivalent.
+
+L'objectif est de rendre l'extraction d'une clé plus difficile que la simple lecture d'un fichier sur la partition.
+
+## 6.6. Secrets applicatifs
+
+À éviter :
+
+```python
+MQTT_PASSWORD = "mot-de-passe-de-production"
+```
+
+Préférer une injection par l'environnement ou un gestionnaire de secrets :
+
+```python
+import os
+
+mqtt_password = os.environ["MQTT_PASSWORD"]
+```
+
+Mais une variable d'environnement n'est pas un coffre-fort : elle réduit surtout le risque de committer le secret dans Git.
+
+## 6.7. Chiffrement des données au repos
+
+Selon les besoins :
+
+- chiffrement du disque ;
+- base chiffrée ;
+- chiffrement applicatif de certains champs ;
+- gestion séparée des clés ;
+- sauvegardes chiffrées.
+
+# 7. Identités, autorisations et accès distant
+
+## 7.1. Identité humaine et identité machine
+
+Il faut distinguer :
+
+- opérateur ;
+- administrateur ;
+- prestataire ;
+- application ;
+- passerelle ;
+- capteur ;
+- automate ;
+- service cloud.
+
+Un compte « iot » partagé entre 300 équipements empêche une révocation et une traçabilité correctes.
+
+## 7.2. Moindre privilège
+
+Exemples :
+
+- un capteur de température publie mais ne commande pas ;
+- l'historian lit mais ne programme pas un PLC ;
+- une application ne s'abonne qu'aux topics utiles ;
+- le compte de supervision ne possède pas les droits de configuration firmware.
+
+## 7.3. Comptes par défaut
+
+Les mots de passe universels par défaut sont particulièrement dangereux pour l'IoT.
+
+Un produit moderne doit permettre :
+
+- un secret unique par équipement ou un enrôlement initial ;
+- la modification sûre des identifiants ;
+- le blocage/ralentissement des tentatives ;
+- une procédure de récupération maîtrisée.
+
+## 7.4. Accès distant
+
+Un accès distant OT devrait typiquement passer par :
+
+1. une identité nominative ;
+2. MFA ;
+3. un VPN ou accès Zero Trust adapté ;
+4. un bastion/jump host ;
+5. une autorisation limitée dans le temps ;
+6. une journalisation ;
+7. une révocation immédiate possible.
+
+Éviter l'exposition directe de VNC, RDP, SSH, interfaces web d'automates ou brokers MQTT sur Internet.
+
+## 7.5. Comptes prestataires
+
+Les comptes fournisseurs doivent :
+
+- être nominatifs ;
+- être désactivés hors intervention si possible ;
+- être limités à la zone nécessaire ;
+- ne pas utiliser le même mot de passe sur plusieurs clients ;
+- faire l'objet d'une revue périodique.
+
+# 8. Développement Python sécurisé pour l'IoT et l'OT
+
+## 8.1. Environnement isolé
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+```
+
+Ne pas installer au hasard des paquets en `sudo pip` sur une passerelle de production.
+
+## 8.2. Dépendances
+
+Bonnes pratiques :
+
+- fichier de dépendances versionné ;
+- lockfile si l'outil utilisé le permet ;
+- source de paquets maîtrisée ;
+- revue des dépendances directes ;
+- mises à jour régulières ;
+- génération d'une SBOM lorsque le produit est distribué.
+
+## 8.3. Typage et modèles de données
+
+Les données reçues d'un capteur doivent être considérées comme **non fiables**.
+
+```python
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Measurement:
+    device_id: str
+    temperature_c: float
+    sequence: int
+
+
+def validate_measurement(data: dict) -> Measurement:
+    device_id = str(data["device_id"])
+    temperature = float(data["temperature_c"])
+    sequence = int(data["sequence"])
+
+    if not device_id or len(device_id) > 64:
+        raise ValueError("device_id invalide")
+    if not -80.0 <= temperature <= 200.0:
+        raise ValueError("température hors plage")
+    if sequence < 0:
+        raise ValueError("séquence invalide")
+
+    return Measurement(device_id, temperature, sequence)
+```
+
+Une validation métier n'est pas seulement une protection contre un attaquant : elle évite aussi qu'un capteur défaillant injecte une valeur absurde dans le système de décision.
+
+## 8.4. Désérialisation
+
+Éviter les formats capables d'exécuter du code lors du chargement.
+
+Pour des messages simples, JSON est souvent plus sûr que `pickle` lorsque les données traversent une frontière de confiance.
+
+```python
+import json
+
+payload = json.loads(raw_payload)
+```
+
+Ne jamais charger un `pickle` reçu d'un équipement ou d'un réseau non fiable.
+
+## 8.5. Commandes système
+
+Éviter :
+
+```python
+import os
+os.system(f"outil --device {device_id}")
+```
+
+Préférer :
+
+```python
+import subprocess
+
+subprocess.run(
+    ["outil", "--device", device_id],
+    check=True,
+    timeout=10,
+)
+```
+
+Et valider `device_id` avant utilisation.
+
+## 8.6. Timeouts
+
+Un service réseau sans timeout peut bloquer une passerelle.
+
+```python
+import requests
+
+response = requests.get(
+    "https://api.example.invalid/status",
+    timeout=(3.0, 10.0),
+)
+response.raise_for_status()
+```
+
+## 8.7. Logs structurés
+
+```python
+import json
+import logging
+
+logger = logging.getLogger("gateway")
+
+
+def audit_event(event: str, **fields: object) -> None:
+    logger.info(json.dumps({"event": event, **fields}, sort_keys=True))
+```
+
+Ne pas journaliser :
+
+- mots de passe ;
+- clés privées ;
+- tokens complets ;
+- données personnelles inutiles.
+
+## 8.8. Privilèges
+
+Une passerelle Python n'a généralement pas besoin de tourner en root.
+
+Séparer :
+
+- accès matériel strictement nécessaire ;
+- service réseau ;
+- administration ;
+- stockage des secrets.
+
+## 8.9. Tests
+
+Tester au minimum :
+
+- entrées invalides ;
+- perte réseau ;
+- certificat expiré ;
+- broker indisponible ;
+- doublon de message ;
+- redémarrage ;
+- reprise après panne ;
+- valeur capteur hors plage ;
+- disque plein ;
+- horloge incorrecte.
+
+# 9. MQTT sécurisé avec Python
+
+## 9.1. Bibliothèque Paho MQTT
+
+Le client Python Eclipse Paho est une bibliothèque courante pour MQTT.
+
+Installation :
+
+```bash
+python -m pip install paho-mqtt
+```
+
+## 9.2. Exemple TLS
+
+```python
+import os
+import ssl
+import paho.mqtt.client as mqtt
+
+BROKER = os.environ.get("MQTT_HOST", "mqtt.example.invalid")
+PORT = int(os.environ.get("MQTT_PORT", "8883"))
+TOPIC = "usine/ligne1/temperature"
+
+
+def on_connect(client, userdata, flags, reason_code, properties):
+    if reason_code == 0:
+        print("Connexion MQTT établie")
+    else:
+        print(f"Connexion refusée: {reason_code}")
+
+
+client = mqtt.Client(
+    mqtt.CallbackAPIVersion.VERSION2,
+    protocol=mqtt.MQTTv5,
+)
+client.on_connect = on_connect
+
+client.tls_set(
+    ca_certs="certs/ca.pem",
+    certfile="certs/device.pem",
+    keyfile="certs/device-key.pem",
+    tls_version=ssl.PROTOCOL_TLS_CLIENT,
+)
+
+client.connect(BROKER, PORT, keepalive=60)
+client.publish(TOPIC, payload="21.4", qos=1)
+client.loop_forever()
+```
+
+Points importants :
+
+- la CA doit être celle attendue ;
+- ne pas utiliser `tls_insecure_set(True)` en production ;
+- protéger `device-key.pem` ;
+- attribuer des droits spécifiques au certificat de l'appareil.
+
+## 9.3. ACL de topics
+
+Un capteur `sensor-42` pourrait avoir :
+
+```text
+publish: usine/ligne1/sensors/sensor-42/telemetry
+subscribe: usine/ligne1/sensors/sensor-42/config
+```
+
+Il ne devrait pas pouvoir publier sur :
+
+```text
+usine/ligne1/commands/#
+```
+
+## 9.4. Client ID
+
+Le Client ID ne doit pas être utilisé comme unique preuve d'identité.
+
+Il est visible au niveau du protocole et doit être associé à un mécanisme d'authentification réel.
+
+## 9.5. Messages retenus et Last Will
+
+Les retained messages et Last Will sont utiles mais doivent être conçus avec soin.
+
+Un ancien retained message de commande peut être dangereux si l'application le traite comme une nouvelle instruction.
+
+Une bonne règle : réserver les retained messages à des **états/configurations explicitement conçus pour cela**, pas à des commandes impulsionnelles.
+
+## 9.6. Anti-rejeu applicatif
+
+Pour certaines commandes sensibles, ajouter :
+
+- identifiant unique ;
+- numéro de séquence ;
+- timestamp ;
+- durée de validité ;
+- idempotence.
+
+Exemple de structure :
+
+```json
+{
+  "command_id": "018f...",
+  "device_id": "pump-02",
+  "issued_at": "2026-08-29T12:00:00Z",
+  "expires_at": "2026-08-29T12:00:30Z",
+  "action": "set_mode",
+  "value": "standby"
+}
+```
+
+# 10. Modbus avec Python : observer avant de commander
+
+## 10.1. PyModbus
+
+PyModbus est une implémentation Python moderne du protocole Modbus. La version 3.15.0 est sortie en août 2026.
+
+Installation :
+
+```bash
+python -m pip install "pymodbus>=3.15,<4"
+```
+
+## 10.2. Principe de sécurité du TP
+
+> [!important]
+> Les exemples ci-dessous doivent viser **un simulateur local ou un équipement de laboratoire explicitement autorisé**. On commence par des opérations de lecture. Les écritures vers un procédé réel sont exclues de ce cours.
+
+## 10.3. Lecture d'un registre sur un simulateur local
+
+```python
+from pymodbus.client import ModbusTcpClient
+
+HOST = "127.0.0.1"
+PORT = 15020
+
+with ModbusTcpClient(HOST, port=PORT, timeout=3) as client:
+    if not client.connected:
+        raise RuntimeError("Impossible de joindre le simulateur")
+
+    result = client.read_holding_registers(
+        address=0,
+        count=2,
+        device_id=1,
+    )
+
+    if result.isError():
+        raise RuntimeError(f"Erreur Modbus: {result}")
+
+    print(result.registers)
+```
+
+La signature exacte d'une bibliothèque peut évoluer : vérifier la documentation correspondant à la version verrouillée dans le projet.
+
+## 10.4. Défense d'un réseau Modbus TCP historique
+
+Lorsque le parc ne supporte que Modbus TCP classique :
+
+- isoler le réseau ;
+- filtrer source/destination ;
+- autoriser seulement les clients nécessaires ;
+- superviser les function codes ;
+- interdire le port 502 depuis l'IT général ;
+- utiliser un bastion pour l'administration ;
+- désactiver les fonctions inutiles si le produit le permet ;
+- enregistrer les changements de configuration.
+
+## 10.5. Modbus Security
+
+Lorsqu'il est supporté, Modbus Security apporte notamment :
+
+- TLS ;
+- authentification mutuelle par certificats X.509v3 ;
+- intégrité du canal ;
+- information de rôle pour l'autorisation ;
+- port 802.
+
+Il faut toujours vérifier la compatibilité réelle des équipements et de la bibliothèque utilisée.
+
+## 10.6. Détection
+
+Des événements intéressants à superviser :
+
+- nouveau client Modbus ;
+- changement soudain de fréquence ;
+- function code inhabituel ;
+- accès à une plage de registres jamais observée ;
+- écriture hors fenêtre de maintenance ;
+- erreurs répétées ;
+- changement de firmware ou de logique automate.
+
+# 11. OPC UA et Python
+
+## 11.1. Pourquoi OPC UA est différent
+
+OPC UA fournit un modèle d'information riche et des fonctions de sécurité standardisées.
+
+Il distingue notamment :
+
+- identité de l'application ;
+- identité de l'utilisateur ;
+- SecureChannel ;
+- Session ;
+- rôles et autorisations ;
+- audit.
+
+## 11.2. asyncua
+
+Le projet `asyncua` fournit un client et un serveur OPC UA asynchrones pour Python. La version 2.0.1 est sortie en juin 2026 et requiert Python 3.10 ou plus.
+
+```bash
+python -m pip install "asyncua>=2.0,<3"
+```
+
+## 11.3. Lecture simple sur un serveur de laboratoire
+
+```python
+import asyncio
+from asyncua import Client
+
+
+async def main() -> None:
+    url = "opc.tcp://127.0.0.1:4840/lab/"
+
+    async with Client(url=url) as client:
+        node = client.get_node("ns=2;s=Temperature")
+        value = await node.read_value()
+        print(value)
+
+
+asyncio.run(main())
+```
+
+Cet exemple montre l'API, pas une configuration de production.
+
+## 11.4. En production : SignAndEncrypt
+
+Pour un déploiement réel, il faut préférer un endpoint offrant un SecurityPolicy approprié avec **signature et chiffrement**, gérer :
+
+- certificat d'application client ;
+- clé privée ;
+- certificat serveur de confiance ;
+- trust list ;
+- renouvellement ;
+- révocation ;
+- authentification utilisateur ;
+- rôles et permissions.
+
+Ne pas accepter automatiquement n'importe quel certificat serveur.
+
+## 11.5. Anonymous
+
+Le mode Anonymous peut être acceptable pour un démonstrateur isolé, mais doit être un choix explicite.
+
+Sur un système industriel, une lecture anonyme peut déjà exposer :
+
+- noms de tags ;
+- topologie ;
+- états de production ;
+- recettes ;
+- informations facilitant une attaque ultérieure.
+
+## 11.6. Autorisation
+
+L'authentification répond à : **qui êtes-vous ?**
+
+L'autorisation répond à : **que pouvez-vous faire ?**
+
+Un opérateur, un historian et un poste d'ingénierie n'ont pas besoin des mêmes droits.
+
+# 12. Bluetooth Low Energy avec Bleak
+
+## 12.1. Remplacer PyBluez pour les nouveaux projets BLE
+
+L'ancien cours utilisait PyBluez et un exemple inspiré d'un exploit Bluetooth. PyBluez indique désormais que le projet n'est plus développé.
+
+Pour un nouveau projet BLE Python multiplateforme, **Bleak** est une option plus actuelle.
+
+```bash
+python -m pip install "bleak>=3,<4"
+```
+
+## 12.2. Scanner son laboratoire
+
+```python
+import asyncio
+from bleak import BleakScanner
+
+
+async def main() -> None:
+    devices = await BleakScanner.discover(timeout=5.0)
+    for device in devices:
+        print(device.name, device.address)
+
+
+asyncio.run(main())
+```
+
+> [!warning]
+> Un scan radio peut révéler des équipements qui ne vous appartiennent pas. Le fait qu'un appareil diffuse une annonce BLE n'autorise pas à s'y connecter ou à tester ses caractéristiques.
+
+## 12.3. Lire une caractéristique sur un équipement de test
+
+```python
+import asyncio
+from bleak import BleakClient
+
+DEVICE = "AA:BB:CC:DD:EE:FF"
+MODEL_NUMBER_UUID = "00002a24-0000-1000-8000-00805f9b34fb"
+
+
+async def main() -> None:
+    async with BleakClient(DEVICE) as client:
+        raw = await client.read_gatt_char(MODEL_NUMBER_UUID)
+        print(raw.decode(errors="replace"))
+
+
+asyncio.run(main())
+```
+
+L'adresse ci-dessus est fictive. Utiliser uniquement un périphérique du laboratoire.
+
+## 12.4. Pairing n'est pas autorisation applicative
+
+Selon les modes BLE, le pairing peut protéger le lien mais ne définit pas nécessairement les droits métier.
+
+Une application critique peut nécessiter en plus :
+
+- identité applicative ;
+- challenge ;
+- clé propre au produit ;
+- anti-rejeu ;
+- contrôle d'autorisation pour chaque commande sensible.
+
+## 12.5. Erreurs classiques BLE
+
+- caractéristique d'écriture sensible sans contrôle ;
+- mode debug laissé actif ;
+- secret identique sur tous les appareils ;
+- firmware non signé ;
+- absence de mise à jour ;
+- information sensible dans l'advertising ;
+- confiance excessive dans l'adresse MAC.
+
+# 13. Journalisation, détection et observabilité OT
+
+## 13.1. Observer sans perturber
+
+La supervision OT doit privilégier les sources peu intrusives :
+
+- SPAN/TAP ;
+- firewall ;
+- logs des brokers ;
+- logs des serveurs OPC UA ;
+- journaux des bastions ;
+- événements Windows/Linux ;
+- syslog ;
+- historian ;
+- traces de configuration.
+
+## 13.2. IDS réseau
+
+Outils courants :
+
+- Suricata ;
+- Zeek ;
+- solutions spécialisées OT.
+
+Le terme **Bro** est historique : le projet s'appelle Zeek depuis plusieurs années.
+
+## 13.3. Baseline
+
+Les réseaux OT ont souvent un comportement relativement stable.
+
+On peut établir une baseline :
+
+- couples source/destination ;
+- protocoles ;
+- ports ;
+- fréquence des messages ;
+- function codes ;
+- volumes ;
+- horaires d'administration.
+
+Un écart ne prouve pas une attaque, mais fournit un signal utile.
+
+## 13.4. Analyse Python d'événements
+
+```python
+from collections import Counter
+from dataclasses import dataclass
+from datetime import datetime
+
+
+@dataclass(frozen=True)
+class Event:
+    timestamp: datetime
+    source: str
+    destination: str
+    protocol: str
+
+
+def count_protocols(events: list[Event]) -> Counter[str]:
+    return Counter(event.protocol for event in events)
+```
+
+Dans un vrai pipeline, les événements devront être normalisés et horodatés avec une source de temps maîtrisée.
+
+## 13.5. Détection simple de nouvel équipement
+
+```python
+KNOWN = {"plc-01", "hmi-01", "gateway-01"}
+
+
+def detect_unknown(asset_id: str) -> bool:
+    return asset_id not in KNOWN
+```
+
+Un contrôle simple, fiable et explicable vaut souvent mieux qu'un modèle de machine learning impossible à maintenir.
+
+## 13.6. IA et détection d'anomalies
+
+Le ML peut aider à détecter des motifs complexes, mais il faut gérer :
+
+- dérive du procédé ;
+- saisonnalité ;
+- changement de production ;
+- faux positifs ;
+- données d'entraînement ;
+- explicabilité ;
+- sécurité du pipeline ML.
+
+Une alerte d'IA ne doit pas déclencher automatiquement une action physique critique sans garde-fous appropriés.
+
+## 13.7. Horodatage
+
+Sans horloge cohérente, une enquête devient difficile.
+
+Prévoir :
+
+- NTP sécurisé/maîtrisé selon le contexte ;
+- source interne ;
+- journalisation de la dérive ;
+- timezone standardisée, souvent UTC dans les logs.
+
+# 14. Réponse à incident et continuité d'activité
+
+## 14.1. Préparer avant l'incident
+
+Un plan doit contenir :
+
+- responsables ;
+- contacts constructeurs ;
+- procédures d'escalade ;
+- topologie réseau ;
+- inventaire ;
+- sauvegardes ;
+- images de référence ;
+- clés et certificats de secours ;
+- procédure de fonctionnement manuel/dégradé ;
+- critères de mise à l'arrêt sûre.
+
+## 14.2. Première priorité : la sûreté
+
+Lors d'un incident OT :
+
+1. protéger les personnes ;
+2. conserver le procédé dans un état sûr ;
+3. limiter la propagation ;
+4. préserver les preuves lorsque cela ne compromet pas la sûreté ;
+5. restaurer de manière contrôlée.
+
+## 14.3. Ne pas « débrancher tout » automatiquement
+
+Une action réflexe comme couper le réseau ou éteindre tous les systèmes peut aggraver la situation.
+
+Le confinement doit être préparé avec les équipes exploitation/sûreté.
+
+## 14.4. Acquisition de preuves
+
+Selon les procédures autorisées :
+
+- sauvegarder les logs ;
+- exporter les règles firewall ;
+- conserver les événements d'authentification ;
+- capturer le trafic depuis une infrastructure prévue ;
+- enregistrer les versions et hashes ;
+- documenter chaque action de réponse.
+
+## 14.5. Restauration
+
+Ne pas remettre un système en production uniquement parce qu'il « redémarre ».
+
+Vérifier :
+
+- firmware/logiciel approuvé ;
+- configuration attendue ;
+- identités et certificats ;
+- comptes ;
+- règles réseau ;
+- logique automate ;
+- supervision ;
+- sauvegardes ;
+- cause racine.
+
+## 14.6. Exercices
+
+Faire régulièrement des exercices de table :
+
+- perte du broker ;
+- certificat expiré ;
+- ransomware sur poste d'ingénierie ;
+- passerelle IoT compromise ;
+- perte de l'Active Directory ;
+- indisponibilité du fournisseur cloud ;
+- mise à jour firmware défectueuse.
+
+# 15. Durcissement des équipements et cycle de vie
+
+## 15.1. Secure Boot
+
+Le Secure Boot vise à empêcher le chargement d'un logiciel non autorisé au démarrage.
+
+Selon le matériel :
+
+- racine de confiance ;
+- bootloader signé ;
+- firmware signé ;
+- vérification de chaîne ;
+- verrouillage du mode debug.
+
+## 15.2. Mises à jour signées
+
+Une mise à jour doit être :
+
+- authentique ;
+- intègre ;
+- compatible ;
+- atomique si possible ;
+- récupérable après coupure ;
+- protégée contre le rollback vers une version vulnérable lorsque nécessaire.
+
+## 15.3. A/B update
+
+Sur un équipement embarqué, une stratégie A/B peut conserver :
+
+- partition active ;
+- nouvelle partition ;
+- validation de santé ;
+- retour automatique si la mise à jour échoue.
+
+## 15.4. Services inutiles
+
+Désactiver :
+
+- Telnet ;
+- serveur web de debug ;
+- shell de maintenance non utilisé ;
+- UPnP inutile ;
+- comptes démonstration ;
+- interfaces de développement exposées.
+
+## 15.5. Linux embarqué
+
+Pour une passerelle Linux :
+
+- utilisateur non root ;
+- système de fichiers en lecture seule lorsque possible ;
+- AppArmor/SELinux selon plateforme ;
+- capabilities minimales ;
+- seccomp pour services exposés ;
+- firewall local ;
+- mises à jour atomiques ;
+- journaux persistants maîtrisés.
+
+Voir également [[Sécurité avancée sous Linux]].
+
+## 15.6. Protection physique
+
+Selon la menace :
+
+- scellés ;
+- boîtier ;
+- ports debug désactivés ;
+- verrouillage bootloader ;
+- stockage matériel des clés ;
+- détection d'ouverture ;
+- contrôle d'accès aux armoires.
+
+## 15.7. Fin de vie
+
+Prévoir dès l'achat :
+
+- durée de support ;
+- disponibilité des correctifs ;
+- procédure de remplacement ;
+- effacement des secrets ;
+- retrait des certificats ;
+- destruction ou reconditionnement sécurisé.
+
+# 16. Normes et réglementation
+
+## 16.1. NIST SP 800-82 Rev. 3
+
+Le **NIST SP 800-82 Rev. 3**, publié en septembre 2023, est un guide de référence pour la sécurité OT. Il insiste sur les exigences spécifiques de performance, fiabilité et sûreté des systèmes opérationnels.
+
+Il est utile pour :
+
+- architecture ;
+- gestion des risques ;
+- segmentation ;
+- contrôle d'accès ;
+- supervision ;
+- réponse à incident.
+
+## 16.2. ISA/IEC 62443
+
+La série ISA/IEC 62443 couvre la cybersécurité des systèmes d'automatisation et de contrôle industriels.
+
+Quelques parties importantes :
+
+- **62443-2-1** : programme de sécurité pour les asset owners ;
+- **62443-3-2** : évaluation de risque pour la conception système ;
+- **62443-3-3** : exigences système et Security Levels ;
+- **62443-4-1** : cycle de développement sécurisé des produits ;
+- **62443-4-2** : exigences techniques des composants.
+
+Les concepts de **zones**, **conduits** et niveaux de sécurité sont centraux.
+
+## 16.3. ETSI EN 303 645
+
+Pour l'IoT grand public, ETSI EN 303 645 fournit une base de cybersécurité.
+
+La version V3.1.3 publiée en 2024 aborde notamment :
+
+- absence de mots de passe universels par défaut ;
+- gestion des vulnérabilités ;
+- mises à jour ;
+- protection des données sensibles ;
+- réduction de la surface d'attaque ;
+- résilience.
+
+Ce standard n'est pas un substitut à IEC 62443 pour un système industriel, mais plusieurs principes sont communs.
+
+## 16.4. NIS2
+
+La directive européenne NIS2 renforce les obligations de cybersécurité pour de nombreux secteurs essentiels et importants.
+
+Pour une organisation concernée, il faut articuler :
+
+- gouvernance ;
+- gestion des risques ;
+- continuité ;
+- supply chain ;
+- gestion des incidents ;
+- notification ;
+- mesures techniques et organisationnelles.
+
+Les modalités exactes dépendent de la transposition nationale applicable.
+
+## 16.5. Cyber Resilience Act
+
+Le **Cyber Resilience Act (CRA)** européen s'applique aux produits comportant des éléments numériques selon son champ d'application.
+
+Au 29 août 2026 :
+
+- le règlement est entré en vigueur le 10 décembre 2024 ;
+- les dispositions relatives aux organismes d'évaluation de conformité s'appliquent depuis le 11 juin 2026 ;
+- les obligations de signalement de l'article 14 s'appliqueront à partir du **11 septembre 2026** ;
+- l'application générale est prévue pour le **11 décembre 2027**.
+
+Pour un fabricant IoT, cela renforce l'importance de :
+
+- sécurité by design/default ;
+- évaluation des risques ;
+- traitement des vulnérabilités ;
+- mises à jour ;
+- documentation ;
+- suivi du cycle de vie.
+
+## 16.6. Conformité ≠ sécurité absolue
+
+Une certification ou conformité démontre qu'un ensemble d'exigences a été traité. Elle ne garantit pas l'absence de vulnérabilité ni la bonne exploitation quotidienne.
+
+# 17. Architecture de référence du mini-projet
+
+## 17.1. Objectif
+
+Construire un laboratoire local simulant :
+
+- deux capteurs ;
+- une passerelle Python ;
+- un broker MQTT ;
+- un simulateur Modbus ;
+- un serveur OPC UA de laboratoire ;
+- une collecte de logs ;
+- une petite interface de lecture.
+
+Aucun équipement industriel réel n'est nécessaire.
+
+## 17.2. Architecture
 
 ```mermaid
-sequenceDiagram
-    participant M as Maître Modbus
-    participant E as Esclave Modbus
+flowchart LR
+    S1[Capteur simulé 1]
+    S2[Capteur simulé 2]
+    GW[Passerelle Python]
+    MQTT[Broker MQTT TLS]
+    HIST[Historian simulé]
+    MON[Collecteur logs]
+    MB[Simulateur Modbus]
+    UA[Serveur OPC UA lab]
 
-    M->>E: Requête (Lire registres)
-    Note over M,E: La requête spécifie l'adresse et le nombre de registres à lire.
-    E-->>M: Réponse (Valeurs des registres)
-    Note over M,E: L'esclave répond avec les données demandées.
+    S1 --> GW
+    S2 --> GW
+    GW -->|mTLS| MQTT
+    MQTT --> HIST
+    GW --> MON
+    GW -->|lecture| MB
+    GW -->|lecture| UA
 ```
 
-Dans cet exemple de communication Modbus :
-1. Le **maître Modbus** envoie une requête à l'**esclave Modbus**, demandant la lecture de valeurs depuis des registres spécifiques.
-2. L'**esclave Modbus** reçoit la requête, lit les valeurs des registres demandés, et envoie une réponse au maître avec les données.
-   
-La simplicité et la robustesse du protocole Modbus en font un choix privilégié pour la communication dans les systèmes industriels et IoT, particulièrement dans les applications nécessitant une interaction fiable entre différents dispositifs sur un réseau.
+## 17.3. Principes imposés
 
-### 1.3.3. Portabilité et compatibilité
+Le projet doit respecter :
 
-Python est un langage hautement portable, capable de fonctionner sur une multitude de plateformes, des serveurs haut de gamme aux dispositifs embarqués comme le Raspberry Pi, souvent utilisé dans les projets IoT. Cette portabilité assure que le code développé peut être facilement déployé et exécuté dans divers environnements.
+- aucune clé privée dans Git ;
+- identités distinctes ;
+- ACL topic ;
+- réseau de laboratoire isolé ;
+- lecture seule Modbus/OPC UA pour les TP de base ;
+- logs structurés ;
+- timeouts ;
+- validation des données ;
+- tests ;
+- documentation des flux ;
+- procédure de renouvellement des certificats.
 
-### 1.3.4. Adaptabilité aux technologies émergentes
+## 17.4. Arborescence Python
 
-Python a prouvé sa capacité à s'adapter et à intégrer des technologies émergentes, notamment dans les domaines de l'intelligence artificielle (IA) et du Machine Learning (ML), qui jouent un rôle de plus en plus central dans les applications IoT avancées. Cette adaptabilité en fait un choix stratégique pour les projets IoT visant l'innovation et l'incorporation de nouvelles fonctionnalités.
-
-### 1.3.5. Communauté et support
-
-Python bénéficie d'une communauté mondiale très active, offrant un vaste réservoir de ressources, de tutoriels, de forums, et de documentation. Cette communauté dynamique est une source précieuse de support et d'innovation, facilitant le développement de solutions IoT et la résolution des problèmes rencontrés.
-
-## 1.4. Aperçu des bibliothèques et outils pertinents
-
-L'écosystème Python offre une multitude de bibliothèques et d'outils adaptés au développement et à la sécurisation des applications IoT, notamment dans le contexte des systèmes SCADA. Ces ressources facilitent la mise en œuvre de communications sécurisées, le traitement et l'analyse de données, ainsi que la détection et la réponse aux incidents de sécurité. Cet aperçu présente certains des outils les plus pertinents disponibles pour les développeurs travaillant sur des projets IoT en Python.
-
-### 1.4.1. Bibliothèques de Communication
-
-- **Paho MQTT** : Une bibliothèque client MQTT qui permet aux applications Python de communiquer avec un broker MQTT, essentielle pour les architectures basées sur le protocole MQTT.
-- **PyModbus** : Une bibliothèque Modbus entièrement implémentée, permettant une communication facile avec les dispositifs Modbus RTU et TCP.
-- **Requests** : Simplifie les requêtes HTTP pour interagir avec des API web ou des services en ligne, utile pour les dispositifs IoT connectés à Internet.
-
-### 1.4.2. Traitement et Analyse des Données
-
-- **Pandas** : Fournit des structures de données et des fonctions puissantes pour l'analyse et la manipulation de données, idéal pour gérer les données collectées par les dispositifs IoT.
-- **NumPy** : Offre un support pour les calculs scientifiques et mathématiques complexes, permettant une analyse efficace des données issues de capteurs ou d'autres sources.
-- **Scikit-learn** : Une bibliothèque pour l'apprentissage automatique, permettant de créer des modèles prédictifs à partir de données IoT pour, par exemple, la maintenance prédictive.
-
-### 1.4.3. Sécurité
-
-- **PyCryptodome** : Une bibliothèque de cryptographie auto-suffisante offrant des outils cryptographiques sécurisés pour chiffrer et déchiffrer des données dans les applications IoT.
-- **Scapy** : Permet la manipulation et l'émission de paquets réseau, utile pour tester la sécurité des réseaux IoT et SCADA.
-- **SSL** : Module intégré fournissant une couche de sockets sécurisés pour la communication réseau, essentiel pour sécuriser les échanges de données.
-
-### 1.4.4. Surveillance et Détection des Intrusions
-
-- **Elasticsearch & Kibana** : En combinant Elasticsearch pour le stockage et l'indexation de logs en temps réel avec Kibana pour l'analyse et la visualisation, ces outils supportent la surveillance avancée des systèmes IoT.
-- **Snort** : Bien que non spécifique à Python, Snort peut être intégré dans des solutions Python pour la détection d'intrusions réseau et la prévention des intrusions en temps réel.
-
-### 1.4.5. Automatisation et Orchestration
-
-- **Ansible** : Outil d'automatisation qui peut être utilisé pour configurer et gérer des dispositifs IoT à distance, renforçant ainsi les pratiques de sécurité par une gestion cohérente des configurations.
-
-### 1.4.6. Développement Web pour IoT
-
-- **Flask** : Un micro-framework web qui permet de développer rapidement des applications web pour les interfaces utilisateur d'applications IoT, facilitant la surveillance et le contrôle des dispositifs IoT à distance.
-- **[[Pyramid]]** : Pour des applications IoT plus complexes nécessitant une base de données robuste, une authentification des utilisateurs, ou des fonctionnalités administratives.
-
-## 1.5 Étude de cas Faille BlueTooth
-
-### module `bluetooth`
-Installons les bibliothèques bluetooth
-```bash
-apt update
-apt install -y bluez-tools bluez-hcidump libbluetooth-dev
-pip3 install git+https://github.com/pybluez/pybluez.git
-```
-Nous allons nous inspirer de l'exploit [BlueDucky](https://github.com/pentestfunctions/BlueDucky/tree/main)
-Essayons la connexion.
-```python
-import bluetooth
-
-def decouvrir_peripheriques_bluetooth():
-	"""
-	Découvre les périphériques Bluetooth à proximité et affiche leurs adresses et noms.
-	Returns:
-	None
-	""""
-	print("Recherche des périphériques Bluetooth à proximité...")
-	peripheriques_proches = bluetooth.discover_devices(lookup_names=True)
-	print(f"Trouvé {len(peripheriques_proches)} périphériques.")
-	for adresse, nom in peripheriques_proches:
-		print(f"{adresse} - {nom}")
-
-# Appelle la fonction pour exécuter le code
-decouvrir_peripheriques_bluetooth()
+```text
+iot-lab/
+├── pyproject.toml
+├── README.md
+├── .gitignore
+├── src/
+│   └── gateway/
+│       ├── __init__.py
+│       ├── config.py
+│       ├── models.py
+│       ├── mqtt.py
+│       ├── modbus.py
+│       ├── opcua.py
+│       └── main.py
+├── tests/
+│   ├── test_models.py
+│   └── test_config.py
+└── certs/
+    └── README.md
 ```
 
-Exemple d'exécution :
-```bash
-Trouvé 7 périphériques.
-18:26:49:E7:EC:BB - LAPTOP-O3264ONA
-5C:17:CF:62:62:BB - ‎
-1C:99:57:F0:F1:80 - DELL-ILYAS
-38:D5:7A:44:35:E2 - DELETTRE
-3C:6A:A7:EE:51:7D - DELL
-CC:F9:E4:9F:03:66 - PC-NITHARSHAN
-38:D5:7A:03:E7:E6 - DESKTOP-2Q4IFTE
-```
-La ligne de code que vous avez fournie est une instruction d'importation en Python. Elle importe le module `binascii`.
+Les vraies clés privées ne doivent pas être stockées dans `certs/` du dépôt.
 
-### module `binascii
-`
-Le module `binascii` contient un certain nombre de méthodes pour convertir entre le binaire et diverses représentations binaires encodées en ASCII. Ce module fournit des fonctions pour encoder des données binaires en caractères ASCII imprimables et pour décoder de tels encodages en données binaires. Il fournit un ensemble de méthodes telles que `hexlify()`, `unhexlify()`, `b2a_uu()`, `a2b_uu()`, etc.
-
-Par exemple, `binascii.hexlify()` est une méthode qui convertit les données binaires en une représentation de chaîne hexadécimale. Inversement, `binascii.unhexlify()` est une méthode qui convertit une représentation de chaîne hexadécimale en données binaires.
-
-Voici un exemple simple de son utilisation :
+## 17.5. Configuration
 
 ```python
-import binascii
+from dataclasses import dataclass
+import os
 
-# convertir les données binaires en une ligne de caractères ASCII, la valeur de retour est un objet bytes
-representation_hex = binascii.hexlify(b'\x01\x02\x0A\x0B\x0C')
-print(representation_hex)
 
-# convertir une ligne de caractères ASCII en données binaires
-donnees_binaires = binascii.unhexlify(representation_hex)
-print(donnees_binaires)
+@dataclass(frozen=True)
+class Settings:
+    mqtt_host: str
+    mqtt_port: int
+    device_id: str
+
+
+def load_settings() -> Settings:
+    return Settings(
+        mqtt_host=os.environ["MQTT_HOST"],
+        mqtt_port=int(os.environ.get("MQTT_PORT", "8883")),
+        device_id=os.environ["DEVICE_ID"],
+    )
 ```
 
-Dans cet exemple, nous convertissons d'abord les données binaires en une chaîne hexadécimale à l'aide de `binascii.hexlify()`, puis nous les convertissons en données binaires à l'aide de `binascii.unhexlify()`.
+## 17.6. Modèle de télémétrie
 
-N'oubliez pas, le module `binascii` fait partie de la bibliothèque standard Python, donc vous n'avez rien à installer pour l'utiliser.
+```python
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
+import json
 
-### Secure Simple Pairing (SSP)
-Secure Simple Pairing (SSP) est une méthode d'appariement introduite dans la version 2.1 de la spécification Bluetooth. Elle vise à améliorer la sécurité et la simplicité de l'appariement des dispositifs Bluetooth.
 
-SSP offre plusieurs modes d'appariement :
+@dataclass(frozen=True)
+class Telemetry:
+    device_id: str
+    temperature_c: float
+    sequence: int
+    timestamp: str
 
-1. **Just Works** : Utilisé lorsque au moins un des dispositifs n'a pas d'interface utilisateur capable d'entrer un code PIN. C'est le moins sécurisé car il n'y a pas de protection contre les attaques de type "man-in-the-middle".
+    def to_json(self) -> str:
+        return json.dumps(asdict(self), separators=(",", ":"))
 
-2. **Numeric Comparison** : Utilisé lorsque les deux dispositifs ont des interfaces utilisateur. Un nombre à 6 chiffres est affiché sur les deux dispositifs et l'utilisateur doit confirmer qu'ils correspondent.
 
-3. **Passkey Entry** : Utilisé lorsque un des dispositifs a une interface utilisateur mais pas l'autre. L'utilisateur doit entrer un nombre à 6 chiffres affiché sur l'autre dispositif.
+def make_telemetry(device_id: str, value: float, sequence: int) -> Telemetry:
+    if not -80 <= value <= 200:
+        raise ValueError("Valeur hors plage")
 
-4. **Out of Band (OOB)** : Utilise une méthode de communication externe pour échanger les clés d'authentification. Par exemple, cela pourrait être fait en utilisant NFC.
+    return Telemetry(
+        device_id=device_id,
+        temperature_c=value,
+        sequence=sequence,
+        timestamp=datetime.now(timezone.utc).isoformat(),
+    )
+```
 
-SSP utilise l'algorithme Elliptic Curve Diffie-Hellman (ECDH) pour créer une clé partagée sécurisée entre les deux dispositifs. Cela permet d'éviter les attaques de type "man-in-the-middle".
+## 17.7. Critères de réussite
 
-Dans le contexte de l'exploit, la méthode `enable_ssp` active le SSP sur l'adaptateur Bluetooth. Cela signifie que lorsque cet adaptateur tente de se connecter à un autre dispositif Bluetooth, il utilisera SSP pour l'appariement.
-# 2. Fondamentaux de la Sécurité dans les Systèmes IoT
+Le projet est réussi si :
 
-## 2.1. Comprendre les vecteurs d'attaque IoT : de la périphérie au nuage
+- les flux sont documentés ;
+- un capteur ne peut pas publier sur le topic d'un autre ;
+- un certificat non approuvé est rejeté ;
+- une valeur invalide est refusée ;
+- la perte du broker ne bloque pas indéfiniment le programme ;
+- une reprise est possible ;
+- les secrets ne sont pas dans Git ;
+- les logs permettent de reconstruire la chronologie.
 
-L'écosystème IoT est composé d'une diversité de dispositifs, de réseaux, et de plateformes cloud, chacun présentant des opportunités uniques pour les acteurs malveillants. La compréhension des vecteurs d'attaque, de la périphérie (les dispositifs IoT eux-mêmes) jusqu'au nuage (les infrastructures et services cloud qui reçoivent, traitent et stockent les données des dispositifs IoT), est fondamentale pour développer des stratégies de sécurité efficaces. Cet aperçu explore les principaux vecteurs d'attaque dans les systèmes IoT et met en lumière les risques associés à chaque niveau.
+# 18. Travaux pratiques
 
-### 2.1.1. Attaques sur la Périphérie (Edge)
+## TP 1 — Cartographier une architecture
 
-La périphérie de l'IoT fait référence aux dispositifs physiques et aux passerelles qui connectent ces dispositifs aux réseaux plus larges. Les vecteurs d'attaque comprennent :
+À partir d'une architecture fictive :
 
-- **Attaques physiques** : Accès non autorisé au matériel pour extraire des données sensibles ou installer des malwares.
-- **Firmware et logiciels vulnérables** : Exploitation de vulnérabilités non corrigées dans les logiciels et le firmware des dispositifs.
-- **Interception de communication** : Écoute clandestine sur les communications non sécurisées entre les dispositifs IoT et les passerelles ou entre les dispositifs eux-mêmes.
+1. identifier IT, DMZ, supervision, contrôle et terrain ;
+2. lister les flux ;
+3. classer les actifs par criticité ;
+4. proposer des zones et conduits ;
+5. identifier les flux inutiles.
 
-### 2.1.2. Attaques sur les Réseaux
+Livrable : diagramme Mermaid + matrice des flux.
 
-Les dispositifs IoT communiquent fréquemment sur des réseaux sans fil, qui peuvent être exploités par des attaquants :
+## TP 2 — Threat model d'une passerelle IoT
 
-- **Attaques par déni de service (DoS et DDoS)** : Saturation des dispositifs ou des réseaux avec du trafic inutile, rendant les services indisponibles.
-- **Man-in-the-Middle (MitM)** : Intercepter et potentiellement modifier les données transmises entre deux parties sans que celles-ci en soient conscientes.
-- **Réseaux de zombies (Botnets)** : Utilisation de dispositifs IoT compromis pour mener des attaques coordonnées ou pour diffuser des malwares.
+Étudier une passerelle Linux qui :
 
-### 2.1.3. Attaques sur le Cloud
+- lit un automate ;
+- publie vers MQTT ;
+- reçoit une configuration ;
+- possède un accès SSH de maintenance.
 
-Les plateformes et services cloud jouent un rôle crucial dans la gestion, le traitement, et le stockage des données IoT. Les attaques ciblant ces composants peuvent inclure :
+Identifier au moins :
 
-- **Accès non autorisé** : Exploitation de failles de sécurité pour accéder à des données sensibles stockées dans le cloud.
-- **Injection SQL** : Insertion de code malveillant dans les bases de données via des failles de sécurité dans les applications web.
-- **Attaques de configuration** : Exploitation de configurations cloud incorrectes ou insuffisamment sécurisées pour accéder à des ressources ou à des données non autorisées.
+- 10 menaces ;
+- impact ;
+- contrôle préventif ;
+- contrôle de détection ;
+- stratégie de récupération.
 
-### 2.1.4. Mesures de Prévention
+## TP 3 — Broker MQTT de laboratoire
 
-Pour contrer ces vecteurs d'attaque, les mesures suivantes sont cruciales :
+Configurer un broker local avec :
 
-- **Sécurisation physique et logicielle des dispositifs** : Utiliser des mécanismes de sécurité robustes pour le matériel et le firmware, et s'assurer que tous les logiciels sont régulièrement mis à jour.
-- **Cryptographie et sécurisation des communications** : Chiffrer les communications entre les dispositifs IoT et entre les dispositifs et le cloud pour prévenir les écoutes clandestines et les attaques MitM.
-- **Gestion rigoureuse des accès et des identités** : Mettre en place une gestion des identités et des accès (IAM) robuste pour les utilisateurs et les dispositifs, limitant les accès aux données et aux ressources au strict nécessaire.
-- **Surveillance et détection des anomalies** : Mettre en place des systèmes de surveillance réseau et de détection des intrusions pour identifier et répondre rapidement aux activités suspectes ou malveillantes.
+- TLS ;
+- une identité par client ;
+- ACL topic ;
+- logs ;
+- refus de l'accès anonyme.
 
-La sécurisation des systèmes IoT contre les vecteurs d'attaque exige une approche multicouche qui prend en compte la diversité et la spécificité des menaces à chaque niveau du système, de la périphérie au nuage. En adoptant des pratiques de sécurité rigoureuses et en utilisant des outils adaptés, il est possible de réduire significativement les risques et de protéger efficacement les systèmes IoT contre les attaques.
-## 2.2. Les bases de la sécurisation des communications : Cryptographie, SSL/TLS, et VPNs
+Tester uniquement avec les clients du laboratoire.
 
-La sécurisation des communications est essentielle dans les systèmes IoT pour protéger l'intégrité, la confidentialité, et l'authenticité des données échangées entre les dispositifs, les réseaux, et les plateformes cloud. Cette section explore les fondamentaux de la cryptographie, du Secure Sockets Layer (SSL)/Transport Layer Security (TLS), et des réseaux privés virtuels (VPNs), trois piliers clés pour la sécurisation des communications dans l'environnement IoT.
+## TP 4 — Paho MQTT
 
-### 2.2.1. Cryptographie
+Créer deux clients :
 
-La cryptographie est l'art de protéger les informations en les transformant en une forme sécurisée, de sorte que les destinataires prévus puissent les lire, tandis que les non-autorisés ne le peuvent pas. Elle repose sur deux types principaux de chiffrement :
+- `sensor-01` publie sa température ;
+- `historian` s'abonne aux télémétries.
 
-- **Chiffrement symétrique** : Utilise la même clé pour chiffrer et déchiffrer les données. Bien que rapide et efficace, la gestion sécurisée de la clé partagée entre les parties peut être problématique.
-- **Chiffrement asymétrique** (ou chiffrement à clé publique) : Utilise une paire de clés, une publique pour le chiffrement et une privée pour le déchiffrage. Cela facilite la distribution sécurisée des clés, mais est généralement plus lent que le chiffrement symétrique.
+Vérifier que `sensor-01` ne peut pas publier sur un topic de commande.
 
-La cryptographie permet non seulement de sécuriser les données en transit mais aussi de vérifier l'identité des parties (authentification) et d'assurer l'intégrité des données.
+## TP 5 — Modbus simulé
 
-### 2.2.2. SSL/TLS
+Démarrer un simulateur local et :
 
-SSL (et son successeur, TLS) est un protocole de sécurisation des échanges sur Internet. Il assure la confidentialité, l'intégrité des données, et l'authentification entre deux parties communicantes sur un réseau non sécurisé, comme Internet. Voici comment SSL/TLS sécurise les communications :
-
-- **Négociation d'une session sécurisée** : Établissement d'une session sécurisée via un processus appelé "handshake", qui inclut l'authentification des parties, la sélection d'un algorithme de chiffrement, et l'échange de clés de chiffrement.
-- **Chiffrement des données** : Une fois la session sécurisée établie, les données sont chiffrées suivant l'algorithme sélectionné, garantissant la confidentialité et l'intégrité des données échangées.
-- **Vérification d'intégrité** : Utilise des codes de vérification de message pour s'assurer que les données n'ont pas été altérées durant le transit.
-
-### 2.2.3. VPNs
-
-Un réseau privé virtuel (VPN) crée un tunnel sécurisé entre notre dispositif et un serveur VPN, rendant nos échanges sur Internet privés, même sur des réseaux non sécurisés. Les VPNs utilisent souvent le protocole IPsec ou SSL/TLS pour sécuriser ce tunnel. Les avantages des VPNs pour l'IoT incluent :
-
-- **Confidentialité améliorée** : Masque notre activité réseau, y compris les données IoT, des tiers.
-- **Sécurisation des communications** : Protège les données en transit entre les dispositifs IoT et le cloud ou les serveurs de données.
-- **Accès sécurisé à distance** : Permet aux dispositifs IoT de communiquer de manière sécurisée avec des réseaux d'entreprise ou des plateformes cloud, même lorsqu'ils sont déployés sur des sites distants ou dans des environnements publics.
-
-En combinant la cryptographie, SSL/TLS, et les VPNs, il est possible de construire une stratégie de sécurité des communications robuste pour les systèmes IoT. Ces technologies assurent la protection des données contre les écoutes clandestines, l'usurpation d'identité, et d'autres formes d'attaques, contribuant ainsi à la création d'un écosystème IoT sûr et fiable.
-## 2.3. Authentification et gestion des identités dans les systèmes IoT
-
-L'authentification et la gestion des identités sont cruciales pour assurer la sécurité et l'intégrité des systèmes IoT. Ces processus permettent de vérifier l'identité des dispositifs et des utilisateurs, d'autoriser l'accès aux ressources appropriées, et de tracer les actions au sein du système. Face à la prolifération des dispositifs IoT et à la diversité des applications, mettre en place des mécanismes d'authentification et de gestion des identités robustes est impératif.
-
-### 2.3.1. Authentification
-
-L'authentification dans les systèmes IoT vérifie qu'un dispositif ou un utilisateur est bien celui qu'il prétend être avant d'accorder l'accès aux données ou aux fonctionnalités du système. Les méthodes d'authentification pour IoT peuvent inclure :
-
-- **Authentification basée sur des mots de passe** : Bien que courante, cette méthode est de moins en moins privilégiée en raison des risques de sécurité liés à des mots de passe faibles ou réutilisés.
-- **Authentification basée sur des certificats** : Utilise des certificats numériques pour authentifier les dispositifs. Cette méthode est plus sécurisée que les mots de passe car elle est plus difficile à usurper.
-- **Authentification à deux facteurs (2FA)** : Combine deux méthodes d'authentification distinctes pour une sécurité accrue, par exemple, un mot de passe et un code reçu sur un dispositif mobile.
-
-### 2.3.2. Gestion des identités
-
-La gestion des identités dans les systèmes IoT concerne la création, la maintenance et l'inactivation des identités numériques pour les dispositifs et les utilisateurs. Elle inclut également la gestion des droits et des accès associés à ces identités. Les enjeux principaux sont :
-
-- **Provisionnement sécurisé** : Processus d'enregistrement sécurisé des dispositifs dans le système, garantissant que seuls les dispositifs authentiques et autorisés peuvent se connecter et communiquer.
-- **Gestion des accès** : Définition des niveaux d'accès pour les dispositifs et les utilisateurs, en s'assurant que chaque entité a uniquement accès aux ressources nécessaires pour son fonctionnement ou ses tâches.
-- **Rotation des clés/certificats** : Mécanismes de mise à jour sécurisée des clés ou des certificats pour prévenir les attaques basées sur des clés compromises.
-
-### 2.3.3. Défis et solutions
-
-La gestion des identités et l'authentification dans les systèmes IoT présentent plusieurs défis, notamment en raison de l'échelle et de l'hétérogénéité des dispositifs. Les solutions potentielles incluent :
-
-- **Utilisation de l'identité en tant que service (IDaaS)** : Des services cloud qui offrent une gestion des identités et de l'authentification as-a-service, permettant une intégration et une gestion centralisées des identités à grande échelle.
-- **Protocoles d'authentification standardisés** : Adoption de protocoles standardisés tels que OAuth 2.0 et OpenID Connect pour faciliter l'authentification sécurisée et la délégation d'accès dans les applications IoT.
-- **Blockchain pour l'identité IoT** : Exploration de la technologie blockchain pour créer des systèmes d'identité décentralisés, offrant une sécurité renforcée et une transparence pour la gestion des identités et des accès dans les systèmes IoT.
-
-L'authentification et la gestion des identités forment la base de la sécurité des systèmes IoT, permettant de s'assurer que seules les entités vérifiées et autorisées peuvent accéder et interagir avec le système. À mesure que l'IoT continue de se développer, l'importance de ces mécanismes de sécurité ne fera que croître, nécessitant une attention constante et des mises à jour régulières pour contrer les menaces émergentes.
-## 2.4. Principes de la programmation sécurisée en Python : bonnes pratiques, analyse de code, et outils de sécurité
-
-La programmation sécurisée est essentielle pour développer des applications IoT résilientes et fiables. En Python, langue de choix pour de nombreux projets IoT, adhérer à des principes de programmation sécurisée et utiliser les outils appropriés peut grandement réduire les vulnérabilités et les risques de sécurité. Voici un aperçu des bonnes pratiques, de l'analyse de code, et des outils de sécurité pertinents pour la programmation sécurisée en Python.
-
-### 2.4.1. Bonnes Pratiques de Programmation Sécurisée
-
-- **Validation et Sanitisation des Entrées** : Toutes les entrées, qu'elles proviennent de l'utilisateur ou d'autres systèmes, doivent être validées pour s'assurer qu'elles correspondent aux attentes et sanitaires pour éliminer tout caractère potentiellement dangereux.
-- **Gestion des Dépendances** : Utilisez des outils comme Pipenv ou Poetry pour gérer les dépendances de votre projet, et gardez-les à jour pour éviter les vulnérabilités connues.
-- **Principe de Moindre Privilège** : Exécutez votre code avec le niveau de privilèges le plus bas nécessaire pour réduire les risques en cas de compromission.
-- **Gestion Sécurisée des Secrets** : Utilisez des gestionnaires de secrets ou des variables d'environnement pour stocker les clés API, les mots de passe de base de données, et autres informations sensibles, au lieu de les hardcoder dans le code source.
-- **Utilisation de HTTPS** : Pour toute communication réseau, utilisez HTTPS au lieu de HTTP pour protéger les données en transit.
-
-### 2.4.2. Analyse de Code et Outils de Sécurité
-
-- **Linters et Analyseurs de Code** : Des outils comme Pylint, Flake8, et Bandit peuvent identifier automatiquement les problèmes de style, les bugs potentiels, et certaines vulnérabilités de sécurité dans le code Python.
-- **Scanners de Vulnérabilités** : Des outils tels que Safety et Snyk peuvent scanner les dépendances de votre projet pour des vulnérabilités connues, vous aidant à les mettre à jour ou à les remplacer si nécessaire.
-- **Tests d'Intrusion Automatisés** : Utilisez des frameworks de test d'intrusion comme OWASP ZAP en phase de développement et de test pour détecter les failles de sécurité avant la mise en production.
-
-### 2.4.3. Outils de Sécurité Spécifiques à Python
-
-- **PyCryptodome** : Une bibliothèque de cryptographie offrant à la fois des primitives cryptographiques bas niveau et des recettes haut niveau pour sécuriser vos données.
-- **SQLAlchemy** : En utilisant l'ORM SQLAlchemy pour interagir avec les bases de données, vous pouvez réduire les risques d'injections SQL grâce à ses méthodes de construction de requêtes sécurisées.
-- **Authlib & OAuthLib** : Pour l'authentification et l'autorisation, l'utilisation de bibliothèques robustes peut aider à implémenter OAuth et OpenID Connect de manière sécurisée.
-
-### 2.4.4. Conclusion
-
-Adopter des principes de programmation sécurisée dès les premières étapes du développement est crucial pour renforcer la posture de sécurité des applications IoT. En suivant les bonnes pratiques, en utilisant une analyse de code régulière, et en intégrant des outils de sécurité dédiés, les développeurs peuvent significativement améliorer la sûreté et la sécurité de leurs applications Python dans l'écosystème IoT. Ces stratégies, combinées à une culture de sécurité proactive au sein de l'équipe de développement, sont essentielles pour anticiper, détecter, et répondre efficacement aux menaces de sécurité dans les applications IoT.
-
-# 3. Approfondissement des Systèmes SCADA
-
-## 3.1. Introduction spécifique aux systèmes SCADA : architecture, composants, et fonctionnement
-
-Les systèmes de Contrôle et d'Acquisition de Données Supervisés (SCADA) sont des systèmes de contrôle industriel (ICS) essentiels pour la surveillance et la gestion des processus industriels à grande échelle. Ils sont utilisés dans divers secteurs tels que l'énergie, l'eau, le pétrole et le gaz, et la fabrication, pour surveiller et contrôler les équipements industriels de manière automatisée et à distance. Comprendre l'architecture, les composants, et le fonctionnement des systèmes SCADA est crucial pour leur sécurisation et leur maintenance efficace.
-
-### 3.1.1. Architecture des systèmes SCADA
-
-L'architecture SCADA typique se compose de plusieurs niveaux hiérarchiques, allant de la surveillance de terrain à la gestion et au contrôle centralisés :
-
-- **Niveau de terrain** : Comprend les dispositifs physiques tels que les capteurs, les actionneurs, et les RTUs (Remote Terminal Units) qui collectent des données de terrain et effectuent des actions physiques.
-- **Niveau de contrôle** : Constitué par les PLCs (Programmable Logic Controllers) et/ou les RTUs qui reçoivent les données des capteurs, exécutent la logique de contrôle, et commandent les actionneurs.
-- **Niveau de supervision** : Comprend les serveurs SCADA et les postes de travail HMI (Human-Machine Interface) qui permettent aux opérateurs de surveiller et de contrôler le processus en temps réel, d'interagir avec les PLCs/RTUs, et de visualiser les données à travers des interfaces graphiques.
-- **Niveau entreprise** : Intègre les systèmes SCADA avec les systèmes d'information d'entreprise (ERP, bases de données, etc.) pour la prise de décision stratégique et la gestion globale.
-
-### 3.1.2. Composants clés des systèmes SCADA
-
-- **Capteurs et Actionneurs** : Dispositifs de terrain qui mesurent les variables physiques (comme la température, la pression) et effectuent des actions mécaniques ou physiques.
-- **RTU et PLC** : Collectent les données des capteurs, prennent des décisions de contrôle basées sur la programmation, et commandent les actionneurs. Les RTUs sont souvent utilisés pour les sites distants, tandis que les PLCs sont courants dans les installations industrielles.
-- **Serveurs SCADA** : Centralisent la collecte de données, le traitement, et le stockage. Ils gèrent également la logique de contrôle avancée et l'archivage des données.
-- **Interfaces Homme-Machine (HMI)** : Interfaces graphiques permettant aux opérateurs de visualiser et d'interagir avec le processus, de surveiller l'état des équipements, et d'exécuter des commandes de contrôle.
-- **Communication Network** : Réseau de communication (filaire ou sans fil) qui connecte tous les niveaux de l'architecture SCADA, permettant l'échange de données en temps réel entre les composants.
-
-### 3.1.3. Fonctionnement des systèmes SCADA
-
-Le fonctionnement d'un système SCADA débute par la collecte de données en temps réel à partir des capteurs de terrain. Ces données sont transmises aux RTUs et/ou PLCs, où elles sont traitées selon des algorithmes de contrôle préétablis. Les résultats de ces traitements sont ensuite utilisés pour ajuster les opérations via des commandes aux actionneurs, ou envoyés aux serveurs SCADA pour une surveillance et un contrôle plus approfondis.
-
-Les opérateurs humains peuvent intervenir à tout moment via les HMIs pour modifier les paramètres de contrôle, répondre aux alarmes, ou initier des processus manuels. Parallèlement, les données agrégées et analysées au niveau du serveur SCADA peuvent être utilisées pour des rapports de performance, des analyses historiques, et la prise de décision stratégique au niveau de l'entreprise.
-
-Les systèmes SCADA intègrent des technologies complexes et multicouches pour permettre une gestion et un contrôle efficaces des processus industriels à grande échelle. Leur conception et leur fonctionnement nécessitent une compréhension approfondie non seulement de la technologie elle-même mais également des processus industriels qu'ils sont destinés à surveiller et à contrôler.
-
-## 3.2. Vulnérabilités et menaces spécifiques aux SCADA
-
-Les systèmes SCADA, essentiels au bon fonctionnement des infrastructures critiques, sont de plus en plus connectés à des réseaux d'entreprise et à Internet, ce qui les expose à un éventail de vulnérabilités et de menaces spécifiques. La compréhension de ces vulnérabilités et menaces est cruciale pour la mise en place de mesures de sécurité robustes.
-
-### 3.2.1. Vulnérabilités des systèmes SCADA
-
-- **Sécurité périmétrique faible** : De nombreux systèmes SCADA ont été conçus et déployés à une époque où la sécurité n'était pas une priorité, résultant en une protection périmétrique insuffisante contre les attaques externes.
-- **Manque de mises à jour et de patchs** : Les systèmes SCADA fonctionnent souvent sur des logiciels et des systèmes d'exploitation obsolètes pour lesquels les mises à jour de sécurité ne sont pas régulièrement appliquées, laissant des vulnérabilités connues non corrigées.
-- **Protocoles de communication non sécurisés** : Beaucoup de protocoles utilisés dans les réseaux SCADA ne sont pas sécurisés par défaut, permettant l'interception et la manipulation des données.
-- **Intégration avec les réseaux d'entreprise** : L'intégration des systèmes SCADA avec les réseaux d'entreprise pour la gestion des données et le reporting augmente le risque d'exposition à des attaques venant du réseau d'entreprise plus large.
-- **Manque d'authentification et de chiffrement** : L'absence d'authentification forte pour les utilisateurs et le manque de chiffrement pour les données en transit exposent les systèmes à des risques d'accès non autorisé et d'écoute clandestine.
-
-### 3.2.2. Menaces spécifiques aux systèmes SCADA
-
-- **Attaques par déni de service (DoS/DDoS)** : Les attaques visant à surcharger les réseaux SCADA avec un trafic excessif peuvent rendre les systèmes de contrôle inaccessibles, perturbant les opérations critiques.
-- **Attaques de malware et ransomware** : Les malwares spécifiquement conçus pour cibler les systèmes SCADA peuvent perturber les opérations en modifiant les logiciels de contrôle ou en chiffrant des données critiques pour une rançon.
-- **Ingénierie sociale et phishing** : Les attaquants peuvent cibler le personnel opérationnel ou technique par des campagnes de phishing pour obtenir un accès non autorisé aux systèmes SCADA.
-- **Attaques d'insider** : Les employés mécontents ou malveillants ayant un accès physique ou à distance aux systèmes SCADA représentent une menace sérieuse en raison de leur connaissance des systèmes et des processus opérationnels.
-- **Espionnage industriel et sabotage** : Les acteurs étatiques ou concurrents peuvent viser les systèmes SCADA pour l'espionnage industriel ou le sabotage, cherchant à voler des informations confidentielles ou à perturber les opérations.
-
-### 3.2.3. Conclusion
-
-La sécurisation des systèmes SCADA contre ces vulnérabilités et menaces spécifiques nécessite une approche multicouche, incluant la mise en place de mesures de sécurité physiques et cybernétiques, la gestion rigoureuse des accès, la mise à jour régulière des systèmes et logiciels, ainsi que la formation et la sensibilisation du personnel. Une surveillance continue et une capacité de réponse aux incidents sont également essentielles pour détecter et répondre rapidement à toute activité malveillante, minimisant ainsi les impacts sur les opérations critiques.
-
-## 3.3. Bonnes pratiques de sécurité pour les systèmes SCADA : segmentation réseau, contrôle d'accès, et surveillance
-
-La sécurisation des systèmes SCADA, qui jouent un rôle critique dans le fonctionnement des infrastructures essentielles, nécessite l'adoption de bonnes pratiques robustes. Ces pratiques incluent la segmentation réseau, le contrôle d'accès rigoureux, et la surveillance proactive, formant une approche de sécurité multicouche essentielle pour protéger contre les menaces internes et externes.
-
-### 3.3.1. Segmentation Réseau
-
-La segmentation réseau est une pratique critique de sécurité qui consiste à diviser le réseau SCADA en sous-réseaux distincts, limitant ainsi la propagation potentielle des attaques au sein du réseau.
-
-- **Isolation des Réseaux Critiques** : Les composants critiques du système SCADA doivent être isolés des réseaux d'entreprise généraux et d'Internet, minimisant l'exposition aux attaques provenant de réseaux moins sécurisés.
-- **Zones de Sécurité** : Créer des zones de sécurité autour des fonctions critiques du système SCADA, avec des contrôles d'accès stricts entre ces zones, aide à réduire le risque d'accès non autorisé.
-- **Passerelles de Sécurité et Pare-feu** : L'utilisation de passerelles de sécurité et de pare-feu entre les segments de réseau permet de contrôler le trafic entrant et sortant, assurant que seules les communications autorisées traversent les frontières du réseau.
-
-### 3.3.2. Contrôle d'Accès
-
-Un contrôle d'accès rigoureux est indispensable pour s'assurer que seuls les utilisateurs autorisés peuvent accéder aux systèmes et aux données SCADA.
-
-- **Authentification Forte** : Mettre en place des mécanismes d'authentification forte, tels que l'authentification multifactorielle, pour tous les utilisateurs du système SCADA, en particulier pour l'accès à distance.
-- **Gestion des Identités et des Accès** : Une gestion précise des identités et des accès (IAM) garantit que les droits d'accès sont accordés selon le principe de moindre privilège, limitant les accès aux fonctionnalités nécessaires pour les rôles spécifiques des utilisateurs.
-- **Journalisation et Audit des Accès** : La journalisation et l'audit régulier des accès permettent de détecter les tentatives d'accès non autorisées et de surveiller les activités suspectes au sein du réseau SCADA.
-
-### 3.3.3. Surveillance
-
-La surveillance proactive des systèmes SCADA permet de détecter rapidement les incidents de sécurité et d'y répondre efficacement.
-
-- **Détection des Intrusions** : Les systèmes de détection d'intrusions (IDS) doivent être déployés pour surveiller en permanence le réseau SCADA à la recherche de signes d'activité malveillante.
-- **Analyse des Logs** : L'analyse continue des logs et des événements système aide à identifier les tendances anormales ou les comportements suspects qui pourraient indiquer une compromission de sécurité.
-- **Réponse aux Incidents** : Un plan de réponse aux incidents, incluant des procédures claires et des équipes dédiées, est crucial pour minimiser l'impact des attaques et restaurer rapidement les opérations normales après un incident.
-
-### 3.3.4. Conclusion
-
-La mise en œuvre de ces bonnes pratiques de sécurité est fondamentale pour protéger les systèmes SCADA contre un large éventail de menaces. En adoptant une approche de sécurité en couches intégrant la segmentation réseau, le contrôle d'accès, et la surveillance proactive, les organisations peuvent renforcer significativement la résilience de leurs systèmes SCADA face aux défis de sécurité complexes et en évolution. La sécurité des systèmes SCADA n'est pas seulement une question technique mais aussi une priorité stratégique, essentielle à la sûreté et à la continuité des opérations des infrastructures critiques.
-
-# 4. Mise en Œuvre Pratique avec Python
-
-## 4.1. Développement sécurisé avec Python pour l'IoT et les systèmes SCADA : études de cas et ateliers
-
-Le développement sécurisé dans le domaine de l'IoT et des systèmes SCADA est crucial pour assurer l'intégrité, la confidentialité, et la disponibilité des systèmes et des données critiques. Python, en raison de sa flexibilité, de son vaste écosystème de bibliothèques, et de sa grande communauté, est un choix populaire pour le développement d'applications IoT et SCADA sécurisées. Cette section explore comment utiliser Python pour renforcer la sécurité des systèmes IoT et SCADA à travers des études de cas et des ateliers pratiques.
-
-### 4.1.1. Étude de Cas 1 : Sécurisation d'une Communication MQTT avec Python
-
-**Contexte** : MQTT est un protocole léger de messagerie utilisé dans de nombreuses applications IoT pour la communication entre dispositifs. Bien qu'efficace, MQTT n'est pas sécurisé par défaut, rendant les communications vulnérables aux écoutes clandestines et aux attaques de type Man-In-The-Middle (MitM).
-
-**Solution** : Utiliser Python avec la bibliothèque `paho-mqtt` pour implémenter la communication MQTT sur SSL/TLS, garantissant ainsi que les données échangées entre les dispositifs IoT et le serveur MQTT sont chiffrées et sécurisées.
-
-**Atelier Pratique** :
-1. Installer la bibliothèque `paho-mqtt` avec pip.
-2. Générer des certificats SSL/TLS pour le serveur MQTT et les clients IoT.
-3. Configurer le client MQTT Python pour utiliser SSL/TLS lors de la connexion au serveur MQTT.
-4. Tester la communication sécurisée entre le client et le serveur pour vérifier l'intégrité et la confidentialité des messages échangés.
-
-### 4.1.2. Étude de Cas 2 : Authentification des Dispositifs IoT dans un Système SCADA
-
-**Contexte** : Dans un système SCADA, s'assurer que seuls les dispositifs autorisés peuvent communiquer avec le serveur central est essentiel pour la sécurité du système.
-
-**Solution** : Développer une solution d'authentification des dispositifs basée sur des certificats numériques en Python, utilisant la bibliothèque `cryptography` pour créer et vérifier des certificats.
-
-**Atelier Pratique** :
-1. Utiliser `cryptography` pour générer des paires de clés publiques/privées et des certificats pour les dispositifs IoT.
-2. Mettre en place un processus d'authentification côté serveur SCADA en Python pour vérifier les certificats des dispositifs avant d'autoriser la communication.
-3. Implémenter la logique de renouvellement et de révocation des certificats pour gérer les dispositifs compromis ou hors service.
-
-### 4.1.3. Étude de Cas 3 : Surveillance et Analyse des Logs pour la Détection des Anomalies
-
-**Contexte** : La surveillance en temps réel des logs des dispositifs IoT et des serveurs SCADA peut aider à détecter rapidement les activités suspectes ou malveillantes.
-
-**Solution** : Utiliser Python pour développer un système de surveillance des logs qui analyse les données de logs en temps réel et utilise des algorithmes de détection d'anomalies pour identifier les comportements inhabituels.
-
-**Atelier Pratique** :
-1. Configurer les dispositifs IoT et les serveurs SCADA pour centraliser les logs.
-2. Utiliser `ELK Stack` (Elasticsearch, Logstash, Kibana) pour l'agrégation et l'analyse des logs, et `Python` pour écrire des scripts de surveillance personnalisés.
-3. Implémenter des alertes basées sur des seuils prédéfinis ou des modèles d'apprentissage automatique pour détecter les anomalies dans les logs.
-
-### 4.1.4. Conclusion
-
-Ces études de cas et ateliers pratiques illustrent comment Python peut être utilisé pour aborder divers aspects de la sécurité dans les systèmes IoT et SCADA. En se concentrant sur la sécurisation des communications, l'authentification des dispositifs, et la surveillance proactive, les développeurs peuvent renforcer significativement la sécurité de ces systèmes critiques. La clé est une mise en œuvre soigneuse, une compréhension approfondie des menaces potentielles, et un engagement continu envers les pratiques de développement sécurisé.
-
-## 4.2. Utilisation de bibliothèques Python pour la sécurisation des communications IoT et la gestion des données
-
-Dans le développement d'applications IoT, sécuriser les communications et la gestion des données est primordial pour protéger contre les interceptions non autorisées, les manipulations de données, et autres cyberattaques. Python, grâce à son large éventail de bibliothèques, offre des outils puissants pour renforcer la sécurité des communications IoT et la gestion des données. Voici quelques bibliothèques Python essentielles et leurs applications pour sécuriser les systèmes IoT.
-
-### 4.2.1. Bibliothèques pour la Sécurisation des Communications
-
-- **PyCryptodome** : Une suite de bibliothèques de cryptographie qui fournit des fonctions cryptographiques primitives ainsi que des recettes haut niveau. Elle permet de chiffrer et de déchiffrer des données, de générer des hash sécurisés et de créer des signatures numériques, essentiel pour sécuriser les données en transit entre les dispositifs IoT.
-  
-- **Paramiko** : Une implémentation Python du protocole SSHv2, offrant des fonctionnalités pour créer des canaux de communication sécurisés. Paramiko est idéal pour exécuter des commandes à distance et transférer des fichiers de manière sécurisée entre des dispositifs IoT et des serveurs.
-
-- **Requests + PyOpenSSL** : `Requests` est une bibliothèque HTTP pour Python qui simplifie grandement les requêtes HTTP, tandis que `PyOpenSSL` est une interface Python autour de la bibliothèque robuste OpenSSL. Lorsqu'elles sont utilisées ensemble, elles permettent d'effectuer des requêtes HTTPS sécurisées, cruciales pour la communication sécurisée avec des API web ou des services cloud.
-
-### 4.2.2. Bibliothèques pour la Gestion Sécurisée des Données
-
-- **SQLAlchemy + SQLAlchemy-Encrypt** : SQLAlchemy est un SQL toolkit et ORM qui facilite la communication avec les bases de données en Python. En combinaison avec SQLAlchemy-Encrypt, il permet de chiffrer automatiquement les données sensibles avant de les stocker dans la base de données, assurant ainsi la protection des données au repos.
-
-- **Pandas + Cryptography** : Pandas est largement utilisé pour la manipulation et l'analyse de données en Python. En utilisant Pandas pour gérer les données et la bibliothèque `cryptography` pour chiffrer des données sensibles dans des DataFrames, les développeurs peuvent assurer une manipulation sécurisée des données traitées ou générées par les dispositifs IoT.
-
-### 4.2.3. Pratiques de Sécurisation des Communications et de Gestion des Données
-
-En plus de l'utilisation de ces bibliothèques, suivre certaines pratiques peut améliorer la sécurité des communications IoT et la gestion des données :
-
-- **Chiffrer les Communications** : Utiliser TLS/SSL pour chiffrer toutes les communications entre les dispositifs IoT et les serveurs ou services cloud. Cela est crucial pour prévenir l'écoute clandestine et les attaques man-in-the-middle.
-
-- **Authentification Forte** : Mettre en place une authentification forte pour tous les dispositifs et les services, utilisant des certificats numériques ou l'authentification basée sur des clés publiques/privées.
-
-- **Validation et Sanitisation des Entrées** : Valider et nettoyer toutes les entrées reçues par les dispositifs IoT pour prévenir les injections SQL, les attaques par script cross-site (XSS), et autres vulnérabilités liées aux entrées utilisateur.
-
-- **Gestion Sécurisée des Secrets** : Utiliser des gestionnaires de secrets ou des services de gestion des identités et des accès pour stocker et gérer de manière sécurisée les clés API, les mots de passe, et autres informations d'identification.
-
-En intégrant ces bibliothèques et pratiques dans le développement des applications IoT, les développeurs peuvent significativement renforcer la sécurité des systèmes, protégeant à la fois les communications entre les dispositifs et les serveurs, ainsi que la confidentialité et l'intégrité des données gérées par ces systèmes.
-## 4.3. Création d'un mini-projet : Application sécurisée IoT/SCADA avec Python
-
-Dans ce mini-projet, nous allons développer une application sécurisée IoT/SCADA en utilisant Python. L'objectif est de créer un système simple mais sécurisé qui simule la collecte de données de température à partir de capteurs IoT, la transmission sécurisée de ces données à un serveur central, et la visualisation de ces données via une interface web. Le projet mettra l'accent sur la sécurisation des communications, la validation des données, et la sécurisation de l'interface web.
-
-### 4.3.1. Vue d'ensemble du Projet
-
-- **Capteurs IoT** : Simulés par des scripts Python générant des données de température.
-- **Serveur SCADA** : Un serveur Python recevant les données des capteurs, les stockant dans une base de données sécurisée, et servant une API pour accéder aux données.
-- **Interface Web** : Une simple application Flask fournissant une visualisation des données de température.
-
-### 4.3.2. Étape 1 : Simulation des Capteurs IoT
-
-1. **Développement du Script du Capteur** : Créer un script Python simulant un capteur IoT qui génère périodiquement une lecture de température.
-2. **Sécurisation de la Communication** : Utiliser la bibliothèque `requests` avec HTTPS pour envoyer les données de manière sécurisée au serveur SCADA.
-
-### 4.3.3. Étape 2 : Mise en Place du Serveur SCADA
-
-1. **Création du Serveur** : Utiliser Flask pour créer un serveur SCADA qui reçoit les données des capteurs via une API sécurisée.
-2. **Stockage des Données** : Utiliser SQLAlchemy pour stocker les données reçues dans une base de données SQLite. Les données sensibles doivent être chiffrées en utilisant `SQLAlchemy-Encrypt`.
-3. **Validation des Données** : Valider les données reçues de chaque capteur pour s'assurer qu'elles sont dans un format attendu et qu'elles ne contiennent pas de valeurs malveillantes.
-
-### 4.3.4. Étape 3 : Développement de l'Interface Web
-
-1. **Interface Utilisateur** : Développer une interface web simple avec Flask qui affiche les lectures de température stockées dans la base de données.
-2. **Authentification** : Ajouter une fonctionnalité d'authentification à l'interface web pour sécuriser l'accès aux données. Utiliser Flask-Login pour gérer les sessions utilisateurs.
-3. **Visualisation des Données** : Utiliser une bibliothèque JavaScript telle que Chart.js pour visualiser les données de température dans le temps via un graphique dynamique.
-
-### 4.3.5. Sécurisation Générale
-
-- **Chiffrement SSL/TLS** : Configurer le serveur Flask pour utiliser SSL/TLS, assurant que toutes les communications entre les capteurs, le serveur, et les clients web sont chiffrées.
-- **Gestion des Secrets** : Stocker tous les secrets, tels que les clés de chiffrement et les mots de passe, en utilisant des variables d'environnement ou un gestionnaire de secrets.
-
-### 4.3.6. Conclusion
-
-Ce mini-projet illustre comment Python peut être utilisé pour développer une application IoT/SCADA sécurisée, depuis la collecte de données par des capteurs jusqu'à la visualisation de ces données via une interface web sécurisée. En mettant l'accent sur la sécurisation des communications, la validation et le chiffrement des données, et l'authentification des utilisateurs, ce projet offre un bon point de départ pour développer des applications IoT/SCADA plus complexes et sécurisées.
-
-# 5. Surveillance, Détection des Intrusions, et Réponse aux Incidents
-
-## 5.1. Systèmes de détection d'intrusion pour IoT et SCADA : principes et outils
-
-Les systèmes de détection d'intrusion (IDS) jouent un rôle crucial dans la protection des réseaux IoT et SCADA contre les cyberattaques. En surveillant le trafic réseau et les activités des systèmes pour détecter des comportements anormaux ou malveillants, les IDS permettent une intervention rapide pour contrer les menaces potentielles. Cet aperçu aborde les principes fondamentaux des IDS pour IoT et SCADA, ainsi que les outils adaptés à ces environnements.
-
-### 5.1.1. Principes Fondamentaux des IDS
-
-- **Détection Basée sur les Signatures** : Cette approche repose sur la comparaison du trafic réseau et des activités système avec une base de données de signatures d'attaques connues. Elle est efficace pour détecter les menaces bien documentées, mais peut ne pas reconnaître les nouvelles attaques.
-  
-- **Détection Basée sur l'Anomalie** : Contrairement à la détection basée sur les signatures, cette méthode analyse le comportement habituel du réseau ou du système pour identifier toute activité qui dévie de la normale, signalant potentiellement une intrusion. Elle est plus à même de détecter les attaques zero-day, mais peut générer plus de faux positifs.
-
-- **Détection Basée sur l'État** : Cette technique prend en compte l'état actuel du système ou du réseau pour évaluer si une activité est malveillante. Elle est particulièrement utile pour détecter des attaques complexes qui se déroulent en plusieurs étapes.
-
-### 5.1.2. Outils de Détection d'Intrusion pour IoT et SCADA
-
-- **Snort** : Un des IDS les plus populaires et open source, capable de réaliser une détection basée sur les signatures ainsi que l'analyse du trafic en temps réel. Bien qu'initialement conçu pour les réseaux informatiques traditionnels, Snort peut être configuré pour surveiller les réseaux SCADA et IoT.
-
-- **Suricata** : Un autre système de détection d'intrusion open source qui offre des capacités de détection basées sur les signatures, l'analyse des anomalies, et la prise en charge du multi-threading pour une surveillance haute performance des réseaux. Suricata est également capable de comprendre le trafic spécifique à SCADA, tel que Modbus et DNP3.
-
-- **Bro/Zeek** : Un puissant IDS qui se distingue par son approche axée sur la programmation événementielle, permettant aux utilisateurs de définir des politiques de sécurité spécifiques pour surveiller et analyser le trafic réseau. Zeek est particulièrement adapté pour les environnements complexes et peut être utilisé dans les réseaux SCADA pour détecter des comportements anormaux.
-
-### 5.1.3. Mise en Œuvre des IDS dans les Environnements IoT et SCADA
-
-Pour une protection efficace, les IDS doivent être correctement configurés et mis à jour régulièrement pour reconnaître les nouvelles vulnérabilités et techniques d'attaque. Dans les environnements IoT et SCADA, il est crucial de :
-
-- **Adapter la Configuration aux Besoins Spécifiques** : Les réseaux IoT et SCADA ont des caractéristiques et des protocoles spécifiques qui doivent être pris en compte lors de la configuration des IDS.
-  
-- **Équilibrer Sécurité et Performance** : Les dispositifs IoT et les systèmes SCADA peuvent être limités en termes de ressources. Il est donc important d'optimiser la surveillance pour minimiser l'impact sur la performance.
-
-- **Intégrer avec d'Autres Outils de Sécurité** : Les IDS doivent faire partie d'une stratégie de sécurité globale, intégrant d'autres outils et mesures de sécurité, tels que les firewalls, les systèmes de prévention des intrusions (IPS), et les solutions de gestion des informations et des événements de sécurité (SIEM).
-
-En conclusion, l'implémentation d'IDS adaptés et bien configurés dans les réseaux IoT et SCADA est essentielle pour détecter et répondre aux menaces de manière proactive, contribuant ainsi à la résilience globale de ces systèmes critiques.
-## 5.2. Analyse de logs et monitoring en temps réel avec Python
-
-L'analyse de logs et le monitoring en temps réel constituent des composantes essentielles de la surveillance de la sécurité et de la performance des systèmes IoT et SCADA. Grâce à Python, les développeurs peuvent tirer parti d'une gamme de bibliothèques et d'outils pour collecter, analyser et visualiser des données de logs, facilitant la détection rapide des anomalies, des erreurs et des menaces potentielles. 
-
-### 5.2.1. Collecte et Agrégation des Logs
-
-Avant l'analyse, il est crucial de collecter et d'agréger efficacement les logs provenant de diverses sources (dispositifs IoT, serveurs SCADA, applications, etc.). Python offre plusieurs bibliothèques pour faciliter cette étape :
-
-- **Logging** : Un module Python standard qui peut être utilisé pour implémenter la journalisation dans les applications et les systèmes IoT/SCADA. Il permet de configurer facilement la collecte de logs, y compris le niveau de sévérité, le format, et la destination des logs (fichier, console, etc.).
-  
-- **Watchdog** : Une bibliothèque Python qui peut surveiller les fichiers de log pour détecter les modifications en temps réel. Elle peut être utilisée pour déclencher des alertes ou des actions automatiques dès que des changements sont détectés dans les fichiers de log.
-
-### 5.2.2. Analyse de Logs
-
-L'étape suivante consiste à analyser les logs collectés pour identifier les tendances, les anomalies, et les indicateurs de compromission. Python fournit des outils puissants pour l'analyse des données, y compris les logs :
-
-- **Pandas** : Une bibliothèque offrant des structures de données et des fonctions d'analyse de données haut niveau. Pandas est particulièrement utile pour traiter et analyser de grands volumes de logs sous forme de DataFrames, permettant des opérations comme le filtrage, le regroupement et l'agrégation des données de log.
-  
-- **Elasticsearch-Py** : Un client Python officiel pour Elasticsearch, un moteur de recherche et d'analyse distribué. En combinant Python avec Elasticsearch, les développeurs peuvent indexer et rechercher efficacement dans d'énormes volumes de logs, utilisant des requêtes complexes pour détecter des schémas ou des anomalies spécifiques.
-
-### 5.2.3. Monitoring en Temps Réel
-
-Pour le monitoring en temps réel, l'objectif est de surveiller continuellement les systèmes et d'alerter en cas de comportement anormal ou de menace potentielle :
-
-- **Grafana ou Kibana avec Python** : Bien que Grafana et Kibana ne soient pas des outils Python, ils peuvent être alimentés par des données analysées et collectées à l'aide de scripts Python. Ces plateformes de visualisation de données permettent de créer des tableaux de bord interactifs pour le monitoring en temps réel des systèmes IoT et SCADA.
-  
-- **Alerting avec Twilio ou SendGrid** : Pour les notifications et les alertes, des services comme Twilio (pour les SMS) ou SendGrid (pour les emails) peuvent être intégrés à des scripts Python. Cela permet d'envoyer automatiquement des alertes en cas de détection d'anomalies ou de seuils critiques atteints dans les données de monitoring.
-
-### 5.2.4. Stratégie de Monitoring et d'Analyse
-
-- **Définir des Seuils d'Alerte** : Il est crucial d'établir des seuils pour les différentes métriques de performance et les indicateurs de sécurité. Ces seuils aideront à déclencher des alertes en cas de dépassement, indiquant potentiellement une anomalie ou une menace.
-  
-- **Analyse Comportementale** : Utiliser des techniques d'apprentissage automatique pour analyser les comportements normaux et détecter les écarts significatifs. Des bibliothèques Python comme Scikit-learn peuvent être utilisées pour implémenter des modèles de détection d'anomalies.
-
-En intégrant ces outils et pratiques dans une stratégie globale de sécurité, les équipes peuvent renforcer significativement la surveillance et la réactivité face aux incidents dans les environnements IoT et SCADA, minimisant ainsi les risques et les impacts potentiels sur les opérations.
-## 5.3. Stratégies de réponse aux incidents et récupération après sinistre dans les environnements IoT/SCADA
-
-Les environnements IoT et SCADA, en raison de leur rôle critique dans les infrastructures essentielles, nécessitent des stratégies robustes de réponse aux incidents et de récupération après sinistre. Ces stratégies visent à minimiser les interruptions, à restaurer rapidement les opérations normales et à garantir la continuité des services essentiels en cas de cyberattaques, de pannes techniques, ou de catastrophes naturelles.
-
-### 5.3.1. Préparation et Planification
-
-- **Plan de Réponse aux Incidents** : Élaborer un plan détaillé qui définit les rôles et les responsabilités, les procédures de communication, les étapes de réponse, et les ressources nécessaires pour gérer différents types d'incidents de sécurité.
-  
-- **Plan de Récupération Après Sinistre (DRP)** : Développer un DRP spécifique aux besoins des environnements IoT et SCADA, comprenant la restauration des systèmes critiques, les procédures de sauvegarde et de restauration des données, et les arrangements alternatifs pour maintenir les opérations.
-
-### 5.3.2. Détection et Analyse
-
-- **Surveillance Continue** : Utiliser des systèmes de détection d'intrusion, de gestion des événements de sécurité (SIEM), et d'analyse de logs pour surveiller en temps réel les activités suspectes et les signaux d'alerte précurseurs d'incidents.
-  
-- **Évaluation des Incidents** : Lors de la détection d'un incident, évaluer rapidement sa nature, son étendue, et son impact potentiel pour déterminer la réponse appropriée.
-
-### 5.3.3. Confinement, Éradication et Récupération
-
-- **Confinement** : Isoler les systèmes affectés pour empêcher la propagation de l'attaque ou du problème, tout en maintenant les opérations critiques autant que possible.
-  
-- **Éradication** : Éliminer la cause de l'incident, qu'il s'agisse de malwares, de vulnérabilités exploitées, ou de composants matériels défaillants, pour prévenir une récurrence.
-  
-- **Récupération** : Restaurer les systèmes affectés à partir de sauvegardes fiables et vérifier leur intégrité avant de les remettre en ligne. Tester les systèmes pour s'assurer de leur fonctionnement normal et de l'absence de menaces persistantes.
-
-### 5.3.4. Communication et Revue Post-Incident
-
-- **Communication Efficace** : Informer les parties prenantes internes et externes, y compris les autorités réglementaires si nécessaire, en suivant les directives établies dans le plan de réponse aux incidents.
-  
-- **Revue Post-Incident** : Réaliser une analyse post-mortem pour identifier les causes profondes de l'incident, évaluer la réponse apportée, et déterminer les améliorations à apporter aux plans de réponse aux incidents et de DRP.
-
-### 5.3.5. Amélioration Continue
-
-- **Mises à Jour des Plans** : Actualiser régulièrement les plans de réponse aux incidents et de DRP pour refléter les changements dans l'environnement opérationnel, les leçons apprises des incidents précédents, et l'évolution des menaces.
-  
-- **Formation et Sensibilisation** : Organiser des formations régulières et des simulations d'incidents pour préparer le personnel à répondre efficacement et pour renforcer la culture de la sécurité.
-
-### 5.3.6. Conclusion
-
-La mise en place de stratégies complètes de réponse aux incidents et de récupération après sinistre est essentielle pour assurer la résilience des systèmes IoT et SCADA face aux menaces de sécurité et aux autres risques. En adoptant une approche proactive et en se préparant à divers scénarios d'incidents, les organisations peuvent minimiser les impacts négatifs et garantir la continuité des opérations critiques.
-# 6. Ateliers et Projets Pratiques
-
-## 6.1. Ateliers guidés pour renforcer les compétences en programmation sécurisée, la gestion des vulnérabilités, et l'implémentation des mesures de sécurité
-
-## 6.2. Projet final : les participants développeront une application IoT/SCADA en utilisant Python, en mettant l'accent sur la sécurisation de l'application.
-
-# 7. Conclusion et Ressources Supplémentaires
-
-## 7.1. Récapitulatif des points clés du cours
-
-Ce cours a exploré en profondeur les aspects cruciaux de la sécurité dans les systèmes IoT et SCADA, mettant en lumière les enjeux, les défis, et les stratégies pour développer, déployer et maintenir des systèmes résilients et sécurisés. Voici les points clés abordés :
-
-- **Vue d'ensemble de la Sécurité IoT et SCADA** : L'importance de sécuriser les systèmes IoT et SCADA a été soulignée, mettant en avant les risques spécifiques associés à ces technologies et l'impact potentiel sur les infrastructures critiques.
-
-- **Principes de Sécurité et Terminologie** : Les concepts fondamentaux de la sécurité, tels que la confidentialité, l'intégrité, et la disponibilité (CIA), ainsi que la terminologie spécifique au domaine de la sécurité IoT et SCADA, ont été introduits pour établir une base commune de compréhension.
-
-- **Méthodes de Sécurisation des Communications** : L'importance de sécuriser les communications entre les dispositifs IoT, les systèmes SCADA, et les plateformes cloud a été discutée, avec une attention particulière portée sur les protocoles sécurisés comme SSL/TLS et les techniques de cryptographie.
-
-- **Gestion des Identités et Authentification** : Les stratégies pour une gestion robuste des identités et une authentification forte ont été examinées, soulignant leur rôle crucial dans la limitation de l'accès aux systèmes et données sensibles.
-
-- **Programmation Sécurisée avec Python** : L'utilisation de Python pour le développement sécurisé dans les environnements IoT et SCADA a été abordée, avec des exemples pratiques montrant comment utiliser les bibliothèques Python pour renforcer la sécurité.
-
-- **Surveillance, Détection des Intrusions, et Réponse aux Incidents** : Les techniques et outils pour la surveillance en temps réel, la détection des intrusions, et la gestion efficace des incidents de sécurité ont été présentés, mettant en évidence l'importance de la préparation et de la réactivité.
-
-- **Récupération Après Sinistre** : Les principes de la planification de la récupération après sinistre ont été discutés, soulignant l'importance de la résilience et de la capacité à restaurer rapidement les opérations après un incident de sécurité.
-
-Ce cours a visé à fournir une compréhension approfondie de la sécurité des systèmes IoT et SCADA, en offrant les connaissances et les compétences nécessaires pour aborder les défis de sécurité uniques à ces technologies. En adoptant les stratégies et pratiques discutées, les professionnels peuvent contribuer à la protection des infrastructures critiques contre les menaces de sécurité émergentes.
-## 7.2. Discussion sur les tendances émergentes en sécurité IoT et SCADA
-
-L'univers de la sécurité IoT et SCADA évolue rapidement, sous l'impulsion des avancées technologiques, de l'expansion des réseaux d'objets connectés, et de l'émergence de nouvelles menaces cybernétiques. Voici quelques tendances émergentes qui façonnent l'avenir de la sécurité dans ces domaines cruciaux.
-
-### 7.2.1. Intelligence Artificielle et Apprentissage Automatique
-
-L'intégration de l'IA et de l'apprentissage automatique dans les systèmes de sécurité IoT et SCADA transforme la manière dont les menaces sont détectées et gérées. Ces technologies permettent une analyse comportementale avancée, identifiant les anomalies qui pourraient signaler des intrusions ou des malwares. En apprenant des patterns normaux d'activité réseau et de comportement des dispositifs, les systèmes peuvent réagir de manière proactive aux menaces potentielles, souvent avant qu'elles ne se matérialisent en attaques réelles.
-
-### 7.2.2. Sécurité par Conception
-
-Alors que les dispositifs IoT et les infrastructures SCADA deviennent plus complexes, l'importance d'intégrer la sécurité dès les premières étapes de la conception et du développement se fait de plus en plus sentir. Cette approche, connue sous le nom de "security by design", vise à éliminer les vulnérabilités inhérentes et à renforcer la résilience des systèmes face aux cyberattaques. Elle comprend l'adoption de protocoles de communication sécurisés, la mise en place de mécanismes d'authentification robustes, et la garantie de la mise à jour régulière des dispositifs et logiciels.
-
-### 7.2.3. Blockchain pour la Sécurité IoT et SCADA
-
-La technologie blockchain offre de nouvelles possibilités pour renforcer la sécurité des systèmes IoT et SCADA. Par ses caractéristiques intrinsèques de décentralisation, d'immuabilité et de transparence, la blockchain peut être utilisée pour sécuriser les communications entre dispositifs, gérer de manière sécurisée les identités des dispositifs, et assurer l'intégrité des données collectées. Bien que son adoption en soit encore à ses débuts, la blockchain présente un potentiel significatif pour révolutionner la sécurité IoT et SCADA.
-
-### 7.2.4. Normes et Réglementations
-
-L'évolution rapide de l'IoT et des systèmes SCADA attire l'attention des organismes de réglementation, qui travaillent à l'élaboration de normes de sécurité plus strictes pour ces technologies. Ces réglementations visent à établir un cadre de sécurité minimal pour les dispositifs et systèmes IoT/SCADA, encourageant ainsi l'adoption de meilleures pratiques de sécurité par l'industrie. La conformité à ces normes devient un aspect crucial de la sécurité IoT et SCADA, soulignant l'importance pour les organisations de rester informées et adaptées aux exigences réglementaires en évolution.
-
-### 7.2.5. Edge Computing et Sécurité
-
-L'adoption croissante de l'edge computing dans les réseaux IoT offre à la fois des opportunités et des défis en matière de sécurité. En traitant les données à la périphérie du réseau, plus près des dispositifs IoT, l'edge computing peut réduire la latence et améliorer l'efficacité. Cependant, cela implique également de sécuriser un plus grand nombre de points d'accès et de garantir la protection des données dans des environnements potentiellement moins sécurisés. Les solutions de sécurité doivent donc s'adapter pour protéger efficacement les données et les dispositifs dans ces architectures distribuées.
-
-En conclusion, ces tendances émergentes en sécurité IoT et SCADA soulignent l'importance d'une approche dynamique et évolutive de la sécurité, capable de s'adapter aux nouvelles technologies, aux menaces changeantes, et aux cadres réglementaires en développement. Pour les professionnels de la sécurité, rester à la pointe de ces tendances est essentiel pour protéger efficacement les infrastructures critiques dans le paysage numérique en constante évolution.
-## 7.3. Ressources supplémentaires pour une étude approfondie : livres, sites web, et communautés en ligne
-
-Pour ceux qui souhaitent approfondir leur compréhension de la sécurité dans les systèmes IoT et SCADA, un large éventail de ressources est disponible. Voici une sélection de livres, de sites web, et de communautés en ligne recommandés pour enrichir vos connaissances et compétences dans ce domaine crucial.
-
-### 7.3.1. Livres
-
-- **"Practical Industrial Internet of Things Security" par Sravani Bhattacharjee** : Un guide complet sur la sécurisation des dispositifs et des réseaux IoT dans un contexte industriel.
-- **"Industrial Network Security: Securing Critical Infrastructure Networks for Smart Grid, SCADA, and Other Industrial Control Systems" par Eric D. Knapp** : Ce livre offre une vue d'ensemble de la sécurité des réseaux industriels, avec un accent sur les systèmes de contrôle industriel et SCADA.
-- **"Cybersecurity for Industrial Control Systems: SCADA, DCS, PLC, HMI, and SIS" par Tyson Macaulay et Bryan L. Singer** : Un guide pratique pour sécuriser les systèmes de contrôle industriels, des fondamentaux de la cybersécurité aux stratégies spécifiques à l'industrie.
-
-### 7.3.2. Sites Web
-
-- **ICS-CERT (Industrial Control Systems Cyber Emergency Response Team)** : Fournit des alertes et des recommandations sur la sécurité des systèmes de contrôle industriels et SCADA.
-- **OWASP (Open Web Application Security Project)** : Bien que principalement axé sur la sécurité des applications web, OWASP propose également des ressources et des guides pertinents pour la sécurité IoT.
-- **SANS Institute** : Offre une multitude de formations, de webinaires, et de publications sur la cybersécurité, y compris des sujets spécifiques à l'IoT et aux systèmes SCADA.
-
-### 7.3.3. Communautés en Ligne
-
-- **Reddit – r/SCADA et r/IoT** : Ces sous-forums sont des lieux d'échange et de discussion sur les dernières tendances, les défis et les solutions en matière de sécurité SCADA et IoT.
-- **Stack Overflow** : Idéal pour les développeurs cherchant des conseils pratiques, des solutions de débogage, et des meilleures pratiques en matière de programmation sécurisée pour l'IoT et les systèmes SCADA.
-- **GitHub** : Héberge une variété de projets open source liés à la sécurité IoT et SCADA, offrant une mine de ressources pour apprendre et contribuer.
-
-### 7.3.4. Formations et Cours en Ligne
-
-- **Coursera et Udemy** : Proposent des cours spécifiques à la sécurité IoT et SCADA, allant des introductions pour débutants aux formations avancées pour les professionnels expérimentés.
-- **Cybrary** : Une plateforme d'apprentissage en ligne centrée sur la cybersécurité, offrant des cours gratuits et payants sur divers aspects de la sécurité des systèmes informatiques, y compris l'IoT et les systèmes SCADA.
-
-### 7.3.5. Conclusion
-
-Se tenir à jour avec les dernières pratiques, outils et technologies en matière de sécurité IoT et SCADA est essentiel dans un domaine en évolution rapide. Les livres, sites web, et communautés en ligne recommandés ci-dessus fournissent une base solide pour commencer ou approfondir vos connaissances en sécurité. Que vous soyez un professionnel expérimenté ou un débutant dans le domaine, ces ressources vous aideront à rester informé et à développer les compétences nécessaires pour relever les défis de la sécurité dans les environnements IoT et SCADA.
+1. lire une plage de registres autorisée ;
+2. gérer timeout et erreur ;
+3. journaliser la requête ;
+4. détecter une adresse hors plage avant l'envoi.
+
+Aucune écriture sur un équipement réel.
+
+## TP 6 — OPC UA de laboratoire
+
+Créer ou utiliser un serveur OPC UA local et :
+
+- découvrir un endpoint ;
+- lire une variable ;
+- identifier les modes de sécurité proposés ;
+- expliquer pourquoi Anonymous + None n'est pas adapté à la production.
+
+## TP 7 — BLE avec son propre périphérique
+
+Avec un équipement BLE de laboratoire :
+
+- scanner ;
+- identifier ses services ;
+- lire une caractéristique non sensible ;
+- documenter pairing, authentification applicative et autorisations.
+
+## TP 8 — Détection passive
+
+À partir d'un jeu de logs fourni ou synthétique :
+
+- établir une baseline ;
+- détecter un nouvel équipement ;
+- détecter un nouveau couple source/destination ;
+- détecter une hausse anormale de fréquence.
+
+## TP 9 — Tabletop incident
+
+Scénario : les identifiants du prestataire d'un bastion ont été compromis.
+
+Définir :
+
+1. critères d'incident ;
+2. premières actions ;
+3. vérifications OT ;
+4. confinement ;
+5. rotation des secrets ;
+6. restauration ;
+7. éléments à conserver pour l'enquête.
+
+## TP 10 — Projet final
+
+Assembler le mini-projet du chapitre 17 et réaliser une revue basée sur :
+
+- inventaire ;
+- architecture ;
+- identités ;
+- chiffrement ;
+- moindre privilège ;
+- observabilité ;
+- reprise ;
+- supply chain ;
+- documentation.
+
+# 19. Checklists opérationnelles
+
+## 19.1. Checklist d'un nouvel équipement IoT
+
+- [ ] propriétaire identifié ;
+- [ ] criticité définie ;
+- [ ] firmware/version inventoriés ;
+- [ ] fin de support connue ;
+- [ ] mot de passe universel absent ;
+- [ ] identité unique ;
+- [ ] mise à jour signée ;
+- [ ] mécanisme de rollback maîtrisé ;
+- [ ] services inutiles désactivés ;
+- [ ] ports documentés ;
+- [ ] logs disponibles ;
+- [ ] certificat renouvelable ;
+- [ ] secret effaçable en fin de vie ;
+- [ ] SBOM disponible ou générable ;
+- [ ] processus de divulgation de vulnérabilité connu.
+
+## 19.2. Checklist d'un broker MQTT
+
+- [ ] TLS ;
+- [ ] accès anonyme désactivé ;
+- [ ] identité distincte par machine ;
+- [ ] ACL topics ;
+- [ ] pas de wildcard excessive ;
+- [ ] limites de taille ;
+- [ ] limites de connexions/débit ;
+- [ ] logs ;
+- [ ] sauvegarde de configuration ;
+- [ ] rotation des certificats ;
+- [ ] monitoring des connexions inhabituelles.
+
+## 19.3. Checklist Modbus
+
+- [ ] aucun accès Internet direct ;
+- [ ] clients autorisés explicitement ;
+- [ ] segmentation ;
+- [ ] inspection passive ;
+- [ ] function codes attendus documentés ;
+- [ ] plages de registres connues ;
+- [ ] maintenance encadrée ;
+- [ ] Modbus Security évalué si matériel compatible ;
+- [ ] sauvegarde logique automate ;
+- [ ] procédure de restauration testée.
+
+## 19.4. Checklist OPC UA
+
+- [ ] SecurityPolicy adaptée ;
+- [ ] `SignAndEncrypt` lorsque requis ;
+- [ ] trust list gérée ;
+- [ ] certificats non acceptés aveuglément ;
+- [ ] Anonymous désactivé si inutile ;
+- [ ] rôles séparés ;
+- [ ] audit activé ;
+- [ ] renouvellement certificats testé ;
+- [ ] endpoints inutiles supprimés.
+
+## 19.5. Checklist accès distant
+
+- [ ] MFA ;
+- [ ] compte nominatif ;
+- [ ] bastion ;
+- [ ] durée limitée ;
+- [ ] session journalisée ;
+- [ ] droits minimaux ;
+- [ ] révocation testée ;
+- [ ] pas de service OT exposé directement ;
+- [ ] poste d'administration durci.
+
+## 19.6. Checklist application Python
+
+- [ ] environnement isolé ;
+- [ ] dépendances verrouillées ;
+- [ ] secret absent de Git ;
+- [ ] entrées validées ;
+- [ ] timeout réseau ;
+- [ ] TLS vérifié ;
+- [ ] pas de `pickle` non fiable ;
+- [ ] pas de `shell=True` inutile ;
+- [ ] logs sans secrets ;
+- [ ] compte non root ;
+- [ ] tests de panne ;
+- [ ] SBOM ;
+- [ ] procédure de mise à jour.
+
+# 20. Ressources et conclusion
+
+## 20.1. Standards et guides
+
+Références principales à consulter dans leur version courante :
+
+- NIST SP 800-82 Rev. 3 — *Guide to Operational Technology Security* ;
+- série ISA/IEC 62443 ;
+- MQTT Version 5.0 — OASIS Standard ;
+- spécifications Modbus et Modbus Security — Modbus Organization ;
+- OPC UA Part 2 — *Security Model* — OPC Foundation ;
+- ETSI EN 303 645 — cybersécurité IoT grand public ;
+- Directive NIS2 ;
+- Règlement (UE) 2024/2847 — Cyber Resilience Act.
+
+## 20.2. Outils et bibliothèques Python
+
+À l'été 2026, quelques projets utiles sont :
+
+| Besoin | Projet |
+|---|---|
+| MQTT | `paho-mqtt` |
+| Modbus | `pymodbus` 3.x |
+| OPC UA | `asyncua` 2.x |
+| BLE | `bleak` 3.x |
+| HTTP | `requests` / `httpx` |
+| validation | dataclasses / Pydantic selon projet |
+| tests | `pytest` |
+| qualité | Ruff, mypy selon politique |
+
+Éviter de bâtir un nouveau projet BLE sur PyBluez : le projet amont indique qu'il n'est plus en développement.
+
+## 20.3. Principes à retenir
+
+1. **La sûreté et la disponibilité du procédé structurent la sécurité OT.**
+2. **Segmenter avant d'exposer.**
+3. **Une identité par équipement vaut mieux qu'un secret partagé.**
+4. **Chiffrer un protocole ne suffit pas sans autorisation et gestion des clés.**
+5. **Observer passivement avant de scanner activement.**
+6. **Les protocoles historiques comme Modbus TCP supposent souvent une protection architecturale.**
+7. **OPC UA offre des mécanismes de sécurité qui doivent réellement être activés et administrés.**
+8. **Python est excellent pour les passerelles, l'automatisation et l'observabilité, pas pour remplacer les fonctions de sûreté.**
+9. **La supply chain et le cycle de mise à jour font partie du produit.**
+10. **Une restauration testée est un contrôle de sécurité.**
+
+## 20.4. Liens avec les autres cours
+
+- [[Python]] ;
+- [[Sécurité avec Python]] ;
+- [[Sécurité avancée sous Linux]] ;
+- [[Les protocoles de communications]] ;
+- [[HTTP]] ;
+- [[Docker]] ;
+- [[LDAP]] ;
+- [[OAuth OpenID]].
+
+## 20.5. Conclusion
+
+Sécuriser l'IoT et les systèmes SCADA ne consiste pas à appliquer une couche de TLS au dernier moment. Il faut raisonner sur **l'ensemble du système** : actif physique, firmware, identité, réseau, protocole, application, accès humain, supervision, mise à jour et récupération.
+
+Le meilleur design est celui qui continue à produire un comportement compréhensible et sûr quand :
+
+- un équipement tombe en panne ;
+- une identité est compromise ;
+- le réseau disparaît ;
+- un certificat expire ;
+- le cloud est indisponible ;
+- un message est dupliqué ;
+- une donnée est aberrante ;
+- une mise à jour échoue.
+
+Dans un environnement industriel, la cybersécurité mature n'est pas seulement la capacité à **empêcher** une attaque : c'est aussi la capacité à **limiter son impact, la détecter, maintenir un état sûr et restaurer le service de manière maîtrisée**.
