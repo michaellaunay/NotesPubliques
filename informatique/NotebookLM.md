@@ -1,10 +1,10 @@
 ---
 schema_version: 1
-uid: "01M12TN300VHP88G0FBG1RZG9M"
-titre: "NotebookLM"
+uid: 01M12TN300VHP88G0FBG1RZG9M
+titre: NotebookLM
 aliases:
-  - "Gemini Notebook"
-  - "NotebookLM"
+  - Gemini Notebook
+  - NotebookLM
 type: fiche
 statut: actif
 para: ressource
@@ -21,10 +21,10 @@ themes:
 resume: "Fiche sur NotebookLM, renommé Gemini Notebook en juillet 2026 : un RAG géré par Google, strictement ancré sur les documents fournis et citant ses sources, avec ses formats de restitution, ses quotas, ses limites structurelles et ce qu'il implique en matière de confidentialité."
 niveau: debutant
 prerequis:
-  - "[[LLM]]"
+  - "[[Liens LLM]]"
   - "[[RAG]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2026-08-28
 date_modification: 2026-08-28
