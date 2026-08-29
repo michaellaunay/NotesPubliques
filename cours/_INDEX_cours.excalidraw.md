@@ -777,7 +777,7 @@ Getting things done
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[cours/LLM|LLM]]",
+   "link": "[[LLM]]",
    "locked": false
   },
   {

@@ -44,7 +44,7 @@ IA pour créer des Images
 
 IAs
 
-LLM
+Liens LLM
 
 NotebookLM
 
@@ -642,7 +642,7 @@ Modèles climatiques
    "baseline": 11
   },
   {
-   "id": "94a96260996720d1",
+   "id": "9b52c81291870abd",
    "type": "rectangle",
    "x": 24.0,
    "y": 350.0,
@@ -667,11 +667,11 @@ Modèles climatiques
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[informatique/LLM|LLM]]",
+   "link": "[[Liens LLM]]",
    "locked": false
   },
   {
-   "id": "ea82e69865d18a77",
+   "id": "1f4525073c02bd8a",
    "type": "text",
    "x": 24.0,
    "y": 361.0,
@@ -696,14 +696,14 @@ Modèles climatiques
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "LLM",
-   "rawText": "LLM",
-   "originalText": "LLM",
+   "text": "Liens LLM",
+   "rawText": "Liens LLM",
+   "originalText": "Liens LLM",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "94a96260996720d1",
+   "containerId": "9b52c81291870abd",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
