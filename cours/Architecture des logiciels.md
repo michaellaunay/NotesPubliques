@@ -12,7 +12,7 @@ themes:
   - genie-logiciel
   - architecture-logicielle
   - conception-orientee-objet
-resume: "Cours complet d'architecture logicielle : définitions, attributs de qualité, décisions et vues architecturales, styles d'architecture (monolithique, en couches, microservices, etc.) et documentation."
+resume: "Cours complet et moderne d'architecture logicielle : décisions et compromis, attributs de qualité, styles architecturaux, modularité, DDD, systèmes distribués, résilience, sécurité, observabilité, documentation C4/ADR et évolution des systèmes."
 niveau: avance
 prerequis:
   - "[[Design patterns]]"
@@ -21,775 +21,2648 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-06-14
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: true
 ---
-Plan du cours sur l'architecture des logiciels. Ce cours explique comment les logiciels sont structurés et comment cette structure peut aider à faciliter la conception, l'implémentation et la maintenance des systèmes logiciels.
 
-1. **Introduction à l'architecture logicielle** : Nous commencerons par une introduction à l'architecture logicielle. Nous aborderons son importance, ses objectifs et ses avantages. Nous discuterons également de la relation entre l'architecture logicielle et la conception orientée objet.
+# Architecture des logiciels
 
-2. **Vue d'ensemble des styles d'architecture logicielle** : Nous explorerons différents styles d'architecture logicielle, tels que l'architecture monolithique, l'architecture en couches, l'architecture orientée services (SOA), l'architecture basée sur les événements, et l'architecture microservices.
+L'architecture logicielle est l'ensemble des **structures, décisions, contraintes et principes** qui déterminent comment un système est organisé et comment il peut évoluer. Elle ne consiste pas à choisir le plus grand nombre possible de technologies ni à produire de beaux diagrammes : elle sert avant tout à rendre les **compromis explicites** et à préserver les qualités importantes du système dans le temps.
 
-3. **Patterns d'architecture** : Nous couvrirons plusieurs patterns d'architecture couramment utilisés tels que MVC (Modèle-Vue-Contrôleur), MVVM (Modèle-Vue-VueModèle), et CQRS (Command Query Responsibility Segregation). Nous discuterons de quand et comment utiliser ces patterns.
+> [!important]
+> Une architecture n'est pas « bonne » dans l'absolu. Elle est adaptée — ou non — à un **contexte**, à des **contraintes**, à des **risques** et à des **attributs de qualité**.
 
-4. **Outils pour documenter l'architecture** : Nous proposons d'utiliser Obsidian ou Markdown Memo pour réaliser la documentation de conception.
+Ce cours complète notamment [[Design patterns]], [[Principes SOLID en COO]], [[Docker]], [[HTTP]], [[Les protocoles de communications]], [[Sécurité avancée sous Linux]], [[RGPD]] et [[Mermaid pour Obsidian]].
 
-5. **Documenter l'architecture logicielle** : Nous discuterons de l'importance de la documentation de l'architecture et présenterons des techniques et des outils pour le faire, tels que les diagrammes UML et les vues de l'architecture.
+## Plan du cours
 
-6. **Qualité de l'architecture logicielle** : Nous aborderons les facteurs qui déterminent la qualité d'une architecture logicielle, y compris la performance, la sécurité, la maintenabilité, et l'évolutivité.
+1. Fondamentaux de l'architecture logicielle
+2. Exigences, contraintes et attributs de qualité
+3. Décisions architecturales et compromis
+4. Modularité, couplage et cohésion
+5. Styles architecturaux
+6. Architecture hexagonale, Clean Architecture et ports/adapters
+7. Domain-Driven Design et frontières métier
+8. Patterns architecturaux
+9. Données, cohérence et transactions
+10. Architecture orientée événements
+11. Microservices et systèmes distribués
+12. Résilience et fiabilité
+13. Performance et capacité
+14. Sécurité et confidentialité par conception
+15. Observabilité et exploitabilité
+16. Déploiement, conteneurs, cloud et plateformes
+17. Supply chain et architecture de livraison
+18. Documentation : ISO 42010, C4, UML, ADR et arc42
+19. Évaluation et revues d'architecture
+20. Évolution, dette et modernisation
+21. Organisation des équipes et architecture
+22. Architectures pour IA et systèmes à agents
+23. Étude de cas complète
+24. Travaux pratiques et projet final
 
-7. **Évolution de l'architecture logicielle** : Nous étudierons comment les architectures logicielles peuvent évoluer avec le temps pour répondre à de nouveaux besoins ou défis. Nous parlerons également de la dette technique et comment la gérer.
+---
 
-8. **Études de cas et projets pratiques** : Nous appliquerons les concepts que nous avons appris à des études de cas et des projets réels. Cela vous donnera une expérience pratique de la conception de l'architecture logicielle.
+# 1. Fondamentaux de l'architecture logicielle
 
-# 1. Introduction à l'architecture logicielle
+## 1.1 Qu'est-ce qu'une architecture ?
 
-## 1.1 Définition de l'architecture logicielle
+L'architecture d'un système décrit les éléments structurants qui ont un impact important sur son fonctionnement et son évolution :
 
-L'architecture logicielle fait référence à la structure fondamentale d'un système logiciel. Elle représente la manière dont ce système est organisé et comment ses différents composants interagissent entre eux. Le terme "architecture" est emprunté au domaine de l'architecture physique où il fait référence à la conception de bâtiments. De la même manière, en informatique, l'architecture logicielle représente la "conception" de notre logiciel. 
+- les **responsabilités** majeures ;
+- les **frontières** entre modules, processus ou services ;
+- les **relations** et dépendances ;
+- les mécanismes de communication ;
+- les modèles de données ;
+- les choix de déploiement ;
+- les décisions qui influencent fortement les qualités du système ;
+- les contraintes techniques, réglementaires et organisationnelles.
 
-Une architecture logicielle englobe plusieurs aspects. Elle décrit les composants logiciels qui composent le système (par exemple, les classes dans une application orientée objet), leurs propriétés internes et leurs relations avec les autres composants. L'architecture couvre également les patrons de conception (design patterns) utilisés, les principes et les pratiques de conception adoptées, ainsi que les méthodes et outils employés pour réaliser le système.
+Une classe individuelle n'est pas nécessairement un élément architectural. En revanche, une frontière entre deux domaines métier, un protocole entre deux processus, un modèle de cohérence ou une séparation de données peuvent être des décisions architecturales.
 
-L'architecture logicielle définit également les interfaces par lesquelles les composants logiciels communiquent entre eux. Les interfaces jouent un rôle crucial dans la définition de la manière dont les composants interagissent et collaborent pour accomplir les tâches du système.
+## 1.2 Architecture, conception et implémentation
 
-Il est important de noter que l'architecture logicielle ne se limite pas à la structure statique du système. Elle comprend également les aspects dynamiques du logiciel, comme la communication entre les composants à l'exécution, les modèles de concurrence et de synchronisation, et la manière dont le système réagit aux entrées et sorties.
+Les trois niveaux se recouvrent partiellement :
 
-En somme, l'architecture logicielle donne une vue globale d'un système. Elle sert de plan directeur qui guide le développement du système, en fournissant une vue structurée de ses exigences fonctionnelles et non fonctionnelles. Une bonne architecture facilite la compréhension, le développement et la maintenance du système, tout en assurant que le système final répond aux exigences de qualité souhaitées comme la performance, la fiabilité, la sécurité, et la maintenabilité.
+| Niveau | Question typique | Exemple |
+|---|---|---|
+| Architecture | Comment le système est-il structuré ? | Monolithe modulaire avec événements internes |
+| Conception | Comment un module résout-il son problème ? | Repository + Strategy |
+| Implémentation | Comment le code réalise-t-il la conception ? | Classe Python, requête SQL, fonction |
 
-## 1.2 Importance de l'architecture logicielle
+La frontière n'est pas absolue. Une décision devient « architecturale » lorsqu'elle est **difficile ou coûteuse à changer**, touche plusieurs parties du système ou influence fortement un attribut de qualité.
 
-L'architecture logicielle joue un rôle central dans le développement et la maintenance de tout système logiciel. Voici quelques-unes des raisons pour lesquelles elle est si importante :
+## 1.3 Architecture logique et architecture physique
 
-**Faciliter la communication entre les parties prenantes** : L'architecture logicielle sert de langage commun qui facilite la communication entre toutes les parties prenantes d'un projet, y compris les développeurs, les gestionnaires de projet, les utilisateurs, les clients et les fournisseurs. Une représentation claire de l'architecture permet à toutes les parties prenantes de comprendre comment le système est construit et fonctionne, facilitant ainsi les discussions et la prise de décision.
+Il faut distinguer :
 
-**Prendre des décisions anticipées sur les attributs de qualité** : L'architecture logicielle aide à déterminer comment le système répondra à des attributs de qualité spécifiques, tels que la performance, la sécurité, la maintenabilité et l'évolutivité. Ces décisions sont souvent prises tôt dans le processus de développement, lors de la conception de l'architecture, et peuvent avoir un impact significatif sur la réussite du projet.
+- l'**architecture logique** : responsabilités, composants, domaines, dépendances ;
+- l'**architecture d'exécution** : processus, threads, files, événements ;
+- l'**architecture de données** : modèles, propriétaires, réplication, cohérence ;
+- l'**architecture de déploiement** : machines, conteneurs, régions, réseaux ;
+- l'**architecture de développement** : dépôts, modules, packages, pipelines.
 
-**Gérer la complexité du logiciel** : La conception d'une architecture logicielle bien structurée permet de gérer la complexité inhérente au développement de logiciels. En décomposant le système en composants plus petits et plus gérables, l'architecture permet aux développeurs de comprendre, de développer et de tester chaque partie du système indépendamment des autres.
+Une même architecture logique peut être déployée de plusieurs manières.
 
-**Faciliter l'évolution et la maintenance du logiciel** : Une bonne architecture logicielle facilite l'évolution du logiciel pour répondre aux besoins changeants des utilisateurs ou à l'évolution des technologies. Elle facilite également la maintenance du logiciel en permettant aux développeurs de comprendre rapidement comment le système fonctionne et où apporter des modifications ou des corrections.
+## 1.4 Architecture intentionnelle et architecture réelle
 
-**1.3 Rôles et responsabilités de l'architecte logiciel**
+Deux architectures coexistent souvent :
 
-Un architecte logiciel joue un rôle crucial dans le développement de systèmes logiciels. Ses responsabilités sont vastes et variées, allant de la conception technique à la coordination des équipes de développement. Examinons plus en détail quelques-uns de ces rôles et responsabilités.
+1. **l'architecture intentionnelle**, décrite dans les documents ;
+2. **l'architecture réelle**, observable dans le code, les dépendances, les flux réseau et l'infrastructure.
 
-**Conception de l'architecture du système** : Le rôle principal de l'architecte logiciel est de concevoir l'architecture du système. Cela implique de comprendre les exigences du système, à la fois fonctionnelles et non fonctionnelles, et de concevoir une structure qui répond à ces exigences tout en tenant compte des contraintes et compromis techniques. 
+Si elles divergent, **le système exécuté a toujours raison**. La documentation doit donc être vérifiée régulièrement contre le système réel.
 
-**Prise de décisions architecturales** : L'architecte logiciel est responsable de la prise de décisions architecturales clés qui influencent la structure et le comportement du système. Cela comprend la sélection des technologies, la définition des interfaces, la division du système en composants, et la définition de la manière dont ces composants interagissent.
+## 1.5 L'architecte logiciel
 
-**Documentation de l'architecture** : L'architecte logiciel est responsable de la documentation de l'architecture du système. Cette documentation fournit une vue d'ensemble du système et sert de guide pour les développeurs et autres parties prenantes. Elle décrit les composants du système, leurs interactions, les décisions architecturales prises, et les raisons de ces décisions.
+L'architecte n'est pas nécessairement une personne isolée ni un rôle hiérarchique. Les responsabilités architecturales peuvent être distribuées dans l'équipe.
 
-**Communication avec les autres membres de l'équipe de développement** : L'architecte logiciel doit communiquer efficacement avec les autres membres de l'équipe de développement. Cela comprend l'explication de l'architecture, la facilitation de la compréhension de l'architecture par l'équipe, la résolution des problèmes architecturaux et la coordination des efforts de développement.
+Elles comprennent :
 
-**Contrôle de la qualité architecturale** : L'architecte est également chargé de veiller à ce que l'architecture logicielle soit mise en œuvre correctement et maintenue au fil du temps. Cela implique d'évaluer l'architecture pour s'assurer qu'elle respecte les standards de qualité, d'identifier et de résoudre les problèmes architecturaux et de veiller à ce que les modifications apportées au système restent conformes à l'architecture.
+- comprendre le métier et les contraintes ;
+- identifier les risques ;
+- faciliter les décisions ;
+- rendre les compromis visibles ;
+- maintenir les frontières ;
+- documenter les décisions importantes ;
+- vérifier les qualités du système ;
+- aider les équipes à expérimenter ;
+- éviter les dépendances irréversibles non justifiées.
 
-**Planification et gestion de la technologie** : L'architecte logiciel doit également prendre en compte l'évolution technologique. Cela implique de rester à jour sur les nouvelles technologies et méthodologies, de planifier l'intégration de nouvelles technologies dans l'architecture existante et de gérer l'évolution de l'architecture du système au fil du temps.
+> [!warning]
+> Un « architecte » qui ne lit jamais le code, n'observe jamais la production et ne vérifie jamais ses hypothèses risque de documenter un système imaginaire.
 
-## 1.4 Perspectives sur l'architecture logicielle
+## 1.6 Architecture émergente et conception anticipée
 
-Il existe plusieurs façons d'aborder l'architecture logicielle, et différentes perspectives peuvent mettre en lumière différents aspects du système. Voici trois perspectives couramment utilisées dans l'architecture logicielle : la perspective de conception, la perspective d'exécution et la perspective de code.
+Deux erreurs opposées sont fréquentes :
 
-**Perspective de conception** : Cette perspective se concentre sur les éléments de conception du système. Les éléments de conception sont des abstractions qui représentent des parties du système, comme les modules, les composants, les connecteurs, etc. Cette perspective aborde des questions comme : Quels sont les principaux composants du système ? Comment ces composants sont-ils organisés ? Comment interagissent-ils les uns avec les autres ? 
+- **Big Design Up Front** : tout décider avant d'avoir suffisamment d'information ;
+- **aucune conception** : laisser toutes les décisions émerger sans garde-fous.
 
-**Perspective d'exécution** : Cette perspective se concentre sur les éléments d'exécution du système, c'est-à-dire les instances de composants et les interactions qui se produisent pendant l'exécution du logiciel. Les questions typiques de cette perspective pourraient être : Comment les composants du système sont-ils instanciés pendant l'exécution ? Comment ces instances interagissent-elles entre elles ? Comment les données sont-elles échangées ou partagées entre les instances ?
+Une approche saine consiste à :
 
-**Perspective de code** : Cette perspective se concentre sur les éléments de code, comme les packages, les classes et les méthodes. Elle est particulièrement utile pour comprendre comment le système est structuré au niveau du code source. Les questions abordées pourraient être : Comment les classes et les packages sont-ils organisés ? Comment les méthodes et les attributs sont-ils utilisés dans les classes ? 
+1. décider tôt ce qui est coûteux à changer ;
+2. repousser les décisions réversibles ;
+3. prototyper les inconnues ;
+4. mesurer ;
+5. documenter les décisions significatives ;
+6. faire évoluer l'architecture avec le produit.
 
-Ces perspectives ne sont pas mutuellement exclusives, mais plutôt complémentaires. En combinant ces perspectives, nous pouvons obtenir une vue complète de l'architecture du système, de la conception à l'exécution et au code. Chacune de ces perspectives apporte des informations précieuses qui peuvent aider à comprendre, concevoir, développer et maintenir le système.
+---
 
-## 1.5 Relation entre l'architecture logicielle et la conception orientée objet
+# 2. Exigences, contraintes et attributs de qualité
 
-La conception orientée objet (COO) est une méthode de conception et de développement logiciel qui utilise des "objets" - instances de classes, qui sont souvent des représentations de choses du monde réel. La COO intègre des concepts tels que l'encapsulation, l'héritage et le polymorphisme, pour favoriser une structuration plus naturelle et logique du code. Cette méthode de conception a un impact significatif sur l'architecture logicielle, car elle fournit les blocs de construction pour mettre en œuvre l'architecture du système.
+## 2.1 Fonctionnel et non fonctionnel
 
-**Mise en œuvre de l'architecture logicielle avec la COO** : L'architecture logicielle définit la structure de haut niveau d'un système, tandis que la COO fournit les mécanismes pour réaliser cette structure. Par exemple, les composants architecturaux peuvent être mappés sur des classes ou des groupes de classes dans un système orienté objet. Les interfaces, qui définissent comment les composants communiquent, peuvent être mappées sur des interfaces ou des classes abstraites en COO. De plus, les patterns d'architecture peuvent être facilement implémentés en utilisant des patterns de conception orientée objet.
+Les exigences fonctionnelles indiquent **ce que le système doit faire**.
 
-**Influence des concepts de la COO sur l'architecture logicielle** : Les concepts clés de la COO, comme l'encapsulation, l'héritage et le polymorphisme, peuvent grandement influencer la conception de l'architecture logicielle. Par exemple, l'encapsulation, qui est le fait de cacher les détails internes d'un objet et de n'exposer qu'une interface pour interagir avec cet objet, favorise le découplage entre les composants et rend le système plus modulaire. L'héritage permet de créer des hiérarchies de composants et de promouvoir la réutilisation du code. Le polymorphisme, qui permet à un objet d'être utilisé comme une instance de plusieurs types, peut être utilisé pour rendre le système plus extensible et flexible.
+Exemples :
 
-Voir [[Design patterns]]
+- créer une commande ;
+- calculer un tarif ;
+- envoyer une notification.
 
-## 1.6 Les attributs de qualité dans l'architecture logicielle
+Les exigences de qualité décrivent **comment** le système doit se comporter.
 
-Les attributs de qualité sont des caractéristiques non fonctionnelles d'un système qui déterminent comment il se comporte. Ils sont cruciaux dans la conception de l'architecture logicielle, car ils influencent les décisions architecturales et ont un impact direct sur la qualité du système final. Voici quelques attributs de qualité couramment utilisés en architecture logicielle :
+Exemples :
 
-### 1.6.1 Performance
+- répondre en moins de 200 ms au percentile 95 ;
+- être disponible 99,95 % ;
+- restaurer les données en moins de 30 minutes ;
+- permettre à une équipe de livrer un module sans redéployer tout le système.
 
-La performance se réfère à la rapidité avec laquelle un système répond à une demande ou à un ensemble de demandes. Elle est souvent mesurée en termes de temps de réponse, de débit ou d'utilisation des ressources. Un bon architecte doit concevoir le système de manière à répondre aux exigences de performance, tout en tenant compte des ressources disponibles.
+## 2.2 ISO/IEC 25010:2023
 
-### 1.6.2 Sécurité
+La deuxième édition d'ISO/IEC 25010 définit neuf grandes caractéristiques de qualité du produit :
 
-La sécurité est la capacité d'un système à résister aux attaques malveillantes et à protéger les données et les services qu'il fournit. Cela implique de concevoir le système de manière à minimiser les vulnérabilités et à résister aux attaques, tout en permettant une récupération rapide en cas de violation de la sécurité.
+1. **adéquation fonctionnelle** (*functional suitability*) ;
+2. **efficacité de performance** ;
+3. **compatibilité** ;
+4. **capacité d'interaction** (*interaction capability*) ;
+5. **fiabilité** ;
+6. **sécurité** ;
+7. **maintenabilité** ;
+8. **flexibilité** ;
+9. **sûreté** (*safety*).
 
-### 1.6.3 Maintenabilité
+Ces catégories fournissent un vocabulaire, mais une architecture doit les traduire en **scénarios mesurables**.
 
-La maintenabilité est la facilité avec laquelle un système peut être modifié pour corriger des défauts, améliorer ses performances, ou adapter le système à un environnement modifié. Cela nécessite une conception claire et compréhensible, l'usage de conventions de codage cohérentes, une bonne documentation et des tests adéquats.
+## 2.3 Scénarios d'attributs de qualité
 
-#### 1.6.4 Modularité
+Une exigence vague :
 
-La modularité est le degré auquel un système peut être divisé en modules indépendants. Un système modulaire facilite la maintenabilité, l'évolutivité et la réutilisation du code. Il permet également de développer et de tester les modules individuellement, ce qui peut améliorer la productivité de l'équipe de développement.
+> Le système doit être performant.
 
-### 1.6.5 Évolutivité
+Une exigence exploitable :
 
-L'évolutivité est la capacité d'un système à gérer une augmentation de la charge de travail. Par exemple, un système peut être conçu pour être évolutif en ajoutant plus de ressources matérielles, ou en permettant d'ajouter plus de fonctionnalités ou de modules au fil du temps.
+> Pour une recherche standard, avec 5 000 utilisateurs simultanés et un catalogue de 10 millions d'objets, 95 % des réponses doivent être produites en moins de 300 ms, hors latence réseau externe.
 
-### 1.6.6 Conclusion sur la qualité
+On peut décrire un scénario par :
 
-Les attributs de qualité sont des considérations essentielles dans la conception de l'architecture logicielle. Ils guident les décisions architecturales et influencent la qualité globale du système. Un bon architecte doit comprendre ces attributs de qualité, savoir comment les équilibrer et prendre des décisions informées qui favorisent l'atteinte de ces objectifs de qualité.
+- **source** du stimulus ;
+- **stimulus** ;
+- **environnement** ;
+- **artefact** concerné ;
+- **réponse attendue** ;
+- **mesure** de la réponse.
 
-## 1.7 Les décisions architecturales
+## 2.4 Contraintes
 
-Les décisions architecturales sont des choix qui sont faits lors de la conception de l'architecture d'un système logiciel. Elles ont un impact majeur sur la structure et le comportement du système, et une fois prises, elles peuvent être difficiles à changer. Examinons les facteurs qui influencent ces décisions et comment elles sont prises.
+Une contrainte n'est pas un objectif à optimiser ; c'est une limite imposée.
 
-### 1.7.1 Exigences fonctionnelles et non fonctionnelles
+Exemples :
 
-Les exigences du système, à la fois fonctionnelles (ce que le système doit faire) et non fonctionnelles (comment le système doit le faire), sont des facteurs clés dans la prise de décisions architecturales. Par exemple, si une exigence non fonctionnelle est que le système doit être capable de gérer une charge de travail élevée, cela peut influencer la décision d'utiliser une architecture distribuée.
+- données hébergées dans l'Union européenne ;
+- PostgreSQL imposé par l'organisation ;
+- compatibilité avec un protocole industriel existant ;
+- équipe de quatre personnes ;
+- fonctionnement hors ligne ;
+- budget maximal ;
+- exigences RGPD ;
+- matériel embarqué à 512 Mo de RAM.
 
-### 1.7.2 Contraintes technologiques
+Une architecture qui ignore une contrainte réelle est invalide, même si elle est élégante.
 
-Les contraintes technologiques, comme la disponibilité de certaines technologies ou la nécessité d'intégrer le système avec d'autres systèmes existants, peuvent également influencer les décisions architecturales. Par exemple, si le système doit être développé en utilisant un certain langage de programmation ou une certaine plateforme, cela peut limiter les choix d'architecture disponibles.
+## 2.5 Les qualités entrent en conflit
 
-### 1.7.3 Compromis
+Exemples de tensions :
 
-La prise de décisions architecturales implique souvent de faire des compromis entre différents objectifs ou exigences. Par exemple, augmenter la performance d'un système peut réduire sa maintenabilité, ou améliorer la sécurité peut réduire sa facilité d'utilisation. Un bon architecte doit être capable de trouver le bon équilibre entre ces différents facteurs.
+- sécurité ↔ facilité d'utilisation ;
+- cohérence forte ↔ disponibilité/latence ;
+- faible coût ↔ redondance ;
+- isolation forte ↔ performance ;
+- déploiement indépendant ↔ simplicité opérationnelle ;
+- abstraction ↔ contrôle fin ;
+- flexibilité ↔ simplicité.
 
-### 1.7.4 Stakeholders
+L'architecture est donc une discipline de **trade-offs**.
 
-Les parties prenantes du système, comme les utilisateurs, les développeurs, les gestionnaires et les clients, ont également une influence sur les décisions architecturales. Leurs préférences, leurs besoins et leurs attentes doivent être pris en compte lors de la conception de l'architecture.
+---
 
-### 1.7.5 Contexte
+# 3. Décisions architecturales et compromis
 
-Le contexte dans lequel le système sera utilisé peut également influencer les décisions architecturales. Par exemple, si le système est destiné à être utilisé dans un environnement à faible bande passante, cela peut influencer la décision d'utiliser une architecture légère et efficace.
+## 3.1 Décisions réversibles et irréversibles
 
-### 1.7.6 Expérience et connaissance
+Toutes les décisions ne méritent pas le même niveau d'analyse.
 
-L'expérience et les connaissances de l'architecte jouent un rôle important dans la prise de décisions architecturales. Une bonne compréhension des principes d'architecture, des patterns d'architecture et des technologies disponibles peut aider à prendre des décisions informées et efficaces.
+### Décision facilement réversible
 
-### 1.7.7 Conclusion sur les décisions architecturales
+- changer un outil de formatage ;
+- modifier la disposition d'une page ;
+- remplacer une petite bibliothèque isolée.
 
-La prise de décisions architecturales est un processus complexe qui implique de prendre en compte de nombreux facteurs différents et de faire des compromis. Un bon architecte doit être capable de naviguer dans ce processus, de prendre des décisions informées et de justifier ces décisions aux autres membres de l'équipe.
+### Décision coûteuse à inverser
 
-## 1.8 Les vues architecturales
+- partager une base entre dix services ;
+- choisir un modèle de partitionnement irréversible ;
+- exposer une API publique utilisée par des tiers ;
+- construire autour d'un fournisseur propriétaire sans abstraction ni plan de sortie.
 
-L'architecture d'un système logiciel est complexe et multifacette. Pour faciliter la compréhension et la communication de l'architecture, nous utilisons ce qu'on appelle des "vues architecturales". Chaque vue offre une perspective différente sur le système, mettant en lumière certains aspects tout en en occultant d'autres. Voici quelques-unes des vues les plus couramment utilisées :
+Plus une décision est coûteuse à inverser, plus il faut obtenir des **preuves** avant de la figer.
 
-### 1.8.1 Vue logique
-Cette vue se concentre sur la fonctionnalité du système du point de vue de l'utilisateur. Elle décrit les principales classes ou composants logiques du système, leurs responsabilités, leurs relations et leurs interactions. Cette vue est souvent utilisée par les développeurs pour comprendre comment le système fournit les fonctionnalités requises.
+## 3.2 ADR — Architecture Decision Record
 
-### 1.8.2 Vue de processus
-Cette vue montre comment le système est exécuté en termes de processus, de threads et de communication entre eux. Elle décrit comment le système se comporte en réponse aux événements externes et internes. Cette vue est particulièrement utile pour comprendre les problèmes de performance et de concurrence.
+Un ADR enregistre une décision importante avec son contexte et ses conséquences.
 
-### 1.8.3 Vue de développement
-Cette vue offre une perspective sur la manière dont le système est organisé du point de vue du développement. Elle décrit la structure du code, les dépendances entre les packages ou les modules, et la manière dont le système est construit et déployé. Cette vue est généralement utilisée par les développeurs pour comprendre l'organisation du code et par les gestionnaires de projet pour planifier et gérer le développement.
+Exemple :
 
-### 1.8.4 Vue physique
-Cette vue présente la disposition du système sur l'infrastructure matérielle. Elle décrit comment le système est déployé sur l'infrastructure, comment les composants du système sont mappés sur les noeuds matériels, et comment les noeuds communiquent entre eux. Cette vue est souvent utilisée par les administrateurs de système pour comprendre comment le système est déployé et par les architectes pour prendre des décisions concernant le déploiement.
+```markdown
+# ADR-004 — Utiliser PostgreSQL comme source de vérité
 
-### 1.8.5 Synthèse
-Chaque vue architecturale offre une perspective différente sur le système, et en combinant ces vues, nous pouvons obtenir une image complète de l'architecture du système. Il est important de noter que les vues doivent être cohérentes entre elles - c'est-à-dire que les informations présentées dans une vue ne doivent pas contredire les informations présentées dans une autre vue. Dans le prochain chapitre, nous examinerons comment créer et documenter ces vues.
+Date: 2026-08-29
+Statut: accepté
 
-## 1.9 Importance de la documentation en architecture logicielle
+## Contexte
 
-La documentation joue un rôle crucial en architecture logicielle. Elle sert de moyen de communication entre les différentes parties prenantes, y compris les architectes, les développeurs, les gestionnaires de projet et les clients. Elle aide également à maintenir la cohérence de l'architecture au fil du temps, surtout lorsque des changements sont apportés ou lorsque des nouveaux membres rejoignent l'équipe. Examinons de plus près pourquoi il est important de documenter certains aspects de l'architecture.
+Nous avons besoin de transactions ACID et de contraintes relationnelles fortes.
 
-### 1.9.1 Décisions architecturales
-Documenter les décisions architecturales permet de suivre pourquoi certaines décisions ont été prises, les alternatives qui ont été envisagées et les raisons pour lesquelles elles ont été rejetées. Cela aide non seulement à comprendre l'état actuel de l'architecture, mais aussi à prendre de meilleures décisions à l'avenir. C'est aussi un moyen de partager la connaissance et l'expérience au sein de l'équipe et de faciliter l'intégration de nouveaux membres.
+## Décision
 
-### 1.9.2 Vues architecturales
-Comme nous l'avons vu précédemment, les vues architecturales offrent différentes perspectives sur le système. La documentation de ces vues aide à comprendre comment le système est conçu, comment il fonctionne et comment il est déployé. Cela aide également à identifier les dépendances et les interactions entre les différents composants du système, ce qui est crucial pour la maintenance et l'évolution du système.
+PostgreSQL sera la source de vérité des commandes.
 
-### 1.9.3 Attributs de qualité
-La documentation des attributs de qualité et de la manière dont ils ont influencé l'architecture aide à comprendre pourquoi l'architecture est conçue de la manière dont elle l'est. Par exemple, si l'architecture a été conçue pour une haute performance, documenter cela aide à comprendre pourquoi certaines décisions ont été prises et comment elles contribuent à la performance du système. Cela aide également à vérifier si l'architecture répond aux exigences de qualité et à identifier les domaines qui pourraient nécessiter des améliorations.
+## Alternatives étudiées
 
-### 1.9.4 Une nécessité
-La documentation en architecture logicielle n'est pas un luxe, mais une nécessité. Elle facilite la communication, soutient la prise de décisions, aide à maintenir la cohérence de l'architecture et facilite la maintenance et l'évolution du système. Dans le prochain chapitre, nous verrons comment créer une documentation efficace en architecture logicielle.
+- MongoDB
+- DynamoDB
+- stockage événementiel intégral
 
-## 2. Vue d'ensemble des styles d'architecture logicielle
+## Conséquences
 
-Dans ce chapitre, nous allons explorer différents styles d'architecture logicielle. Chaque style a ses propres caractéristiques, avantages et inconvénients, et est mieux adapté à certains types de systèmes et de problèmes. En comprenant ces différents styles, vous serez mieux équipés pour choisir l'architecture la plus appropriée pour vos propres projets.
+Positives :
+- transactions simples ;
+- contraintes fortes ;
+- compétences déjà présentes.
 
-## 2.1 Introduction aux styles d'architecture logicielle
+Négatives :
+- montée en charge horizontale moins transparente ;
+- dépendance aux capacités PostgreSQL pour le cœur transactionnel.
+```
 
-L'architecture logicielle, comme nous l'avons déjà mentionné, est une discipline qui se concentre sur la manière dont les logiciels sont structurés et organisés. Un "style d'architecture", en revanche, est une approche spécifique ou un ensemble de principes qui guident la structuration et l'organisation d'un logiciel. Chaque style d'architecture a ses propres caractéristiques, avantages et inconvénients, et est conçu pour répondre à certains types de problèmes ou de situations.
+Un ADR documente **pourquoi** une décision a été prise. Un diagramme documente principalement **ce qui existe**.
 
-Pensez à un style d'architecture comme à un modèle pour la construction d'une maison. Chaque style, qu'il s'agisse d'un bungalow, d'une maison de ville, d'une maison en rangée ou d'une villa, a ses propres avantages, inconvénients et caractéristiques qui le rendent plus adapté à certains types de familles, de climats, de paysages et de modes de vie.
+## 3.3 Ne pas transformer les ADR en journal de tout
 
-De la même manière, chaque style d'architecture logicielle offre des avantages uniques qui le rendent approprié pour certains types de projets, de problèmes et de contextes. Par exemple, certains styles peuvent être plus adaptés aux systèmes à grande échelle, tandis que d'autres peuvent être plus appropriés pour les systèmes qui exigent une haute performance ou une sécurité renforcée. Certains styles peuvent également être plus faciles à comprendre, à modifier ou à maintenir que d'autres, ce qui peut influencer leur choix en fonction de la taille de l'équipe, de la durée du projet ou de la complexité du problème à résoudre.
+Un ADR est utile pour une décision qui :
 
-En comprenant les différents styles d'architecture disponibles, vous pouvez faire des choix plus éclairés lors de la conception de l'architecture de votre logiciel. Vous serez mieux équipé pour choisir un style qui correspond aux besoins de votre projet, à vos exigences en matière de qualité, à votre équipe et à votre environnement de travail.
+- influence plusieurs modules ;
+- modifie un contrat ;
+- entraîne un coût significatif ;
+- introduit une dépendance structurante ;
+- répond à un risque important.
 
-Dans les sections suivantes, nous examinerons quelques-uns des styles d'architecture logicielle les plus couramment utilisés, y compris l'architecture monolithique, l'architecture en couches, l'architecture orientée services (SOA), l'architecture basée sur les événements, et l'architecture microservices. Pour chaque style, nous discuterons de ses caractéristiques, de ses avantages et inconvénients, et de quand et pourquoi vous pourriez choisir d'utiliser ce style.
+Il est inutile de créer un ADR pour chaque nom de variable.
 
-## 2.2 Architecture Monolithique
+## 3.4 Architecture fitness functions
 
-L'architecture monolithique est un style d'architecture logicielle dans lequel le logiciel est conçu et développé comme une seule unité indivisible. Toutes les fonctionnalités et tous les composants du système, y compris la base de données, les opérations sur les données, les règles métier, et l'interface utilisateur, sont interconnectés et interdépendants.
+Une *fitness function* est un contrôle automatisé ou mesurable qui vérifie qu'une propriété architecturale reste vraie.
 
-### 2.2.1 Caractéristiques de l'architecture monolithique
+Exemples :
 
-- **Unité de déploiement unique** : Dans une architecture monolithique, le logiciel est déployé en une seule unité. Toutes les fonctionnalités sont contenues dans une seule base de code, et tout changement nécessite un redéploiement complet de l'application.
+- aucun module `domain` n'importe `infrastructure` ;
+- p95 < 300 ms ;
+- aucune image Docker ne s'exécute en root ;
+- aucun service ne dépend directement de la base d'un autre service ;
+- couverture des contrats API ;
+- dépendances cycliques interdites.
 
-- **Cohésion forte** : Les différents composants du système sont étroitement liés et interdépendants. Ils partagent souvent des ressources, telles que la mémoire et les données, et un changement dans un composant peut avoir un impact sur l'ensemble du système.
+L'architecture devient ainsi en partie **exécutable**.
 
-- **Simplicité de développement** : Avec une base de code unique, il est souvent plus facile et plus rapide de développer et de tester une application monolithique, surtout si le système est relativement petit.
+---
 
-### 2.2.3 Avantages de l'architecture monolithique
+# 4. Modularité, couplage et cohésion
 
-- **Facilité de développement** : Une architecture monolithique peut être plus simple à développer initialement, car il n'y a pas besoin de coordonner plusieurs bases de code ou services indépendants.
+## 4.1 La modularité avant la distribution
 
-- **Performance** : Dans une architecture monolithique, les appels entre différents composants du système sont souvent plus rapides que dans une architecture distribuée, car ils se font en mémoire plutôt que sur le réseau.
+Un système modulaire n'est pas nécessairement un ensemble de microservices.
 
-### 2.2.4 Inconvénients de l'architecture monolithique
+La première question est :
 
-- **Difficulté de mise à l'échelle** : Dans une architecture monolithique, la mise à l'échelle du système nécessite souvent de dupliquer l'ensemble de l'application, ce qui peut être coûteux en termes de ressources.
+> Où sont les frontières de responsabilité ?
 
-- **Rigidité** : Les architectures monolithiques peuvent être difficiles à modifier ou à étendre, car un changement dans une partie du système peut nécessiter des modifications dans d'autres parties du système.
+La deuxième seulement :
 
-- **Risque de panne** : Dans une architecture monolithique, une panne dans un composant peut entraîner l'arrêt de l'ensemble du système.
+> Ces frontières doivent-elles correspondre à des processus déployés séparément ?
 
-L'architecture monolithique peut être appropriée pour les petits systèmes, ou pour les projets avec des équipes réduites, des délais serrés, ou des exigences simples et bien définies. Cependant, pour les systèmes plus grands, plus complexes, ou qui doivent être capables de changer et d'évoluer rapidement, d'autres styles d'architecture peuvent être plus appropriés.
+## 4.2 Cohésion
 
-## 2.3 Architecture en couches
+Un module cohérent rassemble des éléments qui changent pour des raisons proches.
 
-L'architecture en couches est un style d'architecture logicielle qui organise le système en une série de couches, chaque couche fournissant des services à celle qui se trouve au-dessus d'elle. Chaque couche a une responsabilité spécifique et fonctionne de manière indépendante des autres.
+Mauvais découpage :
 
-### 2.3.1 Caractéristiques de l'architecture en couches
+```text
+utils/
+services/
+helpers/
+managers/
+```
 
-- **Couplage faible** : Chaque couche est indépendante et interagit seulement avec les couches directement au-dessus et en dessous d'elle. Cela permet une plus grande flexibilité et facilité de modification.
+Meilleur découpage métier :
 
-- **Réutilisabilité** : Les services fournis par chaque couche peuvent être réutilisés par plusieurs composants ou systèmes.
+```text
+catalogue/
+commande/
+facturation/
+expedition/
+```
 
-- **Séparation des préoccupations** : Chaque couche a une responsabilité spécifique, ce qui permet une meilleure organisation et une maintenance plus facile.
+## 4.3 Couplage
 
-### 2.3.2 Avantages de l'architecture en couches
+Le couplage peut être :
 
-- **Maintenabilité** : L'architecture en couches permet une plus grande maintenabilité en isolant les modifications à une couche spécifique. Cela réduit l'impact des changements et facilite la maintenance.
+- structurel ;
+- temporel ;
+- de données ;
+- de protocole ;
+- de disponibilité ;
+- organisationnel.
 
-- **Évolutivité** : Grâce à sa nature modulaire, l'architecture en couches peut facilement être mise à l'échelle en ajoutant ou en modifiant des couches spécifiques.
+Deux services peuvent être dans deux dépôts différents mais rester extrêmement couplés si l'un ne peut fonctionner sans l'autre à chaque requête.
 
-- **Flexibilité** : Les couches peuvent être réorganisées, modifiées ou remplacées de manière indépendante, ce qui offre une grande flexibilité.
+## 4.4 Dépendances orientées
 
-### 2.3.3 Inconvénients de l'architecture en couches
+Une dépendance a une direction.
 
-- **Performance** : Les appels de fonction entre les couches peuvent réduire les performances, en particulier si le nombre de couches est élevé.
+```text
+UI ──> Application ──> Domaine
+              │
+              └──> ports abstraits
+                       ▲
+                       │
+              Infrastructure
+```
 
-- **Complexité** : Bien que l'architecture en couches puisse simplifier la conception du système, elle peut également introduire une complexité supplémentaire, en particulier lorsqu'il y a un grand nombre de couches.
+Le cœur métier doit autant que possible dépendre de **concepts stables**, et non de détails d'infrastructure.
 
-L'architecture en couches est souvent utilisée dans les systèmes d'entreprise ou les applications web, où elle peut aider à organiser le code en groupes logiques et à séparer les préoccupations. C'est un style d'architecture populaire en raison de sa flexibilité, de sa maintenabilité et de sa capacité à soutenir les principes de conception tels que l'encapsulation et la modularité.
+## 4.5 Cycles de dépendances
 
-## 2.4 Architecture Orientée Services (SOA)
+Un cycle :
 
-L'Architecture Orientée Services (SOA) est un style d'architecture qui structure une application comme une collection de services. Ces services sont des unités autonomes de fonctionnalités qui peuvent être accédées et utilisées sans connaissance de leur fonctionnement interne.
+```text
+A -> B -> C -> A
+```
 
-### 2.4.1 Caractéristiques de SOA
+rend l'évolution plus difficile :
 
-- **Indépendance** : Les services dans une SOA sont autonomes, chaque service est indépendant des autres. Cela signifie qu'un service peut être modifié ou remplacé sans affecter les autres services du système.
+- construction et tests couplés ;
+- compréhension globale nécessaire ;
+- déploiements coordonnés ;
+- propagation des changements.
 
-- **Communication** : Les services communiquent entre eux, généralement par des appels de réseau, pour accomplir une fonctionnalité ou un processus. Cette communication se fait souvent via un protocole standard tel que HTTP et un format de message standard tel que XML ou JSON.
+Les cycles importants doivent être détectés automatiquement lorsque cela est possible.
 
-- **Réutilisabilité** : Les services sont conçus pour être réutilisés par plusieurs applications. Cela permet de réduire la duplication de code et de favoriser la cohérence dans l'ensemble du système.
+## 4.6 Monolithe modulaire
 
-### 2.4.2 Avantages de SOA
+Le **monolithe modulaire** combine :
 
-- **Flexibilité** : Grâce à leur indépendance, les services peuvent être modifiés, mis à jour ou remplacés sans affecter le reste du système. Cela rend le système plus flexible et plus facile à maintenir.
+- une unité de déploiement principale ;
+- des frontières internes fortes ;
+- des contrats entre modules ;
+- une propriété claire des données ;
+- la possibilité d'extraire certains modules plus tard.
 
-- **Évolutivité** : SOA permet d'ajouter de nouvelles fonctionnalités en ajoutant de nouveaux services. Cela permet au système de se développer et de s'adapter facilement aux besoins changeants de l'entreprise.
+Pour de nombreuses équipes, il constitue un meilleur point de départ que les microservices.
 
-- **Interopérabilité** : Les services peuvent être construits en utilisant différentes technologies de plateforme et de programmation, ce qui rend SOA idéale pour les environnements hétérogènes.
+---
 
-### 2.4.3 Inconvénients de SOA
+# 5. Styles architecturaux
 
-- **Complexité** : SOA peut être plus complexe à mettre en œuvre que d'autres styles d'architecture en raison de la nécessité de gérer la communication entre services.
+## 5.1 Monolithe
 
-- **Performance** : La nécessité pour les services de communiquer entre eux peut entraîner des retards et affecter la performance du système.
+Un monolithe est déployé comme une unité principale.
 
-SOA est particulièrement bénéfique dans les grandes entreprises où plusieurs systèmes et technologies doivent interagir et communiquer entre eux. Il est également utile dans les environnements où les exigences changent fréquemment, car il permet d'ajouter, de modifier ou de remplacer des services de manière indépendante.
+Avantages :
 
-## 2.5 Architecture Basée sur les Événements
+- transactions locales ;
+- appels en mémoire ;
+- debug plus simple ;
+- déploiement facile ;
+- coût opérationnel faible.
 
-L'architecture basée sur les événements est un style d'architecture logicielle qui se concentre sur la production, la détection, la consommation et la réaction aux événements. Les événements sont définis comme des changements d'état significatifs dans un système.
+Inconvénients possibles :
 
-### 2.5.1 Caractéristiques de l'architecture basée sur les événements
+- frontières internes difficiles à maintenir ;
+- déploiement global ;
+- scaling moins granulaire ;
+- risque de « big ball of mud ».
 
-- **Réactivité** : Les systèmes basés sur des événements sont conçus pour réagir aux changements d'état qui se produisent dans le système. Ces réponses sont souvent exprimées sous la forme de callbacks ou de fonctions qui sont déclenchées en réponse à un événement.
+> [!important]
+> « Monolithe » ne signifie pas « mauvais design ». Un monolithe modulaire peut être plus robuste qu'une collection de microservices fortement couplés.
 
-- **Asynchrone** : L'architecture basée sur les événements est intrinsèquement asynchrone. Elle permet aux systèmes de continuer à fonctionner pendant que les événements sont en cours de traitement.
+## 5.2 Architecture en couches
 
-- **Décentralisation** : Dans une architecture basée sur les événements, aucun composant central n'est chargé de la gestion des événements. Au lieu de cela, chaque composant agit de manière indépendante en réponse aux événements qu'il reçoit.
+Exemple :
 
-### 2.5.2 Avantages de l'architecture basée sur les événements
+```text
+Présentation
+    ↓
+Application
+    ↓
+Domaine
+    ↓
+Infrastructure / données
+```
 
-- **Réactivité** : Les systèmes basés sur les événements sont naturellement réactifs et peuvent fournir des réponses en temps réel aux changements d'état.
+Avantages :
 
-- **Scalabilité** : Comme ils peuvent fonctionner de manière asynchrone, les systèmes basés sur les événements peuvent facilement être mis à l'échelle pour gérer un grand nombre d'événements.
+- modèle facile à comprendre ;
+- responsabilités séparées ;
+- adapté à de nombreuses applications classiques.
 
-- **Flexibilité** : Les systèmes basés sur les événements sont flexibles et peuvent facilement être adaptés pour répondre à de nouveaux types d'événements.
+Risque : toutes les couches deviennent de simples tuyaux et le domaine se retrouve dépendant de la base.
 
-### 2.5.3 Inconvénients de l'architecture basée sur les événements
+## 5.3 Client/serveur
 
-- **Complexité** : Les systèmes basés sur les événements peuvent être plus difficiles à comprendre et à déboguer que les systèmes synchrones, en raison de leur nature asynchrone et décentralisée.
+Le modèle client/serveur sépare les responsabilités entre consommateurs et fournisseurs de services.
 
-- **Gestion des erreurs** : La gestion des erreurs peut être difficile dans une architecture basée sur les événements, car il peut être difficile de déterminer où et quand une erreur s'est produite.
+Il se retrouve dans :
 
-L'architecture basée sur les événements est particulièrement utile dans les scénarios où le système doit réagir rapidement et efficacement à des changements d'état, tels que les systèmes de trading en temps réel, les systèmes de surveillance, les systèmes de flux de travail, les systèmes IoT (Internet des objets) et les applications Web interactives.
+- navigateur ↔ serveur HTTP ;
+- client SQL ↔ base de données ;
+- application ↔ API.
 
-## 2.6 Architecture Microservices
+## 5.4 SOA
 
-L'architecture microservices est un style d'architecture qui structure une application comme une collection de petits services autonomes. Chaque service est une application autonome, fonctionnant dans son propre processus et communiquant avec les autres services par le biais d'interfaces bien définies.
+Une architecture orientée services (*Service-Oriented Architecture*) organise le SI autour de services métier réutilisables, souvent associés à :
 
-### 2.6.1 Caractéristiques de l'architecture Microservices
+- contrats explicites ;
+- intégration inter-applications ;
+- orchestration ;
+- gouvernance ;
+- parfois ESB.
 
-- **Décentralisation** : Chaque service est indépendant et peut être développé, déployé et mis à l'échelle de manière indépendante.
+SOA et microservices ne sont pas synonymes.
 
-- **Distribution** : Les services peuvent être distribués sur plusieurs machines ou réseaux, ce qui permet une grande évolutivité.
+## 5.5 Microservices
 
-- **Autonomie** : Chaque service est responsable d'une seule fonctionnalité ou processus d'affaires. 
+Un microservice est une unité de capacité métier pouvant être déployée de manière largement indépendante.
 
-### 2.6.2 Avantages de l'architecture Microservices
+Caractéristiques recherchées :
 
-- **Évolutivité** : Comme chaque service est indépendant, il peut être mis à l'échelle de manière indépendante en fonction de la demande.
+- frontière métier explicite ;
+- propriété de ses données ;
+- contrat de communication ;
+- cycle de déploiement autonome ;
+- observabilité propre.
 
-- **Résilience** : Si un service tombe en panne, il n'affectera pas les autres services.
+Le mot **micro** ne fournit aucune taille optimale en lignes de code.
 
-- **Déploiement indépendant** : Chaque microservice peut être déployé indépendamment des autres. Cela facilite le déploiement continu et la livraison continue (CI/CD).
+## 5.6 Event-driven architecture
 
-### 2.6.3 Inconvénients de l'architecture Microservices
+Les composants communiquent via des événements :
 
-- **Complexité** : Gérer plusieurs services indépendants peut être plus complexe que de gérer une seule application monolithique.
+```text
+Commande créée
+      │
+      ├──> Paiement
+      ├──> Stock
+      └──> Notifications
+```
 
-- **Communication inter-services** : Les services doivent communiquer entre eux, généralement par le biais de requêtes réseau, ce qui peut entraîner une latence accrue.
+Cette architecture réduit certains couplages temporels mais introduit :
 
-- **Gestion des données** : La répartition des données entre les services peut être un défi.
+- cohérence éventuelle ;
+- duplication ;
+- besoin d'idempotence ;
+- difficulté de traçage ;
+- gestion des événements en erreur.
 
-### 2.6.4 Synthèse
+## 5.7 Pipe-and-filter
 
-L'architecture microservices est particulièrement bénéfique dans les grands systèmes d'entreprise qui nécessitent une haute évolutivité et une disponibilité constante. Cependant, il convient de noter que ce style d'architecture n'est pas approprié pour toutes les applications, en particulier celles de petite taille ou avec des exigences moins complexes.
+Chaque étape transforme un flux :
 
-# 3. Documenter l'architecture logicielle
+```text
+entrée -> filtre A -> filtre B -> filtre C -> sortie
+```
 
-L'architecture logicielle, bien que cruciale, ne serait pas complète sans une documentation adéquate. La documentation de l'architecture offre une vision globale du système et facilite la prise de décision en matière de conception. Ce chapitre met l'accent sur l'importance de la documentation de l'architecture, les outils nécessaires pour la mise en œuvre efficace de cette documentation, et comment intégrer cette documentation dans le flux de travail du projet.
+Exemples :
 
-## 3.1 Importance de la documentation de l'architecture
+- compilateurs ;
+- ETL ;
+- traitements multimédias ;
+- pipelines ML.
 
-La documentation de l'architecture logicielle est essentielle pour plusieurs raisons. Premièrement, elle aide à comprendre le fonctionnement interne du système, facilitant ainsi la maintenance et l'évolution du système. Deuxièmement, elle permet de suivre le cheminement des réflexions et les décisions prises tout au long du projet, y compris les idées qui n'ont pas été retenues. Cela permet d'éviter de répéter les mêmes erreurs et de comprendre pourquoi certains choix ont été faits.
+## 5.8 Architecture plugin / microkernel
 
-## 3.2 Pourquoi utiliser Markdown pour documenter la conception
+Un noyau stable fournit les mécanismes essentiels et des extensions ajoutent les fonctionnalités.
 
-### 3.2.1 Nécessité du travail Collaboratif
+Exemples :
 
-L'utilisation d'outils basés sur Markdown, comme Obsidian ou Markdown Memo détaillés plus loin, facilite grandement le travail collaboratif. Les fichiers Markdown sont des fichiers texte, ce qui signifie qu'ils peuvent être facilement partagés et modifiés par plusieurs personnes en même temps, sans risque de conflit.
-Voici les principaux avantages.
+- IDE ;
+- CMS ;
+- moteurs de règles ;
+- applications à plugins.
 
-### 3.2.2 Intégration dans le code et cohérence de la documentation
+## 5.9 Serverless et fonctions
 
-La pérennité d'un logiciel repose en grande partie sur la qualité de sa documentation, et plus particulièrement sur celle du code. Il est donc essentiel que les explications relatives à l'architecture du logiciel soient intégrées, du moins en partie, directement dans le code. En utilisant un format de documentation cohérent et uniforme pour la conception et le code, nous augmentons la probabilité d'obtenir une adéquation forte entre le code et l'architecture, ce qui contribue à l'efficacité et à la durabilité du logiciel.
+Le style *functions as a service* peut être intéressant pour :
 
-### 3.2.3 Lisibilité et Accessibilité
+- charge irrégulière ;
+- événements ;
+- traitements ponctuels ;
+- réduction de l'administration serveur.
 
-Les fichiers Markdown sont lisibles par l'homme, ce qui signifie qu'ils peuvent être ouverts et lus sans nécessiter de logiciel spécialisé. Cela rend la documentation plus accessible à tous les membres de l'équipe, qu'ils soient des développeurs, des gestionnaires de projet, des testeurs, ou même des clients. De plus, la syntaxe de Markdown est simple et intuitive, ce qui facilite l'écriture et la mise en forme de la documentation.
+Il introduit :
 
-### 3.2.4 Intégration avec d'autres outils
+- contraintes de durée et d'environnement ;
+- dépendance à une plateforme ;
+- démarrages à froid selon les contextes ;
+- observabilité distribuée ;
+- gestion particulière de l'état.
 
-Markdown s'intègrent dans de nombreux outils, ce qui augmente la productivité et l'efficacité de la documentation. Il est facile d'étendre Markdown pour créer et intégrer des diagrammes dans la documentation. De plus la plupart des outils d'éditions de Markdown offres des outils de gestion de tâches, de suivi du temps pour créer des journaux de projet et des listes de tâches et de "mindmapping" ou de prise de notes.
+## 5.10 Architecture distribuée ≠ meilleure architecture
 
-### 3.2.5 Gestion de versions de la Documentation
+Distribuer un système transforme des appels de fonctions fiables et rapides en communications réseau pouvant :
 
-L'utilisation de Markdown en conjonction avec Git permet de versionner facilement la documentation. Cela signifie que chaque modification apportée à la documentation est enregistrée, et il est possible de revenir à une version précédente si nécessaire. Cela facilite également le suivi des modifications, la résolution des conflits et la collaboration entre plusieurs auteurs.
+- expirer ;
+- être dupliquées ;
+- arriver dans le désordre ;
+- être partiellement exécutées ;
+- être indisponibles.
 
-## 3.3 Intégration de la documentation dans le flux de travail du projet
+La distribution doit répondre à un **besoin démontré**.
 
-La documentation de l'architecture doit être intégrée dans le flux de travail du projet. Pour ce faire, elle doit être stockée dans un dépôt git, à côté du code source du projet. Ce dépôt doit respecter une structure précise, comprenant des fichiers README, un journal de conception, et des répertoires pour la gestion du temps, les notes techniques, et la conception. Chaque composant de cette structure joue un rôle crucial dans la documentation efficace de l'architecture.
+---
 
-## 3.4 Représentation et description des différentes vues de l'architecture
+# 6. Architecture hexagonale, Clean Architecture et ports/adapters
 
-L'architecture logicielle est souvent décrite à travers plusieurs vues, chacune mettant l'accent sur un aspect particulier du système. Ces vues peuvent être représentées à l'aide de diagrammes UML et de croquis d'interface, qui peuvent être intégrés directement dans la documentation en markdown à l'aide d'outils comme Mermaid ou PlantUML.
+## 6.1 Objectif commun
 
-La documentation de l'architecture logicielle est une étape essentielle dans le processus de développement logiciel. Il est crucial d'utiliser les bons outils et de suivre une structure précise pour assurer une documentation efficace. En outre, il est tout aussi important d'intégrer cette documentation dans le flux de travail du projet et de la rendre accessible à toutes les parties prenantes du projet.
+Ces familles d'architecture visent principalement à protéger le **cœur métier** contre les détails externes.
 
-# 4 Outils pour documenter l'architecture
+```text
+         Web
+          │
+       Adapter
+          │
+          ▼
+      [ Port ]
+          │
+     Application
+          │
+       Domaine
+          │
+      [ Port ]
+          ▲
+          │
+       Adapter
+          │
+       PostgreSQL
+```
 
-Plusieurs outils peuvent être utilisés pour documenter l'architecture logicielle. Un choix populaire est Obsidian, qui est particulièrement utile pour écrire des notes et des journaux de conception en markdown. De plus, Visual Studio Code avec l'extension Markdown Memo peut également être utilisé pour ce faire. Pour l'instant ces outils ne remplacent pas l'utilisation de modélisateurs UML pour la vérification de la cohérence.
-Mais ils fournissent la visualisation des diagrammes de l'architecture.
+## 6.2 Ports
 
-## 4.1 Insertion de diagrammes dans les notes d'Obsidian ou Markdown Memo pour la documentation de conception
+Un port décrit une capacité nécessaire ou fournie.
 
-Les diagrammes sont un moyen précieux de visualiser et de comprendre l'architecture et la conception d'un système. Dans des outils comme Obsidian ou Markdown Memo, il est possible d'intégrer des diagrammes créés avec des outils tels que PlantUML, Mermaid ou Terrastruct/D2. Voici comment le faire :
+Exemple Python :
 
-### 4.1.1 Utilisation de PlantUML
+```python
+from typing import Protocol
 
-[PlantUML](https://www.plantuml.com/fr/) est un outil qui vous permet de créer des diagrammes UML à partir d'un langage de description textuelle. Pour intégrer un diagramme PlantUML dans Obsidian ou Markdown Memo, nous pouvons le faire comme suit :
+class CatalogueLivres(Protocol):
+    def trouver(self, isbn: str) -> "Livre | None": ...
+```
 
-1. Installer l'extension PlantUML pour Visual Studio Code.
-2. Créons notre diagramme avec la syntaxe PlantUML dans un bloc de code de type plantuml. Par exemple (enlever l'échappement devant le bloc de code) :
+Le domaine dépend du **contrat**, pas de PostgreSQL, REST ou LDAP.
 
-    ```markdown
-    \```plantuml
-    @startuml
-    Alice -> Bob: Hello
-    Bob --> Alice: Hi!
-    @enduml
-    \```
-    ```
+## 6.3 Adapters
 
-3. Sauvegardons et visualisons notre fichier Markdown. Le diagramme PlantUML devrait être correctement rendu.
+Un adapter réalise un port pour une technologie donnée :
 
-    ```plantuml
-    @startuml
-    Alice -> Bob: Hello
-    Bob --> Alice: Hi!
-    @enduml
-    ```
+```python
+class CataloguePostgreSQL:
+    def __init__(self, connexion):
+        self.connexion = connexion
 
+    def trouver(self, isbn: str):
+        ...
+```
 
-### 4.1.2 Utilisation de Mermaid
+Un autre adapter peut être utilisé dans les tests :
 
-Mermaid est un outil de création de diagrammes basé sur JavaScript qui permet de générer des diagrammes à partir d'une syntaxe textuelle. Il est nativement proposé par github, gitlab, Visual Code Studio, Obsidian, nous pouvons suivre ces étapes :
+```python
+class CatalogueMemoire:
+    def __init__(self, livres):
+        self.livres = {livre.isbn: livre for livre in livres}
 
-1. Créons notre diagramme avec la syntaxe Mermaid dans un bloc de code. Par exemple :
+    def trouver(self, isbn: str):
+        return self.livres.get(isbn)
+```
 
-    ```
-    \```mermaid
-    graph TD;
-        A-->B;
-        A-->C;
-        B-->D;
-        C-->D;
-    \```
-    ```
+## 6.4 Dependency inversion
 
-3. Sauvegardez et visualisez votre fichier Markdown. Le diagramme Mermaid devrait être correctement rendu.
-    ```mermaid
-    graph TD;
-        A-->B;
-        A-->C;
-        B-->D;
-        C-->D;
-    ```
+La règle importante est la **direction des dépendances** :
 
-### 4.1.3 Utilisation de Terrastruct/D2
+```text
+Infrastructure -> Application -> Domaine
+```
 
-Terrastruct/D2 est un standard ouvert proposant des outils payants. Les lecteurs sont open sources ce qui permet de créer des diagrammes dynamiques et interactifs. Pour les intégrer dans Obsidian nous devons ajouter le module réalisé par Terrastruct.
+Le domaine ne connaît pas :
 
-D2 est encore en version alpha, mais est très ambitieux et offre la possibilité de créer ses propres diagrammes et d'enrichir la syntaxe de ceux existants.
+- le framework Web ;
+- SQLAlchemy ;
+- Kafka ;
+- Redis ;
+- le SDK cloud.
 
-L'usage est le même que pour Mermaid.
+## 6.5 Ne pas sur-abstraire
 
-# 5 Proposition de structure de dépôt Git pour la documentation de l'architecture
+Créer une interface pour chaque fonction augmente inutilement le coût cognitif.
 
-La documentation de l'architecture logicielle se situe au cœur de la conception et de l'évolution des systèmes informatiques. C'est essentiellement une tâche de réflexion sur le passé, le présent et le futur du logiciel à réaliser. Elle ne se limite pas à la simple illustration de l'architecture actuelle, mais s'étend à l'[élicitation](https://fr.wikipedia.org/wiki/%C3%89licitation) du besoin, à la documentation des choix d'architecture - y compris ceux qui n'ont pas été retenus - pour éviter de refaire les mêmes erreurs et comprendre les raisons de nos décisions.
+On crée une frontière lorsque :
 
-La documentation d'un projet doit être facilement accessible et bien organisée. Toutes les versions de celle-ci doivent pouvoir être consultées, et en conséquence l'implémentation dans le code doit faire référence à une version donnée, ne serait ce que pour pouvoir justifier des choix techniques et/ou du contexte des développements.
+- le détail est instable ;
+- plusieurs implémentations sont plausibles ;
+- le test en bénéficie ;
+- le domaine doit être protégé ;
+- la dépendance externe est coûteuse ou risquée.
 
-Nous proposons d'inclure la documentation de l'architecture dans la structure de dépôt Git du projet, à côté de son code, pour cela il suffit de mettre toute cette architecture dans une arborescence spécifique.
+---
 
-Nous utiliserons des outils comme Obsidian ou Markdown Memo pour Visual Code Studio pour documenter nos réflexions et choix, tout en notant que ces outils ne remplacent pas l'usage de modeleurs UML qui seul permet de vérifier la cohérence du model et de générer le code. Nous verrons comment incorporer des diagrammes UML et des sketchs d'interface avec Mermaid ou PlantUML directement dans le Markdown de notre documentation et de notre code.
+# 7. Domain-Driven Design et frontières métier
 
-Nous suggérerons une structure pour nos dépôts git, qui comprendra :
+## 7.1 Pourquoi le domaine ?
 
-- À la racine :
-  - Un fichier `README.md` détaillant l'essentiel du projet
-  - Un fichier `Journal de conception.md` pour documenter nos réflexions et nos observations
-  - Un répertoire de `Gestion du temps`, contenant nos notes journalières et nos logs de projet
-  - Un répertoire `Notes` pour toutes les notes techniques écrites sur le projet
-  - Un fichier `Suivi.md` qui liste les tâches en utilisant les modules Task et Kanban d'Obsidian
-  - Un répertoire `Conception` contenant différents documents d'analyse et de conception.
+Un découpage purement technique produit souvent :
 
-L'objectif ici est de créer une structure de documentation cohérente et bien organisée, dans laquelle tous les membres de l'équipe puissent facilement naviguer. Cette structure n'est pas rigide et doit être adaptée aux besoins spécifiques de chaque projet. 
+```text
+controllers/
+models/
+repositories/
+services/
+```
 
-L'architecture logicielle est un document vivant, en constante évolution et doit suivre le développement du projet. C'est une aide pour tout nouvel arrivant sur le projet. Notre objectif est de donner les outils et les connaissances nécessaires pour maintenir cette documentation à jour et pertinente, afin de soutenir le succès de vos projets informatiques.
+Lorsque le produit grossit, toutes les fonctionnalités se mélangent.
 
-## 5.1 Fichiers README.md principal
+DDD encourage à structurer autour du **métier**.
 
-À la racine du dépôt, le README doit présenter le projet, nous devons y trouver :
-	- le titre du projet,
-	- l'objectif du projet en quelques lignes,
-	- une description plus détaillée,
-	- la date de dernière modification,
-	- la liste des auteurs,
-	- la version actuelle du projet,
-	- et des liens vers les fichiers markdown d'indexe des sous-répertoires.
+## 7.2 Ubiquitous Language
 
-## 5.2 Fichier `Journal de conception.md`
+Le code, la documentation et les discussions utilisent les mêmes termes métier.
 
-Toujours à la racine nous devons trouver le journal de conception du projet
-Son nom doit être explicite, par exemple `Journal de conception.md`. Il sert de journal quotidien, où les concepteurs doivent noter leurs réflexions, observations, questions et autres remarques importantes. Il contient l'historique des idées de conception et l'on doit pouvoir retracer l'évolution de celles-ci, ainsi que  les décisions  d'architecture tout au long du projet. Il fait référence à des notes du répertoire Notes qui détaillent les idées, tentatives, et abandon si elles ne tiennent pas en cinq phrases.
+Si le métier parle de « prêt », le code ne devrait pas appeler partout ce concept `GenericTransactionManager`.
 
-## 5.3 Répertoire `Gestion du temps`
+## 7.3 Bounded Context
 
-La gestion du temps est un aspect fondamental de tout projet. Prévoir l'avenir nécessite de comprendre ce qui s'est passé, et de mesurer les écarts entre les prévisions et le temps effectivement consommé. C'est une composante essentielle des méthodes agiles (voir la note [[Les méthodes agiles]]), qui mettent l'accent sur l'estimation de la vélocité de l'équipe.
+Un *bounded context* délimite un modèle métier cohérent.
 
-Pour ce faire, plusieurs outils peuvent être utilisés, chacun ayant ses avantages propres :
+Exemple :
 
-- La liste des tâches réalisées (Voir méthode "[[Getting things done]]")
-- Les notes quotidiennes ("Daily notes"), qui doivent contenir un journal de ce qui a été fait durant la journée
-- Les tickets dans le backlog, qui représentent le travail restant à faire
-- Le Canvas, un outil de visualisation pour comprendre l'ensemble du projet
-- Les diagrammes de Gantt ou PERT, pour visualiser le calendrier du projet
-- Les tableaux de répartition des tâches, pour comprendre qui fait quoi
+```text
+Catalogue
+  Livre = contenu éditorial
 
-Chaque projet doit adopter la méthode qui lui convient le mieux, et produire les documents correspondants.
+Stock
+  Livre = exemplaire physique
 
-Dans tous les cas, un répertoire `Gestion du temps` doit être créé. Ce répertoire doit contenir, au minimum, les notes quotidiennes du projet, qui comprennent les tâches réalisées et le journal des activités de la journée. Tous ces documents doivent être au format Markdown, pour assurer une lecture et une mise à jour faciles.
+Facturation
+  Livre = ligne facturable
+```
 
-L'objectif de ce répertoire `Gestion du temps` est de fournir un historique précis et facilement consultable de ce qui a été fait, qui aide à prévoir les travaux futurs et à estimer leur durée. En d'autres termes, il fournit un outil précieux pour contrôler le temps et aider à la prise de décision tout au long du projet.
+Le mot « Livre » peut avoir des significations différentes selon le contexte.
 
-## 5.4 Répertoire `Conception`
+## 7.4 Aggregate
 
-Dans notre répertoire Conception, nous avons plusieurs éléments importants :
+Un agrégat définit une frontière de cohérence transactionnelle.
 
-1. **Fichier `_Conception.md`**
-2. **Fichier `Analyse du cahier des charges.md`**
-3. **Fichier `Glossaire métier.md`** 
-4. **Fichier `Glossaire technique.md`** 
-5. **Fichier `Exigences techniques`** : Ce fichier répertorie toutes les contraintes que notre logiciel doit respecter, tels que la performance, l'accessibilité, les langues, la sécurité, la confidentialité, le RGPD, la cohérence. Chaque exigence établit une jauge ou un scénario d'acceptabilité.
-6. **Répertoire Scénarios**
-7. **Répertoire "Diagrammes de classes"** 
-8. **Répertoire `Diagrammes d'états transitions`**
-9. **Répertoire `Activités`** 
-10. **Répertoire `Interface graphique`** :
+Exemple :
 
-Nous allons détailler chacun de ces éléments ci-dessous.
+```text
+Commande (racine)
+ ├── LigneCommande
+ ├── LigneCommande
+ └── AdresseLivraison
+```
 
-En utilisant cette structure, nous nous assurons que tous les éléments de la conception sont organisés et facilement accessibles, ce qui facilite la gestion et le suivi du projet.
+Toutes les invariants internes sont protégés via la racine d'agrégat.
 
-### 5.4.1 Fichier `_Conception.md`
+## 7.5 Entity et Value Object
 
-Ce fichier répertorie tous les autres documents du répertoire.
+**Entity** : identité stable dans le temps.
 
-### 5.4.2. Fichier `Analyse du cahier des charges.md`
+```text
+Utilisateur #8472
+```
 
-Ce fichier en format markdown met en évidence les mots du cahier des charges selon leur nature (Concept, NomPropre, Action, Propriété). Nous utilisons des balises telles que `<span class="Concept">` pour marquer la nature du mot, et ajoutons une feuille de style (voir [[Obsidian#Utiliser notre feuille de style CSS]]) :
-	- <span class="concept">Concept</span> : Mot ayant une signification pour le projet
-	- <span class="name">Nom propre</span> : Identifiant unique d’une chose ou d’une personne
-	- <span class="action">Action</span> : Transformation de l’état
-	- <span class="property">Propriété</span> : Qualité, durée etc.
+**Value Object** : défini par sa valeur.
 
-### 5.4.3. Fichier `Glossaire métier.md`
+```text
+Money(10, "EUR")
+Adresse(...)
+```
 
-Il s'agit d'une liste de termes avec leur définition.
+## 7.6 Context Map
 
-### 5.4.4. Fichier `Glossaire technique.md`
+Une *context map* décrit les relations entre contextes :
 
-Ce fichier contient une liste de termes techniques, comme les noms des types de données comme les classes, la liste des rôles des acteurs, etc.
+- Customer/Supplier ;
+- Conformist ;
+- Anti-Corruption Layer ;
+- Shared Kernel ;
+- Open Host Service.
 
-### 5.4.5. Fichier `Exigences techniques`
+Le but n'est pas d'utiliser tous les termes de DDD, mais de rendre les **frontières et dépendances métier explicites**.
 
-Ce fichier répertorie toutes les contraintes que notre logiciel doit respecter, tels que la performance, l'accessibilité, les langues, la sécurité, la confidentialité, le RGPD, la cohérence. Chaque exigence établit une jauge ou un scénario d'acceptabilité.
+---
 
-### 5.4.5 Répertoire Scénarios
+# 8. Patterns architecturaux
 
-Ce répertoire contient :
-- `_Scénarios.md` (contient la liste des liens vers les scénarios) - Un fichier markdown par scénario dont le contenu est précisé au paragraphe [#Liste des scénarios], il porte le nom du scénario. 
-- Un diagramme de séquence par scénario faisant intervenir le système à réaliser comme une boite noire. 
-Pour chacun des diagrammes nous créons un ou plusieurs diagrammes de séquences où le système devient une boite blanche comprenant les classes que l’on crée pour réaliser les fonctions identifié du systèmes. Pour cela on utilise et la méthode QQOQCP et le CRUD. Nous itèrons à plusieurs reprise en passant de ces diagrammes de séquences détaillés au diagrammes de classes associés à chacun de ses diagramme. C’est ce que nous appelons réification et c’est un processus itératif.
-	
-Jusqu’à obtenir une conception stable qui de toute façon bougera avec l’implémentation.
+## 8.1 MVC
 
-### 5.4.6 Répertoire "Diagrammes de classes"
+MVC sépare :
 
-Le répertoire contient :
-	- un ficher `_Diagrammes de classes.md` référençant tous les diagrammes
-	- Un fichier contenant le diagramme de classes général contenant toute les classes du projet et les associations entre classes, le tout représenté avec un bloc Mermaid ou PlantUML.
-	- Autant de diagrammes de classe qu’il y a de scénarios. Chaque diagramme détaille uniquement les classes (attributs, méthodes et associations) fournissant les services, méthodes et les données apparaissant dans le scénario ayant servi à établir ce diagramme. Si une classe est utilisée dans plusieurs scénarios les méthodes est attributs d’un diagramme de classe correspondent uniquement au scénario associé à son scénario, a écrire avec des blocs Mermaid ou PlantUML.
+- modèle ;
+- vue ;
+- contrôleur.
 
-### 5.4.7 Répertoire `Diagrammes d'états transitions` 
+Les implémentations varient fortement selon les frameworks.
 
-Ce répertoire contient :
-	- un fichier `_Diagrammes d'états transitions.md` qui référence tous les diagrammes d'états transitions
-	- Un fichier qui donne le diagramme des états transitions pour chaque type de donnée identifié ayant un bloc Mermaid ou PlantUML.
+## 8.2 MVVM
 
-### 5.4.8 Répertoire `Activités`
+MVVM est courant dans les interfaces riches :
 
-Il contient :
-	- un fichier `_Activités.md` référençant tous les fichiers de diagramme d'activités.
-	- Un fichier d'activité par processus identifié ayant un bloc Mermaid ou PlantUML.
+```text
+View <-> ViewModel <-> Model
+```
 
-### 5.4.9 Répertoire `Interface graphique`
+Le ViewModel expose l'état et les commandes adaptées à l'interface.
 
-Il contient :
-	- un fichier `_Interface graphique.md` référençant tous les fichiers des différentes fenêtres.
-	- Une description de toutes les fenêtres et écrans illustrés en utilisant des diagrammes Salt de PlantUML
+## 8.3 Repository
 
-## 5.5 L’importance du nommage dans l’architecture orientée objet
+Un repository offre une collection abstraite d'entités métier.
 
-Le nommage est un aspect souvent sous-estimé de l’architecture logicielle. Pourtant, des noms cohérents et explicites pour les classes, modules, attributs et relations favorisent la compréhension, la maintenabilité et la collaboration. Un bon nommage est une composante essentielle de la **qualité architecturale**.
+Il n'est pas obligatoire d'en ajouter un au-dessus d'un ORM si cette couche n'apporte aucune abstraction utile.
 
-### 5.5.1 Lisibilité et compréhension du système
+## 8.4 Unit of Work
 
-- Un nom clair réduit le besoin de documentation supplémentaire.
-- Les noms doivent refléter le rôle, la responsabilité et le domaine métier de l’élément.
-- Exemple : `Utilisateur`, `BibliothequeNumerique`, `GestionPret` plutôt que `DataManager` ou `ObjX`.
-- Unicité de la langue : Les termes utilisés sont dans une seule et unique langue à l'exception des emprunts familiers multiculturelles et intergénérationnels (ex: OK, KO).
+Le pattern Unit of Work coordonne les modifications faisant partie d'une même transaction logique.
 
-### 5.5.2 Cohérence et conventions
+## 8.5 CQRS
 
-La cohérence des noms est indispensable pour éviter les ambiguïtés.  
-Elle repose sur des conventions de codage définies en amont et respectées par tous.
+CQRS sépare conceptuellement :
 
-Parmi les conventions les plus répandues :
+- **Command** : modifie l'état ;
+- **Query** : lit l'état.
 
-- **Classes** : PascalCase (ex. `GestionPret`)
-- **Méthodes et attributs** : camelCase (ex. `datePublication`, `authentifier()`)
-- **Constantes** : MAJUSCULES_AVEC_UNDERSCORE (ex. `MAX_EMPRUNTS`)
+CQRS ne signifie pas nécessairement :
 
-La cohérence doit également exister entre le code et la documentation : un terme défini dans le glossaire métier doit être repris tel quel dans les classes correspondantes.
+- deux bases ;
+- Kafka ;
+- microservices ;
+- Event Sourcing.
 
-- Utiliser des conventions **uniformes** pour tous les composants.
-- Assurer la cohérence entre le code, la documentation et les **diagrammes UML** (ce qui peut se heurter aux bonnes pratiques propres à un langage ; par exemple, **PEP 8** recommande `snake_case` pour Python, tandis que Java privilégie **CamelCase**).
-- Maintenir un **guide de nommage** partagé par l’équipe ; un **référentiel qualité** doit exister et être accessible en ligne. L’usage de **linters** configurés selon les standards de l’entreprise est un indispensable.
+Une application peut appliquer CQRS dans un seul processus.
 
-### 5.5.3 Nommage des classes et modules
+## 8.6 Event Sourcing
 
-Les classes représentent des **concepts métier** ou des entités logicielles clairement identifiables.  
-Elles doivent donc porter un **nom nominal** et explicite, évitant les termes génériques ou abstraits.
+Avec Event Sourcing, les événements métier constituent la source de vérité :
 
-- Exemple correct : `Livre`, `Catalogue`, `BibliothequeNumerique`.
-- Exemple à éviter : `DataManager`, `Processor`, `HelperClass`.
+```text
+CompteCréé
++ 100 EUR Crédité
+- 20 EUR Débité
+```
 
-Les **modules** regroupent les classes liées à une fonctionnalité donnée. Leur nom doit refléter cette fonctionnalité, par exemple `authentification`, `gestionPret`, `catalogue`.
+L'état courant est reconstruit à partir des événements ou de snapshots.
 
-### 5.5.4 Nommage des attributs et méthodes
+Avantages :
 
-Les **attributs** décrivent des caractéristiques propres à l’objet.  
-Ils doivent être simples, clairs et, dans la mesure du possible, se rapprocher du vocabulaire du domaine.
+- historique complet ;
+- audit ;
+- reconstruction ;
+- nouveaux modèles de lecture.
 
-- Exemple : `titre`, `auteur`, `datePublication`.
+Coûts :
 
-Les **méthodes** expriment des actions. Leur nom doit donc être verbal et décrire précisément l’opération effectuée.
+- migrations d'événements ;
+- complexité des projections ;
+- debugging ;
+- cohérence éventuelle.
 
-- Exemple : `emprunter()`, `retourner()`, `authentifier()`.
-- Exemple flou : `doAction()`, `manageData()`.    
+## 8.7 Saga
 
-Le nommage doit également refléter la granularité de la méthode : une méthode courte et ciblée peut être nommée avec un verbe simple, tandis qu’une méthode plus complexe peut utiliser une formulation descriptive.
+Une saga coordonne une transaction métier distribuée par une série d'étapes et de compensations.
 
-### 5.5.5 Nommage des relations et associations
+```text
+Réserver stock
+    ↓
+Autoriser paiement
+    ↓
+Créer expédition
+```
 
-Dans les diagrammes UML, le nommage des relations et associations entre classes est tout aussi important que celui des classes elles-mêmes.  
-Un lien mal nommé peut induire en erreur sur la nature de la relation.
+En cas d'échec, une action compensatoire peut annuler une étape métier. Une compensation n'est pas un `ROLLBACK` ACID magique.
 
-- Exemple pertinent : `Livre — estEmpruntéPar —> Utilisateur`.
-- Exemple à éviter : `Livre — link —> User`.
+## 8.8 Strangler Fig
 
-L’utilisation de noms explicites permet également de mieux comprendre la **cardinalité** et la **dépendance fonctionnelle** entre les classes.
+Le pattern Strangler facilite une migration incrémentale :
 
-- `Bibliotheque — contient —> Livre`.
-- `Utilisateur — possède —> CarteDeBibliotheque`.
-### 5.5.6 Erreurs fréquentes de nommage
+```text
+Clients
+   │
+Facade / Router
+   ├──> Ancien système
+   └──> Nouveau module
+```
 
-Certaines pratiques doivent être évitées car elles nuisent à la clarté :
+Les fonctionnalités sont déplacées progressivement.
 
-- **Abréviations obscures** : `Usr`, `BkCat` (préférer `Utilisateur`, `Catalogue`).
-- **Noms trop génériques** : `Manager`, `Handler`, `Service`.
-- **Mélange de langues** : `Livre` et `Book` dans le même projet.
-- **Redondances inutiles** : `LivreLivre`, `BookClass`.
+---
 
-Un nom doit être **suffisamment descriptif**, mais sans lourdeur inutile.
+# 9. Données, cohérence et transactions
 
-### 5.5.7 Lien entre nommage et qualité logicielle
+## 9.1 La donnée fait partie de l'architecture
 
-Un nommage rigoureux a un impact direct sur plusieurs attributs de qualité :
+Questions structurantes :
 
-- **Maintenabilité** : un code lisible facilite les corrections et évolutions.
-- **Évolutivité** : des conventions claires permettent d’ajouter de nouvelles classes ou fonctionnalités sans incohérence.
-- **Collaboration** : un vocabulaire partagé (souvent désigné sous le terme _ubiquitous language_ en Domain-Driven Design) permet une meilleure communication entre développeurs et experts métier.
+- qui possède la donnée ?
+- où est la source de vérité ?
+- qui peut écrire ?
+- quel modèle de cohérence ?
+- combien de temps conserver ?
+- comment restaurer ?
+- comment faire évoluer le schéma ?
 
-Ainsi, le nommage n’est pas qu’un détail esthétique : il est un facteur structurant de la qualité du logiciel.
-### 5.5.8 Conclusion sur le nommage
+## 9.2 Base partagée
 
-Le nommage doit être considéré comme une **décision architecturale à part entière**.  
-Il conditionne la compréhension du système, la fluidité du développement et la pérennité du code.  
-L’architecte logiciel doit veiller à établir un **guide de nommage** dès les premières phases du projet et en assurer le respect au fil des développements.
+Une base partagée facilite :
 
-Un système bien nommé est un système plus lisible, plus cohérent et plus facile à faire évoluer.
+- jointures ;
+- transactions ;
+- reporting.
 
-# 6. Qualité de l'architecture logicielle
+Mais elle peut créer :
 
-## 6.1 Introduction
+- dépendances implicites ;
+- changements coordonnés ;
+- accès directs aux tables d'autres équipes.
 
-L'architecture logicielle est la colonne vertébrale de tout système logiciel. Elle est le reflet de toutes les décisions prises par l'équipe de développement concernant le fonctionnement du logiciel, la façon dont les différentes parties interagissent entre elles et comment le logiciel s'adaptera aux changements futurs. Dans ce chapitre, nous allons aborder les critères qui déterminent la qualité d'une architecture logicielle.
+## 9.3 Database per service
 
-Il est essentiel de comprendre que la qualité d'une architecture logicielle n'est pas seulement une question de bonnes pratiques de programmation. Elle englobe une gamme plus large de considérations, notamment comment l'architecture répond aux besoins actuels et futurs des utilisateurs, comment elle facilite le développement et la maintenance, et comment elle se comporte face à différentes contraintes et exigences du système, comme la performance, la sécurité, la maintenabilité et l'évolutivité.
+Dans un système de services autonomes, chaque service devrait généralement posséder son modèle de données.
 
-Ces critères de qualité sont des indicateurs de la capacité de l'architecture à supporter les exigences du logiciel sur le long terme. Une architecture de haute qualité est celle qui est capable de s'adapter aux changements de manière fluide, tout en maintenant un haut niveau de performance et de sécurité.
+```text
+Service Commande -> DB Commande
+Service Stock    -> DB Stock
+```
 
-Cependant, il convient de noter que la qualité de l'architecture ne peut pas être mesurée en termes absolus. Elle dépend largement des exigences spécifiques du projet, du contexte dans lequel le logiciel est utilisé et des préférences et compétences de l'équipe de développement. Par conséquent, dans ce chapitre, nous ne fournirons pas une liste définitive de ce qui fait une "bonne" architecture. Au lieu de cela, nous examinerons les différents facteurs qui influencent la qualité de l'architecture et expliquerons comment ils peuvent être pris en compte pour améliorer la qualité globale de vos projets logiciels.
+Il n'est pas obligatoire d'avoir un serveur physique différent pour chaque base ; le point important est la **propriété logique et contractuelle**.
 
-## 6.2 Performance
+## 9.4 Cohérence forte et éventuelle
 
-La performance est un aspect crucial de toute architecture logicielle. Elle fait référence à la capacité du système à gérer les demandes des utilisateurs de manière efficace et rapide. Cela implique de minimiser les temps de réponse, d'optimiser l'utilisation des ressources et de garantir que le système peut supporter des volumes de travail élevés sans ralentissement ni panne.
+Cohérence forte : une lecture observe immédiatement les écritures selon les garanties prévues.
 
-La performance n'est pas uniquement liée à la rapidité. Elle implique aussi d'autres aspects tels que la fiabilité, l'efficacité et la robustesse. Un système peut être rapide, mais s'il n'est pas fiable ou s'il consomme excessivement des ressources, sa performance globale sera compromise.
+Cohérence éventuelle : les replicas/projections convergent avec un délai.
 
-Pour assurer une bonne performance, l'architecture logicielle doit être conçue en tenant compte des exigences de performance dès le début. Cela peut impliquer de faire des choix sur la manière dont les données sont stockées et récupérées, comment les tâches sont réparties entre les différents composants du système, comment les ressources sont gérées, etc.
+La cohérence éventuelle n'est acceptable que si le métier peut tolérer la fenêtre d'incohérence.
 
-Les techniques d'optimisation, telles que la mise en cache, la parallélisation, et le traitement asynchrone, peuvent également être utilisées pour améliorer la performance. Cependant, ces techniques doivent être utilisées avec précaution, car elles peuvent ajouter de la complexité à l'architecture et avoir des conséquences sur d'autres aspects de la qualité du logiciel.
+## 9.5 Transactional Outbox
 
-Enfin, il est essentiel de mesurer et de surveiller la performance de manière continue. Des outils et des techniques d'analyse de performance peuvent être utilisés pour identifier les goulots d'étranglement et les problèmes potentiels, permettant à l'équipe de développement d'apporter des améliorations proactives et d'ajuster l'architecture si nécessaire.
+Problème :
 
-## 6.3 Sécurité
+```text
+1. COMMIT SQL réussi
+2. publication Kafka échoue
+```
 
-La sécurité est un autre facteur crucial dans la qualité de l'architecture logicielle. Elle désigne la capacité d'un système à résister aux attaques, à protéger les données sensibles, et à garantir l'intégrité et la disponibilité des services.
+La base contient la commande mais aucun événement n'est publié.
 
-Une architecture sécurisée doit tenir compte des menaces potentielles et incorporer des mécanismes de défense pour les prévenir ou les atténuer. Ces mécanismes peuvent inclure l'authentification et l'autorisation pour contrôler l'accès aux ressources, le chiffrement pour protéger les données sensibles, l'audit et la journalisation pour détecter les activités suspectes, etc.
+Solution Outbox : écrire dans la même transaction :
 
-La sécurité doit être intégrée dans l'architecture dès le début, plutôt que d'être ajoutée après coup. C'est ce qu'on appelle l'approche de "sécurité par conception". Elle permet de s'assurer que les préoccupations de sécurité sont prises en compte à tous les niveaux de l'architecture et qu'elles sont intégrées dans toutes les décisions de conception.
+```text
+commande
+outbox_event
+```
 
-Il est également important de reconnaître que la sécurité n'est pas un état statique, mais un processus continu. Les menaces évoluent constamment, et de nouvelles vulnérabilités peuvent être découvertes à tout moment. Cela nécessite une veille constante, des tests de sécurité réguliers, et une capacité à adapter et à mettre à jour l'architecture en réponse aux nouvelles informations.
+Puis un publisher transmet l'événement.
 
-Enfin, la sécurité ne doit pas être considérée comme une responsabilité isolée, mais comme une préoccupation partagée par toute l'équipe de développement. Cela nécessite une formation et une sensibilisation appropriées, ainsi qu'une culture qui valorise la sécurité et encourage les bonnes pratiques.
+## 9.6 Idempotence
 
-## 6.4 Maintenabilité
+Un consommateur doit souvent tolérer une livraison répétée :
 
-Un autre aspect crucial de la qualité de l'architecture logicielle est la maintenabilité. La maintenabilité fait référence à la facilité avec laquelle un logiciel peut être modifié pour corriger des défauts, améliorer ses performances, ou adapter ses fonctionnalités à de nouvelles exigences ou environnements.
+```text
+événement #42 reçu
+événement #42 reçu à nouveau
+```
 
-Pour favoriser la maintenabilité, il est essentiel d'avoir une architecture bien conçue et bien documentée. Une architecture clairement définie facilite la compréhension du système, ce qui rend plus facile pour les développeurs de localiser et de corriger les problèmes. De plus, une documentation détaillée peut aider les nouveaux membres de l'équipe à comprendre rapidement l'architecture et à contribuer efficacement au projet.
+L'effet métier ne doit être produit qu'une fois lorsque cela est requis.
 
-L'utilisation de bonnes pratiques de codage, comme l'écriture de code propre et la mise en place de tests automatisés, peut également améliorer considérablement la maintenabilité. Le code propre est plus facile à comprendre et à modifier, tandis que les tests automatisés peuvent aider à détecter rapidement les régressions lorsque des modifications sont apportées.
+Techniques :
 
-Il est également important d'adopter une approche modulaire de la conception de l'architecture. Les systèmes modulaires sont composés de composants indépendants qui peuvent être modifiés, testés et déployés de manière indépendante. Cela permet non seulement de localiser plus facilement les problèmes, mais aussi d'effectuer des modifications sans perturber l'ensemble du système.
+- identifiant d'événement ;
+- table d'idempotence ;
+- clé métier unique ;
+- opération naturellement idempotente.
 
-L'application des principes SOLID dans la conception orientée objet (COO) peut considérablement améliorer la maintenabilité des logiciels. Ces principes favorisent une structure de code modulaire et décentralisée, ce qui permet d'isoler et de minimiser l'impact des modifications. Cela facilite les tâches de maintenance, que ce soit pour corriger des bugs, ajouter de nouvelles fonctionnalités, ou adapter le logiciel à de nouvelles exigences. De plus, la COO basée sur SOLID rend le code plus lisible et compréhensible, ce qui facilite la transmission des connaissances entre les développeurs et réduit le coût global de la maintenance du logiciel. Attention à ne pas confondre l'acronyme SOLID en COO ([[Principes SOLID en COO]]) avec SOLID du web3 ([[SOLID]]).
+## 9.7 Migrations de schéma
 
-De même, l'emploi des design patterns est une stratégie clé pour améliorer la maintenabilité des logiciels. Ces modèles éprouvés offrent des solutions réutilisables à des problèmes courants de conception logicielle, favorisant une structure de code robuste, extensible et réutilisable. L'application des design patterns facilite la compréhension du code, réduit les risques d'erreurs, et accélère le processus de développement en évitant la nécessité de réinventer la roue. Ainsi, ils contribuent à une meilleure maintenabilité en simplifiant l'ajout de nouvelles fonctionnalités, la détection et la correction de bugs, et l'adaptation à de nouvelles exigences ou technologies. Voir note [[Design patterns]].
+Une migration distribuée doit rester compatible pendant la transition.
 
-Enfin, la maintenabilité dépend aussi de la capacité du logiciel à évoluer avec les changements technologiques. Par conséquent, une architecture logicielle de qualité doit être conçue de manière à pouvoir s'adapter aux nouvelles technologies et aux nouveaux outils, tout en conservant sa fonctionnalité et sa performance.
+Pattern **expand-contract** :
 
-## 6.5 Évolutivité
+1. ajouter le nouveau champ ;
+2. déployer un code acceptant ancien + nouveau ;
+3. migrer les données ;
+4. basculer les producteurs ;
+5. supprimer l'ancien champ plus tard.
 
-L'évolutivité est une autre caractéristique essentielle d'une architecture logicielle de qualité. Elle se réfère à la capacité d'un système à gérer une augmentation de la charge de travail. Une architecture logicielle bien conçue doit pouvoir s'adapter à une augmentation de la demande sans compromettre ses performances ou sa stabilité.
+---
 
-L'évolutivité peut être réalisée de plusieurs manières. Par exemple, on peut mettre en œuvre une architecture distribuée qui répartit les tâches sur plusieurs serveurs ou processeurs pour améliorer les performances et la résilience. Les architectures de microservices sont particulièrement bien adaptées à ce genre d'évolutivité car elles permettent de déployer, de mettre à l'échelle et de gérer indépendamment chaque service.
+# 10. Architecture orientée événements
 
-Un autre aspect important de l'évolutivité est la capacité à gérer les données de manière efficace. Les systèmes qui doivent gérer de grandes quantités de données peuvent bénéficier d'architectures qui permettent le partitionnement des données, la mise en cache et les opérations de base de données distribuées.
+## 10.1 Commande, événement et message
 
-De plus, les systèmes doivent également être conçus pour évoluer avec le temps. Cela signifie qu'ils doivent être capables d'intégrer de nouvelles technologies, d'adopter de nouveaux paradigmes et de répondre à de nouveaux besoins métier. Par exemple, un système qui était initialement conçu pour fonctionner sur des serveurs physiques pourrait avoir besoin d'évoluer pour fonctionner dans le cloud.
+Une commande exprime une intention :
 
-Enfin, une architecture logicielle évolutive doit également être capable de gérer les changements organisationnels. Par exemple, si une entreprise acquiert une autre entreprise, l'architecture du système doit être capable de s'adapter pour intégrer les systèmes de l'entreprise acquise.
+```text
+CréerCommande
+```
 
-En résumé, l'évolutivité est un aspect crucial de la qualité de l'architecture logicielle qui permet aux systèmes de s'adapter et de prospérer dans un environnement en constante évolution.
+Un événement exprime un fait passé :
 
-## 7. Évolution de l'architecture logicielle
+```text
+CommandeCréée
+```
 
-L'architecture logicielle n'est pas statique. Elle évolue au fil du temps en réponse aux changements dans les exigences métier, les technologies disponibles, les pratiques de développement et l'infrastructure technique. Dans ce chapitre, nous aborderons la manière dont l'architecture logicielle peut s'adapter et évoluer pour répondre à ces défis.
+Un message est l'enveloppe technique transportée.
 
-### 7.1 Changement des exigences métier
+## 10.2 Broker
 
-Les exigences métier ne sont jamais figées. À mesure que l'entreprise évolue, l'architecture du logiciel doit suivre. Par exemple, l'introduction d'un nouveau produit ou service peut nécessiter des changements dans l'architecture pour supporter de nouvelles fonctionnalités. De même, une expansion géographique peut nécessiter des modifications pour prendre en compte différentes réglementations ou normes locales.
+Exemples de technologies :
 
-### 7.2 Avancées technologiques
+- Kafka ;
+- RabbitMQ ;
+- NATS ;
+- Pulsar ;
+- services de files cloud.
 
-L'innovation technologique est constante et rapide. Les nouvelles technologies peuvent offrir des avantages significatifs en termes de performances, de sécurité, d'efficacité ou d'autres aspects. L'architecture logicielle doit être suffisamment flexible pour incorporer ces nouvelles technologies lorsqu'elles deviennent disponibles.
+Le choix dépend de :
 
-### 7.3 Dette technique
+- ordre ;
+- débit ;
+- rétention ;
+- replay ;
+- routage ;
+- latence ;
+- opérations ;
+- coût.
 
-La dette technique est un concept qui fait référence aux compromis à court terme qui sont pris pendant le développement logiciel, souvent pour accélérer la livraison, mais qui créent un fardeau à long terme. Elle peut résulter d'une conception insuffisante, d'un code mal écrit, d'une documentation manquante, ou d'autres pratiques de développement négligentes.
+## 10.3 Livraison
 
-La gestion de la dette technique est un aspect important de l'évolution de l'architecture logicielle. Si elle n'est pas gérée, la dette technique peut s'accumuler au fil du temps, rendant le système de plus en plus difficile à maintenir et à faire évoluer. Des techniques telles que la refonte, le remaniement et l'amélioration continue du code peuvent être utilisées pour gérer et réduire la dette technique.
+Les formulations « exactly once » doivent être examinées avec précision. Une plateforme peut garantir certaines propriétés dans un périmètre précis, mais l'**effet métier de bout en bout** nécessite souvent idempotence et transactions adaptées.
 
-### 7.4 Perspectives d'avenir
+## 10.4 Schémas d'événements
 
-L'évolution de l'architecture logicielle est un processus continu qui nécessite une attention et une planification constantes. En gardant un œil sur l'avenir et en gérant activement la dette technique, il est possible de maintenir une architecture qui continue à fournir de la valeur à l'entreprise tout en s'adaptant aux défis et aux opportunités en constante évolution.
+Un événement est un contrat.
 
-Enfin, l'évolution de l'architecture logicielle doit également prendre en compte les perspectives d'avenir. 
+Bonnes pratiques :
 
-Cela inclut la prévision des tendances technologiques futures, l'anticipation des besoins futurs des utilisateurs et de l'entreprise, et la planification de la manière dont l'architecture pourra s'adapter à ces futurs changements.
+- identifiant ;
+- type ;
+- version ;
+- timestamp ;
+- correlation ID ;
+- causation ID ;
+- payload versionné.
+
+## 10.5 Évolution des événements
+
+Privilégier les évolutions compatibles :
+
+- ajouter un champ optionnel ;
+- ne pas changer la signification d'un champ existant ;
+- versionner les ruptures ;
+- conserver les consommateurs anciens pendant la transition.
+
+---
+
+# 11. Microservices et systèmes distribués
+
+## 11.1 Pourquoi découper ?
+
+Motivations valides possibles :
+
+- équipes réellement autonomes ;
+- cycles de déploiement distincts ;
+- profils de charge très différents ;
+- isolation forte ;
+- technologies spécifiques ;
+- domaine assez vaste pour justifier des frontières indépendantes.
+
+Motivations faibles :
+
+- « tout le monde fait des microservices » ;
+- « Kubernetes est moderne » ;
+- « nous avons 20 tables ».
+
+## 11.2 Le réseau est une frontière de panne
+
+Une requête distante peut produire :
+
+```text
+succès
+échec explicite
+latence longue
+timeout
+réponse perdue
+requête exécutée mais réponse perdue
+réponse dupliquée
+```
+
+Le code doit traiter ces cas.
+
+## 11.3 API Gateway
+
+Une gateway peut fournir :
+
+- routage ;
+- authentification ;
+- rate limiting ;
+- terminaison TLS ;
+- agrégation limitée ;
+- observabilité.
+
+Elle ne doit pas devenir un nouveau monolithe métier.
+
+## 11.4 Service discovery
+
+Dans un environnement dynamique, l'adresse d'un service n'est pas nécessairement fixe.
+
+Découverte possible par :
+
+- DNS ;
+- plateforme orchestrée ;
+- registre dédié.
+
+## 11.5 Communication synchrone vs asynchrone
+
+### Synchrone
+
+```text
+A --HTTP/gRPC--> B
+```
+
+Avantages : simple à raisonner.
+
+Risque : couplage temporel.
+
+### Asynchrone
+
+```text
+A -> Broker -> B
+```
+
+Avantages : découplage temporel.
+
+Coût : état intermédiaire, redelivery, traçage, cohérence éventuelle.
+
+## 11.6 Chatty architecture
+
+Si une requête utilisateur déclenche 25 appels séquentiels interservices, la latence et le risque de panne se multiplient.
+
+Une frontière de service doit idéalement correspondre à une responsabilité suffisamment **cohérente**.
+
+## 11.7 Distributed monolith
+
+Un « monolithe distribué » cumule :
+
+- coûts des microservices ;
+- dépendances de déploiement ;
+- base partagée ;
+- appels synchrones en cascade ;
+- livraisons coordonnées.
+
+C'est souvent pire qu'un monolithe modulaire.
+
+---
+
+# 12. Résilience et fiabilité
+
+## 12.1 Timeout
+
+Tout appel distant doit avoir un timeout cohérent avec le budget global.
+
+```text
+requête utilisateur : budget 1 s
+  ├─ service A : 300 ms
+  ├─ service B : 400 ms
+  └─ marge : 300 ms
+```
+
+Un timeout de 30 s dans chaque dépendance n'est pas compatible avec un SLO d'une seconde.
+
+## 12.2 Retry
+
+Un retry est utile seulement si :
+
+- l'erreur est probablement transitoire ;
+- l'opération est idempotente ou protégée ;
+- on applique un backoff ;
+- on ajoute du jitter ;
+- on limite les tentatives.
+
+```text
+1000 clients
+   ↓ panne
+retry immédiat
+   ↓
+1000 + 1000 + 1000 requêtes
+```
+
+C'est une **retry storm**.
+
+## 12.3 Circuit breaker
+
+États simplifiés :
+
+```text
+CLOSED -> OPEN -> HALF_OPEN -> CLOSED
+```
+
+Le circuit breaker évite de continuer à saturer une dépendance manifestement indisponible.
+
+## 12.4 Bulkhead
+
+On isole les ressources :
+
+```text
+Pool paiement
+Pool recherche
+Pool notification
+```
+
+Une saturation de la notification ne doit pas nécessairement consommer tous les threads de paiement.
+
+## 12.5 Backpressure
+
+Lorsque le producteur va plus vite que le consommateur, il faut :
+
+- ralentir ;
+- tamponner avec une limite ;
+- rejeter ;
+- échantillonner ;
+- délester.
+
+Une queue « illimitée » déplace souvent la panne vers la mémoire ou le délai.
+
+## 12.6 Graceful degradation
+
+Exemple :
+
+- recommandations indisponibles ;
+- catalogue encore accessible ;
+- commande encore possible.
+
+Toutes les fonctionnalités n'ont pas la même criticité.
+
+## 12.7 SLI, SLO et error budget
+
+**SLI** : mesure observée.
+
+```text
+99,97 % de requêtes réussies
+```
+
+**SLO** : objectif interne.
+
+```text
+>= 99,95 % sur 30 jours
+```
+
+L'error budget représente la marge d'indisponibilité acceptable.
+
+## 12.8 RTO et RPO
+
+- **RTO** : durée maximale acceptable de restauration ;
+- **RPO** : quantité maximale de données que l'on accepte de perdre.
+
+Exemple :
+
+```text
+RTO = 30 min
+RPO = 5 min
+```
+
+Ces objectifs déterminent l'architecture de sauvegarde, de réplication et de reprise.
+
+---
+
+# 13. Performance et capacité
+
+## 13.1 Mesurer avant d'optimiser
+
+Les performances doivent être étudiées avec :
+
+- profilage ;
+- métriques ;
+- traces ;
+- tests de charge ;
+- données réalistes.
+
+Une architecture plus complexe n'est pas automatiquement plus rapide.
+
+## 13.2 Latence et throughput
+
+**Latence** : temps d'une opération.
+
+**Throughput** : nombre d'opérations par unité de temps.
+
+Les deux ne sont pas interchangeables.
+
+## 13.3 Percentiles
+
+Une moyenne masque les extrêmes.
+
+Préférer :
+
+```text
+p50
+p95
+p99
+```
+
+Une API à 50 ms en moyenne peut avoir un p99 à 5 secondes.
+
+## 13.4 Cache
+
+Niveaux possibles :
+
+```text
+Browser
+CDN
+Reverse proxy
+Application
+Cache distribué
+Database buffer cache
+```
+
+Questions :
+
+- qui invalide ?
+- quelle durée ?
+- que faire en cas de panne du cache ?
+- la donnée peut-elle être périmée ?
+
+## 13.5 Scalabilité verticale et horizontale
+
+Verticale :
+
+```text
+8 Go RAM -> 32 Go RAM
+```
+
+Horizontale :
+
+```text
+1 instance -> 8 instances
+```
+
+Le scaling horizontal nécessite généralement :
+
+- état externe ou partitionnable ;
+- équilibrage ;
+- idempotence ;
+- gestion de la concurrence.
+
+## 13.6 Load shedding
+
+Sous surcharge, il peut être préférable de rejeter rapidement certaines requêtes plutôt que de rendre **toutes** les requêtes extrêmement lentes.
+
+## 13.7 Capacity planning
+
+Un modèle simple :
+
+```text
+pics d'utilisateurs
+× requêtes/utilisateur
+× coût/requête
+× marge de sécurité
+```
+
+Les hypothèses doivent être mesurées puis révisées.
+
+---
+
+# 14. Sécurité et confidentialité par conception
+
+Voir aussi [[Sécurité avancée sous Linux]], [[RGPD]] et [[OAuth OpenID]].
+
+## 14.1 Threat modeling
+
+Pour chaque frontière :
+
+- quelles données ?
+- qui peut appeler ?
+- quelle confiance ?
+- quel impact si compromis ?
+- quelle preuve d'identité ?
+- quelle journalisation ?
+
+## 14.2 Trust boundaries
+
+```text
+Internet
+  │
+  ▼
+[Reverse Proxy]
+  │ trust boundary
+  ▼
+[Application]
+  │ trust boundary
+  ▼
+[Database]
+```
+
+Chaque frontière implique validation et contrôle.
+
+## 14.3 Zero Trust comme principe
+
+Ne jamais utiliser « réseau interne » comme preuve suffisante d'identité.
+
+Principes :
+
+- identité explicite ;
+- moindre privilège ;
+- authentification des workloads ;
+- segmentation ;
+- logs ;
+- rotation des secrets.
+
+## 14.4 Secrets
+
+Un secret ne doit pas être :
+
+- dans Git ;
+- dans une image Docker ;
+- écrit en clair dans un log ;
+- partagé entre tous les environnements.
+
+Préférer :
+
+- secret manager ;
+- credentials courts ;
+- identités de workload ;
+- rotation.
+
+## 14.5 Chiffrement
+
+Séparer :
+
+- données **en transit** ;
+- données **au repos** ;
+- données **en traitement**.
+
+TLS ne protège pas les données une fois terminées dans l'application.
+
+## 14.6 Privacy by design
+
+Questions :
+
+- a-t-on besoin de cette donnée ?
+- combien de temps ?
+- qui peut la consulter ?
+- peut-on pseudonymiser ?
+- comment supprimer ?
+- dans quelles régions est-elle répliquée ?
+
+## 14.7 Supply chain
+
+Une architecture moderne inclut aussi les risques :
+
+```text
+Source -> Dépendances -> Build -> Registry -> Déploiement
+```
+
+Contrôles possibles :
+
+- lockfiles ;
+- SBOM ;
+- signature ;
+- provenance ;
+- scans ;
+- isolation du build ;
+- politiques de déploiement.
+
+---
+
+# 15. Observabilité et exploitabilité
+
+## 15.1 Observabilité
+
+L'observabilité vise à comprendre l'état interne à partir des signaux émis par le système.
+
+Trois signaux essentiels :
+
+- **métriques** ;
+- **logs** ;
+- **traces**.
+
+OpenTelemetry fournit aujourd'hui un cadre standard d'instrumentation de ces signaux.
+
+## 15.2 Correlation ID
+
+Une requête distribuée doit pouvoir être suivie :
+
+```text
+HTTP request
+trace_id=abc
+   │
+   ├─ API
+   ├─ paiement
+   └─ stock
+```
+
+## 15.3 Logs structurés
+
+Préférer :
+
+```json
+{
+  "level": "error",
+  "service": "payment",
+  "trace_id": "abc",
+  "order_id": "1234",
+  "message": "provider timeout"
+}
+```
+
+à :
+
+```text
+ça a planté dans paiement
+```
+
+## 15.4 Métriques USE et RED
+
+**RED** pour un service :
+
+- Rate ;
+- Errors ;
+- Duration.
+
+**USE** pour une ressource :
+
+- Utilization ;
+- Saturation ;
+- Errors.
+
+## 15.5 Observabilité par conception
+
+Chaque nouvelle dépendance distante doit s'accompagner de :
+
+- métriques ;
+- traces ;
+- timeouts ;
+- logs ;
+- dashboard ;
+- alerte si nécessaire ;
+- runbook.
+
+## 15.6 Exploitabilité
+
+Un système exploitable doit permettre :
+
+- déploiement reproductible ;
+- rollback ;
+- diagnostic ;
+- sauvegarde ;
+- restauration ;
+- rotation des secrets ;
+- montée de version ;
+- maintenance sans connaissance tribale excessive.
+
+---
+
+# 16. Déploiement, conteneurs, cloud et plateformes
+
+## 16.1 Architecture de déploiement
+
+Exemple :
+
+```text
+Internet
+   │
+ CDN/WAF
+   │
+Load Balancer
+   │
+ ┌─┴──────────────┐
+ │                │
+App A           App B
+ │                │
+ └──────┬─────────┘
+        │
+   PostgreSQL
+```
+
+Il faut documenter les différences entre :
+
+- développement ;
+- test ;
+- staging ;
+- production.
+
+## 16.2 Conteneurs
+
+Voir [[Docker]].
+
+Un conteneur est un mécanisme de packaging/exécution, pas un style métier.
+
+Il ne transforme pas automatiquement :
+
+- un monolithe en microservices ;
+- une application en système scalable ;
+- un logiciel en logiciel sécurisé.
+
+## 16.3 Orchestration
+
+Un orchestrateur peut fournir :
+
+- scheduling ;
+- service discovery ;
+- rollout ;
+- autoscaling ;
+- secrets/config ;
+- health checks.
+
+Il introduit également une plateforme à exploiter.
+
+## 16.4 Cloud
+
+Un service cloud managé peut réduire le coût opérationnel mais augmenter :
+
+- dépendance fournisseur ;
+- coûts variables ;
+- contraintes de localisation ;
+- complexité IAM.
+
+La question n'est pas « cloud ou non », mais quels **risques et qualités** sont mieux servis.
+
+## 16.5 Multi-région
+
+Une architecture multi-région exige de clarifier :
+
+- routage ;
+- réplication ;
+- cohérence ;
+- résidence des données ;
+- failover ;
+- RTO/RPO ;
+- tests de bascule.
+
+## 16.6 Platform Engineering
+
+Une plateforme interne peut offrir aux équipes des chemins standardisés :
+
+```text
+Template service
+ + CI/CD
+ + observabilité
+ + secrets
+ + runtime
+ + politiques
+```
+
+Le but est de réduire la charge cognitive, pas de créer un nouveau portail bureaucratique.
+
+---
+
+# 17. Supply chain et architecture de livraison
+
+## 17.1 Le pipeline fait partie du système
+
+```text
+Git
+ │
+CI
+ │
+Build
+ │
+Tests
+ │
+Artefact
+ │
+Registry
+ │
+Deployment
+```
+
+Une compromission du pipeline peut contourner la sécurité du code source.
+
+## 17.2 Reproductibilité
+
+Questions :
+
+- versions de dépendances verrouillées ?
+- base image identifiée par digest ?
+- build isolé ?
+- artefact immuable ?
+- provenance disponible ?
+
+## 17.3 SBOM
+
+Une Software Bill of Materials inventorie les composants d'un artefact.
+
+Formats courants :
+
+- SPDX ;
+- CycloneDX.
+
+Une SBOM ne prouve pas qu'un logiciel est sûr ; elle améliore la **traçabilité**.
+
+## 17.4 Provenance
+
+La provenance décrit comment un artefact a été construit :
+
+- source ;
+- builder ;
+- paramètres ;
+- identité de l'artefact ;
+- environnement selon le niveau de garantie.
+
+Le projet SLSA formalise des niveaux et exigences de sécurité de chaîne de production.
+
+## 17.5 Déploiement progressif
+
+Stratégies :
+
+- rolling update ;
+- blue/green ;
+- canary ;
+- feature flags.
+
+Une stratégie de rollback doit être prévue **avant** l'incident.
+
+---
+
+# 18. Documentation : ISO 42010, C4, UML, ADR et arc42
+
+## 18.1 Architecture et description d'architecture
+
+ISO/IEC/IEEE 42010:2022 distingue l'**architecture** d'une entité de sa **description d'architecture**.
+
+Le document d'architecture doit répondre aux préoccupations de parties prenantes via des **viewpoints** et des **views** adaptés.
+
+## 18.2 Parties prenantes et concerns
+
+Exemples :
+
+| Partie prenante | Préoccupation |
+|---|---|
+| Produit | évolution fonctionnelle |
+| Développeur | frontières et dépendances |
+| SRE | fiabilité et observabilité |
+| Sécurité | trust boundaries et menaces |
+| DPO | données personnelles |
+| Direction | coûts et risques |
+
+Un seul diagramme ne répond pas à toutes ces questions.
+
+## 18.3 C4 Model
+
+C4 définit quatre niveaux de zoom structurels :
+
+1. **System Context** ;
+2. **Container** ;
+3. **Component** ;
+4. **Code**.
+
+Le niveau Code est optionnel et souvent généré à la demande.
+
+### 18.3.1 System Context
+
+```mermaid
+flowchart LR
+    user[Utilisateur]
+    system[Système de bibliothèque]
+    payment[Système de paiement externe]
+    user -->|utilise| system
+    system -->|paiement| payment
+```
+
+Objectif : montrer le système dans son environnement.
+
+### 18.3.2 Container
+
+Dans C4, un « container » n'est **pas forcément un conteneur Docker**. C'est une application ou un data store exécutable/déployable : application Web, API, base, application mobile, etc.
+
+```mermaid
+flowchart LR
+    user[Utilisateur]
+    web[SPA Web]
+    api[API]
+    db[(PostgreSQL)]
+    user --> web
+    web -->|HTTPS/JSON| api
+    api -->|SQL| db
+```
+
+### 18.3.3 Component
+
+Le niveau Component détaille un container lorsqu'il apporte réellement de la valeur.
+
+### 18.3.4 Diagrammes complémentaires
+
+C4 propose également :
+
+- System Landscape ;
+- Dynamic ;
+- Deployment.
+
+## 18.4 UML
+
+UML reste utile lorsqu'une notation précise est nécessaire :
+
+- séquence ;
+- état ;
+- activité ;
+- classes ;
+- déploiement.
+
+Ne pas produire un diagramme de classes exhaustif de 500 classes si personne ne peut le lire.
+
+## 18.5 Mermaid
+
+Voir [[Mermaid pour Obsidian]].
+
+Avantages :
+
+- texte versionné dans Git ;
+- diffs ;
+- intégration Markdown ;
+- automatisation.
+
+## 18.6 PlantUML
+
+PlantUML offre un très grand nombre de diagrammes et s'intègre bien aux dépôts de documentation.
+
+## 18.7 D2 et autres outils
+
+D2, Structurizr, Graphviz ou des outils de modélisation spécialisés peuvent être préférables selon les besoins.
+
+Le principe reste : **diagram as code lorsque cela apporte une valeur de maintenance**.
+
+## 18.8 arc42
+
+arc42 propose une structure de documentation avec notamment :
+
+- objectifs et contexte ;
+- contraintes ;
+- stratégie de solution ;
+- building block view ;
+- runtime view ;
+- deployment view ;
+- concepts transverses ;
+- décisions ;
+- risques ;
+- glossaire.
+
+C4 et arc42 sont complémentaires : C4 fournit des vues visuelles, arc42 une structure documentaire.
+
+## 18.9 Structure de dépôt recommandée
+
+```text
+docs/
+├── architecture/
+│   ├── README.md
+│   ├── context.md
+│   ├── containers.md
+│   ├── runtime.md
+│   ├── deployment.md
+│   ├── data.md
+│   ├── security.md
+│   ├── quality.md
+│   ├── risks.md
+│   └── adr/
+│       ├── 0001-record-architecture-decisions.md
+│       └── 0002-use-postgresql.md
+├── runbooks/
+└── api/
+```
+
+## 18.10 Documentation vivante
+
+Une documentation utile doit être :
+
+- proche du code ;
+- versionnée ;
+- revue ;
+- datée ;
+- testable lorsque possible ;
+- liée aux ADR ;
+- supprimée lorsqu'elle devient fausse.
+
+> [!tip]
+> Une documentation courte, exacte et maintenue vaut mieux qu'un dossier UML exhaustif obsolète.
+
+---
+
+# 19. Évaluation et revues d'architecture
+
+## 19.1 Architecture review
+
+Une revue doit chercher des **risques**, pas distribuer des notes esthétiques.
+
+Questions :
+
+- quelles sont les qualités prioritaires ?
+- où sont les single points of failure ?
+- quelles données sont critiques ?
+- quelles dépendances sont irréversibles ?
+- comment restaure-t-on ?
+- comment observe-t-on ?
+- quelles parties sont difficiles à changer ?
+
+## 19.2 ATAM — idée générale
+
+L'Architecture Tradeoff Analysis Method met l'accent sur :
+
+- scénarios de qualité ;
+- décisions ;
+- points sensibles ;
+- compromis ;
+- risques.
+
+On peut reprendre cet esprit sans appliquer une cérémonie complète.
+
+## 19.3 Risk storming
+
+À partir d'un diagramme d'architecture :
+
+1. identifier les zones critiques ;
+2. attribuer une probabilité ;
+3. attribuer un impact ;
+4. discuter des mitigations.
+
+## 19.4 Tests architecturaux
+
+Exemples :
+
+- tests de contrats ;
+- tests de résilience ;
+- tests de charge ;
+- tests de restauration ;
+- architecture tests sur les dépendances ;
+- tests de migration ;
+- tests de sécurité.
+
+## 19.5 Chaos engineering
+
+Le chaos engineering consiste à vérifier des hypothèses de résilience via des expériences contrôlées.
+
+Exemples :
+
+- tuer une instance ;
+- ajouter de la latence ;
+- couper une dépendance ;
+- saturer une ressource.
+
+Jamais sans garde-fous, observabilité et possibilité d'arrêt.
+
+---
+
+# 20. Évolution, dette et modernisation
+
+## 20.1 L'architecture évolue
+
+Une architecture doit changer avec :
+
+- le métier ;
+- la charge ;
+- l'équipe ;
+- les risques ;
+- la réglementation ;
+- les technologies.
+
+Une décision raisonnable en 2023 peut être inadéquate en 2028.
+
+## 20.2 Dette technique
+
+Toute dette n'est pas mauvaise. Une dette **consciente, mesurée et remboursable** peut être un compromis économique.
+
+Problème : dette invisible et sans propriétaire.
+
+## 20.3 Dette architecturale
+
+Exemples :
+
+- cycles entre modules ;
+- base partagée empêchant l'autonomie ;
+- protocole propriétaire non documenté ;
+- dépendance obsolète au cœur du système ;
+- absence d'observabilité ;
+- secrets diffusés partout.
+
+## 20.4 Mesurer la dette
+
+Indicateurs :
+
+- temps nécessaire pour livrer un changement ;
+- fréquence des déploiements coordonnés ;
+- incidents liés aux mêmes causes ;
+- nombre de composants impactés par une modification ;
+- dépendances circulaires ;
+- âge des dépendances critiques.
+
+## 20.5 Strangler et migration incrémentale
+
+Préférer une migration progressive :
+
+```text
+Ancien système
+   │
+   ├── fonctionnalité A
+   ├── fonctionnalité B ---> Nouveau module B
+   └── fonctionnalité C
+```
+
+à une réécriture totale lorsque le risque métier est élevé.
+
+## 20.6 Branch by abstraction
+
+Pour remplacer une dépendance :
+
+1. introduire une abstraction ;
+2. faire passer l'ancien comportement derrière ;
+3. ajouter la nouvelle implémentation ;
+4. basculer progressivement ;
+5. supprimer l'ancienne.
+
+## 20.7 Réécriture totale
+
+Une réécriture peut être justifiée, mais elle perd souvent :
+
+- années de corrections métier ;
+- cas limites ;
+- compréhension opérationnelle.
+
+Elle doit être motivée par des contraintes objectives et un plan de transition.
+
+---
+
+# 21. Organisation des équipes et architecture
+
+## 21.1 Loi de Conway
+
+La structure de communication d'une organisation influence souvent la structure du logiciel.
+
+Si cinq équipes doivent modifier le même module pour chaque fonctionnalité, le problème n'est peut-être pas seulement technique.
+
+## 21.2 Ownership
+
+Pour chaque capacité :
+
+- qui décide ?
+- qui exploite ?
+- qui répond en incident ?
+- qui peut modifier ?
+
+Un composant « possédé par tout le monde » est souvent possédé par personne.
+
+## 21.3 Team Topologies — concepts utiles
+
+Une organisation peut distinguer notamment :
+
+- équipes orientées flux métier ;
+- équipe plateforme ;
+- équipe enabling ;
+- équipe de sous-système complexe.
+
+Ces catégories sont des outils de réflexion, pas un organigramme universel.
+
+## 21.4 Architecture centralisée vs fédérée
+
+### Centralisée
+
+Avantages : cohérence.
+
+Risques : goulot d'étranglement.
+
+### Fédérée
+
+Avantages : autonomie.
+
+Risques : duplication et fragmentation.
+
+Une approche courante :
+
+- principes communs ;
+- standards minimaux ;
+- décisions locales dans les frontières ;
+- revue seulement pour les décisions transverses.
+
+## 21.5 Golden paths
+
+Une plateforme peut fournir des chemins recommandés :
+
+```text
+Créer API
+ -> template
+ -> CI
+ -> observabilité
+ -> sécurité
+ -> déploiement
+```
+
+Le *golden path* doit rester utile et suffisamment flexible pour les cas légitimes.
+
+---
+
+# 22. Architectures pour IA et systèmes à agents
+
+## 22.1 Un modèle n'est pas tout le système
+
+Architecture d'une application LLM :
+
+```text
+Utilisateur
+   │
+API / Orchestrateur
+   ├──> Modèle
+   ├──> RAG
+   ├──> Outils
+   ├──> Mémoire
+   └──> Policy / Guardrails
+```
+
+Voir [[LLM]] et [[RAG]].
+
+## 22.2 RAG
+
+Un système RAG comporte typiquement :
+
+```text
+Ingestion -> parsing -> chunks -> embeddings -> index
+                                      │
+Question -> retrieval -> context -> LLM -> réponse
+```
+
+Décisions architecturales :
+
+- source de vérité ;
+- fraîcheur ;
+- droits d'accès ;
+- indexation ;
+- citations ;
+- observabilité ;
+- effacement de données.
+
+## 22.3 Agents et outils
+
+Un agent capable d'appeler des outils doit être traité comme un composant **non déterministe à privilèges contrôlés**.
+
+Principes :
+
+- allowlist d'outils ;
+- validation des paramètres ;
+- moindre privilège ;
+- confirmation humaine pour actions sensibles ;
+- journalisation ;
+- budgets ;
+- timeout ;
+- sandbox.
+
+## 22.4 Prompt injection
+
+Une donnée externe peut contenir des instructions hostiles.
+
+```text
+Page Web -> RAG -> LLM -> outil interne
+```
+
+Il faut séparer :
+
+- données ;
+- instructions système ;
+- politiques ;
+- autorisation effective de l'outil.
+
+## 22.5 Model gateway
+
+Une gateway de modèles peut centraliser :
+
+- routage ;
+- quotas ;
+- journalisation ;
+- fallback ;
+- masquage de secrets ;
+- politique de données ;
+- choix fournisseur.
+
+Elle peut aussi devenir un point unique de panne et doit être conçue en conséquence.
+
+## 22.6 Évaluation continue
+
+Pour l'IA, les fitness functions peuvent inclure :
+
+- qualité de réponse ;
+- hallucinations ;
+- précision du retrieval ;
+- latence ;
+- coût par requête ;
+- taux d'appel d'outil invalide ;
+- sécurité.
+
+---
+
+# 23. Étude de cas complète : plateforme de bibliothèque numérique
+
+## 23.1 Contexte
+
+Nous devons créer une plateforme permettant :
+
+- recherche de documents ;
+- prêt numérique ;
+- gestion des comptes ;
+- paiement de services optionnels ;
+- notifications ;
+- administration.
+
+Contraintes :
+
+- équipe de 6 développeurs ;
+- 50 000 utilisateurs ;
+- données personnelles soumises au RGPD ;
+- disponibilité cible 99,9 % ;
+- budget d'exploitation limité.
+
+## 23.2 Première décision : monolithe modulaire
+
+Choix :
+
+```text
+Application
+├── identity
+├── catalogue
+├── lending
+├── billing
+└── notification
+```
+
+Pourquoi pas 5 microservices dès le départ ?
+
+- petite équipe ;
+- charge modérée ;
+- nombreuses transactions locales ;
+- besoin d'aller vite ;
+- autonomie de déploiement encore faible.
+
+## 23.3 Frontières
+
+```mermaid
+flowchart LR
+    U[Utilisateur]
+    UI[Application Web]
+    API[Monolithe modulaire]
+    DB[(PostgreSQL)]
+    OBJ[(Object Storage)]
+    PAY[Paiement externe]
+    MAIL[Email externe]
+
+    U --> UI
+    UI -->|HTTPS| API
+    API --> DB
+    API --> OBJ
+    API -->|HTTPS| PAY
+    API -->|HTTPS| MAIL
+```
+
+## 23.4 Données
+
+Chaque module possède ses tables logiquement :
+
+```text
+identity.*
+catalogue.*
+lending.*
+billing.*
+```
+
+Les modules ne requêtent pas directement les tables internes d'un autre module.
+
+## 23.5 Événements internes
+
+```text
+LoanCreated
+PaymentConfirmed
+LoanExpired
+```
+
+Les événements restent d'abord **in-process**, ce qui permet de garder un modèle simple.
+
+## 23.6 Extraction future
+
+Si `notification` devient lourd :
+
+1. stabiliser son contrat ;
+2. ajouter outbox ;
+3. déplacer vers un worker ;
+4. introduire broker si nécessaire ;
+5. mesurer avant/après.
+
+## 23.7 Attributs de qualité
+
+| Qualité | Décision |
+|---|---|
+| Maintenabilité | modules métier explicites |
+| Performance | appels locaux pour le cœur |
+| Sécurité | OIDC, moindre privilège |
+| Résilience | timeout/retry sur fournisseurs externes |
+| Observabilité | traces + logs + métriques |
+| Flexibilité | ports sur paiement et stockage |
+| Coût | une plateforme de déploiement principale |
+
+## 23.8 ADR essentiels
+
+- ADR-001 : monolithe modulaire ;
+- ADR-002 : PostgreSQL source de vérité ;
+- ADR-003 : OIDC pour l'identité ;
+- ADR-004 : object storage pour les fichiers ;
+- ADR-005 : événements internes + outbox si extraction.
+
+## 23.9 SLO
+
+```text
+Disponibilité API : 99,9 % / mois
+p95 recherche : < 400 ms
+p95 création prêt : < 700 ms
+RPO : 15 min
+RTO : 60 min
+```
+
+## 23.10 Quand passer aux microservices ?
+
+Seulement si des preuves apparaissent :
+
+- besoin de scaling indépendant ;
+- équipe séparée ;
+- fréquence de déploiement incompatible ;
+- exigences d'isolation ;
+- besoin opérationnel justifié.
+
+---
+
+# 24. Travaux pratiques et projet final
+
+## TP 1 — Cartographier un système existant
+
+Objectif : produire :
+
+- acteurs ;
+- systèmes externes ;
+- System Context ;
+- principaux risques.
+
+Livrable : `context.md` + diagramme Mermaid.
+
+## TP 2 — Scénarios de qualité
+
+Écrire au moins 8 scénarios mesurables couvrant :
+
+- performance ;
+- sécurité ;
+- fiabilité ;
+- maintenabilité ;
+- flexibilité.
+
+## TP 3 — ADR
+
+Prendre une décision réelle et rédiger :
+
+- contexte ;
+- alternatives ;
+- décision ;
+- conséquences ;
+- critères de réévaluation.
+
+## TP 4 — Monolithe modulaire
+
+Créer quatre modules métier et vérifier automatiquement l'absence de dépendances interdites.
+
+## TP 5 — Architecture hexagonale
+
+Implémenter :
+
+- un cas d'usage ;
+- un port repository ;
+- un adapter mémoire ;
+- un adapter SQL ;
+- des tests sans base réelle.
+
+## TP 6 — Event-driven
+
+Concevoir :
+
+```text
+OrderCreated -> Billing
+             -> Stock
+             -> Notification
+```
+
+Définir :
+
+- schéma ;
+- idempotence ;
+- retry ;
+- dead-letter strategy ;
+- observabilité.
+
+## TP 7 — Outbox
+
+Simuler la panne suivante :
+
+```text
+DB COMMIT OK
+Broker DOWN
+```
+
+Puis corriger avec le pattern Outbox.
+
+## TP 8 — Résilience
+
+Sur une API appelant un service externe :
+
+- timeout ;
+- retry avec backoff/jitter ;
+- circuit breaker ;
+- métriques.
+
+## TP 9 — Threat modeling
+
+À partir d'un diagramme :
+
+- identifier les trust boundaries ;
+- données sensibles ;
+- menaces ;
+- contrôles ;
+- risques résiduels.
+
+## TP 10 — Observabilité
+
+Instrumenter un flux distribué avec :
+
+- trace ID ;
+- logs structurés ;
+- métriques RED ;
+- dashboard minimal.
+
+## TP 11 — Revue d'architecture
+
+Analyser une architecture donnée et fournir :
+
+- 5 risques ;
+- 3 points sensibles ;
+- 3 compromis ;
+- 5 questions non résolues ;
+- recommandations priorisées.
+
+## TP 12 — Modernisation incrémentale
+
+À partir d'un monolithe ancien :
+
+1. cartographier ;
+2. identifier une frontière métier ;
+3. introduire une abstraction ;
+4. migrer avec Strangler ;
+5. préserver la compatibilité ;
+6. mesurer les effets.
+
+# Projet final — Concevoir et défendre une architecture
+
+## Contexte
+
+Concevoir une plateforme SaaS multi-utilisateurs avec :
+
+- application Web ;
+- API ;
+- tâches asynchrones ;
+- paiements ;
+- stockage de fichiers ;
+- notifications ;
+- authentification ;
+- données personnelles ;
+- déploiement automatisé.
+
+## Livrables
+
+### 1. Contexte
+
+- objectifs métier ;
+- contraintes ;
+- parties prenantes ;
+- risques.
+
+### 2. Attributs de qualité
+
+Au moins 10 scénarios mesurables.
+
+### 3. C4
+
+- System Context ;
+- Container ;
+- Deployment ;
+- Component seulement si utile.
+
+### 4. ADR
+
+Au moins 5 décisions structurantes.
+
+### 5. Données
+
+- sources de vérité ;
+- propriété ;
+- sauvegarde ;
+- RPO/RTO ;
+- conformité RGPD.
+
+### 6. Résilience
+
+- timeouts ;
+- retries ;
+- dégradation ;
+- SLO ;
+- reprise.
+
+### 7. Sécurité
+
+- trust boundaries ;
+- identité ;
+- secrets ;
+- chiffrement ;
+- audit.
+
+### 8. Observabilité
+
+- logs ;
+- métriques ;
+- traces ;
+- alertes ;
+- runbooks.
+
+### 9. Livraison
+
+- CI/CD ;
+- artefacts ;
+- SBOM ;
+- rollback ;
+- stratégie de déploiement.
+
+### 10. Défense
+
+Présenter les compromis et répondre à la question :
+
+> Qu'est-ce qui vous ferait changer cette architecture dans six mois ?
+
+---
+
+# Checklist d'architecture
+
+## Contexte
+
+- [ ] Le problème métier est compris.
+- [ ] Les parties prenantes sont identifiées.
+- [ ] Les contraintes sont écrites.
+- [ ] Les hypothèses sont explicites.
+
+## Qualité
+
+- [ ] Les qualités prioritaires sont classées.
+- [ ] Elles disposent de scénarios mesurables.
+- [ ] Les compromis sont documentés.
+
+## Structure
+
+- [ ] Les frontières sont explicites.
+- [ ] La propriété des données est claire.
+- [ ] Les dépendances sont orientées.
+- [ ] Les cycles importants sont évités.
+
+## Distribution
+
+- [ ] Chaque appel distant a un timeout.
+- [ ] Les retries sont justifiés et bornés.
+- [ ] L'idempotence est traitée.
+- [ ] Les échecs partiels sont prévus.
+
+## Sécurité
+
+- [ ] Les trust boundaries sont identifiées.
+- [ ] Les secrets sont gérés hors du code.
+- [ ] Le moindre privilège est appliqué.
+- [ ] Les données personnelles sont cartographiées.
+
+## Résilience
+
+- [ ] SLI/SLO définis.
+- [ ] RTO/RPO définis.
+- [ ] Les sauvegardes sont testées.
+- [ ] Le rollback est possible.
+
+## Observabilité
+
+- [ ] Logs structurés.
+- [ ] Métriques utiles.
+- [ ] Traces pour les flux distribués.
+- [ ] Correlation/trace ID.
+- [ ] Runbooks pour les incidents critiques.
+
+## Documentation
+
+- [ ] System Context à jour.
+- [ ] Container diagram à jour.
+- [ ] ADR pour les décisions structurantes.
+- [ ] Diagrammes lisibles et versionnés.
+- [ ] Documentation rapprochée du code.
+
+## Évolution
+
+- [ ] La dette architecturale est visible.
+- [ ] Les décisions ont des critères de réévaluation.
+- [ ] Les migrations sont incrémentales lorsque possible.
+- [ ] Les fitness functions protègent les invariants importants.
+
+---
+
+# Glossaire
+
+**ADR** : Architecture Decision Record.
+
+**Aggregate** : frontière de cohérence transactionnelle en DDD.
+
+**Bounded Context** : frontière dans laquelle un modèle métier a un sens cohérent.
+
+**C4** : modèle de visualisation par niveaux Context, Container, Component et Code.
+
+**CQRS** : séparation conceptuelle entre commandes et lectures.
+
+**Couplage** : niveau de dépendance entre éléments.
+
+**Cohésion** : degré auquel les éléments d'un module appartiennent à une responsabilité commune.
+
+**Event Sourcing** : stockage de l'historique des événements comme source de vérité.
+
+**Fitness Function** : contrôle vérifiant qu'une propriété architecturale reste vraie.
+
+**Idempotence** : propriété permettant de répéter une opération sans multiplier son effet au-delà de ce qui est défini.
+
+**RPO** : perte maximale de données acceptable exprimée dans le temps.
+
+**RTO** : durée maximale acceptable avant restauration du service.
+
+**Saga** : coordination de transaction métier distribuée avec étapes et compensations.
+
+**SLI** : indicateur de niveau de service observé.
+
+**SLO** : objectif de niveau de service.
+
+**Trust Boundary** : frontière où change le niveau de confiance et où des contrôles sont nécessaires.
+
+---
+
+# Références
+
+## Normes et modèles
+
+- ISO/IEC/IEEE 42010:2022 — *Software, systems and enterprise — Architecture description* : https://www.iso.org/standard/74393.html
+- ISO/IEC 25010:2023 — *SQuaRE — Product quality model* : https://www.iso.org/standard/78176.html
+- C4 Model : https://c4model.com/
+- arc42 : https://arc42.org/
+
+## Observabilité et supply chain
+
+- OpenTelemetry — Concepts d'observabilité : https://opentelemetry.io/docs/concepts/observability-primer/
+- SLSA 1.2 : https://slsa.dev/spec/v1.2/
+
+## Notes liées
+
+- [[Design patterns]]
+- [[Principes SOLID en COO]]
+- [[Docker]]
+- [[HTTP]]
+- [[Les protocoles de communications]]
+- [[Sécurité avancée sous Linux]]
+- [[RGPD]]
+- [[OAuth OpenID]]
+- [[Mermaid pour Obsidian]]
+- [[LLM]]
+- [[RAG]]
+
+---
+
+# Conclusion
+
+L'architecture logicielle consiste moins à connaître une liste de styles qu'à savoir **raisonner sous contraintes**.
+
+Une bonne démarche architecturale est capable de répondre à six questions :
+
+1. **Quelles qualités comptent réellement ?**
+2. **Où sont les frontières ?**
+3. **Quelles décisions sont coûteuses à inverser ?**
+4. **Quels compromis avons-nous acceptés ?**
+5. **Comment savons-nous que l'architecture fonctionne en production ?**
+6. **Comment pourra-t-elle évoluer sans réécriture permanente ?**
+
+Le meilleur résultat n'est généralement ni « tout monolithe » ni « tout microservices », ni « tout synchrone » ni « tout événementiel ». C'est une architecture suffisamment simple pour le problème actuel, suffisamment structurée pour préserver ses qualités, et suffisamment observable pour permettre aux décisions futures de s'appuyer sur des faits.
