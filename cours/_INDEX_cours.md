@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-21
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
@@ -69,14 +69,14 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Programmation
 
 - [[Algorithmes avancés en Python]] — Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme.
-- [[Anaconda]] — Histoire de la distribution Anaconda, présentation de Jupyter et du format IPYNB, installation sous Ubuntu et panorama des distributions dérivées.
+- [[Anaconda]] — Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi.
 - [[C++]] — Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.
 - [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé dans le cloud, accès aux GPU et TPU, environnement prêt à l'emploi et lien avec Google Cloud Platform.
 - [[Jupyter Notebook et Google Colab]] — Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites.
 - [[Mathplotlib]] — Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook.
-- [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, manipulation de matrices et opérations vectorisées.
-- [[Pandas]] — Cours sur la bibliothèque Pandas : structures de données Series et DataFrame, sélection, filtrage, agrégation et manipulation de jeux de données.
-- [[Python]] — Cours de fond sur Python : historique du langage, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions, modules et bibliothèque standard.
+- [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, slices et vues, tableaux multidimensionnels, statistiques et notion d'axe, puis le tirage aléatoire moderne, le broadcasting et les ruptures de NumPy 2.
+- [[Pandas]] — Cours sur la bibliothèque Pandas : structures Series et DataFrame, sélection, filtrage, valeurs manquantes, groupement, concaténation et jointures, puis les ruptures de pandas 3.0 — Copy-on-Write, type str adossé à Arrow, pd.col() et migration.
+- [[Python]] — Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage.
 - [[Regex]] — Cours sur les expressions régulières : histoire, usages actuels, fonctionnement, caractères spéciaux, capture et substitution, avec un exemple concret sous Vim.
 - [[SQLAchemy]] — Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD.
 - [[ZC.Buidout]] — Cours sur zc.buildout : intérêt de l'outil, installation depuis PyPI, configuration d'un buildout et utilisation pour l'assemblage d'environnements Python reproductibles.
@@ -106,7 +106,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Données et web sémantique
 
 - [[Bases de données relationnelles]] — Cours sur le modèle relationnel : modélisation des données, langage de manipulation SQL, vues, index, contraintes, transactions et isolation, sécurité et droits d'accès.
-- [[Data Mining en Python]] — Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, techniques et modèles, évaluation et optimisation, avec un projet d'analyse de fr.wikipedia.org.
+- [[Data Mining en Python]] — Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, fouille de texte avec NLTK et spaCy, techniques et modèles, évaluation, puis la fuite de données, les chaînes scikit-learn, l'écosystème Arrow et le cadre juridique RGPD et règlement IA.
 - [[SOLID]] — Cours sur SOLID, le projet de web décentralisé de Tim Berners-Lee : principe des pods, structuration des données, RDF et SPARQL, et mise en place d'un environnement de développement.
 
 ## Connaissances et outils
