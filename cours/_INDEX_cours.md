@@ -42,10 +42,10 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Systèmes et administration
 
 - [[Apache]] — Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage.
-- [[Docker]] — Cours sur Docker : définition et installation, terminologie (images, conteneurs), commandes de base, réseaux, volumes, Dockerfile et composition de services.
+- [[Docker]] — Cours complet sur Docker : conteneurs, images OCI, Dockerfile, BuildKit/Buildx, Compose, réseaux, volumes, sécurité, rootless, supply chain et exploitation en production.
 - [[GNULinux]] — Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante.
 - [[InetOrgPerson]] — Cours sur la classe d'objets inetOrgPerson dans LDAP : caractéristiques, attributs, exemples d'utilisation et survol de la RFC 2798.
-- [[Initialisation système et des services]] — Cours sur le démarrage d'un système GNU/Linux : séquence de boot, GRUB 2, paramètres du noyau, comparaison systemd / SysV init / upstart, targets et niveaux d'exécution.
+- [[Initialisation système et des services]] — Cours complet sur le démarrage GNU/Linux et la gestion moderne des services : UEFI/BIOS, GRUB 2, noyau et initramfs, PID 1, unités systemd, dépendances, targets, journal, timers, activation, cgroups, durcissement et diagnostic.
 - [[Installation Ubuntu]] — Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques.
 - [[LDAP]] — Cours sur LDAP et OpenLDAP : structure de l'annuaire, opérations, format LDIF, classes d'objets et RFC de référence.
 - [[Les distributions Linux]] — Fiche définissant la notion de distribution GNU/Linux et présentant les principales familles de distributions.
@@ -59,7 +59,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[HTTP]] — Cours complet sur HTTP : sémantique, HTTP/1.1, HTTP/2, HTTP/3 et QUIC, méthodes, statuts, en-têtes, cache, cookies, authentification, HTTPS/TLS, CORS, sécurité, API, performances et diagnostic.
 - [[Identité numérique européenne]] — Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS.
-- [[IPFS]] — Cours sur IPFS : enjeux de la décentralisation du stockage, comparaison avec le modèle client-serveur, Merkle DAG, adressage par contenu et fonctionnement technique du réseau.
+- [[IPFS]] — Cours complet sur IPFS : adressage par contenu, CID, Merkle DAG, UnixFS et IPLD, réseau libp2p/DHT/Bitswap, installation et exploitation d'un nœud Kubo, épinglage, MFS, CAR, IPNS et DNSLink, passerelles vérifiables, réseaux privés et clusters, sécurité, écosystème, limites et travaux pratiques.
 - [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
 - [[OAuth OpenID]] — Cours complet sur OAuth 2.0, l'évolution OAuth 2.1, OpenID Connect, JWT/JOSE, PKCE, DPoP, PAR/JAR, les architectures BFF et l'intégration moderne avec Keycloak et Pyramid.
 - [[Sécurité avancée sous Linux]] — Cours avancé et pratique de sécurisation d'un système GNU/Linux : modèle de menace, permissions et capabilities, durcissement du noyau et de systemd, SELinux/AppArmor/Landlock/seccomp, SSH et réseau, LUKS2, journalisation et audit, réponse à incident, sécurité des conteneurs, chaîne d'approvisionnement et usages de l'IA.
@@ -87,7 +87,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Deform]] — Cours moderne sur Deform 3 sous Pyramid : schémas Colander, widgets, validation, rendu, CSRF, fichiers, formulaires dynamiques et personnalisation.
 - [[HTML]] — Cours complet de HTML moderne : structure, sémantique, formulaires, médias, accessibilité, SEO, performance, sécurité et fonctionnalités natives du HTML Living Standard.
 - [[Javascript]] — Cours complet de JavaScript moderne : ECMAScript, types, fonctions, objets, modules, asynchronisme, DOM, Web APIs, Node.js, tests, sécurité, performance et pratiques de développement actuelles.
-- [[Pyramid]] — Cours sur le framework web Pyramid : installation et structure d'une application, routes et vues, templates Chameleon, formulaires Deform, persistance et sécurité.
+- [[Pyramid]] — Cours complet sur Pyramid 2.1 : architecture WSGI, configuration, routes, vues, traversal, sécurité moderne, sessions et CSRF, Deform, SQLAlchemy/ZODB, LDAP/OIDC, tests et déploiement.
 - [[Selenium]] — Cours complet sur Selenium 4 avec Python : WebDriver, Selenium Manager, sélecteurs, interactions, attentes, fenêtres et iframes, actions avancées, Page Object Model, pytest, Grid 4, WebDriver BiDi et bonnes pratiques.
 - [[Tal et Metal]] — Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope.
 
@@ -114,7 +114,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Excalidraw]] — Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes.
 - [[git]] — Cours complet sur Git : modèle de données, workflow quotidien, branches, remotes, restauration, réécriture d'historique, worktrees, Git LFS, Git Xet/Hugging Face, sécurité, collaboration et administration.
 - [[Markdown]] — Cours sur Markdown : formatage de base, apports des variantes GitHub et Obsidian, extensions, écriture de formules mathématiques et syntaxe étendue.
-- [[Mermaid pour Obsidian]] — Cours sur Mermaid dans Obsidian : origines et adoption, installation, utilisation et principaux types de diagrammes (flux, séquence, Gantt, classes).
+- [[Mermaid pour Obsidian]] — Cours complet sur Mermaid dans Obsidian : syntaxe, flowcharts, séquences, classes, états, ER, Gantt, GitGraph, mindmaps, graphiques récents, thèmes, accessibilité, liens internes, sécurité, compatibilité de versions et bonnes pratiques.
 - [[MindMap sous Obsidian]] — Procédure d'installation et d'utilisation du greffon de cartes mentales dans Obsidian, avec quelques astuces.
 - [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] — Cours en trente chapitres et trois annexes sur la construction d'un système d'information personnel souverain : vault Obsidian, modèle de données par frontmatter, schéma et modèle métier, graphe sémantique, Git, puis couche agentique (constitution, domaines, skills, pipelines, mémoire, sécurité, tests, observabilité). L'annexe B traite l'application du modèle à un coffre existant, l'annexe C fournit une implémentation de référence testée, installée dans scripts/osia.
 - [[Obsidian]] — Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation.
@@ -130,8 +130,8 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Droit et conformité
 
-- [[Droits d'auteur]] — Cours sur la propriété intellectuelle et le droit d'auteur : distinction avec la propriété industrielle, brevets, œuvres originales, collectives et posthumes, licences informatiques et chronologie des durées de protection.
-- [[Règlement Général sur la Protection des Données (RGPD)]] — Cours sur le RGPD : contexte et cadre juridique, principes fondamentaux (licéité, minimisation, exactitude, limitation de conservation, intégrité) et droits des personnes concernées.
+- [[Droits d'auteur]] — Cours actualisé sur le droit d'auteur français et européen : originalité, droits moraux et patrimoniaux, logiciels, bases de données, licences libres, domaine public, exceptions, contrats, IA générative et fouille de textes et de données.
+- [[Règlement Général sur la Protection des Données (RGPD)]] — Cours complet et actualisé sur le RGPD : champ d'application, données personnelles, bases légales, droits, accountability, sous-traitance, sécurité, violations, AIPD, transferts internationaux, cookies, IA et mise en conformité opérationnelle.
 
 ## Mathématiques et logique
 
