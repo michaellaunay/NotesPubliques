@@ -11,7 +11,7 @@ themes:
   - informatique
   - developpement-web
   - css
-resume: "Cours de CSS : historique, modes d'intégration, syntaxe, unités de mesure, sélecteurs, mise en forme et mise en page moderne."
+resume: "Cours complet de CSS moderne : cascade, sélecteurs, responsive design, Flexbox, Grid, container queries, nesting, scope, couleurs modernes, animations, accessibilité, performance et architecture CSS."
 niveau: debutant
 prerequis:
   - "[[HTML]]"
@@ -19,912 +19,2104 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-08-10
-date_modification: 2025-12-08
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: true
 ---
-# Plan du Cours
 
-1. **Introduction à CSS**
-   - Historique et évolution de CSS
-   - Importance de CSS dans le développement web moderne
-   - Intégration de CSS : Inline, Interne, Externe
+# Plan du cours
+
+1. Introduction à CSS et état de la plateforme en 2026
+2. Ajouter du CSS à une page HTML
+3. Syntaxe, valeurs et fonctions CSS
+4. Cascade, héritage, spécificité et couches
+5. Sélecteurs modernes
+6. Modèle de boîte, flux et `display`
+7. Dimensions, unités et dimensionnement intrinsèque
+8. Typographie
+9. Couleurs modernes et thèmes
+10. Arrière-plans, bordures, ombres, masques et filtres
+11. Propriétés logiques et internationalisation
+12. Flexbox
+13. Grid et Subgrid
+14. Positionnement, z-index et contextes d'empilement
+15. CSS Anchor Positioning
+16. Responsive design et media queries
+17. Container queries
+18. Nesting CSS natif
+19. `@scope` et isolation des composants
+20. Custom properties, design tokens et `@property`
+21. Formulaires et composants d'interface
+22. Transitions, transformations et animations
+23. Animations pilotées par le défilement
+24. View Transitions
+25. Accessibilité et préférences utilisateur
+26. Architecture CSS et maintenabilité
+27. Sass, PostCSS, frameworks et CSS natif
+28. Performance et pipeline de rendu
+29. Compatibilité, Baseline et progressive enhancement
+30. Sécurité CSS
+31. Outils de développement, lint et tests
+32. Travaux pratiques
+33. Projet final
+34. Checklist et aide-mémoire
+35. Références
+
+# 1. Introduction à CSS et état de la plateforme en 2026
+
+## 1.1 Qu'est-ce que CSS ?
+
+CSS signifie **Cascading Style Sheets**. C'est le langage de feuilles de style du Web. Il décrit la présentation d'un document structuré, le plus souvent HTML : couleurs, typographie, espacement, mise en page, adaptations responsive, animations et certains comportements visuels.
+
+CSS ne remplace pas HTML :
+
+- **HTML** décrit le contenu et sa sémantique ;
+- **CSS** décrit sa présentation ;
+- **JavaScript** ajoute, lorsque nécessaire, de la logique et des interactions programmatiques.
+
+Cette séparation est fondamentale pour la maintenance, l'accessibilité et la réutilisation.
+
+## 1.2 De CSS 1 au CSS moderne
+
+Quelques jalons :
+
+- **CSS Level 1** : première recommandation W3C en 1996 ;
+- **CSS Level 2** : 1998 ;
+- **CSS 2.1** : consolidation longtemps utilisée comme socle ;
+- à partir de ce que l'on a appelé **CSS3**, le langage est découpé en modules qui évoluent indépendamment.
+
+Il est donc trompeur de chercher une version monolithique « CSS4 ». En 2026, CSS est un ensemble de modules : Selectors, Color, Grid, Flexbox, Containment, Cascade, Values & Units, View Transitions, etc.
+
+Le **CSS Snapshot 2026** du W3C rassemble l'état des spécifications considérées comme constituant CSS à cette date. Un snapshot décrit la maturité des spécifications ; il ne garantit pas à lui seul leur disponibilité sur tous les navigateurs utilisés par un projet.
+
+## 1.3 Spécification, implémentation et Baseline
+
+Il faut distinguer trois questions :
+
+1. la fonctionnalité existe-t-elle dans une spécification ?
+2. est-elle implémentée dans les moteurs de navigateur ?
+3. est-elle suffisamment disponible pour notre public cible ?
+
+Le projet **Web Platform Baseline** aide à répondre à la troisième question. Une fonctionnalité peut être :
+
+- **Widely available** : largement disponible depuis suffisamment longtemps ;
+- **Newly available** : disponible dans les versions récentes des principaux moteurs ;
+- hors Baseline : support encore incomplet ou trop récent.
+
+Baseline ne remplace pas les tests sur les navigateurs réellement supportés par le projet.
+
+## 1.4 CSS moderne : ce qui a changé
+
+Le CSS de 2026 permet de résoudre nativement de nombreux problèmes qui nécessitaient auparavant JavaScript, Sass ou des frameworks :
+
+- Flexbox et Grid ;
+- Subgrid ;
+- variables avec les custom properties ;
+- cascade layers avec `@layer` ;
+- nesting natif ;
+- container queries ;
+- `:has()` ;
+- `@scope` ;
+- couleurs OKLCH et `color-mix()` ;
+- `light-dark()` ;
+- propriétés logiques ;
+- `@property` ;
+- View Transitions ;
+- anchor positioning ;
+- animations liées au défilement.
 
-2. **Les bases de CSS**
-   - Syntaxe et structure
-   - Commentaires en CSS
-   - Les unités de mesure : px, em, rem, %, vh, vw, etc.
+Le but n'est pas d'utiliser toutes les nouveautés, mais de comprendre **quel outil répond le mieux au problème**.
 
-3. **Sélecteurs CSS : Fondamentaux**
-   - Sélecteurs d'éléments (par tag)
-   - Sélecteurs de classe (.) 
-   - Sélecteurs d'ID (#)
-   - Sélecteurs universels (*)
-   - Groupe de sélecteurs
+# 2. Ajouter du CSS à une page HTML
 
-4. **Combinateurs et sélecteurs avancés**
-   - Sélecteurs descendants (espace)
-   - Sélecteurs d'enfants directs (>)
-   - Sélecteurs d'adjacence directe (+)
-   - Sélecteurs d'adjacence générale (~)
-   - Sélecteurs d'attribut ([attr])
+## 2.1 Feuille de style externe
 
-5. **Sélecteurs pseudo-classes et pseudo-éléments**
-   - Pseudo-classes : :hover, :active, :focus, :nth-child, etc.
-   - Pseudo-éléments : ::before, ::after
-   - Utilisations courantes et cas pratiques
-
-6. **Les propriétés CSS courantes**
-   - Mise en forme du texte
-   - Couleur et fond
-   - Bordures et ombres
-   - Positionnement : block, inline, relative, absolute, fixed, sticky
-   - Flexbox et Grid Layout
-
-7. **Responsive Design avec CSS**
-   - Media Queries : introduction et application
-   - Techniques pour un design adaptable : mobile-first vs desktop-first
-   - Frameworks courants : Bootstrap, Foundation, etc. (aperçu)
-
-8. **Pratiques optimales et outils**
-   - Organisation et architecture CSS : BEM, OOCSS, SMACSS
-   - Préprocesseurs CSS : Sass, Less (introduction)
-   - Outils de développement : inspecteur de navigateur, plugins, etc.
-
-9. **Performance et optimisation CSS**
-   - Minification et compression
-   - Chargement différé et asynchrone des styles
-   - Conseils pour réduire le poids et améliorer le temps de chargement
-
-10. **Tendances actuelles et avenir de CSS**
-   - CSS Variables (custom properties)
-   - Nouveaux modules et spécifications
-   - Web animations avec CSS
-
-# 1. Introduction à CSS
-
-## 1.1 Historique et évolution de CSS
-
-### 1.1.1 Origines de CSS
-
-- **Contexte pré-CSS** :
-  - Dans les premières années du web, le HTML était principalement utilisé pour structurer le contenu. La mise en forme était limitée et souvent mélangée avec le contenu lui-même.
-  - Les sites web avaient tendance à avoir une apparence très basique et homogène en raison des limitations des outils disponibles.
-
-- **Emergence du besoin** :
-  - Avec l'augmentation du nombre d'utilisateurs et de sites internet, est née la nécessité d'une meilleure mise en forme et personnalisation.
-  - Le W3C (World Wide Web Consortium) a identifié le besoin d'un langage spécifique pour gérer la présentation des pages web.
-
-- **Introduction de CSS** :
-  - En 1996, CSS (Cascading Style Sheets) est introduit par le W3C comme solution pour séparer le contenu de la mise en forme.
-  - CSS 1, la première spécification, offrait un contrôle basique sur la mise en forme du texte, les couleurs, et l'arrière-plan.
-
-### 1.1.2 Évolutions majeures
-
-- **CSS 2 (1998)** :
-  - Introduit pour adresser les limitations de CSS 1.
-  - Ajout de la notion du modèle de boîte (box model), qui offre un contrôle sur la marge, la bordure, le remplissage, et le contenu.
-  - Introduction des propriétés pour positionner les éléments et contrôler la visibilité.
-  
-- **CSS 2.1 (2005)** :
-  - Plutôt qu'une grande mise à jour, cette version était une consolidation. Elle visait à corriger les bugs et clarifier certaines spécifications.
-  - Elle est rapidement devenue la référence standard pour les développeurs web et les navigateurs.
-
-- **CSS 3 (à partir de 2008)** :
-  - Contrairement aux versions précédentes, CSS 3 est divisé en "modules". Chaque module est développé indépendamment, permettant une mise en œuvre plus rapide et flexible.
-  - Introduction de nouvelles fonctionnalités comme les gradients, les ombres, les animations, les transitions, et des modules tels que Flexbox pour un contrôle avancé de la mise en page.
-  - La modularité de CSS 3 signifie que de nouvelles fonctionnalités continuent d'être introduites et améliorées, même après la première sortie de CSS 3.
-
-## 1.2 Importance de CSS dans le développement web moderne
-
-### 1.2.1 Séparation du contenu et de la mise en forme
-
-- **Raison d'être du CSS** :
-  - L'idée fondamentale derrière le développement de CSS était de séparer le "quoi" (contenu) du "comment" (présentation). Cela permet aux designers et développeurs de travailler de manière plus efficace et collaborative.
-
-- **Avantages de cette séparation** :
-  - **Maintenance** : Mettre à jour le style sans toucher au contenu réduit le risque d'erreurs.
-  - **Accessibilité** : En gardant le contenu pur et la présentation séparée, les sites deviennent plus accessibles pour les lecteurs d'écran et d'autres outils d'assistance.
-  - **Optimisation multi-appareils** : Un seul ensemble de contenu peut être stylisé différemment pour divers appareils et tailles d'écran, rendant le web design responsive plus efficace.
-
-### 1.2.3 Personnalisation et expérience utilisateur
-
-- **Au-delà du texte noir sur fond blanc** :
-  - CSS permet une personnalisation sans précédent du web. Les marques peuvent refléter leur identité visuelle et les designers peuvent réaliser leurs visions créatives.
-  
-- **Interaction et dynamisme** :
-  - Avec l'évolution de CSS, en particulier CSS3, les designers peuvent créer des animations, des transitions, et des interactions qui rendent l'expérience utilisateur plus engageante.
-  
-- **Adaptabilité** :
-  - CSS offre la flexibilité nécessaire pour que les designs s'adaptent à une variété d'appareils, de tailles d'écran, et de préférences utilisateur. C'est essentiel à l'ère du mobile.
-
-### 1.2.4 Performance
-
-- **Chargement rapide des pages** :
-  - Une mise en œuvre efficace de CSS peut réduire la taille et la complexité des sites web, ce qui conduit à des temps de chargement plus rapides.
-  
-- **Influence sur le SEO** :
-  - Les moteurs de recherche valorisent l'expérience utilisateur. Une mise en page propre, un chargement rapide et une structure claire (aidée par une utilisation judicieuse de CSS) peuvent tous contribuer à un meilleur classement dans les résultats de recherche.
-  
-- **Engagement des utilisateurs** :
-  - Un design attrayant et une interface utilisateur réactive peuvent réduire le taux de rebond et augmenter le temps passé sur le site. La performance n'est pas seulement une question de vitesse, mais aussi d'expérience globale.
-
-## 1.3 Intégration de CSS : Inline, Interne, Externe
-
-### 1.3.1 Inline CSS
-
-- **Définition** :
-  - Il s'agit d'appliquer des styles directement sur des éléments individuels à l'aide de l'attribut `style` dans le code HTML.
-
-- **Exemple** :
-  ```html
-  <p style="color: blue;">Ce texte est bleu.</p>
-  ```
-
-- **Quand l'utiliser (et quand ne pas l'utiliser)** :
-  - **Avantages** : 
-    - Immédiateté : Utile pour des tests rapides.
-    - Spécificité : Puisqu'il est directement sur l'élément, il a une haute priorité dans la cascade CSS.
-  - **Inconvénients** : 
-    - Pas scalable : Peut rendre le code encombré et difficile à maintenir pour de grands sites.
-    - Répétitif : Si le même style est nécessaire sur plusieurs éléments, il faut le répéter pour chaque élément.
-
-### 1.3.2 CSS Interne (ou Embarqué)
-
-- **Définition** :
-  - Il s'agit d'intégrer des styles dans l'en-tête (section `<head>`) de votre document HTML à l'aide de l'élément `<style>`.
-
-- **Exemple** :
-  ```html
-  <head>
-      <style>
-          p { color: red; }
-      </style>
-  </head>
-  ```
-
-- **Quand l'utiliser** :
-  - Pour des styles spécifiques à une seule page.
-  - Lorsqu'il n'est pas nécessaire de charger une feuille de style externe.
-  
-- **Inconvénients** : 
-  - Si le même style est nécessaire sur plusieurs pages, il doit être copié sur chaque page, ce qui n'est pas optimal pour la maintenance.
-
-### 1.3.3 CSS Externe
-
-- **Définition** :
-  - Il s'agit de définir les styles dans un fichier séparé (généralement avec une extension `.css`) et de le lier à votre document HTML.
-
-- **Comment l'intégrer** :
-  - Utilisation de l'élément `<link>` dans la section `<head>` de votre HTML.
-  
-- **Exemple** :
-  ```html
-  <head>
-      <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  ```
-
-- **Avantages** :
-  - **Séparation du contenu et de la mise en forme** : Conforme à la meilleure pratique de séparation des préoccupations.
-  - **Réutilisabilité** : Une seule feuille de style peut être appliquée à plusieurs pages, garantissant la cohérence et facilitant la maintenance.
-  - **Mise en cache par le navigateur** : Les feuilles de style externes peuvent être mises en cache par les navigateurs, améliorant la performance de chargement pour les visites répétées.
-
-# 2. Les bases de CSS
-
-## 2.1 Syntaxe et structure
-
-- **Définition** :
-Le CSS (Cascading Style Sheets) est un langage dédié à la mise en forme et à la présentation des documents HTML. Il possède sa propre grammaire et sa propre syntaxe. Les styles CSS peuvent être intégrés directement dans les documents HTML ou être placés dans des fichiers séparés. Ces styles, pour être appliqués, vont être interprétés par les navigateurs web pour définir l'apparence des éléments HTML. Fondamentalement, le CSS fonctionne sur le principe du trio : sélecteur, propriété et valeur.
-
-- **Sélecteur, propriété, valeur** :
-  - **Sélecteur** : Spécifie à quel élément HTML le style sera appliqué.
-  - **Propriété** : L'aspect que vous souhaitez changer (ex. couleur, taille de police, etc.).
-  - **Valeur** : Ce que vous souhaitez définir pour cette propriété.
-
-- **Exemple de code** :
-  ```css
-  p {
-      color: red;
-      font-size: 16px;
-  }
-  ```
-
-- **Bloc de déclaration** :
-  - La combinaison d'une ou plusieurs déclarations entourées de accolades `{}`.
-
-## 2.2 Commentaires en CSS
-
-- **Importance des commentaires** :
-  - Pour documenter le code.
-  - Pour aider d'autres développeurs (ou vous-même, à l'avenir) à comprendre votre pensée.
-
-- **Comment écrire un commentaire** :
-  - En CSS, les commentaires sont entourés par `/*` et `*/`.
-
-- **Exemple** :
-  ```css
-  /* Ceci est un commentaire en CSS */
-  p {
-      color: blue;  /* Ceci est un autre commentaire */
-  }
-  ```
-
-- **Pratiques recommandées** :
-  - Éviter les commentaires superflus.
-  - Utiliser des commentaires pour documenter des sections complexes ou importantes.
-
-## 2.3 Les unités de mesure : px, em, rem, %, vh, vw, etc.
-
-- **Pixels (px)** :
-  - L'unité la plus couramment utilisée en web design.
-  - Représente une unité fixe, indépendante de tout autre facteur.
-
-- **Em** :
-  - Relative à la taille de police de l'élément parent.
-  - Exemple : Si la taille de police parent est de 16px, alors `1em = 16px`.
-
-- **Rem** :
-  - Similaire à `em`, mais toujours relative à la taille de police de base du document (généralement définie sur l'élément `<html>`).
-
-- **Pourcentage (%)** :
-  - Une unité relative qui est un pourcentage de l'élément parent.
-  - Souvent utilisé pour les largeurs pour créer des designs fluides.
-
-- **Unités de viewport : vh, vw** :
-  - `vh` (viewport height) : 1 unité est égale à 1% de la hauteur du viewport.
-  - `vw` (viewport width) : 1 unité est égale à 1% de la largeur du viewport.
-  
-- **Utilisation pratique et considérations** :
-  - Quand utiliser une unité fixe (comme px) par rapport à une unité relative (comme em, rem, ou %).
-  - Comment les unités relatives peuvent aider à créer des designs plus adaptatifs et réactifs.
-
-# 3. Sélecteurs CSS : Fondamentaux
-
-## 3.1 Sélecteurs d'éléments (par tag)
-
-- **Définition** :
-  - Ces sélecteurs ciblent des éléments HTML spécifiques par leur nom de balise.
-
-- **Exemples** :
-  ```css
-  p {
-      color: green;
-  }
-  
-  h1 {
-      font-size: 24px;
-  }
-  ```
-
-- **Usage** :
-  - Ils sont utiles lorsque vous souhaitez appliquer un style à tous les éléments d'un type spécifique sur une page.
-
-## 3.2 Sélecteurs de classe `.`
-
-- **Définition** :
-  - Les sélecteurs de classe ciblent des éléments basés sur l'attribut `class` de l'élément.
-
-- **Exemples** :
-  ```css
-  .important {
-      font-weight: bold;
-  }
-  
-  .highlight {
-      background-color: yellow;
-  }
-  ```
-
-- **Usage** :
-  - Ils sont essentiels lorsque vous souhaitez appliquer un style à un groupe spécifique d'éléments sans affecter d'autres éléments du même type.
-
-## 3.3 Sélecteurs d'ID `#`
-
-- **Définition** :
-  - Les sélecteurs d'ID ciblent un élément spécifique basé sur l'attribut `id` de l'élément. Chaque ID devrait être unique sur une page.
-
-- **Exemples** :
-  ```css
-  #header {
-      background-color: gray;
-  }
-  
-  #footer {
-      font-size: 12px;
-  }
-  ```
-
-- **Usage** :
-  - Idéal pour styliser des éléments uniques, comme une en-tête ou un pied de page. Cependant, leur usage doit être limité car les IDs sont censés être uniques.
-
-## 3.4 Sélecteurs universels `*`
-
-- **Définition** :
-  - Ce sélecteur cible tous les éléments d'une page.
-
-- **Exemples** :
-  ```css
-  * {
-      margin: 0;
-      padding: 0;
-  }
-  ```
-
-- **Usage** :
-  - Utile pour la réinitialisation des styles ou pour appliquer un style général à tous les éléments. Cependant, utilisez-le avec précaution car il peut avoir un impact sur les performances.
-
-## 3.5 Groupe de sélecteurs
-
-- **Définition** :
-  - Si nous souhaitons appliquer les mêmes styles à plusieurs sélecteurs, nous pouvons les regrouper en utilisant une virgule.
-
-- **Exemples** :
-  ```css
-  h1, h2, h3 {
-      font-family: Arial, sans-serif;
-  }
-  ```
-
-- **Usage** :
-  - Cela évite la redondance dans le code et facilite la maintenance, car nous pouvons changer le style pour plusieurs éléments en modifiant une seule règle.
-
-# 4. Combinateurs et sélecteurs avancés
-
-## 4.1 Sélecteurs descendants (espace )
-
-- **Définition** :
-  - Ce sélecteur cible tous les éléments qui sont descendants d'un élément spécifié.
-
-- **Exemples** :
-  ```css
-  article p {
-      color: blue;
-  }
-  ```
-  Cela va cibler tous les paragraphes (`<p>`) qui sont à l'intérieur d'un élément `<article>`, peu importe leur niveau de profondeur.
-
-## 4.2 Sélecteurs d'enfants directs `>`
-
-- **Définition** :
-  - Ce sélecteur cible les éléments qui sont des enfants directs d'un élément spécifié.
-
-- **Exemples** :
-  ```css
-  div > p {
-      font-weight: bold;
-  }
-  ```
-  Cela cible uniquement les paragraphes qui sont des enfants directs d'une `<div>`, et non les paragraphes qui sont plus profondément imbriqués.
-
-## 4.3 Sélecteurs d'adjacence directe `+`
-
-- **Définition** :
-  - Ce sélecteur cible l'élément immédiatement après un certain élément.
-
-- **Exemples** :
-  ```css
-  h2 + p {
-      margin-top: 10px;
-  }
-  ```
-  Cela va ajouter une marge au sommet d'un paragraphe qui vient immédiatement après un titre `<h2>`.
-
-## 4.3 Sélecteurs d'adjacence générale `~`
-
-- **Définition** :
-  - Ce sélecteur cible tous les éléments qui sont après un élément donné et partagent le même parent.
-
-- **Exemples** :
-  ```css
-  h2 ~ p {
-      text-indent: 1em;
-  }
-  ```
-  Cela cible tous les paragraphes qui viennent après un `<h2>` et qui partagent le même parent.
-
-## 4.4 Sélecteurs d'attribut `[attr]`
-
-- **Définition** :
-  - Ce sélecteur cible les éléments basés sur la présence ou la valeur d'un attribut spécifique.
-
-- **Exemples** :
-  ```css
-  input[type="text"] {
-      border-radius: 5px;
-  }
-  ```
-  Cela cible tous les champs input de type "text" et leur donne un bord arrondi.
-
-D'autres variations incluent :
-  ```css
-  a[href^="https://"] {
-      color: green;  /* Cible tous les liens commençant par "https://" */
-  }
-
-  a[href$=".pdf"] {
-      background: url('pdf-icon.png') no-repeat; /* Cible tous les liens se terminant par ".pdf" */
-  }
-
-  a[href*="example"] {
-      text-decoration: underline; /* Cible tous les liens contenant le mot "example" */
-  }
-  ```
-
-# 5. Sélecteurs pseudo-classes et pseudo-éléments
-
-## 5.1 Pseudo-classes
-
-Les pseudo-classes permettent de définir des styles pour des états spécifiques d'un élément ou pour des éléments spécifiques dans une séquence ou une hiérarchie.
-
-- **:hover**
-  - Cible un élément lorsqu'il est survolé par un pointeur (comme une souris).
-  ```css
-  a:hover {
-      color: red;
-  }
-  ```
-
-- **:active**
-  - Cible un élément pendant qu'il est activé (par exemple, lorsqu'un bouton est enfoncé).
-  ```css
-  button:active {
-      background-color: lightgray;
-  }
-  ```
-
-- **:focus**
-  - Cible un élément lorsqu'il a le focus. Très utile pour les éléments interactifs comme les entrées de formulaire.
-  ```css
-  input:focus {
-      border: 2px solid blue;
-  }
-  ```
-
-- **:nth-child**
-  - Cible des éléments spécifiques en fonction de leur position dans une séquence.
-  ```css
-  li:nth-child(odd) {
-      background-color: lightgray;
-  }
-  ```
-
-Il existe de nombreuses autres pseudo-classes, mais celles-ci sont parmi les plus couramment utilisées.
-
-## 5.2 Pseudo-éléments
-
-Les pseudo-éléments permettent de cibler et de styliser une partie spécifique d'un élément.
-
-- **::before**
-  - Utilisé pour insérer du contenu avant le contenu d'un élément.
-  ```css
-  p::before {
-      content: "Important : ";
-      font-weight: bold;
-  }
-  ```
-
-- **::after**
-  - Utilisé pour insérer du contenu après le contenu d'un élément.
-  ```css
-  a::after {
-      content: " →";
-  }
-  ```
-
-## 5.3 Utilisations courantes et cas pratiques
-
-- **Création d'effets de survol** : Utilisation de `:hover` pour changer la couleur de fond d'un bouton ou la couleur du texte d'un lien.
-
-- **Amélioration de l'accessibilité** : Utilisation de `:focus` pour mettre en évidence clairement les éléments de formulaire actifs, aidant ainsi les utilisateurs qui naviguent au clavier.
-
-- **Création de listes stylisées** : Avec `::before`, vous pouvez personnaliser les puces de liste ou ajouter des icônes spécifiques devant certains éléments.
-
-- **Indication de liens externes** : En utilisant `::after` avec une combinaison de sélecteurs d'attributs, vous pouvez ajouter une icône après chaque lien qui pointe vers un site externe.
-
-- **Coloration de lignes de tableau en alternance** : En utilisant `:nth-child`, vous pouvez donner des couleurs différentes aux lignes impaires et paires d'un tableau pour améliorer la lisibilité.
-
-# 6. Les propriétés CSS courantes
-
-Dans cette section, nous allons approfondir certaines des propriétés CSS les plus essentielles et couramment utilisées pour le design web. Ces propriétés sont le fondement de nombreuses maquettes web, alors prenons un moment pour les explorer en détail.
-
-## 6.1 Mise en forme du texte
-
-Le texte est l'élément fondamental de la plupart des sites web. Voici comment nous pouvons le styliser :
-
-- **font-family** : Détermine la police utilisée.
-- **font-size** : Définit la taille de la police.
-- **font-weight** : Contrôle l'épaisseur du texte, comme "normal" ou "bold".
-- **line-height** : Ajuste l'espacement entre les lignes de texte.
-- **text-align** : Oriente le texte (comme "left", "right", "center", ou "justify").
-- **text-decoration** : Ajoute ou supprime des décorations, comme "underline" ou "none".
-
-## 6.2 Couleur et fond
-
-La couleur est vitale pour la conception visuelle d'un site web :
-
-- **color** : Définit la couleur du texte.
-- **background-color** : Détermine la couleur d'arrière-plan d'un élément.
-- **background-image** : Applique une image en tant qu'arrière-plan.
-- **background-position** : Positionne l'image d'arrière-plan.
-- **background-repeat** : Contrôle si et comment une image d'arrière-plan se répète.
-
-## 6.3 Bordures et ombres
-
-Les bordures et les ombres peuvent ajouter de la profondeur et de la distinction :
-
-- **border-style** : Définit le style de la bordure, comme "solid", "dashed" ou "dotted".
-- **border-color** : Détermine la couleur de la bordure.
-- **border-width** : Contrôle l'épaisseur de la bordure.
-- **box-shadow** : Ajoute une ombre à un élément, donnant une sensation de profondeur.
-
-## 6.4 Positionnement
-
-La manière dont les éléments sont positionnés est cruciale pour la mise en page :
-
-- **display** : Détermine comment un élément est affiché, par exemple "block" ou "inline".
-- **position** : Contrôle le type de positionnement d'un élément (comme "static", "relative", "absolute", "fixed" ou "sticky").
-- **top, right, bottom, left** : Définissent la position exacte d'un élément lorsqu'il est positionné de manière autre que "static".
-
-## 6.5 Flexbox et Grid Layout
-
-Ces deux propriétés ont révolutionné la mise en page web :
-
-### 6.5.1  Flexbox
-
-Flexbox, ou "Flexible Box Layout", est une méthode que nous utilisons pour concevoir des structures de mise en page complexes avec une manière plus prévisible, surtout lorsqu'il s'agit de distribuer de l'espace et d'aligner des éléments, même lorsque leurs tailles sont inconnues ou dynamiques.
-
-#### 6.5.1.1 Modèle unidimensionnel
-
-Contrairement à d'autres modèles de mise en page tels que Grid, Flexbox est principalement axé sur la mise en page dans une seule dimension à la fois, soit une colonne ou une rangée. Cela le rend particulièrement adapté pour créer des composants d'interface utilisateur ou de petites mises en page où l'alignement et la distribution d'espace sont essentiels.
-
-#### 6.5.1.2 `display: flex`
-
-Lorsque nous définissons la propriété `display` d'un élément parent à `flex`, cet élément devient un conteneur flex, et tous ses enfants directs deviennent des éléments flexibles. Cela signifie qu'ils vont immédiatement adopter le comportement de flexbox, permettant une variété de manipulations d'alignement et de répartition de l'espace.
-
-#### 6.5.1.3 `justify-content` et `align-items`
-
-Ces deux propriétés sont au cœur de la puissance d'alignement de Flexbox.
-
-- **`justify-content` :** Nous utilisons cette propriété sur le conteneur flex pour aligner ses enfants (les éléments flex) horizontalement. Elle propose plusieurs valeurs telles que :
-  - `flex-start`: aligne les éléments au début du conteneur flex.
-  - `flex-end`: aligne les éléments à la fin.
-  - `center`: centre les éléments.
-  - `space-between`: distribue uniformément l'espace entre les éléments.
-  - `space-around`: distribue l'espace autour des éléments, ce qui signifie que les éléments ont un espace égal avant et après eux.
-
-- **`align-items` :** Cette propriété est similaire à `justify-content`, mais elle aligne les éléments flexibles verticalement. Ses valeurs comprennent :
-  - `flex-start`
-  - `flex-end`
-  - `center`
-  - `baseline`: aligne les éléments sur leur ligne de base.
-  - `stretch`: étire les éléments pour occuper toute la hauteur du conteneur flex (c'est la valeur par défaut).
-
-### 6.5.2 Grid Layout
-
-Le Grid Layout est une technique de mise en page qui nous permet de concevoir des structures bidimensionnelles pour nos sites web et nos applications. Contrairement à Flexbox, qui est principalement unidimensionnel, Grid nous permet de travailler à la fois sur les colonnes et les rangées, ce qui le rend idéal pour créer des mises en page complexes avec des régions distinctes.
-
-#### 6.5.2.1 Modèle bidimensionnel
-
-Avec Grid, nous pouvons définir des colonnes et des rangées et placer des éléments où nous le souhaitons à l'intérieur de ces grilles. Cela nous donne une grande flexibilité pour concevoir des mises en page qui étaient auparavant difficiles ou impossibles avec les méthodes traditionnelles.
-
-#### 6.5.2.2 `display: grid`
-
-En définissant la propriété `display` d'un élément à `grid`, nous le transformons en conteneur de grille. Tous ses enfants directs deviennent des éléments de la grille, ce qui signifie qu'ils peuvent être positionnés spécifiquement à l'intérieur des colonnes et des rangées de la grille.
-
-#### 6.5.2.3 `grid-template-columns` et `grid-template-rows`
-
-Ces propriétés définissent la structure même de notre grille.
-
-- **`grid-template-columns` :** Avec cette propriété, nous définissons le nombre et la taille des colonnes de notre grille. Nous pouvons définir des tailles fixes, relatives ou même des fractions de l'espace disponible.
-  - **Exemple :** `grid-template-columns: 1fr 2fr 1fr;` créera une grille avec trois colonnes. La colonne du milieu sera deux fois plus large que les colonnes sur les côtés.
-
-- **`grid-template-rows` :** De manière similaire, cette propriété nous permet de définir le nombre et la taille des rangées de notre grille.
-  - **Exemple :** `grid-template-rows: 100px auto 100px;` créera une grille avec trois rangées. La première et la dernière auront une hauteur fixe de 100px, tandis que la rangée du milieu prendra tout l'espace restant.
-
-#### 6.5.2.4 Exemple simple
-Voici un exemple simple en **CSS Grid Layout** pour créer **deux colonnes** :
+C'est la solution normale pour une application ou un site :
 
 ```html
-<div class="grid-container">
-  <div class="item">Colonne 1</div>
-  <div class="item">Colonne 2</div>
-</div>
+<link rel="stylesheet" href="/assets/app.css">
 ```
 
-```css
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
-  gap: 20px; /* Espace entre les colonnes */
-  padding: 20px;
-  background-color: #f5f5f5;
-}
+Avantages :
 
-.item {
-  background-color: #ddd;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-```
+- mise en cache ;
+- séparation des responsabilités ;
+- réutilisation ;
+- maintenance facilitée ;
+- politique CSP plus simple que des styles inline massifs.
 
-##### 6.5.2.5 Variante : colonnes de tailles différentes
+L'attribut `type="text/css"` n'est pas nécessaire en HTML moderne.
 
-```css
-.grid-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* La 1re colonne fait 2x la taille de la 2e */
-  gap: 20px;
-}
-```
-#### 6.5.2.6 Variante responsive (1 colonne sur mobile)
+## 2.2 Élément `<style>`
 
-```css
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
+Une feuille embarquée peut être utile pour un document autonome ou du CSS critique limité :
 
-@media (max-width: 700px) {
-  .grid-container {
-    grid-template-columns: 1fr; /* Une seule colonne sur petit écran */
-  }
-}
-```
-
-# 7. Responsive Design avec CSS
-
-## 7. Responsive Design avec CSS
-
-Le design responsive est aujourd'hui une nécessité pour toute présence en ligne. Les utilisateurs accèdent à du contenu à partir d'une multitude d'appareils, du smartphone au desktop en passant par les tablettes. Voyons comment CSS nous aide à gérer cela.
-
-## 7.1 Media Queries : introduction et application
-
-Les media queries sont l'épine dorsale du design responsive. Elles permettent d'appliquer des styles basés sur certaines conditions, telles que la largeur, la hauteur et le type d'appareil.
-
-- **Syntaxe de base**:
-  ```css
-  @media (condition) {
-      /* styles à appliquer */
-  }
-  ```
-- **Exemple pratique**:
-  ```css
-  @media (max-width: 600px) {
-      body {
-          font-size: 14px;
-      }
-  }
-  ```
-  Dans l'exemple ci-dessus, nous définissons que lorsque la largeur de l'écran est inférieure ou égale à 600px, la taille de la police du texte principal sera de 14px.
-
-## 7.2 Techniques pour un design adaptable : mobile-first vs desktop-first
-
-### 7.2.1 Mobile-first
-
-Comme son nom l'indique, cette approche consiste à concevoir d'abord pour les petits écrans, puis à ajuster pour les écrans plus grands avec l'aide de media queries. C'est souvent considéré comme plus efficace car il oblige à concentrer d'abord l'attention sur les fonctionnalités essentielles.
-
-### 7.2.2 Desktop-first
- 
-Ici, nous commençons par concevoir pour les grands écrans. Cependant, cela peut parfois conduire à des solutions plus compliquées lors de la réduction à des écrans plus petits.
-
-Dans les deux cas, le but est de garantir que l'utilisateur ait une expérience optimale, quel que soit l'appareil qu'il utilise.
-
-## 7.3 Frameworks courants : Bootstrap, Foundation, etc.
-
-De nombreux frameworks CSS ont été développés pour faciliter le processus de conception responsive.
-
-### 7.3.1 Bootstrap
-
-Bootstrap est une bibliothèque open-source qui nous fournit un cadre pour le développement web rapide et adaptatif. Depuis son introduction par Twitter en 2011, il a considérablement gagné en popularité et est devenu le framework de référence pour de nombreux développeurs et concepteurs.
-
-### 7.3.1.1 Popularité et adoption
-
-La raison de la popularité massive de Bootstrap réside dans sa simplicité et sa robustesse. Il est conçu pour aider les développeurs de tous niveaux, des débutants aux professionnels, à créer des sites et des applications web adaptatifs avec une cohérence esthétique.
-
-### 7.3.1.2 Design responsive
-
-L'une des caractéristiques phares de Bootstrap est sa capacité intrinsèque à créer des designs qui s'adaptent à toutes les tailles d'écran, des smartphones aux grands moniteurs de bureau. Cela est réalisé grâce à un système de grille fluide qui restructure automatiquement le contenu en fonction de la largeur de l'écran.
-
-### 7.3.1.3 Richesse des composants
-
-Bootstrap fournit une vaste bibliothèque de composants pré-stylisés. Ces composants, allant des boutons, des formulaires, des cartes aux modales, peuvent être facilement intégrés dans n'importe quelle page, réduisant ainsi le temps de développement et garantissant une uniformité du design.
-
-- **Exemple :** L'intégration d'une barre de navigation adaptative est aussi simple que d'ajouter des classes spécifiques à votre élément HTML.
-
-### 7.3.1.4 Personnalisabilité
-
-Bootstrap est flexible. Bien qu'il vienne avec un design par défaut, ce design peut être personnalisé pour correspondre à l'identité de la marque ou aux préférences esthétiques. Que ce soit en modifiant les variables SCSS fournies ou en écrasant les styles par défaut, nous pouvons facilement faire de Bootstrap notre propre outil.
-
-### 7.3.1.5 Communauté et ressources
-
-L'une des grandes forces de Bootstrap est sa communauté dynamique. Grâce à cette communauté, une multitude de thèmes, plugins et extensions sont disponibles. De plus, avec autant d'utilisateurs actifs, obtenir de l'aide ou résoudre des problèmes spécifiques est souvent plus facile et plus rapide.
-
-### 7.3.2 Foundation
-
-Créé par ZURB, une entreprise de design et de développement de produits, Foundation est un autre cadre front-end puissant qui est utilisé pour construire des sites et des applications web réactifs. Alors que Bootstrap peut dominer en termes de popularité, Foundation a ses propres forces qui en font un choix précieux pour de nombreux développeurs.
-
-### 7.3.2.1 Modularité et flexibilité
-
-L'un des principaux avantages de Foundation est sa modularité. Il est conçu pour être extrêmement flexible, permettant aux développeurs de choisir les composants spécifiques qu'ils souhaitent utiliser. Cette approche modulaire signifie que vous pouvez maintenir votre code propre et léger, n'incluant que ce dont vous avez réellement besoin.
-
-### 7.3.2.2 Système de grille
-
-Tout comme Bootstrap, Foundation propose un système de grille adaptatif. Cependant, il se distingue par sa grille "XY" qui offre une plus grande flexibilité pour la création de mises en page. Avec cette grille, la position des éléments à la fois horizontalement et verticalement est simplifiée.
-
-### 7.3.2.3 Composants pré-stylisés
-
-Foundation comprend une riche collection de composants UI, comme les boutons, les formulaires, les modales et les alertes. Bien qu'ils soient pré-stylisés pour un aspect propre et moderne, tout est personnalisable pour s'adapter aux besoins spécifiques d'une marque ou d'un design.
-
-### 7.3.2.4 Personnalisation avec Sass
-
-Foundation utilise Sass, un préprocesseur CSS, pour faciliter la personnalisation. En utilisant les fonctions et variables de Sass, les développeurs peuvent rapidement adapter le framework à leurs besoins esthétiques et fonctionnels.
-
-### 7.3.2.5 Accès à la formation et à la documentation
-
-ZURB offre une vaste documentation et de nombreuses ressources éducatives pour aider les utilisateurs à tirer le meilleur parti de Foundation. La documentation est complète et bien organisée, avec des exemples de code et des démos pour aider à la compréhension.
-
-### 7.3.2.6 Compatibilité
-
-Foundation met l'accent sur la création de sites qui fonctionnent bien sur tous les appareils, y compris les navigateurs obsolètes. Sa compatibilité avec des navigateurs comme Internet Explorer est l'un de ses points forts.
-
-### 7.3.3 Bulma
-
-Bulma est un framework CSS moderne basé sur Flexbox. Comme Bootstrap et Foundation, Bulma offre un ensemble de styles et de composants pour accélérer le développement de sites web réactifs, mais il se distingue par sa simplicité et sa légèreté.
-
-#### 7.3.3.1 Basé sur Flexbox
-
-La principale particularité de Bulma est qu'il est entièrement basé sur le modèle de mise en page Flexbox de CSS. Cela rend la création de mises en page complexes et adaptatives beaucoup plus simple et plus intuitive.
-
-#### 7.3.3.2 Simplicité et lisibilité
-
-L'une des forces de Bulma est sa syntaxe claire et ses classes descriptives. Par exemple, pour créer une colonne qui prend la moitié de l'espace disponible, vous pouvez simplement utiliser la classe `is-half`. Cette approche rend le code facile à écrire et à comprendre.
-
-#### 7.3.3.3 Modularité
-
-Bulma est structuré de manière modulaire, ce qui signifie que vous pouvez inclure uniquement les fichiers Sass dont vous avez besoin. Cela vous permet de garder votre CSS final aussi léger que possible.
-
-#### 7.3.3.4 Personnalisable
-
-Bulma utilise des variables Sass, permettant une personnalisation facile et rapide. Vous pouvez adapter les couleurs, les tailles et d'autres propriétés à vos besoins sans avoir à parcourir et à éditer des lignes et des lignes de code.
-
-#### 7.3.3.5 Documentation solide
-
-Bulma est bien documenté, avec de nombreux exemples et modificateurs pour chaque composant. Ceci est particulièrement utile pour les développeurs qui découvrent le framework pour la première fois.
-
-#### 7.3.3.6 Pas de JavaScript inclus
-
-Contrairement à d'autres frameworks comme Bootstrap, Bulma est strictement un framework CSS. Il ne comprend pas de composants JavaScript, ce qui signifie que vous êtes libre de choisir vos propres solutions JavaScript ou jQuery selon les besoins de votre projet.
-
-Il y a aussi d'autres frameworks comme TailwindCSS, etc. Mais Bootstrap et Foundation sont les plus reconnus.
-
-# 8. Pratiques optimales et outils
-
-Lorsque nous abordons des projets de grande envergure, il est essentiel de suivre certaines pratiques éprouvées et d'utiliser des outils efficaces pour nous assurer que notre CSS reste maintenable, organisé et efficace.
-
-## 8.1 Organisation et architecture CSS : BEM, OOCSS, SMACSS
-
-Le CSS peut rapidement devenir encombré et difficile à gérer si nous n'adoptons pas une structure cohérente. Voici quelques méthodologies populaires pour organiser votre CSS :
-
-- **BEM (Block, Element, Modifier)** : Cette technique divise votre interface en blocs (composants), éléments (parties d'un composant) et modificateurs (variantes d'un composant ou d'un élément). C'est un moyen pratique de garantir que vos classes sont spécifiques et explicites.
-  
-  Exemple :
-  ```css
-  .button { /* Block */
-    ...
-  }
-  .button__icon { /* Element */
-    ...
-  }
-  .button--large { /* Modifier */
-    ...
-  }
-  ```
-
-- **OOCSS (Object-Oriented CSS)** : Cette approche sépare les styles en structures (comme les grilles) et les styles visuels (comme les thèmes), facilitant la réutilisation et le maintien.
-
-- **SMACSS (Scalable and Modular Architecture for CSS)** : Il divise le design en cinq catégories : base, layout, module, state et theme. Cette distinction aide à garder le CSS lisible et structuré.
-
-## 8.2 Préprocesseurs CSS : Sass, Less (introduction)
-
-Les préprocesseurs étendent les capacités du CSS, offrant des fonctionnalités supplémentaires :
-
-- **Sass (Syntactically Awesome Style Sheets)** : C'est un préprocesseur puissant qui ajoute des variables, des fonctions, des boucles et bien plus au CSS. Il dispose de deux syntaxes : la syntaxe SCSS, qui est proche du CSS, et la syntaxe indentée.
-
-- **Less** : Tout comme Sass, Less offre des variables, des fonctions et d'autres fonctionnalités pour améliorer le CSS. Sa syntaxe est assez similaire à celle du CSS.
-
-L'utilisation de ces préprocesseurs peut accélérer le développement et faciliter la maintenance.
-
-## 8.3 Outils de développement : inspecteur de navigateur, plugins, etc.
-
-Les navigateurs modernes offrent des outils puissants pour les développeurs :
-
-- **Inspecteur de navigateur** : C'est un outil intégré qui permet d'examiner et de modifier le HTML et le CSS en temps réel. C'est inestimable pour le débogage et l'apprentissage.
-
-- **Plugins et extensions** : Il existe de nombreux plugins pour les navigateurs, comme "ColorZilla" pour choisir des couleurs ou "CSS Viewer" pour voir rapidement les styles CSS d'un élément.
-
-# 9. Performance et optimisation CSS
-
-À mesure que les sites web et les applications deviennent de plus en plus complexes, les performances deviennent une préoccupation majeure. Un CSS optimisé peut considérablement accélérer le temps de chargement d'un site, améliorant ainsi l'expérience utilisateur et les performances globales.
-
-## 9.1 Minification et compression
-
-La minification est le processus de suppression de tous les caractères non nécessaires d'un fichier sans affecter sa fonctionnalité. Les espaces, les commentaires, les sauts de ligne, tout cela est retiré.
-
-- **Pourquoi minifier ?** En réduisant la taille du fichier, nous accélérons le temps de téléchargement du fichier. C'est un gain rapide et facile en termes de performances.
-
-- **Outils** : Il existe de nombreux outils en ligne pour minifier le CSS, tels que CSSNano, CSS Minifier, entre autres.
-
-La compression, quant à elle, est le processus de codage des informations à l'aide de moins de bits. Gzip est une méthode couramment utilisée pour compresser les fichiers CSS (et d'autres ressources).
-
-## 9.2 Chargement différé et asynchrone des styles
-
-Parfois, tout le CSS n'est pas nécessaire pour afficher la partie visible initiale d'une page. Dans ces cas, nous pouvons :
-
-- **Utiliser le chargement différé** : Cela signifie que certains styles ne sont chargés qu'après que le contenu principal est affiché.
-
-- **Chargement asynchrone** : Cela permet au navigateur de continuer à charger d'autres ressources sans attendre que le CSS soit chargé.
-
-L'utilisation de ces techniques nécessite une planification soignée pour garantir que les utilisateurs voient toujours un site correctement stylisé.
-
-## 9.3 Conseils pour réduire le poids et améliorer le temps de chargement
-
-- **Évitez le CSS inutilisé** : Au fil du temps, notre feuille de style peut accumuler des règles qui ne sont plus utilisées. Des outils comme PurifyCSS ou UnCSS peuvent aider à identifier et à supprimer ces règles.
-
-- **Utilisez des sprites CSS pour les images** : Plutôt que de charger de nombreuses petites images individuellement, combinez-les en une seule image (sprite) et utilisez le CSS pour afficher la partie appropriée.
-
-- **Utiliser les propriétés CSS natives** : Là où c'est possible, utilisez les propriétés CSS plutôt que les images. Par exemple, pour les ombres ou les gradients.
-
-- **Optez pour des librairies CSS modulaires** : Si vous utilisez un framework ou une bibliothèque, choisissez uniquement les composants dont vous avez besoin plutôt que l'ensemble complet.
-
-# 10. Tendances actuelles et avenir de CSS
-
-Le monde du développement web est en constante évolution, et le CSS ne fait pas exception. Chaque année, nous voyons apparaître de nouvelles fonctionnalités, optimisations et méthodes pour améliorer la flexibilité, l'efficacité et la créativité de nos designs web. Voici une vue d'ensemble des tendances actuelles et de l'avenir du CSS.
-
-## 10.1 CSS Variables (custom properties)
-
-Les variables CSS, aussi appelées propriétés personnalisées, représentent une avancée majeure dans la manière dont nous écrivons et structurons nos styles.
-
-- **Qu'est-ce que c'est ?** : Il s'agit de valeurs réutilisables que vous pouvez définir dans une feuille de style. Elles commencent par deux tirets et sont accessibles via la fonction `var()`.
-  ```css
-  :root {
-      --main-bg-color: coral;
-  }
-  
+```html
+<style>
   body {
-      background-color: var(--main-bg-color);
+    font-family: system-ui, sans-serif;
   }
-  ```
+</style>
+```
 
-- **Avantages** : Les variables CSS offrent une plus grande flexibilité, permettant des thèmes dynamiques, une meilleure lisibilité et une maintenance facilitée.
+## 2.3 Attribut `style`
 
-## 10.2 Nouveaux modules et spécifications
+```html
+<p style="color: rebeccapurple">Bonjour</p>
+```
 
-Le développement de CSS ne s'arrête jamais. Le W3C travaille constamment à introduire de nouveaux modules et spécifications pour améliorer la capacité et la flexibilité du langage.
+Il est valide, mais son emploi systématique complique :
 
-- **CSS Grid & Subgrid** : Alors que le CSS Grid a révolutionné la manière dont nous réalisons des mises en page, l'introduction de Subgrid offre encore plus de granularité et de contrôle.
+- la réutilisation ;
+- la cascade ;
+- les thèmes ;
+- les politiques CSP ;
+- la maintenance.
 
-- **Logical Properties & Values** : Cette spécification vise à faciliter la création de designs qui respectent les sens de lecture et d'écriture de différentes langues, offrant une meilleure prise en charge de l'internationalisation.
+On le réserve généralement à des valeurs réellement dynamiques ou à des cas très locaux.
 
-- **Containment** : Il offre un moyen de limiter le calcul du style, du layout ou de la peinture à un élément spécifique et à ses descendants, améliorant potentiellement les performances.
+## 2.4 `@import`
 
-## 10.3 Web animations avec CSS
+```css
+@import url("./tokens.css") layer(tokens);
+```
 
-Les animations en CSS ont fait des bonds impressionnants ces dernières années, rendant possible la création d'effets sophistiqués sans avoir recours à JavaScript.
+`@import` est valide et supporte notamment les layers, les media queries et `supports()`. Pour les ressources critiques, un `<link rel="stylesheet">` reste souvent plus simple à optimiser et à observer.
 
-- **Transitions** : Elles offrent un moyen simple d'interpoler les valeurs CSS sur une durée donnée. Très utile pour les effets de survol ou les changements d'état.
+# 3. Syntaxe, valeurs et fonctions CSS
 
-- **Keyframe Animations** : Pour des animations plus complexes, les keyframes offrent la possibilité de définir une séquence d'étapes pour l'animation.
-  ```css
-  @keyframes slide {
-      from { transform: translateX(0); }
-      to { transform: translateX(100%); }
+## 3.1 Règle de style
+
+```css
+.card {
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+```
+
+- `.card` est le sélecteur ;
+- `padding` et `border-radius` sont des propriétés ;
+- `1rem` et `0.75rem` sont des valeurs.
+
+## 3.2 Commentaires
+
+```css
+/* Commentaire CSS */
+```
+
+CSS ne possède pas de commentaire `//` standard.
+
+## 3.3 At-rules
+
+Les règles commençant par `@` contrôlent une partie du comportement du langage :
+
+```css
+@media (width >= 60rem) { }
+@supports (display: grid) { }
+@layer components { }
+@container card (width > 30rem) { }
+@scope (.article) { }
+@property --angle { }
+@keyframes pulse { }
+```
+
+## 3.4 Fonctions utiles
+
+```css
+width: min(100%, 70rem);
+font-size: clamp(1rem, 2vw + 0.5rem, 2rem);
+margin-inline: max(1rem, env(safe-area-inset-left));
+background: color-mix(in oklch, var(--brand) 80%, white);
+```
+
+Fonctions courantes :
+
+- `calc()` ;
+- `min()` ;
+- `max()` ;
+- `clamp()` ;
+- `var()` ;
+- fonctions de couleur ;
+- fonctions de gradients ;
+- `url()`.
+
+# 4. Cascade, héritage, spécificité et couches
+
+La cascade est le cœur de CSS. Une grande partie des « bugs CSS » vient d'un modèle mental incomplet de la cascade.
+
+## 4.1 Les étapes conceptuelles
+
+Lorsqu'un navigateur doit choisir une valeur, il tient compte notamment :
+
+1. de la pertinence de la règle pour le média/contexte ;
+2. de l'origine et de l'importance ;
+3. des cascade layers ;
+4. de la spécificité ;
+5. de la proximité de portée lorsqu'un scope intervient ;
+6. de l'ordre d'apparition pour départager ce qui reste à égalité.
+
+Il ne faut donc pas réduire CSS à « la dernière règle gagne ».
+
+## 4.2 Héritage
+
+Certaines propriétés sont naturellement héritées :
+
+```css
+body {
+  color: #222;
+  font-family: system-ui, sans-serif;
+}
+```
+
+Les descendants héritent généralement de `color` et `font-family`.
+
+D'autres propriétés, comme `margin` ou `border`, ne sont normalement pas héritées.
+
+Mots-clés globaux :
+
+```css
+color: inherit;
+color: initial;
+color: unset;
+color: revert;
+color: revert-layer;
+```
+
+`revert-layer` est particulièrement utile lorsqu'une architecture utilise `@layer`.
+
+## 4.3 Spécificité
+
+On peut raisonner grossièrement avec trois colonnes :
+
+```text
+ID | classes/attributs/pseudo-classes | éléments/pseudo-éléments
+```
+
+Exemples :
+
+```css
+p {}                    /* 0-0-1 */
+.note {}                /* 0-1-0 */
+article .note {}        /* 0-1-1 */
+#app .note {}           /* 1-1-0 */
+```
+
+Éviter de « gagner » en empilant toujours plus de sélecteurs.
+
+## 4.4 `:where()`, `:is()`, `:not()` et `:has()`
+
+`:where()` est très utile en architecture CSS car sa spécificité est toujours nulle :
+
+```css
+:where(nav, aside, footer) a {
+  color: inherit;
+}
+```
+
+`:is()`, `:not()` et `:has()` prennent en compte la spécificité de leurs arguments les plus spécifiques.
+
+## 4.5 `!important`
+
+`!important` n'est pas une stratégie d'architecture.
+
+Il peut être légitime pour :
+
+- des feuilles utilisateur d'accessibilité ;
+- certaines utilities volontairement prioritaires ;
+- un override très explicite dans une architecture maîtrisée.
+
+Mais l'utiliser pour résoudre chaque conflit produit rapidement une escalade.
+
+## 4.6 Cascade layers avec `@layer`
+
+```css
+@layer reset, tokens, base, components, utilities;
+
+@layer base {
+  a {
+    color: var(--link-color);
   }
-  ```
+}
 
-- **Nouveautés en matière d'animation** : Des propriétés comme `motion-path` permettent des animations plus dynamiques en déplaçant les éléments le long de chemins définis.
+@layer utilities {
+  .text-center {
+    text-align: center;
+  }
+}
+```
+
+Pour les déclarations **normales**, les layers déclarés plus tard ont une priorité supérieure aux layers précédents. Les styles normaux hors layer ont une priorité supérieure aux styles normaux placés dans un layer.
+
+L'ordre est inversé pour les déclarations `!important`, afin de permettre aux couches fondamentales de protéger certaines règles importantes.
+
+Les layers permettent d'organiser la cascade sans créer une guerre de spécificité.
+
+# 5. Sélecteurs modernes
+
+## 5.1 Sélecteurs simples
+
+```css
+article {}        /* type */
+.card {}          /* classe */
+#main {}          /* ID */
+* {}              /* universel */
+[data-state] {}   /* attribut */
+```
+
+Pour le style applicatif, les classes sont généralement plus réutilisables que les IDs.
+
+## 5.2 Sélecteurs d'attribut
+
+```css
+input[type="email"] {}
+a[href^="https://"] {}
+a[href$=".pdf"] {}
+[data-state~="active"] {}
+```
+
+## 5.3 Combinateurs
+
+```css
+article p {}       /* descendant */
+article > p {}     /* enfant direct */
+h2 + p {}          /* frère adjacent */
+h2 ~ p {}          /* frères suivants */
+```
+
+## 5.4 Pseudo-classes d'interaction
+
+```css
+a:hover {}
+a:focus-visible {}
+button:active {}
+input:disabled {}
+input:checked {}
+input:user-invalid {}
+```
+
+Préférer `:focus-visible` pour un focus visuel adapté aux interactions clavier, sans supprimer le focus avec `outline: none` sans alternative.
+
+## 5.5 Sélecteurs structurels
+
+```css
+li:first-child {}
+li:last-child {}
+li:nth-child(2n) {}
+li:nth-child(3n + 1) {}
+```
+
+Avec la syntaxe `of` :
+
+```css
+tr:nth-child(even of :not([hidden])) {
+  background: var(--stripe);
+}
+```
+
+## 5.6 `:is()` et `:where()`
+
+```css
+:is(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+:where(.prose) :where(p, ul, ol) {
+  max-inline-size: 70ch;
+}
+```
+
+## 5.7 `:has()` : sélectionner selon les descendants ou voisins
+
+```css
+.card:has(img) {
+  grid-template-rows: auto 1fr;
+}
+
+label:has(input:checked) {
+  font-weight: 700;
+}
+```
+
+`:has()` est parfois surnommé « sélecteur de parent », mais il est plus général : il teste une condition relationnelle.
+
+## 5.8 Pseudo-éléments
+
+```css
+.badge::before {
+  content: "★";
+}
+
+::selection {
+  background: var(--selection-bg);
+}
+```
+
+Le contenu important ne doit pas dépendre uniquement de `content:` lorsque cela nuit à l'accessibilité ou à la sémantique.
+
+# 6. Modèle de boîte, flux et `display`
+
+## 6.1 Box model
+
+Une boîte CSS comprend :
+
+1. content box ;
+2. padding ;
+3. border ;
+4. margin.
+
+Un reset très courant :
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+Avec `border-box`, les dimensions déclarées incluent padding et border.
+
+## 6.2 Flux normal
+
+Le flux normal reste la base. Avant d'utiliser `position: absolute`, il faut se demander si Flexbox ou Grid ne décrit pas mieux la relation entre les éléments.
+
+## 6.3 `display`
+
+Valeurs fréquentes :
+
+```css
+display: block;
+display: inline;
+display: inline-block;
+display: flex;
+display: grid;
+display: flow-root;
+display: none;
+```
+
+`flow-root` crée notamment un nouveau block formatting context et peut être utile pour contenir des floats ou isoler certains comportements de layout.
+
+## 6.4 Overflow
+
+```css
+.panel {
+  overflow: auto;
+}
+```
+
+Attention aux couples `overflow-x` / `overflow-y`, aux scroll containers créés involontairement et aux effets sur `position: sticky`.
+
+## 6.5 Ratio d'aspect
+
+```css
+.video {
+  aspect-ratio: 16 / 9;
+  inline-size: 100%;
+}
+```
+
+# 7. Dimensions, unités et dimensionnement intrinsèque
+
+## 7.1 Unités absolues et relatives
+
+Unités fréquentes :
+
+- `px` : pixel CSS, pas nécessairement un pixel physique ;
+- `em` : relatif à la taille de police du contexte ;
+- `rem` : relatif à la taille de police racine ;
+- `%` : dépend de la propriété et du containing block ;
+- `ch` : métrique approximative liée au caractère `0` ;
+- `lh` / `rlh` : hauteur de ligne ;
+- `vw` / `vh` : viewport historique ;
+- `svh`, `lvh`, `dvh` : variantes utiles sur mobile ;
+- `cqw`, `cqh`, `cqi`, `cqb` : unités relatives à un query container.
+
+## 7.2 Tailles intrinsèques
+
+```css
+width: min-content;
+width: max-content;
+width: fit-content;
+```
+
+Grid exploite particulièrement les tailles intrinsèques.
+
+## 7.3 `min()`, `max()` et `clamp()`
+
+```css
+.wrapper {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+```
+
+Le responsive moderne peut souvent être fluide avant même d'ajouter une media query.
+
+# 8. Typographie
+
+## 8.1 Font stack système
+
+```css
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+```
+
+## 8.2 Web fonts
+
+```css
+@font-face {
+  font-family: "InterLocal";
+  src: url("/fonts/inter.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+```
+
+Préférer WOFF2, limiter les variantes et mesurer l'impact sur LCP/CLS.
+
+## 8.3 Longueur de ligne
+
+```css
+.prose {
+  max-inline-size: 70ch;
+}
+```
+
+La lisibilité ne dépend pas seulement de la taille de police : largeur de colonne, hauteur de ligne, contraste et espacement jouent aussi.
+
+## 8.4 `text-wrap`
+
+```css
+h1,
+h2 {
+  text-wrap: balance;
+}
+
+.article p {
+  text-wrap: pretty;
+}
+```
+
+`balance` est adapté aux titres courts. `pretty` peut améliorer les paragraphes, avec un coût de calcul supérieur : il faut mesurer avant de l'appliquer partout.
+
+## 8.5 Césure et débordement
+
+```css
+.prose {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+```
+
+La césure dépend notamment de la langue déclarée en HTML :
+
+```html
+<html lang="fr">
+```
+
+# 9. Couleurs modernes et thèmes
+
+## 9.1 Syntaxes modernes
+
+```css
+color: rgb(20 30 40 / 0.8);
+color: hsl(210 50% 30%);
+color: oklch(65% 0.18 250);
+```
+
+`oklch()` est particulièrement utile pour construire des palettes dont les variations de luminosité sont plus proches de la perception humaine.
+
+## 9.2 `currentColor`
+
+```css
+.icon {
+  color: var(--accent);
+  border: 1px solid currentColor;
+  fill: currentColor;
+}
+```
+
+## 9.3 `color-mix()`
+
+```css
+.button {
+  --bg: oklch(62% 0.2 250);
+  background: var(--bg);
+}
+
+.button:hover {
+  background: color-mix(in oklch, var(--bg) 85%, black);
+}
+```
+
+## 9.4 Couleurs relatives
+
+```css
+.card {
+  --base: oklch(68% 0.16 250);
+  --lighter: oklch(from var(--base) calc(l + 0.12) c h);
+}
+```
+
+## 9.5 Thème clair/sombre avec `light-dark()`
+
+```css
+:root {
+  color-scheme: light dark;
+  --surface: light-dark(white, #151515);
+  --text: light-dark(#171717, #f5f5f5);
+}
+
+body {
+  background: var(--surface);
+  color: var(--text);
+}
+```
+
+Cela réduit certains media queries `prefers-color-scheme` simples.
+
+## 9.6 `contrast-color()`
+
+Fonction devenue Baseline Newly available en 2026 :
+
+```css
+.badge {
+  --bg: oklch(60% 0.2 250);
+  background: var(--bg);
+  color: contrast-color(var(--bg));
+}
+```
+
+En 2026, il faut malgré tout tester le contraste réel de la charte : l'accessibilité ne se résume pas à une fonction automatique.
+
+# 10. Arrière-plans, bordures, ombres, masques et filtres
+
+## 10.1 Backgrounds multiples
+
+```css
+.hero {
+  background:
+    linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0.45)),
+    url("hero.avif") center / cover no-repeat;
+}
+```
+
+## 10.2 Bordures et radius
+
+```css
+.card {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 1rem;
+}
+```
+
+## 10.3 Ombres
+
+```css
+.card {
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 0.12);
+}
+```
+
+Utiliser les ombres avec parcimonie : beaucoup de grandes ombres floutées peuvent augmenter le coût de rendu.
+
+## 10.4 Filtres et masques
+
+```css
+.logo {
+  filter: grayscale(1);
+}
+```
+
+```css
+.icon {
+  mask: url("icon.svg") center / contain no-repeat;
+  background: currentColor;
+}
+```
+
+# 11. Propriétés logiques et internationalisation
+
+Au lieu de penser uniquement gauche/droite, CSS moderne peut raisonner selon l'axe de lecture.
+
+```css
+.card {
+  margin-inline: auto;
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-inline-start: 0.25rem solid var(--accent);
+}
+```
+
+Correspondances fréquentes :
+
+| Physique | Logique |
+|---|---|
+| `width` | `inline-size` |
+| `height` | `block-size` |
+| `margin-left/right` | `margin-inline-*` |
+| `margin-top/bottom` | `margin-block-*` |
+| `left/right` | `inset-inline-*` |
+
+Avec `writing-mode` et `direction`, une interface peut mieux supporter les écritures RTL ou verticales.
+
+# 12. Flexbox
+
+Flexbox est un modèle principalement **unidimensionnel** : une ligne ou une colonne à la fois.
+
+## 12.1 Conteneur flex
+
+```css
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+```
+
+## 12.2 Axes
+
+- main axis : contrôlé principalement par `justify-content` ;
+- cross axis : contrôlé principalement par `align-items`.
+
+L'orientation dépend de `flex-direction`.
+
+## 12.3 Taille des items
+
+```css
+.sidebar {
+  flex: 0 0 18rem;
+}
+
+.content {
+  flex: 1 1 40rem;
+  min-width: 0;
+}
+```
+
+Le `min-width: 0` est un correctif fréquent lorsque du contenu empêche un item flex de rétrécir.
+
+## 12.4 Wrapping
+
+```css
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+```
+
+## 12.5 Quand choisir Flexbox ?
+
+Bon cas :
+
+- barre d'actions ;
+- navigation ;
+- alignement d'éléments sur un axe ;
+- listes de badges ;
+- distribution de boutons.
+
+Pour une mise en page bidimensionnelle explicite, Grid est souvent meilleur.
+
+# 13. Grid et Subgrid
+
+## 13.1 Grille de base
+
+```css
+.layout {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  gap: 2rem;
+}
+```
+
+## 13.2 Grille responsive sans media query
+
+```css
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+}
+```
+
+## 13.3 Zones nommées
+
+```css
+.page {
+  display: grid;
+  grid-template:
+    "header header" auto
+    "nav    main" 1fr
+    "footer footer" auto
+    / 16rem 1fr;
+}
+```
+
+## 13.4 `minmax()`, `auto-fit` et `auto-fill`
+
+- `minmax()` borne une piste ;
+- `auto-fit` replie généralement les pistes vides ;
+- `auto-fill` conserve le calcul des pistes possibles.
+
+## 13.5 Subgrid
+
+`subgrid` est largement disponible depuis 2023 et résout un problème classique : aligner des descendants sur les pistes du parent.
+
+```css
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+}
+```
+
+Les titres, contenus et pieds de cartes peuvent alors rester alignés entre cartes.
+
+# 14. Positionnement, z-index et contextes d'empilement
+
+## 14.1 Modes de positionnement
+
+```css
+position: static;
+position: relative;
+position: absolute;
+position: fixed;
+position: sticky;
+```
+
+## 14.2 Sticky
+
+```css
+.sidebar {
+  position: sticky;
+  top: 1rem;
+}
+```
+
+`sticky` dépend du scroll container et peut sembler « cassé » lorsqu'un ancêtre possède un overflow inattendu.
+
+## 14.3 `z-index` et stacking context
+
+Un grand `z-index` ne peut pas toujours sortir d'un contexte d'empilement parent.
+
+Des propriétés comme certaines valeurs de :
+
+- `position` + `z-index` ;
+- `opacity` ;
+- `transform` ;
+- `filter` ;
+- `isolation` ;
+- `contain` ;
+
+peuvent créer un stacking context.
+
+Avant d'écrire `z-index: 999999`, inspecter la hiérarchie des contextes.
+
+# 15. CSS Anchor Positioning
+
+Le positionnement par ancre permet d'attacher visuellement un élément positionné à un autre sans calculer sa géométrie en JavaScript. Les briques principales sont devenues Baseline Newly available en 2026.
+
+## 15.1 Déclarer une ancre
+
+```css
+.trigger {
+  anchor-name: --trigger;
+}
+```
+
+## 15.2 Associer un élément positionné
+
+```css
+.tooltip {
+  position: absolute;
+  position-anchor: --trigger;
+  top: anchor(bottom);
+  left: anchor(center);
+  translate: -50% 0.5rem;
+}
+```
+
+## 15.3 `position-area`
+
+```css
+.popover {
+  position: absolute;
+  position-anchor: --trigger;
+  position-area: block-end center;
+}
+```
+
+## 15.4 Taille relative à l'ancre
+
+```css
+.dropdown {
+  min-inline-size: anchor-size(width);
+}
+```
+
+## 15.5 Progressive enhancement
+
+Pour des publics comprenant des navigateurs anciens, garder un fallback raisonnable et vérifier le support :
+
+```css
+@supports (anchor-name: --a) {
+  /* amélioration moderne */
+}
+```
+
+# 16. Responsive design et media queries
+
+## 16.1 Mobile first
+
+```css
+.layout {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (width >= 48rem) {
+  .layout {
+    grid-template-columns: 16rem 1fr;
+  }
+}
+```
+
+La syntaxe de comparaison rend les breakpoints plus lisibles que certains anciens `min-width`/`max-width` imbriqués.
+
+## 16.2 Breakpoints pilotés par le contenu
+
+Ne choisir pas un breakpoint parce qu'un téléphone particulier fait 390 px. Choisir le moment où **la mise en page cesse de fonctionner correctement**.
+
+## 16.3 Préférences utilisateur
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+  }
+}
+```
+
+Autres media features utiles selon le besoin :
+
+- `prefers-color-scheme` ;
+- `prefers-contrast` ;
+- `forced-colors` ;
+- `pointer` / `any-pointer` ;
+- `hover` / `any-hover` ;
+- `orientation`.
+
+Ne jamais supposer qu'un petit écran implique forcément un écran tactile.
+
+## 16.4 Impression
+
+```css
+@media print {
+  nav,
+  .no-print {
+    display: none;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+}
+```
+
+# 17. Container queries
+
+Les media queries répondent au viewport. Les container queries répondent au **composant qui contient l'élément**.
+
+## 17.1 Query container
+
+```css
+.card-list {
+  container-type: inline-size;
+  container-name: cards;
+}
+```
+
+## 17.2 Query sur la taille
+
+```css
+@container cards (width >= 36rem) {
+  .card {
+    grid-template-columns: 10rem 1fr;
+  }
+}
+```
+
+Le composant devient réutilisable dans une sidebar comme dans le contenu principal.
+
+## 17.3 Unités de container
+
+```css
+.card-title {
+  font-size: clamp(1rem, 4cqi, 2rem);
+}
+```
+
+## 17.4 Style queries
+
+En 2026, les style queries permettent notamment de réagir à une custom property portée par le container :
+
+```css
+.theme-region {
+  --density: compact;
+}
+
+@container style(--density: compact) {
+  .item {
+    padding-block: 0.25rem;
+  }
+}
+```
+
+Les spécifications prévoient plus de possibilités, mais les implémentations courantes doivent être vérifiées : les custom properties constituent le cas portable principal actuel.
+
+# 18. Nesting CSS natif
+
+Le nesting natif est largement disponible et réduit le besoin de Sass pour ce cas précis.
+
+```css
+.card {
+  padding: 1rem;
+
+  & h2 {
+    margin-block-start: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.12);
+  }
+
+  @media (width >= 50rem) {
+    padding: 1.5rem;
+  }
+}
+```
+
+## 18.1 Le rôle de `&`
+
+`&` représente le sélecteur parent du contexte imbriqué.
+
+```css
+.button {
+  .toolbar & {
+    flex: none;
+  }
+}
+```
+
+Nesting ne signifie pas qu'il faut reproduire la profondeur du DOM. Des sélecteurs trop imbriqués restent difficiles à maintenir.
+
+# 19. `@scope` et isolation des composants
+
+`@scope` est devenu Baseline Newly available en mars 2026.
+
+## 19.1 Scope simple
+
+```css
+@scope (.article) {
+  h2 {
+    color: var(--heading-color);
+  }
+}
+```
+
+La règle cible les `h2` situés dans le sous-arbre `.article` sans exiger un sélecteur `.article h2` partout.
+
+## 19.2 Limite de scope
+
+```css
+@scope (.article) to (.comments) {
+  a {
+    text-decoration-thickness: 0.12em;
+  }
+}
+```
+
+La zone `.comments` peut être exclue du scope.
+
+## 19.3 Pourquoi c'est utile ?
+
+- styles de composants ;
+- réduction de la spécificité ;
+- réduction du couplage à la structure DOM ;
+- intégration de contenu tiers ;
+- migration progressive de vieilles feuilles de style.
+
+`@scope`, Shadow DOM et CSS Modules ne répondent pas exactement au même besoin : ils peuvent être complémentaires.
+
+# 20. Custom properties, design tokens et `@property`
+
+## 20.1 Custom properties
+
+```css
+:root {
+  --color-brand: oklch(62% 0.18 255);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --radius-md: 0.75rem;
+}
+
+.button {
+  background: var(--color-brand);
+  border-radius: var(--radius-md);
+}
+```
+
+Les custom properties participent à la cascade et héritent par défaut.
+
+## 20.2 Fallback
+
+```css
+color: var(--component-color, var(--color-text, black));
+```
+
+## 20.3 Tokens sémantiques
+
+Préférer :
+
+```css
+--color-surface-danger
+--color-text-muted
+```
+
+à des tokens exclusivement liés à une valeur :
+
+```css
+--red-500
+```
+
+Les deux niveaux peuvent coexister : primitives puis tokens sémantiques.
+
+## 20.4 `@property`
+
+`@property` permet de typer une custom property, définir son héritage et sa valeur initiale :
+
+```css
+@property --progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+```
+
+On peut alors l'animer de façon typée :
+
+```css
+.meter {
+  --progress: 0;
+  transition: --progress 400ms ease;
+}
+```
+
+# 21. Formulaires et composants d'interface
+
+## 21.1 Ne pas supprimer les comportements natifs sans raison
+
+Les contrôles HTML fournissent :
+
+- focus ;
+- clavier ;
+- états disabled/checked ;
+- intégration avec les technologies d'assistance.
+
+Un `<button>` stylé est presque toujours préférable à un `<div role="button">` recréé manuellement.
+
+## 21.2 `accent-color`
+
+```css
+:root {
+  accent-color: var(--brand);
+}
+```
+
+## 21.3 `appearance`
+
+```css
+select.custom {
+  appearance: none;
+}
+```
+
+À utiliser avec prudence : supprimer l'apparence native oblige à reconstruire certains indices visuels.
+
+## 21.4 `field-sizing`
+
+Devenu Baseline Newly available en 2026 :
+
+```css
+textarea.auto-grow {
+  field-sizing: content;
+  min-block-size: 4lh;
+  max-block-size: 12lh;
+}
+```
+
+Cela permet à certains champs de s'ajuster à leur contenu sans JavaScript.
+
+## 21.5 États utiles
+
+```css
+input:user-invalid {
+  border-color: var(--danger);
+}
+
+input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+```
+
+# 22. Transitions, transformations et animations
+
+## 22.1 Transition
+
+```css
+.button {
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+```
+
+Éviter `transition: all` par défaut : on risque d'animer des propriétés non prévues et coûteuses.
+
+## 22.2 Transformations
+
+```css
+transform: translateX(1rem) rotate(2deg) scale(1.02);
+```
+
+Les transformations n'affectent généralement pas le layout des autres éléments.
+
+## 22.3 Keyframes
+
+```css
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+```
+
+## 22.4 Respecter `prefers-reduced-motion`
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .status {
+    animation: none;
+  }
+}
+```
+
+Une animation n'est pas seulement décorative : elle peut provoquer inconfort ou nausées chez certains utilisateurs.
+
+# 23. Animations pilotées par le défilement
+
+Le module Scroll-driven Animations permet de relier la progression d'une animation au scroll, sans listener JavaScript exécuté à chaque événement.
+
+## 23.1 Progression globale
+
+```css
+.progress {
+  transform-origin: left;
+  animation: grow linear;
+  animation-timeline: scroll();
+}
+
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+```
+
+## 23.2 View timeline
+
+```css
+.reveal {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 35%;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+```
+
+## 23.3 Prudence
+
+- vérifier la compatibilité du public cible ;
+- fournir un rendu lisible sans animation ;
+- respecter `prefers-reduced-motion` ;
+- ne pas attacher une information indispensable uniquement à un effet de scroll.
+
+# 24. View Transitions
+
+Les View Transitions de même document sont Baseline Newly available depuis 2025.
+
+## 24.1 Côté CSS
+
+```css
+.card-image {
+  view-transition-name: selected-image;
+}
+
+::view-transition-old(selected-image),
+::view-transition-new(selected-image) {
+  animation-duration: 250ms;
+}
+```
+
+## 24.2 Déclenchement côté JavaScript
+
+```js
+document.startViewTransition(() => {
+  updateDOM();
+});
+```
+
+CSS contrôle ensuite une grande partie de la présentation de la transition.
+
+## 24.3 Cross-document
+
+Les transitions entre documents peuvent également être activées dans des scénarios compatibles. Il faut vérifier support, navigation et stratégie de fallback.
+
+# 25. Accessibilité et préférences utilisateur
+
+## 25.1 Focus visible
+
+Ne pas faire :
+
+```css
+button:focus {
+  outline: none;
+}
+```
+
+sans alternative.
+
+Faire par exemple :
+
+```css
+:focus-visible {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
+}
+```
+
+## 25.2 Contraste
+
+Vérifier le contraste avec les critères WCAG applicables. Une jolie palette OKLCH n'est pas automatiquement accessible.
+
+## 25.3 Zoom et reflow
+
+Éviter les hauteurs fixes pour de longs contenus et les interfaces qui cassent lorsque :
+
+- le texte est zoomé ;
+- la taille de police utilisateur augmente ;
+- la fenêtre devient étroite.
+
+## 25.4 Mouvement
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}
+```
+
+## 25.5 Forced colors
+
+```css
+@media (forced-colors: active) {
+  .status-dot {
+    forced-color-adjust: auto;
+  }
+}
+```
+
+Tester réellement sous mode contraste élevé plutôt que désactiver systématiquement les couleurs forcées.
+
+## 25.6 Le CSS ne répare pas une mauvaise sémantique HTML
+
+Un `<div>` visuellement transformé en titre n'est pas un `<h2>`. Revenir au cours [[HTML]] lorsqu'un problème relève d'abord de la structure du document.
+
+# 26. Architecture CSS et maintenabilité
+
+## 26.1 Objectifs
+
+Une architecture CSS saine cherche à réduire :
+
+- la spécificité inutile ;
+- les dépendances au DOM ;
+- les overrides implicites ;
+- les effets de bord ;
+- la duplication.
+
+## 26.2 Exemple avec cascade layers
+
+```css
+@layer reset, tokens, base, objects, components, utilities, overrides;
+```
+
+Chaque projet n'a pas besoin de sept layers. L'important est que l'ordre soit explicite.
+
+## 26.3 BEM
+
+```html
+<article class="card card--featured">
+  <h2 class="card__title">Titre</h2>
+</article>
+```
+
+BEM reste utile lorsque le projet a besoin d'une convention de nommage explicite.
+
+## 26.4 OOCSS et SMACSS
+
+Ces méthodes restent intéressantes historiquement et conceptuellement :
+
+- séparer structure et apparence ;
+- identifier les catégories de règles ;
+- limiter le couplage.
+
+Mais `@layer`, `@scope`, nesting, custom properties et les outils de composants permettent aujourd'hui des architectures plus simples dans de nombreux projets.
+
+## 26.5 CSS Modules et styles de composants
+
+Dans certains frameworks/build systems :
+
+```css
+/* Button.module.css */
+.root { }
+.icon { }
+```
+
+Le build transforme les classes pour éviter les collisions. Ceci est un mécanisme d'outil, différent de `@scope` natif.
+
+## 26.6 Design tokens
+
+Séparer :
+
+```text
+valeurs primitives
+    ↓
+tokens sémantiques
+    ↓
+tokens de composants
+```
+
+Exemple :
+
+```css
+:root {
+  --blue-600: oklch(55% 0.18 250);
+  --color-action: var(--blue-600);
+  --button-primary-bg: var(--color-action);
+}
+```
+
+# 27. Sass, PostCSS, frameworks et CSS natif
+
+## 27.1 Sass
+
+Sass reste utile pour :
+
+- génération de code ;
+- mixins ;
+- fonctions de build ;
+- boucles ;
+- compatibilité avec des codebases existantes.
+
+Mais plusieurs anciens motifs Sass ont aujourd'hui des équivalents natifs :
+
+| Besoin historique | CSS moderne |
+|---|---|
+| variables simples | custom properties |
+| nesting | nesting natif |
+| thèmes runtime | custom properties + `light-dark()` |
+| calculs | `calc()`, `min()`, `max()`, `clamp()` |
+| isolation partielle | `@scope`, layers, modules outillés |
+
+Une custom property diffère d'une variable Sass : elle existe **au runtime** et participe à la cascade.
+
+## 27.2 PostCSS
+
+PostCSS est une plateforme de transformation CSS. Selon les plugins, il peut :
+
+- autoprefixer ;
+- transformer certaines syntaxes ;
+- lint/optimiser ;
+- générer des variantes.
+
+Ne pas ajouter une chaîne de build complexe sans bénéfice mesuré.
+
+## 27.3 Frameworks
+
+Exemples de stratégies :
+
+- Bootstrap : composants et système de design préconçus ;
+- Tailwind CSS : approche utility-first ;
+- design system interne : composants/tokens propres au produit.
+
+Le bon choix dépend de l'équipe, de la durée de vie du produit, de la personnalisation et de la gouvernance du design.
+
+# 28. Performance et pipeline de rendu
+
+## 28.1 Ce que fait grossièrement le navigateur
+
+```text
+HTML → DOM
+CSS  → CSSOM
+      ↓
+ style calculation
+      ↓
+ layout
+      ↓
+ paint
+      ↓
+ compositing
+```
+
+Une modification CSS peut déclencher différentes portions de cette chaîne selon la propriété et le contexte.
+
+## 28.2 Réduire le CSS inutile
+
+- supprimer les règles mortes ;
+- découper par routes/composants si le build le permet ;
+- éviter les frameworks entiers pour quelques classes ;
+- compresser les réponses HTTP ;
+- minifier en production.
+
+## 28.3 `contain`
+
+```css
+.widget {
+  contain: layout paint;
+}
+```
+
+`contain` déclare qu'une partie du rendu peut être isolée. Il faut choisir les valeurs selon la sémantique réelle du composant.
+
+## 28.4 `content-visibility`
+
+```css
+.article-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+```
+
+Cela peut économiser du travail pour du contenu hors écran. Tester l'accessibilité, la recherche dans la page et le comportement de layout sur les navigateurs ciblés.
+
+## 28.5 `will-change`
+
+```css
+.dragging {
+  will-change: transform;
+}
+```
+
+`will-change` est un **hint coûteux**, pas une propriété à mettre sur tous les éléments. L'utiliser juste avant un changement prévisible et la retirer lorsque possible.
+
+## 28.6 CSS critique
+
+Éviter les recettes anciennes de « chargement async du CSS » qui produisent du FOUC ou compliquent la priorité réseau. Commencer par :
+
+- une feuille externe cacheable ;
+- compression ;
+- suppression du CSS inutile ;
+- découpage raisonné ;
+- mesure avec les DevTools et les Core Web Vitals.
+
+# 29. Compatibilité, Baseline et progressive enhancement
+
+## 29.1 Stratégie
+
+1. définir les navigateurs/versions réellement supportés ;
+2. consulter Baseline et les tables de compatibilité ;
+3. construire un fallback utilisable ;
+4. ajouter les améliorations modernes ;
+5. tester.
+
+## 29.2 `@supports`
+
+```css
+.card {
+  display: block;
+}
+
+@supports (display: grid) {
+  .card {
+    display: grid;
+  }
+}
+```
+
+## 29.3 Exemple `@scope` avec fallback naturel
+
+```css
+/* Fallback compris par les navigateurs anciens. */
+.component h2 {
+  color: var(--title);
+}
+
+/* Un navigateur qui ne connaît pas @scope ignore ce bloc. */
+@scope (.component) {
+  h2 {
+    color: var(--title);
+  }
+}
+```
+
+Une règle `@supports` ne permet pas de tester directement la prise en charge d'une at-rule inconnue. Ici, le comportement d'erreur de CSS fournit naturellement le fallback : un navigateur ancien ignore le bloc `@scope` et conserve la règle classique. Le fallback n'a pas besoin d'être visuellement identique : il doit rester fonctionnel et lisible.
+
+## 29.4 Baseline 2026 : quelques exemples à connaître
+
+Parmi les fonctionnalités devenues Newly available en 2026 figurent notamment :
+
+- `@scope` ;
+- plusieurs briques de CSS Anchor Positioning ;
+- `field-sizing` ;
+- container style queries ;
+- `contrast-color()`.
+
+Ce statut signifie « utilisable dans les versions récentes des principaux moteurs », pas « compatible avec tous les navigateurs historiques encore en circulation ».
+
+# 30. Sécurité CSS
+
+CSS semble moins risqué que JavaScript, mais une feuille de style non fiable ne doit pas être considérée comme inoffensive.
+
+## 30.1 CSS arbitraire
+
+Une feuille CSS peut notamment :
+
+- masquer ou déplacer des informations ;
+- superposer des éléments ;
+- déclencher le chargement de ressources avec certaines propriétés `url()` ;
+- tromper visuellement l'utilisateur ;
+- augmenter fortement le coût de rendu.
+
+Ne pas injecter directement du CSS fourni par un utilisateur non fiable dans une page privilégiée.
+
+## 30.2 Custom properties issues de données
+
+Préférer des valeurs validées :
+
+```html
+<div style="--progress: 42%"></div>
+```
+
+si `42%` a été borné/validé côté application, plutôt que concaténer une chaîne CSS arbitraire.
+
+## 30.3 Content Security Policy
+
+Une CSP peut contrôler les sources de styles via `style-src`. Les styles inline peuvent nécessiter nonce/hash ou des politiques moins strictes selon l'architecture.
+
+Voir également [[Sécurité avancée sous Linux]], [[HTML]] et [[HTTP]] pour la défense en profondeur autour de l'application.
+
+# 31. Outils de développement, lint et tests
+
+## 31.1 DevTools
+
+Savoir utiliser :
+
+- panneau Styles ;
+- règle barrée et provenance ;
+- computed styles ;
+- visualiseur box model ;
+- Flexbox/Grid overlays ;
+- simulation responsive ;
+- media features ;
+- performance ;
+- accessibility tree.
+
+## 31.2 Diagnostiquer une règle qui ne s'applique pas
+
+Questions dans l'ordre :
+
+1. le sélecteur matche-t-il ?
+2. la déclaration est-elle valide ?
+3. une autre origine/layer gagne-t-elle ?
+4. la spécificité est-elle supérieure ailleurs ?
+5. un `!important` intervient-il ?
+6. la propriété est-elle héritée ?
+7. la propriété a-t-elle un effet dans ce contexte de layout ?
+8. un parent crée-t-il un contexte particulier ?
+
+## 31.3 Stylelint
+
+Exemple de dépendance :
+
+```bash
+npm install --save-dev stylelint stylelint-config-standard
+```
+
+Un lint permet de rendre les erreurs et conventions répétables en CI.
+
+## 31.4 Formatage
+
+Prettier peut formater CSS/SCSS. Le formatage automatique réduit les discussions de style sans intérêt architectural.
+
+## 31.5 Tests visuels
+
+Pour un design system, compléter les tests unitaires/DOM par :
+
+- screenshots de référence ;
+- tests multi-viewports ;
+- tests thème clair/sombre ;
+- tests zoom ;
+- tests reduced motion ;
+- tests forced colors lorsque pertinents.
+
+# 32. Travaux pratiques
+
+## TP 1 — Cascade et spécificité
+
+Créer un document contenant :
+
+- styles navigateur ;
+- feuille externe ;
+- deux classes ;
+- un ID ;
+- un style inline ;
+- une règle `!important`.
+
+Expliquer pour chaque propriété pourquoi une valeur gagne. Remplacer ensuite les hacks de spécificité par une architecture avec `@layer`.
+
+## TP 2 — Carte accessible
+
+Construire une carte d'article avec :
+
+- HTML sémantique ;
+- image responsive ;
+- focus visible ;
+- texte qui reste lisible à 200 % de zoom ;
+- thème clair/sombre.
+
+Interdiction d'utiliser un framework.
+
+## TP 3 — Flexbox
+
+Créer :
+
+- une barre de navigation ;
+- une toolbar qui wrappe ;
+- une disposition sidebar/contenu simple.
+
+Expliquer pourquoi Flexbox est adapté à chacun des deux premiers cas et discuter le troisième.
+
+## TP 4 — Grid et Subgrid
+
+Créer six cartes dont :
+
+- le titre ;
+- le corps ;
+- le bouton final
+
+s'alignent horizontalement entre cartes grâce à Grid/Subgrid.
+
+## TP 5 — Responsive sans breakpoints arbitraires
+
+Construire une grille avec :
+
+```css
+grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+```
+
+Puis n'ajouter une media query que lorsqu'un problème de contenu concret le justifie.
+
+## TP 6 — Container query
+
+Créer un composant `ProfileCard` utilisable :
+
+- dans une sidebar de 18rem ;
+- dans un contenu principal de 50rem ;
+- dans une grille.
+
+Le composant doit modifier sa disposition d'après **sa propre largeur**, pas celle du viewport.
+
+## TP 7 — CSS nesting et `@scope`
+
+Partir d'une feuille avec des sélecteurs :
+
+```css
+.dashboard .panel .header .button { }
+```
+
+La refactorer avec :
+
+- classes plus simples ;
+- nesting raisonnable ;
+- `@scope` ;
+- `:where()` lorsque pertinent.
+
+Mesurer la réduction de spécificité.
+
+## TP 8 — Design tokens et thèmes
+
+Créer :
+
+- palette primitive en OKLCH ;
+- tokens sémantiques ;
+- tokens de composants ;
+- thème clair/sombre avec `light-dark()` ;
+- focus visible indépendant des couleurs de marque.
+
+## TP 9 — Animation accessible
+
+Créer une animation de carte :
+
+- transform/opacity uniquement lorsque possible ;
+- fallback sans mouvement ;
+- désactivation/adaptation avec `prefers-reduced-motion`.
+
+## TP 10 — Scroll-driven animation
+
+Créer une barre de progression de lecture pilotée par `animation-timeline: scroll()`.
+
+Le contenu doit rester parfaitement utilisable si la fonctionnalité n'est pas supportée.
+
+## TP 11 — Anchor Positioning
+
+Créer un tooltip ou menu associé à un bouton avec :
+
+- `anchor-name` ;
+- `position-anchor` ;
+- `anchor()` ou `position-area` ;
+- fallback simple.
+
+Comparer avec une implémentation JavaScript classique et expliquer ce que CSS ne gère pas à lui seul (état, événements, accessibilité du comportement).
+
+## TP 12 — Audit d'une feuille existante
+
+Sur une vraie feuille CSS :
+
+1. trouver les IDs utilisés uniquement pour la spécificité ;
+2. trouver les `!important` ;
+3. trouver les couleurs répétées ;
+4. trouver les unités physiques gauche/droite qui peuvent devenir logiques ;
+5. identifier les media queries dépendantes du viewport qui devraient être des container queries ;
+6. repérer les animations incompatibles avec reduced motion ;
+7. repérer le CSS mort ;
+8. proposer une architecture `@layer`.
+
+# 33. Projet final
+
+Construire l'interface responsive d'une petite application de gestion de projets.
+
+## 33.1 Fonctionnalités
+
+L'application contient :
+
+- header ;
+- navigation ;
+- liste de projets ;
+- cartes ;
+- formulaire ;
+- dialogue ou popover natif côté HTML lorsque pertinent ;
+- tableau ;
+- notifications ;
+- thème clair/sombre.
+
+## 33.2 Contraintes CSS
+
+Utiliser obligatoirement :
+
+- `@layer` ;
+- custom properties ;
+- au moins une grille ;
+- Flexbox ;
+- `subgrid` lorsque pertinent ;
+- au moins une container query ;
+- nesting natif ;
+- `@scope` pour au moins un composant ;
+- propriétés logiques ;
+- `clamp()` ;
+- focus visible ;
+- `prefers-reduced-motion` ;
+- progressive enhancement pour au moins une fonctionnalité 2026.
+
+## 33.3 Architecture proposée
+
+```css
+@layer reset, tokens, base, layout, components, utilities;
+```
+
+Arborescence possible :
+
+```text
+styles/
+├── reset.css
+├── tokens.css
+├── base.css
+├── layout.css
+├── components/
+│   ├── button.css
+│   ├── card.css
+│   ├── form.css
+│   └── project-list.css
+└── utilities.css
+```
+
+## 33.4 Critères d'évaluation
+
+- correction de la cascade ;
+- absence de guerre de spécificité ;
+- responsive par le contenu ;
+- accessibilité clavier ;
+- compatibilité avec zoom ;
+- respect du reduced motion ;
+- maintenabilité ;
+- performance ;
+- progressive enhancement ;
+- qualité de la documentation.
+
+# 34. Checklist et aide-mémoire
+
+## 34.1 Avant de créer une nouvelle règle
+
+- Le problème relève-t-il du HTML ou du CSS ?
+- Une règle existante répond-elle déjà au besoin ?
+- Le sélecteur décrit-il un composant ou dépend-il trop du DOM ?
+- Faut-il une classe, un attribut d'état, `:has()` ou une pseudo-classe native ?
+- La règle appartient-elle au bon layer ?
+
+## 34.2 Layout
+
+- **une dimension** → penser Flexbox ;
+- **deux dimensions** → penser Grid ;
+- alignement de descendants avec la grille parente → Subgrid ;
+- adaptation au composant → container query ;
+- adaptation au viewport/préférences → media query ;
+- popup lié géométriquement à un élément → envisager Anchor Positioning.
+
+## 34.3 Cascade
+
+- préférer une faible spécificité ;
+- utiliser `:where()` pour des defaults facilement surchargeables ;
+- structurer avec `@layer` ;
+- éviter les IDs pour gagner la cascade ;
+- considérer `revert-layer` ;
+- documenter les rares `!important`.
+
+## 34.4 Responsive
+
+- ne pas supposer les périphériques ;
+- dimensionnement fluide d'abord ;
+- breakpoints motivés par le contenu ;
+- tester les grands zooms ;
+- utiliser les unités viewport modernes lorsque la barre navigateur mobile compte ;
+- préférer les propriétés logiques.
+
+## 34.5 Accessibilité
+
+- conserver un focus visible ;
+- contraste suffisant ;
+- reduced motion ;
+- forced colors ;
+- pas de contenu indispensable uniquement généré en CSS ;
+- ne pas remplacer la sémantique HTML par du visuel.
+
+## 34.6 Performance
+
+- mesurer avant d'optimiser ;
+- supprimer le CSS mort ;
+- éviter `will-change` global ;
+- limiter grandes ombres/filtres si elles posent problème ;
+- charger peu de variantes de fonts ;
+- préférer les primitives natives simples ;
+- observer les Core Web Vitals.
+
+## 34.7 Fonctions à retenir
+
+```css
+var(--token)
+calc(...)
+min(...)
+max(...)
+clamp(...)
+color-mix(...)
+light-dark(...)
+oklch(...)
+```
+
+## 34.8 At-rules à retenir
+
+```css
+@media
+@supports
+@layer
+@container
+@scope
+@property
+@keyframes
+@font-face
+```
+
+## 34.9 Sélecteurs à retenir
+
+```css
+:is(...)
+:where(...)
+:not(...)
+:has(...)
+:nth-child(... of ...)
+:focus-visible
+:user-invalid
+```
+
+# 35. Références
+
+Sources de référence à privilégier :
+
+- W3C CSS Snapshot 2026 : https://www.w3.org/TR/css-2026/
+- W3C — travail courant du CSS Working Group : https://www.w3.org/Style/CSS/current-work
+- MDN CSS : https://developer.mozilla.org/docs/Web/CSS
+- MDN — Cascade layers : https://developer.mozilla.org/docs/Web/CSS/@layer
+- MDN — Container queries : https://developer.mozilla.org/docs/Web/CSS/CSS_containment/Container_queries
+- MDN — CSS nesting : https://developer.mozilla.org/docs/Web/CSS/CSS_nesting
+- MDN — `@scope` : https://developer.mozilla.org/docs/Web/CSS/@scope
+- MDN — CSS anchor positioning : https://developer.mozilla.org/docs/Web/CSS/CSS_anchor_positioning
+- MDN — Scroll-driven animations : https://developer.mozilla.org/docs/Web/CSS/CSS_scroll-driven_animations
+- MDN — View Transition API : https://developer.mozilla.org/docs/Web/API/View_Transition_API
+- web.dev — Baseline : https://web.dev/baseline
+
+> [!important]
+> Le statut d'une spécification et sa compatibilité navigateur évoluent. Pour une fonctionnalité récente, vérifier **la documentation MDN/Baseline au moment du déploiement** plutôt que mémoriser définitivement un numéro de version de navigateur.
