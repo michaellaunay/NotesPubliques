@@ -15,321 +15,1938 @@ themes:
   - referencement
   - seo
   - developpement-web
-resume: "Cours sur le référencement naturel : fonctionnement des moteurs de recherche, indexation et algorithmes, optimisation on-page (titres, méta-descriptions, URL, contenu) et notions d'autorité."
-niveau: debutant
+resume: "Cours complet sur le référencement naturel moderne : fonctionnement des moteurs de recherche, stratégie éditoriale, SEO on-page et technique, indexation, performances, données structurées, popularité, mesure et visibilité dans les fonctionnalités de recherche générative."
+niveau: intermediaire
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-08-09
-date_modification: 2023-08-09
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-Optimisation pour les moteurs de recherche (SEO)
 
-#### **1. Introduction au SEO**
-   - **1.1** Définition et importance du SEO
-   - **1.2** Historique des moteurs de recherche et évolution du SEO
-   - **1.3** Pourquoi le SEO est essentiel pour les entreprises en ligne
+# Optimisation pour les moteurs de recherche — SEO
 
-#### **2. Compréhension des moteurs de recherche**
-   - **2.1** Comment fonctionnent les moteurs de recherche : crawlers, indexation et algorithmes
-   - **2.2** Les principaux moteurs de recherche et leurs particularités
-   - **2.3** L'importance de la pertinence et de l'autorité dans le classement
+> [!NOTE]
+> Ce cours est actualisé pour l'état du Web et de Google Search en août 2026. Le SEO évolue continuellement : les principes durables sont distingués des fonctionnalités susceptibles de changer rapidement.
 
-#### **3. Les éléments clés du SEO on-page**
-   - **3.1** Optimisation des titres et meta descriptions
-   - **3.2** Structure des URLs
-   - **3.3** Optimisation du contenu : qualité, pertinence, et mots-clés
-   - **3.4** Importance des balises HTML (H1, H2, Alt text)
-   - **3.5** Vitesse de chargement et optimisation mobile
+Le **SEO** (*Search Engine Optimization*, ou référencement naturel) regroupe les méthodes permettant d'améliorer la **découvrabilité**, la **compréhension**, l'**indexabilité** et la **visibilité** d'un contenu dans les moteurs de recherche.
 
-#### **4. Le SEO off-page**
-   - **4.1** Introduction aux backlinks
-   - **4.2** Importance de l'autorité de domaine et de la page
-   - **4.3** Stratégies de création de liens : techniques blanches, grises, et noires
-   - **4.4** Les outils d'analyse des backlinks
+Le SEO moderne ne consiste pas à « tromper l'algorithme » ni à répéter des mots-clés. Il consiste surtout à :
 
-#### **5. Le contenu : le roi du SEO**
-   - **5.1** Rédaction de contenu de qualité et stratégie de mots-clés
-   - **5.2** Importance de l'actualité et de la mise à jour du contenu
-   - **5.3** Le rôle du content marketing dans le SEO
+- publier un contenu réellement utile à une audience identifiée ;
+- rendre ce contenu accessible aux moteurs de recherche ;
+- fournir une architecture et des signaux techniques cohérents ;
+- offrir une bonne expérience aux utilisateurs ;
+- construire une réputation et une autorité réelles ;
+- mesurer les résultats et corriger les problèmes ;
+- rester conforme aux règles antispam des moteurs.
 
-#### **6. Aspects techniques du SEO**
-   - **6.1** Optimisation du temps de chargement
-   - **6.2** XML sitemaps et robots.txt
-   - **6.3** Importance du HTTPS
-   - **6.4** SEO pour le JavaScript et les applications Web monopage (SPA)
+Le référencement concerne désormais plusieurs formes de résultats :
 
-#### **7. L'avenir du SEO**
-   - **7.1** Importance de la recherche vocale et mobile
-   - **7.2** SEO pour la réalité virtuelle et augmentée
-   - **7.3** Intelligence artificielle et SEO
+- liens Web classiques ;
+- résultats enrichis (*rich results*) ;
+- images et vidéos ;
+- résultats locaux ;
+- produits ;
+- actualités ;
+- extraits et réponses directes ;
+- fonctionnalités de recherche utilisant l'IA générative, notamment **AI Overviews** et **AI Mode** chez Google.
 
-#### **8. Outils et ressources pour le SEO**
-   - **8.1** Google Analytics et Google Search Console
-   - **8.2** Outils de recherche de mots-clés : Ahrefs, SEMrush, Moz
-   - **8.3** Outils d'audit SEO : Screaming Frog, GTmetrix
+---
 
-#### **9. Cas pratiques**
-   - **9.1** Audit SEO d'un site web existant
-   - **9.2** Élaboration d'une stratégie SEO pour un nouveau site
-   - **9.3** Analyse de la concurrence et identification des opportunités de mots-clés
+## Sommaire
 
-#### **10. Conclusion et perspectives**
-   - **10.1** Intégration du SEO dans une stratégie marketing globale
-   - **10.2** Continuer à se former : le SEO est en constante évolution
-   - **10.3** Discussion ouverte sur les tendances futures et les implications pour le SEO
+1. [[#1. Fondamentaux du SEO]]
+2. [[#2. Fonctionnement d'un moteur de recherche]]
+3. [[#3. Stratégie SEO et intention de recherche]]
+4. [[#4. SEO on-page et contenu]]
+5. [[#5. Architecture du site et maillage interne]]
+6. [[#6. SEO technique : exploration, indexation et canonicalisation]]
+7. [[#7. Performance, expérience utilisateur et Core Web Vitals]]
+8. [[#8. SEO JavaScript et applications Web modernes]]
+9. [[#9. Données structurées et apparence dans les résultats]]
+10. [[#10. SEO off-page, liens et réputation]]
+11. [[#11. SEO local, international et e-commerce]]
+12. [[#12. SEO, IA générative, AI Overviews et AI Mode]]
+13. [[#13. Mesure, outils et indicateurs]]
+14. [[#14. Méthodologie d'audit SEO]]
+15. [[#15. Migrations et changements d'URL]]
+16. [[#16. Spam, erreurs fréquentes et pratiques à éviter]]
+17. [[#17. Cas pratique : construire une stratégie SEO]]
+18. [[#18. Checklist opérationnelle]]
+19. [[#19. Conclusion]]
+20. [[#20. Sources et références]]
 
-# 1 Introduction au SEO
+---
 
-## 1.1 Définition et importance du SEO
+# 1. Fondamentaux du SEO
 
-- **Nous définissons le SEO** : Le SEO, ou "Search Engine Optimization", se réfère à l'ensemble des techniques et stratégies utilisées pour optimiser la visibilité d'un site web sur les moteurs de recherche. Lorsque nous parlons de visibilité, nous faisons référence à la position qu'occupe un site web dans les résultats de recherche pour des mots-clés spécifiques.
+## 1.1 Définition
 
-- **Pourquoi nous considérons le SEO comme crucial** : Dans le monde numérique actuel, la majorité des consommateurs utilisent les moteurs de recherche pour trouver des informations, des produits ou des services. Si notre site web apparaît en tête des résultats de recherche, nous avons une meilleure chance d'attirer ces consommateurs vers notre contenu ou nos offres.
+Le SEO vise à améliorer la présence d'un site dans les résultats **non publicitaires** des moteurs de recherche.
 
-## 1.2 Historique des moteurs de recherche et évolution du SEO
+Il faut distinguer :
 
-- **Comment tout a commencé pour nous** : Nous nous souvenons des premiers jours de l'Internet, où les annuaires web étaient la norme pour trouver des informations en ligne. Avec l'arrivée de moteurs de recherche comme Yahoo, AltaVista, et finalement Google, la manière dont les utilisateurs trouvaient du contenu a radicalement changé.
+| Terme | Signification | Exemple |
+|---|---|---|
+| **SEO** | Référencement naturel | Optimiser une page pour une requête |
+| **SEA** | Publicité sur les moteurs | Google Ads, Microsoft Advertising |
+| **SEM** | Ensemble des actions marketing liées aux moteurs | SEO + SEA au sens courant |
+| **SMO** | Optimisation pour les médias sociaux | LinkedIn, Mastodon, Instagram, etc. |
 
-- **Notre adaptation au changement** : Au fur et à mesure que ces moteurs de recherche sont devenus plus sophistiqués, nous avons dû évoluer et adapter nos stratégies. Le SEO est passé de la simple répétition de mots-clés à des techniques plus avancées centrées sur l'expérience utilisateur.
+Le trafic SEO n'est pas réellement « gratuit » : l'acquisition d'un clic n'entraîne généralement pas un paiement au moteur, mais le contenu, la technique, les outils et le travail humain ont un coût.
 
-## 1.3 Pourquoi le SEO est essentiel pour les entreprises en ligne
+## 1.2 Les trois grands piliers
 
-- **Notre expérience en tant qu'entrepreneurs** : Dans notre parcours en tant qu'entrepreneurs ou professionnels du marketing digital, nous avons rapidement compris que la construction d'un beau site web n'était que la première étape. Si personne ne trouve notre site, tout notre travail sera en vain.
+On peut regrouper le SEO en trois familles complémentaires.
 
-- **Ce que nous avons appris sur l'importance du trafic organique** : Au fil du temps, nous avons constaté que le trafic provenant des moteurs de recherche est non seulement gratuit, mais qu'il convertit également mieux que d'autres sources de trafic. Les utilisateurs qui trouvent notre site via une recherche ont souvent une intention précise, ce qui augmente les chances qu'ils interagissent avec notre contenu ou effectuent un achat.
+### Technique
 
-# **2. Compréhension des moteurs de recherche**
+Le moteur doit pouvoir :
 
-## **2.1 Comment fonctionnent les moteurs de recherche : crawlers, indexation et algorithmes**
+1. découvrir les URL ;
+2. les explorer ;
+3. récupérer leurs ressources importantes ;
+4. comprendre et rendre le contenu ;
+5. déterminer les URL canoniques ;
+6. indexer les pages utiles.
 
-- **Crawlers (ou robots d'exploration)** : Imaginez les crawlers comme de petits agents qui parcourent constamment le Web à la recherche de nouveaux contenus ou de mises à jour sur les sites existants. Ils suivent des liens d'une page à l'autre et rapportent ce qu'ils trouvent à la base de données du moteur de recherche.
+### Contenu
 
-- **Indexation** : Une fois que ces crawlers ont récupéré les informations, le processus d'indexation commence. L'indexation est la manière dont les moteurs de recherche organisent et stockent l'information pour que les utilisateurs puissent la retrouver rapidement. Lorsque nous effectuons une recherche, les moteurs de recherche puisent dans cet index pour nous fournir des résultats pertinents.
+La page doit :
 
-- **Algorithmes** : Les algorithmes sont des ensembles complexes de règles que les moteurs de recherche utilisent pour déterminer l'ordre des pages qui doivent être affichées pour une recherche donnée. Ces algorithmes tiennent compte de nombreux facteurs, comme la pertinence du contenu, la qualité des backlinks, l'expérience utilisateur sur le site, et bien d'autres éléments.
+- répondre à une intention réelle ;
+- être claire et structurée ;
+- apporter une valeur propre ;
+- être à jour lorsque le sujet le nécessite ;
+- rendre explicites ses auteurs, ses sources et son contexte quand cela améliore la confiance.
 
-## 2.2 Les principaux moteurs de recherche et leurs particularités
+### Popularité et réputation
 
-- **Google** : C'est de loin le moteur de recherche le plus utilisé dans le monde. Google est connu pour ses mises à jour fréquentes de l'algorithme, son engagement envers l'expérience utilisateur et son écosystème de produits interconnectés, comme Google Maps, YouTube, et Google My Business.
+Le Web est un graphe. Les liens, citations et mentions permettent notamment de découvrir des contenus et d'estimer leur importance ou leur réputation.
 
-- **Bing** : Propulsé par Microsoft, Bing est un concurrent majeur de Google, surtout dans certaines régions. Il offre des résultats de recherche visuellement riches et est intégré à la suite de produits Microsoft.
+> [!IMPORTANT]
+> La popularité ne se résume pas au nombre de backlinks. Un petit nombre de liens éditoriaux réellement pertinents peut être bien plus utile qu'un grand volume de liens artificiels.
 
-- **Yahoo!** : Autrefois leader du marché, Yahoo! a perdu du terrain face à Google. Cependant, il reste important dans certains marchés et segments démographiques.
+## 1.3 Ce que le SEO ne garantit pas
 
-- **DuckDuckGo** : Ce moteur de recherche se distingue par sa promesse de respecter la vie privée des utilisateurs en ne suivant pas leurs activités de recherche.
+Même une page techniquement parfaite et conforme aux recommandations :
 
-- **Baidu** : Si nous abordons le marché chinois, Baidu est le moteur de recherche dominant à considérer. Il a des spécificités et des exigences différentes de celles des moteurs de recherche occidentaux.
+- n'est pas garantie d'être explorée immédiatement ;
+- n'est pas garantie d'être indexée ;
+- n'est pas garantie d'obtenir une position particulière ;
+- n'est pas garantie d'obtenir un résultat enrichi ;
+- n'est pas garantie d'être citée par une fonctionnalité d'IA.
 
-## 2.3 L'importance de la pertinence et de l'autorité dans le classement
+Les moteurs sélectionnent les résultats selon la requête, le contexte, la concurrence, la qualité perçue et de nombreux autres signaux.
 
-- **Pertinence** : Lorsqu'un utilisateur effectue une recherche, il souhaite obtenir des résultats qui répondent précisément à sa requête. La pertinence s'assure que le contenu d'une page correspond bien aux mots-clés recherchés. C'est un élément essentiel de l'optimisation SEO, car un contenu non pertinent peut entraîner une faible satisfaction de l'utilisateur et nuire au classement.
+## 1.4 Une discipline centrée sur l'utilisateur
 
-- **Autorité** : L'autorité d'un site ou d'une page donne une indication de sa fiabilité ou de sa crédibilité sur un sujet donné. Les moteurs de recherche évaluent l'autorité en grande partie grâce aux backlinks. Si de nombreux sites de qualité pointent vers une page, cela indique généralement que le contenu est digne de confiance. L'autorité est un facteur de classement majeur, car elle permet aux moteurs de recherche de fournir des informations fiables aux utilisateurs.
+Une règle de décision simple est :
 
-# **3. Les éléments clés du SEO on-page**
+> « Cette modification rend-elle la page plus utile, plus compréhensible ou plus accessible pour l'utilisateur ? »
 
-## **3.1 Optimisation des titres et meta descriptions**
+Si une action n'a d'autre justification que la manipulation supposée d'un algorithme, elle est généralement fragile à long terme.
 
-- **Titres** : Le titre de chaque page, souvent encapsulé dans une balise `<title>`, est un des signaux les plus forts pour les moteurs de recherche concernant le sujet de cette page. Il doit être pertinent, contenir le mot-clé principal pour lequel nous voulons nous positionner, et être suffisamment accrocheur pour inciter l'utilisateur à cliquer.
+---
 
-- **Meta descriptions** : Bien que les meta descriptions ne soient pas directement un facteur de classement, elles ont un rôle crucial dans le taux de clic (CTR) depuis les résultats de recherche. Une meta description bien rédigée donne un aperçu du contenu de la page et encourage l'utilisateur à visiter notre site.
+# 2. Fonctionnement d'un moteur de recherche
 
-## **3.2 Structure des URLs**
+Le fonctionnement exact d'un moteur est propriétaire, mais on peut distinguer cinq étapes conceptuelles.
 
-- **Clarté et concision** : Une URL bien structurée est à la fois concise et descriptive. Elle devrait donner une idée du contenu de la page simplement en la lisant. Par exemple, `www.mon-site.com/chaussures-running-homme` est préférable à `www.mon-site.com/prod12345`.
+```text
+Découverte -> Exploration -> Rendu -> Indexation -> Classement / diffusion
+```
 
-- **Mots-clés dans les URLs** : Il est bénéfique d'inclure le mot-clé principal de la page dans l'URL. Cela renforce la pertinence aux yeux des moteurs de recherche et peut améliorer le CTR depuis les résultats de recherche.
+## 2.1 Découverte des URL
 
-## **3.3 Optimisation du contenu : qualité, pertinence, et mots-clés**
+Un moteur découvre des URL par exemple grâce :
 
-- **Qualité** : Le contenu doit être bien écrit, original et apporter de la valeur à l'utilisateur. Un contenu dupliqué ou superficiel peut nuire à nos performances SEO.
+- aux liens HTML ;
+- aux sitemaps XML ;
+- aux URL déjà connues ;
+- aux redirections ;
+- aux flux ou autres sources propres au moteur.
 
-- **Pertinence** : Il est essentiel que le contenu réponde aux besoins et aux questions des utilisateurs. Il doit être aligné avec l'intention de recherche du mot-clé ciblé.
+Un lien HTML simple reste la forme la plus robuste :
 
-- **Mots-clés** : L'usage approprié des mots-clés dans le contenu est crucial. Cela ne signifie pas une répétition excessive, mais plutôt une inclusion naturelle du mot-clé principal et des mots-clés connexes pour couvrir le sujet en profondeur.
+```html
+<a href="/documentation/seo">Cours de SEO</a>
+```
 
-## **3.4 Importance des balises HTML (H1, H2, Alt text)**
+## 2.2 Exploration (*crawling*)
 
-- **H1** : C'est la balise d'en-tête principale d'une page et elle doit contenir le mot-clé principal. Elle indique aux moteurs de recherche le sujet principal de la page.
+Un robot comme **Googlebot** télécharge des ressources accessibles sur le Web.
 
-- **H2, H3,...** : Ces sous-en-têtes structurent le contenu, améliorant la lisibilité et signalant aux moteurs de recherche les sous-thèmes abordés.
+L'exploration dépend notamment :
 
-- **Alt text** : Les images peuvent être optimisées pour le SEO grâce à l'attribut `alt`. Il décrit le contenu de l'image aux moteurs de recherche et améliore l'accessibilité pour les utilisateurs malvoyants.
+- de la disponibilité du serveur ;
+- de `robots.txt` ;
+- du nombre et de la qualité des URL découvertes ;
+- de l'utilité estimée de leur nouvelle exploration ;
+- de la capacité du site à répondre correctement.
 
-## **3.5 Vitesse de chargement et optimisation mobile**
+Sur les très grands sites, on parle parfois de **budget d'exploration** (*crawl budget*). Pour un petit site bien conçu, ce problème est généralement secondaire.
 
-- **Vitesse de chargement** : Un site lent peut frustrer les utilisateurs et les inciter à quitter notre site, augmentant ainsi le taux de rebond. De plus, Google considère la vitesse de chargement comme un facteur de classement.
+## 2.3 Rendu (*rendering*)
 
-- **Optimisation mobile** : Avec l'augmentation du trafic mobile, il est essentiel que notre site soit responsive, c'est-à-dire qu'il s'adapte bien aux écrans de smartphones et de tablettes. Google a adopté une indexation "mobile-first", ce qui signifie que la version mobile de notre site est celle qui est prioritairement prise en compte pour le classement.
+Pour une page simple, le HTML reçu contient déjà le contenu.
 
-Bien sûr, voici le développement du chapitre sur le SEO off-page, présenté à la première personne du pluriel.
+Pour une application JavaScript, le moteur peut devoir :
 
-# 4. Le SEO off-page
+1. télécharger le document HTML ;
+2. télécharger le JavaScript et les ressources nécessaires ;
+3. exécuter le code ;
+4. analyser le DOM résultant.
 
-## 4.1 Introduction aux backlinks
+Le rendu JavaScript ajoute de la complexité et peut retarder ou empêcher la découverte de certains contenus si l'application est mal conçue.
 
-- **Pourquoi nous nous intéressons aux backlinks** : Les backlinks, ou liens retour, sont des liens pointant vers notre site à partir d'autres sites web. Ils jouent un rôle crucial dans notre stratégie SEO, car ils sont perçus par les moteurs de recherche comme des votes de confiance. Si de nombreux sites de qualité renvoient vers le nôtre, cela indique que nous offrons du contenu précieux.
+## 2.4 Indexation
 
-## 4.2 Importance de l'autorité de domaine et de la page
+L'indexation consiste à analyser et stocker des informations sur une page :
 
-- **Notre vision de l'autorité de domaine (DA)** : L'autorité de domaine est un score, généralement sur 100, qui prédit la capacité d'un site web à se classer dans les moteurs de recherche. Plus notre DA est élevé, plus nous avons de chances de bien nous positionner. Nous nous efforçons donc d'accroître notre autorité en obtenant des backlinks de qualité.
+- texte principal ;
+- langue ;
+- titres ;
+- images ;
+- liens ;
+- données structurées ;
+- relations avec d'autres URL ;
+- page canonique ;
+- signaux de qualité ou de spam.
 
-- **Comment nous percevons l'autorité de la page (PA)** : De même que pour le DA, l'autorité de la page mesure la force d'une page spécifique sur notre site. Nous travaillons à renforcer chaque page en veillant à ce qu'elle soit référencée par des sources pertinentes et dignes de confiance.
+Une page explorée n'est donc pas nécessairement indexée.
 
-## 4.3 Stratégies de création de liens : techniques blanches, grises, et noires
+## 2.5 Classement et diffusion
 
-- **Notre engagement envers les techniques blanches** : Nous privilégions toujours les techniques dites "blanches" en matière de création de liens. Cela signifie que nous obtenons des liens de manière éthique, sans essayer de tromper les moteurs de recherche. Par exemple, nous pourrions rédiger des articles invités ou encourager les mentions naturelles de notre marque.
+Lors d'une recherche, le moteur doit identifier les documents susceptibles de répondre à la requête, puis les ordonner.
 
-- **Pourquoi nous évitons les techniques grises et noires** : Bien qu'elles puissent offrir des résultats rapides, ces techniques, comme l'achat de liens ou l'utilisation de fermes de liens, sont risquées. Les moteurs de recherche pénalisent souvent les sites qui utilisent de telles méthodes, et nous ne voulons pas compromettre notre intégrité ou celle de notre site.
+Les systèmes de classement cherchent notamment à apprécier :
 
-## 4.4 Les outils d'analyse des backlinks
+- la pertinence vis-à-vis de la requête ;
+- la qualité et l'utilité du contenu ;
+- le contexte géographique ou linguistique ;
+- la fraîcheur lorsque la requête l'exige ;
+- l'autorité ou la réputation des sources ;
+- l'expérience globale proposée par la page.
 
-- **Comment nous utilisons ces outils** : Pour surveiller et analyser notre profil de liens, nous utilisons divers outils, tels que Ahrefs, Moz, et SEMrush. Ils nous aident à comprendre d'où viennent nos liens, à évaluer la qualité de ces liens et à identifier les opportunités ou les menaces potentielles.
+Il n'existe pas de formule publique du type :
 
-- **L'importance de l'analyse régulière** : Nous croyons fermement que le suivi régulier de notre profil de liens est essentiel. Cela nous permet de réagir rapidement si nous identifions des liens toxiques ou si nous découvrons des opportunités pour obtenir de nouveaux liens de qualité.
+```text
+score = 30 % mots-clés + 20 % backlinks + 10 % vitesse + ...
+```
 
-# 5. Le contenu : le roi du SEO
+Les listes de « 200 facteurs de classement » doivent donc être considérées avec prudence.
 
-Lorsqu'il s'agit de SEO, il est souvent dit que "le contenu est roi". Mais pourquoi cette expression est-elle si largement répandue et quel est le véritable impact du contenu sur notre stratégie de référencement? Plongeons dans cette dimension essentielle du SEO.
+## 2.6 Les moteurs de recherche
 
-## 5.1 Rédaction de contenu de qualité et stratégie de mots-clés
+### Google
 
-- **La nécessité d'une rédaction de qualité** : Le contenu de qualité est celui qui répond aux besoins des utilisateurs, qui est bien structuré, original et engageant. Nous nous efforçons d'offrir une valeur ajoutée à nos visiteurs, car un contenu de haute qualité est plus susceptible d'être partagé, cité et recommandé, renforçant ainsi notre autorité aux yeux des moteurs de recherche.
+Google domine de nombreux marchés et dispose d'un écosystème comprenant notamment Search, Images, Maps, Discover, Shopping et les fonctionnalités génératives.
 
-- **Comment nous abordons la stratégie de mots-clés** : L'intégration de mots-clés pertinents est essentielle, mais cela doit être fait avec tact. Nous nous concentrons sur l'intention de recherche derrière chaque mot-clé et veillons à les intégrer naturellement dans notre contenu. L'utilisation d'outils tels que Google Keyword Planner ou Ahrefs peut nous aider à identifier des mots-clés précieux qui sont en phase avec les besoins de notre audience.
+### Microsoft Bing
 
-## 5.2 Importance de l'actualité et de la mise à jour du contenu
+Bing est le moteur de Microsoft et alimente ou contribue à différents produits et services de recherche.
 
-- **Restez à jour** : Dans un monde digital en constante évolution, les informations peuvent rapidement devenir obsolètes. Nous comprenons l'importance de garder notre contenu à jour pour offrir à nos utilisateurs des informations pertinentes et actuelles. 
+### DuckDuckGo
 
-- **Mise à jour du contenu existant** : Plutôt que de toujours créer du nouveau contenu, nous valorisons également l'optimisation du contenu existant. Cela signifie revoir régulièrement nos articles ou pages les plus performants et les actualiser si nécessaire. Cela peut non seulement améliorer leur positionnement, mais aussi prolonger leur pertinence et leur durée de vie.
+DuckDuckGo met particulièrement en avant la protection de la vie privée et s'appuie sur plusieurs sources pour produire ses résultats.
 
-## 5.3 Le rôle du content marketing dans le SEO
+### Baidu, Naver et autres moteurs régionaux
 
-- **Qu'est-ce que le content marketing ?** : Le content marketing va au-delà de la simple rédaction de contenu. Il s'agit d'une stratégie qui vise à attirer et à fidéliser une audience en fournissant du contenu utile et pertinent.
+Une stratégie internationale doit tenir compte du moteur réellement utilisé dans le pays ciblé. Les pratiques et outils disponibles ne sont pas nécessairement identiques à ceux de Google.
 
-- **Comment nous intégrons le content marketing dans notre stratégie SEO** : Le content marketing et le SEO sont profondément interconnectés. Nous utilisons le content marketing pour offrir de la valeur à nos utilisateurs, ce qui, en retour, renforce notre SEO. En comprenant les besoins et les préoccupations de notre audience, nous sommes en mesure de produire du contenu qui non seulement attire du trafic, mais qui encourage également les visiteurs à rester, à interagir et à revenir.
+---
 
-# 6. Aspects techniques du SEO
+# 3. Stratégie SEO et intention de recherche
 
-Alors que le contenu reste le pilier central du SEO, il ne saurait produire des résultats optimaux sans une solide fondation technique. La technique s'assure que notre site est non seulement compréhensible pour les moteurs de recherche, mais aussi qu'il offre une expérience utilisateur fluide. Abordons certains des aspects techniques clés du SEO.
+## 3.1 Partir des utilisateurs, pas uniquement des mots-clés
 
-## 6.1 Optimisation du temps de chargement
+Une stratégie SEO commence par comprendre :
 
-- **Pourquoi c'est crucial** : Un temps de chargement rapide améliore l'expérience utilisateur. Les visiteurs sont susceptibles de quitter une page qui met trop de temps à charger, ce qui augmente le taux de rebond et signale aux moteurs de recherche que la page pourrait ne pas répondre aux besoins des utilisateurs.
+- qui recherche ;
+- quel problème cette personne cherche à résoudre ;
+- à quel moment de son parcours elle se trouve ;
+- quelle forme de réponse serait la plus utile.
 
-- **Comment nous optimisons** : Plusieurs méthodes peuvent être utilisées pour améliorer le temps de chargement, telles que la minification des fichiers CSS et JavaScript, l'optimisation des images, l'utilisation de la mise en cache et le choix d'un hébergeur performant.
+Exemple : les requêtes suivantes parlent toutes d'un même produit mais expriment des besoins différents.
 
-## 6.2 XML sitemaps et robots.txt
+```text
+chaussures randonnée
+meilleures chaussures randonnée pluie
+chaussures randonnée gore-tex homme 44
+réparer semelle chaussure randonnée
+```
 
-- **Sitemaps XML** : Un sitemap XML est un document qui aide les moteurs de recherche à comprendre la structure de notre site. Il liste toutes les URLs que nous voulons indexer, facilitant ainsi le travail des crawlers.
+## 3.2 Intentions de recherche
 
-- **Robots.txt** : Le fichier robots.txt donne des instructions aux moteurs de recherche sur les pages ou les dossiers qu'ils ne devraient pas indexer. C'est essentiel pour éviter que des contenus non pertinents ou sensibles ne soient indexés.
+On distingue souvent quatre grandes intentions.
 
-## 6.3 Importance du HTTPS
+| Intention | Objectif | Exemple |
+|---|---|---|
+| Informationnelle | Apprendre | `comment fonctionne un sitemap` |
+| Navigationnelle | Trouver un site précis | `github documentation` |
+| Commerciale | Comparer avant décision | `meilleur hébergeur python` |
+| Transactionnelle | Effectuer une action | `acheter ssd 4 to` |
 
-- **Sécurité et confiance** : HTTPS, qui signifie "HTTP Secure", ajoute une couche de sécurité au transfert de données, rassurant ainsi les visiteurs sur la confidentialité et l'intégrité de leurs données.
+Une même requête peut combiner plusieurs intentions.
 
-- **Impact sur le SEO** : Google a confirmé que le HTTPS est un facteur de classement. Migrer vers HTTPS peut non seulement renforcer la sécurité de notre site, mais aussi potentiellement améliorer nos classements.
+## 3.3 Recherche de sujets et de requêtes
 
-## 6.4 SEO pour le JavaScript et les applications Web monopage (SPA)
+Les sources utiles comprennent :
 
-- **Les défis du JavaScript** : Alors que les moteurs de recherche ont grandement amélioré leur capacité à interpréter le JavaScript, certaines pratiques peuvent toujours entraver l'indexation. Par exemple, si le contenu est chargé de manière asynchrone, il est possible que les moteurs de recherche ne le voient pas.
+- Search Console ;
+- suggestions et recherches associées des moteurs ;
+- échanges avec les utilisateurs ;
+- support client ;
+- documentation interne ;
+- outils SEO tiers ;
+- analyse des résultats réellement affichés pour une requête.
 
-- **Optimisation des SPA** : Les applications Web monopage (SPA) peuvent présenter des défis en termes de SEO car tout le contenu est chargé dynamiquement. Pour garantir une indexation efficace, nous pouvons utiliser des techniques comme le rendu côté serveur (SSR) ou des solutions préconçues comme "prerender.io".
+La recherche de mots-clés sert à comprendre la demande. Elle ne doit pas mener à créer une page artificielle pour chaque variante syntaxique.
 
-# 7. L'avenir du SEO
+## 3.4 Regrouper par sujet
 
-Le SEO, comme tout dans le monde digital, évolue constamment. Les tactiques qui étaient efficaces hier peuvent ne plus l'être demain. Pour rester compétitifs, il est essentiel d'anticiper les tendances à venir et de comprendre comment elles influenceront notre stratégie de référencement. Abordons quelques-uns des domaines émergents qui façonneront l'avenir du SEO.
+Plutôt que :
 
-## 7.1 Importance de la recherche vocale et mobile
+```text
+/page/chaussure-randonnee
+/page/chaussures-randonnee
+/page/chaussure-de-randonnee
+/page/meilleure-chaussure-randonnee
+```
 
-- **L'ère de la recherche vocale** : Avec l'avènement des assistants numériques comme Siri, Alexa ou Google Assistant, la recherche vocale devient de plus en plus courante. Cela change la nature des requêtes, car les gens s'expriment souvent différemment à l'oral qu'à l'écrit. Nous devons donc optimiser pour des phrases plus naturelles et conversationnelles.
+on peut souvent créer une ressource forte qui couvre correctement le besoin principal et ses sous-questions.
 
-- **Le règne du mobile** : Le mobile a surpassé le desktop en termes de recherche. Avoir un site mobile-friendly n'est plus une option, c'est une nécessité. De plus, Google a adopté l'indexation "mobile-first", signifiant que la version mobile de notre site influence davantage nos classements que la version desktop.
+## 3.5 Analyser la SERP
 
-## 7.2 SEO pour la réalité virtuelle et augmentée
+La page de résultats elle-même renseigne sur ce que le moteur estime utile :
 
-- **Plonger dans la nouvelle réalité** : Alors que la réalité virtuelle (VR) et augmentée (AR) gagnent en popularité, elles offrent de nouvelles façons d'interagir avec le contenu. Cela pourrait influencer le SEO à mesure que les moteurs de recherche développent de nouvelles méthodes pour indexer et classer ces expériences.
+- articles ;
+- pages catégories ;
+- fiches produit ;
+- vidéos ;
+- cartes locales ;
+- images ;
+- résultats enrichis ;
+- fonctionnalités génératives.
 
-- **Créer des expériences immersives** : En incorporant des éléments VR et AR sur notre site ou dans nos applications, nous pouvons offrir des expériences plus engageantes, ce qui pourrait influencer positivement nos classements et notre autorité en ligne.
+L'objectif n'est pas de copier les concurrents, mais de comprendre le format attendu puis d'apporter davantage de valeur.
 
-## 7.3 Intelligence artificielle et SEO
+## 3.6 Prioriser
 
-- **Algorithmes en constante évolution** : L'intelligence artificielle, en particulier le machine learning, joue déjà un rôle majeur dans la façon dont les moteurs de recherche évaluent et classent le contenu. Des algorithmes comme RankBrain de Google sont conçus pour mieux comprendre l'intention de l'utilisateur et fournir des résultats plus pertinents.
+Une opportunité SEO peut être évaluée par exemple selon :
 
-- **Se préparer à l'IA** : Alors que l'IA devient de plus en plus sophistiquée, les anciennes tactiques de "trucage" des moteurs de recherche deviendront obsolètes. Nous devrons nous concentrer sur la création d'un contenu authentique, pertinent et de haute qualité, car l'IA deviendra de plus en plus apte à évaluer la véritable valeur de notre contenu.
+```text
+Priorité ≈ valeur métier × demande × adéquation × probabilité de réussite / coût
+```
 
-# 8. Outils et ressources pour le SEO
+Ce n'est pas une formule de classement Google : c'est un outil interne de décision.
 
-La maîtrise du SEO nécessite non seulement une compréhension approfondie des meilleures pratiques, mais aussi des outils qui peuvent nous aider à analyser, optimiser et surveiller nos efforts. Heureusement, il existe une multitude d'outils qui offrent des perspectives précieuses et nous aident à prendre des décisions éclairées pour notre stratégie de référencement. Découvrons certains de ces outils essentiels.
+---
 
-## 8.1 Google Analytics et Google Search Console
+# 4. SEO on-page et contenu
 
-- **Google Analytics** : C'est un outil incontournable pour tout professionnel du SEO. Il nous permet de surveiller le trafic de notre site, de comprendre d'où viennent nos visiteurs, quel contenu ils consultent, combien de temps ils passent sur notre site, etc. Ces données sont cruciales pour évaluer l'efficacité de nos efforts SEO et pour identifier les domaines d'amélioration.
+## 4.1 Le contenu principal
 
-- **Google Search Console** : Alors que Google Analytics nous donne un aperçu de la manière dont les visiteurs interagissent avec notre site, la Google Search Console nous montre comment Google voit notre site. Elle nous informe sur l'indexation, les erreurs, les pages les plus visibles dans les SERPs, et offre même des suggestions d'optimisation.
+Une page doit répondre rapidement à son sujet principal puis développer les éléments nécessaires.
 
-## 8.2 Outils de recherche de mots-clés : Ahrefs, SEMrush, Moz
+Un bon contenu peut inclure :
 
-- **Ahrefs** : Réputé pour sa vaste base de données de backlinks, Ahrefs est également un puissant outil de recherche de mots-clés. Il fournit des informations détaillées sur le volume de recherche, la difficulté, les sites concurrents et bien plus encore.
+- explications ;
+- données originales ;
+- exemples ;
+- démonstrations ;
+- retours d'expérience ;
+- comparaisons ;
+- images ou vidéos ;
+- références vers des sources primaires.
 
-- **SEMrush** : Cet outil polyvalent nous offre non seulement des données sur la recherche de mots-clés, mais aussi des analyses concurrentielles, des audits SEO et des insights sur la publicité payante.
+La longueur n'est pas une finalité. Une réponse de 300 mots peut être meilleure qu'un texte de 3 000 mots rempli de répétitions.
 
-- **Moz** : Outre ses fonctionnalités de recherche de mots-clés, Moz est largement reconnu pour son score de "Domain Authority" qui évalue la force et la crédibilité d'un site web.
+## 4.2 Contenu *people-first*
 
-## 8.3 Outils d'audit SEO : Screaming Frog, GTmetrix
+Un contenu pensé d'abord pour l'utilisateur :
 
-- **Screaming Frog** : C'est un outil d'analyse de site web très complet. Il crawl les sites pour fournir des informations sur les URLs, les titres de page, les méta-descriptions, les statuts de réponse, les redirections et bien plus encore. C'est essentiel pour identifier les problèmes techniques qui peuvent entraver notre SEO.
+- a une audience identifiable ;
+- démontre une connaissance réelle du sujet ;
+- répond à la question annoncée ;
+- évite les paragraphes ajoutés uniquement pour « faire du SEO » ;
+- permet au lecteur d'agir ou de comprendre après lecture.
 
-- **GTmetrix** : GTmetrix évalue la performance de notre site en termes de vitesse de chargement. Il fournit des scores, des temps de chargement, et des recommandations spécifiques pour améliorer la vitesse de notre site, ce qui, comme nous le savons, est crucial pour le SEO.
+## 4.3 E-E-A-T
 
-# 9. Cas pratiques
+**E-E-A-T** signifie :
 
-Pour mieux comprendre les concepts et les outils du SEO, rien ne vaut la mise en situation. Les cas pratiques permettent de concrétiser la théorie et de voir comment les stratégies SEO sont mises en œuvre dans le monde réel. Voici quelques situations concrètes que nous allons étudier.
+- **Experience** : expérience concrète ;
+- **Expertise** : compétence ;
+- **Authoritativeness** : légitimité / autorité ;
+- **Trustworthiness** : fiabilité.
 
-## 9.1 Audit SEO d'un site web existant
+> [!IMPORTANT]
+> E-E-A-T n'est pas un unique « facteur de classement » possédant un score SEO public. C'est un cadre utilisé notamment dans les consignes de qualité et utile pour réfléchir à la confiance accordée au contenu.
 
-- **Présentation du cas** : Prenons l'exemple d'une entreprise établie depuis quelques années avec un site web qui ne performe pas aussi bien qu'elle l'espérait dans les résultats des moteurs de recherche.
+La fiabilité est particulièrement importante pour les sujets **YMYL** (*Your Money or Your Life*) pouvant affecter par exemple :
 
-- **Approche** : Nous commencerons par identifier les problèmes techniques avec des outils comme Screaming Frog. Les problèmes courants peuvent inclure des liens brisés, des balises de titre dupliquées ou des pages orphelines. Ensuite, nous analyserons le contenu pour vérifier sa pertinence, sa qualité et son optimisation par rapport aux mots-clés ciblés. Enfin, nous examinerons le profil des backlinks pour identifier des opportunités d'amélioration.
+- la santé ;
+- la sécurité ;
+- les finances ;
+- les droits ;
+- le bien-être de la société.
 
-- **Résultats** : Suite à cet audit, nous aurons une liste de recommandations et de tâches prioritaires pour améliorer le classement du site.
+Pour ces sujets, il est particulièrement utile de présenter clairement :
 
-## 9.2 Élaboration d'une stratégie SEO pour un nouveau site
+- l'auteur ;
+- ses compétences pertinentes ;
+- la date de mise à jour ;
+- les sources ;
+- les limites ou incertitudes.
 
-- **Présentation du cas** : Imaginons une start-up prête à lancer son site web et voulant établir une présence solide sur les moteurs de recherche dès le début.
+## 4.4 Le titre HTML
 
-- **Approche** : La première étape consiste à réaliser une recherche de mots-clés approfondie pour comprendre les termes que la cible utilise. Ensuite, nous structurerons le site pour qu'il soit intuitif et bien organisé. L'optimisation on-page sera essentielle dès le début, en veillant à ce que chaque page soit correctement optimisée pour ses mots-clés respectifs. Nous élaborerons également un plan de contenu pour les mois à venir.
+Le `<title>` décrit le contenu de la page :
 
-- **Résultats** : Avec une stratégie bien conçue, le nouveau site sera positionné pour une croissance stable et durable sur les moteurs de recherche.
+```html
+<title>Comprendre robots.txt : règles et exemples | Exemple</title>
+```
 
-## 9.3 Analyse de la concurrence et identification des opportunités de mots-clés
+Bonnes pratiques :
 
-- **Présentation du cas** : Supposons une entreprise qui, bien qu'établie dans son secteur, fait face à une concurrence accrue en ligne et souhaite identifier de nouvelles opportunités.
+- un titre spécifique à la page ;
+- descriptif et compréhensible ;
+- éviter le bourrage de mots-clés ;
+- éviter les titres identiques sur toutes les pages.
 
-- **Approche** : Utilisant des outils comme Ahrefs ou SEMrush, nous évaluerons les mots-clés pour lesquels nos concurrents se classent bien mais pas nous. Cela peut révéler des opportunités que nous avons négligées. En outre, une analyse approfondie des backlinks des concurrents peut révéler des opportunités de création de liens pour notre propre site.
+Google peut générer le **title link** affiché dans les résultats à partir de plusieurs signaux et n'est pas obligé d'afficher exactement le `<title>` fourni.
 
-- **Résultats** : En identifiant où nos concurrents réussissent et où nous pouvons améliorer, nous serons en mesure d'élaborer une stratégie plus ciblée pour surpasser la concurrence.
+## 4.5 Meta description
 
-# 10. Conclusion et perspectives
+```html
+<meta
+  name="description"
+  content="Comprendre le rôle de robots.txt, ses limites et les erreurs courantes avec des exemples pratiques."
+>
+```
 
-Le parcours à travers le vaste univers du SEO nous a permis d'appréhender la richesse et la complexité du référencement. Mais comme toute bonne chose a une fin, il est temps de conclure notre exploration et de se projeter vers l'avenir. Pour ce faire, examinons quelques éléments essentiels à garder à l'esprit.
+La meta description :
 
-## 10.1 Intégration du SEO dans une stratégie marketing globale
+- peut être utilisée comme extrait dans les résultats ;
+- aide à présenter la page ;
+- n'est pas une garantie de l'extrait affiché ;
+- n'est pas à traiter comme un bouton magique de classement.
 
-- **L'holistique est le mot d'ordre** : Le SEO n'est pas une stratégie isolée. Pour être vraiment efficace, il doit être intégré dans une stratégie marketing plus large qui englobe la publicité payante, le marketing sur les réseaux sociaux, le content marketing, et bien d'autres domaines. Lorsque ces éléments fonctionnent en synergie, le potentiel de croissance est décuplé.
+Le moteur peut générer un extrait différent à partir du contenu de la page selon la requête.
 
-## 10.2 Continuer à se former : le SEO est en constante évolution
+## 4.6 Titres H1 à H6
 
-- **Ne jamais s'arrêter d'apprendre** : Si une chose est certaine dans le monde du SEO, c'est que le changement est la seule constante. Avec les mises à jour régulières des algorithmes de recherche et l'évolution des comportements des utilisateurs, il est crucial de rester informé. Cela signifie assister à des conférences, lire des blogs spécialisés, suivre des formations, et échanger avec d'autres professionnels du secteur.
+Exemple :
 
-## 10.3 Discussion ouverte sur les tendances futures et les implications pour le SEO
+```html
+<h1>Guide du référencement technique</h1>
+<h2>Exploration</h2>
+<h3>robots.txt</h3>
+<h3>Sitemaps</h3>
+<h2>Indexation</h2>
+```
 
-- **Anticiper le futur** : Les avancées technologiques, qu'il s'agisse de la recherche vocale, de la réalité augmentée ou de l'intelligence artificielle, ont des implications profondes pour le SEO. En tant que professionnels du secteur, nous devons non seulement comprendre ces tendances, mais aussi réfléchir de manière proactive à la manière dont elles pourraient remodeler le paysage du référencement à l'avenir.
+Les titres servent surtout à structurer le document pour les lecteurs et les technologies d'assistance.
+
+Éviter :
+
+- d'utiliser un titre uniquement pour sa taille visuelle ;
+- une hiérarchie incompréhensible ;
+- des dizaines de titres répétant la même expression.
+
+## 4.7 URL
+
+Une URL doit être stable, simple à comprendre et aussi durable que possible.
+
+Préférer :
+
+```text
+https://example.org/guides/seo-technique
+```
+
+à :
+
+```text
+https://example.org/index.php?id=4827&cat=12&session=abc
+```
+
+Les paramètres ne sont pas interdits, mais il faut éviter les combinaisons inutiles produisant un grand nombre d'URL équivalentes.
+
+## 4.8 Images
+
+Exemple :
+
+```html
+<img
+  src="/images/schema-crawl-indexation.webp"
+  alt="Étapes entre exploration, rendu et indexation d'une page"
+  width="1200"
+  height="700"
+>
+```
+
+L'attribut `alt` doit décrire l'image lorsque celle-ci apporte une information utile.
+
+Une image purement décorative peut utiliser :
+
+```html
+alt=""
+```
+
+Il faut également :
+
+- compresser correctement les images ;
+- utiliser des dimensions adaptées ;
+- renseigner `width` et `height` pour limiter les décalages de mise en page ;
+- employer des formats modernes lorsque pertinents ;
+- éviter de placer une information essentielle uniquement dans une image.
+
+## 4.9 Fraîcheur du contenu
+
+Tous les contenus ne nécessitent pas une date récente.
+
+Une définition mathématique peut rester correcte pendant des décennies, alors qu'un cours sur une API ou une réglementation doit être vérifié régulièrement.
+
+Mettre artificiellement à jour une date sans modifier le contenu n'améliore pas sa qualité.
+
+## 4.10 Contenu dupliqué
+
+La duplication n'est pas automatiquement une pénalité. Elle devient problématique lorsque :
+
+- de nombreuses URL représentent le même contenu ;
+- les signaux sont divisés entre plusieurs URL ;
+- l'exploration est gaspillée ;
+- l'utilisateur ne sait pas quelle version utiliser.
+
+La canonicalisation, les redirections et une architecture cohérente permettent de consolider les variantes.
+
+---
+
+# 5. Architecture du site et maillage interne
+
+## 5.1 Une architecture compréhensible
+
+Une organisation simple facilite l'usage et l'exploration.
+
+```text
+/
+├── cours/
+│   ├── web/
+│   ├── python/
+│   └── securite/
+├── articles/
+└── a-propos/
+```
+
+Une page importante ne devrait généralement pas être accessible uniquement via un formulaire de recherche interne.
+
+## 5.2 Maillage interne
+
+Les liens internes :
+
+- permettent aux utilisateurs de naviguer ;
+- aident les robots à découvrir les pages ;
+- transmettent du contexte ;
+- révèlent la structure du site.
+
+Préférer :
+
+```html
+<a href="/cours/http">cours sur HTTP</a>
+```
+
+à :
+
+```html
+<a href="/cours/http">cliquez ici</a>
+```
+
+quand le contexte le permet.
+
+## 5.3 Pages orphelines
+
+Une **page orpheline** n'est reliée à aucune autre page pertinente du site.
+
+Elle peut être :
+
+- difficile à découvrir ;
+- peu contextualisée ;
+- oubliée lors des mises à jour.
+
+Un crawl interne permet de les identifier en comparant :
+
+- URL du sitemap ;
+- URL connues par Analytics/Search Console ;
+- URL trouvées via les liens internes.
+
+## 5.4 Profondeur
+
+La profondeur correspond au nombre de clics nécessaires depuis une page d'entrée importante.
+
+Il n'existe pas de règle universelle « toutes les pages en trois clics », mais une page stratégique profondément enfouie mérite une justification.
+
+## 5.5 Pagination et chargement progressif
+
+Une interface peut charger progressivement des éléments, mais le moteur doit pouvoir découvrir des URL persistantes correspondant aux contenus à indexer.
+
+Un bouton JavaScript qui ne crée jamais d'URL explorables peut empêcher la découverte complète d'un catalogue.
+
+---
+
+# 6. SEO technique : exploration, indexation et canonicalisation
+
+## 6.1 Codes HTTP
+
+Les codes d'état ont un sens important.
+
+| Code | Signification | Usage SEO courant |
+|---:|---|---|
+| `200` | Succès | Page valide |
+| `301` | Redirection permanente | URL déplacée durablement |
+| `302` | Redirection temporaire | Déplacement temporaire |
+| `307` | Redirection temporaire conservant la méthode | Cas HTTP approprié |
+| `308` | Redirection permanente conservant la méthode | Alternative permanente |
+| `404` | Ressource introuvable | URL inexistante |
+| `410` | Ressource supprimée | Suppression volontaire |
+| `429` | Trop de requêtes | Limitation temporaire |
+| `5xx` | Erreur serveur | Problème côté serveur |
+
+Tester :
+
+```bash
+curl -I https://example.org/page
+```
+
+## 6.2 `robots.txt`
+
+Le fichier se place classiquement à la racine :
+
+```text
+https://example.org/robots.txt
+```
+
+Exemple :
+
+```text
+User-agent: *
+Disallow: /admin/
+Disallow: /recherche-interne/
+
+Sitemap: https://example.org/sitemap.xml
+```
+
+> [!WARNING]
+> `robots.txt` contrôle principalement **l'exploration**, pas l'indexation. Une URL bloquée peut malgré tout être connue et éventuellement apparaître sans contenu détaillé si d'autres pages pointent vers elle.
+
+Il ne faut jamais utiliser `robots.txt` pour protéger une information confidentielle. Utiliser une véritable authentification et des contrôles d'accès.
+
+## 6.3 `noindex`
+
+Pour demander qu'une page ne soit pas indexée :
+
+```html
+<meta name="robots" content="noindex">
+```
+
+ou via HTTP :
+
+```http
+X-Robots-Tag: noindex
+```
+
+Le robot doit pouvoir explorer la page pour voir la directive. Bloquer simultanément l'URL dans `robots.txt` peut donc empêcher le moteur de lire `noindex`.
+
+## 6.4 `nofollow`
+
+Exemple :
+
+```html
+<a href="https://example.net" rel="nofollow">Lien</a>
+```
+
+Pour les liens publicitaires ou sponsorisés :
+
+```html
+rel="sponsored"
+```
+
+Pour certains contenus générés par des utilisateurs :
+
+```html
+rel="ugc"
+```
+
+Ces attributs servent à qualifier la relation avec la cible, notamment lorsqu'un lien ne doit pas être interprété comme une recommandation éditoriale ordinaire.
+
+## 6.5 Sitemap XML
+
+Exemple minimal :
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.org/</loc>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://example.org/cours/seo</loc>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+</urlset>
+```
+
+Un sitemap doit surtout contenir les URL **canoniques que l'on souhaite voir indexées**.
+
+Pour Google, un fichier sitemap est limité à :
+
+- **50 000 URL** ;
+- **50 Mo non compressés**.
+
+Au-delà, utiliser plusieurs sitemaps et éventuellement un index de sitemaps.
+
+> [!NOTE]
+> Un sitemap facilite la découverte et transmet des indications. Il ne garantit pas l'indexation.
+
+## 6.6 URL canonique
+
+Exemple :
+
+```html
+<link rel="canonical" href="https://example.org/produits/clavier">
+```
+
+La canonicalisation permet de signaler la version préférée parmi des URL très similaires.
+
+Exemple :
+
+```text
+/produits/clavier
+/produits/clavier?utm_source=newsletter
+/produits/clavier?sort=popularite
+```
+
+Le `rel="canonical"` est un **signal**, pas une instruction absolue. Le moteur peut choisir une autre URL s'il reçoit des signaux contradictoires.
+
+Bonnes pratiques :
+
+- canonical auto-référente sur la page principale ;
+- liens internes vers l'URL canonique ;
+- sitemap cohérent avec les canonicals ;
+- redirection si une variante ne doit plus exister ;
+- ne pas utiliser `robots.txt` comme mécanisme de canonicalisation.
+
+## 6.7 Redirections
+
+Pour un déplacement permanent :
+
+```text
+ancienne URL -> 301/308 -> nouvelle URL
+```
+
+Éviter les chaînes :
+
+```text
+A -> B -> C -> D
+```
+
+Préférer :
+
+```text
+A -> D
+B -> D
+C -> D
+```
+
+Une redirection doit pointer vers une destination réellement équivalente, pas systématiquement vers la page d'accueil.
+
+## 6.8 Pages 404
+
+Une bonne page 404 :
+
+- renvoie réellement un statut `404` ;
+- explique que la ressource est absente ;
+- propose une navigation utile ;
+- ne se fait pas passer pour une page valide avec un `200`.
+
+Le dernier cas est parfois appelé **soft 404**.
+
+## 6.9 HTTPS
+
+HTTPS est indispensable pour la sécurité moderne du Web.
+
+Après une migration HTTP -> HTTPS :
+
+- rediriger toutes les anciennes URL ;
+- utiliser les URL HTTPS dans les liens internes ;
+- mettre à jour canonical et sitemap ;
+- vérifier les ressources mixtes ;
+- conserver les certificats et la configuration TLS à jour.
+
+Voir également [[HTTP]].
+
+## 6.10 Internationalisation et `hreflang`
+
+Exemple :
+
+```html
+<link rel="alternate" hreflang="fr" href="https://example.org/fr/guide">
+<link rel="alternate" hreflang="en" href="https://example.org/en/guide">
+<link rel="alternate" hreflang="x-default" href="https://example.org/guide">
+```
+
+Les annotations doivent être cohérentes et réciproques.
+
+`hreflang` ne remplace pas une bonne canonicalisation.
+
+---
+
+# 7. Performance, expérience utilisateur et Core Web Vitals
+
+## 7.1 Performance et SEO
+
+La performance est importante d'abord parce qu'elle affecte l'utilisateur :
+
+- perception de rapidité ;
+- capacité à interagir ;
+- stabilité de la page ;
+- conversion ;
+- accessibilité sur mobile et réseaux lents.
+
+Les performances ne remplacent pas la pertinence du contenu.
+
+## 7.2 Core Web Vitals
+
+Les trois métriques principales sont :
+
+| Métrique | Mesure | Bon niveau |
+|---|---|---:|
+| **LCP** | affichage du principal élément visible | `<= 2,5 s` |
+| **INP** | réactivité aux interactions | `<= 200 ms` |
+| **CLS** | stabilité visuelle | `<= 0,1` |
+
+Les seuils sont évalués sur l'expérience réelle des utilisateurs, généralement au **75e percentile**.
+
+### LCP — Largest Contentful Paint
+
+Pour améliorer le LCP :
+
+- réduire le délai du serveur ;
+- ne pas retarder la ressource principale ;
+- optimiser les images héro ;
+- éviter les dépendances de rendu inutiles ;
+- utiliser cache et CDN lorsque pertinents.
+
+### INP — Interaction to Next Paint
+
+Pour améliorer l'INP :
+
+- réduire les longues tâches JavaScript ;
+- diviser le travail ;
+- limiter les scripts tiers ;
+- éviter les handlers très coûteux ;
+- ne pas bloquer inutilement le thread principal.
+
+### CLS — Cumulative Layout Shift
+
+Pour améliorer le CLS :
+
+- réserver l'espace des images et vidéos ;
+- éviter d'insérer des blocs au-dessus d'un contenu déjà affiché ;
+- maîtriser le chargement des polices ;
+- dimensionner les publicités et embeds.
+
+## 7.3 Données de terrain et données de laboratoire
+
+Il faut distinguer :
+
+- **field data** : mesures d'utilisateurs réels ;
+- **lab data** : simulation reproductible dans un environnement contrôlé.
+
+Outils typiques :
+
+- Chrome User Experience Report ;
+- Search Console ;
+- PageSpeed Insights ;
+- Lighthouse ;
+- outils RUM (*Real User Monitoring*).
+
+## 7.4 Mobile
+
+Google utilise une approche **mobile-first** de l'indexation.
+
+Les contenus et métadonnées importants doivent donc être disponibles sur la version mobile.
+
+Une interface mobile de qualité implique notamment :
+
+- texte lisible ;
+- éléments cliquables utilisables ;
+- navigation cohérente ;
+- contenu principal non amputé ;
+- performance acceptable.
+
+---
+
+# 8. SEO JavaScript et applications Web modernes
+
+Voir également [[Javascript]].
+
+## 8.1 Google peut exécuter JavaScript, mais...
+
+Google utilise un moteur de rendu basé sur Chromium et sait traiter de nombreux sites JavaScript.
+
+Cela ne signifie pas que toutes les architectures sont équivalentes.
+
+Une application JavaScript ajoute des risques :
+
+- contenu absent du HTML initial ;
+- API indisponible lors du rendu ;
+- ressources bloquées ;
+- erreurs JavaScript ;
+- liens non explorables ;
+- métadonnées incohérentes ;
+- coût de rendu supérieur.
+
+## 8.2 SSR, SSG et CSR
+
+| Mode | Principe | SEO |
+|---|---|---|
+| **SSR** | HTML produit côté serveur à la requête | robuste pour le contenu indexable |
+| **SSG** | HTML pré-généré | robuste et performant pour contenu stable |
+| **CSR** | rendu principalement dans le navigateur | possible, mais plus complexe |
+
+Il n'est pas nécessaire d'abandonner une SPA, mais il faut s'assurer que le contenu essentiel et la navigation sont effectivement accessibles au moteur.
+
+## 8.3 Liens explorables
+
+Préférer :
+
+```html
+<a href="/produits/42">Produit 42</a>
+```
+
+Éviter comme seul mécanisme de navigation :
+
+```html
+<span onclick="openProduct(42)">Produit 42</span>
+```
+
+## 8.4 Métadonnées
+
+Dans une application client-side, vérifier pour chaque route indexable :
+
+- `<title>` ;
+- meta description ;
+- canonical ;
+- meta robots ;
+- données structurées ;
+- statut HTTP ou comportement équivalent côté serveur.
+
+## 8.5 Tester ce que reçoit le moteur
+
+Utiliser notamment :
+
+- inspection d'URL dans Search Console ;
+- rendu du HTML côté serveur ;
+- navigateur sans JavaScript pour comprendre les dépendances ;
+- logs serveur ;
+- outils de crawl capables de rendre JavaScript.
+
+---
+
+# 9. Données structurées et apparence dans les résultats
+
+## 9.1 À quoi servent les données structurées ?
+
+Les données structurées décrivent explicitement des entités et leurs propriétés.
+
+Google s'appuie notamment sur **Schema.org** pour certaines fonctionnalités enrichies.
+
+Exemples de types :
+
+- `Article` ;
+- `BreadcrumbList` ;
+- `Product` ;
+- `Organization` ;
+- `LocalBusiness` ;
+- `VideoObject` ;
+- `Recipe`.
+
+## 9.2 JSON-LD
+
+Exemple :
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Comprendre le SEO technique",
+  "datePublished": "2026-08-29",
+  "dateModified": "2026-08-29",
+  "author": {
+    "@type": "Person",
+    "name": "Michaël Launay"
+  }
+}
+</script>
+```
+
+Le balisage doit correspondre au contenu réellement visible et respecter les règles du type concerné.
+
+> [!IMPORTANT]
+> Des données structurées valides rendent une page **éligible** à certaines présentations. Elles ne garantissent pas qu'un résultat enrichi sera affiché.
+
+## 9.3 Fil d'Ariane
+
+Exemple visible :
+
+```text
+Accueil > Cours > Web > SEO
+```
+
+Un fil d'Ariane aide :
+
+- l'utilisateur ;
+- la compréhension de la structure ;
+- la navigation interne.
+
+Il peut aussi être accompagné d'un balisage `BreadcrumbList` approprié.
+
+## 9.4 Extraits et contrôle de prévisualisation
+
+Des directives permettent de contrôler certains extraits :
+
+```html
+<meta name="robots" content="max-snippet:120">
+```
+
+ou :
+
+```html
+<meta name="robots" content="nosnippet">
+```
+
+Pour exclure uniquement un fragment d'un extrait :
+
+```html
+<span data-nosnippet>Texte à ne pas utiliser dans le snippet</span>
+```
+
+Ces contrôles ont aussi des conséquences sur l'utilisation du contenu dans certaines fonctionnalités de recherche fondées sur l'IA.
+
+---
+
+# 10. SEO off-page, liens et réputation
+
+## 10.1 Backlinks
+
+Un backlink est un lien provenant d'un autre site.
+
+Les bons liens sont généralement obtenus parce que la cible :
+
+- constitue une source ;
+- apporte une donnée ;
+- fournit un outil ;
+- publie une analyse utile ;
+- mérite d'être recommandée.
+
+## 10.2 Qualité d'un lien
+
+On peut examiner :
+
+- pertinence thématique ;
+- contexte éditorial ;
+- qualité de la page source ;
+- caractère naturel du lien ;
+- trafic ou audience réelle ;
+- position du lien dans le document ;
+- texte d'ancre.
+
+Un lien n'est pas « bon » uniquement parce qu'un outil tiers lui attribue un score élevé.
+
+## 10.3 DA, DR et métriques similaires
+
+**Domain Authority**, **Domain Rating** et d'autres scores sont des métriques créées par des entreprises tierces.
+
+> [!WARNING]
+> Elles ne sont pas des métriques internes de Google et ne constituent pas directement des facteurs de classement Google.
+
+Elles peuvent être utiles pour comparer approximativement des profils de liens, mais ne doivent pas devenir un objectif en soi.
+
+## 10.4 Acquisition de liens saine
+
+Méthodes durables :
+
+- études ou données originales ;
+- logiciels ou ressources ouvertes ;
+- documentation de référence ;
+- partenariats éditoriaux légitimes ;
+- relations presse ;
+- conférences ;
+- contributions expertes ;
+- correction de liens cassés lorsqu'une vraie ressource de remplacement existe.
+
+## 10.5 Liens payants
+
+Un lien publicitaire doit être correctement qualifié, par exemple :
+
+```html
+<a href="https://sponsor.example" rel="sponsored">Partenaire</a>
+```
+
+L'achat ou la vente de liens dans le but de manipuler le classement est contraire aux règles de spam de Google.
+
+## 10.6 Désaveu de liens
+
+Le désaveu n'est pas un outil de maintenance courante à utiliser par peur de chaque backlink étrange.
+
+La priorité est d'éviter de créer ou acheter soi-même des schémas de liens artificiels.
+
+---
+
+# 11. SEO local, international et e-commerce
+
+## 11.1 SEO local
+
+Pour une entreprise locale, les éléments importants comprennent :
+
+- fiche d'établissement complète et à jour ;
+- nom, adresse et téléphone cohérents ;
+- horaires ;
+- catégorie pertinente ;
+- avis authentiques ;
+- pages locales réellement utiles ;
+- données structurées adaptées lorsque pertinentes.
+
+Éviter de créer des centaines de pages quasi identiques pour chaque ville sans valeur locale réelle.
+
+## 11.2 International
+
+Une stratégie internationale doit choisir clairement :
+
+- les langues ;
+- les pays ciblés ;
+- la structure des URL ;
+- les traductions ;
+- les annotations `hreflang` ;
+- la gestion des contenus régionaux similaires.
+
+Exemple de structures possibles :
+
+```text
+example.fr/
+example.com/fr/
+fr.example.com/
+```
+
+Aucune structure ne remplace une traduction et une localisation de qualité.
+
+## 11.3 E-commerce
+
+Pour une boutique :
+
+- catégories explorables ;
+- fiches produits uniques ;
+- URLs stables ;
+- variantes correctement gérées ;
+- données `Product` lorsqu'elles sont conformes ;
+- prix et disponibilité cohérents ;
+- pagination et filtres maîtrisés ;
+- images de qualité ;
+- Merchant Center lorsque pertinent.
+
+## 11.4 Navigation à facettes
+
+Des filtres peuvent produire énormément d'URL :
+
+```text
+?couleur=noir
+?taille=42
+?couleur=noir&taille=42
+?tri=prix
+...
+```
+
+Il faut déterminer quelles combinaisons :
+
+- répondent réellement à une demande ;
+- doivent être explorables ;
+- doivent être indexables ;
+- doivent avoir une URL canonique propre.
+
+Une stratégie incorrecte peut créer un espace d'URL pratiquement infini.
+
+---
+
+# 12. SEO, IA générative, AI Overviews et AI Mode
+
+## 12.1 Le SEO n'a pas disparu
+
+L'arrivée de réponses génératives transforme l'interface de recherche, mais les fondamentaux restent essentiels.
+
+En 2026, Google indique explicitement que les bonnes pratiques SEO restent applicables aux fonctionnalités génératives telles que :
+
+- **AI Overviews** ;
+- **AI Mode**.
+
+Pour être éligible comme source, une page doit notamment être :
+
+- indexée ;
+- éligible à l'affichage dans Search avec un extrait ;
+- accessible techniquement selon les règles habituelles.
+
+Il n'existe pas de balisage Schema.org spécial obligatoire pour « entrer dans AI Overviews ».
+
+## 12.2 AEO et GEO
+
+Les termes suivants sont utilisés dans l'industrie :
+
+- **AEO** : *Answer Engine Optimization* ;
+- **GEO** : *Generative Engine Optimization*.
+
+Ils peuvent être utiles pour nommer une préoccupation métier, mais Google considère que l'optimisation de ses expériences génératives repose sur les mêmes bases que le SEO.
+
+Il faut donc se méfier des promesses de « hack GEO » ou de fichiers secrets supposés garantir une citation.
+
+## 12.3 Comment les fonctionnalités génératives trouvent des sources
+
+Google décrit notamment :
+
+- des mécanismes de **RAG** (*Retrieval-Augmented Generation*) ;
+- le **query fan-out**, où le système lance plusieurs recherches connexes pour traiter une question complexe.
+
+Conséquence pratique : une page utile n'a pas besoin de répéter mot pour mot toutes les variantes imaginables d'une requête.
+
+Elle doit plutôt :
+
+- couvrir clairement son sujet ;
+- fournir des informations distinctives ;
+- être structurée ;
+- présenter des faits vérifiables ;
+- proposer des médias de qualité lorsque pertinents.
+
+Voir également [[RAG]].
+
+## 12.4 Contenu non générique
+
+Avec les modèles génératifs, reproduire une synthèse déjà disponible partout apporte peu de valeur.
+
+Un contenu plus différenciant peut apporter :
+
+- une expérience réelle ;
+- une mesure originale ;
+- un corpus ou jeu de données ;
+- une enquête ;
+- des tests ;
+- une analyse experte ;
+- un outil ;
+- une comparaison reproductible ;
+- une documentation de première main.
+
+## 12.5 Contenu généré par IA
+
+Google ne considère pas qu'un texte est automatiquement du spam parce qu'une IA a participé à sa création.
+
+Le problème apparaît lorsque l'automatisation sert principalement à produire à grande échelle du contenu :
+
+- non original ;
+- peu utile ;
+- destiné à manipuler les résultats.
+
+Une bonne utilisation de l'IA peut inclure :
+
+- assistance à la recherche ;
+- structuration ;
+- reformulation ;
+- extraction ;
+- traduction avec contrôle ;
+- génération d'ébauches ensuite vérifiées et enrichies.
+
+La responsabilité éditoriale reste humaine ou organisationnelle : les faits doivent être contrôlés.
+
+## 12.6 Contrôler l'utilisation dans les fonctionnalités de Search
+
+Les contrôles d'extrait classiques restent pertinents :
+
+- `nosnippet` ;
+- `data-nosnippet` ;
+- `max-snippet` ;
+- `noindex`.
+
+Google distingue ces contrôles de **Google-Extended**, qui concerne certains usages d'entraînement et de grounding dans d'autres systèmes Google et ne constitue pas le mécanisme de contrôle de Google Search lui-même.
+
+## 12.7 Mesurer la visibilité générative
+
+En 2026, Google a commencé à proposer dans Search Console des rapports spécifiques sur la visibilité dans les fonctionnalités de recherche générative, notamment AI Overviews et AI Mode, en complément des données de performance générales.
+
+Pour mesurer l'impact, observer :
+
+- impressions ;
+- clics ;
+- conversions ;
+- engagement post-clic ;
+- requêtes ;
+- pages de destination ;
+- évolution avant/après changements de SERP.
+
+Ne pas se limiter au trafic brut : une diminution du nombre de clics peut parfois coexister avec une amélioration du taux de conversion ou de la qualité des visites.
+
+## 12.8 Agents IA et Web
+
+Les agents peuvent effectuer des tâches pour leurs utilisateurs :
+
+- comparer des offres ;
+- préparer un achat ;
+- réserver ;
+- collecter des informations ;
+- interagir avec des interfaces.
+
+Les bonnes pratiques de base restent :
+
+- contenu accessible ;
+- informations fiables et à jour ;
+- structure technique claire ;
+- données produit/locales cohérentes ;
+- interfaces compréhensibles et sécurisées.
+
+---
+
+# 13. Mesure, outils et indicateurs
+
+## 13.1 Google Search Console
+
+Search Console permet notamment de suivre :
+
+- clics ;
+- impressions ;
+- CTR ;
+- position moyenne ;
+- requêtes ;
+- pages ;
+- pays et appareils ;
+- état d'indexation ;
+- sitemaps ;
+- Core Web Vitals ;
+- résultats enrichis ;
+- actions manuelles et problèmes de sécurité selon les rapports disponibles.
+
+## 13.2 Google Analytics et outils analytics
+
+Un outil analytics mesure ce qui se passe **après l'arrivée sur le site** :
+
+- sessions ;
+- événements ;
+- conversions ;
+- revenus ;
+- engagement ;
+- parcours utilisateurs.
+
+Search Console et Analytics répondent donc à des questions différentes et leurs chiffres ne doivent pas nécessairement être identiques.
+
+## 13.3 Logs serveur
+
+Les logs permettent de savoir ce qui a réellement été demandé au serveur.
+
+Exemple simplifié :
+
+```text
+66.249.x.x - - [29/Aug/2026:10:42:31 +0200] "GET /cours/seo HTTP/2" 200 18452
+```
+
+On peut analyser :
+
+- fréquence de crawl ;
+- erreurs ;
+- redirections ;
+- ressources très explorées ;
+- URL inutiles ;
+- comportement de robots déclarés.
+
+Attention : l'User-Agent seul ne suffit pas toujours à prouver l'identité d'un robot.
+
+## 13.4 Outils de crawl
+
+Exemples :
+
+- Screaming Frog SEO Spider ;
+- Sitebulb ;
+- crawlers internes ;
+- scripts personnalisés.
+
+Ils permettent de détecter :
+
+- liens cassés ;
+- redirections ;
+- titres absents ou dupliqués ;
+- canonicals ;
+- profondeur ;
+- pages orphelines ;
+- directives robots ;
+- données structurées.
+
+## 13.5 Outils tiers
+
+Ahrefs, Semrush, Moz et d'autres peuvent fournir :
+
+- estimations de mots-clés ;
+- visibilité concurrentielle ;
+- backlinks connus ;
+- suivi de positions ;
+- audits.
+
+Leurs chiffres sont des estimations issues de leurs propres bases. Aucun outil tiers ne connaît exactement les algorithmes internes de Google.
+
+## 13.6 KPI pertinents
+
+Un bon KPI dépend de l'objectif.
+
+### Site éditorial
+
+- impressions ;
+- clics ;
+- lecteurs récurrents ;
+- inscriptions ;
+- profondeur de lecture.
+
+### E-commerce
+
+- revenus organiques ;
+- transactions ;
+- marge ;
+- taux de conversion ;
+- visibilité des catégories stratégiques.
+
+### SaaS
+
+- demandes de démonstration ;
+- essais ;
+- inscriptions ;
+- activation ;
+- revenu attribuable.
+
+> [!IMPORTANT]
+> « Être premier sur Google » n'est pas un objectif métier suffisant. Une requête peut générer beaucoup d'impressions et aucune valeur réelle.
+
+## 13.7 CTR et position moyenne
+
+Le CTR varie selon :
+
+- requête ;
+- position ;
+- type de résultat ;
+- marque ;
+- présence d'annonces ;
+- vidéos, cartes ou résultats enrichis ;
+- fonctionnalités génératives.
+
+Il faut donc éviter d'utiliser une courbe universelle « position -> CTR » comme vérité absolue.
+
+---
+
+# 14. Méthodologie d'audit SEO
+
+Un audit doit aboutir à des **actions priorisées**, pas à une liste de centaines d'avertissements sans contexte.
+
+## 14.1 Étape 1 — Comprendre le site
+
+Identifier :
+
+- objectifs métier ;
+- audiences ;
+- technologies ;
+- historique ;
+- marchés ;
+- pages stratégiques ;
+- contraintes légales ou techniques.
+
+## 14.2 Étape 2 — Explorer le site
+
+Relever :
+
+- URL ;
+- statuts HTTP ;
+- profondeur ;
+- liens entrants internes ;
+- titles ;
+- descriptions ;
+- H1 ;
+- canonical ;
+- indexabilité ;
+- tailles de pages ;
+- pagination ;
+- hreflang ;
+- données structurées.
+
+## 14.3 Étape 3 — Vérifier l'indexation
+
+Comparer :
+
+```text
+URL théoriques
+URL crawlables
+URL du sitemap
+URL indexables
+URL effectivement indexées
+URL qui reçoivent des impressions
+```
+
+Les écarts sont souvent très instructifs.
+
+## 14.4 Étape 4 — Inspecter la technique
+
+Vérifier :
+
+- `robots.txt` ;
+- sitemaps ;
+- canonicals ;
+- redirections ;
+- HTTP/HTTPS ;
+- erreurs serveur ;
+- rendu JavaScript ;
+- performance ;
+- mobile ;
+- pages 404 ;
+- facettes ;
+- pagination.
+
+## 14.5 Étape 5 — Auditer le contenu
+
+Pour chaque groupe de pages :
+
+- intention satisfaite ?
+- contenu unique ?
+- expertise ou expérience démontrée ?
+- information à jour ?
+- page trop faible ou artificielle ?
+- cannibalisation éventuelle ?
+- maillage interne suffisant ?
+
+## 14.6 Étape 6 — Étudier les requêtes
+
+Search Console permet d'identifier :
+
+- pages avec fortes impressions et CTR faible ;
+- requêtes en progression ;
+- pertes soudaines ;
+- contenus découvrant des requêtes inattendues ;
+- pages proches de la première page ;
+- différences par pays ou appareil.
+
+## 14.7 Étape 7 — Étudier les liens et la réputation
+
+Chercher notamment :
+
+- liens naturels importants ;
+- mentions ;
+- pages historiquement très liées ;
+- anciens liens cassés après migration ;
+- schémas artificiels éventuellement créés par le site lui-même.
+
+## 14.8 Étape 8 — Prioriser
+
+Une matrice simple :
+
+| Impact | Effort | Priorité |
+|---|---|---|
+| Fort | Faible | immédiate |
+| Fort | Fort | planifier |
+| Faible | Faible | opportuniste |
+| Faible | Fort | souvent éviter |
+
+Ajouter la notion de **risque** : une migration de 100 000 URL n'a pas le même niveau de risque qu'une correction de title.
+
+## 14.9 Étape 9 — Mesurer après modification
+
+Noter :
+
+- date ;
+- pages concernées ;
+- hypothèse ;
+- métriques attendues ;
+- période de comparaison.
+
+Cela évite d'attribuer arbitrairement chaque variation à la dernière modification effectuée.
+
+---
+
+# 15. Migrations et changements d'URL
+
+Les migrations sont parmi les opérations SEO les plus risquées.
+
+Exemples :
+
+- HTTP -> HTTPS ;
+- changement de domaine ;
+- changement de CMS ;
+- nouveau framework ;
+- réorganisation de l'arborescence ;
+- fusion de sites.
+
+## 15.1 Principe : limiter les changements simultanés
+
+Si possible, ne modifier pas en même temps :
+
+- domaine ;
+- design ;
+- contenu ;
+- URLs ;
+- architecture ;
+- moteur de rendu.
+
+Plus il y a de variables, plus le diagnostic devient difficile.
+
+## 15.2 Mapping des URL
+
+Préparer un tableau :
+
+```text
+ancienne URL -> nouvelle URL
+```
+
+Chaque page importante doit avoir une destination logique.
+
+Éviter :
+
+```text
+10 000 anciennes pages -> page d'accueil
+```
+
+## 15.3 Avant la migration
+
+Sauvegarder :
+
+- crawl complet ;
+- titles ;
+- canonicals ;
+- hreflang ;
+- statuts ;
+- sitemaps ;
+- trafic par URL ;
+- requêtes principales ;
+- backlinks importants.
+
+## 15.4 Après la migration
+
+Contrôler :
+
+- redirections ;
+- absence de boucles ;
+- absence de chaînes inutiles ;
+- liens internes ;
+- canonical ;
+- sitemap ;
+- indexabilité ;
+- logs ;
+- Search Console ;
+- trafic et conversions.
+
+Conserver les redirections suffisamment longtemps : les anciens liens et favoris peuvent continuer à être utilisés bien après la migration.
+
+---
+
+# 16. Spam, erreurs fréquentes et pratiques à éviter
+
+## 16.1 Bourrage de mots-clés
+
+Mauvais exemple :
+
+```text
+Notre agence SEO Lille est la meilleure agence SEO Lille pour votre SEO Lille...
+```
+
+Le résultat est médiocre pour le lecteur et peut être considéré comme une tentative de manipulation.
+
+## 16.2 Contenu à grande échelle sans valeur
+
+Créer automatiquement des milliers de pages peu originales dans le but principal de capter des requêtes constitue un risque important.
+
+Cela peut être produit :
+
+- par IA générative ;
+- par templates ;
+- par traduction automatique ;
+- par assemblage de flux ;
+- manuellement.
+
+Le moyen de production n'est pas le cœur du problème : c'est l'objectif manipulateur et l'absence de valeur.
+
+## 16.3 Cloaking
+
+Le **cloaking** consiste à présenter volontairement des contenus substantiellement différents au moteur et à l'utilisateur afin de manipuler les résultats.
+
+Il ne faut pas le confondre avec des adaptations légitimes d'interface ou d'accessibilité.
+
+## 16.4 Pages satellites (*doorway pages*)
+
+Exemple :
+
+```text
+/plombier-lille
+/plombier-roubaix
+/plombier-tourcoing
+...
+```
+
+si toutes les pages sont quasi identiques, sans information locale spécifique, uniquement créées pour rediriger vers le même service.
+
+## 16.5 Réseaux de liens et achat de liens
+
+Pratiques à risque :
+
+- fermes de liens ;
+- PBN destinés à manipuler le classement ;
+- échanges massifs ;
+- ancres artificiellement optimisées ;
+- articles sponsorisés non signalés dans l'unique but de transmettre des signaux de classement.
+
+## 16.6 Abus de réputation de site
+
+Publier des contenus tiers principalement pour exploiter la réputation d'un domaine hôte, sans supervision ou valeur éditoriale suffisante, peut entrer dans les politiques d'abus de réputation.
+
+Le fait qu'un contenu soit hébergé sur un domaine puissant ne le rend pas automatiquement légitime.
+
+## 16.7 Domaines expirés
+
+Racheter un domaine expiré peut être légitime.
+
+L'abus consiste à exploiter son historique ou sa réputation principalement pour manipuler le classement avec du contenu sans rapport ou peu utile.
+
+## 16.8 « Autorité de domaine » comme objectif
+
+Erreur classique :
+
+```text
+Objectif : passer le DA de 42 à 50
+```
+
+Mieux :
+
+```text
+Objectif : obtenir des citations éditoriales de sources pertinentes et augmenter les conversions organiques sur nos pages stratégiques.
+```
+
+## 16.9 `robots.txt` pour cacher un secret
+
+Incorrect :
+
+```text
+Disallow: /admin-secret/
+```
+
+Le chemin est visible publiquement dans le fichier et n'est pas protégé.
+
+Pour un secret : authentification, autorisation et contrôle serveur.
+
+## 16.10 Obsession du score 100/100
+
+Un score Lighthouse ou d'outil SEO parfait n'est pas un objectif métier.
+
+Corriger en priorité ce qui :
+
+- bloque l'exploration ;
+- empêche l'indexation ;
+- dégrade fortement l'expérience ;
+- empêche les utilisateurs de trouver une information ;
+- affecte une page importante.
+
+---
+
+# 17. Cas pratique : construire une stratégie SEO
+
+Imaginons un nouveau site proposant des formations Python.
+
+## 17.1 Objectif
+
+Objectif métier :
+
+> obtenir des inscriptions qualifiées à des formations Python avancées.
+
+## 17.2 Identifier les publics
+
+Exemples :
+
+- développeurs débutants ;
+- développeurs confirmés ;
+- responsables techniques ;
+- entreprises cherchant une formation interne.
+
+## 17.3 Cartographier les besoins
+
+```text
+Découverte
+  -> qu'est-ce qu'un décorateur Python ?
+
+Apprentissage
+  -> tutoriel décorateurs Python
+
+Comparaison
+  -> formation Python avancée en ligne
+
+Décision
+  -> prix formation Python entreprise
+```
+
+## 17.4 Architecture
+
+```text
+/
+├── formations/
+│   ├── python-debutant/
+│   ├── python-avance/
+│   └── python-entreprise/
+├── cours/
+│   ├── decorateurs-python/
+│   ├── async-python/
+│   └── tests-python/
+└── a-propos/
+```
+
+Les articles pédagogiques peuvent naturellement lier les formations lorsqu'elles sont pertinentes.
+
+## 17.5 Production de contenu
+
+Plutôt que 100 textes génériques, produire :
+
+- exemples exécutables ;
+- benchmarks ;
+- exercices ;
+- dépôts Git ;
+- explications issues d'une expérience d'enseignement ;
+- corrections détaillées ;
+- comparaison entre approches.
+
+## 17.6 Technique
+
+Avant lancement :
+
+- HTTPS ;
+- sitemap ;
+- robots.txt ;
+- canonical ;
+- pages d'erreur ;
+- responsive ;
+- Core Web Vitals ;
+- données structurées pertinentes ;
+- Search Console ;
+- analytics respectueux du cadre légal applicable.
+
+## 17.7 Acquisition de réputation
+
+Exemples :
+
+- publier un projet libre ;
+- intervenir dans une conférence Python ;
+- contribuer à une documentation ;
+- produire une étude originale ;
+- être cité naturellement par des communautés techniques.
+
+## 17.8 Mesure
+
+Suivre :
+
+- requêtes non-brand ;
+- inscriptions ;
+- conversions par landing page ;
+- pages générant des prospects ;
+- évolution des sujets stratégiques ;
+- erreurs d'indexation ;
+- visibilité dans les résultats classiques et génératifs.
+
+---
+
+# 18. Checklist opérationnelle
+
+## 18.1 Avant publication d'une page
+
+- [ ] L'intention utilisateur est claire.
+- [ ] Le contenu apporte une valeur propre.
+- [ ] Le `<title>` décrit précisément la page.
+- [ ] Le H1 et les sous-titres structurent le contenu.
+- [ ] La meta description est utile.
+- [ ] L'URL est stable et lisible.
+- [ ] Les images importantes ont un `alt` adapté.
+- [ ] Les liens internes importants sont présents.
+- [ ] La page répond en `200`.
+- [ ] Elle n'est pas accidentellement `noindex`.
+- [ ] La canonical est cohérente.
+- [ ] Les données structurées correspondent au contenu visible.
+- [ ] La page est utilisable sur mobile.
+- [ ] Les performances sont acceptables.
+
+## 18.2 Pour un site entier
+
+- [ ] HTTPS est généralisé.
+- [ ] `robots.txt` est valide.
+- [ ] Les sitemaps ne contiennent que les URL pertinentes.
+- [ ] Les redirections sont maîtrisées.
+- [ ] Les pages 404 renvoient un vrai `404`.
+- [ ] Les facettes ne créent pas une infinité d'URL inutiles.
+- [ ] Le maillage interne reflète les priorités du site.
+- [ ] Les pages stratégiques ne sont pas orphelines.
+- [ ] Search Console est configurée.
+- [ ] Les conversions sont mesurables.
+- [ ] Les logs et erreurs serveur sont surveillés.
+- [ ] Les changements SEO importants sont documentés.
+
+## 18.3 Pour une mise à jour de contenu
+
+- [ ] Les faits sont toujours exacts.
+- [ ] Les sources sont toujours valides.
+- [ ] Les captures et exemples correspondent aux versions actuelles.
+- [ ] Les liens cassés sont corrigés.
+- [ ] La date de modification n'est changée que si une vraie modification a été faite.
+- [ ] Les anciennes sections inutiles sont supprimées plutôt que conservées artificiellement.
+
+---
+
+# 19. Conclusion
+
+Le SEO moderne est une discipline d'ingénierie, de contenu et de stratégie.
+
+Les principes les plus durables sont :
+
+1. **rendre le contenu accessible** aux moteurs et aux utilisateurs ;
+2. **répondre précisément à une intention** ;
+3. **apporter une valeur que les pages génériques n'apportent pas** ;
+4. **maintenir une architecture technique cohérente** ;
+5. **développer une réputation réelle plutôt que fabriquer des signaux** ;
+6. **mesurer l'impact métier**, pas uniquement des positions ;
+7. **adapter la stratégie aux nouvelles interfaces de recherche sans abandonner les fondamentaux**.
+
+L'IA générative ne supprime donc pas le SEO. Elle renforce au contraire l'importance de contenus techniquement accessibles, fiables, structurés et suffisamment originaux pour mériter d'être utilisés comme source.
+
+---
+
+# 20. Sources et références
+
+## Références officielles principales
+
+- Google Search Central — SEO Starter Guide : <https://developers.google.com/search/docs/fundamentals/seo-starter-guide>
+- Google Search Essentials : <https://developers.google.com/search/docs/essentials>
+- Fonctionnement de Google Search : <https://developers.google.com/search/docs/fundamentals/how-search-works>
+- Contenu utile, fiable et *people-first* : <https://developers.google.com/search/docs/fundamentals/creating-helpful-content>
+- Exploration et indexation : <https://developers.google.com/search/docs/crawling-indexing>
+- Canonicalisation : <https://developers.google.com/search/docs/crawling-indexing/canonicalization>
+- Sitemaps : <https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap>
+- SEO JavaScript : <https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics>
+- Core Web Vitals : <https://developers.google.com/search/docs/appearance/core-web-vitals>
+- Données structurées : <https://developers.google.com/search/docs/appearance/structured-data/sd-policies>
+- Règles antispam : <https://developers.google.com/search/docs/essentials/spam-policies>
+- Contenu généré avec l'IA : <https://developers.google.com/search/docs/fundamentals/using-gen-ai-content>
+- Fonctionnalités d'IA et site Web : <https://developers.google.com/search/docs/appearance/ai-features>
+- Optimisation pour les fonctionnalités d'IA générative : <https://developers.google.com/search/docs/fundamentals/ai-optimization-guide>
+- Search Console : <https://search.google.com/search-console/about>
+- Schema.org : <https://schema.org/>
+
+## Notes de vigilance
+
+Les documents officiels des moteurs doivent être privilégiés pour les règles techniques et les politiques. Les outils tiers sont utiles pour l'analyse et la comparaison, mais leurs métriques et leurs estimations ne constituent pas des métriques internes des moteurs de recherche.
