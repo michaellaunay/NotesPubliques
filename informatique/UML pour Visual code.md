@@ -2,279 +2,190 @@
 schema_version: 1
 uid: "01M02JG1VHMTGX17BAAQY3AT09"
 titre: "UML pour Visual code"
-type: idee
+aliases:
+  - "UML dans Visual Studio Code"
+  - "Diagrammes UML sous VS Code"
+type: procedure
 statut: actif
 para: ressource
 domaines:
   - enseignement
 themes:
   - informatique
-  - ingenierie-des-modeles
   - uml
+  - modelisation
   - vscode
-  - outils
-resume: "Étude de faisabilité d'un modeleur UML sous forme d'extension Visual Studio Code."
-maturite: exploree
+  - plantuml
+  - mermaid
+resume: "Procédure pour modéliser en UML dans Visual Studio Code en 2026 sans écrire d'extension : diagrammes textuels PlantUML et Mermaid avec leurs extensions et leur rendu (Java, Graphviz ou serveur PlantUML), diagrammes dessinés avec Draw.io et Excalidraw, génération de diagrammes de classes depuis du code Python avec pyreverse (exemple exécuté), et passage au modèle avec pyecore."
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-02
-date_modification: 2023-05-21
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-#Expérimentation #Informatique 
-il est possible de créer un modélisateur UML sous forme de plugin pour Visual Studio Code. Visual Studio Code est un éditeur de code source multiplateforme qui prend en charge l'intégration de plugins écrits dans plusieurs langages, y compris Python. Vous pouvez utiliser le kit de développement de plugins (SDK) de Visual Studio Code pour créer un plugin qui ajoute des fonctionnalités de modélisation UML à l'éditeur.
-
-Pour créer un modélisateur UML sous forme de plugin Visual Studio Code, vous devrez d'abord configurer votre environnement de développement en installant Visual Studio Code et en configurant l'extension Python. Ensuite, vous pouvez utiliser le SDK de Visual Studio Code pour créer votre plugin. Le SDK de Visual Studio Code vous fournit un ensemble d'outils et de bibliothèques qui vous permettent de créer des fonctionnalités personnalisées pour Visual Studio Code, y compris l'ajout de fonctionnalités de modélisation UML.
-
-Il existe plusieurs bibliothèques Python qui vous permettent de créer des diagrammes UML, comme pyslet et pyuml2. Vous pouvez utiliser ces bibliothèques dans votre plugin Visual Studio Code pour générer des diagrammes UML à partir de données modélisées. Vous pouvez également utiliser des bibliothèques pour afficher et éditer des diagrammes UML dans l'interface utilisateur de votre plugin.
-
-```python
-import os
-
-from azure.common.client_factory import get_client_from_cli_profile
-from azure.mgmt.resource import ResourceManagementClient
-
-def run(command_name: str) -> None:
-    print(f'Hello from the {command_name} command!')
-
-def main(context):
-    run('example')
-```
-Voici un exemple de code qui utilise la bibliothèque graphviz pour dessiner un diagramme de classes UML :
-```python
-from graphviz import Digraph
-
-class DiagramDrawer:
-    def __init__(self):
-        self.diagram = Digraph(format='png')
-
-    def draw_class(self, name, attributes, methods):
-        with self.diagram.node(name) as n:
-            n.attr(shape='box')
-            attr_string = '\n'.join(attributes)
-            meth_string = '\n'.join(methods)
-            n.attr(label='{}\n\n{}'.format(attr_string, meth_string))
-
-    def draw_inheritance(self, child, parent):
-        self.diagram.edge(parent, child, arrowhead='onormal', style='dashed')
-
-drawer = DiagramDrawer()
-drawer.draw_class('Animal', ['species: str'], ['__init__(self, species)'])
-drawer.draw_class('Dog', ['breed: str'], ['__init__(self, breed)'])
-drawer.draw_inheritance('Dog', 'Animal')
-drawer.diagram.render()
-
-```
-
-Voici un autre exemple de code qui utilise la bibliothèque pyslet pour dessiner des diagrammes de classes UML dans Visual Studio Code :
-```python
-import os
-
-import pyslet.uml2 as uml
-
-from PIL import Image
-
-from io import BytesIO
-
-  
-
-from azure.common.client_factory import get_client_from_cli_profile
-
-from azure.mgmt.resource import ResourceManagementClient
-
-  
-
-def create_uml_diagram(diagram_name: str) -> uml.Package:
-
-"""Creates a new empty UML package diagram with the given name.
-
-  
-
-Args:
-
-diagram_name: The name of the diagram.
-
-  
-
-Returns:
-
-The created UML package diagram.
-
-"""
-
-diagram = uml.Package(name=diagram_name)
-
-return diagram
-
-  
-
-def add_class_to_diagram(diagram: uml.Package, class_name: str, attributes: List[str], methods: List[str]) -> None:
-
-"""Adds a new class to the diagram with the given name, attributes, and methods.
-
-  
-
-Args:
-
-diagram: The UML package diagram.
-
-class_name: The name of the class.
-
-attributes: The list of attributes for the class.
-
-methods: The list of methods for the class.
-
-"""
-
-new_class = uml.Class()
-
-new_class.name = class_name
-
-for attr in attributes:
-
-new_attr = uml.Property()
-
-new_attr.name = attr
-
-new_class.ownedAttribute = new_attr
-
-for meth in methods:
-
-new_meth = uml.Operation()
-
-new_meth.name = meth
-
-new_class.ownedOperation = new_meth
-
-diagram.packagedElement = new_class
-
-  
-
-def add_inheritance_to_diagram(diagram: uml.Package, child_name: str, parent_name: str) -> None:
-
-"""Adds an inheritance link between two existing classes in the diagram.
-
-  
-
-Args:
-
-diagram: The UML package diagram.
-
-child_name: The name of the child class.
-
-parent_name: The name of the parent class.
-
-"""
-
-child_class = find_class_in_diagram(diagram, child_name)
-
-parent_class = find_class_in_diagram(diagram, parent_name)
-
-child_class.generalization = uml.Generalization(parent_class)
-
-  
-
-def find_class_in_diagram(diagram: uml.Package, class_name: str) -> Optional[uml.Class]:
-
-"""Searches for a class with the given name in the diagram and returns it if found.
-
-  
-
-Args:
-
-diagram: The UML package diagram.
-
-class_name: The name of the class.
-
-  
-
-Returns:
-
-The class if found, or None if not found.
-
-"""
-
-for element in diagram.packagedElement:
-
-if isinstance(element, uml.Class) and element.name == class_name:
-
-return element
-
-  
-
-def draw_uml_diagram(diagram: uml.Package) -> bytes:
-
-"""Draws the UML diagram and returns it as a PNG image in bytes.
-
-  
-
-Args:
-
-diagram: The UML package diagram.
-
-  
-
-Returns:
-
-The PNG image of the diagram in bytes.
-
-"""
-
-path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), 'diagram.png'))
-
-with open(path, 'wb') as f:
-
-f.write(diagram.as_png())
-
-im = Image.open(path)
-
-bio = BytesIO()
-
-im.save(bio, format="png")
-
-return bio.getvalue()
-
-  
-
-def run(command_name: str) -> None:
-
-"""Runs the UML diagramming command.
-
-  
-
-Args:
-
-command_name: The name of the command.
-
-"""
-
-diagram = create_uml_diagram('My UML Diagram')
-
-add_class_to_diagram(diagram, 'Animal', ['species: str'], ['__init__(self, species)'])
-
-add_class_to_diagram(diagram, 'Dog', ['breed: str'], ['__init__(self, breed)'])
-
-add_inheritance_to_diagram(diagram, 'Dog', 'Animal')
-
-image_data = draw_uml_diagram(diagram)
-
-image_uri = "data:image/png;base64,{}".format(str(b64encode(image_data), "utf-8"))
-
-html = '<img src="{}">'.format(image_uri)
-
-display(HTML(html))
-
-  
-
-def main(context):
-
-run('example')
-
+# UML dans Visual Studio Code
+
+> [!abstract] Objectif
+> Produire, versionner et maintenir des diagrammes UML depuis Visual Studio Code : diagrammes **textuels** (PlantUML, Mermaid) rendus dans l'éditeur, diagrammes **dessinés** (Draw.io, Excalidraw) stockés dans le dépôt, et diagrammes de classes **générés** à partir du code Python avec pyreverse — avec les extensions et outils réellement nécessaires.
+
+> [!info] État de la note
+> Réécrite le 29 août 2026. L'idée de 2023 — écrire un modeleur UML sous forme d'extension VS Code, illustrée par du code sans rapport (client Azure, bibliothèque `pyslet` inexistante pour UML) — n'a plus lieu d'être : l'outillage existe. Les commandes du chapitre 4 ont été exécutées avec pylint 4 (pyreverse), et la sortie PlantUML rendue avec PlantUML 1.2026.7 sous Java 21 ; la sortie Mermaid a été validée par l'analyseur Mermaid 11.13.
+
+Voir aussi : [[Visual studio code]], [[Mermaid pour Obsidian]], [[PlantUML pour Obsidian]], [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]], [[Design patterns]].
+
+# 1. Choisir sa forme de diagramme
+
+| Forme | Outil | Quand |
+|---|---|---|
+| **Texte → diagramme** | PlantUML | tous les diagrammes UML (classes, séquence, états, activités, composants, déploiement), C4, notation complète ; rendu par Java |
+| **Texte → diagramme** | Mermaid | classes, séquence, états, ER, flux ; syntaxe plus simple, rendu natif dans GitHub, GitLab, Obsidian et les aperçus Markdown |
+| **Dessin** | Draw.io, Excalidraw | schémas d'architecture, croquis d'atelier, diagrammes hors UML strict |
+| **Code → diagramme** | pyreverse (Python), Doxygen + Graphviz (C/C++/Java) | documenter l'existant, vérifier une architecture |
+| **Modèle → code** | pyecore, EMF | métamodèles et génération, voir le cours [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]] |
+
+Les formes textuelles se **versionnent** dans Git, se relisent en revue de code et se génèrent par script : c'est le choix par défaut pour un projet logiciel.
+
+# 2. Diagrammes textuels
+
+## 2.1 PlantUML
+
+1. Installer l'extension **PlantUML** (`jebbs.plantuml`).
+2. Choisir le mode de rendu :
+   - **local** : Java 17+ et Graphviz (`sudo apt install default-jre graphviz`) ; l'extension embarque `plantuml.jar` ;
+   - **serveur** : `docker run -d -p 8080:8080 plantuml/plantuml-server:jetty` puis, dans les paramètres, `"plantuml.render": "PlantUMLServer"` et `"plantuml.server": "http://localhost:8080"` — plus rapide, sans Java sur le poste ; le serveur public `plantuml.com` est à réserver aux diagrammes non confidentiels.
+3. Créer `docs/architecture.puml`, ouvrir l'aperçu (`Alt+D`), exporter (`PlantUML: Export Current Diagram`) en SVG ou PNG.
+
+```plantuml
+@startuml
+skinparam classAttributeIconSize 0
+class Animal {
+  +nom : str
+  +crier() : str
+}
+class Chien {
+  +race : str
+  +crier() : str
+}
+class Enclos {
+  +nom : str
+  +ajouter(animal : Animal)
+}
+Chien --|> Animal
+Enclos "1" o-- "*" Animal : pensionnaires
+@enduml
 ```
 
-Une version utilisant PyUML qui a été développé par Vincent Arenga
+## 2.2 Mermaid
+
+1. Installer **Markdown Preview Mermaid Support** (`bierner.markdown-mermaid`) : les blocs ```mermaid des fichiers Markdown se rendent dans l'aperçu (`Ctrl+Shift+V`) ; l'extension **Mermaid Chart** ajoute l'édition de fichiers `.mmd` avec aperçu.
+2. Écrire le diagramme dans la documentation elle-même (`README.md`, `docs/*.md`) : GitHub et GitLab le rendent sans configuration.
+
+```mermaid
+classDiagram
+  class Animal {
+    +str nom
+    +crier() str
+  }
+  class Chien {
+    +str race
+    +crier() str
+  }
+  class Enclos {
+    +str nom
+    +ajouter(animal: Animal)
+  }
+  Chien --|> Animal
+  Enclos "1" o-- "*" Animal : pensionnaires
+```
+
+La syntaxe complète et les pièges de version sont dans [[Mermaid pour Obsidian]] — les mêmes diagrammes servent dans les notes Obsidian et dans le dépôt.
+
+# 3. Diagrammes dessinés
+
+- **Draw.io Integration** (`hediet.vscode-drawio`) : un fichier nommé `schema.drawio.svg` ou `schema.drawio.png` s'édite dans VS Code avec l'éditeur Draw.io complet (formes UML incluses) et reste une image directement affichable dans la documentation ; le diff Git montre l'image et le XML embarqué.
+- **Excalidraw** (`pomdtr.excalidraw-editor`) : croquis à main levée dans des fichiers `.excalidraw.svg`/`.png` ; idéal en atelier de conception, moins pour la notation UML stricte.
+
+# 4. Générer un diagramme de classes depuis du code Python
+
+`pyreverse`, livré avec **pylint**, analyse un paquet et produit des diagrammes de classes et de paquets en PlantUML, Mermaid, Graphviz ou HTML.
+
+```bash
+python -m pip install -U pylint
+pyreverse -o mmd  -p zoo zoo/      # classes_zoo.mmd et packages_zoo.mmd
+pyreverse -o puml -p zoo zoo/      # classes_zoo.puml et packages_zoo.puml
+pyreverse -o puml -p zoo -A -S -f ALL zoo/   # ancêtres, classes associées, tous les attributs
+```
+
+Pour le paquet de démonstration suivant :
+
+```python
+class Animal:
+    def __init__(self, nom: str, espece: str) -> None:
+        self.nom = nom
+        self.espece = espece
+
+    def crier(self) -> str:
+        return "..."
+
+
+class Chien(Animal):
+    def __init__(self, nom: str, race: str) -> None:
+        super().__init__(nom, "chien")
+        self.race = race
+
+    def crier(self) -> str:
+        return "Wouf"
+```
+
+pyreverse produit (sortie réelle, Mermaid) :
+
+```mermaid
+classDiagram
+  class Animal {
+    espece : str
+    nom : str
+    crier() str
+  }
+  class Chien {
+    race : str
+    crier() str
+  }
+  Chien --|> Animal
+```
+
+et l'équivalent PlantUML, rendu en SVG par `java -jar plantuml.jar -tsvg classes_zoo.puml`. Ces fichiers se régénèrent dans l'intégration continue pour que la documentation suive le code ; les associations déduites des annotations de type restent partielles, un diagramme de conception écrit à la main garde sa place.
+
+Pour d'autres langages : **Doxygen** avec Graphviz (C, C++, Java, PHP) produit hiérarchies et graphes d'appels ; les IDE JetBrains génèrent des diagrammes de classes Java ; côté TypeScript, `tsuml2` ou les extensions PlantUML dédiées.
+
+# 5. Du diagramme au modèle
+
+Un diagramme est une image ; un **modèle** est une structure interrogeable et transformable. Quand le besoin dépasse la documentation — générer du code, valider des contraintes, transformer un métamodèle — le cours [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]] présente Ecore, EMF et **pyecore**, qui lit et écrit des modèles Ecore en Python et peut produire, entre autres, du PlantUML.
+
+# 6. Aide-mémoire
+
+| Besoin | Outil ou commande |
+|---|---|
+| Aperçu PlantUML | extension `jebbs.plantuml`, `Alt+D` |
+| Serveur PlantUML local | `docker run -d -p 8080:8080 plantuml/plantuml-server:jetty` |
+| Rendu PlantUML en ligne de commande | `java -jar plantuml.jar -tsvg fichier.puml` |
+| Aperçu Mermaid dans Markdown | extension `bierner.markdown-mermaid`, `Ctrl+Shift+V` |
+| Diagramme dessiné versionnable | `nom.drawio.svg` avec `hediet.vscode-drawio` |
+| Classes depuis du Python | `pyreverse -o mmd -p projet paquet/` |
+| Paquets et dépendances | `packages_*.mmd` produit par la même commande |
+
+# 7. Sources
+
+- Extension PlantUML pour VS Code : <https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml> ; PlantUML : <https://plantuml.com/fr/>
+- Serveur PlantUML : <https://github.com/plantuml/plantuml-server>
+- Markdown Preview Mermaid Support : <https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid> ; Mermaid : <https://mermaid.js.org/>
+- Draw.io Integration : <https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio>
+- Excalidraw : <https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor>
+- pyreverse (pylint) : <https://pylint.readthedocs.io/en/stable/additional_tools/pyreverse/index.html>
+- Doxygen : <https://www.doxygen.nl/>
+- pyecore : <https://github.com/pyecore/pyecore>

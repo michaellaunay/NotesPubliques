@@ -4,6 +4,8 @@ uid: 01M02JG1VETJDV361Y3W8SM94V
 titre: Migration Plone 5.2 python 2.7 vers 3
 aliases:
 - Migration ZODB Python 3
+- Débogage ZODB
+- Migration Plone Python 3
 type: procedure
 statut: actif
 para: ressource
@@ -16,19 +18,27 @@ themes:
 - zodb
 - python
 - migration
-resume: Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB et la migration de Plone 5.2 de Python 2.7 vers Python 3.
+resume: "Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB (zodbverify, fsoids, objets cassés, POSKeyError) et la migration de Plone 5.2 de Python 2.7 vers Python 3, complétée en 2026 par l'état des versions (fin de vie de Plone 5.2, Plone 6.2), les outils courants et le chemin de migration recommandé vers Plone 6."
 auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2024-10-12
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
 - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-Traduction en français de https://community.plone.org/t/best-practice-documentation-on-zodb-debugging/12778
+# Migration Plone 5.2 de Python 2.7 vers Python 3 et débogage de la ZODB
+
+> [!abstract] Objectif
+> Diagnostiquer et réparer une ZODB abîmée (objets cassés, `POSKeyError`, références vers des classes disparues) avec `zodbverify`, `fsoids` et `zodbupdate`, puis conduire la conversion d'une base Plone 5.2 de Python 2.7 vers Python 3 — étape obligatoire avant tout passage à Plone 6.
+
+> [!info] État de la procédure
+> Traduction en français de la documentation communautaire « Best practice documentation on ZODB debugging » (<https://community.plone.org/t/best-practice-documentation-on-zodb-debugging/12778>), établie en octobre 2024 et complétée le 29 août 2026 par le chapitre « Situation en 2026 » : Plone 5.2 est hors de tout support depuis le 31 octobre 2024, Plone 6.2 est la version courante, et les outils cités ont changé de version. La technique décrite reste exacte : la ZODB et ses scripts n'ont pas changé.
+
+Voir aussi : [[ZC.Buildout]], [[Python]].
 
 # Identifier ce qui est cassé  
 **Vérifiez l'intégralité de votre base de données**
@@ -190,7 +200,7 @@ Vous pouvez définir vos propres mappings dans vos packages et les enregistrer d
 - **Exemple de mapping de décodage** : [ZopeVersionControl commit](https://github.com/zopefoundation/Products.ZopeVersionControl/commit/138cf39)
 
 
-# Option 3 : Contourner avec un patch
+## Option 3 : Contourner avec un patch
 
 Il est possible d'injecter un module pour contourner les classes ou modules manquants ou déplacés. 
 
@@ -241,7 +251,7 @@ Plus d'exemples :
 
 ---
 
-# Option 4 : Remplacer les objets cassés par des objets factices (dummies)
+## Option 4 : Remplacer les objets cassés par des objets factices (dummies)
 
 Si un objet est manquant (ex. : vous obtenez une erreur **POSKeyError**) ou s'il est trop corrompu pour être réparé, vous pouvez choisir de le remplacer par un objet factice.
 
@@ -268,7 +278,7 @@ transaction.commit()
 
 ---
 
-# Option 5 : Supprimer les objets cassés de la base de données
+## Option 5 : Supprimer les objets cassés de la base de données
 
 Vous pouvez également choisir de supprimer les objets cassés directement de la base de données :
 
@@ -288,11 +298,11 @@ transaction.commit()
 
 Cependant, cette approche présente des risques. En supprimant l'objet, vous enlevez son pickle mais pas nécessairement toutes les références qui y sont associées. Cela peut entraîner des erreurs **POSKeyError** par la suite. Il est donc recommandé d'utiliser cette méthode avec précaution.
 
-# Option 6 : Réparation manuelle
+## Option 6 : Réparation manuelle
 
 C'est généralement la meilleure méthode pour résoudre la majorité des problèmes.
 
-## Étapes à suivre :
+### Étapes à suivre
 
 1. Utilisez **zodbverify** pour identifier tous les objets cassés.
 2. Concentrez-vous sur un type d'erreur à la fois.
@@ -300,7 +310,7 @@ C'est généralement la meilleure méthode pour résoudre la majorité des probl
 4. Si nécessaire, utilisez le script **fsoids.py** pour suivre les références jusqu'à ce que vous trouviez où se situe l'objet dans l'arbre des objets. **zodbverify** essaiera de faire cela pour vous.
 5. Supprimez ou corrigez l'objet (en utilisant une étape de mise à jour, un débogueur comme **pdb** ou un mapping de renommage).
 
-## Identification des objets cassés
+### Identification des objets cassés
 
 La version la plus récente de **zodbverify** possède une fonctionnalité qui automatise cette tâche (discutée dans l'exemple 1). En attendant que cette fonctionnalité soit intégrée, vous devez utiliser la branche `show_references` du pull-request : <https://github.com/plone/zodbverify/pull/8>.
 
@@ -308,7 +318,7 @@ Lorsqu'il inspecte un *oid*, **zodbverify** crée un dictionnaire de toutes les 
 
 Le résultat vous donnera une idée claire de l'emplacement de l'objet cassé dans l'arborescence des objets, et vous indiquera comment y accéder et le corriger.
 
-## Exemple
+### Exemple
 
 Si l'*oid* `0x3b1d06` est cassé, vous pouvez l'inspecter avec **zodbverify** :
 
@@ -585,9 +595,9 @@ def cleanup_upload_annotation(context=None):
             del ann['file_upload_map'][uuid]
 ```
 
-# TODO
+# Note sur zodbverify
 
-à finir et merger avec  [https://github.com/plone/zodbverify/pull/8 9](https://github.com/plone/zodbverify/pull/8)
+L'amélioration discutée dans la demande de fusion [plone/zodbverify #8](https://github.com/plone/zodbverify/pull/8) — inspection d'un *oid* (`-o`) et affichage de tous les objets qui le référencent — a été fusionnée et livrée avec Plone 5.2.9 en 2022 ; c'est cette version de l'outil que décrivent les chapitres précédents. En 2026, `zodbverify` est en version 1.2.1 sur PyPI et s'installe avec `pip install zodbverify` ou par `pip install "Plone[zodbverify]"` suivant la méthode d'installation du site.
 
 # Annexe : Migration d'une ZODB de Python 2 à Python 3
 
@@ -713,6 +723,35 @@ obj = app._p_jar.get(p64(oid))
 
 ---
 
+# Situation en 2026 : chemin de migration recommandé
+
+## Calendrier des versions
+
+| Version | Dernière publication | Python | Support |
+|---|---|---|---|
+| Plone 5.2 | 5.2.15 (1er août 2024) | 2.7 et 3.8 | maintenance terminée le 31 octobre 2023, **sécurité terminée le 31 octobre 2024** |
+| Plone 6.0 | 6.0.15 (mars 2025) | 3.9 à 3.13 | hors maintenance ; sécurité jusqu'au 31 décembre 2027 |
+| Plone 6.1 | 6.1.5 (juin 2026) | 3.10 à 3.13 | hors maintenance depuis 6.2 ; sécurité jusqu'au 31 décembre 2027 |
+| **Plone 6.2** | 6.2.0 (19 mai 2026), 6.2.1 | 3.10 à 3.14, Zope 6 | version courante, maintenance jusqu'à 6.3 ou 7.0 |
+
+Un site Plone 5.2 sous Python 2.7 n'a donc plus reçu de correctif de sécurité depuis fin 2024 : la migration décrite ici n'est plus une option mais un préalable. Le passage à Plone 6 n'est possible **que depuis un site 5.2 fonctionnant sous Python 3**, ce qui fait de la conversion ZODB le point de passage obligé.
+
+## Outils et versions (août 2026)
+
+- `zodbupdate` 3.0 (conversion des *pickles*, `--convert-py3`) ;
+- `zodbverify` 1.2.1 (vérification et inspection) ;
+- `plone.app.upgrade` 4.1 (étapes de migration Plone 5.2 → 6.x) ;
+- `collective.exportimport` 1.16 (export et import de contenu entre sites, y compris entre versions majeures) ;
+- Plone 6.2 s'installe avec `pip` et le fichier de contraintes `https://dist.plone.org/release/6.2.x/constraints.txt`, Buildout restant possible (voir [[ZC.Buildout]]).
+
+## Deux stratégies
+
+**Migration en place** : 5.2 sous Python 2.7 → 5.2.15 sous Python 3.8 (`zodbupdate --convert-py3`, chapitres précédents) → Plone 6.0.x sous Python 3.9 ou 3.10 (`plone.app.upgrade`) → 6.1 → 6.2 sous Python 3.10 ou plus. Chaque étape change de version de Python : prévoir un environnement virtuel ou un buildout par étape, et rejouer `zodbverify` après chacune. Convient aux sites dont les modules complémentaires sont tous disponibles pour Plone 6.
+
+**Export et import** : exporter le contenu, les utilisateurs, les relations et les paramètres du site 5.2 avec `collective.exportimport`, créer un site Plone 6.2 neuf et y importer. Convient aux sites anciens, chargés d'historique ou de modules abandonnés, et à ceux qui adoptent l'interface Volto (le texte riche doit alors être converti en blocs, ce que `collective.exportimport` prend en charge). Cette voie évite de traîner dix ans d'objets cassés ; elle demande en revanche de réécrire les personnalisations.
+
+Dans les deux cas : sauvegarde complète de `Data.fs` et du `blobstorage` avant chaque étape, essai sur une copie, mesure du temps de conversion (une ZODB de plusieurs gigaoctets se convertit en heures), et gel des contributions pendant la bascule.
+
 # Liens utiles
 
 De nombreuses personnes de la communauté Plone/Zope ont écrit sur ce sujet. Voici quelques ressources utiles :
@@ -722,5 +761,9 @@ De nombreuses personnes de la communauté Plone/Zope ont écrit sur ce sujet. Vo
 - [Réparation de ZODB](http://www.derstappen-it.de/tech-blog/zodb-repair)
 - [Débogage et correction du POSKeyError](https://sixfeetup.com/blog/poskeyerror-debugging-and-fixing-cookbook)
 - [Garbage collection multi-ZODB](http://www.zodb.org/en/latest/articles/multi-zodb-gc.html)
+- [Calendrier et politique de publication de Plone](https://plone.org/download/release-schedule)
+- [Guide de mise à niveau vers Plone 6](https://6.docs.plone.org/upgrade/index.html)
+- [collective.exportimport](https://github.com/collective/collective.exportimport)
+- [zodbupdate](https://github.com/zopefoundation/zodbupdate) et [zodbverify](https://github.com/plone/zodbverify)
 
 Ces ressources fournissent des solutions et des astuces pour déboguer et corriger les problèmes rencontrés dans ZODB, notamment lors des migrations vers Python 3.
