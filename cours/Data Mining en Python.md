@@ -13,7 +13,7 @@ themes:
   - data-mining
   - python
   - apprentissage-automatique
-resume: "Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, techniques et modèles, évaluation et optimisation, avec un projet d'analyse de fr.wikipedia.org."
+resume: "Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, fouille de texte avec NLTK et spaCy, techniques et modèles, évaluation, puis la fuite de données, les chaînes scikit-learn, l'écosystème Arrow et le cadre juridique RGPD et règlement IA."
 niveau: intermediaire
 prerequis:
   - "[[Python]]"
@@ -22,7 +22,8 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-11-29
-date_modification: 2026-08-18
+date_modification: 2026-08-28
+date_verification: 2026-08-28
 confidentialite: publique
 publication:
   - notes-publiques
@@ -496,12 +497,14 @@ Le nettoyage et le prétraitement des données sont des étapes cruciales dans l
 
 - **Imputation :** Remplacement des valeurs manquantes par un autre valeur, telle que la moyenne, la médiane ou le mode de la colonne.
 ```python
-df['colonne'].fillna(df['colonne'].mean(), inplace=True)
+# Depuis pandas 3.0, la forme df['colonne'].fillna(..., inplace=True) est une
+# affectation chaînée : elle lève ChainedAssignmentError.
+df['colonne'] = df['colonne'].fillna(df['colonne'].mean())
 ```
     
 - **Suppression :** Suppression des lignes ou des colonnes comportant des valeurs manquantes, généralement utilisée lorsque le nombre de données manquantes est négligeable.
 ```python
-df.dropna(inplace=True)
+df = df.dropna()
 ```
 
 ### Encodage des variables catégorielles
@@ -533,18 +536,26 @@ df['colonne'] = label_encoder.fit_transform(df['colonne'])`
 #### Techniques de normalisation
 
 - **Min-Max Scaling :** Redimensionne les caractéristiques pour qu'elles se situent dans une plage donnée, souvent entre 0 et 1.
- ```python
+```python
 from sklearn.preprocessing import MinMaxScaler
+
 scaler = MinMaxScaler()
-df_scaled = scaler.fit_transform(df)`
-```    
+# Attention : ajuster sur le jeu complet crée une fuite de données.
+# Voir le chapitre « La fuite de données » en fin de cours.
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+```
+
 #### Techniques de standardisation
 
 - **Standard Scaling (Z-Score Normalization) :** Transforme les caractéristiques pour qu'elles aient une moyenne de 0 et un écart-type de 1.
 ```python
 from sklearn.preprocessing import StandardScaler
+
 scaler = StandardScaler()
-df_scaled = scaler.fit_transform(df) 
+# Même remarque : « fit » sur l'entraînement, « transform » sur le test.
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 ```
 
 ## 3. Intégration et transformation des données
@@ -906,6 +917,255 @@ Il est possible d'avoir une version de wikipedia en utilisant le code source php
 - **Collaboration :** Si possible, travaillez en équipe pour partager les tâches et les idées.
 
 Cet exercice offre une opportunité exceptionnelle d'appliquer des compétences de "data mining" sur un ensemble de données réel et complexe, tout en développant une compréhension pratique des défis associés à l'analyse de grandes quantités de données textuelles.
+
+# La fuite de données : l'erreur qui invalide tout le reste
+
+Ce chapitre vient avant les autres parce qu'aucune métrique n'a de sens tant qu'il n'est pas compris. La *fuite de données* — **data leakage** — est l'erreur la plus coûteuse du domaine : elle ne provoque aucun message d'erreur, et elle produit d'excellents résultats. En apparence.
+
+## Le mécanisme
+
+Les exemples de préparation vus plus haut contiennent tous la même faute :
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+df_scaled = scaler.fit_transform(df)      # ← sur TOUT le jeu de données
+```
+
+`fit` calcule la moyenne et l'écart-type. En les calculant sur l'ensemble complet, on fait entrer dans la transformation une information issue des données de test. Le modèle est ensuite évalué sur des données qu'il a, indirectement, déjà vues.
+
+```mermaid
+flowchart TB
+    subgraph faux["Ce qu'il ne faut pas faire"]
+        A1["jeu complet"] --> B1["fit_transform"]
+        B1 --> C1["découpage<br/>entraînement / test"]
+        C1 --> D1["score optimiste<br/>et faux"]
+    end
+    subgraph juste["Ce qu'il faut faire"]
+        A2["jeu complet"] --> B2["découpage<br/>entraînement / test"]
+        B2 --> C2["fit sur l'entraînement<br/>seulement"]
+        C2 --> D2["transform sur le test"]
+        D2 --> E2["score honnête"]
+    end
+```
+
+La règle tient en une phrase :
+
+> **Rien de ce qui est calculé à partir des données de test ne doit influencer l'entraînement — pas même une moyenne.**
+
+## Les formes courantes
+
+| Forme | Comment elle se manifeste |
+| --- | --- |
+| Normalisation globale | `fit` avant le découpage, comme ci-dessus |
+| Imputation globale | remplacer les manquants par la moyenne de tout le jeu |
+| Sélection de variables globale | choisir les meilleures variables sur l'ensemble complet |
+| Fuite temporelle | entraîner sur des données postérieures au test |
+| Variable dérivée de la cible | une colonne qui contient l'information à prédire |
+
+La dernière est la plus vicieuse. Une colonne « date de résiliation » dans un modèle de prédiction de résiliation donnera 100 % de justesse — et zéro utilité, puisqu'elle n'existe pas au moment où l'on veut prédire.
+
+## Le symptôme
+
+> Un modèle qui obtient 0,99 en validation croisée et 0,60 en production n'est pas un modèle malchanceux : c'est un modèle qui a triché sans le savoir.
+
+Une performance anormalement élevée doit toujours déclencher une recherche de fuite avant toute célébration.
+
+---
+
+# La chaîne de traitement scikit-learn
+
+L'outil qui rend la fuite structurellement impossible est le `Pipeline`. Il enchaîne les transformations et le modèle en un seul objet, dont le `fit` ne voit que les données d'entraînement.
+
+## Le découpage, d'abord
+
+```python
+from sklearn.model_selection import train_test_split
+
+X = df.drop(columns=["cible"])
+y = df["cible"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y,          # conserve la proportion des classes
+)
+```
+
+`stratify=y` est indispensable en classification déséquilibrée : sans lui, un découpage aléatoire peut placer presque toute la classe minoritaire d'un seul côté.
+
+## Le pipeline
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+modele = Pipeline([
+    ("imputation", SimpleImputer(strategy="median")),
+    ("normalisation", StandardScaler()),
+    ("classifieur", LogisticRegression(max_iter=1000)),
+])
+
+modele.fit(X_train, y_train)          # tout est ajusté sur l'entraînement seul
+score = modele.score(X_test, y_test)
+```
+
+Chaque étape reçoit le `fit` de l'étape précédente appliqué aux seules données d'entraînement. La fuite devient impossible **par construction**, ce qui vaut mieux que de compter sur la vigilance.
+
+## Le traitement par colonne
+
+Les jeux réels mêlent numérique et catégoriel, qui n'appellent pas le même prétraitement.
+
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+
+numeriques = ["age", "revenu"]
+categorielles = ["ville", "categorie"]
+
+preparation = ColumnTransformer([
+    ("num", Pipeline([
+        ("imputation", SimpleImputer(strategy="median")),
+        ("echelle", StandardScaler()),
+    ]), numeriques),
+    ("cat", Pipeline([
+        ("imputation", SimpleImputer(strategy="most_frequent")),
+        ("encodage", OneHotEncoder(handle_unknown="ignore")),
+    ]), categorielles),
+])
+
+modele = Pipeline([
+    ("preparation", preparation),
+    ("classifieur", LogisticRegression(max_iter=1000)),
+])
+```
+
+`handle_unknown="ignore"` évite l'échec en production lorsqu'une modalité absente de l'entraînement apparaît — situation garantie sur des données réelles.
+
+## Récupérer des DataFrames
+
+Par défaut, un transformateur scikit-learn rend un tableau NumPy et les noms de colonnes sont perdus. Depuis la version 1.2, on peut demander des DataFrames :
+
+```python
+preparation.set_output(transform="pandas")
+```
+
+C'est précieux au moment d'inspecter ce que le prétraitement a réellement produit, et pour interpréter l'importance des variables.
+
+## Valider, puis seulement optimiser
+
+```python
+from sklearn.model_selection import cross_val_score, GridSearchCV
+
+scores = cross_val_score(modele, X_train, y_train, cv=5, scoring="f1_macro")
+print(f"{scores.mean():.3f} ± {scores.std():.3f}")
+
+recherche = GridSearchCV(
+    modele,
+    {"classifieur__C": [0.1, 1, 10]},
+    cv=5, scoring="f1_macro", n_jobs=-1,
+)
+recherche.fit(X_train, y_train)
+print(recherche.best_params_, recherche.best_score_)
+```
+
+La double barre basse `classifieur__C` désigne le paramètre `C` de l'étape nommée `classifieur` : c'est la convention qui permet d'optimiser n'importe quel maillon de la chaîne.
+
+Et le point qui conclut le chapitre précédent : la validation croisée réajuste tout le pipeline à chaque pli, **prétraitement compris**. C'est précisément ce qu'une normalisation faite avant le découpage rendait impossible.
+
+---
+
+# L'écosystème en 2026
+
+La section « Écosystème des bibliothèques » plus haut reste valable, mais trois évolutions méritent d'être connues.
+
+## Le format colonnaire Arrow
+
+`pandas` 3.0, `Polars`, `DuckDB` et `PyArrow` partagent désormais la même représentation mémoire. Les données passent de l'un à l'autre sans recopie ni sérialisation.
+
+| Outil | Position |
+| --- | --- |
+| `pandas` | la référence, la plus documentée, l'écosystème le plus large |
+| `Polars` | même domaine, exécution différée et parallèle, souvent 5 à 10 fois plus rapide |
+| `DuckDB` | SQL sur des fichiers, sans serveur — idéal pour explorer un CSV de plusieurs gigaoctets |
+
+Le choix n'oppose plus ces outils : on interroge un fichier en SQL avec DuckDB, on rend le résultat à pandas, sans coût de conversion.
+
+```python
+import duckdb
+
+df = duckdb.sql("""
+    SELECT categorie, count(*) AS n, avg(montant) AS moyenne
+    FROM 'ventes.parquet'
+    GROUP BY categorie
+""").df()
+```
+
+## Le format Parquet
+
+Pour tout jeu dépassant quelques dizaines de mégaoctets, le CSV n'est plus un bon choix : il ne porte aucun type, il ne compresse pas, il se relit intégralement.
+
+```python
+df.to_parquet("donnees.parquet")            # typé, compressé, colonnaire
+pd.read_parquet("donnees.parquet", columns=["date", "montant"])   # lit 2 colonnes
+```
+
+La dernière ligne est l'argument décisif : un format colonnaire ne lit que les colonnes demandées.
+
+## La fouille de texte a changé de nature
+
+Les sections NLTK et spaCy de ce cours enseignent la chaîne classique — segmentation, mots vides, lemmatisation, étiquetage morphosyntaxique. Elle reste la bonne approche quand on veut **comprendre et contrôler** ce qui est fait, et elle demeure indispensable en linguistique de corpus.
+
+Pour la similarité et la recherche sémantique, les plongements lexicaux l'ont supplantée :
+
+```python
+from sentence_transformers import SentenceTransformer
+
+modele = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+vecteurs = modele.encode(["Le chat dort.", "Un félin se repose."])
+```
+
+Deux phrases sans aucun mot commun obtiennent une similarité élevée, ce que `TfidfVectorizer` ne peut pas produire.
+
+> **Le choix n'est pas « ancien contre moderne ».** Un plongement est un vecteur opaque : il ne dit pas *pourquoi* deux textes se ressemblent. Une analyse morphosyntaxique le dit. Pour un travail explicatif, spaCy reste supérieur ; pour de la recherche par similarité, les plongements gagnent.
+
+---
+
+# Éthique, RGPD et règlement européen sur l'IA
+
+La section « Éthique et confidentialité » du plan mérite d'être adossée au droit en vigueur, qui a changé depuis la rédaction de ce cours.
+
+## Le RGPD s'applique dès la fouille
+
+Trois principes contraignent directement un projet de *data mining* :
+
+- **la minimisation** : ne collecter que les données nécessaires à la finalité déclarée. Un entrepôt « au cas où » est illégal ;
+- **la limitation des finalités** : des données collectées pour la facturation ne peuvent pas servir à entraîner un modèle de prédiction sans nouvelle base légale ;
+- **le droit à l'explication** : une décision automatisée produisant des effets juridiques doit pouvoir être expliquée à la personne concernée.
+
+Le dernier point pèse sur le choix du modèle : une régression logistique s'explique, un gradient boosting à mille arbres beaucoup moins. Voir le cours [[Règlement Général sur la Protection des Données (RGPD)]].
+
+## L'anonymisation n'est pas la pseudonymisation
+
+Retirer le nom ne suffit pas. Un individu se réidentifie souvent à partir de la combinaison de quelques attributs — code postal, date de naissance, sexe. Un jeu pseudonymisé reste une donnée personnelle au sens du RGPD, avec toutes les obligations qui s'y attachent.
+
+## Le règlement européen sur l'IA
+
+Le règlement (UE) 2024/1689 classe les systèmes par niveau de risque, avec des obligations croissantes. Un modèle utilisé pour le recrutement, l'accès au crédit, l'éducation ou l'application de la loi relève de la catégorie **haut risque** : documentation technique, gestion des risques, qualité des données, journalisation et supervision humaine deviennent obligatoires.
+
+Ces exigences s'appliquent aux jeux de données eux-mêmes — leur représentativité, leurs biais, leur provenance. Autrement dit : **la préparation des données décrite au chapitre II devient une obligation documentée**, et non plus seulement une bonne pratique.
+
+## Les biais
+
+Un modèle apprend les régularités des données, y compris celles qui reproduisent une discrimination passée. Le cas d'école reste l'outil de tri de candidatures pénalisant les CV féminins parce que l'historique d'embauche était masculin.
+
+Retirer la variable « sexe » ne suffit pas : elle se reconstitue depuis le prénom, l'établissement fréquenté ou les activités mentionnées. C'est la différence entre l'ignorance d'un attribut et l'absence de son effet — la première ne garantit jamais la seconde.
+
+---
 
 # VII. Conclusion et ressources pour poursuivre l'apprentissage
 
