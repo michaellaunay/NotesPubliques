@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5AWRSDE0RHRN96J9CKZ"
-titre: "Data Mining en Python"
+uid: 01M02EX5AWRSDE0RHRN96J9CKZ
+titre: Data Mining en Python
 type: cours
 statut: actif
 para: ressource
@@ -19,7 +19,7 @@ prerequis:
   - "[[Python]]"
   - "[[Pandas]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-11-29
 date_modification: 2026-08-29
@@ -28,7 +28,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Plan de cours
 

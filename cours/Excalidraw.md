@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5AZ939RXR9542RWVJ2H"
-titre: "Excalidraw"
+uid: 01M02EX5AZ939RXR9542RWVJ2H
+titre: Excalidraw
 type: fiche
 statut: actif
 para: ressource
@@ -15,7 +15,7 @@ themes:
   - outils
 resume: "Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes."
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-23
 date_modification: 2024-04-03
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Liens
 [Excalidraw | Le MindMappeur](https://youtu.be/M6uzN6IHBLo)

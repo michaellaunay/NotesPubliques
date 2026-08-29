@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02EX5B00TK1CA0QPJ8VS0KM"
-titre: "Getting things done"
+uid: 01M02EX5B00TK1CA0QPJ8VS0KM
+titre: Getting things done
 aliases:
-  - "GTD"
+  - GTD
 type: fiche
 statut: actif
 para: ressource
@@ -16,7 +16,7 @@ themes:
   - organisation
 resume: "Fiche de synthèse sur la méthode Getting Things Done de David Allen : collecte, clarification, organisation, revue et engagement."
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-06-27
 date_modification: 2023-06-27
@@ -24,7 +24,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 La méthode [Getting Things Done](https://fr.wikipedia.org/wiki/Getting_Things_Done), ou GTD, est une approche de gestion du temps et de la productivité développée par David Allen. Elle vise à libérer l'esprit de l'individu des préoccupations relatives à la gestion des tâches, en lui offrant un système dans lequel confier ces préoccupations. Voici les principaux principes de la méthode GTD :
 

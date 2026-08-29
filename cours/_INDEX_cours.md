@@ -35,7 +35,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
 - [[cours/LLM|LLM]] — Cours complet sur les grands modèles de langage : histoire, tokenisation, Transformers, pré-entraînement et post-entraînement, prompting, RAG, outils et agents, raisonnement, multimodalité, évaluation, sécurité, déploiement et choix d'un modèle.
 - [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
-- [[Pytorch]] — Proposition de plan de cours « Du tenseur au deep learning » avec PyTorch, et rappel des fondamentaux à maîtriser avant de coder.
+- [[Pytorch]] — Cours complet de PyTorch 2.x : tenseurs, appareils de calcul, autograd, nn.Module, fonctions de perte, optimisation, Dataset et DataLoader, boucles d'entraînement, validation, checkpoints, CNN, transfert d'apprentissage, AMP, torch.compile, profilage, entraînement distribué et export.
 - [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
 - [[Travailler avec Claude]] — Formation à Claude Code en cinq couches : écosystème Anthropic, différence avec claude.ai, workflow agentique, système de permissions, modes d'opération et mémoire projet CLAUDE.md.
 
@@ -62,7 +62,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[IPFS]] — Cours sur IPFS : enjeux de la décentralisation du stockage, comparaison avec le modèle client-serveur, Merkle DAG, adressage par contenu et fonctionnement technique du réseau.
 - [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
 - [[OAuth OpenID]] — Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation.
-- [[Sécurité avancée sous Linux]] — Cours de sécurité Linux avancée : durcissement du système, contrôle d'accès avancé, authentification et accès réseau, cryptographie, détection d'intrusions, sécurité des conteneurs et usage des LLM.
+- [[Sécurité avancée sous Linux]] — Cours avancé et pratique de sécurisation d'un système GNU/Linux : modèle de menace, permissions et capabilities, durcissement du noyau et de systemd, SELinux/AppArmor/Landlock/seccomp, SSH et réseau, LUKS2, journalisation et audit, réponse à incident, sécurité des conteneurs, chaîne d'approvisionnement et usages de l'IA.
 - [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification, sessions, cryptographie, injections SQL, XSS et CSRF, analyse de journaux, puis les vulnérabilités propres au langage (pickle, eval, sous-processus), la gestion des secrets et la sécurité de la chaîne d'approvisionnement.
 - [[Sécurité des IOT en python avec SCADA]] — Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth.
 
@@ -136,6 +136,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Mathématiques et logique
 
 - [[Logique]] — Cours de logique appliquée à l'informatique : logique propositionnelle, opérations de base, tautologies et inférence, puis logique des prédicats du premier ordre.
+- [[notions d algèbre linéaire et de dérivation]] — Prérequis mathématiques du deep learning : vecteurs, matrices et produit matriciel, formes et diffusion, dérivées partielles et gradient, règle de la chaîne, jacobienne — et ce que chaque notion devient dans le moteur Autograd de PyTorch.
 - [[Systèmes numériques]] — Cours sur les systèmes de numération : analyse des systèmes décimal et sexagésimal, critères d'un « meilleur » système et étude du bibi-binaire de Boby Lapointe.
 
 ## Langues et linguistique
