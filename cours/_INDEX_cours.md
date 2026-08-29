@@ -70,7 +70,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Algorithmes avancés en Python]] — Cours complet d'algorithmique avancée en Python : tris, structures de données et graphes, plus courts chemins et arbres couvrants, programmation dynamique, retour sur trace et gloutons, chaînes de caractères, géométrie computationnelle, optimisation combinatoire, parallélisme et verrou global, k-moyennes et arbres de décision, et projet de fin de cours.
 - [[Anaconda]] — Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi.
-- [[C++]] — Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.
+- [[C++]] — Cours complet de C++ moderne : fondamentaux, RAII, STL, templates, concurrence, C++20/C++23, aperçu C++26, CMake, tests, sécurité mémoire et projets.
 - [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé, GPU et TPU, lien avec Google Cloud Platform, puis l'intégration de Gemini et du Data Science Agent, le modèle des unités de calcul, les règles de confidentialité et les alternatives.
 - [[Jupyter Notebook et Google Colab]] — Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites.
 - [[Mathplotlib]] — Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook.
