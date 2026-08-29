@@ -11,534 +11,1998 @@ themes:
   - informatique
   - histoire-informatique
   - langages-de-programmation
-resume: "Cours d'histoire des langages de programmation : concepts de syntaxe et de sémantique, classification des langages, précurseurs, Fortran, COBOL, LISP, langages structurés et évolutions modernes."
+resume: "Cours d'histoire des langages de programmation : concepts fondamentaux, paradigmes, grandes familles de langages, évolution des années 1950 à 2026, runtimes, systèmes de types, WebAssembly, sûreté mémoire et tendances contemporaines."
 niveau: debutant
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-08-27
-date_modification: 2026-08-18
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-# 1. Introduction aux Langages de Programmation
 
-Dans ce cours nous abordons l'histoire des langages de programmation. Nous explorons les racines, les évolutions et les innovations qui ont façonné l'univers complexe et fascinant de la programmation informatique.
-Nous remontons le temps et découvrir les pierres angulaires qui ont conduit à la naissance des langages que nous utilisons aujourd'hui.
+# Histoire des langages de programmation
 
-Comme tout bon explorateur nous avons besoin d'une carte, à savoir la "Fresque" des principaux langages :
+L'histoire des langages de programmation n'est pas une succession linéaire où un langage en remplace simplement un autre. C'est plutôt une histoire de **problèmes**, de **compromis** et d'**idées** qui réapparaissent sous de nouvelles formes : abstraction, portabilité, sûreté mémoire, expressivité, performances, concurrence, vérification, interopérabilité ou productivité.
+
+Un langage moderne hérite souvent de plusieurs familles à la fois. Rust, par exemple, appartient au monde de la programmation système, reprend des idées de langages fonctionnels pour son système de types et adopte une syntaxe familière aux programmeurs C/C++. TypeScript reste compatible avec JavaScript tout en y ajoutant un système de types statique progressivement adopté. Kotlin combine programmation orientée objet et fonctionnelle tout en ciblant plusieurs plateformes.
+
+> [!important]
+> Une chronologie n'est pas une généalogie. Deux langages proches dans le temps ne sont pas nécessairement liés, et un langage peut être influencé par plusieurs dizaines de prédécesseurs.
+
+## Sommaire
+
+1. Comprendre ce qu'est un langage de programmation
+2. Des machines aux premiers langages de haut niveau
+3. Programmation structurée, fonctionnelle, logique et objet
+4. L'explosion des langages généralistes : 1980-2000
+5. Les langages du XXIe siècle : 2000-2015
+6. De 2015 à 2026 : sûreté, types, concurrence et portabilité
+7. Les domaines spécialisés : Web, données, IA, embarqué et calcul scientifique
+8. Standards, runtimes, compilateurs et écosystèmes
+9. Choisir un langage : critères techniques et organisationnels
+10. Tendances futures
+11. Travaux pratiques
+12. Projet final
+13. Repères chronologiques
+14. Ce qu’il faut retenir
+15. Sources et ressources
+
+## Une chronologie visuelle
+
+La fresque suivante donne des **repères temporels**, sans prétendre représenter toutes les influences entre langages.
 
 ```mermaid
-graph TD
-    subgraph Précurseurs
-        A[Langage machine] --> B[Langage d'assemblage]
-    end
+flowchart LR
+    A["1950-1960\nFORTRAN · Lisp · COBOL · ALGOL"]
+    B["1960-1980\nBASIC · Simula · Pascal · C · Smalltalk · Prolog · ML"]
+    C["1980-2000\nC++ · Objective-C · Perl · Haskell · Python · Lua · Java · JavaScript · PHP · Ruby · OCaml"]
+    D["2000-2015\nC# · Scala · Clojure · Go · Rust · Elixir · Dart · Kotlin · TypeScript · Julia · Swift"]
+    E["2015-2026\nRust 1.0 · WebAssembly · Kotlin multiplateforme · essor du typage progressif · nouveaux langages système et DSL"]
 
-    subgraph Années 1950
-        B --> C[Fortran]
-        B --> D[COBOL]
-        B --> E[LISP]
-    end
-
-    subgraph Années 1960
-        C --> F[Algol]
-        C --> G[Pascal]
-        E --> H[Simula]
-    end
-
-    subgraph Années 1970
-        F --> I[C]
-        H --> J[Smalltalk]
-    end
-
-    subgraph Années 1980
-        I --> K[C++]
-    end
-
-    subgraph Années 1990
-        I --> L[Java]
-    end
-
-    subgraph Années 2000
-        L --> M[Python]
-        M --> N[Ruby]
-    end
-
-    subgraph Années 2010
-        K --> O[Clojure]
-        K --> P[Scala]
-    end
-
-    subgraph Années 2020
-        M --> Q[JavaScript]
-        N --> R[PHP]
-        P --> S[Haskell]
-        P --> T[Swift]
-    end
-
-    subgraph Futur
-        Q --> U[TypeScript]
-        T --> V[Kotlin]
-        T --> W[Flutter/Dart]
-    end
-
-    A & B --> |1950| C
-    C & D --> |1960| I
-    E --> |1958| F
-    F & G --> |1968| I
-    H & J --> |1970| I
-    I --> |1983| K
-    L --> |1995| M
-    M --> |1990| N
-    K --> |2010| O
-    P --> |2010| S
-    Q --> |1995| U
-    T --> |2011| V
+    A --> B --> C --> D --> E
 ```
 
-## 1.1 Présentation du cours et de ses objectifs
+# 1. Comprendre ce qu'est un langage de programmation
 
-Dans cette section, nous allons discuter des objectifs du cours. Nous aborderons également l'importance d'explorer l'histoire des langages de programmation pour mieux comprendre les choix modernes et les innovations futures.
+## 1.1 Objectifs du cours
 
-## 1.2 Concepts de base des langages de programmation : syntaxe, sémantique et grammaire
+À la fin de ce cours, il faut être capable de :
 
-Ici, nous allons explorer de manière approfondie les concepts clés de syntaxe, de sémantique et de grammaire qui sont au cœur de tout langage de programmation.
+- replacer les principaux langages dans leur contexte historique ;
+- distinguer langage de programmation, langage de balisage, langage de requête et format de données ;
+- comprendre les grands paradigmes : impératif, fonctionnel, objet, logique, déclaratif, concurrent ;
+- distinguer syntaxe, sémantique et système de types ;
+- comprendre les grandes stratégies d'exécution : code machine, bytecode, interprétation, compilation JIT et AOT ;
+- reconnaître les grandes familles d'influence ;
+- expliquer pourquoi certains langages persistent pendant plusieurs décennies ;
+- analyser les compromis d'un langage plutôt que de chercher un hypothétique « meilleur langage ».
 
-### 1.2.1 Syntaxe : L'Art de la Structure
+## 1.2 Qu'est-ce qu'un langage de programmation ?
 
-La syntaxe d'un langage de programmation fait référence aux règles spécifiques qui dictent comment les éléments du code doivent être structurés et agencés pour créer des instructions valides dans ce langage. En d'autres termes, la syntaxe définit la manière exacte dont les éléments tels que les mots-clés, les opérateurs, les noms de variables et les symboles doivent être utilisés pour former des constructions qui peuvent être interprétées et exécutées par un ordinateur.
+Un **langage de programmation** permet d'exprimer des calculs et des comportements qu'une machine pourra exécuter directement ou après traduction.
 
-La syntaxe est une partie de la grammaire d'un langage, comparable aux **règles** grammaticales d'une langue naturelle. Tout comme une phrase doit suivre des règles précises pour être correctement comprise, chaque ligne de code dans un langage de programmation doit adhérer à la syntaxe définie pour être correctement interprétée par le compilateur ou l'interpréteur.
+Exemples :
 
-Voici quelques éléments clés de la syntaxe dans un langage de programmation :
+- C ;
+- Python ;
+- Java ;
+- Rust ;
+- JavaScript ;
+- Haskell ;
+- Prolog ;
+- Go.
 
-1. **Structure des Instructions :** La syntaxe définit comment les instructions doivent être structurées. Par exemple, dans de nombreux langages, une instruction se termine par un point-virgule (";"). La structure d'une instruction peut inclure des éléments tels que les mots-clés, les noms de variables, les opérateurs et les valeurs littérales.
-    
-2. **Noms de Variables et d'Identificateurs :** Les règles de syntaxe déterminent comment les noms de variables et d'identificateurs doivent être formés. Par exemple, certains langages peuvent exiger que les noms de variables commencent par une lettre, suivie de lettres ou de chiffres. Les caractères spéciaux ou les espaces peuvent être restreints ou interdits.
-    
-3. **Utilisation d'Opérateurs :** La syntaxe précise comment les opérateurs (comme +, -, _, /) doivent être utilisés pour effectuer des opérations sur les données. Par exemple, l'utilisation d'un opérateur de multiplication sans espace (comme "a_b") peut être valide dans certaines langues, tandis que dans d'autres, un espace ("a * b") peut être nécessaire.
-    
-4. **Expressions et Groupement :** Les règles de syntaxe régissent la manière dont les expressions mathématiques et logiques sont écrites. Les parenthèses et autres symboles de groupement indiquent la priorité des opérations et la manière dont les expressions doivent être évaluées.
-    
-5. **Indentation :** Bien que cela dépende du langage, certains langages de programmation, comme [[Python]], utilisent l'indentation pour définir la structure du code. L'indentation détermine les blocs de code et leur niveau d'imbrication.
+Un langage de programmation possède généralement :
 
-### 1.2.2 Sémantique : L'Esprit du Code
+- une syntaxe ;
+- une sémantique ;
+- des types ou au minimum des catégories de valeurs ;
+- des règles d'évaluation ;
+- des mécanismes de contrôle ;
+- une stratégie d'exécution ou de compilation.
 
-La sémantique dans le contexte des langages de programmation se réfère à la signification des instructions et des expressions écrites dans un langage. Elle concerne la manière dont les différents éléments du code interagissent et sont interprétés pour donner un sens et un but à un programme. Alors que la syntaxe se préoccupe de la structure et de la forme du code, la sémantique se concentre sur le sens que le code transmet aux ordinateurs et aux programmeurs. Voir [[UML Ecore EMF Plantuml QVT Mermaid PyEcore#Denotational Semantics]]
+### 1.2.1 Ce qui n'est pas forcément un langage de programmation
 
-La sémantique inclut les concepts suivants :
+HTML est principalement un **langage de balisage**. CSS est un langage déclaratif de feuilles de style. JSON est un format de sérialisation. SQL est un langage déclaratif de requête et de manipulation de données.
 
-1. **Sémantique Opérationnelle :** Elle décrit comment chaque instruction est exécutée pas à pas et comment elle modifie l'état du programme et des données. Cela implique d'expliquer en détail comment chaque opération et chaque instruction sont évaluées et comment elles influencent l'état interne du programme.
-    
-2. **Sémantique Déclarative :** Plutôt que de se concentrer sur les étapes détaillées de l'exécution, la sémantique déclarative se concentre sur la signification générale du code. Cela peut inclure la description de relations logiques, de contraintes ou de propriétés attendues du résultat.
-    
-3. **Sémantique Statique et Dynamique :** La sémantique statique concerne l'analyse du code sans son exécution réelle. Elle englobe des notions telles que la vérification des types et la détection d'erreurs potentielles avant l'exécution. La sémantique dynamique, quant à elle, se penche sur le comportement du code pendant l'exécution, en se concentrant sur les valeurs que prennent les variables et les expressions au fil du temps.
-    
-4. **Sémantique Comportementale :** Elle décrit comment les différentes parties d'un programme interagissent et coopèrent pour produire un comportement global cohérent. Cela englobe les effets de bord, les interactions entre les objets et les composants, ainsi que la manière dont les données sont manipulées et transformées.
-    
-5. **Sémantique Formelle :** Pour une précision maximale, des méthodes formelles sont utilisées pour définir rigoureusement le comportement des langages de programmation. Ces méthodes se basent sur des concepts mathématiques et logiques pour prouver des propriétés du code, identifier les incohérences et garantir sa correction. Voir  [[UML Ecore EMF Plantuml QVT Mermaid PyEcore#Operational_semantics]].
-    
+Ces technologies sont parfois appelées par raccourci « langages informatiques », mais elles ne remplissent pas toutes le même rôle.
 
-En comprenant la sémantique d'un langage, nous pouvons anticiper comment les instructions interagissent et influencent l'exécution du programme. Cela nous aide à écrire un code qui produit les résultats attendus et évite les erreurs logiques. Une maîtrise de la sémantique est essentielle pour créer des programmes fiables et fonctionnels, car elle nous permet de traduire nos idées en instructions qui peuvent être correctement interprétées par la machine.
+| Technologie | Catégorie principale | Rôle |
+|---|---|---|
+| C | langage de programmation | programmer des logiciels et systèmes |
+| Python | langage de programmation | programmation généraliste |
+| JavaScript | langage de programmation | applications Web et généralistes |
+| HTML | langage de balisage | structurer un document Web |
+| CSS | langage de style déclaratif | décrire la présentation |
+| SQL | langage déclaratif de requête | interroger et modifier des données |
+| JSON | format de données | représenter des données structurées |
+| RegEx | notation / langage formel | décrire des motifs textuels |
 
-### 1.2.3 Grammaire : Les Règles de Composition
+Voir aussi [[HTML]], [[CSS]], [[Javascript]], [[Regex]].
 
-La grammaire d'un langage de programmation définit les règles précises qui déterminent comment les éléments syntaxiques du langage peuvent être combinés pour former des constructions valides. En d'autres termes, la grammaire établit les schémas et les relations qui définissent la structure syntaxique correcte du langage. Elle joue un rôle fondamental dans la création de phrases et d'instructions cohérentes et compréhensibles dans un langage donné.
+## 1.3 Syntaxe, sémantique et grammaire
 
-La grammaire peut être considérée comme le "vocabulaire" et la "syntaxe" formels d'un langage de programmation. Elle indique comment les différents éléments du langage, tels que les mots-clés, les opérateurs, les noms de variables et les symboles spéciaux, peuvent être agencés pour former des expressions, des instructions et des blocs de code.
+### 1.3.1 Syntaxe
 
-Voici quelques concepts clés liés à la grammaire d'un langage de programmation :
+La **syntaxe** définit la forme des programmes valides.
 
-1. **Règles de Formation :** La grammaire établit des règles précises sur la manière dont les éléments syntaxiques peuvent être combinés pour former des constructions valides. Par exemple, une règle pourrait indiquer comment un opérateur doit être utilisé dans une expression ou comment une déclaration de fonction doit être écrite.
+Exemple en Python :
 
-2. **Hiérarchie des Opérateurs :** La grammaire peut spécifier la priorité des opérateurs dans les expressions mathématiques et logiques. Par exemple, la multiplication peut avoir une priorité plus élevée que l'addition, ce qui signifie qu'elle est évaluée en premier.
+```python
+if temperature < 0:
+    print("gel")
+```
 
-3. **Expression Régulière :** Les grammaires peuvent inclure des expressions régulières pour décrire des motifs de caractères acceptables. Cela peut être utilisé pour définir des règles de formation pour les identificateurs, les noms de variables, les constantes, etc.
+En C :
 
-4. **Syntaxe Contextuelle :** Parfois, la grammaire peut également prendre en compte le contexte pour déterminer la validité d'une construction. Par exemple, certaines déclarations de fonctions peuvent nécessiter un type de retour spécifique en fonction de la déclaration elle-même.
+```c
+if (temperature < 0) {
+    printf("gel\n");
+}
+```
 
-5. **Grammaire Formelle :** Pour les langages de programmation plus complexes, une approche formelle peut être utilisée pour définir rigoureusement la grammaire. Cela peut impliquer l'utilisation de notations formelles telles que les grammaires de Backus-Naur (BNF voir [[UML Ecore EMF Plantuml QVT Mermaid PyEcore#BNF]]) pour décrire les règles syntaxiques.
+La même intention s'exprime avec deux syntaxes différentes.
 
-### 1.2.4 Les Tokens
+### 1.3.2 Sémantique
 
-Un token est une unité atomique dans un langage de programmation. Il représente le plus petit élément identifiable dans le code source. Les tokens sont les blocs de construction de base d'un programme et comprennent des éléments tels que les mots-clés, les identificateurs, les opérateurs, les symboles spéciaux et les valeurs littérales. Par exemple, dans l'instruction `int x = 10;`, les tokens sont `int`, `x`, `=`, `10` et `;`.
+La **sémantique** décrit ce que signifie un programme valide.
 
+Deux fragments peuvent être syntaxiquement corrects mais avoir des comportements très différents selon le langage :
 
-### 1.2.5 L'Analyseur Lexical (Lexer)
+```text
+1 / 2
+```
 
-L'analyseur lexical, également appelé lexer ou scanner, est la première étape d'un compilateur. Son rôle est de prendre le code source en entrée et de le diviser en tokens significatifs. Il analyse le texte caractère par caractère, identifie les motifs correspondant aux tokens et génère une séquence de tokens pour la phase suivante du processus de compilation.
+Selon le langage et les types impliqués, cela peut produire :
 
-### 1.2.6 L'Analyseur Syntaxique (Parser)
+- `0` ;
+- `0.5` ;
+- une valeur rationnelle exacte ;
+- une erreur de type.
 
-L'analyseur syntaxique, ou parser, est la deuxième étape du processus de compilation. Il prend la séquence de tokens générée par l'analyseur lexical et vérifie si elle suit la grammaire syntaxique du langage. Le parser crée une structure arborescente appelée arbre syntaxique ou arbre d'analyse, qui représente la hiérarchie des opérations et des expressions dans le code. L'arbre syntaxique reflète la structure grammaticale du code source.
+### 1.3.3 Grammaire
 
-### 1.2.7 Création de Compilateurs
+Une grammaire formalise les constructions du langage. Une forme simplifiée peut être exprimée en BNF ou EBNF :
 
-La création d'un compilateur, y compris le développement d'un analyseur syntaxique (parser), est un processus complexe qui implique plusieurs étapes :
+```text
+expression = terme { ("+" | "-") terme } ;
+terme      = facteur { ("*" | "/") facteur } ;
+facteur    = nombre | "(" expression ")" ;
+```
 
-1. **Analyse Lexicale :** L'analyseur lexical identifie et génère des tokens à partir du code source. Il utilise des expressions régulières ou d'autres méthodes pour reconnaître les motifs correspondant aux tokens. Les tokens générés sont ensuite envoyés à l'analyseur syntaxique.
+Les grammaires sont utilisées par les parseurs, les compilateurs, les analyseurs statiques et les IDE.
 
-2. **Analyse Syntaxique :** L'analyseur syntaxique vérifie si la séquence de tokens suit la grammaire du langage. Il crée un arbre syntaxique en utilisant des règles définies par la grammaire du langage. L'arbre syntaxique représente la structure hiérarchique du code et est utilisé pour vérifier la validité syntaxique et pour générer le code intermédiaire.
+## 1.4 De la source à l'exécution
 
-3. **Analyse Sémantique :** Après l'analyse syntaxique, l'analyse sémantique est effectuée pour vérifier la cohérence du code et détecter les erreurs sémantiques. Cela implique de vérifier que les types sont compatibles, que les variables sont correctement déclarées et utilisées, etc.
+Un programme traverse souvent plusieurs étapes :
 
-4. **Génération de Code Intermédiaire :** Le compilateur génère généralement un code intermédiaire, qui est une représentation intermédiaire du code source. Ce code intermédiaire est plus proche du langage machine et facilite l'optimisation et la génération du code final.
+```mermaid
+flowchart LR
+    A[Code source] --> B[Analyse lexicale]
+    B --> C[Analyse syntaxique]
+    C --> D[AST]
+    D --> E[Analyse sémantique]
+    E --> F[IR / bytecode / code machine]
+    F --> G[Exécution]
+```
 
-5. **Optimisation :** Après la génération du code intermédiaire, le compilateur peut effectuer des optimisations pour améliorer l'efficacité du code généré. Cela peut inclure la réduction de l'utilisation de la mémoire, l'optimisation des boucles, etc.
+### 1.4.1 Lexer
 
-6. **Génération de Code Final :** Enfin, le compilateur génère le code machine final à partir du code intermédiaire. Ce code est exécutable directement par le processeur cible.
+Le lexer transforme une suite de caractères en **tokens** :
 
-La création d'un compilateur, en particulier le développement d'un analyseur syntaxique, exige une solide compréhension des concepts de grammaire formelle, d'analyse de langage et de traitement des langages. Des outils et des générateurs de code peuvent également être utilisés pour simplifier le processus de développement du parser.
+```text
+x = 12 + 4
+```
 
-## 1.3 Classification des langages de programmation : impératifs, fonctionnels, orientés objet, etc.
+peut devenir :
 
-L'univers des langages de programmation est vaste et diversifié, avec une grande variété d'approches pour résoudre des problèmes et exprimer des idées dans le code. Pour mieux comprendre cette diversité, nous classons souvent les langages en différentes catégories appelées paradigmes de programmation. Chaque paradigme représente une approche fondamentale pour structurer et organiser le code. Dans cette section, nous allons explorer certaines des classifications les plus courantes :
+```text
+IDENT(x) ASSIGN INT(12) PLUS INT(4)
+```
 
-### 1.3.1 Paradigme Impératif :
-Les langages impératifs se concentrent sur la définition des étapes à suivre pour résoudre un problème. Ils utilisent des séquences d'instructions qui modifient l'état des données en mémoire. Les langages impératifs sont proches de la manière dont nous pensons et résolvons les problèmes dans la vie quotidienne. Les exemples incluent les langages C, C++, Java et Python (dans une certaine mesure).
+### 1.4.2 Parser
 
-### 1.3.2 Paradigme Fonctionnel :
-Les langages fonctionnels traitent le calcul comme une évaluation de fonctions mathématiques. Ils mettent l'accent sur les transformations de données immuables plutôt que sur les états mutables. La composition de fonctions et les opérations sur les fonctions sont des concepts clés dans ce paradigme. Les langages fonctionnels incluent Haskell, Lisp, Scala et Erlang.
+Le parser transforme ces tokens en arbre syntaxique abstrait, ou **AST**.
 
-### 1.3.3 Paradigme Orienté Objet :
-Le paradigme orienté objet (POO) modélise le monde sous forme d'objets qui encapsulent des données et les méthodes qui agissent sur ces données. Les langages orientés objet encouragent la réutilisation de code et la modélisation des problèmes à l'aide de concepts du monde réel. Des langages comme Java, C#, Python (avec ses classes) et C++ utilisent ce paradigme.
+### 1.4.3 Interprétation et compilation
 
-### 1.3.4 Paradigme Structuré :
-Les langages de programmation structurés mettent l'accent sur la clarté et la facilité de compréhension du code. Ils évitent les constructions comme les sauts non conditionnels (comme le "goto") et privilégient les structures de contrôle telles que les boucles et les conditions. Le langage C est souvent considéré comme un exemple de langage de programmation structuré.
+La distinction « compilé » / « interprété » est utile pédagogiquement mais trop simpliste pour les runtimes modernes.
 
-### 1.3.5 Paradigme Déclaratif :
-Les langages déclaratifs se concentrent sur la description du résultat souhaité plutôt que sur les étapes pour y parvenir. Ils décrivent ce que le programme devrait faire plutôt que comment le faire. SQL (Structured Query Language) est un exemple courant de langage déclaratif utilisé pour interroger les bases de données.
+Exemples :
 
-### 1.3.6 Autres Paradigmes :
-Il existe de nombreux autres paradigmes, tels que le paradigme logique (utilisé par Prolog), le paradigme événementiel (pour la programmation d'interfaces utilisateur), et plus encore. Certains langages combinent plusieurs paradigmes pour offrir plus de flexibilité et d'expressivité.
+- C est généralement compilé en code machine avant l'exécution ;
+- CPython compile le code Python vers un bytecode ensuite exécuté par une machine virtuelle ;
+- Java compile vers du bytecode JVM, souvent ensuite compilé à chaud par un JIT ;
+- JavaScript est exécuté par des moteurs qui combinent interprétation, bytecode et compilation JIT ;
+- WebAssembly est généralement produit comme cible de compilation puis exécuté par un runtime ou navigateur.
 
-La classification des langages en paradigmes permet aux programmeurs de choisir l'approche la mieux adaptée à leurs besoins. Chaque paradigme a ses avantages et ses inconvénients, et la connaissance de plusieurs paradigmes peut aider les développeurs à résoudre différents types de problèmes de manière plus efficace et créative.
+> [!note]
+> Il vaut mieux parler de **modèle d'exécution** que classer un langage une fois pour toutes comme « compilé » ou « interprété ».
 
-## 1.4 Environnements de développement et outils de programmation modernes
+## 1.5 Les grands paradigmes
 
-Dans le monde moderne de la programmation, les outils et environnements de développement ont évolué de manière spectaculaire pour faciliter le processus de création, de débogage et de déploiement de logiciels. Les développeurs d'aujourd'hui ont accès à une gamme d'outils sophistiqués qui leur permettent de travailler plus efficacement et de produire des applications de haute qualité. Dans cette section, nous explorerons certains des environnements de développement (IDE) et des outils clés qui façonnent le paysage de la programmation moderne.
+Un paradigme est une manière d'organiser et de raisonner sur les programmes.
 
-### 1.4.1 Environnements de Développement Intégrés (IDE)
+### 1.5.1 Impératif
 
-Les IDE sont des plateformes logicielles complètes qui regroupent divers outils et fonctionnalités pour faciliter le développement de logiciels. Ils offrent un espace de travail centralisé où les développeurs peuvent écrire, éditer, tester et déboguer leur code. Les IDE fournissent souvent des fonctionnalités telles que la coloration syntaxique, l'autocomplétion, la gestion de version intégrée et des outils de débogage avancés. Des exemples populaires d'IDE comprennent , [[Visual studio code]], Eclipse, IntelliJ IDEA et Xcode.
+Le programme décrit une suite d'actions qui modifient un état.
 
-### 1.4.2 Éditeurs de Texte Avancés
+Langages représentatifs : C, Pascal, Python, Java.
 
-Les éditeurs de texte avancés sont plus légers que les IDE, mais ils sont dotés de fonctionnalités puissantes pour la programmation. Ils offrent des fonctionnalités telles que la coloration syntaxique, l'autocomplétion, la prise en charge de plugins et la personnalisation de l'interface. Des éditeurs de texte comme Visual Studio Code, Sublime Text et Atom sont largement utilisés par les développeurs pour leur simplicité et leur extensibilité.
+```python
+somme = 0
+for valeur in valeurs:
+    somme += valeur
+```
 
-### 1.4.3 Outils de Gestion de Version
+### 1.5.2 Structuré
 
-Les outils de gestion de version permettent aux développeurs de suivre les modifications apportées au code source au fil du temps. Ils facilitent la collaboration entre plusieurs développeurs en gérant les modifications concurrentes et en fournissant des mécanismes pour fusionner les modifications. Git (voir [[git]]) est l'un des outils de gestion de version les plus populaires, avec des plateformes telles que GitHub, GitLab et Bitbucket pour héberger des dépôts de code.
+La programmation structurée privilégie blocs, fonctions, boucles et conditions plutôt que des sauts arbitraires.
 
-### 1.4.4 Environnements Virtuels
+Elle a été fortement popularisée par ALGOL, Pascal et C.
 
-Les environnements virtuels permettent aux développeurs de créer des espaces isolés pour leurs projets, où les dépendances et les versions des packages peuvent être gérées indépendamment. Cela aide à éviter les conflits entre les projets et facilite la gestion des dépendances. Des outils tels que virtualenv (Python) et npm (Node.js) permettent de créer des environnements virtuels pour différents langages.
+### 1.5.3 Orienté objet
 
-### 1.4.5 Outils de Débogage
+Le système est organisé autour d'objets combinant état et comportements.
 
-Les outils de débogage aident les développeurs à identifier et à corriger les erreurs dans leur code. Ils offrent des fonctionnalités telles que les points d'arrêt, l'inspection des variables, la trace d'exécution et le suivi des appels de fonctions. Les IDE et les éditeurs avancés intègrent souvent des fonctionnalités de débogage. Pour les langages comme Python, des outils comme pdb et les débogueurs intégrés dans les IDE sont utilisés.
+Langages historiques importants : Simula et Smalltalk.
 
-### 1.4.6 Outils de Test Automatisé
+Langages modernes multiparadigmes : Java, C++, Python, Ruby, Kotlin, Swift.
 
-Les outils de test automatisé aident à garantir la qualité du code en automatisant le processus de test. Les cadres de test tels que JUnit (Java), pytest (Python) et Jasmine (JavaScript) permettent de créer et d'exécuter des tests unitaires et d'intégration. L'automatisation des tests améliore la fiabilité et la maintenabilité du code.
+### 1.5.4 Fonctionnel
 
-Ces outils et environnements de développement modernes ont considérablement amélioré la productivité des développeurs et ont contribué à l'efficacité de la création de logiciels de haute qualité. Le choix des bons outils et environnements dépend du langage de programmation, du type de projet et des préférences personnelles du développeur.
+La programmation fonctionnelle met l'accent sur :
 
-# 2 Précurseurs et Débuts de la Programmation
+- les fonctions comme valeurs ;
+- la composition ;
+- l'immutabilité ;
+- les fonctions d'ordre supérieur ;
+- la réduction des effets de bord.
 
-## 2.1 Les premières formes de programmation : langage machine et langage d'assemblage
+Langages représentatifs : Lisp, ML, Haskell, Clojure, Elixir.
 
-Les débuts de la programmation informatique étaient marqués par une simplicité brute et un besoin profond de compréhension technique. Avant l'avènement des langages de programmation modernes, les pionniers de l'informatique devaient communiquer avec les ordinateurs en utilisant le langage machine, la forme la plus élémentaire de communication entre l'homme et la machine.
+Les idées fonctionnelles ont aussi été intégrées dans JavaScript, Python, Java, C++, Rust, Kotlin ou Swift.
 
-### 2.1.1 Langage Machine : Une Communication Binaire
+### 1.5.5 Logique
 
-Les premières générations d'ordinateurs, souvent des mastodontes remplissant des salles entières, n'avaient pas la capacité de comprendre un langage humain ou abstrait. Pour les programmer, il fallait traduire les instructions en langage binaire, c'est-à-dire en séquences de 0 et de 1 qui représentaient directement les opérations et les données pour le processeur. Chaque instruction était composée d'une combinaison de bits qui activaient différents circuits dans l'ordinateur.
+Le programme décrit des faits et règles ; le moteur cherche une solution.
 
-La programmation en langage machine était laborieuse et propice aux erreurs. Chaque opération, même la plus élémentaire, devait être représentée sous forme de combinaisons de bits complexes. Un seul mauvais bit pouvait avoir des conséquences désastreuses. Les programmeurs devaient donc non seulement maîtriser les concepts de la programmation, mais aussi comprendre en profondeur le fonctionnement interne de l'ordinateur.
+Exemple classique : Prolog.
 
-### 2.1.2 Langage d'Assemblage : L'Abstraction Émergente
+```prolog
+parent(alice, bob).
+parent(bob, claire).
 
-Face à la complexité du langage machine, les langages d'assemblage ont été développés pour faciliter la programmation et rendre le processus plus lisible et gérable. Les langages d'assemblage fournissaient une couche d'abstraction entre le langage machine et le programmeur.
+grand_parent(X, Z) :-
+    parent(X, Y),
+    parent(Y, Z).
+```
 
-Dans les langages d'assemblage, les instructions étaient représentées par des mnémoniques plus significatifs que les combinaisons de bits. Ces mnémoniques étaient ensuite traduits en langage machine par des programmes appelés assembleurs. Les langages d'assemblage ont permis aux programmeurs de communiquer avec les ordinateurs de manière plus compréhensible, en utilisant des instructions telles que "ADD" pour additionner et "MOV" pour déplacer des données.
+### 1.5.6 Déclaratif
 
-Cependant, les langages d'assemblage avaient encore des limitations majeures. Ils étaient spécifiques à chaque architecture matérielle, ce qui signifie qu'un programme écrit en langage d'assemblage pour une machine ne fonctionnerait pas sur une autre machine avec une architecture différente. Cela a conduit à des difficultés lors de la portabilité des programmes entre différents systèmes.
-## 2.2 Fortran et l'avènement de la programmation de haut niveau
+Le programme indique **ce que l'on souhaite obtenir** plutôt que toutes les étapes nécessaires.
 
-L'avènement de Fortran (FORmula TRANslation) marque une étape cruciale dans l'histoire de la programmation, car il a marqué le début de la programmation de haut niveau. À mesure que les ordinateurs devenaient plus puissants et que les problèmes à résoudre devenaient plus complexes, la nécessité d'outils plus abstraits et plus expressifs est devenue évidente. Fortran est né pour répondre à cette nécessité croissante.
+Exemples :
 
-### 2.2.1 Un Nouveau Niveau d'Abstraction
+- SQL ;
+- règles Prolog ;
+- expressions de configuration ;
+- langages fonctionnels dans certains styles.
 
-Fortran, développé par IBM dans les années 1950, a été conçu spécifiquement pour les applications scientifiques et d'ingénierie. Il a introduit des concepts de programmation de haut niveau qui ont permis aux programmeurs de s'abstraire davantage des détails de l'architecture matérielle. Au lieu de manipuler des bits et des opérations binaires directement, les programmeurs pouvaient utiliser des instructions plus intuitives pour exprimer leurs calculs.
+### 1.5.7 Concurrent et orienté messages
 
-### 2.2.2 Boucles "DO" et Sous-Programmes
+Certains langages ou runtimes placent la concurrence au cœur de leur modèle.
 
-L'une des caractéristiques marquantes de Fortran était l'introduction des boucles "DO". Les boucles "DO" ont permis aux programmeurs d'itérer facilement sur un ensemble de données en spécifiant simplement la plage et les instructions à exécuter. Cela a grandement simplifié la manipulation de listes de données, un besoin fréquent dans les domaines scientifiques et d'ingénierie.
+Exemples :
 
-Un autre élément révolutionnaire introduit par Fortran était celui des sous-programmes. Les sous-programmes sont des sections de code indépendantes et réutilisables qui peuvent être appelées à partir d'autres parties du programme. Cela a considérablement amélioré la modularité du code, permettant aux programmeurs de diviser leurs tâches en petites unités gérables et de réutiliser ces unités dans différents contextes.
+- Erlang et son modèle acteur ;
+- Elixir sur la VM BEAM ;
+- Go avec goroutines et channels ;
+- Rust avec garanties de sûreté renforcées autour du partage de mémoire.
 
-### 2.2.3 Impact et Héritage
+## 1.6 Les systèmes de types
 
-Fortran a eu un impact profond sur la façon dont les programmes étaient écrits. Il a permis aux scientifiques et aux ingénieurs de se concentrer davantage sur la résolution des problèmes réels plutôt que sur les détails de bas niveau de la programmation. Fortran a également inspiré d'autres langages de programmation de haut niveau qui ont suivi, ouvrant la voie à une nouvelle ère de développement logiciel.
+### 1.6.1 Typage statique et dynamique
 
-Bien que Fortran soit aujourd'hui moins couramment utilisé que d'autres langages plus modernes, il reste une partie essentielle de l'histoire de la programmation. Son héritage réside dans les concepts qu'il a introduits et qui continuent à influencer les langages de programmation actuels. Fortran a ouvert la voie à la programmation de haut niveau, permettant aux programmeurs d'exprimer leurs idées de manière plus naturelle et efficace, tout en posant les bases de la résolution de problèmes complexes à l'aide de l'informatique.
+Un langage à typage **statique** vérifie une partie importante des contraintes de types avant l'exécution.
 
-## 2.3 COBOL et les langages orientés métier
+Exemples : C, Java, Rust, Go, Haskell.
 
-À mesure que les ordinateurs gagnaient en popularité et en puissance, les besoins de l'industrie évoluaient également. Les entreprises cherchaient des moyens d'automatiser les opérations commerciales et de gérer les données financières de manière plus efficace. Cela a conduit à la création de langages orientés métier, dont le plus emblématique est COBOL (COmmon Business-Oriented Language).
+Un langage à typage **dynamique** associe les types aux valeurs à l'exécution.
 
-### 2.3.1 Répondre aux Besoins Commerciaux
+Exemples : Python, Ruby, JavaScript.
 
-COBOL a été développé dans les années 1950, principalement par Grace Hopper et son équipe, en réponse aux besoins croissants de l'automatisation des opérations commerciales. Les entreprises étaient confrontées à la tâche complexe de gérer d'énormes quantités de données financières, de suivre les transactions et de générer des rapports. Les langages de programmation existants n'étaient pas suffisamment adaptés à ces tâches spécifiques.
+La frontière est moins nette avec le **gradual typing** :
 
-### 2.3.2 Syntaxe Proche de l'Anglais
+- Python peut utiliser des annotations contrôlées par mypy, Pyright ou d'autres outils ;
+- TypeScript ajoute un système de types statique au monde JavaScript sans changer le runtime JavaScript.
 
-L'une des caractéristiques distinctives de COBOL était sa syntaxe qui ressemblait à l'anglais. Contrairement aux langages précédents qui utilisaient une syntaxe technique et cryptique, COBOL a été conçu pour être plus lisible et compréhensible par les personnes non-techniques, telles que les gestionnaires et les comptables. Cette approche visait à réduire la barrière entre les informaticiens et les utilisateurs métier.
+### 1.6.2 « Fort » et « faible »
 
-### 2.3.3 Gestion des Données Tabulaires
+Les expressions « typage fort » et « typage faible » n'ont pas une définition universelle. Elles doivent être utilisées avec prudence.
 
-COBOL a introduit des fonctionnalités spécifiques pour la manipulation et la gestion de données tabulaires, telles que les fichiers plats et les enregistrements. Les opérations courantes liées aux données commerciales, telles que le tri, la recherche et la génération de rapports, ont été simplifiées dans COBOL. Cela a permis aux entreprises de gérer plus efficacement leurs données et de prendre des décisions plus éclairées.
+Il vaut mieux préciser :
 
-### 2.3.4 Héritage et Évolution
+- conversions implicites autorisées ;
+- vérifications statiques ;
+- comportement sur les opérations invalides ;
+- représentation mémoire ;
+- possibilité de contourner le système de types.
 
-COBOL a eu un impact significatif sur l'automatisation des opérations commerciales et la gestion des données financières. Même aujourd'hui, de nombreuses applications commerciales critiques sont encore écrites en COBOL. Bien que d'autres langages aient gagné en popularité, COBOL reste pertinent en raison de sa stabilité et de son importance historique.
+## 1.7 Gestion de la mémoire
 
-L'histoire de COBOL illustre la façon dont les langages de programmation peuvent être adaptés pour répondre aux besoins spécifiques d'un secteur particulier. En créant un langage avec une syntaxe plus accessible et des fonctionnalités adaptées aux tâches commerciales, COBOL a joué un rôle essentiel dans la transformation des opérations commerciales et la gestion des données à grande échelle.
+Les langages diffèrent aussi par leur gestion des ressources.
 
-## 2.4 LISP et l'essor de la programmation fonctionnelle
+### Gestion manuelle
 
-L'essor de LISP (LISt Processing) a marqué une percée significative dans le monde de la programmation, introduisant un nouveau paradigme : la programmation fonctionnelle. Conçu à l'origine pour la manipulation symbolique et le traitement de listes, LISP a profondément influencé la façon dont nous abordons la résolution de problèmes et la construction de logiciels.
+C repose largement sur une gestion explicite :
 
-### 2.4.1 Fonctions Récursives et Liste comme Structure de Données
+```c
+int *values = malloc(100 * sizeof(int));
+/* ... */
+free(values);
+```
 
-L'une des caractéristiques fondamentales de LISP était sa manipulation naturelle des listes en tant que structure de données. LISP traitait les données et les programmes de la même manière, permettant ainsi aux programmes de manipuler d'autres programmes. Les fonctions récursives étaient un élément clé de LISP, permettant de décomposer les problèmes en sous-problèmes plus petits et plus gérables.
+### RAII
 
-### 2.4.2 Fonctions de Première Classe et Lambdas
+C++ associe la durée de vie des ressources à celle des objets.
 
-LISP a introduit le concept de fonctions de première classe, traitant les fonctions comme des éléments de données pouvant être passés en tant qu'arguments à d'autres fonctions, retournés par des fonctions et stockés dans des structures de données. Cette capacité a ouvert la voie à une programmation plus modulaire et expressive.
+Voir [[C++]].
 
-Les lambdas, également connus sous le nom de fonctions anonymes, ont été introduits dans LISP. Ils ont permis la création dynamique de fonctions sans avoir besoin de les nommer explicitement. Cette flexibilité a renforcé la puissance de LISP en tant que langage de manipulation de fonctions.
+### Garbage collector
 
-### 2.4.3 Focus sur l'Immutabilité et l'Évitement des Effets de Bord
+Java, C#, Go, Python ou JavaScript disposent de runtimes avec ramasse-miettes, même si les détails diffèrent.
 
-La programmation fonctionnelle, telle qu'introduite par LISP, met l'accent sur l'utilisation de fonctions pures, c'est-à-dire des fonctions dont le résultat dépend uniquement de leurs entrées et qui ne modifient pas l'état externe. Cela permet d'éviter les effets de bord indésirables et facilite la compréhension et la maintenance du code.
+### Ownership
 
-LISP a également promu l'utilisation de données immuables, où les structures de données ne peuvent pas être modifiées une fois créées. Cela évite les problèmes liés aux modifications inattendues des données et facilite la parallélisation du code.
+Rust introduit un modèle de propriété et d'emprunts vérifié à la compilation afin de garantir de nombreuses propriétés de sûreté mémoire sans garbage collector généraliste.
 
-### 2.4.4 Héritage et Influence
+# 2. Des machines aux premiers langages de haut niveau
 
-LISP a été influent non seulement en tant que langage de programmation, mais aussi en tant que source d'idées pour d'autres langages. Les concepts de fonctions de première classe, de fonctions récursives et de manipulation symbolique ont trouvé leur chemin dans de nombreux langages modernes.
+## 2.1 Avant les ordinateurs électroniques
 
-La programmation fonctionnelle, inspirée par LISP, a gagné en popularité ces dernières années en raison de son potentiel pour écrire un code plus clair, plus modulaire et plus prédictif. Les langages comme Haskell, Clojure et Scala sont des exemples de langages de programmation fonctionnelle qui s'appuient sur les concepts introduits par LISP.
-# 3 L'Ère des Langages de Haut Niveau
+L'idée de programmer une machine précède l'ordinateur moderne.
 
-L'ère des langages de haut niveau marque une transition majeure dans l'histoire de la programmation. Les langages de cette période se sont concentrés sur la création d'outils plus abstraits et expressifs pour les développeurs, rendant le processus de programmation plus accessible et plus efficace. Dans ce chapitre, nous explorerons les moments clés de cette ère, depuis l'émergence des langages structurés jusqu'à l'essor de la programmation orientée objet et l'importance des langages de script.
+### 2.1.1 Cartes perforées
 
-## 3.1 L'émergence de langages structurés : Algol et Pascal
+Au début du XIXe siècle, le métier Jacquard utilise des cartes perforées pour contrôler les motifs d'un métier à tisser. Ce n'est pas un langage de programmation moderne, mais c'est un exemple historique majeur de **contrôle d'une machine par une représentation externe d'instructions**.
 
-L'évolution rapide de la technologie informatique a entraîné une croissance exponentielle de la complexité des programmes. À mesure que les logiciels devenaient plus volumineux et sophistiqués, la nécessité de développer des méthodes plus organisées et gérables pour structurer le code s'est fait sentir. C'est dans ce contexte que sont nés les langages de programmation structurés, des langages conçus pour apporter de l'ordre et de la clarté dans le développement logiciel.
+### 2.1.2 Babbage et Ada Lovelace
 
-### 3.1.1 Algol : L'Approche Structurée Pionnière
+Charles Babbage conçoit au XIXe siècle la machine analytique. Ada Lovelace décrit une méthode de calcul pour cette machine et réfléchit à sa capacité à manipuler autre chose que des nombres lorsque des objets peuvent être représentés symboliquement.
 
-Apparaissant pour la première fois dans les années 1950, l'Algol (ALGOrithmic Language) a été l'un des premiers langages à proposer une approche plus structurée de la programmation. Algol avait pour objectif de fournir des notations formelles pour les structures de contrôle, telles que les boucles et les conditionnelles, afin de favoriser une écriture plus modulaire et lisible des programmes.
+Elle est souvent qualifiée de première programmeuse. La machine analytique n'ayant jamais été achevée sous sa forme complète à son époque, cette qualification doit être comprise dans son contexte historique.
 
-Algol a introduit des concepts tels que les blocs de code, permettant aux programmeurs de regrouper des instructions connexes dans des unités cohérentes. Cela a facilité la compréhension du code, la détection d'erreurs et la maintenance. L'approche structurée d'Algol a eu un impact profond sur la façon dont les programmes étaient écrits, jetant les bases d'une méthodologie plus disciplinée.
+## 2.2 Langage machine
 
-### 3.1.2 Pascal : La Simplicité au Service de la Structuration
+Les premiers ordinateurs électroniques sont programmés à un niveau extrêmement proche du matériel.
 
-Dans les années 1970, Niklaus Wirth a créé Pascal avec un objectif en tête : créer un langage simple, lisible et adapté à l'enseignement de la programmation. En concevant Pascal, Wirth a mis l'accent sur la programmation structurée en fournissant des outils pour diviser les programmes en morceaux plus petits et plus gérables.
+Un langage machine dépend directement de l'architecture du processeur.
 
-Pascal a introduit des concepts tels que les procédures et les fonctions, permettant aux développeurs de définir des blocs de code autonomes pour effectuer des tâches spécifiques. Cela a favorisé la réutilisation de code et la modularité, rendant les programmes plus faciles à comprendre et à entretenir. La limitation intentionnelle de certaines fonctionnalités a également contribué à la clarté du code, encourageant les bonnes pratiques de programmation.
+Avantages :
 
-### 3.1.3 Impact sur le Développement Logiciel
+- contrôle maximal ;
+- aucune couche d'abstraction nécessaire.
 
-L'émergence d'Algol et de Pascal a eu un impact profond sur la culture du développement logiciel. Ces langages ont introduit des pratiques structurées qui ont élargi la vision des programmeurs sur la manière d'aborder les problèmes complexes. Les idées de modularity, de lisibilité et de réutilisation de code ont été popularisées grâce à ces langages.
+Inconvénients :
 
-L'approche structurée initiée par Algol et Pascal a jeté les bases des méthodologies modernes de développement logiciel. Elle a préparé le terrain pour l'adoption ultérieure de la programmation orientée objet, de la programmation fonctionnelle et d'autres paradigmes qui ont contribué à façonner le paysage de la programmation moderne.
+- faible lisibilité ;
+- très forte dépendance au matériel ;
+- maintenance difficile ;
+- productivité faible.
 
-## 3.2 **C** et la naissance de la programmation structurée
+## 2.3 Assembleur
 
-L'avènement de C dans les années 1970 a marqué un jalon décisif dans l'évolution de la programmation, introduisant des concepts fondamentaux de la programmation structurée et laissant une empreinte durable sur le monde de l'informatique. Conçu par Dennis Ritchie à Bell Labs, C a été conçu avec une vision unique : combiner l'efficacité du langage machine avec l'abstraction des langages de haut niveau.
+L'assembleur introduit des noms symboliques pour les instructions et adresses.
 
-### 3.2.1 Un Langage pour le Développement Système
+Exemple conceptuel :
 
-Initialement, C a été développé pour la création du système d'exploitation UNIX. Ritchie souhaitait un langage qui permettrait une programmation plus efficace tout en offrant une abstraction supérieure à celle du langage machine. C'était une tâche ambitieuse, mais le résultat a été un langage qui a su atteindre ces deux objectifs.
+```asm
+MOV R1, 5
+ADD R1, R2
+```
 
-### 3.2.2 Fonctionnalités de Programmation Structurée
+L'assembleur reste étroitement lié à une architecture, mais il constitue une abstraction majeure par rapport à l'écriture directe de codes binaires.
 
-L'une des contributions les plus significatives de C à l'histoire de la programmation a été sa promotion de la programmation structurée. C a introduit des concepts tels que les boucles "for" et "while", qui offraient des alternatives plus claires et plus expressives aux sauts inconditionnels et aux boucles basées sur des indices. Les structures de contrôle conditionnelles "if-else" et les fonctions ont également été intégrées dans C, permettant aux programmeurs de diviser leur code en blocs logiques et de créer des fonctions réutilisables.
+## 2.4 FORTRAN : le calcul scientifique devient programmable à haut niveau
 
-### 3.2.3 Influence de "The C Programming Language"
+FORTRAN, développé chez IBM sous la direction de John Backus, apparaît dans les années 1950 et est diffusé commercialement en 1957.
 
-La publication du livre "The C Programming Language" par Brian Kernighan et Dennis Ritchie en 1978 a eu un impact considérable sur la diffusion et l'adoption de C. Ce livre a servi de référence complète pour le langage, expliquant ses fonctionnalités et ses principes avec clarté. Il a contribué à populariser les concepts de la programmation structurée et a établi C comme l'un des langages les plus influents et largement utilisés de l'histoire de l'informatique.
+Son importance historique vient de plusieurs facteurs :
 
-### 3.2.4 Héritage et Influence Continue
+- expression de formules mathématiques de haut niveau ;
+- compilation vers du code performant ;
+- réduction considérable de la quantité de code à écrire ;
+- adoption massive dans le calcul scientifique et l'ingénierie.
 
-L'influence de C ne s'est pas limitée à sa popularité immédiate. De nombreux langages ultérieurs ont été influencés par les concepts et les principes introduits par C, y compris C++, C#, Objective-C et bien d'autres. La programmation structurée, promue par C, a jeté les bases pour des pratiques de développement plus modulaires, lisibles et maintenables.
+Exemple historique simplifié :
 
-En résumé, C a été un pivot essentiel dans l'évolution de la programmation, facilitant la transition de méthodes de codage moins structurées vers des approches plus disciplinées. Son héritage se perpétue encore aujourd'hui, tant dans les langages directement inspirés que dans les principes fondamentaux qui continuent d'influencer la manière dont nous abordons le développement logiciel.
+```fortran
+DO 100 I = 1, 10
+    X(I) = X(I) * 2
+100 CONTINUE
+```
 
-## 3.3 Programmation orientée objet : naissance de Simula et Smalltalk
+FORTRAN n'est pas seulement un langage historique : sa famille continue d'évoluer et reste utilisée dans certains domaines de calcul scientifique et de simulation.
 
-La naissance de la programmation orientée objet (POO) a marqué une transformation fondamentale dans la manière dont les programmes étaient conçus et structurés. Ce paradigme a introduit la modélisation des problèmes du monde réel en utilisant des objets et leurs interactions, offrant une approche plus intuitive et organisée du développement logiciel. Deux langages ont joué un rôle majeur dans l'émergence de la POO : Simula et Smalltalk.
+## 2.5 Lisp : le calcul symbolique et les fonctions
 
-### 3.3.1 Simula : Les Fondations de la POO
+Lisp est créé par John McCarthy à la fin des années 1950.
 
-Simula, développé dans les années 1960 en Norvège par Ole-Johan Dahl et Kristen Nygaard, est largement considéré comme l'un des précurseurs de la programmation orientée objet. Simula a introduit des concepts clés tels que les classes, les objets, l'héritage et le polymorphisme. Le langage a été conçu pour permettre aux programmeurs de créer des simulations plus réalistes en modélisant les objets du monde réel avec précision.
+Ses contributions sont considérables :
 
-Les classes en Simula définissaient des modèles pour créer des objets avec des attributs et des comportements spécifiques. L'héritage permettait de créer de nouvelles classes basées sur des classes existantes, favorisant la réutilisation de code. Le polymorphisme permettait à différentes classes d'avoir des méthodes portant le même nom, mais avec des implémentations spécifiques à chaque classe.
+- listes comme structure centrale ;
+- fonctions comme valeurs ;
+- récursion ;
+- traitement symbolique ;
+- représentation du code sous forme de structures de données ;
+- macros dans plusieurs dialectes.
 
-### 3.3.2 Smalltalk : L'Émergence de la POO Moderne
+Exemple :
 
-Smalltalk, créé au Xerox PARC dans les années 1970, a joué un rôle majeur dans la popularisation et la diffusion de la programmation orientée objet. Smalltalk a pris la philosophie de la POO un cran plus loin en construisant l'ensemble de son environnement et de son langage autour du paradigme orienté objet. Dans Smalltalk, tout est un objet, y compris les classes elles-mêmes.
+```lisp
+(defun factorial (n)
+  (if (<= n 1)
+      1
+      (* n (factorial (- n 1)))))
+```
 
-L'interaction entre les objets en Smalltalk se faisait par envoi de messages, un concept qui a inspiré le terme "méthode" dans la POO moderne. La POO en Smalltalk était basée sur la notion de "tout est un objet", ce qui signifie que même les entités de base comme les nombres et les caractères étaient traitées comme des objets.
+La famille Lisp comprend notamment :
 
-### 3.3.3 Héritage et Influence
+- Common Lisp ;
+- Scheme ;
+- Racket ;
+- Clojure.
 
-L'influence de Simula et Smalltalk a été profonde et durable. Ces langages ont posé les bases des concepts centraux de la programmation orientée objet, tels que l'encapsulation, l'héritage et le polymorphisme. Ils ont également inspiré la création de nombreux autres langages orientés objet, notamment C++, Java, Python et bien d'autres.
+## 2.6 COBOL : programmer les processus métier
 
-La POO a apporté une nouvelle manière de penser la conception logicielle en mettant l'accent sur la modélisation du monde réel en termes d'objets interagissant les uns avec les autres. Cette approche a contribué à améliorer la modularité, la réutilisation du code et la gestion de la complexité, ce qui a laissé une marque indélébile sur la manière dont nous développons des logiciels aujourd'hui.
+COBOL naît en 1959 dans un contexte de traitement de données administratives et commerciales.
 
-## 3.4 Les langages de script et l'importance de Python et Ruby
+Ses objectifs historiques :
 
-Avec l'évolution rapide de la technologie et des besoins en développement logiciel, une demande croissante s'est fait sentir pour des outils plus agiles et flexibles. C'est dans ce contexte que les langages de script ont émergé en tant qu'outils puissants pour la création de prototypes, l'automatisation de tâches et le développement rapide. Ces langages se distinguent par leur exécution interprétée, qui élimine le besoin de compilation, et par leur syntaxe concise, qui permet aux développeurs d'exprimer des concepts de manière simple et directe.
+- lisibilité ;
+- traitement de fichiers et enregistrements ;
+- portabilité entre machines ;
+- expression de processus métier.
 
-### 3.4.1 Python : La Versatilité à Portée de Main
+Son style très verbeux est volontaire.
 
-Créé dans les années 1980 par Guido van Rossum, [[Python]] est rapidement devenu l'un des langages de script les plus populaires et influents. Sa philosophie axée sur la lisibilité et la simplicité en a fait un langage accessible même pour les débutants. La syntaxe claire et intuitive de Python ressemble presque à du pseudocode, ce qui facilite la communication des idées et la compréhension du code.
+```cobol
+IF BALANCE > 0
+    DISPLAY "ACCOUNT IN CREDIT"
+END-IF
+```
 
-Python a rapidement gagné en popularité dans un large éventail de domaines. De la création de scripts simples pour l'automatisation de tâches à la réalisation d'applications web complexes, en passant par l'analyse de données et l'intelligence artificielle, Python a prouvé sa polyvalence. Sa riche bibliothèque standard et la pléthore de bibliothèques tierces disponibles en font un choix idéal pour de nombreux développeurs.
+Une partie importante des systèmes bancaires, administratifs et d'assurance a longtemps reposé sur COBOL. Cela illustre un phénomène central de l'histoire des langages : **la durée de vie d'un logiciel peut être bien supérieure à celle des modes technologiques**.
 
-### 3.4.2 Ruby : Élégance et Expressivité
+## 2.7 ALGOL : la grammaire des langages modernes
 
-Développé dans les années 1990 par Yukihiro Matsumoto, Ruby est un autre langage de script qui a gagné en popularité pour son élégance et son expressivité. La philosophie de Ruby, axée sur le plaisir de la programmation, a conduit à la création d'un langage qui met l'accent sur la productivité et la convivialité pour les développeurs.
+ALGOL 58 puis ALGOL 60 influencent profondément la conception des langages.
 
-La syntaxe de Ruby est conçue pour être naturelle et intuitive, ce qui permet de créer du code concis et facilement compréhensible. Ruby a également introduit des concepts innovants, tels que les blocs et les lambdas, qui facilitent la création de fonctions plus flexibles et génériques. Comme Python, Ruby a une communauté active et une bibliothèque riche qui couvre une variété de domaines.
-### 3.4.3 L'Impact des Langages de Script
+Héritages majeurs :
 
-L'importance de Python et Ruby va au-delà de leur statut de simples langages de script. Ils ont contribué à rendre la programmation plus accessible et ont permis à un plus grand nombre de personnes de participer au développement logiciel. Leur capacité à faciliter le développement rapide et à résoudre des problèmes variés a ouvert la voie à de nouvelles possibilités et a élargi le champ de la programmation.
+- blocs lexicaux ;
+- portée locale ;
+- structures de contrôle ;
+- notation syntaxique formelle ;
+- influence sur Pascal, C et de nombreux descendants.
 
-Avec l'essor de l'automatisation, de l'analyse de données, du développement web et de l'intelligence artificielle, Python et Ruby continuent de jouer un rôle majeur dans l'écosystème technologique. Leur impact sur la programmation moderne illustre comment des langages de script bien conçus peuvent catalyser l'innovation et transformer la manière dont nous abordons le développement logiciel.
+La notation BNF est étroitement associée aux travaux autour d'ALGOL.
 
-## 4.1 La montée en puissance de C++ : la fusion entre la programmation orientée objet et structurée.
+## 2.8 BASIC : rendre la programmation accessible
 
-La montée en puissance de C++ dans le paysage de la programmation a été marquée par sa capacité à fusionner les concepts de la programmation orientée objet et de la programmation structurée. Créé dans les années 1980 par Bjarne Stroustrup, C++ est une extension du langage C qui introduit des fonctionnalités orientées objet tout en conservant la puissance et la flexibilité de C.
+BASIC est créé en 1964 à Dartmouth pour rendre la programmation plus accessible aux étudiants.
 
-### 4.1.1 L'Hybridation de Deux Paradigmes
+Il devient particulièrement important avec les micro-ordinateurs des années 1970 et 1980.
 
-C++ a permis aux développeurs de combiner la simplicité et la structure de la programmation structurée avec la flexibilité de la programmation orientée objet. Il a introduit des classes et l'héritage multiple, permettant aux développeurs de créer des hiérarchies d'objets et de réutiliser du code de manière plus efficace. En même temps, C++ a maintenu les concepts de C tels que les pointeurs et la gestion manuelle de la mémoire, offrant un contrôle fin sur le matériel.
+```basic
+10 PRINT "HELLO"
+20 GOTO 10
+```
 
-### 4.1.2 L'Impact de C++
+Les dialectes BASIC ont beaucoup évolué. Visual Basic, apparu bien plus tard, hérite du nom et de certains concepts mais appartient à un contexte radicalement différent.
 
-La popularité de C++ a augmenté avec l'émergence des applications nécessitant des performances élevées et une manipulation complexe des données. Les jeux vidéo, les systèmes d'exploitation et les logiciels scientifiques sont quelques exemples de domaines où C++ a trouvé une grande utilité. Son approche hybride a permis aux développeurs de combiner des abstractions orientées objet avec des opérations de bas niveau, offrant une flexibilité rarement atteinte par d'autres langages.
+# 3. Programmation structurée, objet, logique et fonctionnelle
 
-C++ a également eu une influence profonde sur d'autres langages. De nombreux langages modernes, tels que Java et C#, ont été influencés par les concepts de C++, ce qui montre l'impact durable qu'il a eu sur la manière dont nous abordons la conception et le développement logiciel.
+## 3.1 La crise du logiciel
 
-## 4.2 Java et la portabilité grâce à la machine virtuelle Java.
+Dans les années 1960 et 1970, la taille croissante des programmes révèle les limites des méthodes artisanales :
 
-L'introduction de Java dans les années 1990 a apporté une innovation majeure : la portabilité grâce à la machine virtuelle Java (JVM). Créé par James Gosling et son équipe chez Sun Microsystems, Java a été conçu pour être un langage sûr, portable et orienté objet.
+- logiciels livrés en retard ;
+- bugs difficiles à corriger ;
+- maintenance coûteuse ;
+- complexité croissante.
 
-### 4.2.1 La JVM : Un Pas vers la Portabilité
+Une partie de la recherche sur les langages cherche alors à rendre la structure des programmes plus contrôlable.
 
-La JVM est une abstraction logicielle qui permet d'exécuter des programmes Java sur différents systèmes d'exploitation sans nécessiter de modifications du code source. Cela signifie que le même code Java peut être exécuté sur n'importe quelle plateforme prenant en charge la JVM. Cette portabilité a été un énorme avantage pour le développement logiciel, réduisant considérablement les défis liés à la compatibilité entre les différents systèmes.
+## 3.2 Programmation structurée
 
-### 4.2.2 Sûreté et Facilité d'Utilisation
+La programmation structurée favorise :
 
-Java a également introduit des fonctionnalités pour améliorer la sécurité et la fiabilité du code. Le système de gestion de la mémoire automatisé de Java a éliminé les problèmes liés aux fuites de mémoire et aux erreurs de gestion des pointeurs, qui étaient courants dans d'autres langages. De plus, l'approche rigoureuse de la gestion des exceptions a contribué à la robustesse des applications Java.
+- séquence ;
+- sélection ;
+- itération ;
+- procédures ;
+- blocs ;
+- réduction des sauts non structurés.
 
-### 4.2.3 L'Expansion de Java
+### 3.2.1 Pascal
 
-Java est devenu largement utilisé pour le développement d'applications web, d'applications mobiles et d'applications d'entreprise. L'introduction de frameworks comme Spring et des plateformes comme Android a consolidé la position de Java dans le développement moderne. Sa popularité et sa portabilité en font un choix attrayant pour un large éventail de projets.
+Pascal est conçu par Niklaus Wirth autour de 1970 dans un objectif pédagogique et de programmation structurée.
 
-## 4.5 Programmation fonctionnelle avancée avec Haskell et Scala.
+Il popularise une écriture claire des structures de contrôle :
 
-La programmation fonctionnelle a continué à évoluer avec l'émergence de langages tels que Haskell et Scala. Ces langages ont repoussé les limites de la programmation fonctionnelle en introduisant des concepts avancés et en les combinant avec d'autres paradigmes.
+```pascal
+for i := 1 to 10 do
+begin
+    writeln(i);
+end;
+```
 
-### 4.5.1 Haskell : Pureté et Expressivité
+Des descendants comme Object Pascal / Delphi prolongeront son influence.
 
-Haskell, créé dans les années 1990, se distingue par sa pureté fonctionnelle. Il met l'accent sur l'immutabilité des données et l'absence d'effets secondaires, ce qui facilite la compréhension du code et garantit une meilleure prévisibilité du comportement. Haskell a également introduit des concepts tels que les types monadiques, qui permettent de gérer élégamment des opérations complexes et des effets.
+## 3.3 Simula : les fondations de la programmation objet
 
-### 4.5.2 Scala : L'Union de la Programmation Fonctionnelle et Objet
+Simula, développé dans les années 1960, est conçu pour la simulation.
 
-Scala, apparu au début des années 2000, a cherché à combiner les avantages de la programmation fonctionnelle avec ceux de la programmation orientée objet. Scala s'exécute sur la JVM, ce qui lui permet de tirer parti de la vaste bibliothèque Java tout en introduisant des fonctionnalités propres à la programmation fonctionnelle, telles que les fonctions de première classe et les fonctions d'ordre supérieur.
+Il introduit des idées essentielles :
 
-## 4.6 La révolution des langages interprétés : JavaScript et PHP.
+- classes ;
+- objets ;
+- héritage ;
+- instances.
 
-JavaScript et PHP ont révolutionné la manière dont nous interagissons avec les sites web et les applications en ligne en introduisant des langages interprétés directement dans les navigateurs web et les serveurs.
+La programmation orientée objet naît donc d'abord d'un besoin de **modélisation**.
 
-### 4.6.1 JavaScript : Le Langage du Web
+## 3.4 Smalltalk : « tout est objet » comme philosophie
 
-JavaScript, créé dans les années 1990, a apporté la programmation interactive aux navigateurs web. Il permet aux développeurs de créer des interfaces dynamiques et réactives directement dans les pages web. L'introduction de frameworks comme Node.js a étendu l'utilisation de JavaScript aux applications côté serveur, permettant ainsi un développement plus cohérent et efficace des applications web.
+Smalltalk est développé au Xerox PARC dans les années 1970.
 
-### 4.6.2 PHP : Le Langage du Côté Serveur
+Il pousse très loin le modèle objet :
 
-PHP, développé au début des années 1990, a révolutionné la création de sites web dynamiques en introduisant un langage interprété côté serveur. PHP permet aux développeurs de générer du contenu web personnalisé en fonction des interactions de l'utilisateur, ouvrant ainsi la voie à la création de sites web plus interactifs et axés sur l'utilisateur.
+- environnement interactif ;
+- envoi de messages ;
+- classes ;
+- image système ;
+- outils intégrés.
 
-Ces langages interprétés ont grandement contribué à l'expansion du web et à l'émergence d'applications web plus sophistiquées, interactives et centrées sur l'utilisateur.
+Son influence dépasse sa part d'utilisation directe : interfaces graphiques, IDE, refactoring et conception orientée objet lui doivent beaucoup.
 
-## 5.1 Langages pour le web : HTML, CSS et JavaScript.
+## 3.5 C et Unix
 
-Le web moderne repose sur trois langages essentiels : HTML, CSS et JavaScript. Chacun de ces langages joue un rôle spécifique dans la création et la conception des sites web interactifs et attrayants que nous utilisons aujourd'hui.
+C est développé au début des années 1970 par Dennis Ritchie aux Bell Labs, en lien étroit avec Unix.
 
-### 5.1.1 HTML (Hypertext Markup Language)
+Son apport historique majeur est d'offrir un compromis entre :
 
-HTML est le langage de balisage de base utilisé pour structurer et organiser le contenu d'une page web. Il permet de définir la hiérarchie des éléments, tels que les titres, les paragraphes, les images et les liens. HTML est la fondation structurelle d'une page web et sert de base sur laquelle d'autres langages interviennent pour ajouter des fonctionnalités et des styles.
+- contrôle bas niveau ;
+- portabilité ;
+- efficacité ;
+- structures de haut niveau suffisantes pour développer un système d'exploitation.
 
-### 5.1.2 CSS (Cascading Style Sheets)
+```c
+for (int i = 0; i < 10; ++i) {
+    printf("%d\n", i);
+}
+```
 
-[[CSS]] est utilisé pour styliser et mettre en forme le contenu d'une page web créé avec HTML. Il permet de contrôler les couleurs, les polices, les marges, les alignements et d'autres aspects visuels du design. En utilisant CSS, les développeurs peuvent séparer le contenu (HTML) de la présentation (CSS), ce qui facilite la maintenance et permet une personnalisation visuelle cohérente sur tout le site.
+C devient une référence pour :
 
-### 5.1.3 JavaScript
+- systèmes d'exploitation ;
+- compilateurs ;
+- bibliothèques ;
+- embarqué ;
+- interfaces de bas niveau.
 
-[[JavaScript]] est un langage de programmation de haut niveau utilisé pour ajouter des interactions et des fonctionnalités dynamiques aux pages web. Il permet aux développeurs de créer des applications web interactives, de gérer des événements utilisateur, de manipuler le contenu de la page en temps réel et de communiquer avec des serveurs pour récupérer ou envoyer des données sans recharger la page.
+Il influence directement ou indirectement C++, Objective-C, Java, C#, JavaScript, Go, Rust et de nombreux autres langages.
 
-En combinant HTML, CSS et JavaScript, les développeurs peuvent créer des expériences en ligne riches et interactives, de la simple page web aux applications web complexes.
+## 3.6 Prolog et la programmation logique
 
-## 5.2 Langages pour l'analyse de données : R et Python.
+Prolog apparaît au début des années 1970.
 
-L'explosion des données dans le monde moderne a donné naissance à une demande croissante d'outils pour l'analyse, la visualisation et la compréhension de ces données. Deux langages se sont imposés dans ce domaine : R et Python.
+Plutôt que de décrire une procédure, on définit des faits et relations puis on pose une question.
 
-### 5.2.1 R
+```prolog
+human(socrates).
+mortal(X) :- human(X).
+```
 
-R a été spécialement conçu pour l'analyse statistique et la visualisation de données. Il offre un large éventail de bibliothèques et de packages dédiés à l'analyse des données, à la modélisation statistique et à la création de graphiques. R est particulièrement apprécié par les statisticiens, les chercheurs et les professionnels de la science des données pour sa richesse en outils d'analyse.
+Les idées de Prolog restent importantes pour :
 
-### 5.2.2 Python
+- systèmes de règles ;
+- recherche symbolique ;
+- résolution de contraintes ;
+- raisonnement logique.
 
-Python a également gagné en popularité en tant que langage de choix pour l'analyse de données. Grâce à des bibliothèques puissantes comme NumPy, Pandas, Matplotlib et SciPy, Python offre des capacités d'analyse, de traitement et de visualisation de données comparables à celles de R. De plus, la polyvalence de Python en fait un choix attrayant pour les professionnels de la science des données qui souhaitent combiner l'analyse avec d'autres tâches de programmation.
+## 3.7 ML et l'inférence de types
 
-## 5.3 Langages pour le calcul scientifique : MATLAB et Julia.
+ML est créé dans les années 1970 autour de travaux sur la démonstration assistée.
 
-Dans le domaine du calcul scientifique et de la simulation, deux langages se sont distingués : MATLAB et Julia.
+Son influence majeure concerne :
 
-### 5.3.1 MATLAB
+- fonctions de première classe ;
+- types algébriques ;
+- pattern matching ;
+- inférence de types ;
+- polymorphisme paramétrique.
 
-MATLAB est largement utilisé pour les calculs scientifiques et l'analyse numérique. Il offre des outils conviviaux pour la manipulation de matrices, la résolution d'équations différentielles, la modélisation et la simulation. MATLAB est populaire dans les domaines de l'ingénierie, des mathématiques appliquées et de la recherche scientifique.
+La famille ML influencera notamment OCaml, Haskell, F#, Rust et plusieurs systèmes de types modernes.
 
-### 5.3.2 Julia
+## 3.8 Ada : fiabilité et grands systèmes
 
-Julia est un langage de programmation émergent qui vise à combiner la facilité d'utilisation de MATLAB avec les performances de langages de bas niveau tels que C et Fortran. Julia a été conçu pour l'analyse numérique et le calcul scientifique intensif, et il a gagné en popularité en raison de sa vitesse d'exécution élevée et de sa capacité à s'adapter aux besoins des domaines scientifiques et techniques.
+Ada est développé à la fin des années 1970 et au début des années 1980 à la demande du département américain de la Défense.
 
-## 5.4 Langages de bas niveau : C et C++ dans le contexte actuel.
+Le langage met l'accent sur :
 
-Bien que les langages de haut niveau dominent de nombreux domaines de la programmation, les langages de bas niveau comme C et C++ restent vitaux dans le développement de systèmes d'exploitation, de logiciels embarqués et de solutions nécessitant un contrôle maximal sur le matériel.
+- typage fort ;
+- modularité ;
+- concurrence ;
+- fiabilité ;
+- systèmes embarqués et critiques.
 
-### 5.4.1 C
+Ada et son sous-ensemble SPARK restent pertinents dans les contextes où la vérification et la sûreté sont prioritaires.
 
-C continue d'être utilisé pour le développement de systèmes d'exploitation, de pilotes de périphériques et d'autres logiciels qui nécessitent un
+# 4. L'explosion des langages généralistes : 1980-2000
 
-# 6 Tendances Actuelles et Futur des Langages
-@TODO à completer
-## 6.1 Langages fonctionnels modernes : Clojure et Elixir.
-## 6.2 Programmation réactive et langages adaptés aux systèmes distribués.
-## 6.3 Langages pour l'intelligence artificielle et l'apprentissage automatique.
-## 6.4 Les langages quantiques et la programmation quantique.
+## 4.1 C++ : abstraction sans abandonner les performances
 
-# 7 Projet Final et Évolution Continue
-## 7.1 Présentation des projets finaux et choix des sujets.
-## 7.2 Suivi des projets et discussions sur l'application des langages.
-## 7.3 Présentations des projets finaux par les étudiant.e.s.
-## 7.4 Discussion sur l'importance de rester à jour dans le monde des langages de programmation.
+Bjarne Stroustrup développe « C with Classes », qui devient C++ dans les années 1980.
+
+Objectif : ajouter des abstractions de plus haut niveau au monde C sans abandonner le contrôle des ressources et les performances.
+
+C++ évolue ensuite vers un langage multiparadigme intégrant :
+
+- programmation générique ;
+- templates ;
+- RAII ;
+- métaprogrammation ;
+- lambdas ;
+- concepts ;
+- ranges ;
+- concurrence.
+
+Voir [[C++]].
+
+## 4.2 Objective-C
+
+Objective-C combine C et un modèle de messages inspiré de Smalltalk.
+
+Il joue un rôle majeur dans l'écosystème NeXT puis Apple, avant que Swift ne devienne le langage privilégié pour les nouveaux développements Apple.
+
+## 4.3 Perl : le langage de colle de l'Unix des années 1990
+
+Perl est créé par Larry Wall en 1987.
+
+Il excelle historiquement pour :
+
+- traitement de texte ;
+- administration système ;
+- scripts ;
+- CGI ;
+- expressions régulières.
+
+Il popularise une culture de programmation très pragmatique et un immense écosystème de modules via CPAN.
+
+## 4.4 Haskell : un laboratoire devenu langage de référence
+
+Haskell apparaît en 1990 comme langage fonctionnel paresseux standardisé pour la recherche et l'enseignement.
+
+Caractéristiques majeures :
+
+- fonctions pures ;
+- évaluation paresseuse ;
+- types algébriques ;
+- classes de types ;
+- monades pour structurer les effets.
+
+Son influence sur les systèmes de types et la programmation fonctionnelle moderne est considérable.
+
+## 4.5 Python : lisibilité et langage généraliste
+
+Python est créé par Guido van Rossum au début des années 1990, avec une première version publique en 1991.
+
+Principes qui contribuent à son succès :
+
+- syntaxe lisible ;
+- batteries included ;
+- modèle multiparadigme ;
+- interactivité ;
+- extension facile avec des bibliothèques natives ;
+- communauté et écosystème très vastes.
+
+Python devient central dans :
+
+- automatisation ;
+- Web ;
+- science des données ;
+- calcul scientifique ;
+- IA et machine learning ;
+- enseignement.
+
+Voir [[Python]], [[Numpy]], [[Pandas]], [[Pytorch]].
+
+## 4.6 Visual Basic
+
+Visual Basic est lancé par Microsoft au début des années 1990.
+
+Son environnement visuel et son modèle événementiel rendent le développement d'interfaces Windows accessible à un très grand nombre de développeurs.
+
+Son importance historique illustre que le succès d'un langage dépend aussi fortement de son **environnement de développement**.
+
+## 4.7 Lua : petit langage embarquable
+
+Lua est créé au Brésil au début des années 1990.
+
+Il privilégie :
+
+- simplicité ;
+- petite taille ;
+- facilité d'intégration dans une application ;
+- tables comme structure centrale.
+
+Il devient très populaire comme langage embarqué dans :
+
+- jeux vidéo ;
+- logiciels ;
+- équipements ;
+- systèmes de configuration.
+
+## 4.8 Java : bytecode, JVM et portabilité
+
+Java est annoncé publiquement en 1995 par Sun Microsystems.
+
+Son slogan historique « Write Once, Run Anywhere » repose sur :
+
+```mermaid
+flowchart LR
+    A[Source Java] --> B[javac]
+    B --> C[Bytecode JVM]
+    C --> D[JVM Linux]
+    C --> E[JVM Windows]
+    C --> F[JVM macOS]
+```
+
+La JVM apporte :
+
+- portabilité du bytecode ;
+- garbage collection ;
+- vérification du bytecode ;
+- JIT ;
+- un runtime commun à plusieurs langages.
+
+Java devient incontournable pour les applications d'entreprise et joue un rôle historique majeur dans Android.
+
+> [!note]
+> Le garbage collector réduit de nombreuses erreurs de gestion mémoire, mais ne supprime pas toutes les formes de fuite de ressources ou de mémoire logique.
+
+## 4.9 JavaScript : le Web devient programmable
+
+JavaScript est créé en 1995 par Brendan Eich chez Netscape.
+
+Le langage est ensuite standardisé sous le nom **ECMAScript** par Ecma International.
+
+Évolution historique :
+
+1. scripts simples dans les pages Web ;
+2. DOM et DHTML ;
+3. Ajax ;
+4. moteurs JIT rapides ;
+5. Node.js côté serveur ;
+6. modules ECMAScript ;
+7. applications complètes dans navigateur, serveur, desktop et edge.
+
+JavaScript n'est donc pas un langage « apparu dans les années 2020 » : il est au cœur du Web depuis 1995.
+
+Voir [[Javascript]].
+
+## 4.10 PHP : démocratisation du Web dynamique
+
+PHP apparaît également au milieu des années 1990.
+
+Il permet d'intégrer facilement du traitement côté serveur aux pages Web.
+
+Sa facilité de déploiement sur les hébergements mutualisés et l'écosystème LAMP jouent un rôle majeur dans son adoption.
+
+## 4.11 Ruby : objet, expressivité et productivité
+
+Yukihiro Matsumoto commence Ruby en 1993 ; une première version publique est diffusée au Japon en 1995.
+
+Ruby cherche à combiner :
+
+- modèle objet ;
+- expressivité ;
+- inspiration de Smalltalk, Lisp et Perl ;
+- plaisir du développeur.
+
+Ruby on Rails, apparu dans les années 2000, aura ensuite un impact considérable sur la conception des frameworks Web modernes.
+
+## 4.12 OCaml
+
+OCaml apparaît dans la famille ML dans les années 1990.
+
+Il combine :
+
+- programmation fonctionnelle ;
+- types algébriques ;
+- inférence de types ;
+- modules ;
+- programmation impérative et objet.
+
+Il devient important dans les compilateurs, l'analyse statique, les outils formels et certains systèmes industriels.
+
+# 5. Les langages du XXIe siècle : 2000-2015
+
+## 5.1 C# et .NET
+
+C# apparaît au début des années 2000 avec la plateforme .NET.
+
+Comme Java, C# bénéficie d'un runtime managé : le CLR.
+
+Avec le temps, C# adopte de nombreuses idées issues de la programmation fonctionnelle et de la recherche sur les langages :
+
+- generics ;
+- lambdas ;
+- LINQ ;
+- async/await ;
+- pattern matching ;
+- records.
+
+## 5.2 Scala
+
+Scala est rendu public au début des années 2000 et cible la JVM.
+
+Il cherche à fusionner programmation orientée objet et fonctionnelle.
+
+Il influence fortement l'usage moderne de la JVM et joue un rôle important dans des outils de traitement distribué comme Apache Spark.
+
+## 5.3 Clojure
+
+Clojure apparaît en 2007.
+
+C'est un Lisp moderne conçu principalement pour la JVM.
+
+Il met l'accent sur :
+
+- données immuables ;
+- fonctions ;
+- structures persistantes ;
+- gestion explicite de l'état ;
+- concurrence.
+
+## 5.4 Go
+
+Go est développé chez Google à partir de 2007 par Robert Griesemer, Rob Pike et Ken Thompson. Le projet est publié en open source en novembre 2009 et Go 1 sort en mars 2012.
+
+Objectifs :
+
+- simplicité ;
+- compilation rapide ;
+- binaire natif ;
+- garbage collector ;
+- concurrence intégrée ;
+- outillage standard cohérent.
+
+Exemple :
+
+```go
+go process(job)
+```
+
+Les **goroutines** et **channels** rendent la concurrence particulièrement visible dans le langage.
+
+Go devient très important pour :
+
+- cloud ;
+- infrastructure ;
+- réseau ;
+- outils CLI ;
+- plateformes distribuées.
+
+## 5.5 Rust
+
+Rust naît chez Mozilla à partir des travaux de Graydon Hoare et atteint sa version 1.0 en mai 2015.
+
+Son objectif central est de réunir :
+
+- performances proches du C/C++ ;
+- contrôle bas niveau ;
+- sûreté mémoire ;
+- concurrence sûre ;
+- abstractions sans coût inutile.
+
+Le mécanisme clé est l'**ownership** associé aux emprunts et durées de vie.
+
+```rust
+fn length(value: &String) -> usize {
+    value.len()
+}
+```
+
+Rust marque une évolution importante : une partie des erreurs traditionnellement détectées à l'exécution ou par analyse externe est transformée en contraintes vérifiées par le compilateur.
+
+## 5.6 Elixir et la continuité d'Erlang
+
+Elixir est créé par José Valim au début des années 2010 et s'exécute sur la VM BEAM d'Erlang.
+
+Il combine :
+
+- programmation fonctionnelle ;
+- immutabilité ;
+- modèle acteur ;
+- tolérance aux pannes ;
+- supervision ;
+- concurrence massive.
+
+Il montre qu'une machine virtuelle conçue dans les années 1980 peut rester extrêmement pertinente lorsqu'elle résout un problème fondamental : construire des systèmes distribués résilients.
+
+## 5.7 Dart
+
+Dart est présenté par Google en 2011.
+
+Il est aujourd'hui particulièrement associé à Flutter pour créer des interfaces multiplateformes.
+
+Le cas Dart illustre la relation étroite entre un langage et son **framework phare**.
+
+## 5.8 Kotlin
+
+Le développement de Kotlin commence chez JetBrains en 2010 et le projet est présenté publiquement en 2011. La version 1.0 stable sort en 2016.
+
+Kotlin combine :
+
+- typage statique ;
+- interopérabilité avec Java ;
+- null-safety ;
+- fonctions d'ordre supérieur ;
+- coroutines ;
+- programmation multiplateforme.
+
+Google annonce son support officiel pour Android en 2017 puis le présente comme langage privilégié pour les nouveaux projets Android en 2019.
+
+## 5.9 TypeScript
+
+TypeScript est dévoilé par Microsoft le 1er octobre 2012 et atteint la version 1.0 en 2014.
+
+Il ajoute à JavaScript :
+
+- types statiques optionnels ;
+- inférence ;
+- interfaces et types structurels ;
+- tooling puissant ;
+- compilation vers JavaScript.
+
+```typescript
+function total(values: number[]): number {
+    return values.reduce((a, b) => a + b, 0);
+}
+```
+
+TypeScript ne remplace pas le runtime JavaScript : son système de types disparaît en grande partie lors de la compilation.
+
+## 5.10 Julia
+
+Julia est rendue publique au début des années 2010.
+
+Elle vise particulièrement :
+
+- calcul scientifique ;
+- calcul numérique ;
+- statistiques ;
+- hautes performances ;
+- programmation interactive.
+
+Son design repose notamment sur le **multiple dispatch**.
+
+## 5.11 Swift
+
+Swift est présenté par Apple en 2014 et devient open source en décembre 2015.
+
+Il remplace progressivement Objective-C pour les nouveaux développements Apple.
+
+Objectifs :
+
+- sécurité accrue ;
+- syntaxe moderne ;
+- performances ;
+- interopérabilité avec les bibliothèques de l'écosystème Apple ;
+- outils modernes.
+
+# 6. De 2015 à 2026 : sûreté, types, concurrence et portabilité
+
+## 6.1 Une période de consolidation plutôt qu'une rupture totale
+
+Depuis le milieu des années 2010, l'histoire des langages est moins dominée par un unique nouveau paradigme que par la combinaison de plusieurs tendances :
+
+- sûreté mémoire ;
+- systèmes de types plus expressifs ;
+- concurrence structurée ;
+- asynchronisme ;
+- portabilité ;
+- WebAssembly ;
+- compilation multi-cible ;
+- outillage intégré ;
+- gestion de dépendances ;
+- reproductibilité ;
+- sécurité de la chaîne logicielle.
+
+## 6.2 La sûreté mémoire devient un objectif de premier plan
+
+Une grande partie des vulnérabilités historiques des logiciels système vient d'erreurs comme :
+
+- use-after-free ;
+- double free ;
+- buffer overflow ;
+- pointeurs invalides ;
+- data races.
+
+Les réponses diffèrent selon les langages :
+
+| Approche | Exemples |
+|---|---|
+| garbage collector | Java, C#, Go |
+| ownership / borrow checking | Rust |
+| vérifications runtime | Swift, Kotlin selon les cas |
+| gestion manuelle + outils | C, C++ |
+
+La tendance n'implique pas la disparition de C/C++, mais augmente la pression pour utiliser des langages memory-safe lorsque le contexte le permet.
+
+## 6.3 Les langages deviennent multiparadigmes
+
+La séparation stricte entre impératif, objet et fonctionnel s'atténue.
+
+Exemples :
+
+- Java possède lambdas et streams ;
+- C++ possède lambdas, ranges et concepts ;
+- Python possède compréhension, générateurs et fonctions de première classe ;
+- Kotlin et Swift mêlent objet et fonctionnel ;
+- Rust mélange programmation impérative, traits, pattern matching et types algébriques.
+
+## 6.4 Les types gagnent en expressivité
+
+Les langages modernes adoptent de plus en plus :
+
+- types somme / enums riches ;
+- generics ;
+- traits / interfaces ;
+- pattern matching ;
+- null-safety ;
+- types optionnels ;
+- inférence ;
+- annotations progressives.
+
+Exemple Rust :
+
+```rust
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+```
+
+Exemple TypeScript :
+
+```typescript
+type State =
+    | { kind: "loading" }
+    | { kind: "ready"; value: string }
+    | { kind: "error"; message: string };
+```
+
+## 6.5 `async` / `await` devient un langage commun
+
+L'asynchronisme a longtemps été exprimé avec callbacks, événements ou futures explicites.
+
+La syntaxe `async` / `await` se généralise dans de nombreux écosystèmes :
+
+- C# ;
+- JavaScript / TypeScript ;
+- Python ;
+- Rust ;
+- Swift ;
+- Kotlin avec ses propres abstractions de coroutines.
+
+Cette convergence montre qu'une idée peut traverser plusieurs familles de langages lorsqu'elle résout un problème partagé.
+
+## 6.6 WebAssembly : une cible portable
+
+WebAssembly, ou Wasm, devient une recommandation W3C en décembre 2019.
+
+Il s'agit d'un format d'instructions bas niveau, portable et compact, conçu pour une exécution efficace.
+
+Il peut être produit à partir de langages comme :
+
+- C ;
+- C++ ;
+- Rust ;
+- Go selon toolchain ;
+- Kotlin/Wasm ;
+- divers langages expérimentaux.
+
+```mermaid
+flowchart LR
+    A[Rust] --> W[WebAssembly]
+    B[C/C++] --> W
+    C[Kotlin] --> W
+    W --> D[Navigateur]
+    W --> E[Runtime serveur]
+    W --> F[Edge / plugin sandboxé]
+```
+
+> [!important]
+> WebAssembly n'est pas un remplacement général de JavaScript. Sur le Web, les deux technologies sont souvent complémentaires.
+
+## 6.7 Les runtimes deviennent des plateformes
+
+Une idée importante de la période récente est qu'un langage ne se résume plus à sa syntaxe.
+
+Écosystèmes majeurs :
+
+- JVM : Java, Kotlin, Scala, Clojure ;
+- .NET CLR : C#, F#, Visual Basic .NET ;
+- BEAM : Erlang, Elixir ;
+- JavaScript runtimes : navigateurs, Node.js, Deno, Bun ;
+- LLVM : infrastructure de compilation utilisée par de nombreux langages ;
+- WebAssembly runtimes : navigateur et hors navigateur.
+
+Le runtime peut être presque aussi déterminant que le langage.
+
+## 6.8 Zig et les nouveaux langages système
+
+Zig apparaît dans la seconde moitié des années 2010 comme langage système mettant l'accent sur :
+
+- simplicité explicite ;
+- contrôle de l'allocation ;
+- compilation croisée ;
+- interopérabilité C ;
+- absence de garbage collector obligatoire.
+
+Il illustre une tendance : revisiter le domaine C/C++ avec des choix de conception différents.
+
+> [!note]
+> Les langages récents ou pré-1.0 doivent être évalués aussi selon la stabilité de leur spécification, de leur écosystème et de leurs outils, pas seulement selon leurs fonctionnalités.
+
+## 6.9 Les DSL reviennent au premier plan
+
+Un **Domain-Specific Language** est conçu pour un domaine précis.
+
+Exemples :
+
+- SQL pour les données relationnelles ;
+- CUDA C++ et langages de kernels GPU ;
+- shader languages ;
+- Terraform HCL pour l'infrastructure ;
+- langages de requête ;
+- langages de configuration ;
+- DSL embarqués dans Python ou Rust.
+
+À l'ère de l'IA et du calcul accéléré, beaucoup d'innovations passent par des DSL spécialisés plutôt que par de nouveaux langages généralistes.
+
+# 7. Langages par domaine
+
+## 7.1 Le Web
+
+Le Web repose sur plusieurs couches :
+
+| Couche | Technologie principale |
+|---|---|
+| structure | HTML |
+| style | CSS |
+| programmation navigateur | JavaScript |
+| typage outillé | TypeScript |
+| code natif portable | WebAssembly |
+| serveur | nombreux langages : JavaScript, Python, Java, Go, Rust, PHP, Ruby, C#, etc. |
+
+HTML et CSS sont indispensables au Web mais ne doivent pas être confondus avec des langages de programmation généralistes.
+
+## 7.2 Données et statistiques
+
+### R
+
+R est spécialisé dans :
+
+- statistiques ;
+- exploration de données ;
+- visualisation ;
+- recherche.
+
+### Python
+
+Python devient une plateforme scientifique grâce à son écosystème :
+
+- NumPy ;
+- pandas ;
+- SciPy ;
+- scikit-learn ;
+- PyTorch ;
+- Jupyter.
+
+Voir [[Data Mining en Python]], [[Numpy]], [[Pandas]], [[Pytorch]].
+
+### Julia
+
+Julia vise à réduire le compromis historique entre langage interactif simple et langage compilé performant.
+
+## 7.3 Intelligence artificielle
+
+L'histoire de l'IA est liée à plusieurs familles :
+
+- Lisp pour l'IA symbolique ;
+- Prolog pour le raisonnement logique ;
+- C/C++ pour les moteurs haute performance ;
+- Python comme langage d'orchestration dominant de nombreux frameworks modernes ;
+- CUDA et DSL spécialisés pour le calcul GPU.
+
+> [!important]
+> Le succès de Python en IA ne signifie pas que tous les calculs sont exécutés en Python pur. Une grande partie du travail intensif est réalisée par des bibliothèques natives, compilateurs, kernels GPU ou runtimes spécialisés.
+
+Voir [[LLM]], [[Les transformers]], [[RAG]], [[Pytorch]].
+
+## 7.4 Calcul scientifique
+
+FORTRAN, C, C++, MATLAB, Python et Julia coexistent.
+
+Le choix dépend de :
+
+- bibliothèques existantes ;
+- performance ;
+- coût de réécriture ;
+- validation scientifique ;
+- capacité d'interfaçage ;
+- facilité de prototypage.
+
+## 7.5 Embarqué
+
+C et C++ restent majeurs, mais d'autres langages gagnent du terrain :
+
+- Rust ;
+- Ada/SPARK ;
+- MicroPython dans certains contextes ;
+- DSL et environnements spécifiques aux microcontrôleurs.
+
+Les contraintes sont différentes du desktop :
+
+- mémoire limitée ;
+- temps réel ;
+- consommation ;
+- absence éventuelle de système d'exploitation ;
+- certification.
+
+## 7.6 Cloud et systèmes distribués
+
+Langages fréquents :
+
+- Go ;
+- Java ;
+- Kotlin ;
+- C# ;
+- Rust ;
+- Python ;
+- JavaScript / TypeScript ;
+- Erlang / Elixir.
+
+Ici, l'écosystème réseau, l'observabilité, la concurrence et la facilité de déploiement peuvent peser plus lourd que la syntaxe.
+
+## 7.7 Mobile
+
+L'histoire récente du mobile est dominée par :
+
+- Java puis Kotlin sur Android ;
+- Objective-C puis Swift chez Apple ;
+- Dart avec Flutter ;
+- JavaScript / TypeScript avec plusieurs frameworks multiplateformes.
+
+# 8. Standards, runtimes, compilateurs et écosystèmes
+
+## 8.1 Un langage peut avoir plusieurs implémentations
+
+Exemples :
+
+### Python
+
+- CPython ;
+- PyPy ;
+- MicroPython ;
+- autres implémentations spécialisées.
+
+### JavaScript
+
+- V8 ;
+- SpiderMonkey ;
+- JavaScriptCore.
+
+### C/C++
+
+- GCC ;
+- Clang/LLVM ;
+- MSVC.
+
+Un langage et son implémentation ne doivent donc pas être confondus.
+
+## 8.2 Standardisation
+
+Les langages sont gouvernés de manières différentes.
+
+### Standards internationaux
+
+C et C++ sont standardisés par ISO.
+
+### Ecma
+
+ECMAScript, base standard de JavaScript, est maintenu par TC39 au sein d'Ecma International.
+
+C# possède également une spécification standardisée par Ecma et ISO pour certaines versions.
+
+### Gouvernance communautaire
+
+Python évolue via les PEP.
+
+Rust utilise un processus RFC et des équipes de gouvernance.
+
+Go utilise propositions, discussions et processus de compatibilité particulièrement strict autour de Go 1.
+
+Kotlin, Swift ou TypeScript disposent chacun de leurs propres processus et équipes de conception.
+
+## 8.3 Pourquoi la gouvernance compte
+
+Avant d'adopter un langage, il faut regarder :
+
+- qui décide de son évolution ;
+- stabilité des versions ;
+- politique de compatibilité ;
+- disponibilité de la spécification ;
+- licences ;
+- diversité des contributeurs ;
+- dépendance éventuelle à une entreprise unique.
+
+## 8.4 Le rôle des package managers
+
+Les écosystèmes modernes associent presque toujours le langage à un gestionnaire de paquets :
+
+| Écosystème | Gestionnaire / dépôt courant |
+|---|---|
+| Python | pip / PyPI |
+| JavaScript | npm / registre npm |
+| Rust | Cargo / crates.io |
+| Go | Go modules |
+| Java | Maven / Gradle et dépôts Maven |
+| C# | NuGet |
+| Swift | Swift Package Manager |
+| Dart | pub |
+
+Les package managers deviennent une partie centrale de l'expérience du langage.
+
+## 8.5 Tooling et LSP
+
+Le **Language Server Protocol** sépare une partie de l'intelligence du langage de l'éditeur.
+
+Fonctions :
+
+- autocomplétion ;
+- navigation ;
+- diagnostics ;
+- refactoring ;
+- documentation ;
+- symboles.
+
+Cette évolution réduit l'importance de choisir un IDE spécifique et facilite des outils multi-éditeurs.
+
+Voir [[Visual studio code]].
+
+## 8.6 LLVM
+
+LLVM est une infrastructure de compilation utilisée par de nombreux langages.
+
+Schéma conceptuel :
+
+```mermaid
+flowchart LR
+    A[Frontend Clang] --> I[LLVM IR]
+    B[Frontend Rust] --> I
+    C[Frontend Swift] --> I
+    I --> O[Optimisations]
+    O --> X[x86-64]
+    O --> Y[ARM64]
+    O --> Z[autres cibles]
+```
+
+L'intérêt est de mutualiser :
+
+- optimisations ;
+- génération de code ;
+- support des architectures ;
+- outils de debugging.
+
+## 8.7 Compatibilité descendante
+
+Un langage largement déployé doit arbitrer entre :
+
+- corriger ses erreurs historiques ;
+- introduire de nouvelles fonctionnalités ;
+- ne pas casser des millions de lignes existantes.
+
+Java, JavaScript, C++, Python ou Go adoptent des stratégies différentes.
+
+Python 2 → Python 3 montre le coût potentiel d'une rupture majeure.
+
+Go met au contraire fortement l'accent sur la compatibilité de la famille Go 1.
+
+# 9. Choisir un langage
+
+## 9.1 Il n'existe pas de meilleur langage universel
+
+Le bon choix dépend du problème.
+
+Une comparaison pertinente doit intégrer plusieurs axes.
+
+## 9.2 Critères techniques
+
+### Performance
+
+Questions :
+
+- latence ?
+- débit ?
+- temps de démarrage ?
+- consommation mémoire ?
+- taille des binaires ?
+
+### Sûreté
+
+- sûreté mémoire ;
+- null-safety ;
+- système de types ;
+- concurrence ;
+- sandbox ;
+- maturité des bibliothèques.
+
+### Temps réel
+
+Un garbage collector peut être parfaitement acceptable pour un serveur Web mais problématique pour certains systèmes temps réel stricts.
+
+### Portabilité
+
+- navigateur ;
+- Linux ;
+- Windows ;
+- macOS ;
+- mobile ;
+- microcontrôleur ;
+- WebAssembly.
+
+## 9.3 Critères humains
+
+- compétences de l'équipe ;
+- lisibilité ;
+- facilité de recrutement ;
+- documentation ;
+- outils ;
+- vitesse de développement ;
+- facilité de revue de code.
+
+## 9.4 Critères d'écosystème
+
+Un langage excellent sans bibliothèques adaptées peut être un mauvais choix.
+
+Évaluer :
+
+- bibliothèques ;
+- frameworks ;
+- qualité des dépendances ;
+- maintenance ;
+- sécurité ;
+- licence ;
+- maturité des outils.
+
+## 9.5 Matrice de décision
+
+Exemple :
+
+| Critère | Poids | Python | Go | Rust |
+|---|---:|---:|---:|---:|
+| prototypage rapide | 5 | 5 | 4 | 2 |
+| performance native | 4 | 2 | 4 | 5 |
+| sûreté mémoire | 5 | 4 | 4 | 5 |
+| écosystème ML | 5 | 5 | 2 | 2 |
+| binaire autonome | 3 | 2 | 5 | 5 |
+| courbe d'apprentissage | 3 | 5 | 4 | 2 |
+
+Cette table n'est pas une vérité universelle : elle doit être adaptée au projet.
+
+# 10. Tendances actuelles et futur des langages
+
+## 10.1 La sûreté mémoire comme exigence
+
+L'une des tendances les plus fortes est la recherche de langages qui préviennent davantage d'erreurs par construction.
+
+Cela favorise :
+
+- Rust ;
+- Swift dans certains domaines ;
+- langages managés ;
+- outils d'analyse et sous-ensembles sûrs pour C/C++ ;
+- recherches sur de nouveaux langages système.
+
+## 10.2 Typage plus riche sans sacrifier l'ergonomie
+
+Les utilisateurs veulent simultanément :
+
+- inférence de types ;
+- excellent IDE ;
+- erreurs précoces ;
+- syntaxe concise.
+
+C'est un moteur important derrière TypeScript, Kotlin, Swift, Rust et les évolutions récentes de nombreux langages.
+
+## 10.3 Concurrence structurée
+
+La simple création de threads ou tâches asynchrones ne suffit pas.
+
+Les langages et bibliothèques cherchent à mieux structurer :
+
+- durée de vie des tâches ;
+- annulation ;
+- propagation des erreurs ;
+- supervision.
+
+On retrouve ces idées dans différents écosystèmes sous des formes différentes.
+
+## 10.4 WebAssembly hors du navigateur
+
+Wasm est également utilisé comme cible pour :
+
+- plugins ;
+- sandbox ;
+- edge computing ;
+- composants portables ;
+- environnements serveur.
+
+La portabilité des composants pourrait devenir aussi importante que la portabilité du code source.
+
+## 10.5 IA générative et programmation
+
+Les LLM modifient surtout **la manière d'utiliser les langages**, pas la nécessité des langages eux-mêmes.
+
+Impacts probables :
+
+- génération de code ;
+- migration entre langages ;
+- documentation ;
+- tests ;
+- refactoring ;
+- analyse de code ;
+- création plus rapide de DSL.
+
+Mais la génération automatique renforce aussi l'importance de :
+
+- compilateurs stricts ;
+- systèmes de types ;
+- linters ;
+- tests ;
+- analyse statique ;
+- propriétés formelles ;
+- sandboxing.
+
+> [!important]
+> Un code plausible généré par une IA n'est pas nécessairement un code correct. Les outils de langage restent le filet de sécurité essentiel.
+
+## 10.6 Programmation quantique
+
+La programmation quantique reste un domaine spécialisé et en évolution rapide.
+
+Exemples d'environnements :
+
+- Q# ;
+- Qiskit via Python ;
+- Cirq via Python ;
+- langages et IR quantiques spécialisés.
+
+Le modèle de programmation diffère fortement des architectures classiques :
+
+- qubits ;
+- superposition ;
+- intrication ;
+- circuits ;
+- mesure.
+
+Il est prématuré de parler d'un langage quantique universel comparable à C ou Python.
+
+## 10.7 Vérification et langages assistés par preuve
+
+Les frontières entre langage de programmation et assistant de preuve se rapprochent dans certains domaines.
+
+Exemples :
+
+- Coq / Rocq ;
+- Lean ;
+- Agda ;
+- Dafny ;
+- F*.
+
+Ces outils permettent d'exprimer et vérifier des propriétés mathématiques plus fortes que des tests ordinaires.
+
+## 10.8 Langages spécialisés pour accélérateurs
+
+La montée des GPU, TPU, NPU et autres accélérateurs favorise :
+
+- CUDA ;
+- langages de shaders ;
+- DSL de kernels ;
+- compilateurs tensoriels ;
+- IR spécialisés.
+
+Une part croissante de l'innovation ne consiste plus à créer un langage généraliste, mais à créer une couche adaptée à une architecture de calcul particulière.
+
+## 10.9 Le futur sera probablement polyglotte
+
+Une application moderne peut combiner :
+
+- TypeScript dans le frontend ;
+- Go ou Java dans les services ;
+- Python pour l'IA ;
+- Rust pour un composant sensible ;
+- SQL pour les données ;
+- WebAssembly pour un plugin isolé.
+
+Le développeur moderne doit donc comprendre les **concepts transférables** entre langages davantage que mémoriser une syntaxe unique.
+
+# 11. Travaux pratiques
+
+## TP 1 — Construire une frise historique
+
+Créer une frise contenant au minimum :
+
+- FORTRAN ;
+- Lisp ;
+- COBOL ;
+- ALGOL ;
+- C ;
+- Smalltalk ;
+- C++ ;
+- Haskell ;
+- Python ;
+- Java ;
+- JavaScript ;
+- Ruby ;
+- C# ;
+- Go ;
+- Rust ;
+- TypeScript ;
+- Kotlin ;
+- Swift ;
+- WebAssembly.
+
+Pour chacun, indiquer :
+
+1. année ou période d'apparition ;
+2. créateur ou organisation ;
+3. problème principal visé ;
+4. influence notable.
+
+## TP 2 — Même algorithme, quatre paradigmes
+
+Implémenter ou décrire une recherche dans une collection dans quatre styles :
+
+- impératif ;
+- fonctionnel ;
+- objet ;
+- logique.
+
+Comparer :
+
+- lisibilité ;
+- quantité d'état mutable ;
+- abstraction ;
+- facilité de test.
+
+## TP 3 — Compilation et interprétation
+
+Étudier :
+
+- C avec GCC ou Clang ;
+- Python avec CPython ;
+- Java avec `javac` et la JVM ;
+- JavaScript avec Node.js.
+
+Identifier pour chaque cas :
+
+- source ;
+- représentation intermédiaire ;
+- runtime ;
+- moment où du code machine est produit.
+
+## TP 4 — Comparer les systèmes de types
+
+Comparer un même modèle de données en :
+
+- Python ;
+- TypeScript ;
+- Rust ;
+- Haskell ou Kotlin.
+
+Analyser :
+
+- inférence ;
+- nullabilité ;
+- unions / enums ;
+- generics ;
+- erreurs détectées avant exécution.
+
+## TP 5 — Explorer une famille de langages
+
+Choisir une famille :
+
+- Lisp ;
+- ML ;
+- C ;
+- JVM ;
+- .NET ;
+- BEAM.
+
+Construire un arbre d'influences documenté.
+
+> [!warning]
+> Ne pas confondre « influence » et « descendance directe ». Chaque flèche doit être justifiée par une source.
+
+## TP 6 — Histoire d'une fonctionnalité
+
+Choisir une idée et suivre son évolution :
+
+- garbage collection ;
+- objets ;
+- generics ;
+- lambdas ;
+- pattern matching ;
+- async/await ;
+- ownership ;
+- modules.
+
+Exemple :
+
+```text
+Lisp → fonctions de première classe
+    ↓
+ML / Haskell → programmation fonctionnelle typée
+    ↓
+JavaScript / Python / C# / Java / C++ → adoption de lambdas et fonctions d'ordre supérieur
+```
+
+## TP 7 — WebAssembly
+
+Compiler un programme simple vers WebAssembly à partir d'un langage supporté par la toolchain choisie.
+
+Observer :
+
+- fichier `.wasm` ;
+- taille ;
+- imports/exports ;
+- environnement d'exécution ;
+- différence entre source et cible.
+
+## TP 8 — Étude d'un langage disparu ou marginal
+
+Choisir un langage ancien ou aujourd'hui minoritaire :
+
+- ALGOL ;
+- Pascal ;
+- Smalltalk ;
+- Ada ;
+- Perl ;
+- Prolog.
+
+Répondre :
+
+1. pourquoi a-t-il été créé ?
+2. quelles idées a-t-il apportées ?
+3. pourquoi son usage a-t-il diminué ou s'est-il spécialisé ?
+4. quelles idées ont survécu ailleurs ?
+
+## TP 9 — Choix de langage
+
+Pour chaque projet, proposer un langage et justifier :
+
+1. microcontrôleur critique ;
+2. API Web à fort trafic ;
+3. prototype ML ;
+4. application Android ;
+5. moteur de traitement de fichiers haute performance ;
+6. outil CLI distribué sous forme d'un binaire ;
+7. frontend Web complexe.
+
+Il n'y a pas une seule réponse correcte : l'évaluation porte sur l'argumentation.
+
+## TP 10 — Audit historique d'un dépôt
+
+Choisir un projet open source ancien et examiner son historique :
+
+- langage initial ;
+- migrations éventuelles ;
+- versions de langage ;
+- frameworks ;
+- outils de build ;
+- compatibilité ;
+- dette technique liée au langage.
+
+# 12. Projet final
+
+## 12.1 Objectif
+
+Produire une étude historique et technique d'un langage ou d'une famille de langages.
+
+## 12.2 Sujets possibles
+
+- de C à Rust : évolution de la programmation système ;
+- Lisp, Scheme, Clojure : continuité d'une famille ;
+- Smalltalk → Objective-C → Swift : objets et écosystème Apple ;
+- Java → Scala/Kotlin/Clojure : la JVM comme plateforme ;
+- Erlang → Elixir : résilience et concurrence ;
+- JavaScript → TypeScript : évolution du Web à grande échelle ;
+- ML → OCaml/F#/Rust : héritage des types algébriques ;
+- FORTRAN → Python/Julia : évolution du calcul scientifique ;
+- du code natif à WebAssembly ;
+- histoire des langages de programmation quantique.
+
+## 12.3 Livrables
+
+Le projet doit contenir :
+
+1. contexte historique ;
+2. chronologie ;
+3. motivations initiales ;
+4. concepts techniques majeurs ;
+5. comparaisons avec au moins deux autres langages ;
+6. évolution du runtime et des outils ;
+7. état de l'écosystème actuel ;
+8. limites ;
+9. héritage ;
+10. bibliographie.
+
+## 12.4 Critères d'évaluation
+
+| Critère | Pondération indicative |
+|---|---:|
+| exactitude historique | 25 % |
+| compréhension technique | 25 % |
+| qualité des sources | 15 % |
+| capacité de comparaison | 15 % |
+| clarté de la présentation | 10 % |
+| recul critique | 10 % |
+
+# 13. Repères chronologiques
+
+Les dates suivantes servent de repères. Selon les langages, il faut distinguer : début du projet, annonce publique, première version, version 1.0 et standardisation.
+
+| Période / année | Langage / technologie | Repère |
+|---|---|---|
+| 1957 | FORTRAN | diffusion du premier compilateur FORTRAN |
+| 1958 | Lisp | premiers travaux publiés autour de Lisp |
+| 1959 | COBOL | conception initiale |
+| 1960 | ALGOL 60 | langage structuré de référence |
+| 1964 | BASIC | création à Dartmouth |
+| années 1960 | Simula | classes et objets |
+| 1970 | Pascal | programmation structurée et enseignement |
+| 1972 | C | développement aux Bell Labs |
+| 1972 | Prolog | programmation logique |
+| années 1970 | Smalltalk | environnement objet intégral |
+| années 1970 | ML | inférence de types et fonctionnel typé |
+| 1983 | C++ | nom C++ adopté durant le développement |
+| 1987 | Perl | première version publique |
+| 1990 | Haskell | première spécification |
+| 1991 | Python | première version publique |
+| 1991 | Visual Basic | première version |
+| 1993 | Lua | création du langage |
+| 1995 | Java | lancement public |
+| 1995 | JavaScript | création chez Netscape |
+| 1995 | PHP | premières versions publiques |
+| 1995 | Ruby | première diffusion publique |
+| 1996 | OCaml | première version OCaml |
+| 2000 | C# | annonce publique autour de .NET |
+| 2004 | Scala | première version publique |
+| 2007 | Clojure | première version publique |
+| 2009 | Go | publication open source |
+| 2010 | Rust | projet rendu public |
+| 2011 | Elixir | premières versions publiques |
+| 2011 | Dart | présentation publique |
+| 2011 | Kotlin | présentation publique |
+| 2012 | Go 1 | première version stable compatible Go 1 |
+| 2012 | TypeScript | première présentation publique |
+| 2012 | Julia | annonce publique |
+| 2014 | Swift | présentation par Apple |
+| 2014 | TypeScript 1.0 | première version 1.0 |
+| 2015 | Rust 1.0 | première version stable |
+| 2015 | Swift open source | publication du code source |
+| 2016 | Kotlin 1.0 | première version stable |
+| 2019 | WebAssembly | recommandation W3C 1.0 |
+
+> [!note]
+> Les dates historiques doivent toujours être accompagnées de la nature du jalon : création, publication, version stable ou standardisation.
+
+# 14. Ce qu'il faut retenir
+
+L'histoire des langages montre plusieurs constantes.
+
+## 14.1 Les idées survivent mieux que les langages
+
+Smalltalk a influencé des générations d'outils et de langages même si peu de nouveaux projets sont écrits en Smalltalk.
+
+ML influence des systèmes de types modernes sans que tous les développeurs aient utilisé ML.
+
+Lisp reste une source majeure d'idées autour des fonctions, macros et représentation du code.
+
+## 14.2 Le contexte d'exécution est déterminant
+
+Java doit une grande partie de son histoire à la JVM.
+
+C est indissociable d'Unix.
+
+JavaScript est indissociable du navigateur.
+
+Elixir bénéficie de BEAM.
+
+TypeScript bénéficie de l'écosystème JavaScript.
+
+Dart bénéficie largement de Flutter.
+
+## 14.3 L'écosystème compte autant que la syntaxe
+
+Le succès dépend aussi de :
+
+- bibliothèques ;
+- documentation ;
+- outils ;
+- package manager ;
+- communauté ;
+- compatibilité ;
+- plateformes disponibles.
+
+## 14.4 Les compromis changent avec le matériel
+
+Un choix raisonnable en 1970 peut ne plus l'être en 2026, et inversement.
+
+L'évolution du matériel influence directement la conception des langages :
+
+- mémoire plus abondante → runtimes managés ;
+- multicœurs → concurrence ;
+- GPU → DSL et calcul massivement parallèle ;
+- edge → binaires légers et démarrage rapide ;
+- sécurité → sûreté mémoire et sandboxing.
+
+## 14.5 Comprendre les concepts est plus durable que mémoriser les syntaxes
+
+Un développeur capable de reconnaître :
+
+- mutation ;
+- closures ;
+- types algébriques ;
+- garbage collection ;
+- ownership ;
+- pattern matching ;
+- concurrence par messages ;
+- compilation JIT ;
+- bytecode ;
+- ABI ;
+- module ;
+
+peut apprendre un nouveau langage beaucoup plus rapidement.
+
+# 15. Sources et ressources
+
+Sources institutionnelles et documentations de référence utilisées pour les repères historiques et techniques :
+
+- Python — histoire du logiciel : <https://docs.python.org/3/license.html>
+- Rust — annonce de Rust 1.0 : <https://blog.rust-lang.org/2015/05/15/Rust-1.0/>
+- Go — historique vers Go 1 : <https://go.dev/blog/toward-go2>
+- Go 1 : <https://go.dev/blog/go1>
+- TypeScript — dix ans de TypeScript : <https://devblogs.microsoft.com/typescript/ten-years-of-typescript/>
+- TypeScript 1.0 : <https://devblogs.microsoft.com/typescript/announcing-typescript-1-0/>
+- Kotlin — FAQ et historique : <https://kotlinlang.org/docs/faq.html>
+- Swift — projet et open source : <https://www.swift.org/about/>
+- Ruby — FAQ officielle et historique : <https://www.ruby-lang.org/en/documentation/faq/1/>
+- ECMAScript : <https://tc39.es/ecma262/>
+- WebAssembly Core Specification : <https://www.w3.org/TR/wasm-core-1/>
+- WebAssembly, recommandation W3C : <https://www.w3.org/press-releases/2019/wasm/>
+
+Pour approfondir l'histoire académique des langages, rechercher également les actes des conférences **HOPL — History of Programming Languages** de l'ACM.
