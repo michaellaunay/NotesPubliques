@@ -63,7 +63,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
 - [[OAuth OpenID]] — Cours sur l'authentification et l'autorisation modernes : principes d'OAuth 2.0 et d'OpenID Connect, jetons JWT, puis mise en œuvre avec Keycloak comme serveur d'autorisation.
 - [[Sécurité avancée sous Linux]] — Cours de sécurité Linux avancée : durcissement du système, contrôle d'accès avancé, authentification et accès réseau, cryptographie, détection d'intrusions, sécurité des conteneurs et usage des LLM.
-- [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification et gestion des accès, sessions, modération de contenus soumis et principes de programmation sécurisée.
+- [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification, sessions, cryptographie, injections SQL, XSS et CSRF, analyse de journaux, puis les vulnérabilités propres au langage (pickle, eval, sous-processus), la gestion des secrets et la sécurité de la chaîne d'approvisionnement.
 - [[Sécurité des IOT en python avec SCADA]] — Cours sur la sécurité des objets connectés et des systèmes SCADA en Python : vecteurs d'attaque de la périphérie au nuage, sécurisation des communications, cryptographie, SSL/TLS et VPN, avec une étude de cas Bluetooth.
 
 ## Programmation
@@ -71,7 +71,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Algorithmes avancés en Python]] — Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme.
 - [[Anaconda]] — Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi.
 - [[C++]] — Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.
-- [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé dans le cloud, accès aux GPU et TPU, environnement prêt à l'emploi et lien avec Google Cloud Platform.
+- [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé, GPU et TPU, lien avec Google Cloud Platform, puis l'intégration de Gemini et du Data Science Agent, le modèle des unités de calcul, les règles de confidentialité et les alternatives.
 - [[Jupyter Notebook et Google Colab]] — Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites.
 - [[Mathplotlib]] — Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook.
 - [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, slices et vues, tableaux multidimensionnels, statistiques et notion d'axe, puis le tirage aléatoire moderne, le broadcasting et les ruptures de NumPy 2.

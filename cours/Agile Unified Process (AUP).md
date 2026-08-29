@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5ARM3BM4ZVR8931EM42"
-titre: "Agile Unified Process (AUP)"
+uid: 01M02EX5ARM3BM4ZVR8931EM42
+titre: Agile Unified Process (AUP)
 type: cours
 statut: actif
 para: ressource
@@ -17,7 +17,7 @@ niveau: intermediaire
 prerequis:
   - "[[Les méthodes agiles]]"
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2025-09-09
 date_modification: 2025-09-09
@@ -25,7 +25,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 
