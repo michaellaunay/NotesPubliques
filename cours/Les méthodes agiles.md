@@ -13,333 +13,2792 @@ themes:
   - methodes-agiles
   - scrum
   - kanban
-  - gestion-de-projet
-resume: "Cours sur les méthodes agiles : historique et Manifeste Agile, comparaison avec les méthodes traditionnelles, puis Scrum, XP, Kanban, DSDM, Crystal, FDD et Lean Software Development."
+  - extreme-programming
+  - lean
+  - product-management
+  - devops
+resume: "Cours complet et actualisé sur l'agilité en développement logiciel : Manifeste Agile, Scrum 2020, XP, Kanban 2025, Lean, discovery produit, estimation et prévision, métriques de flux et DORA, pratiques d'ingénierie, DevOps, leadership, mise à l'échelle, IA et anti-patterns."
 niveau: intermediaire
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-27
-date_modification: 2023-06-27
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
-Plan du cours sur les méthodes agiles et à leur utilisation dans la gestion de projets informatiques. 
 
-I. Introduction aux méthodes agiles
-   1. Définition et historique
-   2. Les principes du Manifeste Agile
-   3. Comparaison avec les méthodes traditionnelles
+# Les méthodes agiles
 
-II. Les différentes méthodes agiles
-   1. Scrum
-       1. Les rôles : Product Owner, Scrum Master, Équipe de développement
-       2. Les événements : Sprint, Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective
-       3. Les artefacts : Product Backlog, Sprint Backlog, Increment
-   2. Extreme Programming (XP)
-       1. Les valeurs de XP : Communication, Simplicité, Feedback, Courage, Respect
-       2. Les pratiques de XP : les 12 pratiques originales et les nouvelles pratiques
-   3. Kanban
-       1. Les principes de Kanban : visualiser le travail, limiter le travail en cours, améliorer de manière continue
-       2. Le tableau Kanban : À faire, En cours, Terminé
-   4. DSDM (Dynamic Systems Development Method)
-   5. Crystal
-   6. Feature Driven Development (FDD)
-   7. Lean Software Development
+> [!important]
+> **Agile n'est ni un outil de ticketing, ni une succession de réunions, ni un synonyme de Scrum.**
+> L'agilité est une manière de travailler dans l'incertitude en raccourcissant les boucles de feedback, en livrant de la valeur par petits incréments et en adaptant les décisions à ce que l'on apprend.
 
-III. Les outils de gestion Agile
-   1. Les tableaux Kanban physiques et numériques
-   2. Les logiciels de suivi de projets : JIRA, Trello, etc.
-   3. Les outils de communication et de collaboration : Slack, Microsoft Teams, etc.
+Ce cours présente les fondements de l'agilité et les principaux cadres et méthodes utilisés dans le développement de produits numériques. Il distingue volontairement :
 
-IV. Les défis et solutions dans l'application des méthodes agiles
-   1. La résistance au changement
-   2. L’importance de la communication et de la collaboration
-   3. Le rôle du management dans un environnement agile
-   4. Comment adapter les méthodes agiles à différents contextes
+- les **valeurs et principes** de l'agilité ;
+- les **frameworks** comme Scrum ;
+- les **stratégies de flux** comme Kanban ;
+- les **pratiques d'ingénierie** comme XP, TDD ou l'intégration continue ;
+- les pratiques de **product discovery** ;
+- les pratiques de **delivery** et DevOps ;
+- les métriques de **résultat, de flux et de qualité**.
 
-# 1. Introduction aux méthodes agiles
+Le but n'est pas de suivre une méthode « pure », mais de comprendre les mécanismes qui permettent de réduire le risque et d'augmenter la valeur livrée.
 
-# 1.1 Définition et historique
+Voir aussi :
 
-Les méthodes agiles sont des pratiques de gestion de projet qui encouragent la flexibilité, la collaboration et l'amélioration continue. Elles ont été popularisées par le Manifeste Agile, publié en 2001 par un groupe de professionnels de l'informatique cherchant une alternative aux approches traditionnelles de gestion de projet, souvent considérées comme rigides et lentes.
+- [[Agile Unified Process (AUP)]] ;
+- [[Architecture des logiciels]] ;
+- [[Design patterns]] ;
+- [[git]] ;
+- [[Docker]].
+
+---
+
+# Sommaire
+
+1. Fondements de l'agilité
+2. Complexité, empirisme et pensée produit
+3. Scrum
+4. Extreme Programming (XP)
+5. Kanban
+6. Lean Software Development
+7. DSDM, Crystal, FDD et AUP
+8. Product discovery et dual-track
+9. Backlog, user stories et découpage vertical
+10. Estimation, engagement et prévision
+11. Mesures : valeur, flux et DORA
+12. Pratiques d'ingénierie favorisant l'agilité
+13. DevOps, CI/CD et livraison continue
+14. Qualité, tests et Definition of Done
+15. Équipe, collaboration et facilitation
+16. Leadership et organisation
+17. Agilité à l'échelle
+18. Agilité, contraintes réglementaires et approches hybrides
+19. Travail distribué et asynchrone
+20. Outils de gestion et de collaboration
+21. IA générative et équipes agiles
+22. Anti-patterns et fausses agilités
+23. Choisir et adapter une approche
+24. Étude de cas complète
+25. Travaux pratiques
+26. Projet final
+27. Checklists
+28. Glossaire
+29. Références
+
+---
+
+# 1. Fondements de l'agilité
+
+## 1.1 Définition
+
+L'agilité est une approche de développement adaptée aux environnements dans lesquels :
+
+- le besoin est imparfaitement connu au départ ;
+- les priorités peuvent changer ;
+- les solutions doivent être expérimentées ;
+- la qualité technique doit être maintenue malgré les changements ;
+- le feedback des utilisateurs permet d'améliorer la direction prise.
+
+L'idée essentielle est de **réduire la taille et la durée des paris**.
+
+Plutôt que :
+
+```text
+18 mois de spécification
+        ↓
+12 mois de développement
+        ↓
+3 mois de recette
+        ↓
+Découverte tardive que le produit ne répond pas au besoin
+```
+
+on cherche plutôt :
+
+```text
+Hypothèse
+   ↓
+Petit incrément
+   ↓
+Validation
+   ↓
+Mesure
+   ↓
+Apprentissage
+   ↓
+Adaptation
+```
+
+## 1.2 Historique
+
+L'agilité n'est pas apparue soudainement en 2001. Elle est issue de plusieurs mouvements :
+
+- développement itératif et incrémental ;
+- prototypage ;
+- Lean et système de production Toyota ;
+- programmation structurée ;
+- Smalltalk et communautés orientées objet ;
+- Rapid Application Development ;
+- Scrum ;
+- Extreme Programming ;
+- Crystal ;
+- DSDM ;
+- pratiques de livraison incrémentale.
 
 ```mermaid
 timeline
-    title Historique des méthodes agiles
-    1990-2001 : Les méthodes agiles se développent de manière indépendante
-    2001 : Le Manifeste Agile
-    2001-2023 : Adoption et adaptation croissantes des méthodes agiles
+    title Repères historiques
+    1950-1980 : Premières pratiques itératives et incrémentales
+    1980s : Lean, Smalltalk et développement évolutif
+    1990s : Scrum, XP, DSDM, Crystal, FDD
+    2001 : Manifeste Agile
+    2000s : Adoption massive de Scrum et XP
+    2010s : DevOps, Lean Startup, Continuous Delivery, Kanban logiciel
+    2020 : Scrum Guide simplifié et Product Goal
+    2025 : Mise à jour majeure du Kanban Guide
+    2026 : DORA formalise un modèle à cinq métriques de delivery
 ```
 
-On trouve des prémisses dès 1968 [ces-archives-chamboulent-la-tech](https://ingenioz.it/blog/ces-archives-chamboulent-la-tech)  
-L'agilité, les tdd, la conception incrémentale ont tous été décrits en 1968 lors d'une réunion des plus grands informaticiens de l'époque par l'Otan.
+## 1.3 Le Manifeste Agile
 
-## 1.2 Les principes du Manifeste Agile
+Le **Manifesto for Agile Software Development** est publié en février 2001 par 17 praticiens.
 
-Le Manifeste Agile énonce quatre valeurs fondamentales et douze principes qui guident l'application des méthodes agiles. Les valeurs sont :
+Il contient quatre valeurs. L'idée fondamentale n'est pas de supprimer les éléments de droite, mais de valoriser davantage ceux de gauche :
 
-- Les individus et leurs interactions plus que les processus et les outils
-- Un logiciel opérationnel plus qu'une documentation exhaustive
-- La collaboration avec le client plus que la négociation contractuelle
-- L'adaptation au changement plus que le suivi d'un plan
+| On valorise davantage | Sans supprimer |
+|---|---|
+| individus et interactions | processus et outils |
+| logiciel opérationnel | documentation exhaustive |
+| collaboration avec le client | négociation contractuelle |
+| adaptation au changement | suivi d'un plan |
 
-Ces valeurs sont complétées par douze principes, qui détaillent comment ces valeurs peuvent être mises en œuvre dans la pratique.
+> [!warning]
+> Le Manifeste Agile ne dit donc pas : « pas de documentation », « pas de processus », « pas de contrat » ou « pas de plan ».
 
-## 1.3 Comparaison avec les méthodes traditionnelles
+## 1.4 Les 12 principes
 
-Par rapport aux méthodes traditionnelles, aussi connues sous le nom de méthodes "en cascade" ou "waterfall", les méthodes agiles privilégient l'adaptabilité et l'itération rapide. Au lieu de suivre un plan détaillé établi dès le début du projet, les méthodes agiles encouragent une planification continue et la capacité à s'adapter aux changements.
-@TODO debugger diagramme
+Les douze principes peuvent être regroupés en six idées :
+
+### Livrer tôt et souvent
+
+La valeur doit parvenir rapidement aux utilisateurs, plutôt que d'attendre la fin d'un grand projet.
+
+### Accepter l'apprentissage
+
+Un changement de besoin n'est pas automatiquement un échec de planification. Il peut être le résultat d'une meilleure compréhension du problème.
+
+### Collaboration étroite
+
+Produit, métier, utilisateurs et développement doivent construire ensemble la solution.
+
+### Équipes responsables
+
+Les équipes ont besoin d'autonomie, de compétences, d'informations et d'un environnement leur permettant d'agir.
+
+### Excellence technique
+
+La capacité à changer rapidement dépend directement de la qualité du logiciel.
+
+### Amélioration continue
+
+Une équipe inspecte régulièrement sa manière de travailler puis expérimente des améliorations.
+
+## 1.5 Agile n'est pas synonyme de Scrum
+
+```text
+Agilité
+├── valeurs et principes
+├── Scrum
+├── Kanban
+├── Extreme Programming
+├── Lean
+├── Crystal
+├── DSDM
+├── FDD
+└── nombreuses pratiques complémentaires
+```
+
+Une équipe peut être très agile sans Scrum.
+
+À l'inverse, une équipe peut organiser tous les événements Scrum et rester profondément non agile si :
+
+- elle ne livre jamais réellement ;
+- le feedback utilisateur arrive trop tard ;
+- toutes les décisions restent centralisées ;
+- les sprints sont simplement des mini-phases waterfall ;
+- la qualité technique se dégrade continuellement.
+
+---
+
+# 2. Complexité, empirisme et pensée produit
+
+## 2.1 Travail compliqué et travail complexe
+
+Il est utile de distinguer :
+
+- un problème **simple** : solution largement connue ;
+- un problème **compliqué** : expertise nécessaire mais solution analysable ;
+- un problème **complexe** : relation cause-effet difficile à connaître à l'avance ;
+- une crise **chaotique** : stabiliser avant d'optimiser.
+
+Le développement de produit contient souvent une forte composante complexe :
+
+- on ne sait pas exactement ce que veulent les utilisateurs ;
+- on ignore quelle solution fonctionnera ;
+- la technologie interagit avec l'organisation ;
+- les concurrents et le marché évoluent.
+
+Dans ce cas, l'expérimentation est souvent plus fiable qu'un plan détaillé à long terme.
+
+## 2.2 Empirisme
+
+Scrum formalise trois piliers :
+
+1. **transparence** ;
+2. **inspection** ;
+3. **adaptation**.
+
+On retrouve ce cycle dans la plupart des approches agiles :
+
 ```mermaid
-graph TD
-  A[Planification Initiale] --> B[Développement]
-  B --> C[Test]
-  C --> D[Livraison]
-  subgraph "Méthode Traditionnelle (Waterfall)"
-  A --> B --> C --> D
-  end
-  E[Planification Continue] --> F[Itérations de développement]
-  F --> G[Tests et Feedback Continus]
-  G --> H[Livraison et Amélioration Continue]
-  subgraph "Méthode Agile"
-  E --> F --> G --> H
-  end
+flowchart LR
+    A[Hypothèse] --> B[Action]
+    B --> C[Résultat observable]
+    C --> D[Inspection]
+    D --> E[Apprentissage]
+    E --> F[Adaptation]
+    F --> A
 ```
 
-# 2. Les différentes méthodes agiles
-# 2.1 Scrum
+## 2.3 Projet et produit
 
-Scrum est une des méthodes agiles les plus largement utilisées dans le monde du développement de logiciel. Développée initialement par Jeff Sutherland et Ken Schwaber dans les années 1990, Scrum est conçue pour gérer et contrôler les processus de développement de logiciels et de produits complexes. Elle est basée sur un système itératif et incrémental qui favorise l'adaptabilité et la collaboration.
+Un projet possède classiquement :
 
-La méthode Scrum se compose des éléments suivants :
+- une date de début ;
+- une date de fin ;
+- un budget ;
+- un périmètre.
 
-1. **Le Product Backlog** : C'est la liste de toutes les fonctionnalités, changements et corrections que le produit pourrait nécessiter. Ces éléments sont souvent appelés "user stories". Le Product Owner est responsable de la maintenance et de la priorisation de cet inventaire.
+Un produit vit tant qu'il crée de la valeur.
 
-2. **Les Sprints** : Les sprints sont des cycles de travail d'une durée généralement de deux à quatre semaines où l'équipe Scrum travaille pour compléter un ensemble défini de user stories du backlog. Chaque sprint commence par une réunion de planification de sprint et se termine par une revue de sprint et une rétrospective.
+La pensée produit privilégie donc :
 
-3. **La réunion de planification du sprint (Sprint Planning)** : L'équipe Scrum se réunit au début de chaque sprint pour choisir quelles user stories du Product Backlog seront réalisées pendant ce sprint.
+```text
+output  → ce que nous fabriquons
+outcome → ce qui change pour l'utilisateur ou l'organisation
+impact  → résultat durable recherché
+```
 
-4. **Le Sprint Backlog** : C'est l'ensemble de user stories sélectionnées pour le sprint en cours. Ces user stories sont décomposées en tâches à accomplir par l'équipe de développement.
+Exemple :
 
-5. **Le Daily Scrum** : C'est une réunion quotidienne de 15 minutes où l'équipe de développement synchronise ses activités et planifie le travail pour les prochaines 24 heures.
+```text
+Output : ajouter une fonctionnalité de recherche
+Outcome : les utilisateurs trouvent plus rapidement un document
+Impact : réduction de 30 % du temps moyen de traitement d'un dossier
+```
 
-6. **La revue de sprint (Sprint Review)** : À la fin du sprint, l'équipe Scrum présente le travail accompli au cours du sprint à toutes les parties prenantes. Cette réunion permet de recueillir des feedbacks et de s'assurer que le travail effectué est aligné avec les objectifs du produit.
+## 2.4 Incertitude et taille de lot
 
-7. **La rétrospective de sprint** : C'est la dernière activité d'un sprint. L'équipe Scrum se réunit pour réfléchir à la manière dont le dernier sprint s'est déroulé et identifier les opportunités d'amélioration pour le prochain sprint.
+Une technique centrale de l'agilité consiste à réduire la **batch size**.
 
-Scrum est un cadre de travail qui favorise l'adaptabilité, l'itération rapide, l'implication du client et le travail d'équipe pour livrer un produit de haute qualité.
+Un petit changement est généralement :
 
+- plus rapide à développer ;
+- plus simple à relire ;
+- plus facile à tester ;
+- moins risqué à déployer ;
+- plus simple à annuler ;
+- plus rapide à valider avec les utilisateurs.
+
+## 2.5 Boucles de feedback
+
+Une équipe cherche à réduire plusieurs délais :
+
+| Feedback | Exemple |
+|---|---|
+| compilation | secondes |
+| tests unitaires | secondes/minutes |
+| CI | minutes |
+| code review | heures |
+| intégration | heures |
+| déploiement | heures/jours |
+| utilisateur | jours |
+| marché | semaines/mois |
+
+L'agilité réelle dépend beaucoup de ces boucles techniques.
+
+---
+
+# 3. Scrum
+
+## 3.1 Scrum aujourd'hui
+
+Au 29 août 2026, la version officielle courante du **Scrum Guide reste celle de novembre 2020**.
+
+Scrum est un framework léger pour résoudre des problèmes complexes et générer de la valeur par des solutions adaptatives.
+
+Il est volontairement peu prescriptif.
+
+## 3.2 Théorie de Scrum
+
+Scrum repose sur :
+
+- empirisme ;
+- pensée Lean.
+
+Ses trois piliers sont :
+
+- transparence ;
+- inspection ;
+- adaptation.
+
+Ses cinq valeurs sont :
+
+- commitment ;
+- focus ;
+- openness ;
+- respect ;
+- courage.
+
+## 3.3 Une seule Scrum Team
+
+Depuis le Scrum Guide 2020, on ne parle plus d'une « équipe de développement » séparée du Product Owner et du Scrum Master.
+
+La **Scrum Team** possède trois accountabilities :
+
+```text
+Scrum Team
+├── Product Owner
+├── Scrum Master
+└── Developers
+```
+
+Le guide indique qu'une Scrum Team est généralement composée de **10 personnes ou moins**.
+
+Elle est :
+
+- cross-functional ;
+- self-managing ;
+- focalisée sur un seul Product Goal à la fois.
+
+## 3.4 Product Owner
+
+Le Product Owner est responsable de **maximiser la valeur du produit**.
+
+Il est également accountable de la gestion efficace du Product Backlog, notamment :
+
+- développer et communiquer le Product Goal ;
+- créer ou faire créer des éléments de backlog compréhensibles ;
+- ordonner le Product Backlog ;
+- rendre le backlog transparent et compris.
+
+Le Product Owner peut déléguer des activités mais reste accountable.
+
+> [!important]
+> Le Product Owner est **une personne**, pas un comité.
+
+## 3.5 Scrum Master
+
+Le Scrum Master est accountable de l'efficacité de Scrum.
+
+Il aide :
+
+- la Scrum Team ;
+- le Product Owner ;
+- l'organisation.
+
+Il ne doit pas devenir :
+
+- secrétaire des réunions ;
+- chef de projet traditionnel renommé ;
+- responsable hiérarchique des Developers ;
+- personne chargée d'assigner les tâches.
+
+## 3.6 Developers
+
+Les Developers sont les personnes engagées à créer un Increment utilisable chaque Sprint.
+
+Ils sont accountable de :
+
+- créer le plan du Sprint ;
+- respecter la Definition of Done ;
+- adapter leur plan quotidiennement ;
+- se tenir mutuellement responsables comme professionnels.
+
+## 3.7 Le Sprint
+
+Le Sprint est le conteneur de tous les autres événements Scrum.
+
+Il possède une durée fixe de **un mois ou moins**.
+
+Un nouveau Sprint commence immédiatement à la fin du précédent.
+
+Pendant un Sprint :
+
+- aucune modification ne doit mettre en danger le Sprint Goal ;
+- la qualité ne doit pas diminuer ;
+- le Product Backlog peut être raffiné ;
+- le périmètre peut être renégocié avec le Product Owner à mesure que l'on apprend.
+
+## 3.8 Sprint Planning
+
+Pour un Sprint d'un mois, la Sprint Planning est timeboxée à **8 heures maximum**.
+
+Elle répond à trois sujets :
+
+1. **Pourquoi** ce Sprint est-il utile ?
+2. **Quoi** peut être réalisé ?
+3. **Comment** le travail choisi sera-t-il effectué ?
+
+Le Sprint Goal est produit pendant cette planification.
+
+## 3.9 Daily Scrum
+
+Le Daily Scrum est un événement de **15 minutes pour les Developers**.
+
+Son objectif est d'inspecter la progression vers le Sprint Goal et d'adapter le Sprint Backlog.
+
+Le Scrum Guide 2020 ne prescrit plus les trois questions historiques :
+
+- qu'ai-je fait hier ?
+- que vais-je faire aujourd'hui ?
+- ai-je un blocage ?
+
+Elles peuvent être utilisées, mais elles ne constituent pas une obligation Scrum.
+
+> [!warning]
+> Le Daily Scrum n'est pas un compte-rendu de statut donné au manager ou au Scrum Master.
+
+## 3.10 Sprint Review
+
+Pour un Sprint d'un mois, la Sprint Review dure au maximum **4 heures**.
+
+Ce n'est pas seulement une démonstration.
+
+C'est une session de travail permettant :
+
+- d'inspecter le résultat du Sprint ;
+- d'évaluer les changements de contexte ;
+- de collaborer avec les parties prenantes ;
+- d'adapter le Product Backlog.
+
+## 3.11 Sprint Retrospective
+
+Pour un Sprint d'un mois, elle dure au maximum **3 heures**.
+
+L'équipe inspecte :
+
+- interactions ;
+- processus ;
+- outils ;
+- qualité ;
+- problèmes ;
+- hypothèses ;
+- améliorations réalisées.
+
+Une bonne rétrospective se termine par **une ou quelques expérimentations concrètes**, pas par une longue liste de bonnes intentions.
+
+## 3.12 Les trois artefacts
+
+Scrum définit trois artefacts :
+
+| Artefact | Engagement associé |
+|---|---|
+| Product Backlog | Product Goal |
+| Sprint Backlog | Sprint Goal |
+| Increment | Definition of Done |
+
+### Product Backlog
+
+Liste émergente et ordonnée de ce qui est nécessaire pour améliorer le produit.
+
+### Sprint Backlog
+
+Il contient :
+
+```text
+Sprint Goal → pourquoi
+éléments sélectionnés → quoi
+plan d'action → comment
+```
+
+### Increment
+
+Un Increment doit être :
+
+- utilisable ;
+- intégré aux Increments précédents ;
+- conforme à la Definition of Done.
+
+Un Increment peut être livré **avant la Sprint Review**.
+
+La Review n'est donc pas une « porte de release ».
+
+## 3.13 Product Goal
+
+Le Product Goal décrit un état futur du produit servant de cible à la Scrum Team.
+
+Il est plus durable qu'un Sprint Goal.
+
+```text
+Vision
+  ↓
+Product Goal
+  ↓
+Sprint Goals successifs
+  ↓
+Increments
+```
+
+## 3.14 Definition of Done
+
+La Definition of Done est une description formelle de l'état que doit atteindre l'Increment pour satisfaire les mesures de qualité du produit.
+
+Exemple :
+
+```text
+- code relu
+- tests automatisés verts
+- sécurité statique sans vulnérabilité bloquante
+- migrations compatibles
+- documentation utile mise à jour
+- observabilité ajoutée si nécessaire
+- déployable en production
+```
+
+Elle ne doit pas être confondue avec des **critères d'acceptation**, spécifiques à un élément de backlog.
+
+## 3.15 Refinement
+
+Le refinement est utile pour :
+
+- clarifier ;
+- découper ;
+- réordonner ;
+- estimer si cela apporte de la valeur ;
+- préparer les prochains éléments.
+
+Mais :
+
+> [!important]
+> **Le Product Backlog Refinement n'est pas un événement Scrum officiel.**
+
+C'est une activité continue.
+
+## 3.16 User stories et story points ne sont pas obligatoires
+
+Scrum n'impose pas :
+
+- les user stories ;
+- les story points ;
+- Planning Poker ;
+- Jira ;
+- vélocité ;
+- burndown chart.
+
+Ces techniques sont complémentaires.
+
+## 3.17 Erreurs Scrum courantes
+
+### Sprint = mini waterfall
+
+```text
+Semaine 1 : analyse
+Semaine 2 : développement
+Semaine 3 : tests
+Semaine 4 : intégration
+```
+
+Ce modèle conserve de grandes files d'attente internes.
+
+On préfère des tranches verticales :
+
+```text
+fonction A : analyse + dev + test + intégration
+fonction B : analyse + dev + test + intégration
+...
+```
+
+### Story points comme KPI individuel
+
+À éviter absolument.
+
+### Sprint Goal absent
+
+Sans objectif, le sprint devient une simple liste de tickets indépendants.
+
+### Product Owner proxy
+
+Si le Product Owner n'a aucune autorité sur l'ordre du backlog, la boucle de décision reste lente.
+
+### Definition of Done faible
+
+Un élément déclaré « fini » mais nécessitant ensuite une phase de test ou d'intégration produit une fausse transparence.
+
+---
+
+# 4. Extreme Programming (XP)
+
+## 4.1 Pourquoi XP reste important
+
+Scrum structure surtout l'empirisme et l'organisation du travail.
+
+Il dit peu sur **comment écrire le logiciel**.
+
+XP apporte précisément les pratiques techniques nécessaires pour pouvoir changer fréquemment sans dégrader le système.
+
+## 4.2 Les cinq valeurs
+
+XP repose sur :
+
+- communication ;
+- simplicité ;
+- feedback ;
+- courage ;
+- respect.
+
+## 4.3 Principales pratiques XP
+
+### Test-Driven Development
+
+Cycle :
+
+```text
+Red → Green → Refactor
+```
+
+### Pair Programming
+
+Deux personnes travaillent ensemble sur le même problème avec des rôles dynamiques.
+
+### Mob / Ensemble Programming
+
+Toute l'équipe travaille sur un même problème à un moment donné.
+
+### Continuous Integration
+
+Les modifications sont intégrées très fréquemment dans une branche partagée et validées automatiquement.
+
+### Refactoring
+
+Améliorer la conception du code sans modifier son comportement observable.
+
+### Simple Design
+
+Construire la solution la plus simple satisfaisant les besoins actuels tout en gardant le code facilement modifiable.
+
+### Collective Code Ownership
+
+Le code appartient à l'équipe, pas à une personne.
+
+### Coding Standards
+
+Un style commun réduit les frictions.
+
+### Sustainable Pace
+
+La vitesse obtenue par épuisement de l'équipe n'est pas durable.
+
+### Small Releases
+
+De petits incréments réduisent le risque et accélèrent le feedback.
+
+### Whole Team
+
+Les compétences nécessaires à la création de valeur doivent pouvoir collaborer directement.
+
+## 4.4 XP et architecture
+
+XP ne signifie pas absence d'architecture.
+
+Il favorise :
+
+- décisions réversibles ;
+- tests ;
+- refactoring continu ;
+- simplicité ;
+- architecture évolutive.
+
+Voir [[Architecture des logiciels]].
+
+---
+
+# 5. Kanban
+
+## 5.1 Kanban aujourd'hui
+
+Le **Kanban Guide courant est celui de mai 2025**.
+
+Il définit Kanban comme une stratégie d'optimisation du **flux de valeur** dans un processus.
+
+Kanban n'impose pas :
+
+- des sprints ;
+- des rôles spécifiques ;
+- un type particulier de ticket ;
+- une fréquence de réunion universelle.
+
+## 5.2 Les trois pratiques de Kanban
+
+Le guide 2025 retient trois pratiques :
+
+1. **définir et visualiser le workflow** ;
+2. **gérer activement les éléments dans le workflow** ;
+3. **améliorer le workflow**.
+
+## 5.3 Definition of Workflow
+
+Le système Kanban doit définir explicitement son **Definition of Workflow (DoW)**.
+
+Au minimum :
+
+1. l'unité de valeur qui traverse le workflow ;
+2. le point où le travail est considéré comme démarré ;
+3. le point où il est considéré comme terminé ;
+4. les états traversés ;
+5. la manière dont le WIP est contrôlé ;
+6. les politiques explicites ;
+7. une **Service Level Expectation**.
+
+## 5.4 Tableau Kanban
+
+Un tableau ne doit pas forcément se limiter à :
+
+```text
+Todo → Doing → Done
+```
+
+Un exemple plus informatif :
 
 ```mermaid
-sequenceDiagram
-    participant Product Backlog as A
-    participant Sprint Backlog as B
-    participant Dev Team as C
-    A->>B: Sprint Planning
-    B->>C: Sprint
-    C->>C: Daily Scrum
-    C->>A: Sprint Review
-    C-->>B: Sprint Retrospective
+flowchart LR
+    A[Options] --> B[Ready]
+    B --> C[Development]
+    C --> D[Review]
+    D --> E[Validation]
+    E --> F[Done]
 ```
 
-# 2.2 Extreme Programming (XP)
+On peut visualiser :
 
-L'Extreme Programming (XP) est une méthode agile qui met l'accent sur l'excellence technique et la livraison continue de valeur. Elle a été créée par Kent Beck au milieu des années 1990 et est particulièrement adaptée au développement de logiciels dans des environnements incertains ou qui changent rapidement.
+- limites de WIP ;
+- éléments bloqués ;
+- classes de service ;
+- SLE ;
+- âge des éléments.
 
-XP repose sur cinq valeurs fondamentales :
+## 5.5 Limites de WIP
 
-1. **Communication** : XP encourage une collaboration étroite entre tous les membres de l'équipe. Les développeurs travaillent ensemble en binôme et partagent leurs connaissances, tandis que les clients sont également intégrés au processus de développement pour communiquer leurs besoins et leurs commentaires.
+Le **Work In Progress** correspond au travail démarré mais non terminé.
 
-2. **Simplicité** : XP promeut le concept de "faire ce qui est nécessaire et pas plus". Cela signifie que l'équipe doit toujours chercher la solution la plus simple qui répond aux besoins actuels, sans essayer de prévoir trop loin dans le futur.
+Limiter le WIP réduit :
 
-3. **Feedback** : L'équipe doit chercher à obtenir un retour d'information constant pour s'assurer que le produit répond aux attentes du client. Cela se fait par des tests automatisés, des livraisons fréquentes de nouvelles versions du logiciel, et une communication constante avec le client.
+- multitâche ;
+- files d'attente ;
+- temps de cycle ;
+- travail oublié.
 
-4. **Courage** : Les membres de l'équipe doivent avoir le courage de faire face à des problèmes difficiles, de remettre en question les décisions existantes si nécessaire, et de changer de direction si cela s'avère être dans le meilleur intérêt du projet.
+Exemple :
 
-5. **Respect** : Chaque membre de l'équipe doit respecter les autres et leurs contributions. Cela crée une culture d'équipe saine et productive où les gens se sentent valorisés et motivés à faire de leur mieux.
-
-En plus de ces valeurs, XP met en pratique une série de pratiques spécifiques, telles que le développement piloté par les tests (Test-Driven Development - TDD), l'intégration continue, la programmation en binôme, le refactoring régulier, et d'autres.
-
-L'objectif d'XP est de développer un logiciel de haute qualité qui répond aux besoins des clients, et de le faire de manière efficace et durable.
-
-# 2.3 Kanban
-
-Kanban est une méthode agile qui met l'accent sur le flux de travail et l'efficacité. Le nom Kanban est d'origine japonaise et signifie littéralement "carte" ou "panneau". Cette approche est née dans l'industrie automobile chez Toyota, dans le but de gérer efficacement le flux de production.
-
-Dans le domaine du développement logiciel, Kanban est utilisé pour visualiser le travail, limiter le travail en cours et optimiser le flux de travail. Le processus de travail est représenté sous forme d'étapes (par exemple, "À faire", "En cours", "Terminé") et les tâches sont représentées par des cartes qui sont déplacées d'une étape à l'autre.
-
-Les principes clés de Kanban sont :
-
-1. Visualiser le travail : Un tableau Kanban est utilisé pour visualiser le travail et l'avancement des tâches. Cela permet à toute l'équipe de voir l'état actuel du travail.
-
-2. Limiter le travail en cours : Le nombre de tâches en cours à un moment donné est limité. Cela permet d'éviter le surmenage et d'assurer que le travail est complété avant de passer à la prochaine tâche.
-
-3. Améliorer de manière continue : L'équipe doit constamment chercher des moyens d'améliorer le processus de travail. Cela peut se faire par des réunions régulières pour discuter des problèmes et proposer des solutions.
-
-Kanban est une méthode flexible et adaptable qui peut être utilisée en conjonction avec d'autres méthodes agiles. Elle convient particulièrement bien aux projets où les exigences peuvent changer fréquemment et où la livraison rapide est importante.
-
-```mermaid
-graph TB
-    A[À faire] --> B[En cours]
-    B --> C[Terminé]
+```text
+Development    WIP ≤ 3
+Review         WIP ≤ 2
+Validation     WIP ≤ 2
 ```
-## 2.4 DSDM (Dynamic Systems Development Method)
 
-Le DSDM est une méthode agile centrée sur le développement rapide d'applications (RAD). Il a été initialement développé dans les années 1990 pour offrir une structure plus détaillée aux méthodes de développement rapide d'applications, et a évolué pour incorporer des principes et des pratiques agiles.
+Quand une colonne atteint sa limite, l'équipe ne doit pas simplement démarrer un nouvel élément ailleurs.
 
-Voici les principaux éléments du DSDM :
+Elle cherche d'abord à **terminer** le travail déjà engagé.
 
-1. **Les principes directeurs** : DSDM est basé sur neuf principes qui doivent toujours être respectés. Ils comprennent l'implication active des utilisateurs, la livraison fréquente, la collaboration entre les parties prenantes, l'approche itérative et incrémentale, et d'autres.
+## 5.6 Système tiré
 
-2. **Le cycle de vie du projet** : Le DSDM présente un cycle de vie de projet détaillé qui se compose de cinq phases : l'étude de faisabilité, l'étude d'entreprise, le modèle fonctionnel itératif, la conception et la construction itératives, et l'implémentation.
+Dans un système pull :
 
-3. **Les rôles et responsabilités** : Le DSDM définit un ensemble clair de rôles et de responsabilités, comprenant le Sponsor de l'entreprise, le Visionnaire, l'Ambassadeur de l'utilisateur, le Coordinateur de projet, le Gestionnaire de projet, le Développeur, et l'Analyste d'affaires.
+```text
+capacité disponible
+        ↓
+élément suivant tiré
+```
 
-4. **Les produits de travail** : Le DSDM identifie plusieurs "produits" ou "livrables" clés qui doivent être produits tout au long du projet. Ils peuvent comprendre un plan de projet, une description de l'architecture du système, des scénarios d'utilisation, des modèles de données et d'autres.
+et non :
 
-5. **Les techniques** : Le DSDM utilise un certain nombre de techniques spécifiques pour faciliter le développement du projet, y compris l'analyse des besoins, la modélisation de données, le prototypage fonctionnel, la gestion du temps (timeboxing), et d'autres.
+```text
+nouveau travail poussé en permanence
+        ↓
+files d'attente croissantes
+```
 
-L'une des particularités du DSDM est son engagement à respecter les délais et les budgets. Pour y parvenir, il utilise une approche appelée "fixer le temps et les ressources, ajuster la fonctionnalité", qui implique d'ajuster la portée du projet pour respecter les contraintes de temps et de ressources, tout en s'assurant que le système répond aux besoins essentiels de l'entreprise.
+## 5.7 Les quatre métriques minimales de flux
 
-## 2.5 Crystal
+Le Kanban Guide 2025 impose au minimum :
 
-Crystal est une famille de méthodes de développement de logiciels agiles conçues par Alistair Cockburn. Plutôt qu'une approche monolithique unique, Crystal se compose d'un ensemble de cadres méthodologiques, chacun adapté à des équipes de différentes tailles et à différents types de projets. Les différentes méthodologies Crystal sont désignées par une couleur, par exemple Crystal Clear, Crystal Yellow, Crystal Orange et Crystal Red, chaque couleur reflétant la taille du projet et le degré de criticité.
+### WIP
 
-Les aspects clés de Crystal sont les suivants :
+Nombre d'éléments démarrés mais non terminés.
 
-1. **Les principes et valeurs** : Crystal met l'accent sur les personnes, les interactions, la communauté, les compétences, les talents et les communications. Les valeurs clés comprennent la sécurité, l'efficacité, la simplicité et l'augmentation de la portée de la communication.
+### Throughput
 
-2. **Cycle de développement** : Crystal préconise un cycle de développement itératif et incrémental, avec des cycles généralement d'une durée d'un à trois mois. Chaque cycle se termine par une version livrable du logiciel qui a une valeur d'usage pour les utilisateurs.
+Nombre d'éléments terminés par unité de temps.
 
-3. **Rôles** : Dans Crystal, les rôles varient en fonction de la taille et de la criticité du projet. Cependant, il y a des rôles communs comme le sponsor (qui fournit les ressources et l'orientation), le lead designer ou programmeur (qui guide le développement technique), les utilisateurs (qui spécifient les exigences), et les programmeurs/équipe de développement (qui développent le logiciel).
+```text
+17 éléments / semaine
+```
 
-4. **Rituels** : Crystal préconise des rituels tels que les réunions de lancement, où les exigences et la planification sont discutées, les sessions de réflexion pour discuter de l'amélioration continue, et les réunions de clôture pour discuter de ce qui a été accompli et de ce qui doit être fait ensuite.
+### Work Item Age
 
-5. **Artefacts** : Les artefacts dans Crystal peuvent inclure des diagrammes d'architecture, des scénarios d'utilisation, des feuilles de temps pour suivre le temps passé sur les tâches, et des listes de tâches pour la prochaine itération.
+Âge actuel d'un élément encore en cours.
 
-La flexibilité est au cœur de Crystal, permettant aux équipes d'adapter la méthodologie à leurs besoins spécifiques. Elle reconnaît que chaque équipe, chaque projet et chaque organisation est unique et nécessite une approche adaptée à leur contexte spécifique.
+### Cycle Time
 
-## 2.6 Feature Driven Development (FDD)
+Durée entre le démarrage et la fin d'un élément.
 
-Le Feature Driven Development (FDD) est une méthode de développement de logiciels agile qui se concentre sur la construction de fonctionnalités. Le FDD a été développé par Jeff De Luca et Peter Coad à la fin des années 1990, et est conçu pour s'adapter aux projets de développement de logiciels de grande envergure.
+## 5.8 Service Level Expectation
 
-Voici les composants clés du FDD :
+Une SLE est une **prévision probabiliste**, par exemple :
 
-1. **Les fonctionnalités** : Dans le FDD, une fonctionnalité est une petite, concrète, et orientée client unité de travail dans le logiciel. Les fonctionnalités sont généralement exprimées dans la forme "action - résultat - objet", par exemple, "calculer - le total de la facture - pour un client".
+```text
+85 % des éléments terminés en 8 jours ou moins
+```
 
-2. **Le processus de développement** : Le processus de développement du FDD est découpé en cinq étapes : Développer une compréhension globale, construire une liste de fonctionnalités, planifier par fonctionnalité, concevoir par fonctionnalité, et construire par fonctionnalité.
+Elle ne signifie pas :
 
-3. **Les rôles** : Le FDD définit un certain nombre de rôles, dont le chef de projet, l'architecte en chef, les programmeurs, les propriétaires de classe, les écrivains de fonctionnalités, et d'autres.
+```text
+chaque ticket sera fini en 8 jours
+```
 
-4. **Les livrables** : En plus du code source lui-même, le FDD prévoit la création de plusieurs livrables, notamment un modèle de domaine de haut niveau, une liste de fonctionnalités, des plans de construction de fonctionnalités, et des rapports d'avancement.
+## 5.9 Cumulative Flow Diagram
 
-5. **Les normes de codage** : Le FDD insiste sur l'importance des normes de codage et de la documentation, afin de garantir que le code est uniforme, compréhensible, et maintenable.
+Le CFD aide à observer :
 
-L'objectif du FDD est de produire un logiciel fonctionnel et de haute qualité de manière efficace et prévisible. Pour y parvenir, il met l'accent sur le développement de fonctionnalités spécifiques, la planification et la conception détaillées, la collaboration étroite au sein de l'équipe, et l'obtention de commentaires réguliers sur l'avancement du projet.
+- WIP ;
+- débit ;
+- files d'attente ;
+- stabilité du système.
 
-# 2.7 Lean Software Development
+```text
+Élargissement durable d'une bande
+        ↓
+Accumulation de travail dans cet état
+        ↓
+Probable goulot d'étranglement
+```
 
-Le Lean Software Development (LSD) est une méthode de développement de logiciels qui applique les principes du lean manufacturing et de la production juste-à-temps au domaine du développement de logiciels. Il a été développé par Mary et Tom Poppendieck au début des années 2000.
+## 5.10 Scatterplot de cycle time
 
-Voici les principaux éléments du Lean Software Development :
+Chaque élément terminé est représenté par sa durée.
 
-1. **Les principes** : Le LSD est basé sur sept principes fondamentaux : Éliminer les déchets, Améliorer l'apprentissage, Décider le plus tard possible, Livrer le plus vite possible, Autonomiser l'équipe, Construire l'intégrité, et Voir le tout.
+Cela permet d'utiliser les percentiles :
 
-2. **Éliminer les déchets** : Tout ce qui n'ajoute pas de valeur au client est considéré comme un déchet. Cela peut inclure des choses comme l'écriture de code ou de fonctionnalités inutiles, le fait d'attendre d'autres parties du projet, le passage de tâches non nécessaires, etc.
+```text
+50e percentile : 3 jours
+85e percentile : 7 jours
+95e percentile : 12 jours
+```
 
-3. **Améliorer l'apprentissage** : Le LSD valorise l'apprentissage continu et l'adaptation à la réalité changeante d'un projet. Cela peut être réalisé par des réunions d'équipe régulières, des revues de code, l'utilisation de tests automatisés, etc.
+## 5.11 Monte Carlo
 
-4. **Décider le plus tard possible** : En retardant les décisions jusqu'à ce que vous ayez le plus d'informations possible, vous pouvez faire des choix plus informés et éviter de vous enfermer dans une direction incorrecte.
+À partir de l'historique du throughput, on peut simuler :
 
-5. **Livrer le plus vite possible** : En livrant rapidement et souvent, vous pouvez obtenir un feedback plus tôt, ce qui vous permet d'apprendre et de vous adapter plus rapidement.
+```text
+Quand finirons-nous 40 éléments ?
+```
 
-6. **Autonomiser l'équipe** : Les membres de l'équipe devraient avoir la liberté de prendre des décisions et de contrôler leur propre travail. Cela nécessite de leur donner non seulement les responsabilités, mais aussi les compétences et l'autorité nécessaires pour prendre des décisions.
+ou :
 
-7. **Construire l'intégrité** : Le LSD souligne l'importance de construire des systèmes qui ont à la fois une intégrité conceptuelle (c'est-à-dire qu'ils fonctionnent bien ensemble en tant que système) et une intégrité perceptive (c'est-à-dire qu'ils fonctionnent bien pour l'utilisateur).
+```text
+Combien d'éléments pouvons-nous terminer avant le 30 septembre ?
+```
 
-8. **Voir le tout** : Plutôt que de se concentrer uniquement sur les parties individuelles d'un projet, le LSD met l'accent sur l'importance de comprendre et d'optimiser le système dans son ensemble.
+La réponse doit être probabiliste :
 
-L'objectif du Lean Software Development est de maximiser la valeur pour le client tout en minimisant le gaspillage. Pour y parvenir, il met l'accent sur l'amélioration continue, le respect des personnes et l'amélioration de la productivité globale.
+```text
+50 % de probabilité : 28 septembre
+85 % de probabilité : 7 octobre
+95 % de probabilité : 15 octobre
+```
 
+## 5.12 Scrum + Kanban
 
-# 3. Les outils de gestion Agile
+Kanban peut compléter Scrum :
 
-# 3.1 Les tableaux Kanban physiques et numériques
+- Sprint Goal conservé ;
+- événements Scrum conservés ;
+- flux visualisé ;
+- WIP limité ;
+- cycle time mesuré ;
+- SLE utilisée pour améliorer la prévisibilité.
 
-Les tableaux Kanban sont une caractéristique fondamentale de la méthodologie Kanban. Ils représentent l'état d'avancement des tâches et des projets, permettant une visibilité et une transparence accrues du travail en cours. 
+---
 
-## 3.1.1 Les tableaux Kanban physiques
+# 6. Lean Software Development
 
-Un tableau Kanban physique est souvent un tableau blanc divisé en différentes colonnes, chacune représentant une phase différente du flux de travail. Par exemple, un tableau Kanban de base pourrait être divisé en trois colonnes : "À faire", "En cours" et "Terminé". 
+## 6.1 Origines
 
-Les tâches sont représentées par des cartes, généralement des post-its, qui sont déplacées d'une colonne à l'autre à mesure qu'elles progressent. C'est une méthode simple mais puissante pour visualiser le travail en cours et pour voir où se produisent les goulots d'étranglement.
+Lean Software Development adapte au logiciel des idées issues notamment du Toyota Production System.
 
-L'avantage d'un tableau Kanban physique est sa simplicité et sa visibilité. Il n'y a pas besoin de logiciel ou de formation spécialisée pour l'utiliser, et toute personne qui passe peut voir rapidement l'état d'avancement du projet. Cependant, il peut être plus difficile à gérer pour les grandes équipes ou les projets complexes, et il n'est pas pratique pour les équipes à distance.
+Mary et Tom Poppendieck ont largement popularisé cette adaptation.
 
-## 3.1.2 Les tableaux Kanban numériques
+## 6.2 Sept principes classiques
 
-Un tableau Kanban numérique offre les mêmes fonctionnalités qu'un tableau physique, mais il est hébergé en ligne, généralement comme une application web ou mobile. Les tâches sont représentées par des cartes numériques qui peuvent être déplacées entre les colonnes, ajoutées, modifiées ou supprimées.
+1. éliminer le gaspillage ;
+2. amplifier l'apprentissage ;
+3. décider aussi tard que raisonnablement possible ;
+4. livrer aussi vite que possible ;
+5. donner de l'autonomie aux équipes ;
+6. construire la qualité et l'intégrité ;
+7. optimiser le système dans son ensemble.
 
-Les tableaux Kanban numériques offrent plusieurs avantages par rapport aux tableaux physiques. Ils sont plus flexibles et évolutifs, permettant de gérer de grandes quantités de tâches et de flux de travail plus complexes. Ils peuvent intégrer des fonctionnalités supplémentaires, comme les notifications, les commentaires, les pièces jointes, et l'intégration avec d'autres outils. De plus, ils sont accessibles à distance, ce qui est essentiel pour les équipes distribuées ou le travail à distance.
+## 6.3 Les gaspillages dans le logiciel
 
-Cependant, les tableaux Kanban numériques peuvent aussi être plus compliqués à utiliser, nécessitant une formation et une familiarisation. De plus, ils peuvent introduire des distractions supplémentaires, comme les notifications incessantes, et ils nécessitent une connexion internet pour être utilisés.
+Exemples :
 
-Dans l'ensemble, le choix entre un tableau Kanban physique et numérique dépendra des besoins spécifiques de votre équipe et de votre projet. Certaines équipes peuvent même choisir d'utiliser une combinaison des deux pour bénéficier des avantages de chacun.
+- fonctionnalités inutilisées ;
+- attentes ;
+- handoffs ;
+- tâches partiellement terminées ;
+- multitâche ;
+- défauts ;
+- processus manuels répétitifs ;
+- surproduction documentaire ;
+- longues files de validation.
 
-@TODO mettre un exemple de backlog avec comme ticket la réalisation des tâches de conception d'un logiciel (plant uml n'ont pas de diagramme permettant d'avoir un résultat correcte)
+## 6.4 Value Stream Mapping
 
+On cartographie :
 
-# 3.2 Les logiciels de suivi de projets: JIRA, Trello, etc.
+```text
+Demande utilisateur
+    ↓
+Analyse
+    ↓ attente
+Développement
+    ↓ attente
+Review
+    ↓ attente
+Tests
+    ↓ attente
+Déploiement
+```
 
-Dans le cadre des projets informatiques, et particulièrement ceux utilisant les méthodologies agiles, les outils de suivi de projets sont essentiels. Ils permettent non seulement d'organiser et de prioriser les tâches, mais également de suivre l'avancement des travaux, de communiquer au sein de l'équipe et avec les parties prenantes, et enfin, d'obtenir des métriques sur la performance du projet. Voici quelques exemples parmi les plus populaires :
+Puis on compare :
 
-1. **JIRA** : C'est un produit phare d'Atlassian, largement utilisé dans l'industrie du logiciel. Il est spécialement conçu pour le suivi des bugs, les demandes d'amélioration, et d'autres types de tâches de développement de logiciels. JIRA offre des fonctionnalités robustes pour la gestion de projets, y compris la création et le suivi de tickets, la gestion de workflows personnalisables, des tableaux Kanban et Scrum, des rapports, etc. Il dispose également d'intégrations avec d'autres produits Atlassian comme Confluence et Bitbucket, et d'autres outils de développement tels que Slack, GitHub, etc.
+```text
+Touch time = temps réellement travaillé
+Lead time  = durée totale
+```
 
-2. **Trello** : Trello est un outil de gestion de projets plus léger et plus visuel que JIRA. Il est basé sur le concept de tableaux Kanban. Chaque tableau représente un projet et est subdivisé en listes (qui représentent généralement les phases d'un projet ou les différentes catégories de tâches), et chaque liste contient des cartes (qui représentent des tâches). Les utilisateurs peuvent déplacer les cartes entre les listes pour représenter l'avancement du travail. Trello est particulièrement populaire parmi les petites équipes et pour des projets moins complexes.
+Un workflow peut avoir :
 
-3. **Asana** : Asana est un autre outil de gestion de projets qui offre une grande flexibilité. Il permet de créer des projets, des tâches et des sous-tâches, et offre une variété de vues, dont une vue en liste, une vue en tableau (style Kanban), une vue de calendrier, et une vue de chronologie (style Gantt). Asana est utilisé par diverses équipes, pas seulement pour le développement de logiciels, mais aussi pour le marketing, les ressources humaines, la gestion de produits, etc.
+```text
+Touch time : 8 heures
+Lead time  : 21 jours
+```
 
-Ces outils, et d'autres similaires, sont essentiels pour gérer efficacement les projets informatiques, surtout lorsque vous travaillez en équipe. Ils facilitent la communication, l'organisation et le suivi du travail, et contribuent à améliorer la transparence et la productivité.
+Le principal problème est alors le système d'attente, pas la vitesse individuelle des développeurs.
 
-# 3.3 Les outils de communication et de collaboration: Slack, Microsoft Teams, Discord, etc.
+## 6.5 Optimiser le système
 
-Dans le contexte actuel de travail, où les équipes sont souvent réparties sur plusieurs sites, voire à travers le monde, la communication et la collaboration sont essentielles. Heureusement, plusieurs outils sont disponibles pour faciliter ces aspects du travail d'équipe. Voici quelques exemples :
+Améliorer un poste localement peut dégrader l'ensemble.
 
-1. **Slack** : C'est une plateforme de communication d'équipe qui offre des canaux de discussion organisés, la messagerie directe, les appels vidéo et audio, et le partage de fichiers. Les équipes peuvent créer des canaux pour différents sujets, projets, équipes ou tout ce qui nécessite une conversation séparée. Slack permet également d'intégrer un grand nombre d'autres outils et services, tels que Google Drive, Trello, GitHub, JIRA, etc., facilitant ainsi le flux de travail.
+Exemple :
 
-2. **Microsoft Teams** : C'est la réponse de Microsoft à Slack. Il offre des fonctionnalités similaires, mais est plus intégré à l'écosystème Microsoft, ce qui le rend particulièrement utile pour les équipes qui utilisent déjà des produits Microsoft tels que Office 365. En plus des discussions et des appels, Teams permet également de collaborer sur des documents en temps réel, de planifier des réunions, et plus encore.
+```text
+Développement deux fois plus rapide
+        ↓
+Review inchangée
+        ↓
+Queue de review multipliée
+        ↓
+Lead time global dégradé
+```
 
-3. **Discord** : Initialement conçu pour les communautés de joueurs, Discord est devenu une plateforme de communication populaire pour une variété de groupes, y compris les équipes de développement de logiciels. Il propose des salons textuels, des canaux vocaux, et le partage de fichiers, avec une interface conviviale et une bonne qualité d'audio. Bien que Discord n'ait pas autant de fonctionnalités d'intégration d'entreprise que Slack ou Teams, il est gratuit et plus facile à configurer, ce qui le rend attrayant pour les petites équipes ou les projets avec un budget limité.
+---
 
-Ces outils de communication et de collaboration sont essentiels pour maintenir les équipes synchronisées, favoriser la collaboration et augmenter la productivité. Ils permettent non seulement de communiquer rapidement et efficacement, mais aussi de centraliser les informations, de réduire les e-mails, et de faciliter le travail à distance.
+# 7. DSDM, Crystal, FDD et AUP
 
-# 4. Les défis et solutions dans l'application des méthodes agiles
+Ces approches sont aujourd'hui moins fréquentes que Scrum/Kanban dans de nombreuses équipes logicielles, mais elles restent intéressantes historiquement et pédagogiquement.
 
-## 4.1 La résistance au changement
+## 7.1 DSDM
 
-L'un des défis majeurs dans l'adoption des méthodes agiles est la résistance au changement. Les membres de l'équipe qui sont habitués à des méthodologies plus traditionnelles peuvent avoir du mal à s'adapter à une nouvelle façon de travailler.
+**Dynamic Systems Development Method** est issu du mouvement RAD britannique des années 1990.
 
-**Solution** : La communication ouverte et honnête est la clé pour surmonter cette résistance. Il est important de souligner les avantages des méthodes agiles, tels que la livraison plus rapide, l'amélioration de la qualité du produit et une meilleure satisfaction du client. Des formations et des ateliers peuvent également aider les membres de l'équipe à comprendre et à s'adapter aux méthodes agiles.
+Il insiste notamment sur :
 
-## 4.2 L’importance de la communication et de la collaboration
+- implication métier ;
+- livraison fréquente ;
+- collaboration ;
+- qualité ;
+- développement itératif ;
+- timeboxing ;
+- priorisation MoSCoW.
 
-L'agilité repose fortement sur la communication et la collaboration, ce qui peut être un défi, surtout dans les équipes distantes ou dispersées.
+### MoSCoW
 
-**Solution** : L'utilisation d'outils de communication et de collaboration, tels que Slack, Microsoft Teams, JIRA, Trello, etc., peut faciliter la communication et la collaboration au sein de l'équipe. Il est également important de promouvoir une culture d'ouverture et de partage d'informations.
+```text
+Must have
+Should have
+Could have
+Won't have this time
+```
 
-## 4.3 Le rôle du management dans un environnement agile
+Cette priorisation est particulièrement utile lorsque :
 
-Dans un environnement agile, le rôle du management change. Au lieu de diriger et de contrôler, le management doit plutôt faciliter et soutenir l'équipe.
+```text
+temps et coût ≈ fixes
+scope = variable d'ajustement
+```
 
-**Solution** : La formation des managers sur les principes et les pratiques agiles peut les aider à comprendre leur nouveau rôle. Les managers doivent être encouragés à adopter une approche de leadership serviteur, où leur objectif principal est de servir l'équipe en éliminant les obstacles et en fournissant les ressources nécessaires.
+## 7.2 Crystal
 
-## 4.4 Comment adapter les méthodes agiles à différents contextes
+Crystal est une famille d'approches créée par Alistair Cockburn.
 
-Tous les projets ou organisations ne sont pas identiques. Par conséquent, l'application stricte des méthodes agiles peut ne pas fonctionner dans tous les contextes.
+Elle insiste sur :
 
-**Solution** : L'agilité est plus une mentalité qu'un ensemble de règles rigides. Il est important d'adapter les méthodes agiles en fonction du contexte de l'organisation ou du projet. Cela peut impliquer de modifier certaines pratiques ou d'adopter une approche hybride qui combine les méthodes agiles avec d'autres méthodologies. Le plus important est de rester fidèle aux principes agiles de collaboration, d'amélioration continue, et de livraison de valeur au client.
+- personnes ;
+- communication ;
+- sécurité psychologique ;
+- adaptation au contexte ;
+- fréquence de livraison ;
+- criticité du système.
 
+Le niveau de formalisme peut augmenter avec :
 
+- taille d'équipe ;
+- conséquences d'une défaillance ;
+- contraintes réglementaires.
+
+## 7.3 Feature Driven Development
+
+FDD structure le travail autour de petites fonctionnalités orientées valeur.
+
+Son processus classique comprend :
+
+1. développer un modèle global ;
+2. construire la liste de fonctionnalités ;
+3. planifier par fonctionnalité ;
+4. concevoir par fonctionnalité ;
+5. construire par fonctionnalité.
+
+## 7.4 Agile Unified Process
+
+AUP simplifie les idées du Rational Unified Process tout en conservant des phases et disciplines.
+
+Voir le cours dédié : [[Agile Unified Process (AUP)]].
+
+## 7.5 Pourquoi les connaître ?
+
+Elles montrent que :
+
+> [!important]
+> Il n'existe pas une unique recette agile.
+
+Le contexte compte :
+
+- équipe ;
+- criticité ;
+- domaine ;
+- contraintes ;
+- maturité technique ;
+- fréquence de livraison nécessaire.
+
+---
+
+# 8. Product discovery et dual-track
+
+## 8.1 Le problème du backlog de fonctionnalités
+
+Une équipe peut être très efficace à construire des fonctionnalités inutiles.
+
+Le delivery répond à :
+
+```text
+Construisons-nous correctement la solution ?
+```
+
+La discovery répond à :
+
+```text
+Construisons-nous la bonne solution ?
+```
+
+## 8.2 Hypothèses
+
+Une fonctionnalité devrait souvent commencer par une hypothèse :
+
+```text
+Nous pensons que...
+Pour...
+Cela produira...
+Nous saurons que c'est vrai si...
+```
+
+Exemple :
+
+```text
+Nous pensons qu'une recherche plein texte
+réduira le temps de traitement des dossiers
+pour les agents administratifs.
+
+Nous considérerons l'hypothèse validée
+si le temps médian passe de 4 min à moins de 2 min.
+```
+
+## 8.3 Dual-track
+
+On peut organiser deux flux fortement connectés :
+
+```text
+Discovery                    Delivery
+─────────                    ────────
+problème                     conception détaillée
+recherche                    code
+prototype        →           tests
+expérience                   déploiement
+validation                   exploitation
+```
+
+Il ne s'agit pas nécessairement de deux équipes séparées.
+
+## 8.4 Techniques de discovery
+
+- interviews ;
+- observation ;
+- analytics ;
+- prototype ;
+- fake door ;
+- concierge test ;
+- Wizard of Oz ;
+- test d'utilisabilité ;
+- A/B test lorsque pertinent ;
+- analyse qualitative des tickets support.
+
+## 8.5 Risques à réduire
+
+On peut distinguer :
+
+- **value risk** : les utilisateurs en veulent-ils ?
+- **usability risk** : sauront-ils l'utiliser ?
+- **feasibility risk** : pouvons-nous le construire ?
+- **viability risk** : est-ce viable pour l'organisation ?
+
+---
+
+# 9. Backlog, user stories et découpage vertical
+
+## 9.1 Un backlog n'est pas une spécification figée
+
+Le backlog est émergent.
+
+Les éléments lointains peuvent rester plus grossiers que ceux proches de la réalisation.
+
+## 9.2 User stories
+
+Forme classique :
+
+```text
+En tant que <persona>,
+je veux <capacité>,
+afin de <bénéfice>.
+```
+
+Exemple :
+
+```text
+En tant qu'administrateur,
+je veux révoquer une session active,
+afin de protéger un compte compromis.
+```
+
+La forme n'est pas obligatoire.
+
+Une user story est surtout une **invitation à la conversation**.
+
+## 9.3 Critères d'acceptation
+
+Exemple :
+
+```text
+Given un utilisateur possédant 3 sessions actives
+When l'administrateur révoque la session mobile
+Then cette session ne peut plus appeler l'API
+And les deux autres sessions restent valides
+```
+
+## 9.4 Definition of Ready
+
+Une Definition of Ready peut être une convention locale utile.
+
+Mais :
+
+> [!warning]
+> **Elle ne fait pas partie de Scrum.**
+
+Elle devient nuisible si elle sert de barrière bureaucratique retardant l'apprentissage.
+
+## 9.5 Découpage vertical
+
+À éviter :
+
+```text
+Story 1 : créer la base
+Story 2 : créer l'API
+Story 3 : créer l'interface
+Story 4 : écrire les tests
+```
+
+Préférer :
+
+```text
+Story 1 : utilisateur peut créer un dossier simple
+Story 2 : utilisateur peut ajouter une pièce jointe
+Story 3 : utilisateur peut soumettre le dossier
+```
+
+Chaque tranche traverse les couches nécessaires.
+
+## 9.6 Techniques de slicing
+
+Découper par :
+
+- scénario ;
+- règle métier ;
+- type de données ;
+- rôle utilisateur ;
+- workflow heureux puis erreurs ;
+- opération CRUD ;
+- complexité ;
+- performance ;
+- zone géographique ;
+- niveau d'automatisation.
+
+## 9.7 INVEST
+
+Un bon rappel pour une story :
+
+```text
+Independent
+Negotiable
+Valuable
+Estimable
+Small
+Testable
+```
+
+Ce n'est pas une loi universelle.
+
+---
+
+# 10. Estimation, engagement et prévision
+
+## 10.1 Estimer n'est pas prédire exactement
+
+Une estimation exprime une incertitude.
+
+```text
+« 5 jours exactement »
+```
+
+est rarement une information réaliste pour un travail complexe.
+
+On préfère parfois :
+
+```text
+50 % : ≤ 4 jours
+85 % : ≤ 8 jours
+95 % : ≤ 13 jours
+```
+
+## 10.2 Story points
+
+Les story points peuvent représenter une estimation relative combinant :
+
+- effort ;
+- complexité ;
+- risque ;
+- incertitude.
+
+Ils ne possèdent **aucune unité universelle**.
+
+## 10.3 Velocity
+
+```text
+velocity = points terminés par sprint
+```
+
+Elle peut aider une équipe à prévoir son propre travail.
+
+Elle ne doit pas servir à :
+
+- comparer des équipes ;
+- fixer un objectif de performance ;
+- évaluer des individus ;
+- rémunérer selon les points.
+
+Sinon la métrique devient immédiatement manipulable.
+
+## 10.4 Planning Poker
+
+Les participants choisissent une estimation indépendamment, puis discutent surtout des divergences.
+
+La vraie valeur n'est pas le nombre final mais la **conversation sur les hypothèses**.
+
+## 10.5 No Estimates
+
+Dans certains contextes, on peut obtenir une bonne prévision par :
+
+- éléments suffisamment petits ;
+- historique de throughput ;
+- cycle time ;
+- simulation Monte Carlo.
+
+Cela ne signifie pas « aucune prévision ».
+
+## 10.6 Prévision probabiliste
+
+Exemple :
+
+```text
+Question : pouvons-nous livrer 25 éléments avant le 30 novembre ?
+
+Simulation :
+50 % → 17 novembre
+85 % → 28 novembre
+95 % → 7 décembre
+```
+
+Une décision peut alors être prise avec le risque explicite.
+
+## 10.7 Engagement
+
+On doit distinguer :
+
+```text
+forecast   ≠ commitment
+estimate   ≠ deadline
+scope      ≠ outcome
+```
+
+Une équipe peut s'engager sur :
+
+- qualité ;
+- transparence ;
+- objectifs ;
+- investigation ;
+- gestion du risque.
+
+Elle ne contrôle pas toujours exactement la date à laquelle toute inconnue disparaîtra.
+
+---
+
+# 11. Mesures : valeur, flux et DORA
+
+## 11.1 Trois niveaux de mesure
+
+Une bonne stratégie combine :
+
+### Outcome
+
+Le résultat pour l'utilisateur ou l'organisation.
+
+### Flow
+
+La capacité du système à transformer les idées en valeur.
+
+### Quality / reliability
+
+La qualité et la stabilité de ce qui est livré.
+
+## 11.2 Métriques à éviter comme objectifs
+
+- lignes de code ;
+- nombre de commits ;
+- nombre de tickets fermés ;
+- story points individuels ;
+- taux d'occupation à 100 % ;
+- vélocité comparée entre équipes.
+
+## 11.3 Loi de Goodhart
+
+> Lorsqu'une mesure devient une cible, elle cesse souvent d'être une bonne mesure.
+
+Exemple :
+
+```text
+Objectif : augmenter le nombre de tickets fermés
+        ↓
+Découpage artificiel des tickets
+        ↓
+Score meilleur
+        ↓
+Aucune amélioration de valeur
+```
+
+## 11.4 Métriques de flux
+
+- cycle time ;
+- lead time ;
+- WIP ;
+- throughput ;
+- work item age ;
+- temps bloqué ;
+- percentiles.
+
+## 11.5 DORA en 2026
+
+DORA utilise désormais **cinq métriques de performance de delivery logiciel**.
+
+### Throughput
+
+1. **Change lead time** : délai entre commit et déploiement production ;
+2. **Deployment frequency** : fréquence de déploiement ;
+3. **Failed deployment recovery time** : temps nécessaire pour récupérer après un déploiement ayant échoué.
+
+### Instability
+
+4. **Change fail rate** : proportion de déploiements nécessitant une intervention immédiate ;
+5. **Deployment rework rate** : proportion de déploiements non planifiés provoqués par un incident de production.
+
+> [!note]
+> Le modèle DORA a évolué par rapport aux « Four Keys » historiques. En 2026, DORA documente explicitement un modèle à cinq métriques.
+
+## 11.6 Vitesse et stabilité
+
+Une idée importante issue des recherches DORA :
+
+> [!important]
+> **Vitesse de delivery et stabilité ne sont pas nécessairement des compromis opposés.**
+
+Des pratiques comme :
+
+- petits changements ;
+- CI ;
+- automatisation ;
+- tests ;
+- observabilité ;
+- rollback rapide ;
+
+peuvent améliorer les deux.
+
+## 11.7 Evidence-Based Management
+
+L'**Evidence-Based Management Guide 2024** définit quatre Key Value Areas :
+
+- **Current Value** ;
+- **Unrealized Value** ;
+- **Time to Market** ;
+- **Ability to Innovate**.
+
+L'objectif est d'éviter de piloter uniquement par l'output.
+
+## 11.8 Exemple de tableau équilibré
+
+```text
+Valeur
+- taux d'activation
+- satisfaction
+- conversion
+
+Flux
+- cycle time p50/p85
+- throughput
+- WIP
+
+Delivery
+- deployment frequency
+- change lead time
+- change fail rate
+
+Qualité
+- incidents
+- bugs échappés
+- disponibilité
+- vulnérabilités critiques
+```
+
+---
+
+# 12. Pratiques d'ingénierie favorisant l'agilité
+
+Sans qualité technique, l'agilité finit souvent par ralentir.
+
+## 12.1 Contrôle de version
+
+Le dépôt Git est la base de collaboration.
+
+Voir [[git]].
+
+## 12.2 Branches courtes
+
+De longues branches augmentent :
+
+- divergence ;
+- conflits ;
+- délai de feedback ;
+- risque d'intégration.
+
+Les approches modernes privilégient souvent :
+
+- trunk-based development ;
+- branches courtes ;
+- intégration fréquente.
+
+## 12.3 Feature flags
+
+Ils dissocient :
+
+```text
+deploy ≠ release
+```
+
+On peut déployer le code avant de l'exposer aux utilisateurs.
+
+## 12.4 TDD
+
+Le TDD réduit le délai entre conception, implémentation et feedback technique.
+
+## 12.5 Refactoring continu
+
+Accumuler les refactorings dans un « grand chantier plus tard » crée un risque.
+
+Une petite amélioration continue est généralement plus compatible avec l'agilité.
+
+## 12.6 Code review
+
+Optimiser :
+
+- petits changements ;
+- revue rapide ;
+- automatisation des vérifications mécaniques ;
+- discussion humaine sur design, risque et lisibilité.
+
+## 12.7 Architecture évolutive
+
+Utiliser :
+
+- décisions explicites ;
+- ADR ;
+- modularité ;
+- tests ;
+- observabilité ;
+- fitness functions.
+
+Voir [[Architecture des logiciels]].
+
+---
+
+# 13. DevOps, CI/CD et livraison continue
+
+## 13.1 Agile et DevOps
+
+L'agilité réduit le délai d'apprentissage produit.
+
+DevOps réduit notamment le délai entre :
+
+```text
+code terminé
+    ↓
+logiciel réellement exploité
+```
+
+## 13.2 Continuous Integration
+
+Une vraie CI implique :
+
+- intégration fréquente ;
+- build automatisé ;
+- tests rapides ;
+- feedback rapide.
+
+## 13.3 Continuous Delivery
+
+Le logiciel est maintenu dans un état **déployable**.
+
+```text
+commit
+  ↓
+build
+  ↓
+tests
+  ↓
+security checks
+  ↓
+artefact
+  ↓
+staging
+  ↓
+production possible à tout moment
+```
+
+## 13.4 Continuous Deployment
+
+Chaque changement satisfaisant la pipeline peut être déployé automatiquement en production.
+
+Ce n'est pas adapté à tous les contextes.
+
+## 13.5 Progressive Delivery
+
+Techniques :
+
+- canary release ;
+- blue/green ;
+- feature flags ;
+- progressive rollout ;
+- A/B test.
+
+## 13.6 Infrastructure as Code
+
+L'environnement doit autant que possible être :
+
+- reproductible ;
+- versionné ;
+- testable ;
+- auditable.
+
+Voir [[Docker]].
+
+---
+
+# 14. Qualité, tests et Definition of Done
+
+## 14.1 Qualité intégrée
+
+Une phase de qualité finale produit une file d'attente.
+
+On préfère :
+
+```text
+code → test → intégration → feedback
+```
+
+sur chaque petit incrément.
+
+## 14.2 Pyramide de tests
+
+Modèle classique :
+
+```text
+        E2E
+       /   \
+  intégration
+  /         \
+     unitaires
+```
+
+La forme exacte dépend du système.
+
+## 14.3 Test Trophy
+
+Pour certaines applications web, davantage de tests d'intégration peuvent être pertinents.
+
+Le principe reste :
+
+> choisir le niveau fournissant le meilleur rapport confiance/coût.
+
+## 14.4 Shift left / shift right
+
+### Shift left
+
+Feedback plus tôt :
+
+- lint ;
+- tests ;
+- SAST ;
+- dépendances ;
+- IaC scanning.
+
+### Shift right
+
+Validation en exploitation :
+
+- observabilité ;
+- canary ;
+- synthetic monitoring ;
+- chaos experiments ;
+- feedback utilisateur.
+
+## 14.5 Dette technique
+
+La dette technique n'est pas simplement du « mauvais code ».
+
+Elle représente un compromis dont le coût futur doit être compris.
+
+On peut suivre :
+
+- friction ;
+- lead time ;
+- défauts ;
+- coûts de modification ;
+- zones à risque.
+
+---
+
+# 15. Équipe, collaboration et facilitation
+
+## 15.1 Cross-functional team
+
+Une équipe doit disposer collectivement des compétences nécessaires pour transformer une idée en valeur.
+
+Cela réduit les handoffs.
+
+## 15.2 T-shaped skills
+
+Une personne peut posséder :
+
+```text
+profondeur forte dans un domaine
++
+capacité à collaborer dans plusieurs domaines
+```
+
+## 15.3 Pairing et ensemble programming
+
+Ces pratiques peuvent améliorer :
+
+- partage de connaissance ;
+- qualité ;
+- bus factor ;
+- onboarding ;
+- conception collective.
+
+## 15.4 Sécurité psychologique
+
+Une équipe doit pouvoir :
+
+- signaler un problème ;
+- reconnaître une erreur ;
+- demander de l'aide ;
+- challenger une décision ;
+
+sans peur disproportionnée de sanctions.
+
+## 15.5 Working agreements
+
+Exemples :
+
+```text
+- review < 1 jour ouvré
+- pas de réunion sans objectif
+- décisions importantes consignées
+- plages de concentration protégées
+- urgence production explicitement prioritaire
+```
+
+## 15.6 Facilitation
+
+Techniques utiles :
+
+- 1-2-4-All ;
+- dot voting ;
+- silent writing ;
+- Lean Coffee ;
+- round robin ;
+- Five Whys ;
+- diagramme causes-effets ;
+- retrospective Start/Stop/Continue.
+
+## 15.7 Rétrospective orientée expérience
+
+Une amélioration doit être formulée comme une expérience :
+
+```text
+Hypothèse : limiter les PR à ~300 lignes réduira le délai de review.
+
+Mesure : délai médian request → first review.
+
+Durée : 3 semaines.
+
+Décision : conserver / adapter / abandonner.
+```
+
+---
+
+# 16. Leadership et organisation
+
+## 16.1 Du contrôle au contexte
+
+Le management traditionnel peut chercher à optimiser :
+
+```text
+utilisation individuelle
+```
+
+alors qu'une organisation agile cherche plutôt :
+
+```text
+flux de valeur global
+```
+
+## 16.2 Leadership serviteur
+
+Le terme ne signifie pas absence de leadership.
+
+Un leader agile doit notamment :
+
+- clarifier la direction ;
+- supprimer les obstacles systémiques ;
+- développer les compétences ;
+- créer un cadre de décision ;
+- protéger la qualité ;
+- rendre les contraintes visibles.
+
+## 16.3 Autonomie alignée
+
+```text
+faible alignement + forte autonomie = chaos
+fort alignement + faible autonomie = bureaucratie
+fort alignement + forte autonomie = autonomie efficace
+```
+
+## 16.4 Conway
+
+Les systèmes tendent à refléter les structures de communication des organisations.
+
+L'architecture et la structure d'équipe doivent donc être étudiées ensemble.
+
+## 16.5 Files d'attente organisationnelles
+
+Exemples :
+
+- comité architecture mensuel ;
+- équipe sécurité centrale saturée ;
+- équipe DBA obligatoire ;
+- release train trimestriel ;
+- validation juridique manuelle tardive.
+
+Une transformation agile doit réduire ces délais, pas seulement ajouter des stand-ups.
+
+---
+
+# 17. Agilité à l'échelle
+
+## 17.1 Avant de scaler
+
+Première question :
+
+> Pourquoi avons-nous besoin d'autant de coordination ?
+
+Parfois la meilleure solution est de réduire les dépendances plutôt que de créer une couche de coordination supplémentaire.
+
+## 17.2 Un produit, plusieurs équipes
+
+Points essentiels :
+
+- Product Goal commun ;
+- backlog produit cohérent ;
+- intégration fréquente ;
+- Definition of Done commune ;
+- architecture réduisant les dépendances.
+
+## 17.3 Nexus
+
+Nexus étend Scrum pour plusieurs équipes travaillant sur un produit commun.
+
+Il met fortement l'accent sur l'intégration.
+
+## 17.4 LeSS
+
+Large-Scale Scrum cherche à conserver le plus possible la simplicité de Scrum tout en travaillant avec plusieurs équipes.
+
+## 17.5 Scrum@Scale
+
+Approche de coordination de plusieurs Scrum Teams.
+
+## 17.6 SAFe
+
+SAFe propose un ensemble beaucoup plus large de rôles, niveaux, événements et pratiques.
+
+Il peut répondre à des contraintes de grandes organisations, mais :
+
+> [!warning]
+> Plus un framework de scaling ajoute de couches et de dépendances, plus il existe un risque de recréer une bureaucratie sous vocabulaire agile.
+
+## 17.7 Team Topologies comme complément
+
+Concepts utiles :
+
+- stream-aligned team ;
+- platform team ;
+- enabling team ;
+- complicated-subsystem team.
+
+L'objectif est de réduire la charge cognitive et les dépendances.
+
+---
+
+# 18. Agilité, contraintes réglementaires et approches hybrides
+
+## 18.1 Agile ne signifie pas « aucune gouvernance »
+
+Dans un contexte réglementé, il faut souvent conserver :
+
+- preuves ;
+- traçabilité ;
+- validation ;
+- documentation ;
+- séparation de responsabilités ;
+- audits.
+
+La question est :
+
+> Comment produire ces éléments continuellement plutôt qu'en fin de projet ?
+
+## 18.2 Documentation vivante
+
+Exemples :
+
+- docs-as-code ;
+- ADR ;
+- modèles versionnés ;
+- tests de conformité ;
+- SBOM automatisée ;
+- pipelines d'audit.
+
+## 18.3 Modèles hybrides
+
+Un projet peut comporter :
+
+```text
+jalons contractuels
++
+construction itérative
++
+validation réglementaire
++
+releases progressives
+```
+
+Hybride n'est pas automatiquement mauvais.
+
+Le problème apparaît lorsque l'organisation prétend être agile tout en conservant :
+
+- scope verrouillé ;
+- solution verrouillée ;
+- aucun feedback réel ;
+- intégration finale ;
+- équipe sans autonomie.
+
+---
+
+# 19. Travail distribué et asynchrone
+
+## 19.1 Le problème des réunions permanentes
+
+Une équipe distribuée ne doit pas remplacer chaque interaction de bureau par une visioconférence.
+
+## 19.2 Async-first
+
+Préférer l'écrit pour :
+
+- information ;
+- décisions ;
+- statut ;
+- compte rendu ;
+- contexte durable.
+
+Réserver le synchrone aux sujets nécessitant une forte interaction.
+
+## 19.3 Daily asynchrone ?
+
+Dans Scrum, le Daily Scrum est un événement de 15 minutes pour les Developers.
+
+Une équipe internationale peut adapter son fonctionnement, mais si elle affirme suivre Scrum elle doit comprendre qu'une simple mise à jour Slack n'est pas le Daily Scrum défini par le guide.
+
+## 19.4 Outils
+
+- issue tracker ;
+- dépôt Git ;
+- documentation ;
+- chat ;
+- vidéo ;
+- tableau blanc collaboratif ;
+- observabilité partagée.
+
+L'outil ne doit pas devenir la source de vérité de décisions qui ne sont visibles nulle part ailleurs.
+
+---
+
+# 20. Outils de gestion et de collaboration
+
+## 20.1 Outils de suivi
+
+Exemples :
+
+- Jira ;
+- Linear ;
+- GitHub Issues/Projects ;
+- GitLab ;
+- Azure DevOps ;
+- YouTrack ;
+- Trello ;
+- Plane.
+
+Choisir selon :
+
+- workflow ;
+- intégrations ;
+- reporting ;
+- coût ;
+- souveraineté ;
+- simplicité ;
+- API ;
+- automatisation.
+
+## 20.2 L'outil doit refléter le workflow
+
+Erreur fréquente :
+
+```text
+configurer le processus pour correspondre à Jira
+```
+
+Meilleure logique :
+
+```text
+comprendre le flux réel
+        ↓
+le simplifier
+        ↓
+configurer l'outil
+```
+
+## 20.3 Colonnes utiles
+
+Exemple :
+
+```text
+Options
+Ready
+Development
+Review
+Validation
+Ready for production
+Done
+```
+
+Chaque colonne doit correspondre à un état réel et observable.
+
+## 20.4 Automatisation
+
+Exemples :
+
+- PR ouverte → ticket lié ;
+- merge → passage en « ready for deploy » ;
+- déploiement → annotation ;
+- incident → lien vers changement ;
+- métriques de flux extraites automatiquement.
+
+## 20.5 Outils de collaboration
+
+- Slack ;
+- Microsoft Teams ;
+- Mattermost ;
+- Matrix ;
+- Discord selon contexte ;
+- Confluence ;
+- Notion ;
+- Obsidian/Git ;
+- Miro ;
+- Excalidraw.
+
+---
+
+# 21. IA générative et équipes agiles
+
+## 21.1 L'IA modifie le coût de certaines activités
+
+Les agents de développement peuvent accélérer :
+
+- exploration ;
+- rédaction de tests ;
+- refactoring mécanique ;
+- documentation ;
+- investigation ;
+- génération de prototypes.
+
+Cela ne supprime pas :
+
+- le besoin de comprendre le problème ;
+- la validation ;
+- la responsabilité ;
+- la revue ;
+- la sécurité.
+
+## 21.2 Le goulot d'étranglement se déplace
+
+Si le code est généré plus vite :
+
+```text
+code ↑
+        ↓
+review devient goulot
+        ↓
+tests deviennent goulot
+        ↓
+validation produit devient goulot
+```
+
+Accélérer uniquement la génération peut augmenter le WIP et ralentir le flux total.
+
+## 21.3 Petits changements encore plus importants
+
+Un agent peut générer des milliers de lignes en quelques minutes.
+
+La discipline doit donc augmenter :
+
+- scope réduit ;
+- diff lisible ;
+- tests ;
+- revue humaine ;
+- commits cohérents ;
+- retour arrière facile.
+
+## 21.4 IA dans la discovery
+
+Usages :
+
+- synthèse d'entretiens ;
+- regroupement de feedbacks ;
+- recherche documentaire ;
+- génération d'hypothèses ;
+- prototypes.
+
+Risques :
+
+- hallucination ;
+- biais ;
+- perte du contexte utilisateur ;
+- fuite de données ;
+- faux consensus produit.
+
+## 21.5 IA dans les cérémonies
+
+Elle peut aider à :
+
+- synthétiser une rétrospective ;
+- préparer un backlog ;
+- extraire les décisions ;
+- produire des métriques.
+
+Elle ne doit pas remplacer la conversation humaine lorsque celle-ci est précisément l'objectif de l'événement.
+
+---
+
+# 22. Anti-patterns et fausses agilités
+
+## 22.1 Cargo Cult Agile
+
+Reproduire :
+
+- stand-up ;
+- post-its ;
+- Jira ;
+- story points ;
+
+sans boucle de feedback ni autonomie.
+
+## 22.2 Water-Scrum-Fall
+
+```text
+Planification annuelle waterfall
+        ↓
+Développement Scrum
+        ↓
+Intégration/release waterfall
+```
+
+L'équipe locale devient agile mais le lead time global reste long.
+
+## 22.3 Sprint comme deadline permanente
+
+Chaque Sprint devient une période de crunch.
+
+Conséquences :
+
+- dette ;
+- baisse de qualité ;
+- fatigue ;
+- estimations manipulées.
+
+## 22.4 Vélocité comme objectif
+
+La vélocité augmente simplement parce que l'équipe change l'échelle des points.
+
+## 22.5 Product Owner sans pouvoir
+
+Il transmet les décisions d'un comité mais ne peut rien prioriser.
+
+## 22.6 Daily status meeting
+
+Chacun parle au manager au lieu de collaborer avec l'équipe.
+
+## 22.7 Backlog infini
+
+Des milliers de tickets non revalidés créent un stock d'options dont le coût cognitif dépasse la valeur.
+
+## 22.8 100 % d'utilisation
+
+Chercher à occuper tout le monde à 100 % maximise les files d'attente.
+
+Un système de flux a besoin de capacité pour :
+
+- absorber les variations ;
+- aider ;
+- résoudre les incidents ;
+- améliorer le système.
+
+## 22.9 Réunions sans inspection/adaptation
+
+Une cérémonie sans décision ou apprentissage devient un rituel vide.
+
+## 22.10 « Agile = plus vite »
+
+L'agilité cherche surtout :
+
+- apprendre plus vite ;
+- réduire les risques plus vite ;
+- livrer de la valeur plus tôt ;
+- changer de direction à moindre coût.
+
+---
+
+# 23. Choisir et adapter une approche
+
+## 23.1 Tableau d'aide
+
+| Contexte | Approche souvent utile |
+|---|---|
+| produit complexe avec cadence stable | Scrum |
+| flux continu/support/ops | Kanban |
+| besoin fort d'excellence technique | XP |
+| workflow existant à améliorer sans réorganisation brutale | Kanban |
+| découverte produit forte | discovery + delivery |
+| organisation fortement réglementée | agile + contrôles automatisés + gouvernance adaptée |
+| plusieurs équipes sur un produit | Scrum + Nexus/LeSS ou autre mécanisme de coordination |
+
+## 23.2 Questions avant de choisir
+
+1. Quelle valeur cherchons-nous ?
+2. Où est l'incertitude ?
+3. Quel est notre lead time ?
+4. Où sont les files d'attente ?
+5. À quelle fréquence pouvons-nous intégrer ?
+6. À quelle fréquence pouvons-nous livrer ?
+7. À quelle fréquence avons-nous du feedback utilisateur ?
+8. Quelle est notre qualité actuelle ?
+9. Quelles sont les dépendances organisationnelles ?
+10. Quelles contraintes réglementaires existent ?
+
+## 23.3 Commencer petit
+
+Exemple de transformation :
+
+```text
+1. visualiser le flux actuel
+2. mesurer cycle time et WIP
+3. identifier le plus gros blocage
+4. mener une expérience
+5. mesurer
+6. conserver ou abandonner
+7. recommencer
+```
+
+---
+
+# 24. Étude de cas complète
+
+## 24.1 Contexte
+
+Une université veut moderniser son portail étudiant.
+
+Problèmes :
+
+- release tous les 6 mois ;
+- bugs d'intégration ;
+- besoins remontés par plusieurs directions ;
+- équipe de 8 personnes ;
+- tests manuels ;
+- backlog de 1 400 tickets ;
+- délai moyen idée → production : 110 jours.
+
+## 24.2 Objectif produit
+
+```text
+Réduire de moitié le temps nécessaire à un étudiant
+pour effectuer ses principales démarches administratives.
+```
+
+## 24.3 Mesures initiales
+
+```text
+Lead time médian : 110 jours
+Cycle time médian : 24 jours
+WIP : 37 éléments
+Déploiement : tous les 6 mois
+Change fail rate : 28 %
+```
+
+## 24.4 Première étape : visualisation
+
+Workflow :
+
+```text
+Demandé
+↓
+Analyse
+↓
+Ready
+↓
+Dev
+↓
+Review
+↓
+Recette
+↓
+Attente release
+↓
+Production
+```
+
+Le CFD montre une accumulation massive dans :
+
+```text
+Attente release
+```
+
+## 24.5 Première expérience
+
+Objectif : passer à un déploiement hebdomadaire.
+
+Actions :
+
+- pipeline CI ;
+- tests automatiques critiques ;
+- feature flags ;
+- petits lots ;
+- revue de code rapide.
+
+## 24.6 Deuxième expérience
+
+Limiter :
+
+```text
+Dev WIP ≤ 3
+Review WIP ≤ 2
+```
+
+L'équipe se concentre sur le fait de terminer avant de commencer.
+
+## 24.7 Discovery
+
+Interviews utilisateurs : le besoin supposé n°1 était faux.
+
+La recherche et le téléchargement d'attestations représentent davantage de friction que la fonctionnalité initialement prévue.
+
+Le backlog est réordonné.
+
+## 24.8 Six mois plus tard
+
+Exemple de résultat :
+
+```text
+Lead time médian : 18 jours
+Cycle time médian : 5 jours
+WIP : 9 éléments
+Déploiement : 2 à 5 fois/semaine
+Change fail rate : 9 %
+```
+
+Le point important :
+
+> les gains ne viennent pas du fait d'avoir ajouté plus de cérémonies, mais d'avoir réduit les lots, amélioré le système technique et raccourci le feedback utilisateur.
+
+---
+
+# 25. Travaux pratiques
+
+## TP 1 — Identifier le cargo cult
+
+À partir d'une équipe fictive qui fait :
+
+- Sprint Planning ;
+- Daily ;
+- Review ;
+- Retro ;
+
+mais livre tous les 4 mois, identifier ce qui manque réellement pour être agile.
+
+## TP 2 — Construire un Product Goal
+
+Transformer :
+
+```text
+« refaire le portail client »
+```
+
+en objectif produit observable et mesurable.
+
+## TP 3 — Écrire un Sprint Goal
+
+À partir de 15 éléments de backlog, créer un Sprint Goal cohérent et sélectionner uniquement les éléments qui y contribuent.
+
+## TP 4 — Construire une Definition of Done
+
+Créer une Definition of Done pour une API web incluant :
+
+- tests ;
+- sécurité ;
+- observabilité ;
+- documentation ;
+- déploiement.
+
+## TP 5 — Découpage vertical
+
+Découper la fonctionnalité :
+
+```text
+« gestion complète des utilisateurs »
+```
+
+en 8 à 12 incréments verticaux indépendamment utiles.
+
+## TP 6 — Kanban et WIP
+
+Créer un workflow contenant :
+
+```text
+Ready → Dev → Review → Validation → Done
+```
+
+Définir :
+
+- started ;
+- finished ;
+- limites WIP ;
+- politiques ;
+- SLE.
+
+## TP 7 — Analyse de cycle time
+
+Données :
+
+```text
+2, 3, 3, 4, 4, 5, 5, 6, 7, 9, 12, 18 jours
+```
+
+Calculer :
+
+- médiane ;
+- 85e percentile approximatif ;
+- éléments atypiques ;
+- SLE raisonnable.
+
+## TP 8 — Value Stream Mapping
+
+Pour un changement ayant :
+
+```text
+analyse       3 h
+attente       5 j
+code          7 h
+attente       2 j
+review        1 h
+attente       4 j
+test          2 h
+attente       7 j
+release       1 h
+```
+
+calculer :
+
+- touch time ;
+- lead time ;
+- principale source de délai.
+
+## TP 9 — DORA
+
+Construire un tableau de bord minimal pour une API et expliquer pourquoi les cinq métriques DORA ne doivent pas être utilisées pour classer individuellement les développeurs.
+
+## TP 10 — Rétrospective expérimentale
+
+Transformer :
+
+```text
+« les reviews sont trop lentes »
+```
+
+en hypothèse, expérience, métrique et critère de décision.
+
+## TP 11 — IA et flux
+
+Une équipe passe de 10 à 30 PR par jour grâce à des agents IA, mais la capacité de review reste à 12 PR/jour.
+
+Expliquer :
+
+- l'effet sur WIP ;
+- le cycle time ;
+- la qualité ;
+- les mesures correctives.
+
+## TP 12 — Choisir un modèle
+
+Choisir entre Scrum, Kanban ou une combinaison pour :
+
+1. une équipe produit SaaS ;
+2. une équipe SRE ;
+3. une équipe de maintenance réglementée ;
+4. un laboratoire de R&D.
+
+Justifier les choix.
+
+---
+
+# 26. Projet final
+
+## Objectif
+
+Construire un système de fonctionnement agile pour une équipe de 7 à 10 personnes développant un produit numérique.
+
+## Livrables
+
+### Vision et objectif
+
+- problème utilisateur ;
+- Product Goal ;
+- métriques d'outcome.
+
+### Workflow
+
+- Definition of Workflow ;
+- tableau ;
+- WIP ;
+- SLE ;
+- politiques explicites.
+
+### Delivery
+
+- stratégie Git ;
+- CI ;
+- tests ;
+- release ;
+- Definition of Done.
+
+### Discovery
+
+- hypothèses ;
+- méthodes de validation ;
+- boucle utilisateur.
+
+### Métriques
+
+Au minimum :
+
+- cycle time ;
+- throughput ;
+- WIP ;
+- Work Item Age ;
+- deux métriques d'outcome ;
+- cinq métriques DORA lorsque pertinentes.
+
+### Amélioration continue
+
+Définir trois expériences d'amélioration avec :
+
+```text
+hypothèse
+mesure initiale
+changement
+fenêtre d'observation
+critère de décision
+```
+
+---
+
+# 27. Checklists
+
+## 27.1 Checklist Scrum
+
+- [ ] Un Product Goal existe.
+- [ ] La Scrum Team fonctionne comme une seule équipe.
+- [ ] Product Owner, Scrum Master et Developers sont compris comme accountabilities.
+- [ ] Sprint ≤ un mois.
+- [ ] Chaque Sprint possède un Sprint Goal.
+- [ ] Le Daily Scrum sert l'adaptation vers le Sprint Goal.
+- [ ] La Review est une session de travail avec les parties prenantes.
+- [ ] La Retrospective produit de vraies améliorations.
+- [ ] La Definition of Done garantit un Increment utilisable.
+- [ ] Les user stories ne sont pas traitées comme obligatoires.
+- [ ] La vélocité n'est pas utilisée pour comparer les équipes.
+
+## 27.2 Checklist Kanban
+
+- [ ] Unité de travail définie.
+- [ ] Started défini.
+- [ ] Finished défini.
+- [ ] États de workflow explicites.
+- [ ] WIP contrôlé.
+- [ ] Politiques explicites.
+- [ ] SLE définie.
+- [ ] WIP mesuré.
+- [ ] Throughput mesuré.
+- [ ] Work Item Age mesuré.
+- [ ] Cycle Time mesuré.
+- [ ] Blocages rendus visibles.
+- [ ] Workflow amélioré régulièrement.
+
+## 27.3 Checklist ingénierie
+
+- [ ] Petits changements.
+- [ ] Intégration fréquente.
+- [ ] Pipeline CI rapide.
+- [ ] Tests automatisés adaptés.
+- [ ] Revue rapide.
+- [ ] Refactoring continu.
+- [ ] Observabilité.
+- [ ] Déploiement reproductible.
+- [ ] Rollback ou mitigation rapide.
+- [ ] Dette technique rendue visible par son impact.
+
+## 27.4 Checklist leadership
+
+- [ ] Objectifs clairs.
+- [ ] Autonomie réelle.
+- [ ] Dépendances organisationnelles visibles.
+- [ ] Sécurité psychologique.
+- [ ] Amélioration basée sur des preuves.
+- [ ] Métriques non utilisées comme outil de surveillance individuelle.
+- [ ] Capacité réservée aux incidents et améliorations.
+
+---
+
+# 28. Glossaire
+
+**Agile**
+Approche adaptative basée sur des boucles de feedback rapides, collaboration et livraison incrémentale.
+
+**Backlog**
+Ensemble ordonné et évolutif d'options de travail.
+
+**Cycle Time**
+Durée entre le démarrage et la fin d'un élément.
+
+**Definition of Done**
+État de qualité exigé pour qu'un Increment soit considéré terminé dans Scrum.
+
+**Definition of Workflow**
+Définition explicite du fonctionnement d'un système Kanban.
+
+**Deployment frequency**
+Fréquence à laquelle des changements sont déployés.
+
+**Empirisme**
+Prise de décision à partir de ce qui est observé et appris.
+
+**Increment**
+Étape concrète et utilisable vers le Product Goal.
+
+**Lead Time**
+Durée entre une demande ou un point de départ défini et sa livraison.
+
+**Outcome**
+Changement observable produit pour un utilisateur ou l'organisation.
+
+**Output**
+Artefact ou fonctionnalité produite.
+
+**Product Goal**
+Objectif long terme courant de la Scrum Team.
+
+**SLE**
+Service Level Expectation : prévision probabiliste de délai dans Kanban.
+
+**Sprint Goal**
+But unique du Sprint.
+
+**Throughput**
+Nombre d'éléments terminés par unité de temps.
+
+**Velocity**
+Quantité de points terminés par Sprint, métrique locale à une équipe utilisant les story points.
+
+**WIP**
+Travail démarré mais non terminé.
+
+**Work Item Age**
+Âge actuel d'un élément encore en cours.
+
+---
+
+# 29. Références
+
+## Fondements
+
+- Agile Manifesto : https://agilemanifesto.org/
+- Principes : https://agilemanifesto.org/principles
+
+## Scrum
+
+- Scrum Guide — version officielle courante, novembre 2020 : https://scrumguides.org/
+- Historique des révisions : https://scrumguides.org/revisions.html
+
+## Kanban
+
+- The Kanban Guide — May 2025 : https://kanbanguides.org/the-kanban-guide/
+- Open Guide to Kanban : https://kanbanguides.org/open-guide-to-kanban/
+
+## Evidence-Based Management
+
+- EBM Guide 2024 : https://www.scrum.org/resources/evidence-based-management-guide
+
+## DORA
+
+- DORA software delivery performance metrics : https://dora.dev/guides/dora-metrics/
+- DORA Quick Check updates 2026 : https://dora.dev/insights/quickcheck-updates/
+
+## Extreme Programming
+
+- Kent Beck, *Extreme Programming Explained*.
+- Martin Fowler : https://martinfowler.com/
+
+## Lean
+
+- Mary Poppendieck, Tom Poppendieck, *Lean Software Development*.
+
+---
+
+# Conclusion
+
+Les méthodes agiles ne fournissent pas une formule magique permettant de « faire plus vite ».
+
+Elles apportent surtout un ensemble de mécanismes pour **gérer l'incertitude** :
+
+```text
+petits lots
++ feedback rapide
++ qualité technique
++ collaboration
++ transparence
++ mesure
++ adaptation
+```
+
+Une organisation est réellement agile lorsqu'elle peut :
+
+1. transformer rapidement une hypothèse en expérience ;
+2. livrer un petit changement de manière sûre ;
+3. observer son effet ;
+4. apprendre ;
+5. changer de direction sans coût prohibitif.
+
+La meilleure question n'est donc pas :
+
+> « Sommes-nous Scrum ? »
+
+mais plutôt :
+
+> **« À quelle vitesse pouvons-nous apprendre quelque chose de fiable et transformer cet apprentissage en valeur sans sacrifier la qualité ? »**
