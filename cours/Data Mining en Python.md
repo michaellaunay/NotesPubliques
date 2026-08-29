@@ -22,8 +22,8 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-11-29
-date_modification: 2026-08-28
-date_verification: 2026-08-28
+date_modification: 2026-08-29
+date_verification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
@@ -858,6 +858,247 @@ L'optimisation des hyperparamètres est une étape clé dans la construction de 
   trials = Trials()
   best = fmin(objective, space, algo=tpe.suggest, max_evals=100, trials=trials)
   ```
+
+# V. Applications pratiques du "data mining"
+
+Les quatre parties précédentes ont traité de méthodes. Celle-ci traite de leur emploi : ce que la fouille de données produit réellement dans une organisation, et ce qu'elle y coûte.
+
+## 1. Projets réels de "data mining"
+
+### 1.1. La forme d'un projet
+
+Un projet de fouille de données ne commence pas par un algorithme, et il échoue rarement à cause de lui. La méthodologie **CRISP-DM**, formalisée en 1999 et toujours la plus employée, en décrit six phases :
+
+```mermaid
+flowchart LR
+    A["Compréhension<br/>du métier"] --> B["Compréhension<br/>des données"]
+    B --> C["Préparation<br/>des données"]
+    C --> D["Modélisation"]
+    D --> E["Évaluation"]
+    E --> F["Déploiement"]
+    E -.retour fréquent.-> A
+    B -.-> A
+    D -.-> C
+```
+
+Les proportions comptent plus que la liste. Sur un projet réel, la répartition observée est de l'ordre de :
+
+| Phase | Part du temps |
+| --- | ---: |
+| Compréhension du métier et des données | 30 % |
+| Préparation et nettoyage | 40 % |
+| Modélisation | 10 % |
+| Évaluation | 10 % |
+| Déploiement et suivi | 10 % |
+
+**La modélisation — la partie que ce cours a détaillée le plus — occupe un dixième du travail.** C'est la première chose à dire à quiconque envisage ce métier.
+
+### 1.2. La question métier avant la question technique
+
+La faute la plus fréquente consiste à partir des données disponibles plutôt que d'une décision à prendre.
+
+```text
+mauvaise formulation   « Que peut-on trouver dans ces données ? »
+bonne formulation      « Quelle décision devons-nous prendre, et
+                         quelle information la rendrait meilleure ? »
+```
+
+La seconde formulation impose de définir ce qu'est un succès **avant** de commencer. Sans elle, un modèle à 92 % de justesse est un chiffre sans interprétation possible.
+
+Deux questions à poser avant toute chose :
+
+- **Quelle est la référence ?** Un modèle qui prédit la résiliation à 92 % dans une population où 92 % des clients restent n'a rien appris : la règle « personne ne résilie » fait aussi bien.
+- **Que coûte une erreur, dans chaque sens ?** Un faux positif et un faux négatif ont rarement le même prix. En détection de fraude, refuser une transaction légitime coûte un client ; en laisser passer une frauduleuse coûte la transaction. Le seuil de décision se règle sur ce rapport, pas sur la maximisation de la justesse.
+
+### 1.3. Trois familles d'application
+
+**La prédiction de résiliation.** Identifier les clients susceptibles de partir, pour agir avant. C'est un problème de classification déséquilibrée — 5 à 20 % de positifs — où la métrique utile est le rappel sur la classe minoritaire, jamais la justesse globale.
+
+Le piège caractéristique est temporel : entraîner sur des données postérieures à la résiliation. Une colonne « nombre d'appels au service client le mois dernier » prend une valeur très particulière chez quelqu'un qui vient de partir. C'est la fuite de données décrite plus loin, sous sa forme la plus difficile à repérer.
+
+**La maintenance prédictive.** Anticiper une panne à partir de relevés de capteurs. Les positifs y sont rarissimes — moins de 1 % —, ce qui rend la justesse totalement inopérante et impose des techniques de rééchantillonnage ou de détection d'anomalies.
+
+**La segmentation de clientèle.** Regrouper des clients par comportement pour adapter une offre. C'est le cas d'usage type du partitionnement non supervisé, avec sa difficulté propre : **aucune vérité terrain** ne permet de dire si la segmentation est bonne. Le score de silhouette mesure la cohérence géométrique, pas la pertinence commerciale — celle-ci se valide en confrontant les groupes obtenus à la connaissance métier.
+
+### 1.4. Un projet type, de bout en bout
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+donnees = pd.read_parquet("clients.parquet")
+
+# 1. la référence, avant tout modèle
+taux_base = donnees["resilie"].mean()
+print(f"Référence : prédire « personne ne résilie » donne {1 - taux_base:.1%}")
+
+# 2. découpage AVANT toute transformation
+X = donnees.drop(columns=["resilie", "date_resiliation"])   # colonne postérieure retirée
+y = donnees["resilie"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42)
+
+# 3. chaîne de traitement
+numeriques = X.select_dtypes(include="number").columns
+categorielles = X.select_dtypes(include=["str", "category"]).columns
+
+modele = Pipeline([
+    ("preparation", ColumnTransformer([
+        ("num", Pipeline([("imp", SimpleImputer(strategy="median")),
+                          ("ech", StandardScaler())]), numeriques),
+        ("cat", Pipeline([("imp", SimpleImputer(strategy="most_frequent")),
+                          ("enc", OneHotEncoder(handle_unknown="ignore"))]), categorielles),
+    ])),
+    ("classifieur", RandomForestClassifier(
+        n_estimators=300, class_weight="balanced", random_state=42)),
+])
+
+# 4. validation croisée sur l'entraînement seulement
+scores = cross_val_score(modele, X_train, y_train, cv=5, scoring="f1")
+print(f"F1 en validation croisée : {scores.mean():.3f} ± {scores.std():.3f}")
+
+# 5. évaluation finale, une seule fois
+modele.fit(X_train, y_train)
+print(classification_report(y_test, modele.predict(X_test)))
+print(confusion_matrix(y_test, modele.predict(X_test)))
+```
+
+`class_weight="balanced"` compense le déséquilibre sans rééchantillonner. Et l'évaluation sur le jeu de test n'est faite **qu'une fois** : la répéter en ajustant entre-temps revient à ajuster sur le test, donc à perdre le seul estimateur honnête dont on disposait.
+
+### 1.5. Le déploiement, et ce qui se dégrade ensuite
+
+Un modèle en production n'est pas un modèle terminé. Deux phénomènes le dégradent silencieusement.
+
+**La dérive des données** : la distribution des entrées change. Une crise, un changement tarifaire, un nouveau canal d'acquisition, et les clients de 2027 ne ressemblent plus à ceux sur lesquels le modèle a appris.
+
+**La dérive du concept** : la relation entre les variables et la cible change. Les causes de résiliation ne sont plus les mêmes qu'il y a deux ans, même si les données se ressemblent.
+
+```python
+# une surveillance minimale : comparer les distributions
+from scipy.stats import ks_2samp
+
+for colonne in numeriques:
+    stat, p = ks_2samp(X_train[colonne], X_production[colonne])
+    if p < 0.01:
+        print(f"dérive probable sur {colonne} (p={p:.4f})")
+```
+
+Trois éléments à mettre en place dès le premier déploiement, faute de quoi ils ne le seront jamais : **journaliser les prédictions** avec leurs entrées, **mesurer périodiquement** la performance réelle quand la vérité arrive, et **fixer un seuil de réentraînement** décidé à l'avance plutôt qu'après incident.
+
+> **Un modèle est un actif périssable.** La date de son entraînement est une métadonnée aussi importante que sa performance — c'est le même raisonnement que le `date_verification` d'une procédure.
+
+## 2. Éthique et confidentialité
+
+Cette section est indissociable de la précédente. Les obligations décrites ici ne s'ajoutent pas au projet : elles en conditionnent la légalité.
+
+### 2.1. Ce que le RGPD impose au projet
+
+Trois principes s'appliquent dès la collecte, non au déploiement.
+
+**La minimisation.** Ne collecter que ce qui est nécessaire à la finalité déclarée. Un entrepôt constitué « au cas où » est illicite, et l'argument « les données pourraient servir à un modèle futur » n'est pas une finalité.
+
+**La limitation des finalités.** Des données collectées pour la facturation ne peuvent pas servir à entraîner un modèle de prédiction sans une nouvelle base légale. C'est le point qui bloque le plus souvent un projet techniquement prêt.
+
+**Le droit à l'explication.** Une décision automatisée produisant des effets juridiques ou significatifs doit pouvoir être expliquée à la personne concernée.
+
+Ce dernier point pèse directement sur le **choix du modèle**, ce qui en fait une contrainte technique et non seulement juridique :
+
+| Modèle | Explicabilité |
+| --- | --- |
+| Régression logistique | coefficients lisibles, effet de chaque variable |
+| Arbre de décision unique | chemin de décision énonçable en français |
+| Forêt aléatoire | importance des variables, pas de règle lisible |
+| Gradient boosting | idem, avec des interactions difficiles à énoncer |
+
+Une explication *post hoc* — SHAP, LIME — approxime le comportement du modèle autour d'un point. C'est utile pour comprendre, mais ce n'est pas la règle appliquée : présenter une approximation comme la justification d'une décision est trompeur. Voir [[Règlement Général sur la Protection des Données (RGPD)]].
+
+### 2.2. Anonymisation et pseudonymisation
+
+Retirer le nom ne suffit pas.
+
+```python
+# pseudonymisation : réversible, reste une donnée personnelle
+donnees["id"] = donnees["email"].apply(lambda e: hashlib.sha256(e.encode()).hexdigest())
+```
+
+Un identifiant haché reste un identifiant : il permet de relier toutes les lignes d'une même personne, et il se retrouve par force brute sur un espace aussi petit qu'un fichier d'adresses. Un jeu pseudonymisé demeure une donnée personnelle au sens du RGPD, avec toutes les obligations correspondantes.
+
+La **réidentification par recoupement** est le risque principal. Un triplet code postal, date de naissance, sexe suffit à identifier une large part de la population d'un pays. La *k-anonymité* — garantir qu'au moins *k* individus partagent la même combinaison de quasi-identifiants — est la parade classique, et elle a un coût : plus *k* est grand, plus les données perdent en finesse.
+
+```python
+# vérification élémentaire de k-anonymité
+quasi = ["code_postal", "annee_naissance", "sexe"]
+tailles = donnees.groupby(quasi).size()
+print(f"plus petit groupe : {tailles.min()} individus")
+if tailles.min() < 5:
+    print("réidentification possible : généraliser ou supprimer des quasi-identifiants")
+```
+
+### 2.3. Les biais
+
+Un modèle apprend les régularités des données, y compris celles qui reproduisent une discrimination passée. Le cas d'école — un outil de tri de candidatures pénalisant les CV féminins parce que l'historique d'embauche était masculin — n'est pas une anecdote : c'est le fonctionnement normal d'un apprentissage supervisé sur un historique biaisé.
+
+**Retirer la variable sensible ne suffit pas.** Le sexe se reconstitue depuis le prénom, l'établissement fréquenté, les activités mentionnées ; l'origine depuis le code postal. C'est la différence entre ignorer un attribut et neutraliser son effet, et la première ne garantit jamais la seconde.
+
+Trois mesures d'équité, qui **ne peuvent pas être satisfaites simultanément** — c'est un résultat démontré, non une limite d'outillage :
+
+| Critère | Ce qu'il exige |
+| --- | --- |
+| Parité démographique | même taux de prédictions positives entre groupes |
+| Égalité des chances | même taux de vrais positifs entre groupes |
+| Calibration | à score égal, même probabilité réelle entre groupes |
+
+Choisir lequel appliquer est une **décision politique**, pas technique. Le rôle de l'analyste est de rendre le choix explicite et mesuré, pas de le trancher seul.
+
+```python
+# mesurer avant de discuter
+for groupe, sous in donnees.groupby("groupe_protege"):
+    predictions = modele.predict(sous[X.columns])
+    print(f"{groupe} : taux positif {predictions.mean():.1%}, "
+          f"rappel {recall_score(sous['cible'], predictions):.1%}")
+```
+
+### 2.4. Le règlement européen sur l'IA
+
+Le règlement (UE) 2024/1689 classe les systèmes par niveau de risque. Un système employé pour le **recrutement, l'accès au crédit, l'éducation, les services essentiels ou l'application de la loi** relève de la catégorie « haut risque », qui impose notamment :
+
+```text
+gestion documentée des risques
+qualité, représentativité et traçabilité des jeux de données
+documentation technique et journalisation
+supervision humaine effective
+exactitude, robustesse et cybersécurité
+```
+
+La deuxième ligne transforme la partie II de ce cours — préparation et nettoyage — en **obligation documentée**. Ce qui relevait de la bonne pratique devient une pièce à produire en cas de contrôle.
+
+### 2.5. Une liste de contrôle
+
+À parcourir avant de déployer, et à archiver avec le modèle :
+
+```text
+□ finalité déclarée, base légale identifiée
+□ minimisation vérifiée : chaque colonne justifiée
+□ absence de variable postérieure à la cible (fuite)
+□ référence établie et comparée
+□ coût des deux types d'erreur estimé, seuil réglé en conséquence
+□ performance mesurée par sous-groupe, pas seulement globalement
+□ modèle explicable si la décision produit des effets juridiques
+□ k-anonymité vérifiée si les données sont partagées
+□ journalisation des prédictions en place
+□ seuil et procédure de réentraînement fixés à l'avance
+□ date d'entraînement et version des données consignées
+```
+
+La dernière ligne est celle qu'on oublie, et c'est celle qui manque toujours au moment où l'on cherche à comprendre pourquoi un modèle s'est mis à dériver.
+
+---
 
 # VI. Travaux pratiques et projets : Analyse de fr.wikipedia.org
 
