@@ -17,15 +17,17 @@ themes:
   - deploiement
   - buildout
   - zope
-resume: "Cours sur zc.buildout : intérêt de l'outil, installation depuis PyPI, configuration d'un buildout et utilisation pour l'assemblage d'environnements Python reproductibles."
+resume: "Cours sur zc.buildout : assemblage reproductible d'applications, parts et recipes, installation moderne, fichiers buildout.cfg, gestion et verrouillage des versions, héritage de configurations, développement local, commandes de diagnostic et place de Buildout dans l'écosystème Python actuel."
 niveau: intermediaire
 prerequis:
   - "[[Python]]"
+  - "[[git]]"
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2023-05-21
+date_modification: 2026-08-29
+date_verification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
@@ -33,161 +35,1014 @@ rag: true
 metadata_verifiees: false
 ---
 # Résumé
-Buildout est un système de construction logiciel très bien documenté.  
-Il utilise 'manuel' pour cela [https://pythonhosted.org/manuel/](https://pythonhosted.org/manuel/)  
-Il déconseille de ne documenter son code qu'à travers les tests unitaires.  
-On peut créer sa propre 'receipe', la tester et la documenter.  
-[http://www.buildout.org/en/latest/topics/writing-recipes.html](http://www.buildout.org/en/latest/topics/writing-recipes.html)
 
-# Plan du cours zc.buildout
+**zc.buildout**, généralement appelé **Buildout**, est un outil d'assemblage et d'automatisation d'applications écrit en Python. Son objectif ne se limite pas à installer des bibliothèques : il permet de décrire un environnement applicatif complet sous forme de configuration reproductible.
 
-1.  Introduction à zc.buildout
-    -   Qu'est-ce que zc.buildout
-    -   Pourquoi utiliser zc.buildout
-    -   Comment zc.buildout fonctionne
-2.  Installation de zc.buildout
-    -   Prérequis
-    -   Installation à partir de PyPI
-    -   Vérification de l'installation
-3.  Configuration de buildout
-    -   Fichier de configuration de base
-    -   Spécification des dépendances
-    -   Ajout de scripts personnalisés
-4.  Utilisation de buildout
-    -   Exécution de buildout
-    -   Mise à jour des dépendances
-    -   Utilisation des scripts personnalisés
-5.  avancée de buildout
-    -   Utilisation de plusieurs fichiers de configuration
-    -   Utilisation de sections de configuration partagées
-    -   Utilisation de fichiers de configuration externes
-6.  Conclusion
-    -   Résumé de ce que nous avons appris
-    -   Ressources supplémentaires pour en savoir plus sur zc.buildout.
+Un buildout peut notamment :
 
-# Chapitre 1: Introduction à zc.buildout
+- installer des dépendances Python ;
+- générer des scripts d'exécution ;
+- produire des fichiers de configuration ;
+- assembler plusieurs composants d'une application ;
+- gérer plusieurs configurations, par exemple développement et production ;
+- verrouiller les versions utilisées afin de reproduire un environnement ;
+- exécuter des tâches spécifiques grâce à des **recipes**.
 
-## 1.1 Qu'est-ce que zc.buildout
-zc.buildout est un outil de construction de logiciels open source pour Python. Il permet de configurer, installer et gérer les dépendances de vos projets Python de manière efficace. Il peut également être utilisé pour créer des environnements de développement et de production séparés pour vos projets.
+Buildout est historiquement très présent dans les écosystèmes **Zope** et **Plone**, mais son modèle reste intéressant pour tout projet dans lequel l'installation d'une application nécessite davantage qu'un simple `pip install`.
 
-## 1.2 Pourquoi utiliser zc.buildout
-Il existe de nombreux avantages à utiliser zc.buildout pour vos projets Python. Tout d'abord, il facilite la gestion des dépendances en permettant de spécifier les versions requises de chaque dépendance dans un fichier de configuration unique. Cela signifie que vous pouvez être sûr que les dépendances de votre projet fonctionneront toujours de la même manière, même si les versions des dépendances évoluent.
+Il faut distinguer Buildout d'un environnement virtuel Python. Un `venv` isole un interpréteur et les paquets qui y sont installés ; Buildout décrit et construit un **assemblage applicatif**. Les deux peuvent donc être utilisés ensemble.
 
-De plus, zc.buildout permet de créer des environnements de développement et de production séparés pour vos projets. Cela signifie que vous pouvez avoir des versions différentes de dépendances dans chaque environnement, ce qui est très utile lorsque vous travaillez sur des projets en équipe ou lorsque vous avez besoin de tester des versions différentes d'une dépendance.
+# État de zc.buildout en 2026
 
-### 1.3 Comment zc.buildout fonctionne
-zc.buildout fonctionne en lisant un fichier de configuration appelé buildout.cfg, qui spécifie les dépendances nécessaires pour votre projet ainsi que les scripts et les commandes à exécuter. Buildout lit ensuite ce fichier de configuration et installe les dépendances nécessaires, tout en créant des scripts pour exécuter les commandes spécifiées. Cela signifie que vous n'avez pas besoin de vous soucier de l'installation manuelle des dépendances ou de la configuration de votre environnement, car tout cela est géré automatiquement par buildout.
+Au 29 août 2026 :
 
-## Chapitre 2: Installation de zc.buildout
+- la branche stable est **zc.buildout 5.2.0**, publiée le 29 avril 2026 ;
+- elle nécessite **Python 3.9 ou plus récent** ;
+- zc.buildout 5 installe la plupart des distributions Python en s'appuyant sur `pip` et utilise les namespaces natifs de Python ;
+- les paquets installés sont placés dans un sous-répertoire `eggs/v5` afin d'éviter des incompatibilités avec les anciennes générations de Buildout ;
+- **zc.buildout 6.0.0a1** est une préversion publiée le 14 août 2026. Elle requiert Python 3.10+, `pip >= 25.0` et améliore notamment la prise en charge des installations éditables PEP 660.
 
-### 2.1 Prérequis
-Avant d'installer zc.buildout, vous devez avoir Python installé sur votre ordinateur. La plupart des systèmes d'exploitation modernes ont déjà Python préinstallé, mais si ce n'est pas le cas, vous pouvez le télécharger à partir du site web officiel de Python.
+Pour un nouveau projet de production, nous utilisons donc normalement la **dernière version stable 5.x**. Nous ne passons pas automatiquement un ancien projet Buildout en version 5 ou 6 : les projets historiques peuvent dépendre de vieilles recipes, de vieux namespaces ou de versions particulières de `setuptools`.
 
-## 2.2 Installation à partir de PyPI
-Une fois que vous avez Python installé, vous pouvez installer zc.buildout en utilisant pip, le gestionnaire de paquets de Python. Pour cela, ouvrez une invite de commande et tapez la commande suivante:
+# Plan du cours
 
-```bash
-pip install zc.buildout`
-```
-## 2.3 Vérification de l'installation
-Pour vérifier que l'installation de zc.buildout s'est déroulée correctement, ouvrez une invite de commande et tapez la commande suivante:
+1. Introduction à Buildout
+2. Installation et premier buildout
+3. Comprendre `buildout.cfg`, les parts et les recipes
+4. Gérer les dépendances et rendre un buildout reproductible
+5. Organiser plusieurs configurations et développer un paquet local
+6. Utiliser Buildout au quotidien et diagnostiquer une configuration
+7. Fonctionnement avancé et création de recipes
+8. Buildout dans l'écosystème Python moderne et migration d'un ancien projet
+9. Conclusion et ressources
 
-`buildout -v`
+# 1. Introduction à Buildout
 
-Si l'installation s'est déroulée correctement, vous devriez voir la version de buildout qui vient d'être installée.
+## 1.1 Les deux objectifs principaux
 
-Notez que pour utiliser la commande buildout, vous devez être dans un répertoire contenant un fichier buildout.cfg ou un fichier de configuration spécifique que vous avez créé pour votre projet.
+Buildout répond historiquement à deux besoins.
 
-## Chapitre 3: Configuration de buildout
+### Assembler et déployer une application
 
-### 3.1 Fichier de configuration de base
-Avant de pouvoir utiliser buildout, vous devez créer un fichier de configuration appelé buildout.cfg qui spécifie les dépendances nécessaires pour votre projet ainsi que les scripts et les commandes à exécuter. Voici un exemple de fichier de configuration de base:
+Une application ne se résume pas toujours à une liste de paquets Python. Elle peut aussi nécessiter :
 
-`[buildout] parts = app  [app] recipe = zc.recipe.egg eggs = mypackage`
+- des scripts de lancement ;
+- des fichiers de configuration ;
+- un serveur applicatif ;
+- des répertoires de données ;
+- des tâches planifiées ;
+- des outils de test ou d'administration ;
+- parfois des composants non Python.
 
-Ce fichier de configuration spécifie une partie app qui utilise la recette zc.recipe.egg pour installer le paquet mypackage en utilisant pip.
+Buildout permet de décrire cet assemblage dans des fichiers texte versionnés avec le code source.
 
-### 3.2 Spécification des dépendances
-Pour spécifier les dépendances de votre projet, vous pouvez utiliser la section eggs dans votre fichier de configuration. Par exemple, pour spécifier que votre projet a besoin de la version 2.7 de la bibliothèque requests, vous pouvez utiliser la ligne suivante dans votre fichier de configuration:
+### Reproduire un environnement
 
-`eggs = requests==2.7`
+Buildout cherche à rendre l'assemblage reproductible. À configuration, environnement et sources identiques, deux installations doivent produire le même résultat.
 
-Vous pouvez également spécifier plusieurs dépendances en les séparant par une virgule:
+Cette reproductibilité dépend notamment :
 
-`eggs = requests==2.7, Flask, PyYAML`
+- de la version de Python ;
+- du système d'exploitation ;
+- des versions des dépendances ;
+- des sources externes téléchargées ;
+- des recipes utilisées.
 
-### 3.3 Ajout de scripts personnalisés
-Buildout vous permet également d'ajouter des scripts personnalisés à votre projet. Pour cela, vous devez utiliser la section scripts dans votre fichier de configuration. Par exemple, pour ajouter un script appelé "runserver" à votre projet, vous pouvez utiliser la ligne suivante dans votre fichier de configuration:
+Buildout permet de verrouiller une grande partie de ces éléments, mais il ne remplace pas à lui seul un conteneur ou une image système reproductible.
 
-`scripts = runserver`
+## 1.2 Buildout, pip, venv et Docker
 
-Ce script sera alors créé dans le répertoire bin de votre projet, et vous pourrez l'exécuter en utilisant la commande suivante:
+Ces outils ne répondent pas exactement au même problème.
 
-`./bin/runserver`
+| Outil | Rôle principal |
+| --- | --- |
+| `pip` | Installer des distributions Python |
+| `venv` | Isoler un environnement Python |
+| Buildout | Assembler et configurer une application à partir de parts et de recipes |
+| Docker | Isoler et reproduire un environnement système et applicatif dans un conteneur |
 
-Notez que pour ajouter des scripts fonctionnels, vous devriez détailler la commande ou les commandes dans un fichier python ou shell que vous devrez inclure dans votre projet.
+Un projet moderne peut par exemple utiliser :
 
-## Chapitre 4: Utilisation de buildout
+1. Docker pour figer l'environnement système ;
+2. un `venv` pour isoler Python ;
+3. Buildout pour construire l'application et générer ses scripts et fichiers de configuration.
 
-### 4.1 Installation des dépendances
-Une fois que vous avez créé votre fichier de configuration, vous pouvez utiliser buildout pour installer les dépendances de votre projet. Pour cela, ouvrez une invite de commande et naviguez jusqu'au répertoire de votre projet contenant le fichier buildout.cfg. Ensuite, tapez la commande suivante:
+Dans un projet plus simple, Buildout peut être inutile : `pyproject.toml`, `pip`, `uv`, `tox` ou d'autres outils modernes peuvent suffire.
 
-`buildout`
+## 1.3 Les notions essentielles
 
-Cette commande lira votre fichier de configuration et installer les dépendances spécifiées dans la section eggs. Les dépendances seront installées dans le répertoire parts de votre projet, et vous pourrez les utiliser dans votre code en utilisant l'instruction import.
+Un buildout repose principalement sur quatre notions.
 
-### 4.2 Exécution des scripts personnalisés
-Une fois que vous avez installé les dépendances de votre projet, vous pouvez utiliser buildout pour exécuter les scripts personnalisés spécifiés dans la section scripts de votre fichier de configuration. Pour cela, ouvrez une invite de commande et naviguez jusqu'au répertoire de votre projet contenant le fichier buildout.cfg. Ensuite, tapez la commande suivante:
+### Le fichier de configuration
 
-```bash
-./bin/nom_du_script
-```
-Remplacez "nom_du_script" par le nom du script que vous avez spécifié dans la section scripts de votre fichier de configuration.   Par exemple, si vous avez ajouté un script appelé "runserver" dans votre fichier de configuration, vous pouvez l'exécuter en utilisant la commande suivante:
-```bash
-./bin/runserver
+Par défaut, Buildout lit :
+
+```text
+buildout.cfg
 ```
 
-### 4.3 Mise à jour des dépendances
-Au fil du temps, les dépendances de votre projet peuvent devenir obsolètes ou il peut y avoir des nouvelles versions disponibles. Pour mettre à jour les dépendances de votre projet, vous pouvez utiliser la commande suivante:
-```bash
-buildout update
+La syntaxe est proche du format INI.
+
+### La section `[buildout]`
+
+Elle contient la configuration générale et surtout la liste des **parts** à construire.
+
+### Les parts
+
+Une **part** représente une unité d'installation ou de génération.
+
+Exemples :
+
+- installer une application Python ;
+- créer un interpréteur ;
+- générer un fichier de configuration ;
+- préparer une instance Zope ;
+- installer un outil de test.
+
+### Les recipes
+
+Une **recipe** est le code Python chargé de construire une part.
+
+La section suivante :
+
+```ini
+[app]
+recipe = zc.recipe.egg
+eggs = mon-application
 ```
-Cette commande vérifiera si des mises à jour sont disponibles pour les dépendances spécifiées dans la section eggs de votre fichier de configuration et les installer si nécessaire.  
 
-### 4.4 Utilisation de profils
-Buildout permet également l'utilisation de profils, qui sont des ensembles de configurations spécifiques pour différentes environnements (développement, production, test, etc.). Pour utiliser un profil, vous devez spécifier le nom du profil en utilisant l'option -c lors de l'exécution de la commande buildout. Par exemple, pour utiliser un profil appelé "production", vous pouvez utiliser la commande suivante:
+signifie : « construire la part `app` en utilisant la recipe fournie par `zc.recipe.egg` ».
+
+Buildout est donc un **moteur d'orchestration**, et les recipes sont ses plugins.
+
+# 2. Installation et premier buildout
+
+## 2.1 Prérequis
+
+Pour la branche stable 5.2.0, il faut Python 3.9 ou plus récent.
+
+Nous vérifions notre interpréteur avec :
+
 ```bash
-buildout -c production
+python3 --version
 ```
-Cela utilisera un fichier de configuration nommé "production.cfg" si il existe, dans le même répertoire que buildout.cfg, pour configurer les dépendances et les scripts pour l'environnement de production.
 
-Remplacez "nom_du_script" par le nom du script que vous avez spécifié dans la section scripts de votre fichier de configuration.   Par exemple, si vous avez ajouté un script appelé "runserver" dans votre fichier de configuration, vous pouvez l'exécuter en utilisant la commande suivante:
-`
-./bin/runserver
+Sur un nouveau projet, il est recommandé d'installer Buildout dans un environnement virtuel plutôt que dans l'installation Python globale du système.
 
-`
-### 4.3 Mise à jour des dépendances
-Au fil du temps, les dépendances de votre projet peuvent devenir obsolètes ou il peut y avoir des nouvelles versions disponibles. Pour mettre à jour les dépendances de votre projet, vous pouvez utiliser la commande suivante:
-`
-buildout update
-`
-Cette commande vérifiera si des mises à jour sont disponibles pour les dépendances spécifiées dans la section eggs de votre fichier de configuration et les installer si nécessaire.  
+## 2.2 Créer un environnement virtuel
 
-### 4.4 Utilisation de profils
-Buildout permet également l'utilisation de profils, qui sont des ensembles de configurations spécifiques pour différentes environnements (développement, production, test, etc.). Pour utiliser un profil, vous devez spécifier le nom du profil en utilisant l'option -c lors de l'exécution de la commande buildout. Par exemple, pour utiliser un profil appelé "production", vous pouvez utiliser la commande suivante:
-`
-buildout -c production
-`
-Cela utilisera un fichier de configuration nommé "production.cfg" si il existe, dans le même répertoire que buildout.cfg, pour configurer les dépendances et les scripts pour l'environnement de production.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install zc.buildout
+```
 
-### 4.7 Utilisation de la commande buildout bootstrap
-Avant de pouvoir utiliser buildout pour installer les dépendances de votre projet, vous devez d'abord installer buildout lui-même sur votre ordinateur. Pour ce faire, vous pouvez utiliser la commande buildout bootstrap. Cette commande télécharge et installe la dernière version de buildout sur votre ordinateur. Vous n'avez besoin de l'utiliser qu'une seule fois, au début de votre projet. La commande à utiliser est :
+Sous Windows PowerShell, l'activation du `venv` se fait généralement avec :
 
-`python3 bootstrap.py`
+```powershell
+.venv\Scripts\Activate.ps1
+```
 
-### 4.8 Utilisation de la commande buildout annotate
-La commande buildout annotate est utilisée pour générer une liste des dépendances utilisées par le projet. Cela peut être utile pour comprendre les dépendances utilisées par le projet et pour identifier les dépendances qui ne sont plus utilisées. Pour utiliser cette commande, vous devez exécuter la commande suivante :
+Nous vérifions ensuite Buildout :
 
-`buildout annotate`
+```bash
+buildout --version
+```
 
-En résumé, zc.buildout est un outil puissant pour gérer les dépendances et automatiser les tâches de configuration et de déploiement pour les projets Python. En utilisant les fonctionnalités de buildout, vous pouvez configurer efficacement votre projet pour satisfaire vos besoins spécifiques et automatiser les tâches de déploiement et de configuration.
+`pip` n'installe normalement pas une préversion lorsqu'une version stable convient. La commande précédente installe donc la dernière version stable disponible.
+
+Pour un environnement dont nous voulons maîtriser explicitement la génération majeure, nous pouvons écrire :
+
+```bash
+python -m pip install 'zc.buildout>=5,<6'
+```
+
+## 2.3 Premier fichier `buildout.cfg`
+
+Créons un fichier minimal :
+
+```ini
+[buildout]
+parts = py
+
+[py]
+recipe = zc.recipe.egg
+eggs = requests
+interpreter = py
+```
+
+Puis exécutons :
+
+```bash
+buildout
+```
+
+Buildout crée notamment les répertoires suivants :
+
+```text
+bin/
+develop-eggs/
+eggs/
+parts/
+```
+
+Avec Buildout 5, les distributions Python gérées dans le cache local sont généralement placées sous :
+
+```text
+eggs/v5/
+```
+
+La recipe `zc.recipe.egg` crée ici un interpréteur :
+
+```bash
+./bin/py
+```
+
+Nous pouvons vérifier que `requests` est accessible :
+
+```bash
+./bin/py -c 'import requests; print(requests.__version__)'
+```
+
+## 2.4 Installer un script Buildout local
+
+La commande :
+
+```bash
+buildout bootstrap
+```
+
+installe un script Buildout dans le répertoire `bin` du buildout.
+
+Nous pouvons ensuite utiliser :
+
+```bash
+./bin/buildout
+```
+
+L'intérêt est que ce script local est associé au buildout et peut respecter les contraintes de versions définies par celui-ci.
+
+L'ancienne pratique consistant à télécharger puis exécuter un fichier `bootstrap.py` :
+
+```bash
+python bootstrap.py
+```
+
+appartient aux anciennes générations de Buildout et ne doit plus être présentée comme la méthode normale pour un nouveau projet.
+
+# 3. Comprendre `buildout.cfg`, les parts et les recipes
+
+## 3.1 Structure générale
+
+Un fichier Buildout contient des sections :
+
+```ini
+[buildout]
+parts = app
+
+[app]
+recipe = zc.recipe.egg
+eggs = mon-application
+```
+
+La première section est spéciale. Elle décrit le buildout lui-même.
+
+L'option :
+
+```ini
+parts = app
+```
+
+indique à Buildout qu'il doit installer la part `app`.
+
+La section `[app]` indique comment la construire.
+
+## 3.2 Plusieurs parts
+
+Nous pouvons construire plusieurs éléments :
+
+```ini
+[buildout]
+parts =
+    app
+    outils
+
+[app]
+recipe = zc.recipe.egg
+eggs = mon-application
+
+[outils]
+recipe = zc.recipe.egg
+eggs =
+    ipython
+    pytest
+interpreter = py-outils
+```
+
+Chaque recipe décide de la signification de ses propres options.
+
+## 3.3 L'option `eggs`
+
+Le nom `eggs` est historique. Dans `zc.recipe.egg`, cette option contient en réalité des **requirements Python**, un par ligne :
+
+```ini
+eggs =
+    requests
+    PyYAML >= 6
+    Flask < 4
+```
+
+La syntaxe suit les contraintes de versions du packaging Python.
+
+Il vaut mieux écrire les requirements sur plusieurs lignes plutôt que séparés par des virgules.
+
+## 3.4 Génération de scripts
+
+`zc.recipe.egg` peut générer dans `bin/` les scripts déclarés par les paquets installés.
+
+Exemple :
+
+```ini
+[cli]
+recipe = zc.recipe.egg
+eggs = httpie
+```
+
+Les scripts exposés par la distribution sont alors générés dans le répertoire `bin` du buildout.
+
+Nous pouvons limiter ou renommer les scripts avec l'option `scripts` :
+
+```ini
+[cli]
+recipe = zc.recipe.egg
+eggs = httpie
+scripts = http=mon-http
+```
+
+Une valeur vide désactive leur génération :
+
+```ini
+scripts =
+```
+
+## 3.5 Créer un interpréteur dédié
+
+L'option :
+
+```ini
+interpreter = py
+```
+
+crée :
+
+```text
+bin/py
+```
+
+Cet interpréteur utilise le Python du buildout avec les dépendances déclarées par la part dans son chemin de modules.
+
+Il est pratique pour :
+
+- tester des imports ;
+- lancer une console interactive ;
+- exécuter un script dans l'environnement exact d'une part.
+
+## 3.6 Substitutions de variables
+
+Buildout peut réutiliser la valeur d'une autre option avec la syntaxe :
+
+```text
+${section:option}
+```
+
+Exemple :
+
+```ini
+[ports]
+http = 8080
+
+[application]
+recipe = ma.recipe
+port = ${ports:http}
+root = ${buildout:directory}
+```
+
+Quelques valeurs globales utiles sont notamment :
+
+```text
+${buildout:directory}
+${buildout:bin-directory}
+${buildout:parts-directory}
+${buildout:eggs-directory}
+```
+
+Les substitutions évitent de dupliquer des chemins et des paramètres dans plusieurs sections.
+
+## 3.7 Suivi de l'état installé
+
+Buildout mémorise l'état des parts installées, notamment dans :
+
+```text
+.installed.cfg
+```
+
+Lors d'une nouvelle exécution, il compare la configuration demandée avec l'état précédent et installe, met à jour ou désinstalle les parts concernées.
+
+Il est donc normal de relancer simplement :
+
+```bash
+./bin/buildout
+```
+
+après avoir modifié `buildout.cfg`.
+
+Il n'existe pas de commande générale moderne `buildout update` destinée à mettre à jour toutes les dépendances. Pour changer les versions, nous modifions les contraintes ou les pins puis nous relançons le buildout.
+
+# 4. Gérer les dépendances et rendre un buildout reproductible
+
+## 4.1 Pourquoi verrouiller les versions
+
+Si aucune version n'est imposée, Buildout peut sélectionner la version la plus récente compatible avec les requirements au moment de l'installation.
+
+Deux installations effectuées à plusieurs mois d'intervalle pourraient alors produire des environnements différents.
+
+Pour une **application**, nous cherchons généralement à verrouiller l'ensemble des versions après validation des tests.
+
+Pour une **bibliothèque**, au contraire, il vaut mieux déclarer des plages de compatibilité plutôt que forcer toutes les dépendances à une version unique.
+
+## 4.2 La section `[versions]`
+
+Nous pouvons centraliser les versions :
+
+```ini
+[buildout]
+parts = app
+
+[app]
+recipe = zc.recipe.egg
+eggs = requests
+interpreter = py
+
+[versions]
+requests = 2.34.2
+```
+
+Buildout utilise par défaut la section nommée `versions`.
+
+Nous pouvons choisir un autre nom avec :
+
+```ini
+[buildout]
+versions = contraintes
+
+[contraintes]
+requests = 2.34.2
+```
+
+## 4.3 Séparer les versions dans `versions.cfg`
+
+Sur un projet important, il est préférable de séparer les pins :
+
+```text
+buildout.cfg
+versions.cfg
+```
+
+`versions.cfg` :
+
+```ini
+[versions]
+requests = 2.34.2
+```
+
+`buildout.cfg` :
+
+```ini
+[buildout]
+extends = versions.cfg
+parts = app
+
+[app]
+recipe = zc.recipe.egg
+eggs = requests
+interpreter = py
+```
+
+Le fichier principal hérite des valeurs de `versions.cfg`.
+
+## 4.4 Voir les versions choisies automatiquement
+
+L'option :
+
+```ini
+[buildout]
+show-picked-versions = true
+```
+
+fait afficher les versions sélectionnées lorsqu'elles n'étaient pas verrouillées.
+
+Pour faire maintenir un fichier de versions par Buildout :
+
+```ini
+[buildout]
+extends = versions.cfg
+show-picked-versions = true
+update-versions-file = versions.cfg
+```
+
+Le fichier `versions.cfg` doit contenir une section `[versions]` :
+
+```ini
+[versions]
+```
+
+Buildout peut alors ajouter les versions qu'il sélectionne.
+
+Une démarche pratique consiste à :
+
+1. laisser Buildout résoudre les dépendances ;
+2. générer ou compléter `versions.cfg` ;
+3. exécuter les tests ;
+4. versionner le fichier de pins avec Git ;
+5. refuser ensuite les versions non verrouillées.
+
+## 4.5 Refuser les versions non verrouillées
+
+Lorsque le fichier de versions est complet :
+
+```ini
+[buildout]
+allow-picked-versions = false
+```
+
+Buildout échoue alors si une dépendance doit être choisie sans pin explicite.
+
+Cette option est très utile pour détecter l'apparition d'une nouvelle dépendance transitive non verrouillée.
+
+## 4.6 L'option `-N`
+
+Par défaut, Buildout vérifie si des versions plus récentes sont disponibles.
+
+La commande :
+
+```bash
+./bin/buildout -N
+```
+
+équivaut à :
+
+```ini
+[buildout]
+newest = false
+```
+
+Elle évite certaines recherches de nouvelles versions et peut accélérer une exécution.
+
+Attention : `-N` **ne remplace pas le verrouillage des versions**. La reproductibilité repose avant tout sur des contraintes précises et un environnement maîtrisé.
+
+# 5. Organiser plusieurs configurations et développer un paquet local
+
+## 5.1 Hériter d'une configuration avec `extends`
+
+Un projet peut partager une configuration commune.
+
+`base.cfg` :
+
+```ini
+[buildout]
+parts = app
+
+[app]
+recipe = zc.recipe.egg
+eggs = mon-application
+interpreter = py
+```
+
+`development.cfg` :
+
+```ini
+[buildout]
+extends = base.cfg
+parts += outils
+
+[outils]
+recipe = zc.recipe.egg
+eggs =
+    pytest
+    ipython
+```
+
+Nous utilisons ensuite :
+
+```bash
+./bin/buildout -c development.cfg
+```
+
+## 5.2 Ajouter ou retirer des valeurs
+
+Buildout permet de compléter une option héritée avec `+=` :
+
+```ini
+[buildout]
+parts += outils
+```
+
+et d'en retirer avec `-=` :
+
+```ini
+[buildout]
+parts -= outils
+```
+
+Cette mécanique permet de construire des variantes sans recopier toute la configuration.
+
+## 5.3 Configuration locale facultative
+
+L'option `optional-extends` permet de charger un fichier seulement s'il existe :
+
+```ini
+[buildout]
+extends = versions.cfg
+optional-extends = local.cfg
+```
+
+`local.cfg` peut être ajouté au `.gitignore` et contenir des réglages propres à une machine de développement.
+
+Il faut éviter d'y stocker des secrets si d'autres mécanismes plus sûrs sont disponibles. Une configuration Buildout n'est pas un coffre-fort.
+
+## 5.4 Utiliser un paquet local en développement
+
+Buildout possède l'option `develop` pour rendre un projet Python local disponible en mode développement :
+
+```ini
+[buildout]
+develop = .
+parts = app
+
+[app]
+recipe = zc.recipe.egg
+eggs = mon-projet
+interpreter = py
+```
+
+Une modification du code source local est alors visible sans réinstaller une nouvelle archive du paquet.
+
+Dans Buildout 5, les installations de développement sont désormais en grande partie réalisées avec `pip`. Cela facilite la transition vers le packaging Python moderne, mais certains cas utilisant des namespaces historiques restent délicats.
+
+La préversion Buildout 6 améliore encore ce point avec la prise en charge des installations éditables conformes à **PEP 660** et des projets configurés uniquement avec `pyproject.toml`.
+
+## 5.5 Plusieurs checkouts
+
+Un projet ancien ou de grande taille peut développer plusieurs paquets simultanément :
+
+```ini
+[buildout]
+develop =
+    src/mon-projet
+    src/ma-bibliotheque
+    src/mon-plugin
+```
+
+Dans les écosystèmes Zope et Plone, des extensions telles que `mr.developer` ont longtemps servi à automatiser la récupération et la gestion de nombreux dépôts de développement.
+
+# 6. Utiliser Buildout au quotidien et diagnostiquer une configuration
+
+## 6.1 Construire ou reconstruire le buildout
+
+La commande principale est simplement :
+
+```bash
+./bin/buildout
+```
+
+ou, si nous utilisons l'exécutable du `venv` :
+
+```bash
+buildout
+```
+
+Buildout installe les parts demandées et met à jour celles dont la configuration a changé.
+
+## 6.2 Utiliser un autre fichier de configuration
+
+```bash
+./bin/buildout -c production.cfg
+```
+
+L'option `-c` sélectionne le fichier de configuration principal.
+
+Le nom du fichier n'est pas un « profil » spécial pour Buildout : `production.cfg`, `development.cfg` ou `test.cfg` sont simplement des conventions choisies par le projet.
+
+## 6.3 Installer certaines parts seulement
+
+Nous pouvons demander explicitement des parts :
+
+```bash
+./bin/buildout install app outils
+```
+
+C'est utile pour diagnostiquer ou reconstruire une partie d'un buildout volumineux.
+
+## 6.4 Afficher la version
+
+```bash
+./bin/buildout --version
+```
+
+## 6.5 Augmenter la verbosité
+
+```bash
+./bin/buildout -v
+```
+
+ou, pour un diagnostic encore plus détaillé :
+
+```bash
+./bin/buildout -vv
+```
+
+`-v` est particulièrement utile pour comprendre pourquoi une version de distribution a été sélectionnée.
+
+## 6.6 Comprendre la configuration finale avec `annotate`
+
+La commande :
+
+```bash
+./bin/buildout annotate
+```
+
+affiche les options de configuration finales et surtout **leur provenance**.
+
+Elle est très utile lorsque plusieurs fichiers utilisent `extends` et se surchargent mutuellement.
+
+Pour limiter l'affichage à une section :
+
+```bash
+./bin/buildout annotate versions
+```
+
+Pour afficher davantage d'étapes de calcul :
+
+```bash
+./bin/buildout -v annotate
+```
+
+`annotate` ne sert donc pas à produire une simple liste des dépendances Python. Son rôle principal est d'expliquer comment Buildout a obtenu la configuration effective.
+
+## 6.7 Interroger une option avec `query`
+
+Pour afficher la liste finale des parts :
+
+```bash
+./bin/buildout query parts
+```
+
+Pour interroger une option précise :
+
+```bash
+./bin/buildout query app:eggs
+```
+
+Cette commande est pratique dans les scripts d'administration et lors du débogage.
+
+## 6.8 Surcharger temporairement une valeur en ligne de commande
+
+La ligne de commande peut surcharger des options :
+
+```bash
+./bin/buildout buildout:newest=false
+```
+
+ou :
+
+```bash
+./bin/buildout versions:requests=2.32.5
+```
+
+Ces modifications sont temporaires : elles ne changent pas les fichiers `.cfg`.
+
+## 6.9 Déboguer une recipe
+
+L'option :
+
+```bash
+./bin/buildout -D
+```
+
+lance un débogueur post-mortem lorsqu'une erreur survient. Elle est surtout utile pour développer ou diagnostiquer une recipe.
+
+# 7. Fonctionnement avancé et création de recipes
+
+## 7.1 Une recipe est un paquet Python
+
+Une recipe est généralement distribuée comme un paquet Python. Buildout charge la recipe indiquée par :
+
+```ini
+[ma-part]
+recipe = mon.paquet.recipe
+```
+
+Le paquet fournit un composant Python respectant l'API attendue par Buildout.
+
+Une recipe reçoit notamment :
+
+- l'objet buildout ;
+- le nom de la part ;
+- les options de la section.
+
+Elle peut ensuite créer des fichiers, télécharger des ressources ou installer des composants.
+
+## 7.2 Cycle de vie simplifié
+
+Une recipe classique fournit notamment les opérations :
+
+```text
+install
+update
+```
+
+- `install` construit la part lorsqu'elle n'est pas encore installée ;
+- `update` met à jour une part déjà présente lorsque sa configuration a changé.
+
+La recipe retourne les chemins qu'elle a créés afin que Buildout puisse les supprimer lorsqu'une part est désinstallée.
+
+## 7.3 Pourquoi écrire une recipe
+
+Nous écrivons une recipe lorsqu'une opération doit être :
+
+- répétable ;
+- paramétrable dans `buildout.cfg` ;
+- intégrée au cycle de vie du buildout ;
+- réutilisable dans plusieurs projets.
+
+Exemples :
+
+- générer un fichier de configuration à partir d'options ;
+- préparer une arborescence ;
+- installer un programme externe ;
+- créer des scripts de lancement ;
+- automatiser une opération spécifique à une plateforme.
+
+Pour une tâche ponctuelle très simple, un script shell ou Python peut être plus lisible qu'une recipe personnalisée.
+
+## 7.4 Recipes et responsabilité
+
+Chaque recipe interprète elle-même ses options. Deux parts utilisant deux recipes différentes peuvent donc avoir des syntaxes complètement différentes.
+
+Il faut toujours consulter la documentation de la recipe utilisée et vérifier :
+
+- sa dernière version ;
+- les versions de Python supportées ;
+- les versions de Buildout supportées ;
+- son activité de maintenance ;
+- les changements incompatibles.
+
+Une grande partie des difficultés rencontrées lors de la modernisation d'un vieux buildout vient davantage des recipes historiques que du moteur `zc.buildout` lui-même.
+
+# 8. Buildout dans l'écosystème Python moderne et migration d'un ancien projet
+
+## 8.1 Buildout n'est pas obsolète, mais son rôle est devenu plus spécialisé
+
+Buildout reste activement maintenu en 2026. La branche 5 a profondément modernisé son mécanisme d'installation en utilisant `pip` dans la majorité des cas et en améliorant la gestion des namespaces modernes.
+
+Cependant, le packaging Python dispose aujourd'hui d'outils qui couvrent de nombreux usages autrefois confiés à Buildout :
+
+- `venv` pour l'isolation ;
+- `pip` ou `uv` pour l'installation ;
+- `pyproject.toml` pour décrire un projet ;
+- `tox` ou `nox` pour les environnements de test ;
+- Docker ou Podman pour figer l'environnement système ;
+- les gestionnaires de configuration et orchestrateurs pour le déploiement.
+
+Buildout conserve un intérêt particulier lorsqu'un projet possède déjà un important écosystème de recipes ou lorsqu'il assemble plusieurs composants et fichiers de configuration selon une logique difficile à remplacer par un simple gestionnaire de dépendances.
+
+## 8.2 Ce qui change avec Buildout 5
+
+Les changements importants de la génération 5 sont notamment :
+
+- installation de la plupart des distributions via `pip` ;
+- utilisation privilégiée des namespaces natifs **PEP 420** ;
+- installation des développements locaux via `pip` ;
+- stockage dans `eggs/v5` afin de séparer le format des anciennes générations ;
+- `zc.recipe.egg` 4.x destiné à Buildout 5.x.
+
+Ces changements améliorent l'intégration avec le packaging Python moderne, mais ils peuvent révéler des incompatibilités dans de vieux projets.
+
+## 8.3 Attention aux anciens namespaces
+
+Les anciens projets Zope/Plone utilisent parfois des namespaces reposant sur `pkg_resources`.
+
+Les namespaces Python modernes utilisent généralement **PEP 420**, sans fichier `__init__.py` spécifique au namespace.
+
+Lors d'une migration vers Buildout 5 ou 6, il faut donc vérifier les packages partageant un namespace, en particulier lorsqu'ils sont utilisés en mode développement.
+
+Nous ne devons pas supprimer ou modifier ces mécanismes au hasard : une migration de namespace doit être testée sur l'ensemble des packages concernés.
+
+## 8.4 Méthode de migration d'un ancien buildout
+
+Pour moderniser un ancien projet, procédons par étapes.
+
+### Étape 1 — Inventorier l'environnement actuel
+
+Relever :
+
+```bash
+python --version
+./bin/buildout --version
+python -m pip --version
+```
+
+Puis identifier :
+
+- les fichiers `buildout.cfg`, `versions.cfg` et fichiers étendus ;
+- les recipes ;
+- les paquets installés en `develop` ;
+- les versions explicitement verrouillées ;
+- les éventuels `bootstrap.py` ;
+- les dépendances à `setuptools`, `pkg_resources` ou aux anciens namespaces.
+
+### Étape 2 — Sauvegarder une installation reproductible
+
+Avant toute migration :
+
+- versionner les fichiers de configuration ;
+- conserver le fichier de versions fonctionnel ;
+- noter la version de Python ;
+- exécuter les tests ;
+- idéalement construire une image ou un conteneur de référence.
+
+### Étape 3 — Vérifier les recipes
+
+Pour chaque recipe :
+
+1. rechercher sa version actuelle ;
+2. vérifier sa compatibilité Python ;
+3. vérifier sa compatibilité Buildout ;
+4. lire son historique de changements.
+
+### Étape 4 — Migrer une génération à la fois si nécessaire
+
+Sur un projet très ancien, sauter directement plusieurs générations de Python, Buildout, setuptools, Zope et Plone rend le diagnostic difficile.
+
+Il est souvent préférable de séparer :
+
+- migration Python ;
+- migration de Buildout ;
+- migration des recipes ;
+- migration du framework applicatif.
+
+### Étape 5 — Comparer la configuration effective
+
+Après modification :
+
+```bash
+./bin/buildout annotate
+```
+
+permet de vérifier l'origine des valeurs finales.
+
+Puis nous reconstruisons l'environnement et exécutons les tests applicatifs.
+
+## 8.5 Buildout 6
+
+Au 29 août 2026, Buildout 6 n'est encore disponible qu'en préversion `6.0.0a1`.
+
+Cette branche :
+
+- nécessite Python 3.10 ou plus récent ;
+- nécessite `pip >= 25.0` ;
+- modernise la dépendance à `pkg_resources` en embarquant la dernière version nécessaire à son propre fonctionnement ;
+- corrige la prise en charge des paquets de développement basés sur PEP 660 et `pyproject.toml`.
+
+Il est intéressant de la tester sur un projet de développement, mais une migration de production doit tenir compte de son statut de préversion et de la compatibilité de toutes les recipes utilisées.
+
+# 9. Conclusion
+
+Buildout est un outil d'assemblage d'applications, pas seulement un gestionnaire de dépendances.
+
+Les notions importantes à retenir sont :
+
+- `buildout.cfg` décrit l'assemblage ;
+- `[buildout]` liste les parts et contient les options globales ;
+- chaque part est construite par une recipe ;
+- `zc.recipe.egg` installe des distributions Python et génère des scripts ou interpréteurs ;
+- les versions doivent être verrouillées pour garantir une bonne reproductibilité ;
+- `extends` permet de construire des configurations développement, test et production à partir d'une base commune ;
+- `develop` permet de travailler sur des paquets locaux ;
+- `annotate` explique la provenance de la configuration finale ;
+- relancer `bin/buildout` est la manière normale d'appliquer une modification ;
+- `buildout bootstrap` remplace les anciens usages de `bootstrap.py` pour créer un script local ;
+- Buildout 5 est la branche stable moderne en 2026 et rapproche fortement Buildout du fonctionnement actuel de `pip`.
+
+Pour un nouveau projet, nous devons toutefois nous demander si Buildout apporte réellement quelque chose par rapport à un environnement `venv`, un `pyproject.toml`, un gestionnaire de dépendances moderne et éventuellement un conteneur. Son principal intérêt apparaît lorsque l'application doit **assembler plusieurs composants et générer un environnement complet de manière déclarative**.
+
+# Ressources
+
+- Documentation officielle de Buildout : https://www.buildout.org/
+- Dépôt officiel : https://github.com/buildout/buildout
+- Projet PyPI `zc.buildout` : https://pypi.org/project/zc.buildout/
+- Projet PyPI `zc.recipe.egg` : https://pypi.org/project/zc.recipe.egg/
+- Référence des options et commandes : https://github.com/buildout/buildout/blob/master/doc/reference.rst
+- Guide de démarrage : https://github.com/buildout/buildout/blob/master/doc/getting-started.rst
+- Écriture de recipes : https://github.com/buildout/buildout/blob/master/doc/topics/writing-recipes.rst
