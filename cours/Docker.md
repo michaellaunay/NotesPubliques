@@ -29,8 +29,14 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+# Docker
 
-# Objectifs
+> [!abstract] Objectif
+> Comprendre ce qu'est réellement un conteneur (namespaces, cgroups, couches) et maîtriser Docker Engine 29 : images et Dockerfile, BuildKit et builds multi-étapes, volumes, réseaux, limites de ressources, sécurité et mode rootless, secrets, Compose v5, supply chain (SBOM, provenance, signature), diagnostic et pratiques de production.
+
+Voir aussi : [[Les namespaces Linux]], [[proc]], [[Sécurité avancée sous Linux]], [[Initialisation système et des services]], [[git]].
+
+## Objectifs
 
 À la fin de ce cours, nous devons être capables de :
 
@@ -52,6 +58,56 @@ metadata_verifiees: true
 
 > [!note] Versions de référence
 > Au 29 août 2026, la branche stable de Docker Engine est la série **29**, avec Docker Engine **29.7.2** publié le 5 août 2026. Cette version embarque notamment BuildKit 0.32.2. Docker Compose **v5.5.0** a été publié le 17 août 2026. Les concepts du cours restent volontairement plus généraux que ces numéros de version.
+
+# Sommaire
+
+1. Qu'est-ce qu'un conteneur ?
+2. Architecture Docker
+3. Installation
+4. Images, conteneurs, repositories, tags et digests
+5. Premières commandes
+6. Cycle de vie et PID 1
+7. Dockerfile : construire une image
+8. Couches et système de fichiers
+9. `.dockerignore`
+10. BuildKit et Buildx
+11. Multi-stage builds
+12. Optimiser un Dockerfile
+13. Volumes et persistance
+14. UID, GID et permissions
+15. Réseaux Docker
+16. DNS et résolution de noms
+17. Limites de ressources
+18. Healthchecks
+19. Sécurité : modèle de menace
+20. Sécurité d'exécution
+21. Rootless Docker
+22. User namespaces
+23. Secrets
+24. Docker Compose
+25. Compose en production : limites
+26. Build, registry et push
+27. Multi-architecture
+28. Reproductibilité
+29. Supply chain : SBOM et provenance
+30. Signature et confiance
+31. Logs et observabilité
+32. Diagnostic
+33. Docker daemon et configuration
+34. Remote Docker et contextes
+35. Conteneurs privilégiés et périphériques
+36. Docker et le pare-feu
+37. Sauvegarde et restauration
+38. CI/CD
+39. Docker Compose : exemple de projet complet
+40. Erreurs fréquentes
+41. Docker vs Podman vs Kubernetes
+42. Swarm
+43. Bonnes pratiques de production
+44-57. Travaux pratiques 1 à 14 (cycle de vie, images, cache, multi-stage, volumes, réseaux, Compose, durcissement, rootless, multi-architecture, SBOM, supply chain, diagnostic, projet final)
+58. Commandes de référence
+59. Méthode de mise à jour d'une application Docker
+60. Ce qu'il faut retenir
 
 # 1. Qu'est-ce qu'un conteneur ?
 

@@ -31,8 +31,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Solid (Social Linked Data)
+
+> [!abstract] Objectif
+> Comprendre le projet Solid (Social Linked Data) : séparer les données des applications dans des pods personnels, décrire ces données en RDF et Linked Data, s'authentifier avec Solid-OIDC, contrôler l'accès avec WAC et ACP, puis développer une application cliente et déployer un serveur communautaire (Community Solid Server) en connaissant l'état réel de l'écosystème en 2026.
+
+Voir aussi : [[HTTP]], [[OAuth OpenID]], [[SPARQL et RDF]], [[Javascript]], [[Identité numérique européenne]].
 
 > [!important]
 > Ce cours traite du projet **Solid** initié par Tim Berners-Lee autour du Web décentralisé et des données liées. Il ne faut pas le confondre avec les cinq principes de conception orientée objet **SOLID**, traités dans [[Principes SOLID en COO]].
