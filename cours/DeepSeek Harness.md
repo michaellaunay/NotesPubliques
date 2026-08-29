@@ -33,8 +33,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # DeepSeek Harness — construire et comprendre un harness d'agents IA composable
+
+> [!abstract] Objectif
+> Comprendre ce qu'est un harness agentique et savoir construire, configurer et sécuriser un agent avec DeepSeek Harness (dsh) : architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, automatisation, sécurité et déploiement — en gardant à l'esprit que le projet est en Developer Preview.
+
+Voir aussi : [[Hermes Agent]], [[Travailler avec Claude]], [[LLM en local]], [[Outils IA]].
 
 > [!warning] État du projet au 29 août 2026
 > DeepSeek Harness est encore en **Developer Preview**. DeepSeek annonce explicitement que des changements incompatibles peuvent survenir. Ce cours décrit donc l'architecture et les interfaces observables à cette date ; avant un déploiement réel, il faut vérifier la documentation et la version effectivement installée.

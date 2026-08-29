@@ -27,6 +27,11 @@ metadata_verifiees: true
 ---
 # Markdown
 
+> [!abstract] Objectif
+> Maîtriser Markdown comme format de travail durable : le standard CommonMark et GitHub Flavored Markdown, ce que chaque outil ajoute (GitHub, GitLab, Obsidian, Pandoc), la portabilité entre eux, l'accessibilité, la sécurité du HTML embarqué, les mathématiques et les diagrammes, et l'automatisation (lint, conversion, génération).
+
+Voir aussi : [[Obsidian]], [[Mermaid pour Obsidian]], [[git]], [[HTML]], [[Visual studio code]].
+
 ## Objectifs du cours
 
 À la fin de ce cours, nous saurons :
@@ -44,6 +49,51 @@ metadata_verifiees: true
 > Il n'existe pas **un unique Markdown universel**. Markdown désigne une famille de syntaxes proches. Un fichier peut être parfaitement valide dans Obsidian et se rendre différemment sur GitHub, Pandoc ou un CMS.
 
 ---
+
+# Sommaire
+
+1. Origines et standardisation
+2. Le modèle mental : source, parseur et rendu
+3. Paragraphes et retours à la ligne
+4. Titres
+5. Emphase, forte emphase et autres styles
+6. Échappements et caractères spéciaux
+7. Listes
+8. Citations
+9. Code inline et blocs de code
+10. Liens
+11. Images
+12. Tableaux
+13. Lignes horizontales
+14. HTML brut dans Markdown
+15. GitHub Flavored Markdown en pratique
+16. Obsidian : liens et transclusions
+17. Obsidian : tags
+18. Obsidian : propriétés et frontmatter YAML
+19. Obsidian : callouts
+20. Obsidian : commentaires et surlignage
+21. Notes de bas de page
+22. Mathématiques
+23. Diagrammes Mermaid
+24. Dialectes : matrice de compatibilité
+25. Portabilité : écrire pour plusieurs moteurs
+26. Accessibilité
+27. Sécurité
+28. Style de rédaction technique
+29. Linting Markdown
+30. Formatage automatique
+31. Markdown et Git
+32. README et documentation de projet
+33. Markdown avec Pandoc et autres convertisseurs
+34. Markdown dans les générateurs de documentation
+35. Cas des CMS comme Grav
+36. Erreurs fréquentes
+37. Stratégie recommandée pour ce coffre Obsidian
+38. Travaux pratiques
+39. Projet final — Documentation technique portable
+40. Checklist Markdown
+41. Résumé
+42. Références
 
 # 1. Origines et standardisation
 

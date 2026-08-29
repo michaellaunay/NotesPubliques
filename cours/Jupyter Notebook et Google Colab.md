@@ -26,8 +26,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Jupyter Notebook et Google Colab
+
+> [!abstract] Objectif
+> Utiliser Jupyter, JupyterLab et Google Colab en comprenant ce qui se passe : architecture des notebooks et des kernels, environnements et reproductibilité, sécurité, collaboration, GPU et TPU, intégration avec Git, et bonnes pratiques pour passer du notebook exploratoire au code maintenable.
+
+Voir aussi : [[Python]], [[Numpy]], [[Pandas]], [[Pytorch]], [[Machine Learning]], [[git]], [[Visual studio code]].
 
 Jupyter et Google Colab appartiennent à la même famille d'outils : les **notebooks computationnels**. Un notebook combine dans un même document :
 
@@ -54,6 +58,75 @@ Ce cours distingue trois éléments souvent confondus :
 Au 29 août 2026, **Jupyter Notebook 7** repose sur Jupyter Server et des composants de JupyterLab. JupyterLab 4.x constitue l'environnement riche de référence, tandis que Notebook 7 propose une interface plus légère.
 
 ---
+
+# Sommaire
+
+1. Histoire : d'IPython à Jupyter
+2. Architecture générale de Jupyter
+3. Le format `.ipynb`
+4. Installer Jupyter proprement
+5. Kernels et environnements Python
+6. Les types de cellules
+7. Exécution : le piège de l'état caché
+8. IPython : commandes magiques
+9. Commandes shell depuis un notebook
+10. Affichages riches
+11. Visualisation
+12. Widgets interactifs
+13. Débogage dans Jupyter
+14. Reproductibilité des environnements
+15. Reproductibilité des calculs aléatoires
+16. Structurer un notebook propre
+17. Notebook exploratoire vs code de production
+18. Tester du code issu d'un notebook
+19. Exécuter automatiquement un notebook
+20. Jupyter et Git
+21. Sécurité : un notebook est du code exécutable
+22. Secrets et identifiants
+23. Extensions JupyterLab
+24. Collaboration
+25. Introduction à Google Colab
+26. Colab : VM et stockage éphémère
+27. Vérifier l'environnement Colab
+28. Installer des dépendances dans Colab
+29. GPU dans Colab
+30. TPU dans Colab
+31. Google Drive dans Colab
+32. Télécharger et envoyer des fichiers dans Colab
+33. Git dans Colab
+34. Colab et Hugging Face
+35. Runtime local avec Colab
+36. Limites et quotas de Colab
+37. Activités interdites ou limitées dans Colab
+38. Sauvegarder un entraînement long
+39. Datasets volumineux
+40. Notebooks et données sensibles
+41. Nettoyer les sorties sensibles
+42. Notebook « Restart and Run All » comme test minimal
+43. Papermill et notebooks paramétrés
+44. Notebooks dans une CI
+45. Jupyter Book, Quarto et publication
+46. Notebook vs script Python
+47. Notebook vs IDE
+48. Anti-patterns fréquents
+49. Modèle de notebook reproductible
+50. TP 1 — Premier notebook local
+51. TP 2 — Créer un kernel dédié
+52. TP 3 — État caché
+53. TP 4 — Analyse de données
+54. TP 5 — Git et notebook
+55. TP 6 — Notebook automatisé
+56. TP 7 — Colab et stockage éphémère
+57. TP 8 — GPU Colab
+58. TP 9 — Reprise après interruption
+59. TP 10 — Audit de sécurité d'un notebook
+60. TP 11 — Jupytext
+61. TP 12 — Projet final
+62. Checklist Jupyter
+63. Checklist Colab
+64. Glossaire
+65. Points essentiels à retenir
+66. Références officielles
 
 # 1. Histoire : d'IPython à Jupyter
 

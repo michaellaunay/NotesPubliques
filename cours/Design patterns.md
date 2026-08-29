@@ -28,6 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+# Design patterns
+
+> [!abstract] Objectif
+> Reconnaître, choisir et implémenter les patrons de conception : patterns GoF revisités avec les idiomes Python modernes, patterns d'architecture et d'entreprise, événements, résilience, concurrence, anti-patterns, et une méthode pragmatique pour décider quand un pattern vaut son coût.
+
+Voir aussi : [[Principes SOLID en COO]], [[Architecture des logiciels]], [[Python]], [[C++]], [[UML pour Visual code]].
 
 # Sommaire
 

@@ -29,6 +29,11 @@ metadata_verifiees: false
 ---
 # Hermes Agent : agent IA persistant, extensible et orienté automatisation
 
+> [!abstract] Objectif
+> Comprendre et exploiter Hermes Agent (Nous Research), agent IA persistant et extensible : architecture agentique, mémoire et recherche de sessions, skills auto-améliorés, tâches planifiées, délégation multi-agent, profils, MCP et plugins, passerelles multi-canaux, déploiement local, sur VPS ou dans le cloud, et défense en profondeur.
+
+Voir aussi : [[Travailler avec Claude]], [[LLM en local]], [[Outils IA]], [[Docker]], [[Sécurité avancée sous Linux]].
+
 > [!important] État du cours au 29 août 2026
 > Ce cours suit l'état du dépôt officiel `NousResearch/hermes-agent` au 29 août 2026. Hermes Agent évolue très vite : les commandes et sous-systèmes décrits ici doivent être recoupés avec `hermes --help`, `hermes doctor` et la documentation officielle lors d'un déploiement réel.
 >
@@ -11732,21 +11737,21 @@ Hermes applique plusieurs mécanismes de sécurité, notamment :
 
 Mais aucun de ces mécanismes ne rend l'agent infaillible.
 
-### 28.1. Approbation ≠ sandbox
+## 28.1. Approbation ≠ sandbox
 
 Une regex de commande dangereuse peut manquer un cas. Une commande apparemment bénigne peut appeler un script dangereux. Un programme peut avoir un effet destructif sans contenir `rm -rf`.
 
 La sandbox doit donc limiter le blast radius même si l'approbation échoue.
 
-### 28.2. Sandbox ≠ absence de secrets
+## 28.2. Sandbox ≠ absence de secrets
 
 Si nous transmettons une clé API à la sandbox, le code exécuté dans cette sandbox peut potentiellement la lire. L'isolation protège l'hôte ; elle ne protège pas automatiquement les secrets que nous avons nous-mêmes injectés.
 
-### 28.3. Session ≠ utilisateur de sécurité
+## 28.3. Session ≠ utilisateur de sécurité
 
 Une gateway avec plusieurs utilisateurs autorisés ne doit pas être assimilée à un système multi-tenant robuste simplement parce que chaque conversation a sa session. Pour des niveaux de confiance différents, nous préférons des profils, des comptes OS ou des hôtes distincts.
 
-### 28.4. Audit de supply chain
+## 28.4. Audit de supply chain
 
 Hermes expose :
 

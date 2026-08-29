@@ -30,8 +30,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Travailler avec Claude et Claude Code
+
+> [!abstract] Objectif
+> Travailler efficacement et sûrement avec Claude et Claude Code : surfaces et modèles, installation, gestion du contexte (CLAUDE.md, mémoire, règles), permissions et sandbox, skills, sous-agents et équipes d'agents, MCP, hooks et plugins, automatisation en CI/CD et avec Git, et les pratiques qui gardent l'humain responsable du résultat.
+
+Voir aussi : [[Copilot]], [[LLM]], [[LLM en local]], [[Outils IA]], [[Visual studio code]], [[git]].
 
 ## Objectifs du cours
 
@@ -56,6 +60,50 @@ metadata_verifiees: true
 > Claude Code évolue très vite. Les exemples de ce cours correspondent à l’état de la documentation officielle au **29 août 2026**. Pour les options très récentes, toujours vérifier `claude --help`, `claude doctor` et la documentation officielle.
 
 ---
+
+# Sommaire
+
+1. Situer Claude dans l’écosystème Anthropic
+2. Installer et mettre à jour Claude Code
+3. Le modèle mental : contexte, action, vérification
+4. Donner de bonnes tâches à Claude
+5. CLAUDE.md : instructions persistantes
+6. Imports, AGENTS.md et règles par chemin
+7. Auto memory
+8. Les fichiers de configuration
+9. Permissions
+10. Sandbox Bash
+11. Choisir le modèle et le niveau d’effort
+12. Skills et commandes personnalisées
+13. Subagents
+14. Background agents, worktrees et sessions parallèles
+15. Agent teams
+16. MCP : connecter Claude à des outils externes
+17. Hooks
+18. Plugins
+19. Utilisation headless et CLI programmatique
+20. Git et Claude Code
+21. Tests et vérification
+22. CI/CD
+23. Routines, tâches planifiées et boucles
+24. Web, Desktop, Remote Control et cloud
+25. IDE et navigateur
+26. Sécurité : modèle de menace
+27. Sécurité MCP, hooks et plugins
+28. Gérer les coûts et le contexte
+29. Debugger Claude Code
+30. Administration et entreprise
+31. Workflow de développement recommandé
+32. Patterns efficaces
+33. Anti-patterns
+34. Architecture d’un dépôt bien préparé pour Claude Code
+35. Exemple de configuration de projet
+36. Exercices pratiques
+37. Projet final — Agent de maintenance logicielle contrôlé
+38. Checklist quotidienne
+39. Aide au choix des mécanismes
+40. Points à retenir
+41. Références officielles
 
 # 1. Situer Claude dans l’écosystème Anthropic
 

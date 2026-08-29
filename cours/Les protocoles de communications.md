@@ -26,6 +26,80 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+# Les protocoles de communication
+
+> [!abstract] Objectif
+> Comprendre comment les machines se parlent, couche par couche : modèles OSI et TCP/IP, Ethernet et Wi-Fi, IPv4 et IPv6, routage, TCP, UDP et QUIC, DNS et DHCP, TLS, HTTP, messagerie, VPN, protocoles de l'IoT et protocoles décentralisés, avec les outils de diagnostic et les réflexes de sécurité.
+
+Voir aussi : [[HTTP]], [[IPFS]], [[Sécurité des IOT en python avec SCADA]], [[Sécurité avancée sous Linux]], [[Postfix]], [[Docker]].
+
+# Sommaire
+
+1. Qu'est-ce qu'un protocole de communication ?
+2. Qu'est-ce qu'un réseau ?
+3. Pourquoi les protocoles sont-ils organisés en couches ?
+4. Les modèles OSI et TCP/IP
+5. Encapsulation et unités de données
+6. Une courte histoire d'Internet
+7. Couche physique et liaison
+8. Wi-Fi
+9. ARP et Neighbor Discovery
+10. Le protocole IP
+11. IPv4
+12. IPv6
+13. ICMP et ICMPv6
+14. Routage IP
+15. Ports et sockets
+16. TCP
+17. UDP
+18. TCP ou UDP ?
+19. QUIC
+20. DNS
+21. DHCP
+22. TLS
+23. HTTP
+24. Courrier électronique
+25. SSH et transfert de fichiers
+26. NTP et synchronisation du temps
+27. VPN et tunnels
+28. Protocoles IoT et messagerie applicative
+29. Protocoles pair-à-pair et décentralisés
+30. Multicast, broadcast et anycast
+31. Unicast, client-serveur et publish/subscribe
+32. RPC et protocoles d'API
+33. Compression et encodage
+34. Ports courants
+35. Sécurité réseau : principes fondamentaux
+36. Attaques et problèmes fréquents
+37. Diagnostic réseau sous Linux
+38. Capture avec tcpdump
+39. Wireshark
+40. Méthode de diagnostic par couches
+41. Comment choisir un protocole ?
+42. Protocoles et conteneurs
+43. Protocoles et Kubernetes
+44. Protocoles et cloud
+45. Observabilité réseau
+46. Performance réseau
+47. Erreurs conceptuelles fréquentes
+48. TP 1 — Observer sa configuration réseau
+49. TP 2 — Comprendre le DNS
+50. TP 3 — TCP avec netcat
+51. TP 4 — UDP avec netcat
+52. TP 5 — Observer TLS
+53. TP 6 — Analyser HTTP
+54. TP 7 — Capture DNS
+55. TP 8 — Tracer un chemin
+56. TP 9 — IPv6
+57. TP 10 — Mini-service TCP en Python
+58. TP 11 — Comparer TCP et QUIC conceptuellement
+59. TP 12 — Diagnostiquer une panne complète
+60. Projet final — Construire et documenter un service réseau
+61. Checklist d'analyse d'un protocole
+62. Tableau de synthèse
+63. Glossaire
+64. Références principales
+65. Conclusion
 
 # 1. Qu'est-ce qu'un protocole de communication ?
 
@@ -290,7 +364,7 @@ Internet combine aujourd'hui notamment :
 
 # 7. Couche physique et liaison
 
-# 7.1 Ethernet
+## 7.1 Ethernet
 
 Ethernet est une famille de technologies normalisées principalement par IEEE 802.3.
 
@@ -1272,7 +1346,7 @@ OPC UA fournit un modèle industriel riche incluant :
 
 # 29. Protocoles pair-à-pair et décentralisés
 
-# 29.1 BitTorrent
+## 29.1 BitTorrent
 
 BitTorrent permet de distribuer des données entre de nombreux pairs.
 
@@ -1290,7 +1364,7 @@ Il est donc inexact de résumer BitTorrent à « les clients communiquent tous e
 
 Les hashes de pièces permettent de vérifier l'intégrité des données reçues, mais ne prouvent pas à eux seuls la légitimité ou l'innocuité du contenu.
 
-# 29.2 IPFS
+## 29.2 IPFS
 
 IPFS est traité en détail dans [[IPFS]].
 
@@ -1312,7 +1386,7 @@ La persistance nécessite qu'un ou plusieurs nœuds conservent/pinnent le conten
 
 Pour des noms mutables, on peut utiliser des mécanismes tels qu'IPNS ou DNSLink.
 
-# 29.3 Blockchain
+## 29.3 Blockchain
 
 Une blockchain n'est pas un protocole unique.
 
