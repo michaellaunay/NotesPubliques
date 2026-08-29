@@ -45,7 +45,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Apache]] — Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage.
 - [[Docker]] — Cours complet sur Docker : conteneurs, images OCI, Dockerfile, BuildKit/Buildx, Compose, réseaux, volumes, sécurité, rootless, supply chain et exploitation en production.
 - [[GNULinux]] — Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante.
-- [[InetOrgPerson]] — Cours sur la classe d'objets inetOrgPerson dans LDAP : caractéristiques, attributs, exemples d'utilisation et survol de la RFC 2798.
+- [[InetOrgPerson]] — Cours complet sur inetOrgPerson : schéma LDAP, héritage, attributs, syntaxes, nommage, contraintes, sécurité, interopérabilité et exploitation avec OpenLDAP.
 - [[Initialisation système et des services]] — Cours complet sur le démarrage GNU/Linux et la gestion moderne des services : UEFI/BIOS, GRUB 2, noyau et initramfs, PID 1, unités systemd, dépendances, targets, journal, timers, activation, cgroups, durcissement et diagnostic.
 - [[Installation Ubuntu]] — Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques.
 - [[LDAP]] — Cours complet sur LDAPv3 et OpenLDAP : DIT, DN, schémas, filtres, LDIF, TLS/SASL, ACL, mots de passe, réplication, sauvegarde, supervision et intégration applicative.
@@ -79,7 +79,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, slices et vues, tableaux multidimensionnels, statistiques et notion d'axe, puis le tirage aléatoire moderne, le broadcasting et les ruptures de NumPy 2.
 - [[Pandas]] — Cours sur la bibliothèque Pandas : structures Series et DataFrame, sélection, filtrage, valeurs manquantes, groupement, concaténation et jointures, puis les ruptures de pandas 3.0 — Copy-on-Write, type str adossé à Arrow, pd.col() et migration.
 - [[Python]] — Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage.
-- [[Regex]] — Cours sur les expressions régulières : histoire, usages actuels, fonctionnement, caractères spéciaux, capture et substitution, avec un exemple concret sous Vim.
+- [[Regex]] — Cours complet sur les expressions régulières : théorie, syntaxes, moteurs, Unicode, captures, lookarounds, substitutions, Python, JavaScript, POSIX, Vim, PCRE2, performances, ReDoS, sécurité et bonnes pratiques.
 - [[SQLAchemy]] — Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD.
 - [[ZC.Buildout]] — Cours sur zc.buildout : assemblage reproductible d'applications, parts et recipes, installation moderne, fichiers buildout.cfg, gestion et verrouillage des versions, héritage de configurations, développement local, commandes de diagnostic et place de Buildout dans l'écosystème Python actuel.
 
@@ -95,10 +95,10 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Génie logiciel
 
-- [[Agile Unified Process (AUP)]] — Présentation de l'Agile Unified Process : origine, principes, disciplines, phases, avantages et limites de cette version allégée du Rational Unified Process.
+- [[Agile Unified Process (AUP)]] — Cours complet sur l'Agile Unified Process (AUP) : origines, phases, disciplines, développement itératif piloté par les risques, artefacts légers, architecture, tests, déploiement, adaptation moderne avec DevOps et comparaison avec Scrum, Kanban, XP, RUP et Disciplined Agile.
 - [[Architecture des logiciels]] — Cours complet et moderne d'architecture logicielle : décisions et compromis, attributs de qualité, styles architecturaux, modularité, DDD, systèmes distribués, résilience, sécurité, observabilité, documentation C4/ADR et évolution des systèmes.
 - [[Design patterns]] — Cours complet sur les patrons de conception : patterns GoF, idiomes Python modernes, patterns d'architecture et d'entreprise, événements, résilience, concurrence, anti-patterns et méthode de choix pragmatique.
-- [[Les méthodes agiles]] — Cours sur les méthodes agiles : historique et Manifeste Agile, comparaison avec les méthodes traditionnelles, puis Scrum, XP, Kanban, DSDM, Crystal, FDD et Lean Software Development.
+- [[Les méthodes agiles]] — Cours complet et actualisé sur l'agilité en développement logiciel : Manifeste Agile, Scrum 2020, XP, Kanban 2025, Lean, discovery produit, estimation et prévision, métriques de flux et DORA, pratiques d'ingénierie, DevOps, leadership, mise à l'échelle, IA et anti-patterns.
 - [[Open Spec]] — Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA.
 - [[Outils de modélisation textuels]] — Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres.
 - [[Principes SOLID en COO]] — Fiche sur les cinq principes SOLID de conception orientée objet : responsabilité unique, ouvert/fermé, substitution de Liskov, ségrégation des interfaces et inversion des dépendances.
@@ -128,7 +128,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Histoire des langages de programmation]] — Cours d'histoire des langages de programmation : concepts fondamentaux, paradigmes, grandes familles de langages, évolution des années 1950 à 2026, runtimes, systèmes de types, WebAssembly, sûreté mémoire et tendances contemporaines.
 - [[Historique Linux]] — Fiche chronologique sur les racines d'UNIX, la naissance de la Free Software Foundation, la GPL et le projet GNU.
-- [[Informatique]] — Carte mentale de présentation générale de l'informatique : histoire du matériel, génie logiciel, cycle en V et architecture de von Neumann.
+- [[Informatique]] — Cours d'introduction générale à l'informatique : représentation de l'information, histoire, matériel, systèmes, réseaux, programmation, algorithmique, données, génie logiciel, sécurité, IA et enjeux contemporains.
 - [[Parsing Expression Grammars PEG]] — Fiche sur les Parsing Expression Grammars : non-terminaux, terminaux, règles de production, opérateurs de séquence, choix, répétition et prédicats, et gestion de la récursivité.
 
 ## Droit et conformité
@@ -138,9 +138,9 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Mathématiques et logique
 
-- [[Logique]] — Cours de logique appliquée à l'informatique : logique propositionnelle, opérations de base, tautologies et inférence, puis logique des prédicats du premier ordre.
+- [[Logique]] — Cours complet de logique appliquée à l’informatique : logique propositionnelle et du premier ordre, méthodes de preuve, SAT/SMT, logique temporelle et modale, logique floue, programmation logique, vérification formelle et assistants de preuve.
 - [[notions d algèbre linéaire et de dérivation]] — Prérequis mathématiques du deep learning : vecteurs, matrices et produit matriciel, formes et diffusion, dérivées partielles et gradient, règle de la chaîne, jacobienne — et ce que chaque notion devient dans le moteur Autograd de PyTorch.
-- [[Systèmes numériques]] — Cours sur les systèmes de numération : analyse des systèmes décimal et sexagésimal, critères d'un « meilleur » système et étude du bibi-binaire de Boby Lapointe.
+- [[Systèmes numériques]] — Cours complet sur les systèmes de numération : bases positionnelles, conversions, calcul en binaire/octal/hexadécimal, entiers signés, virgule flottante IEEE 754, bases alternatives et système bibi-binaire de Boby Lapointe.
 
 ## Langues et linguistique
 
