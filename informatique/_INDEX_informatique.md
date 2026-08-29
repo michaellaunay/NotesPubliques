@@ -28,54 +28,51 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Intelligence artificielle
 
-- [[Copilot]] — Procédure d'installation et d'utilisation de l'extension GitHub Copilot dans Visual Studio Code.
+- [[Copilot]] — Fiche de situation sur GitHub Copilot en 2026 : composants (complétion, chat, mode agent, agent cloud, CLI, revue de code), offres et facturation en crédits IA, activation dans VS Code, modèles et clés personnelles, personnalisation par fichiers d'instructions, bonnes pratiques et alternatives ; renvoie au cours Visual Studio Code pour le détail.
 - [[Forge de Mistral]] — Note de veille sur Forge, l'orientation annoncée par Mistral AI en mars 2026 pour l'usage de l'IA en entreprise.
-- [[IA pour coder]] — Recensement d'outils d'IA pour la génération de code et de commentaires, dont Sketch2Code et Copilot.
-- [[IA pour créer des Images]] — Liste de services de génération d'images par IA : DALL·E, MidJourney et autres.
-- [[IAs]] — Notes et références critiques sur les IA génératives et l'évaluation de leur pertinence.
-- [[Liens LLM]] — Notes opératoires pour récupérer et faire tourner des modèles GGUF en local avec llama.cpp.
+- [[LLM en local]] — Procédure pour faire tourner un grand modèle de langage sur sa propre machine en 2026 : vocabulaire (poids ouverts, quantification, GGUF, contexte), dimensionnement mémoire, choix d'un modèle et de sa licence, Ollama, llama.cpp, LM Studio et vLLM, API compatible OpenAI, sorties structurées, branchement d'un client ou d'un RAG, mesure, sécurité et dépannage.
 - [[NotebookLM]] — Fiche sur NotebookLM, renommé Gemini Notebook en juillet 2026 : un RAG géré par Google, strictement ancré sur les documents fournis et citant ses sources, avec ses formats de restitution, ses quotas, ses limites structurelles et ce qu'il implique en matière de confidentialité.
+- [[Outils IA]] — Panorama daté (août 2026) des outils d'IA générative par besoin — assistants, code, images, vidéo, voix et musique, transcription, recherche documentaire, agents, exécution locale — avec le sort des outils listés en 2023, les points de vigilance (droit d'auteur, AI Act, détecteurs, coût, données) et des renvois vers les notes détaillées du coffre.
 - [[Outils pour préparer le RAG]] — Recensement d'outils de préparation de corpus pour le RAG, notamment MarkItDown et FireCrawl.
 
 ## Numérisation et documentation
 
 - [[Chaîne complète de numérisation OCR Markdown traduction RAG local]] — Conception d'une chaîne complète et locale de numérisation, OCR, conversion Markdown, traduction et indexation RAG pour constituer une bibliothèque personnelle interrogeable.
-- [[LibGen]] — Fiche sur LibGen et scripts d'interrogation des API data.bnf.fr et LibGen pour déterminer le statut d'une œuvre.
-- [[National Emergency Library]] — Analyse du projet National Emergency Library lancé par Internet Archive en 2020 : mécanisme de prêt, statistiques et questions de droit d'auteur.
+- [[National Emergency Library]] — Fiche sur la National Emergency Library d'Internet Archive (2020) et ses suites : principe du prêt numérique contrôlé, mécanisme réel de prêt et verrous, chronologie complète du procès Hachette v. Internet Archive jusqu'au retrait de 500 000 titres (2024), portée en Europe et en France (PNB), comparaison avec le prêt sous licence, et enseignements pour les corpus d'IA.
 - [[Recadrer les images des livres]] — Procédure et script OpenCV pour redresser, recadrer et recentrer les pages de livres scannés avant assemblage en PDF.
 
 ## Systèmes et administration
 
-- [[F-Droid et Termux]] — Présentation de F-Droid et de Termux, et procédure d'installation d'un environnement de développement sur Android, y compris VS Code.
+- [[F-Droid et Termux]] — Procédure pour installer un environnement de développement Linux sur Android en 2026 : F-Droid (magasin libre, dépôts, alternatives), Termux (sources officielles F-Droid et GitHub, différences de la version Google Play, versions 0.118.3 et 0.119 bêta), installation pas à pas, premiers réglages (pkg, stockage, SSH, Python, git), dépôt TUR et code-server pour VS Code, limites d'Android 12 à 16 et vérification des développeurs annoncée par Google.
 
 ## Réseaux et sécurité
 
 - [[Athentification web]] — Note de renvoi vers les fiches SAML et OAuth/OpenID.
-- [[Chiffrement côté navigateur]] — Piste de chiffrement côté navigateur pour transmettre une pièce d'identité sans exposer son contenu au service qui la vérifie.
+- [[Chiffrement côté navigateur]] — Idée de chiffrement de bout en bout côté navigateur pour transmettre une pièce d'identité à des vérificateurs sans l'exposer au portail : modèle de menace, briques de 2026 (Web Crypto API, age, libsodium, OpenPGP.js), architecture hybride multi-destinataires avec exemples testés, limites (XSS, perte de clés, métadonnées), cadre RGPD et alternative par attestations d'identité (portefeuille européen).
 - [[Crash github et publication de clé]] — Retour d'expérience sur une migration de serveur ratée ayant conduit à la publication accidentelle d'une clé sur GitHub.
 - [[SAML]] — Fiche sur le protocole SAML : redirections navigateur, chiffrement des assertions et échange de clés entre fournisseur d'identité et fournisseur de service.
 
 ## Programmation
 
-- [[AirFlow]] — Fiche sur Apache Airflow, orchestrateur de workflows open source écrit en Python : caractéristiques, concepts de base et cas d'usage.
-- [[PyPdf]] — Comparaison de bibliothèques Python d'extraction de texte et de tableaux depuis des PDF, avec exemples d'usage de pypdf.
-- [[Python GMail]] — Exemple complet de script Python se connectant à Gmail pour rechercher, récupérer et archiver des messages selon leur objet.
+- [[AirFlow]] — Fiche sur Apache Airflow 3 (2026) : ce qu'orchestre Airflow et quand l'employer, ce qui a changé avec la version 3 (Task SDK, API d'exécution, interface React, versionnage des Dags, actifs, ordonnancement événementiel), concepts, architecture, installation, exemple de Dag TaskFlow exécuté, bonnes pratiques et migration depuis Airflow 2.
+- [[PyPdf]] — Extraire du texte, des métadonnées, des tableaux et des structures JSON depuis des PDF en Python en 2026 : pypdf (successeur de PyPDF2), pdfplumber, PyMuPDF, pypdfium2, docling et marker ; distinguer PDF natif et PDF scanné ; exemples testés, pièges et licences.
+- [[Python GMail]] — Procédure pour lire, archiver et envoyer des courriels Gmail depuis Python en 2026 : mot de passe d'application avec IMAP/SMTP ou OAuth 2.0 avec l'API Gmail, recherche par objet et par date, sauvegarde des messages et des pièces jointes, gestion des secrets et pièges courants.
 
 ## Développement web
 
-- [[Migration Plone 5.2 python 2.7 vers 3]] — Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB et la migration de Plone 5.2 de Python 2.7 vers Python 3.
+- [[Migration Plone 5.2 python 2.7 vers 3]] — Traduction et adaptation de la documentation de la communauté Plone sur le débogage de la ZODB (zodbverify, fsoids, objets cassés, POSKeyError) et la migration de Plone 5.2 de Python 2.7 vers Python 3, complétée en 2026 par l'état des versions (fin de vie de Plone 5.2, Plone 6.2), les outils courants et le chemin de migration recommandé vers Plone 6.
 - [[Ressources pour le web]] — Liste de ressources libres pour le web : banques de logos, illustrations et autres outils.
-- [[Solutions de VR]] — Liste de bibliothèques web pour la réalité virtuelle : three.js et A-Frame.
+- [[Solutions de VR]] — Panorama daté (août 2026) des solutions de réalité virtuelle et augmentée sur le web : standard WebXR et navigateurs compatibles, moteurs three.js, Babylon.js, A-Frame et PlayCanvas, mondes sociaux (Hubs Community Edition, Hyperfy, Voxels), formats glTF et USDZ, casques, et sort des liens transmis en 2023.
 
 ## Génie logiciel
 
 - [[DevOps Project Manager]] — Courte fiche sur le rôle de DevOps Project Manager et son périmètre.
 - [[Présentation Nova-Ideo]] — Présentation de Nova-Ideo et de la thèse d'Amen Souissi sur la modélisation centrée sur les processus métier.
-- [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]] — Panorama de l'ingénierie dirigée par les modèles : UML, MDA, MOF, QVT, Ecore et EMF, et les outils PlantUML, Mermaid et PyEcore.
-- [[UML pour Visual code]] — Étude de faisabilité d'un modeleur UML sous forme d'extension Visual Studio Code.
+- [[UML pour Visual code]] — Procédure pour modéliser en UML dans Visual Studio Code en 2026 sans écrire d'extension : diagrammes textuels PlantUML et Mermaid avec leurs extensions et leur rendu (Java, Graphviz ou serveur PlantUML), diagrammes dessinés avec Draw.io et Excalidraw, génération de diagrammes de classes depuis du code Python avec pyreverse (exemple exécuté), et passage au modèle avec pyecore.
 
 ## Données et web sémantique
 
+- [[LibGen]] — Fiche sur Library Genesis (LibGen) et son statut en 2026 — procès des éditeurs, saisies de domaines, rôle dans les litiges sur l'entraînement des IA — puis reformulation de l'exercice de 2023 « part d'œuvres françaises sous droits » en exercice de données ouvertes : règles du domaine public en France, requêtes SPARQL vérifiées sur data.bnf.fr et Wikidata, script Python.
 - [[SPARQL et RDF]] — Présentation de RDF comme modèle de graphe du W3C et de SPARQL comme langage d'interrogation associé.
 
 ## Histoire et matériel informatique
@@ -86,7 +83,6 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Langues et linguistique
 
 - [[Analyse sémantique]] — Transcription d'un échange avec ChatGPT sur l'analyse sémantique.
-- [[Internationalisation]] — Cours sur la localisation et l'internationalisation des applications : définitions, concepts clés et fonctionnement de gettext.
 
 ## Environnement, énergie et vivant
 

@@ -28,8 +28,9 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Intelligence artificielle
 
+- [[DeepSeek Harness]] — Cours complet sur DeepSeek Harness (dsh) : notion de harness agentique, architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, automatisation, sécurité et développement de plugins.
 - [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]] — Cours-atelier sur la construction d'une chaîne locale de numérisation : comparaison d'olmOCR 2 et d'Infinity-Parser2-Pro, architecture du pipeline, installation, backends d'inférence, ingestion des PDF et production d'un corpus exploitable.
-- [[Hermes Agent]] — Cours approfondi sur Hermes Agent, agent IA persistant et extensible : mémoire persistante, recherche dans les conversations, création de skills, tâches planifiées, sous-agents isolés et compatibilité multi-fournisseurs.
+- [[Hermes Agent]] — Cours approfondi et actualisé sur Hermes Agent (Nous Research) : architecture agentique, mémoire et recherche de sessions, skills auto-améliorés, cron, délégation multi-agent, profils, MCP, plugins, gateways multi-canaux, backends d'exécution, sécurité et migration OpenClaw.
 - [[Les CNN et RNN]] — Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences.
 - [[Les RAGs]] — Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.
 - [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
@@ -37,7 +38,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
 - [[Pytorch]] — Cours complet de PyTorch 2.x : tenseurs, appareils de calcul, autograd, nn.Module, fonctions de perte, optimisation, Dataset et DataLoader, boucles d'entraînement, validation, checkpoints, CNN, transfert d'apprentissage, AMP, torch.compile, profilage, entraînement distribué et export.
 - [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
-- [[Travailler avec Claude]] — Formation à Claude Code en cinq couches : écosystème Anthropic, différence avec claude.ai, workflow agentique, système de permissions, modes d'opération et mémoire projet CLAUDE.md.
+- [[Travailler avec Claude]] — Cours complet sur Claude et Claude Code : surfaces, installation, contexte, CLAUDE.md, auto memory, règles, permissions, sandbox, modèles, skills, subagents, agent teams, MCP, hooks, plugins, automatisation, CI/CD, Git, sécurité et exploitation en équipe.
 
 ## Systèmes et administration
 
@@ -47,7 +48,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[InetOrgPerson]] — Cours sur la classe d'objets inetOrgPerson dans LDAP : caractéristiques, attributs, exemples d'utilisation et survol de la RFC 2798.
 - [[Initialisation système et des services]] — Cours complet sur le démarrage GNU/Linux et la gestion moderne des services : UEFI/BIOS, GRUB 2, noyau et initramfs, PID 1, unités systemd, dépendances, targets, journal, timers, activation, cgroups, durcissement et diagnostic.
 - [[Installation Ubuntu]] — Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques.
-- [[LDAP]] — Cours sur LDAP et OpenLDAP : structure de l'annuaire, opérations, format LDIF, classes d'objets et RFC de référence.
+- [[LDAP]] — Cours complet sur LDAPv3 et OpenLDAP : DIT, DN, schémas, filtres, LDIF, TLS/SASL, ACL, mots de passe, réplication, sauvegarde, supervision et intégration applicative.
 - [[Les distributions Linux]] — Fiche définissant la notion de distribution GNU/Linux et présentant les principales familles de distributions.
 - [[Les namespaces Linux]] — Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d'un processus, différence avec la virtualisation classique et étude de chaque type de namespace.
 - [[Postfix]] — Cours sur le serveur de courrier Postfix : rôles de MTA, MDA et MUA, formats de boîtes aux lettres Mbox et Maildir, protocoles IMAP et POP3, configuration et sécurisation.
@@ -60,7 +61,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[HTTP]] — Cours complet sur HTTP : sémantique, HTTP/1.1, HTTP/2, HTTP/3 et QUIC, méthodes, statuts, en-têtes, cache, cookies, authentification, HTTPS/TLS, CORS, sécurité, API, performances et diagnostic.
 - [[Identité numérique européenne]] — Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS.
 - [[IPFS]] — Cours complet sur IPFS : adressage par contenu, CID, Merkle DAG, UnixFS et IPLD, réseau libp2p/DHT/Bitswap, installation et exploitation d'un nœud Kubo, épinglage, MFS, CAR, IPNS et DNSLink, passerelles vérifiables, réseaux privés et clusters, sécurité, écosystème, limites et travaux pratiques.
-- [[Les protocoles de communications]] — Cours d'introduction aux réseaux : notion de protocole, histoire d'ARPANET et d'Internet, adresses MAC et IP, principaux protocoles et ports.
+- [[Les protocoles de communications]] — Cours complet sur les protocoles réseau : modèles OSI/TCP-IP, Ethernet et Wi-Fi, IPv4/IPv6, routage, TCP/UDP/QUIC, DNS, DHCP, TLS, HTTP, messagerie, VPN, IoT, protocoles décentralisés, diagnostic et sécurité.
 - [[OAuth OpenID]] — Cours complet sur OAuth 2.0, l'évolution OAuth 2.1, OpenID Connect, JWT/JOSE, PKCE, DPoP, PAR/JAR, les architectures BFF et l'intégration moderne avec Keycloak et Pyramid.
 - [[Sécurité avancée sous Linux]] — Cours avancé et pratique de sécurisation d'un système GNU/Linux : modèle de menace, permissions et capabilities, durcissement du noyau et de systemd, SELinux/AppArmor/Landlock/seccomp, SSH et réseau, LUKS2, journalisation et audit, réponse à incident, sécurité des conteneurs, chaîne d'approvisionnement et usages de l'IA.
 - [[Sécurité avec Python]] — Cours de sécurité applicative en Python appuyé sur un projet Pyramid : authentification, sessions, cryptographie, injections SQL, XSS et CSRF, analyse de journaux, puis les vulnérabilités propres au langage (pickle, eval, sous-processus), la gestion des secrets et la sécurité de la chaîne d'approvisionnement.
@@ -72,7 +73,8 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Anaconda]] — Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi.
 - [[C++]] — Cours complet de C++ moderne : fondamentaux, RAII, STL, templates, concurrence, C++20/C++23, aperçu C++26, CMake, tests, sécurité mémoire et projets.
 - [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé, GPU et TPU, lien avec Google Cloud Platform, puis l'intégration de Gemini et du Data Science Agent, le modèle des unités de calcul, les règles de confidentialité et les alternatives.
-- [[Jupyter Notebook et Google Colab]] — Cours retraçant l'histoire d'IPython et de Jupyter, l'architecture des notebooks, leur rôle central en science des données et en enseignement, ainsi que leurs limites.
+- [[Internationalisation]] — Cours sur l'internationalisation et la localisation des applications en Python (2026) : concepts et formats, gettext (marquage, pluriels, contexte, extraction, catalogues PO/MO), Babel (catalogues et formatage CLDR des dates, nombres, monnaies), intégration complète dans Pyramid 2.1 avec Chameleon (TranslationStringFactory, localizer, négociation de langue, extraction avec pybabel et lingua), bonnes pratiques et outillage ; tous les exemples ont été exécutés.
+- [[Jupyter Notebook et Google Colab]] — Cours complet sur Jupyter, JupyterLab et Google Colab : architecture des notebooks, kernels, environnements, reproductibilité, sécurité, collaboration, GPU/TPU, Git et bonnes pratiques.
 - [[Mathplotlib]] — Astuce pour produire des graphiques Matplotlib au format vectoriel SVG, dans un script comme dans un notebook.
 - [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, slices et vues, tableaux multidimensionnels, statistiques et notion d'axe, puis le tirage aléatoire moderne, le broadcasting et les ruptures de NumPy 2.
 - [[Pandas]] — Cours sur la bibliothèque Pandas : structures Series et DataFrame, sélection, filtrage, valeurs manquantes, groupement, concaténation et jointures, puis les ruptures de pandas 3.0 — Copy-on-Write, type str adossé à Arrow, pd.col() et migration.
@@ -83,7 +85,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Développement web
 
-- [[CSS]] — Cours de CSS : historique, modes d'intégration, syntaxe, unités de mesure, sélecteurs, mise en forme et mise en page moderne.
+- [[CSS]] — Cours complet de CSS moderne : cascade, sélecteurs, responsive design, Flexbox, Grid, container queries, nesting, scope, couleurs modernes, animations, accessibilité, performance et architecture CSS.
 - [[Deform]] — Cours moderne sur Deform 3 sous Pyramid : schémas Colander, widgets, validation, rendu, CSRF, fichiers, formulaires dynamiques et personnalisation.
 - [[HTML]] — Cours complet de HTML moderne : structure, sémantique, formulaires, médias, accessibilité, SEO, performance, sécurité et fonctionnalités natives du HTML Living Standard.
 - [[Javascript]] — Cours complet de JavaScript moderne : ECMAScript, types, fonctions, objets, modules, asynchronisme, DOM, Web APIs, Node.js, tests, sécurité, performance et pratiques de développement actuelles.
@@ -94,18 +96,19 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Génie logiciel
 
 - [[Agile Unified Process (AUP)]] — Présentation de l'Agile Unified Process : origine, principes, disciplines, phases, avantages et limites de cette version allégée du Rational Unified Process.
-- [[Architecture des logiciels]] — Cours complet d'architecture logicielle : définitions, attributs de qualité, décisions et vues architecturales, styles d'architecture (monolithique, en couches, microservices, etc.) et documentation.
-- [[Design patterns]] — Cours sur les patrons de conception : définition et intérêt, catégorisation (création, structure, comportement) et étude détaillée des principaux patterns.
+- [[Architecture des logiciels]] — Cours complet et moderne d'architecture logicielle : décisions et compromis, attributs de qualité, styles architecturaux, modularité, DDD, systèmes distribués, résilience, sécurité, observabilité, documentation C4/ADR et évolution des systèmes.
+- [[Design patterns]] — Cours complet sur les patrons de conception : patterns GoF, idiomes Python modernes, patterns d'architecture et d'entreprise, événements, résilience, concurrence, anti-patterns et méthode de choix pragmatique.
 - [[Les méthodes agiles]] — Cours sur les méthodes agiles : historique et Manifeste Agile, comparaison avec les méthodes traditionnelles, puis Scrum, XP, Kanban, DSDM, Crystal, FDD et Lean Software Development.
 - [[Open Spec]] — Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA.
 - [[Outils de modélisation textuels]] — Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres.
 - [[Principes SOLID en COO]] — Fiche sur les cinq principes SOLID de conception orientée objet : responsabilité unique, ouvert/fermé, substitution de Liskov, ségrégation des interfaces et inversion des dépendances.
 - [[Projet Encadré]] — Sujet de projet encadré : conception et architecture d'une bibliothèque numérique décentralisée, réalisée en binômes hétérogènes avec évaluation croisée entre équipes.
-- [[TOGAF]] — Cours sur TOGAF : fondements de l'architecture d'entreprise, structure du cadre, méthode ADM, artefacts, livrables et gouvernance, mise en pratique et certifications.
+- [[TOGAF]] — Cours complet sur le TOGAF Standard, 10th Edition : architecture d’entreprise, ADM, gestion des exigences, contenu et repository d’architecture, gouvernance, capacités métier, roadmaps, pratiques Agile/produit/cloud, ArchiMate et certifications.
+- [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]] — Cours d'ingénierie dirigée par les modèles (2026) : UML 2.5.1 et SysML v2, MDA et les quatre niveaux MOF, Ecore et EMF, transformations de modèles (QVT, ATL, Acceleo), grammaires et langages dédiés (BNF, EBNF, PEG, Xtext, Langium, textX), sémantiques formelles, pratique complète avec pyecore et pyecoregen (métamodèle, instances, XMI, export PlantUML, génération de code), diagrammes textuels PlantUML et Mermaid ; tous les exemples ont été exécutés.
 
 ## Données et web sémantique
 
-- [[Bases de données relationnelles]] — Cours sur le modèle relationnel : modélisation des données, langage de manipulation SQL, vues, index, contraintes, transactions et isolation, sécurité et droits d'accès.
+- [[Bases de données relationnelles]] — Cours complet sur les bases de données relationnelles : modèle relationnel, SQL moderne, modélisation, normalisation, contraintes, transactions, concurrence, index, optimisation, sécurité, migrations, sauvegarde et exploitation.
 - [[Data Mining en Python]] — Cours de fouille de données en Python : concepts et processus, préparation et nettoyage, fouille de texte avec NLTK et spaCy, techniques et modèles, évaluation, puis la fuite de données, les chaînes scikit-learn, l'écosystème Arrow et le cadre juridique RGPD et règlement IA.
 - [[SOLID]] — Cours complet sur Solid : Pods, WebID, RDF/Linked Data, protocole HTTP, Solid-OIDC, WAC/ACP, Community Solid Server, développement d'applications, notifications, sécurité et interopérabilité.
 
@@ -113,7 +116,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Excalidraw]] — Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes.
 - [[git]] — Cours complet sur Git : modèle de données, workflow quotidien, branches, remotes, restauration, réécriture d'historique, worktrees, Git LFS, Git Xet/Hugging Face, sécurité, collaboration et administration.
-- [[Markdown]] — Cours sur Markdown : formatage de base, apports des variantes GitHub et Obsidian, extensions, écriture de formules mathématiques et syntaxe étendue.
+- [[Markdown]] — Cours complet sur Markdown : CommonMark, GitHub Flavored Markdown, extensions GitHub et Obsidian, portabilité, accessibilité, sécurité, mathématiques, diagrammes et automatisation.
 - [[Mermaid pour Obsidian]] — Cours complet sur Mermaid dans Obsidian : syntaxe, flowcharts, séquences, classes, états, ER, Gantt, GitGraph, mindmaps, graphiques récents, thèmes, accessibilité, liens internes, sécurité, compatibilité de versions et bonnes pratiques.
 - [[MindMap sous Obsidian]] — Procédure d'installation et d'utilisation du greffon de cartes mentales dans Obsidian, avec quelques astuces.
 - [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] — Cours en trente chapitres et trois annexes sur la construction d'un système d'information personnel souverain : vault Obsidian, modèle de données par frontmatter, schéma et modèle métier, graphe sémantique, Git, puis couche agentique (constitution, domaines, skills, pipelines, mémoire, sécurité, tests, observabilité). L'annexe B traite l'application du modèle à un coffre existant, l'annexe C fournit une implémentation de référence testée, installée dans scripts/osia.
