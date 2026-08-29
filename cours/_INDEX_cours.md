@@ -33,7 +33,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Les CNN et RNN]] — Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences.
 - [[Les RAGs]] — Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.
 - [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
-- [[cours/LLM|LLM]] — Cours sur les grands modèles de langage : place dans l'apprentissage profond, arbre généalogique des LLM, origines et évolutions, capacités, applications, fondations théoriques et défis.
+- [[cours/LLM|LLM]] — Cours complet sur les grands modèles de langage : histoire, tokenisation, Transformers, pré-entraînement et post-entraînement, prompting, RAG, outils et agents, raisonnement, multimodalité, évaluation, sécurité, déploiement et choix d'un modèle.
 - [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
 - [[Pytorch]] — Proposition de plan de cours « Du tenseur au deep learning » avec PyTorch, et rappel des fondamentaux à maîtriser avant de coder.
 - [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
@@ -84,11 +84,11 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Développement web
 
 - [[CSS]] — Cours de CSS : historique, modes d'intégration, syntaxe, unités de mesure, sélecteurs, mise en forme et mise en page moderne.
-- [[Deform]] — Cours sur la bibliothèque de formulaires Deform sous Pyramid : schémas Colander, widgets, validation, rendu et personnalisation.
+- [[Deform]] — Cours moderne sur Deform 3 sous Pyramid : schémas Colander, widgets, validation, rendu, CSRF, fichiers, formulaires dynamiques et personnalisation.
 - [[HTML]] — Cours d'introduction au HTML : bases du langage, organisation et sémantique du contenu, liens, images et ressources, bonnes pratiques et projet final.
 - [[Javascript]] — Cours d'introduction à JavaScript : origines, rôle dans la pile technologique, historique d'ECMAScript, variables, types, opérateurs et concepts fondamentaux.
 - [[Pyramid]] — Cours sur le framework web Pyramid : installation et structure d'une application, routes et vues, templates Chameleon, formulaires Deform, persistance et sécurité.
-- [[Selenium]] — Cours sur Selenium : intérêt de l'automatisation du web, installation et configuration des WebDriver, éléments de base, méthodes de WebDriver et WebElement.
+- [[Selenium]] — Cours complet sur Selenium 4 avec Python : WebDriver, Selenium Manager, sélecteurs, interactions, attentes, fenêtres et iframes, actions avancées, Page Object Model, pytest, Grid 4, WebDriver BiDi et bonnes pratiques.
 - [[Tal et Metal]] — Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope.
 
 ## Génie logiciel
@@ -148,7 +148,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Économie et entreprise
 
-- [[SEO]] — Cours sur le référencement naturel : fonctionnement des moteurs de recherche, indexation et algorithmes, optimisation on-page (titres, méta-descriptions, URL, contenu) et notions d'autorité.
+- [[SEO]] — Cours complet sur le référencement naturel moderne : fonctionnement des moteurs de recherche, stratégie éditoriale, SEO on-page et technique, indexation, performances, données structurées, popularité, mesure et visibilité dans les fonctionnalités de recherche générative.
 
 ## Management et productivité
 
