@@ -27,8 +27,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Expressions régulières — Regex
+
+> [!abstract] Objectif
+> Écrire, lire et tester des expressions régulières en connaissant le moteur derrière (Python `re`, ECMAScript, PCRE2, RE2) : classes, quantificateurs, groupes, ancres, assertions, quantificateurs possessifs et groupes atomiques, Unicode, performances et retours en arrière catastrophiques, sécurité, et usage en Python, JavaScript et en ligne de commande.
+
+Voir aussi : [[Python]], [[Javascript]], [[Sécurité avec Python]], [[git]].
 
 Une **expression régulière** (_regular expression_, souvent abrégée **regex** ou **regexp**) décrit un motif de texte.
 
@@ -76,6 +80,63 @@ Ce cours distingue donc systématiquement :
 - savoir quand **ne pas utiliser une regex**.
 
 ---
+
+# Sommaire
+
+1. Histoire et fondements
+2. Une regex n'a de sens qu'avec son moteur
+3. Le bon modèle mental : chercher un motif
+4. Littéraux et échappement
+5. Le caractère point `.`
+6. Classes de caractères
+7. Ancres et frontières
+8. Quantificateurs
+9. Alternance
+10. Groupes
+11. Backreferences
+12. Lookarounds
+13. Groupes atomiques et maîtrise du backtracking
+14. Flags et modes
+15. Unicode : le piège des « caractères »
+16. Substitution
+17. Découpage et extraction
+18. Python 3.14 et le module `re`
+19. JavaScript moderne
+20. POSIX, GNU grep, sed et awk
+21. Vim et Neovim
+22. PCRE2
+23. RE2 et les moteurs à temps linéaire
+24. Comment fonctionne un moteur à backtracking ?
+25. ReDoS — Regular Expression Denial of Service
+26. Regex et validation
+27. Quand ne pas utiliser une regex ?
+28. Méthode de conception d'une regex
+29. Regex lisibles et maintenables
+30. Tests automatisés
+31. Debugging
+32. Exemples pratiques
+33. Regex, sécurité et données sensibles
+34. Portabilité entre moteurs
+35. Anti-patterns
+36. Choisir entre regex et code explicite
+37. TP 1 — Bases
+38. TP 2 — Classes et ancres
+39. TP 3 — Extraction de logs
+40. TP 4 — Substitution
+41. TP 5 — Python et groupes nommés
+42. TP 6 — Unicode
+43. TP 7 — Lookarounds
+44. TP 8 — ReDoS
+45. TP 9 — GNU grep
+46. TP 10 — JavaScript moderne
+47. TP 11 — Regex vs parseur
+48. TP 12 — Audit d'une regex de production
+49. Projet final — Mini-outil d'analyse de logs
+50. Checklist d'une regex de production
+51. Aide-mémoire
+52. Glossaire
+53. Références
+54. Conclusion
 
 # 1. Histoire et fondements
 

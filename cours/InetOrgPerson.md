@@ -31,6 +31,11 @@ metadata_verifiees: true
 ---
 # inetOrgPerson dans LDAP
 
+> [!abstract] Objectif
+> Maîtriser la classe d'objet inetOrgPerson (RFC 2798) et son héritage person / organizationalPerson pour représenter des personnes dans un annuaire LDAP : attributs et schémas, conception d'entrées et de DIT, LDIF, gestion des mots de passe et des groupes, intégration avec OpenLDAP, Keycloak et les applications, et bonnes pratiques d'identité.
+
+Voir aussi : [[LDAP]], [[OAuth OpenID]], [[Pyramid]], [[Règlement Général sur la Protection des Données (RGPD)]].
+
 ## Objectifs du cours
 
 À la fin de ce cours, on doit être capable de :
@@ -63,6 +68,60 @@ Ce cours suppose les bases vues dans [[LDAP]] :
 - filtres de recherche.
 
 ---
+
+# Sommaire
+
+1. Positionnement et normes
+2. Rappels : comment fonctionne un schéma LDAP ?
+3. Héritage de `inetOrgPerson`
+4. Les attributs obligatoires
+5. Attributs d'identité et d'affichage
+6. Attributs organisationnels
+7. Adresses électroniques et URI
+8. Téléphone et localisation
+9. Photos et données binaires
+10. Langue préférée
+11. Certificats et attributs cryptographiques
+12. Choisir le DN et le RDN
+13. Entrée minimale
+14. Entrée complète réaliste
+15. Ajouter une entrée avec OpenLDAP
+16. Rechercher des personnes
+17. Modifier une entrée
+18. Unicité : ce que le schéma ne fait pas
+19. Indexation
+20. Matching rules et pièges de comparaison
+21. Filtres LDAP et sécurité
+22. Contrôle d'accès et confidentialité
+23. `inetOrgPerson` et authentification
+24. `inetOrgPerson` et comptes Unix
+25. Groupes et autorisations
+26. Provisionnement et cycle de vie
+27. Modélisation d'un schéma métier complémentaire
+28. Introspection du schéma
+29. Python avec `ldap3`
+30. Validation applicative
+31. Interopérabilité
+32. Migration d'un ancien annuaire
+33. Anti-patterns
+34. Modèle recommandé pour une organisation
+35. TP 1 — Lire la définition du schéma
+36. TP 2 — Créer une personne minimale
+37. TP 3 — Attribut mono ou multivalué
+38. TP 4 — Unicité de `uid`
+39. TP 5 — Recherches et index
+40. TP 6 — `manager` et références DN
+41. TP 7 — Confidentialité
+42. TP 8 — Intégration OIDC
+43. TP 9 — Client Python sécurisé
+44. TP 10 — Schéma métier auxiliaire
+45. TP 11 — Audit d'un ancien annuaire
+46. TP 12 — Cycle de vie complet
+47. Projet final — Concevoir un annuaire d'identités
+48. Checklist de conception
+49. Aide-mémoire
+50. Glossaire
+51. Références
 
 # 1. Positionnement et normes
 

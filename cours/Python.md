@@ -887,7 +887,7 @@ L'emboîtement de listes en compréhension (ou nested list comprehension en angl
 Par exemple, supposons que nous ayons une liste de listes, et que nous voulions aplatir cette structure en une seule liste. Voici comment nous pourrions le faire avec une liste en compréhension imbriquée :
 
 ```python
-listes = [,, [7, 8, 9]]
+listes = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 aplati = [x for sous_liste in listes for x in sous_liste]
 print(aplati)  # Affiche
 ```
@@ -905,7 +905,7 @@ Nous pouvons également utiliser des listes en compréhension imbriquées pour c
 
 ```python
 matrice = [[i * j for j in range(3)] for i in range(3)]
-print(matrice)  # Affiche [,, [0, 2, 4]]
+print(matrice)  # Affiche [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
 ```
 
 Dans cet exemple, la liste en compréhension externe crée les lignes de la matrice, et la liste en compréhension interne crée les éléments de chaque ligne.

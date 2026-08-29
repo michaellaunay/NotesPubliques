@@ -64,7 +64,7 @@ metadata_verifiees: false
 
    Exemple d'opération mathématique sur un tableau 2D :
    ```python
-   matrix = np.array([, [3, 4]])
+   matrix = np.array([[1, 2], [3, 4]])
    transposed = matrix.T
    print(transposed)
    # Output: [[1 3]

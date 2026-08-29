@@ -24,8 +24,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Logique
+
+> [!abstract] Objectif
+> Acquérir la logique dont l'informaticien se sert tous les jours : propositions, connecteurs et tables de vérité, prédicats et quantificateurs, raisonnement et preuves, logique et programmation (SQL, Python, Prolog), assistants de preuve (Lean 4), et les limites (indécidabilité, incomplétude) qui bornent ce que les machines peuvent démontrer.
+
+Voir aussi : [[Systèmes numériques]], [[Bases de données relationnelles]], [[Python]], [[Histoire des langages de programmation]], [[LLM]].
 
 La **logique** étudie les formes de raisonnement valides. En informatique, elle ne sert pas seulement à « raisonner correctement » : elle fournit un langage mathématique pour spécifier des programmes, exprimer des contraintes, vérifier des systèmes, interroger des données, construire des circuits, automatiser des preuves et formaliser le comportement d'agents.
 
