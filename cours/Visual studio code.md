@@ -28,8 +28,14 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+# Visual Studio Code
 
-# Objectifs
+> [!abstract] Objectif
+> Installer, configurer et maîtriser Visual Studio Code comme environnement de travail reproductible : workspaces, paramètres et profils, édition efficace, extensions et Workspace Trust, terminal, Git, tâches et débogage, Python, développement distant et Dev Containers, puis Copilot, instructions, prompt files, agents personnalisés et MCP utilisés de façon responsable.
+
+Voir aussi : [[git]], [[Python]], [[Docker]], [[Travailler avec Claude]], [[Markdown]].
+
+## Objectifs
 
 À la fin de ce cours, nous devons être capables de :
 
@@ -52,6 +58,39 @@ metadata_verifiees: true
 
 > [!NOTE]
 > Ce cours est actualisé pour l'état de VS Code en août 2026. La version stable 1.134 est sortie le 19 août 2026. Les fonctionnalités liées à l'IA évoluent très rapidement : les concepts et mécanismes sont plus durables que l'emplacement exact de certains boutons.
+
+# Sommaire
+
+1. Présentation de Visual Studio Code
+2. Installation et mise à jour
+3. Comprendre l'interface
+4. Fichiers, dossiers et workspaces
+5. Paramètres et configuration
+6. Navigation et édition efficace
+7. Formatage, linting et Code Actions
+8. Extensions
+9. Sécurité : Workspace Trust
+10. Terminal intégré
+11. Git dans VS Code
+12. Tasks : automatiser les commandes du projet
+13. Débogage avec `launch.json`
+14. Python dans VS Code
+15. Développement distant avec Remote - SSH
+16. Dev Containers
+17. Snippets
+18. Markdown, documentation et aperçu
+19. GitHub Copilot et IA dans VS Code
+20. Instructions pour les agents
+21. Prompt files
+22. Custom Agents
+23. MCP dans VS Code
+24. Workflows agentiques responsables
+25. Personnaliser un projet proprement
+26. Dépannage
+27. Raccourcis essentiels
+28. Exercices
+29. Bonnes pratiques à retenir
+30. Ressources
 
 # 1. Présentation de Visual Studio Code
 

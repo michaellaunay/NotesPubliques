@@ -26,8 +26,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # JavaScript moderne — des fondamentaux aux applications robustes
+
+> [!abstract] Objectif
+> Comprendre le langage JavaScript lui-même avant les frameworks : syntaxe et types, fonctions et closures, objets et classes, modules, asynchronisme et event loop, DOM et Web APIs, Node.js, gestion des erreurs, sécurité, tests et outillage, jusqu'aux évolutions d'ECMAScript 2026.
+
+Voir aussi : [[HTML]], [[CSS]], [[HTTP]], [[Selenium]], [[Python]].
 
 > [!info] Version du cours
 > Ce cours est vérifié en août 2026. Il s'appuie sur **ECMAScript 2026**, sur les Web APIs modernes et sur les branches maintenues de Node.js. Les fonctionnalités proposées par TC39 mais non encore intégrées au standard ne sont pas présentées comme acquises.

@@ -39,103 +39,103 @@ metadata_verifiees: true
 
 # Plan du cours
 
-## Introduction
+**Introduction**
 - Modèle de menace et défense en profondeur
 - Confidentialité, intégrité, disponibilité et traçabilité
 - Réduction de surface d'attaque
 - Différence entre prévention, détection et réponse
 
-## 1. Identités, permissions et privilèges
+**1. Identités, permissions et privilèges**
 - UID, GID et comptes système
 - Permissions Unix, bits spéciaux et umask
 - ACL et attributs étendus
 - `sudo` et séparation des responsabilités
 - Linux capabilities et suppression des privilèges inutiles
 
-## 2. Durcissement du système
+**2. Durcissement du système**
 - Mise à jour et réduction des logiciels installés
 - Secure Boot, noyau et paramètres `sysctl`
 - Durcissement des services systemd
 - `NoNewPrivileges`, namespaces et restrictions de ressources
 - Contrôle de la surface réseau
 
-## 3. Contrôle d'accès obligatoire et sandboxing
+**3. Contrôle d'accès obligatoire et sandboxing**
 - Linux Security Modules
 - AppArmor et SELinux
 - seccomp
 - Landlock
 - Choisir et combiner les mécanismes
 
-## 4. Authentification et accès distant
+**4. Authentification et accès distant**
 - PAM
 - SSH moderne
 - Clés, certificats et clés matérielles FIDO2
 - Restrictions par utilisateur et par commande
 - Bastions et transfert d'agent
 
-## 5. Sécurité réseau
+**5. Sécurité réseau**
 - Exposition et écoute des services
 - nftables
 - DNS, TLS et segmentation
 - VPN, WireGuard et accès administratif
 
-## 6. Cryptographie et protection des données
+**6. Cryptographie et protection des données**
 - Principes cryptographiques
 - LUKS2/dm-crypt
 - fscrypt et chiffrement au niveau du système de fichiers
 - Pourquoi eCryptfs ne doit plus être choisi pour un nouveau déploiement
 - Gestion des clés, sauvegardes et récupération
 
-## 7. Journalisation, audit et intégrité
+**7. Journalisation, audit et intégrité**
 - systemd-journald et journal distant
 - Linux Audit (`auditd`)
 - Intégrité des fichiers
 - IMA/EVM, AIDE et limites
 - Synchronisation temporelle
 
-## 8. Détection et réponse aux incidents
+**8. Détection et réponse aux incidents**
 - IDS/IPS réseau et hôte
 - Suricata, détection et corrélation
 - Préservation des preuves
 - Confinement, éradication et reconstruction
 - Retour d'expérience
 
-## 9. Sécurité des conteneurs
+**9. Sécurité des conteneurs**
 - Namespaces, cgroups et capabilities
 - Rootless, seccomp, AppArmor/SELinux
 - Images minimales et chaîne d'approvisionnement
 - Secrets
 - Principes Kubernetes
 
-## 10. Chaîne d'approvisionnement logicielle
+**10. Chaîne d'approvisionnement logicielle**
 - Dépôts et signatures
 - Dépendances
 - SBOM
 - Provenance et signatures d'artefacts
 - Gestion des vulnérabilités
 
-## 11. Secrets et données sensibles
+**11. Secrets et données sensibles**
 - Ce qu'est un secret
 - Variables d'environnement et fichiers
 - Credentials systemd
 - Gestionnaires de secrets
 - Rotation et révocation
 
-## 12. IA et LLM dans un environnement Linux sécurisé
+**12. IA et LLM dans un environnement Linux sécurisé**
 - Risques d'un service en ligne
 - Modèles locaux
 - Prompt injection et outils
 - Fichiers et modèles non fiables
 - Cloisonnement des agents
 
-## 13. Méthode d'audit et de durcissement
+**13. Méthode d'audit et de durcissement**
 - Inventaire
 - Baseline
 - Analyse d'exposition
 - Remédiation graduelle
 - Validation et supervision
 
-## 14. Projet continu et évaluation
+**14. Projet continu et évaluation**
 - Projet de durcissement d'un serveur
 - Livrables
 - Critères d'évaluation
@@ -1165,7 +1165,7 @@ LUKS est le format standard courant pour gérer le chiffrement de volumes Linux 
 Afficher les métadonnées :
 
 ```bash
-sudo cryptsetup luksDump /dev/XXX
+sudo cryptsetup luksDump /dev/sdX
 ```
 
 > [!danger]
@@ -1178,19 +1178,19 @@ LUKS permet plusieurs moyens de déverrouillage associés au même volume.
 Lister :
 
 ```bash
-sudo cryptsetup luksDump /dev/XXX
+sudo cryptsetup luksDump /dev/sdX
 ```
 
 Ajouter une passphrase :
 
 ```bash
-sudo cryptsetup luksAddKey /dev/XXX
+sudo cryptsetup luksAddKey /dev/sdX
 ```
 
 Retirer une clé uniquement après avoir vérifié qu'une autre méthode valide reste disponible :
 
 ```bash
-sudo cryptsetup luksRemoveKey /dev/XXX
+sudo cryptsetup luksRemoveKey /dev/sdX
 ```
 
 ## 6.5. Sauvegarder l'en-tête LUKS
@@ -1198,7 +1198,7 @@ sudo cryptsetup luksRemoveKey /dev/XXX
 L'en-tête contient des informations critiques. Selon la politique de sauvegarde :
 
 ```bash
-sudo cryptsetup luksHeaderBackup /dev/XXX \
+sudo cryptsetup luksHeaderBackup /dev/sdX \
   --header-backup-file luks-header.img
 ```
 
@@ -2436,7 +2436,7 @@ sudo aureport
 
 ```bash
 lsblk -f
-sudo cryptsetup luksDump /dev/XXX
+sudo cryptsetup luksDump /dev/sdX
 ```
 
 ---

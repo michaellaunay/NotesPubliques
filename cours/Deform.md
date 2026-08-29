@@ -31,6 +31,11 @@ metadata_verifiees: true
 ---
 # Deform sous Pyramid
 
+> [!abstract] Objectif
+> Construire, valider et sécuriser des formulaires HTML côté serveur avec Deform 3 et Colander dans une application Pyramid : schémas, widgets, validation, schémas imbriqués, fichiers, personnalisation des templates, i18n, tests et migration depuis Deform 2.
+
+Voir aussi : [[Pyramid]], [[Python]], [[HTML]], [[ZC.Buildout]].
+
 > [!info]
 > Ce cours cible **Deform 3.x**, et plus particulièrement Deform **3.0.1**, publié en février 2026.
 > Deform 3 apporte notamment le passage à **Bootstrap 5**, une mise à jour des bibliothèques JavaScript et la prise en charge de la validation HTML5.
@@ -210,7 +215,7 @@ python -m pip install "pyramid>=2" "deform>=3,<4" pyramid-chameleon
 
 Deform installe notamment Colander et Peppercorn comme dépendances.
 
-Dans un projet de production, les versions doivent être verrouillées par le mécanisme choisi par le projet : fichier de contraintes, lockfile, [[ZC.Buidout|Buildout]], `uv`, `pip-tools`, etc.
+Dans un projet de production, les versions doivent être verrouillées par le mécanisme choisi par le projet : fichier de contraintes, lockfile, [[ZC.Buildout|Buildout]], `uv`, `pip-tools`, etc.
 
 ## 2.3. Intégration minimale avec Pyramid
 

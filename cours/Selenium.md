@@ -31,6 +31,11 @@ metadata_verifiees: true
 ---
 # Cours — Automatiser un navigateur avec Selenium
 
+> [!abstract] Objectif
+> Piloter un vrai navigateur avec Selenium 4 et Python : installation sans gestion manuelle des drivers (Selenium Manager), localisation robuste des éléments, synchronisation par attentes explicites, tests maintenables avec pytest et le Page Object Model, Grid, BiDi et collecte de données respectueuse.
+
+Voir aussi : [[Python]], [[HTML]], [[Javascript]], [[Sécurité avec Python]].
+
 **Selenium** est un projet open source permettant de piloter de vrais navigateurs Web de manière automatisée. Son usage principal est le **test fonctionnel de bout en bout** (*end-to-end*, E2E), mais il peut également servir à automatiser des tâches répétitives ou, lorsque cela est pertinent, à collecter des données sur des pages nécessitant l'exécution de JavaScript.
 
 Selenium ne remplace ni les tests unitaires, ni les tests d'intégration, ni un client HTTP spécialisé. Il intervient lorsque nous avons réellement besoin de reproduire le comportement d'un utilisateur dans un navigateur.

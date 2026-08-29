@@ -38,6 +38,11 @@ metadata_verifiees: true
 ---
 # PyTorch — Du tenseur au deep learning
 
+> [!abstract] Objectif
+> Maîtriser PyTorch du tenseur au modèle en production : tenseurs et broadcasting, autograd, `torch.nn`, pipeline de données, boucle d'entraînement complète, validation et reproductibilité, réseaux convolutifs et transfert, performance (AMP, `torch.compile`), distribué, export et architecture d'un projet propre.
+
+Voir aussi : [[Numpy]], [[Machine Learning]], [[Les CNN et RNN]], [[Les transformers]], [[notions d algèbre linéaire et de dérivation]].
+
 **PyTorch** est une bibliothèque Python de calcul tensoriel et d'apprentissage automatique. Elle fournit à la fois :
 
 - un système de **tenseurs** proche de NumPy ;

@@ -34,6 +34,13 @@ publication:
 rag: true
 metadata_verifiees: false
 ---
+# zc.buildout
+
+> [!abstract] Objectif
+> Comprendre ce que zc.buildout assemble réellement (`buildout.cfg`, parts, recipes, scripts générés), savoir installer et rendre reproductible un buildout, diagnostiquer une configuration et situer l'outil face à `venv`, pip, uv et tox en 2026 — sans le déclarer mort ni l'utiliser là où un outil plus simple suffit.
+
+Voir aussi : [[Python]], [[Pyramid]], [[Deform]].
+
 # Résumé
 
 **zc.buildout**, généralement appelé **Buildout**, est un outil d'assemblage et d'automatisation d'applications écrit en Python. Son objectif ne se limite pas à installer des bibliothèques : il permet de décrire un environnement applicatif complet sous forme de configuration reproductible.

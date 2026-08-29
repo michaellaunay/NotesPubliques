@@ -28,8 +28,12 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-
 # Optimisation pour les moteurs de recherche — SEO
+
+> [!abstract] Objectif
+> Rendre un site découvrable, compréhensible et digne de confiance pour les moteurs de recherche et les réponses génératives (AI Overviews, AI Mode) : fondamentaux, intention de recherche, contenu, SEO technique, performance, données structurées, mesure et audit.
+
+Voir aussi : [[HTML]], [[HTTP]], [[Javascript]], [[LLM]].
 
 > [!NOTE]
 > Ce cours est actualisé pour l'état du Web et de Google Search en août 2026. Le SEO évolue continuellement : les principes durables sont distingués des fonctionnalités susceptibles de changer rapidement.

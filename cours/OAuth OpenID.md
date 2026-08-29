@@ -36,8 +36,14 @@ publication:
 rag: true
 metadata_verifiees: false
 ---
+# OAuth et OpenID Connect
 
-# Introduction
+> [!abstract] Objectif
+> Distinguer authentification, autorisation, délégation et fédération ; maîtriser OAuth 2.0/2.1 (Authorization Code + PKCE, autres grants), OpenID Connect, JWT/JOSE et les recommandations de sécurité actuelles ; mettre en œuvre le tout avec Keycloak et Pyramid, des passkeys au machine-to-machine.
+
+Voir aussi : [[Pyramid]], [[LDAP]], [[InetOrgPerson]], [[Athentification web]], [[Identité numérique européenne]].
+
+## Introduction
 
 OAuth et OpenID Connect sont aujourd'hui au cœur de très nombreux systèmes de connexion et de protection d'API : connexion à une application avec un fournisseur d'identité, Single Sign-On, applications mobiles, API internes, architectures microservices, applications web, objets connectés, accès machine-to-machine, etc.
 
@@ -2274,53 +2280,35 @@ Le code doit être aligné avec une configuration explicitement documentée.
 
 ## 19.9. Corriger les anciennes affirmations
 
-### Faux
-
+> [!failure] Affirmation fausse
 > « Un JWT est sécurisé car il est chiffré. »
 
-### Correct
+> [!success] Correct
+> Un JWT signé n'est pas chiffré ; son contenu est lisible.
 
-Un JWT signé n'est pas chiffré ; son contenu est lisible.
-
----
-
-### Faux
-
+> [!failure] Affirmation fausse
 > « Le Bearer token est opaque et le JWT est un autre type de token. »
 
-### Correct
+> [!success] Correct
+> Bearer décrit la possession nécessaire à l'usage ; JWT décrit un format.
 
-Bearer décrit la possession nécessaire à l'usage ; JWT décrit un format.
-
----
-
-### Faux
-
+> [!failure] Affirmation fausse
 > « PKCE remplace les grants. »
 
-### Correct
+> [!success] Correct
+> PKCE est une extension qui protège notamment Authorization Code.
 
-PKCE est une extension qui protège notamment Authorization Code.
-
----
-
-### Faux
-
+> [!failure] Affirmation fausse
 > « Dynamic Registration permet de créer des utilisateurs. »
 
-### Correct
+> [!success] Correct
+> OIDC Dynamic Client Registration sert à enregistrer des clients.
 
-OIDC Dynamic Client Registration sert à enregistrer des clients.
-
----
-
-### Faux
-
+> [!failure] Affirmation fausse
 > « OAuth 2.1 a été publié en 2021. »
 
-### Correct
-
-OAuth 2.1 est toujours un Internet-Draft au 29 août 2026.
+> [!success] Correct
+> OAuth 2.1 est toujours un Internet-Draft au 29 août 2026.
 
 # 20. Travaux pratiques
 
