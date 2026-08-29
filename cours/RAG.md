@@ -4,6 +4,7 @@ uid: 01M02EX5C62Z5GBDT0J0X9JMNQ
 titre: RAG
 aliases:
   - Retrieval-Augmented Generation
+  - Outils pour préparer le RAG
 type: cours
 statut: actif
 para: ressource
@@ -25,7 +26,7 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2026-06-03
-date_modification: 2026-08-22
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
@@ -3647,6 +3648,45 @@ historique Git éventuellement
 ```
 
 Un chunk de code sans son chemin ou sans le nom de la classe peut perdre beaucoup de sens.
+
+### 4.5.6. Outils de conversion vers le texte et le Markdown
+
+Écrire soi-même l'extraction pour chaque format est rarement rentable : des outils spécialisés produisent directement du Markdown ou du JSON structuré à partir des formats courants. État en août 2026 (versions vérifiées sur PyPI) :
+
+| Outil | Formats | Licence | Points forts | Limites |
+|---|---|---|---|---|
+| **MarkItDown** 0.1 (Microsoft) | PDF, Word, PowerPoint, Excel, HTML, images, audio, ZIP, EPUB | MIT | une commande, sortie Markdown, serveur MCP, description des images par un LLM | PDF lu par pdfminer : les tableaux sont aplatis, la mise en page perdue |
+| **Docling** 2.x (IBM) | PDF, Word, PowerPoint, HTML, images | MIT | modèles de mise en page, tableaux reconstitués, OCR intégrable, export Markdown et JSON avec hiérarchie | lent, modèles à télécharger |
+| **marker** 2.x | PDF, EPUB, images | GPL | très bonne fidélité sur les livres et articles, formules | licence GPL, GPU conseillé |
+| **pymupdf4llm** | PDF | AGPL ou licence commerciale | rapide, tableaux, Markdown avec titres | licence contraignante pour un produit |
+| **Unstructured** 0.27 | une vingtaine de formats | Apache 2.0 (bibliothèque) | éléments typés (titre, paragraphe, tableau) prêts pour le chunking | dépendances lourdes, service commercial en parallèle |
+| **Apache Tika** | plus de mille formats | Apache 2.0 | extraction et métadonnées, serveur REST ; Java | texte brut, pas de structure |
+
+Pour le Web, on ne colle pas du HTML brut dans l'index :
+
+| Outil | Rôle | Licence |
+|---|---|---|
+| **FireCrawl** | explore un site (JavaScript rendu, pagination) et renvoie Markdown ou JSON propre par page ; disponible en service ou auto-hébergé | AGPL (auto-hébergement) |
+| **Crawl4AI** | explorateur asynchrone fondé sur Playwright, sorties Markdown adaptées aux LLM, extraction structurée | Apache 2.0 |
+| **trafilatura** | extrait le contenu principal d'une page (sans menus ni publicités), avec métadonnées et date | Apache 2.0 |
+
+Exemple avec MarkItDown, qui suffit pour une documentation bureautique :
+
+```bash
+python -m pip install "markitdown[all]"
+markitdown rapport.pdf -o rapport.md
+```
+
+```python
+from markitdown import MarkItDown
+
+resultat = MarkItDown().convert("rapport.pdf")
+print(resultat.text_content[:200])
+```
+
+Sur un PDF contenant un tableau, MarkItDown restitue le texte des paragraphes mais **une cellule par ligne** pour le tableau : dès que les tableaux comptent, Docling ou marker s'imposent. Pour les scans et les livres, la chaîne complète (prétraitement, OCR, normalisation) est décrite dans [[Chaîne complète de numérisation OCR Markdown traduction RAG local]] ; les bibliothèques bas niveau (pypdf, pdfplumber, PyMuPDF) sont comparées dans [[PyPdf]].
+
+Règle de choix : **MarkItDown** pour convertir vite et large, **Docling** quand la structure (tableaux, titres, ordre de lecture) conditionne la qualité des chunks, **trafilatura** ou **Crawl4AI** pour un site public, **FireCrawl** quand le site dépend du JavaScript et que l'on accepte un service ou un déploiement AGPL.
 
 ---
 
