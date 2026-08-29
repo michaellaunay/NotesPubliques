@@ -68,7 +68,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Programmation
 
-- [[Algorithmes avancés en Python]] — Cours d'algorithmique avancée illustré en Python : tris et recherches, structures de données, graphes, techniques algorithmiques, chaînes de caractères, géométrie, optimisation combinatoire et parallélisme.
+- [[Algorithmes avancés en Python]] — Cours complet d'algorithmique avancée en Python : tris, structures de données et graphes, plus courts chemins et arbres couvrants, programmation dynamique, retour sur trace et gloutons, chaînes de caractères, géométrie computationnelle, optimisation combinatoire, parallélisme et verrou global, k-moyennes et arbres de décision, et projet de fin de cours.
 - [[Anaconda]] — Distribution Anaconda : histoire, licence commerciale depuis 2024 et alternatives libres (Miniforge, conda-forge), Jupyter et le format IPYNB, installation sous Ubuntu, cycle de vie d'un environnement conda et comparaison avec pip, uv et pixi.
 - [[C++]] — Cours complet de C++ : histoire et environnement de développement, bases du langage, programmation orientée objet, et notions avancées.
 - [[Google Colab]] — Fiche sur Google Colab : notebook Jupyter hébergé, GPU et TPU, lien avec Google Cloud Platform, puis l'intégration de Gemini et du Data Science Agent, le modèle des unités de calcul, les règles de confidentialité et les alternatives.
@@ -79,7 +79,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Python]] — Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage.
 - [[Regex]] — Cours sur les expressions régulières : histoire, usages actuels, fonctionnement, caractères spéciaux, capture et substitution, avec un exemple concret sous Vim.
 - [[SQLAchemy]] — Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD.
-- [[ZC.Buidout]] — Cours sur zc.buildout : intérêt de l'outil, installation depuis PyPI, configuration d'un buildout et utilisation pour l'assemblage d'environnements Python reproductibles.
+- [[ZC.Buildout]] — Cours sur zc.buildout : assemblage reproductible d'applications, parts et recipes, installation moderne, fichiers buildout.cfg, gestion et verrouillage des versions, héritage de configurations, développement local, commandes de diagnostic et place de Buildout dans l'écosystème Python actuel.
 
 ## Développement web
 
