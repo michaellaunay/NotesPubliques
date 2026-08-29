@@ -21,7 +21,7 @@ themes:
 resume: "Fiche sur NotebookLM, renommé Gemini Notebook en juillet 2026 : un RAG géré par Google, strictement ancré sur les documents fournis et citant ses sources, avec ses formats de restitution, ses quotas, ses limites structurelles et ce qu'il implique en matière de confidentialité."
 niveau: debutant
 prerequis:
-  - "[[Liens LLM]]"
+  - "[[LLM en local]]"
   - "[[RAG]]"
 auteurs:
   - Michaël Launay
