@@ -14,493 +14,2549 @@ themes:
   - gestion-de-version
   - git
   - outils
-resume: "Cours sur Git : historique, installation et configuration du client, création d'un dépôt et principales commandes du quotidien."
-niveau: debutant
+resume: "Cours complet sur Git : modèle de données, workflow quotidien, branches, remotes, restauration, réécriture d'historique, worktrees, Git LFS, Git Xet/Hugging Face, sécurité, collaboration et administration."
+niveau: intermediaire
 auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-03-07
-date_modification: 2023-11-19
+date_modification: 2026-08-29
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: true
 ---
+# Git
+
+> [!abstract] Objectif
+> Comprendre le modèle de données de Git — objets, références, working tree, index, `HEAD` — pour maîtriser avec confiance le workflow quotidien, les branches, la restauration et la réécriture d'historique, puis gérer les gros fichiers avec **Git LFS** et **Git Xet** (Hugging Face) sans sacrifier la sécurité ni la collaboration.
+
+Voir aussi : [[Visual studio code]], [[Crash github et publication de clé]], [[Mermaid pour Obsidian]].
+
+# Sommaire
+
+1. Introduction : ce que Git versionne, Git et les forges, nouveautés récentes
+2. Installer et vérifier Git
+3. Configuration
+4. Le modèle mental : working tree, index, `HEAD`
+5. Créer ou cloner un dépôt
+6. Workflow quotidien
+7. Branches
+8. Remotes, fetch, pull et push
+9. Fusionner et résoudre les conflits
+10. Restaurer et annuler sans se tromper
+11. Stash
+12. Rebase et cherry-pick
+13. Tags et versions
+14. Rechercher l'origine d'un problème
+15. Réécrire un historique avec `git filter-repo`
+16. Worktrees, sparse-checkout et clones partiels
+17. Submodules et alternatives
+18. `.gitignore` et `.gitattributes`
+19. Git LFS : gérer de gros fichiers
+20. Git Xet et Hugging Face
+21. Authentification et sécurité
+22. Performance et maintenance
+23. Stratégies de collaboration
+24. GitHub et GitLab
+25. Sauvegarder plusieurs dépôts GitLab
+26. Git sur Android avec Termux
+27. Commandes de diagnostic
+28. Alias pratiques
+29. Erreurs fréquentes
+30. Travaux pratiques
+31. Checklist avant de pousser
+32. Aide-mémoire
+33. Sources et documentation
+34. Conclusion
+
 # 1. Introduction
 
-Git est un outil de gestion de versions du code développé par **Linus Torval** fondateur de Linux pour gérer le développement du noyau Linux.
+Git est un **système de gestion de versions distribué** (*Distributed Version Control System*, DVCS). Il permet d'enregistrer l'évolution d'un ensemble de fichiers, de travailler à plusieurs, d'expérimenter sur des branches isolées et de revenir à des états antérieurs.
 
-## 1.1 Objectifs
+Git a été créé en 2005 par **Linus Torvalds** pour répondre aux besoins du développement du noyau Linux après la fin de l'utilisation gratuite de BitKeeper. Le projet a ensuite été repris et maintenu par une communauté indépendante ; Junio C Hamano en est devenu le mainteneur principal.
 
-Que nous soyons seuls ou en équipe, nous devrons gérer efficacement les versions du code, suivre son évolution, et potentiellement collaborer avec d'autres développeurs. C'est là qu'intervient Git.
+À la date de mise à jour de ce cours (août 2026), la version stable la plus récente est **Git 2.55** (29 juin 2026) ; la documentation officielle la décrit. Les distributions stables empaquettent souvent une version plus ancienne (Ubuntu 24.04 LTS fournit Git 2.43), mais les concepts décrits ici restent valables sur de nombreuses versions antérieures.
 
-Git est un système de gestion de versions distribué. Cela signifie qu'il nous permet de suivre les changements apportés à un projet au fil du temps. De plus, contrairement à d'autres systèmes de gestion de versions, Git stocke l'ensemble du projet et de son historique sur chaque machine de développement, ce qui le rend rapide et résilient.
+## 1.1 Ce que Git versionne réellement
 
-## 1.2 Historique
+Une idée utile est de ne pas considérer Git comme un système qui stocke uniquement des « différences entre fichiers ». Conceptuellement, chaque commit référence un **instantané** (*snapshot*) de l'arborescence du projet.
 
-L'histoire de Git est liée à celle de Linus Torvalds et le développement du noyau Linux.
+Les objets fondamentaux sont :
 
-Avant Git, Linus utilisait un système de gestion de versions appelé BitKeeper. BitKeeper était un outil propriétaire, mais son éditeur avait autorisé les développeurs du noyau Linux à l'utiliser gratuitement ce qui lui permettait de démontrer la robustesse de son offre. Cette solution n'était pas idéale, car elle reposait sur un unique dépôt central, mais elle fonctionnait suffisamment bien pour répondre aux besoins du projet à l'époque.
+- **blob** : contenu d'un fichier ;
+- **tree** : arborescence associant noms, modes et objets ;
+- **commit** : référence un tree, un ou plusieurs parents, un auteur, un committer et un message ;
+- **tag annoté** : objet nommé pouvant notamment pointer vers un commit.
 
-En 2005, un conflit est survenu. La communauté de développeurs de Linux, par nature un projet ouvert et communautaire, a eu des problèmes avec la nature propriétaire de BitKeeper. En particulier, un développeur a créé un outil capable d'interagir avec les dépôts BitKeeper, ce qui a violé la licence d'utilisation de BitKeeper. En réponse, l'éditeur de BitKeeper a révoqué la licence gratuite qu'il avait accordée au projet Linux.
+Ces objets sont adressés par leur empreinte cryptographique.
 
-Cela a placé le développement du noyau Linux dans une position délicate. Il était devenu dépendant d'un outil qui n'était plus accessible. Linus Torvalds, face à ce problème, a décidé de créer un nouvel outil, un système de gestion de versions qui serait non seulement libre et ouvert, mais aussi distribué, rapide et capable de gérer de grands projets comme le noyau Linux.
-
-C'est ainsi qu'en avril 2005, Git est né. Linus a conçu Git pour être petit et simple à sa base, mais aussi incroyablement puissant et flexible. Il a réussi à implémenter les fonctionnalités de base de Git en seulement quelques semaines, et le développement du noyau Linux a rapidement adopté cet outil. Aujourd'hui, Git est devenu le standard de facto pour la gestion de versions, adopté par des millions de développeurs à travers le monde.
-
-### 1.3 Utilisations
-
-Aujourd'hui, Git est devenu un standard dans le domaine du développement logiciel. Il est utilisé par des millions de développeurs à travers le monde, que ce soit pour des projets open source, des projets universitaires ou des projets commerciaux.
-
-Git offre de nombreux avantages. Il nous permet de suivre l'historique de notre projet, de savoir qui a apporté quels changements et quand. Il nous permet de créer des branches pour travailler sur des fonctionnalités spécifiques sans perturber le reste du projet. Il facilite la collaboration, en nous permettant de fusionner facilement le travail de plusieurs développeurs. Enfin, en cas d'erreur, il nous permet de revenir à une version précédente de notre projet.
-
-En conclusion, comprendre et maîtriser Git est essentiel pour tout professionnel de l'informatique. Au fil de ce cours, nous allons découvrir ensemble comment utiliser Git de manière efficace et productive. Alors préparez-vous, notre voyage ne fait que commencer !
-
-# 2. Installer le client Git
-
-Avant de pouvoir utiliser Git, nous devons l'installer sur nos machines. Si nous utilisons un système Linux basé sur Debian, l'installation est simple grâce au gestionnaire de paquets `apt`. Ouvrons un terminal et exécutons la commande suivante :
-
-```bash
-apt install git
+```text
+commit
+  │
+  ├── tree ── src/ ── main.py -> blob
+  │        └─ README.md ------> blob
+  │
+  └── parent -> commit précédent
 ```
 
-Cette commande demande à `apt` d'installer le paquet `git`.
+Cette conception rend Git naturellement adapté à un historique en graphe.
 
-# 3. Configurer notre compte Git
+## 1.2 Git n'est pas GitHub
 
-Une fois Git installé, la première chose que nous devons faire est de configurer notre identité. Git utilise cette information lorsque nous validons (commit) nos changements. Pour ce faire, nous utilisons les commandes `git config`. Par exemple :
+Il faut distinguer :
+
+- **Git** : logiciel de gestion de versions ;
+- **GitHub**, **GitLab**, **Codeberg**, **Forgejo**, etc. : plateformes d'hébergement et de collaboration autour de dépôts Git ;
+- **Git LFS** : extension permettant d'externaliser le contenu de gros fichiers ;
+- **Git Xet** : extension/protocole de transfert utilisé notamment par Hugging Face pour les gros fichiers de modèles et de jeux de données.
+
+Un dépôt Git peut parfaitement fonctionner sans GitHub ni GitLab.
+
+## 1.3 Pourquoi Git est distribué
+
+Après un clone normal, notre machine contient :
+
+- les fichiers de travail ;
+- les branches locales ;
+- une base d'objets contenant l'historique récupéré ;
+- des références vers l'état connu des branches distantes.
+
+La plupart des commandes (`log`, `diff`, `branch`, `commit`, `rebase`, etc.) travaillent donc **localement**. Le réseau est principalement utilisé lors de `fetch`, `pull`, `push`, clone, et lors du transfert d'objets externalisés par LFS/Xet.
+
+## 1.4 Ce que Git ne fait pas
+
+Git ne remplace pas :
+
+- une sauvegarde hors site ;
+- un système de déploiement ;
+- un gestionnaire de secrets ;
+- une base de données ;
+- un stockage d'objets mutable ;
+- une solution idéale pour versionner directement des centaines de gigaoctets de binaires.
+
+Pour les gros binaires, nous utiliserons notamment Git LFS ou Xet.
+
+## 1.5 Nouveautés récentes
+
+Git publie une version mineure environ tous les trois mois. Parmi les apports de 2025-2026 utiles au quotidien :
+
+- **hooks configurés** (2.54) : un hook peut être déclaré dans la configuration (`hook.<nom>.command`) et partagé sans copier de script dans `.git/hooks` ; 2.55 sait exécuter en parallèle les hooks qui le déclarent ;
+- **`git history`** (2.54-2.55, expérimental) : sous-commandes `reword`, `split` et `fixup` pour retoucher un commit ancien sans dérouler un rebase interactif complet ;
+- **FSMonitor sous Linux** (2.55) : `git config core.fsmonitor true` accélère `git status` dans les très gros dépôts en évitant le parcours complet du working tree ;
+- **groupes de remotes** (2.55) : pousser vers plusieurs miroirs en une seule commande ;
+- **maintenance incrémentale** (2.55) : `git repack --write-midx=incremental` pour les dépôts volumineux.
+
+Avant d'utiliser l'une de ces fonctionnalités, vérifier `git --version` : elles sont absentes des versions empaquetées par les distributions stables.
+
+# 2. Installer et vérifier Git
+
+Sous Debian ou Ubuntu :
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+Vérifions la version :
+
+```bash
+git --version
+```
+
+Sur une distribution stable, la version empaquetée peut être plus ancienne que la dernière version amont, sans que cela soit nécessairement un problème.
+
+## 2.1 Obtenir de l'aide
+
+```bash
+git help
+
+git help commit
+
+git commit --help
+```
+
+Pour une aide courte :
+
+```bash
+git commit -h
+```
+
+# 3. Configuration
+
+Git possède plusieurs niveaux de configuration :
+
+- `--system` : machine entière ;
+- `--global` : utilisateur ;
+- `--local` : dépôt courant ;
+- `--worktree` : worktree lorsque cette fonctionnalité est activée.
+
+Affichons la configuration et sa provenance :
+
+```bash
+git config --list --show-origin
+```
+
+## 3.1 Identité des commits
 
 ```bash
 git config --global user.name "Michaël Launay"
-git config --global user.email michaellaunay@ecreall.com
+git config --global user.email "michael@example.net"
 ```
 
-Ces commandes définissent notre nom et notre adresse email comme étant ceux associés à nos commits.
+L'adresse enregistrée dans un commit est publique dès que le commit est publié. Une forge peut proposer une adresse « noreply » pour éviter d'exposer une adresse personnelle.
 
-# 4. Connaître notre configuration Git
+## 3.2 Branche initiale
 
-Pour vérifier notre configuration Git, nous pouvons utiliser la commande `git config --list`. Cela affichera la liste des paramètres que Git a configurés.
+Pour que les nouveaux dépôts utilisent `main` :
 
 ```bash
-git config --list
+git config --global init.defaultBranch main
 ```
 
-Git lit sa configuration à partir de trois endroits potentiels :
+## 3.3 Éditeur
 
-- Le fichier de configuration système, qui est généralement situé à "/etc/gitconfig"
-- Le fichier de configuration utilisateur, qui se trouve dans notre répertoire personnel sous "~/.gitconfig"
-- Le fichier de configuration du dépôt, situé dans le répertoire ".git" du dépôt à "<rep_projet>/.git/config"
-
-# 5. Créer un projet Git
-
-Nous pouvons créer un nouveau projet Git soit en clonant un dépôt existant à partir d'un service comme GitHub ou GitLab, soit en initialisant un nouveau dépôt sur notre machine locale. 
-
-Si nous choisissons de commencer localement, nous pouvons créer un nouveau dépôt Git comme suit :
+Par exemple avec Vim :
 
 ```bash
-mkdir MonProjet
-cd MonProjet
-vim README.md
+git config --global core.editor vim
+```
+
+Ou VS Code :
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+## 3.4 Fin de lignes
+
+Sous Linux, il est généralement raisonnable de conserver LF :
+
+```bash
+git config --global core.autocrlf input
+```
+
+Dans un projet multi-plateforme, il vaut mieux définir explicitement la politique dans `.gitattributes` :
+
+```gitattributes
+* text=auto
+*.sh text eol=lf
+*.bat text eol=crlf
+```
+
+## 3.5 Configuration conditionnelle
+
+Nous pouvons avoir une identité professionnelle et une identité personnelle :
+
+```ini
+# ~/.gitconfig
+[includeIf "gitdir:~/workspace/pro/"]
+    path = ~/.gitconfig-pro
+
+[includeIf "gitdir:~/workspace/perso/"]
+    path = ~/.gitconfig-perso
+```
+
+Puis :
+
+```ini
+# ~/.gitconfig-pro
+[user]
+    name = Michaël Launay
+    email = michael@entreprise.example
+```
+
+# 4. Le modèle mental : working tree, index, HEAD
+
+Comprendre Git devient beaucoup plus simple si nous distinguons trois états.
+
+## 4.1 Working tree
+
+Le **working tree** est ce que nous voyons et éditons sur disque.
+
+## 4.2 Index ou staging area
+
+L'**index** contient la version préparée pour le prochain commit.
+
+```bash
+git add fichier.py
+```
+
+ne signifie pas « envoyer le fichier ». Cela copie son état courant dans l'index.
+
+## 4.3 HEAD
+
+`HEAD` désigne normalement la branche courante, qui elle-même pointe vers le commit courant.
+
+```text
+working tree  --git add-->  index  --git commit-->  commit
+      ^                        ^                       |
+      |                        |                       |
+      +------ restore ---------+----- restore --------+
+```
+
+Du point de vue d'un fichier, les mêmes commandes se lisent comme des transitions d'état (diagramme rendu par Obsidian, voir [[Mermaid pour Obsidian]]) :
+
+```mermaid
+stateDiagram-v2
+    [*] --> Untracked : création du fichier
+    Untracked --> Staged : git add
+    Staged --> Unmodified : git commit
+    Unmodified --> Modified : édition
+    Modified --> Staged : git add
+    Staged --> Modified : git restore --staged
+    Modified --> Unmodified : git restore
+    Unmodified --> Untracked : git rm --cached
+```
+
+## 4.4 Observer les différences
+
+Modifications non indexées :
+
+```bash
+git diff
+```
+
+Modifications préparées :
+
+```bash
+git diff --staged
+```
+
+Différence avec un commit :
+
+```bash
+git diff HEAD~1 HEAD
+```
+
+# 5. Créer ou cloner un dépôt
+
+## 5.1 Nouveau dépôt
+
+```bash
+mkdir mon-projet
+cd mon-projet
 git init
 ```
 
-Notons qu'il est important d'ajouter au moins un fichier à un nouveau dépôt, car Git ne suit pas les répertoires vides. Si nous avons un répertoire que nous voulons inclure dans notre dépôt mais qui ne contient pas encore de fichiers, nous pouvons ajouter un fichier ".gitkeep" pour forcer Git à inclure le répertoire.
+Git ne versionne pas directement les répertoires : il versionne les fichiers. Un répertoire vide n'apparaît donc pas dans un commit. Un fichier `.gitkeep` est parfois utilisé par convention, mais **`.gitkeep` n'a aucune signification spéciale pour Git**.
 
-Pour plus d'informations, nous pouvons consulter la documentation officielle de Git [ici](https://git-scm.com/book/fr/v2), ainsi que les vidéos de formation sur YouTube [ici](https://youtu.be/KVULgIbyeQs) et [ici](https://youtu.be/0sGQgfUdCAY).
+Créons le premier commit :
 
-# 6. Les principales commandes de git
+```bash
+printf '# Mon projet\n' > README.md
+git add README.md
+git commit -m "Initialise le projet"
+```
 
-## 6.1 Connaître le hash de la version courante
+## 5.2 Cloner un dépôt
+
+```bash
+git clone https://example.org/equipe/projet.git
+cd projet
+```
+
+Avec SSH :
+
+```bash
+git clone git@example.org:equipe/projet.git
+```
+
+## 5.3 Examiner les remotes
+
+```bash
+git remote -v
+```
+
+Détails :
+
+```bash
+git remote show origin
+```
+
+# 6. Workflow quotidien
+
+## 6.1 État du dépôt
+
+```bash
+git status
+```
+
+Version compacte :
+
+```bash
+git status --short
+```
+
+## 6.2 Ajouter des changements
+
+Un fichier :
+
+```bash
+git add src/app.py
+```
+
+Tous les changements pertinents :
+
+```bash
+git add .
+```
+
+Pour sélectionner des morceaux d'un fichier :
+
+```bash
+git add -p
+```
+
+`git add -p` est extrêmement utile pour produire des commits atomiques.
+
+## 6.3 Créer un commit
+
+```bash
+git commit -m "Ajoute la validation des paramètres"
+```
+
+Un bon commit :
+
+- représente une modification cohérente ;
+- ne mélange pas une refonte sans rapport avec un correctif ;
+- possède un message expliquant l'intention ;
+- passe idéalement les tests.
+
+## 6.4 Modifier le dernier commit
+
+Tant qu'il n'a pas été partagé :
+
+```bash
+git add fichier-oublie.py
+git commit --amend
+```
+
+Cela **réécrit** le commit : son identifiant change.
+
+## 6.5 Historique
+
+```bash
+git log
+```
+
+Vue compacte :
+
+```bash
+git log --oneline --graph --decorate --all
+```
+
+Historique d'un fichier :
+
+```bash
+git log --follow -- chemin/fichier.py
+```
+
+## 6.6 Afficher un objet ou un commit
+
+```bash
+git show HEAD
+```
+
+```bash
+git show <commit>
+```
+
+## 6.7 Hash du commit courant
 
 ```bash
 git rev-parse HEAD
 ```
 
-La commande `git rev-parse HEAD` est utilisée pour obtenir le hash du dernier commit de la branche actuellement active dans votre dépôt git.
-
-Voici ce que fait chaque partie de la commande :
-
-- `git` est l'outil de ligne de commande qui interagit avec Git.
-- `rev-parse` est une commande git qui prend une référence de nom (comme une branche, une étiquette, un hash de commit, etc.) et la convertit en une référence de commit pleine ou complète.
-- `HEAD` est une référence spéciale dans git qui pointe toujours vers le dernier commit de la branche actuellement active.
-
-Donc, ensemble, `git rev-parse HEAD` signifie "prendre la référence HEAD (le dernier commit de la branche actuelle) et la convertir en un hash de commit complet". Le résultat sera une chaîne de caractères représentant le hash du commit, qui est une empreinte unique du commit.
-
-Par exemple, cela pourrait ressembler à `1a206b53c6d5b1b860ee717e4a1e55e9b91eaae6`, qui est une valeur de hachage SHA-1 du contenu du commit, de l'heure du commit, de l'auteur du commit, et d'autres informations de commit.
-
-## 6.2 Connaître l'état du dépôt Git local
-
-La commande `git status` nous permet de voir l'état actuel de notre dépôt, y compris les fichiers modifiés, les fichiers non suivis et les fichiers qui sont prêts à être commités.
+Hash court :
 
 ```bash
-git status
-```
-## 6.3 Ajouter des fichiers pour un commit
-
-La commande `git add` permet d'ajouter des fichiers pour créer un commit. Il faut ajouter un fichier à la fois.
-
-## 6.4 Créer un commit
-
-La commande `git commit -m ` permet de créer un commit. Il va créer le commit en ajoutant les fichiers que l'on a ajouté avec la commande `git add`. 
-On peut rajouter un nom de commit pour que l'on puisse e repérer `git commit -m "Nom_du_commit`. 
-
-## 6.5 Transmettre au dépôt partagé les modifications commitées
-
-Pour partager nos modifications avec d'autres personnes, nous devons "pousser" (push) nos commits vers un dépôt distant. Cela se fait avec la commande `git push`.
-
-```bash
-git push
+git rev-parse --short HEAD
 ```
 
-## 6.6 Mettre à jour le dépôt local
+# 7. Branches
 
-Pour obtenir les dernières modifications d'un dépôt distant, nous utilisons la commande `git pull`.
+Une branche Git est essentiellement une **référence mobile vers un commit**.
 
-```bash
-git pull
-```
-
-## 6.7 Afficher les différences entre deux versions
-
-Pour voir les différences entre deux commits, nous pouvons utiliser la commande `git diff` suivie des identifiants des deux commits.
-
-```bash
-git diff <commit1> <commit2>
-```
-
-## 6.8 Afficher les dernières modifications
-
-La commande `git log` nous permet de voir l'historique des commits. 
-
-```bash
-git log
-git log --graph --oneline
-```
-
-## 6.9 Revenir à l'état précédent d'un fichier non encore indexé ou se déplacer dans les branches
-
-Pour rétablir un fichier à son état précédent, ou pour changer de branche, nous utilisons la commande `git checkout`.
-
-```bash
-git checkout
-```
-
-## 6.10 Manipuler les branches
-
-La commande `git branch` nous permet de créer, de lister et de supprimer des branches.
+## 7.1 Lister les branches
 
 ```bash
 git branch
 ```
 
-## 6.11 Fusionner des branches et gérer des conflits
-
-Pour fusionner les modifications d'une branche dans une autre, nous utilisons la commande `git merge`.
+Toutes les branches locales et distantes :
 
 ```bash
-git merge
+git branch -a
 ```
 
-## 6.12 Revenir à la troisième version précédente tout en gardant l'historique de la version actuelle
+## 7.2 Créer une branche
 
-Pour revenir à une version précédente sans perdre l'historique des commits, nous utilisons la commande `git revert`.
+```bash
+git branch feature/auth
+```
+
+Puis y basculer :
+
+```bash
+git switch feature/auth
+```
+
+Plus directement :
+
+```bash
+git switch -c feature/auth
+```
+
+`git switch` est aujourd'hui préférable à `git checkout` lorsqu'il s'agit uniquement de changer de branche. `checkout` reste disponible pour compatibilité et pour certains usages avancés.
+
+## 7.3 Renommer une branche
+
+```bash
+git branch -m ancien-nom nouveau-nom
+```
+
+## 7.4 Supprimer une branche
+
+Si elle est fusionnée :
+
+```bash
+git branch -d feature/auth
+```
+
+Forcer :
+
+```bash
+git branch -D feature/auth
+```
+
+## 7.5 Detached HEAD
+
+Si nous exécutons :
+
+```bash
+git switch --detach <commit>
+```
+
+`HEAD` pointe directement vers un commit. Nous pouvons explorer l'historique, mais un nouveau commit risque de devenir difficile à retrouver si aucune branche n'est créée.
+
+Pour conserver le travail :
+
+```bash
+git switch -c sauvegarde-experimentation
+```
+
+# 8. Remotes, fetch, pull et push
+
+## 8.1 `git fetch`
+
+```bash
+git fetch origin
+```
+
+`fetch` télécharge les nouvelles références et objets sans fusionner automatiquement la branche courante.
+
+C'est souvent la commande la plus sûre pour observer ce qui a changé :
+
+```bash
+git log --oneline HEAD..origin/main
+```
+
+## 8.2 `git pull`
+
+`git pull` est essentiellement :
+
+```text
+fetch + intégration
+```
+
+Selon la configuration, l'intégration peut être un merge ou un rebase.
+
+Pour demander explicitement un rebase :
+
+```bash
+git pull --rebase
+```
+
+## 8.3 `git push`
+
+Premier push d'une branche :
+
+```bash
+git push -u origin feature/auth
+```
+
+Les suivants :
+
+```bash
+git push
+```
+
+## 8.4 Force push
+
+Après une réécriture d'historique, un push normal peut être refusé. Préférons :
+
+```bash
+git push --force-with-lease
+```
+
+à :
+
+```bash
+git push --force
+```
+
+`--force-with-lease` vérifie que la branche distante n'a pas avancé d'une manière inattendue.
+
+# 9. Fusionner et résoudre les conflits
+
+## 9.1 Merge
+
+Depuis la branche de destination :
+
+```bash
+git switch main
+git merge feature/auth
+```
+
+Git peut faire :
+
+- un **fast-forward** : `main` n'a pas avancé depuis la création de la branche, la référence est simplement déplacée ;
+- un commit de merge, à deux parents, lorsque les deux branches ont divergé ;
+- signaler des conflits.
+
+```mermaid
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch feature
+    checkout feature
+    commit id: "C"
+    commit id: "D"
+    checkout main
+    commit id: "E"
+    merge feature id: "M"
+```
+
+Ici `main` a avancé (`E`) pendant le travail sur `feature` : le merge crée le commit `M`, dont les parents sont `E` et `D`. Pour refuser un fast-forward et conserver systématiquement un commit de merge : `git merge --no-ff feature`.
+
+## 9.2 Conflits
+
+Un fichier en conflit contient typiquement :
+
+```text
+│ <<<<<<< HEAD
+│ notre version
+│ =======
+│ autre version
+│ >>>>>>> feature/auth
+```
+
+Les barres verticales `│` ne font pas partie du fichier : elles évitent que ce cours soit lui-même pris pour un fichier en conflit par les outils Git. Tout ce qui précède `=======` vient de `HEAD` (notre branche), tout ce qui suit vient de la branche fusionnée ; `git diff` pendant un conflit montre les deux versions, et `git checkout --ours -- fichier` ou `--theirs` permet d'en retenir une en bloc.
+
+Après correction :
+
+```bash
+git add fichier.py
+git commit
+```
+
+Pour abandonner le merge :
+
+```bash
+git merge --abort
+```
+
+## 9.3 Réutiliser une résolution avec rerere
+
+Dans des workflows complexes :
+
+```bash
+git config --global rerere.enabled true
+```
+
+`rerere` signifie *reuse recorded resolution*. Git mémorise certaines résolutions de conflits et peut les réappliquer lors d'un rebase ou merge ultérieur.
+
+# 10. Restaurer et annuler sans se tromper
+
+`checkout`, `restore`, `reset` et `revert` sont souvent confondus.
+
+## 10.1 Annuler une modification non indexée
+
+```bash
+git restore fichier.py
+```
+
+Attention : les modifications non enregistrées sont perdues.
+
+## 10.2 Désindexer sans perdre le fichier
+
+```bash
+git restore --staged fichier.py
+```
+
+## 10.3 Restaurer depuis un commit
+
+```bash
+git restore --source=HEAD~2 -- fichier.py
+```
+
+## 10.4 `git revert` : annuler par un nouveau commit
+
+Pour une branche partagée, `revert` est souvent la solution la plus sûre :
+
+```bash
+git revert <commit>
+```
+
+Git crée un nouveau commit qui inverse les changements du commit ciblé.
+
+Pour une suite de commits :
 
 ```bash
 git revert HEAD~3..HEAD
 ```
 
-## 6.13 Revenir à une version précédente en effaçant l'historique de la version actuelle
+Vérifions toujours le résultat avant de pousser.
 
-Si nous voulons revenir à une version précédente et effacer l'historique des commits, nous pouvons utiliser la commande `git reset`.
+## 10.5 `git reset`
 
-```bash
-git reset
-```
-
-## 6.14 Diagrammes
-
-Exemple de diagramme de séquence qui reprend l'ensemble du workflow Git classique, y compris les différents états des fichiers (untracked, unmodified, modified, staged) et les interactions avec le dépôt local et le dépôt distant.
-
-```mermaid
-sequenceDiagram
-    participant Untracked as Fichier Untracked
-    participant Modified as Fichier Modifié
-    participant Staged as Fichier Stagé
-    participant Unmodified as Fichier Non Modifié
-    participant Dépôt_Local as Dépôt Local
-    participant Dépôt_Distant as Dépôt Distant
-
-    Untracked->>Modified: Modification du fichier
-    Modified->>Staged: git add
-    Staged->>Dépôt_Local: git commit
-    Dépôt_Local->>Unmodified: Fichier commité
-    Dépôt_Local->>Dépôt_Distant: git push
-    Dépôt_Distant->>Dépôt_Local: git pull
-    Dépôt_Local->>Modified: Modification du fichier
-    Modified->>Staged: git add
-    Staged->>Dépôt_Local: git commit
-    Dépôt_Local->>Unmodified: Fichier commité
-```
-
-Dans ce diagramme, chaque participant représente un état de fichier différent ou un dépôt différent. Les flèches représentent les actions effectuées sur les fichiers ou les dépôts, généralement en utilisant des commandes Git. Notez que le flux réel peut varier en fonction de votre utilisation spécifique de Git.
-
-## 6.15 Diagramme des branches
-
-Exemple de diagramme de séquence qui illustre le workflow avec des branches et des merges :
-
-```mermaid
-sequenceDiagram
-    participant Tronc as Tronc (master)
-    participant Branche as Branche (feature)
-    participant Dépôt_Local as Dépôt Local
-    participant Dépôt_Distant as Dépôt Distant
-
-    Tronc->>Branche: git checkout -b feature (Création de la branche)
-    Branche->>Dépôt_Local: git add & git commit (Modification sur la branche)
-    Dépôt_Local->>Dépôt_Distant: git push origin feature (Push des modifications)
-    Dépôt_Local->>Tronc: git checkout master (Retour sur le tronc)
-    Tronc->>Dépôt_Local: git merge feature (Merge de la branche)
-    Dépôt_Local->>Dépôt_Distant: git push (Push des modifications du tronc)
-```
-
-Dans ce diagramme, "Tronc" et "Branche" représentent deux branches différentes dans le dépôt. Nous créons une nouvelle branche appelée "feature", y apportons des modifications, puis poussons ces modifications vers le dépôt distant.
-
-Ensuite, nous revenons sur la branche master, fusionnons les modifications de la branche feature, puis poussons les modifications vers le dépôt distant.
-
-## 6.16 Alias pratique
-
-Pour faciliter notre travail, nous pouvons créer des alias pour certaines commandes. Par exemple, l'alias suivant crée une commande `gg` qui affiche un journal de commits coloré et facile à lire.
+Déplacer la branche sans toucher à l'index ni au working tree :
 
 ```bash
-alias gg='git log --oneline --graph --name-status'
+git reset --soft HEAD~1
 ```
 
-Pour plus d'informations sur la gestion des branches et la résolution des conflits, consultons [cette vidéo](https://youtu.be/75ZuypqdHII).
-
-# 7. Exporter un répertoire dans un nouveau dépôt
-
-Accédons au répertoire principal du premier dépôt en utilisant la ligne de commande.
-Créons un nouveau dépôt Git vide en utilisant la commande `git init`.
+Réinitialiser aussi l'index :
 
 ```bash
-git init nouveau-depot
+git reset --mixed HEAD~1
 ```
 
-Cette commande crée un nouveau dépôt Git vide dans un dossier nommé `nouveau-depot`.  
-Accédons au sous-dossier `Notes` du premier dépôt en utilisant la commande cd.
+Réinitialiser index **et fichiers de travail** :
 
 ```bash
-cd Notes
+git reset --hard HEAD~1
 ```
 
-Copions l'historique des commits de ce sous-dossier en utilisant la commande `git filter-branch`.
+`--hard` est destructif pour les modifications non commitées.
+
+## 10.6 Reflog : le filet de sécurité local
+
+Git journalise les mouvements récents des références :
 
 ```bash
-git filter-branch --subdirectory-filter Notes -- --all
+git reflog
 ```
 
-Cette commande filtre l'historique des commits pour ne conserver que ceux qui affectent le dossier `Notes`.
-
-Ajoutons le nouveau dépôt Git comme dépôt distant dans le premier dépôt en utilisant la commande `git remote add`.
+Si nous avons fait un mauvais reset :
 
 ```bash
-git remote add nouveau-depot chemin/vers/nouveau-depot
+git reset --hard HEAD@{1}
 ```
 
-Cette commande ajoute le nouveau dépôt Git comme un dépôt distant appelé `nouveau-depot` dans le premier dépôt.
-   
-Poussons l'historique des commits filtré vers le nouveau dépôt en utilisant la commande `git push`.
+Le reflog est local et temporaire. Ce n'est pas une sauvegarde.
+
+# 11. Stash
+
+Mettre temporairement de côté des modifications :
 
 ```bash
-git push nouveau-depot master
+git stash push -m "WIP formulaire"
 ```
 
-Cette commande pousse l'historique des commits filtré vers le nouveau dépôt dans la branche `master`.  
+Inclure les fichiers non suivis :
 
-Le nouveau dépôt Git créé ne contiendra que l'historique des commits concernant le sous-dossier `Notes` du premier dépôt. Les autres fichiers et dossiers du premier dépôt ne seront pas inclus dans le nouveau dépôt.
+```bash
+git stash push -u -m "WIP"
+```
 
-# 8. Introduction à GitLab
+Lister :
 
-GitLab est une plateforme web basée sur le cloud qui fournit un espace pour héberger des dépôts Git, tout comme GitHub. Cependant, GitLab est bien plus qu'un simple service d'hébergement de code. Il s'agit d'une suite complète d'outils de développement de logiciels, offrant des fonctionnalités pour chaque étape du cycle de vie du développement.
+```bash
+git stash list
+```
 
-## 8.1 Créer un compte GitLab
+Réappliquer sans supprimer l'entrée :
 
-La première étape pour utiliser GitLab est de créer un compte. Rendons-nous sur [GitLab](https://gitlab.com/) et suivons les instructions pour nous inscrire. Une fois que nous avons créé un compte, nous pouvons commencer à créer des projets et des dépôts.
+```bash
+git stash apply stash@{0}
+```
 
-## 8.2 Créer un nouveau projet
+Réappliquer et retirer l'entrée :
 
-Une fois que nous nous sommes connectés à votre compte GitLab, nous pouvons créer un nouveau projet en cliquant sur le bouton "New project". Nous pouvons alors donner un nom à notre projet, lui ajouter une description et choisir si nous voulons qu'il soit public ou privé. Une fois que nous avons créé votre projet, nous pouvons commencer à y pousser du code depuis votre ordinateur local avec Git.
+```bash
+git stash pop
+```
 
-## 8.3 Intégration continue/déploiement continu (CI/CD)
+# 12. Rebase et cherry-pick
 
-L'une des fonctionnalités les plus puissantes de GitLab est son système d'intégration continue et de déploiement continu (CI/CD). Avec GitLab CI/CD, nous pouvons automatiser une série de tâches chaque fois que nous poussons du code vers votre dépôt. Par exemple, nous pouvons configurer GitLab pour qu'il exécute automatiquement des tests unitaires, construise votre code et le déploie sur un serveur de production chaque fois que nous faites un commit.
+## 12.1 Rebase
 
-## 8.4 Gestion des problèmes et des demandes de tirage
+Supposons :
 
-GitLab offre également des outils pour gérer les problèmes (issues) et les demandes de tirage (merge requests). nous pouvons utiliser les problèmes pour suivre les bugs et les fonctionnalités, et nous pouvons utiliser les demandes de tirage pour gérer les modifications du code. Chaque problème et chaque demande de tirage peut être attribué à un utilisateur spécifique, ce qui facilite la collaboration sur un projet.
+```text
+A---B---C  main
+     \
+      D---E  feature
+```
 
-## 8.5 Tableaux de bord
+Sur `feature` :
 
-GitLab fournit également des tableaux de bord pour chaque projet qui nous permettent de suivre l'état de votre code, les problèmes en cours, et bien plus encore.
+```bash
+git rebase main
+```
 
-En résumé, GitLab est une suite complète d'outils pour le développement de logiciels qui offre une intégration étroite avec Git. Qu'il s'agisse de gérer votre code, d'automatiser nos tests ou de déployer nos applications, GitLab a les outils dont nous avons besoin.
+Git rejoue `D` et `E` sur `C` :
 
-# 9. Introduction à GitHub
+```text
+A---B---C  main
+         \
+          D'---E'  feature
+```
 
-GitHub est une plateforme web qui fournit un service d'hébergement pour le contrôle de version Git. Il offre toutes les fonctionnalités de Git distribué et de contrôle de version source, ainsi qu'un ensemble de fonctionnalités supplémentaires propres à sa plateforme. GitHub facilite le travail en équipe et la collaboration sur des projets, grands ou petits.
+Les nouveaux commits ont de nouveaux identifiants.
 
-## 9.1 Créer un compte GitHub
+## 12.2 Rebase interactif
 
-Avant de pouvoir utiliser GitHub, nous devons d'abord créer un compte. Rendez-Nous sur [GitHub](https://github.com/) et suivons les instructions pour nous inscrire. Une fois notre compte créé, nous pouvons commencer à créer des dépôts, à collaborer avec d'autres développeurs et à contribuer à des projets open source.
+```bash
+git rebase -i HEAD~5
+```
 
-## 9.2 Créer un nouveau dépôt
+Nous pouvons notamment :
 
-Une fois connectés à notre compte GitHub, nous pouvons créer un nouveau dépôt en cliquant sur le bouton "+", puis "New repository" dans le coin supérieur droit. Nous donnons ensuite un nom à notre dépôt, pouvons ajouter une description, choisir s'il doit être public ou privé, et éventuellement ajouter un fichier README, un .gitignore ou une licence.
+- `pick` : conserver ;
+- `reword` : modifier le message ;
+- `edit` : modifier le commit ;
+- `squash` : fusionner avec le précédent ;
+- `fixup` : fusionner en ignorant le message ;
+- `drop` : supprimer.
 
-## 9.3 Collaborer sur des projets
+Pour corriger un commit précis sans éditer la liste à la main, créons un commit `fixup!` puis laissons Git le replacer :
 
-GitHub facilite la collaboration sur des projets. Nous pouvons inviter d'autres utilisateurs à collaborer sur nos projets, faire des "pull requests" pour proposer des modifications à d'autres projets, et fusionner ces modifications une fois qu'elles ont été revues.
+```bash
+git commit --fixup <commit>
+git rebase -i --autosquash <commit>~1
+```
 
-## 9.4 Gérer des problèmes (issues) et des demandes de tirage (pull requests)
+Git 2.55 introduit `git history fixup <commit>` (expérimental), qui applique directement les changements indexés à un commit ancien et rejoue les suivants, en abandonnant en cas de conflit plutôt que de laisser un rebase à moitié fait.
 
-GitHub offre également des outils pour gérer les problèmes et les demandes de tirage. Nous pouvons utiliser les problèmes pour suivre les bugs et les demandes de fonctionnalités, et nous pouvons utiliser les demandes de tirage pour proposer, examiner et fusionner des modifications du code.
+Ne réécrivons pas sans coordination des commits déjà consommés par d'autres collaborateurs.
 
-## 9.5 GitHub Actions et GitHub Pages
+## 12.3 Cherry-pick
 
-En plus de ces fonctionnalités de base, GitHub offre également GitHub Actions, une fonctionnalité d'intégration continue/déploiement continu (CI/CD) qui nous permet d'automatiser votre workflow de développement de logiciels. Par exemple, à chaque fois que nous faisons un commit ou une demande de tirage, GitHub Actions peut exécuter automatiquement une série de tests sur notre code.
+Appliquer un commit particulier sur la branche courante :
 
-De plus, avec GitHub Pages, nous pouvons héberger gratuitement des sites web statiques directement à partir de nos dépôts GitHub.
+```bash
+git cherry-pick <commit>
+```
 
-En résumé, GitHub est une plateforme d'hébergement Git riche en fonctionnalités qui facilite la collaboration sur des projets, la gestion du code source, le suivi des problèmes, l'hébergement de sites web, et plus encore.
+Utile pour backporter un correctif, mais à ne pas transformer en stratégie de fusion systématique.
 
-# 10. Export massif depuis gitlab
+# 13. Tags et versions
 
-L'exportation de projets GitLab est généralement réalisée projet par projet via l'interface Web, ce qui peut être assons laborieux si nous avons beaucoup de projets. Cependant, pour automatiser le processus, nous pouvons utiliser l'API de GitLab.
+## 13.1 Tag léger
 
-Voici un script en Python 3 pour exporter tout le contenu de notre instance GitLab CE, le parcours ne se base pas sur la liste des projets fournis par l'API, car selon comment les  projets ont été crées, la liste retournée ne contient pas tous les projets du gitlab-ce :
+```bash
+git tag v1.2.0
+```
+
+## 13.2 Tag annoté
+
+```bash
+git tag -a v1.2.0 -m "Version 1.2.0"
+```
+
+Les tags annotés possèdent leur propre objet Git et sont préférables pour les releases.
+
+## 13.3 Publier les tags
+
+Un tag :
+
+```bash
+git push origin v1.2.0
+```
+
+Tous les tags :
+
+```bash
+git push --tags
+```
+
+# 14. Rechercher l'origine d'un problème
+
+## 14.1 `git blame`
+
+```bash
+git blame src/app.py
+```
+
+`blame` indique le dernier commit ayant touché chaque ligne. Ce n'est pas un outil permettant d'attribuer « la faute » à une personne : un refactoring peut avoir remplacé l'auteur historique apparent.
+
+## 14.2 Rechercher une chaîne dans l'historique
+
+```bash
+git log -S'maFonction' --oneline --all
+```
+
+Recherche par expression régulière dans les diffs :
+
+```bash
+git log -G'ancienne_api\(' -p
+```
+
+## 14.3 `git bisect`
+
+Si un bug est absent dans un ancien commit mais présent aujourd'hui :
+
+```bash
+git bisect start
+git bisect bad HEAD
+git bisect good v1.0.0
+```
+
+Git nous place au milieu de l'intervalle. Après chaque test :
+
+```bash
+git bisect good
+```
+
+ou :
+
+```bash
+git bisect bad
+```
+
+À la fin :
+
+```bash
+git bisect reset
+```
+
+Automatisation :
+
+```bash
+git bisect run ./tests/regression.sh
+```
+
+# 15. Réécrire un historique avec `git filter-repo`
+
+La réécriture globale d'un historique change les identifiants de commits et doit être planifiée avec les collaborateurs.
+
+`git filter-branch` existe toujours, mais sa documentation officielle recommande **de ne plus l'utiliser** pour les nouveaux travaux de réécriture. Pour la plupart des usages, préférons `git filter-repo`.
+
+## 15.1 Installer git-filter-repo
+
+Selon la distribution :
+
+```bash
+sudo apt install git-filter-repo
+```
+
+ou, dans un environnement virtuel Python, `python -m pip install git-filter-repo` (le projet est un unique script Python).
+
+Vérifions :
+
+```bash
+git filter-repo --version
+```
+
+## 15.2 Extraire un sous-répertoire dans un dépôt autonome
+
+Pour transformer `Notes/` en racine du nouveau dépôt :
+
+```bash
+git clone --no-local /chemin/vers/depot-source nouveau-depot
+cd nouveau-depot
+git filter-repo --path Notes/ --path-rename Notes/:
+```
+
+Puis ajoutons le nouveau remote et poussons explicitement :
+
+```bash
+git remote add origin git@example.org:equipe/notes.git
+git push -u origin main
+```
+
+`git filter-repo --subdirectory-filter Notes` est un raccourci équivalent. Cette méthode remplace l'ancien exemple basé sur `git filter-branch --subdirectory-filter` ; `filter-repo` refuse d'ailleurs de travailler sur un dépôt qui n'est pas un clone frais, précisément pour éviter d'abîmer l'original.
+
+## 15.3 Supprimer un secret de tout l'historique
+
+**Révoquons d'abord le secret.** Réécrire Git ne suffit pas si un token a déjà été exposé.
+
+Puis, par exemple :
+
+```bash
+git filter-repo --path config/secret.env --invert-paths
+```
+
+Après une réécriture publiée :
+
+- prévenir tous les collaborateurs ;
+- protéger ou remplacer les anciennes références ;
+- forcer proprement les branches concernées ;
+- demander aux collaborateurs de recloner ou de réaligner leur dépôt.
+
+# 16. Worktrees, sparse-checkout et clones partiels
+
+## 16.1 Worktrees
+
+Un worktree permet d'avoir plusieurs branches du même dépôt ouvertes simultanément sans dupliquer toute la base d'objets.
+
+```bash
+git worktree add ../projet-hotfix hotfix/urgent
+```
+
+Lister :
+
+```bash
+git worktree list
+```
+
+Supprimer :
+
+```bash
+git worktree remove ../projet-hotfix
+```
+
+Très pratique pour :
+
+- corriger une release sans interrompre un développement ;
+- comparer deux branches ;
+- exécuter plusieurs agents ou environnements de test sur des branches séparées.
+
+## 16.2 Sparse checkout
+
+Pour ne matérialiser qu'une partie d'un monorepo :
+
+```bash
+git sparse-checkout init --cone
+git sparse-checkout set backend docs
+```
+
+## 16.3 Clone partiel
+
+Pour éviter de télécharger immédiatement tous les blobs :
+
+```bash
+git clone --filter=blob:none https://example.org/gros-depot.git
+```
+
+Git récupérera les objets manquants à la demande si le serveur supporte le protocole nécessaire.
+
+## 16.4 Clone superficiel
+
+Pour certains environnements CI :
+
+```bash
+git clone --depth=1 https://example.org/projet.git
+```
+
+Un clone superficiel n'a pas tout l'historique. Il est donc inadapté à certaines opérations (`bisect`, génération de changelog complet, analyses historiques, etc.).
+
+# 17. Submodules et alternatives
+
+## 17.1 Submodule
+
+Un submodule enregistre dans le dépôt principal **un commit précis d'un autre dépôt**.
+
+```bash
+git submodule add https://example.org/lib.git vendor/lib
+```
+
+Après clone :
+
+```bash
+git submodule update --init --recursive
+```
+
+Ou directement :
+
+```bash
+git clone --recurse-submodules https://example.org/projet.git
+```
+
+## 17.2 Limites
+
+Les submodules demandent de comprendre que le dépôt parent ne stocke pas la branche du sous-projet, mais un commit précis.
+
+Selon le besoin, nous pouvons préférer :
+
+- un gestionnaire de dépendances ;
+- `git subtree` ;
+- un monorepo ;
+- une publication versionnée du composant.
+
+# 18. `.gitignore` et `.gitattributes`
+
+## 18.1 `.gitignore`
+
+Exemple :
+
+```gitignore
+.venv/
+__pycache__/
+.env
+node_modules/
+dist/
+*.log
+```
+
+`.gitignore` n'arrête pas le suivi d'un fichier **déjà versionné**.
+
+Pour le retirer de l'index tout en le conservant localement :
+
+```bash
+git rm --cached .env
+```
+
+S'il contenait un secret déjà publié, il faut également **révoquer le secret**, et éventuellement réécrire l'historique.
+
+## 18.2 `.gitattributes`
+
+`.gitattributes` permet notamment de définir :
+
+- traitement texte/binaire ;
+- fins de lignes ;
+- drivers de diff/merge ;
+- fichiers exportés ;
+- fichiers gérés par **Git LFS** ou **Git Xet**.
+
+Exemple :
+
+```gitattributes
+* text=auto
+*.sh text eol=lf
+*.png binary
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+```
+
+Le dernier exemple est précisément le type de règle que Git LFS et Git Xet exploitent pour les gros fichiers.
+
+# 19. Git LFS : gérer de gros fichiers
+
+Git est extrêmement efficace pour le code et de nombreux fichiers texte, mais stocker directement de nombreuses révisions de gros fichiers binaires pose problème.
+
+Exemples :
+
+- modèles ML (`.safetensors`, `.bin`) ;
+- datasets binaires ou Parquet volumineux ;
+- vidéos ;
+- archives ;
+- images disque ;
+- fichiers audio ;
+- fichiers CAO ;
+- assets graphiques lourds.
+
+**Git LFS** (*Large File Storage*) conserve dans Git un petit fichier pointeur, tandis que le contenu lourd est envoyé vers un stockage LFS séparé.
+
+## 19.1 Pourquoi un gros binaire est coûteux dans Git classique
+
+Supposons un checkpoint de 8 Gio :
+
+```text
+checkpoint-v1.safetensors = 8 Gio
+checkpoint-v2.safetensors = 8 Gio
+checkpoint-v3.safetensors = 8 Gio
+```
+
+Si les versions sont suffisamment différentes pour que la compression Git ne soit pas très efficace, l'historique devient rapidement énorme. De plus, un clone Git complet souhaite normalement récupérer l'historique des objets.
+
+LFS sépare :
+
+```text
+Dépôt Git
+  └── pointeur texte de quelques lignes
+
+Serveur Git LFS / stockage objet
+  └── contenu binaire réel
+```
+
+## 19.2 Installer Git LFS
+
+Sous Debian/Ubuntu :
+
+```bash
+sudo apt install git-lfs
+```
+
+Initialisation pour l'utilisateur :
+
+```bash
+git lfs install
+```
+
+Vérification :
+
+```bash
+git lfs version
+```
+
+`git lfs install` configure notamment les filtres nécessaires et le hook `pre-push` utilisé par LFS.
+
+## 19.3 Suivre des extensions
+
+Dans un dépôt :
+
+```bash
+git lfs track "*.safetensors"
+git lfs track "*.parquet"
+git lfs track "*.zip"
+```
+
+Observons le résultat :
+
+```bash
+cat .gitattributes
+```
+
+Nous trouverons des lignes du type :
+
+```gitattributes
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+*.parquet filter=lfs diff=lfs merge=lfs -text
+```
+
+Il faut **commiter `.gitattributes`** :
+
+```bash
+git add .gitattributes
+git commit -m "Configure Git LFS"
+```
+
+La configuration fait partie du projet.
+
+## 19.4 Ajouter un fichier LFS
+
+Ensuite, le workflow reste presque identique :
+
+```bash
+git add model.safetensors
+git commit -m "Ajoute le checkpoint"
+git push
+```
+
+Le `pre-push` LFS envoie les objets LFS nécessaires au serveur avant ou pendant le push selon le protocole.
+
+## 19.5 À quoi ressemble un pointeur LFS ?
+
+Dans l'historique Git, un gros fichier est remplacé par un petit texte proche de :
+
+```text
+version https://git-lfs.github.com/spec/v1
+oid sha256:0123456789abcdef...
+size 8589934592
+```
+
+Les éléments importants sont :
+
+- la version du format de pointeur ;
+- l'OID, généralement fondé sur SHA-256 du contenu ;
+- la taille réelle du fichier.
+
+Le blob Git contient ce pointeur. Le gros contenu réside ailleurs.
+
+## 19.6 Clean filter, smudge filter et hook de push
+
+LFS s'intègre à Git au moyen de filtres :
+
+### Clean
+
+Quand un fichier suivi par LFS entre dans l'index :
+
+```text
+fichier réel -> filtre clean -> pointeur LFS dans Git
+```
+
+### Smudge
+
+Lors d'un checkout normal :
+
+```text
+pointeur LFS -> filtre smudge -> téléchargement du fichier réel
+```
+
+### Pre-push
+
+Avant le push, Git LFS s'assure que les objets nécessaires existent sur le stockage LFS distant.
+
+Cette architecture explique pourquoi une personne qui clone sans Git LFS correctement installé peut parfois voir **le texte du pointeur au lieu du fichier binaire attendu**.
+
+## 19.7 Inspecter les fichiers LFS
+
+Lister les fichiers :
+
+```bash
+git lfs ls-files
+```
+
+État :
+
+```bash
+git lfs status
+```
+
+Configuration effective (endpoint, cache, filtres) :
+
+```bash
+git lfs env
+```
+
+## 19.8 `fetch`, `pull` et `checkout`
+
+Télécharger les objets LFS nécessaires :
+
+```bash
+git lfs fetch
+```
+
+Télécharger puis matérialiser les fichiers :
+
+```bash
+git lfs pull
+```
+
+Matérialiser à partir d'objets déjà présents localement :
+
+```bash
+git lfs checkout
+```
+
+Nous pouvons récupérer toutes les références si nécessaire :
+
+```bash
+git lfs fetch --all
+```
+
+Attention : sur un très gros dépôt, `--all` peut représenter beaucoup de données.
+
+## 19.9 Cloner sans télécharger immédiatement tous les gros fichiers
+
+Pour une opération d'administration ou une CI qui n'a pas besoin des assets :
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://example.org/projet.git
+```
+
+Puis plus tard :
+
+```bash
+git lfs pull
+```
+
+Cela peut réduire fortement le coût initial du clone.
+
+## 19.10 `git lfs track` ne migre pas l'historique existant
+
+C'est une confusion fréquente.
+
+```bash
+git lfs track "*.bin"
+```
+
+modifie `.gitattributes`, mais ne transforme pas automatiquement les anciennes versions déjà présentes dans l'historique.
+
+Pour des fichiers déjà présents dans le commit courant :
+
+```bash
+git add --renormalize .
+git commit -m "Place les binaires existants sous Git LFS"
+```
+
+Pour réécrire l'historique :
+
+```bash
+git lfs migrate info
+```
+
+Puis, après analyse :
+
+```bash
+git lfs migrate import --include="*.bin,*.safetensors" --everything
+```
+
+Cette commande **réécrit l'historique**. Nous devons donc coordonner le changement et pousser les références réécrites de manière contrôlée.
+
+## 19.11 Migrer selon la taille
+
+Nous pouvons d'abord inspecter :
+
+```bash
+git lfs migrate info --everything
+```
+
+Git LFS permet également de migrer tous les fichiers dépassant un seuil, quelle que soit leur extension :
+
+```bash
+git lfs migrate import --above=100MB --everything
+```
+
+`--above` accepte les suffixes `KB`, `MB`, `GB` et ajoute les motifs correspondants à `.gitattributes`.
+
+Attention : Git LFS ne possède pas une règle `.gitattributes` disant « tous les fichiers > 100 Mio ». Les règles de suivi sont basées sur des chemins/motifs. La migration par taille est une opération ponctuelle, pas une politique automatique future.
+
+## 19.12 Revenir de LFS vers Git classique
+
+Pour réécrire l'ensemble de l'historique :
+
+```bash
+git lfs migrate export --everything --include="*.bin"
+```
+
+À réserver à des cas où nous savons que la taille redeviendra raisonnable.
+
+## 19.13 Nettoyer le cache LFS local
+
+```bash
+git lfs prune
+```
+
+Cette opération supprime des objets LFS locaux devenus inutiles selon les règles de rétention de LFS.
+
+## 19.14 Vérifier l'intégrité
+
+```bash
+git lfs fsck
+```
+
+Nous pouvons également contrôler que les fichiers qui devraient être des pointeurs le sont réellement dans une CI.
+
+## 19.15 Verrouillage de fichiers
+
+Git LFS propose un protocole de verrouillage lorsque le serveur l'implémente :
+
+```bash
+git lfs lock assets/scene.blend
+```
+
+Lister :
+
+```bash
+git lfs locks
+```
+
+Déverrouiller :
+
+```bash
+git lfs unlock assets/scene.blend
+```
+
+Ce mécanisme peut être intéressant pour des fichiers binaires difficilement fusionnables.
+
+## 19.16 Limites de Git LFS
+
+Git LFS améliore énormément la gestion de gros fichiers, mais :
+
+- le contenu dépend du serveur LFS ;
+- les quotas et limites dépendent de l'hébergeur ;
+- il faut sauvegarder le stockage LFS en plus du dépôt Git ;
+- une modification minime dans un gros fichier crée en principe un **nouvel objet de fichier complet** côté LFS ;
+- tous les clients et automatisations doivent être correctement configurés ;
+- les pointeurs seuls ne suffisent pas à restaurer un projet si les objets LFS ont disparu.
+
+L'absence de déduplication en dessous du niveau du **fichier** — un objet complet par version — est précisément l'une des raisons pour lesquelles Hugging Face a migré son Hub vers Xet.
+
+# 20. Git Xet et Hugging Face
+
+> [!important]
+> Le nom est **Git Xet** (`git-xet`), pas « Git Ext ». Xet est la technologie de stockage de gros fichiers adoptée par Hugging Face pour remplacer son backend Git LFS historique.
+
+Hugging Face héberge des modèles et datasets qui peuvent contenir :
+
+- des fichiers `safetensors` de plusieurs gigaoctets ;
+- des checkpoints très proches les uns des autres ;
+- de gros fichiers Parquet ;
+- parfois des fichiers de taille téraoctet.
+
+Le modèle Git LFS traditionnel devient coûteux lorsqu'une petite modification d'un fichier de plusieurs gigaoctets entraîne le transfert d'un nouvel objet complet.
+
+## 20.1 Historique de Xet chez Hugging Face
+
+Hugging Face a acquis **XetHub en août 2024** afin de construire un backend mieux adapté aux charges IA/ML.
+
+Le nouveau backend a été déployé en janvier 2025 ; en mai 2025 Xet est devenu le stockage par défaut des nouveaux comptes et organisations, et à partir de juillet 2025 l'ensemble des dépôts existants a été migré depuis Git LFS. La migration a été conçue pour rester compatible avec les anciens clients LFS.
+
+En 2026, la documentation Hugging Face présente Xet comme **le** backend de stockage du Hub ; Git LFS n'y subsiste que comme couche de compatibilité.
+
+## 20.2 Le principe : déduplication par chunks
+
+Git LFS raisonne principalement au niveau du fichier :
+
+```text
+checkpoint A : [                 8 Gio                  ]
+checkpoint B : [                 8 Gio                  ]
+                  ^ 2 Mio réellement modifiés
+```
+
+LFS doit généralement stocker/transférer une nouvelle version du fichier complet.
+
+Xet découpe le contenu en **chunks définis par le contenu** (*Content-Defined Chunking*, CDC) :
+
+```text
+checkpoint A : [C1][C2][C3][C4][C5][C6][C7][C8]
+checkpoint B : [C1][C2][C3][N4][C5][C6][C7][C8]
+                             ^
+                      chunk réellement nouveau
+```
+
+Les chunks déjà présents dans le Content Addressable Store peuvent être réutilisés. Cela apporte :
+
+- moins d'upload pour des révisions proches ;
+- moins de bande passante ;
+- déduplication entre fichiers et, côté backend, à grande échelle ;
+- workflows plus efficaces pour les checkpoints et datasets incrémentaux.
+
+Le protocole Xet possède des structures internes supplémentaires telles que chunks, xorbs et shards. Pour utiliser Hugging Face, il n'est normalement pas nécessaire de les manipuler directement.
+
+## 20.3 Ce qui reste dans Git
+
+Même avec Xet :
+
+```text
+Git
+ ├── commits
+ ├── trees
+ ├── branches/tags
+ ├── .gitattributes
+ └── petits pointeurs pour les gros fichiers
+
+Xet Storage
+ └── contenu lourd découpé, dédupliqué et stocké à distance
+```
+
+Un dépôt Hugging Face reste donc **un dépôt Git** pour son historique, ses commits et ses références.
+
+## 20.4 Compatibilité avec le format de pointeur LFS
+
+Un choix essentiel de Hugging Face est de conserver une compatibilité forte avec Git LFS.
+
+Les gros fichiers dans un dépôt Git Xet-backed continuent à être représentés dans Git par des pointeurs compatibles avec le format Git LFS. Cela permet notamment :
+
+- aux clients modernes d'utiliser Xet ;
+- aux anciens clients LFS de continuer à fonctionner via un bridge ;
+- à un même dépôt de contenir transitoirement des données stockées par les deux backends.
+
+Il faut donc distinguer :
+
+```text
+format du pointeur dans Git
+            ≠
+backend réel qui conserve les octets
+```
+
+## 20.5 Le Git LFS Bridge de Hugging Face
+
+Hugging Face fournit un **Git LFS Bridge**.
+
+Lorsqu'un ancien client ne connaît pas Xet :
+
+```text
+client Git LFS ancien
+        |
+        v
+Git LFS Bridge Hugging Face
+        |
+        v
+reconstruction depuis Xet/CAS
+        |
+        v
+fichier retourné au client
+```
+
+Pour les uploads d'un client LFS non Xet-aware, Hugging Face peut accepter le flux LFS puis migrer les données en arrière-plan.
+
+C'est ce mécanisme qui a permis au Hub de migrer sans imposer une coupure brutale à tous les utilisateurs.
+
+## 20.6 `git-xet` : extension Git
+
+Pour utiliser Xet avec un workflow Git classique, Hugging Face fournit **Git Xet**.
+
+Architecture simplifiée :
+
+```text
+Git
+ |
+Git LFS / mécanisme de filtre
+ |
+custom transfer agent git-xet
+ |
+xet-core
+ |
+Xet CAS / stockage Hugging Face
+```
+
+La spécification Xet décrit `git-xet` comme un **custom transfer agent Git LFS** utilisant le protocole Xet pour les transferts vers le Hub.
+
+Autrement dit, Xet ne jette pas Git à la poubelle : il s'insère sous le workflow Git/LFS existant pour optimiser le transport et le stockage.
+
+## 20.7 Prérequis pour le workflow Git Hugging Face
+
+La documentation Hugging Face demande actuellement :
+
+- Git ;
+- Git LFS ;
+- Git Xet pour profiter du protocole Xet avec Git.
+
+Installation de `git-xet` (binaire fourni par le dépôt `huggingface/xet-core`) :
+
+```bash
+# Linux ou macOS (amd64, aarch64) : script officiel
+curl --proto '=https' --tlsv1.2 -sSf \
+    https://raw.githubusercontent.com/huggingface/xet-core/refs/heads/main/git_xet/install.sh | sh
+
+# ou Homebrew / conda-forge
+brew install git-xet
+conda install -c conda-forge git-xet
+
+# Windows
+winget install git-xet
+```
+
+Le script d'installation enregistre l'extension ; avec les autres méthodes, terminer par :
+
+```bash
+git xet install
+```
+
+`git xet install` déclare `git-xet` auprès de Git LFS comme *custom transfer agent* nommé `xet`. Lors d'un push ou d'un pull, Git LFS annonce au serveur les agents disponibles et le Hub choisit `xet` ; les transferts sont alors délégués à `git-xet`. Pour désinstaller : `git xet uninstall` puis suppression du binaire.
+
+Seules les architectures 64 bits sont prises en charge, pour `git-xet` comme pour `hf_xet`.
+
+Vérification :
+
+```bash
+git xet --version
+```
+
+Et vérifions aussi LFS :
+
+```bash
+git lfs install
+git lfs version
+```
+
+## 20.8 Cloner un modèle Hugging Face avec Git
+
+Par HTTPS :
+
+```bash
+git clone https://huggingface.co/<organisation>/<modele>
+```
+
+Pour un dataset :
+
+```bash
+git clone https://huggingface.co/datasets/<organisation>/<dataset>
+```
+
+Par SSH, après avoir enregistré notre clé publique :
+
+```bash
+git clone git@hf.co:<organisation>/<modele>
+```
+
+Avec `git-xet` installé, les transferts des gros fichiers peuvent exploiter le backend Xet.
+
+## 20.9 Ajouter un gros modèle dans un dépôt Hugging Face
+
+Lorsqu'un dépôt est créé sur Hugging Face, `.gitattributes` contient généralement déjà des motifs adaptés aux formats ML courants.
+
+Vérifions :
+
+```bash
+cat .gitattributes
+```
+
+La documentation Hugging Face demande de suivre avec Git Xet tout fichier de plus de **10 Mo**. Pour une extension absente des motifs fournis :
+
+```bash
+git xet track "*.mon_extension"
+```
+
+qui ajoute la ligne `filter=lfs diff=lfs merge=lfs -text` correspondante à `.gitattributes`, exactement comme `git lfs track`.
+
+Le workflow reste ensuite volontairement banal :
+
+```bash
+cp /chemin/model.safetensors .
+git add model.safetensors
+git commit -m "Ajoute le modèle entraîné"
+git push
+```
+
+`git-xet` intercepte le transfert des gros objets correspondants et les envoie vers Xet Storage.
+
+## 20.10 Pourquoi les commandes Git ordinaires restent les mêmes
+
+C'est un objectif de conception de Xet :
+
+```bash
+git status
+git add .
+git commit -m "Nouvelle révision"
+git push
+git pull
+```
+
+restent le workflow visible de l'utilisateur.
+
+La complexité du chunking et de la déduplication reste sous le niveau Git.
+
+## 20.11 Xet avec `huggingface_hub`
+
+Nous n'avons pas besoin de cloner un dépôt Git pour utiliser un modèle ou dataset.
+
+Depuis `huggingface_hub >= 0.32.0`, l'installation standard installe aussi **`hf_xet`**, liaison Python vers `xet-core` :
+
+```bash
+python -m pip install -U huggingface_hub
+```
+
+Entre les versions 0.30.0 et 0.32.0, `hf_xet` devait être installé explicitement (`pip install -U hf-xet`) ; avant 0.30.0, les transferts passent par le Git LFS Bridge.
+
+Puis :
 
 ```python
-# Description: This script will clone all GitLab repositories from a GitLab instance.
-# Author: Michael Launay
-# Date: 2023-05-06
-import os
-import requests
+from huggingface_hub import hf_hub_download
 
-# Set your GitLab URL and access token
-GITLAB_HOST = "git.ecreall.com"
-# For token creation, see https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
-ACCESS_TOKEN = "TOKEN FOR GITLAB-CE ROOT" # Fill with your own token
-MAXIMUM_PROJECT_ID = 400 # Adapt this value to oversize your GitLab instance
-
-# Set the directory where you want to clone the repositories
-CLONE_DIR = "/home/michaellaunay/workspace"
-
-# Create the clone directory if it doesn't exist
-os.makedirs(CLONE_DIR, exist_ok=True)
-
-# Create the base URL for the GitLab API
-GITLAB_URL = f"https://{GITLAB_HOST}/api/v4/projects"
-
-headers = {"PRIVATE-TOKEN": ACCESS_TOKEN}
-# Try to access each project by ID
-for i in range(1, MAXIMUM_PROJECT_ID):
-    url = f"{GITLAB_URL}/{i}"
-    # Retrieve the project details
-    response = requests.get(f"{GITLAB_URL}/{i}", headers=headers, verify=False)
-    # If the project doesn't exist, continue to the next ID
-    if str(response.content, "utf-8").find("404 Project Not Found") > -1:
-        continue
-    print(f"Try to clone {url =}")
-    project = response.json()
-
-    # Clone each project
-    project_name = project["name"]
-    project_path = project["path_with_namespace"]
-    namespace_path = project["namespace"]["full_path"]
-    repository_url = project["ssh_url_to_repo"]
-
-    # Clone the repository
-    clone_dir = os.path.join(CLONE_DIR, project_path)
-    project_dir = os.path.join(CLONE_DIR, namespace_path)
-    if not os.path.exists(os.path.join(clone_dir, ".git")):
-        os.makedirs(project_dir, exist_ok=True)
-        os.chdir(project_dir)
-        os.system(f"git clone {repository_url}")
-    else:
-        os.chdir(clone_dir)
-        os.system(f"git pull")
-
-print("Cloning complete. All repositories have been cloned to", CLONE_DIR)
+path = hf_hub_download(
+    repo_id="organisation/modele",
+    filename="model.safetensors",
+)
+print(path)
 ```
 
-Si besoin, installer le module `requests` :
+`huggingface_hub` utilise automatiquement `hf_xet` lorsque disponible.
 
+Les bibliothèques comme `transformers` et `datasets`, qui reposent sur `huggingface_hub`, bénéficient donc elles aussi de ce backend lorsque leurs versions et dépendances sont suffisamment récentes.
+
+## 20.12 Upload Python
+
+Exemple :
+
+```python
+from huggingface_hub import HfApi
+
+api = HfApi()
+api.upload_file(
+    path_or_fileobj="model.safetensors",
+    path_in_repo="model.safetensors",
+    repo_id="organisation/modele",
+)
 ```
-pip install requests
+
+Avec un environnement moderne, le transfert peut utiliser `hf_xet` sans que l'appel applicatif change.
+
+La commande `hf` (installée avec `huggingface_hub`) offre le même service depuis le terminal, sans clone Git :
+
+```bash
+hf auth login
+hf upload organisation/modele model.safetensors
+hf upload organisation/dataset ./data --repo-type dataset
 ```
 
-Dans ce script Python, nous utilisons la bibliothèque `requests` pour effectuer les appels à l'API GitLab. Le script effectue les étapes suivantes :
+## 20.13 Cache Xet local
 
-1. Crée un répertoire pour stocker les exports.
-2. Itère sur les identifiants des projets en supposant que les ids vont de 1 à 400 (à adapter).
-4. Pour chaque identifiant récupère le json de description du projet.
-3. S'il n'existe pas de projet pour cet identifiant passe à l'identifiant suivant.
-	1. À partir des informations de nom, chemin et domaine, crée le répertoire de destination et réalise un git clone.
+Le cache Hugging Face se trouve typiquement sous :
 
-Si le serveur gitlab-ce n'a pas de certificat ssl à jour, il faut temporairement désactiver la vérification des certificats ssl :
+```text
+~/.cache/huggingface/
+```
+
+Le cache Xet utilise par défaut :
+
+```text
+~/.cache/huggingface/xet/
+```
+
+Nous pouvons le déplacer :
+
+```bash
+export HF_XET_CACHE=/volume-rapide/cache-xet
+```
+
+Plus précisément, `HF_XET_CACHE` vaut par défaut `$HF_HOME/xet` et contient deux choses :
+
+- le **cache de shards**, index de déduplication des chunks déjà envoyés (plafond `HF_XET_SHARD_CACHE_SIZE_LIMIT`, 16 Go par défaut, qui permet de dédupliquer contre environ mille fois cette taille de données) ;
+- le **cache de chunks** téléchargés, désactivé par défaut dans `hf_xet` (`HF_XET_CHUNK_CACHE_SIZE_BYTES=0`) ; l'activer est utile lorsqu'on télécharge des révisions successives d'un même modèle.
+
+## 20.14 Mode haute performance
+
+Sur une machine adaptée, Hugging Face expose :
+
+```bash
+export HF_XET_HIGH_PERFORMANCE=1
+```
+
+Ce drapeau relève d'un coup la concurrence, la taille des tampons et le nombre de fichiers traités en parallèle. Hugging Face le réserve aux machines disposant d'une grande bande passante **et d'au moins 64 Go de RAM** ; sur une machine plus modeste, il peut dégrader les performances.
+
+Sans ce drapeau, `xet-core` applique par défaut une **concurrence adaptative** qui ajuste le nombre de flux parallèles aux conditions réseau : aucun réglage n'est nécessaire dans la plupart des cas. Pour figer la concurrence (bancs d'essai, réseau contraint) : `HF_XET_FIXED_DOWNLOAD_CONCURRENCY` et `HF_XET_FIXED_UPLOAD_CONCURRENCY`.
+
+## 20.15 Désactiver Xet pour diagnostiquer
+
+Pour forcer un chemin sans `hf_xet` dans l'écosystème Python :
+
+```bash
+export HF_HUB_DISABLE_XET=1
+```
+
+C'est surtout un outil de diagnostic ou de compatibilité, pas la configuration recommandée pour les performances normales.
+
+## 20.16 Ancien `hf_transfer`
+
+L'ancienne variable :
+
+```text
+HF_HUB_ENABLE_HF_TRANSFER
+```
+
+est aujourd'hui **dépréciée**. Le Hub Hugging Face est désormais orienté Xet, et `hf_xet` remplace ce mécanisme pour les transferts modernes.
+
+## 20.17 Git LFS ou Git Xet : comparaison
+
+| Caractéristique | Git classique | Git LFS | Git Xet sur Hugging Face |
+|---|---|---|---|
+| Code source | Excellent | Inutile en général | Inutile en général |
+| Gros binaire | Mauvais à grande échelle | Adapté | Adapté |
+| Pointeur dans Git | Non | Oui | Oui, compatible LFS |
+| Stockage externe | Non | Oui | Oui |
+| Déduplication principale | Objets Git/compression | Fichier | Chunks définis par le contenu |
+| Petite modification d'un énorme checkpoint | Peut être coûteuse | Nouvel objet complet en pratique | Seuls les chunks nouveaux sont transférables |
+| Écosystème générique | Très large | Très large | Surtout Xet/Hugging Face |
+| Compatibilité anciens clients HF | — | Oui | Bridge LFS |
+
+## 20.18 Exemple concret : checkpoints d'entraînement
+
+Imaginons dix checkpoints de 12 Gio qui diffèrent de quelques centaines de Mio.
+
+Avec LFS, chaque checkpoint est un objet complet distinct du point de vue du stockage de fichier.
+
+Avec Xet :
+
+```text
+checkpoint-001 -> chunks A B C D E F
+checkpoint-002 -> chunks A B C X E F
+checkpoint-003 -> chunks A B C X Y F
+```
+
+Les chunks communs peuvent être réutilisés.
+
+Cela correspond particulièrement bien aux artefacts ML, où de nombreuses révisions ont de grandes portions identiques ou proches au niveau binaire.
+
+## 20.19 Xet ne remplace pas les bonnes pratiques de dépôt
+
+Même si le backend supporte de très gros volumes :
+
+- gardons un `.gitattributes` précis ;
+- ne versionnons pas des caches ou fichiers temporaires ;
+- ne poussons jamais un token dans un modèle/dataset ;
+- documentons les formats et licences ;
+- utilisons des formats adaptés (`safetensors`, Parquet, etc.) ;
+- réfléchissons à la granularité des fichiers pour les utilisateurs du dépôt ;
+- n'utilisons pas Git comme un stockage mutable lorsque l'historique n'a aucune valeur.
+
+Hugging Face propose d'ailleurs des stockages de type bucket pour certains besoins non versionnés.
+
+## 20.20 À retenir sur Hugging Face
+
+Le chemin moderne est :
+
+```text
+Historique / refs : Git
+Gros fichiers : pointeurs compatibles LFS
+Backend Hub : Xet Storage
+CLI Git optimisée : git-xet
+Python : huggingface_hub + hf_xet
+Compatibilité legacy : Git LFS Bridge
+```
+
+# 21. Authentification et sécurité Git
+
+## 21.1 SSH
+
+Créons une clé moderne :
+
+```bash
+ssh-keygen -t ed25519 -C "michael@example.net"
+```
+
+Ne copions sur les forges que la **clé publique** (`.pub`). La clé privée reste secrète.
+
+## 21.2 HTTPS et tokens
+
+Évitons de mettre un token directement dans une URL ou un script versionné.
+
+Utilisons :
+
+- credential manager ;
+- helper sécurisé ;
+- variables/secrets de CI ;
+- tokens à portée limitée et expirants.
+
+## 21.3 Signer les commits avec SSH
+
+Git permet d'utiliser des clés SSH pour signer des commits :
+
+```bash
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+git config --global commit.gpgSign true
+```
+
+Selon la forge, la clé de signature peut être distincte de la clé d'authentification.
+
+Pour que Git puisse **vérifier** ces signatures localement, il lui faut la liste des clés de confiance (fichier *allowed signers*) :
+
+```bash
+echo "michael@example.net $(cat ~/.ssh/id_ed25519.pub)" >> ~/.ssh/allowed_signers
+git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+git log --show-signature -1
+```
+
+## 21.4 Signer ponctuellement
+
+```bash
+git commit -S -m "Corrige la validation"
+```
+
+Tag signé :
+
+```bash
+git tag -s v1.2.0 -m "Version 1.2.0"
+```
+
+## 21.5 Ne jamais versionner un secret
+
+Exemples à éviter :
+
+```text
+.env
+private_key.pem
+service-account.json
+access_token.txt
+```
+
+Ajoutons les secrets au `.gitignore`, mais retenons que `.gitignore` ne protège pas un secret déjà commité. La note [[Crash github et publication de clé]] relate un cas réel de clé publiée par erreur et la remédiation qui a suivi.
+
+Si un secret est poussé :
+
+1. le **révoquer/faire tourner immédiatement** ;
+2. supprimer son utilisation ;
+3. décider si l'historique doit être nettoyé ;
+4. auditer les logs et forks éventuels.
+
+## 21.6 Hooks et dépôts non fiables
+
+Un dépôt peut contenir :
+
+- scripts de build ;
+- configurations d'éditeur ;
+- sous-modules ;
+- dépendances ;
+- fichiers conçus pour déclencher des outils externes.
+
+Ne lançons pas automatiquement des scripts issus d'un dépôt inconnu.
+
+Les hooks stockés dans `.git/hooks` ne sont normalement pas versionnés par Git, mais un projet peut configurer `core.hooksPath` ou fournir un mécanisme d'installation. Auditons ce qui sera exécuté.
+
+## 21.7 `safe.directory`
+
+Git possède des protections contre l'utilisation d'un dépôt appartenant à un autre utilisateur. N'ajoutons pas :
+
+```bash
+git config --global --add safe.directory '*'
+```
+
+par réflexe. Préférons corriger les propriétaires/permissions ou autoriser explicitement un chemin de confiance.
+
+## 21.8 TLS
+
+Ne désactivons pas globalement la validation TLS avec :
 
 ```bash
 git config --global http.sslVerify false
 ```
 
-Remplaçons la valeur de `PRIVATE_TOKEN` par notre propre jeton d'accès privé GitLab, et `GITLAB_URL` par l'URL de notre instance GitLab.
+Cela désactive une protection fondamentale contre l'interception réseau.
 
-Après exécution, tous les dépôts non vides auront été clonés.
+Pour un GitLab interne :
 
-Remarque une version à jour mais plus complexe du script est accessible à [michaellaunay/tools](https://github.com/michaellaunay/tools)
+- corriger le certificat ;
+- installer la CA interne dans le trust store ;
+- éventuellement configurer une CA spécifique à l'hôte.
 
-## 10.1 Obtenir un token gitlab
+# 22. Performance et maintenance
 
-Pour obtenir un token d'accès personnel (Personal Access Token) dans GitLab, suivons ces étapes :
+## 22.1 Taille du dépôt
 
-1. Connectons-nous à notre compte GitLab.
+```bash
+git count-objects -vH
+```
 
-2. Déplaçons nous sur le répertoire pour lequel nous souhaitons un token.
+## 22.2 Garbage collection
 
-4. Cliquons sur notre avatar en haut à droite de la page, puis sur "Settings".
+Git exécute normalement la maintenance automatiquement. Nous pouvons demander :
 
-5. Dans le menu de gauche, cliquons sur "Access Tokens".
+```bash
+git gc
+```
 
-6. Donnons un nom à notre token, définissons une date d'expiration et sélectionnons les "scopes" (droits d'accès) que nous souhaitons attribuer à ce token. Pour utiliser l'API, nous devons cocher la case "api".
+Pour de gros dépôts, préférons comprendre les contraintes avant d'utiliser des options agressives.
 
-7. Cliquons sur "Create personal access token".
+## 22.3 Maintenance planifiée
 
-8. GitLab générera alors un token d'accès personnel. Assurons-nous de copier ce token et de le conserver en lieu sûr, car nous ne pourrons plus le voir une fois que nous aurons quitté cette page.
+Git moderne possède :
 
-Une fois que nous avons notre token, nous pouvons l'utiliser pour nous authentifier lors de l'utilisation de l'API GitLab. Ce token est sensible et doit être gardé sécurisé.
+```bash
+git maintenance start
+```
 
-# 11. Git sur Android
-Pour utiliser Git sur téléphone Android, suivre les étapes suivantes :
+Cela enregistre le dépôt et planifie des tâches (prefetch, commit-graph, repack incrémental...) via cron, les timers systemd ou launchd ; la commande échoue sur un système qui n'en propose aucun. `git maintenance run` lance les tâches immédiatement.
 
-1.  Installer une application de terminal sur le téléphone, comme Termux.
-    
-2.  Ouvrer l'application Termux et installons Git en utilisant la commande suivante :
-    
-    `pkg install git`
-    
-3.  Créer un dossier où cloner le dépôt Git :
-    
-    `mkdir myproject`
-    
-4.  Accéder au dossier :
-    
-    `cd myproject`
-    
-5.  Cloner le dépôt Git en utilisant la commande suivante :
-    
-    `git clone https://github.com/notre_repo`
-    
-6.  Travailler sur les fichiers et les modifier comme souhaité.
-    
-7.  Utiliser les commandes Git en lignes de commandes.
+## 22.4 Vérification
+
+```bash
+git fsck
+```
+
+Cette commande vérifie la connectivité et la validité de divers objets du dépôt.
+
+## 22.5 Bundle pour transport ou sauvegarde ponctuelle
+
+Créer un bundle :
+
+```bash
+git bundle create projet.bundle --all
+```
+
+Vérifier :
+
+```bash
+git bundle verify projet.bundle
+```
+
+Cloner depuis le bundle :
+
+```bash
+git clone projet.bundle projet-restaure
+```
+
+Attention : un bundle Git **ne contient pas automatiquement les objets Git LFS/Xet distants**. Pour un dépôt LFS, sauvegardons également le stockage LFS nécessaire.
+
+# 23. Stratégies de collaboration
+
+## 23.1 Feature branches
+
+```text
+main ----A----------M----
+          \        /
+feature    B--C---D
+```
+
+Simple et adaptée à de nombreuses équipes.
+
+## 23.2 Merge commit
+
+Préserve explicitement la structure de branche.
+
+## 23.3 Squash merge
+
+La forge transforme une pull/merge request en un seul commit sur la branche cible.
+
+Avantage : historique principal compact.
+
+Inconvénient : perte de la granularité des commits de la branche dans l'historique principal.
+
+## 23.4 Rebase + fast-forward
+
+Produit un historique linéaire :
+
+```text
+A---B---C---D---E
+```
+
+Demande davantage de discipline sur la réécriture des commits.
+
+## 23.5 Trunk-based development
+
+Branches très courtes, intégration fréquente, feature flags si nécessaire. Cette stratégie réduit les divergences de longue durée mais demande une CI fiable.
+
+## 23.6 Protection de `main`
+
+Sur une forge, configurons selon le contexte :
+
+- pull/merge request obligatoire ;
+- approbations ;
+- CI obligatoire ;
+- interdiction du force push ;
+- signature ou provenance si nécessaire ;
+- règles de CODEOWNERS.
+
+# 24. GitHub et GitLab
+
+GitHub et GitLab ne modifient pas les principes fondamentaux de Git. Ils ajoutent :
+
+- hébergement ;
+- revue de code ;
+- issues ;
+- CI/CD ;
+- registry ;
+- releases ;
+- règles de protection ;
+- gestion des droits ;
+- webhooks/API.
+
+## 24.1 Terminologie
+
+GitHub parle principalement de **Pull Request**.
+
+GitLab parle de **Merge Request**.
+
+L'idée est similaire : proposer une série de commits, la discuter, l'évaluer en CI et l'intégrer.
+
+## 24.2 Fork vs branche
+
+Une branche appartient au même dépôt.
+
+Un fork est un autre dépôt, généralement dans un autre namespace, qui possède son propre historique/réseau de références et peut proposer une PR/MR au dépôt d'origine.
+
+# 25. Exporter ou sauvegarder plusieurs dépôts GitLab
+
+L'ancien cours parcourait arbitrairement les IDs de projets et désactivait la validation TLS. Ce n'est pas une bonne stratégie générale.
+
+Utilisons l'API paginée et un token passé par l'environnement.
+
+Exemple pédagogique :
+
+```python
+from __future__ import annotations
+
+import os
+import subprocess
+from pathlib import Path
+
+import requests
+
+GITLAB_URL = os.environ.get("GITLAB_URL", "https://gitlab.example.net")
+TOKEN = os.environ["GITLAB_TOKEN"]
+DESTINATION = Path(os.environ.get("GITLAB_BACKUP_DIR", "./gitlab-repositories"))
+
+session = requests.Session()
+session.headers["PRIVATE-TOKEN"] = TOKEN
+
+DESTINATION.mkdir(parents=True, exist_ok=True)
+
+page = 1
+while True:
+    response = session.get(
+        f"{GITLAB_URL}/api/v4/projects",
+        params={
+            "membership": "true",
+            "per_page": 100,
+            "page": page,
+            "order_by": "id",
+            "sort": "asc",
+        },
+        timeout=30,
+    )
+    response.raise_for_status()
+    projects = response.json()
+
+    if not projects:
+        break
+
+    for project in projects:
+        path = DESTINATION / project["path_with_namespace"]
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        if (path / ".git").is_dir():
+            subprocess.run(
+                ["git", "-C", str(path), "fetch", "--all", "--prune", "--tags"],
+                check=True,
+            )
+        else:
+            subprocess.run(
+                ["git", "clone", "--mirror", project["ssh_url_to_repo"], str(path)],
+                check=True,
+            )
+
+    page += 1
+```
+
+> [!warning]
+> Pour une sauvegarde réellement restaurable, il faut également traiter les données hors Git : objets Git LFS, packages, registry, issues, wiki, CI variables, artefacts, base GitLab, configuration serveur, etc. Pour une instance GitLab auto-hébergée, les mécanismes de sauvegarde natifs GitLab sont généralement plus appropriés qu'un simple script de clones.
+
+## 25.1 Authentification
+
+```bash
+export GITLAB_URL=https://gitlab.example.net
+export GITLAB_TOKEN='...'
+python backup_repos.py
+```
+
+Évitons de coder le token en dur.
+
+# 26. Git sur Android avec Termux
+
+Sur Termux :
+
+```bash
+pkg update
+pkg install git openssh
+```
+
+Configurons l'identité :
+
+```bash
+git config --global user.name "Notre Nom"
+git config --global user.email "nous@example.net"
+```
+
+Créons une clé SSH si nécessaire :
+
+```bash
+ssh-keygen -t ed25519
+```
+
+Puis clonons :
+
+```bash
+git clone git@github.com:organisation/projet.git
+```
+
+Les mêmes principes de branches, commits, pull et push s'appliquent.
+
+Pour des dépôts contenant de gros objets LFS/Xet, vérifions la disponibilité et la compatibilité des binaires correspondants sur l'architecture Android/Termux avant de choisir ce workflow.
+
+# 27. Commandes utiles de diagnostic
+
+## 27.1 Où est la racine du dépôt ?
+
+```bash
+git rev-parse --show-toplevel
+```
+
+## 27.2 Branche courante
+
+```bash
+git branch --show-current
+```
+
+## 27.3 Remote tracking branch
+
+```bash
+git rev-parse --abbrev-ref --symbolic-full-name '@{u}'
+```
+
+## 27.4 Fichiers suivis
+
+```bash
+git ls-files
+```
+
+## 27.5 Pourquoi un fichier est ignoré ?
+
+```bash
+git check-ignore -v chemin/fichier
+```
+
+## 27.6 Quel attribut s'applique ?
+
+```bash
+git check-attr -a -- model.safetensors
+```
+
+Cette commande est très utile pour diagnostiquer Git LFS ou Git Xet.
+
+## 27.7 Quel commit contient une branche ?
+
+```bash
+git branch --contains <commit>
+```
+
+# 28. Alias pratiques
+
+Préférons des alias Git plutôt que des alias shell lorsque nous voulons une configuration transportable dans `.gitconfig`.
+
+```bash
+git config --global alias.st status
+
+git config --global alias.lg "log --graph --decorate --oneline --all"
+```
+
+Puis :
+
+```bash
+git st
+git lg
+```
+
+Un alias shell reste utile pour des pipelines complexes, mais il faut alors comprendre les règles d'échappement et de portabilité du shell.
+
+# 29. Erreurs fréquentes
+
+## 29.1 « J'ai fait `git add`, donc mon code est sauvegardé »
+
+Non. `git add` prépare l'index. Il faut encore créer un commit, puis éventuellement le pousser vers un autre serveur.
+
+## 29.2 « `git push` sauvegarde tout mon PC »
+
+Non. Il pousse les objets/références du dépôt, ainsi que les objets LFS via les extensions prévues. Les fichiers ignorés/non suivis et les données externes ne sont pas inclus.
+
+## 29.3 « `git pull` est toujours sans risque »
+
+Il peut produire un merge ou rebase et des conflits. `fetch` puis inspection est souvent plus explicite.
+
+## 29.4 « Je peux annuler un commit partagé avec `reset --hard` puis force push »
+
+Techniquement possible, mais souvent destructif pour les autres. Sur une branche partagée, `revert` est généralement préférable.
+
+## 29.5 « `.gitignore` supprime un secret de l'historique »
+
+Faux. Il évite principalement de suivre de nouveaux fichiers correspondants.
+
+## 29.6 « Git LFS compresse automatiquement mon historique existant »
+
+Faux. `git lfs track` ne réécrit pas les commits antérieurs.
+
+## 29.7 « Xet est un remplacement de Git »
+
+Faux. Sur Hugging Face, Git conserve l'historique et les pointeurs ; Xet optimise le stockage/transfert des gros contenus.
+
+## 29.8 « Un repo Hugging Face Xet n'est plus compatible Git LFS »
+
+Faux. Hugging Face a conçu un bridge et conserve une représentation de pointeur compatible afin que les clients hérités puissent continuer à fonctionner.
+
+# 30. Travaux pratiques
+
+## TP 1 — Premier dépôt
+
+Objectif : maîtriser working tree, index et commit.
+
+1. Créer un dépôt.
+2. Ajouter trois fichiers.
+3. Modifier deux fichiers.
+4. Utiliser `git diff`.
+5. Indexer seulement une partie avec `git add -p`.
+6. Créer deux commits atomiques.
+7. Examiner l'historique.
+
+## TP 2 — Branches et merge
+
+1. Créer `feature/login`.
+2. Faire deux commits.
+3. Modifier `main` sur une autre zone.
+4. Fusionner.
+5. Dessiner le graphe obtenu avec `git log --graph`.
+
+## TP 3 — Conflit contrôlé
+
+1. Modifier la même ligne sur deux branches.
+2. Déclencher le conflit.
+3. Lire les marqueurs.
+4. Résoudre proprement.
+5. Vérifier le résultat avec les tests.
+
+## TP 4 — Rebase interactif
+
+Sur une branche non publiée :
+
+1. créer cinq petits commits ;
+2. utiliser `git rebase -i` ;
+3. renommer un message ;
+4. fusionner deux commits ;
+5. comparer les hashes avant/après.
+
+## TP 5 — Reflog
+
+1. créer trois commits ;
+2. faire volontairement un `reset --hard HEAD~2` ;
+3. retrouver le commit avec `git reflog` ;
+4. restaurer la branche.
+
+À faire uniquement sur un dépôt d'exercice.
+
+## TP 6 — `git bisect`
+
+Construire dix commits dont un introduit une régression. Écrire un petit script de test puis utiliser :
+
+```bash
+git bisect run ./test.sh
+```
+
+pour identifier automatiquement le premier commit fautif.
+
+## TP 7 — Git LFS
+
+Dans un dépôt d'exercice :
+
+1. installer Git LFS ;
+2. suivre `*.bin` ;
+3. observer `.gitattributes` ;
+4. ajouter un fichier ;
+5. afficher `git lfs ls-files` ;
+6. inspecter le pointeur stocké dans Git avec `git show HEAD:chemin/fichier.bin` ;
+7. faire une nouvelle version ;
+8. étudier `git lfs migrate info` sans réécrire immédiatement l'historique.
+
+## TP 8 — Migration LFS d'un ancien dépôt
+
+Sur une copie d'un dépôt de test :
+
+1. créer plusieurs commits contenant de gros `.bin` ;
+2. mesurer avec `git count-objects -vH` ;
+3. exécuter `git lfs migrate info --everything` ;
+4. migrer les `.bin` ;
+5. comparer les historiques et hashes ;
+6. expliquer pourquoi une coordination d'équipe est indispensable.
+
+## TP 9 — Hugging Face + Git Xet
+
+Sur un dépôt Hugging Face de test :
+
+1. installer Git LFS et Git Xet par les méthodes officielles ;
+2. exécuter `git xet install` ;
+3. s'authentifier (`hf auth login` ou clé SSH enregistrée sur le Hub) puis cloner le dépôt ;
+4. lire `.gitattributes` ;
+5. ajouter un fichier test suffisamment gros et non sensible ;
+6. commit/push ;
+7. vérifier sur l'interface Hub que le fichier est géré comme gros objet ;
+8. modifier une petite partie du fichier ;
+9. refaire un push et observer les métriques/logs de transfert si disponibles ;
+10. expliquer la différence avec une approche LFS strictement file-level.
+
+## TP 10 — `huggingface_hub` + `hf_xet`
+
+Créer un environnement Python :
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install -U huggingface_hub
+```
+
+Puis :
+
+1. vérifier la présence de `hf_xet` ;
+2. télécharger un fichier public avec `hf_hub_download` ;
+3. localiser les caches `hub` et `xet` ;
+4. comparer un second téléchargement ;
+5. tester, dans un environnement de laboratoire, l'effet de `HF_HUB_DISABLE_XET=1` ;
+6. documenter les différences sans publier de token.
+
+## TP 11 — Worktree
+
+1. ouvrir `main` dans le répertoire courant ;
+2. ajouter un worktree sur une branche de hotfix ;
+3. corriger et tester le hotfix ;
+4. revenir au développement sans stash ;
+5. supprimer proprement le worktree.
+
+## TP 12 — Réécriture avec filter-repo
+
+Sur une **copie** d'un dépôt :
+
+1. créer `docs/` et plusieurs commits ;
+2. extraire uniquement `docs/` dans un nouveau dépôt avec `git filter-repo` ;
+3. vérifier que l'historique pertinent est conservé ;
+4. expliquer pourquoi tous les hashes changent.
+
+# 31. Checklist avant de pousser
+
+Avant `git push` :
+
+- [ ] `git status` ne montre rien d'inattendu ;
+- [ ] le diff est relu ;
+- [ ] les tests pertinents passent ;
+- [ ] aucun secret n'est présent ;
+- [ ] les gros binaires sont pris en charge par LFS/Xet si nécessaire ;
+- [ ] `.gitattributes` est versionné ;
+- [ ] les commits sont cohérents ;
+- [ ] aucun fichier généré inutile n'a été ajouté ;
+- [ ] la branche est à jour selon la stratégie de l'équipe ;
+- [ ] un force push, s'il est réellement nécessaire, utilise `--force-with-lease`.
+
+# 32. Aide-mémoire
+
+| Besoin | Commande |
+|---|---|
+| État | `git status` |
+| Diff non indexé | `git diff` |
+| Diff indexé | `git diff --staged` |
+| Ajouter par morceaux | `git add -p` |
+| Commit | `git commit` |
+| Branche | `git switch -c nom` |
+| Changer de branche | `git switch nom` |
+| Restaurer fichier | `git restore fichier` |
+| Désindexer | `git restore --staged fichier` |
+| Récupérer sans intégrer | `git fetch` |
+| Mettre à jour par rebase | `git pull --rebase` |
+| Fusionner | `git merge branche` |
+| Rebase | `git rebase main` |
+| Annuler commit partagé | `git revert <commit>` |
+| Retrouver un commit perdu | `git reflog` |
+| Diagnostiquer régression | `git bisect` |
+| Worktrees | `git worktree` |
+| Réécriture massive | `git filter-repo` |
+| Initialiser LFS | `git lfs install` |
+| Suivre en LFS | `git lfs track "*.ext"` |
+| Lister objets LFS | `git lfs ls-files` |
+| Initialiser Git Xet | `git xet install` |
+| Suivre en Xet (Hugging Face) | `git xet track "*.ext"` |
+| Corriger un commit ancien | `git commit --fixup <commit>` puis `git rebase -i --autosquash` |
+| Vérifier attributs | `git check-attr -a -- fichier` |
+
+# 33. Sources et documentation
+
+## Git
+
+- Git : <https://git-scm.com/docs>
+- Pro Git : <https://git-scm.com/book/>
+- Breaking changes Git : <https://git-scm.com/docs/BreakingChanges>
+- Nouveautés de Git 2.55 (GitHub Blog) : <https://github.blog/open-source/git/highlights-from-git-2-55/>
+
+## Git LFS
+
+- Site Git LFS : <https://git-lfs.com/>
+- Projet et documentation Git LFS : <https://github.com/git-lfs/git-lfs>
+- `git lfs migrate` : documentation du projet Git LFS
+
+## Réécriture d'historique
+
+- `git-filter-repo` : <https://github.com/newren/git-filter-repo>
+- Documentation Git sur la réécriture d'historique : <https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History>
+
+## Hugging Face et Xet
+
+- Xet Storage : <https://huggingface.co/docs/hub/xet/index>
+- Utiliser Xet : <https://huggingface.co/docs/hub/xet/using-xet-storage>
+- Compatibilité Git LFS : <https://huggingface.co/docs/hub/xet/legacy-git-lfs>
+- Repositories Hugging Face : <https://huggingface.co/docs/hub/repositories>
+- Spécification du protocole Xet : <https://huggingface.co/docs/xet/index>
+- `git-xet` (dépôt `xet-core`) : <https://github.com/huggingface/xet-core/tree/main/git_xet>
+- Variables d'environnement `hf_xet` : <https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables>
+- Migration du Hub de LFS vers Xet : <https://huggingface.co/blog/migrating-the-hub-to-xet>
+
+# 34. Conclusion
+
+Git est beaucoup plus qu'une suite de commandes `add`, `commit`, `pull` et `push`. Pour l'utiliser avec confiance, nous devons comprendre :
+
+1. le graphe de commits et les références ;
+2. la différence entre working tree, index et `HEAD` ;
+3. les conséquences d'une réécriture d'historique ;
+4. la séparation entre Git et les plateformes d'hébergement ;
+5. la gestion spécifique des gros fichiers.
+
+Pour le développement logiciel classique, Git reste le cœur du versionnement. Pour les gros binaires, **Git LFS** externalise le contenu en conservant des pointeurs versionnés. Pour les charges IA de Hugging Face, **Git Xet** pousse cette idée plus loin en ajoutant une déduplication par chunks tout en maintenant la compatibilité avec le workflow Git/LFS.
+
+La bonne approche n'est donc pas de chercher une commande unique, mais de choisir le bon niveau :
+
+```text
+code et historique        -> Git
+collaboration             -> GitHub/GitLab/Hugging Face/etc.
+gros binaires génériques  -> Git LFS
+gros artefacts HF/IA      -> Git Xet / hf_xet
+secrets                   -> gestionnaire de secrets, jamais Git
+sauvegarde                -> stratégie dédiée, pas seulement un remote Git
+```

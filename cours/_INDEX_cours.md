@@ -112,7 +112,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Connaissances et outils
 
 - [[Excalidraw]] — Fiche de présentation du greffon Excalidraw pour Obsidian : usages, mode présentation, insertion de médias et apports pour l'illustration des notes.
-- [[git]] — Cours sur Git : historique, installation et configuration du client, création d'un dépôt et principales commandes du quotidien.
+- [[git]] — Cours complet sur Git : modèle de données, workflow quotidien, branches, remotes, restauration, réécriture d'historique, worktrees, Git LFS, Git Xet/Hugging Face, sécurité, collaboration et administration.
 - [[Markdown]] — Cours sur Markdown : formatage de base, apports des variantes GitHub et Obsidian, extensions, écriture de formules mathématiques et syntaxe étendue.
 - [[Mermaid pour Obsidian]] — Cours sur Mermaid dans Obsidian : origines et adoption, installation, utilisation et principaux types de diagrammes (flux, séquence, Gantt, classes).
 - [[MindMap sous Obsidian]] — Procédure d'installation et d'utilisation du greffon de cartes mentales dans Obsidian, avec quelques astuces.
