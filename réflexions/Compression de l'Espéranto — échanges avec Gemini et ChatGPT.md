@@ -1,11 +1,11 @@
 ---
 schema_version: 1
-uid: 01M02JG1WEYSBT12VD1KGZP89B
-titre: Compression de l'Epéranto ou Peut on transformer un problème de compréhension en un problème de génie logiciel ou L'IDM au secours des LLM
+uid: 01M1ABDQZ263W9D969XGCPR4BT
+titre: Compression de l'Espéranto — échanges avec Gemini et ChatGPT
 aliases:
-- IDM au secours des LLM
-type: reflexion
-statut: brouillon
+- Transcriptions Compression de l'Espéranto
+type: capture
+statut: capture
 para: ressource
 domaines:
 - communication
@@ -15,18 +15,21 @@ themes:
 - esperanto
 - ingenierie-des-modeles
 - traitement-du-langage
-resume: Exploration, à partir d'échanges avec des LLM, de l'idée d'utiliser la régularité grammaticale de l'espéranto et l'ingénierie dirigée par les modèles pour ramener un problème de compréhension à un problème de génie logiciel.
+resume: Transcriptions brutes de mes échanges avec Gemini et ChatGPT (août-septembre 2025, puis une suite) sur l'espéranto et le TAL, la tokenisation morphologique bijective, la spécification EO-NSLM v0.1 et les pragmènes, matière de l'essai L'IDM au secours des LLM.
 auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2025-08-31
-date_modification: 2026-08-18
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
 - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
+> [!info] Capture
+> Transcriptions conservées telles quelles de mes échanges avec Gemini puis ChatGPT (août-septembre 2025, puis une suite ultérieure) : questions sur l'espéranto et le traitement automatique du langage, critique demandée à ChatGPT, spécification technique EO-NSLM v0.1, propositions sur les pragmènes et la complétude d'un énoncé. Les réponses des assistants n'engagent qu'eux — références bibliographiques non vérifiées. L'essai qui en est tiré est [[L'IDM au secours des LLM]]. Rangées en `capture` le 31 août 2026 (audit du dossier réflexions, point 1).
+
 Voici la copie de ma conversation avec Geminy sur l'Espéranto, puis sa critique avec chat GPT
 
 ---
