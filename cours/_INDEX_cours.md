@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -29,15 +29,15 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Intelligence artificielle
 
 - [[DeepSeek Harness]] — Cours complet sur DeepSeek Harness (dsh) : notion de harness agentique, architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, automatisation, sécurité et développement de plugins.
-- [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]] — Cours-atelier sur la construction d'une chaîne locale de numérisation : comparaison d'olmOCR 2 et d'Infinity-Parser2-Pro, architecture du pipeline, installation, backends d'inférence, ingestion des PDF et production d'un corpus exploitable.
+- [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]] — Cours-atelier sur une chaîne locale, traçable et reproductible de transformation de PDF scannés en corpus exploitable : ingestion, rendu, olmOCR 2, Infinity-Parser2 Pro/Flash, routage, contrôle qualité, indexation et RAG.
 - [[Hermes Agent]] — Cours approfondi et actualisé sur Hermes Agent (Nous Research) : architecture agentique, mémoire et recherche de sessions, skills auto-améliorés, cron, délégation multi-agent, profils, MCP, plugins, gateways multi-canaux, backends d'exécution, sécurité et migration OpenClaw.
 - [[Les CNN et RNN]] — Cours de niveau master sur les réseaux convolutifs et récurrents : principe de la convolution, cartes d'activation, partage des poids, dimensions et stride, puis traitement des séquences.
 - [[Les RAGs]] — Synthèse comparative des architectures RAG : RAG standard et ses limites, Graph RAG, Agentic RAG, requêtes single-hop et multi-hop, coûts et pièges de la similarité vectorielle.
-- [[Les transformers]] — Cours de niveau master sur les Transformers : limites du traitement séquentiel et des RNN, dépendances longues, problème de parallélisation, modèles seq2seq puis mécanisme d'attention et architecture complète.
+- [[Les transformers]] — Cours de niveau master sur les Transformers : self-attention, positions, blocs encoder/decoder, entraînement, KV cache, GQA, FlashAttention, MoE, contexte long, multimodalité, implémentation PyTorch et limites.
 - [[LLM]] — Cours complet sur les grands modèles de langage : histoire, tokenisation, Transformers, pré-entraînement et post-entraînement, prompting, RAG, outils et agents, raisonnement, multimodalité, évaluation, sécurité, déploiement et choix d'un modèle.
 - [[Machine Learning]] — Fiche schématique présentant le flux de travail d'un projet d'analyse de données et la place du machine learning dans ce processus.
 - [[Pytorch]] — Cours complet de PyTorch 2.x : tenseurs, appareils de calcul, autograd, nn.Module, fonctions de perte, optimisation, Dataset et DataLoader, boucles d'entraînement, validation, checkpoints, CNN, transfert d'apprentissage, AMP, torch.compile, profilage, entraînement distribué et export.
-- [[RAG]] — Cours complet sur les systèmes RAG : limites d'un LLM seul, mémoire externe, embeddings et similarité cosinus, découpage documentaire, recherche hybride, reranking, Graph RAG, Agentic RAG et évaluation.
+- [[RAG]] — Cours avancé sur les systèmes RAG modernes : ingestion et provenance, chunking, retrieval dense/sparse/hybride, contextual retrieval, reranking, citations, évaluation, GraphRAG, RAG structuré et agentique, multimodalité, sécurité et exploitation en production.
 - [[Travailler avec Claude]] — Cours complet sur Claude et Claude Code : surfaces, installation, contexte, CLAUDE.md, auto memory, règles, permissions, sandbox, modèles, skills, subagents, agent teams, MCP, hooks, plugins, automatisation, CI/CD, Git, sécurité et exploitation en équipe.
 
 ## Systèmes et administration
@@ -47,14 +47,14 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[GNULinux]] — Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante.
 - [[InetOrgPerson]] — Cours complet sur inetOrgPerson : schéma LDAP, héritage, attributs, syntaxes, nommage, contraintes, sécurité, interopérabilité et exploitation avec OpenLDAP.
 - [[Initialisation système et des services]] — Cours complet sur le démarrage GNU/Linux et la gestion moderne des services : UEFI/BIOS, GRUB 2, noyau et initramfs, PID 1, unités systemd, dépendances, targets, journal, timers, activation, cgroups, durcissement et diagnostic.
-- [[Installation Ubuntu]] — Procédure illustrée d'installation d'Ubuntu en version bureau et en version serveur, avec partitionnement LVM chiffré et travaux pratiques.
+- [[Installation Ubuntu]] — Installer proprement Ubuntu Desktop ou Server : choix de version, vérification de l'image, UEFI/Secure Boot, partitionnement, LVM/LUKS, réseau, SSH, post-installation, automatisation Subiquity/autoinstall et dépannage.
 - [[LDAP]] — Cours complet sur LDAPv3 et OpenLDAP : DIT, DN, schémas, filtres, LDIF, TLS/SASL, ACL, mots de passe, réplication, sauvegarde, supervision et intégration applicative.
 - [[Les distributions Linux]] — Fiche définissant la notion de distribution GNU/Linux et présentant les principales familles de distributions.
-- [[Les namespaces Linux]] — Cours approfondi sur les namespaces du noyau Linux : pourquoi isoler des processus, appartenance multiple d'un processus, différence avec la virtualisation classique et étude de chaque type de namespace.
-- [[Postfix]] — Cours sur le serveur de courrier Postfix : rôles de MTA, MDA et MUA, formats de boîtes aux lettres Mbox et Maildir, protocoles IMAP et POP3, configuration et sécurisation.
-- [[proc]] — Cours approfondi sur le système de fichiers /proc sous GNU/Linux : rôle pédagogique et opérationnel, différences avec /sys, /dev et /run, et exploration guidée des principaux fichiers.
-- [[Watchdog espace disque]] — Script de surveillance de l'occupation disque : paramétrage du seuil, récupération de l'utilisation et déclenchement d'une alerte.
-- [[WSL2]] — Procédure d'installation et d'usage de WSL 2, avec ses limitations et l'ajout d'une interface graphique.
+- [[Les namespaces Linux]] — Cours approfondi et pratique sur les namespaces Linux : modèle du noyau, API clone/unshare/setns, UTS/PID/mount/network/IPC/user/cgroup/time, rootless, idmapped mounts, sécurité, conteneurs et diagnostic.
+- [[Postfix]] — Cours complet sur Postfix : architecture d'un MTA, SMTP et submission, configuration de main.cf et master.cf, relais, domaines locaux et virtuels, SASL, TLS, LMTP/Dovecot, SPF/DKIM/DMARC, sécurité, files d'attente, observabilité, délivrabilité et diagnostic en production.
+- [[proc]] — Cours approfondi et pratique sur procfs sous GNU/Linux : processus, mémoire, fichiers ouverts, namespaces, sécurité, PSI, sysctl, conteneurs et diagnostic de production.
+- [[Watchdog espace disque]] — Cours pratique sur la supervision de la capacité des systèmes de fichiers Linux : blocs, espace disponible, inodes, script Bash robuste, journalisation, systemd.timer, diagnostic des causes de saturation, alertes et intégration Prometheus/node_exporter.
+- [[WSL2]] — Cours complet sur WSL 2 : architecture, installation et cycle de vie des distributions, systemd, WSLg, interopérabilité Windows/Linux, systèmes de fichiers, réseau NAT et mirrored, configuration, sauvegarde, conteneurs, GPU, USB, sécurité et dépannage.
 
 ## Réseaux et sécurité
 
@@ -100,8 +100,8 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Design patterns]] — Cours complet sur les patrons de conception : patterns GoF, idiomes Python modernes, patterns d'architecture et d'entreprise, événements, résilience, concurrence, anti-patterns et méthode de choix pragmatique.
 - [[Les méthodes agiles]] — Cours complet et actualisé sur l'agilité en développement logiciel : Manifeste Agile, Scrum 2020, XP, Kanban 2025, Lean, discovery produit, estimation et prévision, métriques de flux et DORA, pratiques d'ingénierie, DevOps, leadership, mise à l'échelle, IA et anti-patterns.
 - [[Open Spec]] — Cours sur OpenSpec et le développement piloté par les spécifications : limites du développement piloté par prompts, principes du Spec-Driven Development et mise en œuvre avec un agent IA.
-- [[Outils de modélisation textuels]] — Liste commentée d'outils de génération de diagrammes à partir de texte : D2, Pikchr, Diagon, Typograms, Markdeep et autres.
-- [[Principes SOLID en COO]] — Fiche sur les cinq principes SOLID de conception orientée objet : responsabilité unique, ouvert/fermé, substitution de Liskov, ségrégation des interfaces et inversion des dépendances.
+- [[Outils de modélisation textuels]] — Cours de choix et d'utilisation des outils de modélisation textuelle : Mermaid, PlantUML, D2, Graphviz, Structurizr, Kroki, DBML, WaveDrom, BPMN Sketch Miner, State Machine Cat, Svgbob, Pikchr et Penrose, avec workflows Git/CI et critères de reproductibilité.
+- [[Principes SOLID en COO]] — Cours complet sur les cinq principes SOLID de conception logicielle : SRP, OCP, LSP, ISP et DIP, avec exemples Python, implications architecturales, relations avec les design patterns, les tests, l'injection de dépendances et les erreurs d'interprétation courantes.
 - [[Projet Encadré]] — Sujet de projet encadré : conception et architecture d'une bibliothèque numérique décentralisée, réalisée en binômes hétérogènes avec évaluation croisée entre équipes.
 - [[TOGAF]] — Cours complet sur le TOGAF Standard, 10th Edition : architecture d’entreprise, ADM, gestion des exigences, contenu et repository d’architecture, gouvernance, capacités métier, roadmaps, pratiques Agile/produit/cloud, ArchiMate et certifications.
 - [[UML Ecore EMF Plantuml QVT Mermaid PyEcore]] — Cours d'ingénierie dirigée par les modèles (2026) : UML 2.5.1 et SysML v2, MDA et les quatre niveaux MOF, Ecore et EMF, transformations de modèles (QVT, ATL, Acceleo), grammaires et langages dédiés (BNF, EBNF, PEG, Xtext, Langium, textX), sémantiques formelles, pratique complète avec pyecore et pyecoregen (métamodèle, instances, XMI, export PlantUML, génération de code), diagrammes textuels PlantUML et Mermaid ; tous les exemples ont été exécutés.
@@ -127,7 +127,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Histoire et matériel informatique
 
 - [[Histoire des langages de programmation]] — Cours d'histoire des langages de programmation : concepts fondamentaux, paradigmes, grandes familles de langages, évolution des années 1950 à 2026, runtimes, systèmes de types, WebAssembly, sûreté mémoire et tendances contemporaines.
-- [[Historique Linux]] — Fiche chronologique sur les racines d'UNIX, la naissance de la Free Software Foundation, la GPL et le projet GNU.
+- [[Historique Linux]] — Cours historique et conceptuel sur les racines d'UNIX, BSD, GNU et Linux, la naissance du logiciel libre et de l'open source, l'émergence des distributions, le modèle de développement du noyau et l'évolution de l'écosystème jusqu'en 2026.
 - [[Informatique]] — Cours d'introduction générale à l'informatique : représentation de l'information, histoire, matériel, systèmes, réseaux, programmation, algorithmique, données, génie logiciel, sécurité, IA et enjeux contemporains.
 - [[Parsing Expression Grammars PEG]] — Fiche sur les Parsing Expression Grammars : non-terminaux, terminaux, règles de production, opérateurs de séquence, choix, répétition et prédicats, et gestion de la récursivité.
 

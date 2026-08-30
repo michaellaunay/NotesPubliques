@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -49,6 +49,8 @@ Numérisation et documentation
 Chaîne complète de numérisation…
 
 National Emergency Library
+
+Taille des bibliothèques
 
 Systèmes et administration
 
@@ -869,6 +871,73 @@ Analyse sémantique
    "baseline": 11
   },
   {
+   "id": "ca8213849bbeff69",
+   "type": "rectangle",
+   "x": 354.0,
+   "y": 194.0,
+   "width": 216.0,
+   "height": 42,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "#f8f9fa",
+   "fillStyle": "solid",
+   "strokeWidth": 1,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 3
+   },
+   "seed": 1,
+   "version": 1,
+   "versionNonce": 1,
+   "isDeleted": false,
+   "boundElements": [],
+   "updated": 1,
+   "link": "[[Taille des bibliothèques]]",
+   "locked": false
+  },
+  {
+   "id": "ac306c69bc92fb32",
+   "type": "text",
+   "x": 354.0,
+   "y": 205.0,
+   "width": 216.0,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1,
+   "version": 1,
+   "versionNonce": 1,
+   "isDeleted": false,
+   "boundElements": [],
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Taille des bibliothèques",
+   "rawText": "Taille des bibliothèques",
+   "originalText": "Taille des bibliothèques",
+   "fontSize": 13,
+   "fontFamily": 2,
+   "textAlign": "center",
+   "verticalAlign": "middle",
+   "containerId": "ca8213849bbeff69",
+   "lineHeight": 1.25,
+   "autoResize": false,
+   "baseline": 11
+  },
+  {
    "id": "08ad6401dec0d5c7",
    "type": "rectangle",
    "x": 660.0,
@@ -1674,7 +1743,7 @@ Analyse sémantique
    "id": "de0743740dbd81a9",
    "type": "rectangle",
    "x": 330.0,
-   "y": 254.0,
+   "y": 306.0,
    "width": 240.0,
    "height": 64.0,
    "angle": 0,
@@ -1703,7 +1772,7 @@ Analyse sémantique
    "id": "d38b1c021d23c588",
    "type": "text",
    "x": 330.0,
-   "y": 276.0,
+   "y": 328.0,
    "width": 240.0,
    "height": 20.0,
    "angle": 0,
@@ -1743,7 +1812,7 @@ Analyse sémantique
    "x": 615.0,
    "y": -96.0,
    "width": -165.0,
-   "height": 350.0,
+   "height": 402.0,
    "angle": 0,
    "strokeColor": "#0c8599",
    "backgroundColor": "transparent",
@@ -1772,7 +1841,7 @@ Analyse sémantique
     ],
     [
      -165.0,
-     350.0
+     402.0
     ]
    ],
    "endArrowhead": "arrow",
@@ -1785,7 +1854,7 @@ Analyse sémantique
    "id": "dea351543728333f",
    "type": "rectangle",
    "x": 354.0,
-   "y": 344.0,
+   "y": 396.0,
    "width": 216.0,
    "height": 42,
    "angle": 0,
@@ -1814,7 +1883,7 @@ Analyse sémantique
    "id": "b8af5ba49fc79d16",
    "type": "text",
    "x": 354.0,
-   "y": 355.0,
+   "y": 407.0,
    "width": 216.0,
    "height": 16.25,
    "angle": 0,
@@ -1852,7 +1921,7 @@ Analyse sémantique
    "id": "86d4af2909433a8c",
    "type": "rectangle",
    "x": 354.0,
-   "y": 396.0,
+   "y": 448.0,
    "width": 216.0,
    "height": 42,
    "angle": 0,
@@ -1881,7 +1950,7 @@ Analyse sémantique
    "id": "9af76c1551b19ea5",
    "type": "text",
    "x": 354.0,
-   "y": 407.0,
+   "y": 459.0,
    "width": 216.0,
    "height": 16.25,
    "angle": 0,
@@ -1919,7 +1988,7 @@ Analyse sémantique
    "id": "6136f7b27ce90503",
    "type": "rectangle",
    "x": 354.0,
-   "y": 448.0,
+   "y": 500.0,
    "width": 216.0,
    "height": 42,
    "angle": 0,
@@ -1948,7 +2017,7 @@ Analyse sémantique
    "id": "dad6aaa301ba765d",
    "type": "text",
    "x": 354.0,
-   "y": 459.0,
+   "y": 511.0,
    "width": 216.0,
    "height": 16.25,
    "angle": 0,
@@ -1986,7 +2055,7 @@ Analyse sémantique
    "id": "4e46893fa9e81343",
    "type": "rectangle",
    "x": 354.0,
-   "y": 500.0,
+   "y": 552.0,
    "width": 216.0,
    "height": 42,
    "angle": 0,
@@ -2015,7 +2084,7 @@ Analyse sémantique
    "id": "01efd5f67b0055b1",
    "type": "text",
    "x": 354.0,
-   "y": 511.0,
+   "y": 563.0,
    "width": 216.0,
    "height": 16.25,
    "angle": 0,
@@ -2788,7 +2857,7 @@ Analyse sémantique
    "id": "a066b8910a852593",
    "type": "rectangle",
    "x": 330.0,
-   "y": 612.0,
+   "y": 664.0,
    "width": 240.0,
    "height": 64.0,
    "angle": 0,
@@ -2817,7 +2886,7 @@ Analyse sémantique
    "id": "e67639f338ea895e",
    "type": "text",
    "x": 330.0,
-   "y": 634.0,
+   "y": 686.0,
    "width": 240.0,
    "height": 20.0,
    "angle": 0,
@@ -2857,7 +2926,7 @@ Analyse sémantique
    "x": 615.0,
    "y": -96.0,
    "width": -165.0,
-   "height": 708.0,
+   "height": 760.0,
    "angle": 0,
    "strokeColor": "#2f9e44",
    "backgroundColor": "transparent",
@@ -2886,7 +2955,7 @@ Analyse sémantique
     ],
     [
      -165.0,
-     708.0
+     760.0
     ]
    ],
    "endArrowhead": "arrow",
@@ -2899,7 +2968,7 @@ Analyse sémantique
    "id": "a4b93cd39545315e",
    "type": "rectangle",
    "x": 354.0,
-   "y": 702.0,
+   "y": 754.0,
    "width": 216.0,
    "height": 42,
    "angle": 0,
@@ -2928,7 +2997,7 @@ Analyse sémantique
    "id": "7b552416466c2fa3",
    "type": "text",
    "x": 354.0,
-   "y": 713.0,
+   "y": 765.0,
    "width": 216.0,
    "height": 16.25,
    "angle": 0,
