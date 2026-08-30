@@ -26,13 +26,16 @@ auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2026-06-08
-date_modification: 2026-08-29
+date_modification: 2026-08-30
 confidentialite: publique
 publication:
 - notes-publiques
 rag: true
-metadata_verifiees: true
+metadata_verifiees: false
 ---
+
+> [!info] Refonte
+> Cours condensé le 29 août 2026 (d'environ 180 000 à 7 500 mots) puis vérifié le 30 août 2026 : sources, chronologie, formules et code contrôlés. La version longue — sections détaillées, exemples numériques pas à pas, questions de compréhension par chapitre — reste disponible dans l'historique git du dépôt.
 
 # Cours Master — Comprendre les Transformers
 
@@ -1049,7 +1052,13 @@ dh = 128
 BF16 = 2 octets
 ```
 
-alors le cache est déjà volumineux par séquence, avant même de tenir compte du batching et d'autres allocations.
+alors :
+
+$$
+M_{KV} = 2 \times 32 \times 8192 \times 8 \times 128 \times 2\ \text{octets} = 2^{30}\ \text{octets} = 1\ \text{Gio}
+$$
+
+soit environ 1 Gio par séquence, avant même de tenir compte du batching et d'autres allocations.
 
 ## 16.5. Caches modernes
 

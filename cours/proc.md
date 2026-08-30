@@ -30,8 +30,11 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: true
+metadata_verifiees: false
 ---
+
+> [!info] Refonte
+> Cours condensé le 30 août 2026 (d'environ 51 000 à 7 800 mots) puis vérifié le même jour : options de montage, PSI, sécurité et études de cas contrôlées. La version longue — exercices détaillés par chapitre, cas pratiques longs, tableaux comparatifs — reste disponible dans l'historique git du dépôt.
 
 # Le système de fichiers `/proc` sous GNU/Linux
 
@@ -284,7 +287,7 @@ Elles ne remplacent toutefois pas les contrôles propres à procfs.
 
 ## 4.3. `hidepid`
 
-Le noyau moderne fournit plusieurs modes de visibilité des PID :
+Depuis Linux 5.8, les options de procfs sont propres à chaque instance de montage, et le noyau fournit plusieurs modes de visibilité des PID (formes numériques ou textuelles) :
 
 ```text
 hidepid=0 / off         visibilité classique
@@ -315,13 +318,13 @@ Une instance de procfs montée avec :
 subset=pid
 ```
 
-n'expose que la partie liée aux tâches/processus et masque les autres entrées top-level de procfs.
+n'expose que la partie liée aux tâches/processus et masque les autres entrées top-level de procfs. Cette option existe depuis Linux 5.8.
 
 Cette option est intéressante pour réduire la surface visible dans certains environnements isolés.
 
 ## 4.6. `pidns=`
 
-Les noyaux modernes permettent également de sélectionner explicitement le PID namespace utilisé par une instance de procfs via l'option `pidns=`.
+Depuis **Linux 6.18** (fin 2025), le noyau permet également de sélectionner explicitement le PID namespace utilisé par une instance de procfs via l'option `pidns=` ; sur les noyaux antérieurs, cette option n'existe pas.
 
 Cette notion complète le lien historique :
 
