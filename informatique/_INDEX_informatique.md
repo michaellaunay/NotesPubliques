@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -38,6 +38,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Chaîne complète de numérisation OCR Markdown traduction RAG local]] — Conception d'une chaîne complète et locale de numérisation, OCR, conversion Markdown, traduction et indexation RAG pour constituer une bibliothèque personnelle interrogeable.
 - [[National Emergency Library]] — Fiche sur la National Emergency Library d'Internet Archive (2020) et ses suites : principe du prêt numérique contrôlé, mécanisme réel de prêt et verrous, chronologie complète du procès Hachette v. Internet Archive jusqu'au retrait de 500 000 titres (2024), portée en Europe et en France (PNB), comparaison avec le prêt sous licence, et enseignements pour les corpus d'IA.
+- [[Taille des bibliothèques]] — Recueil de chiffres sourcés (2025) et de repères historiques sur la taille des grandes bibliothèques, d'Assurbanipal à la BnF, à la Bibliothèque du Congrès et à Europeana, avec les bibliothèques numériques « sulfureuses ».
 
 ## Systèmes et administration
 

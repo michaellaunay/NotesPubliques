@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -30,14 +30,11 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Agents IA]] — Note d'intuition sur le gain de qualité obtenu en faisant collaborer plusieurs IA entre elles.
 - [[Comment savoir si une IA est consciente ?]] — Réflexion sur les critères permettant d'évaluer la conscience d'un dispositif technique, au-delà du test de Turing.
-- [[Compression de l'Epéranto ou Peut on transformer un problème de compréhension en un problème de génie logiciel ou L'IDM au secours des LLM]] — Exploration, à partir d'échanges avec des LLM, de l'idée d'utiliser la régularité grammaticale de l'espéranto et l'ingénierie dirigée par les modèles pour ramener un problème de compréhension à un problème de génie logiciel.
+- [[Compression de l'Espéranto — échanges avec Gemini et ChatGPT]] — Transcriptions brutes de mes échanges avec Gemini et ChatGPT (août-septembre 2025, puis une suite) sur l'espéranto et le TAL, la tokenisation morphologique bijective, la spécification EO-NSLM v0.1 et les pragmènes, matière de l'essai L'IDM au secours des LLM.
 - [[IAG à base de modèles]] — Idée de faire générer par un LLM des modèles UML et BPMN à partir de prompts, puis de les transformer en code Python exécutable et validé.
-- [[Le baratineur ChatGPT]] — Note critique et ironique sur la capacité de ChatGPT à produire un discours plausible sans rapport nécessaire avec le vrai.
+- [[L'IDM au secours des LLM]] — Essai — l'espéranto comme langue modélisable, la tokenisation morphologique bijective et le pragmène pour ramener ce qui peut l'être d'un problème de compréhension à un problème de génie logiciel traçable, l'ingénierie dirigée par les modèles encadrant le LLM.
+- [[Le baratineur ChatGPT]] — Billet d'humeur LinkedIn du 7 mars 2023, ironique sur la capacité de ChatGPT à produire un discours plausible sans rapport nécessaire avec le vrai ; conservé comme document d'époque.
 - [[Suis-je une IA]] — Expérience consistant à soumettre ses propres articles à un détecteur de texte généré par IA, et réflexion sur la fiabilité de ces outils.
-
-## Numérisation et documentation
-
-- [[Taille des bibliothèques]] — Recueil de chiffres et de repères historiques sur la taille des grandes bibliothèques, d'Assurbanipal à la BnF et à la Bibliothèque du Congrès.
 
 ## Systèmes et administration
 
@@ -50,7 +47,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Génie logiciel
 
-- [[L'utopie de la Modélisation]] — Série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles.
+- [[L'utopie de la Modélisation]] — Première partie, la seule écrite, d'une série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles ; structurée, sourcée et corrigée en août 2026.
 
 ## Histoire et matériel informatique
 
@@ -64,12 +61,12 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Les jeux d'apprentisages]] — Capture d'une référence sur le game design de la connaissance.
 - [[Planete apprenante]] — Capture à développer sur le livre de François Taddei, Apprendre au XXIe siècle.
 - [[Plans d'éducations]] — Notes sur les programmes éducatifs envisagés pendant la Révolution française, dont le plan de Lepeletier de Saint-Fargeau, et sur les conférences gesticulées de Franck Lepage.
-- [[Un jardin, des lapins, des carottes, chat gpt et copilot]] — Retour d'expérience sur huit heures de cours de Python à Polytech'Lille menées avec ChatGPT et Copilot.
+- [[Un jardin, des lapins, des carottes, chat gpt et copilot]] — Article LinkedIn de mars 2023 — huit heures de cours de Python à Polytech'Lille avec ChatGPT et Copilot, le projet lapins-carottes généré en vingt minutes et la question « Monsieur, à quoi allez-vous servir ? » ; post-scriptum 2026 sur les agents, Copilot et la suite en classe.
 
 ## Culture, récit et création
 
 - [[Piscines tournesol]] — Note sur les piscines Tournesol, témoins d'une politique volontariste d'équipement des communes françaises dans les années 1970.
-- [[Tutorial panoramique]] — Explication du fonctionnement des vidéos à 360 degrés et de leur détournement possible à des fins pédagogiques.
+- [[Tutorial panoramique]] — Idée d'avril 2023 : détourner la vidéo panoramique à 360 degrés pour des tutoriels à embranchements — approfondir en se déplaçant, audio contextuel selon le point de vue, arbre décisionnel — avec la réponse de ChatGPT de l'époque ; réalisable aujourd'hui dans le navigateur avec WebXR et A-Frame.
 
 ## Histoire et société
 
