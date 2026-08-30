@@ -2,6 +2,8 @@
 schema_version: 1
 uid: "01M02JG1WK7858Z150RJ4PWRK1"
 titre: "Plans d'éducations"
+aliases:
+  - "Plans d'éducation"
 type: reflexion
 statut: actif
 para: ressource
@@ -16,25 +18,31 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-08
-date_modification: 2023-06-22
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
-Durant la Révolution française, plusieurs programmes éducatifs ont été envisagés pour le futur système d'éducation. Parmi eux le Plan d'éducation de [Lepeletier de Saint-Fargeau](https://www.amis-robespierre.org/Le-Plan-d-Education-de-Lepeletier)** en opposition au plan éducatif du célèbre philosophe et mathématicien Condorcet. Ces deux visions de l'éducation reflétaient les débats intellectuels de l'époque. Notre système scolaire hérite du modèle de Condorcet. 
+
+> [!info] Note de juin 2023
+> Conservée telle quelle, coquilles corrigées et renvois ajoutés le 31 août 2026 (audit du dossier réflexions, point 20).
+
+Durant la Révolution française, plusieurs programmes éducatifs ont été envisagés pour le futur système d'éducation. Parmi eux le Plan d'éducation de [Lepeletier de Saint-Fargeau](https://www.amis-robespierre.org/Le-Plan-d-Education-de-Lepeletier) en opposition au plan éducatif du célèbre philosophe et mathématicien Condorcet. Ces deux visions de l'éducation reflétaient les débats intellectuels de l'époque. Notre système scolaire hérite du modèle de Condorcet. 
 
 Franck Lepage, connu pour ses "conférences gesticulées" aborde des sujets de société de façon sérieuse et documentée, rendant ainsi l'information accessible et vivante pour le public. Il aborde à nouveau le sujet de l'éducation et de l’ascenseur social, dans [**Inculture 2**](https://youtu.be/WXFgNutNTN8), son nouveau spectacle.
 
 Une des observations marquantes de F.Lepage est sa critique du système éducatif traditionnel, où "l'école transforme l'erreur en faute" inhibant l'envie d'apprendre. En effet, faire des erreurs fait partie du processus d'apprentissage, comme lorsqu'on apprend à marcher ou à faire du vélo. Alors pourquoi noter une dictée sur vingt en décomptant des points pour chaque erreur, alors que cela ne permet pas de connaître le véritable niveau d'un élève ? L'élève a-t-il fait vingt et une erreurs (et non des fautes) ou cinquante ? Quel intérêt a l'élève à progresser puisque ses efforts ne seront reconnus que lorsqu'il ne fera plus que moins de dix erreurs ?
 
-Bref, la notation n'est finalement qu'un outil de classement des élèves et non une aide à la progression. Attention, il ne s'agit pas de mettre une lettre perdant tout sens, mais bien de mettre en avant ce qui est positif et ce qu'il reste à faire. Ainsi, un système se concentrant plutôt sur le rapport entre les erreurs et les réussites, serait plus équitables et éviterait de stigmatiser les élèves comme "bons" ou "cancres" qui finalement ne discrimine que le bagage culturel transmis par les parents et ne servirait qu'à faire perdurer les différences sociales.
+Bref, la notation n'est finalement qu'un outil de classement des élèves et non une aide à la progression. Attention, il ne s'agit pas de mettre une lettre perdant tout sens, mais bien de mettre en avant ce qui est positif et ce qu'il reste à faire. Ainsi, un système se concentrant plutôt sur le rapport entre les erreurs et les réussites, serait plus équitable et éviterait de stigmatiser les élèves comme "bons" ou "cancres", ce qui finalement ne discrimine que le bagage culturel transmis par les parents et ne servirait qu'à faire perdurer les différences sociales.
 
-Franck Lepage cite également Bernard Charlot, dans son ouvrage "Le rapport au savoir en milieu populaire", soutient que la réussite scolaire est plus étroitement liée à l'enthousiasme pour l'apprentissage qu'à la quantité de travail fourni.
+Franck Lepage cite également Bernard Charlot qui, dans son ouvrage "Le rapport au savoir en milieu populaire" (1999), soutient que la réussite scolaire est plus étroitement liée à l'enthousiasme pour l'apprentissage qu'à la quantité de travail fourni.
 
-Puis André Antibi, pour son concept de "La constante macabre", qui remet en question la tendance récurrente à distribuer les notes d'une classe selon une courbe de Gauss, indépendamment du niveau réel de la classe. Il suggère que cette distribution est le résultat du système et non le reflet des compétences réelles des élèves.
+Puis André Antibi, pour son concept de "La constante macabre" (2003), qui remet en question la tendance récurrente à distribuer les notes d'une classe selon une courbe de Gauss, indépendamment du niveau réel de la classe. Il suggère que cette distribution est le résultat du système et non le reflet des compétences réelles des élèves.
 
 Il convoque également les idées de l'économiste [Bernard Friot](https://youtu.be/l-BJ4UtzLBg) et critique la désindexation du salaire sur l'inflation en 1983. Selon lui, en raison de cette décision, un jeune qui commence sa carrière aujourd'hui gagne en réalité 50% de moins qu'un jeune qui débutait dans les années 1970, une fois ajusté pour l'inflation. Cette affirmation souligne l'érosion du pouvoir d'achat des salaires dans le temps, en particulier pour les jeunes travailleurs.
 
 Il est frappant de penser qu'à partir d'une même autopsie du mort, nous obtenons une conclusion différente de Jean-Paul Brighelli [**La fabrique du crétin**](https://youtu.be/H8p-7N_DNVk)
+
+Voir aussi [[Les difficultés d'enseigner]], sur le même sujet vu du côté de l'enseignant, et [[Suis-je une IA]] pour la place de l'erreur dans l'apprentissage avec les outils d'aujourd'hui.
