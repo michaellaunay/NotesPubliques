@@ -75,6 +75,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Histoire et matériel informatique
 
+- [[Comparaison de l'assembleur RISC-V avec celui du Motorola 68000]] — Comparaison technique entre l'ISA modulaire et ouverte RISC-V et le jeu d'instructions du Motorola 68000 : modularité, pipeline, multitâche, compression, multi-cœur.
 - [[Microsoft]] — Traduction d'un article sur le rôle des parents de Bill Gates dans l'histoire de Microsoft.
 - [[Émulation jeux d'arcade]] — Capture d'une référence vidéo sur les techniques d'émulation des jeux d'arcade.
 
