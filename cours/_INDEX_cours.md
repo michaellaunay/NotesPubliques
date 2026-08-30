@@ -59,7 +59,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 ## Réseaux et sécurité
 
 - [[HTTP]] — Cours complet sur HTTP : sémantique, HTTP/1.1, HTTP/2, HTTP/3 et QUIC, méthodes, statuts, en-têtes, cache, cookies, authentification, HTTPS/TLS, CORS, sécurité, API, performances et diagnostic.
-- [[Identité numérique européenne]] — Fiche de présentation du portefeuille d'identité numérique européen et du règlement eIDAS.
+- [[Identité numérique européenne]] — Cours sur le cadre européen d'identité numérique issu du règlement eIDAS révisé : portefeuille EUDI, acteurs, PID et attestations d'attributs, services de confiance, protection des données, architecture technique, OpenID4VCI/OpenID4VP, mdoc, SD-JWT VC, certification, parties utilisatrices et déploiement en France.
 - [[IPFS]] — Cours complet sur IPFS : adressage par contenu, CID, Merkle DAG, UnixFS et IPLD, réseau libp2p/DHT/Bitswap, installation et exploitation d'un nœud Kubo, épinglage, MFS, CAR, IPNS et DNSLink, passerelles vérifiables, réseaux privés et clusters, sécurité, écosystème, limites et travaux pratiques.
 - [[Les protocoles de communications]] — Cours complet sur les protocoles réseau : modèles OSI/TCP-IP, Ethernet et Wi-Fi, IPv4/IPv6, routage, TCP/UDP/QUIC, DNS, DHCP, TLS, HTTP, messagerie, VPN, IoT, protocoles décentralisés, diagnostic et sécurité.
 - [[OAuth OpenID]] — Cours complet sur OAuth 2.0, l'évolution OAuth 2.1, OpenID Connect, JWT/JOSE, PKCE, DPoP, PAR/JAR, les architectures BFF et l'intégration moderne avec Keycloak et Pyramid.
@@ -91,7 +91,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Javascript]] — Cours complet de JavaScript moderne : ECMAScript, types, fonctions, objets, modules, asynchronisme, DOM, Web APIs, Node.js, tests, sécurité, performance et pratiques de développement actuelles.
 - [[Pyramid]] — Cours complet sur Pyramid 2.1 : architecture WSGI, configuration, routes, vues, traversal, sécurité moderne, sessions et CSRF, Deform, SQLAlchemy/ZODB, LDAP/OIDC, tests et déploiement.
 - [[Selenium]] — Cours complet sur Selenium 4 avec Python : WebDriver, Selenium Manager, sélecteurs, interactions, attentes, fenêtres et iframes, actions avancées, Page Object Model, pytest, Grid 4, WebDriver BiDi et bonnes pratiques.
-- [[Tal et Metal]] — Fiche sur les langages de gabarits TAL (Template Attribute Language) et METAL (Macro Expansion TAL) issus de l'écosystème Zope.
+- [[Tal et Metal]] — Cours complet sur Zope Page Templates : TAL pour la logique de présentation, TALES pour les expressions, METAL pour les macros et les slots, avec les différences entre Zope et Chameleon, l'échappement HTML, l'i18n, Pyramid et les bonnes pratiques d'architecture.
 
 ## Génie logiciel
 
@@ -148,7 +148,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Pédagogie et apprentissage
 
-- [[Apprendre]] — Synthèse d'une vidéo de Science étonnante sur les mécanismes de l'apprentissage : mémoire de travail et à long terme, répétition espacée, auto-tests, diversification, apprentissage génératif et cartes mentales.
+- [[Apprendre]] — Cours fondé sur les sciences de l'apprentissage : mémoire de travail et à long terme, récupération active, espacement, entrelacement, exemples résolus, auto-explication, feedback, métacognition, sommeil, prise de notes et usage raisonné de l'IA.
 
 ## Économie et entreprise
 
@@ -156,4 +156,4 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Management et productivité
 
-- [[Getting things done]] — Fiche de synthèse sur la méthode Getting Things Done de David Allen : collecte, clarification, organisation, revue et engagement.
+- [[Getting things done]] — Cours pratique sur Getting Things Done (GTD) : capture, clarification, organisation, réflexion et engagement, listes de projets et prochaines actions, revue hebdomadaire, horizons de focus, planification naturelle et mise en œuvre dans un système papier ou numérique.

@@ -49,10 +49,6 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[L'utopie de la Modélisation]] — Première partie, la seule écrite, d'une série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles ; structurée, sourcée et corrigée en août 2026.
 
-## Histoire et matériel informatique
-
-- [[Comparaison de l'assembleur RISC-V avec celui du Montorola 68000]] — Comparaison technique entre l'ISA modulaire et ouverte RISC-V et le jeu d'instructions du Motorola 68000 : modularité, pipeline, multitâche, compression, multi-cœur.
-
 ## Pédagogie et apprentissage
 
 - [[Endophasie, voix intérieure]] — Réflexion sur la saturation informationnelle et sur ce qu'il reste de temps de cerveau disponible pour la voix intérieure.
@@ -73,7 +69,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Arnaques]] — Note sur les arnaques sentimentales et le marché que représentent les personnes célibataires dans les pays riches.
 - [[L'échelle de la conscience]] — Notes sur l'échelle de conscience proposée par Paul Cherfuka, du sommeil profond aux niveaux supérieurs.
 - [[Les freaks]] — Courte note sur la marginalisation des corps jugés monstrueux, à partir du film Freaks de Tod Browning.
-- [[Peut-on éviter le chaos qui vient]] — Réflexion croisant la thèse de Peter Turchin sur les cycles de crise, la fiscalité du patrimoine et les crises climatique et du vivant.
+- [[Peut-on éviter le chaos qui vient]] — Essai du 21 septembre 2025 croisant la thèse de Peter Turchin sur les cycles de crise, le débat sur la taxe Zucman, les crises climatique, du vivant et chimique, et l'automatisation du tertiaire par l'IA ; structuré et sourcé en août 2026.
 - [[Une analogie pour la connaissance]] — Analogie présentant la connaissance comme une pyramide à laquelle chaque découverte ajoute un bloc.
 - [[Westworld]] — Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience.
 
