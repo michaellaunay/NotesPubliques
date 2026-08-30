@@ -34,6 +34,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!info] Refonte
+> Cours condensé le 30 août 2026 (d'environ 57 000 à 8 700 mots) puis vérifié le même jour : références, Contextual Retrieval, GraphRAG et sécurité contrôlés. La version longue — mini-TP par chapitre, exemples de prompts détaillés, questions de compréhension — reste disponible dans l'historique git du dépôt.
+
 # RAG — Retrieval-Augmented Generation
 
 > [!abstract] Idée centrale
@@ -386,7 +389,7 @@ Avant de découper, vérifier :
 - images et légendes ;
 - doublons.
 
-Pour les PDF complexes, voir [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]].
+Pour les PDF complexes, voir [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]]. Pour une extraction programmée simple, voir [[PyPdf]] ; la chaîne locale complète (numérisation, OCR, Markdown, traduction, indexation) est décrite dans [[Chaîne complète de numérisation OCR Markdown traduction RAG local]].
 
 ## 3.3. Conserver le raw
 

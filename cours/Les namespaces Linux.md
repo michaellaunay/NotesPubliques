@@ -26,13 +26,16 @@ auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2026-05-24
-date_modification: 2026-08-29
+date_modification: 2026-08-30
 confidentialite: publique
 publication:
 - notes-publiques
 rag: true
-metadata_verifiees: true
+metadata_verifiees: false
 ---
+
+> [!info] Refonte
+> Cours condensé le 29 août 2026 (d'environ 71 000 à 7 300 mots) puis vérifié le 30 août 2026 : API, types de namespaces, idmapped mounts et time namespaces contrôlés. La version longue — chapitres détaillés, exercices par chapitre, mini-conteneur pas à pas — reste disponible dans l'historique git du dépôt.
 
 # Les namespaces Linux
 
