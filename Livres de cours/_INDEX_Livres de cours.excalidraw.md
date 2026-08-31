@@ -136,29 +136,29 @@ Docker — Compléments 2026
 
 Docker — Sommaire
 
-Les namespaces Linux — 01 — Int…
+GNU Linux — 01 — D'Unix à Linux
 
-Les namespaces Linux — 02 — Arc…
+GNU Linux — 02 — Logiciel libre…
 
-Les namespaces Linux — 03 — Les…
+GNU Linux — 03 — Les distributions
 
-Les namespaces Linux — 04 — Nam…
+GNU Linux — 04 — Installer Ubuntu
 
-Les namespaces Linux — 05 — Nam…
+GNU Linux — 05 — Linux sous Win…
 
-Les namespaces Linux — 06 — Nam…
+GNU Linux — 06 — Utilisation, s…
 
-Les namespaces Linux — 07 — Nam…
+GNU Linux — 07 — Permissions, A…
 
-Les namespaces Linux — 08 — Nam…
+GNU Linux — 08 — Processus et p…
 
-Les namespaces Linux — 09 — Nam…
+GNU Linux — 09 — Démarrage, ini…
 
-Les namespaces Linux — 10 — Nam…
+GNU Linux — 10 — Le système de …
 
-Les namespaces Linux — 11 — Nam…
+GNU Linux — 11 — Namespaces et …
 
-… et 21 autres
+… et 45 autres
 
 Réseaux et sécurité
 
@@ -3854,7 +3854,7 @@ Pyramid — Sommaire
    "baseline": 11
   },
   {
-   "id": "351cdf6fd93f7312",
+   "id": "7a3410f6f865da21",
    "type": "rectangle",
    "x": 354.0,
    "y": 1078.0,
@@ -3879,11 +3879,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 01 — Introduction aux namespaces Linux]]",
+   "link": "[[GNU Linux — 01 — D'Unix à Linux]]",
    "locked": false
   },
   {
-   "id": "62ce85cf4aaebccd",
+   "id": "a7fe85040368183b",
    "type": "text",
    "x": 354.0,
    "y": 1089.0,
@@ -3908,20 +3908,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 01 — Int…",
-   "rawText": "Les namespaces Linux — 01 — Int…",
-   "originalText": "Les namespaces Linux — 01 — Int…",
+   "text": "GNU Linux — 01 — D'Unix à Linux",
+   "rawText": "GNU Linux — 01 — D'Unix à Linux",
+   "originalText": "GNU Linux — 01 — D'Unix à Linux",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "351cdf6fd93f7312",
+   "containerId": "7a3410f6f865da21",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "41d3f0c489e53244",
+   "id": "521471631881594e",
    "type": "rectangle",
    "x": 354.0,
    "y": 1130.0,
@@ -3946,11 +3946,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 02 — Architecture générale des namespaces]]",
+   "link": "[[GNU Linux — 02 — Logiciel libre et licences]]",
    "locked": false
   },
   {
-   "id": "46240131305cc994",
+   "id": "4c5861d154e735db",
    "type": "text",
    "x": 354.0,
    "y": 1141.0,
@@ -3975,20 +3975,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 02 — Arc…",
-   "rawText": "Les namespaces Linux — 02 — Arc…",
-   "originalText": "Les namespaces Linux — 02 — Arc…",
+   "text": "GNU Linux — 02 — Logiciel libre…",
+   "rawText": "GNU Linux — 02 — Logiciel libre…",
+   "originalText": "GNU Linux — 02 — Logiciel libre…",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "41d3f0c489e53244",
+   "containerId": "521471631881594e",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "6b80f91627b6ae3d",
+   "id": "f782a2a442fc529b",
    "type": "rectangle",
    "x": 354.0,
    "y": 1182.0,
@@ -4013,11 +4013,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 03 — Les outils de manipulation des namespaces]]",
+   "link": "[[GNU Linux — 03 — Les distributions]]",
    "locked": false
   },
   {
-   "id": "4fada830e5336c32",
+   "id": "f488febe975e4c34",
    "type": "text",
    "x": 354.0,
    "y": 1193.0,
@@ -4042,20 +4042,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 03 — Les…",
-   "rawText": "Les namespaces Linux — 03 — Les…",
-   "originalText": "Les namespaces Linux — 03 — Les…",
+   "text": "GNU Linux — 03 — Les distributions",
+   "rawText": "GNU Linux — 03 — Les distributions",
+   "originalText": "GNU Linux — 03 — Les distributions",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "6b80f91627b6ae3d",
+   "containerId": "f782a2a442fc529b",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "902ecab9fe3d06ef",
+   "id": "0f68dc590729e304",
    "type": "rectangle",
    "x": 354.0,
    "y": 1234.0,
@@ -4080,11 +4080,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 04 — Namespace UTS]]",
+   "link": "[[GNU Linux — 04 — Installer Ubuntu]]",
    "locked": false
   },
   {
-   "id": "cf369ed22cf5e16f",
+   "id": "15200451eb784d52",
    "type": "text",
    "x": 354.0,
    "y": 1245.0,
@@ -4109,20 +4109,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 04 — Nam…",
-   "rawText": "Les namespaces Linux — 04 — Nam…",
-   "originalText": "Les namespaces Linux — 04 — Nam…",
+   "text": "GNU Linux — 04 — Installer Ubuntu",
+   "rawText": "GNU Linux — 04 — Installer Ubuntu",
+   "originalText": "GNU Linux — 04 — Installer Ubuntu",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "902ecab9fe3d06ef",
+   "containerId": "0f68dc590729e304",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "3be75a4f8b2af438",
+   "id": "2e7b779e7ab6d96f",
    "type": "rectangle",
    "x": 354.0,
    "y": 1286.0,
@@ -4147,11 +4147,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 05 — Namespace PID]]",
+   "link": "[[GNU Linux — 05 — Linux sous Windows avec WSL 2]]",
    "locked": false
   },
   {
-   "id": "7e6682b8382a784b",
+   "id": "09009e08e03206f4",
    "type": "text",
    "x": 354.0,
    "y": 1297.0,
@@ -4176,20 +4176,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 05 — Nam…",
-   "rawText": "Les namespaces Linux — 05 — Nam…",
-   "originalText": "Les namespaces Linux — 05 — Nam…",
+   "text": "GNU Linux — 05 — Linux sous Win…",
+   "rawText": "GNU Linux — 05 — Linux sous Win…",
+   "originalText": "GNU Linux — 05 — Linux sous Win…",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "3be75a4f8b2af438",
+   "containerId": "2e7b779e7ab6d96f",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "4aafbb9bedff015e",
+   "id": "f750ff9cf075e19e",
    "type": "rectangle",
    "x": 354.0,
    "y": 1338.0,
@@ -4214,11 +4214,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 06 — Namespace mount]]",
+   "link": "[[GNU Linux — 06 — Utilisation, shell et commandes]]",
    "locked": false
   },
   {
-   "id": "24253cec36cdcc89",
+   "id": "74cb6057f7aa5b10",
    "type": "text",
    "x": 354.0,
    "y": 1349.0,
@@ -4243,20 +4243,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 06 — Nam…",
-   "rawText": "Les namespaces Linux — 06 — Nam…",
-   "originalText": "Les namespaces Linux — 06 — Nam…",
+   "text": "GNU Linux — 06 — Utilisation, s…",
+   "rawText": "GNU Linux — 06 — Utilisation, s…",
+   "originalText": "GNU Linux — 06 — Utilisation, s…",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "4aafbb9bedff015e",
+   "containerId": "f750ff9cf075e19e",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "a5c6f2974c9de6d7",
+   "id": "aa26aff80465eec3",
    "type": "rectangle",
    "x": 354.0,
    "y": 1390.0,
@@ -4281,11 +4281,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 07 — Namespace network]]",
+   "link": "[[GNU Linux — 07 — Permissions, ACL, utilisateurs et groupes]]",
    "locked": false
   },
   {
-   "id": "cebb381bdb220b2b",
+   "id": "fd4f02844d6231cd",
    "type": "text",
    "x": 354.0,
    "y": 1401.0,
@@ -4310,20 +4310,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 07 — Nam…",
-   "rawText": "Les namespaces Linux — 07 — Nam…",
-   "originalText": "Les namespaces Linux — 07 — Nam…",
+   "text": "GNU Linux — 07 — Permissions, A…",
+   "rawText": "GNU Linux — 07 — Permissions, A…",
+   "originalText": "GNU Linux — 07 — Permissions, A…",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "a5c6f2974c9de6d7",
+   "containerId": "aa26aff80465eec3",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "b19182734f3a56fa",
+   "id": "a01a8c944c8c6cad",
    "type": "rectangle",
    "x": 354.0,
    "y": 1442.0,
@@ -4348,11 +4348,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 08 — Namespace IPC]]",
+   "link": "[[GNU Linux — 08 — Processus et planification]]",
    "locked": false
   },
   {
-   "id": "6859c4d087ef84a3",
+   "id": "5d6485910efc5371",
    "type": "text",
    "x": 354.0,
    "y": 1453.0,
@@ -4377,20 +4377,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 08 — Nam…",
-   "rawText": "Les namespaces Linux — 08 — Nam…",
-   "originalText": "Les namespaces Linux — 08 — Nam…",
+   "text": "GNU Linux — 08 — Processus et p…",
+   "rawText": "GNU Linux — 08 — Processus et p…",
+   "originalText": "GNU Linux — 08 — Processus et p…",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "b19182734f3a56fa",
+   "containerId": "a01a8c944c8c6cad",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "5bd3108569fa8ed5",
+   "id": "4a4f198edb82f263",
    "type": "rectangle",
    "x": 354.0,
    "y": 1494.0,
@@ -4415,11 +4415,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 09 — Namespace user]]",
+   "link": "[[GNU Linux — 09 — Démarrage, init et services]]",
    "locked": false
   },
   {
-   "id": "edaef277322b9953",
+   "id": "7eea962498b4edf1",
    "type": "text",
    "x": 354.0,
    "y": 1505.0,
@@ -4444,20 +4444,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 09 — Nam…",
-   "rawText": "Les namespaces Linux — 09 — Nam…",
-   "originalText": "Les namespaces Linux — 09 — Nam…",
+   "text": "GNU Linux — 09 — Démarrage, ini…",
+   "rawText": "GNU Linux — 09 — Démarrage, ini…",
+   "originalText": "GNU Linux — 09 — Démarrage, ini…",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "5bd3108569fa8ed5",
+   "containerId": "4a4f198edb82f263",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "34635fcaf61ba731",
+   "id": "1078909005f35f37",
    "type": "rectangle",
    "x": 354.0,
    "y": 1546.0,
@@ -4482,11 +4482,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 10 — Namespace cgroup]]",
+   "link": "[[GNU Linux — 10 — Le système de fichiers proc]]",
    "locked": false
   },
   {
-   "id": "532bccc2839a92bb",
+   "id": "4e312fb986bc76c1",
    "type": "text",
    "x": 354.0,
    "y": 1557.0,
@@ -4511,20 +4511,20 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 10 — Nam…",
-   "rawText": "Les namespaces Linux — 10 — Nam…",
-   "originalText": "Les namespaces Linux — 10 — Nam…",
+   "text": "GNU Linux — 10 — Le système de …",
+   "rawText": "GNU Linux — 10 — Le système de …",
+   "originalText": "GNU Linux — 10 — Le système de …",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "34635fcaf61ba731",
+   "containerId": "1078909005f35f37",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
   },
   {
-   "id": "188de15c685a2e68",
+   "id": "0de582a04831ba2b",
    "type": "rectangle",
    "x": 354.0,
    "y": 1598.0,
@@ -4549,11 +4549,11 @@ Pyramid — Sommaire
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Les namespaces Linux — 11 — Namespace time]]",
+   "link": "[[GNU Linux — 11 — Namespaces et isolation]]",
    "locked": false
   },
   {
-   "id": "d8a30b1e66a04d92",
+   "id": "ba844e542baddc72",
    "type": "text",
    "x": 354.0,
    "y": 1609.0,
@@ -4578,14 +4578,14 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Les namespaces Linux — 11 — Nam…",
-   "rawText": "Les namespaces Linux — 11 — Nam…",
-   "originalText": "Les namespaces Linux — 11 — Nam…",
+   "text": "GNU Linux — 11 — Namespaces et …",
+   "rawText": "GNU Linux — 11 — Namespaces et …",
+   "originalText": "GNU Linux — 11 — Namespaces et …",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "188de15c685a2e68",
+   "containerId": "0de582a04831ba2b",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
@@ -4620,7 +4620,7 @@ Pyramid — Sommaire
    "locked": false
   },
   {
-   "id": "7facc91d8e3c971e",
+   "id": "fa5b619739dd5a2c",
    "type": "text",
    "x": 354.0,
    "y": 1661.0,
@@ -4645,9 +4645,9 @@ Pyramid — Sommaire
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "… et 21 autres",
-   "rawText": "… et 21 autres",
-   "originalText": "… et 21 autres",
+   "text": "… et 45 autres",
+   "rawText": "… et 45 autres",
+   "originalText": "… et 45 autres",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
