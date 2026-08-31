@@ -42,7 +42,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Systèmes et administration
 
-- [[Apache]] — Fiche de synthèse sur le serveur HTTP Apache : présentation, installation, configuration, sécurisation et traçage.
+- [[Apache]] — Cours pratique sur Apache HTTP Server 2.4 : architecture, installation Debian/Ubuntu, VirtualHost, autorisation, TLS/ACME, HTTP/2, PHP-FPM, reverse proxy, journalisation, performances, sécurité et dépannage.
 - [[Docker]] — Cours complet sur Docker : conteneurs, images OCI, Dockerfile, BuildKit/Buildx, Compose, réseaux, volumes, sécurité, rootless, supply chain et exploitation en production.
 - [[GNULinux]] — Cours de fond sur GNU/Linux : histoire, licences et logiciel libre, notion de noyau, utilisation du système, shell et commandes, arborescence, droits, processus et administration courante.
 - [[InetOrgPerson]] — Cours complet sur inetOrgPerson : schéma LDAP, héritage, attributs, syntaxes, nommage, contraintes, sécurité, interopérabilité et exploitation avec OpenLDAP.
