@@ -34,6 +34,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!tip] Version longue
+> Ce cours existe aussi sous forme de livre complet : [[RAG — livre complet]].
+
 # RAG — Retrieval-Augmented Generation
 
 ## Objectif du cours

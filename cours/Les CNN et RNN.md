@@ -37,6 +37,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!tip] Version longue
+> Ce cours existe aussi sous forme de livre complet : [[Les CNN et RNN — livre complet]].
+
 ---
 
 # Les CNN et RNN : des motifs locaux aux séquences

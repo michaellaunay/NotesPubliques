@@ -29,6 +29,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!tip] Version longue
+> Ce cours existe aussi sous forme de livre complet : [[Sécurité avancée sous Linux — livre complet]].
+
 # Sécurité avancée sous Linux
 
 > [!abstract] Objectif
