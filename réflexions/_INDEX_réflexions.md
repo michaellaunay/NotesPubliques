@@ -61,7 +61,6 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Culture, récit et création
 
-- [[Piscines tournesol]] — Note sur les piscines Tournesol, témoins d'une politique volontariste d'équipement des communes françaises dans les années 1970.
 - [[Tutorial panoramique]] — Idée d'avril 2023 : détourner la vidéo panoramique à 360 degrés pour des tutoriels à embranchements — approfondir en se déplaçant, audio contextuel selon le point de vue, arbre décisionnel — avec la réponse de ChatGPT de l'époque ; réalisable aujourd'hui dans le navigateur avec WebXR et A-Frame.
 
 ## Histoire et société
@@ -75,6 +74,6 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Environnement, énergie et vivant
 
-- [[Arbre]] — Réflexion sur la séquestration du carbone par les arbres et sur ce que recouvre réellement la notion d'arbre.
+- [[Billets LinkedIn 2023]] — Deux billets LinkedIn courts de 2023 réunis avec leur date — Arbre (séquestration du carbone, qu'est-ce qu'un arbre, centième arbre planté) et Piscines tournesol (patrimoine des piscines des années 1970) — avec renvoi vers le troisième billet de la même série, Les difficultés d'enseigner.
 - [[Bocage]] — Réflexion sur l'arrachage des haies et la destruction des bocages comme cause majeure de perte de biodiversité, et sur le statut juridique du vivant sauvage.
 - [[Limites planétaires]] — Liste des principales limites planétaires : pollution, climat, biodiversité et ressources.

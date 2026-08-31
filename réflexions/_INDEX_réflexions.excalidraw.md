@@ -80,8 +80,6 @@ Un jardin, des lapins, des caro…
 
 Culture, récit et création
 
-Piscines tournesol
-
 Tutorial panoramique
 
 Histoire et société
@@ -100,7 +98,7 @@ Westworld
 
 Environnement, énergie et vivant
 
-Arbre
+Billets LinkedIn 2023
 
 Bocage
 
@@ -2054,77 +2052,10 @@ Limites planétaires
    "elbowed": false
   },
   {
-   "id": "bdb17ebe96648b56",
-   "type": "rectangle",
-   "x": 684.0,
-   "y": 292.0,
-   "width": 216.0,
-   "height": 42,
-   "angle": 0,
-   "strokeColor": "#0c8599",
-   "backgroundColor": "#f8f9fa",
-   "fillStyle": "solid",
-   "strokeWidth": 1,
-   "strokeStyle": "solid",
-   "roughness": 1,
-   "opacity": 100,
-   "groupIds": [],
-   "frameId": null,
-   "roundness": {
-    "type": 3
-   },
-   "seed": 1,
-   "version": 1,
-   "versionNonce": 1,
-   "isDeleted": false,
-   "boundElements": [],
-   "updated": 1,
-   "link": "[[Piscines tournesol]]",
-   "locked": false
-  },
-  {
-   "id": "277bfaa15fa8917a",
-   "type": "text",
-   "x": 684.0,
-   "y": 303.0,
-   "width": 216.0,
-   "height": 16.25,
-   "angle": 0,
-   "strokeColor": "#1e1e1e",
-   "backgroundColor": "transparent",
-   "fillStyle": "solid",
-   "strokeWidth": 2,
-   "strokeStyle": "solid",
-   "roughness": 1,
-   "opacity": 100,
-   "groupIds": [],
-   "frameId": null,
-   "roundness": null,
-   "seed": 1,
-   "version": 1,
-   "versionNonce": 1,
-   "isDeleted": false,
-   "boundElements": [],
-   "updated": 1,
-   "link": null,
-   "locked": false,
-   "text": "Piscines tournesol",
-   "rawText": "Piscines tournesol",
-   "originalText": "Piscines tournesol",
-   "fontSize": 13,
-   "fontFamily": 2,
-   "textAlign": "center",
-   "verticalAlign": "middle",
-   "containerId": "bdb17ebe96648b56",
-   "lineHeight": 1.25,
-   "autoResize": false,
-   "baseline": 11
-  },
-  {
    "id": "5e59ff283bf9101b",
    "type": "rectangle",
    "x": 684.0,
-   "y": 344.0,
+   "y": 292.0,
    "width": 216.0,
    "height": 42,
    "angle": 0,
@@ -2153,7 +2084,7 @@ Limites planétaires
    "id": "40309f728084d904",
    "type": "text",
    "x": 684.0,
-   "y": 355.0,
+   "y": 303.0,
    "width": 216.0,
    "height": 16.25,
    "angle": 0,
@@ -2812,7 +2743,7 @@ Limites planétaires
    "elbowed": false
   },
   {
-   "id": "158b0792c90af3bf",
+   "id": "957b1b556f4f526d",
    "type": "rectangle",
    "x": 354.0,
    "y": 858.0,
@@ -2837,11 +2768,11 @@ Limites planétaires
    "isDeleted": false,
    "boundElements": [],
    "updated": 1,
-   "link": "[[Arbre]]",
+   "link": "[[Billets LinkedIn 2023]]",
    "locked": false
   },
   {
-   "id": "f3f37830b707f4ae",
+   "id": "93e6c7dac767608f",
    "type": "text",
    "x": 354.0,
    "y": 869.0,
@@ -2866,14 +2797,14 @@ Limites planétaires
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "Arbre",
-   "rawText": "Arbre",
-   "originalText": "Arbre",
+   "text": "Billets LinkedIn 2023",
+   "rawText": "Billets LinkedIn 2023",
+   "originalText": "Billets LinkedIn 2023",
    "fontSize": 13,
    "fontFamily": 2,
    "textAlign": "center",
    "verticalAlign": "middle",
-   "containerId": "158b0792c90af3bf",
+   "containerId": "957b1b556f4f526d",
    "lineHeight": 1.25,
    "autoResize": false,
    "baseline": 11
