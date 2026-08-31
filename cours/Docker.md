@@ -31,7 +31,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[Docker — livre complet]].
+> Ce cours existe aussi sous forme de livre en 17 chapitres : [[Docker — Sommaire]] ; ses apports propres y sont repris dans [[Docker — Compléments 2026]].
 
 # Docker
 

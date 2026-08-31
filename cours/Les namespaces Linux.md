@@ -35,7 +35,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[Les namespaces Linux — livre complet]].
+> Ce cours existe aussi sous forme de livre en 16 chapitres : [[Les namespaces Linux — Sommaire]] ; ses apports propres y sont repris dans [[Les namespaces Linux — Compléments 2026]].
 
 # Les namespaces Linux
 

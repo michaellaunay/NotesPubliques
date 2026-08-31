@@ -30,7 +30,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[Sécurité avancée sous Linux — livre complet]].
+> Ce cours existe aussi sous forme de livre en 7 chapitres : [[Sécurité avancée sous Linux — Sommaire]] ; ses apports propres y sont repris dans [[Sécurité avancée sous Linux — Compléments 2026]].
 
 # Sécurité avancée sous Linux
 

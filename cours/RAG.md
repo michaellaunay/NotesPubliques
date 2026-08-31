@@ -35,7 +35,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[RAG — livre complet]].
+> Ce cours existe aussi sous forme de livre en 12 chapitres : [[RAG — Sommaire]] ; ses apports propres y sont repris dans [[RAG — Compléments 2026]].
 
 # RAG — Retrieval-Augmented Generation
 

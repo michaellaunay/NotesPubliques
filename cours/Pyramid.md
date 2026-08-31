@@ -30,7 +30,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[Pyramid — livre complet]].
+> Ce cours existe aussi sous forme de livre en 10 chapitres : [[Pyramid — Sommaire]] ; ses apports propres y sont repris dans [[Pyramid — Compléments 2026]].
 
 # Pyramid
 

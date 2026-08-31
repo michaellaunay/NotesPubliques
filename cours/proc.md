@@ -34,7 +34,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[proc — livre complet]].
+> Ce cours existe aussi sous forme de livre en 11 chapitres : [[proc — Sommaire]] ; ses apports propres y sont repris dans [[proc — Compléments 2026]].
 
 # Le système de fichiers `/proc` sous GNU/Linux
 

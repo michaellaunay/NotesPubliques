@@ -37,7 +37,7 @@ metadata_verifiees: true
 ---
 
 > [!tip] Version longue
-> Ce cours existe aussi sous forme de livre complet : [[Les transformers — livre complet]].
+> Ce cours existe aussi sous forme de livre en 30 chapitres : [[Les transformers — Sommaire]] ; ses apports propres y sont repris dans [[Les transformers — Compléments 2026]].
 
 # Cours Master — Comprendre les Transformers
 
