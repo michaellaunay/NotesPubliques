@@ -37,6 +37,9 @@ rag: true
 metadata_verifiees: false
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 01 — D'Unix à Linux|1]].
+
 > [!info] Refonte
 > Cours développé le 31 août 2026 (d'environ 588 à 9 147 mots  remplacement complet du texte précédent)  vérifié le même jour : schéma  titres  liens et affirmations datées contrôlés. La version précédente reste dans l'historique git du dépôt.
 

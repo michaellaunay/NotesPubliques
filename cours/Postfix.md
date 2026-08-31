@@ -31,6 +31,9 @@ rag: true
 metadata_verifiees: false
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 17 — Messagerie avec Postfix|17]].
+
 > [!info] Refonte
 > Cours développé le 31 août 2026 (d'environ 5 787 à 9 472 mots  remplacement complet du texte précédent)  vérifié le même jour : schéma  titres  liens et affirmations datées contrôlés. La version précédente reste dans l'historique git du dépôt. Les éléments spécifiques de l'ancienne version sont conservés en annexe  en fin de note.
 

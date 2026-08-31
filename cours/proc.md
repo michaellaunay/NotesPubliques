@@ -33,6 +33,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 10 — Le système de fichiers proc|10]].
+
 > [!tip] Version longue
 > Ce cours existe aussi sous forme de livre en 11 chapitres : [[proc — Sommaire]] ; ses apports propres y sont repris dans [[proc — Compléments 2026]].
 

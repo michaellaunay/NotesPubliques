@@ -28,6 +28,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 18 — Annuaire LDAP|18]].
+
 # LDAP et OpenLDAP
 
 > [!abstract] Objectif
