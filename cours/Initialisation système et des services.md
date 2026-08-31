@@ -28,6 +28,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 09 — Démarrage, init et services|9]].
+
 # Initialisation système et gestion des services sous GNU/Linux
 
 > [!abstract] Objectif

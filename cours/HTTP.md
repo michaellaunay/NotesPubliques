@@ -28,6 +28,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 16 — Le protocole HTTP et le serveur Apache|16]].
+
 # HTTP
 
 > [!abstract] Objectif

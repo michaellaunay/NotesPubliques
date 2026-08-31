@@ -32,6 +32,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 03 — Les distributions|3]].
+
 # Les distributions Linux
 
 > [!abstract] Objectif

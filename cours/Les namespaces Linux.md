@@ -34,6 +34,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 11 — Namespaces et isolation|11]].
+
 > [!tip] Version longue
 > Ce cours existe aussi sous forme de livre en 16 chapitres : [[Les namespaces Linux — Sommaire]] ; ses apports propres y sont repris dans [[Les namespaces Linux — Compléments 2026]].
 

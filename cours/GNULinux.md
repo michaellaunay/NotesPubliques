@@ -33,6 +33,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitres [[GNU Linux — 01 — D'Unix à Linux|1]], [[GNU Linux — 02 — Logiciel libre et licences|2]], [[GNU Linux — 06 — Utilisation, shell et commandes|6]], [[GNU Linux — 07 — Permissions, ACL, utilisateurs et groupes|7]], [[GNU Linux — 08 — Processus et planification|8]], [[GNU Linux — 09 — Démarrage, init et services|9]], [[GNU Linux — 12 — Disques, systèmes de fichiers, RAID et LVM|12]], [[GNU Linux — 13 — Journalisation et configuration versionnée|13]], [[GNU Linux — 14 — Réseau et outils TCP IP|14]], [[GNU Linux — 15 — Paquets et installation de logiciels|15]], [[GNU Linux — 16 — Le protocole HTTP et le serveur Apache|16]], [[GNU Linux — 17 — Messagerie avec Postfix|17]], [[GNU Linux — 18 — Annuaire LDAP|18]], [[GNU Linux — 19 — Bases de données|19]], [[GNU Linux — 20 — Conteneurs avec Docker|20]], [[GNU Linux — 21 — Pare-feu et sécurisation courante|21]], [[GNU Linux — 23 — Annexe — Outils du développeur|23]].
+
 # Objectif
 
 Cette formation a pour but de fournir les bases indispensables à l'utilisation et à l'administration des systèmes GNU/Linux.

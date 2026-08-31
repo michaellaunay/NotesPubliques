@@ -38,6 +38,9 @@ rag: true
 metadata_verifiees: false
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 05 — Linux sous Windows avec WSL 2|5]].
+
 > [!info] Refonte
 > Cours développé le 31 août 2026 (d'environ 621 à 7 926 mots  remplacement complet du texte précédent)  vérifié le même jour : schéma  titres  liens et affirmations datées contrôlés. La version précédente reste dans l'historique git du dépôt.
 

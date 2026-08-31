@@ -29,6 +29,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 22 — Sécurité avancée|22]].
+
 > [!tip] Version longue
 > Ce cours existe aussi sous forme de livre en 7 chapitres : [[Sécurité avancée sous Linux — Sommaire]] ; ses apports propres y sont repris dans [[Sécurité avancée sous Linux — Compléments 2026]].
 

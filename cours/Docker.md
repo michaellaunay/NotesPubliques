@@ -30,6 +30,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 20 — Conteneurs avec Docker|20]].
+
 > [!tip] Version longue
 > Ce cours existe aussi sous forme de livre en 17 chapitres : [[Docker — Sommaire]] ; ses apports propres y sont repris dans [[Docker — Compléments 2026]].
 

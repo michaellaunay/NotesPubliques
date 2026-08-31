@@ -26,6 +26,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!info] Livre GNU/Linux
+> Ce cours est repris dans le livre [[GNU Linux — Sommaire]] — chapitre [[GNU Linux — 14 — Réseau et outils TCP IP|14]].
+
 # Les protocoles de communication
 
 > [!abstract] Objectif
