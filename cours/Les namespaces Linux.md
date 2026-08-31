@@ -34,6 +34,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!tip] Version longue
+> Ce cours existe aussi sous forme de livre complet : [[Les namespaces Linux — livre complet]].
+
 # Les namespaces Linux
 
 ## Pourquoi ce cours est important

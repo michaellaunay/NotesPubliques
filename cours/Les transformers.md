@@ -36,6 +36,9 @@ rag: true
 metadata_verifiees: true
 ---
 
+> [!tip] Version longue
+> Ce cours existe aussi sous forme de livre complet : [[Les transformers — livre complet]].
+
 # Cours Master — Comprendre les Transformers
 
 ## Objectif général

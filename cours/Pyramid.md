@@ -28,6 +28,10 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
+
+> [!tip] Version longue
+> Ce cours existe aussi sous forme de livre complet : [[Pyramid — livre complet]].
+
 # Pyramid
 
 > [!abstract] Objectif
