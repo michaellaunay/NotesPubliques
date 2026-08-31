@@ -56,7 +56,7 @@ Les index de dossier `_INDEX_<dossier>.md` et leurs cartes `_INDEX_<dossier>.exc
 
 ## Licence
 
-Sauf mention contraire dans la note elle-même, les contenus sont réutilisables aux conditions indiquées dans [LICENSE](LICENSE). Les notes issues de sources externes citent leur source dans leur frontmatter.
+Sauf mention contraire dans la note elle-même, les contenus sont publiés sous licence **Creative Commons Attribution – Partage dans les mêmes conditions 4.0 International (CC BY-SA 4.0)** : réutilisation et modification libres, y compris commerciales, à condition de citer la source et de partager les adaptations sous la même licence. Le texte complet est dans [LICENSE](LICENSE). Les notes issues de sources externes citent leur source dans leur frontmatter.
 
 ---
 
