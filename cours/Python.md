@@ -3557,6 +3557,8 @@ Bien sûr, voici une liste de ressources en ligne pour vous aider à approfondir
 
 Il est préférable de commencer par des ressources adaptées à notre niveau actuel, puis d'ajouter des défis supplémentaires à mesure que vous progressez.
 
+Exercice de synthèse sur les chaînes, `str.find`, les octets et un peu de théorie de l'information : [[Algorithme de compression basé sur PI]].
+
 # Installer une bibliothèque
 
 La commande correcte invoque le module `pip`, et non un module `install` qui
