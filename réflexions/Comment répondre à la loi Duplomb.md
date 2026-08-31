@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 uid: 01M02JG1WDCM0ACCS85RDXPHKB
-titre: Comment réponde à la loi Duplomb
+titre: Comment répondre à la loi Duplomb
 type: reflexion
 statut: brouillon
 para: ressource
@@ -17,12 +17,16 @@ auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2025-07-22
-date_modification: 2026-08-18
+date_modification: 2026-08-31
 confidentialite: privee
 publication: []
 rag: true
 metadata_verifiees: false
 ---
+
+> [!info] Note datée
+> Brouillon du 22 juillet 2025 (dernier changement de fond en septembre 2025), privé. Contexte postérieur à la note : la loi Duplomb, adoptée le 8 juillet 2025, a été partiellement censurée par le Conseil constitutionnel le 7 août 2025 (décision n° 2025-884 DC, réintroduction de l'acétamipride). Titre corrigé (« répondre ») et datation ajoutés le 31 août 2026 (audit du dossier réflexions, point 28) ; contenu non modifié.
+
 Voici un extrait résumé d'une conférence du biologiste Pierre-Henri Gouyon, qui donne un éclairage saisissant sur les arbitrages de l'EFSA (Autorité européenne de sécurité des aliments) et qui permet de mieux comprendre le débat actuel sur la loi Duplomb :  
 En 2013, l’EFSA avait pris une décision majeure : ne plus se contenter d’évaluer la toxicité aiguë des pesticides sur les abeilles, mais intégrer également leurs effets chroniques, c’est-à-dire les conséquences d’une exposition répétée (une cigarette ne tue pas, mais une toutes les heures oui). Elle avait même proposé un protocole pour tester cette toxicité chronique.  
 Mais près de 10 ans plus tard, ce protocole n’a jamais été mis en œuvre. Les apiculteurs ont tenté d’accéder aux échanges entre États membres pour comprendre ce blocage. La Commission européenne a refusé. Et même après l’intervention favorable de la médiatrice européenne, Emily O'Reilly, elle a confirmé en 2019 qu’elle ne publierait pas les règles.  
