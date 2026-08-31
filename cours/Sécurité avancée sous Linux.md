@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2024-03-11
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -39,108 +39,20 @@ metadata_verifiees: true
 
 # Plan du cours
 
-**Introduction**
-- Modèle de menace et défense en profondeur
-- Confidentialité, intégrité, disponibilité et traçabilité
-- Réduction de surface d'attaque
-- Différence entre prévention, détection et réponse
+Le cours suit une progression volontairement opérationnelle : on commence par comprendre **qui protège quoi**, puis on durcit l'hôte, on ajoute des mécanismes de confinement, on sécurise les accès et le réseau, et seulement ensuite on traite la détection, les conteneurs, la chaîne d'approvisionnement et la réponse aux incidents.
 
-**1. Identités, permissions et privilèges**
-- UID, GID et comptes système
-- Permissions Unix, bits spéciaux et umask
-- ACL et attributs étendus
-- `sudo` et séparation des responsabilités
-- Linux capabilities et suppression des privilèges inutiles
+1. **Fondations** — identités, permissions, moindre privilège, `sudo`, capabilities.
+2. **Durcissement de l'hôte** — installation minimale, mises à jour, boot, noyau, services systemd.
+3. **Contrôle d'accès et sandboxing** — SELinux, AppArmor, seccomp et Landlock.
+4. **Authentification et réseau** — SSH, certificats, FIDO2, nftables, WireGuard, segmentation.
+5. **Protection des données** — LUKS2, fscrypt, TPM2 et cycle de vie des clés.
+6. **Observabilité et réponse** — journald, audit, intégrité, IDS/IPS et investigation.
+7. **Conteneurs et supply chain** — rootless, capabilities, images, SBOM, provenance et secrets.
+8. **IA et agents** — risques des modèles, prompt injection, RAG et moindre privilège.
+9. **Méthode** — audit, baseline, durcissement progressif, sauvegardes et projet pratique.
 
-**2. Durcissement du système**
-- Mise à jour et réduction des logiciels installés
-- Secure Boot, noyau et paramètres `sysctl`
-- Durcissement des services systemd
-- `NoNewPrivileges`, namespaces et restrictions de ressources
-- Contrôle de la surface réseau
-
-**3. Contrôle d'accès obligatoire et sandboxing**
-- Linux Security Modules
-- AppArmor et SELinux
-- seccomp
-- Landlock
-- Choisir et combiner les mécanismes
-
-**4. Authentification et accès distant**
-- PAM
-- SSH moderne
-- Clés, certificats et clés matérielles FIDO2
-- Restrictions par utilisateur et par commande
-- Bastions et transfert d'agent
-
-**5. Sécurité réseau**
-- Exposition et écoute des services
-- nftables
-- DNS, TLS et segmentation
-- VPN, WireGuard et accès administratif
-
-**6. Cryptographie et protection des données**
-- Principes cryptographiques
-- LUKS2/dm-crypt
-- fscrypt et chiffrement au niveau du système de fichiers
-- Pourquoi eCryptfs ne doit plus être choisi pour un nouveau déploiement
-- Gestion des clés, sauvegardes et récupération
-
-**7. Journalisation, audit et intégrité**
-- systemd-journald et journal distant
-- Linux Audit (`auditd`)
-- Intégrité des fichiers
-- IMA/EVM, AIDE et limites
-- Synchronisation temporelle
-
-**8. Détection et réponse aux incidents**
-- IDS/IPS réseau et hôte
-- Suricata, détection et corrélation
-- Préservation des preuves
-- Confinement, éradication et reconstruction
-- Retour d'expérience
-
-**9. Sécurité des conteneurs**
-- Namespaces, cgroups et capabilities
-- Rootless, seccomp, AppArmor/SELinux
-- Images minimales et chaîne d'approvisionnement
-- Secrets
-- Principes Kubernetes
-
-**10. Chaîne d'approvisionnement logicielle**
-- Dépôts et signatures
-- Dépendances
-- SBOM
-- Provenance et signatures d'artefacts
-- Gestion des vulnérabilités
-
-**11. Secrets et données sensibles**
-- Ce qu'est un secret
-- Variables d'environnement et fichiers
-- Credentials systemd
-- Gestionnaires de secrets
-- Rotation et révocation
-
-**12. IA et LLM dans un environnement Linux sécurisé**
-- Risques d'un service en ligne
-- Modèles locaux
-- Prompt injection et outils
-- Fichiers et modèles non fiables
-- Cloisonnement des agents
-
-**13. Méthode d'audit et de durcissement**
-- Inventaire
-- Baseline
-- Analyse d'exposition
-- Remédiation graduelle
-- Validation et supervision
-
-**14. Projet continu et évaluation**
-- Projet de durcissement d'un serveur
-- Livrables
-- Critères d'évaluation
-
----
+> [!warning]
+> Les commandes de sécurité doivent être testées sur un environnement de laboratoire ou avec une procédure de retour arrière. Un durcissement qui casse le service ou empêche l'administration n'est pas un bon durcissement.
 
 # Introduction — raisonner avant de durcir
 
@@ -242,177 +154,165 @@ Une faille dans une couche ne doit pas donner automatiquement accès à toutes l
 
 ---
 
-# 1. Identités, permissions et privilèges
+# 1. Compréhension des bases de la sécurité Linux
 
-## 1.1. UID, GID et comptes
+## 1.1. Structure et Architecture de Sécurité Linux
 
-Linux applique les permissions à partir d'identifiants numériques :
+La structure et l'architecture de sécurité de Linux sont conçues pour offrir une protection robuste à tous les niveaux du système. Cette conception repose sur une série de mécanismes et de stratégies intégrés qui travaillent ensemble pour prévenir, détecter et répondre aux menaces et vulnérabilités. Voici les composantes clés de la structure et de l'architecture de sécurité sous Linux :
 
-- UID : utilisateur ;
-- GID : groupe principal ;
-- groupes supplémentaires.
+### 1.1.1. Noyau Linux et modules de sécurité
 
-Commandes utiles :
+Le cœur de la sécurité sous Linux réside dans son noyau, qui gère l'accès aux ressources matérielles et logicielles et isole les processus les uns des autres pour prévenir les interférences malveillantes. Le noyau Linux inclut des modules de sécurité tels que SELinux (Security-Enhanced Linux), AppArmor, et le sous-système de sécurité Tomoyo, qui fournissent un contrôle d'accès obligatoire (MAC) au-delà du modèle traditionnel de contrôle d'accès discrétionnaire (DAC) basé sur les permissions.
 
-```bash
-id
-getent passwd
-getent group
-```
+### 1.1.2. Gestion des Utilisateurs et des Permissions
 
-Le nom d'un compte est une représentation conviviale. Pour le noyau, l'identité est numérique.
+Linux adopte un modèle d'utilisateur multi-utilisateurs, où chaque utilisateur a un identifiant unique (UID) et appartient à un ou plusieurs groupes (GID). Cette structure permet une séparation claire des privilèges et des accès, où les permissions sont définies pour lire, écrire, et exécuter des fichiers et des répertoires. Cela limite l'accès aux ressources critiques et aux fonctionnalités du système aux seuls utilisateurs et groupes autorisés.
 
-### Comptes humains et comptes de service
+### 1.1.3. Système de Fichiers et Sécurité
 
-Un service devrait disposer d'un compte dédié lorsqu'il a besoin d'une identité persistante.
+Le système de fichiers sous Linux est structuré de manière hiérarchique, avec des points de montage et des partitions pouvant être sécurisés individuellement. Des fonctionnalités telles que les attributs étendus (Extended Attributes) permettent d'appliquer des politiques de sécurité spécifiques, comme les listes de contrôle d'accès (ACL) pour un contrôle d'accès plus granulaire que les permissions standards.
 
-Exemple :
+### 1.1.4. PAM (Pluggable Authentication Modules)
 
-```bash
-sudo useradd \
-  --system \
-  --home /var/lib/monservice \
-  --create-home \
-  --shell /usr/sbin/nologin \
-  monservice
-```
+Linux utilise PAM, un mécanisme flexible pour l'authentification des utilisateurs, qui offre une méthode de configuration centralisée pour l'authentification des applications. PAM permet de définir des politiques de sécurité pour l'authentification, la gestion des comptes, les sessions et les mots de passe, supportant ainsi une variété de schémas d'authentification, y compris l'authentification à deux facteurs et l'intégration avec des systèmes d'authentification externes.
 
-Un compte de service ne doit généralement pas permettre une connexion interactive.
+### 1.1.5. Sécurité Réseau
 
-## 1.2. Permissions Unix
+Linux intègre une pile réseau sophistiquée qui supporte des règles de filtrage de paquets, des pare-feux, et des fonctionnalités de réseau virtuel privé (VPN). Des outils tels qu'iptables, nftables, et Firewalld permettent aux administrateurs de configurer des politiques de sécurité réseau pour contrôler le trafic entrant et sortant, protégeant ainsi le système contre les accès non autorisés et les attaques de réseau.
 
-Pour un fichier :
+### 1.1.6. Mécanismes de Cryptographie
 
-```bash
-ls -l fichier
-```
+Le noyau Linux et l'espace utilisateur intègrent des bibliothèques et des outils de cryptographie pour sécuriser les données en transit et au repos. Des fonctionnalités comme dm-crypt fournissent le chiffrement des volumes, tandis que des outils comme OpenSSL et GnuPG permettent le chiffrement des communications réseau et des fichiers.
 
-On distingue :
+En résumé, la structure et l'architecture de sécurité de Linux sont fondées sur une approche multicouche et modulaire, permettant une personnalisation et une adaptation à divers environnements et exigences de sécurité. Cette flexibilité, combinée à une communauté active et à une évolution constante, fait de Linux un système d'exploitation puissant et sécurisé pour les applications critiques.
 
-- propriétaire ;
-- groupe ;
-- autres.
+## 1.2. Principes de Moindre Privilège et Séparation des Devoirs
 
-Et les droits :
+Les principes de moindre privilège et de séparation des devoirs sont fondamentaux dans la sécurisation des systèmes Linux. Ces principes visent à minimiser les risques de sécurité en limitant l'accès aux ressources et les capacités d'action dans le système au strict nécessaire pour chaque utilisateur ou processus. En appliquant ces principes, on réduit l'impact potentiel des failles de sécurité et on augmente la résilience du système face aux attaques.
 
-- `r` : lecture ;
-- `w` : écriture ;
-- `x` : exécution pour un fichier, traversée pour un répertoire.
+### 1.2.1 Moindre Privilège
 
-Exemple :
+Le principe de moindre privilège stipule qu'un utilisateur, une application ou un service doit avoir uniquement les droits nécessaires pour effectuer ses tâches, rien de plus. Cela signifie que chaque processus s'exécute avec l'ensemble minimal de privilèges nécessaires pour sa fonction, réduisant ainsi la surface d'attaque disponible pour les acteurs malveillants.
 
-```bash
-chmod 640 /etc/monapp/config.ini
-chown root:monapp /etc/monapp/config.ini
-```
+**Application pratique sous Linux :**
 
-La configuration est alors :
+- **Utilisateurs non privilégiés pour les tâches courantes :** Les utilisateurs doivent opérer avec des comptes non privilégiés pour l'exécution des tâches quotidiennes et ne recourir à des comptes administratifs que pour les opérations nécessitant des privilèges élevés.
+- **Droits minimal sur les fichiers et services :** Attribuer des permissions strictes sur les fichiers, les répertoires et les services pour garantir que seul le personnel autorisé puisse y accéder.
+- **Utilisation de sudo :** Sudo permet aux utilisateurs autorisés d'exécuter certaines commandes en tant qu'autre utilisateur (généralement le superutilisateur), selon des règles précises définies dans le fichier `/etc/sudoers`, ce qui aide à limiter l'usage des privilèges élevés.
 
-- lisible et modifiable par root ;
-- lisible par le groupe `monapp` ;
-- inaccessible aux autres.
+### 1.2.2 Séparation des Devoirs
 
-## 1.3. `umask`
+La séparation des devoirs est un concept complémentaire qui consiste à diviser les responsabilités parmi plusieurs entités (personnes, groupes, services, etc.) pour éviter qu'une seule entité ne possède un contrôle total sur un système ou un processus. Ce principe aide à prévenir les abus de pouvoir et les fraudes, tout en facilitant la détection des erreurs ou des activités malveillantes.
 
-`umask` retire des permissions lors de la création des fichiers.
+**Application pratique sous Linux :**
 
-```bash
-umask
-umask 027
-```
+- **Rôles et groupes distincts :** Configurer des groupes avec des droits spécifiques et y affecter les utilisateurs selon leur rôle dans l'organisation, assurant ainsi que les tâches administratives, de développement et d'exploitation soient clairement séparées.
+- **Services avec des utilisateurs dédiés :** Faire tourner les services avec des comptes utilisateurs dédiés qui ont uniquement les privilèges nécessaires pour exécuter le service en question. Cela limite les dommages potentiels en cas de compromission du service.
+- **Audit et logs :** Mettre en place des procédures d'audit et de journalisation qui enregistrent les actions des utilisateurs et des services. Cela facilite le suivi des activités et la détection d'éventuels comportements inappropriés ou malveillants.
 
-Avec une umask `027`, un fichier normalement créé en `666` devient typiquement `640`.
+En intégrant les principes de moindre privilège et de séparation des devoirs dans la gestion de la sécurité des systèmes Linux, les organisations peuvent construire des environnements informatiques plus sûrs et résilients, où les risques de compromission et leurs impacts potentiels sont significativement réduits.
 
-> [!warning]
-> `umask` n'est pas un contrôle d'accès complet. Il n'agit qu'au moment de la création et ne remplace ni les permissions explicites ni les ACL.
+## 1.3. Gestion des Utilisateurs et des Groupes
 
-## 1.4. Bits SUID, SGID et sticky
+La gestion des utilisateurs et des groupes est une composante fondamentale de la sécurité sous Linux, permettant de contrôler l'accès aux ressources et de limiter les actions possibles sur le système en fonction des rôles et des responsabilités de chaque utilisateur. Cette section explore comment Linux gère ces concepts et propose des pratiques recommandées pour maintenir un système sécurisé.
 
-Identifier les exécutables SUID/SGID est important :
+### 1.3.1 Utilisateurs sous Linux
 
-```bash
-find / -xdev -type f -perm /6000 -print 2>/dev/null
-```
+Chaque utilisateur sous Linux est identifié par un nom d'utilisateur unique et un identifiant numérique (UID). Le système utilise ces identifiants pour appliquer les politiques de sécurité, telles que les permissions de fichiers et d'exécution de programmes. Il existe deux types principaux d'utilisateurs :
 
-Un exécutable SUID peut exécuter du code avec l'UID de son propriétaire. C'est puissant et doit rester rare.
+- **L'utilisateur root :** L'utilisateur administrateur qui possède tous les privilèges sur le système. Il a le pouvoir de modifier n'importe quelle configuration et d'accéder à toutes les commandes et fichiers.
+- **Utilisateurs non privilégiés :** Les comptes utilisés pour des tâches spécifiques sans nécessiter un accès complet au système. Ces comptes sont limités dans leurs capacités pour augmenter la sécurité.
 
-Pour un répertoire partagé, le sticky bit évite qu'un utilisateur supprime les fichiers appartenant à d'autres utilisateurs :
+### 1.3.2 Groupes sous Linux
 
-```bash
-chmod 1777 /srv/partage-temporaire
-```
+Les groupes sont des collections d'utilisateurs partageant des droits d'accès communs à certains fichiers et répertoires. Chaque utilisateur appartient à un groupe primaire et peut appartenir à plusieurs groupes secondaires. Les groupes sont utilisés pour simplifier la gestion des permissions en attribuant des droits à plusieurs utilisateurs simultanément.
 
-## 1.5. ACL POSIX
+### 1.3.3 Pratiques Recommandées
 
-Les ACL complètent le triplet propriétaire/groupe/autres.
+1. **Utilisation minimale du compte root :** Éviter l'utilisation du compte root pour des tâches quotidiennes. Utiliser `sudo` pour exécuter des commandes nécessitant des privilèges élevés.
 
-```bash
-getfacl /srv/projet
-sudo setfacl -m u:alice:rwx /srv/projet
-sudo setfacl -m g:auditeurs:rx /srv/projet
-```
+2. **Création de comptes spécifiques pour les tâches :** Pour chaque service ou tâche nécessitant des privilèges, créer un compte utilisateur spécifique qui possède uniquement les droits nécessaires à cette tâche. Cela limite les risques en cas de compromission du compte.
 
-Pour définir une ACL par défaut sur un répertoire :
+3. **Gestion stricte des membres des groupes :** S'assurer que les utilisateurs sont uniquement membres des groupes nécessaires à leurs tâches. Limiter l'appartenance aux groupes sensibles comme `wheel` ou `sudo`, qui confèrent des droits d'accès élevés.
 
-```bash
-sudo setfacl -m d:g:equipe:rwx /srv/projet
-```
+4. **Sécurisation des mots de passe :** Utiliser des mots de passe forts et uniques pour tous les comptes et envisager l'utilisation d'un gestionnaire de mots de passe. Privilégier des mots de passe longs et uniques, idéalement gérés par un gestionnaire de mots de passe, et l'authentification multifacteur pour les comptes sensibles. Une expiration périodique systématique n'est pas une protection en soi : on force surtout le changement lorsqu'une compromission est suspectée ou lorsqu'une politique réglementaire l'exige.
 
-## 1.6. Attributs étendus
+5. **Utilisation de l'authentification à deux facteurs (2FA) :** Renforcer la sécurité en exigeant une seconde forme d'authentification en plus du mot de passe pour accéder aux comptes critiques.
 
-```bash
-getfattr -d fichier
-lsattr fichier
-```
+6. **Audit et révision réguliers des comptes :** Examiner régulièrement les comptes utilisateurs et les appartenance aux groupes pour s'assurer qu'ils correspondent toujours aux besoins actuels et aux politiques de sécurité.
 
-Certains attributs peuvent modifier le comportement d'un fichier.
+7. **Configuration de l'expiration des comptes :** Définir des dates d'expiration pour les comptes temporaires ou ceux associés à des employés partant, pour s'assurer qu'ils ne restent pas actifs indéfiniment.
 
-Exemple :
+## 1.4. Permissions et Droits d'Accès aux Fichiers
 
-```bash
-sudo chattr +i /chemin/fichier
-```
+La gestion des permissions et des droits d'accès aux fichiers est une pierre angulaire de la sécurité sous Linux. Ce système permet de définir qui peut lire, écrire ou exécuter des fichiers et des répertoires, offrant ainsi un contrôle granulaire sur l'accès aux données et aux ressources du système. Comprendre et appliquer correctement ces permissions est crucial pour maintenir l'intégrité, la confidentialité et la disponibilité des systèmes Linux.
 
-L'attribut immutable peut être utile dans certains cas, mais **ne constitue pas une protection contre root** et peut gêner les mécanismes de mise à jour.
+### 1.4.1 Types de Permissions
 
-## 1.7. `sudo` correctement
+Sous Linux, chaque fichier et répertoire est associé à un ensemble de permissions divisées en trois catégories :
 
-Toujours modifier les règles avec :
+- **Lire (r) :** Permet de visualiser le contenu d'un fichier ou de lister les fichiers et sous-répertoires d'un répertoire.
+- **Écrire (w) :** Autorise la modification ou la suppression d'un fichier. Pour un répertoire, cette permission permet de créer, modifier ou supprimer des fichiers et des sous-répertoires.
+- **Exécuter (x) :** Permet d'exécuter un fichier comme un programme. Pour un répertoire, elle permet d'accéder à son contenu et de le traverser (nécessaire pour accéder à des répertoires situés plus loin dans l'arborescence).
 
-```bash
-sudo visudo
-```
+### 1.4.2 Gestion des Permissions
 
-ou un fichier dans `/etc/sudoers.d/` validé avec :
+Les permissions sont définies pour trois types d'utilisateurs :
 
-```bash
-sudo visudo -cf /etc/sudoers.d/equipe
-```
+- **Propriétaire :** L'utilisateur qui possède le fichier ou le répertoire.
+- **Groupe :** Le groupe auquel appartient le fichier. Tous les utilisateurs membres de ce groupe héritent des permissions accordées au groupe.
+- **Autres :** Tous les autres utilisateurs du système.
 
-Exemple restrictif :
+Les permissions sont souvent affichées sous forme d'une chaîne de caractères, telle que `-rwxr-xr--`, ou en notation octale, comme `755`. Chaque caractère ou chiffre représente une permission différente pour le propriétaire, le groupe et les autres, respectivement.
 
-```sudoers
-%ops ALL=(root) /usr/bin/systemctl restart monservice.service
-```
+### 1.4.3. Modification des Permissions
 
-Cela est préférable à :
+La commande `chmod` (change mode) est utilisée pour modifier les permissions d'un fichier ou d'un répertoire. Elle peut être utilisée avec la notation symbolique (r, w, x) ou la notation octale. Par exemple, `chmod 755 fichier` accorde au propriétaire toutes les permissions, au groupe et aux autres uniquement les permissions de lire et d'exécuter.
 
-```sudoers
-%ops ALL=(ALL) ALL
-```
+### 1.4.4. Changement de Propriétaire et de Groupe
 
-### Pièges
+Les commandes `chown` et `chgrp` permettent de changer respectivement le propriétaire et le groupe d'un fichier ou d'un répertoire. Cela est souvent nécessaire lors du déploiement d'applications ou de la restructuration des accès utilisateurs.
 
-Autoriser une commande « innocente » peut donner un shell si elle permet :
+### 1.4.5. Pratiques Recommandées
 
-- l'exécution d'une commande arbitraire ;
-- l'ouverture d'un éditeur ;
-- le chargement de plugins ;
-- la modification d'un fichier ensuite exécuté par root.
+- **Principe de moindre privilège :** Attribuer les permissions les plus restrictives possibles qui permettent encore d'accomplir les tâches nécessaires.
+- **Vérification régulière des permissions :** Examiner régulièrement les permissions des fichiers et répertoires sensibles pour s'assurer qu'ils ne sont pas trop permissifs.
+- **Utilisation de groupes pour gérer les permissions :** Utiliser des groupes pour gérer efficacement les permissions d'accès pour plusieurs utilisateurs, réduisant ainsi la nécessité de modifier les permissions sur une base individuelle.
+- **Sécurité des répertoires sensibles :** Assurer une protection particulière aux répertoires contenant des informations sensibles, en limitant strictement les permissions d'accès.
 
-Le catalogue GTFOBins peut aider à **auditer défensivement** les binaires auxquels on envisage d'accorder `sudo`.
+## 1.5. Utilisation de sudo pour la Gestion des Privilèges
 
-## 1.8. Linux capabilities
+L'outil `sudo` (substitute user and do) est essentiel dans la gestion des privilèges sur les systèmes Linux, permettant aux utilisateurs autorisés d'exécuter des commandes avec les privilèges d'un autre utilisateur, typiquement le superutilisateur (root), selon des règles définies dans le fichier de configuration `/etc/sudoers`. Cet outil est central pour appliquer le principe de moindre privilège, en minimisant l'utilisation des comptes à haut privilège tout en permettant l'accomplissement de tâches nécessitant de tels privilèges.
+
+### 1.5.1. Avantages de sudo
+
+- **Sécurité accrue :** Limite l'accès root en ne l'octroyant que pour des commandes spécifiques, réduisant ainsi les risques d'erreurs ou d'exploitations malveillantes.
+- **Traçabilité :** Chaque commande exécutée avec `sudo` est enregistrée, permettant un audit précis des actions effectuées avec des privilèges élevés.
+- **Flexibilité :** Permet une configuration granulaire des privilèges, autorisant différents utilisateurs à exécuter certaines commandes en tant que root ou en tant qu'un autre utilisateur sans partager le mot de passe root.
+
+### 1.5.2 Configuration de sudo
+
+La configuration de `sudo` se fait dans le fichier `/etc/sudoers`, qui devrait toujours être édité avec la commande `visudo` pour éviter les erreurs de syntaxe. Ce fichier définit qui peut exécuter quoi, sur quelles machines et en tant que quel utilisateur. Il est possible de spécifier des groupes d'utilisateurs (précédés d'un `%`) et des alias pour simplifier la gestion des permissions.
+
+### 1.5.3. Principales Directives dans sudoers
+
+- **User specifications :** Détermine qui peut exécuter quoi. La syntaxe générale est `user host = (run-as) command`.
+- **Runas specification :** Spécifie sous quelle identité l'utilisateur peut exécuter les commandes.
+- **Cmnd alias :** Permet de créer des alias pour un ensemble de commandes, simplifiant la gestion des permissions pour des commandes similaires ou complexes.
+
+### 1.5.4. Utilisation Responsable de sudo
+
+- **Ne pas exécuter d'interface graphique avec sudo :** Lancer une interface graphique complète avec `sudo` peut créer des risques de sécurité en exposant le système à des modifications involontaires ou malveillantes.
+- **Utiliser sudo pour des commandes précises :** Limiter l'utilisation de `sudo` à des commandes nécessaires, réduisant ainsi l'exposition du système à des erreurs potentielles ou à des abus.
+- **Configurer des timeouts :** `sudo` peut être configuré pour oublier les privilèges après une période définie, forçant l'utilisateur à réauthentifier pour continuer à utiliser des privilèges élevés.
+
+### 1.5.5. Bonnes pratiques
+
+- **Utiliser `sudo` au lieu de se connecter en tant que root :** Cela garantit que les commandes privilégiées sont enregistrées et auditées.
+- **Minimiser les permissions dans le fichier sudoers :** Accorder uniquement les permissions nécessaires pour les tâches requises, suivant le principe de moindre privilège.
+- **Former les utilisateurs :** Assurer que les utilisateurs sachent comment utiliser `sudo` de manière responsable et comprendre les risques associés à l'exécution de commandes avec des privilèges élevés.
+
+## 1.6. Linux capabilities
 
 Historiquement, un processus était soit root, soit non-root. Les capabilities découpent une partie des privilèges de root.
 
@@ -445,123 +345,161 @@ getcap /usr/local/bin/monserveur
 
 ---
 
-# 2. Durcissement du système
+# 2. Sécurisation de l'environnement système
+## 2.1. Installation et maintenance sécurisées
 
-## 2.1. Partir d'un système minimal
+L'installation et la maintenance sécurisées d'un système Linux sont des étapes fondamentales pour assurer la robustesse et la résilience face aux menaces de sécurité. Cette approche commence dès le premier déploiement du système et se poursuit tout au long de son cycle de vie. Appliquer des pratiques d'installation et de maintenance sécurisées est crucial pour prévenir les vulnérabilités et protéger les données et les services contre les exploits et les intrusions.
 
-Chaque paquet et chaque daemon ajoutent :
+### 2.1.1. Installation sécurisée
 
-- du code ;
-- des dépendances ;
-- des fichiers de configuration ;
-- une surface de vulnérabilités potentielles.
+- **Choix de la distribution :** Opter pour une distribution avec un bon historique de sécurité et un support actif. Certaines distributions sont spécifiquement conçues avec la sécurité en tête, comme Debian, RHEL, Rocky Linux, AlmaLinux, ou Fedora.
 
-Inventaire Debian/Ubuntu :
+- **Minimisation de l'installation :** Installer uniquement les paquets nécessaires à l'utilisation prévue du système. Moins il y a de composants installés, moins il y a de surface d'attaque pour les potentiels exploitants.
 
-```bash
-apt list --installed
-systemctl list-unit-files --type=service
-systemctl --type=service --state=running
-```
+- **Partitionnement sécurisé :** Utiliser un schéma de partitionnement qui prend en compte la sécurité, tel que séparer `/home`, `/tmp`, et `/var` dans des partitions distinctes pour limiter les dommages en cas d'exploitation. Envisager le chiffrement des partitions sensibles, en particulier `/home` pour protéger les données utilisateur.
 
-Ports ouverts :
+- **Configuration sécurisée du réseau :** Désactiver les services réseau non nécessaires et sécuriser ceux qui doivent être actifs. Appliquer des règles de pare-feu strictes dès le départ.
 
-```bash
-sudo ss -lntup
-```
+### 2.1.2. **Maintenance Sécurisée**
 
-Un service inutile doit être supprimé ou désactivé, pas simplement ignoré.
+- **Mises à jour régulières :** Appliquer régulièrement les mises à jour de sécurité pour le système d'exploitation et tous les logiciels installés. Configurer si possible des mises à jour automatiques pour s'assurer que le système reste protégé contre les vulnérabilités récemment découvertes.
 
-## 2.2. Mises à jour
+- **Gestion des droits d'accès :** Réexaminer périodiquement les droits d'accès aux fichiers et aux répertoires pour s'assurer qu'ils suivent le principe du moindre privilège. Utiliser des outils comme `find` pour identifier les fichiers avec des permissions potentiellement dangereuses.
 
-Sur Debian/Ubuntu :
+- **Suivi des modifications de configuration :** Utiliser des outils de gestion de la configuration comme Ansible, Chef, ou Puppet pour automatiser et suivre les modifications apportées aux configurations système. Cela aide à maintenir la cohérence de la sécurité à travers l'environnement.
 
-```bash
-sudo apt update
-apt list --upgradable
-sudo apt upgrade
-```
+- **Utilisation de logiciels de sécurité :** Installer et configurer des outils de sécurité supplémentaires, tels que des systèmes de détection d'intrusion (IDS), des scanners de vulnérabilités et des outils d'audit de sécurité pour surveiller et évaluer régulièrement la sécurité du système.
 
-La politique doit répondre à :
+- **Audits de sécurité :** Effectuer régulièrement des audits de sécurité pour identifier et corriger les vulnérabilités. Cela peut inclure des analyses de vulnérabilité, des tests de pénétration et la révision des politiques de sécurité.
 
-- qui valide les mises à jour ?
-- quel délai pour une faille critique ?
-- comment tester ?
-- comment redémarrer les services ou le noyau ?
-- comment revenir en arrière ?
+- **Formation et sensibilisation :** Assurer que les utilisateurs et les administrateurs sont formés aux meilleures pratiques de sécurité et conscients des menaces actuelles. La sensibilisation à la sécurité est essentielle pour prévenir les erreurs humaines pouvant compromettre la sécurité du système.
 
-Les mises à jour automatiques peuvent être adaptées aux correctifs de sécurité sur certaines classes de machines, mais doivent être compatibles avec la stratégie d'exploitation.
+L'installation et la maintenance sécurisées sont des processus continus qui exigent une attention et une adaptation constantes aux nouvelles menaces et vulnérabilités. En adoptant une approche proactive et en suivant les meilleures pratiques, il est possible de créer et de maintenir un environnement Linux sécurisé et résilient.
+## 2.2. Gestion des packages et des mises à jour de sécurité
+### 2.2. Gestion des Packages et des Mises à Jour de Sécurité
 
-## 2.3. Dépôts et origine des paquets
+La gestion des packages et des mises à jour de sécurité est un aspect crucial de la maintenance d'un système Linux sécurisé. Les mises à jour de sécurité corrigent les vulnérabilités dans le système d'exploitation et les applications, réduisant ainsi le risque d'exploits et d'attaques. Une gestion efficace des packages et des mises à jour assure que le système reste à jour avec les dernières protections de sécurité.
 
-Lister les dépôts :
+#### **Stratégies de Mise à Jour**
 
-```bash
-apt-cache policy
-find /etc/apt/sources.list.d -maxdepth 1 -type f -print
-```
+- **Mises à jour automatiques :** Configurer le système pour appliquer automatiquement les mises à jour de sécurité peut aider à s'assurer que les corrections sont appliquées dès qu'elles sont disponibles. Cela est particulièrement important pour les systèmes critiques où le retard dans l'application d'une mise à jour peut exposer le système à des risques significatifs.
 
-Éviter :
+- **Planification des mises à jour :** Pour les environnements où les mises à jour automatiques ne sont pas souhaitables, établir un calendrier régulier de mises à jour et s'y tenir. Cela inclut la vérification des bulletins de sécurité et l'application des mises à jour dans un délai approprié.
 
-- les scripts `curl ... | sudo sh` non audités ;
-- les dépôts tiers inutiles ;
-- les clés de signature globalement approuvées sans restriction ;
-- les paquets téléchargés depuis des sources non authentifiées.
+- **Test des mises à jour :** Avant de déployer des mises à jour sur des systèmes en production, les tester dans un environnement de développement ou de test pour s'assurer qu'elles ne causent pas de problèmes de compatibilité ou de fonctionnement.
 
-Un paquet signé n'est pas nécessairement sûr : la signature assure surtout l'**origine et l'intégrité** par rapport à la clé de confiance.
+#### **Gestion des Packages**
 
-## 2.4. Secure Boot
+- **Utiliser les dépôts officiels :** Télécharger les packages et les mises à jour uniquement à partir de dépôts officiels ou de sources fiables pour éviter les logiciels malveillants. Éviter l'utilisation de dépôts non officiels ou de packages téléchargés de sources inconnues.
 
-UEFI Secure Boot cherche à établir une chaîne de confiance depuis le firmware vers le chargeur puis le noyau.
+- **Vérification de l'intégrité et de l'authenticité :** S'assurer que les mécanismes de vérification des signatures sont en place pour confirmer l'intégrité et l'authenticité des packages téléchargés. Cela aide à prévenir l'installation de logiciels modifiés ou malveillants.
 
-Vérification possible sur de nombreuses distributions :
+- **Minimisation des logiciels installés :** Maintenir une politique de minimisation des logiciels en n'installant que les packages nécessaires pour les fonctions requises. Cela réduit la surface d'attaque potentielle du système.
 
-```bash
-mokutil --sb-state
-```
+#### **Outils et Commandes**
 
-Secure Boot ne remplace pas :
+- **apt / apt-get (Debian, Ubuntu) :** Outils pour gérer les packages et les mises à jour sur les systèmes basés sur Debian. Utiliser `apt-get update` pour rafraîchir la liste des packages et `apt-get upgrade` pour mettre à jour les packages installés.
 
-- le chiffrement du disque ;
-- la protection du firmware ;
-- les mises à jour du noyau ;
-- une politique de contrôle d'accès.
+- **dnf (Fedora, RHEL, Rocky Linux, AlmaLinux) :** Outils pour les systèmes basés sur RPM. Utiliser `dnf upgrade` pour appliquer les mises à jour disponibles.
 
-## 2.5. Noyau et paramètres `sysctl`
+- **zypper (openSUSE) :** Outil de gestion des packages pour openSUSE. Utiliser `zypper refresh` pour mettre à jour la liste des packages et `zypper update` pour mettre à jour les packages.
 
-Lire une valeur :
+#### Bonnes pratiques
 
-```bash
-sysctl kernel.randomize_va_space
-sysctl kernel.kptr_restrict
-```
+- **Surveillance des bulletins de sécurité :** Rester informé des derniers bulletins de sécurité pour les logiciels utilisés. Les distributions Linux et les développeurs de logiciels publient régulièrement des informations sur les vulnérabilités et les mises à jour de sécurité.
 
-Les recommandations varient selon l'usage. Ne pas appliquer aveuglément une longue liste trouvée sur Internet.
+- **Formation et sensibilisation :** Sensibiliser les utilisateurs et les administrateurs aux meilleures pratiques de gestion des mises à jour et des packages, y compris l'importance de maintenir le système à jour.
 
-Exemple de fichier dédié :
+La gestion proactive des packages et des mises à jour de sécurité est fondamentale pour protéger un système Linux contre les menaces existantes et émergentes. En adoptant une approche structurée et en suivant les meilleures pratiques, les administrateurs peuvent s'assurer que leur système est sécurisé, stable et à jour.
 
-```text
-/etc/sysctl.d/60-hardening.conf
-```
+## 2.3. Sécurisation du bootloader et du kernel
 
-Exemples courants à **évaluer** :
+La sécurisation du bootloader et du kernel est cruciale pour assurer l'intégrité et la sécurité globale d'un système Linux. Le bootloader, qui charge le système d'exploitation lors du démarrage de l'ordinateur, et le kernel, qui est le cœur du système d'exploitation, doivent être protégés contre les modifications non autorisées et les exploits. Voici comment renforcer la sécurité à ces niveaux critiques.
 
-```ini
-kernel.kptr_restrict = 2
-kernel.dmesg_restrict = 1
-kernel.yama.ptrace_scope = 1
-fs.protected_hardlinks = 1
-fs.protected_symlinks = 1
-```
+### 2.3.1. Sécurisation du Bootloader
 
-Charger :
+Le bootloader, tel que GRUB (GRand Unified Bootloader), est souvent la première cible des attaquants car il s'exécute avant le système d'exploitation et a le potentiel de contourner les mesures de sécurité du système. Pour le sécuriser :
 
-```bash
-sudo sysctl --system
-```
+- **Mot de passe du bootloader :** Configurer un mot de passe pour le bootloader empêche les utilisateurs non autorisés de modifier les paramètres de démarrage ou d'accéder aux modes de récupération qui pourraient être utilisés pour compromettre le système. Dans GRUB, cela peut être accompli en ajoutant un mot de passe hashé dans le fichier de configuration `/etc/grub.d/40_custom` et en exécutant `update-grub`.
 
-> [!warning]
-> Certaines valeurs cassent des outils de développement, de débogage ou de conteneurisation. Le niveau de durcissement dépend du rôle de la machine.
+- **Utilisation de Secure Boot :** Secure Boot est une fonctionnalité de sécurité UEFI qui assure que seul le logiciel signé numériquement par une clé de confiance peut être exécuté au démarrage. Cela empêche l'exécution de logiciels malveillants au niveau du bootloader.
+
+### 2.3.2. Sécurisation du Kernel
+
+Le kernel, en tant que noyau du système d'exploitation, doit également être sécurisé pour prévenir les exploits qui pourraient compromettre l'ensemble du système.
+
+- **Mises à jour régulières :** Appliquer les mises à jour du kernel dès qu'elles sont disponibles. Les mises à jour du kernel corrigent souvent des vulnérabilités critiques qui, si elles sont exploitées, pourraient permettre à un attaquant de prendre le contrôle du système.
+
+- **Paramètres de sécurité du kernel :** Utiliser des fonctionnalités comme SELinux, AppArmor, ou seccomp pour limiter les actions que les processus peuvent effectuer, réduisant ainsi la surface d'attaque. Configurer correctement ces outils peut prévenir de nombreux types d'exploits.
+
+- **Désactivation des modules du kernel non nécessaires :** Limiter les modules du kernel chargés au démarrage à ceux strictement nécessaires pour le fonctionnement du système. Cela réduit la surface d'attaque potentielle. La liste des modules chargés peut être consultée avec `lsmod`, et leur chargement peut être désactivé en modifiant `/etc/modprobe.d/`.
+
+- **Kernel Hardening :** Des patches de hardening, comme ceux fournis par le projet Grsecurity, offrent des mesures de sécurité supplémentaires pour le kernel. Bien que Grsecurity ne soit plus disponible publiquement pour les dernières versions du kernel, explorer des alternatives ou des pratiques similaires peut renforcer la sécurité.
+
+- **Utilisation de systèmes de détection d'intrusion :** Des outils comme AIDE (Advanced Intrusion Detection Environment) ou Samhain peuvent être utilisés pour surveiller l'intégrité du système de fichiers, y compris les fichiers du kernel, et alerter les administrateurs en cas de modifications suspectes.
+## 2.4. Configuration et sécurisation des services système
+### 2.4. Configuration et Sécurisation des Services Système
+
+Les services système, qui fournissent diverses fonctionnalités et permettent au système d'exploitation de communiquer avec le réseau, les applications et les utilisateurs, sont essentiels pour le fonctionnement d'un système Linux. Cependant, chaque service actif augmente la surface d'attaque potentielle, rendant cruciale la configuration et la sécurisation appropriées de ces services pour maintenir la sécurité globale du système.
+
+#### **Identification et Gestion des Services**
+
+- **Inventaire des services actifs :** Commencez par identifier tous les services en cours d'exécution sur le système avec des commandes comme `systemctl list-units --type=service --state=running` sur les systèmes utilisant `systemd`, ou `service --status-all` sur d'autres systèmes. Cet inventaire permet d'analyser quels services sont nécessaires et lesquels peuvent être désactivés.
+
+- **Désactivation des services inutiles :** Pour chaque service non nécessaire identifié, le désactiver pour empêcher son démarrage automatique. Cela peut être accompli avec `systemctl disable service_name` sur les systèmes `systemd`. Réduire le nombre de services en cours d'exécution minimise les vecteurs d'attaque disponibles.
+
+#### **Sécurisation des Services Nécessaires**
+
+- **Configuration selon le principe de moindre privilège :** Configurer les services pour qu'ils s'exécutent avec le minimum de privilèges nécessaires. Par exemple, éviter d'exécuter des services en tant que root lorsque cela n'est pas nécessaire et envisager l'utilisation de `Capabilities` pour accorder uniquement les droits spécifiques requis par le service.
+
+- **Mise à jour et Patching :** Assurer que tous les services et applications en cours d'exécution sont à jour avec les derniers patches de sécurité. Les vulnérabilités dans les logiciels tiers peuvent être exploitées par des attaquants pour compromettre le système.
+
+- **Sécurisation des configurations :** Suivre les guides de sécurisation et les benchmarks pour chaque service, tels que ceux fournis par le Center for Internet Security (CIS). Cela inclut la modification des configurations par défaut, le durcissement des protocoles de communication et la limitation des accès réseau au strict nécessaire.
+
+- **Utilisation de pare-feu et de règles de filtrage :** Configurer le pare-feu pour restreindre l'accès aux services, en autorisant uniquement le trafic réseau nécessaire et en bloquant les autres. Les outils comme `iptables`, `nftables` ou `firewalld` peuvent être utilisés pour gérer ces règles.
+
+- **Surveillance et logs :** Activer la journalisation pour tous les services critiques et configurer des systèmes de surveillance pour alerter en cas d'activité suspecte. L'analyse régulière des logs peut aider à détecter des tentatives d'intrusion ou des configurations incorrectes.
+
+#### **Isolation et Contrôle d'Accès**
+
+- **Isolation des services :** Utiliser des technologies d'isolation comme les conteneurs Docker ou les machines virtuelles pour exécuter des services dans des environnements isolés. Cela limite les dommages potentiels en cas de compromission d'un service.
+
+- **Contrôle d'accès réseau :** Restreindre l'accès aux services en fonction de l'adresse IP, du domaine ou d'autres critères d'authentification pour réduire le risque d'accès non autorisé.
+
+- **Authentification et chiffrement :** Pour les services nécessitant une authentification, utiliser des mécanismes robustes et envisager le chiffrement des communications, particulièrement pour les informations sensibles transitant sur des réseaux non sécurisés.
+
+La configuration et la sécurisation des services système sont des tâches continues, nécessitant une vigilance constante et des ajustements réguliers pour répondre aux nouvelles menaces et aux meilleures pratiques de sécurité. En appliquant ces principes, les administrateurs système peuvent réduire significativement les risques de sécurité associés aux services système sur les serveurs Linux.
+## 2.5. Audit et monitoring du système avec syslog et journalctl
+
+L'audit et le monitoring sont des composantes essentielles de la sécurité d'un système Linux, permettant de détecter, enregistrer et analyser les activités système pour identifier des comportements anormaux ou malveillants. `syslog` et `journalctl` (partie de `systemd`) sont deux outils puissants utilisés pour la gestion des logs sous Linux, chacun offrant des fonctionnalités uniques pour l'audit et le monitoring du système.
+
+### 2.5.1. Syslog : Le Système de Logging Traditionnel
+
+- **Présentation :** `syslog` est un standard pour le message logging, offrant une architecture centralisée pour la collecte et le stockage des messages du système et des applications. Il permet de router les messages à différents fichiers de log, à des consoles, ou même à des serveurs de log distants, basés sur leur priorité et leur source.
+
+- **Configuration :** Le fichier de configuration principal de `syslog` (`/etc/syslog.conf` ou `/etc/rsyslog.conf` pour rsyslog, une implémentation de `syslog`) permet de définir des règles pour la gestion des logs. Les administrateurs peuvent configurer la destination des logs en fonction de leur facilité (comme `auth`, `cron`, `daemon`, etc.) et de leur niveau de priorité (comme `info`, `warning`, `error`).
+
+- **Sécurisation et Rotation des Logs :** Il est crucial de sécuriser l'accès aux fichiers de log pour éviter les modifications ou la suppression non autorisées. La rotation des logs, gérée par des outils comme `logrotate`, aide à contrôler la taille des fichiers de log, en les archivant et en les compressant périodiquement.
+
+### 2.5.2. journalctl : Le Journal de systemd
+
+- **Présentation :** Avec l'adoption de `systemd` comme système d'init pour de nombreuses distributions Linux, `journalctl` est devenu un outil central pour accéder aux logs du système. Le journal de `systemd` collecte non seulement les messages de syslog, mais aussi les logs du kernel, des démons d'init, et des applications, offrant ainsi une vue intégrée de tous les événements système.
+
+- **Avantages :** `journalctl` offre des fonctionnalités avancées comme l'affichage des logs depuis un certain point dans le temps, le filtrage par priorité, unité `systemd`, ou même par processus. Les logs sont stockés dans un format binaire et indexé, facilitant des recherches rapides et efficaces.
+
+- **Usage :** Pour visualiser les logs, `journalctl` peut être utilisé sans paramètres pour afficher tous les logs système, ou avec des options comme `-u nom_service.service` pour les logs d'un service spécifique, `--since` et `--until` pour une période donnée, ou `-p err` pour filtrer par priorité.
+
+### 2.5.3 Best Practices pour l'Audit et le Monitoring
+
+- **Analyse Régulière :** Examiner régulièrement les logs pour détecter des activités suspectes ou non autorisées. Des outils d'analyse de log automatisés peuvent aider à identifier les tendances et les anomalies.
+
+- **Sécurité des Logs :** Assurer l'intégrité et la confidentialité des logs en les stockant dans des zones sécurisées, en utilisant le chiffrement si nécessaire, surtout pour les logs contenant des données sensibles.
+
+- **Alertes en Temps Réel :** Configurer des alertes basées sur des événements critiques ou des indicateurs d'attaque pour une réponse rapide aux incidents de sécurité.
+
+- **Intégration avec des Outils de SIEM :** Pour une vue plus complète et une analyse approfondie, intégrer les logs système avec des solutions de Security Information and Event Management (SIEM) qui peuvent corréler les données de log à travers différents systèmes et applications.
+
+En utilisant `syslog` et `journalctl` efficacement pour l'audit et le monitoring, les administrateurs peuvent améliorer la posture de sécurité de leurs systèmes Linux, en identifiant et en répondant rapidement aux incidents de sécurité, tout en maintenant une trace précieuse des événements système pour l'analyse future.
 
 ## 2.6. Durcir un service systemd
 
@@ -657,105 +595,170 @@ Les limites de ressources améliorent la résilience, mais ne remplacent pas les
 
 ---
 
-# 3. Contrôle d'accès obligatoire et sandboxing
+# 3. Contrôle d'accès avancé
+## 3.1. Introduction à SELinux et AppArmor
+### 3.1. Introduction à SELinux et AppArmor
 
-## 3.1. DAC et MAC
+SELinux (Security-Enhanced Linux) et AppArmor sont deux des principaux systèmes de contrôle d'accès obligatoire (MAC, Mandatory Access Control) utilisés dans les environnements Linux pour renforcer la sécurité en limitant les capacités des applications et des processus selon des politiques de sécurité définies. Bien que servant des objectifs similaires, SELinux et AppArmor adoptent des approches légèrement différentes pour la mise en œuvre du MAC, chacun avec ses propres avantages et particularités.
 
-Les permissions Unix sont un contrôle d'accès discrétionnaire (**DAC**). Le propriétaire d'une ressource peut généralement modifier sa politique.
+### 3.1.2. **SELinux**
 
-Les mécanismes **MAC** appliquent une politique supplémentaire décidée par le système.
+SELinux a été développé par la National Security Agency (NSA) des États-Unis et intégré dans le noyau Linux pour fournir un mécanisme robuste de contrôle d'accès basé sur des politiques. Il fonctionne en attribuant des étiquettes de sécurité, ou contextes, aux utilisateurs, processus, fichiers, et autres objets du système, et en définissant des politiques qui dictent les interactions possibles entre ces étiquettes. SELinux est conçu pour être extrêmement flexible et configurable, permettant une granularité fine dans la définition des politiques de sécurité.
 
-Linux Security Modules (LSM) fournit l'infrastructure noyau pour différents mécanismes, notamment :
+- **Modes de fonctionnement :** SELinux peut opérer en trois modes : Enforcing, Permissive, et Disabled. En mode Enforcing, les politiques de sécurité sont appliquées et les violations sont bloquées et enregistrées. En mode Permissive, les violations sont enregistrées mais pas bloquées, permettant le dépannage et la configuration. En mode Disabled, SELinux est désactivé.
 
-- SELinux ;
-- AppArmor ;
-- Landlock ;
-- Yama ;
-- Smack ;
-- TOMOYO.
+- **Politiques :** SELinux utilise des politiques complexes qui peuvent être adaptées aux besoins spécifiques de sécurité d'un système. Les politiques les plus couramment utilisées sont la politique ciblée, qui protège les services sensibles sans restreindre l'ensemble du système, et la politique MLS (Multi-Level Security), qui offre des contrôles d'accès basés sur des niveaux de classification.
 
-## 3.2. AppArmor
+### 3.1.2 AppArmor
 
-AppArmor définit des profils centrés sur les chemins de fichiers et les capacités d'un programme.
+AppArmor est un autre système de contrôle d'accès obligatoire, souvent utilisé dans les distributions Linux comme Ubuntu. Contrairement à SELinux, qui se base sur des étiquettes de sécurité, AppArmor utilise des profils pour les applications, définissant les fichiers auxquels elles peuvent accéder et les opérations qu'elles peuvent effectuer. AppArmor est réputé pour sa facilité de configuration et d'utilisation, rendant le contrôle d'accès avancé plus accessible aux administrateurs de systèmes moins expérimentés.
 
-État :
+- **Profils :** Les profils AppArmor sont écrits dans un langage relativement simple et peuvent être en mode Enforce ou Complain. En mode Enforce, les actions non autorisées par le profil sont bloquées, tandis qu'en mode Complain, elles sont seulement enregistrées pour faciliter le développement et la mise au point des profils.
 
-```bash
-sudo aa-status
-```
+- **Utilisation :** AppArmor est particulièrement apprécié pour sa simplicité d'approche, avec des profils spécifiques à chaque application qui peuvent être activés, désactivés ou modifiés individuellement sans nécessiter une connaissance approfondie du système de contrôle d'accès sous-jacent.
 
-Modes principaux :
+### Histoire et évolution
+### Comment AppArmor se distingue-t-il des autres systèmes de sécurité Linux (SELinux, etc.) ?
+### Concepts fondamentaux d'AppArmor
 
-- **enforce** : la politique est appliquée ;
-- **complain** : les violations sont journalisées sans blocage.
+ #### Politiques de sécurité et profils
 
-Basculer un profil :
+ #### Modes d'enforcement : enforcing, complain, et disable
 
-```bash
-sudo aa-enforce /etc/apparmor.d/usr.sbin.monservice
-sudo aa-complain /etc/apparmor.d/usr.sbin.monservice
-```
+  #### Structure d'un profil AppArmor
 
-Recharger :
+### Installation et configuration d'AppArmor
+#### Installation d'AppArmor et des utilitaires associés
 
-```bash
-sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.monservice
-```
+ ### Commandes apt pour l'installation
 
-### Méthode de création
+ ### Activation et désactivation d'AppArmor
+#### Mise à jour des politiques AppArmor
 
-1. commencer avec une politique minimale ;
-2. observer le comportement légitime ;
-3. ajouter uniquement les accès nécessaires ;
-4. tester les erreurs ;
-5. passer en enforcement ;
-6. surveiller après déploiement.
+### Gestion des profils AppArmor
+- **Localisation et structure des profils AppArmor**
+    - /etc/apparmor.d/
+- **Création et édition de profils**
+    - Utilisation de `aa-genprof` et `aa-autodep`
+    - Écriture manuelle de profils
+- **Activation et désactivation de profils**
+    - Utilisation de `aa-enforce`, `aa-complain`, et `aa-disable`
+- **Gestion des modes d'un profil**
+    - Comprendre les logs d'AppArmor pour ajuster les politiques
 
-Ne jamais transformer chaque refus en règle `allow` sans comprendre la raison du refus.
+### Utilisation avancée d'AppArmor
+- **Création de politiques de sécurité personnalisées**
+    - Bonnes pratiques pour l'écriture de profils sécurisés
+    - Exemples de configuration pour des applications spécifiques (serveurs web, bases de données)
+- **Dépannage et audit**
+    - Utilisation de `aa-logprof` et `aa-notify`
+    - Interprétation des logs pour résoudre les violations de politiques
+- **Intégration d'AppArmor avec d'autres outils de sécurité**
+    - Complémentarité avec le pare-feu, SELinux, etc.
 
-## 3.3. SELinux
+### Ressources complémentaires et travaux pratiques
+- **Ressources en ligne** : documentation officielle, forums, articles spécialisés
 
-SELinux associe des contextes de sécurité aux sujets et aux objets.
+### 3.1.3. Conclusion
 
-État :
+SELinux et AppArmor représentent deux approches puissantes pour renforcer la sécurité des systèmes Linux en appliquant des politiques de contrôle d'accès obligatoire. Le choix entre SELinux et AppArmor dépendra souvent de la distribution Linux utilisée, des besoins spécifiques en matière de sécurité, et de la préférence personnelle en termes de complexité de configuration et de gestion. En comprenant les capacités et les cas d'utilisation de chacun, les administrateurs peuvent mieux protéger leurs systèmes contre les accès et les modifications non autorisés.
+## 3.2. Concepts de politique de sécurité et de contrôle d'accès obligatoire (MAC)
 
-```bash
-getenforce
-sestatus
-```
+Le Contrôle d'Accès Obligatoire (MAC, Mandatory Access Control) est un paradigme de sécurité qui diffère significativement des approches traditionnelles basées sur les permissions. Contrairement au Contrôle d'Accès Discrétionnaire (DAC, Discretionary Access Control), où les utilisateurs ont la liberté de contrôler l'accès à leurs propres ressources, le MAC impose des politiques de sécurité centralisées qui régissent les autorisations d'accès pour tous les utilisateurs et processus, indépendamment de leurs préférences individuelles. Cette section explore les concepts fondamentaux des politiques de sécurité et du MAC, et leur importance pour renforcer la posture de sécurité d'un système Linux.
 
-Contexte :
+## 3.2.1 Politiques de Sécurité
 
-```bash
-ls -Z /var/www
-ps -eZ | head
-```
+Une politique de sécurité est un ensemble de règles qui définissent comment les informations et les ressources d'un système doivent être protégées. Ces politiques couvrent divers aspects de la sécurité, y compris, mais sans s'y limiter, qui peut accéder à quelles données, comment les données doivent être protégées pendant le transfert et au repos, et comment les tentatives d'accès sont enregistrées et traitées. Dans le contexte du MAC, les politiques de sécurité spécifient des règles obligatoires qui s'appliquent uniformément à tous les éléments du système, assurant une gestion cohérente et sécurisée des accès.
 
-Modes :
+### 3.3.2. Contrôle d'Accès Obligatoire (MAC)
 
-- enforcing ;
-- permissive ;
-- disabled.
+Le MAC est caractérisé par plusieurs principes clés :
 
-Le mode permissive est utile pour le diagnostic, mais n'est pas un état final de sécurité.
+- **Politiques Centralisées :** Les politiques de MAC sont définies et gérées de manière centralisée, souvent par des administrateurs de sécurité, garantissant que les contrôles d'accès sont appliqués uniformément à travers le système.
 
-### Booleans
+- **Séparation des Privileges :** Le MAC permet une séparation stricte des privilèges en limitant l'accès des utilisateurs et des applications uniquement aux ressources nécessaires à leurs fonctions.
 
-```bash
-getsebool -a
-```
+- **Contraintes d'Intégrité :** Certaines politiques de MAC, comme celles basées sur les modèles Biba ou Clark-Wilson, mettent l'accent sur le maintien de l'intégrité des données en contrôlant strictement qui peut modifier les informations.
 
-Un boolean est préférable à une désactivation globale lorsqu'il correspond exactement au besoin.
+- **Contrôles Basés sur les Rôles et les Responsabilités :** Le MAC peut implémenter des Contrôles d'Accès Basés sur les Rôles (RBAC, Role-Based Access Control) ou Basés sur les Attributs (ABAC, Attribute-Based Access Control) pour définir les autorisations en fonction des rôles professionnels ou des attributs spécifiques.
 
-### Restaurer les labels
+### 3.3.3. Application du MAC avec SELinux et AppArmor
 
-```bash
-sudo restorecon -Rv /var/www
-```
+- **SELinux :** Utilise des politiques de sécurité complexes qui associent des étiquettes de sécurité aux utilisateurs, processus et objets (fichiers, sockets, etc.), permettant un contrôle d'accès granulaire basé sur ces étiquettes. Les politiques de SELinux peuvent être configurées pour appliquer différents niveaux de contrôle, de la restriction des actions d'un service spécifique à la mise en œuvre de politiques de sécurité multi-niveaux pour la protection des données classifiées.
 
-Éviter de « réparer » un problème SELinux par des `chcon` permanents sans comprendre la politique : les changements peuvent disparaître lors d'un relabeling.
+- **AppArmor :** Applique le MAC en utilisant des profils pour chaque programme, spécifiant les fichiers auxquels le programme peut accéder et les opérations qu'il peut effectuer. Les profils AppArmor sont relativement simples à créer et à gérer, rendant l'application de politiques de sécurité MAC plus accessible.
 
-## 3.4. seccomp
+### 3.3.4. Conclusion
+
+Les concepts de politique de sécurité et le Contrôle d'Accès Obligatoire sont fondamentaux pour la construction d'un système Linux sécurisé. En imposant des politiques de sécurité centralisées et rigoureuses à travers le MAC, les organisations peuvent mieux protéger leurs ressources contre les accès non autorisés et les compromissions, tout en maintenant un équilibre entre la sécurité et la fonctionnalité. Les systèmes comme SELinux et AppArmor offrent des outils puissants pour la mise en œuvre de ces politiques, permettant aux administrateurs de tirer parti des avantages du MAC tout en gérant la complexité inhérente à ces systèmes.
+## 3.3. Configuration et administration de SELinux/AppArmor
+
+La configuration et l'administration efficaces de SELinux et AppArmor sont essentielles pour sécuriser les systèmes Linux en appliquant des politiques de contrôle d'accès obligatoire (MAC). Ces outils permettent d'affiner la sécurité en définissant précisément comment les applications et les services interagissent avec le système et entre eux. Voici comment administrer et configurer SELinux et AppArmor pour renforcer la sécurité de votre système.
+
+### 3.3.1. SELinux
+
+- **Modes de Fonctionnement :** SELinux opère en trois modes : Enforcing, Permissive et Disabled. Le mode Enforcing applique les politiques de sécurité et bloque les actions non autorisées, le mode Permissive enregistre les violations sans les bloquer (utile pour le débogage), et le mode Disabled désactive SELinux. Changez de mode avec `setenforce Enforcing` ou `setenforce Permissive`, et vérifiez le mode actuel avec `getenforce`.
+
+- **Gestion des Politiques :** Les politiques SELinux définissent les règles de contrôle d'accès. Utilisez les commandes `semanage`, `semodule` et `sepolgen` pour gérer les politiques, modules et règles personnalisées. Pour installer ou supprimer des modules de politique, utilisez `semodule -i module.pp` ou `semodule -r module`.
+
+- **Étiquetage des Fichiers :** L'étiquetage correct des fichiers et des ressources est crucial pour SELinux. Utilisez `chcon` pour changer temporairement les contextes de sécurité des fichiers ou `restorecon` pour appliquer le contexte par défaut basé sur les politiques actuelles. Pour des modifications permanentes, utilisez `semanage fcontext`.
+
+- **Outils d'Analyse et de Dépannage :** Des outils comme `ausearch` et `audit2why` peuvent aider à analyser les logs d'audit SELinux pour comprendre les violations de politique. `setroubleshoot-server` fournit des explications détaillées et des suggestions pour résoudre les problèmes de sécurité SELinux.
+
+### 3.3.2. AppArmor
+
+- **Activation et Désactivation des Profils :** AppArmor utilise des profils pour définir les permissions des applications. Utilisez `aa-enforce` pour placer un profil en mode Enforce et `aa-complain` pour le placer en mode Complain. Vérifiez le statut d'un profil avec `aa-status`.
+
+- **Création et Modification des Profils :** Les profils AppArmor sont stockés dans `/etc/apparmor.d/`. Pour créer ou modifier un profil, éditez le fichier correspondant dans ce répertoire. Utilisez `aa-genprof` et `aa-autodep` pour générer automatiquement des profils de base pour les applications.
+
+- **Gestion des Profils :** Chargez, déchargez ou rechargez des profils modifiés avec `apparmor_parser`. Par exemple, `apparmor_parser -r /etc/apparmor.d/profile.name` recharge un profil modifié.
+
+- **Journalisation et Dépannage :** Les violations de profil AppArmor sont enregistrées dans le syslog. Utilisez les outils de visualisation de logs habituels pour examiner ces entrées et diagnostiquer les problèmes de permission.
+
+### 3.3.3. **Bonnes Pratiques**
+
+- **Audit Régulier :** Effectuez régulièrement des audits de sécurité pour vous assurer que les politiques SELinux et AppArmor sont correctement appliquées et ne bloquent pas indûment les fonctionnalités applicatives.
+
+- **Formation et Documentation :** La complexité de SELinux et AppArmor peut représenter un défi. Investissez dans la formation des administrateurs et maintenez une documentation à jour sur les politiques et configurations spécifiques à votre environnement.
+
+- **Communauté et Support :** Tirez parti des ressources disponibles en ligne, y compris la documentation officielle, les forums et les groupes d'utilisateurs pour obtenir de l'aide et partager les meilleures pratiques.
+
+La configuration et l'administration adéquates de SELinux et AppArmor nécessitent une compréhension approfondie de vos besoins de sécurité et des fonctionnalités de votre système. En appliquant des politiques de contrôle d'accès rigoureuses et en exploitant les outils de dépannage disponibles, vous pouvez sécuriser efficacement vos systèmes Linux contre les accès non autorisés et les activités malveillantes.
+## 3.4. Dépannage et audit des politiques SELinux/AppArmor
+
+Les systèmes de contrôle d'accès obligatoire comme SELinux et AppArmor augmentent significativement la sécurité des systèmes Linux, mais leur complexité peut également introduire des défis en matière de dépannage. Les administrateurs doivent être équipés pour identifier et résoudre les problèmes liés aux politiques SELinux/AppArmor pour maintenir la fonctionnalité du système tout en assurant sa sécurité.
+
+### 3.4.1 Dépannage SELinux
+
+- **Identifier les Violations de Politique :** Utilisez `ausearch -m avc -ts recent` pour rechercher les violations de politiques SELinux récentes dans les logs d'audit. `audit2why` peut ensuite être utilisé pour analyser ces entrées et fournir des explications sur les violations et des suggestions pour les résoudre.
+
+- **Diagnostic contrôlé :** sur une machine de laboratoire ou pendant une fenêtre d'intervention maîtrisée, un passage **très temporaire** en mode permissif (`setenforce 0`) peut aider à confirmer qu'un refus vient de SELinux. Il faut rétablir immédiatement `setenforce 1` après le test. En production, on commence de préférence par les AVC, les labels et les booleans afin de ne pas supprimer globalement une barrière de sécurité.
+
+- **Ajustement des politiques :** `audit2allow` peut aider à comprendre quels accès seraient nécessaires, mais sa sortie ne doit pas être appliquée aveuglément. Vérifiez d'abord un mauvais label, un boolean prévu par la politique ou une configuration applicative erronée ; une règle locale ne vient qu'après justification du besoin et revue de son périmètre.
+
+- **Utilisation des Booleans SELinux :** SELinux offre des booleans qui permettent d'activer ou de désactiver certains comportements de politique de manière dynamique. Utilisez `getsebool -a` pour lister tous les booleans et `setsebool` pour ajuster leurs valeurs en fonction de vos besoins.
+
+### 3.4.2. Dépannage AppArmor
+
+- **Analyse des Logs :** Les violations de politique AppArmor sont enregistrées dans le syslog. Utilisez des commandes comme `grep apparmor /var/log/syslog` pour identifier les problèmes. Les messages fournissent des détails sur le profil violé et l'action bloquée.
+
+- **Passage en Mode Complain :** Si un profil AppArmor bloque indûment une application, mettez le profil en mode Complain avec `aa-complain /etc/apparmor.d/name_of_profile`, qui enregistrera les actions bloquées sans les empêcher.
+
+- **Modification des Profils :** Editez directement les profils AppArmor dans `/etc/apparmor.d/` pour ajuster les permissions. Utilisez `aa-genprof` pour faciliter la création et la modification des profils en surveillant l'exécution de l'application et en générant les règles nécessaires.
+
+- **Rechargement des Profils :** Après modification, rechargez le profil avec `apparmor_parser -r /etc/apparmor.d/name_of_profile` pour appliquer les changements sans redémarrer le service ou le système.
+
+### 3.4.3 Audit et Amélioration Continue
+
+- **Audit Régulier des Politiques :** Réalisez des audits réguliers de vos politiques SELinux et AppArmor pour vous assurer qu'elles sont à jour avec les besoins de sécurité et de fonctionnalité du système. L'objectif est d'équilibrer sécurité et fonctionnalité sans introduire de restrictions inutiles.
+
+- **Documentation et Revue :** Maintenez une documentation détaillée sur les personnalisations de politique pour faciliter le dépannage et les audits futurs. La revue périodique des politiques avec des experts en sécurité peut aider à identifier les améliorations potentielles.
+
+- **Formation :** Investissez dans la formation continue pour les administrateurs système sur SELinux et AppArmor. Une meilleure compréhension de ces outils peut réduire les erreurs de configuration et améliorer la réponse aux incidents.
+
+Le dépannage et l'audit des politiques SELinux et AppArmor sont des compétences essentielles pour les administrateurs de systèmes Linux souhaitant maintenir une posture de sécurité forte tout en assurant le bon fonctionnement des services. Une approche proactive, combinée à une connaissance approfondie de ces systèmes de contrôle d'accès, permettra d'identifier et de résoudre efficacement les problèmes tout en tirant parti des avantages en matière de sécurité qu'ils offrent.
+
+## 3.5. seccomp
 
 seccomp réduit l'ensemble des appels système utilisables par un processus.
 
@@ -768,7 +771,7 @@ Il est largement utilisé par :
 
 seccomp n'est **pas** un pare-feu de fichiers. Il filtre des appels système, pas des chemins.
 
-## 3.5. Landlock
+## 3.6. Landlock
 
 Landlock est un LSM conçu pour permettre à un processus, même non privilégié, de **restreindre ses propres droits** et ceux de ses descendants.
 
@@ -792,11 +795,13 @@ Landlock est particulièrement intéressant pour une application qui veut impose
 - les chemins qu'elle peut modifier ;
 - certaines opérations réseau selon l'ABI disponible.
 
+L'interface est **versionnée par ABI**. Une application sérieuse interroge donc l'ABI disponible au démarrage et n'active que les restrictions comprises par le noyau courant. Les versions récentes savent notamment restreindre des opérations réseau TCP et UDP en plus du système de fichiers. Ce point est important pour écrire un sandbox portable entre distributions et noyaux différents.
+
 ### Landlock n'est pas un conteneur
 
 Un namespace isole une vue de certaines ressources. Landlock applique des restrictions d'accès. Les deux notions sont complémentaires.
 
-## 3.6. Combiner les mécanismes
+## 3.7. Combiner les mécanismes
 
 Exemple de défense en profondeur pour un daemon :
 
@@ -814,152 +819,154 @@ L'empilement n'est utile que si les politiques sont compréhensibles et testable
 
 ---
 
-# 4. Authentification et accès distant
+# 4. Authentification, accès distant et sécurité réseau
 
-## 4.1. PAM
+## 4.1. Configuration sécurisée de SSH
 
-PAM — Pluggable Authentication Modules — fournit une pile configurable pour :
+SSH (Secure Shell) est un protocole vital pour la gestion sécurisée des systèmes à distance, offrant un canal crypté pour l'accès à distance et le transfert de fichiers. Une configuration correcte de SSH est essentielle pour protéger contre les attaques de réseau, les tentatives de brute force et les écoutes clandestines. Voici les meilleures pratiques pour sécuriser votre configuration SSH.
 
-- `auth` : authentification ;
-- `account` : autorisation liée au compte ;
-- `password` : changement de secret ;
-- `session` : ouverture et fermeture de session.
+### 4.1.1. Utilisation de Clés SSH au Lieu de Mots de Passe
 
-Les fichiers se trouvent typiquement dans :
+- **Génération de Clés SSH :** Encouragez l'utilisation de clés SSH plutôt que de mots de passe pour l'authentification. Les clés offrent une sécurité supérieure en nécessitant une clé privée que l'utilisateur doit posséder.
+- **Authentification par clé :** privilégiez les clés SSH. Lorsque tous les accès de secours, comptes d'automatisation et procédures de récupération ont été vérifiés, `PasswordAuthentication no` permet de supprimer l'authentification par mot de passe. Ne verrouillez jamais un serveur distant avant d'avoir testé une seconde session d'administration.
 
-```text
-/etc/pam.d/
-```
+### 4.1.2. Port d'écoute : réduire le bruit, pas « sécuriser SSH »
 
-> [!danger]
-> Une erreur PAM peut empêcher toute connexion. Conserver une session root de secours ou un accès console lors d'une modification distante.
+Changer le port 22 peut réduire le bruit des robots opportunistes dans les journaux, mais **ne constitue pas une mesure d'authentification ni un contrôle de sécurité suffisant**. Un scanner trouve facilement un service SSH exposé sur un autre port. Si l'on change le port pour des raisons d'exploitation, on conserve exactement les mêmes exigences : clés fortes, restrictions d'accès, mises à jour, journalisation et, lorsque le contexte le justifie, MFA ou clé matérielle.
 
-## 4.2. SSH moderne
+### 4.1.3. Limitation des Utilisateurs Autorisés
 
-OpenSSH 10.x est la génération actuelle en 2026. La configuration doit être adaptée à la version réellement installée :
+- **Restriction d'Accès :** Utilisez les directives `AllowUsers` ou `AllowGroups` dans `sshd_config` pour limiter les utilisateurs ou les groupes qui peuvent se connecter via SSH, réduisant ainsi la surface d'attaque.
 
-```bash
-ssh -V
-sshd -V 2>&1 | head -1
-```
+### 4.1.4. Désactivation de l'Accès SSH Root
 
-Afficher la configuration effective du serveur :
+- **Interdiction de la Connexion Root :** Réglez `PermitRootLogin` sur `no` pour empêcher l'authentification directe de l'utilisateur root. Cela force l'utilisation de comptes d'utilisateurs normaux et l'élévation de privilèges via `sudo` pour les tâches d'administration.
 
-```bash
-sudo sshd -T
-```
+### 4.1.5. Version du protocole et algorithmes
 
-Tester la syntaxe avant rechargement :
+Les versions modernes d'OpenSSH utilisent SSHv2 ; l'ancienne directive `Protocol 2` n'est plus un réglage à ajouter à une configuration actuelle. Le travail d'administration porte plutôt sur les **algorithmes effectivement disponibles et acceptés**, que l'on peut inspecter avec `ssh -Q`, et sur le maintien d'une version d'OpenSSH supportée. Il vaut mieux suivre les valeurs par défaut modernes du projet et n'imposer une liste personnalisée d'algorithmes que lorsqu'une politique de sécurité ou d'interopérabilité l'exige.
 
-```bash
-sudo sshd -t
-```
+### 4.1.6. Délai de Connexion et Tentatives de Connexion Limitées
 
-C'est une habitude essentielle.
+- **Configuration du Délai et des Tentatives :** Réduire le nombre de tentatives de connexion non réussies et configurer un délai de connexion peut aider à prévenir les attaques de brute force. Utilisez `LoginGraceTime` et `MaxAuthTries` pour ces paramètres.
 
-## 4.3. Clés SSH
+### 4.1.7. Surveillance et Journalisation
 
-Pour un nouvel usage général :
+- **Augmentation de la Verbosité des Logs :** Configurer `LogLevel` sur `VERBOSE` pour enregistrer plus de détails sur les tentatives de connexion, facilitant l'identification et la réponse aux activités suspectes.
 
-```bash
-ssh-keygen -t ed25519 -a 100
-```
+### 4.1.8. Utilisation de Fail2Ban
 
-La clé privée doit rester sur le poste client.
+- **Réduction du bruit et des essais automatisés :** Fail2Ban peut bannir temporairement des sources après plusieurs échecs. C'est un mécanisme complémentaire : il ne remplace ni l'authentification par clé, ni le MFA, ni une restriction réseau lorsque celle-ci est possible.
 
-Permissions habituelles :
+### 4.1.9. Mise à Jour Régulière du Logiciel
 
-```bash
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
-```
+- **Maintenir SSH à Jour :** Assurez-vous que votre logiciel SSH est régulièrement mis à jour pour inclure les derniers correctifs de sécurité.
 
-## 4.4. Désactiver les mots de passe lorsque le contexte le permet
+En suivant ces pratiques recommandées pour la configuration de SSH, vous pouvez considérablement renforcer la sécurité de votre accès à distance, protégeant ainsi votre système contre les intrusions et les abus tout en assurant un accès sécurisé pour les utilisateurs autorisés.
+## 4.2. Gestion des clés et des certificats
 
-Exemple dans un fichier de configuration `sshd_config.d` :
+La gestion efficace des clés et des certificats est essentielle pour sécuriser les communications et l'authentification dans les réseaux modernes. Elle joue un rôle crucial dans la protection des échanges de données, l'authentification des serveurs et des utilisateurs, et la mise en place d'une infrastructure à clé publique (PKI). Voici les meilleures pratiques pour gérer les clés et les certificats de manière sécurisée.
 
-```text
-PasswordAuthentication no
-KbdInteractiveAuthentication no
-PubkeyAuthentication yes
-PermitRootLogin no
-```
+### 4.2.1. Politique de Gestion des Clés
 
-Puis :
+- **Développer une Politique :** Établissez une politique de gestion des clés qui couvre la création, la distribution, le stockage, la rotation et la suppression des clés. Cette politique doit inclure des directives pour les clés SSH, les certificats SSL/TLS, et toute autre forme de clés cryptographiques utilisées dans votre organisation.
 
-```bash
-sudo sshd -t
-sudo systemctl reload ssh
-```
+### 4.2.2. Sécurité de la Clé Privée
 
-> [!warning]
-> Ne jamais couper l'authentification par mot de passe tant qu'une connexion par clé n'a pas été testée dans **une seconde session**.
+- **Protection des Clés Privées :** Assurez la sécurité des clés privées en utilisant des mots de passe forts et en les stockant dans des endroits sécurisés, tels que des gestionnaires de mots de passe dédiés ou des modules de sécurité matérielle (HSM). Évitez de stocker les clés privées sur des systèmes ou des réseaux accessibles.
 
-## 4.5. Changer le port SSH ?
+### 4.2.3. Rotation et renouvellement
 
-Changer le port peut réduire le bruit des scans automatiques mais **ne constitue pas une barrière de sécurité significative**.
+- **Cycle de vie explicite :** définissez création, durée de validité, renouvellement et révocation. Les certificats à durée courte se renouvellent naturellement ; pour une clé privée longue durée, la rotation doit surtout être déclenchée par la politique, le changement de rôle, la perte de contrôle ou une suspicion de compromission. Une rotation automatique mal conçue peut elle-même devenir une source d'incident.
 
-Les mesures importantes sont plutôt :
+### 4.2.4. Autorité de Certification
 
-- authentification forte ;
-- absence de connexion root directe ;
-- mises à jour ;
-- limitation des comptes ;
-- filtrage réseau ;
-- journalisation ;
-- réduction des fonctionnalités SSH inutiles.
+- **Utiliser des AC Reconnues :** Pour les certificats SSL/TLS, préférez les émettre via une Autorité de Certification (AC) reconnue plutôt que d'utiliser des certificats auto-signés pour les services exposés publiquement. Cela augmente la confiance des utilisateurs dans la sécurité de vos services.
 
-## 4.6. Restreindre utilisateurs et groupes
+### 4.2.5. Audit et Suivi
 
-```text
-AllowGroups ssh-users
-```
+- **Inventaire des Clés et Certificats :** Maintenez un inventaire à jour de toutes les clés et certificats utilisés, y compris leur emplacement, leur usage, et leur date d'expiration. Utilisez des outils d'audit pour identifier les certificats expirés ou proches de leur expiration et les clés non utilisées ou obsolètes.
 
-ou :
+### 4.2.6. Sécurisation des Échanges de Clés
 
-```text
-AllowUsers alice bob
-```
+- **Protocoles Sécurisés :** Lors de la création ou de l'échange de clés, utilisez toujours des protocoles sécurisés pour éviter l'interception ou la compromission des clés. Pour SSH, cela signifie éviter les échanges de clés en clair et utiliser des méthodes sécurisées pour la distribution des clés publiques.
 
-Les blocs `Match` permettent des politiques spécifiques :
+### 4.2.7. Chiffrement de Bout en Bout
 
-```text
-Match User sauvegarde
-    PasswordAuthentication no
-    AllowTcpForwarding no
-    X11Forwarding no
-```
+- **Chiffrement Fort :** Assurez-vous que les clés et les certificats sont utilisés pour mettre en place un chiffrement de bout en bout pour toutes les communications sensibles, protégeant ainsi les données échangées contre l'écoute clandestine et l'interception.
 
-## 4.7. Restreindre une clé dans `authorized_keys`
+### 4.2.8. Formation et Sensibilisation
 
-Une clé d'automatisation peut être limitée :
+- **Éducation sur la Sécurité :** Fournissez une formation régulière aux employés sur l'importance de la gestion sécurisée des clés et des certificats, y compris les meilleures pratiques pour leur utilisation, leur stockage et leur partage.
 
-```text
-restrict,command="/usr/local/sbin/backup-entrypoint" ssh-ed25519 AAAA...
-```
+La gestion des clés et des certificats est une composante fondamentale de la sécurité réseau et de l'authentification. En suivant ces pratiques recommandées, les organisations peuvent renforcer leur sécurité, prévenir les abus et garantir la confidentialité et l'intégrité des communications et des données.
+## 4.3. Sécurisation de la connexion réseau et services
 
-`restrict` active plusieurs restrictions protectrices. On peut ensuite ajouter explicitement ce qui est nécessaire.
+La sécurisation des connexions réseau et des services est essentielle pour protéger les données sensibles et maintenir l'intégrité et la disponibilité des systèmes informatiques. Cette tâche implique une série de stratégies et de configurations visant à minimiser les risques d'attaques externes et internes, garantissant que les communications restent confidentielles, authentiques et intègres. Voici comment sécuriser efficacement vos connexions réseau et services.
 
-## 4.8. Agent SSH et forwarding
+### 4.3.1. Chiffrement des Données en Transit
 
-`ssh-agent` évite de relire la clé privée à chaque connexion.
+- **Utilisation de Protocoles Sécurisés :** Assurez-vous que tout le trafic réseau, en particulier celui contenant des informations sensibles, est chiffré en utilisant des protocoles tels que TLS pour le web (HTTPS), SSH pour l'accès à distance, et IPSec pour les VPN. Cela aide à protéger les données contre l'écoute clandestine et les manipulations.
 
-Le transfert d'agent :
+- **Configuration Forte de TLS :** Pour les services web, configurez TLS avec des suites de chiffrement fortes, désactivez les anciennes versions de protocoles (comme SSLv3 et TLS 1.0/1.1), et utilisez des certificats valides émis par une autorité de certification reconnue.
 
-```bash
-ssh -A serveur
-```
+### 4.3.2. Sécurisation des Points d'Accès Réseau
 
-est pratique mais augmente le risque : un serveur compromis peut utiliser temporairement l'agent transféré pour s'authentifier ailleurs.
+- **Pare-feu et Filtres :** Utilisez des pare-feu pour contrôler l'accès aux services en bloquant le trafic non autorisé et en ne permettant que les connexions nécessaires. Configurez des listes de contrôle d'accès (ACL) sur les routeurs et les commutateurs pour filtrer le trafic à un niveau plus granulaire.
 
-Préférer :
+- **Segmentation du Réseau :** Divisez le réseau en segments ou en VLANs pour isoler les différents types de trafic et les niveaux de sensibilité. Cela limite la portée des attaques potentielles et facilite la surveillance et le contrôle du trafic.
 
-- `ProxyJump` ;
-- des clés distinctes ;
-- des certificats à durée limitée ;
-- des clés matérielles.
+### 4.3.3. Authentification et Autorisation
 
-## 4.9. Bastion avec `ProxyJump`
+- **Contrôle d'Accès Basé sur les Rôles (RBAC) :** Implémentez un modèle RBAC pour gérer l'accès aux services et aux ressources en fonction des rôles des utilisateurs, en s'assurant que chacun a uniquement accès aux informations et aux fonctions nécessaires à ses tâches.
+
+- **Authentification Forte :** Mettez en œuvre une authentification multifacteur (MFA) pour les services critiques, augmentant la sécurité en exigeant une seconde forme de vérification au-delà du simple mot de passe.
+
+### 4.3.4. Surveillance et Détection des Anomalies
+
+- **Systèmes de Détection d'Intrusion (IDS) :** Utilisez des IDS pour surveiller le réseau à la recherche de signes d'activités suspectes ou malveillantes, permettant une réponse rapide aux incidents de sécurité potentiels.
+
+- **Journalisation et Analyse :** Configurez une journalisation détaillée pour tous les services et analysez régulièrement les logs à la recherche de comportements anormaux qui pourraient indiquer une tentative d'attaque ou une compromission.
+
+### 4.3.5. Mises à Jour et Patchs
+
+- **Maintenance des Logiciels :** Gardez tous les logiciels, en particulier ceux exposés sur le réseau, à jour avec les derniers patchs de sécurité pour corriger les vulnérabilités connues qui pourraient être exploitées par des attaquants.
+
+### 4.3.6. Formation et Sensibilisation
+
+- **Éducation des Utilisateurs :** Sensibilisez les utilisateurs aux risques de sécurité liés au réseau et formez-les sur les bonnes pratiques pour identifier et éviter les menaces potentielles, comme le phishing ou les attaques par hameçonnage.
+
+En intégrant ces pratiques dans la gestion de la sécurité réseau, les organisations peuvent réduire significativement les risques liés à la cybercriminalité et aux attaques, tout en assurant la protection des données sensibles et la continuité des opérations commerciales. La clé réside dans une approche proactive et multiforme qui combine la technologie, les processus et l'éducation pour créer une défense robuste contre les menaces évolutives.
+## 4.4. Sécurité des protocoles réseau (DNS, DHCP, HTTP/HTTPS)
+
+Les protocoles réseau comme DNS, DHCP, HTTP et HTTPS sont essentiels au fonctionnement quotidien des réseaux informatiques, mais ils peuvent également présenter des vulnérabilités si non correctement sécurisés. Voici des stratégies pour renforcer la sécurité de ces protocoles essentiels.
+
+### 4.4.1. DNS (Domain Name System)
+
+- **DNSSEC (DNS Security Extensions) :** Implémentez DNSSEC pour valider les réponses DNS avec une signature numérique, empêchant les attaques de type man-in-the-middle et les empoisonnements de cache DNS.
+- **Serveurs DNS fiables :** Utilisez des serveurs DNS réputés et sécurisés pour vos requêtes, comme ceux offerts par Cloudflare (1.1.1.1) ou Google (8.8.8.8).
+- **Isolation du serveur DNS :** Si vous exploitez votre propre serveur DNS, isolez-le dans un réseau sécurisé pour minimiser l'exposition aux attaques.
+
+### 4.4.2. DHCP (Dynamic Host Configuration Protocol)
+
+- **Authentification :** Utilisez l'authentification dans les communications DHCP pour éviter les attaques par des serveurs DHCP malveillants qui pourraient attribuer des paramètres réseau incorrects.
+- **Surveillance du réseau :** Surveillez activement les anomalies dans les assignations d'adresses IP pour détecter les tentatives d'usurpation DHCP.
+- **Réseaux statiques pour les appareils sensibles :** Attribuez des adresses IP statiques aux serveurs et aux appareils critiques pour éviter les risques associés aux changements d'adresse IP dynamique.
+
+### 4.4.3. HTTP/HTTPS (Hypertext Transfer Protocol / Secure)
+
+- **Forcer HTTPS :** Assurez-vous que tout le trafic web est servi sur HTTPS, non seulement pour chiffrer les données en transit mais aussi pour fournir une authentification du serveur. Utilisez la politique de sécurité de transport strict (HSTS) pour forcer les navigateurs à utiliser des connexions sécurisées.
+- **Certificats valides :** Utilisez des certificats SSL/TLS émis par une autorité de certification reconnue pour vos sites web. Considérez l'utilisation de Let's Encrypt pour obtenir des certificats gratuitement.
+- **Désactivation des protocoles et chiffrements faibles :** Désactivez les anciennes versions de TLS (1.0 et 1.1) et les suites de chiffrement faibles pour réduire les vulnérabilités.
+
+### 4.4.4. Bonnes Pratiques Communes
+
+- **Mises à jour régulières :** Gardez tous les logiciels relatifs à ces protocoles (serveurs DNS, serveurs web, etc.) à jour avec les derniers patchs de sécurité pour protéger contre les vulnérabilités connues.
+- **Formation et sensibilisation :** Éduquez les utilisateurs et les administrateurs réseau sur les risques de sécurité associés à ces protocoles et sur les meilleures pratiques pour les sécuriser.
+- **Surveillance et réponse aux incidents :** Mettez en place une surveillance continue du trafic réseau pour détecter les activités suspectes et établissez un plan de réponse aux incidents pour réagir rapidement en cas de compromission.
+
+La sécurisation des protocoles réseau DNS, DHCP, HTTP et HTTPS est une étape critique pour protéger l'intégrité, la confidentialité et la disponibilité des communications sur Internet et au sein des réseaux internes. En adoptant ces stratégies, les organisations peuvent réduire significativement leur surface d'attaque et améliorer la posture de sécurité globale de leur infrastructure réseau.
+## 4.5. Bastion avec `ProxyJump`
 
 ```bash
 ssh -J bastion.example.org serveur-interne
@@ -975,8 +982,7 @@ Host interne
 ```
 
 Cela évite souvent le transfert d'agent.
-
-## 4.10. Clés matérielles FIDO2
+## 4.6. Clés matérielles FIDO2
 
 OpenSSH prend en charge des clés de type `*-sk` lorsque le matériel et la plateforme le permettent.
 
@@ -987,8 +993,7 @@ ssh-keygen -t ed25519-sk
 ```
 
 L'intérêt est de conserver une partie du secret dans un authentificateur matériel.
-
-## 4.11. Certificats SSH
+## 4.7. Certificats SSH
 
 OpenSSH dispose de son propre mécanisme de certificats, distinct des certificats TLS X.509.
 
@@ -1002,27 +1007,7 @@ Avantages dans une infrastructure :
 Cette approche devient intéressante à partir d'un parc de taille significative.
 
 ---
-
-# 5. Sécurité réseau
-
-## 5.1. Commencer par l'inventaire
-
-```bash
-sudo ss -lntup
-ip addr
-ip route
-```
-
-Questions :
-
-- le service doit-il écouter sur `0.0.0.0` / `::` ?
-- peut-il écouter uniquement sur `127.0.0.1` ?
-- doit-il être accessible depuis Internet ou uniquement depuis un VPN ?
-- le port est-il réellement nécessaire ?
-
-Limiter l'écoute est souvent plus simple et robuste qu'ajouter une règle de pare-feu.
-
-## 5.2. nftables
+## 4.8. nftables
 
 nftables est l'interface moderne du framework Netfilter et remplace progressivement l'administration directe historique par iptables.
 
@@ -1061,41 +1046,13 @@ table inet filter {
 
 > [!danger]
 > Appliquer à distance une politique `drop` sans prévoir l'accès SSH peut couper immédiatement la connexion. Toujours tester avec un accès console ou une stratégie de rollback.
-
-## 5.3. Pare-feu hôte et pare-feu réseau
+## 4.9. Pare-feu hôte et pare-feu réseau
 
 Les deux sont complémentaires.
 
 - Le pare-feu réseau protège une zone entière.
 - Le pare-feu hôte continue à protéger la machine même si la segmentation amont est mal configurée.
-
-## 5.4. DNS
-
-Risques à considérer :
-
-- spoofing dans certains scénarios ;
-- mauvaise configuration de résolveurs ouverts ;
-- détournement de domaine ou de compte registrar ;
-- fuite de requêtes DNS ;
-- dépendance à un résolveur tiers.
-
-DNSSEC authentifie certaines données DNS mais ne chiffre pas les requêtes.
-
-DoT/DoH chiffrent le transport vers un résolveur compatible, sans résoudre à eux seuls tous les problèmes de confiance.
-
-## 5.5. TLS
-
-Pour un service Web :
-
-- préférer TLS moderne ;
-- automatiser le renouvellement des certificats ;
-- protéger la clé privée ;
-- surveiller l'expiration ;
-- désactiver les anciens protocoles et suites obsolètes selon les besoins de compatibilité.
-
-Le durcissement TLS doit être piloté par la version du serveur et les clients à supporter.
-
-## 5.6. VPN et WireGuard
+## 4.10. VPN et WireGuard
 
 WireGuard fournit un VPN IP simple fondé sur des primitives cryptographiques modernes.
 
@@ -1108,8 +1065,7 @@ Principes de sécurité :
 - pare-feu toujours présent autour du tunnel.
 
 Un VPN n'autorise pas nécessairement tout trafic : il crée une connectivité sur laquelle une politique d'accès doit encore être appliquée.
-
-## 5.7. Segmentation
+## 4.11. Segmentation
 
 Séparer par exemple :
 
@@ -1124,9 +1080,9 @@ Une base de données qui n'est consommée que par l'application ne devrait gén�
 
 ---
 
-# 6. Cryptographie et protection des données
+# 5. Cryptographie et protection des données
 
-## 6.1. Les objectifs
+## 5.1. Les objectifs
 
 Ne pas confondre :
 
@@ -1135,7 +1091,7 @@ Ne pas confondre :
 - **MAC** : intégrité + authenticité avec secret partagé ;
 - **signature numérique** : intégrité + authenticité avec cryptographie asymétrique.
 
-## 6.2. Ne pas inventer sa cryptographie
+## 5.2. Ne pas inventer sa cryptographie
 
 Pour une application :
 
@@ -1145,7 +1101,7 @@ Pour une application :
 - séparer clés, données et métadonnées ;
 - prévoir la rotation et la récupération.
 
-## 6.3. Hachage des mots de passe
+## 5.3. Hachage des mots de passe
 
 Un mot de passe ne doit pas être stocké avec un simple SHA-256 ou SHA-512 rapide.
 
@@ -1158,7 +1114,7 @@ On utilise une fonction conçue pour les mots de passe, par exemple :
 
 Le sel est normalement unique par mot de passe et n'a pas besoin d'être secret.
 
-## 6.4. LUKS2 et dm-crypt
+## 5.4. LUKS2 et dm-crypt
 
 LUKS est le format standard courant pour gérer le chiffrement de volumes Linux au-dessus de dm-crypt.
 
@@ -1193,7 +1149,7 @@ Retirer une clé uniquement après avoir vérifié qu'une autre méthode valide 
 sudo cryptsetup luksRemoveKey /dev/sdX
 ```
 
-## 6.5. Sauvegarder l'en-tête LUKS
+## 5.5. Sauvegarder l'en-tête LUKS
 
 L'en-tête contient des informations critiques. Selon la politique de sauvegarde :
 
@@ -1204,7 +1160,7 @@ sudo cryptsetup luksHeaderBackup /dev/sdX \
 
 Cette sauvegarde est sensible : elle doit être stockée de façon protégée et indépendante.
 
-## 6.6. LUKS et machine démarrée
+## 5.6. LUKS et machine démarrée
 
 Une fois le volume ouvert :
 
@@ -1220,7 +1176,7 @@ les données sont accessibles aux processus autorisés. LUKS ne remplace donc pa
 - contrôle d'accès applicatif ;
 - protection contre une session root compromise.
 
-## 6.7. fscrypt
+## 5.7. fscrypt
 
 `fscrypt` permet le chiffrement de répertoires/fichiers sur certains systèmes de fichiers compatibles.
 
@@ -1228,14 +1184,14 @@ Il peut être utile lorsque l'on veut isoler certaines données sans chiffrer l'
 
 Cependant, pour un poste ou serveur où l'objectif principal est de protéger le disque au repos, le chiffrement complet avec dm-crypt/LUKS est souvent plus simple à raisonner.
 
-## 6.8. eCryptfs : technologie historique
+## 5.8. eCryptfs : technologie historique
 
 > [!warning] eCryptfs est déprécié pour les nouveaux déploiements Ubuntu
 > eCryptfs a été largement utilisé pour les anciens « home chiffrés ». Il ne doit plus être le choix proposé par défaut dans un nouveau cours ou une nouvelle architecture. Pour les systèmes Ubuntu actuels, Canonical considère eCryptfs comme **déprécié** et recommande le chiffrement complet avec dm-crypt/LUKS lorsque cela convient au besoin. `fscrypt` constitue une approche distincte au niveau du système de fichiers.
 
 Il reste important de connaître eCryptfs pour maintenir ou migrer des systèmes historiques.
 
-## 6.9. Clés et TPM2
+## 5.9. Clés et TPM2
 
 Un TPM peut contribuer à protéger ou sceller un secret en fonction de l'état de la plateforme.
 
@@ -1248,7 +1204,7 @@ Il faut comprendre le compromis :
 
 Ne jamais déployer un mécanisme de déverrouillage automatique sans avoir testé la récupération.
 
-## 6.10. Gestion du cycle de vie des clés
+## 5.10. Gestion du cycle de vie des clés
 
 Une clé possède un cycle :
 
@@ -1267,9 +1223,9 @@ Questions obligatoires :
 
 ---
 
-# 7. Journalisation, audit et intégrité
+# 6. Journalisation, audit et intégrité
 
-## 7.1. journald
+## 6.1. journald
 
 Afficher les journaux du boot :
 
@@ -1290,7 +1246,7 @@ Priorité :
 journalctl -p warning..alert
 ```
 
-## 7.2. Journal persistant
+## 6.2. Journal persistant
 
 Selon la distribution et la configuration, vérifier :
 
@@ -1302,7 +1258,7 @@ La persistance locale est utile, mais si un attaquant devient root il peut poten
 
 Une architecture de sécurité sérieuse exporte donc les événements importants vers un système distant.
 
-## 7.3. Horloge fiable
+## 6.3. Horloge fiable
 
 Sans horloge cohérente, corréler les événements devient difficile.
 
@@ -1316,7 +1272,7 @@ Pour un parc :
 - surveiller les dérives ;
 - conserver le fuseau et les timestamps de manière cohérente, souvent UTC côté stockage.
 
-## 7.4. Linux Audit
+## 6.4. Linux Audit
 
 Le framework Audit du noyau permet d'enregistrer certains événements de sécurité.
 
@@ -1355,7 +1311,7 @@ sudo ausearch -k sudoers_changes
 
 Pour la production, utiliser des règles persistantes gérées par la distribution plutôt qu'une commande temporaire.
 
-## 7.5. Ne pas tout journaliser
+## 6.5. Ne pas tout journaliser
 
 Trop de logs :
 
@@ -1366,7 +1322,7 @@ Trop de logs :
 
 On journalise ce qui permet de répondre à une question de sécurité précise.
 
-## 7.6. Intégrité avec AIDE
+## 6.6. Intégrité avec AIDE
 
 AIDE peut conserver une base d'empreintes de fichiers attendus.
 
@@ -1379,7 +1335,7 @@ Principe :
 
 Une alerte d'intégrité dit qu'un fichier a changé, pas nécessairement pourquoi ni si le changement est malveillant.
 
-## 7.7. IMA et EVM
+## 6.7. IMA et EVM
 
 Le noyau Linux dispose de mécanismes avancés :
 
@@ -1390,7 +1346,7 @@ Ils peuvent mesurer ou vérifier l'intégrité de certains objets et s'inscrire 
 
 Ce sont des mécanismes puissants mais qui demandent une vraie conception de politique et ne sont pas nécessaires sur tous les serveurs.
 
-## 7.8. Logs distants
+## 6.8. Logs distants
 
 Objectifs :
 
@@ -1408,67 +1364,145 @@ On peut utiliser selon l'architecture :
 
 ---
 
-# 8. Détection et réponse aux incidents
+# 7. Détection d'intrusions et réponse aux incidents
+## 7.1. Systèmes de détection d'intrusion (IDS) et prévention d'intrusion (IPS)
 
-## 8.1. Prévention ≠ détection
+Les systèmes de détection d'intrusion (IDS) et de prévention d'intrusion (IPS) sont des composants essentiels de la sécurité réseau, fournissant une surveillance en temps réel et une protection contre les activités malveillantes. Alors que les IDS sont conçus pour détecter et alerter sur les intrusions potentielles, les IPS vont plus loin en bloquant automatiquement ces menaces avant qu'elles n'atteignent leurs cibles. Voici un aperçu de leur fonctionnement, de leurs types et de leur importance dans la stratégie de sécurité d'une organisation.
 
-Un pare-feu peut bloquer un trafic. Il ne permet pas nécessairement de savoir qu'un compte légitime a été détourné.
+### 6.1.2. Fonctionnement des IDS et IPS
 
-Un système mature dispose d'indicateurs sur :
+- **Détection d'Intrusion (IDS) :** Les IDS surveillent le trafic réseau et/ou l'activité système pour détecter les comportements suspects ou les signatures d'attaques connues. Ils génèrent des alertes lorsqu'une activité potentiellement malveillante est identifiée, permettant une intervention humaine pour une enquête plus approfondie ou une action corrective.
 
-- authentifications ;
-- nouveaux comptes ;
-- modifications de privilèges ;
-- processus inattendus ;
-- services nouveaux ;
-- connexions sortantes anormales ;
-- modifications de fichiers critiques.
+- **Prévention d'Intrusion (IPS) :** Les IPS sont souvent positionnés en ligne avec le trafic réseau, analysant les flux de données en temps réel. Ils utilisent des ensembles de règles ou des signatures pour identifier le trafic malveillant et sont capables d'intervenir automatiquement pour bloquer ou modifier ce trafic, empêchant ainsi les attaques de parvenir à leur cible.
 
-## 8.2. IDS et IPS
+### 6.1.3. Types d'IDS/IPS
 
-- **IDS** : détecte et alerte ;
-- **IPS** : peut aussi bloquer automatiquement.
+- **Basés sur le Réseau (NIDS/NIPS) :** Ces systèmes surveillent le trafic sur le réseau pour identifier les menaces. Ils sont capables de protéger l'ensemble du réseau mais peuvent être confrontés à des difficultés avec le trafic chiffré.
 
-L'automatisation du blocage nécessite une bonne maîtrise des faux positifs.
+- **Basés sur l'Hôte (HIDS/HIPS) :** Implantés sur des machines spécifiques, ils surveillent l'activité et les fichiers du système pour détecter des modifications ou des comportements malveillants, offrant une protection plus ciblée.
 
-## 8.3. Suricata
+### 6.1.4. Importance des IDS/IPS
 
-Suricata peut analyser le trafic réseau et produire des événements structurés.
+- **Détection Précoce :** Les IDS/IPS permettent de détecter les tentatives d'intrusion et les activités malveillantes en amont, souvent avant qu'un dommage ou une pénétration complète ne se produise.
 
-Dans une architecture réelle :
+- **Complément aux Autres Mesures de Sécurité :** Bien qu'ils ne remplacent pas d'autres mesures de sécurité comme les pare-feu et l'antivirus, les IDS/IPS ajoutent une couche supplémentaire de défense en se concentrant sur des menaces spécifiques et des comportements d'attaques.
 
-```text
-trafic -> Suricata -> événements EVE JSON -> collecteur -> corrélation/alertes
-```
+- **Conformité et Gestion des Risques :** L'utilisation des IDS/IPS peut aider les organisations à se conformer aux réglementations de sécurité de l'information et à gérer efficacement les risques de sécurité.
 
-Le moteur de détection n'est qu'une partie du système : il faut maintenir les règles, la visibilité réseau et la chaîne de traitement des alertes.
+### 6.1.5. Mise en Place et Gestion
 
-## 8.4. Détection au niveau hôte
+- **Configuration et Mise à Jour :** La mise en place d'un IDS/IPS nécessite une configuration initiale soignée et des mises à jour régulières pour s'assurer que le système peut reconnaître et bloquer les dernières menaces.
 
-Sources possibles :
+- **Surveillance et Réponse :** La surveillance des alertes générées par les IDS/IPS est cruciale. Une équipe de réponse aux incidents doit être prête à analyser et à agir sur les alertes pour mitiger les menaces détectées.
 
-- auditd ;
-- journald ;
-- logs applicatifs ;
-- eBPF pour certains outils d'observabilité ;
-- détection d'intégrité ;
-- EDR/HIDS.
+- **Tuning et Personnalisation :** Les IDS/IPS peuvent générer des faux positifs. Un réglage fin des règles et une personnalisation basée sur l'environnement spécifique et le profil de risque de l'organisation sont nécessaires pour optimiser la performance et la précision du système.
 
-L'objectif n'est pas d'installer le maximum d'agents, mais d'assurer une visibilité suffisante sur les scénarios de menace retenus.
+En conclusion, les IDS et IPS jouent un rôle vital dans la protection des infrastructures informatiques contre les intrusions et les cyberattaques. Leur intégration dans une stratégie globale de sécurité informatique aide à assurer la détection, la prévention et la réaction rapides face aux menaces émergentes.
+## 7.2. Configuration et utilisation de Snort et Suricata
 
-## 8.5. Les étapes d'une réponse à incident
+Snort et Suricata sont deux des systèmes de détection et de prévention d'intrusion (IDS/IPS) les plus répandus dans le monde de la cybersécurité. Tous deux offrent une surveillance en temps réel du trafic réseau pour détecter et, dans le cas de certaines configurations, bloquer les menaces. Voici un guide sur la configuration et l'utilisation de ces outils puissants.
 
-Une séquence classique :
+### 6.2.1. Snort
 
-1. **préparation** ;
-2. **détection et qualification** ;
-3. **confinement** ;
-4. **collecte et analyse** ;
-5. **éradication** ;
-6. **récupération** ;
-7. **retour d'expérience**.
+Snort est un IDS/IPS basé sur les signatures qui analyse le trafic réseau à la recherche de comportements malveillants et d'attaques connues. Il peut fonctionner en mode IDS, enregistrant simplement les alertes sur les activités suspectes, ou en mode IPS, bloquant le trafic selon les règles définies.
 
-## 8.6. Ne pas détruire les preuves
+- **Installation :** Snort est disponible sur la plupart des distributions Linux et peut être installé via le gestionnaire de paquets. Après l'installation, il est crucial de télécharger et de configurer les règles de détection.
+
+- **Configuration des Règles :** Les règles de Snort définissent les modèles de trafic à rechercher et les actions à entreprendre lorsqu'un modèle correspond. Les règles sont stockées dans `/etc/snort/rules` et peuvent être personnalisées ou complétées par des règles téléchargées depuis des sources externes.
+
+- **Exécution :** Lancez Snort en ligne de commande avec les options nécessaires pour spécifier l'interface réseau à surveiller, le chemin vers le fichier de configuration et le mode d'exécution (IDS ou IPS).
+
+### 6.2.2. Suricata
+
+Suricata est un moteur de détection d'intrusion de nouvelle génération qui offre des capacités similaires à Snort mais est conçu pour tirer parti du traitement multicœur, offrant ainsi une meilleure performance dans l'analyse du trafic réseau. Il supporte également le mode IDS/IPS et est capable d'interpréter les règles écrites pour Snort.
+
+- **Installation :** Comme Snort, Suricata peut être installé via les gestionnaires de paquets des distributions Linux. Après l'installation, il est important de configurer Suricata avec les règles de détection appropriées.
+
+- **Configuration des Règles :** Suricata utilise un format de règle compatible avec celui de Snort, permettant ainsi l'utilisation de nombreuses règles existantes. Les règles personnalisées peuvent être ajoutées pour cibler des menaces spécifiques à votre environnement.
+
+- **Exécution et Analyse :** Suricata peut être lancé pour surveiller une interface réseau spécifique et écrire des alertes ou bloquer le trafic en fonction des règles. Il génère des logs détaillés qui peuvent être analysés avec des outils spécialisés pour une visibilité complète sur les menaces potentielles.
+
+### 6.2.3. Bonnes Pratiques
+
+- **Mise à Jour Régulière des Règles :** Pour tous les deux systèmes, il est crucial de garder les règles de détection à jour avec les dernières signatures de menaces pour une protection efficace.
+
+- **Tuning Fin :** Ajustez finement les règles et les configurations pour minimiser les faux positifs tout en assurant une détection efficace des menaces réelles.
+
+- **Surveillance Continue :** Mettez en place une surveillance continue des alertes générées par Snort ou Suricata. Une analyse rapide des alertes permet de détecter et de réagir aux incidents de sécurité en temps opportun.
+
+- **Intégration avec d'Autres Outils :** Intégrez Snort et Suricata dans votre écosystème de sécurité global, y compris les systèmes de gestion des informations et des événements de sécurité (SIEM) pour une analyse et une réponse aux incidents améliorées.
+
+Snort et Suricata représentent des outils essentiels dans l'arsenal de sécurité de tout administrateur réseau, offrant une protection robuste contre un large éventail de cybermenaces. La configuration et l'utilisation efficaces de ces outils nécessitent une compréhension approfondie de vos besoins de sécurité réseau et une vigilance constante pour s'adapter à l'évolution du paysage des menaces.
+## 7.3. Analyse des logs et détection d'anomalies
+
+L'analyse des logs et la détection d'anomalies sont des composantes clés dans la surveillance de la sécurité et la réponse aux incidents. Elles permettent aux administrateurs de repérer des activités suspectes ou non autorisées au sein de leurs systèmes et réseaux en examinant les données générées par les applications, les services et les dispositifs de sécurité. Voici des stratégies pour effectuer une analyse efficace des logs et détecter les anomalies.
+
+### 6.3.1. Collecte et Agrégation des Logs
+
+- **Centralisation des Logs :** Utilisez des outils comme Logstash, Fluentd, ou rsyslog pour collecter et agréger les logs de différents systèmes et applications dans un emplacement centralisé. Cela simplifie l'analyse et accélère la détection des incidents de sécurité.
+
+- **Normalisation des Formats de Log :** Étant donné que les logs peuvent provenir de sources variées avec des formats différents, il est essentiel de les normaliser dans un format commun pour faciliter l'analyse.
+
+### 6.3.2. Analyse des Logs
+
+- **Outils d'Analyse :** Utilisez des plateformes de gestion des logs comme Elasticsearch, Logstash et Kibana (ELK) ou Graylog pour analyser les données de logs. Ces outils offrent des fonctionnalités de recherche puissantes, de visualisation des données et de création de tableaux de bord pour surveiller les activités en temps réel.
+
+- **Détection des Anomalies :** Configurez des alertes basées sur des seuils ou des comportements anormaux identifiés dans les logs. Par exemple, un nombre élevé de tentatives de connexion échouées sur une courte période peut indiquer une tentative d'attaque par force brute.
+
+### 6.3.3. Corrélation d'Événements
+
+- **Corrélation et Analyse Comportementale :** Utilisez des systèmes de gestion des informations et des événements de sécurité (SIEM) pour corréler les événements de logs à travers différents systèmes. Les SIEM peuvent utiliser l'apprentissage automatique et l'analyse comportementale pour détecter des modèles d'activité anormaux qui pourraient échapper à une détection basée sur des règles statiques.
+
+### 6.3.4. Réponse aux Incidents
+
+- **Intégration avec les Outils de Réponse aux Incidents :** Assurez-vous que votre système d'analyse de logs est intégré avec des outils et des procédures de réponse aux incidents pour permettre une action rapide en cas de détection d'une menace potentielle.
+
+### 6.3.5. Bonnes Pratiques
+
+- **Conservation des Logs :** Définissez une politique de rétention des logs qui équilibre les besoins en matière de conformité et d'audit avec les capacités de stockage. La conservation des logs sur le long terme peut être précieuse pour les enquêtes sur les incidents et l'analyse des tendances.
+
+- **Formation et Sensibilisation :** Formez votre équipe de sécurité à interpréter les logs et à utiliser les outils d'analyse à leur disposition. Une compréhension approfondie des comportements normaux et anormaux au sein de votre environnement est cruciale pour une détection efficace des anomalies.
+
+- **Test et Validation :** Régulièrement, testez et validez la capacité de votre système d'analyse de logs à détecter des scénarios d'attaque connus et inconnus. Cela peut impliquer des simulations d'attaque ou l'utilisation de jeux de données de test pour évaluer la sensibilité et l'efficacité de la détection.
+
+L'analyse des logs et la détection d'anomalies sont des processus continus qui nécessitent des ajustements et des améliorations constantes pour s'adapter aux nouvelles menaces et aux changements dans les environnements technologiques. En investissant dans les bonnes technologies, pratiques et formations, les organisations peuvent améliorer significativement leur posture de sécurité et leur capacité à répondre rapidement aux incidents de sécurité.
+## 7.4. Réponse aux incidents et récupération après intrusion
+
+La capacité d'une organisation à répondre efficacement aux incidents de sécurité et à se rétablir après une intrusion est cruciale pour minimiser les dommages et restaurer la confiance des parties prenantes. La réponse aux incidents et la récupération nécessitent une planification minutieuse, des processus bien définis, et des équipes prêtes à agir rapidement. Voici les éléments clés pour une réponse aux incidents et une récupération efficaces après une intrusion.
+
+### 6.4.1. Préparation et Planification
+
+- **Plan de Réponse aux Incidents :** Développez un plan de réponse aux incidents qui définit les rôles et les responsabilités, les procédures d'escalade, les canaux de communication, et les étapes de réponse. Ce plan doit être régulièrement révisé et mis à jour.
+
+- **Équipe de Réponse aux Incidents :** Constituez une équipe de réponse aux incidents avec des membres formés et capables de gérer différents aspects de la réponse, y compris l'analyse technique, la communication, et la gestion juridique.
+
+- **Outils et Ressources :** Assurez-vous que l'équipe de réponse dispose des outils et des ressources nécessaires pour détecter, analyser, et mitiger les incidents de sécurité.
+
+### 6.4.2. Détection et Analyse
+
+- **Surveillance et Détection :** Utilisez des systèmes de détection d'intrusion, des logs, et des outils de surveillance pour détecter rapidement les activités suspectes ou malveillantes.
+
+- **Analyse des Incidents :** Une fois un incident détecté, analysez-le pour comprendre sa nature, son étendue, et les systèmes affectés. Cela inclut la collecte et l'analyse des données pertinentes pour identifier les vecteurs d'attaque, les vulnérabilités exploitées, et l'impact potentiel.
+
+### 6.4.3. Confinement, Éradication, et Récupération
+
+- **Confinement :** Isolez les systèmes affectés pour empêcher la propagation de l'attaque. Cela peut impliquer la déconnexion des réseaux, la mise hors ligne de services spécifiques, ou la restriction des accès.
+
+- **Éradication :** Une fois l'incident contenu, éliminez la cause de l'attaque, ce qui peut inclure la suppression de logiciels malveillants, la fermeture des points d'entrée utilisés par les attaquants, et la correction des vulnérabilités.
+
+- **Récupération :** Restaurez les systèmes et les données à partir de sauvegardes fiables. Testez soigneusement les systèmes restaurés avant de les remettre en ligne pour s'assurer qu'ils sont propres et fonctionnels.
+
+### 6.4.4. Post-Incident
+
+- **Analyse Post-Incident :** Après la résolution de l'incident, réalisez une analyse post-mortem pour identifier les leçons apprises, les lacunes dans les processus ou les défenses, et les améliorations nécessaires pour prévenir les incidents futurs.
+
+- **Communication :** Communiquez de manière transparente avec les parties prenantes internes et externes sur la nature de l'incident, les mesures prises pour y répondre, et les étapes suivantes pour restaurer les services et la confiance.
+
+- **Formation et Amélioration Continue :** Utilisez l'expérience de l'incident pour former le personnel et améliorer les processus et les mécanismes de défense de l'organisation contre les futures menaces.
+
+La réponse aux incidents et la récupération après une intrusion sont des processus complexes qui exigent une préparation rigoureuse et une exécution rapide. En adoptant une approche proactive et en investissant dans les bonnes pratiques, les organisations peuvent renforcer leur résilience face aux cyberattaques et réduire l'impact des incidents de sécurité sur leurs opérations.
+
+## 7.5. Préserver les preuves
 
 Lors d'une suspicion sérieuse, des actions réflexes peuvent supprimer des informations utiles :
 
@@ -1479,7 +1513,7 @@ Lors d'une suspicion sérieuse, des actions réflexes peuvent supprimer des info
 
 Le choix dépend de la priorité : préserver la preuve ou arrêter une attaque active.
 
-## 8.7. Capture d'informations volatiles
+## 7.6. Capturer les informations volatiles
 
 Selon la politique d'incident et les compétences disponibles, on peut documenter :
 
@@ -1498,7 +1532,7 @@ systemctl --type=service --state=running
 
 Ces commandes sont des **points de départ**, pas une procédure forensique complète.
 
-## 8.8. Confinement
+## 7.7. Confinement
 
 Selon le scénario :
 
@@ -1510,7 +1544,7 @@ Selon le scénario :
 
 Le confinement doit éviter d'empêcher la récupération ou de propager l'incident.
 
-## 8.9. Reconstruction plutôt que « nettoyage magique »
+## 7.8. Reconstruction plutôt que « nettoyage magique »
 
 Pour un serveur fortement compromis, il est souvent plus sûr de :
 
@@ -1523,7 +1557,7 @@ Pour un serveur fortement compromis, il est souvent plus sûr de :
 
 On ne peut pas prouver facilement qu'un système root compromis a été parfaitement « nettoyé ».
 
-## 8.10. Sauvegardes
+## 7.9. Sauvegardes et restauration
 
 La restauration fait partie de la sécurité.
 
@@ -1539,9 +1573,10 @@ Une sauvegarde jamais restaurée n'est qu'une hypothèse.
 
 ---
 
-# 9. Sécurité des conteneurs
 
-## 9.1. Un conteneur n'est pas une VM
+# 8. Sécurité des conteneurs
+
+## 8.1. Un conteneur n'est pas une VM
 
 Un conteneur partage le noyau de l'hôte.
 
@@ -1558,7 +1593,7 @@ Une vulnérabilité noyau peut donc affecter l'isolation de plusieurs conteneurs
 
 Voir aussi : [[Docker]] et [[Les namespaces Linux]].
 
-## 9.2. Éviter `--privileged`
+## 8.2. Éviter `--privileged`
 
 ```bash
 docker run --privileged ...
@@ -1568,7 +1603,7 @@ retire une grande partie des restrictions de sécurité habituelles du conteneur
 
 Ce mode ne doit pas être utilisé pour « faire marcher » une application sans comprendre le besoin réel.
 
-## 9.3. Exécuter sans root
+## 8.3. Exécuter sans root
 
 Dans un Dockerfile :
 
@@ -1585,13 +1620,13 @@ CMD ["python", "app.py"]
 
 Même avec un utilisateur non-root dans le conteneur, il faut comprendre les mappings d'UID et les droits sur les volumes.
 
-## 9.4. Rootless
+## 8.4. Rootless
 
 Les modes rootless réduisent l'impact de certaines compromissions du runtime en utilisant notamment les user namespaces.
 
 Ils ont des contraintes fonctionnelles et ne rendent pas automatiquement le conteneur sûr.
 
-## 9.5. Retirer des capabilities
+## 8.5. Retirer des capabilities
 
 Approche recommandée : partir du minimum.
 
@@ -1604,7 +1639,7 @@ docker run \
 
 N'ajouter que les capabilities démontrées nécessaires.
 
-## 9.6. Système de fichiers en lecture seule
+## 8.6. Système de fichiers en lecture seule
 
 ```bash
 docker run \
@@ -1615,7 +1650,7 @@ docker run \
 
 Puis monter explicitement les volumes qui doivent être persistants.
 
-## 9.7. seccomp et LSM
+## 8.7. seccomp et LSM
 
 Docker et d'autres runtimes utilisent des profils seccomp par défaut.
 
@@ -1627,7 +1662,7 @@ On peut également appliquer :
 
 Ne pas désactiver ces protections par réflexe pour contourner une erreur.
 
-## 9.8. Images
+## 8.8. Images
 
 Bonnes pratiques :
 
@@ -1640,7 +1675,7 @@ Bonnes pratiques :
 - scan de vulnérabilités ;
 - provenance/signature lorsque nécessaire.
 
-## 9.9. Les secrets ne vont pas dans l'image
+## 8.9. Les secrets ne vont pas dans l'image
 
 Mauvais :
 
@@ -1652,7 +1687,7 @@ Même supprimé dans une couche suivante, le secret peut rester dans l'historiqu
 
 Utiliser un mécanisme de secrets au runtime ou pendant le build conçu pour ne pas persister le secret dans l'image.
 
-## 9.10. Volumes
+## 8.10. Volumes
 
 Un volume donne au conteneur un accès réel à des données de l'hôte ou à un stockage externe.
 
@@ -1665,7 +1700,7 @@ Un volume donne au conteneur un accès réel à des données de l'hôte ou à un
 
 Monter le plus petit chemin nécessaire, idéalement en lecture seule lorsqu'une écriture n'est pas requise.
 
-## 9.11. Docker socket
+## 8.11. Docker socket
 
 Monter :
 
@@ -1677,7 +1712,7 @@ Monter :
 
 Ce montage doit être considéré comme hautement privilégié.
 
-## 9.12. Kubernetes — principes
+## 8.12. Kubernetes — principes
 
 Dans Kubernetes, on ajoute notamment :
 
@@ -1696,9 +1731,9 @@ L'orchestrateur augmente les capacités, mais aussi la complexité et la surface
 
 ---
 
-# 10. Chaîne d'approvisionnement logicielle
+# 9. Chaîne d'approvisionnement logicielle
 
-## 10.1. La compromission peut arriver avant le serveur
+## 9.1. La compromission peut arriver avant le serveur
 
 Un système peut être compromis via :
 
@@ -1711,7 +1746,7 @@ Un système peut être compromis via :
 
 La sécurité ne commence donc pas au démarrage de Linux.
 
-## 10.2. Réduire les sources de dépendances
+## 9.2. Réduire les sources de dépendances
 
 Principes :
 
@@ -1721,7 +1756,7 @@ Principes :
 - suppression des dépendances abandonnées ;
 - surveillance des avis de sécurité.
 
-## 10.3. Signature et provenance
+## 9.3. Signature et provenance
 
 Distinguer :
 
@@ -1731,7 +1766,7 @@ Distinguer :
 
 La confiance dépend toujours de la façon dont la clé et la provenance sont elles-mêmes validées.
 
-## 10.4. SBOM
+## 9.4. SBOM
 
 Une **Software Bill of Materials** inventorie les composants logiciels d'un artefact.
 
@@ -1746,7 +1781,7 @@ Une SBOM permet notamment de répondre plus rapidement :
 
 Elle ne prouve pas que le logiciel est sûr.
 
-## 10.5. Scanner n'est pas corriger
+## 9.5. Scanner n'est pas corriger
 
 Un scanner de vulnérabilités peut produire :
 
@@ -1757,7 +1792,7 @@ Un scanner de vulnérabilités peut produire :
 
 La remédiation nécessite une analyse de contexte.
 
-## 10.6. Dépendances Python
+## 9.6. Dépendances Python
 
 Pour Python :
 
@@ -1771,9 +1806,9 @@ Voir aussi les cours Python concernés dans le dossier `cours`.
 
 ---
 
-# 11. Secrets et données sensibles
+# 10. Secrets et données sensibles
 
-## 11.1. Qu'est-ce qu'un secret ?
+## 10.1. Qu'est-ce qu'un secret ?
 
 Exemples :
 
@@ -1787,7 +1822,7 @@ Exemples :
 
 Un identifiant public ou un certificat public n'est pas nécessairement un secret.
 
-## 11.2. Problème des variables d'environnement
+## 10.2. Problème des variables d'environnement
 
 Les variables d'environnement sont pratiques mais peuvent être exposées :
 
@@ -1798,7 +1833,7 @@ Les variables d'environnement sont pratiques mais peuvent être exposées :
 
 Elles ne doivent pas être considérées comme un coffre-fort.
 
-## 11.3. Fichiers de secrets
+## 10.3. Fichiers de secrets
 
 Un fichier correctement protégé peut être acceptable dans certaines architectures :
 
@@ -1819,7 +1854,7 @@ Mais il faut gérer :
 - révocation ;
 - accès administrateur.
 
-## 11.4. Credentials systemd
+## 10.4. Credentials systemd
 
 Les versions modernes de systemd disposent d'un mécanisme de credentials permettant de fournir des données à un service sans les placer directement dans la ligne de commande ou dans des variables d'environnement classiques.
 
@@ -1832,7 +1867,7 @@ LoadCredential=api-token:/etc/credentials/monservice-api-token
 
 Le programme lit ensuite le credential depuis le répertoire fourni par systemd.
 
-## 11.5. Gestionnaires de secrets
+## 10.5. Gestionnaires de secrets
 
 Pour une infrastructure importante, on utilise souvent un système spécialisé fournissant :
 
@@ -1844,7 +1879,7 @@ Pour une infrastructure importante, on utilise souvent un système spécialisé 
 
 L'outil choisi ne doit pas devenir un point unique de compromission non protégé.
 
-## 11.6. Git et secrets
+## 10.6. Git et secrets
 
 Ne jamais considérer qu'un secret est « supprimé » parce qu'il a été retiré du dernier commit.
 
@@ -1860,11 +1895,11 @@ La rotation est prioritaire sur le nettoyage esthétique de l'historique.
 
 ---
 
-# 12. IA et LLM dans un environnement Linux sécurisé
+# 11. IA et LLM dans un environnement Linux sécurisé
 
 Voir aussi : [[LLM]] et [[RAG]].
 
-## 12.1. Un LLM en ligne est un tiers
+## 11.1. Un LLM en ligne est un tiers
 
 Avant d'envoyer une donnée à un service d'IA, vérifier :
 
@@ -1882,7 +1917,7 @@ Ne jamais copier spontanément :
 - token ;
 - fichier de production confidentiel.
 
-## 12.2. Un modèle local ne supprime pas les risques
+## 11.2. Un modèle local ne supprime pas les risques
 
 Un LLM local évite l'envoi à un fournisseur externe, mais ajoute :
 
@@ -1892,13 +1927,13 @@ Un LLM local évite l'envoi à un fournisseur externe, mais ajoute :
 - risques liés aux outils ou agents ;
 - accès aux documents indexés.
 
-## 12.3. Fichiers de modèles
+## 11.3. Fichiers de modèles
 
 Préférer des formats conçus pour contenir des poids/données plutôt que des formats capables d'exécuter arbitrairement du code lors du chargement.
 
 Dans l'écosystème Python, être particulièrement prudent avec les mécanismes de sérialisation capables d'exécuter du code lors de la désérialisation.
 
-## 12.4. `trust_remote_code`
+## 11.4. `trust_remote_code`
 
 Dans certains outils ML, activer un mécanisme du type :
 
@@ -1910,7 +1945,7 @@ revient à accepter l'exécution de code fourni par le dépôt du modèle.
 
 Ce choix doit être traité comme l'installation et l'exécution d'un logiciel tiers : revue, source de confiance, sandboxing et version figée si nécessaire.
 
-## 12.5. Prompt injection
+## 11.5. Prompt injection
 
 Un agent LLM peut lire une page Web ou un document contenant une instruction hostile du type :
 
@@ -1924,7 +1959,7 @@ Le problème est que le modèle traite souvent dans le même canal logique :
 
 On doit donc considérer le contenu externe comme **non fiable**.
 
-## 12.6. Principe de moindre privilège pour un agent
+## 11.6. Principe de moindre privilège pour un agent
 
 Un agent ne devrait pas recevoir un shell root par défaut.
 
@@ -1944,7 +1979,7 @@ agent
   -> shell root sans restriction
 ```
 
-## 12.7. Outils d'un agent
+## 11.7. Outils d'un agent
 
 Pour chaque outil :
 
@@ -1956,7 +1991,7 @@ Pour chaque outil :
 - approbation humaine pour les actions sensibles ;
 - timeout et limites de ressources.
 
-## 12.8. Sandboxing des tâches IA
+## 11.8. Sandboxing des tâches IA
 
 Selon le besoin :
 
@@ -1969,7 +2004,7 @@ Selon le besoin :
 
 Un agent capable d'installer ses propres dépendances et d'exécuter du code non fiable doit être traité comme une charge de travail à haut risque.
 
-## 12.9. RAG et contrôle d'accès
+## 11.9. RAG et contrôle d'accès
 
 Un index RAG peut devenir une copie secondaire de documents sensibles.
 
@@ -1981,7 +2016,7 @@ Il faut donc définir :
 - comment supprimer une donnée ;
 - combien de temps les embeddings et chunks sont conservés.
 
-## 12.10. Les sorties d'un LLM ne sont pas des commandes fiables
+## 11.10. Les sorties d'un LLM ne sont pas des commandes fiables
 
 Une commande proposée par un LLM doit être :
 
@@ -2003,9 +2038,9 @@ Cette règle vaut particulièrement pour :
 
 ---
 
-# 13. Méthode d'audit et de durcissement
+# 12. Méthode d'audit et de durcissement
 
-## 13.1. Étape 1 — identifier le rôle de la machine
+## 12.1. Étape 1 — identifier le rôle de la machine
 
 Documenter :
 
@@ -2022,7 +2057,7 @@ Criticité : élevée
 
 Une machine sans rôle clair est difficile à sécuriser.
 
-## 13.2. Étape 2 — inventaire
+## 12.2. Étape 2 — inventaire
 
 ### OS
 
@@ -2063,7 +2098,7 @@ systemctl list-timers --all
 sudo find /etc/cron* -maxdepth 2 -type f -print
 ```
 
-## 13.3. Étape 3 — définir la baseline
+## 12.3. Étape 3 — définir la baseline
 
 La baseline décrit l'état attendu :
 
@@ -2080,7 +2115,7 @@ La baseline décrit l'état attendu :
 
 Toute déviation devient analysable.
 
-## 13.4. Étape 4 — supprimer avant d'ajouter
+## 12.4. Étape 4 — supprimer avant d'ajouter
 
 Ordre efficace :
 
@@ -2092,7 +2127,7 @@ Ordre efficace :
 
 La simplicité améliore souvent la sécurité.
 
-## 13.5. Étape 5 — durcir progressivement
+## 12.5. Étape 5 — durcir progressivement
 
 Par exemple pour un service :
 
@@ -2107,7 +2142,7 @@ Par exemple pour un service :
 
 Tester après chaque étape.
 
-## 13.6. Étape 6 — contrôler systemd
+## 12.6. Étape 6 — contrôler systemd
 
 ```bash
 systemd-analyze security monservice.service
@@ -2115,7 +2150,7 @@ systemd-analyze security monservice.service
 
 Lire chaque recommandation et décider si elle est compatible avec le service.
 
-## 13.7. Étape 7 — audit automatisé
+## 12.7. Étape 7 — audit automatisé
 
 Des outils comme :
 
@@ -2128,7 +2163,7 @@ peuvent accélérer un audit.
 
 Ils ne remplacent pas le raisonnement : une recommandation générique peut être incorrecte pour le rôle de la machine.
 
-## 13.8. Étape 8 — documenter les exceptions
+## 12.8. Étape 8 — documenter les exceptions
 
 Exemple :
 
@@ -2142,7 +2177,7 @@ Revue : tous les 6 mois
 
 Une exception explicite est préférable à un privilège inexpliqué.
 
-## 13.9. Étape 9 — tester la récupération
+## 12.9. Étape 9 — tester la récupération
 
 Le plan doit répondre à :
 
@@ -2155,9 +2190,9 @@ Le plan doit répondre à :
 
 ---
 
-# 14. Projet continu et évaluation
+# 13. Projet continu et évaluation
 
-## 14.1. Projet
+## 13.1. Projet
 
 Durcir un serveur Linux hébergeant :
 
@@ -2168,7 +2203,7 @@ Durcir un serveur Linux hébergeant :
 
 L'infrastructure peut être réalisée en machines virtuelles ou sur un laboratoire isolé.
 
-## 14.2. Livrables
+## 13.2. Livrables
 
 ### 1. Modèle de menace
 
@@ -2231,7 +2266,7 @@ Simuler un incident bénin dans le laboratoire, par exemple :
 
 Le but est de démontrer la **détection et la réponse**, pas d'exploiter un système tiers.
 
-## 14.3. Évaluation indicative
+## 13.3. Évaluation indicative
 
 | Domaine | Pondération |
 |---|---:|
@@ -2244,7 +2279,7 @@ Le but est de démontrer la **détection et la réponse**, pas d'exploiter un sy
 | Sauvegarde et réponse à incident | 10 % |
 | Documentation et reproductibilité | 5 % |
 
-## 14.4. Questions de contrôle
+## 13.4. Questions de contrôle
 
 1. Pourquoi LUKS ne protège-t-il pas contre un processus autorisé sur une machine déjà déverrouillée ?
 2. Quelle différence entre une permission Unix, une capability et une politique AppArmor ?
