@@ -33,8 +33,11 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: true
+metadata_verifiees: false
 ---
+
+> [!info] Refonte
+> Cours développé le 31 août 2026 (d'environ 1 223 à 10 441 mots  remplacement complet du texte précédent)  vérifié le même jour : schéma  titres  liens et affirmations datées contrôlés. La version précédente reste dans l'historique git du dépôt.
 
 # Machine Learning — de la question métier au modèle exploité
 
@@ -43,7 +46,7 @@ metadata_verifiees: true
 
 Ce cours traite principalement du **machine learning classique** avec Python et scikit-learn. Il ne cherche pas à remplacer les cours spécialisés sur les réseaux de neurones, les Transformers ou les RAG. Il fournit le socle méthodologique qui reste indispensable dans ces domaines : définition de la cible, séparation entraînement/test, métriques, validation, lutte contre les fuites de données, reproductibilité et surveillance.
 
-Voir aussi : [[Python]], [[Numpy]], [[Pandas]], [[Mathplotlib]], [[Data Mining en Python]], [[cours CNN RNN]], [[cours Transformers]], [[Les RAGs]].
+Voir aussi : [[Python]], [[Numpy]], [[Pandas]], [[Mathplotlib]], [[Data Mining en Python]], [[Les CNN et RNN]], [[Les transformers]], [[Les RAGs]].
 
 > [!important] Version de référence
 > Au 31 août 2026, la documentation stable de scikit-learn est celle de **scikit-learn 1.9.0**, publié en juin 2026. La branche 1.10 est en développement. Les principes de ce cours sont volontairement plus stables que les détails d'API.
@@ -1884,7 +1887,7 @@ Solutions :
 - requête SQL + snapshot de source ;
 - checksum et manifeste.
 
-Voir aussi [[Git]] et la gestion des gros artifacts.
+Voir aussi [[git]] et la gestion des gros artifacts.
 
 # 111. Notebooks : utiles mais pas architecture de production
 
@@ -2784,8 +2787,8 @@ Les réflexes essentiels :
 - [[Mathplotlib]]
 - [[Data Mining en Python]]
 - [[notions d algèbre linéaire et de dérivation]]
-- [[cours CNN RNN]]
-- [[cours Transformers]]
+- [[Les CNN et RNN]]
+- [[Les transformers]]
 - [[Les RAGs]]
 - [[Règlement Général sur la Protection des Données (RGPD)]]
 

@@ -35,8 +35,11 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: true
+metadata_verifiees: false
 ---
+
+> [!info] Refonte
+> Cours développé le 31 août 2026 (d'environ 621 à 7 926 mots  remplacement complet du texte précédent)  vérifié le même jour : schéma  titres  liens et affirmations datées contrôlés. La version précédente reste dans l'historique git du dépôt.
 
 # Windows Subsystem for Linux 2 — WSL 2
 

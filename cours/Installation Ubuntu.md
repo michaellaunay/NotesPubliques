@@ -24,8 +24,12 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: true
+metadata_verifiees: false
 ---
+
+> [!info] Refonte
+> Cours développé le 31 août 2026 (d'environ 1 373 à 7 194 mots  remplacement complet du texte précédent)  vérifié le même jour : schéma  titres  liens et affirmations datées contrôlés. La version précédente reste dans l'historique git du dépôt. Élément non repris : la procédure pas à pas d'installation d'Ubuntu 22.04 (étapes 01 à 08 et 04 bis)  obsolète  n'est pas reprise.
+
 # Installation d'Ubuntu
 
 > [!abstract] Objectif
