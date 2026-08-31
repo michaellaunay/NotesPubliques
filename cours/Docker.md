@@ -22,7 +22,7 @@ auteurs:
   - Michaël Launay
 langue: fr
 date_creation: 2023-01-27
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -57,7 +57,7 @@ Voir aussi : [[Les namespaces Linux]], [[proc]], [[Sécurité avancée sous Linu
 - savoir dans quels cas Docker Compose suffit et dans quels cas un orchestrateur devient nécessaire.
 
 > [!note] Versions de référence
-> Au 29 août 2026, la branche stable de Docker Engine est la série **29**, avec Docker Engine **29.7.2** publié le 5 août 2026. Cette version embarque notamment BuildKit 0.32.2. Docker Compose **v5.5.0** a été publié le 17 août 2026. Les concepts du cours restent volontairement plus généraux que ces numéros de version.
+> Au 31 août 2026, la branche stable de Docker Engine est la série **29**, avec Docker Engine **29.7.2** publié le 5 août 2026. Cette version embarque notamment BuildKit 0.32.2. Docker Compose **v5.4.0** a été publié le 3 août 2026. Les concepts du cours restent volontairement plus généraux que ces numéros de version.
 
 # Sommaire
 
@@ -194,6 +194,74 @@ L'**Open Container Initiative (OCI)** standardise notamment :
 - la distribution des images.
 
 Docker n'est donc pas le seul outil capable de lire une image OCI.
+
+
+
+## 1.4 Du `docker run` au processus Linux : ce qui se passe réellement
+
+La définition « un conteneur est un processus isolé » est juste, mais elle reste abstraite tant que nous ne relions pas cette phrase à ce que fait réellement Docker. Prenons une commande banale :
+
+```bash
+docker run --rm -p 8080:80 nginx:alpine
+```
+
+À première vue, nous avons simplement demandé à Docker de démarrer Nginx. En réalité, plusieurs étapes se succèdent. Le client `docker` envoie d'abord une requête au daemon. Celui-ci vérifie si l'image demandée est disponible localement. Si elle ne l'est pas, il contacte le registry, récupère le manifeste correspondant à la plateforme, puis télécharge uniquement les blobs qui ne sont pas déjà présents dans le magasin de contenu local.
+
+Une fois l'image disponible, Docker prépare l'environnement d'exécution. Les couches en lecture seule de l'image sont assemblées avec une couche écrivable propre au nouveau conteneur. Le runtime crée ensuite les namespaces demandés : un nouveau namespace PID donne au processus une vue isolée de l'arbre des processus, un namespace mount lui fournit sa propre vue des montages, un namespace réseau lui donne ses interfaces, routes et sockets, etc. Des cgroups sont également configurés afin que l'utilisation CPU, mémoire et nombre de processus puissent être mesurés ou limités.
+
+Dans le cas du réseau `bridge`, une paire d'interfaces virtuelles de type `veth` est généralement créée. Une extrémité apparaît dans le namespace réseau du conteneur, souvent sous le nom `eth0`, tandis que l'autre reste du côté hôte et est reliée au bridge Docker. Le conteneur reçoit une adresse IP sur ce réseau. L'option `-p 8080:80` ajoute en plus les mécanismes nécessaires pour que les connexions reçues sur le port 8080 de l'hôte soient redirigées vers le port 80 du conteneur.
+
+Enfin, le runtime lance le processus défini par l'image. Dans notre exemple, Nginx devient le processus principal du conteneur. Il n'est pas exécuté dans un noyau différent : le noyau qui traite ses appels système est toujours celui de l'hôte Linux. Ce qui change est la **vue** que ce processus a du système et les droits dont il dispose.
+
+Nous pouvons le vérifier depuis l'hôte. Démarrons un conteneur :
+
+```bash
+docker run -d --name demo-nginx nginx:alpine
+```
+
+Puis demandons son PID vu par l'hôte :
+
+```bash
+docker inspect --format '{{.State.Pid}}' demo-nginx
+```
+
+Supposons que Docker retourne `18452`. Ce PID est un processus parfaitement normal pour le noyau de l'hôte :
+
+```bash
+ps -fp 18452
+cat /proc/18452/status | head
+```
+
+Depuis le conteneur, le même processus peut pourtant être vu comme PID 1 :
+
+```bash
+docker exec demo-nginx ps -o pid,ppid,comm
+```
+
+C'est un excellent exemple de la fonction des namespaces : ils ne créent pas un deuxième noyau ; ils créent plusieurs vues cohérentes d'une même ressource noyau.
+
+Nous pouvons pousser l'expérience plus loin avec les liens de namespaces dans `/proc` :
+
+```bash
+PID=$(docker inspect --format '{{.State.Pid}}' demo-nginx)
+ls -l /proc/$PID/ns
+```
+
+Nous retrouverons des entrées comme `mnt`, `net`, `pid`, `uts`, `ipc`, `user` ou `cgroup`. Ces liens peuvent être comparés à ceux du shell hôte. Deux processus qui affichent le même identifiant de namespace partagent la même instance de ce namespace ; des identifiants différents indiquent une vue isolée.
+
+Cette observation permet de comprendre une idée essentielle pour toute la suite du cours : **Docker n'invente pas l'isolation Linux, il orchestre des primitives du noyau et leur ajoute un format d'image, une API, un moteur de build, une gestion réseau et stockage, un registry et une ergonomie cohérente**.
+
+### Le cas de Docker Desktop
+
+Sur un hôte Linux, les conteneurs Linux peuvent utiliser directement le noyau de l'hôte. Sur macOS ou Windows, ce modèle ne peut pas fonctionner exactement de la même manière, puisque le noyau hôte n'est pas Linux. Docker Desktop fournit donc un environnement Linux virtualisé. Sous Windows, le backend WSL2 est un mode courant. Les conteneurs Linux tournent dans cet environnement Linux, puis Docker Desktop fournit l'intégration avec les fichiers, le réseau et l'interface du système hôte.
+
+Il faut garder ce point en tête lorsqu'un comportement diffère entre « Docker sous Linux » et « Docker Desktop ». Le code applicatif peut être identique, mais le chemin I/O, les montages de fichiers et le réseau traversent des couches différentes.
+
+### Pourquoi cette compréhension est utile en diagnostic
+
+Cette architecture donne une méthode de raisonnement. Si une application fonctionne dans l'image mais pas dans le conteneur, nous devons nous demander quelle configuration d'exécution change : utilisateur, volume, réseau, variables, capabilities, limites de ressources ou processus principal. Si elle fonctionne dans le conteneur mais n'est pas accessible depuis l'extérieur, le problème se situe probablement dans l'écoute du processus, le réseau du conteneur ou la publication du port. Si un fichier « disparaît » après recréation, il faut distinguer couche écrivable et stockage persistant.
+
+Autrement dit, comprendre le chemin `image → configuration → namespaces/cgroups → processus` évite de traiter Docker comme une boîte noire.
 
 # 2. Architecture Docker
 
@@ -517,6 +585,73 @@ docker system prune -a --volumes
 
 peut supprimer beaucoup de données. Toujours comprendre son effet avant de l'exécuter.
 
+
+
+## 5.13 `attach`, `exec` et shells : trois opérations différentes
+
+Les débutants utilisent souvent `docker exec -it ... sh` comme si « entrer dans un conteneur » était l'opération fondamentale. Cette formulation est pratique, mais elle masque une différence importante entre trois mécanismes : **attacher notre terminal au processus principal**, **créer un nouveau processus dans les mêmes namespaces**, et **démarrer un nouveau conteneur**.
+
+Considérons :
+
+```bash
+docker run -d --name web nginx:alpine
+```
+
+Le processus principal de `web` est celui défini par l'image Nginx. Lorsque nous exécutons :
+
+```bash
+docker attach web
+```
+
+Docker connecte notre terminal aux flux standard du processus principal existant. Aucun nouveau shell n'est créé. Pour un serveur qui écrit ses logs sur stdout, nous verrons donc ces logs. Si le processus principal lit stdin, nos entrées peuvent lui être transmises. Il faut être prudent : selon le programme et la manière dont nous nous détachons, nous pouvons envoyer des signaux au processus principal.
+
+À l'inverse :
+
+```bash
+docker exec -it web sh
+```
+
+crée **un nouveau processus** `sh` dans les namespaces et avec la configuration du conteneur déjà démarré. Le shell n'est pas « le conteneur » : il s'agit simplement d'un processus supplémentaire. Si nous quittons ce shell, Nginx continue de tourner.
+
+Cette distinction explique pourquoi `docker exec` n'est pas disponible sur un conteneur arrêté : il faut un environnement d'exécution actif dans lequel lancer le nouveau processus.
+
+Enfin :
+
+```bash
+docker run --rm -it nginx:alpine sh
+```
+
+crée un **nouveau conteneur** à partir de l'image et remplace la commande par défaut par `sh`. Ce shell ne vit pas dans le conteneur `web` précédent ; il reçoit sa propre couche écrivable, son propre namespace PID et, selon les options, son propre réseau.
+
+Une expérience simple permet de bien voir la différence :
+
+```bash
+# Conteneur A
+docker run -d --name a alpine sleep 1d
+
+# Deux processus supplémentaires dans A
+docker exec -d a sleep 600
+docker exec -d a sleep 900
+
+docker top a
+```
+
+Le conteneur A contient alors plusieurs processus, même si un seul a été lancé comme processus principal. Cela montre aussi pourquoi « un conteneur = un processus » est une simplification. Une formulation plus précise serait : **un conteneur possède un processus principal qui détermine son cycle de vie, mais il peut contenir plusieurs processus partageant le même ensemble d'isolation**.
+
+### Pourquoi éviter de réparer un conteneur à la main
+
+`docker exec` est excellent pour diagnostiquer : lire un fichier, tester une résolution DNS, exécuter `ps`, vérifier une variable ou interroger un endpoint local. En revanche, installer manuellement un paquet dans un conteneur en production est généralement une mauvaise pratique :
+
+```bash
+docker exec -it api sh
+apt-get update
+apt-get install ...
+```
+
+La modification vit uniquement dans la couche écrivable de cette instance. Elle n'est ni décrite par le Dockerfile ni reproductible sur la prochaine machine. Au prochain `docker compose up --force-recreate`, déploiement ou remplacement du conteneur, le « correctif » disparaît.
+
+Le bon réflexe est donc : diagnostiquer éventuellement avec `exec`, puis corriger le Dockerfile, la configuration ou l'image et reconstruire un artefact versionné.
+
 # 6. Cycle de vie et PID 1
 
 ## 6.1 Le processus principal
@@ -746,6 +881,117 @@ Le secret peut toujours être présent dans une couche précédente.
 
 Il faut utiliser les **secrets BuildKit**.
 
+
+
+## 8.5 Comprendre réellement les couches, le cache et le copy-on-write
+
+Les couches sont souvent présentées comme un détail interne servant seulement à réduire la taille des téléchargements. Elles influencent pourtant directement la vitesse des builds, le partage des images, la sécurité et la manière de structurer un Dockerfile.
+
+Imaginons un Dockerfile pédagogique :
+
+```dockerfile
+FROM python:3.14-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "app.py"]
+```
+
+Nous pouvons le lire comme une succession de transformations. `FROM` fournit un état de départ. `COPY requirements.txt` ajoute un nouvel ensemble de fichiers. `RUN pip install ...` produit un nouvel état du système de fichiers contenant les dépendances installées. Le second `COPY` ajoute le code de l'application. BuildKit ne raisonne pas uniquement en « lignes » ; il construit un graphe de dépendances et utilise des clés de cache dérivées de l'opération et de ses entrées.
+
+Cela explique une optimisation classique : les fichiers qui changent rarement doivent être introduits avant les fichiers qui changent souvent. Si nous copions tout le projet avant d'installer les dépendances :
+
+```dockerfile
+COPY . .
+RUN pip install -r requirements.txt
+```
+
+une simple modification de `README.md` ou d'un fichier Python peut invalider l'étape `COPY`, puis toutes les opérations qui en dépendent. En copiant d'abord le lockfile ou la liste de dépendances, nous conservons le cache de l'installation tant que ces fichiers restent identiques.
+
+### Les couches sont partagées
+
+Deux images construites depuis la même base ne dupliquent pas nécessairement toutes les données sur disque. Les blobs sont adressés par contenu et peuvent être partagés. De la même façon, un pull n'a pas besoin de télécharger une couche déjà disponible localement.
+
+Cette propriété explique les messages de type :
+
+```text
+Already exists
+```
+
+lors d'un `docker pull`. Elle explique aussi pourquoi une base commune peut améliorer l'efficacité d'un parc d'images, même si ce critère ne doit pas conduire à conserver une image de base obsolète uniquement pour économiser quelques blobs.
+
+### La couche écrivable d'un conteneur
+
+Au démarrage, les couches de l'image restent en lecture seule. Docker ajoute une couche écrivable propre au conteneur. Lorsqu'un programme modifie un fichier venant d'une couche inférieure, le mécanisme d'union doit présenter une version modifiée dans la couche supérieure. C'est le principe général du **copy-on-write**.
+
+Il faut distinguer cette couche écrivable d'un volume. Si nous faisons :
+
+```bash
+docker run --name db postgres:18
+```
+
+et que des données importantes sont écrites uniquement dans le système de fichiers du conteneur, elles restent couplées à cette instance. Supprimer le conteneur supprime sa couche écrivable. Une base de données doit donc utiliser un volume ou un stockage explicitement géré.
+
+### Pourquoi `docker commit` n'est pas une méthode de build
+
+Il est techniquement possible de transformer l'état d'un conteneur en image :
+
+```bash
+docker commit mon-conteneur mon-image:test
+```
+
+Cette commande peut être utile dans certains cas de forensic ou d'expérimentation, mais elle ne remplace pas un Dockerfile. Un Dockerfile explique comment reconstruire l'image ; `docker commit` capture un résultat sans fournir une recette fiable, relisible et versionnée.
+
+### Un secret supprimé peut rester dans une couche
+
+Considérons :
+
+```dockerfile
+COPY private-key /tmp/private-key
+RUN utiliser /tmp/private-key
+RUN rm /tmp/private-key
+```
+
+La suppression intervient dans une couche ultérieure. Le fichier n'est plus visible dans la vue finale, mais le blob de la couche qui l'a introduit peut encore contenir ses octets. C'est pourquoi la sécurité des secrets de build doit être pensée **avant** le build, pas corrigée avec un `rm` après coup.
+
+BuildKit fournit des montages secrets temporaires :
+
+```dockerfile
+# syntax=docker/dockerfile:1
+RUN --mount=type=secret,id=pypi_token \
+    TOKEN=$(cat /run/secrets/pypi_token) && \
+    outil-qui-utilise-le-token "$TOKEN"
+```
+
+puis :
+
+```bash
+docker buildx build --secret id=pypi_token,src=./token.txt .
+```
+
+Le secret est fourni à l'opération qui en a besoin sans devenir un fichier permanent de la couche résultante.
+
+### Observer l'histoire sans la confondre avec le stockage réel
+
+Nous pouvons inspecter l'histoire déclarative :
+
+```bash
+docker history mon-image:1.0
+```
+
+et la configuration :
+
+```bash
+docker image inspect mon-image:1.0
+```
+
+Mais une image OCI moderne est mieux comprise comme un ensemble de blobs de contenu + manifestes + configuration que comme une pile naïve de snapshots complets. Cette nuance devient importante lorsqu'on travaille avec BuildKit, les builds multi-plateformes ou les attestations.
+
+### Les anciens storage drivers
+
+Les anciens cours Docker détaillaient longuement AUFS, devicemapper, Btrfs ou ZFS. Cette histoire reste utile pour comprendre l'évolution de Docker, mais sur un Linux moderne OverlayFS/`overlay2` est le chemin courant. Le choix d'un storage driver ne doit pas être traité comme un réglage que l'on change arbitrairement sur une machine existante : le stockage local des images et conteneurs en dépend.
+
 # 9. `.dockerignore`
 
 Le contexte de build est ce que le client rend disponible au builder.
@@ -968,6 +1214,106 @@ sauf besoin réellement justifié.
 
 Compose ou un orchestrateur permet généralement de séparer ces responsabilités.
 
+
+
+## 12.4 Concevoir le Dockerfile comme un pipeline reproductible
+
+Un bon Dockerfile n'est pas simplement une suite de commandes shell copiées depuis une procédure d'installation. Il doit répondre à plusieurs objectifs en même temps : produire toujours le même type d'artefact, exploiter le cache, limiter la surface d'attaque, ne pas embarquer les outils de build inutiles et rester compréhensible lors d'un incident.
+
+Prenons une application Python. Une première version naïve pourrait être :
+
+```dockerfile
+FROM python:3.14
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+```
+
+Elle peut fonctionner, mais plusieurs questions apparaissent : avons-nous besoin d'une image complète plutôt que `slim` ? Les dépendances sont-elles verrouillées ? Le cache sera-t-il invalidé à chaque modification du code ? Le processus tourne-t-il en root ? Le contexte de build contient-il `.git`, des clés ou des fichiers de développement ?
+
+Une version de production peut séparer les responsabilités :
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM python:3.14-slim AS builder
+
+WORKDIR /build
+COPY requirements.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip wheel --wheel-dir /wheels -r requirements.txt
+
+FROM python:3.14-slim AS runtime
+
+RUN useradd --system --uid 10001 --create-home app
+WORKDIR /app
+
+COPY --from=builder /wheels /wheels
+RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
+COPY --chown=10001:10001 . .
+
+USER 10001
+CMD ["python", "app.py"]
+```
+
+Le stage `builder` peut contenir des compilateurs ou caches qui ne seront pas présents dans l'image finale. Le stage `runtime` ne récupère que les artefacts nécessaires. Cette approche réduit souvent la taille, mais son intérêt principal est surtout de **séparer l'environnement de fabrication de l'environnement d'exécution**.
+
+### Taille minimale ne veut pas dire sécurité maximale
+
+Une image minuscule est attractive, mais il faut raisonner en exploitation. Une base exotique ou presque vide peut compliquer les correctifs, les certificats, les locales, l'observabilité ou l'analyse des vulnérabilités. Une image de base maintenue, comprise par l'équipe et régulièrement reconstruite est souvent préférable à une quête abstraite du plus petit nombre de mégaoctets.
+
+### Rebuild plutôt que patch manuel
+
+Le modèle Docker encourage l'immutabilité de l'artefact : lorsqu'un paquet système reçoit un correctif de sécurité, nous ne devons pas entrer dans chaque conteneur et lancer une mise à jour. Nous reconstruisons l'image à partir d'une base corrigée, exécutons les tests, produisons un nouveau digest puis remplaçons les conteneurs.
+
+Cette logique rapproche le runtime d'une chaîne de livraison classique :
+
+```text
+sources + lockfiles + Dockerfile
+            ↓
+          build
+            ↓
+         tests/scans
+            ↓
+      image identifiée
+            ↓
+         registry
+            ↓
+        déploiement
+```
+
+Le résultat intéressant n'est donc pas « un serveur configuré », mais **un artefact reproductible et traçable**.
+
+### Cache local, cache CI et cache distant
+
+Sur le poste du développeur, BuildKit réutilise naturellement son cache local. En CI, un runner jetable peut repartir sans cache à chaque exécution. Buildx permet d'importer et d'exporter des caches selon différents backends. La bonne stratégie dépend du système CI, du registry et du coût de reconstruction.
+
+L'objectif n'est pas de conserver le cache à tout prix. Un cache compromis ou incohérent ne doit jamais devenir plus important que la reproductibilité du build. Le cache est une optimisation : les sources, versions et lockfiles doivent rester la vérité de référence.
+
+### `ARG`, `ENV` et secrets : trois besoins distincts
+
+Un `ARG` sert à paramétrer le build :
+
+```dockerfile
+ARG APP_VERSION
+```
+
+Un `ENV` configure l'environnement de l'image ou fournit une valeur par défaut au runtime :
+
+```dockerfile
+ENV APP_ENV=production
+```
+
+Un secret doit passer par un mécanisme dédié. Utiliser :
+
+```dockerfile
+ARG PASSWORD
+```
+
+n'en fait pas un secret. Selon la chaîne de build, des paramètres peuvent se retrouver dans l'historique ou les attestations. De même, un `ENV API_TOKEN=...` devient une propriété persistante de l'image.
+
+Cette séparation conceptuelle évite une grande partie des fuites accidentelles dans les images.
+
 # 13. Volumes et persistance
 
 Docker distingue plusieurs mécanismes.
@@ -1085,6 +1431,106 @@ chmod -R 777 ...
 
 qui masquent le problème au lieu de le résoudre.
 
+
+
+## 14.1 Persistance, permissions et identité : raisonner avec l'hôte
+
+Les problèmes de volumes sont rarement des problèmes « Docker » au sens abstrait. Ils sont souvent la rencontre entre deux mondes : les chemins et identités visibles dans le conteneur, et les fichiers réellement stockés quelque part sur l'hôte.
+
+Prenons un bind mount :
+
+```bash
+docker run --rm \
+  --mount type=bind,src="$PWD/data",dst=/data \
+  mon-image
+```
+
+Le répertoire `/data` du conteneur correspond directement à `./data` sur l'hôte. Si le processus du conteneur tourne avec l'UID 10001 et crée `/data/result.txt`, le noyau écrit ce fichier avec l'identité effective du processus. Sur l'hôte, nous pouvons donc voir un propriétaire numérique `10001`, même si aucun compte humain portant ce nom n'existe dans `/etc/passwd` de l'hôte.
+
+C'est une conséquence importante : **les noms d'utilisateurs sont une présentation ; le contrôle d'accès du système de fichiers repose d'abord sur les UID/GID numériques**.
+
+Cette réalité provoque des erreurs classiques en développement. L'image définit :
+
+```dockerfile
+USER 10001
+```
+
+puis Compose monte le dépôt local :
+
+```yaml
+volumes:
+  - .:/app
+```
+
+Si les fichiers du dépôt n'autorisent pas l'UID 10001 à écrire, l'application échoue. La mauvaise solution consiste souvent à lancer le conteneur en root ou à faire un `chmod -R 777`. La bonne solution dépend du besoin : le code doit-il réellement être modifié par le conteneur ? peut-on monter le dépôt en lecture seule ? doit-on faire correspondre l'UID de développement ? un volume nommé serait-il plus approprié pour les données écrites ?
+
+### Volume nommé ou bind mount ?
+
+Un bind mount est excellent lorsque l'hôte doit connaître l'emplacement et manipuler directement les fichiers : code source en développement, fichier de configuration administré avec Git, certificat fourni par l'hôte, répertoire d'import/export.
+
+Un volume nommé convient bien lorsque Docker doit gérer la durée de vie d'un ensemble de données sans que l'application dépende d'un chemin hôte particulier : données PostgreSQL, état applicatif, cache durable explicitement voulu.
+
+```bash
+docker volume create pgdata
+
+docker run --rm \
+  --mount type=volume,src=pgdata,dst=/var/lib/postgresql/data \
+  postgres:18
+```
+
+Le volume n'est pas « dans le conteneur ». Il possède sa propre durée de vie. Supprimer le conteneur ne le supprime pas automatiquement.
+
+Nous pouvons l'observer :
+
+```bash
+docker volume inspect pgdata
+```
+
+mais nous devons éviter de dépendre directement de l'implémentation interne du chemin `_data` pour construire notre stratégie de sauvegarde. Les opérations de backup doivent être explicites et testées.
+
+### Sauvegarder un volume ne signifie pas copier des fichiers à chaud
+
+Pour un répertoire de fichiers statiques, une archive peut suffire :
+
+```bash
+docker run --rm \
+  --mount type=volume,src=uploads,dst=/source,readonly \
+  --mount type=bind,src="$PWD/backups",dst=/backup \
+  alpine \
+  tar czf /backup/uploads.tgz -C /source .
+```
+
+Pour une base de données active, copier brutalement ses fichiers peut produire un backup incohérent. Il faut utiliser les mécanismes prévus par le moteur : dump logique, snapshot coordonné, outil de backup physique ou arrêt contrôlé selon le SGBD.
+
+Le cours Docker doit donc séparer deux questions : **où persistent les données ?** et **comment obtient-on une sauvegarde restaurable ?** Un volume répond surtout à la première.
+
+### Écriture temporaire avec `tmpfs`
+
+Certaines écritures ne doivent survivre ni à l'image ni au conteneur. Un montage `tmpfs` convient aux données temporaires :
+
+```bash
+docker run --rm \
+  --tmpfs /tmp:rw,noexec,nosuid,size=128m \
+  mon-image
+```
+
+Cette approche peut aussi être utile avec un root filesystem en lecture seule. Nous rendons l'image immuable au runtime et n'autorisons l'écriture que dans quelques emplacements explicitement prévus.
+
+### Les user namespaces modifient la correspondance des UID
+
+Avec `userns-remap` ou le mode rootless, l'UID visible dans le conteneur peut être traduit vers un autre UID sur l'hôte. Cette couche de mapping réduit l'impact d'un processus qui croit être `root` dans son namespace, mais elle rend l'analyse des permissions plus subtile.
+
+Il faut alors observer les mappings :
+
+```bash
+cat /proc/self/uid_map
+cat /proc/self/gid_map
+```
+
+ou ceux du PID concerné depuis l'hôte. La question n'est plus seulement « quel UID vois-je dans le conteneur ? », mais « vers quelle identité de l'hôte cet UID est-il mappé ? ».
+
+Cette compréhension est particulièrement importante pour les bind mounts et les systèmes de fichiers partagés.
+
 # 15. Réseaux Docker
 
 ## 15.1 Réseau bridge par défaut
@@ -1189,6 +1635,111 @@ Bon :
 ```text
 DB_HOST=db
 ```
+
+
+
+## 16.1 Suivre un paquet réseau de bout en bout
+
+Le réseau Docker devient beaucoup plus simple lorsque nous suivons le trajet d'une connexion plutôt que d'apprendre une liste de commandes. Imaginons un conteneur `web` relié à un réseau bridge utilisateur et publiant son port 8000 sur `127.0.0.1:8080`.
+
+Dans le conteneur, l'application doit d'abord écouter sur une adresse accessible depuis son namespace réseau. Une erreur très fréquente consiste à démarrer un serveur sur :
+
+```text
+127.0.0.1:8000
+```
+
+Cette adresse désigne la loopback **du conteneur**. Le port publié par Docker ne peut pas magiquement rendre une application accessible si elle n'écoute que sur cette interface. Pour un service destiné à recevoir des connexions provenant du réseau du conteneur, l'application écoute généralement sur :
+
+```text
+0.0.0.0:8000
+```
+
+ou l'adresse appropriée dans le namespace.
+
+Le conteneur possède typiquement une interface `eth0`, qui correspond à une extrémité d'une paire `veth`. L'autre extrémité est visible sur l'hôte. Sur un bridge utilisateur, Docker raccorde ces interfaces à un bridge Linux géré par le daemon. Les conteneurs du même réseau peuvent alors communiquer et bénéficier d'une résolution DNS par nom de service.
+
+Nous pouvons examiner les informations depuis Docker :
+
+```bash
+docker network inspect mon-reseau
+```
+
+et, côté hôte, avec les outils Linux classiques :
+
+```bash
+ip link
+ip addr
+ip route
+```
+
+Le point important est que Docker ne remplace pas le réseau Linux : il configure automatiquement namespaces, interfaces virtuelles, bridges, routes et règles de filtrage.
+
+### Publication d'un port
+
+Avec :
+
+```bash
+docker run -p 127.0.0.1:8080:8000 ...
+```
+
+nous déclarons que le port 8080 de l'hôte doit permettre d'atteindre le port 8000 du conteneur. Le fait de préciser `127.0.0.1` limite l'écoute à la machine locale, ce qui est très différent de :
+
+```bash
+docker run -p 8080:8000 ...
+```
+
+qui peut publier le port sur davantage d'interfaces de l'hôte selon la configuration.
+
+`EXPOSE 8000` dans le Dockerfile ne crée aucune de ces règles. `EXPOSE` documente l'intention de l'image ; `-p` ou la section `ports` de Compose configure l'exposition réelle.
+
+### Communication entre services Compose
+
+Supposons :
+
+```yaml
+services:
+  api:
+    ...
+  db:
+    image: postgres:18
+```
+
+Si `api` et `db` partagent le même réseau Compose, l'API doit généralement joindre la base avec :
+
+```text
+db:5432
+```
+
+et non `localhost:5432`. Dans le conteneur `api`, `localhost` désigne `api` lui-même. Le nom `db` est résolu par le DNS fourni sur le réseau Compose.
+
+Cette distinction explique un grand nombre de pannes : une configuration copiée depuis un environnement non conteneurisé continue d'utiliser `127.0.0.1`, alors que les deux services sont désormais dans deux namespaces réseau distincts.
+
+### Méthode de diagnostic réseau
+
+Lorsqu'une connexion échoue, procéder par couches :
+
+1. le processus tourne-t-il ?
+2. écoute-t-il sur le bon port et la bonne adresse dans le conteneur ?
+3. les deux services partagent-ils un réseau ?
+4. le nom DNS se résout-il ?
+5. la connexion fonctionne-t-elle depuis un conteneur du même réseau ?
+6. si l'accès vient de l'hôte, le port est-il publié ?
+7. si l'accès vient d'une autre machine, l'interface de publication et le pare-feu de l'hôte l'autorisent-ils ?
+
+Exemples :
+
+```bash
+docker compose ps
+docker compose logs api
+docker network inspect projet_backend
+docker exec api getent hosts db
+```
+
+Selon l'image, les outils de diagnostic comme `curl`, `ss` ou `ping` peuvent ne pas être installés. Il peut alors être préférable de lancer un conteneur de diagnostic temporaire sur le même réseau plutôt que d'alourdir l'image de production uniquement pour ces outils.
+
+### Réseau interne et réduction de surface
+
+Une base de données utilisée uniquement par l'API n'a généralement aucune raison d'être publiée sur l'hôte. Un réseau Compose `internal: true` peut renforcer cette intention architecturale. Cela ne dispense pas de l'authentification de la base ni du filtrage de l'hôte, mais réduit les chemins accidentels d'exposition.
 
 # 17. Limites de ressources
 
@@ -1423,6 +1974,100 @@ Selon l'environnement, utiliser :
 - erreurs ;
 - processus enfants.
 
+
+
+## 23.4 Construire un modèle de menace Docker
+
+Le durcissement Docker devient plus cohérent lorsque nous partons des frontières de confiance. Plusieurs actifs sont en jeu : l'hôte, le daemon, les images, les secrets, le registry, les données persistantes et les services réseau.
+
+Le risque le plus important est souvent oublié : un conteneur n'est pas une frontière équivalente à une machine virtuelle. Un processus compromis reste un processus qui parle au même noyau Linux que le reste de l'hôte. Les namespaces, capabilities, seccomp et LSM réduisent fortement sa vue et ses possibilités, mais la sécurité dépend toujours du noyau et de la configuration.
+
+Nous devons donc empiler plusieurs protections plutôt que chercher une option magique.
+
+### Première couche : réduire les privilèges du processus
+
+Une image de service n'a généralement aucune raison de démarrer en root :
+
+```dockerfile
+RUN useradd --system --uid 10001 app
+USER 10001
+```
+
+Au runtime, nous pouvons retirer les capabilities :
+
+```bash
+docker run --cap-drop=ALL ...
+```
+
+puis réintroduire seulement une capability explicitement nécessaire. Il faut éviter le réflexe inverse : `--privileged` parce qu'une opération échoue. Cette option ouvre largement l'accès aux périphériques et neutralise plusieurs mécanismes d'isolation ; elle doit être traitée comme une exception d'infrastructure très justifiée.
+
+### Deuxième couche : réduire ce que le processus peut modifier
+
+Un root filesystem en lecture seule transforme de nombreuses persistance malveillantes ou erreurs applicatives en échecs visibles :
+
+```bash
+docker run --read-only --tmpfs /tmp ...
+```
+
+Les bind mounts de configuration peuvent être montés `readonly`. Les répertoires de l'hôte ne doivent être exposés que s'ils sont nécessaires. Monter `/`, `/var/run` ou le socket Docker dans un service revient souvent à donner au conteneur une capacité de contrôle bien plus large que son rôle fonctionnel.
+
+### Troisième couche : conserver seccomp et le LSM
+
+Docker fournit un profil seccomp par défaut et peut s'intégrer à AppArmor ou SELinux selon la distribution. Désactiver ces mécanismes pour « faire fonctionner » une application doit déclencher une investigation : quel appel ou accès précis est bloqué ? pouvons-nous adapter la politique au lieu de supprimer la barrière entière ?
+
+Le même raisonnement vaut pour :
+
+```yaml
+security_opt:
+  - no-new-privileges:true
+```
+
+qui empêche le processus et ses descendants d'acquérir de nouveaux privilèges via des mécanismes comme certains binaires setuid.
+
+### Rootless et `userns-remap`
+
+Le mode rootless exécute le daemon et les conteneurs dans un user namespace non privilégié. Cela réduit la conséquence potentielle d'une compromission du daemon ou du runtime. Il ne transforme pas pour autant chaque conteneur en sandbox parfaite : les restrictions propres au rootless, les mappings UID/GID, le réseau et les volumes doivent être compris et testés.
+
+`userns-remap` est différent : le daemon rootful reste privilégié, mais les utilisateurs des conteneurs sont mappés vers une plage non privilégiée sur l'hôte. Les deux mécanismes partagent l'idée des user namespaces mais ne déplacent pas la même frontière de privilège.
+
+### Le socket Docker comme API root
+
+Monter :
+
+```yaml
+volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
+```
+
+dans un conteneur de CI, d'administration ou de monitoring est extrêmement puissant. Un processus capable d'utiliser librement cette API peut demander au daemon rootful de créer un conteneur privilégié ou de monter le filesystem de l'hôte.
+
+Il faut donc considérer ce socket comme une API d'administration du système, pas comme une simple socket applicative.
+
+### Sécurité de l'image et supply chain
+
+Même un runtime parfaitement durci peut exécuter une image vulnérable ou compromise. Il faut donc également contrôler la fabrication de l'artefact :
+
+- base maintenue et provenance connue ;
+- dépendances verrouillées ;
+- build sans secret persistant ;
+- scan de vulnérabilités ;
+- SBOM ;
+- attestation de provenance ;
+- registry et droits de push maîtrisés ;
+- déploiement par tag immuable ou digest selon les exigences.
+
+BuildKit sait attacher des attestations SBOM et de provenance aux images. La SBOM décrit les composants ; la provenance décrit comment l'artefact a été construit. Elles améliorent la traçabilité, mais ne remplacent ni la revue du Dockerfile ni les tests de sécurité.
+
+Une chaîne de confiance réaliste ne pose donc pas uniquement la question « l'image contient-elle une CVE ? ». Elle demande aussi : **qui peut publier sous ce nom ? quel commit a produit ce digest ? quelles dépendances ont été utilisées ? quel environnement a construit l'image ?**
+
+### Politique de sortie réseau et secrets
+
+Les secrets de runtime ne doivent être fournis qu'aux services qui en ont besoin. Une application compromise qui possède un token puissant et un accès réseau sortant illimité peut exfiltrer des données même si son filesystem est en lecture seule.
+
+Dans les environnements à haut niveau d'exigence, il faut donc penser aussi segmentation réseau, permissions du secret, rotation, durée de vie des jetons et journalisation des accès.
+
+Cette approche par menace évite une checklist purement décorative : chaque option de sécurité doit protéger un actif précis contre une capacité d'attaque identifiée.
+
 # 24. Docker Compose
 
 Docker Compose décrit une application multi-conteneurs dans un fichier YAML.
@@ -1440,7 +2085,7 @@ et non l'ancien binaire Python :
 docker-compose
 ```
 
-Au 29 août 2026, Docker Compose v5.5.0 est la version stable récente.
+Au 31 août 2026, Docker Compose v5.4.0 est la version stable récente vérifiée.
 
 ## 24.1 Fichier `compose.yaml`
 
@@ -1609,6 +2254,81 @@ docker compose \
   -f compose.dev.yaml \
   config
 ```
+
+
+
+## 24.8 Compose comme description d'une application, pas comme script de démarrage
+
+Un fichier Compose est plus facile à maintenir si nous le considérons comme la **description déclarative d'un ensemble de services** plutôt que comme une traduction YAML d'une longue suite de `docker run`.
+
+Chaque service répond à plusieurs questions : de quelle image ou quel build dépend-il ? quelles données persistantes utilise-t-il ? à quels réseaux appartient-il ? quelles variables et quels secrets reçoit-il ? quelles ressources ou politiques de sécurité lui sont appliquées ? comment peut-on vérifier qu'il est en bonne santé ?
+
+Prenons une application classique : navigateur → reverse proxy → API → base de données. Une modélisation saine pourrait créer deux réseaux :
+
+```text
+frontend : proxy <-> api
+backend  : api   <-> db
+```
+
+Le proxy n'a pas besoin d'accéder directement à la base ; la base n'a pas besoin d'être publiée sur l'hôte. La topologie du fichier Compose devient alors une partie de la documentation d'architecture.
+
+### `depends_on` décrit un ordre, pas la robustesse métier
+
+Même avec :
+
+```yaml
+depends_on:
+  db:
+    condition: service_healthy
+```
+
+l'API doit savoir gérer une coupure ultérieure de la base. Une base peut être healthy au démarrage puis redémarrer dix minutes plus tard. La résilience appartient donc aussi à l'application : timeout, retry, backoff, reconnexion et comportement dégradé.
+
+Cette idée est générale : un orchestrateur peut décider **quand** démarrer un processus, mais il ne peut pas rendre un protocole applicatif tolérant aux pannes à la place du code.
+
+### Variables et interpolation
+
+Compose peut interpoler des variables venant de l'environnement ou d'un fichier `.env`. Cela est pratique pour des valeurs non sensibles : nom de projet, port de développement, tag d'image ou URL publique. Il ne faut pas en déduire que `.env` est un coffre de secrets. Un fichier contenant des mots de passe doit être protégé, exclu de Git et idéalement remplacé par un mécanisme de secrets adapté à l'environnement de déploiement.
+
+Avant un déploiement, cette commande est extrêmement utile :
+
+```bash
+docker compose config
+```
+
+Elle permet d'afficher la configuration résultante après interpolation et fusion des fichiers. C'est souvent le moyen le plus rapide de détecter une variable vide, un override inattendu ou une erreur de structure.
+
+### `up`, `run` et `exec`
+
+Les trois commandes répondent à des besoins différents :
+
+```bash
+docker compose up -d
+```
+
+converge le projet vers l'état décrit par Compose ;
+
+```bash
+docker compose run --rm api python -m myapp.migrate
+```
+
+crée un conteneur ponctuel basé sur la définition du service ;
+
+```bash
+docker compose exec api sh
+```
+
+lance un processus supplémentaire dans le conteneur `api` déjà actif.
+
+Pour une migration de base de données, `run --rm` peut être préférable lorsque nous voulons une tâche éphémère indépendante du processus serveur. Pour un diagnostic d'une instance déjà démarrée, `exec` est plus approprié.
+
+### Compose en production : ni interdit, ni magique
+
+Il est courant d'entendre deux affirmations excessives : « Compose est uniquement pour le développement » ou, à l'inverse, « Compose remplace un orchestrateur ». Aucune n'est satisfaisante.
+
+Sur un hôte unique, Compose peut fournir une solution de production très compréhensible : fichiers versionnés, réseaux, volumes, healthchecks, politiques de redémarrage et mises à jour simples. Pour de nombreux services internes ou applications de taille modérée, cette simplicité est une qualité.
+
+Lorsque les exigences deviennent multi-nœuds — placement, rescheduling sur une autre machine, autoscaling, rolling update distribué, découverte de services de cluster — il faut évaluer un orchestrateur. La bonne architecture est celle qui répond au besoin opérationnel avec le niveau de complexité que l'équipe sait exploiter.
 
 # 25. Compose en production : limites
 
@@ -2214,6 +2934,84 @@ docker compose ps
 docker compose logs -f
 docker compose down
 ```
+
+
+
+## 39.4 Lire ce projet comme un flux de production
+
+L'intérêt de l'exemple précédent n'est pas seulement sa syntaxe. Il montre comment les différents concepts du cours se combinent.
+
+Le proxy est le seul service dont un port est publié. Cela crée une frontière nette : l'utilisateur entre par le proxy, mais ne peut pas joindre directement l'API ou la base depuis l'extérieur. Le réseau `frontend` permet au proxy de contacter `api`; le réseau `backend` permet à l'API de joindre `db`. Comme la base n'est pas membre de `frontend`, le proxy ne possède même pas de chemin réseau direct vers elle.
+
+L'API utilise `read_only: true`. Cela oblige l'application à déclarer explicitement les emplacements qui doivent rester écrivable, ici `/tmp` via `tmpfs`. Cette contrainte est utile : une application qui essaie soudainement d'écrire dans son code ou dans `/etc` échouera au lieu de modifier silencieusement le conteneur.
+
+`cap_drop: [ALL]` et `no-new-privileges:true` réduisent encore les privilèges. Dans un vrai projet, nous ne devons pas appliquer ces options mécaniquement : nous testons l'application et réintroduisons uniquement la capability réellement nécessaire, s'il y en a une.
+
+Le mot de passe de base est monté comme fichier secret et référencé par `*_PASSWORD_FILE`. Il ne se trouve ni dans l'image ni directement dans la valeur d'une variable Compose. Cette approche reste un secret fichier local et doit être protégée sur l'hôte, mais elle évite plusieurs erreurs fréquentes.
+
+Le healthcheck de l'API permet au proxy d'attendre une condition plus riche que « le processus a été créé ». Le healthcheck de PostgreSQL vérifie de son côté que le serveur accepte des connexions. Ces tests doivent rester courts et représentatifs ; un healthcheck qui effectue une opération métier lourde toutes les cinq secondes peut lui-même créer une charge indésirable.
+
+### Construire et identifier l'image
+
+En développement :
+
+```bash
+docker compose build
+```
+
+En production, une chaîne plus robuste construit généralement l'image en CI, la teste, lui attribue un tag immuable ou un digest, la pousse au registry, puis le serveur ne fait que tirer et exécuter cet artefact.
+
+Par exemple :
+
+```bash
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  --tag registry.example.org/team/api:1.8.3 \
+  --sbom=true \
+  --provenance=mode=max \
+  --push ./api
+```
+
+BuildKit peut produire des attestations de provenance et de SBOM attachées à l'image lorsqu'elle est stockée dans un format/registry qui les conserve. Une provenance minimale est générée par défaut dans plusieurs chemins Buildx ; demander explicitement le niveau et la SBOM rend l'intention plus claire dans une chaîne CI.
+
+Le fichier Compose de production peut alors référencer :
+
+```yaml
+image: registry.example.org/team/api:1.8.3
+```
+
+voire un digest exact si le processus de livraison le prévoit.
+
+### Mise à jour et rollback
+
+Une mise à jour mono-hôte simple suit souvent ce flux :
+
+```bash
+docker compose pull
+docker compose config
+docker compose up -d
+docker compose ps
+docker compose logs --tail 100
+```
+
+Avant cela, nous devons savoir comment revenir à l'image précédente et comment restaurer les données si une migration est irréversible. Le rollback logiciel est trivial seulement si le schéma de données reste compatible.
+
+C'est pourquoi les sauvegardes et les migrations sont des sujets séparés du déploiement de l'image. Un volume persistant n'est pas une sauvegarde ; il est seulement un stockage dont la durée de vie dépasse celle du conteneur.
+
+### Ce que nous devons pouvoir expliquer lors d'un incident
+
+Pour exploiter ce projet, un membre de l'équipe devrait être capable de répondre rapidement :
+
+- quel digest d'image tourne actuellement ?
+- quels ports sont réellement publiés ?
+- quels services partagent chaque réseau ?
+- où sont les données persistantes ?
+- quel utilisateur exécute l'application ?
+- quels secrets sont montés et depuis où ?
+- quel healthcheck échoue ?
+- quelle limite de ressources ou quel OOM a pu provoquer l'arrêt ?
+
+Docker devient fiable en production lorsque ces questions ne nécessitent pas de magie : l'image, Compose, les logs et la configuration doivent rendre l'état suffisamment observable et reproductible.
 
 # 40. Erreurs fréquentes
 

@@ -12,7 +12,7 @@ themes:
   - developpement-web
   - python
   - pyramid
-resume: "Cours complet sur Pyramid 2.1 : architecture WSGI, configuration, routes, vues, traversal, sécurité moderne, sessions et CSRF, Deform, SQLAlchemy/ZODB, LDAP/OIDC, tests et déploiement."
+resume: "Cours approfondi sur Pyramid 2.1 : architecture WSGI et cycle de requête, configuration, routes, vues, traversal, sécurité moderne, sessions/CSRF, Deform, SQLAlchemy/ZODB, LDAP/OIDC, tests, migration et déploiement."
 niveau: avance
 prerequis:
   - "[[Python]]"
@@ -21,7 +21,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2023-06-14
-date_modification: 2026-08-29
+date_modification: 2026-08-31
 confidentialite: publique
 publication:
   - notes-publiques
@@ -179,6 +179,90 @@ Pyramid encapsule ce protocole dans des objets plus ergonomiques, principalement
 
 > [!important]
 > **Pyramid 2.1 reste un framework WSGI.** Il ne faut pas le présenter comme un framework ASGI natif. Pour des besoins très orientés WebSocket, connexions persistantes ou concurrence `asyncio` de bout en bout, un framework ASGI peut être plus naturel. On peut aussi séparer l'architecture en plusieurs services.
+
+---
+
+
+## 1.5 Fil conducteur : une application de gestion de membres
+
+Pour éviter d'apprendre Pyramid comme une succession d'API isolées, nous utiliserons un **fil conducteur**. Imaginons une application interne de gestion de membres. Elle doit permettre à un utilisateur authentifié de consulter une fiche, à un responsable de la modifier, et à un administrateur de créer ou désactiver des comptes. Les informations applicatives vivent dans PostgreSQL ; certaines informations d'identité proviennent d'un annuaire LDAP ; l'authentification web peut être assurée directement par l'application dans un environnement simple, mais dans une organisation moderne elle sera souvent déléguée à un fournisseur OpenID Connect connecté lui-même à l'annuaire.
+
+Ce scénario est intéressant car il force à rencontrer presque toutes les briques importantes de Pyramid sans inventer des exemples artificiels : routes, vues, formulaires, permissions, sessions, transactions, services externes, tests et déploiement. Il montre aussi pourquoi Pyramid est souvent apprécié dans des applications métier anciennes ou complexes : il n'impose pas une seule architecture de données ni un seul mécanisme d'authentification.
+
+Au début, l'application peut être minuscule :
+
+```python
+from pyramid.config import Configurator
+from pyramid.response import Response
+
+
+def home(request):
+    return Response("Gestion des membres")
+
+
+def main(global_config, **settings):
+    with Configurator(settings=settings) as config:
+        config.add_route("home", "/")
+        config.add_view(home, route_name="home")
+        return config.make_wsgi_app()
+```
+
+Ce code suffit pour comprendre une idée essentielle : la factory `main()` **compose** une application WSGI. Une fois `make_wsgi_app()` appelée, le résultat est un objet callable que le serveur WSGI peut invoquer pour chaque requête HTTP. Nous pouvons donc lire Pyramid en deux temps : d'abord une phase de configuration, puis une phase d'exécution.
+
+Lorsque le projet grandit, nous ne voulons plus tout placer dans `__init__.py`. Nous répartissons les responsabilités :
+
+```text
+members/
+├── __init__.py        # application factory
+├── routes.py          # noms et patterns d'URL
+├── security.py        # identité et permissions
+├── models/            # persistance
+├── services/          # règles métier
+├── views/             # adaptation HTTP -> métier
+├── templates/         # HTML
+└── tests/
+```
+
+Cette séparation n'est pas une obligation du framework. C'est une décision d'architecture. Pyramid se contente de fournir des mécanismes de composition, notamment `config.include()`, les registries, les décorateurs de vue et les interfaces. Cette liberté est puissante, mais elle signifie aussi qu'une équipe doit documenter ses conventions.
+
+Le premier principe du cours sera donc : **une vue Pyramid doit rester une frontière HTTP, pas devenir toute l'application**. Une vue reçoit une requête, récupère les données nécessaires, appelle un service métier, puis construit une réponse. Les règles de création d'un membre, le choix du rôle initial ou la vérification d'une contrainte métier doivent vivre ailleurs afin de rester testables sans serveur HTTP.
+
+Nous allons progressivement faire évoluer le flux suivant :
+
+```text
+navigateur
+   |
+   v
+route Pyramid
+   |
+   v
+vue
+   |
+   +--> identité / permission
+   +--> validation du formulaire
+   +--> service métier
+   +--> transaction SQLAlchemy
+   +--> LDAP ou OIDC si nécessaire
+   |
+   v
+renderer HTML ou JSON
+```
+
+À chaque chapitre, nous ajouterons une pièce sans perdre de vue ce flux global. C'est une meilleure manière d'apprendre Pyramid que de mémoriser indépendamment `add_route`, `view_config`, `request.session` ou `ACLHelper`.
+
+---
+
+## 1.6 Quand Pyramid est-il encore un bon choix en 2026 ?
+
+Pyramid n'est pas le framework Python le plus visible dans les tutoriels récents, mais cette visibilité ne doit pas être confondue avec sa pertinence technique. Il reste particulièrement intéressant lorsqu'une application a besoin d'un **framework stable, WSGI, très composable et peu prescriptif**. Les projets qui combinent HTML, API, SQLAlchemy, ZODB, LDAP, ACL ou extensions historiques du Pylons Project peuvent profiter de cette continuité.
+
+À l'inverse, si le besoin principal est une petite API asynchrone native avec WebSocket et un écosystème centré ASGI, un framework ASGI peut être plus direct. Si l'équipe veut une plateforme intégrée fournissant immédiatement ORM, administration, formulaires et conventions fortes, Django réduit davantage le nombre de décisions. Pyramid occupe un autre espace : il fournit les mécanismes de composition sans imposer tout le reste.
+
+Cette caractéristique explique aussi pourquoi le framework demande davantage de compréhension au début. Deux projets Pyramid peuvent choisir des persistances, renderers et modèles de sécurité différents. La documentation de projet et les conventions d'équipe sont donc plus importantes que dans un framework très prescriptif.
+
+La stabilité de Pyramid est un avantage pour les applications métier dont la durée de vie se mesure en années. Pyramid 2.1, publié en mars 2026, modernise notamment le support Python jusqu'à 3.14 tout en conservant les concepts centraux du framework. Cela permet de moderniser progressivement un projet ancien au lieu de le réécrire uniquement pour suivre une mode de framework.
+
+Le critère de choix doit finalement rester le coût total : compétences de l'équipe, contraintes d'exploitation, dépendances existantes, modèle de données, besoin async et durée de maintenance. Pyramid est excellent lorsqu'on valorise la **composition explicite et la compatibilité à long terme**.
 
 ---
 
@@ -513,6 +597,96 @@ Pour un projet important, un gestionnaire de secrets est préférable à un simp
 
 ---
 
+
+## 3.8 Du démarrage du processus à l'appel d'une vue
+
+Un point souvent survolé dans les cours web est la différence entre ce qui se passe **une fois au démarrage** et ce qui se passe **à chaque requête**. Cette distinction est fondamentale avec Pyramid.
+
+Au démarrage, le serveur charge l'application à partir de la configuration PasteDeploy. La factory reçoit `global_config` et les paramètres de `[app:main]`, construit un `Configurator`, inclut les composants, scanne les décorateurs puis crée l'application WSGI. Ce travail ne doit pas être répété pour chaque requête.
+
+```text
+processus démarre
+      |
+      v
+lecture production.ini
+      |
+      v
+main(global_config, **settings)
+      |
+      +--> config.include(...)
+      +--> config.add_route(...)
+      +--> config.scan(...)
+      |
+      v
+make_wsgi_app()
+```
+
+Ensuite, pour chaque requête, le serveur appelle l'application WSGI. Pyramid crée un objet `Request`, exécute la chaîne des tweens, trouve la route et la vue, vérifie les prédicats et permissions, appelle la vue, transforme éventuellement sa valeur de retour via un renderer, puis renvoie une réponse WSGI.
+
+```text
+HTTP request
+    |
+    v
+Request WebOb
+    |
+    v
+tweens
+    |
+    v
+route / traversal
+    |
+    v
+view lookup
+    |
+    +--> security
+    +--> view predicates
+    |
+    v
+view callable
+    |
+    v
+renderer / Response
+    |
+    v
+HTTP response
+```
+
+Cette lecture explique plusieurs comportements qui semblent magiques au début. Le décorateur `@view_config` n'enregistre pas immédiatement la vue au moment où nous écrivons le code ; il attache des métadonnées, puis `config.scan()` les collecte pendant la configuration. De même, `config.include(".routes")` n'est pas un simple import décoratif : il permet à un sous-module de participer explicitement à la composition de l'application via une fonction `includeme(config)`.
+
+Prenons une application découpée proprement :
+
+```python
+# routes.py
+
+def includeme(config):
+    config.add_route("members", "/members")
+    config.add_route("member", "/members/{member_id}")
+```
+
+```python
+# __init__.py
+from pyramid.config import Configurator
+
+
+def main(global_config, **settings):
+    with Configurator(settings=settings) as config:
+        config.include(".routes")
+        config.include(".security")
+        config.include(".db")
+        config.scan(".views")
+        return config.make_wsgi_app()
+```
+
+La valeur d'un tel découpage apparaît lorsque le projet comporte plusieurs dizaines de routes. Chaque module peut exposer son `includeme()` et l'application factory devient une table des matières de l'architecture.
+
+Il faut aussi comprendre la **registry** Pyramid. Elle contient les composants configurés pour l'application. Plutôt que d'importer un singleton global partout, nous pouvons enregistrer des utilities, request methods ou services dans la registry. Ce mécanisme favorise les extensions et les tests, mais il ne doit pas servir de prétexte à cacher toutes les dépendances. Dans du code métier, un constructeur explicite reste souvent plus lisible qu'une recherche opaque dans la registry.
+
+Un autre point important est le conflit de configuration. Pyramid accumule des actions puis les résout. Si deux morceaux de configuration prétendent enregistrer de manière incompatible le même élément, le framework peut produire une erreur de configuration au démarrage plutôt que de laisser une ambiguïté silencieuse en production. Cette philosophie explique la séparation historique entre **configuration time** et **runtime**.
+
+Enfin, cette architecture permet l'introspection. Les commandes `proutes`, `pviews` ou `ptweens` peuvent décrire ce que Pyramid a réellement construit. Dans une application complexe, cela est souvent plus fiable que de lire uniquement le code source : plusieurs packages peuvent contribuer à la configuration via `include()` et des scans.
+
+---
+
 # 4. Requêtes et réponses
 
 ## 4.1 Objet `request`
@@ -655,6 +829,80 @@ Pour des formulaires complexes, voir [[Deform]].
 
 ---
 
+
+## 4.8 Lire correctement une requête HTTP
+
+L'objet `request` est pratique au point qu'on peut oublier qu'il représente une requête HTTP concrète. Avant d'utiliser `request.params` partout, il faut choisir la source adaptée à la sémantique de l'opération.
+
+Une query string sert bien aux filtres et paramètres de navigation :
+
+```text
+GET /members?status=active&page=2
+```
+
+Nous lisons alors :
+
+```python
+status = request.GET.get("status")
+page = int(request.GET.get("page", "1"))
+```
+
+Un formulaire HTML `application/x-www-form-urlencoded` ou `multipart/form-data` se trouve dans `request.POST`. Pour une API JSON, utilisons `request.json_body`, en traitant explicitement les erreurs de contenu et de schéma. `request.params` fusionne plusieurs sources et peut être commode pour de petits usages, mais cette fusion peut rendre ambiguë l'origine d'une valeur dans du code sensible.
+
+Les headers ont également une sémantique propre. `Accept` exprime ce que le client souhaite recevoir ; `Content-Type` décrit le corps envoyé. Confondre les deux conduit à des réponses `415 Unsupported Media Type` ou à des négociations de contenu incohérentes.
+
+Le corps HTTP n'est pas toujours petit. Pour un upload ou une API exposée, la taille maximale doit être limitée au niveau du reverse proxy et/ou de l'application. Charger aveuglément plusieurs centaines de mégaoctets en mémoire dans un worker WSGI est un moyen simple de provoquer un déni de service.
+
+### Réponses et codes de statut
+
+Un bon handler ne renvoie pas `200 OK` pour tout. Quelques repères :
+
+```text
+200 OK             lecture ou mutation avec corps de réponse
+201 Created        ressource créée
+204 No Content     succès sans corps
+302/303            redirection navigateur selon le flux
+400 Bad Request    requête syntaxiquement ou structurellement invalide
+401 Unauthorized   authentification requise/échouée selon le mécanisme
+403 Forbidden      identité connue mais action interdite
+404 Not Found      ressource absente ou volontairement masquée
+409 Conflict       conflit avec l'état courant
+422                validation sémantique selon convention d'API
+```
+
+Pour notre création de membre, une API JSON peut faire :
+
+```python
+@view_config(route_name="members", request_method="POST", renderer="json")
+def create_member(request):
+    command = parse_member_command(request.json_body)
+    member = request.member_service.create(command)
+    request.response.status_int = 201
+    request.response.location = request.route_url(
+        "member", member_id=member.id
+    )
+    return member.to_dict()
+```
+
+Le header `Location` rend le résultat plus explicite. Pour un formulaire HTML, le pattern **POST/Redirect/GET** évite qu'un rafraîchissement renvoie involontairement le formulaire :
+
+```text
+POST /members/new
+   -> validation + commit
+   -> 303 /members/42
+GET /members/42
+```
+
+Les exceptions HTTP Pyramid permettent de coder ce flux de manière lisible. Leur nom peut surprendre les débutants : lever `HTTPFound` ou `HTTPNotFound` n'indique pas une erreur Python imprévue, mais un mécanisme de contrôle HTTP pris en charge par le framework.
+
+### Données externes et confiance
+
+Tout ce qui vient de `request` doit être considéré comme non fiable : path parameters, query string, JSON, cookies, headers et fichiers. Même un header ajouté normalement par un reverse proxy peut être falsifié si l'application est accessible directement. La validation doit donc être placée à la bonne frontière et ne jamais reposer uniquement sur l'interface navigateur.
+
+Cette discipline rend la suite du cours plus simple : le routage identifie l'opération, la couche d'entrée convertit les données HTTP en types Python valides, puis le domaine travaille avec des objets déjà normalisés.
+
+---
+
 # 5. URL dispatch et routes
 
 ## 5.1 Ajouter une route
@@ -789,6 +1037,108 @@ def value_error(exc, request):
 ```
 
 En production, ne renvoyons pas directement au client des détails d'exception internes susceptibles de révéler des secrets ou la structure du système.
+
+---
+
+
+## 5.10 Lire le routage comme un contrat HTTP
+
+Une route n'est pas seulement un moyen de faire correspondre une chaîne à une fonction. Elle représente une partie du **contrat HTTP** de l'application. Pour notre application de membres, nous pouvons commencer par :
+
+```python
+def includeme(config):
+    config.add_route("members", "/members")
+    config.add_route("member", "/members/{member_id}")
+```
+
+Puis distinguer les opérations à l'aide des prédicats de vue :
+
+```python
+from pyramid.view import view_config
+
+
+@view_config(route_name="members", request_method="GET", renderer="json")
+def list_members(request):
+    ...
+
+
+@view_config(route_name="members", request_method="POST", renderer="json")
+def create_member(request):
+    ...
+```
+
+Le même pattern d'URL peut donc participer à plusieurs opérations selon la méthode HTTP, les headers, le contexte ou d'autres prédicats. Il est généralement préférable de rendre ce contrat explicite plutôt que d'écrire une énorme vue qui inspecte manuellement `request.method`.
+
+Les paramètres capturés par le pattern se retrouvent dans `request.matchdict`. Ils restent cependant des **chaînes**. Si `{member_id}` doit être un entier, le code doit le convertir et traiter proprement l'échec :
+
+```python
+from pyramid.httpexceptions import HTTPNotFound
+
+
+def get_member_id(request):
+    try:
+        return int(request.matchdict["member_id"])
+    except (KeyError, ValueError):
+        raise HTTPNotFound()
+```
+
+Cette conversion peut être centralisée dans une couche d'adaptation ou un prédicat, mais il faut éviter de laisser une valeur externe non validée se propager jusqu'à l'ORM.
+
+La génération inverse d'URL est tout aussi importante que le matching :
+
+```python
+url = request.route_url("member", member_id=42)
+```
+
+Écrire à la main `f"/members/{member.id}"` disperse les chemins dans l'application et rend les renommages fragiles. Le **nom de route** devient une API interne stable ; le pattern peut évoluer sans modifier tous les templates et services.
+
+Pyramid sépare aussi clairement la **vue** du **renderer**. Une vue peut renvoyer un dictionnaire :
+
+```python
+@view_config(route_name="member", renderer="members/member.pt")
+def member_view(request):
+    member = request.services.members.get(request.matchdict["member_id"])
+    if member is None:
+        raise HTTPNotFound()
+    return {"member": member}
+```
+
+Le renderer transforme ensuite ce dictionnaire en réponse HTML. Pour une API JSON, le même principe devient :
+
+```python
+@view_config(route_name="member_api", renderer="json")
+def member_api(request):
+    return {"id": member.id, "name": member.display_name}
+```
+
+Cette séparation simplifie les tests. Nous pouvons appeler une fonction de vue avec un `DummyRequest` et vérifier son dictionnaire sans parser du HTML. Les tests du template, eux, peuvent se concentrer sur le rendu.
+
+### Chameleon, TAL et METAL
+
+L'ancien cours Pyramid utilisait beaucoup Chameleon. Ce choix reste pertinent lorsqu'un projet exploite déjà TAL/METAL ou l'écosystème Zope/Pylons. TAL permet d'exprimer les transformations directement dans un document HTML structurellement valide, tandis que METAL permet de créer des macros et layouts réutilisables.
+
+Exemple simple :
+
+```html
+<h1 tal:content="member.display_name">Nom</h1>
+<a tal:attributes="href request.route_url('members')">Retour</a>
+```
+
+Un layout peut exposer des slots avec METAL afin d'éviter de recopier le squelette HTML. Jinja2 reste une alternative tout aussi légitime ; le choix dépend surtout de l'existant, de l'expérience de l'équipe et du besoin d'interopérer avec d'autres projets.
+
+Le point de sécurité essentiel est l'échappement. Un moteur de templates correctement utilisé protège normalement les valeurs textuelles ordinaires contre l'injection HTML, mais l'introduction volontaire de contenu marqué « safe » contourne cette protection. Toute donnée utilisateur réinjectée comme HTML doit être considérée comme hostile tant qu'elle n'a pas été produite ou assainie selon une politique explicite.
+
+Enfin, toutes les réponses ne nécessitent pas de renderer. Une redirection ou un téléchargement peut être exprimé directement :
+
+```python
+from pyramid.httpexceptions import HTTPFound
+
+
+def after_create(request, member):
+    raise HTTPFound(request.route_url("member", member_id=member.id))
+```
+
+Une bonne vue Pyramid choisit donc l'abstraction adaptée : dictionnaire + renderer pour du contenu structuré, exception HTTP pour le contrôle de flux HTTP standard, ou objet `Response` lorsque nous devons maîtriser finement status, headers et corps.
 
 ---
 
@@ -996,6 +1346,65 @@ URL dispatch reste plus familier pour de nombreuses API REST et applications CRU
 
 ---
 
+
+## 7.5 URL dispatch ou traversal : raisonner par le domaine
+
+Pyramid est inhabituel parmi les frameworks web Python parce qu'il traite **URL dispatch** et **traversal** comme deux modèles de premier rang. Il est donc utile de comprendre leur différence conceptuelle, pas seulement leur syntaxe.
+
+Avec URL dispatch, nous partons de la forme de l'URL :
+
+```text
+/members/{member_id}
+```
+
+Pyramid fait correspondre cette forme à une route, puis cherche une vue. C'est intuitif pour les APIs REST et les applications dont les ressources sont identifiées par des routes relativement stables.
+
+Avec traversal, nous partons d'un **graphe de ressources Python**. Chaque segment de l'URL sert à descendre dans l'arbre via `__getitem__`. Si notre domaine est naturellement hiérarchique, par exemple :
+
+```text
+/projects/acme/documents/specification
+```
+
+nous pouvons représenter :
+
+```text
+Root
+ `-- projects
+      `-- acme
+           `-- documents
+                `-- specification
+```
+
+Le contexte obtenu après traversal est la ressource finale. La vue peut ensuite être choisie selon le type du contexte et un nom de vue, ce qui rapproche l'URL du modèle objet.
+
+L'un des grands intérêts historiques du traversal est l'**héritage des ACL**. Un projet peut déclarer qu'un groupe a le droit `view`, puis ses documents héritent de cette politique sauf exception. Cela correspond bien aux systèmes documentaires, CMS et arbres de contenus. Avec URL dispatch, la même politique est possible, mais elle est généralement calculée par une factory ou une couche de service au lieu d'être portée directement par l'arbre.
+
+Il n'existe pas de réponse universelle. Pour une API JSON moderne avec `/users`, `/orders/{id}` et `/reports`, URL dispatch est souvent plus évident. Pour un espace documentaire où les permissions suivent une arborescence, traversal peut produire un modèle remarquablement naturel.
+
+Pyramid permet même de combiner les deux. Une route peut fournir une `factory` qui construit le contexte de sécurité, tandis que certaines zones de l'application utilisent un traversal complet. Cette flexibilité est puissante, mais l'équipe doit garder une convention claire afin qu'un développeur sache où chercher la logique de résolution.
+
+### Exemple minimal de ressource
+
+```python
+class Resource:
+    __parent__ = None
+    __name__ = None
+
+    def __init__(self, name, parent=None):
+        self.__name__ = name
+        self.__parent__ = parent
+        self.children = {}
+
+    def __getitem__(self, name):
+        return self.children[name]
+```
+
+Les attributs `__parent__` et `__name__` permettent à Pyramid de raisonner sur la lignée de ressources. Dans une application réelle, ces objets peuvent être persistés en ZODB ou construits à partir d'autres données.
+
+La question pratique à se poser est donc : **mon URL décrit-elle principalement une opération HTTP, ou reflète-t-elle réellement une hiérarchie de ressources et de permissions ?** La réponse guide le modèle de dispatch.
+
+---
+
 # 8. Sessions, cookies et CSRF
 
 ## 8.1 Cookie et session ne sont pas synonymes
@@ -1129,6 +1538,60 @@ Cela ne remplace pas :
 - validation des méthodes et contenus.
 
 Voir [[HTTP]].
+
+---
+
+
+## 8.8 Concevoir l'état web avant de coder l'authentification
+
+L'ancien cours associait assez vite cookie, session et authentification. Dans une application moderne, il est utile de les distinguer dès le départ.
+
+Le navigateur conserve des **cookies**. Pyramid peut utiliser un cookie signé pour stocker une session, ou seulement un identifiant permettant de retrouver une session côté serveur. L'authentification est encore autre chose : elle consiste à relier la requête courante à une identité. Enfin, l'autorisation décide si cette identité peut effectuer une action.
+
+```text
+cookie HTTP
+   |
+   v
+session éventuelle
+   |
+   v
+SecurityPolicy -> identity
+   |
+   v
+permission -> allow / deny
+```
+
+Ce découpage évite une erreur classique : considérer que la présence d'une clé `user_id` dans `request.session` suffit à sécuriser l'application. Une identité doit être chargée et revalidée. Si l'utilisateur a été désactivé depuis la création de sa session, la politique de sécurité doit pouvoir refuser de le reconnaître.
+
+Pour les sessions en cookie signé, la signature garantit principalement **l'intégrité**. Elle ne rend pas le contenu secret. Plaçons donc dans la session des identifiants et préférences de faible sensibilité, pas des mots de passe, tokens d'API ou données confidentielles. La taille totale doit également rester petite car le cookie voyage à chaque requête.
+
+Le réglage des attributs de cookie dépend du flux :
+
+```python
+SignedCookieSessionFactory(
+    secret,
+    secure=True,
+    httponly=True,
+    samesite="Lax",
+)
+```
+
+`Secure` impose l'envoi sur HTTPS ; `HttpOnly` réduit l'exposition au JavaScript ; `SameSite` limite certains envois cross-site. Aucun de ces attributs ne remplace à lui seul une stratégie CSRF.
+
+Le CSRF devient concret avec notre formulaire d'édition d'un membre. Un attaquant ne doit pas pouvoir faire publier silencieusement par le navigateur de l'administrateur :
+
+```text
+POST /members/42/disable
+Cookie: session=...
+```
+
+La protection consiste à exiger une information que le site hostile ne peut pas fabriquer correctement, typiquement un token CSRF, et à vérifier l'origine selon la politique choisie. Pyramid permet de rendre la vérification systématique pour les méthodes non sûres via `set_default_csrf_options(require_csrf=True)`.
+
+Il faut cependant distinguer deux architectures. Si l'API utilise une authentification par bearer token envoyé explicitement dans `Authorization` et non automatiquement par le navigateur, le modèle de menace CSRF est différent. À l'inverse, une application HTML classique avec session cookie doit traiter le CSRF comme une préoccupation de base.
+
+Le logout mérite aussi attention. Il ne suffit pas toujours de supprimer un champ de session ; la politique de sécurité doit produire les headers nécessaires via `forget()` ou son helper. Avec un fournisseur OIDC, le logout local et le logout chez l'Identity Provider sont deux opérations distinctes : fermer la session Pyramid ne garantit pas que la session SSO distante a disparu.
+
+Enfin, les secrets de session doivent être gérés comme de vrais secrets de production : longs, aléatoires, distincts entre environnements, injectés hors du dépôt Git et renouvelables. Une rotation brutale invalide toutes les sessions existantes ; selon le contexte, cette conséquence peut être acceptable ou nécessiter une stratégie de transition.
 
 ---
 
@@ -1402,6 +1865,109 @@ Voir [[OAuth OpenID]].
 
 ---
 
+
+## 9.10 Security Policy de bout en bout
+
+Le changement majeur entre Pyramid 1.x et 2.x mérite un exemple complet. Dans l'ancien modèle, une authentication policy calculait un userid et des principals, puis une authorization policy interprétait les ACL. Pyramid 2.x regroupe ce contrat dans une **Security Policy**. Les helpers historiques restent utiles, mais la policy devient le point central.
+
+Un exemple simplifié avec authentification en session :
+
+```python
+from pyramid.authentication import SessionAuthenticationHelper
+from pyramid.authorization import ACLHelper
+from pyramid.request import RequestLocalCache
+
+
+class SecurityPolicy:
+    def __init__(self, user_service):
+        self.helper = SessionAuthenticationHelper()
+        self.acl = ACLHelper()
+        self.user_service = user_service
+        self.identity_cache = RequestLocalCache(self.load_identity)
+
+    def load_identity(self, request):
+        userid = self.helper.authenticated_userid(request)
+        if userid is None:
+            return None
+        user = self.user_service.get(userid)
+        if user is None or not user.enabled:
+            return None
+        return user
+
+    def identity(self, request):
+        return self.identity_cache.get_or_create(request)
+
+    def authenticated_userid(self, request):
+        identity = self.identity(request)
+        return identity.id if identity is not None else None
+
+    def permits(self, request, context, permission):
+        identity = self.identity(request)
+        principals = ["system.Everyone"]
+        if identity is not None:
+            principals.append("system.Authenticated")
+            principals.append(f"user:{identity.id}")
+            principals.extend(f"group:{g}" for g in identity.groups)
+        return self.acl.permits(context, principals, permission)
+
+    def remember(self, request, userid, **kw):
+        return self.helper.remember(request, userid, **kw)
+
+    def forget(self, request, **kw):
+        return self.helper.forget(request, **kw)
+```
+
+Ce code est volontairement pédagogique : une application réelle adaptera les types, le chargement de l'utilisateur et la stratégie d'autorisation. L'idée importante est que `request.identity` peut être un véritable objet `User`, pas seulement une chaîne. Une vue peut ainsi exprimer :
+
+```python
+if request.identity is not None:
+    display_name = request.identity.display_name
+```
+
+La politique revalide l'utilisateur au moment de la requête. Si son compte est supprimé ou désactivé, une ancienne session ne suffit pas à conserver l'accès.
+
+La connexion appelle `remember()` après vérification des credentials :
+
+```python
+headers = request.security.remember(user.id)
+raise HTTPFound(location=request.route_url("home"), headers=headers)
+```
+
+La déconnexion utilise `forget()`. Nous évitons ainsi de connaître dans la vue le détail du cookie ou du helper.
+
+### Autorisation : permission plutôt que rôle dans chaque vue
+
+Une vue ne devrait pas demander manuellement :
+
+```python
+if request.identity.role != "admin":
+    ...
+```
+
+Partout dans le code. Déclarons plutôt une intention :
+
+```python
+@view_config(
+    route_name="member_edit",
+    permission="member:edit",
+    renderer="members/edit.pt",
+)
+def edit_member(request):
+    ...
+```
+
+La politique décide ensuite quels groupes ou attributs donnent `member:edit`. Cette indirection facilite les changements d'organisation et les tests.
+
+Les ACL sont particulièrement adaptées lorsque la permission dépend du **contexte**. Un membre peut être modifiable par les administrateurs globaux et par le responsable de son organisation. Le contexte peut calculer une ACL à partir de ses données. Si notre domaine utilise plutôt RBAC ou ABAC centralisé, la méthode `permits()` peut utiliser une autre stratégie : Pyramid n'impose pas ACLHelper.
+
+### Authentification directe, LDAP et OIDC
+
+La Security Policy ne devrait pas elle-même vérifier un mot de passe LDAP à chaque requête. Elle identifie une session déjà établie. Le processus de login vérifie les credentials ou termine un flux OIDC, puis mémorise l'identité locale. Cela évite de transformer l'annuaire en dépendance obligatoire de chaque page consultée.
+
+Ce découpage permet aussi d'ajouter MFA ou SSO sans réécrire les permissions. L'authentification produit une identité ; l'autorisation reste un problème distinct.
+
+---
+
 # 10. Formulaires et Deform
 
 Pyramid n'impose pas de bibliothèque de formulaires. Dans l'écosystème Pylons, **Deform + Colander** est une combinaison historique et toujours pertinente.
@@ -1466,6 +2032,80 @@ Le résultat validé doit encore passer les règles métier :
 ## 10.5 CSRF avec formulaire
 
 Une application utilisant des cookies d'authentification doit protéger les mutations. Le formulaire doit donc intégrer le mécanisme CSRF choisi pour l'application.
+
+---
+
+
+## 10.6 Du formulaire au service métier
+
+Deform et Colander sont plus faciles à comprendre si nous les plaçons dans le flux complet d'une mutation. Prenons la création d'un membre. Le navigateur envoie des chaînes ; Colander les désérialise et valide leur forme ; Deform sait rendre le formulaire et ses erreurs ; le service métier vérifie ensuite des contraintes qui dépendent du domaine ou de la base.
+
+```text
+request.POST
+   |
+   v
+Deform / Colander
+   |   validation syntaxique et structurelle
+   v
+appstruct Python
+   |
+   v
+MemberService
+   |   règles métier
+   v
+SQLAlchemy / transaction
+```
+
+La distinction est importante. Une adresse email mal formée est une erreur de validation. Une adresse déjà utilisée par un membre actif est une règle métier dépendante de l'état courant. Essayer d'encoder toute la logique métier dans le schéma Colander produit des validateurs difficiles à tester et fortement couplés à la base.
+
+Exemple simplifié :
+
+```python
+import colander
+
+
+class MemberSchema(colander.MappingSchema):
+    display_name = colander.SchemaNode(
+        colander.String(),
+        validator=colander.Length(min=2, max=120),
+    )
+    email = colander.SchemaNode(colander.String())
+```
+
+Puis dans la vue :
+
+```python
+@view_config(route_name="members_new", renderer="members/edit.pt")
+def new_member(request):
+    form = deform.Form(MemberSchema(), buttons=("save",))
+
+    if request.method == "POST":
+        try:
+            data = form.validate(request.POST.items())
+        except deform.ValidationFailure as exc:
+            return {"form": exc.render()}
+
+        try:
+            member = request.services.members.create(data)
+        except DuplicateEmail:
+            # rattacher une erreur métier à l'interface
+            ...
+        else:
+            request.session.flash("Membre créé", "success")
+            raise HTTPFound(
+                request.route_url("member", member_id=member.id)
+            )
+
+    return {"form": form.render()}
+```
+
+Dans une vraie application, le traitement d'erreur doit rester cohérent avec le renderer et la politique CSRF, mais l'idée centrale reste la même : **la vue orchestre, elle ne possède pas la règle métier**.
+
+Les formulaires permettent aussi de comprendre la différence entre « assainir » et « valider ». Transformer arbitrairement une entrée pour essayer de la rendre sûre peut modifier son sens. Pour un nom, une bio ou un commentaire, nous préférons généralement conserver la valeur métier et **échapper au moment du rendu**. Pour une URL, un identifiant ou une date, nous validons selon un format et une politique. Pour du HTML volontairement accepté, il faut un sanitizer spécialisé avec allowlist.
+
+Les uploads requièrent un traitement particulier : taille maximale, type réel, nom de fichier généré côté serveur, stockage hors d'un répertoire exécutable et analyse supplémentaire selon la sensibilité. Le nom fourni par le navigateur ne doit jamais devenir directement un chemin disque.
+
+Enfin, un formulaire HTML n'est pas une frontière de confiance. Les contraintes `required`, `min`, `pattern` ou JavaScript améliorent l'expérience utilisateur, mais un client peut envoyer n'importe quelle requête HTTP. Toutes les validations importantes doivent être appliquées côté serveur.
 
 ---
 
@@ -1583,6 +2223,45 @@ Mesurons :
 - latence DB ;
 - contention ;
 - taille des résultats.
+
+---
+
+
+## 11.7 Comprendre l'unité de travail
+
+La persistance est l'un des endroits où l'ancien cours apportait une intuition utile. Une requête web effectue souvent plusieurs écritures qui forment une seule opération logique : créer un membre, créer son profil, journaliser l'action et éventuellement enregistrer une invitation. Nous ne voulons pas qu'une moitié de l'opération soit validée si l'autre échoue.
+
+C'est le rôle de la **transaction** :
+
+```text
+requête POST
+   |
+   v
+transaction begin
+   |
+   +--> INSERT member
+   +--> INSERT profile
+   +--> INSERT audit_event
+   |
+   +--> succès -> commit
+   `--> exception -> rollback
+```
+
+Avec `pyramid_tm` et `zope.sqlalchemy`, l'intégration peut lier la transaction à la durée logique de la requête. Cela réduit le besoin de disperser des appels `commit()` dans les vues. Mais il faut comprendre ce que cette commodité signifie : si nous attrapons une exception et continuons comme si tout allait bien, nous devons savoir dans quel état se trouve la session SQLAlchemy.
+
+Une **session SQLAlchemy** n'est ni `request.session`, ni la transaction manager. Elle représente l'unité de travail ORM : suivi des objets chargés, modifications, flush et interaction avec la connexion SQL. Dans un projet pédagogique, les trois mots « session » apparaissent souvent dans la même page et créent une confusion durable ; il faut les distinguer explicitement.
+
+Le `flush` mérite aussi une explication. Il envoie les changements SQL nécessaires sans valider définitivement la transaction. Cela permet par exemple d'obtenir une clé primaire avant la fin de la requête. Le `commit`, lui, rend la transaction durable selon les garanties du SGBD.
+
+Les appels externes compliquent l'atomicité. Si nous écrivons en base puis envoyons immédiatement un email SMTP, un échec après le commit ne peut pas être annulé par une transaction SQL. Pour les opérations importantes, un pattern de type **outbox** ou une file de tâches est plus robuste : la transaction enregistre l'intention d'envoyer, puis un worker réalise l'effet externe.
+
+### SQLAlchemy ou ZODB ?
+
+Pyramid ne force pas le choix. SQLAlchemy est naturel pour un modèle relationnel, des requêtes analytiques, des contraintes SQL et un écosystème de migrations Alembic. ZODB stocke directement des graphes d'objets Python persistants et s'intègre historiquement très bien avec le traversal.
+
+Le choix ne doit pas être idéologique. Une application documentaire hiérarchique peut tirer profit d'un arbre ZODB ; une application métier fortement relationnelle avec reporting SQL préférera souvent PostgreSQL + SQLAlchemy. Certaines applications Pyramid historiques combinent même plusieurs sources.
+
+Dans tous les cas, évitons de transmettre des objets ORM non maîtrisés jusque dans les templates après fermeture de leur contexte de données. Les chargements paresseux peuvent déclencher des requêtes inattendues, provoquer un N+1 ou échouer si la session n'est plus utilisable. Une couche service peut charger explicitement ce dont la vue a besoin.
 
 ---
 
@@ -1720,6 +2399,85 @@ pour un nouvel SSO.
 
 ---
 
+
+## 12.8 Étude de cas : annuaire LDAP et SSO
+
+L'ancien cours construisait directement une authentification Pyramid sur OpenLDAP. Cette architecture reste possible, mais il faut aujourd'hui distinguer deux besoins : **consulter un annuaire LDAP** et **authentifier un navigateur**.
+
+LDAP est excellent pour rechercher des entrées, groupes et attributs. Il n'est pas, à lui seul, un protocole moderne de SSO web. Dans une organisation équipée d'un fournisseur d'identité, une architecture plus fréquente est :
+
+```text
+navigateur
+   |
+   v
+Pyramid
+   |
+   +--> OpenID Connect
+   |        |
+   |        v
+   |      IdP
+   |        |
+   |        +--> LDAP / Active Directory
+   |
+   `--> LDAP direct pour attributs métier si nécessaire
+```
+
+Pyramid délègue alors l'authentification à l'IdP et reçoit une identité signée via le flux OIDC. L'annuaire peut rester la source de vérité des comptes sans que l'application manipule elle-même le mot de passe de l'utilisateur.
+
+Il existe néanmoins des environnements où le bind LDAP direct est encore requis. La séquence correcte doit être conçue avec soin. Un compte de service peut rechercher le DN correspondant au login, puis une connexion séparée tente un bind avec le mot de passe fourni. Le mot de passe ne doit ni être journalisé, ni stocké dans la session.
+
+Avec `ldap3`, la recherche peut ressembler à :
+
+```python
+from ldap3 import Connection, Server, Tls
+import ssl
+
+
+tls = Tls(validate=ssl.CERT_REQUIRED)
+server = Server("ldap.example.org", use_ssl=True, tls=tls)
+
+with Connection(
+    server,
+    user=settings["ldap.bind_dn"],
+    password=settings["ldap.bind_password"],
+    auto_bind=True,
+) as conn:
+    conn.search(
+        "ou=people,dc=example,dc=org",
+        "(uid=alice)",
+        attributes=["uid", "cn", "mail"],
+    )
+```
+
+La construction du filtre doit utiliser les mécanismes d'échappement de la bibliothèque ; concaténer directement une saisie utilisateur dans un filtre LDAP ouvre la porte aux injections LDAP.
+
+La validation TLS est impérative. Désactiver la vérification de certificat transforme une connexion `ldaps://` en canal vulnérable à l'interception. En production, nous configurons une chaîne de confiance correcte et des timeouts explicites. Une panne LDAP ne doit pas bloquer indéfiniment tous les workers WSGI.
+
+### Mapper l'identité au domaine applicatif
+
+L'identité externe ne doit pas forcément devenir directement le modèle métier. Un utilisateur OIDC peut porter un `sub`, un email et des groupes ; l'application peut mapper ces éléments vers un `User` local contenant ses préférences et permissions spécifiques.
+
+```text
+claims OIDC / attributs LDAP
+          |
+          v
+identity loader
+          |
+          v
+User local
+          |
+          v
+permissions applicatives
+```
+
+Cela permet de désactiver localement un accès, de conserver un historique et de ne pas lier toute l'architecture aux noms de groupes d'un annuaire particulier.
+
+La Security Policy est le bon endroit pour résoudre l'identité et éventuellement mettre en cache le résultat pendant une requête. Pyramid 2.x expose `request.identity`, ce qui évite de propager partout des chaînes de principals comme dans les anciens patterns 1.x. L'autorisation peut néanmoins toujours utiliser `ACLHelper` lorsque l'héritage d'ACL correspond au domaine.
+
+Enfin, l'authentification d'entreprise doit être pensée pour les erreurs : IdP indisponible, LDAP lent, certificat expiré, utilisateur sans email, groupe supprimé, session distante expirée. Un bon système distingue les erreurs temporaires des refus d'accès et n'expose jamais le détail d'une exception LDAP au navigateur.
+
+---
+
 # 13. Tweens, événements, subscribers et request methods
 
 ## 13.1 Tweens
@@ -1822,6 +2580,59 @@ tenant = request.tenant
 Pour des calculs dépendant de la requête et appelés à plusieurs endroits, Pyramid fournit également `RequestLocalCache`.
 
 C'est notamment utile pour éviter de charger plusieurs fois l'identité depuis la base dans une même requête.
+
+---
+
+
+## 13.6 Tweens, événements et composants : les points d'extension de Pyramid
+
+Une fois les routes et vues comprises, Pyramid devient surtout intéressant par ses **points d'extension**. Les tweens ressemblent à des middlewares placés autour du handler principal. Ils sont adaptés aux préoccupations transversales : mesure de latence, identifiant de corrélation, instrumentation, politique d'erreur ou intégration avec un outil de tracing.
+
+Un tween conceptuel :
+
+```python
+import time
+
+
+def timing_tween_factory(handler, registry):
+    def timing_tween(request):
+        start = time.perf_counter()
+        try:
+            return handler(request)
+        finally:
+            duration = time.perf_counter() - start
+            request.registry.logger.info(
+                "request_done",
+                extra={"duration": duration, "path": request.path},
+            )
+    return timing_tween
+```
+
+Ce code entoure la suite du pipeline. Il ne faut pas pour autant transformer un tween en couche métier : il doit rester générique et indépendant de la route précise.
+
+Les **événements** servent à notifier des composants sans couplage direct. Pyramid publie notamment des événements de cycle de requête et d'application. Une extension peut s'abonner à un événement pour initialiser ou nettoyer une ressource. Ce modèle est utile lorsqu'un package doit se greffer à l'application sans que toutes les vues l'importent explicitement.
+
+Les **request methods** ajoutent des capacités calculées à l'objet `request`. Le cookiecutter SQLAlchemy, par exemple, expose classiquement une session de base liée à la requête. Nous pouvons de même ajouter un accès à un service :
+
+```python
+def get_member_service(request):
+    return MemberService(request.dbsession)
+
+
+config.add_request_method(
+    get_member_service,
+    "member_service",
+    reify=True,
+)
+```
+
+Le `reify=True` calcule la valeur au premier accès puis la mémorise pour la requête. Cette commodité est utile, mais elle doit rester lisible : si chaque dépendance devient un attribut magique de `request`, les tests et la compréhension du code se dégradent.
+
+`RequestLocalCache` répond à un besoin proche mais plus général : calculer une donnée une fois pendant la requête. La Security Policy officielle l'utilise volontiers pour charger l'identité sans refaire plusieurs requêtes SQL lorsque différentes permissions sont évaluées.
+
+La **registry** est enfin le cœur du système de composants. Nous pouvons y enregistrer des utilities ou adapters selon des interfaces. Cette architecture vient de l'écosystème Zope et explique pourquoi Pyramid peut être étendu très profondément sans que le framework central connaisse les extensions à l'avance.
+
+Dans une petite application, n'utilisons pas ces abstractions uniquement parce qu'elles existent. Une fonction et un constructeur explicites sont souvent plus simples. Elles deviennent précieuses quand plusieurs packages doivent contribuer à une même application et lorsqu'on veut remplacer un composant selon l'environnement ou le test.
 
 ---
 
@@ -1986,6 +2797,46 @@ Approches :
 - SQLite lorsque sa sémantique est réellement compatible avec ce que nous testons.
 
 Un test qui passe sous SQLite peut échouer sous PostgreSQL si nous dépendons de comportements spécifiques.
+
+---
+
+
+## 15.8 Tester un comportement plutôt qu'une implémentation
+
+Les tests d'une application Pyramid doivent former une pyramide eux aussi. La base est constituée de tests unitaires rapides sur les services métier. Au-dessus viennent des tests d'intégration qui construisent une registry, une base ou une Security Policy. Enfin, quelques tests fonctionnels passent réellement par l'application WSGI.
+
+Pour notre `MemberService`, le test le plus utile ne nécessite pas Pyramid :
+
+```python
+def test_disable_member_records_reason(member, service):
+    service.disable(member.id, reason="leaving")
+    assert member.disabled is True
+    assert member.disabled_reason == "leaving"
+```
+
+La vue, elle, doit surtout prouver qu'elle traduit correctement HTTP vers le service : code de statut, permission, redirection, validation des entrées. WebTest est pratique pour vérifier l'ensemble du chemin WSGI sans démarrer un serveur réseau réel.
+
+```python
+def test_anonymous_cannot_create_member(testapp):
+    response = testapp.post_json(
+        "/members",
+        {"display_name": "Alice"},
+        status=403,
+    )
+    assert response.status_int == 403
+```
+
+Pour une application protégée par CSRF, il faut également tester l'absence et l'invalidité du token. Pour LDAP ou OIDC, les tests unitaires ne doivent pas dépendre du véritable serveur de production : utilisons des doubles, un serveur de laboratoire ou des fixtures contrôlées. Quelques tests d'intégration réels peuvent ensuite vérifier la compatibilité du protocole.
+
+Les fixtures fournies par le cookiecutter Pyramid sont utiles parce qu'elles savent construire et démonter proprement l'environnement de test. Le contexte `pyramid.testing.testConfig()` permet aussi d'enregistrer temporairement routes, utilities ou politiques sans polluer les tests suivants.
+
+Une erreur fréquente est de surutiliser `DummyRequest`. C'est un bon outil pour une fonction pure qui lit quelques attributs, mais il ne reproduit pas automatiquement toute la mécanique d'une vraie requête : tweens, traversal, security policy, renderer, transaction manager. Dès que nous testons une interaction entre plusieurs couches, un test WSGI via WebTest est souvent plus représentatif.
+
+Le diagnostic en développement complète les tests. `proutes` répond à « quelle route Pyramid a-t-il réellement enregistrée ? », `pviews` à « quelle vue correspond à ce contexte ? », `ptweens` à « dans quel ordre passent mes middlewares ? », `pshell` permet d'inspecter l'application avec sa registry et `prequest` d'exécuter une requête depuis la ligne de commande.
+
+La debug toolbar est très pratique mais doit être réservée au développement. Elle donne accès à des informations extrêmement sensibles : exceptions, environnement, paramètres, introspection. L'exposer publiquement est un incident de sécurité, pas un simple défaut esthétique.
+
+Enfin, les tests de migration ont une valeur particulière dans un vieux projet Pyramid. Avant de remplacer `AuthTktAuthenticationPolicy`, une session Pickle ou une intégration SQLAlchemy 1.x, écrivons des tests sur le comportement actuel. Ils servent de filet lors de la modernisation et permettent de distinguer une incompatibilité réelle d'un changement volontaire.
 
 ---
 
@@ -2191,6 +3042,60 @@ Si le besoin principal est :
 - écosystème ASGI natif ;
 
 il faut évaluer une architecture ASGI ou un service spécialisé.
+
+---
+
+
+## 17.8 Déployer sans confondre application et serveur
+
+Une application Pyramid est une application WSGI ; elle n'écoute pas elle-même nécessairement sur un socket. `pserve` charge à la fois une configuration d'application et une configuration de serveur. Dans le starter officiel, Waitress fournit généralement le serveur WSGI.
+
+En production, nous séparons souvent les rôles :
+
+```text
+Internet
+   |
+   v
+reverse proxy / load balancer
+   |  TLS, limites, headers, compression
+   v
+Waitress / Gunicorn / mod_wsgi
+   |
+   v
+application Pyramid
+   |
+   +--> PostgreSQL
+   +--> Redis
+   +--> LDAP / IdP
+   `--> file de tâches
+```
+
+Cette séparation aide à raisonner sur les frontières de confiance. Le reverse proxy reçoit les connexions non fiables et réécrit les headers de forwarding. Le serveur WSGI peut n'écouter que sur `127.0.0.1` ou sur un réseau privé. L'application ne doit faire confiance à `X-Forwarded-For` ou `X-Forwarded-Proto` que si la chaîne de proxies est maîtrisée.
+
+Les **timeouts** sont une partie de la sécurité et de la disponibilité. Si une vue appelle LDAP sans timeout, quelques connexions lentes peuvent immobiliser tous les workers. La même règle vaut pour la base, SMTP et les API distantes. Un système synchrone WSGI reste très efficace pour beaucoup d'applications métier, à condition de ne pas transformer chaque worker en attente infinie.
+
+Les traitements longs doivent être sortis du cycle HTTP. Pour un export de 500 000 membres, la vue peut créer un job et répondre `202 Accepted`; un worker produit ensuite le fichier. La requête de consultation du job reste courte et prévisible.
+
+Le déploiement conteneurisé ne change pas ces principes. Un Dockerfile doit installer des dépendances reproductibles, utiliser un utilisateur non root, ne pas incorporer les secrets dans l'image et démarrer un vrai serveur WSGI. La configuration d'environnement est injectée au runtime.
+
+```dockerfile
+FROM python:3.14-slim
+WORKDIR /app
+COPY pyproject.toml ./
+COPY . .
+RUN pip install --no-cache-dir .
+RUN useradd --create-home app
+USER app
+CMD ["pserve", "production.ini"]
+```
+
+En pratique, nous pouvons optimiser les layers et pinner davantage les dépendances, mais ce squelette montre les responsabilités. Le secret de cookie, le mot de passe SQL et le bind password LDAP ne doivent jamais apparaître dans le `Dockerfile` ni dans une image publiée.
+
+Deux endpoints de santé peuvent être distingués : **liveness**, qui répond si le processus est capable de traiter des requêtes, et **readiness**, qui indique s'il est prêt à recevoir du trafic. Une readiness peut vérifier des dépendances critiques avec parcimonie, mais ne doit pas déclencher une cascade d'appels lourds à chaque seconde.
+
+Les logs doivent permettre de suivre une requête sans révéler de secrets. Un identifiant de corrélation, la route, le statut, la durée et éventuellement l'identité technique suffisent souvent. Ne journalisons jamais les mots de passe, bearer tokens, cookies complets ou corps sensibles.
+
+Enfin, un déploiement Pyramid doit être reproductible. Si l'installation dépend de commandes manuelles connues d'une seule personne, la robustesse du framework ne compensera pas la fragilité opérationnelle. Les migrations Alembic, variables nécessaires, health checks, procédure de rollback et version de Python doivent être documentés avec l'application.
 
 ---
 
@@ -2591,6 +3496,62 @@ Ordre conseillé :
 8. renforcer CSRF/cookies/headers ;
 9. tester en environnement de préproduction ;
 10. observer après déploiement.
+
+---
+
+
+## 21.9 Étude de migration : d'un projet Pyramid 1.x vers 2.1
+
+Une migration réaliste ne consiste pas à remplacer toutes les anciennes APIs en une seule fois. Un projet Pyramid 1.x peut fonctionner depuis dix ans, contenir plusieurs centaines de vues et dépendre d'extensions qui ont leur propre calendrier. La stratégie la plus sûre est **incrémentale**.
+
+Commençons par établir un inventaire : version Python, version Pyramid, méthode de packaging, policies de sécurité, type de session, SQLAlchemy, ZODB, extensions, serveur WSGI et tests existants. Il faut notamment rechercher :
+
+```text
+set_authentication_policy
+set_authorization_policy
+AuthTktAuthenticationPolicy
+SessionAuthenticationPolicy
+ACLAuthorizationPolicy
+effective_principals
+unauthenticated_userid
+PickleSerializer
+pcreate
+setup.py historiques
+```
+
+Ces éléments ne sont pas tous équivalents en risque. Une ancienne API simplement dépréciée peut continuer à fonctionner pendant la transition, alors qu'une session sérialisée avec Pickle ou une dépendance Python obsolète mérite une priorité de sécurité plus forte.
+
+### Étape 1 : rendre le comportement observable
+
+Avant toute refonte, exécutons les tests, ajoutons des tests fonctionnels aux flux critiques et utilisons `proutes`, `pviews` et `ptweens` pour capturer la configuration effective. Une migration sans filet transforme chaque régression en enquête archéologique.
+
+### Étape 2 : monter Python et les dépendances
+
+Pyramid 2.1 ne supporte plus Python 3.9 et antérieurs. Il faut donc d'abord vérifier que l'application et ses extensions fonctionnent sur Python 3.10 ou plus récent. Dans de nombreux projets, cette étape révèle des dépendances abandonnées avant même d'atteindre Pyramid.
+
+### Étape 3 : moderniser la sécurité
+
+Pyramid 2.x fusionne les anciennes authentication/authorization policies dans une **Security Policy**. Nous pouvons reproduire le comportement existant avec `AuthTktCookieHelper` ou `SessionAuthenticationHelper`, puis exposer `request.identity`.
+
+L'objectif n'est pas uniquement de faire disparaître un warning. Le nouveau modèle permet de représenter l'identité par un objet métier plutôt que de propager uniquement un userid et des principals. Nous pouvons ensuite réécrire progressivement les vérifications de permission.
+
+### Étape 4 : traiter les sessions
+
+Si un ancien projet utilise `PickleSerializer`, la migration vers JSON peut invalider ou rendre incompatibles les sessions existantes. Il faut le prévoir comme un événement de déploiement : soit les utilisateurs se reconnectent, soit une phase de compatibilité est construite. La sécurité vaut souvent davantage que la conservation d'une session historique.
+
+### Étape 5 : moderniser SQLAlchemy
+
+Le passage à SQLAlchemy 2.x mérite son propre chantier. Réécrivons les requêtes legacy, vérifions le modèle transactionnel et exécutons les migrations Alembic en environnement de préproduction. Ne mélangeons pas une refonte complète du domaine et un changement de framework dans le même commit si nous pouvons l'éviter.
+
+### Étape 6 : supprimer l'ancien outillage
+
+`pcreate` et les scaffolds intégrés ont disparu depuis Pyramid 2.0 au profit du cookiecutter. Un projet existant n'a pas besoin d'être recréé avec Cookiecutter ; il peut simplement adopter progressivement les conventions modernes de `pyproject.toml`, tests et packaging.
+
+### Étape 7 : déployer par étapes
+
+Une migration critique devrait disposer d'une procédure de rollback. Si les sessions, schémas SQL ou formats de données ont changé, ce rollback doit être pensé avant le déploiement. Une version précédente du code n'est pas forcément capable de relire des données modifiées par la nouvelle.
+
+Cette méthode illustre un principe général : **moderniser un projet Pyramid est un problème de compatibilité et d'observabilité avant d'être un problème de syntaxe**. Le framework offre beaucoup de stabilité ; profitons-en pour réduire le risque plutôt que de réécrire l'application sans nécessité.
 
 ---
 
