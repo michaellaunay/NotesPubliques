@@ -20,13 +20,15 @@ themes:
   - harness
   - cordis
   - plugins
-resume: "Cours complet sur DeepSeek Harness (dsh) : notion de harness agentique, architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, automatisation, sécurité et développement de plugins."
+  - mcp
+  - obsidian
+resume: "Cours complet sur DeepSeek Harness (dsh) : notion de harness agentique, architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, SDK Python, automatisation, sécurité, développement de plugins, et un cas pratique de branchement sur un coffre Obsidian OSIA (choix Claude / ChatGPT / modèle local, repli hors ligne, habilitations par modèle, serveur MCP du coffre)."
 niveau: avance
 auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-29
-date_modification: 2026-08-29
+date_modification: 2026-09-01
 confidentialite: publique
 publication:
   - notes-publiques
@@ -38,7 +40,7 @@ metadata_verifiees: true
 > [!abstract] Objectif
 > Comprendre ce qu'est un harness agentique et savoir construire, configurer et sécuriser un agent avec DeepSeek Harness (dsh) : architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, automatisation, sécurité et déploiement — en gardant à l'esprit que le projet est en Developer Preview.
 
-Voir aussi : [[Hermes Agent]], [[Travailler avec Claude]], [[LLM en local]], [[Outils IA]].
+Voir aussi : [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]] (chapitre 41 et annexe C), [[Hermes Agent]], [[Travailler avec Claude]], [[LLM en local]], [[Outils IA]].
 
 > [!warning] État du projet au 29 août 2026
 > DeepSeek Harness est encore en **Developer Preview**. DeepSeek annonce explicitement que des changements incompatibles peuvent survenir. Ce cours décrit donc l'architecture et les interfaces observables à cette date ; avant un déploiement réel, il faut vérifier la documentation et la version effectivement installée.
@@ -85,11 +87,11 @@ Voir aussi : [[Hermes Agent]], [[Travailler avec Claude]], [[LLM en local]], [[O
 38. [[#38. Comparaison avec Claude Code, Codex et Hermes Agent]]
 39. [[#39. Limites actuelles du projet]]
 40. [[#40. Architecture recommandée pour un usage professionnel]]
-41. [[#41. Travaux pratiques]]
-42. [[#42. Projet final]]
-43. [[#43. Checklist]]
-44. [[#44. Glossaire]]
-45. [[#45. Sources]]
+42. [[#42. Travaux pratiques]]
+43. [[#43. Projet final]]
+44. [[#44. Checklist]]
+45. [[#45. Glossaire]]
+46. [[#46. Sources]]
 
 ---
 
@@ -237,7 +239,7 @@ Cela implique plusieurs conséquences :
 - une composition de production doit épingler ses versions ;
 - les plugins communautaires doivent être testés contre la même série de versions que le CLI.
 
-Au moment de cette mise à jour, la série publiée observée est `0.1.1-rc.2`.
+Au 29 août 2026, la série publiée observée était `0.1.1-rc.2` ; le 1er septembre 2026, la branche `master` du dépôt est en `0.1.2-alpha.4` et livre en plus un SDK Python (`deepseek-harness-sdk`, voir [[#32.4. Le SDK Python]]) et des profils `sdk`, `sdk-minimal` et `acp`. Le rythme confirme la mise en garde : épingler les versions.
 
 > [!important]
 > Une release candidate n'est pas une garantie de stabilité d'API. Pour un environnement critique, nous versionnons le CLI, les plugins et les fichiers de configuration ensemble.
@@ -1902,6 +1904,24 @@ Préférer :
 scheduler -> headless profile -> task -> result
 ```
 
+## 32.4. Le SDK Python
+
+Depuis la série 0.1.2, le dépôt publie `deepseek-harness-sdk` (Python 3.10+). Le SDK n'est pas un second runtime : il lance le `dsh` embarqué avec un profil (`sdk` par défaut, ou `sdk-minimal`) et lui parle en JSON-RPC.
+
+```python
+from deepseek_harness import DeepSeekHarness
+
+with DeepSeekHarness(provider="deepseek-official", model="deepseek-v4-flash",
+                     cwd="/chemin/du/workspace", dsh_home="/chemin/dsh-home",
+                     profile="sdk-minimal",
+                     patches=("/chemin/mon-overlay.cordis.yml",)) as harness:
+    result = harness.run("Inspecte le dépôt et corrige les tests en échec.",
+                         session_id="exemple-001")
+print(result.final_response)
+```
+
+Trois points à retenir : `dsh_home` est obligatoire — le SDK ne lit jamais `~/.dsh` en silence ; les `patches` sont appliqués après le profil et le patch du home, dans l'ordre ; et la composition `sdk-minimal` épingle `danger-full-access`, donc s'utilise sur un dépôt jetable ou dans un conteneur. Le profil `sdk` (base + sdk-app) accepte en revanche les mêmes overlays `llm-pi-ai` que le profil Web, ce qui permet de choisir Anthropic, OpenAI ou un modèle local depuis Python. Le chapitre [[#41. Cas pratique : DeepSeek Harness au service d'un OSIA]] en fait un usage.
+
 ---
 
 # 33. Débogage et inspection du runtime
@@ -2375,7 +2395,265 @@ agent généraliste
 
 ---
 
-# 41. Travaux pratiques
+# 41. Cas pratique : DeepSeek Harness au service d'un OSIA
+
+Ce chapitre applique tout ce qui précède à un cas réel : brancher dsh sur le coffre Obsidian décrit dans [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA]], avec trois exigences.
+
+1. Changer de modèle — Claude, ChatGPT ou un modèle local — d'un seul mot.
+2. Hors réseau, basculer sur le modèle local sans rien reconfigurer.
+3. Ne **jamais** envoyer une note privée à un modèle distant, quel que soit le chemin qui a mené à ce modèle.
+
+L'implémentation vit dans `scripts/osia/` du coffre (annexe C.13 et C.14 du cours OSIA) ; ce chapitre en explique l'architecture et le raisonnement.
+
+## 41.1. Deux harness, un seul coffre
+
+L'OSIA possède déjà un Harness — quelques centaines de lignes de Python : périmètre d'écriture, budget d'appels, `dry_run`, validation de chaque sortie contre le schéma. DeepSeek Harness en est un autre, complet : interface, sessions, sandbox, registre d'outils, routage de modèles.
+
+Il ne faut ni fusionner les deux, ni en jeter un. Chacun garde ce qu'il fait bien :
+
+| | Harness OSIA (Python) | DeepSeek Harness |
+|---|---|---|
+| Modèle de données | schéma, validation, ULID, confidentialité | — |
+| Écriture dans le coffre | seule voie autorisée, validée | jamais directement |
+| Conversation, sessions, interface | — | oui |
+| Choix et routage des modèles | routeur déterministe | `agent-default-model`, `llm-pi-ai` |
+| Outils, sandbox, MCP | — | oui |
+
+La couture entre les deux tient en deux objets : **un fichier de configuration** partagé, et **un serveur MCP** par lequel dsh voit le coffre.
+
+```text
+                    scripts/osia/modeles.yaml
+                    (routes, défaut, repli, habilitations)
+                        │                    │
+            make traiter│                    │make dsh-patches
+                        ▼                    ▼
+              routeur Python          scripts/dsh/*.cordis.yml
+              (LLMHttp, choisir)      (providers, modèle, MCP)
+                        │                    │
+                        ▼                    ▼
+              Skills → Harness OSIA    dsh web / headless
+                        │                    │
+                        │              mcp__osia__*  (stdio)
+                        │                    │
+                        ▼                    ▼
+                 serveur MCP du coffre : osia_chercher, osia_lire,
+                 osia_valider, osia_plan, osia_ecrire (validé)
+                        │
+                        ▼
+                     le coffre
+```
+
+## 41.2. Une seule source de vérité : `modeles.yaml`
+
+Le chapitre 12 du cours OSIA (§12.100 à 12.108) posait le principe : la configuration des modèles est une donnée versionnée, sans secret, et le choix du modèle est une règle, pas une question posée à un modèle. Le fichier :
+
+```yaml
+defaut: claude
+hors_ligne: local
+habilitation_distante: [publique]
+
+modeles:
+  claude:
+    fournisseur: anthropic
+    api: anthropic-messages
+    base_url: https://api.anthropic.com
+    modele: claude-sonnet-4-5
+    cle_env: ANTHROPIC_API_KEY
+    local: false
+  chatgpt:
+    fournisseur: openai
+    api: openai-completions
+    base_url: https://api.openai.com/v1
+    modele: gpt-4.1-mini
+    cle_env: OPENAI_API_KEY
+    local: false
+  local:
+    fournisseur: ollama
+    api: openai-completions
+    base_url: http://127.0.0.1:11434/v1
+    modele: qwen3:8b
+    cle_env: OLLAMA_API_KEY
+    local: true
+```
+
+Trois choses à remarquer.
+
+**Aucune clé n'y figure.** `cle_env` nomme la variable d'environnement ; c'est exactement la convention `apiKeyEnv` de dsh (chapitre 18), et c'est ce qui permet de versionner le fichier.
+
+**Deux protocoles suffisent.** `openai-completions` couvre OpenAI, Ollama, llama.cpp, vLLM, LM Studio, Mistral, DeepSeek — tout ce qui parle « compatible OpenAI » ; `anthropic-messages` couvre Claude. Passer du modèle local d'Ollama à un `llama-server` revient à changer `base_url`.
+
+**Le repli est contraint.** `hors_ligne` doit désigner une route `local: true` ; le chargeur refuse la configuration sinon. Un « repli hors ligne » vers un modèle distant contredirait son propre nom.
+
+## 41.3. Choisir le modèle, c'est choisir ce que le coffre expose
+
+C'est l'idée qui rend le couplage intelligent plutôt que mécanique.
+
+Chaque route porte une **habilitation** : la liste des niveaux de confidentialité qu'elle a le droit de lire. Un modèle distant reçoit `habilitation_distante` — par défaut le seul niveau `publique` ; un modèle local reçoit tout.
+
+| Route | Modèle | Ce qu'elle peut lire |
+|---|---|---|
+| `claude` | distant | `publique` |
+| `chatgpt` | distant | `publique` |
+| `local` | Ollama | `publique`, `interne`, `privee`, `client` |
+
+Cette règle s'applique à deux endroits, de deux façons.
+
+Côté OSIA, le Harness la vérifie **à chaque appel** : `Harness.completer(prompt, confidentialite=…)` refuse un contenu dont le niveau dépasse l'habilitation du modèle. La valeur par défaut de l'argument est la plus restrictive, `privee` : un Skill qui oublie de transmettre la confidentialité ne peut pas, par cet oubli, faire fuir une fiche — l'appel est refusé. Dans la Pipeline, ce refus n'est pas une panne mais une règle : la fiche reste intacte, marquée `IGNORE modèle claude non habilité pour un contenu privee`, et attend `make traiter MODELE=local`.
+
+Côté dsh, la règle est **dans la configuration que dsh charge** : l'overlay qui choisit le modèle lance aussi le serveur MCP du coffre avec l'habilitation de ce modèle. `make agent MODELE=claude` ouvre un coffre public à Claude ; `make agent MODELE=local` ouvre tout le coffre au modèle local. Ni prompt, ni case à cocher, ni discipline : le modèle distant ne *peut pas* voir une note privée, parce que le processus qui les lit ne les lui montre pas.
+
+Élargir l'habilitation distante — à `interne`, par exemple — est un choix à faire en connaissance des conditions d'utilisation du fournisseur ; il se fait sur une ligne, et il est visible dans l'historique Git.
+
+## 41.4. Côté OSIA : `make traiter MODELE=…`
+
+```bash
+make modeles                   # les routes et leur disponibilité
+make traiter                   # défaut si joignable, sinon repli hors ligne
+make traiter MODELE=local      # ce modèle, et lui seul
+make traiter MODELE=faux       # le modèle factice des tests
+make traiter MODELE=aucun      # sans modèle : les Skills concernés sont ignorés
+```
+
+Le routeur (`osia/modeles.py`) est déterministe et journalisé :
+
+```text
+modele  modèle claude écarté : variable ANTHROPIC_API_KEY absente
+modele  modèle local (ollama/qwen3:8b), repli hors ligne — habilité : publique, interne, privee, client
+```
+
+La disponibilité d'une route est une sonde TCP de deux secondes, pas un appel de modèle : elle ne coûte rien, ne consomme aucun quota, et échoue vite hors réseau — ce qu'un choix automatique exige. Un modèle **demandé explicitement** qui n'est pas joignable arrête la commande avec un code de retour 2 : il n'est jamais remplacé en silence.
+
+`osia/modeles.py` fournit `LLMHttp`, l'implémentation de `completer(prompt) -> str` que l'annexe C.12 laissait au lecteur. Bibliothèque standard uniquement : le coffre garde ses deux dépendances.
+
+## 41.5. Côté dsh : des overlays générés, jamais écrits à la main
+
+dsh compose son application par couches de patches Cordis, et un patch remplace le `config` complet de la ligne visée (chapitre 27). Nous ne rédigeons aucune composition : `make dsh-patches` dérive de `modeles.yaml` deux familles de fichiers dans `scripts/dsh/`.
+
+`osia.cordis.yml`, commun à tous les modèles — les routes de fournisseurs et la persona :
+
+```yaml
+- id: llm-pi-ai
+  config:
+    providers:
+      anthropic:
+        apiKeyEnv: ANTHROPIC_API_KEY
+      openai:
+        apiKeyEnv: OPENAI_API_KEY
+      ollama:
+        apiKeyEnv: OLLAMA_API_KEY
+        api: openai-completions
+        baseURL: http://127.0.0.1:11434/v1
+        compat:
+          supportsDeveloperRole: false
+          maxTokensField: max_tokens
+        models:
+          - id: qwen3:8b
+
+- id: system-prompt
+  config:
+    persona: >-
+      Tu es l'agent bibliothécaire d'un coffre Obsidian OSIA … tu n'écris que
+      par mcp__osia__osia_ecrire, jamais par l'éditeur ni le shell …
+```
+
+`modele-<nom>.cordis.yml`, un par route — le modèle par défaut **et** le serveur MCP sous l'habilitation de ce modèle :
+
+```yaml
+- id: agent-default-model
+  config:
+    provider: ollama
+    model: qwen3:8b
+
+- insert:
+    - id: mcp-osia
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: osia
+        transport: stdio
+        command: python3
+        args: ['-m', 'osia.cli', 'mcp', '.',
+               '--habilitation', 'publique,interne,privee,client',
+               '--ecriture', 'brouillons/**']
+        cwd: !!js process.cwd()
+        env:
+          PYTHONPATH: scripts
+        failOnStartupError: true
+```
+
+Deux détails comptent. `anthropic` et `openai` sont des routes du catalogue pi-ai : seule la clé est à déclarer. `ollama` ne l'est pas : il faut le protocole, l'URL, la liste des modèles, et les deux commutateurs `compat` que le guide `providers.md` recommande pour tout serveur compatible OpenAI (pas de rôle `developer`, plafond en `max_tokens`).
+
+`cwd: !!js process.cwd()` évite tout chemin absolu dans un fichier versionné ; en contrepartie dsh doit être lancé depuis la racine du coffre, ce que fait le Makefile :
+
+```bash
+make dsh-patches
+make agent MODELE=local        # dsh web --patch scripts/dsh/osia.cordis.yml \
+                               #         --patch scripts/dsh/modele-local.cordis.yml
+make agent                     # même règle que traiter : défaut, sinon repli
+```
+
+`make agent` positionne aussi `DSH_PERMISSION_MODE=read-only` : le bac à sable de dsh est en lecture seule sur le coffre, et la **seule** voie d'écriture est le serveur MCP, qui valide. C'est la règle du chapitre 12 du cours OSIA appliquée à un harness qui n'est pas le nôtre : le modèle ne touche jamais le disque.
+
+Pour vérifier ce que dsh va réellement démarrer :
+
+```bash
+npx @deepseek-ai/dsh web --patch "$PWD/scripts/dsh/osia.cordis.yml" \
+    --patch "$PWD/scripts/dsh/modele-claude.cordis.yml" --dump-config | grep -A4 mcp-osia
+```
+
+## 41.6. Le coffre comme serveur MCP
+
+`osia/mcp_serveur.py` parle le *Model Context Protocol* sur stdio — une ligne JSON-RPC par message — sans dépendance. Ses outils apparaissent dans dsh sous le préfixe `mcp__osia__` :
+
+| Outil | Rôle |
+|---|---|
+| `osia_schema` | le vocabulaire : types, statuts, `para`, confidentialités, domaines, thèmes par rubrique |
+| `osia_chercher` | recherche lexicale, **filtrée avant l'appariement** par l'habilitation |
+| `osia_lire` | métadonnées et corps d'une fiche, si son niveau est dans l'habilitation |
+| `osia_valider` | erreurs de schéma d'une fiche ou du coffre |
+| `osia_plan` | ce que la Pipeline Inbox ferait |
+| `osia_ecrire` | crée ou modifie une fiche — annoncé seulement si `--ecriture` est donné |
+
+`osia_ecrire` est le point où tout se joue. Il fusionne les propriétés proposées, remplace le corps s'il est fourni, pose `metadata_verifiees: false` et `date_modification`, puis **valide contre le schéma avant d'écrire** : une fiche invalide n'est pas écrite, et la réponse liste les erreurs pour que le modèle corrige. L'`uid` est immuable — une tentative de le changer est ignorée. Le périmètre est celui du Harness OSIA (`brouillons/**` par défaut) ; une injection dans le corps est refusée ; un chemin hors du coffre aussi.
+
+Le message `initialize` porte des `instructions` que dsh transmet au modèle : chercher avant d'affirmer qu'une note n'existe pas, ne jamais inventer un type ou un thème, corriger une fiche refusée au lieu de contourner. Le fichier `AGENTS.md` à la racine du coffre, que le chargeur d'instructions de dsh lit, dit la même chose à tout autre agent — Claude Code, Codex.
+
+Un détail de dsh joue en notre faveur : le pont stdio retire de l'environnement du serveur les variables `DSH_*` et celles qui ressemblent à des secrets. Le serveur du coffre n'en a aucun besoin — il ne parle à aucun modèle — et ne peut donc rien divulguer.
+
+## 41.7. Hors réseau
+
+Rien à faire. `make modeles` montre `claude` écarté et `local` joignable ; `make agent` et `make traiter` prennent le repli. Il faut seulement qu'Ollama tourne et qu'une variable `OLLAMA_API_KEY` existe — n'importe quelle valeur, Ollama l'ignore, mais dsh exige une référence de credential pour toute route.
+
+```bash
+ollama serve &
+ollama pull qwen3:8b
+export OLLAMA_API_KEY=ollama
+make modeles
+make agent
+```
+
+Le choix du modèle local se fait d'après [[LLM en local]] et la machine. Un modèle modeste se comporte mieux en Minimal Mode qu'en Standard Mode (chapitre 14) : moins d'outils, moins de contexte, moins d'erreurs de sélection. Le serveur MCP, lui, n'expose que six outils quel que soit le mode.
+
+## 41.8. Vérifier
+
+```bash
+make test                      # 41 tests, dont le serveur MCP sur stdio
+make modeles
+make dsh-patches
+make agent MODELE=claude
+```
+
+Dans l'interface : « cherche les notes sur le RAG » doit déclencher `mcp__osia__osia_chercher` ; « lis une fiche du dossier `prestations/` » doit être refusé — ces fiches sont `client` ou `privee`, le modèle distant ne les voit pas. Relancer avec `MODELE=local` et poser la même question : elles apparaissent. Enfin « crée une note de veille sur X dans brouillons » doit passer par `osia_ecrire`, et `make valider` doit rester à zéro erreur après.
+
+## 41.9. Limites et suite
+
+- Les Skills Python n'utilisent qu'un prompt et une réponse : ni outils, ni flux. C'est voulu — un Skill est atomique — mais un traitement qui exigerait une boucle d'agent passera par dsh, pas par `make traiter`.
+- Le SDK Python de dsh (`pip install deepseek-harness-sdk`, classe `DeepSeekHarness(provider=…, model=…, patches=(…))`) permettrait de piloter dsh **depuis** la Pipeline OSIA avec les mêmes overlays. C'est la voie naturelle pour un Skill complexe ; elle n'est pas encore branchée.
+- Les habilitations sont portées par les routes, pas par les fiches : une fiche `publique` part chez n'importe quel fournisseur. C'est cohérent avec le sens du mot, mais une propriété `redaction` (§12.88) pourrait un jour affiner.
+- dsh est en Developer Preview : `make dsh-patches` régénère les overlays si le format de `modeles.yaml` change, et `--dump-config` reste le juge de paix quand un identifiant de ligne bouge d'une version à l'autre.
+
+---
+
+# 42. Travaux pratiques
 
 ## TP 1 — Premier démarrage
 
@@ -2589,7 +2867,7 @@ L'objectif est d'apprendre à auditer le **harness**, pas seulement le prompt.
 
 ---
 
-# 42. Projet final
+# 43. Projet final
 
 ## Construire un agent de maintenance de dépôt contrôlé
 
@@ -2674,7 +2952,7 @@ validation humaine
 
 ---
 
-# 43. Checklist
+# 44. Checklist
 
 ## Installation
 
@@ -2740,7 +3018,7 @@ validation humaine
 
 ---
 
-# 44. Glossaire
+# 45. Glossaire
 
 **Agent**
 Système combinant un modèle avec une boucle, des outils et un environnement d'exécution.
@@ -2810,7 +3088,7 @@ Exécution d'une tâche sans interface Web interactive.
 
 ---
 
-# 45. Sources
+# 46. Sources
 
 ## Sources officielles DeepSeek
 
