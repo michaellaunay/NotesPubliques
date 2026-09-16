@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-08-31
+date_modification: 2026-09-16
 confidentialite: publique
 publication:
   - notes-publiques
@@ -28,7 +28,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Intelligence artificielle
 
-- [[DeepSeek Harness]] — Cours complet sur DeepSeek Harness (dsh) : notion de harness agentique, architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, automatisation, sécurité et développement de plugins.
+- [[DeepSeek Harness]] — Cours complet sur DeepSeek Harness (dsh) : notion de harness agentique, architecture Cordis et tout-plugin, profils et presets, modèles, outils, skills, sandbox, MCP, extensions, SDK Python, automatisation, sécurité, développement de plugins, et un cas pratique de branchement sur un coffre Obsidian OSIA (choix Claude / ChatGPT / modèle local, repli hors ligne, habilitations par modèle, serveur MCP du coffre).
 - [[Du PDF scanné au corpus exploitable OCR multimodal local avec olmOCR 2 et Infinity-Parser2-Pro]] — Cours-atelier sur une chaîne locale, traçable et reproductible de transformation de PDF scannés en corpus exploitable : ingestion, rendu, olmOCR 2, Infinity-Parser2 Pro/Flash, routage, contrôle qualité, indexation et RAG.
 - [[Hermes Agent]] — Cours approfondi et actualisé sur Hermes Agent (Nous Research) : architecture agentique, mémoire et recherche de sessions, skills auto-améliorés, cron, délégation multi-agent, profils, MCP, plugins, gateways multi-canaux, backends d'exécution, sécurité et migration OpenClaw.
 - [[Les CNN et RNN]] — Cours de niveau master sur les CNN et RNN : convolution et champs réceptifs, architectures convolutionnelles modernes, récurrence et BPTT, dépendances longues, LSTM/GRU, Seq2Seq, attention, entraînement PyTorch et choix d'architecture en 2026.
