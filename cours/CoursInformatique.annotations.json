@@ -1,0 +1,4519 @@
+{
+	"schema_version": 1,
+	"date": "2026-09-16",
+	"base_commit": "608783661944bfc411e1918304f5b720eef2bcbc",
+	"scene": "cours/CoursInformatique.excalidraw",
+	"mindmap": "cours/CoursInformatique.mm",
+	"mindmap_sha256": "8012b07da791c5cd8fc349f2145c498c79758b27cdbf8b60a28eaa50e8085c25",
+	"original_upload_sha256": "dff4c08002a96b90e45659cc9ab9cc1b19616a02074313a9f91e5d8b9073a7c4",
+	"mindmap_normalization": "Espaces de fin de ligne supprimés ; arborescence, attributs, liens et contenus conservés.",
+	"scope": "Conserver les 385 nœuds du mindmap et ses ressources ; distinguer corrections, synthèses des notes et compléments externes.",
+	"sources": {
+		"notes": {
+			"kind": "note_fournie",
+			"path": "cours/Informatique.md"
+		},
+		"langages": {
+			"kind": "note_fournie",
+			"path": "cours/Histoire des langages de programmation.md"
+		},
+		"linux": {
+			"kind": "note_fournie",
+			"path": "cours/Historique Linux.md"
+		},
+		"transformers": {
+			"kind": "note_fournie",
+			"path": "cours/Les transformers.md"
+		},
+		"anticythere-ucl": {
+			"kind": "verification_externe",
+			"title": "UCL — Antikythera Research Team (2021)",
+			"url": "https://www.ucl.ac.uk/news/2021/mar/experts-recreate-mechanical-cosmos-worlds-first-computer"
+		},
+		"babbage-chm": {
+			"kind": "verification_externe",
+			"title": "Computer History Museum — The Engines",
+			"url": "https://www.computerhistory.org/babbage/engines/"
+		},
+		"pdp-chm": {
+			"kind": "verification_externe",
+			"title": "Computer History Museum — PDP-11/20 (1970)",
+			"url": "https://www.computerhistory.org/revolution/minicomputers/11/366/1946"
+		},
+		"ibm-pc": {
+			"kind": "verification_externe",
+			"title": "IBM — The IBM PC",
+			"url": "https://www.ibm.com/history/personal-computer"
+		},
+		"baby": {
+			"kind": "verification_externe",
+			"title": "Science and Industry Museum — Baby, premier programme enregistré (1948)",
+			"url": "https://blog.scienceandindustrymuseum.org.uk/santa-baby/"
+		},
+		"ic-ti": {
+			"kind": "verification_externe",
+			"title": "Texas Instruments — premier circuit intégré fonctionnel (1958)",
+			"url": "https://www.ti.com/about-ti/behind-chip/articles/from-idea-to-invention-the-origin-story-of-the-tiny-chip-that-changed-the-world.html"
+		},
+		"intel4004": {
+			"kind": "verification_externe",
+			"title": "Intel — le 4004 (1971)",
+			"url": "https://www.intel.com/content/www/us/en/history/virtual-vault/articles/the-intel-4004.html"
+		},
+		"codd": {
+			"kind": "verification_externe",
+			"title": "E. F. Codd — A Relational Model of Data for Large Shared Data Banks (1970)",
+			"url": "https://research.ibm.com/publications/a-relational-model-of-data-for-large-shared-data-banks"
+		},
+		"internet": {
+			"kind": "verification_externe",
+			"title": "Internet Society — Bref historique de l’Internet (auteurs du réseau)",
+			"url": "https://www.internetsociety.org/fr/internet/history-internet/brief-history-internet/"
+		},
+		"web": {
+			"kind": "verification_externe",
+			"title": "CERN — La naissance du Web",
+			"url": "https://home.cern/fr/science/computing/birth-web/"
+		},
+		"ibm-relational": {
+			"kind": "verification_externe",
+			"title": "IBM — The relational database, System R et SQL",
+			"url": "https://www.ibm.com/history/relational-database"
+		},
+		"mindmap": {
+			"kind": "mindmap_fourni",
+			"path": "cours/CoursInformatique.mm"
+		}
+	},
+	"original_nodes": [
+		{
+			"freeplane_id": "ID_719241929",
+			"rectangle_id": "1",
+			"text_id": "2",
+			"parent_id": null,
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_37301723",
+			"rectangle_id": "3",
+			"text_id": "4",
+			"parent_id": "1",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1170894378",
+			"rectangle_id": "6",
+			"text_id": "7",
+			"parent_id": "3",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1076017481",
+			"rectangle_id": "9",
+			"text_id": "10",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_194349015",
+			"rectangle_id": "12",
+			"text_id": "13",
+			"parent_id": "9",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1030371806",
+			"rectangle_id": "15",
+			"text_id": "16",
+			"parent_id": "9",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1895950393",
+			"rectangle_id": "18",
+			"text_id": "19",
+			"parent_id": "9",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1335992263",
+			"rectangle_id": "21",
+			"text_id": "22",
+			"parent_id": "9",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_515765922",
+			"rectangle_id": "24",
+			"text_id": "25",
+			"parent_id": "9",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1657523549",
+			"rectangle_id": "27",
+			"text_id": "28",
+			"parent_id": "9",
+			"original_link": "https://fr.wikipedia.org/wiki/Bulle-enveloppe",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Bulle-enveloppe",
+			"link": "https://fr.wikipedia.org/wiki/Bulle-enveloppe"
+		},
+		{
+			"freeplane_id": "ID_1470563026",
+			"rectangle_id": "30",
+			"text_id": "31",
+			"parent_id": "9",
+			"original_link": "https://fr.wikipedia.org/wiki/Sceau-cylindre",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Sceau-cylindre",
+			"link": "https://fr.wikipedia.org/wiki/Sceau-cylindre"
+		},
+		{
+			"freeplane_id": "ID_870033448",
+			"rectangle_id": "33",
+			"text_id": "34",
+			"parent_id": "9",
+			"original_link": "https://fr.wikipedia.org/wiki/P%C3%A9riode_d%27Uruk",
+			"implicit_url": "https://fr.wikipedia.org/wiki/P%C3%A9riode_d%27Uruk",
+			"link": "https://fr.wikipedia.org/wiki/P%C3%A9riode_d%27Uruk"
+		},
+		{
+			"freeplane_id": "ID_1302630743",
+			"rectangle_id": "36",
+			"text_id": "37",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_147316533",
+			"rectangle_id": "39",
+			"text_id": "40",
+			"parent_id": "36",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_522739483",
+			"rectangle_id": "42",
+			"text_id": "43",
+			"parent_id": "36",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_286365932",
+			"rectangle_id": "45",
+			"text_id": "46",
+			"parent_id": "36",
+			"original_link": "https://youtu.be/3kGuN8WIGNc",
+			"implicit_url": "https://youtu.be/3kGuN8WIGNc",
+			"link": "https://youtu.be/3kGuN8WIGNc"
+		},
+		{
+			"freeplane_id": "ID_509495226",
+			"rectangle_id": "48",
+			"text_id": "49",
+			"parent_id": "36",
+			"original_link": "https://fr.wikipedia.org/wiki/Cun%C3%A9iforme",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Cun%C3%A9iforme",
+			"link": "https://fr.wikipedia.org/wiki/Cun%C3%A9iforme"
+		},
+		{
+			"freeplane_id": "ID_1104650867",
+			"rectangle_id": "51",
+			"text_id": "52",
+			"parent_id": "36",
+			"original_link": "https://fr.wikipedia.org/wiki/%C3%89criture_hi%C3%A9roglyphique_%C3%A9gyptienne",
+			"implicit_url": "https://fr.wikipedia.org/wiki/%C3%89criture_hi%C3%A9roglyphique_%C3%A9gyptienne",
+			"link": "https://fr.wikipedia.org/wiki/%C3%89criture_hi%C3%A9roglyphique_%C3%A9gyptienne"
+		},
+		{
+			"freeplane_id": "ID_1720907304",
+			"rectangle_id": "54",
+			"text_id": "55",
+			"parent_id": "36",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_786524013",
+			"rectangle_id": "57",
+			"text_id": "58",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1931945989",
+			"rectangle_id": "60",
+			"text_id": "61",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1684279275",
+			"rectangle_id": "63",
+			"text_id": "64",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1795749182",
+			"rectangle_id": "66",
+			"text_id": "67",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_583972907",
+			"rectangle_id": "69",
+			"text_id": "70",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1144860273",
+			"rectangle_id": "72",
+			"text_id": "73",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_154261430",
+			"rectangle_id": "75",
+			"text_id": "76",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1201733449",
+			"rectangle_id": "78",
+			"text_id": "79",
+			"parent_id": "57",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_167959178",
+			"rectangle_id": "81",
+			"text_id": "82",
+			"parent_id": "78",
+			"original_link": "https://fr.wikipedia.org/wiki/Machine_d%27Anticyth%C3%A8re",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Machine_d%27Anticyth%C3%A8re",
+			"link": "https://fr.wikipedia.org/wiki/Machine_d%27Anticyth%C3%A8re"
+		},
+		{
+			"freeplane_id": "ID_1373617792",
+			"rectangle_id": "84",
+			"text_id": "85",
+			"parent_id": "78",
+			"original_link": "https://youtu.be/BG-YxFV8wE8",
+			"implicit_url": "https://youtu.be/BG-YxFV8wE8",
+			"link": "https://youtu.be/BG-YxFV8wE8"
+		},
+		{
+			"freeplane_id": "ID_670980979",
+			"rectangle_id": "87",
+			"text_id": "88",
+			"parent_id": "78",
+			"original_link": "https://vimeo.com/518734183",
+			"implicit_url": "https://vimeo.com/518734183",
+			"link": "https://vimeo.com/518734183"
+		},
+		{
+			"freeplane_id": "ID_1431347576",
+			"rectangle_id": "90",
+			"text_id": "91",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1791314953",
+			"rectangle_id": "93",
+			"text_id": "94",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1299791136",
+			"rectangle_id": "96",
+			"text_id": "97",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_314078983",
+			"rectangle_id": "99",
+			"text_id": "100",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1420692746",
+			"rectangle_id": "102",
+			"text_id": "103",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1373495848",
+			"rectangle_id": "105",
+			"text_id": "106",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_24847403",
+			"rectangle_id": "108",
+			"text_id": "109",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1350158090",
+			"rectangle_id": "111",
+			"text_id": "112",
+			"parent_id": "90",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_690354767",
+			"rectangle_id": "114",
+			"text_id": "115",
+			"parent_id": "111",
+			"original_link": "https://fr.wikipedia.org/wiki/Pascaline",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Pascaline",
+			"link": "https://fr.wikipedia.org/wiki/Pascaline"
+		},
+		{
+			"freeplane_id": "ID_1433885831",
+			"rectangle_id": "117",
+			"text_id": "118",
+			"parent_id": "111",
+			"original_link": "https://youtu.be/GX4RQK__fQc",
+			"implicit_url": "https://youtu.be/GX4RQK__fQc",
+			"link": "https://youtu.be/GX4RQK__fQc"
+		},
+		{
+			"freeplane_id": "ID_1761363742",
+			"rectangle_id": "120",
+			"text_id": "121",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1892340036",
+			"rectangle_id": "123",
+			"text_id": "124",
+			"parent_id": "120",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1849291757",
+			"rectangle_id": "126",
+			"text_id": "127",
+			"parent_id": "120",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_580976678",
+			"rectangle_id": "129",
+			"text_id": "130",
+			"parent_id": "120",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1358055021",
+			"rectangle_id": "132",
+			"text_id": "133",
+			"parent_id": "120",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1823018922",
+			"rectangle_id": "135",
+			"text_id": "136",
+			"parent_id": "120",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1890486110",
+			"rectangle_id": "138",
+			"text_id": "139",
+			"parent_id": "120",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_501364997",
+			"rectangle_id": "141",
+			"text_id": "142",
+			"parent_id": "138",
+			"original_link": "https://fr.wikipedia.org/wiki/M%C3%A9tier_Jacquard",
+			"implicit_url": "https://fr.wikipedia.org/wiki/M%C3%A9tier_Jacquard",
+			"link": "https://fr.wikipedia.org/wiki/M%C3%A9tier_Jacquard"
+		},
+		{
+			"freeplane_id": "ID_1553393636",
+			"rectangle_id": "144",
+			"text_id": "145",
+			"parent_id": "138",
+			"original_link": "https://les-embobineuses.com/2020/02/11/tissu-droit-fil/",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Tissage",
+			"link": "https://fr.wikipedia.org/wiki/Tissage"
+		},
+		{
+			"freeplane_id": "ID_933871800",
+			"rectangle_id": "147",
+			"text_id": "148",
+			"parent_id": "138",
+			"original_link": "https://youtu.be/KfHD30OQqOo",
+			"implicit_url": "https://youtu.be/KfHD30OQqOo",
+			"link": "https://youtu.be/KfHD30OQqOo"
+		},
+		{
+			"freeplane_id": "ID_698535602",
+			"rectangle_id": "150",
+			"text_id": "151",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_250034742",
+			"rectangle_id": "153",
+			"text_id": "154",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_805850136",
+			"rectangle_id": "156",
+			"text_id": "157",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_26103140",
+			"rectangle_id": "159",
+			"text_id": "160",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_290920683",
+			"rectangle_id": "162",
+			"text_id": "163",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1513675198",
+			"rectangle_id": "165",
+			"text_id": "166",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1285585567",
+			"rectangle_id": "168",
+			"text_id": "169",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_828660593",
+			"rectangle_id": "171",
+			"text_id": "172",
+			"parent_id": "150",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_406019302",
+			"rectangle_id": "174",
+			"text_id": "175",
+			"parent_id": "171",
+			"original_link": "https://fr.wikipedia.org/wiki/Machine_analytique",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Machine_analytique",
+			"link": "https://fr.wikipedia.org/wiki/Machine_analytique"
+		},
+		{
+			"freeplane_id": "ID_1749354803",
+			"rectangle_id": "177",
+			"text_id": "178",
+			"parent_id": "171",
+			"original_link": "https://youtu.be/BlbQsKpq3Ak",
+			"implicit_url": "https://youtu.be/BlbQsKpq3Ak",
+			"link": "https://youtu.be/BlbQsKpq3Ak"
+		},
+		{
+			"freeplane_id": "ID_176576653",
+			"rectangle_id": "180",
+			"text_id": "181",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1631224792",
+			"rectangle_id": "183",
+			"text_id": "184",
+			"parent_id": "180",
+			"original_link": "https://youtu.be/_eUOuQ5lp_0",
+			"implicit_url": "https://youtu.be/_eUOuQ5lp_0",
+			"link": "https://youtu.be/_eUOuQ5lp_0"
+		},
+		{
+			"freeplane_id": "ID_1671034965",
+			"rectangle_id": "186",
+			"text_id": "187",
+			"parent_id": "180",
+			"original_link": "https://fr.wikipedia.org/wiki/Ada_Lovelace",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Ada_Lovelace",
+			"link": "https://fr.wikipedia.org/wiki/Ada_Lovelace"
+		},
+		{
+			"freeplane_id": "ID_994298775",
+			"rectangle_id": "189",
+			"text_id": "190",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1330438065",
+			"rectangle_id": "192",
+			"text_id": "193",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1142644513",
+			"rectangle_id": "195",
+			"text_id": "196",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_933016899",
+			"rectangle_id": "198",
+			"text_id": "199",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1050914902",
+			"rectangle_id": "201",
+			"text_id": "202",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_37163390",
+			"rectangle_id": "204",
+			"text_id": "205",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1774166587",
+			"rectangle_id": "207",
+			"text_id": "208",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_216930582",
+			"rectangle_id": "210",
+			"text_id": "211",
+			"parent_id": "189",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1045475711",
+			"rectangle_id": "213",
+			"text_id": "214",
+			"parent_id": "210",
+			"original_link": "https://interstices.info/machines-a-calculer/",
+			"implicit_url": "https://interstices.info/machines-a-calculer/",
+			"link": "https://interstices.info/machines-a-calculer/"
+		},
+		{
+			"freeplane_id": "ID_718971847",
+			"rectangle_id": "216",
+			"text_id": "217",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_544647803",
+			"rectangle_id": "219",
+			"text_id": "220",
+			"parent_id": "216",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1604961188",
+			"rectangle_id": "222",
+			"text_id": "223",
+			"parent_id": "216",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1009212950",
+			"rectangle_id": "225",
+			"text_id": "226",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1568411674",
+			"rectangle_id": "228",
+			"text_id": "229",
+			"parent_id": "225",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1618730342",
+			"rectangle_id": "231",
+			"text_id": "232",
+			"parent_id": "225",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1989715032",
+			"rectangle_id": "234",
+			"text_id": "235",
+			"parent_id": "225",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1239687729",
+			"rectangle_id": "237",
+			"text_id": "238",
+			"parent_id": "225",
+			"original_link": null,
+			"implicit_url": "https://fr.wikipedia.org/wiki/PDP-11",
+			"link": "https://fr.wikipedia.org/wiki/PDP-11"
+		},
+		{
+			"freeplane_id": "ID_132040070",
+			"rectangle_id": "240",
+			"text_id": "241",
+			"parent_id": "225",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1692361383",
+			"rectangle_id": "243",
+			"text_id": "244",
+			"parent_id": "225",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1957228454",
+			"rectangle_id": "246",
+			"text_id": "247",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_468784578",
+			"rectangle_id": "249",
+			"text_id": "250",
+			"parent_id": "246",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_165455660",
+			"rectangle_id": "252",
+			"text_id": "253",
+			"parent_id": "246",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1791667859",
+			"rectangle_id": "255",
+			"text_id": "256",
+			"parent_id": "246",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_466860542",
+			"rectangle_id": "258",
+			"text_id": "259",
+			"parent_id": "6",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_637832733",
+			"rectangle_id": "261",
+			"text_id": "262",
+			"parent_id": "258",
+			"original_link": "https://youtu.be/VQKMoT-6XSg",
+			"implicit_url": "https://youtu.be/VQKMoT-6XSg",
+			"link": "https://youtu.be/VQKMoT-6XSg"
+		},
+		{
+			"freeplane_id": "ID_945923735",
+			"rectangle_id": "264",
+			"text_id": "265",
+			"parent_id": "6",
+			"original_link": "https://youtu.be/4APvCcFRkxc",
+			"implicit_url": "https://youtu.be/4APvCcFRkxc",
+			"link": "https://youtu.be/4APvCcFRkxc"
+		},
+		{
+			"freeplane_id": "ID_937687351",
+			"rectangle_id": "267",
+			"text_id": "268",
+			"parent_id": "3",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_17570159",
+			"rectangle_id": "270",
+			"text_id": "271",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1633594781",
+			"rectangle_id": "273",
+			"text_id": "274",
+			"parent_id": "270",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_109662498",
+			"rectangle_id": "276",
+			"text_id": "277",
+			"parent_id": "270",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1243598768",
+			"rectangle_id": "279",
+			"text_id": "280",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_742397569",
+			"rectangle_id": "282",
+			"text_id": "283",
+			"parent_id": "279",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_143893488",
+			"rectangle_id": "285",
+			"text_id": "286",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1868439059",
+			"rectangle_id": "288",
+			"text_id": "289",
+			"parent_id": "285",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_201270128",
+			"rectangle_id": "291",
+			"text_id": "292",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1674159138",
+			"rectangle_id": "294",
+			"text_id": "295",
+			"parent_id": "291",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1282714251",
+			"rectangle_id": "297",
+			"text_id": "298",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_207342756",
+			"rectangle_id": "300",
+			"text_id": "301",
+			"parent_id": "297",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1988582084",
+			"rectangle_id": "303",
+			"text_id": "304",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_759117108",
+			"rectangle_id": "306",
+			"text_id": "307",
+			"parent_id": "303",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_446116450",
+			"rectangle_id": "309",
+			"text_id": "310",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1746652111",
+			"rectangle_id": "312",
+			"text_id": "313",
+			"parent_id": "309",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_417031809",
+			"rectangle_id": "315",
+			"text_id": "316",
+			"parent_id": "312",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_344714111",
+			"rectangle_id": "318",
+			"text_id": "319",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1067733267",
+			"rectangle_id": "321",
+			"text_id": "322",
+			"parent_id": "318",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_21605167",
+			"rectangle_id": "324",
+			"text_id": "325",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_330328006",
+			"rectangle_id": "327",
+			"text_id": "328",
+			"parent_id": "324",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1858956960",
+			"rectangle_id": "330",
+			"text_id": "331",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_517461171",
+			"rectangle_id": "333",
+			"text_id": "334",
+			"parent_id": "330",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_52992611",
+			"rectangle_id": "336",
+			"text_id": "337",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1955141283",
+			"rectangle_id": "339",
+			"text_id": "340",
+			"parent_id": "336",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_423315538",
+			"rectangle_id": "342",
+			"text_id": "343",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_738459318",
+			"rectangle_id": "345",
+			"text_id": "346",
+			"parent_id": "342",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_19920545",
+			"rectangle_id": "348",
+			"text_id": "349",
+			"parent_id": "342",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1247465200",
+			"rectangle_id": "351",
+			"text_id": "352",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1122423005",
+			"rectangle_id": "354",
+			"text_id": "355",
+			"parent_id": "351",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1298805441",
+			"rectangle_id": "357",
+			"text_id": "358",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1020605911",
+			"rectangle_id": "360",
+			"text_id": "361",
+			"parent_id": "357",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_680002975",
+			"rectangle_id": "363",
+			"text_id": "364",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1521268766",
+			"rectangle_id": "366",
+			"text_id": "367",
+			"parent_id": "363",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1145595672",
+			"rectangle_id": "369",
+			"text_id": "370",
+			"parent_id": "363",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_919834016",
+			"rectangle_id": "372",
+			"text_id": "373",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1919522684",
+			"rectangle_id": "375",
+			"text_id": "376",
+			"parent_id": "372",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1983582034",
+			"rectangle_id": "378",
+			"text_id": "379",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1184342754",
+			"rectangle_id": "381",
+			"text_id": "382",
+			"parent_id": "378",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1686930787",
+			"rectangle_id": "384",
+			"text_id": "385",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_618262171",
+			"rectangle_id": "387",
+			"text_id": "388",
+			"parent_id": "384",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1600084716",
+			"rectangle_id": "390",
+			"text_id": "391",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_381720451",
+			"rectangle_id": "393",
+			"text_id": "394",
+			"parent_id": "390",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_518499244",
+			"rectangle_id": "396",
+			"text_id": "397",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_791413475",
+			"rectangle_id": "399",
+			"text_id": "400",
+			"parent_id": "396",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1749181719",
+			"rectangle_id": "402",
+			"text_id": "403",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1294190645",
+			"rectangle_id": "405",
+			"text_id": "406",
+			"parent_id": "402",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_883726640",
+			"rectangle_id": "408",
+			"text_id": "409",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1086193783",
+			"rectangle_id": "411",
+			"text_id": "412",
+			"parent_id": "408",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1966136368",
+			"rectangle_id": "414",
+			"text_id": "415",
+			"parent_id": "267",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_384310122",
+			"rectangle_id": "417",
+			"text_id": "418",
+			"parent_id": "414",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1299527084",
+			"rectangle_id": "420",
+			"text_id": "421",
+			"parent_id": "3",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_41447669",
+			"rectangle_id": "423",
+			"text_id": "424",
+			"parent_id": "420",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_346719494",
+			"rectangle_id": "426",
+			"text_id": "427",
+			"parent_id": "423",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1279374271",
+			"rectangle_id": "429",
+			"text_id": "430",
+			"parent_id": "423",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_869000658",
+			"rectangle_id": "432",
+			"text_id": "433",
+			"parent_id": "423",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_485975066",
+			"rectangle_id": "435",
+			"text_id": "436",
+			"parent_id": "420",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1380107171",
+			"rectangle_id": "438",
+			"text_id": "439",
+			"parent_id": "435",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_409596101",
+			"rectangle_id": "441",
+			"text_id": "442",
+			"parent_id": "435",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1390276103",
+			"rectangle_id": "444",
+			"text_id": "445",
+			"parent_id": "435",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1591614695",
+			"rectangle_id": "447",
+			"text_id": "448",
+			"parent_id": "435",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_649243247",
+			"rectangle_id": "450",
+			"text_id": "451",
+			"parent_id": "420",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1598637462",
+			"rectangle_id": "453",
+			"text_id": "454",
+			"parent_id": "450",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_471056788",
+			"rectangle_id": "456",
+			"text_id": "457",
+			"parent_id": "450",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1743032829",
+			"rectangle_id": "459",
+			"text_id": "460",
+			"parent_id": "450",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1638119046",
+			"rectangle_id": "462",
+			"text_id": "463",
+			"parent_id": "450",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_501329723",
+			"rectangle_id": "465",
+			"text_id": "466",
+			"parent_id": "420",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1706402518",
+			"rectangle_id": "468",
+			"text_id": "469",
+			"parent_id": "420",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1014353760",
+			"rectangle_id": "471",
+			"text_id": "472",
+			"parent_id": "468",
+			"original_link": "https://fr.wikipedia.org/wiki/Paradigme_(programmation)",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Paradigme_(programmation)",
+			"link": "https://fr.wikipedia.org/wiki/Paradigme_(programmation)"
+		},
+		{
+			"freeplane_id": "ID_705041555",
+			"rectangle_id": "474",
+			"text_id": "475",
+			"parent_id": "3",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_983160907",
+			"rectangle_id": "477",
+			"text_id": "478",
+			"parent_id": "3",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_667751224",
+			"rectangle_id": "480",
+			"text_id": "481",
+			"parent_id": "1",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_931485350",
+			"rectangle_id": "483",
+			"text_id": "484",
+			"parent_id": "480",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1284712842",
+			"rectangle_id": "486",
+			"text_id": "487",
+			"parent_id": "483",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_154146736",
+			"rectangle_id": "489",
+			"text_id": "490",
+			"parent_id": "483",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_432794653",
+			"rectangle_id": "492",
+			"text_id": "493",
+			"parent_id": "483",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1300350307",
+			"rectangle_id": "495",
+			"text_id": "496",
+			"parent_id": "483",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1787135776",
+			"rectangle_id": "498",
+			"text_id": "499",
+			"parent_id": "480",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1431304311",
+			"rectangle_id": "501",
+			"text_id": "502",
+			"parent_id": "498",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_415973601",
+			"rectangle_id": "504",
+			"text_id": "505",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1172479477",
+			"rectangle_id": "507",
+			"text_id": "508",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1880182549",
+			"rectangle_id": "510",
+			"text_id": "511",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1452465787",
+			"rectangle_id": "513",
+			"text_id": "514",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_483885943",
+			"rectangle_id": "516",
+			"text_id": "517",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1885120510",
+			"rectangle_id": "519",
+			"text_id": "520",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_825361831",
+			"rectangle_id": "522",
+			"text_id": "523",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1963045058",
+			"rectangle_id": "525",
+			"text_id": "526",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1870647245",
+			"rectangle_id": "528",
+			"text_id": "529",
+			"parent_id": "501",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1450680819",
+			"rectangle_id": "531",
+			"text_id": "532",
+			"parent_id": "498",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1597189680",
+			"rectangle_id": "534",
+			"text_id": "535",
+			"parent_id": "531",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1085494312",
+			"rectangle_id": "537",
+			"text_id": "538",
+			"parent_id": "531",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1838784801",
+			"rectangle_id": "540",
+			"text_id": "541",
+			"parent_id": "531",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1778058325",
+			"rectangle_id": "543",
+			"text_id": "544",
+			"parent_id": "498",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_658319821",
+			"rectangle_id": "546",
+			"text_id": "547",
+			"parent_id": "498",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1798921398",
+			"rectangle_id": "549",
+			"text_id": "550",
+			"parent_id": "546",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_58286288",
+			"rectangle_id": "552",
+			"text_id": "553",
+			"parent_id": "549",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1186479958",
+			"rectangle_id": "555",
+			"text_id": "556",
+			"parent_id": "549",
+			"original_link": "https://fr.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers",
+			"link": "https://fr.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers"
+		},
+		{
+			"freeplane_id": "ID_1263592112",
+			"rectangle_id": "558",
+			"text_id": "559",
+			"parent_id": "546",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_151391375",
+			"rectangle_id": "561",
+			"text_id": "562",
+			"parent_id": "558",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1175826698",
+			"rectangle_id": "564",
+			"text_id": "565",
+			"parent_id": "558",
+			"original_link": "https://fr.wikipedia.org/wiki/Internet_Engineering_Task_Force",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Internet_Engineering_Task_Force",
+			"link": "https://fr.wikipedia.org/wiki/Internet_Engineering_Task_Force"
+		},
+		{
+			"freeplane_id": "ID_1552819635",
+			"rectangle_id": "567",
+			"text_id": "568",
+			"parent_id": "546",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_352593245",
+			"rectangle_id": "570",
+			"text_id": "571",
+			"parent_id": "480",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_557533249",
+			"rectangle_id": "573",
+			"text_id": "574",
+			"parent_id": "570",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1395079094",
+			"rectangle_id": "576",
+			"text_id": "577",
+			"parent_id": "573",
+			"original_link": null,
+			"implicit_url": "https://fr.wikipedia.org/wiki/Cycle_en_V",
+			"link": "https://fr.wikipedia.org/wiki/Cycle_en_V"
+		},
+		{
+			"freeplane_id": "ID_149018343",
+			"rectangle_id": "579",
+			"text_id": "580",
+			"parent_id": "573",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_860772517",
+			"rectangle_id": "582",
+			"text_id": "583",
+			"parent_id": "570",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_322873924",
+			"rectangle_id": "585",
+			"text_id": "586",
+			"parent_id": "582",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1672329980",
+			"rectangle_id": "588",
+			"text_id": "589",
+			"parent_id": "585",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1933071550",
+			"rectangle_id": "591",
+			"text_id": "592",
+			"parent_id": "585",
+			"original_link": "https://wikiagile.cesi.fr/index.php?title=Qu%27est-ce_qu%27un_Produit_Minimum_Viable_%3F",
+			"implicit_url": "https://wikiagile.cesi.fr/index.php?title=Qu%27est-ce_qu%27un_Produit_Minimum_Viable_%3F",
+			"link": "https://wikiagile.cesi.fr/index.php?title=Qu%27est-ce_qu%27un_Produit_Minimum_Viable_%3F"
+		},
+		{
+			"freeplane_id": "ID_1340943587",
+			"rectangle_id": "594",
+			"text_id": "595",
+			"parent_id": "570",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_841914520",
+			"rectangle_id": "597",
+			"text_id": "598",
+			"parent_id": "570",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_149819521",
+			"rectangle_id": "600",
+			"text_id": "601",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1451863038",
+			"rectangle_id": "603",
+			"text_id": "604",
+			"parent_id": "600",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1429916127",
+			"rectangle_id": "606",
+			"text_id": "607",
+			"parent_id": "600",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1713248174",
+			"rectangle_id": "609",
+			"text_id": "610",
+			"parent_id": "600",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_54876947",
+			"rectangle_id": "612",
+			"text_id": "613",
+			"parent_id": "600",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1499433894",
+			"rectangle_id": "615",
+			"text_id": "616",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1967256153",
+			"rectangle_id": "618",
+			"text_id": "619",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1783713687",
+			"rectangle_id": "621",
+			"text_id": "622",
+			"parent_id": "618",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_32541694",
+			"rectangle_id": "624",
+			"text_id": "625",
+			"parent_id": "618",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1757454013",
+			"rectangle_id": "627",
+			"text_id": "628",
+			"parent_id": "618",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_296634517",
+			"rectangle_id": "630",
+			"text_id": "631",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1894684394",
+			"rectangle_id": "633",
+			"text_id": "634",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1321150084",
+			"rectangle_id": "636",
+			"text_id": "637",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1805849775",
+			"rectangle_id": "639",
+			"text_id": "640",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1636580876",
+			"rectangle_id": "642",
+			"text_id": "643",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_336691443",
+			"rectangle_id": "645",
+			"text_id": "646",
+			"parent_id": "642",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1019694535",
+			"rectangle_id": "648",
+			"text_id": "649",
+			"parent_id": "597",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1192529271",
+			"rectangle_id": "651",
+			"text_id": "652",
+			"parent_id": "648",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1250444060",
+			"rectangle_id": "654",
+			"text_id": "655",
+			"parent_id": "648",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_579017999",
+			"rectangle_id": "657",
+			"text_id": "658",
+			"parent_id": "570",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_750945446",
+			"rectangle_id": "660",
+			"text_id": "661",
+			"parent_id": "657",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1525040025",
+			"rectangle_id": "663",
+			"text_id": "664",
+			"parent_id": "660",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1602035904",
+			"rectangle_id": "666",
+			"text_id": "667",
+			"parent_id": "663",
+			"original_link": "https://fr.wikipedia.org/wiki/Bo%C3%AEte_blanche",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Bo%C3%AEte_blanche",
+			"link": "https://fr.wikipedia.org/wiki/Bo%C3%AEte_blanche"
+		},
+		{
+			"freeplane_id": "ID_1443444752",
+			"rectangle_id": "669",
+			"text_id": "670",
+			"parent_id": "663",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1275776836",
+			"rectangle_id": "672",
+			"text_id": "673",
+			"parent_id": "663",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1324412913",
+			"rectangle_id": "675",
+			"text_id": "676",
+			"parent_id": "660",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1862780134",
+			"rectangle_id": "678",
+			"text_id": "679",
+			"parent_id": "660",
+			"original_link": "https://fr.wikipedia.org/wiki/Syst%C3%A9mique",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Syst%C3%A9mique",
+			"link": "https://fr.wikipedia.org/wiki/Syst%C3%A9mique"
+		},
+		{
+			"freeplane_id": "ID_1897385566",
+			"rectangle_id": "681",
+			"text_id": "682",
+			"parent_id": "660",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_306504722",
+			"rectangle_id": "684",
+			"text_id": "685",
+			"parent_id": "660",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1026263039",
+			"rectangle_id": "687",
+			"text_id": "688",
+			"parent_id": "684",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1009740595",
+			"rectangle_id": "690",
+			"text_id": "691",
+			"parent_id": "684",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1326761657",
+			"rectangle_id": "693",
+			"text_id": "694",
+			"parent_id": "684",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1660800858",
+			"rectangle_id": "696",
+			"text_id": "697",
+			"parent_id": "684",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1977247133",
+			"rectangle_id": "699",
+			"text_id": "700",
+			"parent_id": "696",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_720839096",
+			"rectangle_id": "702",
+			"text_id": "703",
+			"parent_id": "696",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1256906380",
+			"rectangle_id": "705",
+			"text_id": "706",
+			"parent_id": "657",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_136133568",
+			"rectangle_id": "708",
+			"text_id": "709",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_559703478",
+			"rectangle_id": "711",
+			"text_id": "712",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_951009740",
+			"rectangle_id": "714",
+			"text_id": "715",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_320490818",
+			"rectangle_id": "717",
+			"text_id": "718",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1952457069",
+			"rectangle_id": "720",
+			"text_id": "721",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1488082495",
+			"rectangle_id": "723",
+			"text_id": "724",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_606038489",
+			"rectangle_id": "726",
+			"text_id": "727",
+			"parent_id": "705",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1252775200",
+			"rectangle_id": "729",
+			"text_id": "730",
+			"parent_id": "705",
+			"original_link": "https://fr.wikipedia.org/wiki/QQOQCCP",
+			"implicit_url": "https://fr.wikipedia.org/wiki/QQOQCCP",
+			"link": "https://fr.wikipedia.org/wiki/QQOQCCP"
+		},
+		{
+			"freeplane_id": "ID_334592213",
+			"rectangle_id": "732",
+			"text_id": "733",
+			"parent_id": "657",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_996470868",
+			"rectangle_id": "735",
+			"text_id": "736",
+			"parent_id": "732",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_253545294",
+			"rectangle_id": "738",
+			"text_id": "739",
+			"parent_id": "732",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1022286804",
+			"rectangle_id": "741",
+			"text_id": "742",
+			"parent_id": "732",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1155556005",
+			"rectangle_id": "744",
+			"text_id": "745",
+			"parent_id": "732",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1834455114",
+			"rectangle_id": "747",
+			"text_id": "748",
+			"parent_id": "657",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1464153943",
+			"rectangle_id": "750",
+			"text_id": "751",
+			"parent_id": "747",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_87466719",
+			"rectangle_id": "753",
+			"text_id": "754",
+			"parent_id": "657",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1631381435",
+			"rectangle_id": "756",
+			"text_id": "757",
+			"parent_id": "570",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1325185069",
+			"rectangle_id": "759",
+			"text_id": "760",
+			"parent_id": "756",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1434932914",
+			"rectangle_id": "762",
+			"text_id": "763",
+			"parent_id": "759",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1933564590",
+			"rectangle_id": "765",
+			"text_id": "766",
+			"parent_id": "762",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1849192985",
+			"rectangle_id": "768",
+			"text_id": "769",
+			"parent_id": "765",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_490867762",
+			"rectangle_id": "771",
+			"text_id": "772",
+			"parent_id": "762",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_374002411",
+			"rectangle_id": "774",
+			"text_id": "775",
+			"parent_id": "771",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_914787163",
+			"rectangle_id": "777",
+			"text_id": "778",
+			"parent_id": "771",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1728070432",
+			"rectangle_id": "780",
+			"text_id": "781",
+			"parent_id": "777",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1099106580",
+			"rectangle_id": "783",
+			"text_id": "784",
+			"parent_id": "771",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_808847256",
+			"rectangle_id": "786",
+			"text_id": "787",
+			"parent_id": "783",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_475488293",
+			"rectangle_id": "789",
+			"text_id": "790",
+			"parent_id": "783",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_542241889",
+			"rectangle_id": "792",
+			"text_id": "793",
+			"parent_id": "783",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1360168540",
+			"rectangle_id": "795",
+			"text_id": "796",
+			"parent_id": "783",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1640004199",
+			"rectangle_id": "798",
+			"text_id": "799",
+			"parent_id": "783",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_212670363",
+			"rectangle_id": "801",
+			"text_id": "802",
+			"parent_id": "783",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1505558286",
+			"rectangle_id": "804",
+			"text_id": "805",
+			"parent_id": "762",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1561614181",
+			"rectangle_id": "807",
+			"text_id": "808",
+			"parent_id": "804",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1529308502",
+			"rectangle_id": "810",
+			"text_id": "811",
+			"parent_id": "804",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1043324213",
+			"rectangle_id": "813",
+			"text_id": "814",
+			"parent_id": "804",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1002188178",
+			"rectangle_id": "816",
+			"text_id": "817",
+			"parent_id": "804",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1221671420",
+			"rectangle_id": "819",
+			"text_id": "820",
+			"parent_id": "804",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1108264536",
+			"rectangle_id": "822",
+			"text_id": "823",
+			"parent_id": "762",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1159804966",
+			"rectangle_id": "825",
+			"text_id": "826",
+			"parent_id": "759",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1622818837",
+			"rectangle_id": "828",
+			"text_id": "829",
+			"parent_id": "825",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1931313937",
+			"rectangle_id": "831",
+			"text_id": "832",
+			"parent_id": "825",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_408493229",
+			"rectangle_id": "834",
+			"text_id": "835",
+			"parent_id": "825",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1436245138",
+			"rectangle_id": "837",
+			"text_id": "838",
+			"parent_id": "825",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1287537201",
+			"rectangle_id": "840",
+			"text_id": "841",
+			"parent_id": "825",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1604628010",
+			"rectangle_id": "843",
+			"text_id": "844",
+			"parent_id": "825",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1247523781",
+			"rectangle_id": "846",
+			"text_id": "847",
+			"parent_id": "759",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_891363077",
+			"rectangle_id": "849",
+			"text_id": "850",
+			"parent_id": "846",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_611603963",
+			"rectangle_id": "852",
+			"text_id": "853",
+			"parent_id": "846",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1712999583",
+			"rectangle_id": "855",
+			"text_id": "856",
+			"parent_id": "759",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_897226524",
+			"rectangle_id": "858",
+			"text_id": "859",
+			"parent_id": "855",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1368463259",
+			"rectangle_id": "861",
+			"text_id": "862",
+			"parent_id": "855",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_551398288",
+			"rectangle_id": "864",
+			"text_id": "865",
+			"parent_id": "855",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1760864429",
+			"rectangle_id": "867",
+			"text_id": "868",
+			"parent_id": "855",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_339602905",
+			"rectangle_id": "870",
+			"text_id": "871",
+			"parent_id": "759",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1256085854",
+			"rectangle_id": "873",
+			"text_id": "874",
+			"parent_id": "870",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1841208678",
+			"rectangle_id": "876",
+			"text_id": "877",
+			"parent_id": "870",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1638505085",
+			"rectangle_id": "879",
+			"text_id": "880",
+			"parent_id": "870",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_125309860",
+			"rectangle_id": "882",
+			"text_id": "883",
+			"parent_id": "756",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_470187797",
+			"rectangle_id": "885",
+			"text_id": "886",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1398417313",
+			"rectangle_id": "888",
+			"text_id": "889",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_28392493",
+			"rectangle_id": "891",
+			"text_id": "892",
+			"parent_id": "888",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_464481320",
+			"rectangle_id": "894",
+			"text_id": "895",
+			"parent_id": "888",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1301006612",
+			"rectangle_id": "897",
+			"text_id": "898",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1275037194",
+			"rectangle_id": "900",
+			"text_id": "901",
+			"parent_id": "897",
+			"original_link": "https://hal.inria.fr/inria-00098954/",
+			"implicit_url": "https://hal.inria.fr/inria-00098954/",
+			"link": "https://hal.inria.fr/inria-00098954/"
+		},
+		{
+			"freeplane_id": "ID_1232465816",
+			"rectangle_id": "903",
+			"text_id": "904",
+			"parent_id": "897",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1268471685",
+			"rectangle_id": "906",
+			"text_id": "907",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1556303621",
+			"rectangle_id": "909",
+			"text_id": "910",
+			"parent_id": "906",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1276578294",
+			"rectangle_id": "912",
+			"text_id": "913",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_795307184",
+			"rectangle_id": "915",
+			"text_id": "916",
+			"parent_id": "912",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1605642776",
+			"rectangle_id": "918",
+			"text_id": "919",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1948157736",
+			"rectangle_id": "921",
+			"text_id": "922",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_928034094",
+			"rectangle_id": "924",
+			"text_id": "925",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1484113649",
+			"rectangle_id": "927",
+			"text_id": "928",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_868516169",
+			"rectangle_id": "930",
+			"text_id": "931",
+			"parent_id": "927",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_826840108",
+			"rectangle_id": "933",
+			"text_id": "934",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_912362307",
+			"rectangle_id": "936",
+			"text_id": "937",
+			"parent_id": "933",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1409340132",
+			"rectangle_id": "939",
+			"text_id": "940",
+			"parent_id": "933",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_777759070",
+			"rectangle_id": "942",
+			"text_id": "943",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1903241933",
+			"rectangle_id": "945",
+			"text_id": "946",
+			"parent_id": "942",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_427380237",
+			"rectangle_id": "948",
+			"text_id": "949",
+			"parent_id": "882",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1517791778",
+			"rectangle_id": "951",
+			"text_id": "952",
+			"parent_id": "756",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1147145140",
+			"rectangle_id": "954",
+			"text_id": "955",
+			"parent_id": "951",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1938671073",
+			"rectangle_id": "957",
+			"text_id": "958",
+			"parent_id": "951",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1720106287",
+			"rectangle_id": "960",
+			"text_id": "961",
+			"parent_id": "957",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1842877798",
+			"rectangle_id": "963",
+			"text_id": "964",
+			"parent_id": "951",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1791327453",
+			"rectangle_id": "966",
+			"text_id": "967",
+			"parent_id": "951",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_811321239",
+			"rectangle_id": "969",
+			"text_id": "970",
+			"parent_id": "966",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_52178223",
+			"rectangle_id": "972",
+			"text_id": "973",
+			"parent_id": "951",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1244141114",
+			"rectangle_id": "975",
+			"text_id": "976",
+			"parent_id": "951",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_84702834",
+			"rectangle_id": "978",
+			"text_id": "979",
+			"parent_id": "756",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_166478912",
+			"rectangle_id": "981",
+			"text_id": "982",
+			"parent_id": "978",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_29434947",
+			"rectangle_id": "984",
+			"text_id": "985",
+			"parent_id": "981",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_562815044",
+			"rectangle_id": "987",
+			"text_id": "988",
+			"parent_id": "978",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1249028840",
+			"rectangle_id": "990",
+			"text_id": "991",
+			"parent_id": "987",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_821449719",
+			"rectangle_id": "993",
+			"text_id": "994",
+			"parent_id": "978",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_951172754",
+			"rectangle_id": "996",
+			"text_id": "997",
+			"parent_id": "756",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1673703693",
+			"rectangle_id": "999",
+			"text_id": "1000",
+			"parent_id": "996",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_818547098",
+			"rectangle_id": "1002",
+			"text_id": "1003",
+			"parent_id": "996",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1753921746",
+			"rectangle_id": "1005",
+			"text_id": "1006",
+			"parent_id": "996",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_222303646",
+			"rectangle_id": "1008",
+			"text_id": "1009",
+			"parent_id": "996",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_326036113",
+			"rectangle_id": "1011",
+			"text_id": "1012",
+			"parent_id": "756",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1299383924",
+			"rectangle_id": "1014",
+			"text_id": "1015",
+			"parent_id": "1011",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1962381923",
+			"rectangle_id": "1017",
+			"text_id": "1018",
+			"parent_id": "1011",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_88097344",
+			"rectangle_id": "1020",
+			"text_id": "1021",
+			"parent_id": "1011",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1144387901",
+			"rectangle_id": "1023",
+			"text_id": "1024",
+			"parent_id": "756",
+			"original_link": "https://fr.wikipedia.org/wiki/Processus_unifi%C3%A9",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Processus_unifi%C3%A9",
+			"link": "https://fr.wikipedia.org/wiki/Processus_unifi%C3%A9"
+		},
+		{
+			"freeplane_id": "ID_1949212385",
+			"rectangle_id": "1026",
+			"text_id": "1027",
+			"parent_id": "1",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_221913434",
+			"rectangle_id": "1029",
+			"text_id": "1030",
+			"parent_id": "1026",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_563296765",
+			"rectangle_id": "1032",
+			"text_id": "1033",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1020502145",
+			"rectangle_id": "1035",
+			"text_id": "1036",
+			"parent_id": "1032",
+			"original_link": "https://fr.wikipedia.org/wiki/Architecture_de_von_Neumann",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Architecture_de_von_Neumann",
+			"link": "https://fr.wikipedia.org/wiki/Architecture_de_von_Neumann"
+		},
+		{
+			"freeplane_id": "ID_763070126",
+			"rectangle_id": "1038",
+			"text_id": "1039",
+			"parent_id": "1032",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1473042183",
+			"rectangle_id": "1041",
+			"text_id": "1042",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1406714320",
+			"rectangle_id": "1044",
+			"text_id": "1045",
+			"parent_id": "1041",
+			"original_link": "https://fr.wikipedia.org/wiki/Loi_de_Moore",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Loi_de_Moore",
+			"link": "https://fr.wikipedia.org/wiki/Loi_de_Moore"
+		},
+		{
+			"freeplane_id": "ID_1482004063",
+			"rectangle_id": "1047",
+			"text_id": "1048",
+			"parent_id": "1041",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_484653981",
+			"rectangle_id": "1050",
+			"text_id": "1051",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1332599042",
+			"rectangle_id": "1053",
+			"text_id": "1054",
+			"parent_id": "1050",
+			"original_link": "https://youtu.be/mtxneYO4dHE",
+			"implicit_url": "https://youtu.be/mtxneYO4dHE",
+			"link": "https://youtu.be/mtxneYO4dHE"
+		},
+		{
+			"freeplane_id": "ID_707673194",
+			"rectangle_id": "1056",
+			"text_id": "1057",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_711324171",
+			"rectangle_id": "1059",
+			"text_id": "1060",
+			"parent_id": "1056",
+			"original_link": "https://youtu.be/iHPZ7TL9npU",
+			"implicit_url": "https://youtu.be/iHPZ7TL9npU",
+			"link": "https://youtu.be/iHPZ7TL9npU"
+		},
+		{
+			"freeplane_id": "ID_226288275",
+			"rectangle_id": "1062",
+			"text_id": "1063",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1817633377",
+			"rectangle_id": "1065",
+			"text_id": "1066",
+			"parent_id": "1062",
+			"original_link": "https://fr.wikipedia.org/wiki/Carbon_Nanotube_Field_Effect_Transistor",
+			"implicit_url": "https://fr.wikipedia.org/wiki/Carbon_Nanotube_Field_Effect_Transistor",
+			"link": "https://fr.wikipedia.org/wiki/Carbon_Nanotube_Field_Effect_Transistor"
+		},
+		{
+			"freeplane_id": "ID_1267573566",
+			"rectangle_id": "1068",
+			"text_id": "1069",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1103030613",
+			"rectangle_id": "1071",
+			"text_id": "1072",
+			"parent_id": "1068",
+			"original_link": "https://youtu.be/6vtztA43i_Y",
+			"implicit_url": "https://youtu.be/6vtztA43i_Y",
+			"link": "https://youtu.be/6vtztA43i_Y"
+		},
+		{
+			"freeplane_id": "ID_1036661659",
+			"rectangle_id": "1074",
+			"text_id": "1075",
+			"parent_id": "1068",
+			"original_link": "https://youtu.be/L9eUoObVwGM",
+			"implicit_url": "https://youtu.be/L9eUoObVwGM",
+			"link": "https://youtu.be/L9eUoObVwGM"
+		},
+		{
+			"freeplane_id": "ID_593936684",
+			"rectangle_id": "1077",
+			"text_id": "1078",
+			"parent_id": "1029",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_99432024",
+			"rectangle_id": "1080",
+			"text_id": "1081",
+			"parent_id": "1077",
+			"original_link": "https://www.insis.cnrs.fr/fr/cnrsinfo/le-cerveau-et-la-lumiere-au-centre-dune-nouvelle-architecture-des-ordinateurs",
+			"implicit_url": "https://www.insis.cnrs.fr/fr/cnrsinfo/le-cerveau-et-la-lumiere-au-centre-dune-nouvelle-architecture-des-ordinateurs",
+			"link": "https://www.insis.cnrs.fr/fr/cnrsinfo/le-cerveau-et-la-lumiere-au-centre-dune-nouvelle-architecture-des-ordinateurs"
+		},
+		{
+			"freeplane_id": "ID_1117488504",
+			"rectangle_id": "1083",
+			"text_id": "1084",
+			"parent_id": "1",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_524353956",
+			"rectangle_id": "1086",
+			"text_id": "1087",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1203577429",
+			"rectangle_id": "1089",
+			"text_id": "1090",
+			"parent_id": "1086",
+			"original_link": "https://youtu.be/82jOF4Q6gBU",
+			"implicit_url": "https://youtu.be/82jOF4Q6gBU",
+			"link": "https://youtu.be/82jOF4Q6gBU"
+		},
+		{
+			"freeplane_id": "ID_825925707",
+			"rectangle_id": "1092",
+			"text_id": "1093",
+			"parent_id": "1086",
+			"original_link": "https://youtu.be/SBwupYwDgHg",
+			"implicit_url": "https://youtu.be/SBwupYwDgHg",
+			"link": "https://youtu.be/SBwupYwDgHg"
+		},
+		{
+			"freeplane_id": "ID_1664794285",
+			"rectangle_id": "1095",
+			"text_id": "1096",
+			"parent_id": "1086",
+			"original_link": "https://youtu.be/Brj1LC42vLM",
+			"implicit_url": "https://youtu.be/Brj1LC42vLM",
+			"link": "https://youtu.be/Brj1LC42vLM"
+		},
+		{
+			"freeplane_id": "ID_1375990206",
+			"rectangle_id": "1098",
+			"text_id": "1099",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1411780867",
+			"rectangle_id": "1101",
+			"text_id": "1102",
+			"parent_id": "1098",
+			"original_link": "https://youtu.be/kD5DHGbkYz0",
+			"implicit_url": "https://youtu.be/kD5DHGbkYz0",
+			"link": "https://youtu.be/kD5DHGbkYz0"
+		},
+		{
+			"freeplane_id": "ID_1280174491",
+			"rectangle_id": "1104",
+			"text_id": "1105",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1944505405",
+			"rectangle_id": "1107",
+			"text_id": "1108",
+			"parent_id": "1104",
+			"original_link": "https://youtu.be/0ETcLj5jBy4",
+			"implicit_url": "https://youtu.be/0ETcLj5jBy4",
+			"link": "https://youtu.be/0ETcLj5jBy4"
+		},
+		{
+			"freeplane_id": "ID_1834404798",
+			"rectangle_id": "1110",
+			"text_id": "1111",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1493834991",
+			"rectangle_id": "1113",
+			"text_id": "1114",
+			"parent_id": "1110",
+			"original_link": "https://youtu.be/gKgAaZ7a5Bs",
+			"implicit_url": "https://youtu.be/gKgAaZ7a5Bs",
+			"link": "https://youtu.be/gKgAaZ7a5Bs"
+		},
+		{
+			"freeplane_id": "ID_344866304",
+			"rectangle_id": "1116",
+			"text_id": "1117",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_875543394",
+			"rectangle_id": "1119",
+			"text_id": "1120",
+			"parent_id": "1116",
+			"original_link": "https://www.youtube.com/c/xavki-linux",
+			"implicit_url": "https://www.youtube.com/c/xavki-linux",
+			"link": "https://www.youtube.com/c/xavki-linux"
+		},
+		{
+			"freeplane_id": "ID_129768506",
+			"rectangle_id": "1122",
+			"text_id": "1123",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_802406647",
+			"rectangle_id": "1125",
+			"text_id": "1126",
+			"parent_id": "1122",
+			"original_link": "https://youtu.be/zG_5OtgxfAg",
+			"implicit_url": "https://youtu.be/zG_5OtgxfAg",
+			"link": "https://youtu.be/zG_5OtgxfAg"
+		},
+		{
+			"freeplane_id": "ID_1852821300",
+			"rectangle_id": "1128",
+			"text_id": "1129",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1123747280",
+			"rectangle_id": "1131",
+			"text_id": "1132",
+			"parent_id": "1128",
+			"original_link": "https://youtu.be/3jqgVOQfFgo",
+			"implicit_url": "https://youtu.be/3jqgVOQfFgo",
+			"link": "https://youtu.be/3jqgVOQfFgo"
+		},
+		{
+			"freeplane_id": "ID_1184338647",
+			"rectangle_id": "1134",
+			"text_id": "1135",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1380564339",
+			"rectangle_id": "1137",
+			"text_id": "1138",
+			"parent_id": "1134",
+			"original_link": "https://youtu.be/JXQHgeYL60E",
+			"implicit_url": "https://youtu.be/JXQHgeYL60E",
+			"link": "https://youtu.be/JXQHgeYL60E"
+		},
+		{
+			"freeplane_id": "ID_116980703",
+			"rectangle_id": "1140",
+			"text_id": "1141",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_1036809743",
+			"rectangle_id": "1143",
+			"text_id": "1144",
+			"parent_id": "1140",
+			"original_link": "https://www.youtube.com/c/Mus%C3%A9edesArtsetM%C3%A9tiersParis/videos",
+			"implicit_url": "https://www.youtube.com/c/Mus%C3%A9edesArtsetM%C3%A9tiersParis/videos",
+			"link": "https://www.youtube.com/c/Mus%C3%A9edesArtsetM%C3%A9tiersParis/videos"
+		},
+		{
+			"freeplane_id": "ID_1210887987",
+			"rectangle_id": "1146",
+			"text_id": "1147",
+			"parent_id": "1083",
+			"original_link": null,
+			"implicit_url": null,
+			"link": null
+		},
+		{
+			"freeplane_id": "ID_397581466",
+			"rectangle_id": "1149",
+			"text_id": "1150",
+			"parent_id": "1146",
+			"original_link": "https://github.com/michaellaunay/CoursGNULinux",
+			"implicit_url": "https://github.com/michaellaunay/CoursGNULinux",
+			"link": "https://github.com/michaellaunay/CoursGNULinux"
+		},
+		{
+			"freeplane_id": "ID_465596666",
+			"rectangle_id": "1152",
+			"text_id": "1153",
+			"parent_id": "1146",
+			"original_link": "https://www.youtube.com/c/xavki-linux",
+			"implicit_url": "https://www.youtube.com/c/xavki-linux",
+			"link": "https://www.youtube.com/c/xavki-linux"
+		}
+	],
+	"corrections": [
+		{
+			"node_id": "12",
+			"before": "IV Milénaire av JV",
+			"after": "IVe millénaire av. J.-C.",
+			"reason": "Corriger les coquilles du repère mésopotamien.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "39",
+			"before": "3200 av JC",
+			"after": "Vers 3200 av. J.-C.",
+			"reason": "Exprimer une datation approximative.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "54",
+			"before": "Simultanéité du Cunéiforme d'Uruk\net du Hiéroglyphique égyptien vers\n-3200 AV JC",
+			"after": "Cunéiforme en Mésopotamie et hiéroglyphes en Égypte : émergences vers 3200 av. J.-C.",
+			"reason": "Éviter la formulation contradictoire « -3200 av. J.-C. ».",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "60",
+			"before": "II siècle av JC",
+			"after": "IIe siècle av. J.-C. (datation indicative)",
+			"reason": "Ne pas présenter une datation antique comme un jour précis.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "63",
+			"before": "Premier calculateur \"Analogique\"",
+			"after": "Calculateur mécanique analogique spécialisé",
+			"reason": "Éviter une priorité absolue non établie.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "72",
+			"before": "37 roues dentées",
+			"after": "30 engrenages conservés ; mécanisme incomplet",
+			"reason": "Distinguer les engrenages conservés du nombre supposé de la machine complète ; le mindmap indiquait 15, la scène 37.",
+			"sources": [
+				"anticythere-ucl"
+			]
+		},
+		{
+			"node_id": "99",
+			"before": "Première machine à calculer",
+			"after": "Machine arithmétique mécanique",
+			"reason": "La Pascaline ne doit pas être présentée comme la première machine à calculer sans qualification.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "105",
+			"before": "Addition, soustraction,\nmultiplication, division",
+			"after": "Addition et soustraction ; multiplication et division par opérations répétées",
+			"reason": "Distinguer les opérations mécaniques directes des procédures répétées.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "156",
+			"before": "Premier ordinateur \"Mécanique\"",
+			"after": "Projet de calculateur mécanique généraliste",
+			"reason": "La machine analytique ne fut pas achevée du vivant de Babbage.",
+			"sources": [
+				"notes",
+				"babbage-chm"
+			]
+		},
+		{
+			"node_id": "159",
+			"before": "Mémoire, Calaculateur, Imprimante",
+			"after": "Mémoire, unité de calcul, entrées et sorties",
+			"reason": "Corriger « Calaculateur » et préciser les fonctions prévues.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "165",
+			"before": "Prototype",
+			"after": "Projet non achevé du vivant de Babbage",
+			"reason": "Remplacer le statut ambigu « Prototype ».",
+			"sources": [
+				"notes",
+				"babbage-chm"
+			]
+		},
+		{
+			"node_id": "219",
+			"before": "1945",
+			"after": "Milieu des années 1940",
+			"reason": "Repère fourni par Informatique.md, sans confondre achèvement et présentation publique.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "228",
+			"before": "01/10/1971",
+			"after": "1970 : introduction du PDP-11/20",
+			"reason": "Remplacer la date non contextualisée du 01/10/1971.",
+			"sources": [
+				"notes",
+				"pdp-chm"
+			]
+		},
+		{
+			"node_id": "234",
+			"before": "Digital Equipement Corporation",
+			"after": "Digital Equipment Corporation",
+			"reason": "Corriger le nom de DEC.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "252",
+			"before": "µ intel 8088, 1,77Mhz RAM 16ko",
+			"after": "Intel 8088 à 4,77 MHz ; RAM de base : 16 ko",
+			"reason": "Corriger 1,77 MHz ; fréquence et mémoire reprises de la note fournie.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "273",
+			"before": "1842",
+			"after": "1843 : publication de la note G",
+			"reason": "Distinguer la publication des notes de Lovelace de la conférence et du texte de Menabrea.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "282",
+			"before": "1952",
+			"after": "1957 : diffusion commerciale",
+			"reason": "Corriger le repère FORTRAN.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "312",
+			"before": "1970",
+			"after": "1972 : développement du C",
+			"reason": "Aligner la chronologie sur le cours des langages.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "315",
+			"before": "Dennis Ritchie crée le C et Brian\nKerningann le documente, Unix est\nentièrement écrit en C fin 1973",
+			"after": "Dennis Ritchie développe C ; Brian Kernighan contribue à sa diffusion. Unix est réécrit pour l’essentiel en C en 1973.",
+			"reason": "Corriger le nom de Kernighan et éviter « entièrement ».",
+			"sources": [
+				"langages",
+				"linux"
+			]
+		},
+		{
+			"node_id": "348",
+			"before": "Bian Stroustrup",
+			"after": "Bjarne Stroustrup",
+			"reason": "Corriger le nom du créateur de C++.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "369",
+			"before": "Guido Van Rossum",
+			"after": "Guido van Rossum",
+			"reason": "Corriger la casse du nom.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "375",
+			"before": "1993",
+			"after": "1993 : début du projet ; 1995 : première diffusion publique",
+			"reason": "Distinguer la création de Ruby de sa diffusion.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "411",
+			"before": "2010",
+			"after": "2006 : début du projet ; 2015 : Rust 1.0",
+			"reason": "Préciser les jalons plutôt qu’un millésime ambigu.",
+			"sources": [
+				"notes",
+				"langages"
+			]
+		},
+		{
+			"node_id": "417",
+			"before": "2003",
+			"after": "2009 : publication ; 2012 : Go 1",
+			"reason": "Corriger 2003 et expliciter le type de jalon.",
+			"sources": [
+				"notes",
+				"langages"
+			]
+		},
+		{
+			"node_id": "408",
+			"before": "RUST",
+			"after": "Rust",
+			"reason": "Harmoniser le nom du langage.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "414",
+			"before": "GO",
+			"after": "Go",
+			"reason": "Harmoniser le nom du langage.",
+			"sources": [
+				"langages"
+			]
+		},
+		{
+			"node_id": "1032",
+			"before": "Arhitecture de Von Neumann",
+			"after": "Architecture de von Neumann",
+			"reason": "Corriger l’orthographe et la casse.",
+			"sources": [
+				"notes"
+			]
+		},
+		{
+			"node_id": "333",
+			"before": "1978",
+			"after": "Années 1970 : SEQUEL puis SQL chez IBM",
+			"reason": "Remplacer le repère 1978 isolé par une période et un contexte attestés.",
+			"sources": [
+				"ibm-relational"
+			]
+		},
+		{
+			"node_id": "144",
+			"before": "Libellé Wikipédia / cible Les Embobineuses",
+			"after": "Deux liens distincts : Tissage (Wikipédia) et Le droit-fil (source originale)",
+			"sources": [
+				"mindmap"
+			],
+			"reason": "Conserver la ressource originale sans tromper sur la destination."
+		}
+	],
+	"sections": [
+		{
+			"node": "9",
+			"slug": "calculis",
+			"title": "00 Les calculis",
+			"image": "Calculis.jpg",
+			"image_node": "24",
+			"heading": "3.1 Écriture, nombres et mémoire externe",
+			"summary": "Les calculis et les bulles-enveloppes externalisent la mémoire des échanges. Des objets matériels représentent des quantités et rendent les comptes conservables et contrôlables. Cette représentation de l’information contribue aux pratiques comptables qui précèdent l’écriture.",
+			"caption": "Bulle-enveloppe et jetons. Crédit indiqué dans le mindmap : Wikipédia.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_1076017481",
+			"frame_id": "ci-frame-2ceb856526b5",
+			"summary_count": 276,
+			"summary_element_id": "ci-text-4a363a76bfac",
+			"summary_container_id": "ci-node-4a363a76bfac"
+		},
+		{
+			"node": "36",
+			"slug": "ecriture",
+			"title": "01 L’évolution de l’écriture",
+			"image": "ÉvolutionDeLAphabet.jpeg",
+			"image_node": "42",
+			"heading": "3.1 Écriture, nombres et mémoire externe",
+			"summary": "L’écriture permet de conserver et de transmettre une information au-delà de la mémoire individuelle et de la présence de son auteur. Elle rend possibles archives, administration et accumulation des savoirs. Le tableau illustre ensuite l’évolution des alphabets, et non toutes les écritures.",
+			"caption": "Tableau fourni : évolution des alphabets ; il ne représente pas la naissance de toutes les écritures. Crédit non précisé.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_1302630743",
+			"frame_id": "ci-frame-d6b04a55c857",
+			"summary_count": 290,
+			"summary_element_id": "ci-text-20273a0f0fe6",
+			"summary_container_id": "ci-node-20273a0f0fe6"
+		},
+		{
+			"node": "57",
+			"slug": "anticythere",
+			"title": "02 La machine d’Anticythère",
+			"image": "NAMA_Machine_d'Anticythère_1.jpg",
+			"image_node": "75",
+			"heading": "3.2 Machines de calcul antiques",
+			"summary": "La machine d’Anticythère traduit des cycles astronomiques en mouvements d’engrenages pour prévoir des phénomènes célestes. Elle montre qu’un mécanisme peut exécuter un modèle mathématique. C’est un calculateur analogique spécialisé, pas un ordinateur programmable universel.",
+			"caption": "Fragment de la machine d’Anticythère. Crédit indiqué dans le mindmap : Wikipédia.",
+			"sources": [
+				"notes",
+				"anticythere-ucl"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_786524013",
+			"frame_id": "ci-frame-cefeeffcd26e",
+			"summary_count": 274,
+			"summary_element_id": "ci-text-0089c79ebe2a",
+			"summary_container_id": "ci-node-0089c79ebe2a"
+		},
+		{
+			"node": "90",
+			"slug": "pascaline",
+			"title": "03 La machine de Blaise Pascal",
+			"image": "Arts_et_Metiers_Pascaline_dsc03869.jpg",
+			"image_node": "108",
+			"heading": "3.3 Pascaline",
+			"summary": "La Pascaline automatise l’addition et la soustraction, notamment le report des retenues. Elle réduit l’effort du calcul comptable et montre qu’une opération arithmétique peut être confiée à une machine. Multiplication et division passent par des procédures répétées, non par quatre opérations matérielles équivalentes.",
+			"caption": "Pascaline. Crédit indiqué dans le mindmap : Wikipédia.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_1431347576",
+			"frame_id": "ci-frame-6f0a53fb760e",
+			"summary_count": 318,
+			"summary_element_id": "ci-text-190e7305bbc7",
+			"summary_container_id": "ci-node-190e7305bbc7"
+		},
+		{
+			"node": "120",
+			"slug": "jacquard",
+			"title": "04 Le métier Jacquard",
+			"image": "Metier_jacquard.jpg",
+			"image_node": "135",
+			"heading": "3.4 Jacquard et les cartes perforées",
+			"summary": "Les cartes perforées séparent le motif à produire du mécanisme qui le tisse. Changer les cartes permet de changer le travail sans reconstruire le métier. Cette commande externe réutilisable annonce un principe essentiel de la programmation : distinguer la machine des instructions.",
+			"caption": "Métier Jacquard. Crédit indiqué dans le mindmap : Wikipédia.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_1761363742",
+			"frame_id": "ci-frame-134060c9a498",
+			"summary_count": 281,
+			"summary_element_id": "ci-text-af978bc3c056",
+			"summary_container_id": "ci-node-af978bc3c056"
+		},
+		{
+			"node": "150",
+			"slug": "babbage",
+			"title": "05 La machine analytique de Charles Babbage",
+			"image": "Babbage_Difference_Engine.jpg",
+			"image_node": "168",
+			"heading": "3.5 Babbage et Lovelace",
+			"summary": "La machine analytique prévoit une mémoire, une unité de calcul et des instructions sur cartes : une même machine pourrait enchaîner des calculs variés. Ce projet préfigure l’ordinateur généraliste, mais n’est pas achevé du vivant de Babbage. La photo montre une machine à différences, distincte du projet analytique.",
+			"caption": "Attention : photo d’une machine à différences, pas de la machine analytique. Crédit indiqué dans le mindmap : Wikipédia.",
+			"sources": [
+				"notes",
+				"babbage-chm"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_698535602",
+			"frame_id": "ci-frame-ba4a9c289c22",
+			"summary_count": 316,
+			"summary_element_id": "ci-text-d61adaa41d7c",
+			"summary_container_id": "ci-node-d61adaa41d7c"
+		},
+		{
+			"node": "180",
+			"slug": "lovelace",
+			"title": "06 Ada Lovelace et le programme",
+			"heading": "3.5 Babbage et Lovelace",
+			"summary": "En 1843, Ada Lovelace publie un algorithme destiné à la machine analytique et envisage la manipulation de symboles, au-delà du seul calcul numérique. Ses notes font émerger l’idée du programme comme description d’un traitement, même si la machine complète n’existe pas encore.",
+			"sources": [
+				"notes",
+				"langages"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_176576653",
+			"frame_id": "ci-frame-fb1e7ec98752",
+			"summary_count": 276,
+			"summary_element_id": "ci-text-fbb73622cf70",
+			"summary_container_id": "ci-node-fbb73622cf70"
+		},
+		{
+			"node": "189",
+			"slug": "hollerith",
+			"title": "07 La tabulatrice d’Hollerith",
+			"image": "hollerith-gravure.jpg",
+			"image_node": "207",
+			"heading": "3.6 Hollerith",
+			"summary": "Le traitement électromécanique des cartes perforées accélère le dépouillement du recensement américain de 1890. La machine traite de grandes séries d’enregistrements plutôt qu’un calcul isolé. La mécanographie ouvre la voie à l’informatique de gestion et à son industrialisation.",
+			"caption": "Équipement de mécanographie d’Hollerith. Crédit indiqué dans le mindmap : archives IBM.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_994298775",
+			"frame_id": "ci-frame-fe87f8d42227",
+			"summary_count": 279,
+			"summary_element_id": "ci-text-c65f76014fb3",
+			"summary_container_id": "ci-node-c65f76014fb3"
+		},
+		{
+			"node": "216",
+			"slug": "eniac",
+			"title": "08 ENIAC",
+			"image": "Eniac.jpg",
+			"image_node": "222",
+			"heading": "3.8 Premiers ordinateurs électroniques",
+			"summary": "ENIAC illustre le passage au calcul électronique numérique à grande vitesse. Des problèmes scientifiques peuvent être résolus bien plus rapidement qu’avec les machines électromécaniques. Il reste volumineux et sa programmation initiale par câblage rappelle l’intérêt futur du programme enregistré.",
+			"caption": "ENIAC. Image fournie avec les notes ; crédit non précisé dans le mindmap.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_718971847",
+			"frame_id": "ci-frame-b93dacadf077",
+			"summary_count": 297,
+			"summary_element_id": "ci-text-bf134351a415",
+			"summary_container_id": "ci-node-bf134351a415"
+		},
+		{
+			"node": "225",
+			"slug": "pdp11",
+			"title": "09 PDP-11",
+			"image": "pdp11.jpg",
+			"image_node": "240",
+			"heading": "3.11 Mini-ordinateurs",
+			"summary": "Commercialisé en 1970, le PDP-11 diffuse le mini-ordinateur 16 bits dans les laboratoires et les organisations. Plus accessible qu’un grand système, il favorise une informatique interactive et joue un rôle important dans le développement d’Unix et de son écosystème logiciel.",
+			"caption": "PDP-11. Image fournie avec les notes ; crédit non précisé dans le mindmap.",
+			"sources": [
+				"notes",
+				"pdp-chm"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_1009212950",
+			"frame_id": "ci-frame-8d9607bb9bd1",
+			"summary_count": 275,
+			"summary_element_id": "ci-text-8fd878b29889",
+			"summary_container_id": "ci-node-8fd878b29889"
+		},
+		{
+			"node": "246",
+			"slug": "pc",
+			"title": "10 Le PC",
+			"image": "IBM_PC_5150.jpg",
+			"image_node": "255",
+			"heading": "3.12 Micro-ordinateurs et PC",
+			"summary": "L’IBM PC de 1981 contribue à standardiser l’ordinateur personnel autour d’une architecture documentée et d’un écosystème de logiciels et de compatibles. Il accélère la diffusion de la bureautique et du calcul individuel dans les entreprises et les foyers ; ce n’est pas le premier micro-ordinateur.",
+			"caption": "IBM PC 5150. Image fournie avec les notes ; crédit non précisé dans le mindmap.",
+			"sources": [
+				"notes",
+				"ibm-pc"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_1957228454",
+			"frame_id": "ci-frame-d8463bd3ba4b",
+			"summary_count": 298,
+			"summary_element_id": "ci-text-3a14991a7123",
+			"summary_container_id": "ci-node-3a14991a7123"
+		},
+		{
+			"node": "258",
+			"slug": "smartphone",
+			"title": "11 Le smartphone",
+			"heading": "3.15 Smartphone, cloud et informatique omniprésente",
+			"summary": "Le smartphone réunit calcul, réseau, capteurs et interface tactile dans un appareil mobile. L’informatique accompagne les activités quotidiennes : communiquer, se repérer, créer et accéder à des services. Cette disponibilité permanente accroît aussi les enjeux de vie privée et de dépendance aux plateformes.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_466860542",
+			"frame_id": "ci-frame-358aea9928a7",
+			"summary_count": 308,
+			"summary_element_id": "ci-text-194acb184cae",
+			"summary_container_id": "ci-node-194acb184cae"
+		},
+		{
+			"node": "483",
+			"slug": "cout-qualite-delais",
+			"title": "Objectifs — coût, qualité, délais",
+			"image": "TriptiqueCoutDelaisQualite.png",
+			"image_node": "495",
+			"heading": "12.11 Qualité",
+			"summary": "Le triangle coût–qualité–délais rend visibles les arbitrages d’un projet logiciel. Accélérer ou réduire le budget sans adapter le périmètre peut dégrader le résultat. Ce modèle aide à négocier des objectifs réalistes plutôt qu’à traiter le développement comme une simple phase de codage.",
+			"caption": "Schéma fourni avec les notes : arbitrages coût, qualité, délais. Auteur et licence non précisés.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_931485350",
+			"frame_id": "ci-frame-6a54449a1b24",
+			"summary_count": 287,
+			"summary_element_id": "ci-text-10dac57b066a",
+			"summary_container_id": "ci-node-10dac57b066a"
+		},
+		{
+			"node": "573",
+			"slug": "cycle-v",
+			"title": "Cycle en V",
+			"image": "CycleEnV.png",
+			"image_node": "579",
+			"heading": "13.1 Cycle en V",
+			"summary": "Le cycle en V relie les niveaux de conception aux niveaux de test correspondants. Il encourage à prévoir la vérification et la validation dès la définition du système. Cette traçabilité aide à maîtriser les exigences, mais le modèle doit être adapté lorsque les besoins évoluent fortement.",
+			"caption": "Schéma du cycle en V fourni avec les notes. Auteur et licence non précisés.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_557533249",
+			"frame_id": "ci-frame-6f6da6199b45",
+			"summary_count": 289,
+			"summary_element_id": "ci-text-b092bf0dba72",
+			"summary_container_id": "ci-node-b092bf0dba72"
+		},
+		{
+			"node": "585",
+			"slug": "mvp",
+			"title": "MVP — Minimum Viable Product",
+			"image": "cesi_Mvp_criteria-1_fr.png",
+			"image_node": "588",
+			"heading": "13.5 MVP",
+			"summary": "Le MVP vise à apprendre tôt au contact des utilisateurs avec le minimum nécessaire pour tester une hypothèse. La boucle construire–mesurer–apprendre réduit le risque de développer longtemps un produit inutile. Un MVP n’est pas simplement un logiciel incomplet ou de mauvaise qualité.",
+			"caption": "Boucle construire–mesurer–apprendre. Image HTML du mindmap restaurée ; référence CESI, licence non précisée.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_322873924",
+			"frame_id": "ci-frame-e7949b38e650",
+			"summary_count": 283,
+			"summary_element_id": "ci-text-4668a5821277",
+			"summary_container_id": "ci-node-4668a5821277"
+		},
+		{
+			"node": "753",
+			"slug": "evolutions",
+			"title": "Évolutions — cycles itératifs",
+			"image": "CycleDesEvolutions.png",
+			"image_node": "753",
+			"heading": "13.2 Itératif et incrémental",
+			"summary": "Les cycles d’évolution organisent l’analyse, la modification, les tests et la remise en production du logiciel. Le retour d’usage alimente l’itération suivante : la maintenance devient une activité continue d’apprentissage et d’adaptation, et non une simple réparation après livraison.",
+			"caption": "Cycle des évolutions fourni avec les notes. Auteur et licence non précisés.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_87466719",
+			"frame_id": "ci-frame-9ea72d261e52",
+			"summary_count": 285,
+			"summary_element_id": "ci-text-193648bb1293",
+			"summary_container_id": "ci-node-193648bb1293"
+		},
+		{
+			"node": "1032",
+			"slug": "von-neumann",
+			"title": "Architecture de von Neumann",
+			"diagram": true,
+			"image_node": "1038",
+			"heading": "4.2 Modèle de von Neumann",
+			"summary": "Stocker instructions et données en mémoire permet de changer de traitement en chargeant un programme plutôt qu’en recâblant la machine. Le processeur lit, décode et exécute les instructions. Ce modèle structure de nombreux ordinateurs, malgré des architectures modernes plus complexes.",
+			"caption": "Schéma éditable d’après Informatique.md §4.2. L’image référencée par le mindmap n’est pas présente dans l’archive.",
+			"sources": [
+				"notes"
+			],
+			"origin": "mindmap_et_notes",
+			"freeplane_id": "ID_563296765",
+			"frame_id": "ci-frame-e0491fdb2ee7",
+			"summary_count": 285,
+			"summary_element_id": "ci-text-23a554c6ed06",
+			"summary_container_id": "ci-node-23a554c6ed06"
+		},
+		{
+			"slug": "fondations",
+			"title": "12 Logique et calculabilité",
+			"heading": "3.7 Fondations mathématiques",
+			"summary": "La logique, la calculabilité et la théorie de l’information donnent un langage commun aux machines et aux programmes. Elles permettent de concevoir des circuits, de formaliser un algorithme et d’étudier ce qui peut être calculé ou transmis. L’informatique devient aussi une science théorique.",
+			"sources": [
+				"notes"
+			],
+			"node": "ci-node-1043f68a43f4",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-1043f68a43f4",
+			"summary_count": 292,
+			"summary_element_id": "ci-text-0d49537b2f77",
+			"summary_container_id": "ci-node-0d49537b2f77"
+		},
+		{
+			"slug": "programme-enregistre",
+			"title": "13 Le programme enregistré",
+			"heading": "3.9 Architecture de programme enregistré",
+			"summary": "Le programme enregistré rend une machine reconfigurable par logiciel. Les instructions deviennent elles-mêmes des informations stockées et manipulables : charger un autre programme suffit à changer de tâche. Cette souplesse ouvre la voie aux langages, aux systèmes d’exploitation et à l’informatique généraliste.",
+			"sources": [
+				"notes",
+				"baby"
+			],
+			"node": "ci-node-311d3cadc2e9",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-311d3cadc2e9",
+			"summary_count": 312,
+			"summary_element_id": "ci-text-fce521eb6075",
+			"summary_container_id": "ci-node-fce521eb6075"
+		},
+		{
+			"slug": "electronique",
+			"title": "14 Transistor et circuits intégrés",
+			"heading": "3.10 Transistor et circuits intégrés",
+			"summary": "Le transistor, puis l’intégration de nombreux composants sur une puce, réduisent l’encombrement et le coût des circuits tout en améliorant leur fiabilité. Cette miniaturisation permet de diffuser le calcul hors des grandes salles de machines et prépare les microprocesseurs.",
+			"sources": [
+				"notes",
+				"ic-ti"
+			],
+			"node": "ci-node-002170ec27be",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-002170ec27be",
+			"summary_count": 274,
+			"summary_element_id": "ci-text-2eb2c5dc79bd",
+			"summary_container_id": "ci-node-2eb2c5dc79bd"
+		},
+		{
+			"slug": "microprocesseur",
+			"title": "15 Le microprocesseur",
+			"heading": "3.12 Micro-ordinateurs et PC",
+			"summary": "Intégrer le processeur sur une puce rend le calcul programmable moins coûteux et plus compact. Le microprocesseur favorise les micro-ordinateurs, puis une multitude de systèmes embarqués. Une fonction nouvelle peut venir du logiciel plutôt que d’un circuit spécifique à reconstruire.",
+			"sources": [
+				"notes",
+				"intel4004"
+			],
+			"node": "ci-node-54dcd8e892e7",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-54dcd8e892e7",
+			"summary_count": 283,
+			"summary_element_id": "ci-text-e2c73e47adcc",
+			"summary_container_id": "ci-node-e2c73e47adcc"
+		},
+		{
+			"slug": "unix-linux",
+			"title": "16 UNIX, GNU et Linux",
+			"heading": "3.11 Mini-ordinateurs",
+			"summary": "Unix popularise un système portable et des outils composables. GNU et Linux rendent possible un système libre développé en coopération, réutilisable et modifiable. Ce patrimoine logiciel fournit des bases communes aux serveurs, à la recherche et à de nombreux équipements.",
+			"sources": [
+				"notes",
+				"linux"
+			],
+			"extra_note": "[[cours/Historique Linux]]",
+			"node": "ci-node-49e794b5cccb",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-49e794b5cccb",
+			"summary_count": 272,
+			"summary_element_id": "ci-text-2e675c34558e",
+			"summary_container_id": "ci-node-2e675c34558e"
+		},
+		{
+			"slug": "relationnel",
+			"title": "17 Le modèle relationnel",
+			"heading": "11.3 Modèle relationnel",
+			"summary": "Le modèle relationnel sépare la représentation logique des données de leur stockage physique. Les applications peuvent interroger et relier des informations sans connaître leur emplacement. Il prépare les requêtes déclaratives de SQL et facilite l’évolution des systèmes de gestion de données.",
+			"sources": [
+				"notes",
+				"codd"
+			],
+			"node": "ci-node-2b3ba92c96d4",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-2b3ba92c96d4",
+			"summary_count": 293,
+			"summary_element_id": "ci-text-6e2ef1abf7bc",
+			"summary_container_id": "ci-node-6e2ef1abf7bc"
+		},
+		{
+			"slug": "interfaces",
+			"title": "18 Les interfaces graphiques",
+			"heading": "3.13 Interfaces graphiques",
+			"summary": "Les interfaces graphiques rendent les actions visibles et accessibles par manipulation directe. La souris, les fenêtres et les icônes réduisent certains obstacles d’apprentissage et élargissent les usages de l’ordinateur. L’interaction et l’ergonomie deviennent des dimensions centrales du logiciel.",
+			"sources": [
+				"notes"
+			],
+			"node": "ci-node-0274021b904c",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-0274021b904c",
+			"summary_count": 299,
+			"summary_element_id": "ci-text-ffbe4f493419",
+			"summary_container_id": "ci-node-ffbe4f493419"
+		},
+		{
+			"slug": "internet-web",
+			"title": "19 Internet et le Web",
+			"heading": "3.14 Internet et Web",
+			"summary": "Internet interconnecte des réseaux hétérogènes ; le Web facilite l’accès à des documents et services reliés par hyperliens. Leur combinaison change l’échelle de la publication et de la collaboration. Distinguer l’infrastructure réseau de l’application Web évite de confondre deux innovations.",
+			"sources": [
+				"notes",
+				"internet",
+				"web"
+			],
+			"node": "ci-node-287e9910cc2a",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-287e9910cc2a",
+			"summary_count": 292,
+			"summary_element_id": "ci-text-18f034465fda",
+			"summary_container_id": "ci-node-18f034465fda"
+		},
+		{
+			"slug": "cloud",
+			"title": "20 Cloud, virtualisation et conteneurs",
+			"heading": "17.3 Cloud",
+			"summary": "Le cloud rend des ressources informatiques accessibles à la demande et industrialise leur exploitation. Virtualisation et conteneurs facilitent l’isolation et le déploiement reproductible des applications. Le calcul devient un service, avec de nouveaux compromis de coût, de disponibilité et de maîtrise des données.",
+			"sources": [
+				"notes"
+			],
+			"extra_note": "[[cours/Docker]]",
+			"node": "ci-node-56681010b753",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-56681010b753",
+			"summary_count": 316,
+			"summary_element_id": "ci-text-9c2c017fff31",
+			"summary_container_id": "ci-node-9c2c017fff31"
+		},
+		{
+			"slug": "ia",
+			"title": "21 Apprentissage, accélérateurs et IA",
+			"heading": "3.16 Accélérateurs et IA",
+			"summary": "Les accélérateurs et l’apprentissage automatique permettent d’ajuster des modèles à de grands jeux de données. Reconnaissance, prédiction et génération ouvrent de nouveaux usages. Les performances dépendent des données et de l’évaluation : ces systèmes ne garantissent ni vérité ni compréhension humaine.",
+			"sources": [
+				"notes",
+				"transformers"
+			],
+			"extra_note": "[[cours/Les transformers]]",
+			"node": "ci-node-26138d8a757d",
+			"origin": "complement_des_notes",
+			"frame_id": "ci-frame-26138d8a757d",
+			"summary_count": 304,
+			"summary_element_id": "ci-text-5d9f944fa85b",
+			"summary_container_id": "ci-node-5d9f944fa85b"
+		}
+	],
+	"assets": [
+		{
+			"section": "calculis",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/Calculis.jpg",
+			"freeplane_node": "ID_515765922",
+			"source_sha256": "b6b3b9a995a3f22de2b9e9bd6a5d1d8dd34efe0a8315c4913c05150155e66954",
+			"scene_element_id": "qyQ5UWwwYWX8zP6K4WZWp",
+			"file_id": "999af92fa92a35d6c193628965a8a156e80a64f3",
+			"embedded_sha256": "8e7d0454c84722052d446c4a95fc1d9de79c818ac37d61fc579b80ad51bf6259",
+			"caption": "Bulle-enveloppe et jetons. Crédit indiqué dans le mindmap : Wikipédia.",
+			"reused": true
+		},
+		{
+			"section": "ecriture",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/ÉvolutionDeLAphabet.jpeg",
+			"freeplane_node": "ID_522739483",
+			"source_sha256": "7f8e4251b2bf4eb16ae540a938e720d294557e48c22b8ac8470160f816975e9f",
+			"scene_element_id": "TmOyK4rnO7TtPyLfQhJni",
+			"file_id": "c7343eebc1f895b130af9780695d90e02539bddc",
+			"embedded_sha256": "2294f33ff1f77f0e735c2b93fc585570647b6ed73b704fb3bc33737d06223170",
+			"caption": "Tableau fourni : évolution des alphabets ; il ne représente pas la naissance de toutes les écritures. Crédit non précisé.",
+			"reused": true
+		},
+		{
+			"section": "anticythere",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/NAMA_Machine_d'Anticythère_1.jpg",
+			"freeplane_node": "ID_154261430",
+			"source_sha256": "b0123c0310310f2a177e08d13d4ec47ea304aba1aa758246f48290eda47d6272",
+			"scene_element_id": "x62SQDj9DSHldp7GE7FAV",
+			"file_id": "20ba7ddb18ed4af9f29ce9e91f8b04519c2e229d",
+			"embedded_sha256": "e2a884a002b3ad49b7d09fcfdadf96047dc595667410dc59c0a9101310f79154",
+			"caption": "Fragment de la machine d’Anticythère. Crédit indiqué dans le mindmap : Wikipédia.",
+			"reused": true
+		},
+		{
+			"section": "pascaline",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/Arts_et_Metiers_Pascaline_dsc03869.jpg",
+			"freeplane_node": "ID_24847403",
+			"source_sha256": "f56c5f374f3370d2e41c07d134c0f3962cf0662f6e4f8b6131ba9678b31c3187",
+			"scene_element_id": "ci-image-6f0a53fb760e",
+			"file_id": "16c8a4d80aaf47c688234b956eed30245409dd5e",
+			"embedded_sha256": "f56c5f374f3370d2e41c07d134c0f3962cf0662f6e4f8b6131ba9678b31c3187",
+			"caption": "Pascaline. Crédit indiqué dans le mindmap : Wikipédia.",
+			"reused": false
+		},
+		{
+			"section": "jacquard",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/Metier_jacquard.jpg",
+			"freeplane_node": "ID_1823018922",
+			"source_sha256": "1f56d5002985304f0438852250b74c8a42b512e5e587031122630eb5f7ce11b7",
+			"scene_element_id": "ci-image-134060c9a498",
+			"file_id": "b2592e0d8853704990667b96c9bf67e4acf51ce9",
+			"embedded_sha256": "1f56d5002985304f0438852250b74c8a42b512e5e587031122630eb5f7ce11b7",
+			"caption": "Métier Jacquard. Crédit indiqué dans le mindmap : Wikipédia.",
+			"reused": false
+		},
+		{
+			"section": "babbage",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/Babbage_Difference_Engine.jpg",
+			"freeplane_node": "ID_1285585567",
+			"source_sha256": "3b658dda73a6ec74652fa4f2396d56027711f28988628411f5f8951c801efb04",
+			"scene_element_id": "ci-image-ba4a9c289c22",
+			"file_id": "39b89b3daceada78181fe05cf4d248cc58e8e75a",
+			"embedded_sha256": "3b658dda73a6ec74652fa4f2396d56027711f28988628411f5f8951c801efb04",
+			"caption": "Attention : photo d’une machine à différences, pas de la machine analytique. Crédit indiqué dans le mindmap : Wikipédia.",
+			"reused": false
+		},
+		{
+			"section": "hollerith",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/hollerith-gravure.jpg",
+			"freeplane_node": "ID_1774166587",
+			"source_sha256": "52814c60c2e60f713cc01f54b32ce7dc1ece5c4d4b933e22066cc1e1a4561e4f",
+			"scene_element_id": "ci-image-fe87f8d42227",
+			"file_id": "846e0404eb9a5d18638368bd0f405a67887027b1",
+			"embedded_sha256": "52814c60c2e60f713cc01f54b32ce7dc1ece5c4d4b933e22066cc1e1a4561e4f",
+			"caption": "Équipement de mécanographie d’Hollerith. Crédit indiqué dans le mindmap : archives IBM.",
+			"reused": false
+		},
+		{
+			"section": "eniac",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/Eniac.jpg",
+			"freeplane_node": "ID_1604961188",
+			"source_sha256": "13385fe46f54bbf819815f49e862bb2f0f8f3ff3495e9279ff0b03f9ebe4d42c",
+			"scene_element_id": "ci-image-b93dacadf077",
+			"file_id": "74bd862a0a9924c465b9416fc36176dfe8d2ca51",
+			"embedded_sha256": "13385fe46f54bbf819815f49e862bb2f0f8f3ff3495e9279ff0b03f9ebe4d42c",
+			"caption": "ENIAC. Image fournie avec les notes ; crédit non précisé dans le mindmap.",
+			"reused": false
+		},
+		{
+			"section": "pdp11",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/pdp11.jpg",
+			"freeplane_node": "ID_132040070",
+			"source_sha256": "39669f5ea51c5250f4975405726548e856f426b6554ad52afdc501c340b8443a",
+			"scene_element_id": "ci-image-8d9607bb9bd1",
+			"file_id": "d739e92ab237e82fd4e9ecee4ec30f13401da48a",
+			"embedded_sha256": "39669f5ea51c5250f4975405726548e856f426b6554ad52afdc501c340b8443a",
+			"caption": "PDP-11. Image fournie avec les notes ; crédit non précisé dans le mindmap.",
+			"reused": false
+		},
+		{
+			"section": "pc",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/IBM_PC_5150.jpg",
+			"freeplane_node": "ID_1791667859",
+			"source_sha256": "816968c15b8af17f125ef1d1b0d08c294100d191915c182bfa7ae3e3329a3950",
+			"scene_element_id": "ci-image-d8463bd3ba4b",
+			"file_id": "9ec9d90e05e847a3111b32326dd9c0c962cfe8f1",
+			"embedded_sha256": "816968c15b8af17f125ef1d1b0d08c294100d191915c182bfa7ae3e3329a3950",
+			"caption": "IBM PC 5150. Image fournie avec les notes ; crédit non précisé dans le mindmap.",
+			"reused": false
+		},
+		{
+			"section": "cout-qualite-delais",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/TriptiqueCoutDelaisQualite.png",
+			"freeplane_node": "ID_1300350307",
+			"source_sha256": "e5d2e3d754316e7a82d7e5c7f40e25b85412d02b276270847cad2a52dcb092a2",
+			"scene_element_id": "ci-image-6a54449a1b24",
+			"file_id": "55e4a6fb9d7db5e2c15c65bc584b63a0ae57190b",
+			"embedded_sha256": "e5d2e3d754316e7a82d7e5c7f40e25b85412d02b276270847cad2a52dcb092a2",
+			"caption": "Schéma fourni avec les notes : arbitrages coût, qualité, délais. Auteur et licence non précisés.",
+			"reused": false
+		},
+		{
+			"section": "cycle-v",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/CycleEnV.png",
+			"freeplane_node": "ID_149018343",
+			"source_sha256": "e71e75e98a6aa2ef27584410bd35a740531748852bd7ef4589cd04dc1d6abca6",
+			"scene_element_id": "ci-image-6f6da6199b45",
+			"file_id": "18f0d17b621e84073f8c6ed237471dad9f50ad40",
+			"embedded_sha256": "e71e75e98a6aa2ef27584410bd35a740531748852bd7ef4589cd04dc1d6abca6",
+			"caption": "Schéma du cycle en V fourni avec les notes. Auteur et licence non précisés.",
+			"reused": false
+		},
+		{
+			"section": "mvp",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/cesi_Mvp_criteria-1_fr.png",
+			"freeplane_node": "ID_1672329980",
+			"source_sha256": "33b6259c3d1ea18a5d85ecf4f2e50ea7166bda99b9c068c2346ac994f12328c7",
+			"scene_element_id": "ci-image-e7949b38e650",
+			"file_id": "31853d51f97931c95d988f9d6d8f4f452f270c9e",
+			"embedded_sha256": "33b6259c3d1ea18a5d85ecf4f2e50ea7166bda99b9c068c2346ac994f12328c7",
+			"caption": "Boucle construire–mesurer–apprendre. Image HTML du mindmap restaurée ; référence CESI, licence non précisée.",
+			"reused": false
+		},
+		{
+			"section": "evolutions",
+			"kind": "embedded_image",
+			"source": "cours/mindmap_images/CycleDesEvolutions.png",
+			"freeplane_node": "ID_87466719",
+			"source_sha256": "eb1e105e7384c4e8be64455661788aa1ffd4bef6d25427fbb745be7d671780f5",
+			"scene_element_id": "ci-image-9ea72d261e52",
+			"file_id": "0dcec8c6d0fef91ea5ac814505acd11c8aa2c8be",
+			"embedded_sha256": "eb1e105e7384c4e8be64455661788aa1ffd4bef6d25427fbb745be7d671780f5",
+			"caption": "Cycle des évolutions fourni avec les notes. Auteur et licence non précisés.",
+			"reused": false
+		},
+		{
+			"section": "von-neumann",
+			"kind": "native_diagram",
+			"freeplane_node": "ID_763070126",
+			"missing_source": "VonNeumannArchitectureWikipédia_fichiers/800px-Von_Neumann_architecture_fr.png",
+			"scene_element_ids": [
+				"ci-node-b4c706d292ab",
+				"ci-text-b4c706d292ab",
+				"ci-node-d359990b4dd1",
+				"ci-text-d359990b4dd1",
+				"ci-node-f67300e0c3f6",
+				"ci-text-f67300e0c3f6",
+				"ci-node-8173cedc877f",
+				"ci-text-8173cedc877f",
+				"ci-arrow-b4c706d292ab",
+				"ci-arrow-b057572ce55a",
+				"ci-arrow-f67300e0c3f6"
+			],
+			"caption": "Schéma éditable d’après Informatique.md §4.2. L’image référencée par le mindmap n’est pas présente dans l’archive.",
+			"source_note": "cours/Informatique.md#4.2 Modèle de von Neumann"
+		}
+	],
+	"limitations": [
+		"Les URL héritées sont restaurées, pas toutes vérifiées en ligne. Aucune disponibilité de vidéo n’est garantie.",
+		"Les crédits originaux sont conservés ; les licences des illustrations ne sont pas établies par les fichiers fournis.",
+		"Le PNG original de von Neumann est absent : remplacement explicite par un schéma natif, sans téléchargement de substitution.",
+		"Le tableau alphabétique fourni ne représente pas toutes les écritures.",
+		"La photographie de Babbage représente une machine à différences, pas la machine analytique."
+	],
+	"statistics": {
+		"original_nodes": 385,
+		"sections": 27,
+		"illustrated_sections": 15,
+		"embedded_images": 14,
+		"new_topics": 10,
+		"summary_min": 272,
+		"summary_max": 318,
+		"unique_external_urls": 63,
+		"local_links": 58,
+		"elements": 1518
+	}
+}
