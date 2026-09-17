@@ -38,6 +38,8 @@ metadata_verifiees: true
 > [!abstract] Objectif
 > Ce cours fournit une **vue d'ensemble cohérente de l'informatique**. Il ne remplace pas les cours spécialisés du dépôt : il donne le vocabulaire, les modèles mentaux et les liens nécessaires pour savoir **où approfondir**.
 
+Le schéma Excalidraw de ce cours est accessible ici [[cours/CoursInformatique.excalidraw]]
+
 L'informatique ne se réduit ni à « savoir utiliser un ordinateur », ni à « savoir programmer ».
 
 Elle étudie notamment :
