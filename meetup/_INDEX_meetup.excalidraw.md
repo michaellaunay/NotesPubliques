@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-09-16
+date_modification: 2026-09-17
 confidentialite: privee
 publication: []
 rag: false
