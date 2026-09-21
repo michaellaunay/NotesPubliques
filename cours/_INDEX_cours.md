@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-09-17
+date_modification: 2026-09-21
 confidentialite: publique
 publication:
   - notes-publiques
@@ -78,6 +78,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Mathplotlib]] — Cours complet sur Matplotlib : modèle Figure/Axes/Artist, API orientée objet, graphiques usuels, mises en page, styles, couleurs, annotations, export vectoriel et raster, notebooks, performances, accessibilité et intégration NumPy/Pandas.
 - [[Numpy]] — Cours pratique sur NumPy : création de tableaux, fonctions usuelles, slices et vues, tableaux multidimensionnels, statistiques et notion d'axe, puis le tirage aléatoire moderne, le broadcasting et les ruptures de NumPy 2.
 - [[Pandas]] — Cours sur la bibliothèque Pandas : structures Series et DataFrame, sélection, filtrage, valeurs manquantes, groupement, concaténation et jointures, puis les ruptures de pandas 3.0 — Copy-on-Write, type str adossé à Arrow, pd.col() et migration.
+- [[Plone pyproject tooling]] — Cours sur l'assemblage des projets Plone et Zope avec venv, pip ou uv, pyproject.toml, mxdev et cookiecutter-zope-instance : contraintes, configuration WSGI, automatisation, maintenance ZODB et migration progressive depuis Buildout.
 - [[Python]] — Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage.
 - [[Regex]] — Cours complet sur les expressions régulières : théorie, syntaxes, moteurs, Unicode, captures, lookarounds, substitutions, Python, JavaScript, POSIX, Vim, PCRE2, performances, ReDoS, sécurité et bonnes pratiques.
 - [[SQLAchemy]] — Fiche de prise en main de SQLAlchemy : installation, création d'un moteur de connexion, déclaration de modèles et opérations CRUD.
