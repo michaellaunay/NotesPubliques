@@ -26168,8 +26168,8 @@
 		},
 		{
 			"type": "arrow",
-			"version": 2817,
-			"versionNonce": 1920958144,
+			"version": 2884,
+			"versionNonce": 1586855616,
 			"isDeleted": false,
 			"id": "26",
 			"fillStyle": "solid",
@@ -26191,7 +26191,7 @@
 			"frameId": "ci-frame-2ceb856526b5",
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1789564864680,
+			"updated": 1789630149523,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -26463,11 +26463,11 @@
 			"frameId": "ci-frame-2ceb856526b5",
 			"roundness": null,
 			"seed": 266763582,
-			"version": 2706,
-			"versionNonce": 1476488896,
+			"version": 2773,
+			"versionNonce": 513199424,
 			"isDeleted": false,
 			"boundElements": [],
-			"updated": 1789564864681,
+			"updated": 1789630149523,
 			"link": null,
 			"locked": false,
 			"points": [
@@ -36884,8 +36884,8 @@
 		},
 		{
 			"type": "rectangle",
-			"version": 935,
-			"versionNonce": 2038625984,
+			"version": 936,
+			"versionNonce": 1924431168,
 			"isDeleted": false,
 			"id": "9",
 			"fillStyle": "solid",
@@ -36931,10 +36931,6 @@
 					"type": "arrow"
 				},
 				{
-					"id": "26",
-					"type": "arrow"
-				},
-				{
 					"id": "29",
 					"type": "arrow"
 				},
@@ -36949,9 +36945,13 @@
 				{
 					"id": "10",
 					"type": "text"
+				},
+				{
+					"id": "26",
+					"type": "arrow"
 				}
 			],
-			"updated": 1789567200000,
+			"updated": 1789630149523,
 			"link": "[[cours/Informatique#3.1 Écriture, nombres et mémoire externe]]",
 			"locked": false,
 			"customData": {
@@ -37064,8 +37064,8 @@
 		},
 		{
 			"type": "rectangle",
-			"version": 578,
-			"versionNonce": 252755648,
+			"version": 645,
+			"versionNonce": 1059466560,
 			"isDeleted": false,
 			"id": "24",
 			"fillStyle": "solid",
@@ -37091,19 +37091,19 @@
 			},
 			"boundElements": [
 				{
+					"id": "25",
+					"type": "text"
+				},
+				{
 					"id": "26",
 					"type": "arrow"
 				},
 				{
 					"id": "ZH-p_1V87lYPmHJ1iq0cO",
 					"type": "arrow"
-				},
-				{
-					"id": "25",
-					"type": "text"
 				}
 			],
-			"updated": 1789567200000,
+			"updated": 1789630149523,
 			"link": "[[cours/mindmap_images/Calculis.jpg]]",
 			"locked": false,
 			"customData": {
@@ -37117,8 +37117,8 @@
 		},
 		{
 			"type": "text",
-			"version": 581,
-			"versionNonce": 825771712,
+			"version": 648,
+			"versionNonce": 1656190272,
 			"isDeleted": false,
 			"id": "25",
 			"fillStyle": "solid",
@@ -37141,7 +37141,7 @@
 			"frameId": "ci-frame-2ceb856526b5",
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1789564864681,
+			"updated": 1789630149523,
 			"link": "[[cours/mindmap_images/Calculis.jpg]]",
 			"locked": false,
 			"fontSize": 20,
@@ -37183,11 +37183,11 @@
 			"frameId": "ci-frame-2ceb856526b5",
 			"roundness": null,
 			"seed": 67197718,
-			"version": 1,
-			"versionNonce": 245768568,
+			"version": 68,
+			"versionNonce": 1425516224,
 			"isDeleted": false,
 			"boundElements": [],
-			"updated": 1789567200000,
+			"updated": 1789630149523,
 			"link": null,
 			"locked": false,
 			"fontSize": 16,
@@ -113332,8 +113332,8 @@
 			"frameId": "ci-frame-2ceb856526b5",
 			"roundness": null,
 			"seed": 1284287458,
-			"version": 1010,
-			"versionNonce": 1514245440,
+			"version": 1011,
+			"versionNonce": 1334724288,
 			"isDeleted": false,
 			"boundElements": [
 				{
@@ -113341,7 +113341,7 @@
 					"type": "arrow"
 				}
 			],
-			"updated": 1789564903855,
+			"updated": 1789630149523,
 			"link": "[[cours/mindmap_images/Calculis.jpg]]",
 			"locked": false,
 			"status": "error",
@@ -113628,11 +113628,11 @@
 			"frameId": "ci-frame-2ceb856526b5",
 			"roundness": null,
 			"seed": 235075670,
-			"version": 3,
-			"versionNonce": 1519668544,
+			"version": 39,
+			"versionNonce": 427450048,
 			"isDeleted": false,
 			"boundElements": [],
-			"updated": 1789567200000,
+			"updated": 1789630264868,
 			"link": "[[cours/Informatique#3.1 Écriture, nombres et mémoire externe]]",
 			"locked": false,
 			"fontSize": 16,
@@ -120406,10 +120406,10 @@
 		"currentItemEndArrowhead": "arrow",
 		"currentItemArrowType": "round",
 		"currentItemFrameRole": null,
-		"scrollX": 1967.5,
-		"scrollY": -36926.96875,
+		"scrollX": -1555.252913752914,
+		"scrollY": -70.25509906759896,
 		"zoom": {
-			"value": 0.1
+			"value": 0.6
 		},
 		"currentItemRoundness": "round",
 		"gridSize": 20,

@@ -644,9 +644,7 @@ Le principal piège consiste à additionner naïvement les scores. Un score BM25
 
 Une stratégie classique est **Reciprocal Rank Fusion** :
 
-\[
-RRF(d)=\sum_i \frac{1}{k + rank_i(d)}
-\]
+$RRF(d)=\sum_i \frac{1}{k + rank_i(d)}$
 
 RRF fusionne les rangs plutôt que les valeurs brutes. Il constitue un excellent point de départ pour une recherche hybride, même s'il n'est pas nécessairement optimal pour tous les corpus.
 
@@ -1111,9 +1109,7 @@ Un dataset composé uniquement de requêtes faciles donne une fausse impression 
 
 Le **Recall@k** mesure si les documents pertinents sont présents parmi les `k` premiers résultats.
 
-\[
-Recall@k=\frac{|relevant \cap top_k|}{|relevant|}
-\]
+$Recall@k=\frac{|relevant \cap top_k|}{|relevant|}$
 
 Dans un premier retriever destiné à être reranké, le recall est souvent prioritaire : si le bon document n'est pas dans les candidats, aucune étape suivante ne pourra le récupérer.
 
@@ -1121,9 +1117,7 @@ Dans un premier retriever destiné à être reranké, le recall est souvent prio
 
 La **Precision@k** mesure la proportion de résultats pertinents dans les `k` premiers :
 
-\[
-Precision@k=\frac{|relevant \cap top_k|}{k}
-\]
+$Precision@k=\frac{|relevant \cap top_k|}{k}$
 
 Elle est particulièrement utile lorsque le contexte est directement construit à partir du top-k. Un faible niveau de précision gaspille le budget de contexte et peut distraire le modèle.
 
@@ -1131,9 +1125,7 @@ Elle est particulièrement utile lorsque le contexte est directement construit �
 
 Le **Mean Reciprocal Rank** valorise la position du premier résultat pertinent :
 
-\[
-RR=\frac{1}{rank_{first\ relevant}}
-\]
+$RR=\frac{1}{rank_{first\ relevant}}$
 
 Le **nDCG** est utile lorsque plusieurs documents possèdent différents degrés de pertinence. Ces métriques sont adaptées pour comparer plusieurs stratégies de classement : dense seul, BM25, hybride, hybride + reranker.
 
@@ -1306,7 +1298,7 @@ Agent
 Réponse finale
 ```
 
-Cette architecture est flexible, mais elle augmente le nombre d'appels, la latence, le coût, le nondéterminisme et la surface d'attaque.
+Cette architecture est flexible, mais elle augmente le nombre d'appels, la latence, le coût, le non déterminisme et la surface d'attaque.
 
 Un pipeline déterministe est souvent préférable lorsque la logique peut être écrite à l'avance.
 
