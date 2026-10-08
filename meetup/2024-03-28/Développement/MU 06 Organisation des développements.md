@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VP538CGP58CJAY7T4G"
-titre: "MU 06 Organisation des développements"
+uid: 01M02JG1VP538CGP58CJAY7T4G
+titre: MU 06 Organisation des développements
 type: cours
 statut: actif
 para: ressource
@@ -12,17 +12,18 @@ themes:
   - python
   - organisation-de-projet
   - meetup
-resume: "Génération assistée par IA de l'arborescence du projet, du README et des fichiers de dépendances."
+resume: Génération assistée par IA de l'arborescence du projet, du README et des fichiers de dépendances.
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 **Moi**
 Propose une arborescence de projet contenant un README.md les requirements etc

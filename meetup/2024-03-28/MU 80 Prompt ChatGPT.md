@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VRV6G6FNFTZCND58AS"
-titre: "MU 80 Prompt ChatGPT"
+uid: 01M02JG1VRV6G6FNFTZCND58AS
+titre: MU 80 Prompt ChatGPT
 type: document
 statut: actif
 para: ressource
@@ -12,16 +12,17 @@ themes:
   - prompt-engineering
   - python
   - meetup
-resume: "Retranscription intégrale de la session de prompts ayant produit l'analyse, le glossaire et les scénarios de l'étude de cas."
+resume: Retranscription intégrale de la session de prompts ayant produit l'analyse, le glossaire et les scénarios de l'étude de cas.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2026-08-18
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Retranscription de l'analyse faite avec Chat GPT
 ## Génération du glossaire métier

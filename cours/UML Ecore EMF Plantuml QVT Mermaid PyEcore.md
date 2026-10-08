@@ -1,12 +1,12 @@
 ---
 schema_version: 1
-uid: "01M02JG1VGF45E69TTSNA7EPQG"
-titre: "UML Ecore EMF Plantuml QVT Mermaid PyEcore"
+uid: 01M02JG1VGF45E69TTSNA7EPQG
+titre: UML Ecore EMF Plantuml QVT Mermaid PyEcore
 aliases:
-  - "Ingénierie dirigée par les modèles"
-  - "MDE"
-  - "Ecore"
-  - "pyecore"
+  - Ingénierie dirigée par les modèles
+  - MDE
+  - Ecore
+  - pyecore
 type: cours
 statut: actif
 para: ressource
@@ -22,7 +22,7 @@ themes:
 resume: "Cours d'ingénierie dirigée par les modèles (2026) : UML 2.5.1 et SysML v2, MDA et les quatre niveaux MOF, Ecore et EMF, transformations de modèles (QVT, ATL, Acceleo), grammaires et langages dédiés (BNF, EBNF, PEG, Xtext, Langium, textX), sémantiques formelles, pratique complète avec pyecore et pyecoregen (métamodèle, instances, XMI, export PlantUML, génération de code), diagrammes textuels PlantUML et Mermaid ; tous les exemples ont été exécutés."
 niveau: avance
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-10
 date_modification: 2026-08-29
@@ -30,7 +30,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Ingénierie dirigée par les modèles : UML, MOF, Ecore, QVT, grammaires et pyecore
 

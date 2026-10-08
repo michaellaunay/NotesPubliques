@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VKJ68SHDR0Q45VFP70"
-titre: "MU Analyse par chat GPT"
+uid: 01M02JG1VKJ68SHDR0Q45VFP70
+titre: MU Analyse par chat GPT
 type: cours
 statut: actif
 para: ressource
@@ -13,17 +13,18 @@ themes:
   - analyse
   - 2tup
   - meetup
-resume: "Retranscription de la phase d'analyse menée conjointement avec ChatGPT selon la méthode 2TUP, de la génération du glossaire métier aux scénarios."
+resume: Retranscription de la phase d'analyse menée conjointement avec ChatGPT selon la méthode 2TUP, de la génération du glossaire métier aux scénarios.
 niveau: intermediaire
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Remarque générale
 L'analyse doit être menée conjointement par l'humain et l'IA, l'idéal étant de sélectionner une méthode pour ensuite la mettre en application avec ChatGPT. Il est crucial de vérifier les résultats générés et de corriger d'éventuelles hallucinations ou pertes de contexte, qui surviennent généralement tous les 7 ou 8 prompts.

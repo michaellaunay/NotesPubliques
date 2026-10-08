@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VKMZB8APRYT5QS8PD2"
-titre: "MU Glossaire métier"
+uid: 01M02JG1VKMZB8APRYT5QS8PD2
+titre: MU Glossaire métier
 type: document
 statut: actif
 para: ressource
@@ -15,14 +15,15 @@ themes:
   - meetup
 resume: "Glossaire métier de l'étude de cas : Markdown, Obsidian et les autres termes du domaine."
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 - **Markdown** : Langage de balisage léger utilisé pour formater des documents texte. Markdown permet d'écrire en utilisant un format de texte simple qui peut être converti en HTML et d'autres formats. Il est souvent utilisé pour rédiger des fichiers README, pour la documentation de logiciels, et pour les messages dans des forums en ligne.
 

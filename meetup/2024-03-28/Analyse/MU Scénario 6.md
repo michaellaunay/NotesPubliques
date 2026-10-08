@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VNCX9E3G0PFTB71GZ7"
-titre: "MU Scénario 6"
+uid: 01M02JG1VNCX9E3G0PFTB71GZ7
+titre: MU Scénario 6
 type: document
 statut: actif
 para: ressource
@@ -13,16 +13,17 @@ themes:
   - obsidian
   - regeneration
   - meetup
-resume: "Scénario de mise à jour d'une note dans Obsidian et de régénération automatique du site."
+resume: Scénario de mise à jour d'une note dans Obsidian et de régénération automatique du site.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # **Mise à Jour d'une Note dans Obsidian et Régénération du Site Web**
 

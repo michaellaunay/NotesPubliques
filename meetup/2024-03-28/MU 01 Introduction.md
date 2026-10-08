@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VQK2HBK1ND9EJGWWPC"
-titre: "MU 01 Introduction"
+uid: 01M02JG1VQK2HBK1ND9EJGWWPC
+titre: MU 01 Introduction
 type: cours
 statut: actif
 para: ressource
@@ -14,14 +14,15 @@ themes:
 resume: "Introduction du meetup : clarification du terme intelligence artificielle et distinction entre IA générale et IA appliquée au développement."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-28
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Introduction
 - Présentation du potentiel de l'IA dans le développement logiciel.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VRGYC13W5M8XQS9H6K"
-titre: "MU 80 OpenAI API"
+uid: 01M02JG1VRGYC13W5M8XQS9H6K
+titre: MU 80 OpenAI API
 type: procedure
 statut: actif
 para: ressource
@@ -15,14 +15,15 @@ themes:
   - meetup
 resume: "Prise en main de l'API OpenAI : création d'une clé applicative et stockage sécurisé dans un fichier .env."
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-28
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Nous allons suivre la documentation https://platform.openai.com/docs/api-reference/authentication
 Créer une [clé](https://platform.openai.com/api-keys) applicative (ici python_test) copier cette clé dans un fichier .env (vérifiez bien vos règles git.ignore pour systématiquement exclure ce type de fichier d'une éventuelle publication)
