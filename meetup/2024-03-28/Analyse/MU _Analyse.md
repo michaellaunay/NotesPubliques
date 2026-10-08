@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VNG3FR25AE0R6VDK7T"
-titre: "Index de l'analyse du meetup"
+uid: 01M02JG1VNG3FR25AE0R6VDK7T
+titre: Index de l'analyse du meetup
 type: index
 statut: actif
 para: ressource
@@ -10,16 +10,17 @@ domaines:
 themes:
   - genie-logiciel
   - meetup
-resume: "Index des documents d'analyse du meetup du 28 mars 2024."
+resume: Index des documents d'analyse du meetup du 28 mars 2024.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-31
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
-rag: false
-metadata_verifiees: false
+confidentialite: publique
+publication:
+  - notes-publiques
+rag: true
+metadata_verifiees: true
 ---
 [[MU Analyse par chat GPT]]
 [[MU Glossaire métier]]

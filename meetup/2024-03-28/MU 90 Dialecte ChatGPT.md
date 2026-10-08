@@ -6,23 +6,24 @@ type: reflexion
 statut: actif
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- intelligence-artificielle
-- llm
-- linguistique
-- prompt-engineering
-- meetup
+  - intelligence-artificielle
+  - llm
+  - linguistique
+  - prompt-engineering
+  - meetup
 resume: Expérience et réflexion sur l'existence d'un dialecte propre à ChatGPT, à partir d'un prompt initial et de sa réponse.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-26
 date_modification: 2026-08-18
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Existe-t-il un dialecte spécifique à ChatGPT ?
 

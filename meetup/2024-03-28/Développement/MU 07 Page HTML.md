@@ -6,24 +6,25 @@ type: cours
 statut: actif
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- html
-- excalidraw
-- intelligence-artificielle
-- meetup
+  - genie-logiciel
+  - html
+  - excalidraw
+  - intelligence-artificielle
+  - meetup
 resume: Génération du HTML de l'interface à partir d'une maquette Excalidraw soumise à l'IA.
 niveau: debutant
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-28
 date_modification: 2026-08-18
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 **Moi**
 Voici un sketchup au format excalidraw de l'interface web devant servir de patron. Génère le HTML correspondant, en ajoutant un pied de page avec les coordonnées de Michaël. Utilise bootstrap 5

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VNC5WRGD9B7WEGJPKK"
-titre: "MU Scénario 4"
+uid: 01M02JG1VNC5WRGD9B7WEGJPKK
+titre: MU Scénario 4
 type: document
 statut: actif
 para: ressource
@@ -12,16 +12,17 @@ themes:
   - scenarios
   - publication
   - meetup
-resume: "Scénario de génération du site web complet à partir de l'ensemble des notes Markdown."
+resume: Scénario de génération du site web complet à partir de l'ensemble des notes Markdown.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # **Génération du Site Web Complet**
 

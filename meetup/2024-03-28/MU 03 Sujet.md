@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VQJGHYYJXE948KWR5V"
-titre: "MU 03 Sujet"
+uid: 01M02JG1VQJGHYYJXE948KWR5V
+titre: MU 03 Sujet
 type: cours
 statut: actif
 para: ressource
@@ -16,14 +16,15 @@ themes:
 resume: "Énoncé du sujet : développer un script Python publiant sur le web des notes Markdown issues d'Obsidian."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Publication de prise de notes
 ## Contexte du projet

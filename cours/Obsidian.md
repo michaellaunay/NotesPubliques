@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02EX5BTPRQNXFAPEHX34QNN"
-titre: "Obsidian"
+uid: 01M02EX5BTPRQNXFAPEHX34QNN
+titre: Obsidian
 type: cours
 statut: actif
 para: ressource
@@ -16,7 +16,7 @@ themes:
 resume: "Cours d'introduction à Obsidian mis à jour en 2026 : philosophie Local First, Markdown, liens, Properties, recherche, templates, Bases, Canvas, extensions, synchronisation, Web Clipper, CLI et automatisation."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-02-03
 date_modification: 2026-08-16
@@ -24,7 +24,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Version du cours

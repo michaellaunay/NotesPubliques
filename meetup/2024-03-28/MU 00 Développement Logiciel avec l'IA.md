@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02JG1VQN1AN78A4GQYRW304"
-titre: "MU 00 Développement Logiciel avec l'IA"
+uid: 01M02JG1VQN1AN78A4GQYRW304
+titre: MU 00 Développement Logiciel avec l'IA
 aliases:
-  - "Meetup Développement Logiciel avec l'IA"
+  - Meetup Développement Logiciel avec l'IA
 type: cours
 statut: actif
 para: ressource
@@ -16,14 +16,14 @@ themes:
 resume: "Support principal du meetup : potentiel de l'IA dans le développement logiciel, déroulé, prérequis et étude de cas."
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-23
 date_modification: 2024-04-03
-confidentialite: privee
+confidentialite: publique
 publication: []
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Introduction
 - Présentation du potentiel de l'IA dans le développement logiciel.

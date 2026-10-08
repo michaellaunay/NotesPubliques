@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VQHQZ1WN1T67JKE03J"
-titre: "MU 02 Étude de cas"
+uid: 01M02JG1VQHQZ1WN1T67JKE03J
+titre: MU 02 Étude de cas
 type: cours
 statut: actif
 para: ressource
@@ -11,17 +11,18 @@ themes:
   - genie-logiciel
   - intelligence-artificielle
   - meetup
-resume: "Présentation de l'étude de cas suivie de l'analyse au déploiement, en s'aidant au maximum des IA."
+resume: Présentation de l'étude de cas suivie de l'analyse au déploiement, en s'aidant au maximum des IA.
 niveau: debutant
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-28
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Objectif
 Nous allons suivre le développement d'une petite application de sa phase d'analyse à son déploiement.

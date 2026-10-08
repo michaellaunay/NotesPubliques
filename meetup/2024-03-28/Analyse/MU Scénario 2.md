@@ -19,8 +19,9 @@ auteurs:
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
 metadata_verifiees: true
 ---

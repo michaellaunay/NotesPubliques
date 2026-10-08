@@ -3,35 +3,35 @@ schema_version: 1
 uid: 01M02EX5CCGYQZBX1P5GJCGVT4
 titre: Standards modernes de déploiement Plone et Zope
 aliases:
-  - plone-modern-tooling
-  - mxdev
-  - pyproject-plone
-  - cookiecutter-zope-instance
+- plone-modern-tooling
+- mxdev
+- pyproject-plone
+- cookiecutter-zope-instance
 type: cours
 statut: actif
 para: ressource
 domaines:
-  - enseignement
+- enseignement
 themes:
-  - informatique
-  - python
-  - deploiement
-  - plone
-  - zope
-resume: "Cours sur l'assemblage des projets Plone et Zope avec venv, pip ou uv, pyproject.toml, mxdev et cookiecutter-zope-instance : contraintes, configuration WSGI, automatisation, maintenance ZODB et migration progressive depuis Buildout."
+- informatique
+- python
+- deploiement
+- plone
+- zope
+resume: 'Cours sur l''assemblage des projets Plone et Zope avec venv, pip ou uv, pyproject.toml, mxdev et cookiecutter-zope-instance : contraintes, configuration WSGI, automatisation, maintenance ZODB et migration progressive depuis Buildout.'
 niveau: intermediaire
 prerequis:
-  - "[[Python]]"
-  - "[[git]]"
+- '[[Python]]'
+- '[[git]]'
 auteurs:
-  - Michaël Launay
+- Michaël Launay
 langue: fr
 date_creation: 2026-09-20
 date_modification: 2026-09-20
 date_verification: 2026-09-20
 confidentialite: publique
 publication:
-  - notes-publiques
+- notes-publiques
 rag: true
 metadata_verifiees: true
 ---
@@ -47,9 +47,6 @@ Voir aussi : [[Python]], [[git]], [[zc.buildout]].
 > Révision documentaire du **20 septembre 2026**. Le cours porte sur le **backend Python** de Plone et Zope ; un frontend Volto exige un environnement JavaScript distinct. Les huit chapitres du document d'origine sont conservés. Les configurations proposées sont des **exemples pédagogiques rédigés pour ce cours**, et non la reproduction d'un modèle officiel complet.
 >
 > Le socle des exemples reste **Plone 6.2.1**, dont les contraintes ont été consultées. **Plone 6.2.2 est déjà publié sur PyPI** : dépôt des fichiers le 10 septembre 2026, journal des changements daté du 11 septembre. Le maintien de 6.2.1 ici ne constitue donc pas une recommandation de dernière version pour la production. Les contraintes de 6.2.2 n'ont pas pu être inspectées dans cette vérification. [^plone-pypi] [^contraintes]
-
-> [!warning] Métadonnée à confirmer
-> La date de création `2026-10-20` provient du fichier fourni et est postérieure à cette révision. Elle est conservée pour ne pas inventer l'historique de la note ; `metadata_verifiees` reste donc à `false`. Les dates de modification et de vérification correspondent à la présente révision.
 
 ## Résumé
 

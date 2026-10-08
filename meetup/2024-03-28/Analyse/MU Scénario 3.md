@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1VMJ6HFE27573WKWRK1"
-titre: "MU Scénario 3"
+uid: 01M02JG1VMJ6HFE27573WKWRK1
+titre: MU Scénario 3
 type: document
 statut: actif
 para: ressource
@@ -13,16 +13,17 @@ themes:
   - obsidian
   - ressources
   - meetup
-resume: "Scénario d'ajout d'une ressource, image ou PDF, à une note existante."
+resume: Scénario d'ajout d'une ressource, image ou PDF, à une note existante.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2024-04-03
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # **Ajout d'une Ressource à une Note**
 

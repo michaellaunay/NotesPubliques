@@ -6,22 +6,23 @@ type: document
 statut: actif
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- scenarios
-- navigation-web
-- meetup
+  - genie-logiciel
+  - scenarios
+  - navigation-web
+  - meetup
 resume: Scénario de consultation d'une note convertie en HTML sur le site généré.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2024-03-25
 date_modification: 2026-08-18
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Titre
 **Consultation d'une Note Convertie en HTML**
