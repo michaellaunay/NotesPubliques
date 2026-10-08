@@ -21,7 +21,8 @@ langue: fr
 date_creation: 2024-03-23
 date_modification: 2024-04-03
 confidentialite: publique
-publication: []
+publication:
+  - notes-publiques
 rag: true
 metadata_verifiees: true
 ---
