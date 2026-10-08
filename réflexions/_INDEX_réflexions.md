@@ -54,7 +54,6 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Endophasie, voix intérieure]] — Réflexion sur la saturation informationnelle et sur ce qu'il reste de temps de cerveau disponible pour la voix intérieure.
 - [[Haut Potentiel Intellectuel]] — Analyse nuancée des représentations françaises du haut potentiel intellectuel, entre le cliché du génie et celui du surdoué hypersensible.
 - [[Les difficultés d'enseigner]] — Témoignage sur les difficultés administratives et les délais de paiement rencontrés par les vacataires de l'université publique.
-- [[Les jeux d'apprentisages]] — Capture d'une référence sur le game design de la connaissance.
 - [[Planete apprenante]] — Signet vers le livre de François Taddei, Apprendre au XXIe siècle (Calmann-Lévy, 2018), et son MOOC Vers une planète apprenante ; le résumé prévu en 2023 n'a pas été rédigé.
 - [[Plans d'éducations]] — Notes sur les programmes éducatifs envisagés pendant la Révolution française, dont le plan de Lepeletier de Saint-Fargeau, et sur les conférences gesticulées de Franck Lepage.
 - [[Un jardin, des lapins, des carottes, chat gpt et copilot]] — Article LinkedIn de mars 2023 — huit heures de cours de Python à Polytech'Lille avec ChatGPT et Copilot, le projet lapins-carottes généré en vingt minutes et la question « Monsieur, à quoi allez-vous servir ? » ; post-scriptum 2026 sur les agents, Copilot et la suite en classe.
