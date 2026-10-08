@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: 01M05DHB125ZSFYXVA05D73BFZ
-titre: Index meetup
+uid: "01M05DHB125ZSFYXVA05D73BFZ"
+titre: "Index meetup"
 type: index
 statut: actif
 para: ressource
@@ -9,13 +9,13 @@ domaines:
   - enseignement
 themes:
   - meetup
-resume: Index thématique généré des notes du dossier meetup.
+resume: "Index thématique généré des notes du dossier meetup."
 auteurs:
-  - Michaël Launay
+  - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-09-21
-confidentialite: publique
+date_modification: 2026-10-08
+confidentialite: privee
 publication: []
 rag: false
 metadata_verifiees: false

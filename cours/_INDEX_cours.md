@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-09-21
+date_modification: 2026-10-08
 confidentialite: publique
 publication:
   - notes-publiques
@@ -90,6 +90,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Deform]] — Cours moderne sur Deform 3 sous Pyramid : schémas Colander, widgets, validation, rendu, CSRF, fichiers, formulaires dynamiques et personnalisation.
 - [[HTML]] — Cours complet de HTML moderne : structure, sémantique, formulaires, médias, accessibilité, SEO, performance, sécurité et fonctionnalités natives du HTML Living Standard.
 - [[Javascript]] — Cours complet de JavaScript moderne : ECMAScript, types, fonctions, objets, modules, asynchronisme, DOM, Web APIs, Node.js, tests, sécurité, performance et pratiques de développement actuelles.
+- [[Plone]] — Cours complet sur Plone 6.2 : architecture (Zope, ZODB, ZCA, CMF), installation avec Cookieplone, pip ou conteneurs, distributions, administration et exploitation, types de contenu Dexterity, comportements, vocabulaires, catalogue, workflows et sécurité, plone.api, GenericSetup et étapes de migration, Classic UI (vues, gabarits, viewlets, portlets, thème Barceloneta et Diazo, TinyMCE 8), REST API et Volto, déploiement, cache, mises à jour 6.0 → 6.2 et espaces de noms natifs, travaux pratiques.
 - [[Pyramid]] — Cours approfondi sur Pyramid 2.1 : architecture WSGI et cycle de requête, configuration, routes, vues, traversal, sécurité moderne, sessions/CSRF, Deform, SQLAlchemy/ZODB, LDAP/OIDC, tests, migration et déploiement.
 - [[Selenium]] — Cours complet sur Selenium 4 avec Python : WebDriver, Selenium Manager, sélecteurs, interactions, attentes, fenêtres et iframes, actions avancées, Page Object Model, pytest, Grid 4, WebDriver BiDi et bonnes pratiques.
 - [[Tal et Metal]] — Cours complet sur Zope Page Templates : TAL pour la logique de présentation, TALES pour les expressions, METAL pour les macros et les slots, avec les différences entre Zope et Chameleon, l'échappement HTML, l'i18n, Pyramid et les bonnes pratiques d'architecture.
