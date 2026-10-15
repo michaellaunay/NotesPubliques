@@ -152,7 +152,7 @@ Avantages :
 - séparation des responsabilités ;
 - réutilisation ;
 - maintenance facilitée ;
-- politique CSP plus simple que des styles inline massifs.
+- politique CSP (pour _Content Security Policy_, ou **Politique de sécurité du contenu**) plus simple que des styles inline massifs.
 
 L'attribut `type="text/css"` n'est pas nécessaire en HTML moderne.
 
@@ -240,14 +240,21 @@ background: color-mix(in oklch, var(--brand) 80%, white);
 
 Fonctions courantes :
 
-- `calc()` ;
-- `min()` ;
-- `max()` ;
-- `clamp()` ;
-- `var()` ;
-- fonctions de couleur ;
-- fonctions de gradients ;
-- `url()`.
+- `calc()` Permet d'effectuer des calculs mathématiques pour déterminer une valeur CSS, avec la possibilité **de mélanger des unités différentes** (ce que le CSS natif ne permettait pas de faire autrement) ;
+- `min()` Sélectionne et applique **la plus petite valeur** parmi une liste d'expressions séparées par des virgules ;
+- `max()` À l'inverse de `min()`, cette fonction sélectionne et applique **la plus grande valeur** parmi une liste d'expressions ;
+- `clamp()` Combine les comportements de `min()` et `max()`. Elle prend trois paramètres : une **valeur minimale**, une **valeur idéale (préférée)** et une **valeur maximale**. La valeur s'adapte fluidement, mais reste strictement bloquée entre ces deux bornes ;
+- `var()` Permet de récupérer la valeur d'une **propriété personnalisée (variable CSS)** préalablement définie. Elle accepte un second paramètre optionnel qui sert de valeur de repli (_fallback_) si la variable n'existe pas ;
+- fonctions de couleur Elles permettent de définir des couleurs selon différents modèles mathématiques ou perceptuels :	
+	- **Modèles classiques :** `rgb()` (ou `rgba()`), `hsl()` (teinte, saturation, luminosité).	    
+	- **Modèles modernes (recommandés) :** `oklch()` et `oklab()` (conçus pour offrir une cohérence visuelle parfaite sur tous les écrans et un meilleur rendu pour les gradients).	    
+	- **Manipulation :** `color-mix()` (pour mélanger deux couleurs selon un pourcentage donné).
+- fonctions de gradients Elles génèrent des images de fond composées d'une transition progressive entre plusieurs couleurs :
+	- **`linear-gradient()`** : Dégradé linéaire (le long d'une ligne droite ou d'un angle).	    
+	- **`radial-gradient()`** : Dégradé circulaire ou elliptique partant d'un point central.	    
+	- **`conic-gradient()`** : Dégradé conique tournant autour d'un point central (effet roue chromatique ou camembert) ;
+	- _(Il existe aussi leurs variantes `repeating-linear-gradient()`, etc.)_;
+- `url()`Permet de pointer vers une ressource externe (image, police de caractères, fichier SVG, etc.) en spécifiant son chemin relatif ou absolu.
 
 # 4. Cascade, héritage, spécificité et couches
 
@@ -292,7 +299,45 @@ color: revert-layer;
 ```
 
 `revert-layer` est particulièrement utile lorsqu'une architecture utilise `@layer`.
+Voici l'explication de chacun d'eux, illustrée avec l'exemple de la propriété `color` :
 
+### 4.2.1. `inherit` (Héritage forcé)
+
+Force la propriété à adopter la valeur de son **élément parent**, même s'il s'agit d'une propriété qui ne s'hérite pas naturellement par défaut.
+
+- **Exemple :** Si vous l'appliquez à un lien (`<a>`) qui a habituellement sa propre couleur par défaut du navigateur, `color: inherit;` l'obligera à prendre exactement la même couleur que le texte de son conteneur parent.
+    
+
+### 4.2.2. `initial` (Valeur initiale du standard)
+
+Réinitialise la propriété à sa **valeur par défaut définie par les spécifications officielles du CSS** (et non par les feuilles de style par défaut du navigateur).
+
+- **Exemple :** Pour `color`, la valeur initiale officielle du W3C est le noir (`black`) ou une couleur neutre standard, indépendamment de ce que le parent ou le navigateur auraient pu imposer.
+    
+
+### 4.2.3. `unset` (Le comportement hybride)
+
+Agit soit comme `inherit`, soit comme `initial` selon la nature de la propriété :
+
+- Si la propriété est **héritée par nature** (comme `color`, `font-family`, `visibility`), `unset` se comporte comme **`inherit`**.
+    
+- Si la propriété **n'est pas héritée par nature** (comme `background-color`, `margin`, `padding`), `unset` se comporte comme **`initial`**.
+    
+
+### 4.2.4. `revert` (Retour au style d'origine)
+
+Annule la cascade de styles de l'auteur pour faire remonter la valeur au niveau précédent :
+
+- Si un style personnalisé a été appliqué, il est ignoré pour revenir à la **feuille de style par défaut du navigateur** (User Agent stylesheet).
+    
+- Si appliqué au niveau de la feuille du navigateur, il remonte au style par défaut initial.
+    
+
+### 4.2.5. `revert-layer` (Annulation par couche en cascade)
+
+Spécifique au système de gestion des couches CSS (`@layer`). Ce mot-clé fait reculer la valeur de la propriété en la faisant basculer **dans la couche en cascade immédiatement supérieure (précédente)**.
+
+- Si la règle est située à l'intérieur d'une couche (`@layer`), `revert-layer` ignore les règles de cette couche spécifique et applique la valeur provenant de la couche englobante (ou du style global hors couche). S'il n'y a pas d'autre couche, il se comporte comme `revert`.
 ## 4.3 Spécificité
 
 On peut raisonner grossièrement avec trois colonnes :

@@ -11,13 +11,13 @@ themes:
 - informatique
 - programmation
 - python
-resume: "Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage."
+resume: "Cours de fond sur Python : historique et cycle de vie des versions, ressources de python.org, PEP, syntaxe, types, structures de contrôle, fonctions et classes, annotations de type et types génériques, dataclasses, pathlib, programmation asynchrone, tests, modules et outillage."
 niveau: debutant
 auteurs:
 - Michaël Launay
 langue: fr
 date_creation: 2023-05-10
-date_modification: 2026-08-28
+date_modification: 2026-10-15
 date_verification: 2026-08-28
 confidentialite: publique
 publication:
@@ -25,9 +25,49 @@ publication:
 rag: true
 metadata_verifiees: false
 ---
+# Python
+
+> [!abstract] Objectif
+> Maîtriser Python moderne, de la syntaxe de base à l'outillage d'un projet : types et collections, itérateurs et générateurs, fonctions, annotations et types génériques, classes et décorateurs, exceptions, modules, dataclasses, `pathlib`, programmation asynchrone, tests, environnements virtuels et qualité du code.
+
 Le scripting bash peut vite s'apparenter à du développement, alors pourquoi ne pas utiliser un vrai langage de programmation ?
 
-# Historique
+Voir aussi : [[Algorithmes avancés en Python]], [[Data Mining en Python]], [[Sécurité avec Python]], [[Design patterns]], [[Visual studio code]].
+
+# Plan du cours
+
+1. Introduction et écosystème
+2. Les concepts de la programmation orientée objet
+3. Premiers pas et syntaxe de base
+4. Les chaînes de caractères
+5. Les types numériques
+6. Les types à valeur unique
+7. Les séquences, les dictionnaires et les ensembles
+8. Les listes en compréhension
+9. Les itérateurs et les générateurs
+10. Les opérateurs
+11. Les structures de contrôle
+12. Les fonctions
+13. Les annotations de type
+14. Les classes
+15. Les design patterns en Python
+16. Les décorateurs
+17. Les exceptions
+18. Les modules et les paquets
+19. Le templating avancé : des f-strings aux T-strings (Python 3.14)
+20. Les descripteurs
+21. Les dataclasses
+22. Le module `pathlib`
+23. La programmation asynchrone : `async` et `await`
+24. Tester son code
+25. Les principaux modules
+26. Les environnements virtuels
+27. Qualité du code et débogage
+28. Ressources
+
+# 1. Introduction et écosystème
+
+## 1.1 Historique
 
 Python a été créé fin 1986 par Guido van Rossum au Centrum Wiskunde & Informatica (CWI), un institut de recherche en mathématiques et en informatique aux Pays-Bas. Le langage a été inspiré par le langage de programmation ABC, un langage de haut niveau utilisé pour l'enseignement de la programmation.
 
@@ -41,54 +81,53 @@ Toujours en 2001, la Python Software Foundation (PSF) a été créée. La PSF es
 
 Depuis lors, Python a continué à évoluer et à croître en popularité, devenant l'un des langages de programmation les plus populaires au monde. Python 3.0, une révision majeure du langage qui n'est pas entièrement rétrocompatible, a été publié en 2008. En juillet 2018, Guido van Rossum a décidé de se retirer de son rôle de BDFL (Benevolent Dictator for Life) de Python, et un conseil de direction a été formé pour guider l'évolution future de Python.
 
-# python.org
+## 1.2 Le site python.org
 
 Le site [python.org](https://www.python.org/) est le site officiel du langage de programmation Python. Il fournit une multitude de ressources utiles à la fois pour les débutants et les développeurs expérimentés en Python.
 
-
-## Documentation
+### 1.2.1 Documentation
 
 Le site contient une documentation complète de Python, y compris des tutoriels pour les débutants, des guides détaillés sur les caractéristiques spécifiques de Python, et la documentation complète de la bibliothèque standard de Python.
 
-## Téléchargements
+### 1.2.2 Téléchargements
 
 Les dernières versions de Python peuvent être téléchargées à partir du site. Il fournit des binaires pour différentes plateformes, y compris Windows, Mac OS et Linux.
 
-## PEPs
+### 1.2.3 PEPs
 
 Le site contient une liste complète des Python Enhancement Proposals (PEPs), qui sont les propositions officielles pour l'amélioration du langage Python. Les PEPs incluent des propositions de nouvelles fonctionnalités, des informations sur le processus de décision et des documents historiques.
 
-## Communauté
+### 1.2.4 Communauté
 
 Le site fournit des liens vers différents groupes et forums de la communauté Python, y compris la liste de diffusion Python-Dev et la liste de diffusion Python-ideas. Il y a aussi des liens vers des événements de la communauté Python, comme PyCon.
 
-## Ressources d'apprentissage
+### 1.2.5 Ressources d'apprentissage
 
 En plus de la documentation officielle, le site propose des liens vers d'autres ressources d'apprentissage, comme des livres, des cours en ligne et des tutoriels interactifs.
 
-## Blogs
+### 1.2.6 Blogs
 
 Le site héberge aussi le blog officiel de Python, qui fournit des nouvelles et des annonces importantes concernant le développement de Python.
 
-# Les PEPs
+## 1.3 Les PEP
 
 Les PEP (Python Enhancement Proposals, ou Propositions d'amélioration de Python) sont des documents qui décrivent des nouvelles fonctionnalités ou des changements significatifs pour le langage de programmation Python. Chaque PEP est un document technique qui détaille soit une nouvelle fonctionnalité, soit une norme de conception ou de codage, soit une procédure.
 
 Il existe plusieurs types de PEP.
 
-## PEP standards
+### 1.3.1 PEP standards
 
 Ce sont des propositions qui décrivent une nouvelle fonctionnalité ou une modification du langage Python. Elles sont numérotées et passent par un processus de révision et d'approbation.
 
-## PEP d'information
+### 1.3.2 PEP d'information
 
 Ce sont des documents qui fournissent des informations générales à la communauté Python. Ils n'introduisent pas de nouvelles fonctionnalités et ne représentent pas un changement de politique.
 
-## PEP de processus
+### 1.3.3 PEP de processus
 
 Ce sont des documents qui décrivent un nouveau processus pour la gestion du langage Python ou proposent une modification à un processus existant.
 
-## Processus d'approbation
+### 1.3.4 Processus d'approbation
 
 Le processus d'approbation d'une PEP comprend plusieurs étapes :
 
@@ -104,7 +143,7 @@ Le processus d'approbation d'une PEP comprend plusieurs étapes :
 
 Il est important de noter que toutes les PEP n'aboutissent pas à des modifications du langage. Certaines sont rejetées, d'autres restent à l'état de proposition sans jamais être implémentées. Les PEP sont un outil important pour faciliter la communication et la coordination au sein de la communauté Python.
 
-# PIP
+## 1.4 pip
 
 Pour installer des bibliothèques nous aurons recours à l'utilitaire **pip**.
 
@@ -118,7 +157,7 @@ PIP (Pip Installs Packages) est un système de gestion de paquets utilisé pour 
 
 Pour utiliser PIP, vous devez d'abord l'installer. PIP est généralement déjà installé si vous avez Python version 2.7.9+ ou Python 3.4+. Sinon, vous pouvez l'installer manuellement.
 
-# PyPI
+## 1.5 PyPI
 
 PyPI (Python Package Index) est un dépôt de logiciels pour le langage de programmation Python. Les utilisateurs de Python peuvent chercher, télécharger et installer des paquets Python à partir de PyPI à l'aide de PIP ou d'autres outils.
 
@@ -128,7 +167,71 @@ PyPI est aussi la plateforme où les développeurs peuvent publier leurs propres
 
 En résumé, PIP et PyPI sont deux outils essentiels pour tout développeur Python. PIP est utilisé pour installer et gérer les paquets Python, tandis que PyPI est l'endroit où ces paquets sont hébergés et partagés.
 
-# La notion d'objet
+## 1.6 Installer une bibliothèque
+
+La commande correcte invoque le module `pip`, et non un module `install` qui
+n'existe pas :
+
+```bash
+python3 -m pip install matplotlib
+```
+
+La forme `python3 -m pip` est préférable au simple `pip` : elle garantit que la
+bibliothèque est installée pour **l'interpréteur que nous venons de nommer**, et
+non pour un autre `python` présent dans le `PATH`. C'est la cause la plus
+fréquente du célèbre « je viens de l'installer et il ne la trouve pas ».
+
+Depuis Python 3.11, installer un paquet dans l'interpréteur du système est
+refusé sur la plupart des distributions ([PEP 668](https://peps.python.org/pep-0668/)) :
+
+```text
+error: externally-managed-environment
+```
+
+Ce refus est une protection, non un obstacle : il évite qu'un `pip install`
+n'écrase une bibliothèque dont le système dépend. La réponse n'est pas
+`--break-system-packages`, mais un environnement virtuel :
+
+```bash
+python3 -m venv ~/venvs/mon_projet
+source ~/venvs/mon_projet/bin/activate
+python3 -m pip install matplotlib
+```
+
+## 1.7 Les versions de Python et leur cycle de vie
+
+Depuis Python 3.9, une version majeure sort **chaque année en octobre**. Chacune reçoit deux ans de support complet, puis trois ans de correctifs de sécurité — soit cinq ans de vie utile.
+
+| Version | Sortie | Fin de vie | À retenir |
+| --- | --- | --- | --- |
+| 3.10 | oct. 2021 | oct. 2026 | `match`, opérateur `\|` pour les unions de types |
+| 3.11 | oct. 2022 | oct. 2027 | net gain de performances, `TaskGroup`, `Self` |
+| 3.12 | oct. 2023 | oct. 2028 | syntaxe des génériques `def f[T]()` |
+| 3.13 | oct. 2024 | oct. 2029 | REPL amélioré, interpréteur sans GIL (expérimental) |
+| 3.14 | oct. 2025 | oct. 2030 | chaînes de gabarit `t""`, annotations à évaluation différée |
+| 3.15 | oct. 2026 | oct. 2031 | UTF-8 par défaut, nouveau profileur |
+
+Au moment de la rédaction de ce cours, **Python 3.14.7 est la dernière version stable** et Python 3.15 est en phase de publication candidate.
+
+Deux conséquences pratiques.
+
+**Python 3.9 est mort en octobre 2025**, et 3.10 s'éteint en octobre 2026 : un code écrit aujourd'hui peut sans remords utiliser `match`, `TaskGroup`, la syntaxe `list[int]` et l'opérateur `|` pour les unions de types.
+
+**La version installée par le système n'est pas toujours la plus récente.** Une distribution stable fige souvent une version ancienne. La commande qui tranche est :
+
+```bash
+python3 --version
+```
+
+et, en cas de doute sur la version qui exécutera réellement notre script :
+
+```bash
+python3 -c "import sys; print(sys.version)"
+```
+
+# 2. Les concepts de la programmation orientée objet
+
+## 2.1 La notion d'objet
 
 L’objet est l’un des concepts **fondamentaux** de la programmation orientée objet (POO).  
 Il constitue l’unité de base avec laquelle nous modélisons et manipulons les données dans un programme.
@@ -154,7 +257,7 @@ Dans un programme, les objets interagissent entre eux exclusivement via leurs m�
 Enfin, il est important de souligner qu’en **Python**, _tout est objet_ :  
 les nombres, les chaînes de caractères, les fonctions, les classes elles-mêmes sont des objets. Cette uniformité du modèle objet est une caractéristique centrale du langage.
 
-# La notion de classe
+## 2.2 La notion de classe
 
 La classe est également un concept **central** de la programmation orientée objet.
 
@@ -170,7 +273,7 @@ De manière plus formelle, en programmation orientée objet :
 
 Tout objet appartient au moins à une classe (et, en Python, potentiellement à plusieurs via les mécanismes d’héritage multiple).
 
-# Généralisation et héritage
+## 2.3 Généralisation et héritage
 
 Dans la réalité, un humain partage de nombreuses caractéristiques avec les autres animaux. Il est donc pertinent de modéliser cela par une classe `Animal`, puis de faire **dériver** la classe `Humain` de celle-ci.
 
@@ -190,19 +293,21 @@ D'un point de vue logiciel, l'héritage présente plusieurs avantages majeurs :
 
 Nous verrons toutefois que l’héritage doit être utilisé avec discernement et qu’il existe d’autres mécanismes complémentaires (composition, interfaces implicites, duck typing en Python) pour structurer efficacement un programme orienté objet.
 
-# L'instruction print
+# 3. Premiers pas et syntaxe de base
+
+## 3.1 L'instruction `print`
 
 L'instruction `print` en Python est une fonction intégrée qui permet d'afficher du texte ou des valeurs dans la console ou le terminal où le programme est exécuté. La fonction `print` affiche les arguments passés sous forme de chaîne de caractères, séparés par des espaces, et termine la sortie avec un retour à la ligne, sauf indication contraire.
 
 Voici quelques exemples d'utilisation de la fonction `print` en Python :
 
-## Afficher une chaîne de caractères simple
+### 3.1.1 Afficher une chaîne de caractères simple
 
 ```python
 print("Bonjour tout le monde !")
 ```
 
-## Afficher plusieurs chaînes de caractères ou valeurs séparées par des virgules
+### 3.1.2 Afficher plusieurs chaînes de caractères ou valeurs séparées par des virgules
 
 ```python
 nom = "Michaël"
@@ -210,7 +315,7 @@ age = 50
 print("Bonjour, je m'appelle", nom, "et j'ai", age, "ans.")
 ```
 
-## Utiliser les f-strings (format string literals) pour formater la sortie
+### 3.1.3 Utiliser les f-strings (format string literals) pour formater la sortie
 
 ```python
 nom = "Michaël"
@@ -218,19 +323,19 @@ age = 50
 print(f"Bonjour, je m'appelle {nom} et j'ai {age} ans.")
 ```
 
-## Modifier le séparateur entre les arguments passés à la fonction `print`
+### 3.1.4 Modifier le séparateur entre les arguments passés à la fonction `print`
 
 ```python
 print("John", "Doe", sep="-")
 ```
 
-## Supprimer le retour à la ligne en fin de la fonction `print` en modifiant la valeur du paramètre `end`
+### 3.1.5 Supprimer le retour à la ligne en fin de la fonction `print` en modifiant la valeur du paramètre `end`
 
 ```python
 print("Hello, World!", end="")
 ```
 
-# Exercice
+## 3.2 Exercice
 
 1. Déclarez trois variables entières : `annee`, `mois`, `jour`.
 2. Demandez à l'utilisateur de saisir l'année, le mois et le jour de naissance sous forme d'entiers.
@@ -238,9 +343,9 @@ print("Hello, World!", end="")
 
 Par exemple, si l'utilisateur saisit le 9 mars 2001, le programme doit afficher `09/03/2001`.
 
-# Les primitives d'accès aux informations de type
+## 3.3 Les primitives d'accès aux informations de type
 
-## id()
+### 3.3.1 `id()`
 
 La fonction `id()` renvoie l'identifiant unique d'un objet en Python. Cet identifiant est un entier qui représente l'adresse mémoire de l'objet. L'identifiant d'un objet est garanti d'être unique et constant pour la durée de vie de l'objet.
 
@@ -254,7 +359,7 @@ print(id(a))  # Affiche un entier, par exemple, 140703088628496
 print(id(b))  # Affiche le même entier que celui de a, car a et b font référence au même objet
 ```
 
-## type()
+### 3.3.2 `type()`
 
 La fonction `type()` renvoie le type d'un objet en Python. Le type d'un objet détermine la classe à laquelle il appartient et définit les opérations possibles sur cet objet, ainsi que les méthodes et les attributs qu'il possède.
 
@@ -268,7 +373,7 @@ print(type(a))  # Affiche <class 'int'>
 print(type(b))  # Affiche <class 'str'>
 ```
 
-## dir()
+### 3.3.3 `dir()`
 
 La fonction `dir()` retourne une liste des attributs (variables et méthodes) d'un objet donné. Si aucun argument n'est fourni, la fonction renvoie la liste des noms du scope local.
 
@@ -292,7 +397,7 @@ print(dir(objet))
 
 Dans cet exemple, `dir()` renvoie la liste des attributs et des méthodes de l'objet de type `MaClasse`, y compris les méthodes spéciales et les méthodes héritées de la classe parente (ici, `object`).
 
-## help()
+### 3.3.4 `help()`
 
 La fonction `help()` permet d'afficher des informations d'aide sur les objets, tels que les modules, les classes, les fonctions, les méthodes et les types de données. Elle permet d'obtenir les informations sur un objet ou une fonction dans shell python, c'est à dire pendant l'exécution.
 
@@ -300,32 +405,32 @@ Lorsque nous appelons `help()` avec un objet en argument, la fonction affiche un
 
 Quelques exemples d'utilisation :
 
-### Obtenir de l'aide sur un module
+#### 3.3.4.1 Obtenir de l'aide sur un module
 
 ```python
 import math
 help(math)
 ```
 
-### Obtenir de l'aide sur une classe
+#### 3.3.4.2 Obtenir de l'aide sur une classe
 
 ```python
 help(list)
 ```
 
-### Obtenir de l'aide sur une fonction ou une méthode
+#### 3.3.4.3 Obtenir de l'aide sur une fonction ou une méthode
 
 ```python
 help(print)
 ```
 
-### Obtenir de l'aide sur un type de données
+#### 3.3.4.4 Obtenir de l'aide sur un type de données
 
 ```python
 help(str)
 ```
 
-### Obtenir de l'aide sur Python
+#### 3.3.4.5 Obtenir de l'aide sur Python
 
 Si nous appelons  la fonction `help()` sans argument, cela lance une session interactive d'aide dans la console et la saisie d'un nom de variable permet d'obtenir les informations sur l'objet référencé.
 
@@ -351,13 +456,13 @@ print(...)
     flush: whether to forcibly flush the stream.
 ```
 
-# Les commentaires
+## 3.4 Les commentaires
 
 Les commentaires sont des portions de texte ajoutées au code source d'un programme pour expliquer ou clarifier le code. Ils sont destinés à être lus par les développeurs et sont ignorés par l'interpréteur Python lors de l'exécution du code. Les commentaires sont utiles pour améliorer la lisibilité et la maintenabilité du code en fournissant des informations supplémentaires ou en expliquant les décisions de conception.
 
 En Python, il existe deux types de commentaires : les commentaires sur une seule ligne et les commentaires multilignes.
 
-## Commentaires sur une seule ligne
+### 3.4.1 Commentaires sur une seule ligne
 
 Le caractère dièse (#) commence les commentaires sur une seule ligne. Tout texte qui suit le dièse jusqu'à la fin de la ligne est considéré comme un commentaire et sera ignoré par l'interpréteur Python.
 
@@ -368,7 +473,7 @@ Exemple :
 print("Bonjour le monde !")  # Nous pouvons ajouter un commentaire en fin de ligne
 ```
 
-## Commentaires multilignes
+### 3.4.2 Commentaires multilignes
 
 Les commentaires multilignes sont écrits en utilisant des chaînes de caractères multilignes avec des triples guillemets ("""...""" ou '''...'''). Même si ce ne sont pas des commentaires à proprement parler, ils sont souvent utilisés à cette fin, car l'interpréteur Python ignore les chaînes de caractères non affectées à des variables.
 
@@ -412,11 +517,70 @@ f(p: int = 0) -> int
 
 ```
 
-# Les chaînes de caractères
+## 3.5 L'indentation
+
+En Python, l'indentation (les espaces au début de certaines lignes de code) est très importante. Elle est utilisée pour définir le bloc de code associé à une structure de contrôle particulière (comme une boucle ou une condition), à une fonction ou à une classe. 
+
+Cela signifie que contrairement à de nombreux autres langages de programmation, où les blocs de code sont généralement délimités par des accolades `{}`, en Python, c'est l'indentation elle-même qui délimite les blocs.
+
+Par exemple, voici comment une boucle `for` serait écrite en Python :
+
+```python
+for i in range(5):
+    print(i)  # Cette ligne est dans le bloc de la boucle 'for' car elle est indentée
+print("Fin de la boucle")  # Cette ligne n'est pas dans le bloc de la boucle 'for' car elle n'est pas indentée
+```
+
+Dans cet exemple, la ligne `print(i)` est dans le bloc de la boucle `for` car elle est indentée. Elle sera donc répétée pour chaque itération de la boucle. En revanche, la ligne `print("Fin de la boucle")` n'est pas dans le bloc de la boucle `for` car elle n'est pas indentée. Elle sera donc exécutée une fois que toutes les itérations de la boucle auront été effectuées.
+
+## 3.6 L'instruction `pass`
+
+En Python, l'instruction `pass` est une opération qui ne fait rien. Elle est généralement utilisée comme une instruction de remplissage lorsqu'une déclaration est requise syntaxiquement, mais que le programme ne requiert aucune action. Par exemple, elle peut être utilisée pour créer une classe, une fonction ou une boucle vide, en attente de contenu à ajouter plus tard :
+
+```python
+def ma_fonction():
+    pass  # Je remplirai cette fonction plus tard
+```
+
+## 3.7 L'instruction `...` (Ellipsis)
+
+En Python, le symbole `...` est également utilisé comme une instruction de remplissage, tout comme `pass`. Cependant, son utilisation est un peu différente.
+
+En Python, `...` est une constante spéciale appelée "Ellipsis". Par défaut, elle n'a aucun comportement et est généralement utilisée comme un espace réservé lorsque nous souhaitons indiquer qu'un code doit être ajouté ultérieurement.
+
+Nous pouvons l'utiliser de la même manière que `pass` pour créer une structure vide, par exemple une classe, une fonction ou une boucle :
+
+```python
+def ma_fonction():
+    ...  # Je remplirai cette fonction plus tard
+```
+
+Cependant, l'Ellipsis a également des utilisations spécifiques dans certains contextes, comme l'indexation de structures de données de haute dimension dans des bibliothèques scientifiques comme NumPy.
+
+De plus, certains outils de vérification de type utilisent l'Ellipsis pour indiquer qu'une annotation de type spécifique n'a pas encore été ajoutée à une variable ou à une fonction. Par exemple :
+
+```python
+def ma_fonction(a: int, b: ...) -> ...:  # Les types pour 'b' et le type de retour ne sont pas encore spécifiés
+    ...
+```
+
+En somme, bien que `pass` et `...` puissent être utilisés de manière interchangeable dans certains contextes, ils ont des utilisations spécifiques qui les rendent uniques. Il est donc important de comprendre ces différences pour les utiliser de manière appropriée.
+
+Les points de suspension servent ainsi de corps vide à une fonction ou à une classe en attente d'écriture :
+
+```python
+def ecrire_un_article():
+    ...
+
+class Auteur:
+    ...
+```
+
+# 4. Les chaînes de caractères
 
 Les chaînes de caractères en Python sont des séquences de caractères Unicode. En Python 3, l'encodage par défaut est UTF-8, qui est une représentation des caractères Unicode.
 
-## Encodage et Décodage
+## 4.1 Encodage et décodage
 
 **Encodage** : Le passage de caractères Unicode à une représentation binaire (bytes) s'appelle l'encodage. En Python, nous utilisons la méthode `encode()` pour cela. Par exemple, pour encoder une chaîne de caractères en utilisant l'encodage 'ISO-8859-15', nous faisons :
 
@@ -431,7 +595,7 @@ chaine_encodee = chaine.encode('ISO-8859-15')
 chaine_decodee = chaine_encodee.decode('ISO-8859-15')
 ```
 
-## Types de chaînes
+## 4.2 Types de chaînes
 
 Python fournit plusieurs manières de délimiter les chaînes de caractères :
 
@@ -464,7 +628,7 @@ chaine1 = f"Bonjour {nom}"
 
 Dans cet exemple, `{nom}` est remplacé par la valeur de la variable `nom` lors de l'exécution du programme. Les f-strings rendent le formatage des chaînes de caractères plus facile et plus intuitif.
 
-## Manipulation des chaînes de caractères
+## 4.3 Manipulation des chaînes de caractères
 
 En plus de créer des chaînes de caractères, Python fournit un ensemble de méthodes permettant de les manipuler :
 
@@ -504,7 +668,7 @@ chaine_majuscules = chaine.upper()  # Donne "BONJOUR LE MONDE"
 chaine_minuscules = chaine.lower()  # Donne "bonjour le monde"
 ```
 
-## Chaînes de caractères et immutabilité
+## 4.4 Chaînes de caractères et immutabilité
 
 Les chaînes de caractères en Python sont immuables. Cela signifie que nous ne pouvons pas changer un caractère d'une chaîne de caractères une fois qu'elle a été créée. Si nous essayons de le faire, Python nous donnera une erreur. Si nous devons modifier une chaîne de caractères, nous devons créer une nouvelle chaîne de caractères avec les modifications.
 
@@ -520,7 +684,7 @@ chaine = "Bonjour"
 nouvelle_chaine = "b" + chaine[1:]  # Donne "bonjour"
 ```
 
-## Le "sclicing" de chaînes de caractères
+## 4.5 Le slicing de chaînes de caractères
 
 Le slicing (ou découpage) est une fonctionnalité qui permet d'extraire une partie d'une séquence, comme une chaîne de caractères, une liste, un tuple, etc. Pour les chaînes de caractères, le slicing peut être utilisé pour extraire des sous-chaînes.
 
@@ -570,22 +734,40 @@ print(sous_chaine)  # Affiche "Bnorl od"
 
 Dans cet exemple, le pas de slicing est 2, donc le slicing extrait tous les deuxièmes caractères de la chaîne.
 
-### Exercices sur le Slicing de Chaînes de Caractères
+### 4.5.1 Exercices sur le slicing de chaînes de caractères
 
 1. **Inversion de Chaîne** : Écrivez un programme Python pour inverser une chaîne de caractères comme "Python est un langage versatile" en utilisant le slicing.
 2. **Extraction de Sous-Chaîne** : Écrivez un programme pour extraire les caractères entre le 2ème et le 5ème caractère (inclus) d'une chaîne donnée.
 
-### Conseils pour les Étudiants
+### 4.5.2 Conseils
 
 - N'oubliez pas que l'indexation en Python commence à 0.
 - Le slicing utilise le format `[début:fin:pas]`, où `début` est inclusif et `fin` est exclusif.
 - Expérimentez avec différents pas, par exemple `-1` pour inverser.
 
-# Les numériques
+## 4.6 Le formatage avec les f-strings
+
+Le formatage fstring est un appel automatique à format.
+```python
+>>> from datetime import datetime  
+>>>   
+>>> today = datetime.today()  
+>>>   
+>>> print(f"Today is {today}")  
+Today is 2023-05-07 22:13:15.637951
+>>>   
+>>> print(f"Today is {today:%B %d, %Y}")  
+Today is May 07, 2023
+>>>   
+>>> print(f"Today is {today:%m-%d-%Y}")  
+Today is 05-07-2023
+```
+
+# 5. Les types numériques
 
 Python fournit plusieurs types numériques que nous pouvons utiliser pour représenter les nombres dans nos programmes.
 
-## Entiers
+## 5.1 Entiers
 
 Les entiers en Python sont de type `int`. En Python 3, il n'y a pas de limite à la taille des entiers, ils peuvent être aussi grands que ce que peut contenir la mémoire de notre ordinateur.
 
@@ -613,7 +795,8 @@ d = Decimal(f.numerator) / Decimal(f.denominator)
 s=str(d)[2:] # Pour supprimer le "0." du début de la chaine  
 print("\n".join([s[i:i+3] for i in range(0, len(s), 3)])) #Pour afficher les triplets
 ```
-## Booléens
+
+## 5.2 Booléens
 
 Le type `bool` est un sous-type d'entier qui ne peut prendre que deux valeurs : `True` (vrai) et `False` (faux).
 ```python
@@ -622,7 +805,7 @@ faux = False
 print(type(vrai))  # Affiche "<class 'bool'>"
 ```
 
-## Nombres à virgule flottante
+## 5.3 Nombres à virgule flottante
 
 Les nombres à virgule flottante en Python sont de type `float`. Ils peuvent représenter des nombres réels, positifs ou négatifs, avec ou sans partie fractionnaire.
 ```python
@@ -631,18 +814,19 @@ grand_flottant = 1e100
 print(type(flottant))  # Affiche "<class 'float'>"
 ```
 
-## Nombres complexes
+## 5.4 Nombres complexes
 
 Les nombres complexes sont de type `complex`. Ils sont représentés par deux nombres à virgule flottante, le premier représentant la partie réelle et le second représentant la partie imaginaire.
 ```python
 complexe = 1 + 3j
 print(type(complexe))  # Affiche "<class 'complex'>"
 ```
-# Les types à valeur unique
+
+# 6. Les types à valeur unique
 
 En Python, il existe deux types spéciaux qui ont une seule valeur possible : `None` et `NotImplemented`.
 
-## None
+## 6.1 `None`
 
 `None` est un type spécial en Python qui représente l'absence de valeur ou la nullité. Il est souvent utilisé pour signifier qu'une fonction ne retourne rien, ou qu'une variable n'a pas encore été assignée à une valeur. En termes de programmation, `None` est un singleton, ce qui signifie qu'il n'y a qu'une seule instance de `None` en Python.
 
@@ -658,7 +842,7 @@ print(resultat)  # Affiche "None"
 
 Dans cet exemple, `une_fonction()` ne retourne rien, donc son résultat est `None`.
 
-## NotImplemented
+## 6.2 `NotImplemented`
 
 `NotImplemented` est une autre valeur unique en Python. Elle est généralement utilisée pour indiquer que la méthode ou l'opération spéciale pour un type donné n'est pas implémentée.
 
@@ -677,11 +861,11 @@ Dans cet exemple, essayer d'utiliser l'opérateur `+` avec une instance de `MaCl
 
 Il est à noter que `NotImplemented` est différent de `NotImplementedError`. Le premier est une valeur spéciale qui peut être renvoyée par certaines méthodes spéciales, tandis que le second est une exception qui est levée lorsqu'une méthode abstraite requise n'est pas implémentée par une classe.
 
-# Les séquences
+# 7. Les séquences, les dictionnaires et les ensembles
 
 En Python, une séquence est une collection ordonnée d'éléments. Les éléments d'une séquence sont indexés par des nombres entiers, commençant par zéro pour le premier élément. Python fournit plusieurs types de séquences, y compris les tuples, les listes et les dictionnaires. 
 
-## Les tuples
+## 7.1 Les tuples
 
 Un tuple est une séquence immuable d'éléments. Cela signifie que nous ne pouvons pas modifier un tuple une fois qu'il a été créé. Les tuples sont généralement utilisés pour regrouper des données qui sont liées de manière logique.
 
@@ -692,12 +876,12 @@ print(type(mon_tuple))  # Affiche "<class 'tuple'>"
 
 Dans cet exemple, `mon_tuple` est un tuple de trois éléments. Nous pouvons accéder à un élément du tuple en utilisant son indice, par exemple `mon_tuple[0]` retourne `1`.
 
-### Exercices sur le Slicing de Tuple
+### 7.1.1 Exercices sur le slicing de tuple
 
 1. **Extraire un Sous-Tuple** : Étant donné un tuple `(1, 2, 3, 4, 5, 6)`, écrivez un programme pour extraire les éléments du 2ème au 4ème (inclus).
 2. **Inversion de Tuple** : Écrivez un programme pour inverser un tuple donné.
 
-## Les listes
+## 7.2 Les listes
 
 Une liste est une séquence mutable d'éléments. Cela signifie que nous pouvons ajouter, modifier ou supprimer des éléments d'une liste après sa création. Les listes sont très polyvalentes et sont souvent utilisées pour stocker des collections d'éléments qui doivent être modifiées.
 
@@ -708,12 +892,12 @@ print(type(ma_liste))  # Affiche "<class 'list'>"
 
 Dans cet exemple, `ma_liste` est une liste de trois éléments. Nous pouvez ajouter un élément à la liste avec `ma_liste.append(4)`, modifier un élément avec `ma_liste = 0`, ou supprimer un élément avec `del ma_liste[2]`.
 
-### Exercices sur le Slicing de Liste
+### 7.2.1 Exercices sur le slicing de liste
 
 1. **Sélection de Sous-Liste** : Étant donné une liste `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`, écrivez un programme pour extraire une sous-liste contenant les 3ème, 4ème et 5ème éléments.
 2. **Slicing avec Pas** : Écrivez un programme pour extraire tous les éléments pairs d'une liste donnée en utilisant le slicing avec un pas.
 
-## Les dictionnaires
+## 7.3 Les dictionnaires
 
 Un dictionnaire est une collection non ordonnée de paires clé-valeur. Il est mutable, ce qui signifie que nous pouvons ajouter, modifier ou supprimer des paires clé-valeur après sa création. Les dictionnaires sont souvent utilisés pour stocker des données qui sont associées à des clés uniques.
 
@@ -723,9 +907,10 @@ print(type(mon_dict))  # Affiche "<class 'dict'>"
 ```
 
 Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. Nous pouvons accéder à une valeur du dictionnaire en utilisant sa clé, par exemple `mon_dict['a']` retourne `1`. Nous pouvons ajouter une paire clé-valeur avec `mon_dict['d'] = 4`, modifier une valeur avec `mon_dict['a'] = 0`, ou supprimer une paire clé-valeur avec `del mon_dict['b']`.
-### Opérateurs et fonctions principales des Dictionnaires
 
-#### L'Opérateur `in`
+### 7.3.1 Opérateurs et fonctions principales des dictionnaires
+
+#### 7.3.1.1 L'opérateur `in`
 
 - **Usage** : Permet de vérifier si une clé spécifique est présente dans le dictionnaire.
 - **Exemple** : 
@@ -734,7 +919,7 @@ Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. No
       print("Chien existe dans le dictionnaire.")
   ```
 
-#### La Méthode `keys()`
+#### 7.3.1.2 La méthode `keys()`
 
 - **Usage** : Retourne un objet affichant toutes les clés du dictionnaire.
 - **Exemple** : 
@@ -743,7 +928,7 @@ Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. No
       print(cle)
   ```
 
-#### La Méthode `values()`
+#### 7.3.1.3 La méthode `values()`
 
 - **Usage** : Retourne un objet affichant toutes les valeurs du dictionnaire.
 - **Exemple** : 
@@ -752,7 +937,7 @@ Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. No
       print(valeur)
   ```
 
-#### La Méthode `items()`
+#### 7.3.1.4 La méthode `items()`
 
 - **Usage** : Retourne un objet contenant des paires de tuples, chaque tuple consistant en une clé et sa valeur correspondante.
 - **Exemple** : 
@@ -761,7 +946,7 @@ Dans cet exemple, `mon_dict` est un dictionnaire de trois paires clé-valeur. No
       print(f"{cle} -> {valeur}")
   ```
 
-#### Exemples d'Utilisation
+#### 7.3.1.5 Exemples d'utilisation
 
 Imaginons que vous avez le dictionnaire suivant :
 
@@ -790,13 +975,26 @@ for cle, valeur in dico_fr_en.items():
       print(f"{cle} se traduit par {valeur} en anglais.")
 ```
 
-### Exercice : Création et Utilisation d'un Dictionnaire Français-Anglais
+### 7.3.2 L'union de dictionnaires avec `|` (Python 3.9)
 
-#### Objectif
+Le pipe permet de faire l'union de dictionnaires
+```python
+>>> d1 = {1:"un",2:"deux",3:"trois"}
+>>> d2 = {4:"quatre", 5:"cinq"}
+>>> d1|d2
+{1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'cinq'}
+>>> d3 = {5:"five", 6:"six"}
+>>> d1|d2|d3
+{1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'five', 6: 'six'}
+```
+
+### 7.3.3 Exercice : création et utilisation d'un dictionnaire français-anglais
+
+#### 7.3.3.1 Objectif
 
 Cet exercice vise à renforcer votre compréhension des dictionnaires en Python. Vous allez créer un dictionnaire bilingue (français-anglais), permettant à l'utilisateur de demander la traduction d'un mot. Si le mot n'est pas présent dans le dictionnaire, vous devrez permettre à l'utilisateur d'ajouter cette nouvelle entrée.
 
-#### Consignes
+#### 7.3.3.2 Consignes
 
 1. **Initialisation du Dictionnaire** :
     
@@ -815,7 +1013,7 @@ Cet exercice vise à renforcer votre compréhension des dictionnaires en Python.
     - Après l'ajout, redemandez à l'utilisateur un mot (il peut choisir le même ou un nouveau) et répétez le processus.
     - Assurez-vous que si un mot précédemment ajouté est demandé à nouveau, sa traduction s'affiche correctement.
 
-# Les ensembles
+## 7.4 Les ensembles
 
 Tout comme les dictionnaires, les ensembles sont des collections non ordonnées, mais ils présentent des caractéristiques distinctives qui les rendent uniques. Contrairement aux dictionnaires, qui stockent des paires clé-valeur, les ensembles stockent uniquement des valeurs uniques. De plus, ils sont mutables, ce qui signifie que nous pouvons ajouter, modifier ou supprimer des valeurs après leur création. 
 
@@ -844,11 +1042,11 @@ Mais attention ! Si la valeur que nous essayons de supprimer n'est pas présente
 mon_ensemble.discard(2)
 ```
 
-## Documentation
+### 7.4.1 Documentation
 
 https://docs.python.org/fr/3/library/stdtypes.html
 
-# Les listes en compréhension
+# 8. Les listes en compréhension
 
 Les listes en compréhension (ou list comprehension en anglais) permettent de créer de nouvelles listes de manière très concise. Elles suivent une syntaxe qui peut être comprise comme une expression de la forme "établir une liste de cet élément pour cet élément dans cet ensemble si cette condition est vraie".
 
@@ -880,7 +1078,7 @@ carrés_pairs = [x**2 for x in range(10) if x % 2 == 0]
 
 Dans cet exemple, `x % 2 == 0` est une condition qui n'est vraie que pour les nombres pairs, donc seuls les carrés des nombres pairs sont inclus dans la liste.
 
-## Emboitement des listes en compréhension
+## 8.1 Emboîtement des listes en compréhension
 
 L'emboîtement de listes en compréhension (ou nested list comprehension en anglais) signifie qu'une liste en compréhension est utilisée à l'intérieur d'une autre liste en compréhension. C'est une façon puissante et concise de créer des listes.
 
@@ -910,7 +1108,7 @@ print(matrice)  # Affiche [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
 
 Dans cet exemple, la liste en compréhension externe crée les lignes de la matrice, et la liste en compréhension interne crée les éléments de chaque ligne.
 
-### Exercices sur les Listes en Compréhension
+### 8.1.1 Exercices sur les listes en compréhension
 
 1. **Nombres Pairs** : Créez une liste de tous les nombres pairs de 1 à 20 inclus.
     
@@ -931,7 +1129,10 @@ Dans cet exemple, la liste en compréhension externe crée les lignes de la matr
 9. **Mots avec Lettre Spécifique** : À partir d'une liste de mots, créez une liste des mots qui contiennent la lettre 'a'.
     
 10. **Combiner Deux Listes en Paires** : Étant donné deux listes, par exemple `[1, 2, 3]` et `['a', 'b', 'c']`, créez une liste de paires combinant les éléments des deux listes (par exemple, `[(1, 'a'), (2, 'b'), (3, 'c')]`).
-# Les itérateurs
+
+# 9. Les itérateurs et les générateurs
+
+## 9.1 Les itérateurs
 
 Un itérateur en Python est un objet qui peut être parcouru, c'est-à-dire qu'il permet de parcourir tous les éléments d'une collection (comme une liste, un tuple, un dictionnaire, un ensemble, etc.), un à la fois. Cette fonctionnalité est particulièrement utile dans les boucles `for` et `while`, où nous voulons effectuer une opération sur chaque élément d'une collection.
 
@@ -980,25 +1181,25 @@ print(next(itérateur))  # Lève StopIteration
 
 Comme nous pouvons le voir, une fois que nous avons atteint la fin de l'itérateur, appeler `next()` de nouveau lève l'exception `StopIteration`.
 
-## Les itérateurs dans la pratique
+### 9.1.1 Les itérateurs dans la pratique
 
 Dans la pratique, nous n'avons très souvent pas besoin de créer nos propres itérateurs, car Python fournit des itérateurs pour la plupart de ses types de collections intégrés. De plus, les boucles `for` de Python utilisent automatiquement des itérateurs "sous le capot", donc nous bénéficions de la puissance des itérateurs chaque fois que nous utilisons une boucle `for`.
 
 Cependant, il y a des moments où la création de nos propres itérateurs peut être utile. Par exemple, si nous créons un nouveau type de collection, nous voudrons peut-être fournir un itérateur pour que les utilisateurs de notre collection puissent la parcourir facilement. Ou, si nous avons une collection très grande ou potentiellement infinie (comme une série de nombres générés à la volée), un itérateur peut être un moyen efficace de parcourir la collection sans avoir à la stocker entièrement en mémoire.
 
-## Les générateurs sont des itérateurs
+### 9.1.2 Les générateurs sont des itérateurs
 
 Un type particulier d'itérateur en Python est le générateur. Un générateur est une fonction spéciale qui produit une séquence de résultats au lieu de renvoyer une seule valeur. Lorsqu'un générateur est appelé, il renvoie un itérateur que nous pouvons parcourir pour obtenir une série de résultats.
 
 Nous allons les détailler dans le chapitre suivant.
 
-# Les générateurs
+## 9.2 Les générateurs
 
 Les générateurs sont un type d'itérateur, c'est-à-dire un objet qui produit une séquence de résultats au lieu de calculer une série de valeurs et de les stocker toutes à la fois. La principale caractéristique des générateurs est qu'ils sont paresseux (lazy) : ils ne calculent la valeur suivante de la séquence que lorsqu'elle est demandée.
 
 En Python, Nous pouvons créer des générateurs de deux façons : en utilisant des fonctions et le mot-clé `yield`, ou en utilisant des expressions génératrices.
 
-## Fonctions de générateur
+### 9.2.1 Fonctions de générateur
 
 Une fonction de générateur ressemble à une fonction normale, mais au lieu d'utiliser `return` pour renvoyer une valeur, elle utilise `yield`. Lorsqu'un générateur est appelé, il renvoie un objet itérateur, mais ne commence pas à exécuter le corps de la fonction. Lorsque nous appelons la méthode `next()` (ou la fonction `next()`) sur l'objet itérateur, la fonction est exécutée jusqu'à ce qu'elle rencontre `yield`, qui renvoie la valeur courante.
 
@@ -1016,7 +1217,7 @@ for num in g:
     print(num)  # Affiche les nombres de 0 à 4
 ```
 
-## Expressions génératrices
+### 9.2.2 Expressions génératrices
 
 Les expressions génératrices sont similaires aux compréhensions de liste, mais au lieu de produire une liste, elles produisent un générateur. Les expressions génératrices sont écrites entre parenthèses (`()`) au lieu de crochets (`[]`).
 
@@ -1030,7 +1231,7 @@ for num in g:
 
 En conclusion, les générateurs sont un outil puissant en Python qui nous permet de créer des itérateurs paresseux. Ils sont particulièrement utiles lorsque nous travaillons avec de grandes séquences de données qui ne tiendraient pas toutes en mémoire à la fois, ou lorsque le coût de calcul de chaque valeur de la séquence est élevé et que nous voulons le différer jusqu'à ce qu'il soit nécessaire.
 
-## Réutilisation des générateurs
+### 9.2.3 Réutilisation des générateurs
 
 Une particularité des générateurs est qu'une fois qu'ils sont consommés, ils ne peuvent pas être réinitialisés ou réutilisés. Par exemple, si nous essayons d'exécuter à nouveau la boucle `for` dans l'un des exemples précédents, rien ne se passera parce que le générateur a déjà été épuisé. Pour réutiliser le générateur, nous devrons le réinitialiser en le réaffectant.
 
@@ -1047,7 +1248,7 @@ for num in g:
     print(num)  # Affiche les nombres de 0 à 4
 ```
 
-## Envoi de valeurs et d'exceptions aux générateurs
+### 9.2.4 Envoi de valeurs et d'exceptions aux générateurs
 
 Les générateurs sont non seulement capables de produire des valeurs, mais ils peuvent également recevoir des valeurs et des exceptions, ce qui permet une communication bidirectionnelle entre le générateur et le code qui l'appelle. Pour cela, les générateurs disposent des méthodes `send()` et `throw()`.
 
@@ -1065,16 +1266,17 @@ g.send('Bonjour')  # Affiche "Reçu : Bonjour"
 g.throw(RuntimeError, 'Quelque chose ne va pas')  # Lève une RuntimeError dans le générateur
 ```
 
-# Les objet `slice`
+## 9.3 Les objets `slice`
+
 La classe `slice` en Python est utilisée pour créer des objets qui représentent des tranches (ou "slices") d'une séquence, comme des listes, des tuples ou des chaînes de caractères. Ces objets peuvent ensuite être utilisés pour extraire des sous-séquences ou pour indexer des structures de données plus complexes, comme des tableaux NumPy.
 
-### **À quoi sert la classe `slice` ?**
+### 9.3.1 À quoi sert la classe `slice` ?
 
 - **Représentation explicite d'une tranche** : Au lieu d'utiliser la notation de tranche standard (`[start:stop:step]`), vous pouvez créer un objet `slice` pour représenter la tranche de manière explicite.
 - **Passage comme argument** : Les objets `slice` peuvent être passés comme arguments à des fonctions ou des méthodes, ce qui est utile lorsque vous devez définir dynamiquement des tranches.
 - **Indexation avancée** : Dans certaines bibliothèques comme NumPy, les objets `slice` sont utilisés pour l'indexation multidimensionnelle.
 
-### **Comment l'utiliser ?**
+### 9.3.2 Comment l'utiliser ?
 
 La syntaxe de la classe `slice` est la suivante :
 
@@ -1086,23 +1288,23 @@ slice(start, stop, step)
 - **stop** *(obligatoire)* : L'indice de fin de la tranche (non inclus).
 - **step** *(optionnel)* : Le pas entre les indices. Par défaut, c'est `None`, ce qui équivaut à un pas de 1.
 
-### **Exemples d'utilisation :**
+### 9.3.3 Exemples d'utilisation
 
-#### **1. Utilisation basique avec une liste :**
+#### 9.3.3.1 Utilisation basique avec une liste
 
 ```python
 # Tranche standard
-liste =
+liste = [0, 1, 2, 3, 4, 5]
 sous_liste = liste[1:5:2]
-print(sous_liste)  # Sortie :
+print(sous_liste)  # Sortie : [1, 3]
 
 # Utilisation de slice
 tranche = slice(1, 5, 2)
 sous_liste = liste[tranche]
-print(sous_liste)  # Sortie :
+print(sous_liste)  # Sortie : [1, 3]
 ```
 
-#### **2. Passer une tranche comme argument de fonction :**
+#### 9.3.3.2 Passer une tranche comme argument de fonction
 
 ```python
 def extraire_elements(sequence, tranche):
@@ -1114,7 +1316,7 @@ resultat = extraire_elements(liste, tranche)
 print(resultat)  # Sortie : ['a', 'c', 'e']
 ```
 
-#### **3. Utilisation avec NumPy pour l'indexation multidimensionnelle :**
+#### 9.3.3.3 Utilisation avec NumPy pour l'indexation multidimensionnelle
 
 ```python
 import numpy as np
@@ -1144,7 +1346,7 @@ Sous-array:
  [ 8 10]]
 ```
 
-#### **4. Obtenir les attributs d'un objet slice :**
+#### 9.3.3.4 Obtenir les attributs d'un objet `slice`
 
 Les objets `slice` ont les attributs `start`, `stop` et `step` que vous pouvez consulter :
 
@@ -1155,17 +1357,19 @@ print(tranche.stop)   # Sortie : 10
 print(tranche.step)   # Sortie : 2
 ```
 
-### **Pourquoi utiliser la classe `slice` ?**
+### 9.3.4 Pourquoi utiliser la classe `slice` ?
 
 - **Dynamisme** : Lorsque les indices de début, de fin et de pas sont déterminés au moment de l'exécution, il est plus pratique de créer un objet `slice` que de manipuler des chaînes de caractères pour la notation de tranche.
 - **Lisibilité** : Dans certains cas complexes, l'utilisation d'objets `slice` peut rendre le code plus lisible.
 - **Fonctionnalités avancées** : Certaines bibliothèques ou classes personnalisées peuvent accepter des objets `slice` pour fournir des fonctionnalités supplémentaires lors de l'indexation.
 
-### **Points à noter :**
+### 9.3.5 Points à noter
 
 - La classe `slice` elle-même ne réalise pas la découpe ; elle crée simplement un objet qui décrit comment la découpe doit être effectuée.
 - C'est l'objet de séquence (par exemple, une liste ou un tableau NumPy) qui interprète l'objet `slice` lors de l'opération d'indexation.
-# Outils d'itération
+
+## 9.4 Outils d'itération
+
 Il existe plusieurs bibliothèques qui fournissent des outils utiles pour travailler avec des itérateurs. Voici quelques-unes des plus couramment utilisées :
 
 1. **itertools** : Ce module de la bibliothèque standard Python fournit une collection d'outils pour manipuler les itérateurs. Par exemple, `itertools.count` crée un itérateur qui produit une séquence infinie de nombres entiers, `itertools.cycle` crée un itérateur qui répète indéfiniment une séquence, et `itertools.chain` combine plusieurs itérateurs en un seul. Le module `itertools` offre également plusieurs autres fonctions utiles, comme `itertools.permutations`, `itertools.combinations`, et `itertools.product`, qui génèrent respectivement toutes les permutations, combinaisons, et le produit cartésien d'une collection d'éléments.
@@ -1176,9 +1380,258 @@ Il existe plusieurs bibliothèques qui fournissent des outils utiles pour travai
 
 4. **pandas** : Cette bibliothèque, qui est largement utilisée pour l'analyse de données en Python, fournit des structures de données comme les DataFrames et les Series qui sont essentiellement des itérateurs sur des données tabulaires. Nous pouvons parcourir les lignes d'un DataFrame ou les éléments d'une Series comme nous le ferions avec un itérateur, et pandas fournit également plusieurs méthodes pour appliquer des fonctions à ces structures de données de manière efficace.
 
-Chacune de ces bibliothèques fournit une documentation complète avec des exemples de code, donc si nous voulons en savoir plus sur l'une d'entre elles, allons consulter la documentation officielle sur .
+Chacune de ces bibliothèques fournit une documentation complète avec des exemples de code, donc si nous voulons en savoir plus sur l'une d'entre elles, allons consulter la documentation officielle de chacune.
 
-# Les opérateurs
+### 9.4.1 Le module `itertools`
+
+Les `itertools` sont un module de la bibliothèque standard de Python qui fournit plusieurs itérateurs rapides et efficaces pour boucler sur des données de différentes manières. Voici un aperçu des fonctions les plus courantes et utiles de ce module, accompagnées d'exemples pour chacune.
+
+#### 9.4.1.1 `itertools.count(start=0, step=1)`
+
+Génère une séquence infinie de nombres à partir de `start`, incrémentée de `step`.
+
+```python
+import itertools
+
+counter = itertools.count(start=10, step=2)
+for _ in range(5):
+    print(next(counter))
+```
+
+Sortie :
+```
+10
+12
+14
+16
+18
+```
+
+#### 9.4.1.2 `itertools.cycle(iterable)`
+
+Répète indéfiniment les éléments de l'itérable donné.
+
+```python
+import itertools
+
+cycler = itertools.cycle(['A', 'B', 'C'])
+for _ in range(6):
+    print(next(cycler))
+```
+
+Sortie :
+```
+A
+B
+C
+A
+B
+C
+```
+
+#### 9.4.1.3 `itertools.repeat(object, times=None)`
+
+Répète l'objet donné un nombre de fois spécifié. Si `times` n'est pas fourni, il répète indéfiniment.
+
+```python
+import itertools
+
+repeater = itertools.repeat('Hello', 3)
+for item in repeater:
+    print(item)
+```
+
+Sortie :
+```
+Hello
+Hello
+Hello
+```
+
+#### 9.4.1.4 `itertools.permutations(iterable, r=None)`
+
+Retourne toutes les permutations possibles d'une longueur `r` (par défaut la longueur de l'itérable).
+
+```python
+import itertools
+
+perms = itertools.permutations('ABC', 2)
+for perm in perms:
+    print(perm)
+```
+
+Sortie :
+```
+('A', 'B')
+('A', 'C')
+('B', 'A')
+('B', 'C')
+('C', 'A')
+('C', 'B')
+```
+
+#### 9.4.1.5 `itertools.combinations(iterable, r)`
+
+Retourne toutes les combinaisons possibles d'une longueur `r`.
+
+```python
+import itertools
+
+combs = itertools.combinations('ABC', 2)
+for comb in combs:
+    print(comb)
+```
+
+Sortie :
+```
+('A', 'B')
+('A', 'C')
+('B', 'C')
+```
+
+#### 9.4.1.6 `itertools.product(*iterables, repeat=1)`
+
+Retourne le produit cartésien des itérables donnés.
+
+```python
+import itertools
+
+prod = itertools.product('AB', '12')
+for p in prod:
+    print(p)
+```
+
+Sortie :
+```
+('A', '1')
+('A', '2')
+('B', '1')
+('B', '2')
+```
+
+#### 9.4.1.7 `itertools.chain(*iterables)`
+
+Combine plusieurs itérables en un seul.
+
+```python
+import itertools
+
+chained = itertools.chain('ABC', 'DEF')
+for item in chained:
+    print(item)
+```
+
+Sortie :
+```
+A
+B
+C
+D
+E
+F
+```
+
+#### 9.4.1.8 `itertools.groupby(iterable, key=None)`
+
+Groupe des éléments consécutifs de l'itérable par une clé donnée.
+
+```python
+import itertools
+
+data = sorted([('A', 1), ('A', 2), ('B', 3), ('B', 4), ('C', 5)], key=lambda x: x)
+grouped = itertools.groupby(data, key=lambda x: x)
+for key, group in grouped:
+    print(key, list(group))
+```
+
+Sortie :
+```
+A [('A', 1), ('A', 2)]
+B [('B', 3), ('B', 4)]
+C [('C', 5)]
+```
+
+### 9.4.2 Le module `functools`
+
+Le module `functools` de la bibliothèque standard de Python fournit divers outils utiles pour travailler avec des fonctions et des appels de fonctions. Il est très utile pour les tâches avancées de programmation fonctionnelle. Voici un aperçu de certaines des fonctionnalités clés de ce module, avec des exemples pratiques.
+
+#### 9.4.2.1 `functools.reduce`
+
+La fonction `reduce` applique une fonction binaire (une fonction à deux arguments) de manière répétée à tous les éléments d'un itérable, cumulant ainsi les résultats pour produire une seule valeur finale.
+
+Exemple :
+
+Supposons que nous souhaitons calculer le produit de tous les éléments d'une liste.
+
+```python
+import functools
+
+def multiply(x, y):
+    return x * y
+
+numbers = [1, 2, 3, 4, 5]
+product = functools.reduce(multiply, numbers)
+print(product)  # Output: 120
+```
+
+#### 9.4.2.2 `functools.partial`
+
+La fonction `partial` permet de fixer partiellement certains arguments d'une fonction, renvoyant une nouvelle fonction avec moins d'arguments requis.
+
+Exemple :
+
+Nous avons une fonction qui prend trois arguments, et nous voulons créer une nouvelle fonction qui a un des arguments préfixé.
+
+```python
+import functools
+
+def power(base, exponent):
+    return base ** exponent
+
+square = functools.partial(power, exponent=2)
+print(square(3))  # Output: 9
+```
+
+#### 9.4.2.3 `functools.lru_cache`
+
+Le décorateur `lru_cache` (Least Recently Used Cache) mémorise les résultats des appels de fonction pour accélérer les appels ultérieurs avec les mêmes arguments.
+
+Exemple :
+
+Nous avons une fonction de calcul coûteuse que nous voulons optimiser en utilisant le cache.
+
+```python
+import functools
+
+@functools.lru_cache(maxsize=128)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))  # Output: 55
+```
+La mise ne cache peut aussi permettre de résoudre des limites de récursion :
+```python
+>>> print(fibonacci(1000)) 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 5, in fibonacci
+  File "<stdin>", line 5, in fibonacci
+  File "<stdin>", line 5, in fibonacci
+  [Previous line repeated 496 more times]
+RecursionError: maximum recursion depth exceeded
+>>> print(fibonacci(500)) 
+139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125
+>>> print(fibonacci(750)) 
+2461757021582324272166248155313036893697139996697461509576233211000055607912198979704988704446425834042795269603588522245550271050495783935904220352228801000
+>>> print(fibonacci(1000)) 
+43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
+>>> fibonacci.cache_info()
+CacheInfo(hits=1001, misses=1501, maxsize=128, currsize=128)
+```
+
+# 10. Les opérateurs
 
 Nous avons à notre disposition un large éventail d'opérateurs en Python qui nous permettent d'effectuer divers calculs et opérations sur nos données.
 
@@ -1200,7 +1653,7 @@ Nous avons à notre disposition un large éventail d'opérateurs en Python qui n
 
 - **L'appartenance à un type `isinstance()`** : Nous utilisons la fonction `isinstance()` pour vérifier si une valeur est d'un certain type. Par exemple, `isinstance(3, int)` donne `True` car `3` est un entier.
 
-# Opérateurs binaires
+## 10.1 Les opérateurs binaires
 
 Dans notre travail avec Python, nous nous trouvons souvent en présence de données binaires. Python fournit un ensemble d'opérateurs qui nous permettent de manipuler directement ces données.
 
@@ -1218,7 +1671,7 @@ Dans notre travail avec Python, nous nous trouvons souvent en présence de donn�
 
 Ces opérateurs peuvent être très utiles pour manipuler les données à un niveau bas, comme lors de l'interaction avec le matériel, du travail avec des protocoles de réseau, ou de l'implémentation de certains algorithmes de chiffrement et de compression.
 
-# Opérateurs de comparaison
+## 10.2 Les opérateurs de comparaison
 
 Les opérateurs de comparaison en Python sont utilisés pour comparer deux valeurs ou objets. Voyons comment nous les utilisons :
 
@@ -1240,7 +1693,7 @@ Les opérateurs de comparaison en Python sont utilisés pour comparer deux valeu
 
 Il est important de noter que les opérateurs de comparaison peuvent être enchaînés pour vérifier plusieurs conditions à la fois, par exemple : `1 < a < 5`.
 
-# Ordre de traitement des opérations
+## 10.3 L'ordre de traitement des opérations
 
 En programmation, tout comme en mathématiques, les opérations sont traitées selon un certain ordre de priorité, souvent désigné par l'acronyme anglais PEMDAS :
 
@@ -1253,58 +1706,48 @@ Ce qui signifie que dans une expression, les opérations entre parenthèses sont
 
 Par exemple, pour l'expression `3 + 2 * (5 - 1)`, le calcul se fait comme suit : `3 + 2 * 4` (parenthèses en premier), ensuite `3 + 8` (multiplication ensuite), et finalement `11` (addition en dernier).
 
-## L'instruction pass
+## 10.4 L'opérateur d'affectation d'expression `:=`
 
-En Python, l'instruction `pass` est une opération qui ne fait rien. Elle est généralement utilisée comme une instruction de remplissage lorsqu'une déclaration est requise syntaxiquement, mais que le programme ne requiert aucune action. Par exemple, elle peut être utilisée pour créer une classe, une fonction ou une boucle vide, en attente de contenu à ajouter plus tard :
+Introduit par la [PEP 572](https://peps.python.org/pep-0572/) en Python 3.8, l'opérateur `:=` — surnommé « morse » à cause de sa ressemblance avec les yeux et les défenses de l'animal — permet d'affecter une variable **à l'intérieur** d'une expression.
 
-```python
-def ma_fonction():
-    pass  # Je remplirai cette fonction plus tard
-```
-
-## L'instruction ...
-
-En Python, le symbole `...` est également utilisé comme une instruction de remplissage, tout comme `pass`. Cependant, son utilisation est un peu différente.
-
-En Python, `...` est une constante spéciale appelée "Ellipsis". Par défaut, elle n'a aucun comportement et est généralement utilisée comme un espace réservé lorsque nous souhaitons indiquer qu'un code doit être ajouté ultérieurement.
-
-Nous pouvons l'utiliser de la même manière que `pass` pour créer une structure vide, par exemple une classe, une fonction ou une boucle :
+Sans lui, nous sommes souvent contraints d'écrire deux fois le même appel, ou de dupliquer une ligne avant la boucle :
 
 ```python
-def ma_fonction():
-    ...  # Je remplirai cette fonction plus tard
+ligne = fichier.readline()
+while ligne:
+    traiter(ligne)
+    ligne = fichier.readline()
 ```
 
-Cependant, l'Ellipsis a également des utilisations spécifiques dans certains contextes, comme l'indexation de structures de données de haute dimension dans des bibliothèques scientifiques comme NumPy.
-
-De plus, certains outils de vérification de type utilisent l'Ellipsis pour indiquer qu'une annotation de type spécifique n'a pas encore été ajoutée à une variable ou à une fonction. Par exemple :
+Avec lui, l'affectation et le test tiennent en une expression :
 
 ```python
-def ma_fonction(a: int, b: ...) -> ...:  # Les types pour 'b' et le type de retour ne sont pas encore spécifiés
-    ...
+while ligne := fichier.readline():
+    traiter(ligne)
 ```
 
-En somme, bien que `pass` et `...` puissent être utilisés de manière interchangeable dans certains contextes, ils ont des utilisations spécifiques qui les rendent uniques. Il est donc important de comprendre ces différences pour les utiliser de manière appropriée.
-
-## L'indentation
-
-En Python, l'indentation (les espaces au début de certaines lignes de code) est très importante. Elle est utilisée pour définir le bloc de code associé à une structure de contrôle particulière (comme une boucle ou une condition), à une fonction ou à une classe. 
-
-Cela signifie que contrairement à de nombreux autres langages de programmation, où les blocs de code sont généralement délimités par des accolades `{}`, en Python, c'est l'indentation elle-même qui délimite les blocs.
-
-Par exemple, voici comment une boucle `for` serait écrite en Python :
+Il est particulièrement utile lorsqu'un calcul coûteux sert à la fois de condition et de valeur :
 
 ```python
-for i in range(5):
-    print(i)  # Cette ligne est dans le bloc de la boucle 'for' car elle est indentée
-print("Fin de la boucle")  # Cette ligne n'est pas dans le bloc de la boucle 'for' car elle n'est pas indentée
+if (resultat := calcul_long(donnees)) is not None:
+    print(f"Trouvé : {resultat}")
 ```
 
-Dans cet exemple, la ligne `print(i)` est dans le bloc de la boucle `for` car elle est indentée. Elle sera donc répétée pour chaque itération de la boucle. En revanche, la ligne `print("Fin de la boucle")` n'est pas dans le bloc de la boucle `for` car elle n'est pas indentée. Elle sera donc exécutée une fois que toutes les itérations de la boucle auront été effectuées.
+et dans les listes en compréhension, pour ne pas appeler deux fois la même fonction :
 
-# Les structures conditionnelles
+```python
+# sans l'opérateur : coûteux(x) est évalué deux fois par élément retenu
+[couteux(x) for x in valeurs if couteux(x) > 0]
 
-## L'instruction if (else et elif)
+# avec : une seule évaluation
+[y for x in valeurs if (y := couteux(x)) > 0]
+```
+
+Attention cependant : l'opérateur crée une variable dans la portée englobante. Utilisé sans discernement, il rend le code plus dense mais moins lisible. La règle raisonnable est de ne l'employer que lorsqu'il **supprime une répétition**, jamais pour gagner une ligne.
+
+# 11. Les structures de contrôle
+
+## 11.1 L'instruction `if` (`else` et `elif`)
 
 En Python, l'instruction `if` est utilisée pour évaluer une condition. Si la condition est vraie, le bloc de code sous l'instruction `if` est exécuté. 
 
@@ -1333,7 +1776,7 @@ else:
     # Bloc de code exécuté si condition1 et condition2 sont fausses
 ```
 
-## Les opérateurs ternaires
+## 11.2 Les opérateurs ternaires
 
 En Python, l'opérateur ternaire est une manière concise d'écrire une instruction `if`-`else`. Il permet de tester une condition et de renvoyer une valeur si cette condition est vraie et une autre valeur si elle est fausse. La syntaxe est la suivante :
 
@@ -1349,7 +1792,7 @@ message = "x est supérieur à 5" if x > 5 else "x est inférieur ou égal à 5"
 print(message)  # Affiche "x est supérieur à 5"
 ```
 
-## Les opérateurs logiques : AND, OR et NOT
+## 11.3 Les opérateurs logiques : `and`, `or` et `not`
 
 Python utilise les opérateurs `and`, `or` et `not` pour combiner ou inverser des conditions logiques.
 
@@ -1373,7 +1816,7 @@ Dans cet exemple, la variable `age` est fixée à 20. L'opérateur ternaire est 
 
 C'est une manière très concise d'écrire une condition `if`-`else`, et c'est particulièrement utile quand nous voulons affecter une valeur à une variable en fonction d'une condition.
 
-## L'instruction for in
+## 11.4 L'instruction `for in`
 
 L'instruction `for` en Python est utilisée pour itérer sur une séquence (comme une liste, un tuple, un dictionnaire, un ensemble ou une chaîne) ou d'autres objets itérables. L'instruction `for` est souvent utilisée lorsque nous avons un bloc de code que nous voulons répéter un nombre fixe de fois.
 
@@ -1382,7 +1825,7 @@ for variable in sequence:
     # Bloc de code exécuté pour chaque élément dans la séquence
 ```
 
-## L'instruction while
+## 11.5 L'instruction `while`
 
 L'instruction `while` en Python est utilisée pour la boucle de contrôle. Le bloc de code sous l'instruction `while` est exécuté aussi longtemps que la condition est vraie. 
 
@@ -1393,7 +1836,8 @@ while condition:
 
 Attention à ne pas créer de boucle infinie avec l'instruction `while` ! Assurons-nous que la condition deviendra fausse à un moment donné. Sinon, le programme continuera à exécuter le bloc de code pour toujours.
 
-# Utilisation de `else` dans un `for` ou un `while`
+## 11.6 Utilisation de `else` dans un `for` ou un `while`
+
 Les blocs `else` peuvent également être utilisés avec les boucles `for` et `while` en Python. C'est une fonctionnalité quelque peu unique à Python et elle n'est pas présente dans beaucoup d'autres langages de programmation.
 
 Le bloc de code dans une clause `else` après une boucle `for` ou `while` est exécuté lorsque la boucle a fini de parcourir la liste (dans le cas de `for`) ou lorsque la condition devient fausse (dans le cas de `while`), mais seulement si la boucle n'a pas été interrompue par une instruction `break`.
@@ -1422,7 +1866,7 @@ else:
 
 Ici encore, le message "La boucle est terminée." sera affiché après que tous les nombres de 0 à 4 aient été imprimés.
 
-## L'instruction match
+## 11.7 L'instruction `match`
 
 L'instruction `match` est une fonctionnalité introduite dans Python 3.10. Elle sert à faire du "pattern matching" sur des données. Elle peut rendre notre code plus lisible et plus sûr, en particulier lorsqu'il s'agit de gérer des structures de données complexes.
 
@@ -1464,8 +1908,6 @@ Dans cet exemple, `point` est une paire de coordonnées. L'instruction `match` e
 
 L'instruction `match` permet également de tester le **type** d'une variable grâce aux patterns de classe. Considérons un exemple avec deux classes `Cercle` et `Rectangle` :
 
-python
-
 ```python
 class Cercle:
     def __init__(self, rayon):
@@ -1492,8 +1934,6 @@ Il est important de noter que `Cercle` sans parenthèses ne fonctionnerait pas c
 
 Là où cette syntaxe devient particulièrement expressive, c'est lorsque nous combinons le test de type avec l'extraction d'attributs :
 
-python
-
 ```python
 match forme:
     case Cercle(rayon=r):
@@ -1508,7 +1948,7 @@ En un seul `case`, nous vérifions le type de `forme` **et** nous extrayons ses 
 
 Pour conclure, l'instruction `match` est utile pour structurer notre code de manière à gérer différents cas de façon claire et explicite. Il s'agit d'une avancée majeure dans le langage Python qui facilite l'écriture de code plus robuste et plus facile à comprendre.
 
-# Les fonctions
+# 12. Les fonctions
 
 En Python, nous utilisons le mot-clé `def` pour définir une fonction. Une fois définie, une fonction est un objet à part entière, avec son propre espace de noms.
 
@@ -1548,7 +1988,7 @@ La directive `return` nous permet de spécifier quelle valeur doit être retourn
 
 Enfin, Python nous offre la directive `lambda` pour la création rapide de petites fonctions anonymes. Ces fonctions sont souvent utilisées là où une fonction complète serait excessive, par exemple lors du passage d'une petite fonction comme argument à une autre fonction, comme dans le cas de l'utilisation de fonctions comme `map` ou `filter`. Par exemple, `lambda x: x * 2` est une fonction qui prend un argument `x` et retourne `x * 2`.
 
-# Les docstrings
+## 12.1 Les docstrings
 
 Nous pouvons documenter nos fonctions à l'aide de docstrings. Les docstrings sont des chaînes de texte placées juste après la définition d'une fonction, d'une méthode, d'une classe ou d'un module qui expliquent ce que fait le bloc de code.
 
@@ -1604,7 +2044,7 @@ Dans cet exemple, "Args" est utilisé pour décrire les arguments de la fonction
 
 Notons que dans la pratique, la plupart des fonctions Python ne nécessitent pas une docstring aussi détaillée. Cependant, pour les bibliothèques et les frameworks, ou pour toute fonction qui est suffisamment complexe, avoir une docstring détaillée peut être très utile.
 
-# Les annotations
+# 13. Les annotations de type
 
 En plus des docstrings, Python fournit un autre moyen d'ajouter des métadonnées aux fonctions : les annotations. Les annotations sont une fonctionnalité du langage qui permet d'associer des informations arbitraires aux arguments de fonction et aux valeurs de retour. Elles sont souvent utilisées pour indiquer les types attendus des arguments et de la valeur de retour, bien qu'elles puissent en principe contenir n'importe quel type de données.
 
@@ -1633,7 +2073,7 @@ Cela affiche le dictionnaire des annotations de la fonction :
 
 Cependant, bien que les annotations soient une fonctionnalité puissante et flexible, il est important de noter qu'elles ne remplacent pas les docstrings pour la documentation des fonctions. Les docstrings peuvent fournir des informations beaucoup plus détaillées et explicatives que les annotations. Les deux outils peuvent être utilisés ensemble pour rendre nos fonctions aussi claires et compréhensibles que possible.
 
-## Écrire des annotations modernes
+## 13.1 Écrire des annotations modernes
 
 La syntaxe des annotations a nettement évolué. Les formes suivantes, longtemps
 nécessaires, sont aujourd'hui obsolètes :
@@ -1678,7 +2118,223 @@ def premier[T](valeurs: list[T]) -> T | None:
     return valeurs[0] if valeurs else None
 ```
 
-## Vérifier les types
+## 13.2 Les types génériques
+
+En Python 3.14, les **types génériques** (*generics*) permettent d'écrire des fonctions, des classes et des structures de données capables de fonctionner avec plusieurs types, **tout en conservant des informations précises sur ces types**.
+
+C'est particulièrement intéressant pour développer des bibliothèques, des frameworks et des API, comme dans le cas de **PyEcore**, où l'on manipule des objets, des collections et des modèles de différents types.
+
+Les génériques existent depuis Python 3.5, mais leur syntaxe a été considérablement simplifiée à partir de Python 3.12, avec la [PEP 695](https://peps.python.org/pep-0695/). Python 3.14 apporte également des améliorations importantes à la gestion des annotations, détaillées dans la section sur l'évaluation différée.
+
+### 13.2.1 Le principe d'un type générique
+
+Prenons une fonction qui renvoie le premier élément d'une liste.
+
+#### 13.2.1.1 Sans génériques
+
+```python
+def premier(elements: list) -> object:
+    return elements[0]
+```
+
+Cette fonction accepte des listes de n'importe quel type. Mais elle présente un problème : le système de typage ne connaît pas le type de l'élément renvoyé.
+
+```python
+n = premier([1, 2, 3])
+texte = premier(["bonjour", "monde"])
+```
+
+Pour un vérificateur de types, `n` et `texte` sont tous les deux de type `object`. Nous perdons donc de l'information.
+
+#### 13.2.1.2 Avec les génériques
+
+```python
+def premier[T](elements: list[T]) -> T:
+    return elements[0]
+```
+
+Ici, `T` représente un **paramètre de type**. Il peut correspondre à `int`, `str`, ou à n'importe quelle autre classe.
+
+```python
+n = premier([1, 2, 3])
+texte = premier(["bonjour", "monde"])
+```
+
+Un outil d'analyse statique, comme Pyright ou mypy, peut maintenant déduire que :
+
+```python
+# n     : int
+# texte : str
+```
+
+La fonction est toujours la même, mais ses annotations expriment une relation entre le type de son argument et celui de son résultat. **C'est le principal intérêt des génériques : conserver les relations entre les types sans dupliquer le code.**
+
+### 13.2.2 Les classes génériques
+
+On peut également déclarer des classes génériques. Prenons l'exemple d'une boîte contenant un objet.
+
+```python
+class Boite[T]:
+    def __init__(self, valeur: T):
+        self.valeur = valeur
+
+    def obtenir(self) -> T:
+        return self.valeur
+
+    def remplacer(self, valeur: T) -> None:
+        self.valeur = valeur
+```
+
+Utilisation :
+
+```python
+boite_entiers = Boite[int](42)
+boite_texte = Boite[str]("Bonjour")
+```
+
+On dispose désormais de deux spécialisations d'une même classe :
+
+- `Boite[int]` : boîte contenant un entier ;
+- `Boite[str]` : boîte contenant une chaîne.
+
+Cela permet au vérificateur de types de signaler certaines erreurs :
+
+```python
+boite_entiers = Boite[int](42)
+boite_entiers.remplacer(100)        # Correct
+boite_entiers.remplacer("Bonjour")  # Erreur de typage
+```
+
+Attention : **Python ne vérifie pas automatiquement les annotations à l'exécution**. Le dernier appel fonctionnera normalement à l'exécution, sauf si la classe effectue elle-même une validation. Les génériques améliorent avant tout la vérification statique, l'autocomplétion et la maintenance du code.
+
+### 13.2.3 Plusieurs paramètres génériques
+
+Une classe peut utiliser plusieurs paramètres de type :
+
+```python
+class Paire[T, U]:
+    def __init__(self, premier: T, second: U):
+        self.premier = premier
+        self.second = second
+
+    def obtenir(self) -> tuple[T, U]:
+        return self.premier, self.second
+```
+
+Utilisation :
+
+```python
+p1 = Paire[int, str](10, "Bonjour")
+p2 = Paire[str, float]("Pi", 3.14159)
+```
+
+Les types `T` et `U` sont indépendants. On peut même écrire :
+
+```python
+def inverser[T, U](paire: Paire[T, U]) -> Paire[U, T]:
+    return Paire(paire.second, paire.premier)
+```
+
+Le système de typage sait alors que :
+
+```python
+p1 = Paire[int, str](10, "Bonjour")
+p2 = inverser(p1)
+# p1 : Paire[int, str]
+# p2 : Paire[str, int]
+```
+
+Cette capacité est très utile lorsqu'on développe des collections, des transformations de données ou des bibliothèques génériques.
+
+### 13.2.4 Les génériques avec contraintes et bornes
+
+On peut limiter les types acceptés par un paramètre générique :
+
+```python
+def additionner[T: (int, float)](a: T, b: T) -> T:
+    return a + b
+```
+
+La syntaxe `T: (int, float)` signifie que `T` doit être résolu comme `int` ou `float`.
+
+Il existe aussi les bornes, qui permettent d'accepter une classe et ses sous-classes :
+
+```python
+class Animal:
+    def parler(self) -> str:
+        return "..."
+
+class Chien(Animal):
+    def parler(self) -> str:
+        return "Wouf"
+
+def afficher[T: Animal](animal: T) -> T:
+    print(animal.parler())
+    return animal
+```
+
+Ici, `T` peut représenter `Animal`, `Chien` ou toute autre sous-classe d'`Animal`. La distinction est importante : les contraintes énumèrent des types possibles, tandis qu'une borne définit une relation de sous-typage.
+
+### 13.2.5 Les paramètres génériques par défaut
+
+Introduite dans Python 3.13 par la [PEP 696](https://peps.python.org/pep-0696/), cette fonctionnalité est disponible en Python 3.14 :
+
+```python
+class Conteneur[T = str]:
+    def __init__(self, valeur: T):
+        self.valeur = valeur
+```
+
+On peut écrire :
+
+```python
+a: Conteneur = Conteneur("Bonjour")
+b: Conteneur[int] = Conteneur(42)
+```
+
+Dans la première déclaration, le paramètre générique omis prend la valeur par défaut `str`. Cette fonctionnalité facilite notamment l'évolution des API génériques en préservant leur compatibilité avec du code existant.
+
+### 13.2.6 Les alias de types génériques
+
+Depuis Python 3.12, le mot-clé `type` permet de déclarer des alias génériques :
+
+```python
+type Identifiant = int | str
+type Resultat[T] = tuple[bool, T | None]
+```
+
+On peut ensuite les réutiliser :
+
+```python
+def chercher[T](elements: list[T], index: int) -> Resultat[T]:
+    if 0 <= index < len(elements):
+        return True, elements[index]
+    return False, None
+```
+
+On obtient ainsi des signatures plus lisibles et des structures de types réutilisables.
+
+### 13.2.7 Ce qui change selon les versions
+
+Il faut distinguer les fonctionnalités introduites dans les différentes versions :
+
+| Version | Évolution |
+| --- | --- |
+| Python 3.5 | Introduction de `typing`, `TypeVar` et `Generic` |
+| Python 3.9 | Utilisation directe de `list[int]`, `dict[str, int]`, etc. |
+| Python 3.10 | Syntaxe des unions avec `int \| str` |
+| Python 3.12 | Nouvelle syntaxe `class C[T]`, `def f[T]` et `type Alias[T]` (PEP 695) |
+| Python 3.13 | Paramètres génériques avec valeurs par défaut (PEP 696) |
+| **Python 3.14** | **Évaluation différée des annotations et nouvelles API d'introspection (PEP 649 et 749)** |
+
+Pour approfondir :
+
+- [PEP 695 — Type Parameter Syntax](https://peps.python.org/pep-0695/)
+- [PEP 696 — Type Defaults](https://peps.python.org/pep-0696/)
+- [Documentation officielle de `typing` en Python 3.14](https://docs.python.org/3.14/library/typing.html)
+- [What's New in Python 3.14](https://docs.python.org/3.14/whatsnew/3.14.html)
+
+## 13.3 Vérifier les types
 
 Python n'exécute aucune vérification : les annotations ne servent que si un outil
 les lit. Le plus répandu est `mypy` :
@@ -1700,27 +2356,86 @@ Une annotation fausse est pire qu'une annotation absente : elle affirme quelque
 chose de faux au lecteur comme à l'outil. Si un doute subsiste sur le type d'une
 valeur, mieux vaut l'annoter `Any` explicitement que mentir.
 
-## L'évaluation différée des annotations
+## 13.4 L'évaluation différée des annotations
 
-Une annotation était historiquement évaluée à la définition de la fonction, ce qui
-interdisait de référencer une classe pas encore définie et obligeait à recourir
-aux guillemets :
+Une annotation était historiquement évaluée à la définition de la fonction, ce qui interdisait de référencer une classe pas encore définie et obligeait à recourir aux guillemets :
 
 ```python
 class Noeud:
     def enfant(self) -> "Noeud": ...      # guillemets nécessaires
 ```
 
-Python 3.14 rend l'évaluation paresseuse ([PEP 649](https://peps.python.org/pep-0649/)) :
-les annotations ne sont calculées qu'à la demande, les références en avant
-fonctionnent sans guillemets, et le coût d'importation d'un module fortement
-annoté diminue.
+Python 3.14 rend l'évaluation paresseuse ([PEP 649](https://peps.python.org/pep-0649/)) : les annotations ne sont calculées qu'à la demande, les références en avant fonctionnent sans guillemets ni import de `annotations` depuis `__future__`, et le coût d'importation d'un module fortement annoté diminue.
 
-# Les Classes
+```python
+class Noeud:
+    def parent(self) -> Noeud | None:
+        return None
+```
+
+Le nouveau module `annotationlib` ([PEP 749](https://peps.python.org/pep-0749/)) permet de les inspecter, y compris lorsqu'elles contiennent des références en avant non encore résolues :
+
+```python
+import annotationlib
+
+annotations = annotationlib.get_annotations(
+    Noeud.parent,
+    format=annotationlib.Format.FORWARDREF,
+)
+print(annotations)
+```
+
+Cette évolution est particulièrement intéressante pour les frameworks qui inspectent les annotations à l'exécution.
+
+## 13.5 Déclarer une constante avec `Final`
+
+À partir de Python 3.8, le module `typing` offre un moyen de déclarer une variable comme étant "finale" ou constante, en utilisant l'annotation `Final`.
+
+Voici comment cela fonctionne :
+
+```python
+from typing import Final
+
+CONSTANTE: Final = "Une variable constante"
+```
+
+Dans cet exemple, `CONSTANTE` est déclarée comme une variable finale, ce qui signifie que sa valeur est censée ne pas être modifiée après l'affectation initiale.
+
+Il convient de noter que `Final` est une annotation de type et n'impose pas de contrainte d'immuabilité au niveau de l'exécution. Autrement dit, Python lui-même n'empêchera pas la modification d'une variable annotée avec `Final`, mais certains outils de vérification de types comme `mypy` peuvent émettre un avertissement si vous tentez de modifier une telle variable.
+
+Cela dit, utiliser `Final` est une bonne pratique pour communiquer l'intention que certaines variables ne doivent pas être modifiées et pour aider les outils de vérification de type à détecter les erreurs potentielles.
+
+## 13.6 Le type `Self` (Python 3.11)
+
+L'annotation Self, introduite à partir de Python 3.11, offre une manière à la fois intuitive et simple d'annoter les méthodes qui retournent une instance de leur propre classe. Cette approche, bien qu'elle corresponde à celle basée sur TypeVar tel que décrit dans le [PEP 484](https://peps.python.org/pep-0484/), se distingue par sa concision et sa facilité de compréhension.
+
+Nous pouvons souvent rencontrer son utilisation dans des contextes tels que des constructeurs alternatifs proposés en tant que méthodes de classe, ou encore des méthodes **enter**() qui retournent self
+
+```python
+class MyLock:
+    def __enter__(self) -> Self:
+        self.lock()
+        return self
+
+    ...
+
+class MyInt:
+    @classmethod
+    def fromhex(cls, s: str) -> Self:
+        return cls(int(s, 16))
+
+    ...
+```
+
+Self peut également être utilisé pour annoter les paramètres de méthode ou les attributs du même type que leur classe englobante.
+
+Pour plus de détails, voir [PEP 673](https://peps.python.org/pep-0673/).
+
+# 14. Les classes
 
 Une classe est une structure qui nous permet de regrouper des données, que nous appelons des attributs, et des fonctions, que nous appelons des méthodes, qui opèrent sur ces données. Les classes sont définies avec le mot-clé `class`.
 
-## L'héritage
+## 14.1 L'héritage
 
 Un point important à noter est que les classes peuvent hériter d'autres classes, permettant ainsi le partage de fonctionnalités entre plusieurs classes. Cette caractéristique est connue sous le nom d'héritage.
 
@@ -1744,7 +2459,7 @@ L'héritage est un concept fondamental en programmation orientée objet, qui per
 
 L'héritage est utile car il favorise la réutilisation du code et peut rendre le code plus organisé et plus facile à comprendre.
 
-## La notion de constructeur et de destructeur
+## 14.2 La notion de constructeur et de destructeur
 
 - Le **constructeur** est une méthode spéciale, `__init__`, qui est appelée automatiquement lorsque nous créons une nouvelle instance de la classe. Elle est généralement utilisée pour initialiser les attributs de l'objet.
 
@@ -1752,7 +2467,7 @@ L'héritage est utile car il favorise la réutilisation du code et peut rendre l
 
 Python nous offre la possibilité de définir des attributs privés en préfixant le nom de l'attribut avec deux tirets bas `__`. Ces attributs ne peuvent pas être directement accessibles en dehors de la classe. Par exemple, `__attribut_prive` serait un attribut privé. Cependant, il faut noter que Python ne supporte pas la notion d'attributs strictement privés comme dans d'autres langages, et cette convention est plutôt une suggestion pour indiquer que ces attributs ne doivent pas être touchés en dehors de la classe.
 
-# Le polymorphisme
+## 14.3 Le polymorphisme
 
 Le polymorphisme est un autre concept clé de la programmation orientée objet. Il se réfère à la capacité d'une entité, comme une variable, une fonction, ou un objet, à prendre plusieurs formes. En Python, le polymorphisme se manifeste de plusieurs façons.
 
@@ -1788,7 +2503,7 @@ Dans cet exemple, la méthode `faire_bruit` est polymorphique : la version utili
 
 Ces deux concepts, l'héritage et le polymorphisme, sont fondamentaux en programmation orientée objet et permettent de créer des codes plus modulables et plus facilement réutilisables.
 
-# Les méthodes de classe
+## 14.4 Les méthodes de classe
 
 En Python, une méthode de classe est une méthode qui est liée à la classe et non à l'instance de la classe. Elle peut modifier l'état de la classe qui affecte toutes les instances de la classe. En Python, une méthode de classe est marquée par un décorateur `@classmethod`.
 
@@ -1805,7 +2520,7 @@ class MaClasse:
 
 Dans cet exemple, `incrementer_compteur` est une méthode de classe qui modifie une variable de classe, `compteur`. Notez l'utilisation de `cls` comme premier argument de la méthode de classe, qui est une convention pour faire référence à la classe elle-même.
 
-# Le `__new__` et `__del__`
+## 14.5 Les méthodes `__new__` et `__del__`
 
 En Python, `__new__` est une méthode spéciale qui est principalement utilisée dans les classes avec une métaclasse ou lors de la surcharge de types immuables ou de classes. C'est la première étape de la création d'une instance, elle est appelée avant `__init__` et est responsable de renvoyer une nouvelle instance de la classe.
 
@@ -1836,7 +2551,7 @@ class MaClasse:
 
 Dans cet exemple, `__del__` est défini pour imprimer un message lors de la destruction de l'instance.
 
-## Le super()
+## 14.6 La fonction `super()`
 
 En programmation orientée objet, le `super()` est une fonction intégrée que nous utilisons pour appeler une méthode de la classe parente. Cela peut être très utile, en particulier dans le cas de l'héritage où une méthode a été réécrite dans une classe enfant, mais nous voulons toujours utiliser certaines parties de la méthode de la classe parente.
 
@@ -1859,7 +2574,7 @@ Dans cet exemple, la classe `Chien` hérite de la classe `Animal`. Nous voulons 
 
 Notons que l'appel à `super()` n'a pas besoin de spécifier explicitement la classe parente. Python détermine automatiquement la classe parente en fonction de l'ordre d'héritage, ce qui est particulièrement utile dans le cas de l'héritage multiple.
 
-## L'héritage en diamant
+## 14.7 L'héritage en diamant
 
 L'héritage en diamant, aussi connu sous le nom de "problème du diamant", est une complication qui peut survenir dans les langages qui supportent l'héritage multiple, comme Python. Il se produit lorsque une classe hérite de deux classes qui ont une classe parente commune.
 
@@ -1893,7 +2608,7 @@ L'utilisation de la fonction `super()` dans ce contexte peut également être so
 
 L'héritage multiple et l'héritage en diamant en particulier peuvent être des concepts difficiles à comprendre et à gérer correctement, c'est pourquoi certains langages de programmation, comme Java, ne les supportent pas du tout. Dans de nombreux cas, il peut être plus simple et plus sûr d'utiliser la composition ou l'agrégation d'objets plutôt que l'héritage multiple.
 
-# La notion d'interface
+## 14.8 La notion d'interface
 
 Dans la programmation orientée objet, une interface est une spécification qui décrit les comportements (méthodes) qu'une classe doit implémenter. En d'autres termes, une interface définit "ce que" une classe doit faire, mais pas "comment" elle doit le faire. C'est un contrat qui garantit qu'un certain type d'objet se comportera d'une certaine manière. 
 
@@ -1926,33 +2641,7 @@ Les interfaces sont un outil puissant pour la conception de programmes, car elle
 
 Voir la [documentation](https://docs.python.org/3/library/abc.html) officielle pour plus d'informations sur le module abc.
 
-## Le type Self à partir de python 3.11
-
-L'annotation Self, introduite à partir de Python 3.11, offre une manière à la fois intuitive et simple d'annoter les méthodes qui retournent une instance de leur propre classe. Cette approche, bien qu'elle corresponde à celle basée sur TypeVar tel que décrit dans le [PEP 484](https://peps.python.org/pep-0484/), se distingue par sa concision et sa facilité de compréhension.
-
-Nous pouvons souvent rencontrer son utilisation dans des contextes tels que des constructeurs alternatifs proposés en tant que méthodes de classe, ou encore des méthodes **enter**() qui retournent self
-
-``` python
-class MyLock:
-    def __enter__(self) -> Self:
-        self.lock()
-        return self
-
-    ...
-
-class MyInt:
-    @classmethod
-    def fromhex(cls, s: str) -> Self:
-        return cls(int(s, 16))
-
-    ...
-```
-
-Self peut également être utilisé pour annoter les paramètres de méthode ou les attributs du même type que leur classe englobante.
-
-Pour plus de détails, voir [PEP 673](https://peps.python.org/pep-0673/).
-
-# Les design patterns en python
+# 15. Les design patterns en Python
 
 Un motif de conception (design pattern) est une solution générale réutilisable à un problème couramment rencontré dans la conception logicielle. Un motif de conception n'est pas un code finalisé qui peut être directement transformé en code source ou en machine. Il s'agit d'une description ou d'un modèle pour résoudre un problème qui peut être utilisé dans de nombreux contextes de conception différents.
 
@@ -1970,7 +2659,8 @@ Nous trouverons plus d'information dans le cours [[Design patterns]]
 
 Pour les implémenter en Python, il existe plusieurs ressources, dont des livres et des tutoriels en ligne. L'un des plus connus est le livre "Design Patterns: Elements of Reusable Object-Oriented Software" par Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, surnommés le "Gang of Four". Pour une approche spécifique à Python, vous pouvez consulter le livre "Python 3 Object-Oriented Programming" par Dusty Phillips, qui couvre les motifs de conception dans le contexte de Python. Enfin, un projet GitHub appelé "Python Patterns" recueille divers exemples de motifs de conception implémentés en Python : https://github.com/faif/python-patterns.
 
-# Les décorateurs
+# 16. Les décorateurs
+
 Les décorateurs permettent de modifier ou d'améliorer le comportement des fonctions ou des classes sans changer leur code source. Les décorateurs sont eux-mêmes des fonctions qui prennent une fonction ou une classe comme argument et retournent une nouvelle fonction ou classe avec des comportements supplémentaires.
 
 Exemple simple d'un décorateur :
@@ -2025,246 +2715,7 @@ Dans cet exemple, `mon_decorateur_avec_args` est un décorateur qui prend des ar
 
 Enfin, il est important de mentionner que les décorateurs peuvent aussi être utilisés avec des classes. Les décorateurs de classes fonctionnent de la même manière que les décorateurs de fonctions, mais ils prennent une classe comme argument et retournent une nouvelle classe avec des comportements modifiés ou ajoutés.
 
-## Le module `itertools`
-Les `itertools` sont un module de la bibliothèque standard de Python qui fournit plusieurs itérateurs rapides et efficaces pour boucler sur des données de différentes manières. Voici un aperçu des fonctions les plus courantes et utiles de ce module, accompagnées d'exemples pour chacune.
-
-### 1. `itertools.count(start=0, step=1)`
-
-Génère une séquence infinie de nombres à partir de `start`, incrémentée de `step`.
-
-```python
-import itertools
-
-counter = itertools.count(start=10, step=2)
-for _ in range(5):
-    print(next(counter))
-```
-
-Sortie :
-```
-10
-12
-14
-16
-18
-```
-
-### 2. `itertools.cycle(iterable)`
-
-Répète indéfiniment les éléments de l'itérable donné.
-
-```python
-import itertools
-
-cycler = itertools.cycle(['A', 'B', 'C'])
-for _ in range(6):
-    print(next(cycler))
-```
-
-Sortie :
-```
-A
-B
-C
-A
-B
-C
-```
-
-### 3. `itertools.repeat(object, times=None)`
-
-Répète l'objet donné un nombre de fois spécifié. Si `times` n'est pas fourni, il répète indéfiniment.
-
-```python
-import itertools
-
-repeater = itertools.repeat('Hello', 3)
-for item in repeater:
-    print(item)
-```
-
-Sortie :
-```
-Hello
-Hello
-Hello
-```
-
-### 4. `itertools.permutations(iterable, r=None)`
-
-Retourne toutes les permutations possibles d'une longueur `r` (par défaut la longueur de l'itérable).
-
-```python
-import itertools
-
-perms = itertools.permutations('ABC', 2)
-for perm in perms:
-    print(perm)
-```
-
-Sortie :
-```
-('A', 'B')
-('A', 'C')
-('B', 'A')
-('B', 'C')
-('C', 'A')
-('C', 'B')
-```
-
-### 5. `itertools.combinations(iterable, r)`
-
-Retourne toutes les combinaisons possibles d'une longueur `r`.
-
-```python
-import itertools
-
-combs = itertools.combinations('ABC', 2)
-for comb in combs:
-    print(comb)
-```
-
-Sortie :
-```
-('A', 'B')
-('A', 'C')
-('B', 'C')
-```
-
-### 6. `itertools.product(*iterables, repeat=1)`
-
-Retourne le produit cartésien des itérables donnés.
-
-```python
-import itertools
-
-prod = itertools.product('AB', '12')
-for p in prod:
-    print(p)
-```
-
-Sortie :
-```
-('A', '1')
-('A', '2')
-('B', '1')
-('B', '2')
-```
-
-### 7. `itertools.chain(*iterables)`
-
-Combine plusieurs itérables en un seul.
-
-```python
-import itertools
-
-chained = itertools.chain('ABC', 'DEF')
-for item in chained:
-    print(item)
-```
-
-Sortie :
-```
-A
-B
-C
-D
-E
-F
-```
-
-### 8. `itertools.groupby(iterable, key=None)`
-
-Groupe des éléments consécutifs de l'itérable par une clé donnée.
-
-```python
-import itertools
-
-data = sorted([('A', 1), ('A', 2), ('B', 3), ('B', 4), ('C', 5)], key=lambda x: x)
-grouped = itertools.groupby(data, key=lambda x: x)
-for key, group in grouped:
-    print(key, list(group))
-```
-
-Sortie :
-```
-A [('A', 1), ('A', 2)]
-B [('B', 3), ('B', 4)]
-C [('C', 5)]
-```
-## Le module `functools`
-Le module `functools` de la bibliothèque standard de Python fournit divers outils utiles pour travailler avec des fonctions et des appels de fonctions. Il est très utile pour les tâches avancées de programmation fonctionnelle. Voici un aperçu de certaines des fonctionnalités clés de ce module, avec des exemples pratiques.
-
-### `functools.reduce`
-La fonction `reduce` applique une fonction binaire (une fonction à deux arguments) de manière répétée à tous les éléments d'un itérable, cumulant ainsi les résultats pour produire une seule valeur finale.
-
-#### Exemple
-Supposons que nous souhaitons calculer le produit de tous les éléments d'une liste.
-
-```python
-import functools
-
-def multiply(x, y):
-    return x * y
-
-numbers =
-product = functools.reduce(multiply, numbers)
-print(product)  # Output: 120
-```
-
-### `functools.partial`
-La fonction `partial` permet de fixer partiellement certains arguments d'une fonction, renvoyant une nouvelle fonction avec moins d'arguments requis.
-
-#### Exemple
-Nous avons une fonction qui prend trois arguments, et nous voulons créer une nouvelle fonction qui a un des arguments préfixé.
-
-```python
-import functools
-
-def power(base, exponent):
-    return base ** exponent
-
-square = functools.partial(power, exponent=2)
-print(square(3))  # Output: 9
-```
-
-### `functools.lru_cache`
-Le décorateur `lru_cache` (Least Recently Used Cache) mémorise les résultats des appels de fonction pour accélérer les appels ultérieurs avec les mêmes arguments.
-
-#### Exemple
-Nous avons une fonction de calcul coûteuse que nous voulons optimiser en utilisant le cache.
-
-```python
-import functools
-
-@functools.lru_cache(maxsize=128)
-def fibonacci(n):
-    if n < 2:
-        return n
-    return fibonacci(n - 1) + fibonacci(n - 2)
-
-print(fibonacci(10))  # Output: 55
-```
-La mise ne cache peut aussi permettre de résoudre des limites de récursion :
-```python
->>> print(fibonacci(1000)) 
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 5, in fibonacci
-  File "<stdin>", line 5, in fibonacci
-  File "<stdin>", line 5, in fibonacci
-  [Previous line repeated 496 more times]
-RecursionError: maximum recursion depth exceeded
->>> print(fibonacci(500)) 
-139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125
->>> print(fibonacci(750)) 
-2461757021582324272166248155313036893697139996697461509576233211000055607912198979704988704446425834042795269603588522245550271050495783935904220352228801000
->>> print(fibonacci(1000)) 
-43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
->>> fibonacci.cache_info()
-CacheInfo(hits=1001, misses=1501, maxsize=128, currsize=128)
-```
-## Wrap
+## 16.1 `functools.wraps`
 
 `functools.wraps` est une fonction de la bibliothèque standard Python utilisée dans le contexte des décorateurs. Elle est utilisée pour conserver les métadonnées de la fonction originale lors de la décoration.
 
@@ -2325,10 +2776,12 @@ print(say_hello.__name__)  # Output: say_hello
 print(say_hello.__doc__)   # Output: Greet someone by their name.
 ```
 
-### `functools.total_ordering`
+## 16.2 `functools.total_ordering`
+
 Le décorateur `total_ordering` permet de définir toutes les méthodes de comparaison riche (`__lt__`, `__le__`, `__gt__`, `__ge__`) à partir de la définition d'une seule ou de deux de ces méthodes.
 
-#### Exemple
+Exemple :
+
 Nous définissons une classe avec une méthode de comparaison et utilisons `total_ordering` pour compléter les autres.
 
 ```python
@@ -2357,7 +2810,8 @@ p2 = Person("Bob", 25)
 print(p1 > p2)  # Output: True
 ```
 
-# Décorateur de fonction pour mesurer la performance
+## 16.3 Un décorateur pour mesurer la performance
+
 Nous pouvons facilement créer un décorateur en Python pour mesurer le temps d'exécution d'une fonction ou d'une méthode et le logger. Voici un exemple de décorateur qui utilise le module `logging` pour enregistrer le temps d'exécution :
 
 ```python
@@ -2401,7 +2855,7 @@ Lorsque nous appliquons ce décorateur à une fonction ou à une méthode avec l
 
 Notons que le décorateur utilise `functools.wraps` pour préserver les métadonnées de la fonction originale, comme son nom et sa docstring.
 
-# Les exceptions
+# 17. Les exceptions
 
 Les exceptions en Python sont des erreurs qui sont détectées pendant l'exécution d'un programme. Elles sont signalées par le mécanisme d'exception de Python, qui arrête l'exécution normale du programme et transfère le contrôle à un code qui est conçu pour gérer les erreurs, appelé gestionnaire d'exceptions.
 
@@ -2421,7 +2875,7 @@ Dans cet exemple, nous essayons d'accéder à une variable `PasDefinie` qui n'a 
 
 Il est important de noter que les exceptions sont des erreurs graves qui, si elles ne sont pas gérées, peuvent arrêter l'exécution de notre programme. Il est donc essentiel d'avoir une bonne compréhension de la façon de gérer les exceptions lorsque nous écrivons du code Python.
 
-## Arborescence des exceptions
+## 17.1 Arborescence des exceptions
 
 En Python, toutes les exceptions sont dérivées de la classe de base `BaseException`. En général, nous travaillons avec des exceptions  dérivées de la classe `Exception`, qui est elle-même hérite de `BaseException`.
 
@@ -2494,7 +2948,7 @@ Cette arborescence de classe montre que les exceptions spécifiques héritent d'
 
 Quand nous utilisons un bloc `try`/`except` pour gérer des exceptions, nous pouvons cibler des exceptions spécifiques (par exemple, `ZeroDivisionError`) ou des exceptions plus générales (par exemple, `ArithmeticError` ou `Exception`). Si nous ciblons une exception générale, cela attrapera également toutes ses sous-exceptions. Par exemple, `except Exception:` attrapera toutes les exceptions dérivées de `Exception`, qui incluent la plupart des exceptions qui peuvent être levées par votre code.
 
-## L'instruction `else` dans un bloc d'exception
+## 17.2 L'instruction `else` dans un bloc d'exception
 
 Nous pouvons ajouter un bloc `else` à un bloc `try`/`except`. Le bloc `else` est une partie où nous pouvons mettre du code qui sera exécuté si le bloc de code dans le `try` s'exécute sans lever d'exception. 
 
@@ -2516,7 +2970,7 @@ Dans cet exemple, aucun `ValueError` n'est levé dans le bloc `try`, donc le blo
 
 Notons que le bloc `else` est exécuté après le bloc `try`, mais avant le bloc `finally`, s'il est présent. Le bloc `finally` est conçu pour contenir du code de nettoyage qui doit être exécuté quelles que soient les exceptions qui pourraient être levées, tandis que le bloc `else` est conçu pour contenir du code qui n'est exécuté que si aucune exception n'est levée.
 
-## L'instruction `finally`
+## 17.3 L'instruction `finally`
 
 Nous pouvons compléter un bloc d'exception avec l'instruction `finally`, qui est utilisée avec les blocs `try`/`except` pour spécifier un bloc de code à exécuter, peu importe si une exception est levée ou non. Ceci est généralement utilisé pour effectuer des opérations de nettoyage, comme fermer un fichier ou une connexion réseau.
 
@@ -2529,7 +2983,9 @@ finally:
     # Bloc de code qui est toujours exécuté, peu importe si une exception est levée ou non
 ```
 
-# Les modules
+# 18. Les modules et les paquets
+
+## 18.1 Les modules
 
 Un module est un fichier contenant du code Python qui définit des fonctions, des classes et des variables. Ces modules peuvent être importés dans d'autres scripts Python pour réutiliser leur code et organiser notre programme. Ils constituent la base de la réutilisation du code en Python et nous permettent de structurer notre code de manière plus logique, compréhension et réutilisable.
 
@@ -2550,7 +3006,7 @@ import math
 print(math.sqrt(16))  # Affiche 4.0
 ```
 
-## L'instruction import as
+### 18.1.1 L'instruction `import as`
 
 L'instruction `import as` en Python est utilisée pour donner un alias, ou un autre nom, à un module lors de son importation. Cela peut être particulièrement utile lorsque le nom du module est long et que nous voulons utiliser un nom plus court pour le référencer dans notre code.
 
@@ -2573,7 +3029,7 @@ import numpy as np
 
 Cela permet de taper `np` au lieu de `numpy` chaque fois que nous voulons accéder aux fonctions ou aux variables de NumPy.
 
-## instruction reload
+### 18.1.2 La fonction `reload`
 
 La primitive `reload` est une fonction intégrée qui nous permet de recharger un module après l'avoir importé. C'est utile lorsque nous avons apporté des modifications à un module et que nous voulons que ces modifications soient prises en compte sans avoir à quitter Python et le relancer. Pour utiliser `reload`, nous devons d'abord importer le module `importlib` :
 
@@ -2584,7 +3040,7 @@ importlib.reload(math)
 
 Notons que l'utilisation de `reload` n'est pas courante dans la plupart des scénarios de programmation Python. En général, si nous modifions fréquemment nos modules pendant que nous développez un programme, il peut être plus facile de simplement quitter et relancer Python. Cependant, dans certains cas, comme dans un serveur Web qui reste allumé en permanence, `reload` peut être utile pour appliquer des mises à jour à nos modules.
 
-### L'instruction `from` dans les imports
+### 18.1.3 L'instruction `from` dans les imports
 
 L'instruction `from` en Python est utilisée dans les importations pour importer des fonctions, classes, ou variables spécifiques d'un module, plutôt que d'importer le module en entier. Par exemple :
 
@@ -2598,7 +3054,7 @@ Dans cet exemple, seulement la fonction `sqrt` du module `math` est importée. N
 print(sqrt(16))  # Affiche 4.0
 ```
 
-### L'utilisation de `.` dans les imports
+### 18.1.4 L'utilisation de `.` dans les imports
 
 Le caractère `.` est utilisé pour spécifier les sous-modules ou les packages. Considérons un package nommé `mypackage` avec un sous-module `mymodule`. Nous pourrions l'importer de cette façon :
 
@@ -2612,7 +3068,7 @@ Et nous pourrions aussi utiliser `from` avec `.` :
 from mypackage import mymodule
 ```
 
-### L'utilisation de `*` dans les imports
+### 18.1.5 L'utilisation de `*` dans les imports
 
 L'astérisque `*` en Python est utilisé pour importer toutes les fonctions, classes et variables d'un module. Par exemple :
 
@@ -2629,7 +3085,7 @@ print(pi)  # Affiche 3.141592653589793
 
 Cependant, utiliser `import *` n'est généralement pas recommandé, car cela peut causer des conflits entre les noms de différents modules, et cela rend notre code moins clair. Il est préférable d'importer seulement ce dont nous avons besoin à l'aide de l'instruction `from`, ou d'importer le module entier et d'utiliser le préfixe du nom de module.
 
-# Les paquets
+## 18.2 Les paquets
 
 Les paquets sont un moyen d'organiser les modules de manière hiérarchique. Un paquet est simplement un répertoire qui contient plusieurs modules Python. C'est une façon d'organiser de grands ensembles de code en petits sous-ensembles maniables. 
 
@@ -2659,79 +3115,19 @@ from monpaquet.module1 import ma_fonction
 
 L'utilisation de paquets permet une organisation logique et une séparation des fonctionnalités, ce qui facilite la gestion de projets de grande envergure.
 
+# 19. Le templating avancé : des f-strings aux T-strings (Python 3.14)
 
-# Points de suspension dans les classes
-
-Nous utilisons généralement le mot-clé "pass" comme espace réservé pour du code non écrit, c'est à dire comme instruction neutre ne faisant rien. Mais nous pouvons aussi utiliser des points de suspension à cette fin.
-```python
-def ecrire_un_article():
-    ...
-
-class Auteur:
-    ...
-```
-
-# Union de dictionnaires
-
-Le pipe permet de faire l'union de dictionnaires
-```python
->>> d1 = {1:"un",2:"deux",3:"trois"}
->>> d2 = {4:"quatre", 5:"cinq"}
->>> d1|d2
-{1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'cinq'}
->>> d3 = {5:"five", 6:"six"}
->>> d1|d2|d3
-{1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'five', 6: 'six'}
-```
-
-## Final
-
-À partir de Python 3.8, le module `typing` offre un moyen de déclarer une variable comme étant "finale" ou constante, en utilisant l'annotation `Final`.
-
-Voici comment cela fonctionne :
-
-```python
-from typing import Final
-
-CONSTANTE: Final = "Une variable constante"
-```
-
-Dans cet exemple, `CONSTANTE` est déclarée comme une variable finale, ce qui signifie que sa valeur est censée ne pas être modifiée après l'affectation initiale.
-
-Il convient de noter que `Final` est une annotation de type et n'impose pas de contrainte d'immuabilité au niveau de l'exécution. Autrement dit, Python lui-même n'empêchera pas la modification d'une variable annotée avec `Final`, mais certains outils de vérification de types comme `mypy` peuvent émettre un avertissement si vous tentez de modifier une telle variable.
-
-Cela dit, utiliser `Final` est une bonne pratique pour communiquer l'intention que certaines variables ne doivent pas être modifiées et pour aider les outils de vérification de type à détecter les erreurs potentielles.
-
-# FString
-
-Le formatage fstring est un appel automatique à format.
-```python
->>> from datetime import datetime  
->>>   
->>> today = datetime.today()  
->>>   
->>> print(f"Today is {today}")  
-Today is 2023-05-07 22:13:15.637951
->>>   
->>> print(f"Today is {today:%B %d, %Y}")  
-Today is May 07, 2023
->>>   
->>> print(f"Today is {today:%m-%d-%Y}")  
-Today is 05-07-2023
-```
-# Le Templating Avancé en Python – Des Méthodes Historiques aux T-strings (Python 3.14+)
-
-## Introduction
+## 19.1 Introduction
 
 La gestion dynamique des chaînes de caractères constitue un aspect fondamental de la programmation. Jusqu’à la version 3.14 de Python, trois approches principales permettaient l’insertion de variables au sein de chaînes de caractères. L’introduction des **T-strings** dans Python 3.14 marque une avancée significative, en apportant une gestion structurelle des modèles de texte, offrant davantage de sécurité, de flexibilité et de possibilités d’analyse.
 
 Ce chapitre a pour objectif d'examiner l’évolution des techniques de templating en Python, depuis les méthodes classiques jusqu’à la nouvelle approche structurée introduite par les T-strings.
 
-## Rétrospective : Les Méthodes Traditionnelles
+## 19.2 Rétrospective : les méthodes traditionnelles
 
 Avant d’aborder les T-strings, il convient d’analyser les limitations des méthodes antérieures, afin d’apprécier les apports de cette nouvelle fonctionnalité.
 
-### Les f-strings (Formatted String Literals)
+### 19.2.1 Les f-strings (*formatted string literals*)
 
 Introduites à partir de Python 3.6, les f-strings permettent l’interpolation directe de variables ou d’expressions à l’intérieur de chaînes, à l’aide du préfixe `f`.
 
@@ -2742,9 +3138,8 @@ Introduites à partir de Python 3.6, les f-strings permettent l’interpolation 
 - **Avantages** : Syntaxe concise, lisibilité élevée, prise en charge d’expressions arbitrairement complexes.
     
 - **Inconvénients** : La structure du modèle est perdue après évaluation. Le résultat est une chaîne de caractères simple (`str`), sans protection native contre les injections ou les manipulations non sécurisées. Il est également difficile de réutiliser le modèle.
-    
 
-### La méthode `str.format()`
+### 19.2.2 La méthode `str.format()`
 
 Cette méthode, antérieure aux f-strings, est compatible avec toutes les versions de Python 3.
 
@@ -2754,7 +3149,7 @@ Cette méthode, antérieure aux f-strings, est compatible avec toutes les versio
     
 - **Inconvénients** : Syntaxe plus verbeuse et moins lisible en présence de nombreuses variables. Comme pour les f-strings, la structure du modèle est perdue après évaluation.
 
-### La classe `string.Template`
+### 19.2.3 La classe `string.Template`
 
 Cette approche repose sur la classe `Template` du module `string`, utilisant le symbole `$` pour les substitutions.
 
@@ -2766,11 +3161,11 @@ Cette approche repose sur la classe `Template` du module `string`, utilisant le 
     
 - **Inconvénients** : Syntaxe plus contraignante, impossibilité d’utiliser des expressions complexes, structure perdue après substitution.  
 
-## L’Avènement des T-strings (Python 3.14)
+## 19.3 L'avènement des T-strings (Python 3.14)
 
 Les **T-strings**, introduites en Python 3.14, adoptent une syntaxe proche des f-strings, avec le préfixe `t`, mais diffèrent radicalement par leur comportement. En effet, elles produisent un **objet `Template` structuré**, et non une simple chaîne de caractères.
 
-### Pourquoi un Objet `Template` ?
+### 19.3.1 Pourquoi un objet `Template` ?
 
 Contrairement aux f-strings, qui concatènent immédiatement les parties textuelles et les valeurs, les T-strings préservent les composantes structurelles du modèle. Plus précisément, l’objet résultant conserve :
 
@@ -2780,7 +3175,7 @@ Contrairement aux f-strings, qui concatènent immédiatement les parties textuel
     
 3. Les métadonnées associées (spécifications de format, conversions, etc.).
 
-### Anatomie d’une T-string
+### 19.3.2 Anatomie d'une T-string
 
 Considérons l’exemple suivant :  
 `t"Bonjour {name}, vous avez {age} ans"`
@@ -2796,15 +3191,15 @@ L’objet T-string généré expose une interface structurée permettant une ins
 
 Cette structuration autorise le **rendu différé** (_deferred rendering_), c’est-à-dire la possibilité de post-traiter ou de filtrer les données avant de construire la chaîne finale.
 
-## Utilisation Pratique et Aspects de Sécurité
+## 19.4 Utilisation pratique et aspects de sécurité
 
 Le fait que les T-strings soient des objets structurés offre de nouvelles possibilités en matière de traitement, de sécurisation et de transformation dynamique du contenu.
 
-### Reconstitution d’une Chaîne
+### 19.4.1 Reconstitution d'une chaîne
 
 L’objet T-string se comporte comme un itérateur, fournissant de manière séquentielle les segments littéraux et les valeurs interpolées. La reconstitution finale d’une chaîne de caractères passe par une fonction de type _builder_, qui assemble ces éléments en tenant compte des règles de traitement définies.
 
-### Traitement Sécurisé des Données (_Sanitization_)
+### 19.4.2 Traitement sécurisé des données (*sanitization*)
 
 Un atout majeur des T-strings réside dans leur capacité à intégrer des mécanismes de nettoyage des données interpolées. Cette fonctionnalité est essentielle dans les contextes exposés à des données potentiellement malveillantes (interfaces web, requêtes SQL, fichiers de logs, etc.).
 
@@ -2813,11 +3208,11 @@ Lorsqu’un utilisateur saisit une chaîne contenant des balises HTML, une f-str
 
 > **Remarque importante** : Il convient de distinguer les T-strings du module `string.Template` historique. Bien que les noms soient proches, leurs usages diffèrent. La classe `Template` (avec `$`) vise la substitution simple ; les T-strings permettent, quant à elles, une gestion avancée et structurée des modèles.
 
-### Formatage Avancé
+### 19.4.3 Formatage avancé
 
 Les T-strings prennent en charge les spécificateurs de format traditionnels de Python (tels que `:.2f` pour le formatage numérique). La méthode de reconstruction permet d’appliquer automatiquement ces formats lors de la transformation des valeurs en chaînes.
 
-## Synthèse Comparative
+## 19.5 Synthèse comparative
 
 | Caractéristique | f-strings (`f""`) | `str.format()` | `string.Template` (`$`) | **T-strings (`t""`)**    |
 | --------------- | ----------------- | -------------- | ----------------------- | ------------------------ |
@@ -2826,7 +3221,8 @@ Les T-strings prennent en charge les spécificateurs de format traditionnels de 
 | **Sécurité**    | Faible            | Faible         | Moyenne                 | **Élevée (nettoyable)**  |
 | **Cas d’usage** | Scripts rapides   | Compatibilité  | Entrées utilisateur     | **Web, SQL, logs, etc.** |
 
-# Les descripteurs
+# 20. Les descripteurs
+
 ```python
 class Descriptor:
     """
@@ -2857,61 +3253,21 @@ class TestDescriptor:
 td = TestDescriptor(10)
 print(td.attribute)
 ```
-Le code ci-dessus présente deux classes : [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") et [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition"). La classe [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") est une classe de descripteur, ce qui signifie qu'elle permet de définir le comportement d'un attribut lorsqu'il est accédé, modifié ou supprimé. La classe [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") utilise la classe [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") pour définir un attribut appelé [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition").
+Le code ci-dessus présente deux classes : `Descriptor` et `TestDescriptor`. La classe `Descriptor` est une classe de descripteur, ce qui signifie qu'elle permet de définir le comportement d'un attribut lorsqu'il est accédé, modifié ou supprimé. La classe `TestDescriptor` utilise la classe `Descriptor` pour définir un attribut appelé `attribute`.
 
-La classe [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") implémente plusieurs méthodes spéciales qui sont utilisées pour définir le comportement de l'attribut. La méthode [`__set_name__`](command:_github.copilot.openSymbolFromReferences?%5B%22__set_name__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") est appelée lorsque l'attribut est défini dans une classe. Elle reçoit en paramètres [`owner`](command:_github.copilot.openSymbolFromReferences?%5B%22owner%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A27%7D%7D%5D%5D "Go to definition"), qui est la classe propriétaire de l'attribut, et [`name`](command:_github.copilot.openSymbolFromReferences?%5B%22name%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A34%7D%7D%5D%5D "Go to definition"), qui est le nom de l'attribut. Dans cet exemple, la méthode [`__set_name__`](command:_github.copilot.openSymbolFromReferences?%5B%22__set_name__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de [`self`](command:_github.copilot.openSymbolFromReferences?%5B%22self%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A21%7D%7D%5D%5D "Go to definition") (l'instance de [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition")), [`owner`](command:_github.copilot.openSymbolFromReferences?%5B%22owner%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A27%7D%7D%5D%5D "Go to definition") et [`name`](command:_github.copilot.openSymbolFromReferences?%5B%22name%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A34%7D%7D%5D%5D "Go to definition"). Ensuite, elle stocke le nom de l'attribut dans l'attribut [`name`](command:_github.copilot.openSymbolFromReferences?%5B%22name%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A34%7D%7D%5D%5D "Go to definition") de l'instance de [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition").
+La classe `Descriptor` implémente plusieurs méthodes spéciales qui sont utilisées pour définir le comportement de l'attribut. La méthode `__set_name__` est appelée lorsque l'attribut est défini dans une classe. Elle reçoit en paramètres `owner`, qui est la classe propriétaire de l'attribut, et `name`, qui est le nom de l'attribut. Dans cet exemple, la méthode `__set_name__` imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de `self` (l'instance de `Descriptor`), `owner` et `name`. Ensuite, elle stocke le nom de l'attribut dans l'attribut `name` de l'instance de `Descriptor`.
 
-La méthode [`__get__`](command:_github.copilot.openSymbolFromReferences?%5B%22__get__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") est appelée lorsque l'attribut est accédé. Elle reçoit en paramètres [`instance`](command:_github.copilot.openSymbolFromReferences?%5B%22instance%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A22%7D%7D%5D%5D "Go to definition"), qui est l'instance de la classe propriétaire de l'attribut, et [`owner`](command:_github.copilot.openSymbolFromReferences?%5B%22owner%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A27%7D%7D%5D%5D "Go to definition"), qui est la classe propriétaire de l'attribut. Dans cet exemple, la méthode [`__get__`](command:_github.copilot.openSymbolFromReferences?%5B%22__get__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de [`self`](command:_github.copilot.openSymbolFromReferences?%5B%22self%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A21%7D%7D%5D%5D "Go to definition"), [`instance`](command:_github.copilot.openSymbolFromReferences?%5B%22instance%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A22%7D%7D%5D%5D "Go to definition") et [`owner`](command:_github.copilot.openSymbolFromReferences?%5B%22owner%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A27%7D%7D%5D%5D "Go to definition"). Ensuite, elle retourne la valeur de l'attribut dans le dictionnaire [`__dict__`](command:_github.copilot.openSymbolFromReferences?%5B%22__dict__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A6%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition") de l'instance.
+La méthode `__get__` est appelée lorsque l'attribut est accédé. Elle reçoit en paramètres `instance`, qui est l'instance de la classe propriétaire de l'attribut, et `owner`, qui est la classe propriétaire de l'attribut. Dans cet exemple, la méthode `__get__` imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de `self`, `instance` et `owner`. Ensuite, elle retourne la valeur de l'attribut dans le dictionnaire `__dict__` de l'instance.
 
-La méthode [`__set__`](command:_github.copilot.openSymbolFromReferences?%5B%22__set__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A8%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") est appelée lorsque l'attribut est modifié. Elle reçoit en paramètres [`instance`](command:_github.copilot.openSymbolFromReferences?%5B%22instance%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A22%7D%7D%5D%5D "Go to definition"), qui est l'instance de la classe propriétaire de l'attribut, et [`value`](command:_github.copilot.openSymbolFromReferences?%5B%22value%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A8%2C%22character%22%3A32%7D%7D%5D%5D "Go to definition"), qui est la nouvelle valeur de l'attribut. Dans cet exemple, la méthode [`__set__`](command:_github.copilot.openSymbolFromReferences?%5B%22__set__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A8%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de [`self`](command:_github.copilot.openSymbolFromReferences?%5B%22self%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A21%7D%7D%5D%5D "Go to definition"), [`instance`](command:_github.copilot.openSymbolFromReferences?%5B%22instance%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A22%7D%7D%5D%5D "Go to definition") et [`value`](command:_github.copilot.openSymbolFromReferences?%5B%22value%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A8%2C%22character%22%3A32%7D%7D%5D%5D "Go to definition"). Ensuite, elle met à jour la valeur de l'attribut dans le dictionnaire [`__dict__`](command:_github.copilot.openSymbolFromReferences?%5B%22__dict__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A6%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition") de l'instance.
+La méthode `__set__` est appelée lorsque l'attribut est modifié. Elle reçoit en paramètres `instance`, qui est l'instance de la classe propriétaire de l'attribut, et `value`, qui est la nouvelle valeur de l'attribut. Dans cet exemple, la méthode `__set__` imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de `self`, `instance` et `value`. Ensuite, elle met à jour la valeur de l'attribut dans le dictionnaire `__dict__` de l'instance.
 
-La méthode [`__delete__`](command:_github.copilot.openSymbolFromReferences?%5B%22__delete__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A12%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") est appelée lorsque l'attribut est supprimé. Elle reçoit en paramètre [`instance`](command:_github.copilot.openSymbolFromReferences?%5B%22instance%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A22%7D%7D%5D%5D "Go to definition"), qui est l'instance de la classe propriétaire de l'attribut. Dans cet exemple, la méthode [`__delete__`](command:_github.copilot.openSymbolFromReferences?%5B%22__delete__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A12%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de [`self`](command:_github.copilot.openSymbolFromReferences?%5B%22self%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A1%2C%22character%22%3A21%7D%7D%5D%5D "Go to definition") et [`instance`](command:_github.copilot.openSymbolFromReferences?%5B%22instance%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A22%7D%7D%5D%5D "Go to definition"). Ensuite, elle supprime l'attribut du dictionnaire [`__dict__`](command:_github.copilot.openSymbolFromReferences?%5B%22__dict__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A6%2C%22character%22%3A24%7D%7D%5D%5D "Go to definition") de l'instance.
+La méthode `__delete__` est appelée lorsque l'attribut est supprimé. Elle reçoit en paramètre `instance`, qui est l'instance de la classe propriétaire de l'attribut. Dans cet exemple, la méthode `__delete__` imprime un message indiquant qu'elle a été appelée, ainsi que les valeurs de `self` et `instance`. Ensuite, elle supprime l'attribut du dictionnaire `__dict__` de l'instance.
 
-La classe [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") utilise l'attribut [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition") de type [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition"). Lorsqu'une instance de [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") est créée avec une valeur donnée, la méthode [`__init__`](command:_github.copilot.openSymbolFromReferences?%5B%22__init__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A19%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") est appelée. Dans cet exemple, la méthode [`__init__`](command:_github.copilot.openSymbolFromReferences?%5B%22__init__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A19%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") affecte la valeur donnée à l'attribut [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition") de l'instance.
+La classe `TestDescriptor` utilise l'attribut `attribute` de type `Descriptor`. Lorsqu'une instance de `TestDescriptor` est créée avec une valeur donnée, la méthode `__init__` est appelée. Dans cet exemple, la méthode `__init__` affecte la valeur donnée à l'attribut `attribute` de l'instance.
 
-Enfin, le code crée une instance de [`TestDescriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22TestDescriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A17%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") avec une valeur de 10, puis imprime la valeur de l'attribut [`attribute`](command:_github.copilot.openSymbolFromReferences?%5B%22attribute%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A18%2C%22character%22%3A4%7D%7D%5D%5D "Go to definition") de cette instance. Lorsque l'attribut est accédé, la méthode [`__get__`](command:_github.copilot.openSymbolFromReferences?%5B%22__get__%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A4%2C%22character%22%3A8%7D%7D%5D%5D "Go to definition") de [`Descriptor`](command:_github.copilot.openSymbolFromReferences?%5B%22Descriptor%22%2C%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22external%22%3A%22file%3A%2F%2F%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22path%22%3A%22%2Fhome%2Fmichaellaunay%2Fworkspace%2Fclean_zodb%2Ftest_descriptor.py%22%2C%22scheme%22%3A%22file%22%7D%2C%22pos%22%3A%7B%22line%22%3A0%2C%22character%22%3A6%7D%7D%5D%5D "Go to definition") est appelée, ce qui imprime un message et retourne la valeur de l'attribut.
-# L'opérateur d'affectation d'expression `:=`
+Enfin, le code crée une instance de `TestDescriptor` avec une valeur de 10, puis imprime la valeur de l'attribut `attribute` de cette instance. Lorsque l'attribut est accédé, la méthode `__get__` de `Descriptor` est appelée, ce qui imprime un message et retourne la valeur de l'attribut.
 
-Introduit par la [PEP 572](https://peps.python.org/pep-0572/) en Python 3.8, l'opérateur `:=` — surnommé « morse » à cause de sa ressemblance avec les yeux et les défenses de l'animal — permet d'affecter une variable **à l'intérieur** d'une expression.
-
-Sans lui, nous sommes souvent contraints d'écrire deux fois le même appel, ou de dupliquer une ligne avant la boucle :
-
-```python
-ligne = fichier.readline()
-while ligne:
-    traiter(ligne)
-    ligne = fichier.readline()
-```
-
-Avec lui, l'affectation et le test tiennent en une expression :
-
-```python
-while ligne := fichier.readline():
-    traiter(ligne)
-```
-
-Il est particulièrement utile lorsqu'un calcul coûteux sert à la fois de condition et de valeur :
-
-```python
-if (resultat := calcul_long(donnees)) is not None:
-    print(f"Trouvé : {resultat}")
-```
-
-et dans les listes en compréhension, pour ne pas appeler deux fois la même fonction :
-
-```python
-# sans l'opérateur : coûteux(x) est évalué deux fois par élément retenu
-[couteux(x) for x in valeurs if couteux(x) > 0]
-
-# avec : une seule évaluation
-[y for x in valeurs if (y := couteux(x)) > 0]
-```
-
-Attention cependant : l'opérateur crée une variable dans la portée englobante. Utilisé sans discernement, il rend le code plus dense mais moins lisible. La règle raisonnable est de ne l'employer que lorsqu'il **supprime une répétition**, jamais pour gagner une ligne.
-
----
-
-# Les dataclasses
+# 21. Les dataclasses
 
 Écrire une classe qui ne fait que porter des données demande, en Python classique, beaucoup de code répétitif : un `__init__` qui recopie chaque paramètre dans un attribut, un `__repr__` pour l'affichage, un `__eq__` pour la comparaison.
 
@@ -2949,7 +3305,7 @@ print(p)          # Point(x=1.0, y=2.0)
 print(p == Point(1.0, 2.0))   # True
 ```
 
-## Les options du décorateur
+## 21.1 Les options du décorateur
 
 ```python
 @dataclass(frozen=True, order=True, slots=True)
@@ -2962,7 +3318,7 @@ class Point:
 - `order=True` engendre `__lt__`, `__le__`, `__gt__` et `__ge__`, qui comparent les champs dans l'ordre de déclaration.
 - `slots=True`, disponible depuis Python 3.10, engendre `__slots__` : les instances consomment nettement moins de mémoire et l'ajout d'un attribut imprévu devient une erreur au lieu d'un bogue silencieux.
 
-## Le piège de la valeur par défaut mutable
+## 21.2 Le piège de la valeur par défaut mutable
 
 ```python
 @dataclass
@@ -2980,7 +3336,7 @@ class Panier:
     articles: list[str] = field(default_factory=list)
 ```
 
-## Le traitement après initialisation
+## 21.3 Le traitement après initialisation
 
 La méthode `__post_init__` est appelée à la fin de l'`__init__` engendré. C'est là que se placent les validations et les champs calculés :
 
@@ -2997,15 +3353,13 @@ class Segment:
         self.longueur = self.fin - self.debut
 ```
 
-## Quand ne pas les utiliser
+## 21.4 Quand ne pas les utiliser
 
 Une dataclass reste une classe ordinaire : elle accepte des méthodes, de l'héritage, des propriétés. Mais si l'objet a surtout un **comportement** et peu d'état, une classe classique exprime mieux l'intention. Et si les données viennent de l'extérieur — un fichier JSON, une réponse HTTP — et doivent être **validées**, une bibliothèque comme Pydantic fait ce que `dataclasses` ne fait pas : vérifier à l'exécution que les types annoncés sont respectés.
 
 Pour un enregistrement immuable et minimal, `typing.NamedTuple` reste plus léger encore.
 
----
-
-# Le module `pathlib`
+# 22. Le module `pathlib`
 
 Manipuler des chemins de fichiers avec `os.path` revient à assembler des chaînes de caractères :
 
@@ -3033,7 +3387,7 @@ nom = chemin.stem
 
 L'opérateur `/` est surchargé pour la concaténation de chemins — un bon exemple du polymorphisme vu plus haut — et il gère seul le séparateur propre au système, ce qui rend le code portable entre Windows et les systèmes Unix.
 
-## Les attributs d'un chemin
+## 22.1 Les attributs d'un chemin
 
 ```python
 p = Path("/home/utilisateur/documents/rapport.txt")
@@ -3047,7 +3401,7 @@ p.parts       # ('/', 'home', 'utilisateur', 'documents', 'rapport.txt')
 p.is_absolute()   # True
 ```
 
-## Les opérations courantes
+## 22.2 Les opérations courantes
 
 ```python
 p.exists()                  # le chemin existe-t-il ?
@@ -3064,7 +3418,7 @@ p.unlink(missing_ok=True)   # suppression, sans erreur si absent
 
 `read_text` et `write_text` ouvrent, lisent et referment le fichier : pour un petit fichier, ils remplacent avantageusement le bloc `with open(...)`. Pour un gros fichier, on garde `with p.open()` afin de traiter ligne à ligne sans tout charger en mémoire.
 
-## Parcourir une arborescence
+## 22.3 Parcourir une arborescence
 
 ```python
 dossier = Path("cours")
@@ -3081,7 +3435,7 @@ for md in dossier.rglob("*.md"):         # motif, récursif
 
 `glob` et `rglob` retournent des **générateurs** : l'arborescence n'est pas chargée en mémoire, ce qui compte dès qu'un dossier contient des milliers de fichiers.
 
-## Une précaution d'encodage
+## 22.4 Une précaution d'encodage
 
 ```python
 p.read_text()                      # encodage dépendant de la machine
@@ -3090,15 +3444,13 @@ p.read_text(encoding="utf-8")      # encodage explicite
 
 Jusqu'à Python 3.14 inclus, l'encodage par défaut à l'ouverture d'un fichier dépend de la configuration régionale du système : un script qui fonctionne sous Linux peut échouer sous Windows sur un simple accent. **Indiquons donc toujours `encoding="utf-8"`.** La [PEP 686](https://peps.python.org/pep-0686/), qui fait de l'UTF-8 l'encodage par défaut, est prévue pour Python 3.15 ; d'ici là, et pour la compatibilité avec les versions antérieures, l'habitude reste indispensable.
 
----
-
-# La programmation asynchrone : `async` et `await`
+# 23. La programmation asynchrone : `async` et `await`
 
 Un programme passe souvent l'essentiel de son temps à **attendre** : une réponse réseau, une lecture disque, une requête de base de données. Pendant cette attente, le processeur ne fait rien.
 
 La programmation asynchrone, formalisée par le module `asyncio` et les mots-clés `async` et `await` ([PEP 492](https://peps.python.org/pep-0492/), Python 3.5), permet à un programme **à un seul fil d'exécution** de démarrer une attente, de passer à autre chose, et de revenir quand la réponse arrive.
 
-## Un premier exemple
+## 23.1 Un premier exemple
 
 ```python
 import asyncio
@@ -3126,7 +3478,7 @@ Trois éléments à retenir :
 - `await` cède la main à la boucle d'événements le temps de l'attente. Il n'est utilisable qu'à l'intérieur d'un `async def`.
 - `asyncio.run()` démarre la boucle d'événements et attend la fin de la coroutine passée.
 
-## Le groupe de tâches
+## 23.2 Le groupe de tâches
 
 Depuis Python 3.11, `TaskGroup` est préférable à `gather` : si une tâche échoue, les autres sont annulées proprement, et les erreurs sont regroupées.
 
@@ -3138,7 +3490,7 @@ async def principal():
     print(t1.result(), t2.result())
 ```
 
-## Ce que l'asynchrone n'est pas
+## 23.3 Ce que l'asynchrone n'est pas
 
 C'est le point que les débutants comprennent de travers, et il vaut la peine d'être posé clairement.
 
@@ -3167,13 +3519,11 @@ Pour appeler malgré tout du code bloquant sans figer la boucle :
 resultat = await asyncio.to_thread(fonction_bloquante, argument)
 ```
 
----
-
-# Tester son code
+# 24. Tester son code
 
 Un programme sans tests n'est pas un programme fiable : c'est un programme dont personne n'a encore constaté les défauts. Écrire des tests n'est pas une contrainte administrative, c'est ce qui permet de modifier du code sans crainte.
 
-## `unittest`, dans la bibliothèque standard
+## 24.1 `unittest`, dans la bibliothèque standard
 
 ```python
 import unittest
@@ -3200,7 +3550,7 @@ if __name__ == "__main__":
 python3 -m unittest discover
 ```
 
-## `pytest`, la norme de fait
+## 24.2 `pytest`, la norme de fait
 
 `pytest` n'est pas dans la bibliothèque standard, mais c'est l'outil que la communauté utilise. Il reconnaît les tests écrits pour `unittest` et permet d'écrire les siens avec de simples fonctions et l'instruction `assert` :
 
@@ -3222,7 +3572,7 @@ pip install pytest
 pytest -q
 ```
 
-## Les tests paramétrés
+## 24.3 Les tests paramétrés
 
 Plutôt que d'écrire dix fonctions quasi identiques :
 
@@ -3239,7 +3589,7 @@ def test_addition(a, b, attendu):
 
 Chaque jeu de valeurs devient un test distinct, avec son propre verdict — un échec sur le grand nombre ne masque pas les autres.
 
-## Les fixtures
+## 24.4 Les fixtures
 
 Une *fixture* prépare un contexte et le nettoie après usage :
 
@@ -3256,7 +3606,7 @@ def test_lecture(fichier_temporaire):
 
 `tmp_path` est une fixture intégrée qui fournit un répertoire temporaire propre à chaque test — et c'est un objet `pathlib.Path`.
 
-## La couverture de code
+## 24.5 La couverture de code
 
 ```bash
 pip install pytest-cov
@@ -3265,7 +3615,7 @@ pytest --cov=mon_paquet --cov-report=term-missing
 
 La couverture indique quelles lignes n'ont jamais été exécutées par les tests. C'est un indicateur utile, à condition de ne pas en faire un objectif : **100 % de couverture ne signifie pas que le code est correct**, seulement que chaque ligne a été traversée au moins une fois. Un test qui exécute une ligne sans rien vérifier compte autant qu'un bon test.
 
-## Que tester en priorité
+## 24.6 Que tester en priorité
 
 ```text
 les cas limites          liste vide, zéro, chaîne vide, valeur maximale
@@ -3275,94 +3625,59 @@ les régressions          tout bogue corrigé mérite son test
 
 Le dernier point est le plus rentable : un bogue qui revient est un bogue dont personne n'avait écrit le test.
 
----
-
-# Les versions de Python et leur cycle de vie
-
-Depuis Python 3.9, une version majeure sort **chaque année en octobre**. Chacune reçoit deux ans de support complet, puis trois ans de correctifs de sécurité — soit cinq ans de vie utile.
-
-| Version | Sortie | Fin de vie | À retenir |
-| --- | --- | --- | --- |
-| 3.10 | oct. 2021 | oct. 2026 | `match`, opérateur `\|` pour les unions de types |
-| 3.11 | oct. 2022 | oct. 2027 | net gain de performances, `TaskGroup`, `Self` |
-| 3.12 | oct. 2023 | oct. 2028 | syntaxe des génériques `def f[T]()` |
-| 3.13 | oct. 2024 | oct. 2029 | REPL amélioré, interpréteur sans GIL (expérimental) |
-| 3.14 | oct. 2025 | oct. 2030 | chaînes de gabarit `t""`, annotations à évaluation différée |
-| 3.15 | oct. 2026 | oct. 2031 | UTF-8 par défaut, nouveau profileur |
-
-Au moment de la rédaction de ce cours, **Python 3.14.7 est la dernière version stable** et Python 3.15 est en phase de publication candidate.
-
-Deux conséquences pratiques.
-
-**Python 3.9 est mort en octobre 2025**, et 3.10 s'éteint en octobre 2026 : un code écrit aujourd'hui peut sans remords utiliser `match`, `TaskGroup`, la syntaxe `list[int]` et l'opérateur `|` pour les unions de types.
-
-**La version installée par le système n'est pas toujours la plus récente.** Une distribution stable fige souvent une version ancienne. La commande qui tranche est :
-
-```bash
-python3 --version
-```
-
-et, en cas de doute sur la version qui exécutera réellement notre script :
-
-```bash
-python3 -c "import sys; print(sys.version)"
-```
-
----
-
-# Les principaux modules
+# 25. Les principaux modules
 
 Voici une liste de quelques-uns des modules Python les plus couramment utilisés, ainsi qu'une brève description de leurs fonctionnalités :
 
-## sys
+## 25.1 `sys`
 
 Contient les informations relatives à l'interpréteur Python et à l'exécution en cours, comme les arguments de la ligne de commande et le chemin de recherche des modules.
 
-## os
+## 25.2 `os`
 
 Permet d'interagir avec le système d'exploitation, offrant ainsi des fonctionnalités pour naviguer dans le système de fichiers, lancer des processus ou encore lire les variables d'environnement.
 
-## gzip, zipfile
+## 25.3 gzip, zipfile
 
 Ces modules permettent de manipuler des fichiers compressés. Avec `gzip` et `zipfile`, vous pouvez lire et écrire des fichiers gzip et zip, respectivement.
 
-## socket
+## 25.4 `socket`
 
 Fournit des fonctionnalités de niveau bas pour gérer les connexions réseau TCP et UDP.
 
-## urllib
+## 25.5 `urllib`
 
 Ce module fournit des fonctionnalités pour manipuler des URLs et effectuer des opérations sur le web comme la récupération de pages web via HTTP.
 
-## re
+## 25.6 `re`
 
 Un module pour travailler avec des expressions régulières, qui sont des séquences de caractères spéciales qui vous aident à trouver, correspondre ou diviser du texte.
 
-## datetime
+## 25.7 `datetime`
 
 Il fournit des fonctionnalités pour travailler avec les dates et les heures.
 
-## math
+## 25.8 `math`
 
 Il comprend des fonctions mathématiques de base, des constantes et des opérations sur les nombres complexes.
 
-## json
+## 25.9 `json`
 
 Ce module vous permet de convertir des données Python en une chaîne JSON et vice versa.
 
-## collections
+## 25.10 `collections`
 
 Il propose des alternatives aux structures de données intégrées de Python (dict, list, set, et tuple). 
 
-## numpy, pandas, matplotlib
+## 25.11 numpy, pandas, matplotlib
 
 Ces trois modules sont essentiels pour toute personne travaillant avec des données en Python. `numpy` offre des fonctionnalités pour travailler avec des tableaux multidimensionnels, `pandas` est excellent pour manipuler et analyser les données, et `matplotlib` est utilisé pour créer des graphiques et des visualisations.
 
-## requests
+## 25.12 `requests`
 
 C'est une bibliothèque pour envoyer des requêtes HTTP de manière simplifiée. Elle est plus intuitive que urllib et est largement utilisée pour le web scraping, l'API et d'autres opérations HTTP.
 
-# Environnement virtuel
+# 26. Les environnements virtuels
 
 Les environnements virtuels Python permettent de créer des environnements de développement ou d'exécution isolés les uns des autres. En d'autres termes, nous pouvons installer des bibliothèques dans un environnement spécifique sans affecter les autres environnements Python. De plus, nous pouvons précisément lister les dépendances dont notre programme a besoin.
 
@@ -3455,7 +3770,9 @@ Et pour activer l'environnement virtuel créé, nous utilisons :
 
     pipenv shell
 
-# Les linters
+# 27. Qualité du code et débogage
+
+## 27.1 Les linters
 
 Depuis 2023, `ruff` — écrit en Rust — réunit en un seul outil ce que faisaient
 `flake8`, `isort`, `pyupgrade` et une partie de `pylint`, avec un temps
@@ -3471,7 +3788,6 @@ ruff format .         # formater (compatible avec le style de black)
 Les outils décrits ci-dessous restent parfaitement utilisables, et `pylint`
 conserve une analyse plus profonde que `ruff` sur certains points.
 
-
 Un "linter" est un outil qui analyse le code source d'un programme afin de signaler les erreurs, les bugs, les problèmes stylistiques et les constructions suspectes. Le terme provient de "lint", un outil de vérification de code pour le langage C créé dans les années 70. L'idée est de "dépoussiérer" le code, d'où le nom "lint" (peluches/moutons/minous en anglais).
 
 En Python, il existe plusieurs outils de "linting" populaires, comme Pylint, Flake8 et Pyflakes. Ces outils peuvent vérifier votre code pour détecter :
@@ -3484,7 +3800,7 @@ En Python, il existe plusieurs outils de "linting" populaires, comme Pylint, Fla
 
 L'utilisation d'un linter peut grandement améliorer la qualité de votre code. Il peut vous aider à détecter des bugs ou des problèmes potentiels avant même d'exécuter votre programme. De plus, comme la plupart des linters Python vérifient également la conformité PEP 8, ils peuvent vous aider à rendre votre code plus lisible et plus conforme aux standards de la communauté Python.
 
-# Conformité PEP8
+## 27.2 Conformité PEP 8
 
 Pour vérifier la conformité de notre code avec la norme PEP 8, nous pouvons utiliser l'outil `flake8`. Il s'agit d'un outil de vérification de la qualité du code Python qui comprend entre autres choses une vérification de la conformité PEP 8.
 
@@ -3498,7 +3814,7 @@ Si notre fichier `demo.py` contient des violations de la norme PEP 8, `flake8` l
 
 Il est important de noter que `flake8` ne corrige pas les erreurs pour nous, il signale simplement leur présence. C'est à nous de corriger ces problèmes dans notre code.
 
-# Débogage en ligne
+## 27.3 Le débogage en ligne
 
 Le débogage en ligne, également appelé débogage interactif ou débogage pas à pas, est une technique utilisée pour identifier et résoudre les problèmes dans le code en exécutant le programme pas à pas et en inspectant les valeurs des variables à différents points d'exécution. Python fournit plusieurs outils pour le débogage en ligne, dont les plus couramment utilisés sont `pdb` (Python Debugger) et les fonctionnalités intégrées aux environnements de développement intégrés (EDI) populaires tels que PyCharm, [[Visual studio code]] et Jupyter Notebook.
 
@@ -3531,7 +3847,7 @@ Les EDI fournissent souvent des fonctionnalités de débogage plus avancées, co
 
 Que nous utilisions `pdb` ou les fonctionnalités intégrées d'un EDI, le débogage en ligne est un outil précieux pour comprendre et résoudre les problèmes dans notre code Python. Il nous permet d'examiner l'exécution de notre programme pas à pas et d'identifier les erreurs, les bugs ou les comportements indésirables.
 
-# Liens
+# 28. Ressources
 
 Bien sûr, voici une liste de ressources en ligne pour vous aider à approfondir vos compétences en Python :
 
@@ -3558,34 +3874,3 @@ Bien sûr, voici une liste de ressources en ligne pour vous aider à approfondir
 Il est préférable de commencer par des ressources adaptées à notre niveau actuel, puis d'ajouter des défis supplémentaires à mesure que vous progressez.
 
 Exercice de synthèse sur les chaînes, `str.find`, les octets et un peu de théorie de l'information : [[Algorithme de compression basé sur PI]].
-
-# Installer une bibliothèque
-
-La commande correcte invoque le module `pip`, et non un module `install` qui
-n'existe pas :
-
-```bash
-python3 -m pip install matplotlib
-```
-
-La forme `python3 -m pip` est préférable au simple `pip` : elle garantit que la
-bibliothèque est installée pour **l'interpréteur que nous venons de nommer**, et
-non pour un autre `python` présent dans le `PATH`. C'est la cause la plus
-fréquente du célèbre « je viens de l'installer et il ne la trouve pas ».
-
-Depuis Python 3.11, installer un paquet dans l'interpréteur du système est
-refusé sur la plupart des distributions ([PEP 668](https://peps.python.org/pep-0668/)) :
-
-```text
-error: externally-managed-environment
-```
-
-Ce refus est une protection, non un obstacle : il évite qu'un `pip install`
-n'écrase une bibliothèque dont le système dépend. La réponse n'est pas
-`--break-system-packages`, mais un environnement virtuel :
-
-```bash
-python3 -m venv ~/venvs/mon_projet
-source ~/venvs/mon_projet/bin/activate
-python3 -m pip install matplotlib
-```
