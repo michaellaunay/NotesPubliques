@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WFPYCTKT0AJ4FPR26H"
-titre: "Endophasie, voix intérieure"
+uid: 01M02JG1WFPYCTKT0AJ4FPR26H
+titre: Endophasie, voix intérieure
 type: reflexion
 statut: actif
 para: ressource
@@ -11,9 +11,9 @@ themes:
   - sciences-cognitives
   - attention
   - philosophie
-resume: "Réflexion sur la saturation informationnelle et sur ce qu'il reste de temps de cerveau disponible pour la voix intérieure."
+resume: Réflexion sur la saturation informationnelle et sur ce qu'il reste de temps de cerveau disponible pour la voix intérieure.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-01-01
 date_modification: 2026-08-31
@@ -21,7 +21,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Billet fondateur

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WGZFRM3B3B31X9N9SN"
-titre: "L'échelle de la conscience"
+uid: 01M02JG1WGZFRM3B3B31X9N9SN
+titre: L'échelle de la conscience
 type: fiche
 statut: actif
 para: ressource
@@ -11,9 +11,9 @@ themes:
   - philosophie
   - conscience
   - sciences-cognitives
-resume: "Notes sur l'échelle de conscience proposée par Paul Cherfuka, du sommeil profond aux niveaux supérieurs."
+resume: Notes sur l'échelle de conscience proposée par Paul Cherfuka, du sommeil profond aux niveaux supérieurs.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-29
 date_modification: 2026-08-18
@@ -21,7 +21,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Salon Paul Cherfuka (2012)
 

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WN5QEHG7R0R1NSA5N3"
-titre: "Une analogie pour la connaissance"
+uid: 01M02JG1WN5QEHG7R0R1NSA5N3
+titre: Une analogie pour la connaissance
 type: reflexion
 statut: actif
 para: ressource
@@ -11,9 +11,9 @@ themes:
   - epistemologie
   - connaissance
   - pedagogie
-resume: "Analogie présentant la connaissance comme une pyramide à laquelle chaque découverte ajoute un bloc."
+resume: Analogie présentant la connaissance comme une pyramide à laquelle chaque découverte ajoute un bloc.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-04-16
 date_modification: 2026-08-31
@@ -21,7 +21,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Graine

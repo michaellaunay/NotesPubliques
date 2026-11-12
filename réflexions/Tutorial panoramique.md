@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WNP9VCE6511XMZFB5P"
-titre: "Tutorial panoramique"
+uid: 01M02JG1WNP9VCE6511XMZFB5P
+titre: Tutorial panoramique
 type: idee
 statut: actif
 para: ressource
@@ -15,7 +15,7 @@ themes:
 resume: "Idée d'avril 2023 : détourner la vidéo panoramique à 360 degrés pour des tutoriels à embranchements — approfondir en se déplaçant, audio contextuel selon le point de vue, arbre décisionnel — avec la réponse de ChatGPT de l'époque ; réalisable aujourd'hui dans le navigateur avec WebXR et A-Frame."
 maturite: a-experimenter
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-04-16
 date_modification: 2026-08-31
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Idée, pas procédure

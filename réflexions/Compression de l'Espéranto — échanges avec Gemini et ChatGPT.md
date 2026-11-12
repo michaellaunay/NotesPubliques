@@ -3,29 +3,29 @@ schema_version: 1
 uid: 01M1ABDQZ263W9D969XGCPR4BT
 titre: Compression de l'Espéranto — échanges avec Gemini et ChatGPT
 aliases:
-- Transcriptions Compression de l'Espéranto
+  - Transcriptions Compression de l'Espéranto
 type: capture
 statut: capture
 para: ressource
 domaines:
-- communication
+  - communication
 themes:
-- intelligence-artificielle
-- linguistique
-- esperanto
-- ingenierie-des-modeles
-- traitement-du-langage
+  - intelligence-artificielle
+  - linguistique
+  - esperanto
+  - ingenierie-des-modeles
+  - traitement-du-langage
 resume: Transcriptions brutes de mes échanges avec Gemini et ChatGPT (août-septembre 2025, puis une suite) sur l'espéranto et le TAL, la tokenisation morphologique bijective, la spécification EO-NSLM v0.1 et les pragmènes, matière de l'essai L'IDM au secours des LLM.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2025-08-31
 date_modification: 2026-08-31
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 > [!info] Capture
 > Transcriptions conservées telles quelles de mes échanges avec Gemini puis ChatGPT (août-septembre 2025, puis une suite ultérieure) : questions sur l'espéranto et le traitement automatique du langage, critique demandée à ChatGPT, spécification technique EO-NSLM v0.1, propositions sur les pragmènes et la complétude d'un énoncé. Les réponses des assistants n'engagent qu'eux — références bibliographiques non vérifiées. L'essai qui en est tiré est [[L'IDM au secours des LLM]]. Rangées en `capture` le 31 août 2026 (audit du dossier réflexions, point 1).

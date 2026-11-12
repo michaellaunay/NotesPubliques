@@ -6,23 +6,23 @@ type: reflexion
 statut: actif
 para: ressource
 domaines:
-- communication
+  - communication
 themes:
-- philosophie
-- science-fiction
-- conscience
-- simulation
+  - philosophie
+  - science-fiction
+  - conscience
+  - simulation
 resume: Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2024-09-20
 date_modification: 2026-08-18
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Dans la série "Westworld", la citation exacte de Dolores sur la simulation des humains est la suivante : 
 

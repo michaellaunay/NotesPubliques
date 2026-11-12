@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WD37PK96RY7QH75C4C"
-titre: "Bocage"
+uid: 01M02JG1WD37PK96RY7QH75C4C
+titre: Bocage
 type: reflexion
 statut: actif
 para: ressource
@@ -12,9 +12,9 @@ themes:
   - biodiversite
   - agriculture
   - droit
-resume: "Réflexion sur l'arrachage des haies et la destruction des bocages comme cause majeure de perte de biodiversité, et sur le statut juridique du vivant sauvage."
+resume: Réflexion sur l'arrachage des haies et la destruction des bocages comme cause majeure de perte de biodiversité, et sur le statut juridique du vivant sauvage.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-02-08
 date_modification: 2026-08-18
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 #Linkedin #Réflexion
 La multiplication des clôtures n'est pas la cause la plus importante de chute de la biodiversité, c'est celle de l'arrachage des haies, de la destruction des bocages et de l'usage des pesticides. Aujourd'hui, les forêts ne sont plus que des îlots alors qu'il y a 40 ans on pouvait encore passer d'une forêt à l'autre à couvert. D'ailleurs, l'impact de l'agriculture intensive est visible sur les cartes de l'IGN. Le remembrement amorcé dans les années 50 a été un vrai crime contre la biodiversité, mais il fallait augmenter le rendement pour nourrir tout le monde. Aujourd'hui que nous avons le ventre plein, il est temps d'imposer un retour des bocages...

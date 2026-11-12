@@ -6,22 +6,23 @@ type: reflexion
 statut: brouillon
 para: ressource
 domaines:
-- communication
+  - communication
 themes:
-- environnement
-- agriculture
-- pesticides
-- politique-publique
+  - environnement
+  - agriculture
+  - pesticides
+  - politique-publique
 resume: Notes issues d'une conférence de Pierre-Henri Gouyon sur les arbitrages de l'EFSA concernant l'évaluation de la toxicité des pesticides pour les abeilles.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2025-07-22
 date_modification: 2026-08-31
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Note datée

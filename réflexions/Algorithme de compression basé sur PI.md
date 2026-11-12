@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WCFPJQ1Z4NYK4RP3SZ"
-titre: "Algorithme de compression basé sur PI"
+uid: 01M02JG1WCFPJQ1Z4NYK4RP3SZ
+titre: Algorithme de compression basé sur PI
 type: idee
 statut: a-relire
 para: ressource
@@ -15,7 +15,7 @@ themes:
 resume: "Exercice pour le cours de Python : un « compresseur » qui remplace les données par des index dans les décimales de π — énoncé, corrigé testé (mpmath, recherche gloutonne, bilan en bits) et leçon : l'index coûte autant que la donnée, l'entropie interdit la compression moyenne."
 maturite: validee
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-01-04
 date_modification: 2026-08-31
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Idée devenue exercice

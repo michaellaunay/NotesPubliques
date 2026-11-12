@@ -6,22 +6,22 @@ type: reflexion
 statut: actif
 para: ressource
 domaines:
-- communication
-- enseignement
+  - communication
+  - enseignement
 themes:
-- universite
-- administration
+  - universite
+  - administration
 resume: Témoignage sur les difficultés administratives et les délais de paiement rencontrés par les vacataires de l'université publique.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2026-08-31
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Billet daté

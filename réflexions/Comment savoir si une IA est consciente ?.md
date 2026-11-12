@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WE6CYX5Z9KYVRV55YP"
-titre: "Comment savoir si une IA est consciente ?"
+uid: 01M02JG1WE6CYX5Z9KYVRV55YP
+titre: Comment savoir si une IA est consciente ?
 type: reflexion
 statut: actif
 para: ressource
@@ -12,9 +12,9 @@ themes:
   - philosophie
   - conscience
   - ethique
-resume: "Réflexion sur les critères permettant d'évaluer la conscience d'un dispositif technique, au-delà du test de Turing."
+resume: Réflexion sur les critères permettant d'évaluer la conscience d'un dispositif technique, au-delà du test de Turing.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2025-05-19
 date_modification: 2025-05-19
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 En raison des progrès rapides du domaine de l'IA, savoir si un dispositif technique pourrait être conscient devient urgent. D'autant que le test de Turing ne semble pas suffisant à le déterminer.
 

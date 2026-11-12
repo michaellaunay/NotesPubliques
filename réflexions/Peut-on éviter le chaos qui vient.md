@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WJY4RYZVPZ3BJSP08M"
-titre: "Peut-on éviter le chaos qui vient"
+uid: 01M02JG1WJY4RYZVPZ3BJSP08M
+titre: Peut-on éviter le chaos qui vient
 type: reflexion
 statut: a-relire
 para: ressource
@@ -12,9 +12,9 @@ themes:
   - economie
   - environnement
   - politique-publique
-resume: "Essai du 21 septembre 2025 croisant la thèse de Peter Turchin sur les cycles de crise, le débat sur la taxe Zucman, les crises climatique, du vivant et chimique, et l'automatisation du tertiaire par l'IA ; structuré et sourcé en août 2026."
+resume: Essai du 21 septembre 2025 croisant la thèse de Peter Turchin sur les cycles de crise, le débat sur la taxe Zucman, les crises climatique, du vivant et chimique, et l'automatisation du tertiaire par l'IA ; structuré et sourcé en août 2026.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2025-09-21
 date_modification: 2026-08-31
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Essai structuré et sourcé

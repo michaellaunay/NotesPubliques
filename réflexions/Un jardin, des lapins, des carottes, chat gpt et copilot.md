@@ -6,23 +6,23 @@ type: reflexion
 statut: a-relire
 para: ressource
 domaines:
-- communication
-- enseignement
+  - communication
+  - enseignement
 themes:
-- pedagogie
-- intelligence-artificielle
-- python
+  - pedagogie
+  - intelligence-artificielle
+  - python
 resume: Article LinkedIn de mars 2023 — huit heures de cours de Python à Polytech'Lille avec ChatGPT et Copilot, le projet lapins-carottes généré en vingt minutes et la question « Monsieur, à quoi allez-vous servir ? » ; post-scriptum 2026 sur les agents, Copilot et la suite en classe.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2026-08-31
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Témoignage daté

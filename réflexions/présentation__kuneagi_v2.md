@@ -1,36 +1,37 @@
 ---
 titre: KuneAgi V2, l'innovation participative répartie
 aliases:
-- Présentation de KuneAgi V2
+  - Présentation de KuneAgi V2
 type: reflexion
 statut: brouillon
 para: projet
 domaines:
-- communication
+  - communication
 themes:
-- informatique
-- democratie
-- kuneagi
-- nova-ideo
-- decentralisation
-- git
-- markdown
-- obsidian
-- agents-ia
-- llm
-resume: 'Article d''anticipation autonome : KuneAgi V2 raconté comme s''il fonctionnait, sans serveur central. Avant-propos sur l''origine (thèse de 2013, Nova-Ideo, article de 2017, Biblioteko, OSIA), article en six sections avec quatorze croquis d''écrans mobile et PC, fonctionnement interne (dépôts, fichiers signés, processus déclaratifs, votes, agents d''IA), limites, glossaire et références.'
+  - informatique
+  - democratie
+  - kuneagi
+  - nova-ideo
+  - decentralisation
+  - git
+  - markdown
+  - obsidian
+  - agents-ia
+  - llm
+resume: "Article d'anticipation autonome : KuneAgi V2 raconté comme s'il fonctionnait, sans serveur central. Avant-propos sur l'origine (thèse de 2013, Nova-Ideo, article de 2017, Biblioteko, OSIA), article en six sections avec quatorze croquis d'écrans mobile et PC, fonctionnement interne (dépôts, fichiers signés, processus déclaratifs, votes, agents d'IA), limites, glossaire et références."
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 maturite: exploree
-confidentialite: interne
+confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M76CMTXC7WYQ4PAQW3H2YBKT
 date_creation: 2026-11-11
 langue: fr
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-12
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # KuneAgi V2, l'innovation participative répartie
 

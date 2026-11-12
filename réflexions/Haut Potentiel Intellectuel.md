@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02JG1WFKFP3M0YHGV258ADT"
-titre: "Haut Potentiel Intellectuel"
+uid: 01M02JG1WFKFP3M0YHGV258ADT
+titre: Haut Potentiel Intellectuel
 aliases:
-  - "HPI"
+  - HPI
 type: reflexion
 statut: actif
 para: ressource
@@ -13,9 +13,9 @@ themes:
   - sciences-cognitives
   - psychologie
   - pedagogie
-resume: "Analyse nuancée des représentations françaises du haut potentiel intellectuel, entre le cliché du génie et celui du surdoué hypersensible."
+resume: Analyse nuancée des représentations françaises du haut potentiel intellectuel, entre le cliché du génie et celui du surdoué hypersensible.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2026-06-25
 date_modification: 2026-06-25
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Analyse nuancée : réalités psychologiques et cognitives des personnes à haut potentiel intellectuel
 

@@ -1,41 +1,42 @@
 ---
-titre: 'KuneAgi V2 : délibération répartie sur Git, Markdown et frontmatter'
+titre: "KuneAgi V2 : délibération répartie sur Git, Markdown et frontmatter"
 aliases:
-- KuneAgiV2
-- KuneAgi V2
-- Nova-Ideo réparti
+  - KuneAgiV2
+  - KuneAgi V2
+  - Nova-Ideo réparti
 type: reflexion
 statut: brouillon
 para: projet
 domaines:
-- recherche
+  - recherche
 themes:
-- informatique
-- architecture-logicielle
-- decentralisation
-- git
-- markdown
-- metadonnees
-- workflow
-- democratie
-- kuneagi
-- nova-ideo
-- obsidian
-- agents-ia
-- llm
-resume: 'Projet KuneAgi V2 : refaire KuneAgi (Nova-Ideo) sans serveur central en fusionnant Biblioteko V2 et Obsidian OSIA. Un dépôt Git par groupe de travail, un dépôt de communauté qui les recense, brouillons dans des forks, messagerie, amendements et votes sous forme de fichiers Markdown signés dont le frontmatter porte l''état, workflows déclaratifs, et boîte à idées entièrement tenue par des agents LLM.'
+  - informatique
+  - architecture-logicielle
+  - decentralisation
+  - git
+  - markdown
+  - metadonnees
+  - workflow
+  - democratie
+  - kuneagi
+  - nova-ideo
+  - obsidian
+  - agents-ia
+  - llm
+resume: "Projet KuneAgi V2 : refaire KuneAgi (Nova-Ideo) sans serveur central en fusionnant Biblioteko V2 et Obsidian OSIA. Un dépôt Git par groupe de travail, un dépôt de communauté qui les recense, brouillons dans des forks, messagerie, amendements et votes sous forme de fichiers Markdown signés dont le frontmatter porte l'état, workflows déclaratifs, et boîte à idées entièrement tenue par des agents LLM."
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 maturite: exploree
-confidentialite: interne
+confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M769YSH88WZK5QEFP5AWZHAA
 date_creation: 2026-11-11
 langue: fr
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-11
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # KuneAgi V2 : délibération répartie sur Git, Markdown et frontmatter
 

@@ -6,22 +6,23 @@ type: reflexion
 statut: actif
 para: ressource
 domaines:
-- communication
+  - communication
 themes:
-- ethique
-- alimentation
-- biologie
-- societe
+  - ethique
+  - alimentation
+  - biologie
+  - societe
 resume: Réflexion sur les frontières culturelles et philosophiques de la protection animale et sur l'impossibilité d'une activité humaine sans conséquence sur le vivant.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2023-09-15
 date_modification: 2026-08-31
-confidentialite: privee
-publication: []
+confidentialite: publique
+publication:
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Note datée

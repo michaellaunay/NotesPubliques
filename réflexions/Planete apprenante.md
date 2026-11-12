@@ -1,10 +1,10 @@
 ---
 schema_version: 1
-uid: "01M02JG1WKSH0S3HZT9JDEWKGD"
-titre: "Planete apprenante"
+uid: 01M02JG1WKSH0S3HZT9JDEWKGD
+titre: Planete apprenante
 aliases:
-  - "Planète apprenante"
-  - "Apprendre au XXIe siècle"
+  - Planète apprenante
+  - Apprendre au XXIe siècle
 type: capture
 statut: capture
 para: ressource
@@ -13,9 +13,9 @@ domaines:
 themes:
   - pedagogie
   - apprentissage
-resume: "Signet vers le livre de François Taddei, Apprendre au XXIe siècle (Calmann-Lévy, 2018), et son MOOC Vers une planète apprenante ; le résumé prévu en 2023 n'a pas été rédigé."
+resume: Signet vers le livre de François Taddei, Apprendre au XXIe siècle (Calmann-Lévy, 2018), et son MOOC Vers une planète apprenante ; le résumé prévu en 2023 n'a pas été rédigé.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-05-10
 date_modification: 2026-08-31
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Signet assumé

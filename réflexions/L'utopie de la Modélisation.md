@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02JG1WG08MP6SS6F09QYRTQ"
-titre: "L'utopie de la Modélisation"
+uid: 01M02JG1WG08MP6SS6F09QYRTQ
+titre: L'utopie de la Modélisation
 aliases:
-  - "Utopie de la modélisation"
+  - Utopie de la modélisation
 type: reflexion
 statut: actif
 para: ressource
@@ -13,9 +13,9 @@ themes:
   - ingenierie-des-modeles
   - epistemologie
   - genie-logiciel
-resume: "Première partie, la seule écrite, d'une série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles ; structurée, sourcée et corrigée en août 2026."
+resume: Première partie, la seule écrite, d'une série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles ; structurée, sourcée et corrigée en août 2026.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2024-12-27
 date_modification: 2026-08-31
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Série

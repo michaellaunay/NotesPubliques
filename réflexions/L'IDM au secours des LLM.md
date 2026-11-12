@@ -3,32 +3,32 @@ schema_version: 1
 uid: 01M02JG1WEYSBT12VD1KGZP89B
 titre: L'IDM au secours des LLM
 aliases:
-- IDM au secours des LLM
-- Compression de l'Espéranto
-- Peut-on transformer un problème de compréhension en un problème de génie logiciel
-- Compression de l'Epéranto ou Peut on transformer un problème de compréhension en un problème de génie logiciel ou L'IDM au secours des LLM
+  - IDM au secours des LLM
+  - Compression de l'Espéranto
+  - Peut-on transformer un problème de compréhension en un problème de génie logiciel
+  - Compression de l'Epéranto ou Peut on transformer un problème de compréhension en un problème de génie logiciel ou L'IDM au secours des LLM
 type: reflexion
 statut: a-relire
 para: ressource
 domaines:
-- communication
+  - communication
 themes:
-- intelligence-artificielle
-- linguistique
-- esperanto
-- ingenierie-des-modeles
-- traitement-du-langage
+  - intelligence-artificielle
+  - linguistique
+  - esperanto
+  - ingenierie-des-modeles
+  - traitement-du-langage
 resume: Essai — l'espéranto comme langue modélisable, la tokenisation morphologique bijective et le pragmène pour ramener ce qui peut l'être d'un problème de compréhension à un problème de génie logiciel traçable, l'ingénierie dirigée par les modèles encadrant le LLM.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2025-08-31
 date_modification: 2026-08-31
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 > [!info] Essai
 > Rédigé le 31 août 2026 à partir de mes échanges avec Gemini et ChatGPT (août-septembre 2025, puis une suite ultérieure), conservés tels quels dans [[Compression de l'Espéranto — échanges avec Gemini et ChatGPT]]. Les objections viennent de ces mêmes échanges ; les propositions sont les miennes. Statut `a-relire` : la thèse est assumée, la formulation reste à valider.

@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WH31GNKEGX6BBMMCXB"
-titre: "Les freaks"
+uid: 01M02JG1WH31GNKEGX6BBMMCXB
+titre: Les freaks
 type: reflexion
 statut: actif
 para: ressource
@@ -11,9 +11,9 @@ themes:
   - societe
   - cinema
   - marginalite
-resume: "Courte note sur la marginalisation des corps jugés monstrueux, à partir du film Freaks de Tod Browning."
+resume: Courte note sur la marginalisation des corps jugés monstrueux, à partir du film Freaks de Tod Browning.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2023-05-21
@@ -21,7 +21,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 #Culture 
 Les "monstrueux" n'ont jamais droit aux lumières, ils ont été le sujet d'un film de Tod Browning appelé Freaks

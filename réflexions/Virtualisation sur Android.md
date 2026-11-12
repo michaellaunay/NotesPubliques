@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WNYMD0WVTYEBH2K24J"
-titre: "Virtualisation sur Android"
+uid: 01M02JG1WNYMD0WVTYEBH2K24J
+titre: Virtualisation sur Android
 type: idee
 statut: actif
 para: ressource
@@ -11,10 +11,10 @@ themes:
   - informatique
   - android
   - virtualisation
-resume: "Piste consistant à virtualiser des applications sur téléphone Android, voire à mettre en place un double amorçage."
+resume: Piste consistant à virtualiser des applications sur téléphone Android, voire à mettre en place un double amorçage.
 maturite: embryonnaire
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-04-28
 date_modification: 2023-05-21
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 Il est possible de virtualiser des applications sur téléphone android.
 Mais puisqu'il peut falloir rooter le téléphone on pourrait imaginer avoir un dual boot.

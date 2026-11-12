@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WHCHSAKRM458T1Y235"
-titre: "Le baratineur ChatGPT"
+uid: 01M02JG1WHCHSAKRM458T1Y235
+titre: Le baratineur ChatGPT
 type: reflexion
 statut: actif
 para: ressource
@@ -12,9 +12,9 @@ themes:
   - llm
   - epistemologie
   - societe
-resume: "Billet d'humeur LinkedIn du 7 mars 2023, ironique sur la capacité de ChatGPT à produire un discours plausible sans rapport nécessaire avec le vrai ; conservé comme document d'époque."
+resume: Billet d'humeur LinkedIn du 7 mars 2023, ironique sur la capacité de ChatGPT à produire un discours plausible sans rapport nécessaire avec le vrai ; conservé comme document d'époque.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2026-08-31
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Document d'époque

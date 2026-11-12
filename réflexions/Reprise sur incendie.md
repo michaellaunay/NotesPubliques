@@ -1,7 +1,7 @@
 ---
 schema_version: 1
-uid: "01M02JG1WKVHNT5YPGA3DS6Y91"
-titre: "Reprise sur incendie"
+uid: 01M02JG1WKVHNT5YPGA3DS6Y91
+titre: Reprise sur incendie
 type: reflexion
 statut: actif
 para: ressource
@@ -12,9 +12,9 @@ themes:
   - administration-systeme
   - sauvegarde
   - retour-experience
-resume: "Retour d'expérience sur la récupération d'un système de fichiers ext2 après un effacement complet de serveur, et sur les leçons de sauvegarde qui en découlent."
+resume: Retour d'expérience sur la récupération d'un système de fichiers ext2 après un effacement complet de serveur, et sur les leçons de sauvegarde qui en découlent.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-05-07
 date_modification: 2026-08-31
@@ -22,7 +22,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Récit d'expérience

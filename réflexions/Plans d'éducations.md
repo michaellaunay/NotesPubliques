@@ -1,9 +1,9 @@
 ---
 schema_version: 1
-uid: "01M02JG1WK7858Z150RJ4PWRK1"
-titre: "Plans d'éducations"
+uid: 01M02JG1WK7858Z150RJ4PWRK1
+titre: Plans d'éducations
 aliases:
-  - "Plans d'éducation"
+  - Plans d'éducation
 type: reflexion
 statut: actif
 para: ressource
@@ -13,9 +13,9 @@ themes:
   - pedagogie
   - histoire
   - politique-publique
-resume: "Notes sur les programmes éducatifs envisagés pendant la Révolution française, dont le plan de Lepeletier de Saint-Fargeau, et sur les conférences gesticulées de Franck Lepage."
+resume: Notes sur les programmes éducatifs envisagés pendant la Révolution française, dont le plan de Lepeletier de Saint-Fargeau, et sur les conférences gesticulées de Franck Lepage.
 auteurs:
-  - "Michaël Launay"
+  - Michaël Launay
 langue: fr
 date_creation: 2023-06-08
 date_modification: 2026-08-31
@@ -23,7 +23,7 @@ confidentialite: publique
 publication:
   - notes-publiques
 rag: true
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 
 > [!info] Note de juin 2023

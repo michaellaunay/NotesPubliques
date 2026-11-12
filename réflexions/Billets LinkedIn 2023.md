@@ -3,30 +3,30 @@ schema_version: 1
 uid: 01M1AHTRAN76HAGY49RH54HEE0
 titre: Billets LinkedIn 2023
 aliases:
-- Arbre
-- Piscines tournesol
-- Billets LinkedIn
+  - Arbre
+  - Piscines tournesol
+  - Billets LinkedIn
 type: reflexion
 statut: actif
 para: ressource
 domaines:
-- communication
+  - communication
 themes:
-- environnement
-- climat
-- foret
-- patrimoine
-- architecture
-- politique-publique
+  - environnement
+  - climat
+  - foret
+  - patrimoine
+  - architecture
+  - politique-publique
 resume: Deux billets LinkedIn courts de 2023 réunis avec leur date — Arbre (séquestration du carbone, qu'est-ce qu'un arbre, centième arbre planté) et Piscines tournesol (patrimoine des piscines des années 1970) — avec renvoi vers le troisième billet de la même série, Les difficultés d'enseigner.
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 date_creation: 2023-03-07
 date_modification: 2026-08-31
 confidentialite: publique
 publication:
-- notes-publiques
+  - notes-publiques
 rag: true
 metadata_verifiees: false
 ---
