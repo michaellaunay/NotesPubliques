@@ -35,7 +35,7 @@ date_creation: 2026-11-11
 langue: fr
 publication:
   - notes-publiques
-date_modification: 2026-11-11
+date_modification: 2026-11-12
 metadata_verifiees: true
 ---
 # KuneAgi V2 : délibération répartie sur Git, Markdown et frontmatter
@@ -44,7 +44,7 @@ metadata_verifiees: true
 > Refaire KuneAgi (alias Nova-Ideo) **sans serveur central**. Tout ce que la plateforme stockait dans ZODB et pilotait par DaCE devient des fichiers Markdown dont le frontmatter porte le modèle de données, les états et les signatures. Chaque groupe de travail a son dépôt Git ; une communauté partage un dépôt qui recense ses groupes ; la messagerie, les amendements et les votes sont des fichiers signés ; les brouillons vivent dans des forks. La boîte à idées n'est plus tenue par des humains : des agents LLM extraient, dédoublonnent, fusionnent et relient les idées à partir des contributions.
 
 > [!info] État de la note
-> Première rédaction du 11 novembre 2026, à partir de la branche `V2` de Biblioteko (cahier des charges, ADR-001 à ADR-012, journal de conception), du cours [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|Obsidian OSIA]] et des notes [[Présentation Nova-Ideo]] et [[KuneAgi]]. L'inventaire fonctionnel de KuneAgi est fait de mémoire et d'après ces notes : il reste à confronter au code (`ecreall/nova-ideo`, `ecreall/KuneAgi`), en particulier les quorums. Les valeurs par défaut reprises de l'article de 2017 (douze participants par groupe, cinq groupes par membre, sept jetons, sept mentions, validation séquentielle) sont racontées dans [[présentation__kuneagi_v2]]. Rien n'est implémenté.
+> Première rédaction du 11 novembre 2026, à partir de la branche `V2` de Biblioteko (cahier des charges, ADR-001 à ADR-012, journal de conception), du cours [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|Obsidian OSIA]] et de la note [[Présentation Nova-Ideo]]. L'inventaire fonctionnel de KuneAgi est fait de mémoire et d'après cette note : il reste à confronter au code (`ecreall/nova-ideo`, `ecreall/KuneAgi`), en particulier les quorums. Les valeurs par défaut reprises de l'article de 2017 (douze participants par groupe, cinq groupes par membre, sept jetons, sept mentions, validation séquentielle) sont racontées dans [[présentation__kuneagi_v2]]. Rien n'est implémenté.
 
 Voir aussi : [[git]], [[Markdown]], [[Obsidian]], [[LLM]], [[RAG]], [[Pyramid]].
 
@@ -58,7 +58,42 @@ Voir aussi : [[git]], [[Markdown]], [[Obsidian]], [[LLM]], [[RAG]], [[Pyramid]].
 | **Biblioteko V2** | Le *comment réparti* : un dépôt Git par objet de travail, catalogue partagé par QR code, workflows déclaratifs avec état `neutral`, sections de frontmatter signées Ed25519, autorités locales au dépôt, vérification au commit par un vérificateur extérieur au dépôt, chiffrement `age` | Le socle entier, renommé `core` |
 | **Obsidian OSIA** | Le *pourquoi* : Markdown mémoire durable, frontmatter modèle de données et mémoire d'état, emplacement qui ne porte pas l'état, transitions atomiques et idempotentes, fonctionnement sans IA, agent qui propose et système qui valide | Les principes et l'outillage agentique (domaines, skills, pipelines, habilitations) |
 
-## 1.2 Position par rapport à ADR-012
+## 1.2 État de KuneAgi V1 en 2026
+
+D'après l'audit du 13 juillet 2026 (analyse statique des cinq dépôts `ecreall/{nova-ideo, KuneAgi, dace, pontus, daceui}`, sans exécution du code).
+
+| Dépôt | Rôle | Dernier commit | Commits | Python | Tests |
+| --- | --- | --- | --- | --- | --- |
+| nova-ideo | Application | 2020-03-28 | 2 392 | 517 fichiers, 71 675 lignes, 439 gabarits Chameleon | 9 fichiers et une suite Robot Framework |
+| KuneAgi | Variante de Cosmopolitical : scrutins, citoyenneté, courriels, allemand | 2023-03-02 | 2 195 | 538 fichiers, 81 519 lignes | idem |
+| dace | Moteur de workflow centré données | 2017-12-19 | 564 | 79 fichiers, 13 792 lignes | 19 fichiers, le mieux testé |
+| pontus | Vues et formulaires (Pyramid, deform) | 2018-01-15 | 429 | 23 fichiers, 4 317 lignes | 5 fichiers |
+| daceui | Composants d'interface de DaCE | 2018-12-21 | 54 | 8 fichiers, 1 743 lignes | aucun |
+
+```text
+novaideo / KuneAgi   content/ (~30 types) · content/processes/ (24 paquets, 92 définitions)
+                     views/ (286 fichiers) · graphql/ · mail/ · connectors/
+daceui · pontus      rendu des actions, vues composables, formulaires deform/colander
+dace                 définitions et instances de processus, catalogue,
+                     boucle d'événements tornado<4 + pyzmq, patches.py
+substanced 1.0a1     arbre de ressources, catalogue hypatia, principals · Pyramid 1.9.1 · ZODB 5.3
+```
+
+- **Lignée.** KuneAgi n'est pas un fork gelé : c'est la branche la plus récente (14 commits de 2020 à mars 2023), au périmètre élargi. nova-ideo s'arrête en mars 2020 mais porte les branches d'exploration `nova-ideo-react`, `realtime` et `to-apollo2`. Le tronc de référence de la modernisation est KuneAgi, avec pour cible un seul code et les spécificités en configuration.
+- **Droits.** Nova-Ideo, dace, pontus et daceui relèvent de Logikascium (reprise d'Ecréall en 2024) ; les apports de KuneAgi relèvent de Cosmopolitical. Tout reste en AGPL v3, ce qui laisse le code circuler dans les deux sens et fait de la réunification une affaire de gouvernance partagée.
+- **Socle hors support.** Python 3.6, Pyramid 1.9.1, substanced 1.0a1, ZODB 5.3, graphene 1.4, Bootstrap 3 et jQuery, buildout ; 194 versions épinglées. Le build ne passe plus tel quel (sources en `git://`, protocole fermé par GitHub en 2022) et dépend d'une vingtaine de forks hébergés sur des comptes tiers.
+- **Trois verrous.** substanced et hypatia, orphelins de fait, à forker et élaguer ; la boucle d'événements de DaCE, à réécrire sur asyncio ; la perte de connaissance, un seul développeur ayant écrit environ 85 % du code avant de partir en 2019.
+- **Plan de modernisation.** Phase 0, reprise des dépôts ; 1, build d'origine reproductible servant d'étalon ; 2, documentation, dont l'extraction automatique des 24 processus en diagrammes ; 3, Python 3.12, Pyramid 2, ZODB 6 ; 4, interface en SolidJS par îlots ; 5, migration des données et déploiement ; 6, évolutions. Soit plusieurs mois pour une parité fonctionnelle.
+- **Évolutions demandées depuis 2021.** Anonymisation des participations, simplification de l'interface du jugement majoritaire, fusion automatique des idées voisines (prévue alors avec CamemBERT, aujourd'hui à la portée d'un LLM généraliste, comme le liage idées-propositions, la synthèse des fils et l'aide à la rédaction d'amendements).
+
+Ce que cela change pour la V2 :
+
+- les **24 paquets de processus** sont la vraie spécification. L'extracteur prévu en phase 2 de la modernisation, qui lit les définitions DaCE et produit des diagrammes, peut produire du même coup les ébauches des documents `type: workflow` du §5 ;
+- le poste le plus lourd de la modernisation, les 439 gabarits et 286 vues, n'a pas d'équivalent en V2, dont le client est sans état ;
+- la phase 6 de la modernisation et le §9 de cette note sont le même besoin : il n'est écrit qu'une fois, côté V2, sous forme de Skills indépendants du serveur ;
+- les deux chantiers ne s'excluent pas : la modernisation maintient le service, et son export de la base objet (phase 5) est le point de départ de l'import d'une instance V1 en dépôts.
+
+## 1.3 Position par rapport à ADR-012
 
 L'ADR-012 de Biblioteko (encore *proposée*) recommande l'option C : garder `kuneagi-deliberation` comme paquet distinct pilotant des transitions signées. KuneAgi V2 tel que décrit ici est l'**option A** de ce même ADR, poussée à son terme : la délibération est réimplémentée en Markdown à frontmatter et ZODB disparaît. L'ADR lui opposait trois objections ; cette note doit y répondre, sinon elle ne vaut pas mieux que l'option écartée.
 

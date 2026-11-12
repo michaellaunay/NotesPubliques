@@ -39,7 +39,7 @@ metadata_verifiees: true
 > Cet article décrit KuneAgi V2 **comme s'il fonctionnait entièrement**. Ce n'est pas le cas : au 12 novembre 2026 rien n'est implémenté. Les écrans sont des croquis, les chiffres d'usage et les noms de membres sont inventés. Le but est de vérifier que le projet est compréhensible à un lecteur non informaticien avant de le construire.
 
 > [!info] Comment lire ce document
-> Il se suffit à lui-même. L'**avant-propos** dit d'où vient le projet : le logiciel Nova-Ideo, l'article de 2017 que ce texte réécrit, et les deux travaux récents dont il réutilise les idées, Biblioteko et OSIA. Les **sections 1 à 6** sont l'article proprement dit, écrit du point de vue de l'utilisateur. La **section 7** ouvre le capot pour qui veut savoir comment cela peut tenir sans serveur. La **section 8** dit ce qui ne marche pas encore ou ne marchera jamais. Un **glossaire** et les **références** terminent le document. Les mots en italique suivis d'un astérisque à leur première apparition (*dépôt*\*, *fork*\*…) sont au glossaire.
+> Il se suffit à lui-même. L'**avant-propos** dit d'où vient le projet : le logiciel Nova-Ideo, l'article de 2017 que ce texte réécrit, l'état du code en 2026, et les deux travaux récents dont il réutilise les idées, Biblioteko et OSIA. Les **sections 1 à 6** sont l'article proprement dit, écrit du point de vue de l'utilisateur. La **section 7** ouvre le capot pour qui veut savoir comment cela peut tenir sans serveur. La **section 8** dit ce qui ne marche pas encore ou ne marchera jamais. Un **glossaire** et les **références** terminent le document. Les mots en italique suivis d'un astérisque à leur première apparition (*dépôt*\*, *fork*\*…) sont au glossaire.
 
 # Avant-propos : d'où vient KuneAgi V2
 
@@ -47,9 +47,9 @@ metadata_verifiees: true
 
 En 2013, Amen Souissi soutient à l'Université Lille 1 une thèse préparée au sein d'Ecréall, la société de services en logiciels libres que j'avais fondée : *Modélisation centrée sur les processus métier pour la génération complète de portails collaboratifs* [1]. L'idée est de décrire formellement les processus d'une organisation (qui fait quoi, dans quel ordre, à quelle condition) puis de **générer** tout le portail à partir de cette description. La preuve de concept est une boîte à idées collaborative, baptisée **KuneAgi**, « agir ensemble » en espéranto.
 
-Réécrite à la main et généralisée, cette boîte à idées devient en 2014 **Nova-Ideo**, un logiciel libre (licence AGPL v3) d'innovation et de démocratie participatives [2]. Il est écrit en Python avec le cadriciel web Pyramid ; ses données vivent dans une base de données objet (ZODB) et ses processus sont exécutés par un moteur maison issu de la thèse (DaCE). Nova-Ideo est retenu en 2016 par Etalab pour la boîte à outils du Partenariat pour un gouvernement ouvert [3], et déployé pour plusieurs organisations. Le nom KuneAgi reste celui de l'instance de la coopérative Cosmopolitical [4], qui s'en sert pour délibérer et y a fait ajouter ses propres règles : scrutins, vérification de l'identité des membres par leurs pairs.
+Réécrite à la main et généralisée, cette boîte à idées devient en 2014 **Nova-Ideo**, un logiciel libre (licence AGPL v3) d'innovation et de démocratie participatives [2]. Il est écrit en Python avec le cadriciel web Pyramid ; ses données vivent dans une base de données objet (ZODB) et ses processus sont exécutés par un moteur maison issu de la thèse (DaCE). Nova-Ideo est retenu en 2016 par Etalab pour la boîte à outils du Partenariat pour un gouvernement ouvert [3], et déployé pour plusieurs organisations. Le nom KuneAgi reste celui de la variante de Cosmopolitical [4], coopérative de droit européen qui s'en sert pour délibérer, finance son développement comme logiciel libre et y a fait ajouter ses propres règles : scrutins supplémentaires, « citoyenneté » (vérification de l'identité des membres par leurs pairs), courriels, traduction allemande.
 
-Ecréall cesse son activité en 2023. Le code est repris en 2024 par Logikascium, l'EURL que j'ai fondée et par laquelle j'exerce comme indépendant, sous le nom KuneAgi. Il fonctionne, mais sur un socle technique figé en 2017 dont plusieurs briques ne sont plus maintenues par personne, et sa modernisation est engagée depuis 2025.
+Ecréall cesse son activité en 2023. Le code est repris en 2024 par Logikascium, l'EURL que j'ai fondée et par laquelle j'exerce comme indépendant, sous le nom KuneAgi. Il fonctionne, mais sur un socle technique figé en 2017 dont plusieurs briques ne sont plus maintenues par personne, et sa modernisation est engagée depuis 2025. La section C dit précisément où il en est.
 
 ## B. L'article de 2017
 
@@ -66,7 +66,34 @@ Le 5 mars 2017, j'ai publié *Nova-Ideo, l'innovation participative agile* [5], 
 
 Tout cela reste juste, et KuneAgi V2 le garde. Ce que l'article ne disait pas, parce que cela allait de soi à l'époque : Nova-Ideo est **un serveur**. Quelqu'un l'héberge, l'administre, détient la base de données, la liste des membres et les bulletins de vote. Et le tri des idées (lire, rapprocher, dédoublonner) reste un travail humain qui ne passe pas à l'échelle.
 
-## C. Deux travaux de 2026 dont KuneAgi V2 réutilise les idées
+## C. Où en est le code en 2026
+
+En juillet 2026, j'ai fait auditer les cinq dépôts de code de la lignée et établir un plan de modernisation [20]. Ce que l'audit a trouvé explique pourquoi l'idée d'une version 2 d'une autre nature s'est imposée.
+
+| Dépôt | Rôle | Dernière modification | Taille |
+| --- | --- | --- | --- |
+| nova-ideo | L'application d'innovation participative | mars 2020 | 71 700 lignes de Python, 439 gabarits de pages |
+| KuneAgi | La variante de Cosmopolitical | mars 2023 | 81 500 lignes de Python |
+| dace | Le moteur qui exécute les processus | décembre 2017 | 13 800 lignes |
+| pontus | La couche des pages et des formulaires | janvier 2018 | 4 300 lignes |
+| daceui | L'affichage des actions et des processus | décembre 2018 | 1 700 lignes |
+
+L'application connaît une trentaine de types de contenus (idée, proposition, amendement, scrutin, appel à idées, groupe de travail, jeton…) et **24 familles de processus**, décrites par 92 fichiers. Tout est sous licence AGPL v3 : la lignée Nova-Ideo appartient à Logikascium, les apports propres à KuneAgi à Cosmopolitical, et la même licence des deux côtés permet au code de circuler dans les deux sens.
+
+Le diagnostic tient en quatre points.
+
+- **Une architecture saine, sur un socle hors d'âge.** L'ensemble est cohérent et bien construit pour son époque, mais il dépend de versions de 2017 du langage Python, du cadriciel web et de la base de données, qui ne reçoivent plus aucun correctif de sécurité.
+- **Une brique de fondation orpheline.** Tout l'édifice repose sur une bibliothèque (substanced) qui n'a jamais connu de version stable et n'a plus de feuille de route : qui veut continuer doit en devenir le mainteneur.
+- **Un moteur de processus à réécrire en partie.** Sa mécanique d'événements et de minuteries date de 2015 et s'appuie sur des composants abandonnés.
+- **Une connaissance concentrée.** Le développeur principal, auteur d'environ 85 % des modifications, a quitté le projet en 2019. La documentation d'architecture n'existe pas.
+
+Le plan retenu redresse cela par étapes, en maintenant le service : reprendre le contrôle des dépôts, reconstruire à l'identique l'ancienne version pour disposer d'un étalon, documenter, porter le socle sur un Python actuel, refaire l'interface, puis migrer les données. C'est plusieurs mois de travail pour retrouver, à l'arrivée, exactement les mêmes fonctions sur une base saine.
+
+La dernière étape du plan est celle qui a tout déclenché. Dès 2021, j'avais dressé un bilan d'usage de Nova-Ideo qui demandait trois évolutions : l'**anonymisation** des participations, une interface **plus simple pour le jugement majoritaire**, et la **fusion automatique des idées voisines**, que nous pensions alors confier à un modèle de langue français de l'époque. Cette fusion n'a jamais été faite. En 2026, un modèle de langage généraliste la fait sans difficulté, ainsi que le rattachement des idées aux propositions, la synthèse des discussions et l'aide à la rédaction des amendements.
+
+D'où la question que pose ce document. Puisqu'il faut de toute façon refaire le socle, et puisque le tri des idées peut être confié à des machines, faut-il reconstruire le même serveur en plus récent, ou changer la nature de l'outil ? La modernisation garde KuneAgi en service. KuneAgi V2 explore l'autre réponse.
+
+## D. Deux travaux de 2026 dont KuneAgi V2 réutilise les idées
 
 **Biblioteko** [7] est un projet de bibliothèque numérique libre et décentralisée, pour une association qui numérise des livres et les prête. Sa version 2, spécifiée en novembre 2026 et pas encore développée, repose sur quelques décisions qui n'ont rien de propre aux livres :
 
@@ -84,7 +111,7 @@ Remplacez « livre » par « proposition » et « bibliothécaire » par « grou
 - l'emplacement d'un fichier ne dit rien de son état : on ne déplace pas un document de « à valider » vers « validé », on change une ligne de son en-tête ;
 - l'IA **propose**, le système **vérifie**, l'humain **décide** ; et tout doit continuer à fonctionner sans IA.
 
-## D. L'idée de KuneAgi V2
+## E. L'idée de KuneAgi V2
 
 Garder de Nova-Ideo tout ce qui concerne les personnes (les petits groupes, les itérations, les amendements, le jugement majoritaire, les jetons) et remplacer tout ce qui concerne la machine. Plus de serveur : des dépôts de fichiers que les membres se partagent. Plus de base de données : l'état est dans les fichiers. Plus d'administrateur à croire sur parole : des signatures que chacun vérifie. Plus de tri manuel des idées : des agents d'IA qui rangent, sans jamais décider.
 
@@ -327,7 +354,7 @@ KuneAgi V2 tient la promesse autrement. Le modèle n'est plus transformé en cod
 
 Ce qui reste du projet d'origine est l'essentiel : une application est un ensemble de processus avant d'être un ensemble d'écrans.
 
-Le socle vient des deux travaux présentés dans l'avant-propos. **Biblioteko** apporte la partie répartie : un dépôt par objet de travail, des catalogues partagés par QR code, des en-têtes signés, une vérification qui ne dépend pas du dépôt vérifié. **OSIA** apporte la méthode : l'en-tête des fichiers comme modèle de données et comme mémoire d'état, des agents qui proposent et un système qui valide. La section 7 détaille l'assemblage.
+Le socle vient des deux travaux présentés dans l'avant-propos (section D). **Biblioteko** apporte la partie répartie : un dépôt par objet de travail, des catalogues partagés par QR code, des en-têtes signés, une vérification qui ne dépend pas du dépôt vérifié. **OSIA** apporte la méthode : l'en-tête des fichiers comme modèle de données et comme mémoire d'état, des agents qui proposent et un système qui valide. La section 7 détaille l'assemblage.
 
 L'API GraphQL de 2017 n'a pas de successeur, parce qu'il n'y a rien à interroger à distance. Lire les contenus depuis un autre programme, c'est lire des fichiers ; en créer, c'est en écrire un et le signer.
 
@@ -513,7 +540,7 @@ Un texte d'anticipation doit ses limites à son lecteur.
 - **« Sans serveur » ne veut pas dire « sans infrastructure ».** Il n'y a ni serveur d'application ni hébergeur imposé ; mais un dépôt privé repose sur les droits d'accès de celui qui l'héberge.
 - **L'échelle.** Des centaines de dépôts et des milliers de petits fichiers de messages demandent une synchronisation sélective qui reste à concevoir.
 - **La dérive des agents.** Deux modèles ne rangent pas les idées de la même façon. C'est tolérable uniquement parce que les idées n'ont aucun pouvoir.
-- **L'existant.** Passer d'une instance Nova-Ideo en service à des dépôts suppose un export complet de sa base, qui n'est pas écrit.
+- **L'existant.** Passer d'une instance Nova-Ideo en service à des dépôts suppose un export complet de sa base, qui n'est pas écrit. Et KuneAgi V2 ne dispense pas de la modernisation décrite dans l'avant-propos : tant que la version 2 n'est pas utilisable par tous, c'est la version actuelle qui sert.
 
 L'expérience décisive est modeste : cinq personnes, un texte réel, des amendements et un vote au jugement majoritaire, à la main et en ligne de commande. Si cela ne tient pas à cinq, rien du reste ne mérite d'être construit.
 
@@ -571,7 +598,7 @@ L'expérience décisive est modeste : cinq personnes, un texte réel, des amende
 1. Amen Souissi, *Modélisation centrée sur les processus métier pour la génération complète de portails collaboratifs*, thèse de doctorat, Université Lille 1, 2013. <https://hal.science/tel-00935324v1>
 2. Nova-Ideo, KuneAgi et leurs bibliothèques (dace, pontus), code source sous licence AGPL v3. <https://github.com/ecreall> ; reprise par Logikascium : <https://github.com/michaellaunay/kuneagi>
 3. Fiche de Nova-Ideo dans la boîte à outils du Partenariat pour un gouvernement ouvert (Etalab, 2016). <https://ogptoolbox.org/fr/tools/7873>
-4. Coopérative Cosmopolitical. <https://www.cosmopolitical.coop/>
+4. Cosmopolitical, coopérative de droit européen. <https://www.cosmopolitical.coop/>
 5. Michaël Launay, *[Nova-Ideo, l'innovation participative agile](https://connect.ed-diamond.com/Linux-Pratique/lp-101/organiser-un-brainstorming-geant-l-innovation-participative-en-pratique-avec-nova-ideo?__cf_chl_tk=R1qpge4P7.VBMX.snRgDyZz2QTIkBZpmj6cfqyUFh5w-1793372269-1.0.1.1-Gj8SMVO1Rr0rrg4A2QMKE9kYeR90aZEYPh6bSrb2nWQ)*, article du 5 mars 2017, licence Creative Commons BY-NC-ND. Présentation orale antérieure : *Nova-Ideo, une boîte à idées collaborative*, PyConFR 2015.
 
 **Mode de scrutin**
@@ -599,6 +626,10 @@ L'expérience décisive est modeste : cinq personnes, un texte réel, des amende
 17. Jean-Michel Cornu, *Le guide de l'animateur*. <http://www.cornu.eu.org/texts/guide-de-l-animateur>
 18. La Quadrature du Net, sur le sommet du Partenariat pour un gouvernement ouvert de décembre 2016. <http://lqdn.fr/node/10118>
 19. Holacratie. <https://fr.wikipedia.org/wiki/Holacratie>
+
+**État du code**
+
+20. *Audit et plan de modernisation — Nova-Ideo, DaCE, Pontus, DaceUI*, Logikascium, 13 juillet 2026, document de travail : analyse des dépôts publics `ecreall/nova-ideo`, `KuneAgi`, `dace`, `pontus` et `daceui`.
 
 > [!note] Notes liées dans ce coffre
 > Facultatives : [[kuneagi_v2]] (conception détaillée, pour les développeurs), [[Présentation Nova-Ideo]] (histoire du projet), [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|cours OSIA]].
