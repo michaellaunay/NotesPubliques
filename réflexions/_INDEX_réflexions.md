@@ -47,6 +47,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 ## Génie logiciel
 
+- [[kuneagi_v2]] — Projet KuneAgi V2 : refaire KuneAgi (Nova-Ideo) sans serveur central en fusionnant Biblioteko V2 et Obsidian OSIA. Un dépôt Git par groupe de travail, un dépôt de communauté qui les recense, brouillons dans des forks, messagerie, amendements et votes sous forme de fichiers Markdown signés dont le frontmatter porte l'état, workflows déclaratifs, et boîte à idées entièrement tenue par des agents LLM.
 - [[L'utopie de la Modélisation]] — Première partie, la seule écrite, d'une série d'articles sur ce qu'est un modèle et sur la façon dont nos sociétés ont toujours cherché à expliquer et prédire au moyen de modèles ; structurée, sourcée et corrigée en août 2026.
 
 ## Pédagogie et apprentissage
@@ -67,7 +68,10 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[Arnaques]] — Note sur les arnaques sentimentales et le marché que représentent les personnes célibataires dans les pays riches.
 - [[L'échelle de la conscience]] — Notes sur l'échelle de conscience proposée par Paul Cherfuka, du sommeil profond aux niveaux supérieurs.
 - [[Les freaks]] — Courte note sur la marginalisation des corps jugés monstrueux, à partir du film Freaks de Tod Browning.
+- [[Oppressions numériques]] — Parallèle entre l'histoire des camps d'internement et les mécanismes d'enfermement culturel à l'œuvre dans les réseaux sociaux.
 - [[Peut-on éviter le chaos qui vient]] — Essai du 21 septembre 2025 croisant la thèse de Peter Turchin sur les cycles de crise, le débat sur la taxe Zucman, les crises climatique, du vivant et chimique, et l'automatisation du tertiaire par l'IA ; structuré et sourcé en août 2026.
+- [[présentation__kuneagi_v2]] — Article d'anticipation autonome : KuneAgi V2 raconté comme s'il fonctionnait, sans serveur central. Avant-propos sur l'origine (thèse de 2013, Nova-Ideo, article de 2017, Biblioteko, OSIA), article en six sections avec quatorze croquis d'écrans mobile et PC, fonctionnement interne (dépôts, fichiers signés, processus déclaratifs, votes, agents d'IA), limites, glossaire et références.
+- [[Tous véganes]] — Réflexion sur les frontières culturelles et philosophiques de la protection animale et sur l'impossibilité d'une activité humaine sans conséquence sur le vivant.
 - [[Une analogie pour la connaissance]] — Analogie présentant la connaissance comme une pyramide à laquelle chaque découverte ajoute un bloc.
 - [[Westworld]] — Notes autour des citations de Westworld sur la simulation des humains et ce qu'elles disent de la conscience.
 
@@ -75,4 +79,5 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[Billets LinkedIn 2023]] — Deux billets LinkedIn courts de 2023 réunis avec leur date — Arbre (séquestration du carbone, qu'est-ce qu'un arbre, centième arbre planté) et Piscines tournesol (patrimoine des piscines des années 1970) — avec renvoi vers le troisième billet de la même série, Les difficultés d'enseigner.
 - [[Bocage]] — Réflexion sur l'arrachage des haies et la destruction des bocages comme cause majeure de perte de biodiversité, et sur le statut juridique du vivant sauvage.
+- [[Comment répondre à la loi Duplomb]] — Notes issues d'une conférence de Pierre-Henri Gouyon sur les arbitrages de l'EFSA concernant l'évaluation de la toxicité des pesticides pour les abeilles.
 - [[Limites planétaires]] — Liste des principales limites planétaires : pollution, climat, biodiversité et ressources.
