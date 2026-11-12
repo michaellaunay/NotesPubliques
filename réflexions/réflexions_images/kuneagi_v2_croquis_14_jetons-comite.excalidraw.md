@@ -3,6 +3,9 @@ excalidraw-plugin: parsed
 tags:
 - excalidraw
 uid: 01M76D2EMDX17S3A0N579Z4FQV
+confidentialite: publique
+publication:
+- notes-publiques
 ---
 ==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
