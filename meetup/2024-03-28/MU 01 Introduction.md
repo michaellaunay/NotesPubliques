@@ -24,7 +24,7 @@ publication:
 rag: true
 metadata_verifiees: true
 ---
-# Introduction
+![[MU 02 Étude de cas]]# Introduction
 - Présentation du potentiel de l'IA dans le développement logiciel.
 - Clarification du terme "Intelligence Artificielle" et distinction entre IA générale et IA appliquée au développement logiciel.
 - Aperçu historique et futur de l'IA dans le développement logiciel, incluant les prédictions de Yann LeCun.

@@ -261,7 +261,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 {
 	"type": "excalidraw",
 	"version": 2,
-	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.27.3",
+	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.28.1",
 	"elements": [
 		{
 			"type": "rectangle",
@@ -331,7 +331,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "a0",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "image",
@@ -369,7 +370,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "a1",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -412,7 +414,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "a2",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -450,12 +454,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "a3",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 839,
-			"versionNonce": 680772443,
+			"version": 840,
+			"versionNonce": 680772444,
 			"isDeleted": false,
 			"id": "gF99M0rc",
 			"fillStyle": "solid",
@@ -487,7 +492,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "a4",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -530,7 +536,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "a5",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -561,16 +569,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3311197098387586,
 					0.33111970983875866
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "eAycqr2JhoDzZErHpDcdW",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6089420408381871,
 					0.6089420408381869
@@ -594,12 +602,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "a6",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
-			"version": 1208,
-			"versionNonce": 1438495029,
+			"version": 1209,
+			"versionNonce": 1247579428,
 			"isDeleted": false,
 			"id": "lUEx8bLLIwfSfR3WIe_3Z",
 			"fillStyle": "solid",
@@ -608,7 +617,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1957.9334031292494,
+			"x": 1951.9438197959155,
 			"y": -4739.522806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#a5d8ff",
@@ -638,16 +647,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "arrow"
 				}
 			],
-			"updated": 1790853169419,
+			"updated": 1794301359366,
 			"link": null,
 			"locked": false,
 			"index": "a7",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
-			"version": 1545,
-			"versionNonce": 857270427,
+			"version": 1546,
+			"versionNonce": 1360480420,
 			"isDeleted": false,
 			"id": "XtWC364V",
 			"fillStyle": "solid",
@@ -656,7 +666,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 2653.942280970159,
+			"x": 2647.952697636825,
 			"y": -4074.122806356519,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
@@ -667,7 +677,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1790853169419,
+			"updated": 1794301359366,
 			"link": "[[LLM# Les LLM en bref]]",
 			"locked": false,
 			"fontSize": 28,
@@ -683,12 +693,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "a8",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
-			"version": 1842,
-			"versionNonce": 1830842875,
+			"version": 1843,
+			"versionNonce": 938382372,
 			"isDeleted": false,
 			"id": "T5nAVrM1gLrcSJ8M1cFw_",
 			"fillStyle": "solid",
@@ -701,7 +713,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": -2879.4305972367015,
 			"strokeColor": "#1971c2",
 			"backgroundColor": "transparent",
-			"width": 697.4706679025292,
+			"width": 694.5306904384463,
 			"height": 491.09220911981765,
 			"seed": 1301585396,
 			"groupIds": [],
@@ -710,20 +722,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1790853169646,
+			"updated": 1794301359367,
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "eAycqr2JhoDzZErHpDcdW",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6224151174485851,
 					0.6224151174485851
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6584628445766301,
 					0.6584628445766298
@@ -742,13 +754,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					-36.52727405488395
 				],
 				[
-					697.4706679025292,
+					694.5306904384463,
 					-491.09220911981765
 				]
 			],
 			"index": "a9",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -786,7 +799,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aA",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -800,11 +814,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1783.4927629085305,
+			"x": 1797.1262467952492,
 			"y": 2436.3620100884273,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 742.3583374023438,
+			"width": 715.0913696289062,
 			"height": 618.5002994011976,
 			"seed": 2004375156,
 			"groupIds": [
@@ -818,18 +832,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 38.41616766467066,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VQJGHYYJXE948KWR5V\"\ntitre: \"MU 03 Sujet\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - markdown\n  - html\n  - p",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VQJGHYYJXE948KWR5V\ntitre: MU 03 Sujet\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - markdown\n  - html\n  - publi",
 			"rawText": "![[MU 03 Sujet]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "5B2LuYMrj2ifGZV7bdh8F",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VQJGHYYJXE948KWR5V\"\ntitre: \"MU 03 Sujet\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - markdown\n  - html\n  - p",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VQJGHYYJXE948KWR5V\ntitre: MU 03 Sujet\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - markdown\n  - html\n  - publi",
 			"lineHeight": 1.15,
 			"baseline": 167,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aB",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -867,7 +883,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aC",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -910,7 +927,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "aD",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -948,7 +967,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "aE",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -979,16 +999,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6150924257136875,
 					0.38490757428631256
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "LAkzEl1OmhE1zyuTXT2qY",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.12046153231060559,
 					0.8795384676893938
@@ -1012,7 +1032,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "aF",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -1058,7 +1079,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aG",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -1096,7 +1118,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aH",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1139,7 +1162,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aI",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "text",
@@ -1182,12 +1207,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "aJ",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 403,
-			"versionNonce": 459700315,
+			"version": 404,
+			"versionNonce": 459700316,
 			"isDeleted": false,
 			"id": "ZVNpuIO8",
 			"fillStyle": "solid",
@@ -1219,7 +1246,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "aK",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -1250,16 +1278,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "eAycqr2JhoDzZErHpDcdW",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.8777036950428803,
 					0.8777036950428801
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "O3i_7AogQT0uivwnSXzkR",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.33793430591618423,
 					0.6620656940838158
@@ -1283,7 +1311,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "aL",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -1326,7 +1355,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aM",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1340,11 +1370,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -40.66358764380584,
+			"x": -25.22193725318084,
 			"y": -3175.489149322887,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 869.7451171875,
+			"width": 838.86181640625,
 			"height": 600.4926916221034,
 			"seed": 295708916,
 			"groupIds": [
@@ -1359,18 +1389,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 43.513963161021984,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VQK2HBK1ND9EJGWWPC\"\ntitre: \"MU 01 Introduction\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-art",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VQK2HBK1ND9EJGWWPC\ntitre: MU 01 Introduction\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-artific",
 			"rawText": "![[MU 01 Introduction]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "5mcYkwqspnf5MeVAvWjO2",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VQK2HBK1ND9EJGWWPC\"\ntitre: \"MU 01 Introduction\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-art",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VQK2HBK1ND9EJGWWPC\ntitre: MU 01 Introduction\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-artific",
 			"lineHeight": 1.15,
 			"baseline": 140,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aN",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -1421,7 +1453,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aO",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1465,7 +1498,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "aP",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -1503,7 +1538,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "aQ",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1546,7 +1582,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aR",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -1592,7 +1630,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aS",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1635,12 +1674,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "aT",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 379,
-			"versionNonce": 224976763,
+			"version": 380,
+			"versionNonce": 224976764,
 			"isDeleted": false,
 			"id": "r3PKsUdk",
 			"fillStyle": "solid",
@@ -1672,7 +1713,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "aU",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1715,12 +1757,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aV",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
-			"version": 608,
-			"versionNonce": 1574337179,
+			"version": 609,
+			"versionNonce": 1825599396,
 			"isDeleted": false,
 			"id": "daUWAY03uuZmpAVNsyAv-",
 			"fillStyle": "solid",
@@ -1729,11 +1773,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 2659.6384372917546,
+			"x": 2655.141562687697,
 			"y": -4745.522806356519,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 1902.5196371708453,
+			"width": 1907.016511774903,
 			"height": 966.8668088685245,
 			"seed": 865819775,
 			"groupIds": [],
@@ -1742,20 +1786,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1790853169647,
+			"updated": 1794301359368,
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.2178327412515194,
 					0.21783274125151922
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "0ZwkFJ1qDZWSjHb87cuiJ",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4390263487379899,
 					0.4390263487379907
@@ -1770,17 +1814,18 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					1016.5856137936289,
+					1021.0824883976866,
 					-912.5225775703475
 				],
 				[
-					1902.5196371708453,
+					1907.016511774903,
 					-966.8668088685245
 				]
 			],
 			"index": "aW",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -1826,7 +1871,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "aX",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1869,7 +1915,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "aY",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "text",
@@ -1912,12 +1960,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aZ",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 282,
-			"versionNonce": 947137883,
+			"version": 283,
+			"versionNonce": 947137884,
 			"isDeleted": false,
 			"id": "PChLWW9B",
 			"fillStyle": "solid",
@@ -1949,7 +1999,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "aa",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -1992,12 +2043,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "ab",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
-			"version": 544,
-			"versionNonce": 671248187,
+			"version": 545,
+			"versionNonce": 1877662500,
 			"isDeleted": false,
 			"id": "BWLfJHRUOPx5ONAzo-V5w",
 			"fillStyle": "solid",
@@ -2006,12 +2059,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 3636.1152213110695,
-			"y": -4096.1966892485125,
+			"x": 3630.1256379777356,
+			"y": -4097.359862101448,
 			"strokeColor": "#f08c00",
 			"backgroundColor": "#ffec99",
-			"width": 921.7036560862139,
-			"height": 241.2508724212148,
+			"width": 927.6932394195478,
+			"height": 242.41404527415034,
 			"seed": 2054474143,
 			"groupIds": [],
 			"frameId": null,
@@ -2019,20 +2072,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1790853169648,
+			"updated": 1794301359368,
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "lUEx8bLLIwfSfR3WIe_3Z",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6876203775431895,
 					0.31237962245681045
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "ynTuAINAbqIxZsBzBLWTG",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.417108957933318,
 					0.41710895793331826
@@ -2047,17 +2100,18 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					0
 				],
 				[
-					585.9096955751797,
-					241.2508724212148
+					591.8992789085137,
+					242.41404527415034
 				],
 				[
-					921.7036560862139,
-					170.6694414260446
+					927.6932394195478,
+					171.83261427898015
 				]
 			],
 			"index": "ac",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -2088,16 +2142,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "ynTuAINAbqIxZsBzBLWTG",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4658312349423535,
 					0.4658312349423527
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "0ZwkFJ1qDZWSjHb87cuiJ",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.45072462468985447,
 					0.549275375310145
@@ -2117,7 +2171,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "ad",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -2150,7 +2205,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "ae",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -2193,7 +2249,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "af",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -2231,12 +2289,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "ag",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
-			"version": 275,
-			"versionNonce": 1652769851,
+			"version": 276,
+			"versionNonce": 1461462052,
 			"isDeleted": false,
 			"id": "dUjClXqN",
 			"fillStyle": "solid",
@@ -2246,11 +2305,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"opacity": 100,
 			"angle": 0,
 			"x": 7412.645235586648,
-			"y": -6691.902959684439,
+			"y": -6671.202959684439,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffec99",
 			"width": 672.29296875,
-			"height": 538.1999999999999,
+			"height": 496.79999999999995,
 			"seed": 1527113087,
 			"groupIds": [
 				"w3ozcwQwk6f78cElltaxP"
@@ -2258,23 +2317,25 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1790853169649,
+			"updated": 1794301152203,
 			"link": "[[MU 90 Dialecte ChatGPT]]",
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: 01M02JG1VSHDV9H51N6WTYE6XB\ntitre: MU 90 Dialecte ChatGPT\ntype: reflexion\nstatut: actif\npara: ressource\ndomaines:\n- enseignement\nthemes:\n- intelligence-artificielle\n- llm\n- l",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VSHDV9H51N6WTYE6XB\ntitre: MU 90 Dialecte ChatGPT\ntype: reflexion\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-artificielle\n  - l",
 			"rawText": "![[MU 90 Dialecte ChatGPT]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "SV0XmZOytz0tSfe_pnB5w",
-			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VSHDV9H51N6WTYE6XB\ntitre: MU 90 Dialecte ChatGPT\ntype: reflexion\nstatut: actif\npara: ressource\ndomaines:\n- enseignement\nthemes:\n- intelligence-artificielle\n- llm\n- l",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VSHDV9H51N6WTYE6XB\ntitre: MU 90 Dialecte ChatGPT\ntype: reflexion\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-artificielle\n  - l",
 			"lineHeight": 1.15,
 			"baseline": 281,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "ah",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -2312,7 +2373,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "ai",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -2343,8 +2405,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "0ZwkFJ1qDZWSjHb87cuiJ",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3940237605333113,
 					0.39402376053331084
@@ -2369,7 +2431,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "aj",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -2409,7 +2472,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "ak",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -2450,7 +2514,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "al",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -2481,16 +2547,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "ynTuAINAbqIxZsBzBLWTG",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6989815635471252,
 					0.6989815635471242
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "eTbk9bNBghou77CpoVp5F",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.26030153184541027,
 					0.7396984681545903
@@ -2515,7 +2581,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "am",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -2557,7 +2624,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "an",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -2600,7 +2668,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "ao",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -2638,7 +2708,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "ap",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -2681,12 +2752,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "aq",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 340,
-			"versionNonce": 196953301,
+			"version": 341,
+			"versionNonce": 196953302,
 			"isDeleted": false,
 			"id": "yiABEFk4",
 			"fillStyle": "solid",
@@ -2718,7 +2791,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "ar",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -2761,7 +2835,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "as",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -2792,16 +2868,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "eAycqr2JhoDzZErHpDcdW",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4445076789829807,
 					0.5554923210170191
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "h1Xo0rcnl73MvBlWL1afu",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.20401038857343262,
 					0.2040103885734324
@@ -2825,7 +2901,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "at",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -2863,12 +2940,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "au",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 355,
-			"versionNonce": 2069353365,
+			"version": 356,
+			"versionNonce": 2069353366,
 			"isDeleted": false,
 			"id": "g9gtaYU0",
 			"fillStyle": "solid",
@@ -2900,7 +2978,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "av",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -2943,12 +3022,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "aw",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 362,
-			"versionNonce": 1554159861,
+			"version": 363,
+			"versionNonce": 1554159862,
 			"isDeleted": false,
 			"id": "qdysjM5l",
 			"fillStyle": "solid",
@@ -2980,7 +3061,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "ax",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3023,12 +3105,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "ay",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 365,
-			"versionNonce": 1194177109,
+			"version": 366,
+			"versionNonce": 1194177110,
 			"isDeleted": false,
 			"id": "gj61NXJC",
 			"fillStyle": "solid",
@@ -3060,12 +3144,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "az",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 373,
-			"versionNonce": 1367148923,
+			"version": 374,
+			"versionNonce": 1367148924,
 			"isDeleted": false,
 			"id": "MHSkdzRa",
 			"fillStyle": "solid",
@@ -3097,7 +3182,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b00",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3140,7 +3226,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b01",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -3171,16 +3259,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "O3i_7AogQT0uivwnSXzkR",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.7255795463935124,
 					0.7255795463935116
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "38B1Mxa2a4EArEsM0MV3Z",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3295517270607094,
 					0.6704482729392907
@@ -3204,7 +3292,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b02",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -3242,7 +3331,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b03",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -3276,7 +3366,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b04",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -3315,7 +3406,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b05",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3359,7 +3451,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b06",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "text",
@@ -3403,7 +3497,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b07",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -3437,7 +3533,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b08",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3481,7 +3578,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b09",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -3520,7 +3619,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0A",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3564,7 +3664,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b0B",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -3595,16 +3697,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "O3i_7AogQT0uivwnSXzkR",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.7554906075456267,
 					0.7554906075456264
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "SEmEz8Pbm0mhlROVMlWFq",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.365738947829312,
 					0.6342610521706872
@@ -3628,7 +3730,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0C",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -3670,12 +3773,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0D",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 192,
-			"versionNonce": 27824603,
+			"version": 193,
+			"versionNonce": 27824604,
 			"isDeleted": false,
 			"id": "EQF707Ud",
 			"fillStyle": "solid",
@@ -3707,7 +3811,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b0E",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3750,12 +3855,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0F",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 78,
-			"versionNonce": 269459067,
+			"version": 79,
+			"versionNonce": 269459068,
 			"isDeleted": false,
 			"id": "5yodHTVF",
 			"fillStyle": "solid",
@@ -3787,7 +3894,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b0G",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3830,12 +3938,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0H",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 95,
-			"versionNonce": 590092059,
+			"version": 96,
+			"versionNonce": 590092060,
 			"isDeleted": false,
 			"id": "hJPzodVz",
 			"fillStyle": "solid",
@@ -3867,7 +3977,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b0I",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3910,12 +4021,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0J",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 82,
-			"versionNonce": 1500543931,
+			"version": 83,
+			"versionNonce": 1500543932,
 			"isDeleted": false,
 			"id": "p6u5M5EZ",
 			"fillStyle": "solid",
@@ -3947,7 +4060,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b0K",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -3990,7 +4104,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0L",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -4021,16 +4137,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "h1Xo0rcnl73MvBlWL1afu",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.7851726314955453,
 					0.21482736850445455
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "ECNIG08g4FGfkSx8bu5wN",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3174526428314978,
 					0.6825473571685023
@@ -4054,12 +4170,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0M",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 216,
-			"versionNonce": 212761301,
+			"version": 217,
+			"versionNonce": 212761302,
 			"isDeleted": false,
 			"id": "dxQi4srH",
 			"fillStyle": "solid",
@@ -4094,7 +4211,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b0N",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -4125,16 +4243,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "ECNIG08g4FGfkSx8bu5wN",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6468391102361256,
 					0.6468391102361248
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "dxQi4srH",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3846285180738931,
 					0.6153714819261061
@@ -4158,7 +4276,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0O",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -4189,16 +4308,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.7610002510161663,
 					0.23899974898383367
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "c4YpVnANdwqbEwo22BOrY",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.33755212676188884,
 					0.6624478732381109
@@ -4222,7 +4341,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0P",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -4260,12 +4380,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0Q",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
-			"version": 395,
-			"versionNonce": 522131771,
+			"version": 396,
+			"versionNonce": 1467674916,
 			"isDeleted": false,
 			"id": "myS3xSRclPdM63GIxeD9t",
 			"fillStyle": "solid",
@@ -4274,7 +4395,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1249.4507436780714,
+			"x": 1255.3622020114053,
 			"y": 399.70125428736117,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
@@ -4294,16 +4415,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1790853169650,
+			"updated": 1794301319069,
 			"link": null,
 			"locked": false,
 			"index": "b0R",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
-			"version": 700,
-			"versionNonce": 2147367387,
+			"version": 704,
+			"versionNonce": 1918742940,
 			"isDeleted": false,
 			"id": "ldWyEkQ4",
 			"fillStyle": "solid",
@@ -4312,11 +4434,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": 1797.7470371268478,
+			"x": 1823.2711663586192,
 			"y": 404.90140135420154,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 1049.480224609375,
+			"width": 1010.2548828125,
 			"height": 762.5997058663193,
 			"seed": 1988237681,
 			"groupIds": [
@@ -4325,23 +4447,25 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1790853169650,
+			"updated": 1794301321680,
 			"link": "[[MU 02 Étude de cas]]",
 			"locked": false,
 			"fontSize": 55.260848251182566,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VQHQZ1WN1T67JKE03J\"\ntitre: \"MU 02 Étude de cas\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-art",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VQHQZ1WN1T67JKE03J\ntitre: MU 02 Étude de cas\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-artific",
 			"rawText": "![[MU 02 Étude de cas]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "myS3xSRclPdM63GIxeD9t",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VQHQZ1WN1T67JKE03J\"\ntitre: \"MU 02 Étude de cas\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-art",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VQHQZ1WN1T67JKE03J\ntitre: MU 02 Étude de cas\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - intelligence-artific",
 			"lineHeight": 1.15,
 			"baseline": 368,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b0S",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "text",
@@ -4384,7 +4508,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0T",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -4422,7 +4548,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0U",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -4453,16 +4580,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.47524985104421363,
 					0.5247501489557863
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "-9xVWp01SHx8jNeaBw3AE",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4300810015571905,
 					0.43008100155719065
@@ -4482,7 +4609,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0V",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -4524,7 +4652,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0W",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -4567,12 +4696,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0X",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
-			"version": 178,
-			"versionNonce": 91244155,
+			"version": 179,
+			"versionNonce": 1875640228,
 			"isDeleted": false,
 			"id": "QJRUNbJzwLvVwe_rLATyy",
 			"fillStyle": "solid",
@@ -4586,7 +4717,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
 			"width": 1874.8888888888891,
-			"height": 466,
+			"height": 507,
 			"seed": 2015691825,
 			"groupIds": [
 				"MfnVTIChIRwqdv65aGZKP"
@@ -4601,16 +4732,17 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 					"type": "text"
 				}
 			],
-			"updated": 1790853169650,
+			"updated": 1794301152204,
 			"link": null,
 			"locked": false,
 			"index": "b0Y",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
-			"version": 228,
-			"versionNonce": 1983364891,
+			"version": 229,
+			"versionNonce": 754215716,
 			"isDeleted": false,
 			"id": "DkaFdvSx",
 			"fillStyle": "solid",
@@ -4619,12 +4751,12 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -4106.624774640507,
-			"y": 1081.9376884823284,
+			"x": -4093.845477765507,
+			"y": 1081.7376884823284,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 767.953125,
-			"height": 455.4,
+			"width": 742.39453125,
+			"height": 496.79999999999995,
 			"seed": 125643985,
 			"groupIds": [
 				"MfnVTIChIRwqdv65aGZKP"
@@ -4632,23 +4764,25 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1790853169650,
+			"updated": 1794301152204,
 			"link": "[[MU 06 Organisation des développements]]",
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VP538CGP58CJAY7T4G\"\ntitre: \"MU 06 Organisation des développements\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VP538CGP58CJAY7T4G\ntitre: MU 06 Organisation des développements\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - p",
 			"rawText": "![[MU 06 Organisation des développements]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "QJRUNbJzwLvVwe_rLATyy",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VP538CGP58CJAY7T4G\"\ntitre: \"MU 06 Organisation des développements\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VP538CGP58CJAY7T4G\ntitre: MU 06 Organisation des développements\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - p",
 			"lineHeight": 1.15,
 			"baseline": 198,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b0Z",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -4686,7 +4820,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0a",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -4717,16 +4852,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.028385775725939127,
 					0.9716142242740607
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "dtCZgO-33xqt9RWrVvV3N",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.5819013447888313,
 					0.5819013447888312
@@ -4750,7 +4885,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0b",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -4781,16 +4917,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.45151649513068154,
 					0.5484835048693185
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "mRpx1lLAYnP003YpyDyXf",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.17745871556906262,
 					0.17745871556906231
@@ -4814,7 +4950,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0c",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -4852,7 +4989,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0d",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -4895,7 +5033,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0e",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -4933,7 +5073,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0f",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -4947,11 +5088,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -3092.9295480398027,
+			"x": -3080.1502511648027,
 			"y": 3099.2386621983655,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#b2f2bb",
-			"width": 705.796875,
+			"width": 680.23828125,
 			"height": 496.79999999999995,
 			"seed": 52302879,
 			"groupIds": [
@@ -4965,18 +5106,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VPSG7NYZGFRF93QVNG\"\ntitre: \"MU 05 Document de Conception\"\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - con",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VPSG7NYZGFRF93QVNG\ntitre: MU 05 Document de Conception\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - concept",
 			"rawText": "![[MU 05 Document de Conception]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "tyn8ZWk1E_38NncX19HC5",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VPSG7NYZGFRF93QVNG\"\ntitre: \"MU 05 Document de Conception\"\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - con",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VPSG7NYZGFRF93QVNG\ntitre: MU 05 Document de Conception\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - concept",
 			"lineHeight": 1.15,
 			"baseline": 74,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b0g",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -5014,7 +5157,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0h",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -5060,7 +5204,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0i",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -5103,7 +5248,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0j",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -5141,7 +5288,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0k",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -5173,18 +5321,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: 01M02JG1VP9AAEA6DH3CBZV7X2\ntitre: MU 07 Page HTML\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n- enseignement\nthemes:\n- genie-logiciel\n- html\n- excalidraw\n- intellige",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VP9AAEA6DH3CBZV7X2\ntitre: MU 07 Page HTML\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - html\n  - excalidraw\n  -",
 			"rawText": "![[MU 07 Page HTML]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "U2bcsM_2_KdKrGLAS9Est",
-			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VP9AAEA6DH3CBZV7X2\ntitre: MU 07 Page HTML\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n- enseignement\nthemes:\n- genie-logiciel\n- html\n- excalidraw\n- intellige",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VP9AAEA6DH3CBZV7X2\ntitre: MU 07 Page HTML\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - html\n  - excalidraw\n  -",
 			"lineHeight": 1.15,
 			"baseline": 115,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b0l",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -5222,7 +5372,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0m",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -5253,16 +5404,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.35676776422988676,
 					0.6432322357701131
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "2NzEEc_qiVfsjO8s03wnN",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.682799200939838,
 					0.31720079906016213
@@ -5286,7 +5437,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0n",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "image",
@@ -5327,7 +5479,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0o",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -5358,16 +5511,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2NzEEc_qiVfsjO8s03wnN",
+				"mode": "orbit",
 				"fixedPoint": [
 					0,
 					0.5001
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "0HxOBFQ7",
+				"mode": "orbit",
 				"fixedPoint": [
 					1.0000000000000002,
 					0.5001
@@ -5391,7 +5544,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0p",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -5433,7 +5587,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0q",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "image",
@@ -5471,7 +5626,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0r",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -5502,16 +5658,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2NzEEc_qiVfsjO8s03wnN",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3058283771808415,
 					0.3058283771808417
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "zwpgCOUjXEPJhtv98ququ",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.7671957671957659,
 					0.7671957671957652
@@ -5535,12 +5691,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0s",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 251,
-			"versionNonce": 1769189589,
+			"version": 252,
+			"versionNonce": 1769189590,
 			"isDeleted": false,
 			"id": "e5AlLvsj",
 			"fillStyle": "solid",
@@ -5575,7 +5732,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b0t",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -5606,16 +5764,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "zwpgCOUjXEPJhtv98ququ",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3163076341647975,
 					0.6836923658352025
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "e5AlLvsj",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.7430547369248159,
 					0.2569452630751835
@@ -5639,7 +5797,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b0u",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -5689,7 +5848,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0v",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -5732,7 +5892,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b0w",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "rectangle",
@@ -5770,7 +5932,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b0x",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -5784,11 +5947,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -5037.076515733557,
+			"x": -5024.297218858557,
 			"y": -3519.1267961095577,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 685.8984375,
+			"width": 660.33984375,
 			"height": 538.1999999999999,
 			"seed": 76381,
 			"groupIds": [
@@ -5802,18 +5965,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VPKF1H9SR3D07EKVQ8\"\ntitre: \"MU 08 Fichiers Python\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - python\n  - in",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VPKF1H9SR3D07EKVQ8\ntitre: MU 08 Fichiers Python\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - python\n  - intell",
 			"rawText": "![[MU 08 Fichiers Python]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "6zWgNdov7dKtkUzOR1-3B",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VPKF1H9SR3D07EKVQ8\"\ntitre: \"MU 08 Fichiers Python\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - python\n  - in",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VPKF1H9SR3D07EKVQ8\ntitre: MU 08 Fichiers Python\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - genie-logiciel\n  - python\n  - intell",
 			"lineHeight": 1.15,
 			"baseline": 571,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b0y",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "image",
@@ -5851,7 +6016,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b0z",
 			"hasTextLink": false,
-			"crop": null
+			"crop": null,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -5882,16 +6048,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.5689355759766823,
 					0.4310644240233177
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "wYinuksyVPcq3O6rgvyuI",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6988226357765659,
 					0.30117736422343344
@@ -5915,7 +6081,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b10",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -5946,16 +6113,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2vLnqE1UfpSw0Yxy2FAf4",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.560221549701211,
 					0.43977845029878904
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "j1qkH0AZyIZ0c3LnB_oTv",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.8626280377274491,
 					0.8626280377274491
@@ -5979,12 +6146,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b11",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 155,
-			"versionNonce": 971595131,
+			"version": 156,
+			"versionNonce": 971595132,
 			"isDeleted": false,
 			"id": "j7wsKzyc",
 			"fillStyle": "solid",
@@ -6023,12 +6191,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b12",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 69,
-			"versionNonce": 973179829,
+			"version": 70,
+			"versionNonce": 973179830,
 			"isDeleted": false,
 			"id": "zjtFo3AY",
 			"fillStyle": "solid",
@@ -6067,7 +6236,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b13",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -6098,16 +6268,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "wYinuksyVPcq3O6rgvyuI",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.15923898182535123,
 					0.8407610181746483
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "j7wsKzyc",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6850477819972449,
 					0.31495221800275475
@@ -6131,7 +6301,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b14",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -6162,16 +6333,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "wYinuksyVPcq3O6rgvyuI",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4396137419859762,
 					0.43961374198597647
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "zjtFo3AY",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.6457378938197345,
 					0.6457378938197348
@@ -6195,7 +6366,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b15",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -6235,7 +6407,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b16",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -6276,7 +6449,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b17",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -6307,16 +6482,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "dtCZgO-33xqt9RWrVvV3N",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4696145942690264,
 					0.5303854057309737
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "9Rq99DcTfe0hb9XUDmQvP",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.619277780181357,
 					0.3807222198186424
@@ -6337,7 +6512,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b18",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -6377,7 +6553,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b19",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -6418,7 +6595,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b1A",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -6449,16 +6628,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "j7wsKzyc",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3638713963620644,
 					0.6361286036379372
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "EuUAhDYLZRR1CUmtUGcFD",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.710916425607339,
 					0.2890835743926597
@@ -6479,7 +6658,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b1B",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -6523,7 +6703,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b1C",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -6564,7 +6745,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b1D",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -6595,16 +6778,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "zjtFo3AY",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.44867108518470655,
 					0.5513289148152938
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "3Rs2KGJIGpN0bJexjSAfs",
+				"mode": "orbit",
 				"fixedPoint": [
 					1,
 					0.5001
@@ -6625,7 +6808,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b1E",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -6665,7 +6849,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b1F",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -6679,11 +6864,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"roughness": 2,
 			"opacity": 100,
 			"angle": 0,
-			"x": -12366.727362213449,
+			"x": -12353.948065338449,
 			"y": -2719.0507499335126,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffc9c9",
-			"width": 835.91015625,
+			"width": 810.3515625,
 			"height": 455.4,
 			"seed": 1096214545,
 			"groupIds": [],
@@ -6695,18 +6880,20 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VR8NC6TJSM57P3JXRY\"\ntitre: \"MU 70 RAG Retrieval-Augmented Generation\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VR8NC6TJSM57P3JXRY\ntitre: MU 70 RAG Retrieval-Augmented Generation\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-arti",
 			"rawText": "![[MU 70 RAG Retrieval-Augmented Generation]]",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "-0VJzWWOK88rk3kesf680",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VR8NC6TJSM57P3JXRY\"\ntitre: \"MU 70 RAG Retrieval-Augmented Generation\"\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VR8NC6TJSM57P3JXRY\ntitre: MU 70 RAG Retrieval-Augmented Generation\ntype: cours\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-arti",
 			"lineHeight": 1.15,
 			"baseline": 115,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b1G",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -6737,16 +6924,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "3Rs2KGJIGpN0bJexjSAfs",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.3479764921898232,
 					0.34797649218982335
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "-0VJzWWOK88rk3kesf680",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.9999999999999994,
 					0.5001
@@ -6767,12 +6954,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b1H",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 91,
-			"versionNonce": 1206383227,
+			"version": 92,
+			"versionNonce": 1206383228,
 			"isDeleted": false,
 			"id": "2xGXFJux",
 			"fillStyle": "solid",
@@ -6811,7 +6999,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1I",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "arrow",
@@ -6842,16 +7031,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "wYinuksyVPcq3O6rgvyuI",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.5452358839617827,
 					0.4547641160382174
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "2xGXFJux",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.822865643481646,
 					0.17713435651835488
@@ -6875,7 +7064,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				]
 			],
 			"index": "b1J",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -6915,7 +7105,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b1K",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -6956,7 +7147,9 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b1L",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "arrow",
@@ -6987,16 +7180,16 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"startBinding": {
-				"mode": "orbit",
 				"elementId": "2xGXFJux",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.4613208069640125,
 					0.5386791930359893
 				]
 			},
 			"endBinding": {
-				"mode": "orbit",
 				"elementId": "gI5n06uVdK1EulD_k2FRV",
+				"mode": "orbit",
 				"fixedPoint": [
 					0.556997623374615,
 					0.4430023766253859
@@ -7017,7 +7210,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			],
 			"index": "b1M",
 			"hasTextLink": false,
-			"moveMidPointsWithElement": false
+			"moveMidPointsWithElement": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -7053,7 +7247,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b1N",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -7094,12 +7289,14 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"autoResize": true,
 			"hasTextLink": false,
 			"index": "b1O",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 492,
-			"versionNonce": 2047665877,
+			"version": 493,
+			"versionNonce": 2047665878,
 			"isDeleted": false,
 			"id": "h3rd9CbQ",
 			"fillStyle": "solid",
@@ -7129,12 +7326,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1P",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 256,
-			"versionNonce": 649682171,
+			"version": 257,
+			"versionNonce": 649682172,
 			"isDeleted": false,
 			"id": "eeGNSbmq",
 			"fillStyle": "solid",
@@ -7164,12 +7362,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1Q",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 207,
-			"versionNonce": 1104364597,
+			"version": 208,
+			"versionNonce": 1104364598,
 			"isDeleted": false,
 			"id": "rcMuzCpD",
 			"fillStyle": "solid",
@@ -7199,12 +7398,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1R",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 176,
-			"versionNonce": 1796867483,
+			"version": 177,
+			"versionNonce": 1796867484,
 			"isDeleted": false,
 			"id": "Dcu6339b",
 			"fillStyle": "solid",
@@ -7234,12 +7434,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1S",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 212,
-			"versionNonce": 1873212821,
+			"version": 213,
+			"versionNonce": 1873212822,
 			"isDeleted": false,
 			"id": "Sp8DJaic",
 			"fillStyle": "solid",
@@ -7269,12 +7470,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1T",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 145,
-			"versionNonce": 2057083451,
+			"version": 146,
+			"versionNonce": 2057083452,
 			"isDeleted": false,
 			"id": "rRcqxxwd",
 			"fillStyle": "solid",
@@ -7304,12 +7506,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1U",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 113,
-			"versionNonce": 2126346997,
+			"version": 114,
+			"versionNonce": 2126346998,
 			"isDeleted": false,
 			"id": "jX0o0sGk",
 			"fillStyle": "solid",
@@ -7339,12 +7542,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1V",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 60,
-			"versionNonce": 1914936027,
+			"version": 61,
+			"versionNonce": 1914936028,
 			"isDeleted": false,
 			"id": "t7QaHHvM",
 			"fillStyle": "solid",
@@ -7374,12 +7578,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1W",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 57,
-			"versionNonce": 1738298453,
+			"version": 58,
+			"versionNonce": 1738298454,
 			"isDeleted": false,
 			"id": "bhmatSyo",
 			"fillStyle": "solid",
@@ -7409,7 +7614,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1X",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "rectangle",
@@ -7447,7 +7653,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"link": null,
 			"locked": false,
 			"index": "b1Y",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "text",
@@ -7465,7 +7672,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"y": 4041.2476989174197,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "#ffffff",
-			"width": 691.13671875,
+			"width": 665.578125,
 			"height": 496.79999999999995,
 			"seed": 1171437206,
 			"groupIds": [
@@ -7479,23 +7686,25 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 			"locked": false,
 			"fontSize": 36,
 			"fontFamily": 2,
-			"text": "---\nschema_version: 1\nuid: \"01M02JG1VRV6G6FNFTZCND58AS\"\ntitre: \"MU 80 Prompt ChatGPT\"\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-artificielle\n  -",
+			"text": "---\nschema_version: 1\nuid: 01M02JG1VRV6G6FNFTZCND58AS\ntitre: MU 80 Prompt ChatGPT\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-artificielle\n  - prom",
 			"rawText": "![[MU 80 Prompt ChatGPT]]",
 			"textAlign": "left",
 			"verticalAlign": "middle",
 			"containerId": "Et5ap4o1I3R1NxY43tB7h",
-			"originalText": "---\nschema_version: 1\nuid: \"01M02JG1VRV6G6FNFTZCND58AS\"\ntitre: \"MU 80 Prompt ChatGPT\"\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-artificielle\n  -",
+			"originalText": "---\nschema_version: 1\nuid: 01M02JG1VRV6G6FNFTZCND58AS\ntitre: MU 80 Prompt ChatGPT\ntype: document\nstatut: actif\npara: ressource\ndomaines:\n  - enseignement\nthemes:\n  - intelligence-artificielle\n  - prom",
 			"lineHeight": 1.15,
 			"baseline": 240,
 			"autoResize": true,
 			"hasTextLink": true,
 			"index": "b1Z",
-			"labelPosition": null
+			"labelPosition": null,
+			"created": null,
+			"baseFontSize": null
 		},
 		{
 			"type": "embeddable",
-			"version": 77,
-			"versionNonce": 1429790747,
+			"version": 78,
+			"versionNonce": 1429790748,
 			"isDeleted": false,
 			"id": "dLqfTSec",
 			"fillStyle": "solid",
@@ -7525,12 +7734,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1a",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 71,
-			"versionNonce": 1599669013,
+			"version": 72,
+			"versionNonce": 1599669014,
 			"isDeleted": false,
 			"id": "yVke2eYm",
 			"fillStyle": "solid",
@@ -7560,12 +7770,13 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1b",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		},
 		{
 			"type": "embeddable",
-			"version": 105,
-			"versionNonce": 553395387,
+			"version": 106,
+			"versionNonce": 553395388,
 			"isDeleted": false,
 			"id": "KohvGtMM",
 			"fillStyle": "solid",
@@ -7595,7 +7806,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 				1
 			],
 			"index": "b1c",
-			"hasTextLink": false
+			"hasTextLink": false,
+			"created": null
 		}
 	],
 	"appState": {
@@ -7604,6 +7816,7 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemStrokeColor": "#1e1e1e",
 		"currentItemBackgroundColor": "#ffffff",
 		"currentItemFillStyle": "solid",
+		"currentItemStickynoteStrokeColor": "#1e1e1e",
 		"currentItemStrokeWidthKey": "extraBold",
 		"currentItemStrokeVariability": "constant",
 		"currentItemStrokeStyle": "solid",
@@ -7616,10 +7829,10 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"currentItemEndArrowhead": "arrow",
 		"currentItemArrowType": "round",
 		"currentItemFrameRole": null,
-		"scrollX": 5525.090046932698,
-		"scrollY": 2915.7038551274923,
+		"scrollX": 2104.67271540355,
+		"scrollY": 7373.699988334559,
 		"zoom": {
-			"value": 0.75
+			"value": 0.1
 		},
 		"currentItemRoundness": "round",
 		"gridSize": 20,
@@ -7632,8 +7845,11 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"colorTopPicks": {
 			"elementStroke": null,
 			"elementBackground": null,
-			"bucketFill": null
+			"bucketFill": null,
+			"stickyNoteStroke": null,
+			"stickyNoteBackground": null
 		},
+		"fontTopPicks": null,
 		"currentStrokeOptions": null,
 		"frameRendering": {
 			"enabled": true,
@@ -7654,7 +7870,8 @@ dcdc0b8669a0a381a1b9873b650c2353688143b5: [[MU Sketch html.excalidraw]]
 		"disableContextMenu": false,
 		"bindingPreference": "enabled",
 		"isMidpointSnappingEnabled": true,
-		"boxSelectionMode": "contain"
+		"boxSelectionMode": "contain",
+		"inputDevice": "auto"
 	},
 	"files": {}
 }

@@ -26,7 +26,7 @@ langue: fr
 licence: CC BY 2.0 FR
 revision: 2.0.0
 date_creation: 2023-03-03
-date_modification: 2026-08-18
+date_modification: 2026-11-04
 confidentialite: publique
 publication:
   - notes-publiques
@@ -1264,6 +1264,48 @@ Affichera :
 ```
 /tmp/fich5  /tmp/fich6  /tmp/fich7  /tmp/fich8  /tmp/fich9
 ```
+
+## Le double astérisque : l'option globstar
+
+Les jokers précédents ne traversent jamais un `/` : `*.txt` ne désigne que les fichiers `.txt` du répertoire courant. Pour parcourir aussi les sous-répertoires, à toute profondeur, Bash (et Zsh) proposent le double astérisque `**`, activé par l'option **`globstar`**.
+
+- `**` seul désigne tous les fichiers et répertoires de l'arborescence, à partir du répertoire courant.
+- `**/*.txt` désigne tous les fichiers `.txt` du répertoire courant et de ses sous-répertoires, quel que soit leur niveau.
+- `**/` ne désigne que les répertoires.
+
+Sans l'option, `**` se comporte comme un simple `*`.
+
+### Vérifier, activer, désactiver
+
+L'option se manipule avec la commande interne `shopt` :
+```bash
+shopt globstar    # Affiche l'état de l'option
+shopt -s globstar # L'active pour la session en cours (set)
+shopt -u globstar # La désactive (unset)
+```
+`shopt globstar` affichera par exemple :
+```
+globstar       	off
+```
+Elle est désactivée par défaut dans Bash. Pour l'activer en permanence, ajouter `shopt -s globstar` dans `~/.bashrc`.
+
+### Exemples
+
+Lister tous les fichiers Markdown du projet et de ses sous-répertoires :
+```bash
+ls **/*.md
+```
+Copier toutes les images `.jpg` de l'arborescence vers un répertoire de destination :
+```bash
+cp **/*.jpg /chemin/destination/
+```
+Compter les lignes de tous les scripts shell, y compris dans les sous-répertoires :
+```bash
+wc -l **/*.sh
+```
+
+> [!note]
+> `**` ne suit pas les liens symboliques vers des répertoires et ignore, comme `*`, les fichiers cachés (dont le nom commence par un point) sauf si l'option `dotglob` est activée. Pour une recherche plus fine (par date, taille, type ou avec exécution d'une commande), voir la commande `find` plus loin.
 
 ## Les chemins relatifs
 
