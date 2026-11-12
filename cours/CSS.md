@@ -186,7 +186,10 @@ On le réserve généralement à des valeurs réellement dynamiques ou à des ca
 
 ## 2.4 `@import`
 
-```css
+Les règles `@import` doivent impérativement être placées **au tout début** de la feuille de style CSS, avant toute autre règle (à l'exception de `@charset` et des déclarations de nom de couches avec `@layer`).
+
+Si un `@import` est placé après une règle de style classique (comme un sélecteur), il est ignoré par le navigateur.
+
 @import url("./tokens.css") layer(tokens);
 ```
 
@@ -220,12 +223,25 @@ CSS ne possède pas de commentaire `//` standard.
 Les règles commençant par `@` contrôlent une partie du comportement du langage :
 
 ```css
+/* Applique des styles selon les caractéristiques de l'écran ou de l'appareil */
 @media (width >= 60rem) { }
+
+/* Vérifie si le navigateur prend en charge une propriété ou une valeur spécifique */
 @supports (display: grid) { }
+
+/* Organise le code en couches de cascade (layers) pour structurer la spécificité */
 @layer components { }
+
+/* Applique des styles selon la taille d'un conteneur parent (Container Queries) */
 @container card (width > 30rem) { }
+
+/* Restreint la portée des sélecteurs à un sous-arbre DOM spécifique (Scoping) */
 @scope (.article) { }
+
+/* Enregistre une variable CSS typée avec une valeur initiale et une syntaxe stricte */
 @property --angle { }
+
+/* Définit les étapes successives d'une animation personnalisée */
 @keyframes pulse { }
 ```
 
@@ -291,10 +307,19 @@ D'autres propriétés, comme `margin` ou `border`, ne sont normalement pas héri
 Mots-clés globaux :
 
 ```css
+/* 1. Inherit : force l'élément à hériter de la valeur de son parent direct */
 color: inherit;
+
+/* 2. Initial : réinitialise la propriété à sa valeur par défaut initiale définie par les spécifications (pour color, c'est généralement le noir ou la couleur par défaut du navigateur/agent utilisateur) */
 color: initial;
+
+/* 3. Unset : se comporte comme "inherit" si la propriété est naturellement héritable (ce qui est le cas pour color), ou comme "initial" si elle ne l'est pas */
 color: unset;
+
+/* 4. Revert : annule la cascade et revient à la valeur précédente de la couche de cascade (cascade layer), du style utilisateur ou du style par défaut du navigateur (agent utilisateur) */
 color: revert;
+
+/* 5. Revert-layer : annule les styles uniquement jusqu'à la couche de cascade (layer) précédente, sans toucher aux règles hors-couche ou utilisateur */
 color: revert-layer;
 ```
 
@@ -362,13 +387,65 @@ article .note {}        /* 0-1-1 */
 `:where()` est très utile en architecture CSS car sa spécificité est toujours nulle :
 
 ```css
-:where(nav, aside, footer) a {
+:where(header nav, aside, footer) a {
   color: inherit;
 }
 ```
 
-`:is()`, `:not()` et `:has()` prennent en compte la spécificité de leurs arguments les plus spécifiques.
+Ce code CSS cible des liens précis pour leur appliquer la couleur de leur élément parent, tout en garantissant une **spécificité nulle**, ce qui facilite grandement la surcharge future des styles.
 
+Voici le détail de son fonctionnement :
+
+- **`header nav, aside, footer`** : C'est la liste des contextes ciblés. Le sélecteur sélectionne les liens situés :
+    - Soit dans un élément `<nav>` lui-même enfant d'un `<header>` (`header nav`) ;
+    - Soit directement dans un élément `<aside>` ;
+    - Soit directement dans un élément `<footer>`.
+- **`:where(...)`** : Enrobe ces sélecteurs pour leur donner **une spécificité de `0-0-0`**. Peu importe la complexité des chemins écrits à l'intérieur, le poids de cette règle est nul.
+- **`a`** : Cible tous les liens (`<a>`) situés à l'intérieur de ces différents conteneurs.
+- **`color: inherit;`** : Supprime la couleur bleue par défaut des liens pour les forcer à hériter de la couleur du texte de leur parent direct (par exemple, si le texte du footer est gris foncé, les liens du footer deviendront gris foncé).
+
+Grâce au `:where()`, vous pouvez facilement réécrire ou modifier la couleur de ces liens plus loin dans votre feuille de style avec un simple sélecteur (comme `footer a { color: white; }`), sans avoir à vous battre avec des problèmes de poids ou de spécificité CSS.
+
+`:is()`, `:not()` et `:has()` prennent en compte la spécificité de leurs arguments les plus spécifiques.
+Contrairement à `:where()` que nous venons de voir (qui a toujours une spécificité nulle), les pseudo-classes `:is()`, `:not()` et `:has()` **adoptent la spécificité de leur argument le plus lourd**.
+### Comment ça fonctionne ?
+
+Le poids de ces sélecteurs n'est pas fixe : il est calculé dynamiquement en fonction du sélecteur le plus spécifique présent **à l'intérieur** de leurs parenthèses.
+
+```css
+/* Exemple 1 : la spécificité dépend de l'argument le plus lourd */
+:is(header, .sidebar, #main) a {
+  color: red;
+}
+```
+
+- **Calcul :** À l'intérieur, on trouve un ID (`#main`), qui possède un poids fort (`1-0-0`), face à une classe (`.sidebar`, `0-1-0`) et une balise (`header`, `0-0-1`).
+- **Résultat :** Toute la règle `:is(...) a` prend la spécificité de l'argument le plus lourd, c'est-à-dire **celui d'un ID** (`1-0-1` avec le `a`).
+### Cas particulier de `:not()`
+
+La règle s'applique exactement de la même manière pour `:not()` :
+
+```css
+/* Cible les paragraphes qui ne sont pas des classes .intro */
+p:not(.intro) {
+  margin-bottom: 1rem;
+}
+```
+
+- La spécificité de `:not(.intro)` est celle de son argument (`.intro`), soit une classe (`0-1-0`). Combinée avec le `p`, la spécificité totale est de `0-1-1`.
+- _À noter :_ `:not()` peut aussi contenir une liste de sélecteurs (ex. `:not(.a, .b, #c)`), et sa spécificité sera également celle du terme le plus fort (`#c`).
+### Cas particulier de `:has()` (le sélecteur de parent)
+
+Pour `:has()`, la spécificité fonctionne de pair avec le contenu évalué :
+
+```css
+/* Cible un article qui contient un titre h2 ou une classe .highlight */
+article:has(h2, .highlight) {
+  border: 1px solid gray;
+}
+```
+
+- La spécificité de la partie `:has(...)` prend celle de son argument le plus élevé (ici `.highlight`, soit `0-1-0`), qui s'additionne au sélecteur parent (`article`, `0-0-1`), donnant une spécificité totale de `0-1-1`.
 ## 4.5 `!important`
 
 `!important` n'est pas une stratégie d'architecture.
@@ -382,6 +459,77 @@ Il peut être légitime pour :
 Mais l'utiliser pour résoudre chaque conflit produit rapidement une escalade.
 
 ## 4.6 Cascade layers avec `@layer`
+
+Les **couches de cascade** (ou _cascade layers_, introduites via la règle `@layer`) permettent de contrôler explicitement l'ordre de priorité de vos règles CSS, indépendamment de la spécificité des sélecteurs (IDs, classes, balises).
+
+  
+
+Elles résolvent l'un des plus anciens maux du CSS : la course aux armes de la spécificité (où l'on devait ajouter des `!important` ou des sélecteurs de plus en plus complexes pour surcharger du code).
+
+  
+
+### 4.6.1 Le principe de base
+
+Par défaut, le CSS applique des styles selon la spécificité et l'ordre d'apparition. Avec `@layer`, vous créez des **compartiments de priorité**.
+
+Le principe fondamental est simple : **le code situé dans une couche déclarée plus tard l'emporte toujours sur une couche déclarée plus tôt**, peu importe la spécificité des sélecteurs.
+
+
+```css
+/* Déclaration de l'ordre global des couches au tout début du fichier */
+@layer reset, base, components, utilities;
+
+/* Même si #id a une forte spécificité, il est dans la couche 'reset' (priorité faible) */
+@layer reset {
+  #mon-element {
+    color: red;
+  }
+}
+
+/* Cette règle l'emporte car la couche 'components' arrive après 'reset' */
+@layer components {
+  p {
+    color: blue;
+  }
+}
+```
+
+- **Résultat :** Le paragraphe sera bleu. La couche `components` étant définie après `reset`, elle est prioritaire, même si le sélecteur `#mon-element` (un ID) est théoriquement plus spécifique qu'un simple `p`.
+    
+### 4.6.2. La règle d'or de l'ordre des couches
+
+L'ordre de priorité des couches est déterminé **strictement par l'ordre de leur première déclaration**, que ce soit via une instruction `@layer nom1, nom2;` ou lors de leur première écriture.
+
+Une fois cet ordre établi, **le code hors-couche (le CSS classique) bat toujours le code en couches**, car il est considéré comme étant dans une couche finale implicite de plus haute priorité.
+
+```css
+@layer components {
+  .btn { background: red; }
+}
+
+/* Ce style est HORS-COUCHE */
+.btn {
+  background: green; /* L'emporte toujours sur les couches */
+}
+```
+
+### 4.6.3. Cas pratiques et avantages
+
+- **Intégration de bibliothèques tierces :** Vous pouvez envelopper un framework CSS externe (comme Bootstrap ou Tailwind) dans une couche de base pour vous assurer que vos propres styles personnalisés (hors-couche ou dans une couche ultérieure) pourront le surcharger facilement sans utiliser de ruses de sélecteurs.
+```css
+    @import "bootstrap.css" layer(framework);
+    
+    /* Vos styles surchargeront Bootstrap sans effort de spécificité */
+    .btn-primary {
+      background: purple;
+    }
+```
+    
+- **Les couches anonymes :** Il est possible de créer des couches sans nom (`@layer { ... }`). Elles sont regroupées ensemble et placées après toutes les couches nommées.
+
+### 4.6.4. Spécificité inversée : l'ordre interne
+
+À l'intérieur d'une même couche, la cascade standard s'applique à nouveau normalement (la spécificité des sélecteurs et l'ordre d'apparition refont surface). Les couches gèrent uniquement les conflits **entre** différents blocs de code isolés.
 
 ```css
 @layer reset, tokens, base, components, utilities;
