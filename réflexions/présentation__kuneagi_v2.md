@@ -31,7 +31,7 @@ date_creation: 2026-11-11
 langue: fr
 publication:
   - notes-publiques
-date_modification: 2026-11-12
+date_modification: 2026-11-14
 metadata_verifiees: true
 ---
 
@@ -136,9 +136,58 @@ Garder de Nova-Ideo tout ce qui concerne les personnes (les petits groupes, les 
 
 ***En 2017, j'écrivais que la plupart des outils de la « CivicTech » faisaient travailler la foule, et que Nova-Ideo voulait la faire réfléchir. Neuf ans plus tard l'ambition est la même, mais il n'y a plus de plateforme : ni serveur, ni base de données, ni administrateur. Il reste des textes, des signatures, et des gens qui se mettent d'accord.***
 
-# 1. Participatif ?
+# 1. Élaborer et sélectionner démocratiquement les actions d’un collectif
 
-Le constat de 2017 tient toujours. Qu'on parle de démocratie participative ou d'innovation participative, on demande leur avis à des personnes en les faisant voter ou commenter, et l'écueil est le même : susciter de l'enthousiasme puis ne pas savoir répondre au trop grand nombre d'idées et de commentaires.
+## 1.1 L’unique fonction de reteKuneAgi
+
+L'outil reteKuneAgi a pour **seule fonction** d’**élaborer** et de **sélectionner**, **démocratiquement**, les **actions** engageant les ressources (en temps de travail humain, en capacité d’utilisation d’équipements, en argent) d’un **collectif** (coopérative, association, syndicat, entreprise, collectivité publique), et **uniquement celle-là**. Il est, et doit être, orienté vers l'action, vers la transformation du monde, et uniquement vers cela. C'est pourquoi il s'appelle "Kune Agi", soit “agir ensemble” en Espéranto. Le préfixe “rete”, soit “par le réseau” en Espéranto, indique le moyen technique, décentralisé, de réalisation de cette fonction. 
+
+Ce n'est pas un assistant à la création littéraire, ni à la découverte de la vérité philosophique, technique ou scientifique, ni au débat d'idées en général. Cette spécialisation fonctionnelle est délibérée, et constitue une caractéristique essentielle de l’outil.
+
+Cette spécialisation fonctionnelle de reteKuneAgi se fonde sur les caractéristiques fondamentales de la décision sur des actions à une échelle collective, énoncées ci-dessous, et qui justifient les choix faits pour l’outil lui-même.
+
+## 1.2 L’orientation vers l’action implique des jugements de valeur humains
+
+Définir une action à une échelle collective implique de se **mettre d’accord** sur : 
+
+1. l’existence et la nature de **problèmes**, c’est-à-dire d’aspects de l’état du monde qui sont jugés insatisfaisants, injustes ou condamnables. En effet, l’action ne se justifie que si elle transforme un état du monde jugé insatisfaisant. S’il est satisfaisant, il est préférable (et plus économe de ressources) de ne rien faire. Les faits sont objectivables. Le jugement moral porté sur les faits ne l’est pas. C’est un jugement de valeur, que seul un humain peut exprimer en fonction de ce qui est important pour lui / elle ;
+2. l’**action** à mener pour traiter le problème (y remédier, l’atténuer ou en atténuer les conséquences), ce qui implique à nouveau des jugements de valeur purement humains portant sur : 
+   - le fait qu’il est préférable d’agir plutôt que de ne rien faire, en comparant les coûts et bénéfices de l’action et de l’inaction, leur répartition dans la société et au cours du temps;
+   - le choix entre les différentes actions envisageables pour traiter le problème, à nouveau selon leurs coûts et bénéfices respectifs.
+
+Un **jugement de valeur humain** est donc au cœur de l’identification et de la caractérisation des problèmes, comme de la définition des actions à mener pour les traiter. Ce jugement de valeur n’est pas de l’ordre de la vérité scientifique ou technique. 
+
+La **science** et la **technique** , qui elles sont de l’ordre de la vérité et de l’erreur, ont un rôle, fondamental, à jouer dans la discussion sur l’action. Elles donnent accès aux **chaînes causales** qui sont déterminantes, tant dans l’identification des problèmes que dans l’élaboration des actions cherchent à les traiter :
+
+- quelles sont les causes des problèmes identifiés ?
+- quelles sont les conséquences prévisibles de l’inaction, et de chacune des actions envisagées pour traiter le problème ?
+
+En revanche, elles n’ont aucune légitimité à établir le jugement de valeur, moral ou éthique, porté sur l’état du monde, ou sur les conséquences prévisibles de l’inaction ou de l’action.
+
+## 1.3 Seule la délibération démocratique est légitime pour énoncer les jugements de valeur justifiant des actions collectives
+
+Dans la mesure où : 
+
+- les opérations fondamentales nécessaires à la définition d’une action collective impliquent des jugements de valeur, 
+- ces jugements de valeur sont humains et non objectivables,
+- les actions collectives ont des conséquences à l’échelle du collectif qui les portent (et en général au-delà),
+
+**seule** la **délibération** de **tous les membres du collectif** engageant l’action, voire de toutes les parties prenantes, à savoir des entités (humaines et non-humaines, présentes et futures) susceptibles de subir les conséquences de cette action est **légitime** pour énoncer ces jugements de valeur menant à une action collective. Par “délibération”, nous entendons la discussion, respectueuse des intérêts et valeurs de chacun.e, visant à une conclusion, entre les parties participant à la discussion, avec l’ouverture de chacune d’entre elles à être convaincue par les arguments des autres.
+
+Compte tenu du principe d’égalité en droits de tous les humains, cette délibération doit de surcroît être **démocratique**, à savoir donner les mêmes droits à chacune et chacun.
+
+## 1.4 L’architecture distribuée en réseau est seule compatible avec la démocratie
+
+L’ambition démocratique a une implication forte sur l’architecture informatique de l’outil soutenant les processus de définition d’actions collectives. Sur le principe, une architecture centralisée, s’appuyant sur un serveur, crée une asymétrie entre le détenteur du serveur et les autres. Elle crée de surcroît une vulnérabilité : si le serveur est détruit, l’ensemble du système s’arrête.
+
+Au contraire, une architecture **distribuée**, en réseau et sans point central, assure à la fois  : 
+
+- la **robustesse** contre les attaques et
+- l’**égalité démocratique** entre tous les membres de la communauté.
+
+# 2. Ce que reteKuneAgi retient (ou non) des travaux antérieurs
+
+Le constat de 2017 (rappelé au § B de l’introduction ci-dessus) tient toujours. Qu'on parle de démocratie participative ou d'innovation participative, on demande leur avis à des personnes en les faisant voter ou commenter, et l'écueil est le même : susciter de l'enthousiasme puis ne pas savoir répondre au trop grand nombre d'idées et de commentaires.
 
 Ces outils sont confrontés à un autre écueil important : ils travaillent sur des documents générés par **une seule  personne** que les autres peuvent au mieux commenter, aimer / détester, ou classer, mais sans jamais participer à sa rédaction, et en particulier à son amendement. Le résultat est qu’on se retrouve face à une multiplicité de propositions proches, sans qu’il soit donné les moyens à leurs auteurs de coopérer pour trouver un terrain d’entente satisfaisant les attentes de plusieurs personnes, ou de mettre ensemble des éléments de solution qui se soutiennent mutuellement. L'enjeu est donc de passer de l'expression **individuelle** à l'expression **collective**, en amenant à une rédaction **collaborative** des documents, sans pour autant tomber dans les écueils des conflits d'annulation d'amendements des wikis, ni dans les solutions autoritaires où un modérateur / un supérieur hiérarchique met tout le monde d'accord en prenant la décision à la place des participants.
 
@@ -156,7 +205,7 @@ Le reste est inchangé. reteKuneAgi fait fonctionner :
 
 Sa force reste la *coopétition* des cycles itératifs du logiciel libre, dont il emprunte cette fois aussi les outils : *Git*\*, les *forks*\*, les *demandes de fusion*\*.
 
-# 2. Rejoindre plutôt qu'installer
+# 3. Rejoindre plutôt qu'installer
 
 En 2017, il fallait installer Nova-Ideo par Docker ou s'abonner au service en ligne. Dans reteKuneAgi, il n'y a plus rien à installer côté communauté, puisqu'il n'y a plus de côté communauté : une communauté est un dépôt de fichiers qui recense les dépôts de ses groupes de travail, et que l'on rejoint en scannant un QR code.
 
@@ -164,7 +213,7 @@ En 2017, il fallait installer Nova-Ideo par Docker ou s'abonner au service en li
 
 *Croquis 1 (mobile) : rejoindre une communauté. On scanne, l'application vérifie l'empreinte de la clé racine, crée les clés du membre et dépose la candidature.*
 
-## 2.1 Deux modalités d’admission
+## 3.1 Deux modalités d’admission
 
 L'**admission** comprend **deux modalités** :
 
@@ -186,7 +235,7 @@ La communauté ne connaît de ses membres que:
 
 Pour faire basculer une communauté du mode d’admission “léger” vers le mode “robuste” (et donc se débarrasser des comptes multiples), il suffit qu’un membre crée un *fork\** du dépôt, en mode d’admission “robuste”, en appelant les membres à le rejoindre.
 
-## 2.2 La gestion des indésirables
+## 3.2 La gestion des indésirables
 
 La **gestion des indésirables** traite des personnes suivantes, susceptibles de se multiplier, surtout dans le mode d’admission “léger” en profitant de la facilité à créer un compte :
 
@@ -205,13 +254,13 @@ Les notes reçues de tous les membres du Groupe de Travail s’additionnent. La 
 
 Un membre ayant une mauvaise note de comportement coopératif se voit progressivement exclu des Groupes de Travail auxquels il souhaiterait participer, lorsqu’il présente aux membres existants sa candidature pour le faire, ou lorsqu’il cherche à convaincre d’autres de le rejoindre dans un Groupe de Travail qu’il crée. Le caractère fongible de la note assure que la sanction n’est pas éternelle, et que le membre qui change positivement son comportement coopératif est progressivement réintégré dans la communauté.
 
-## 2.3 L’expulsion des indésirables
+## 3.3 L’expulsion des indésirables
 
 Lorsque ce mécanisme dissuasif ne fonctionne pas, il devient nécessaire de disposer des moyens techniques de **faire sortir de force** c’est-à-dire d’**expluser**, ces indésirables, une fois que la décision (par vote / au terme d'une procédure de type judiciaire - cf. les [Statuts de la Coopérative CosmoPolitique](https://www.cosmopolitical.coop/OverviewStatutes) § 3.3.23 à 3.3.25 - Procédures d'Enquête) de le faire a été prise. **Ces moyens techniques ne sont, à ce jour, pas définis.**
 
-# 3. Première utilisation : dire quelque chose
+# 4. Première utilisation : dire quelque chose
 
-## 3.1 Trois modalités d’utilisation de reteKuneAgi
+## 4.1 Trois modalités d’utilisation de reteKuneAgi
 
 Trois façons d'utiliser reteKuneAgi coexistent, sur les mêmes fichiers :
 
@@ -221,26 +270,20 @@ Trois façons d'utiliser reteKuneAgi coexistent, sur les mêmes fichiers :
 
 Les dépôts sont hébergés où la communauté le souhaite, sur au moins deux *forges*\*, qui peuvent le cas échéant être **auto-hébergées** par des membres de la communauté, afin de ne pas dépendre de ressources étatsuniennes. Aucune n'est indispensable : deux membres peuvent s'échanger un groupe de travail entier par clé USB.
 
-## 3.2 L’écriture de documents orientés vers l’action
+## 4.2 Deux catégories de documents : Problèmes et Propositions d’Action
 
-L'outil reteKuneAgi a pour **seule fonction** d’**élaborer** et de **sélectionner**, **démocratiquement**, les **actions** engageant les ressources (en temps de travail humain, en capacité d’utilisation d’équipements, en argent) d’un **collectif** (coopérative, association, syndicat, entreprise, collectivité publique), et **uniquement celle-là**. Il est, et doit être, orienté vers l'action, vers la transformation du monde, et uniquement vers cela. C'est pourquoi il s'appelle "Kune Agi", soit “agir ensemble” en Espéranto. Le préfixe “rete”, soit “par le réseau” en Espéranto, indique le moyen technique, décentralisé, de réalisation de cette fonction. 
-
-Ce n'est pas un assistant à la création littéraire, ni à la découverte de la vérité philosophique, technique ou scientifique, ni au débat d'idées en général. Cette spécialisation fonctionnelle est délibérée, et constitue une caractéristique essentielle de l’outil.
-
-## 3.3 Deux catégories de documents : Problèmes et Propositions d’Action
-
-Ce qui précède explique pourquoi les documents générés par reteKuneAgi appartiennent à deux catégories de documents, et deux seulement, comme décrit dans les [Statuts de la Coopérative CosmoPolitique](https://www.cosmopolitical.coop/OverviewStatutes) (§3.3.14):
+La section 1 de ce document “ Élaborer et sélectionner démocratiquement les actions d’un collectif” explique pourquoi les documents générés par reteKuneAgi appartiennent à deux catégories de documents, et deux seulement, comme décrit dans les [Statuts de la Coopérative CosmoPolitique](https://www.cosmopolitical.coop/OverviewStatutes) (§3.3.14):
 
 1. des **Problèmes** (ou "*issues*" en anglais), c'est à dire des descriptions de situations dans le monde jugées négativement, et qui demandent donc à être transformées. Cela comprend les sections suivantes : la nature du problème, l'explication de pourquoi c'est un problème, éventuellement la quantification du problème, qui est affecté et une première idée des causes du problème. Cela correspond à la notion d'"appel à idées" sur Nova-Ideo, avec la différence qu'ici tout le monde est habilité à formuler un problème (pas seulement le Comité de Pilotage).
 2. des **Propositions d'Action**, c'est à dire des descriptions d'actions susceptibles de résoudre ou d'atténuer le Problème, et donc d'atteindre un état du monde jugé meilleur. Cela comprend les sections suivantes : la description de l'action, la justification de pourquoi cette action devrait être efficace pour résoudre ou atténuer le Problème (en particulier comment cela agit sur les causes identifiées du problème), si possible une quantification de l'effet et des coûts engagés, une présentation des solutions alternatives envisagées et une justification de pourquoi elles n'ont pas été retenues.
 
-La nature précise des sections dans chaque document dépend de la Nature de l’Action (cf. infra §3.4).
+La nature précise des sections dans chaque document dépend de la Nature de l’Action (cf. infra §4.3).
 
-### 3.3.1 Graphe des liens entre Problèmes et Propositions d’Action
+### 4.2.1 Graphe des liens entre Problèmes et Propositions d’Action
 
 Une Proposition d'Action se rattache à préférentiellement à un seul Problème qu’elle recendique résoudre ou atténuer, à l’initiative de son Groupe de Travail, mais a le droit se se rattacher à plusieurs (avec un nombre maximal paramétrable, par exemple égal à 5), en particulier pour prendre en compte le fait que des Problèmes peuvent être proches sans s’être regroupés (cf. infra). Dans l’autre sens, un même Problème peut être l’objet du rattachement de plusieurs Propositions d'Action, concurrentes pour le résoudre (c'est même souhaité !), mais son Groupe de Travail n’a pas le contrôle des Propositions d’Action qui choisissent ou non de s’y rattacher.
 
-### 3.3.2 Sélection et regroupement des Problèmes
+### 4.2.2 Sélection et regroupement des Problèmes
 
 La **sélection** entre les **Problèmes** s'effectue par des **Jetons de Priorité**, dont chaque membre de la communauté ne dispose qu'en nombre limité (une valeur par défaut de 7 est suggérée pour commencer). Poser un Jeton de Priorité, c'est signer. Le plafond de sept est contrôlé dans le dépôt de la communauté, seul endroit où tous les Jetons de Priorité d'un membre sont visibles ensemble. Ces Jetons de Priorité expriment la gravité du Problème, et donc l’importance et l’urgence de sa résolution. Les Problèmes ayant reçu le plus grand nombre de Jetons de Priorité sont placés en tête. 
 
@@ -251,7 +294,7 @@ Les **Problèmes** ont donc vocation à se **regrouper**, pour collecter le maxi
 
 Dans les deux cas, les Groupes de Travail ayant élaboré des Problèmes identifiés comme proches votent sur l’opportunité ou non de fusionner. Seuls les Problèmes dont les Groupes de Travail correspondants ont approuvé démocratiquement la fusion par leur vote le sont effectivement. Le document résultant de la fusion est simplement la concaténation, section par section, des documents qui fusionnent. Les listes des auteurs sont également concaténées, avec les pseudonymes rangés par ordre alphabétique. Chaque section ainsi fusionnée est ensuite résumée, à la main ou avec l’aide de l’IA si elle est disponible, pour aboutir à une description de Problème intégrant les contributions de tou.te.s. 
 
-### 3.3.3 Sélection des Propositions d’Action
+### 4.2.3 Sélection des Propositions d’Action
 
 La **sélection** entre les **Propositions d'Action** en concurrence pour résoudre un même Problème qu’elles revendiquent de résoudre ou d’atténuer, et auquel elles se sont explicitement rattachées, se fait par **Jugement Majoritaire**.
 
@@ -261,13 +304,13 @@ Les Propositions d’Action ne fusionnent donc pas explicitement. L'amélioratio
 
 *Croquis 2 (mobile) : la contribution remplace le formulaire de création d'idée de 2017. On écrit, on publie ; le brouillon reste dans sa copie personnelle.*
 
-## 3.4 Les Natures d’Action
+## 4.3 Les Natures d’Action
 
  Les actions que la communauté peut être amenée à engager, et qu’elle souhaite soumettre au processus incarné par reteKuneAgi, appartiennent à une **liste définie d’avance**, modifiable elle-même par la communauté, de **Natures d’Actions**. Un exemple d’une telle liste de Natures d’Action est donné par le § 3.2 des [Statuts de la Coopérative CosmoPolitique](https://www.cosmopolitical.coop/OverviewStatutes).
 
 À chaque Nature d’Action correspond un **format** de document de Problème et un format de document de Proposition d’Action. Un format de document correspond à une table des matières des sections de ce document, avec un guide pour le remplir. Un **modèle** existe pour chaque catégorie (Problème ou Proposition d’Action) et pour chaque Nature d’Action. Ce modèle est utilisé lors de la création du document. Un exemple de tels modèles de documents est proposé par la Coopérative CosmoPolitique.
 
-## 3.5 La première contribution
+## 4.4 La première contribution
 
 Le membre ne saisit ni titre ni mots-clés. Il indique seulement s'il écrit un Problème ou une Proposition d’Action, et la Nature de l’Action correspondante. Le système lui fournit alors une copie du modèle de document correspondant. Il s’aide pour réfléchir des indications et questions de chaque section du document, et remplit les sections qu’il souhaite. Il ajoute une ou plusieurs étiquettes (“*tags*”) de la liste pré-définie, en s’aidant s’il le souhaite d’un outil d’IA.
 
@@ -279,9 +322,9 @@ Dès que le document est publié, il constitue un appel à constituer un Groupe 
 
 *Croquis 3 (PC) : l'accueil. Les appels à idées en tête, mes groupes, puis les idées calculées et les propositions, triées et filtrées. Les flèches sont les jetons de soutien et d'opposition.*
 
-# 4. Les processus
+# 5. Les processus
 
-## 4.1 L’initiative est ouverte à tou.te.s
+## 5.1 L’initiative est ouverte à tou.te.s
 
 Tout membre de la Communauté peut librement créer et publier autant de documents qu’il ou elle souhaite. Par défaut, le premier auteur d’un document est le premier Membre Actif du Groupe de Travail correspondant à ce document.
 
@@ -289,7 +332,7 @@ Pour autant, un même membre ne peut être le Membre Actif que d’un nombre lim
 
 Le membre doit donc d’abord quitter le Groupe de Travail d’un document s’il souhaite faire partie de celui d’un autre qui l’amènerait à dépasser son quota.
 
-## 4.2 Le fork des contenus
+## 5.2 Le fork des contenus
 
 En 2017, « fork » était une métaphore empruntée au logiciel libre. C'est maintenant le mécanisme lui-même.
 
@@ -302,7 +345,7 @@ Le fork a pris deux autres rôles.
 
 L'historique des versions n'est plus une fonction : c'est une fonction réalisée nativement par Git.
 
-## 4.3 Les cartes des contenus
+## 5.3 Les cartes des contenus
 
 Nova-Ideo traçait les duplications et les réutilisations et permettait de naviguer dans le graphe des parentés. La carte existe toujours, et elle est plus riche parce qu'elle ne dépend plus de ce que les gens ont pensé à déclarer.
 
@@ -312,7 +355,7 @@ Nova-Ideo traçait les duplications et les réutilisations et permettait de navi
 
 Chaque fichier dit dans son en-tête (son *frontmatter*\*) de quoi il est tiré, à quoi il répond, ce qu'il amende. Sur le poste de travail, la vue graphe d'Obsidian affiche cette carte sans rien développer.
 
-## 4.4 Le travail en groupe
+## 5.4 Le travail en groupe
 
 L'homme a un comportement essentiellement coopératif. Il forme des groupes pour résoudre des problèmes, et la communication devient alors l'activité principale : plus le groupe échange, plus il a de chances d'aboutir ; plus les profils sont complémentaires, meilleures sont les solutions. Si les cultures diffèrent il faut du temps pour se comprendre, et si les convictions s'opposent il faut orchestrer le débat pour en tirer la richesse plutôt que le règlement de comptes.
 
@@ -324,7 +367,7 @@ Un **Groupe de Travail** naît de la **publication** d’un document (Problème 
 
 *Croquis 7 (PC) : la proposition, découpée en sections. À gauche l'état de l'itération ; à droite le texte, son fil de discussion et la synthèse, toujours signalée comme écrite par une machine.*
 
-## 4.6 La taille de groupe optimale
+## 5.6 La taille de groupe optimale
 
 Rien à retirer à ce que j'écrivais. Dès qu'un groupe dépasse la dizaine de personnes, ses participants ne se connaissent plus assez pour être en confiance, donc spontanés et efficaces. Certains se mettent en retrait, et le nombre de discussions avant action explose. Il faut dépasser la centaine pour retrouver, par le nombre, l'efficacité d'un groupe de moins de douze ; et un grand groupe qui cherche à s'organiser aboutit le plus souvent à une pyramide qui étouffe les idées de sa base.
 
@@ -334,11 +377,11 @@ reteKuneAgi garde donc les valeurs par défaut : **douze participants** par grou
 
 Ce qui est nouveau, c'est que la règle du petit groupe est devenue une propriété de l'architecture. Un groupe est un dépôt : douze personnes qui écrivent dans le même dépôt s'entendent, cent se marchent dessus. Et la fusion de deux propositions concurrentes, que je présentais comme un vœu, est une opération ordinaire entre deux dépôts qui ont un ancêtre commun.
 
-## 4.7 Le travail itératif et les modes de co-écriture
+## 5.7 Le travail itératif et les modes de co-écriture
 
 Il est rare d'écrire du premier coup une proposition parfaite, encore plus à plusieurs. Le travail est organisé en itérations à durée limitée, selon le *timeboxing* des méthodes agiles, et ce sont les participants qui choisissent la durée.
 
-### 4.7.1 Le choix du mode de travail et de la durée de l'itération
+### 5.7.1 Le choix du mode de travail et de la durée de l'itération
 
 À la fin de chaque itération, les participants votent : publier la proposition, ou repartir pour un nouveau tour d’amendements. S'ils repartent, ils votent aussi la durée de l'itération suivante et son mode de travail.
 
@@ -348,13 +391,13 @@ Il est rare d'écrire du premier coup une proposition parfaite, encore plus à p
 
 Deux modes existent toujours, activables selon le nombre de participants. À tout moment un Participant Actif peut quitter son Groupe de Travail, et tout Membre Actif peut partir d'une copie du Document (Problème ou Proposition d’Action) pour créer un nouveau Groupe de Travail concurrent. Les cycles courts évitent l'enlisement ; l'application rappelle les échéances.
 
-### 4.7.2 Le mode wiki (pas de validation des modifications)
+### 5.7.2 Le mode wiki (pas de validation des modifications)
 
 Chaque modification enregistrée produit une nouvelle version, sans validation. Ce mode convient dans 80 % des cas, lorsque l’écriture est sans conflit. Son défaut connu était de donner un poids disproportionné à la dernière modification, donc à celui qui joue la montre avant le vote de publication. Ce défaut a disparu : le vote de publication porte sur une version précise, désignée par son empreinte. Une modification de dernière minute produit une autre version, sur laquelle personne n'a voté, et donc qui ne peut être publiée.
 
 Un autre défaut connu est celui de la “guerre d’annulations”, dans laquelle des participants en désaccord passent leur temps à annuler les amendements faits par l’autre, dans une boucle qui, en l’absence d’une autorité supérieure, est sans fin. C’est pourquoi un autre mode de co-écriture, compatible avec l’existence de conflits, est nécessaire. 
 
-### 4.7.3 Le mode avec amendements
+### 5.7.3 Le mode avec amendements
 
 Ce mode de co-écriture est adapté à la situation dans laquelle le Groupe de Travail comprend des Membres Actifs avec des positions fortement divergentes, mais qui souhaite néanmoins trouver un moyen de converger vers  un résultat commun de compromis, résultant de décisions démocratiques. Dans ce mode, la co-écriture se fait en parallèle : chacun modifie la proposition de son côté, dans sa copie locale, sans connaître les modifications des autres. Elles seront mises en concurrence lors du vote pour aboutir, après un vote sur chaque amendement, à une nouvelle version.
 
@@ -372,7 +415,7 @@ L’assistant en IA propose un regroupement de ces modifications de texte et un 
 
 À l'échéance, les Amendements sont mis au vote par comparaison avec la version d’origine. Les Amendements qui portent sur les mêmes passages sont votés les uns contre les autres, en plus de l’être contre la version d'origine. Savoir si deux Amendements touchent le même passage est un calcul sur le texte, pas une opinion de machine.
 
-## 4.8 Le jugement majoritaire dans le vote sur les Amendements
+## 5.8 Le jugement majoritaire dans le vote sur les Amendements
 
 Le jugement majoritaire, issu des travaux de Michel Balinski et Rida Laraki \[6], répond au défaut du vote classique où l'on n'exprime pas son avis sur tous les choix et où l'on finit par voter pour le moindre mal.
 
@@ -392,7 +435,7 @@ Une fois les votes sur les Amendements dépouillés, les modifications de texte 
 
 *Croquis 12 (PC) : la nouvelle version, fabriquée par le vote. Chaque changement renvoie à l'amendement et au scrutin qui l'ont produit.*
 
-## 4.9 Les fils de discussion
+## 5.9 Les fils de discussion
 
 On peut discuter de tout : une proposition, une de ses sections, un amendement, une idée, ou un sujet libre. Un message est un petit fichier signé qui dit à quoi il répond ; un fil n'est rien d'autre que l'ensemble des messages qui parlent du même objet. Images, liens et fichiers joints sont admis.
 
@@ -402,7 +445,7 @@ La différence heureuse, si l’usage est fait de l’IA : les longs fils sont r
 
 Celle qu'il faut assumer : ce n'est pas une messagerie instantanée. Un message part à la prochaine synchronisation et arrive à celle du destinataire. On débat au rythme du courrier, pas à celui du clavardage, et c'est sans doute mieux pour réfléchir.
 
-## 4.10 Les notifications
+## 5.10 Les notifications
 
 Nova-Ideo utilisait les notifications du navigateur, poussées par le serveur. Sans serveur, personne ne pousse : chaque appareil regarde ce qui a changé depuis sa dernière synchronisation et en déduit ce qui concerne son propriétaire. La difficulté est alors de savoir, dans la masse potentiellement considérable de contenus qui ont été modifiés depuis la dernière connexion, ce qui concerne ce membre de la communauté. Pour ce faire, il faut établir un filtre qui ne retient que les notifications pertinentes.
 
@@ -416,11 +459,11 @@ Si souhaité, et s’il dispose d’une IA, le membre de la communauté peut par
 
 La conséquence est discrète mais importante : personne, nulle part, ne détient la liste de ce qui m'intéresse.
 
-## 4.11 La sélection des Problèmes ou des Propositions d’Action
+## 5.11 La sélection des Problèmes ou des Propositions d’Action
 
 Quand un Problème ou une Proposition d’Action est publié par le Groupe de Travail qui l’a élaboré collectivement, tous les membres de la communauté contribuent au processus de sélection.
 
-Comme exposé ci-dessus (§ 3.3.2 et 3.3.3), la **sélection** des **Problèmes** se fait par **Jetons de Priorité** et celle des **Propositions d’Action** qui se sont rattachéees à un même Problème, et sont donc en concurence pour le résoudre, par **jugement majoritaire** entre celles.
+Comme exposé ci-dessus (§ 4.2.2 et 4.2.3), la **sélection** des **Problèmes** se fait par **Jetons de Priorité** et celle des **Propositions d’Action** qui se sont rattachéees à un même Problème, et sont donc en concurence pour le résoudre, par **jugement majoritaire** entre celles.
 
 Les actions dans lesquelles la communauté s’engagent sont celles qu’elle a ainsi décidées de façon démocratique et décentralisée, à savoir celles vérifiant les deux conditions suivantes : 
 
@@ -429,11 +472,11 @@ Les actions dans lesquelles la communauté s’engagent sont celles qu’elle a 
 
 Dans les deux cas, les paramètres sont définis au départ et sont modifiables par la communauté.
 
-## 4.12 La mise en œuvre des actions sélectionnées par la communauté
+## 5.12 La mise en œuvre des actions sélectionnées par la communauté
 
 La communauté peut désigner une Équipe de Projet pour mettre en œuvre chaque proposition choisies par la communauté. La communauté délègue à cette Équipe de Projet les ressources nécessaires à la réalisation de l’action sélectionnée, et lui demande des comptes sur la réalisation de sa mission.
 
-# 5. Le code et les contributions
+# 6. Le code et les contributions
 
 Nova-Ideo est né de la preuve de concept de la thèse d'Amen Souissi, *Modélisation centrée sur les processus métier pour la génération complète de portails collaboratifs* \[1]. La thèse montrait qu'on pouvait générer la totalité du code d'un portail à partir de la modélisation des processus métier. Le résultat était correct, l'interface peu utilisable ; nous avions alors inversé la méthode en écrivant à la main le code « presque parfait », pour remonter ensuite vers les modèles. En 2017 j'annonçais un formalisme fusionnant UML et BPMN et un modeleur. Ils n'ont pas vu le jour.
 
@@ -447,7 +490,7 @@ L'API GraphQL de 2017 n'a pas de successeur, parce qu'il n'y a rien à interroge
 
 Le code est libre, sous licence AGPL v3. On propose une évolution comme on propose un amendement : reteKuneAgi se développe dans une communauté reteKuneAgi.
 
-# 6. Conclusion
+# 7. Conclusion personnelle des auteurs
 
 Je terminais en 2017 en disant que la démocratie participative et l'innovation participative ne sont pas qu'affaire d'outil, et qu'il faudrait encore beaucoup d'expérimentation sociale avant de trouver les bons ressorts pour que chacun s'exprime et soit entendu. Je le maintiens.
 
@@ -459,11 +502,15 @@ Quant à l'holacratie, que j'espérais voir devenir plus qu'un concept : une org
 
 **Michaël Launay**
 
-# 7. Sous le capot
+Cette spécification fonctionnelle est ambitieuse, mais nécessaire, pour tenir toutes les conditions faisant d’un processus générique d’élaboration collaborative de documents celui adapté à l’adoption démocratiques d’actions collectives.
+
+**Sergio Arbarviro**
+
+# 8. Sous le capot
 
 Cette section s'adresse à qui veut comprendre comment une délibération peut tenir sans serveur. On peut l'ignorer sans rien perdre de l'article.
 
-## 7.1 Dix principes
+## 8.1 Dix principes
 
  1. **Aucun état hors des dépôts.** La copie d'un groupe contient le texte, les amendements, les messages, les votes, les résultats, les clés publiques et les programmes de vérification. Pas de base de données, pas de session.
  2. **Un fichier, un objet, un identifiant.** Proposition, section, amendement, bulletin, message, membre : chacun est un fichier texte portant un identifiant unique qui ne change jamais, même copié ailleurs.
@@ -476,7 +523,7 @@ Cette section s'adresse à qui veut comprendre comment une délibération peut t
  9. **Tout fonctionne sans IA et sans hébergeur.** Sans IA on perd le rangement des idées et les synthèses, pas la délibération. Sans forge, on s'échange les dépôts de la main à la main.
 10. **Toute contribution est une donnée, jamais un ordre.** Un texte écrit par un membre ne peut pas commander un agent d'IA.
 
-## 7.2 Où sont les fichiers
+## 8.2 Où sont les fichiers
 
 ```mermaid
 flowchart TD
@@ -497,7 +544,7 @@ flowchart TD
 * Un **dépôt de Groupe de Travail** contient un document (Problème ou Proposition d’Action) sur lequel porte le travail du Groupe de Travail,  et tout ce qui le concerne. Un Groupe de Travail = un document (Problème ou Proposition d’Action) = un dépôt. Le texte est découpé en **sections**, une par fichier : c'est ce qui permet à deux amendements portant sur des passages différents de se fusionner sans se gêner, et de dire exactement sur quelle version on a voté.
 * La **copie personnelle** (le *fork*) est l'endroit des brouillons. Le « brouillon » de Nova-Ideo n'est plus un état : c'est le fait qu'un texte n'existe encore que chez moi.
 
-## 7.3 À quoi ressemble un fichier
+## 8.3 À quoi ressemble un fichier
 
 Voici un amendement tel qu'il est enregistré. La partie entre les deux lignes de tirets est l'en-tête, lu par les programmes ; ce qui suit est du texte libre, lu par les personnes.
 
@@ -523,7 +570,7 @@ Explication libre de l'amendement.
 
 Les modifications elles-mêmes ne sont pas recopiées : elles sont dans l'historique du dépôt. La fiche porte ce que l'historique ne sait pas dire : l'intention, la justification, l'état.
 
-## 7.4 Les processus sont des documents
+## 8.4 Les processus sont des documents
 
 Dans Nova-Ideo, un processus (« une proposition est d'abord ouverte, puis en travail, puis au vote… ») était du code exécuté par un moteur. Ici c'est un fichier qui énumère les états possibles et les passages permis, avec pour chacun : qui a le droit, faut-il une signature, quelle condition préalable.
 
@@ -546,7 +593,7 @@ Le rôle `deliberation` est la clé de voûte. Une transition de ce rôle n'est 
 | Scrutin                          | ouvert, clos, dépouillé, annulé                                                                                 | Les dates déclarées, le dépouillement signé              |
 | Modération                       | signalé, devant jury, maintenu, masqué                                                                          | Le signaleur, un jury tiré au sort                       |
 
-## 7.5 Voter sans urne centrale
+## 8.5 Voter sans urne centrale
 
 Un **scrutin** est un fichier qui fixe la question, les candidats, le mode de scrutin, les dates et la liste des votants, figée à l'ouverture. Un **bulletin** est un fichier par votant, signé ; la signature lie le bulletin à ce scrutin précis, de sorte qu'on ne peut pas le recopier ailleurs.
 
@@ -560,13 +607,13 @@ Reste la question du temps : sans serveur, pas d'horloge commune. La clôture es
 | Scellé           | Pendant le vote on ne publie qu'une empreinte du bulletin ; on le révèle après la clôture                                                   | Les premiers résultats n'influencent pas les derniers votants | Le secret après révélation                                              |
 | Secret           | Bulletins chiffrés pour une clé partagée entre scrutateurs tirés au sort, selon un protocole publié de vote vérifiable comme Belenios \[10] | Secret et vérifiabilité                                       | La résistance à la contrainte ; les scrutateurs doivent être joignables |
 
-## 7.6 Discuter sans messagerie
+## 8.6 Discuter sans messagerie
 
 Un message est un fichier signé qui dit de quoi il parle et à quoi il répond. Un « fil » n'est pas un objet : c'est l'ensemble des messages qui désignent le même sujet. Les messages privés sont chiffrés pour leurs seuls destinataires \[11]. Un signalement est un message d'un type particulier ; masquer un message est une décision signée d'un jury, et le texte masqué reste dans l'historique.
 
 Les notifications ne sont enregistrées nulle part. Chaque appareil compare l'état des dépôts avant et après sa synchronisation et en déduit ce qui concerne son propriétaire.
 
-## 7.7 Les agents d'IA et leurs limites
+## 8.7 Les agents d'IA et leurs limites
 
 | Agent                                               | Ce qu'il lit                             | Ce qu'il écrit                                             | Ce qu'il ne fait jamais                        |
 |-----------------------------------------------------|------------------------------------------|------------------------------------------------------------|------------------------------------------------|
@@ -579,13 +626,13 @@ La règle d'OSIA veut que l'IA propose et que l'humain valide.
 
 Ce qui peut se calculer n'est pas confié à une IA : savoir si deux amendements touchent le même passage, dépouiller, tirer au sort, vérifier une signature sont des programmes ordinaires, qui donnent toujours le même résultat.
 
-## 7.8 Qui commande
+## 8.8 Qui commande
 
 * **Les hébergeurs sont des greffiers.** Le propriétaire d'un dépôt peut fusionner, mais le contrôle automatique qui autorise la fusion est installé hors du dépôt contrôlé, et refuse ce qui ne découle pas d'une transition régulière. Les propriétaires sont désignés et révoqués par scrutin.
 * **L'admission par les pairs.** La machine vérifie que le triplet identifiant (prénoms, noms, date de naissance) n’est pas déjà présent dans la liste des hashcodes des membres existants. Des membres tirés au sort vérifient que le candidat est une personne réelle, satisfaisant les conditions pour être membre, et que les informations transmises sur le formulaire d’inscription correspondent à celle des documents officiels faisant foi, et signent « j'ai vérifié », sans rien consigner de ce qu'ils ont vu. La communauté ne connaît qu'un pseudonyme et des clés publiques. C'est la protection contre les comptes multiples, sans laquelle aucun vote n'a de sens ; KuneAgi la pratiquait déjà.
 * **Le tirage au sort vérifiable.** Vérificateurs, jurés et scrutateurs sont désignés par un calcul que chacun peut refaire, à partir d'une valeur publique que personne ne pouvait connaître à l'avance.
 
-## 7.9 Nova-Ideo hier, reteKuneAgi aujourd'hui
+## 8.9 Nova-Ideo hier, reteKuneAgi aujourd'hui
 
 | Dans Nova-Ideo                             | Dans reteKuneAgi                                                   |
 |--------------------------------------------|--------------------------------------------------------------------|
@@ -602,7 +649,7 @@ Ce qui peut se calculer n'est pas confié à une IA : savoir si deux amendements
 | Des alertes envoyées par le serveur        | Des alertes déduites par chaque appareil                           |
 | Un moteur de processus                     | Des documents qui décrivent les processus, et de petits programmes |
 
-# 8. Ce qui ne marche pas encore, ou ne marchera jamais
+# 9. Ce qui ne marche pas encore, ou ne marchera jamais
 
 Un texte d'anticipation doit ses limites à son lecteur.
 
