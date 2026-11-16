@@ -27,6 +27,7 @@ Le filtre est appliqué au niveau du dossier :
 | `réflexions/` | textes personnels sur l'informatique et la connaissance |
 | `Idées et concepts/` | fiches de concepts, frameworks, modèles |
 | `meetup/` | supports de meetups |
+| `kunereti/` | projet Kunereti (kunereti.org) : délibération répartie sans serveur central, analyse et scénarios |
 | `templates/` | modèles de notes |
 | `.nojekyll`, `index.html` | configuration de GitHub Pages |
 
@@ -99,7 +100,7 @@ git clone git@github.com:michaellaunay/Notes.git NotesPubliquesUp
 cd NotesPubliquesUp
 git filter-repo --path cours --path informatique --path sciences \
                 --path réflexions --path templates \
-                --path 'Idées et concepts' --path meetup
+                --path 'Idées et concepts' --path meetup --path kunereti
 git remote add NotesPubliques git@github.com:michaellaunay/NotesPubliques.git
 git push NotesPubliques
 ```

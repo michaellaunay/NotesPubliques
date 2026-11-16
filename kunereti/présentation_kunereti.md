@@ -1,26 +1,27 @@
 ---
-titre: KuneAgi V2, l'innovation participative répartie
+titre: Kunereti, l'innovation participative répartie
 aliases:
-  - Présentation de KuneAgi V2
+- Présentation de Kunereti
+- Présentation de KuneAgi V2
 type: reflexion
 statut: brouillon
 para: projet
 domaines:
-  - communication
+- communication
 themes:
-  - informatique
-  - democratie
-  - kuneagi
-  - nova-ideo
-  - decentralisation
-  - git
-  - markdown
-  - obsidian
-  - agents-ia
-  - llm
-resume: "Article d'anticipation autonome : KuneAgi V2 raconté comme s'il fonctionnait, sans serveur central. Avant-propos sur l'origine (thèse de 2013, Nova-Ideo, article de 2017, Biblioteko, OSIA), article en six sections avec quatorze croquis d'écrans mobile et PC, fonctionnement interne (dépôts, fichiers signés, processus déclaratifs, votes, agents d'IA), limites, glossaire et références."
+- informatique
+- democratie
+- kuneagi
+- nova-ideo
+- decentralisation
+- git
+- markdown
+- obsidian
+- agents-ia
+- llm
+resume: 'Article d''anticipation autonome : Kunereti (ex-KuneAgi V2) raconté comme s''il fonctionnait, sans serveur central. Avant-propos sur l''origine (thèse de 2013, Nova-Ideo, article de 2017, Biblioteko, OSIA), article en six sections avec quatorze croquis d''écrans mobile et PC, fonctionnement interne (dépôts, fichiers signés, processus déclaratifs, votes, agents d''IA), limites, glossaire et références.'
 auteurs:
-  - Michaël Launay
+- Michaël Launay
 maturite: exploree
 confidentialite: publique
 rag: true
@@ -29,19 +30,19 @@ uid: 01M76CMTXC7WYQ4PAQW3H2YBKT
 date_creation: 2026-11-11
 langue: fr
 publication:
-  - notes-publiques
-date_modification: 2026-11-12
-metadata_verifiees: true
+- notes-publiques
+date_modification: 2026-11-13
+metadata_verifiees: false
 ---
-# KuneAgi V2, l'innovation participative répartie
+# Kunereti, l'innovation participative répartie
 
 > [!warning] Texte d'anticipation
-> Cet article décrit KuneAgi V2 **comme s'il fonctionnait entièrement**. Ce n'est pas le cas : au 12 novembre 2026 rien n'est implémenté. Les écrans sont des croquis, les chiffres d'usage et les noms de membres sont inventés. Le but est de vérifier que le projet est compréhensible à un lecteur non informaticien avant de le construire.
+> Cet article décrit Kunereti **comme s'il fonctionnait entièrement**. Ce n'est pas le cas : au 12 novembre 2026 rien n'est implémenté. Les écrans sont des croquis, les chiffres d'usage et les noms de membres sont inventés. Le but est de vérifier que le projet est compréhensible à un lecteur non informaticien avant de le construire.
 
 > [!info] Comment lire ce document
 > Il se suffit à lui-même. L'**avant-propos** dit d'où vient le projet : le logiciel Nova-Ideo, l'article de 2017 que ce texte réécrit, l'état du code en 2026, et les deux travaux récents dont il réutilise les idées, Biblioteko et OSIA. Les **sections 1 à 6** sont l'article proprement dit, écrit du point de vue de l'utilisateur. La **section 7** ouvre le capot pour qui veut savoir comment cela peut tenir sans serveur. La **section 8** dit ce qui ne marche pas encore ou ne marchera jamais. Un **glossaire** et les **références** terminent le document. Les mots en italique suivis d'un astérisque à leur première apparition (*dépôt*\*, *fork*\*…) sont au glossaire.
 
-# Avant-propos : d'où vient KuneAgi V2
+# Avant-propos : d'où vient Kunereti
 
 ## A. Nova-Ideo et KuneAgi (2013-2026)
 
@@ -64,11 +65,11 @@ Le 5 mars 2017, j'ai publié *Nova-Ideo, l'innovation participative agile* [5], 
 - **Des jetons rares.** Chaque membre dispose de 7 jetons pour soutenir ou rejeter ce qui est publié. Quand il n'en a plus, il doit en reprendre un : il arbitre.
 - **Des comités.** Un comité de pilotage se prononce sur les propositions et publie son avis sous la forme d'un feu tricolore.
 
-Tout cela reste juste, et KuneAgi V2 le garde. Ce que l'article ne disait pas, parce que cela allait de soi à l'époque : Nova-Ideo est **un serveur**. Quelqu'un l'héberge, l'administre, détient la base de données, la liste des membres et les bulletins de vote. Et le tri des idées (lire, rapprocher, dédoublonner) reste un travail humain qui ne passe pas à l'échelle.
+Tout cela reste juste, et Kunereti le garde. Ce que l'article ne disait pas, parce que cela allait de soi à l'époque : Nova-Ideo est **un serveur**. Quelqu'un l'héberge, l'administre, détient la base de données, la liste des membres et les bulletins de vote. Et le tri des idées (lire, rapprocher, dédoublonner) reste un travail humain qui ne passe pas à l'échelle.
 
 ## C. Où en est le code en 2026
 
-En juillet 2026, j'ai fait auditer les cinq dépôts de code de la lignée et établir un plan de modernisation [20]. Ce que l'audit a trouvé explique pourquoi l'idée d'une version 2 d'une autre nature s'est imposée.
+En juillet 2026, j'ai fait auditer les cinq dépôts de code de la lignée et établir un plan de modernisation [20]. Ce que l'audit a trouvé explique pourquoi l'idée d'un successeur d'une autre nature s'est imposée.
 
 | Dépôt | Rôle | Dernière modification | Taille |
 | --- | --- | --- | --- |
@@ -91,9 +92,9 @@ Le plan retenu redresse cela par étapes, en maintenant le service : reprendre l
 
 La dernière étape du plan est celle qui a tout déclenché. Dès 2021, j'avais dressé un bilan d'usage de Nova-Ideo qui demandait trois évolutions : l'**anonymisation** des participations, une interface **plus simple pour le jugement majoritaire**, et la **fusion automatique des idées voisines**, que nous pensions alors confier à un modèle de langue français de l'époque. Cette fusion n'a jamais été faite. En 2026, un modèle de langage généraliste la fait sans difficulté, ainsi que le rattachement des idées aux propositions, la synthèse des discussions et l'aide à la rédaction des amendements.
 
-D'où la question que pose ce document. Puisqu'il faut de toute façon refaire le socle, et puisque le tri des idées peut être confié à des machines, faut-il reconstruire le même serveur en plus récent, ou changer la nature de l'outil ? La modernisation garde KuneAgi en service. KuneAgi V2 explore l'autre réponse.
+D'où la question que pose ce document. Puisqu'il faut de toute façon refaire le socle, et puisque le tri des idées peut être confié à des machines, faut-il reconstruire le même serveur en plus récent, ou changer la nature de l'outil ? La modernisation garde KuneAgi en service. Kunereti explore l'autre réponse.
 
-## D. Deux travaux de 2026 dont KuneAgi V2 réutilise les idées
+## D. Deux travaux de 2026 dont Kunereti réutilise les idées
 
 **Biblioteko** [7] est un projet de bibliothèque numérique libre et décentralisée, pour une association qui numérise des livres et les prête. Sa version 2, spécifiée en novembre 2026 et pas encore développée, repose sur quelques décisions qui n'ont rien de propre aux livres :
 
@@ -111,7 +112,9 @@ Remplacez « livre » par « proposition » et « bibliothécaire » par « grou
 - l'emplacement d'un fichier ne dit rien de son état : on ne déplace pas un document de « à valider » vers « validé », on change une ligne de son en-tête ;
 - l'IA **propose**, le système **vérifie**, l'humain **décide** ; et tout doit continuer à fonctionner sans IA.
 
-## E. L'idée de KuneAgi V2
+## E. L'idée de Kunereti
+
+Le projet s'est d'abord appelé « KuneAgi V2 ». Il porte depuis novembre 2026 un nom à lui, **Kunereti** : le *kune* (« ensemble ») de KuneAgi, auquel s'ajoute *reti*, verbe formé sur *reto*, le réseau. C'est un néologisme espérantiste qui veut dire « s'organiser librement, décider à égalité ». KuneAgi, c'était agir ensemble ; Kunereti, c'est s'organiser ensemble, librement et à égalité. Le changement de nom dit le changement de nature. KuneAgi reste le nom du logiciel serveur, toujours en service ; Kunereti n'en est pas une nouvelle version, c'est autre chose. Le nom de domaine `kunereti.org` est réservé.
 
 Garder de Nova-Ideo tout ce qui concerne les personnes (les petits groupes, les itérations, les amendements, le jugement majoritaire, les jetons) et remplacer tout ce qui concerne la machine. Plus de serveur : des dépôts de fichiers que les membres se partagent. Plus de base de données : l'état est dans les fichiers. Plus d'administrateur à croire sur parole : des signatures que chacun vérifie. Plus de tri manuel des idées : des agents d'IA qui rangent, sans jamais décider.
 
@@ -123,23 +126,23 @@ Le constat de 2017 tient toujours. Qu'on parle de démocratie participative ou d
 
 Deux choses ont changé depuis.
 
-La première est la confiance. Une consultation hébergée par celui qui la commande reste, pour beaucoup de participants, de la communication : qui tient le serveur tient la liste des votants, l'ordre d'affichage et le bouton de suppression. KuneAgi V2 retire le serveur. Chaque membre détient une copie complète et signée de tout ce qui a été écrit et voté ; personne ne peut réécrire l'histoire sans que cela se voie, et un groupe en désaccord peut partir avec toutes les pièces.
+La première est la confiance. Une consultation hébergée par celui qui la commande reste, pour beaucoup de participants, de la communication : qui tient le serveur tient la liste des votants, l'ordre d'affichage et le bouton de suppression. Kunereti retire le serveur. Chaque membre détient une copie complète et signée de tout ce qui a été écrit et voté ; personne ne peut réécrire l'histoire sans que cela se voie, et un groupe en désaccord peut partir avec toutes les pièces.
 
 La seconde est le tri. Le travail qui épuisait les animateurs de Nova-Ideo (lire toutes les idées, repérer les doublons, les regrouper, les rattacher aux propositions) est fait par des modèles de langage. Ils ne décident de rien : ils rangent.
 
-Le reste est inchangé. KuneAgi V2 organise la récolte de contributions, la co-écriture de propositions d'action par de petits groupes, des appels à idées pour répondre à une problématique, et le soutien ou le rejet de ce qui est publié. Sa force reste la *coopétition* des cycles itératifs du logiciel libre, dont il emprunte cette fois aussi les outils : *Git*\*, les *forks*\*, les *demandes de fusion*\*.
+Le reste est inchangé. Kunereti organise la récolte de contributions, la co-écriture de propositions d'action par de petits groupes, des appels à idées pour répondre à une problématique, et le soutien ou le rejet de ce qui est publié. Sa force reste la *coopétition* des cycles itératifs du logiciel libre, dont il emprunte cette fois aussi les outils : *Git*\*, les *forks*\*, les *demandes de fusion*\*.
 
 # 2. Rejoindre plutôt qu'installer
 
 En 2017, il fallait installer Nova-Ideo par Docker ou s'abonner au service en ligne. Il n'y a plus rien à installer côté communauté, puisqu'il n'y a plus de côté communauté : une communauté est un dépôt de fichiers qui recense les dépôts de ses groupes de travail, et que l'on rejoint en scannant un QR code.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_01_rejoindre.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_01_rejoindre.excalidraw]]
 
 *Croquis 1 (mobile) : rejoindre une communauté. On scanne, l'application vérifie l'empreinte de la clé racine, crée les clés du membre et dépose la candidature.*
 
 L'admission reprend le processus de citoyenneté de KuneAgi : des membres tirés au sort vérifient que le candidat est une personne réelle et qu'il n'a pas déjà un compte, puis signent. La communauté ne connaît qu'un pseudonyme et des clés publiques.
 
-Trois façons d'utiliser KuneAgi V2 coexistent, sur les mêmes fichiers :
+Trois façons d'utiliser Kunereti coexistent, sur les mêmes fichiers :
 
 - l'**application mobile**, pour contribuer, discuter, voter ; elle cache entièrement Git et les clés ;
 - le **poste de travail**, pour écrire longuement et préparer des amendements : l'éditeur de notes Obsidian [9] ou le portail local, qui n'est qu'une vue sur les dépôts clonés ;
@@ -151,7 +154,7 @@ Les dépôts sont hébergés où la communauté le souhaite, sur au moins deux *
 
 En 2017, on créait une idée ou une question : titre, texte, mots-clés, pièces jointes, puis publication. Aujourd'hui on écrit ce qu'on a à dire, et c'est tout.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_02_contribuer.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_02_contribuer.excalidraw]]
 
 *Croquis 2 (mobile) : la contribution remplace le formulaire de création d'idée de 2017. On écrit, on publie ; le brouillon reste dans sa copie personnelle.*
 
@@ -159,7 +162,7 @@ Le membre ne saisit ni titre ni mots-clés et ne choisit pas si son texte est «
 
 Tout cela est fluide, et comme en 2017 chaque geste engage la nature du travail. La différence est que l'engagement est visible : publier, c'est signer.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_03_accueil.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_03_accueil.excalidraw]]
 
 *Croquis 3 (PC) : l'accueil. Les appels à idées en tête, mes groupes, puis les idées calculées et les propositions, triées et filtrées. Les flèches sont les jetons de soutien et d'opposition.*
 
@@ -169,13 +172,13 @@ Tout cela est fluide, et comme en 2017 chaque geste engage la nature du travail.
 
 Les gens s'identifient à leur idée : la critiquer revient souvent à critiquer son auteur. Nova-Ideo y répondait en faisant de l'idée un document à auteur unique, figé à la publication, que l'on pouvait seulement dupliquer. C'était juste, mais cela produisait des dizaines d'idées voisines que personne ne rapprochait, et des auteurs vexés de voir « leur » idée oubliée au profit d'un doublon mieux placé.
 
-KuneAgi V2 sépare trois objets.
+Kunereti sépare trois objets.
 
 - La **contribution** est personnelle, signée, et ne change plus une fois publiée. C'est ce que j'ai dit.
 - L'**idée** n'appartient à personne. C'est une fiche rédigée par un agent, le *curateur*, à partir de toutes les contributions qui disent la même chose. Elle cite ses sources, mot pour mot, et nomme leurs auteurs.
 - La **proposition** est collective : c'est le texte qu'un groupe de travail co-écrit à partir d'une ou plusieurs idées.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_04_idee.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_04_idee.excalidraw]]
 
 *Croquis 4 (mobile) : une fiche d'idée cite toujours les contributions dont elle est tirée. L'auteur mal compris le dit ; il ne corrige pas la fiche, il ajoute une contribution.*
 
@@ -200,7 +203,7 @@ L'historique des versions n'est plus une fonction : c'est Git.
 
 Nova-Ideo traçait les duplications et les réutilisations et permettait de naviguer dans le graphe des parentés. La carte existe toujours, et elle est plus riche parce qu'elle ne dépend plus de ce que les gens ont pensé à déclarer.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_05_carte.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_05_carte.excalidraw]]
 
 *Croquis 5 (PC) : la carte des contenus. Les liens de parenté ne sont plus saisis : ils sont lus dans les frontmatters et dans l'historique des dépôts.*
 
@@ -214,7 +217,7 @@ La coopétition joue comme avant : chacun voit ce que les autres ont proposé et
 
 Le curateur a un rôle de plus. Quand une idée a reçu assez de contributions d'auteurs différents, il la signale comme mûre et propose l'ouverture d'un groupe de travail. Il propose ; un membre lance.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_06_appel.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_06_appel.excalidraw]]
 
 *Croquis 6 (mobile) : à gauche un appel à idées, à droite l'entrée dans un groupe de travail. Quand le groupe est plein, le bouton devient « M'inscrire sur la liste d'attente ».*
 
@@ -226,7 +229,7 @@ Nova-Ideo orchestrait par un processus métier paramétrable, « en attendant d'
 
 Un groupe de travail naît d'une idée mûre. Il reçoit un dépôt et une proposition dont le résumé reprend l'idée de départ. Le texte est découpé en sections, selon un modèle de document que la communauté peut imposer.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_07_proposition.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_07_proposition.excalidraw]]
 
 *Croquis 7 (PC) : la proposition, découpée en sections. À gauche l'état de l'itération ; à droite le texte, son fil de discussion et la synthèse, toujours signalée comme écrite par une machine.*
 
@@ -236,7 +239,7 @@ Rien à retirer à ce que j'écrivais. Dès qu'un groupe dépasse la dizaine de 
 
 La solution reste d'avoir plusieurs petits groupes en concurrence sur le même sujet, quitte à ce qu'un autre fusionne leurs propositions.
 
-KuneAgi V2 garde donc les valeurs par défaut : **douze participants** par groupe, **cinq groupes** par membre, une liste d'attente au-delà. Ces nombres sont écrits dans la charte de la communauté et se changent par un vote.
+Kunereti garde donc les valeurs par défaut : **douze participants** par groupe, **cinq groupes** par membre, une liste d'attente au-delà. Ces nombres sont écrits dans la charte de la communauté et se changent par un vote.
 
 Ce qui est nouveau, c'est que la règle du petit groupe est devenue une propriété de l'architecture. Un groupe est un dépôt : douze personnes qui écrivent dans le même dépôt s'entendent, cent se marchent dessus. Et la fusion de deux propositions concurrentes, que je présentais comme un vœu, est une opération ordinaire entre deux dépôts qui ont un ancêtre commun.
 
@@ -248,7 +251,7 @@ Il est rare d'écrire du premier coup une proposition parfaite, encore plus à p
 
 À la fin de chaque itération, les participants votent : publier la proposition, ou repartir pour un tour. S'ils repartent, ils votent aussi la durée de l'itération suivante et son mode de travail.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_08_iteration.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_08_iteration.excalidraw]]
 
 *Croquis 8 (mobile) : les trois votes de fin d'itération. Publier ou continuer, puis la durée et le mode de l'itération suivante.*
 
@@ -262,7 +265,7 @@ Chaque modification enregistrée produit une nouvelle version, sans validation. 
 
 Chaque modification doit être acceptée, refusée ou corrigée par un autre participant. Le processus est séquentiel, une édition à la fois par section, et reste le plus adapté aux corrections de forme.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_09_validation.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_09_validation.excalidraw]]
 
 *Croquis 9 (PC) : le mode avec validation. Une modification à la fois, relue par un autre participant qui l'accepte, la refuse ou la corrige.*
 
@@ -274,7 +277,7 @@ Reprenons l'exemple de 2017. Un participant modifie la proposition pour en gén�
 
 C'était l'écran le plus difficile de Nova-Ideo, et l'endroit où l'on perdait des participants. C'est celui où l'assistance par un modèle de langage aide le plus.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_10_amendements.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_10_amendements.excalidraw]]
 
 *Croquis 10 (PC) : le mode avec amendements. On regroupe ses modifications par intention et on les justifie ; l'assistant propose, l'auteur décide et signe.*
 
@@ -288,7 +291,7 @@ Le jugement majoritaire, issu des travaux de Michel Balinski et Rida Laraki [6],
 
 Chaque participant donne à chaque version concurrente, texte d'origine compris, une mention parmi sept : « Excellent », « Très bien », « Bien », « Assez bien », « Passable », « Insuffisant », « À rejeter ». La version retenue est celle dont la mention médiane est la meilleure.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_11_jugement-majoritaire.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_11_jugement-majoritaire.excalidraw]]
 
 *Croquis 11 (mobile) : le jugement majoritaire. Chaque version concurrente, texte d'origine compris, reçoit une mention ; le résultat se recalcule sur son propre téléphone.*
 
@@ -298,7 +301,7 @@ Dans un groupe de douze, le vote est nominatif sous pseudonyme : chacun assume s
 
 Une fois les amendements dépouillés, les modifications retenues sont appliquées, une nouvelle version est produite, et elle est soumise au groupe pour le vote de publication ou le démarrage d'une nouvelle itération.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_12_version.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_12_version.excalidraw]]
 
 *Croquis 12 (PC) : la nouvelle version, fabriquée par le vote. Chaque changement renvoie à l'amendement et au scrutin qui l'ont produit.*
 
@@ -316,7 +319,7 @@ Celle qu'il faut assumer : ce n'est pas une messagerie instantanée. Un message 
 
 Nova-Ideo utilisait les notifications du navigateur, poussées par le serveur. Sans serveur, personne ne pousse : chaque appareil regarde ce qui a changé depuis sa dernière synchronisation et en déduit ce qui concerne son propriétaire.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_13_discussion-notifications.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_13_discussion-notifications.excalidraw]]
 
 *Croquis 13 (mobile) : à gauche un fil de discussion, à droite les notifications. Elles ne viennent pas d'un serveur : le téléphone les déduit de ce qui a changé depuis sa dernière synchronisation.*
 
@@ -340,7 +343,7 @@ Le comité classe les propositions, par exemple selon leurs soutiens, puis publi
 
 L'avis prend toujours la forme d'un feu tricolore. Il est signé par les membres du comité, et il rend à leurs propriétaires tous les jetons posés sur le contenu.
 
-![[réflexions/réflexions_images/kuneagi_v2_croquis_14_jetons-comite.excalidraw]]
+![[kunereti/kunereti_images/kunereti_croquis_14_jetons-comite.excalidraw]]
 
 *Croquis 14 (mobile) : les sept jetons et leur historique, puis l'avis du comité de pilotage, matérialisé par un feu tricolore et signé.*
 
@@ -350,7 +353,7 @@ Le comité n'a pas de compte privilégié. Ses membres ont été désignés par 
 
 Nova-Ideo est né de la preuve de concept de la thèse d'Amen Souissi, *Modélisation centrée sur les processus métier pour la génération complète de portails collaboratifs* [1]. La thèse montrait qu'on pouvait générer la totalité du code d'un portail à partir de la modélisation des processus métier. Le résultat était correct, l'interface peu utilisable ; nous avions alors inversé la méthode en écrivant à la main le code « presque parfait », pour remonter ensuite vers les modèles. En 2017 j'annonçais un formalisme fusionnant UML et BPMN et un modeleur. Ils n'ont pas vu le jour.
 
-KuneAgi V2 tient la promesse autrement. Le modèle n'est plus transformé en code : **il est exécuté tel quel**. Un processus est un document Markdown dont l'en-tête déclare les états, les transitions, les rôles et les signatures exigées. Les données sont des documents Markdown dont l'en-tête porte l'état. Entre les deux, quelques scripts courts font passer un document d'un état à un autre et s'arrêtent. Il n'y a plus de moteur de processus, plus de base objet, plus de bibliothèque d'interface générée.
+Kunereti tient la promesse autrement. Le modèle n'est plus transformé en code : **il est exécuté tel quel**. Un processus est un document Markdown dont l'en-tête déclare les états, les transitions, les rôles et les signatures exigées. Les données sont des documents Markdown dont l'en-tête porte l'état. Entre les deux, quelques scripts courts font passer un document d'un état à un autre et s'arrêtent. Il n'y a plus de moteur de processus, plus de base objet, plus de bibliothèque d'interface générée.
 
 Ce qui reste du projet d'origine est l'essentiel : une application est un ensemble de processus avant d'être un ensemble d'écrans.
 
@@ -358,7 +361,7 @@ Le socle vient des deux travaux présentés dans l'avant-propos (section D). **B
 
 L'API GraphQL de 2017 n'a pas de successeur, parce qu'il n'y a rien à interroger à distance. Lire les contenus depuis un autre programme, c'est lire des fichiers ; en créer, c'est en écrire un et le signer.
 
-Le code est libre, sous licence AGPL v3. On propose une évolution comme on propose un amendement : KuneAgi V2 se développe dans une communauté KuneAgi V2.
+Le code est libre, sous licence AGPL v3. On propose une évolution comme on propose un amendement : Kunereti se développe dans une communauté Kunereti.
 
 # 6. Conclusion
 
@@ -511,9 +514,9 @@ Qui fait tourner le modèle, s'il n'y a pas de serveur ? N'importe quel membre p
 - **Le tirage au sort vérifiable.** Vérificateurs, jurés et scrutateurs sont désignés par un calcul que chacun peut refaire, à partir d'une valeur publique que personne ne pouvait connaître à l'avance.
 - **Les rôles sont élus.** Les « examinateurs » et « modérateurs » de Nova-Ideo ne sont plus des comptes privilégiés, mais des rôles inscrits dans les fiches de membres par un vote.
 
-## 7.9 Nova-Ideo hier, KuneAgi V2 aujourd'hui
+## 7.9 Nova-Ideo hier, Kunereti aujourd'hui
 
-| Dans Nova-Ideo | Dans KuneAgi V2 |
+| Dans Nova-Ideo | Dans Kunereti |
 | --- | --- |
 | Une plateforme sur un serveur | Un dépôt de communauté et son QR code |
 | Un compte, un mot de passe | Une fiche de membre sous pseudonyme et une paire de clés |
@@ -540,7 +543,7 @@ Un texte d'anticipation doit ses limites à son lecteur.
 - **« Sans serveur » ne veut pas dire « sans infrastructure ».** Il n'y a ni serveur d'application ni hébergeur imposé ; mais un dépôt privé repose sur les droits d'accès de celui qui l'héberge.
 - **L'échelle.** Des centaines de dépôts et des milliers de petits fichiers de messages demandent une synchronisation sélective qui reste à concevoir.
 - **La dérive des agents.** Deux modèles ne rangent pas les idées de la même façon. C'est tolérable uniquement parce que les idées n'ont aucun pouvoir.
-- **L'existant.** Passer d'une instance Nova-Ideo en service à des dépôts suppose un export complet de sa base, qui n'est pas écrit. Et KuneAgi V2 ne dispense pas de la modernisation décrite dans l'avant-propos : tant que la version 2 n'est pas utilisable par tous, c'est la version actuelle qui sert.
+- **L'existant.** Passer d'une instance Nova-Ideo en service à des dépôts suppose un export complet de sa base, qui n'est pas écrit. Et Kunereti ne dispense pas de la modernisation décrite dans l'avant-propos : tant que Kunereti n'est pas utilisable par tous, c'est KuneAgi qui sert.
 
 L'expérience décisive est modeste : cinq personnes, un texte réel, des amendements et un vote au jugement majoritaire, à la main et en ligne de commande. Si cela ne tient pas à cinq, rien du reste ne mérite d'être construit.
 
@@ -632,4 +635,4 @@ L'expérience décisive est modeste : cinq personnes, un texte réel, des amende
 20. *Audit et plan de modernisation — Nova-Ideo, DaCE, Pontus, DaceUI*, Logikascium, 13 juillet 2026, document de travail : analyse des dépôts publics `ecreall/nova-ideo`, `KuneAgi`, `dace`, `pontus` et `daceui`.
 
 > [!note] Notes liées dans ce coffre
-> Facultatives : [[kuneagi_v2]] (conception détaillée, pour les développeurs), [[Présentation Nova-Ideo]] (histoire du projet), [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|cours OSIA]].
+> Facultatives : [[kunereti]] (conception détaillée, pour les développeurs), [[KR _Analyse]] (analyse et scénarios d'usage), [[Présentation Nova-Ideo]] (histoire du projet), [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|cours OSIA]].

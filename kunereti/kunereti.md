@@ -1,31 +1,32 @@
 ---
-titre: "KuneAgi V2 : délibération répartie sur Git, Markdown et frontmatter"
+titre: 'Kunereti : délibération répartie sur Git, Markdown et frontmatter'
 aliases:
-  - KuneAgiV2
-  - KuneAgi V2
-  - Nova-Ideo réparti
+- Kunereti
+- KuneAgiV2
+- KuneAgi V2
+- Nova-Ideo réparti
 type: reflexion
 statut: brouillon
 para: projet
 domaines:
-  - recherche
+- recherche
 themes:
-  - informatique
-  - architecture-logicielle
-  - decentralisation
-  - git
-  - markdown
-  - metadonnees
-  - workflow
-  - democratie
-  - kuneagi
-  - nova-ideo
-  - obsidian
-  - agents-ia
-  - llm
-resume: "Projet KuneAgi V2 : refaire KuneAgi (Nova-Ideo) sans serveur central en fusionnant Biblioteko V2 et Obsidian OSIA. Un dépôt Git par groupe de travail, un dépôt de communauté qui les recense, brouillons dans des forks, messagerie, amendements et votes sous forme de fichiers Markdown signés dont le frontmatter porte l'état, workflows déclaratifs, et boîte à idées entièrement tenue par des agents LLM."
+- informatique
+- architecture-logicielle
+- decentralisation
+- git
+- markdown
+- metadonnees
+- workflow
+- democratie
+- kuneagi
+- nova-ideo
+- obsidian
+- agents-ia
+- llm
+resume: 'Projet Kunereti (ex-KuneAgi V2) : refaire KuneAgi (Nova-Ideo) sans serveur central en fusionnant Biblioteko V2 et Obsidian OSIA. Un dépôt Git par groupe de travail, un dépôt de communauté qui les recense, brouillons dans des forks, messagerie, amendements et votes sous forme de fichiers Markdown signés dont le frontmatter porte l''état, workflows déclaratifs, et boîte à idées entièrement tenue par des agents LLM.'
 auteurs:
-  - Michaël Launay
+- Michaël Launay
 maturite: exploree
 confidentialite: publique
 rag: true
@@ -34,17 +35,20 @@ uid: 01M769YSH88WZK5QEFP5AWZHAA
 date_creation: 2026-11-11
 langue: fr
 publication:
-  - notes-publiques
-date_modification: 2026-11-12
-metadata_verifiees: true
+- notes-publiques
+date_modification: 2026-11-13
+metadata_verifiees: false
 ---
-# KuneAgi V2 : délibération répartie sur Git, Markdown et frontmatter
+# Kunereti : délibération répartie sur Git, Markdown et frontmatter
 
 > [!abstract] Intention
 > Refaire KuneAgi (alias Nova-Ideo) **sans serveur central**. Tout ce que la plateforme stockait dans ZODB et pilotait par DaCE devient des fichiers Markdown dont le frontmatter porte le modèle de données, les états et les signatures. Chaque groupe de travail a son dépôt Git ; une communauté partage un dépôt qui recense ses groupes ; la messagerie, les amendements et les votes sont des fichiers signés ; les brouillons vivent dans des forks. La boîte à idées n'est plus tenue par des humains : des agents LLM extraient, dédoublonnent, fusionnent et relient les idées à partir des contributions.
 
+> [!info] Nom du projet
+> **Kunereti** est le nom du projet depuis le 13 novembre 2026 ; il s'appelait jusque-là « KuneAgi V2 ». Le nom garde le *kune* (« ensemble » en espéranto) de KuneAgi et lui ajoute *reti*, verbe formé sur *reto*, le réseau : un néologisme espérantiste qui veut dire « s'organiser librement, décider à égalité ». Il n'y a plus de plateforme, seulement des dépôts reliés et des gens qui décident entre pairs. « KuneAgi » désigne désormais uniquement le logiciel serveur existant, qui continue d'être maintenu. Le nom de domaine `kunereti.org` est réservé.
+
 > [!info] État de la note
-> Première rédaction du 11 novembre 2026, à partir de la branche `V2` de Biblioteko (cahier des charges, ADR-001 à ADR-012, journal de conception), du cours [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|Obsidian OSIA]] et de la note [[Présentation Nova-Ideo]]. L'inventaire fonctionnel de KuneAgi est fait de mémoire et d'après cette note : il reste à confronter au code (`ecreall/nova-ideo`, `ecreall/KuneAgi`), en particulier les quorums. Les valeurs par défaut reprises de l'article de 2017 (douze participants par groupe, cinq groupes par membre, sept jetons, sept mentions, validation séquentielle) sont racontées dans [[présentation__kuneagi_v2]]. Rien n'est implémenté.
+> Première rédaction du 11 novembre 2026, à partir de la branche `V2` de Biblioteko (cahier des charges, ADR-001 à ADR-012, journal de conception), du cours [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|Obsidian OSIA]] et de la note [[Présentation Nova-Ideo]]. L'inventaire fonctionnel de KuneAgi est fait de mémoire et d'après cette note : il reste à confronter au code (`ecreall/nova-ideo`, `ecreall/KuneAgi`), en particulier les quorums. Les valeurs par défaut reprises de l'article de 2017 (douze participants par groupe, cinq groupes par membre, sept jetons, sept mentions, validation séquentielle) sont racontées dans [[présentation_kunereti]]. Rien n'est implémenté.
 
 Voir aussi : [[git]], [[Markdown]], [[Obsidian]], [[LLM]], [[RAG]], [[Pyramid]].
 
@@ -58,7 +62,7 @@ Voir aussi : [[git]], [[Markdown]], [[Obsidian]], [[LLM]], [[RAG]], [[Pyramid]].
 | **Biblioteko V2** | Le *comment réparti* : un dépôt Git par objet de travail, catalogue partagé par QR code, workflows déclaratifs avec état `neutral`, sections de frontmatter signées Ed25519, autorités locales au dépôt, vérification au commit par un vérificateur extérieur au dépôt, chiffrement `age` | Le socle entier, renommé `core` |
 | **Obsidian OSIA** | Le *pourquoi* : Markdown mémoire durable, frontmatter modèle de données et mémoire d'état, emplacement qui ne porte pas l'état, transitions atomiques et idempotentes, fonctionnement sans IA, agent qui propose et système qui valide | Les principes et l'outillage agentique (domaines, skills, pipelines, habilitations) |
 
-## 1.2 État de KuneAgi V1 en 2026
+## 1.2 État de KuneAgi en 2026
 
 D'après l'audit du 13 juillet 2026 (analyse statique des cinq dépôts `ecreall/{nova-ideo, KuneAgi, dace, pontus, daceui}`, sans exécution du code).
 
@@ -86,24 +90,24 @@ substanced 1.0a1     arbre de ressources, catalogue hypatia, principals · Pyram
 - **Plan de modernisation.** Phase 0, reprise des dépôts ; 1, build d'origine reproductible servant d'étalon ; 2, documentation, dont l'extraction automatique des 24 processus en diagrammes ; 3, Python 3.12, Pyramid 2, ZODB 6 ; 4, interface en SolidJS par îlots ; 5, migration des données et déploiement ; 6, évolutions. Soit plusieurs mois pour une parité fonctionnelle.
 - **Évolutions demandées depuis 2021.** Anonymisation des participations, simplification de l'interface du jugement majoritaire, fusion automatique des idées voisines (prévue alors avec CamemBERT, aujourd'hui à la portée d'un LLM généraliste, comme le liage idées-propositions, la synthèse des fils et l'aide à la rédaction d'amendements).
 
-Ce que cela change pour la V2 :
+Ce que cela change pour Kunereti :
 
 - les **24 paquets de processus** sont la vraie spécification. L'extracteur prévu en phase 2 de la modernisation, qui lit les définitions DaCE et produit des diagrammes, peut produire du même coup les ébauches des documents `type: workflow` du §5 ;
-- le poste le plus lourd de la modernisation, les 439 gabarits et 286 vues, n'a pas d'équivalent en V2, dont le client est sans état ;
-- la phase 6 de la modernisation et le §9 de cette note sont le même besoin : il n'est écrit qu'une fois, côté V2, sous forme de Skills indépendants du serveur ;
-- les deux chantiers ne s'excluent pas : la modernisation maintient le service, et son export de la base objet (phase 5) est le point de départ de l'import d'une instance V1 en dépôts.
+- le poste le plus lourd de la modernisation, les 439 gabarits et 286 vues, n'a pas d'équivalent dans Kunereti, dont le client est sans état ;
+- la phase 6 de la modernisation et le §9 de cette note sont le même besoin : il n'est écrit qu'une fois, côté Kunereti, sous forme de Skills indépendants du serveur ;
+- les deux chantiers ne s'excluent pas : la modernisation maintient le service, et son export de la base objet (phase 5) est le point de départ de l'import d'une instance KuneAgi en dépôts.
 
 ## 1.3 Position par rapport à ADR-012
 
-L'ADR-012 de Biblioteko (encore *proposée*) recommande l'option C : garder `kuneagi-deliberation` comme paquet distinct pilotant des transitions signées. KuneAgi V2 tel que décrit ici est l'**option A** de ce même ADR, poussée à son terme : la délibération est réimplémentée en Markdown à frontmatter et ZODB disparaît. L'ADR lui opposait trois objections ; cette note doit y répondre, sinon elle ne vaut pas mieux que l'option écartée.
+L'ADR-012 de Biblioteko (encore *proposée*) recommande l'option C : garder `kuneagi-deliberation` comme paquet distinct pilotant des transitions signées. Kunereti tel que décrit ici est l'**option A** de ce même ADR, poussée à son terme : la délibération est réimplémentée en Markdown à frontmatter et ZODB disparaît. L'ADR lui opposait trois objections ; cette note doit y répondre, sinon elle ne vaut pas mieux que l'option écartée.
 
-| Objection de l'ADR-012 à l'option A | Réponse de KuneAgi V2 |
+| Objection de l'ADR-012 à l'option A | Réponse de Kunereti |
 | --- | --- |
 | Réécrit des années de travail de Nova-Ideo | On ne réécrit pas 439 gabarits et 286 vues : on réécrit **24 paquets de processus** sous forme de définitions de workflow déclaratives (§5). L'interface devient un client sans état |
 | Mécaniques riches (jugement majoritaire, jetons, citoyenneté) | Elles se ramènent à trois primitives : fichier signé, dépouillement déterministe rejouable, tirage au sort vérifiable (§7, §10) |
 | La communauté KuneAgi perd son outil | Vrai tant qu'il n'existe pas de client utilisable par un non-informaticien. C'est le risque principal (§12) |
 
-Conséquence : si cette piste est retenue, l'ADR-012 doit être révisée, pas contournée. La modernisation en cours de KuneAgi V1 (Python 3.12, Pyramid 2) reste utile pour maintenir le service pendant la transition.
+Conséquence : si cette piste est retenue, l'ADR-012 doit être révisée, pas contournée. La modernisation en cours de KuneAgi (Python 3.12, Pyramid 2) reste utile pour maintenir le service pendant la transition.
 
 # 2. Principes
 
@@ -361,8 +365,8 @@ Une date signée est affirmée par le signataire ; elle ne prouve pas l'antério
 
 | Niveau | Mécanisme | Garantit | Ne garantit pas | Version |
 | --- | --- | --- | --- | --- |
-| `public` | Bulletin signé en clair | Vérifiabilité totale | Aucun secret | V2.0 |
-| `commit_reveal` | Pendant le vote : `sha256(bulletin + aléa)` signé. Après clôture : révélation | Pas d'influence par les résultats partiels | Le secret après révélation ; un votant peut refuser de révéler (son bulletin est alors nul) | V2.0 |
+| `public` | Bulletin signé en clair | Vérifiabilité totale | Aucun secret | Première version |
+| `commit_reveal` | Pendant le vote : `sha256(bulletin + aléa)` signé. Après clôture : révélation | Pas d'influence par les résultats partiels | Le secret après révélation ; un votant peut refuser de révéler (son bulletin est alors nul) | Première version |
 | `secret` | Bulletins chiffrés pour une clé partagée entre scrutateurs tirés au sort, dépouillement vérifiable de type Belenios ; les fichiers de vote restent dans Git | Secret et vérifiabilité | La résistance à la coercition ; exige que les scrutateurs soient joignables | Plus tard, par ADR |
 
 Le vote réellement secret sans tiers est un problème de recherche, pas un détail d'implémentation. La bonne attitude est de s'appuyer sur un protocole publié et audité (Belenios vient d'Inria et sait traiter le jugement majoritaire par mélange, à vérifier sur la version courante) et de ne stocker dans Git que ses bulletins et ses preuves. Le pseudonymat des membres (§10) réduit déjà l'enjeu des scrutins `public` internes à un groupe.
@@ -393,13 +397,13 @@ Je ne comprends pas le second paragraphe : qui paie la première année ?
 - **Notifications.** Elles ne sont pas stockées : c'est un état dérivé. Le client calcule, depuis mon dernier `fetch`, les objets nouveaux ou modifiés qui me concernent (je suis auteur, participant, cité, ou abonné par ma fiche de membre). Une forge qui envoie des courriels ou expose un flux est un accélérateur, pas une dépendance.
 - **Messages privés.** Fichier chiffré `age` pour les clés X25519 des destinataires (ADR-009), déposé dans un dépôt privé partagé entre les interlocuteurs ou dans le dépôt du groupe. Le dépôt ne révèle que l'existence et la taille du message.
 - **Modération.** Un signalement est un message `kind: report`. Masquer est un état signé (`workflows.moderation.state: hidden`) décidé par un jury ; le client n'affiche plus le texte, qui reste dans l'historique. On ne promet pas l'effacement.
-- **Délai.** La messagerie est asynchrone, au rythme des `pull`. KuneAgi V2 n'est pas un chat et ne doit pas faire semblant de l'être.
+- **Délai.** La messagerie est asynchrone, au rythme des `pull`. Kunereti n'est pas un chat et ne doit pas faire semblant de l'être.
 
 # 9. Les idées, tenues par des agents LLM
 
 ## 9.1 Ce qui change
 
-Dans Nova-Ideo, des humains créent les idées, les modèrent, les comparent, repèrent les doublons, les rattachent aux propositions. C'est le travail le plus ingrat de la plateforme et celui qui passe le plus mal à l'échelle ; la fusion idée/proposition envisagée en 2021 avec CamemBERT n'a jamais abouti. En V2, **aucun humain ne crée ni ne gère une fiche d'idée**.
+Dans Nova-Ideo, des humains créent les idées, les modèrent, les comparent, repèrent les doublons, les rattachent aux propositions. C'est le travail le plus ingrat de la plateforme et celui qui passe le plus mal à l'échelle ; la fusion idée/proposition envisagée en 2021 avec CamemBERT n'a jamais abouti. Dans Kunereti, **aucun humain ne crée ni ne gère une fiche d'idée**.
 
 Les membres écrivent ce qu'ils ont à dire, où ils le disent déjà : contributions libres dans le dépôt d'idées, messages, justifications d'amendements. Un agent **curateur** en tire les idées.
 
@@ -452,9 +456,9 @@ Toute contribution est un vecteur d'injection. Les règles du chapitre 23 d'OSIA
 - **Rôles.** *Examiner* et *Moderator* de Nova-Ideo ne sont plus des comptes privilégiés mais des rôles déclarés dans les fiches de membres, attribués par scrutin, vérifiés par le rôle exigé dans chaque transition.
 - **Racine et révocation.** Inchangées par rapport à Biblioteko : racine amorcée par le QR code, changement de racine signé par la précédente, fiche révoquée conservée avec sa date.
 
-# 11. Correspondance KuneAgi V1 → V2
+# 11. Correspondance KuneAgi → Kunereti
 
-| Concept KuneAgi / Nova-Ideo | V1 (ZODB, DaCE) | V2 répartie |
+| Concept KuneAgi / Nova-Ideo | KuneAgi (ZODB, DaCE) | Kunereti (réparti) |
 | --- | --- | --- |
 | Instance de la plateforme | Un serveur, un `Data.fs` | Un dépôt de communauté et son QR code |
 | Compte utilisateur | Objet `Person`, LDAP | Fiche `member` pseudonyme et paire de clés |
@@ -487,7 +491,7 @@ Toute contribution est un vecteur d'injection. Les règles du chapitre 23 d'OSIA
 - **L'accessibilité.** Git, les clés et les forks sont hors de portée de la plupart des citoyens. Sans client qui cache entièrement Git (application mobile ou portail sans état qui clone, signe localement et pousse), le projet reste un outil d'informaticiens. C'est le risque qui peut tout annuler.
 - **La garde des clés.** Perdre sa clé, c'est perdre son identité de membre. Il faut une procédure de ré-admission par les pairs, donc un point d'attaque sociale.
 - **Le temps réel.** Asynchrone par construction.
-- **Le secret du vote.** Partiel en V2.0 (§7.4).
+- **Le secret du vote.** Partiel dans la première version (§7.4).
 - **L'effacement.** Un historique signé et cloné ne s'efface pas. Le pseudonymat et l'absence de donnée d'identité dans les dépôts sont la seule réponse sérieuse au RGPD ; elle doit être validée juridiquement avant tout déploiement.
 - **Le contrôle d'accès.** Un dépôt privé dépend des droits d'une forge. « Sans serveur central » veut dire « sans serveur applicatif et sans forge imposée », pas « sans infrastructure ».
 - **L'échelle.** Des centaines de dépôts de groupes et des milliers de petits fichiers de messages : l'index local et la synchronisation sélective sont à concevoir.
@@ -502,15 +506,15 @@ Toute contribution est un vecteur d'injection. Les règles du chapitre 23 d'OSIA
 | 2 | Dépôt de groupe minimal : sections, amendements, mode `amendment`, scrutin `public` au jugement majoritaire, `tally` avec vecteurs de test | 1 |
 | 3 | Messagerie par fichiers, notifications dérivées, dépôt de communauté, `membership` | 2 |
 | 4 | Dépôt d'idées et agent curateur ; assistant d'amendement local | 3 |
-| 5 | Client grand public ; import d'une instance KuneAgi V1 (export ZODB vers dépôts) | 2 à 4 |
+| 5 | Client grand public ; import d'une instance KuneAgi (export ZODB vers dépôts) | 2 à 4 |
 | 6 | Vote secret, tirage au sort vérifiable, jurys | 3 |
 
 La phase 2 est l'expérience décisive : un groupe réel qui amende un texte réel et vote, à la main et en ligne de commande. Si cela ne tient pas à cinq personnes, rien de la suite ne mérite d'être construit.
 
 # 14. Questions ouvertes
 
-1. **Nom.** « KuneAgi V2 » convient-il au projet fusionné, ou est-ce le nom de la seule couche de délibération posée sur le socle de Biblioteko ?
-2. **ADR-012.** Assume-t-on de passer de l'option C à l'option A, et que devient la modernisation de KuneAgi V1 ?
+1. **Nom.** Tranché le 13 novembre 2026 : le projet fusionné s'appelle **Kunereti** (`kunereti.org`). Reste à dire si le socle commun avec Biblioteko porte un nom propre.
+2. **ADR-012.** Assume-t-on de passer de l'option C à l'option A, et que devient la modernisation de KuneAgi ?
 3. **Une proposition par dépôt**, ou un groupe peut-il porter plusieurs propositions liées ?
 4. **Idées sans aucun humain** : accepte-t-on qu'un membre ne puisse plus « déposer une idée » comme objet de premier rang, mais seulement une contribution ?
 5. **Jetons** : plafond par membre, et que valent-ils si la communauté se scinde ?
@@ -521,6 +525,8 @@ La phase 2 est l'expérience décisive : un groupe réel qui amende un texte ré
 10. **Langue des clés** : anglais comme Biblioteko pour les dépôts partagés, alors que ce coffre est en français.
 
 # 15. Sources
+
+- Analyse et scénarios d'usage : [[KR _Analyse]].
 
 - Biblioteko, branche `V2` : `docs/fr/Cahier des charges.md`, `docs/fr/Journal de conception.md`, ADR-002, ADR-003, ADR-004, ADR-006, ADR-009, ADR-010, ADR-012.
 - [[Obsidian OSIA Construire son système d'exploitation personnel augmenté par l'IA|Cours Obsidian OSIA]], chapitres 2, 10, 16, 17, 20, 21 et 23.

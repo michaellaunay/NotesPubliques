@@ -11,7 +11,7 @@ publication:
 
 
 # Text Elements
-KuneAgi ^X1iIC4nK
+Kunereti ^X1iIC4nK
 
 Rejoindre ^xBl18hSw
 
@@ -227,9 +227,9 @@ Demander mon admission ^19ADJ0T1
 			"locked": false,
 			"fontSize": 16,
 			"fontFamily": 3,
-			"text": "KuneAgi",
-			"rawText": "KuneAgi",
-			"originalText": "KuneAgi",
+			"text": "Kunereti",
+			"rawText": "Kunereti",
+			"originalText": "Kunereti",
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,

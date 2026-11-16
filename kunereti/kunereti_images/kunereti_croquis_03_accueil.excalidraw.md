@@ -13,7 +13,7 @@ publication:
 # Text Elements
 synchro 2 min ^7OkpyGzZ
 
-KuneAgi - Cosmopolitical ^ITManZCK
+Kunereti - Cosmopolitical ^ITManZCK
 
 Hirondelle-42 ^RAB3A8lt
 
@@ -346,9 +346,9 @@ Dernier passage du curateur : 11 h 02 ^Nqpk1607
 			"locked": false,
 			"fontSize": 16,
 			"fontFamily": 3,
-			"text": "KuneAgi - Cosmopolitical",
-			"rawText": "KuneAgi - Cosmopolitical",
-			"originalText": "KuneAgi - Cosmopolitical",
+			"text": "Kunereti - Cosmopolitical",
+			"rawText": "Kunereti - Cosmopolitical",
+			"originalText": "Kunereti - Cosmopolitical",
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
