@@ -4,18 +4,18 @@ type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- analyse
-- glossaire
-- intelligence-artificielle
-- claude-code
-- meetup
-resume: 'Création du glossaire métier de Kunereti avec Claude Code à partir du journal d''élicitation : règles d''écriture d''une entrée, chasse aux synonymes et aux doubles sens, contre-lecture par Codex et règle de mise à jour.'
+  - genie-logiciel
+  - analyse
+  - glossaire
+  - intelligence-artificielle
+  - claude-code
+  - meetup
+resume: "Création du glossaire métier de Kunereti avec Claude Code à partir du journal d'élicitation : règles d'écriture d'une entrée, chasse aux synonymes et aux doubles sens, contre-lecture par Codex et règle de mise à jour."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
@@ -24,7 +24,7 @@ uid: 01M7WTJM3BHT19D6K1BCW46SY0
 date_creation: 2026-11-20
 publication: []
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Remarque générale
 

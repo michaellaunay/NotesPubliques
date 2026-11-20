@@ -1,34 +1,35 @@
 ---
 titre: MU26 07 QQOQCP et CRUD
 aliases:
-- QQOCP et CRUD
+  - QQOCP et CRUD
 type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- analyse
-- scenarios
-- modelisation
-- donnees
-- intelligence-artificielle
-- claude-code
-- meetup
-resume: 'Passage des scénarios de Kunereti aux objets et aux données à créer : questionnement QQOQCP appliqué au scénario du vote, inventaire des objets, puis matrice CRUD objets × scénarios et ce qu''elle révèle dans un système où rien ne s''efface.'
+  - genie-logiciel
+  - analyse
+  - scenarios
+  - modelisation
+  - donnees
+  - intelligence-artificielle
+  - claude-code
+  - meetup
+resume: "Passage des scénarios de Kunereti aux objets et aux données à créer : questionnement QQOQCP appliqué au scénario du vote, inventaire des objets, puis matrice CRUD objets × scénarios et ce qu'elle révèle dans un système où rien ne s'efface."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTQC8W0HVN3FS88Z3WWADX
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Remarque générale
 

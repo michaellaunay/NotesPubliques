@@ -1,34 +1,35 @@
 ---
 titre: MU26 08 Sketchs
 aliases:
-- MU26 Croquis d'écrans
+  - MU26 Croquis d'écrans
 type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- analyse
-- scenarios
-- design
-- excalidraw
-- intelligence-artificielle
-- claude-code
-- meetup
-resume: 'Création des croquis d''écrans de Kunereti à partir des scénarios : description textuelle de l''écran validée avant le dessin, génération du fichier Excalidraw par l''agent, correspondance croquis-scénarios et ce que le croquis révèle.'
+  - genie-logiciel
+  - analyse
+  - scenarios
+  - design
+  - excalidraw
+  - intelligence-artificielle
+  - claude-code
+  - meetup
+resume: "Création des croquis d'écrans de Kunereti à partir des scénarios : description textuelle de l'écran validée avant le dessin, génération du fichier Excalidraw par l'agent, correspondance croquis-scénarios et ce que le croquis révèle."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTQC9A9AGH078JQTV2VK9M
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Remarque générale
 

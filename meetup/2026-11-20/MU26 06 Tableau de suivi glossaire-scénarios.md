@@ -1,34 +1,35 @@
 ---
 titre: MU26 06 Tableau de suivi glossaire-scénarios
 aliases:
-- Matrice de traçabilité glossaire-scénarios
+  - Matrice de traçabilité glossaire-scénarios
 type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- analyse
-- glossaire
-- scenarios
-- suivi
-- intelligence-artificielle
-- claude-code
-- meetup
-resume: 'Tableau de suivi qui indique dans quels scénarios sert chaque terme du glossaire de Kunereti : prompt de génération par script, extrait calculé sur les 69 termes et les 51 scénarios réels, lecture des anomalies (termes jamais employés, employés partout, absents du glossaire), pièges du comptage et bilan de la passe de correction.'
+  - genie-logiciel
+  - analyse
+  - glossaire
+  - scenarios
+  - suivi
+  - intelligence-artificielle
+  - claude-code
+  - meetup
+resume: "Tableau de suivi qui indique dans quels scénarios sert chaque terme du glossaire de Kunereti : prompt de génération par script, extrait calculé sur les 69 termes et les 51 scénarios réels, lecture des anomalies (termes jamais employés, employés partout, absents du glossaire), pièges du comptage et bilan de la passe de correction."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTQC80MPZV03BTH6GYBA8P
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # À quoi sert le tableau
 

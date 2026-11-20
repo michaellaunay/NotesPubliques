@@ -4,27 +4,28 @@ type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- cahier-des-charges
-- capture-des-besoins
-- democratie
-- decentralisation
-- meetup
-resume: 'Le sujet du meetup 2026 : le brief de départ de Kunereti, volontairement court et flou, et ce qu''il mélange (désir, besoin, contrainte, solution) avant l''élicitation.'
+  - genie-logiciel
+  - cahier-des-charges
+  - capture-des-besoins
+  - democratie
+  - decentralisation
+  - meetup
+resume: "Le sujet du meetup 2026 : le brief de départ de Kunereti, volontairement court et flou, et ce qu'il mélange (désir, besoin, contrainte, solution) avant l'élicitation."
 niveau: debutant
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTJM16QTG8ZJ0EQDQ2B81D
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Le parti pris : partir de zéro
 

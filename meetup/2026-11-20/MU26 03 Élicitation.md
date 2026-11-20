@@ -4,28 +4,29 @@ type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- capture-des-besoins
-- analyse
-- 2tup
-- intelligence-artificielle
-- claude-code
-- meetup
-resume: 'Élicitation du besoin de Kunereti avec Claude Code : l''agent interroge le porteur du projet, tient le journal des questions et des hypothèses, reformule le besoin, puis Codex contre-lit. Prompts reconstitués et extraits des réponses.'
+  - genie-logiciel
+  - capture-des-besoins
+  - analyse
+  - 2tup
+  - intelligence-artificielle
+  - claude-code
+  - meetup
+resume: "Élicitation du besoin de Kunereti avec Claude Code : l'agent interroge le porteur du projet, tient le journal des questions et des hypothèses, reformule le besoin, puis Codex contre-lit. Prompts reconstitués et extraits des réponses."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTJM2WWK44P97Q2NQNDCGG
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Remarque générale
 

@@ -4,28 +4,29 @@ type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- organisation-de-projet
-- intelligence-artificielle
-- agents-ia
-- claude-code
-- git
-- meetup
-resume: 'Mise en place du projet Kunereti à partir d''un dépôt vide : arborescence des livrables d''analyse, fichier de consignes AGENTS.md partagé par Claude Code et Codex, permissions, et premiers prompts de cadrage.'
+  - genie-logiciel
+  - organisation-de-projet
+  - intelligence-artificielle
+  - agents-ia
+  - claude-code
+  - git
+  - meetup
+resume: "Mise en place du projet Kunereti à partir d'un dépôt vide : arborescence des livrables d'analyse, fichier de consignes AGENTS.md partagé par Claude Code et Codex, permissions, et premiers prompts de cadrage."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTJM22FT8TTX6G5BT06ENP
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Objectif
 

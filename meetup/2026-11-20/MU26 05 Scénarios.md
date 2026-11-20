@@ -4,29 +4,30 @@ type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- analyse
-- 2tup
-- scenarios
-- intelligence-artificielle
-- agents-ia
-- claude-code
-- meetup
-resume: 'Écriture des scénarios de Kunereti avec Claude Code et Codex : acteurs et personnages, liste des scénarios concrets, gabarit, écriture en parallèle par des sous-agents, liste des hypothèses que l''écriture fait apparaître et contre-lecture croisée.'
+  - genie-logiciel
+  - analyse
+  - 2tup
+  - scenarios
+  - intelligence-artificielle
+  - agents-ia
+  - claude-code
+  - meetup
+resume: "Écriture des scénarios de Kunereti avec Claude Code et Codex : acteurs et personnages, liste des scénarios concrets, gabarit, écriture en parallèle par des sous-agents, liste des hypothèses que l'écriture fait apparaître et contre-lecture croisée."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTQC6XGFQD10YE75TM47C7
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Remarque générale
 
