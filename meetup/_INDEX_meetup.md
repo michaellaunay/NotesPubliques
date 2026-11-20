@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-08-16
-date_modification: 2026-11-19
+date_modification: 2026-11-20
 confidentialite: privee
 publication: []
 rag: false
@@ -53,6 +53,15 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 - [[MU 80 OpenAI API]] — Prise en main de l'API OpenAI : création d'une clé applicative et stockage sécurisé dans un fichier .env.
 - [[MU 80 Prompt ChatGPT]] — Retranscription intégrale de la session de prompts ayant produit l'analyse, le glossaire et les scénarios de l'étude de cas.
 - [[MU 90 Dialecte ChatGPT]] — Expérience et réflexion sur l'existence d'un dialecte propre à ChatGPT, à partir d'un prompt initial et de sa réponse.
+- [[MU26 00 Développer avec Claude Code et Codex]] — Support principal du meetup 2026 : ce qui a changé depuis 2024, les deux agents de développement Claude Code et Codex, la chaîne d'analyse suivie sur l'étude de cas Kunereti démarrée de zéro, les règles de travail et le déroulé.
+- [[MU26 01 Sujet et cahier des charges]] — Le sujet du meetup 2026 : le brief de départ de Kunereti, volontairement court et flou, et ce qu'il mélange (désir, besoin, contrainte, solution) avant l'élicitation.
+- [[MU26 02 Mise en place du projet]] — Mise en place du projet Kunereti à partir d'un dépôt vide : arborescence des livrables d'analyse, fichier de consignes AGENTS.md partagé par Claude Code et Codex, permissions, et premiers prompts de cadrage.
+- [[MU26 03 Élicitation]] — Élicitation du besoin de Kunereti avec Claude Code : l'agent interroge le porteur du projet, tient le journal des questions et des hypothèses, reformule le besoin, puis Codex contre-lit. Prompts reconstitués et extraits des réponses.
+- [[MU26 04 Glossaire métier]] — Création du glossaire métier de Kunereti avec Claude Code à partir du journal d'élicitation : règles d'écriture d'une entrée, chasse aux synonymes et aux doubles sens, contre-lecture par Codex et règle de mise à jour.
+- [[MU26 05 Scénarios]] — Écriture des scénarios de Kunereti avec Claude Code et Codex : acteurs et personnages, liste des scénarios concrets, gabarit, écriture en parallèle par des sous-agents, liste des hypothèses que l'écriture fait apparaître et contre-lecture croisée.
+- [[MU26 06 Tableau de suivi glossaire-scénarios]] — Tableau de suivi qui indique dans quels scénarios sert chaque terme du glossaire de Kunereti : prompt de génération par script, extrait calculé sur les 69 termes et les 51 scénarios réels, et lecture des anomalies (termes jamais employés, employés partout, absents du glossaire).
+- [[MU26 07 QQOQCP et CRUD]] — Passage des scénarios de Kunereti aux objets et aux données à créer : questionnement QQOQCP appliqué au scénario du vote, inventaire des objets, puis matrice CRUD objets × scénarios et ce qu'elle révèle dans un système où rien ne s'efface.
+- [[MU26 08 Sketchs]] — Création des croquis d'écrans de Kunereti à partir des scénarios : description textuelle de l'écran validée avant le dessin, génération du fichier Excalidraw par l'agent, correspondance croquis-scénarios et ce que le croquis révèle.
 
 ## Développement
 
