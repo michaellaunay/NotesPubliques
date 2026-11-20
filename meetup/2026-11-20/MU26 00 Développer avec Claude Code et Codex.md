@@ -1,33 +1,34 @@
 ---
 titre: MU26 00 Développer avec Claude Code et Codex
 aliases:
-- Meetup 2026
-- Meetup Développer avec Claude Code et Codex
+  - Meetup 2026
+  - Meetup Développer avec Claude Code et Codex
 type: cours
 statut: brouillon
 para: ressource
 domaines:
-- enseignement
+  - enseignement
 themes:
-- genie-logiciel
-- intelligence-artificielle
-- agents-ia
-- assistance-au-developpement
-- claude-code
-- meetup
-resume: 'Support principal du meetup 2026 : ce qui a changé depuis 2024, les deux agents de développement Claude Code et Codex, la chaîne d''analyse suivie sur l''étude de cas Kunereti démarrée de zéro, les règles de travail et le déroulé.'
+  - genie-logiciel
+  - intelligence-artificielle
+  - agents-ia
+  - assistance-au-developpement
+  - claude-code
+  - meetup
+resume: "Support principal du meetup 2026 : ce qui a changé depuis 2024, les deux agents de développement Claude Code et Codex, la chaîne d'analyse suivie sur l'étude de cas Kunereti démarrée de zéro, les règles de travail et le déroulé."
 niveau: intermediaire
 auteurs:
-- Michaël Launay
+  - Michaël Launay
 langue: fr
 confidentialite: publique
 rag: true
 schema_version: 1
 uid: 01M7WTE9T4ZTQBFJ8R9KNFAJKB
 date_creation: 2026-11-20
-publication: []
+publication:
+  - notes-publiques
 date_modification: 2026-11-20
-metadata_verifiees: false
+metadata_verifiees: true
 ---
 # Pourquoi refaire ce meetup
 

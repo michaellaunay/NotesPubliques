@@ -17,12 +17,12 @@ themes:
 - democratie
 - decentralisation
 - kuneagi
-resume: 'Glossaire métier de Kunereti : communauté, membre, contribution, idée, proposition, amendement, scrutin, jeton, agent et les autres termes du domaine.'
+resume: 'Glossaire métier de Kunereti : communauté, membre, contribution, idée, proposition, amendement, scrutin, bulletin, mention, jeton, avis, agent et les autres termes du domaine.'
 schema_version: 1
 uid: 01M7AK890X92K64Q31SK54M489
 date_creation: 2026-11-13
 langue: fr
-date_modification: 2026-11-13
+date_modification: 2026-11-20
 metadata_verifiees: false
 ---
 - **Kunereti** : Outil de délibération et d'innovation participative réparti, sans serveur central. Il reprend les règles de Nova-Ideo et de KuneAgi et les fait reposer sur des dépôts de fichiers signés. Le projet s'est d'abord appelé « KuneAgi V2 ».
@@ -35,17 +35,25 @@ metadata_verifiees: false
 
 - **Membre** : Personne admise dans la communauté après vérification par ses pairs. Connue par un pseudonyme et des clés publiques, jamais par son identité civile.
 
+- **Fiche de membre** : Le fichier qui représente un membre dans le dépôt de communauté : son pseudonyme, ses clés publiques, son état d'admission, ses rôles. Elle ne contient aucune donnée d'identité.
+
 - **Candidat** : Personne qui a déposé sa candidature et n'est pas encore admise. Elle lit, elle n'écrit pas.
 
 - **Citoyenneté** : Le processus d'admission hérité de KuneAgi : des membres tirés au sort vérifient qu'un candidat est une personne réelle et n'a pas déjà un compte.
+
+- **Attestation** : L'avis signé qu'un membre vérificateur dépose après avoir vérifié un candidat, ou un membre qui a perdu ses clés. L'admission se décide sur les attestations réunies ; le dépôt ne garde rien d'autre de la vérification.
 
 - **Pseudonyme** : Le nom public d'un membre. Aucune donnée d'identité n'est écrite dans les dépôts.
 
 - **Clés** : Chaque membre détient deux paires de clés, l'une pour signer, l'autre pour recevoir des messages chiffrés. La clé privée ne quitte pas son appareil. Perdre ses clés oblige à être réadmis.
 
+- **Phrase de secours** : Suite de mots que l'application fait noter au membre quand elle crée ses clés, et qui lui permet de les retrouver sur un autre appareil. Qui a perdu à la fois son appareil et sa phrase de secours doit être réadmis par ses pairs.
+
 - **Signature** : Preuve, vérifiable par tous, qu'un fichier a été écrit par le détenteur d'une clé et n'a pas été modifié depuis. Publier, voter, soutenir : c'est toujours signer.
 
 - **Dépôt** : Un dossier de fichiers avec tout son historique, géré par Git, que chaque membre copie intégralement. Il existe un dépôt de communauté, un dépôt d'idées et un dépôt par groupe de travail.
+
+- **Notice** : Le fichier qui présente un dépôt et en porte les règles. La notice d'un dépôt de communauté contient la charte et recense le dépôt d'idées ; celle d'un dépôt de groupe de travail contient le titre et le résumé de la proposition, la liste de ses sections, la durée et le mode de l'itération en cours. Elle est signée.
 
 - **Forge** : Un service qui héberge des dépôts Git. La communauté en utilise au moins deux ; aucune n'est indispensable.
 
@@ -93,6 +101,8 @@ metadata_verifiees: false
 
 - **Jugement majoritaire** : Méthode de vote de Balinski et Laraki. Chaque votant attribue à chaque candidat une mention parmi sept, de « Excellent » à « À rejeter » ; le candidat retenu est celui dont la mention médiane est la meilleure.
 
+- **Mention** : L'appréciation qu'un votant attribue à un candidat dans un scrutin au jugement majoritaire. Il y en a sept, de « Excellent » à « À rejeter ». Un bulletin porte une mention par candidat. Le mot est réservé à ce sens.
+
 - **Dépouillement** : Le calcul du résultat d'un scrutin. Il est déterministe : chacun peut le refaire et doit trouver le même résultat.
 
 - **Co-signature** : Signature du résultat d'un scrutin par plusieurs membres qui l'ont recalculé. Sans elle, le résultat ne vaut rien.
@@ -105,7 +115,7 @@ metadata_verifiees: false
 
 - **Comité de pilotage** : Membres élus qui se prononcent sur la mise en application des propositions soumises.
 
-- **Avis** : La décision du comité de pilotage, sous forme de feu tricolore, signée par ses membres. Elle rend les jetons à leurs propriétaires.
+- **Avis** : Deux sens à distinguer. *Avis du comité de pilotage* : sa décision sur une proposition soumise, sous forme de feu tricolore, signée par ses membres ; elle rend les jetons à leurs propriétaires. *Avis d'un membre tiré au sort* : la réponse signée d'un membre vérificateur, d'un modérateur, d'un contrôleur de conformité ou d'un juré ; la décision se prend à la majorité des avis exprimés.
 
 - **Rôle** : Qualité inscrite dans la fiche d'un membre à la suite d'un vote : autorité, examinateur, membre du comité. Il n'existe pas de compte privilégié.
 
@@ -117,7 +127,7 @@ metadata_verifiees: false
 
 - **Transition** : Le passage d'un contenu d'un état à un autre. Elle est légale si la définition du processus l'autorise et si ses conditions sont réunies.
 
-- **Tirage au sort vérifiable** : Désignation de vérificateurs ou de jurés par un calcul que chacun peut refaire, à partir d'une valeur publique imprévisible.
+- **Tirage au sort vérifiable (tiré au sort)** : Désignation de membres vérificateurs, de modérateurs, de contrôleurs de conformité ou de jurés par un calcul que chacun peut refaire, à partir d'une valeur publique imprévisible. Dans Kunereti, tout tirage au sort est vérifiable : « tiré au sort » veut toujours dire cela.
 
 - **Jury** : Membres tirés au sort pour trancher un signalement ou la contestation d'un scrutin.
 

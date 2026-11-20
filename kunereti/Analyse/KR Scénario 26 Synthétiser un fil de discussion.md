@@ -22,7 +22,7 @@ schema_version: 1
 uid: 01M7AK88Z35DWBPCRAYKAM1GXP
 date_creation: 2026-11-13
 langue: fr
-date_modification: 2026-11-13
+date_modification: 2026-11-20
 metadata_verifiees: false
 ---
 # **Synthétiser un fil de discussion**
@@ -48,7 +48,7 @@ Le fil sur le financement dépasse soixante messages. L'agent synthétiseur en r
 4. Il relève les objections restées sans réponse et les points qu'aucun amendement ne traite.
 5. Il rédige la synthèse, avec les références aux messages et sa provenance (modèle, version, date), et la signe de sa clé.
 6. Il la propose au dossier des synthèses ; le vérificateur contrôle qu'il n'a écrit nulle part ailleurs.
-7. L'application affiche la synthèse en tête du fil, sous la mention « Synthèse rédigée par une machine ».
+7. L'application affiche la synthèse en tête du fil, sous l'avertissement « Synthèse rédigée par une machine ».
 8. Un participant qui la trouve infidèle le dit dans le fil ; l'agent en tiendra compte à son prochain passage.
 
 ## Diagramme de séquence Mermaid

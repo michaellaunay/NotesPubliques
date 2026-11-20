@@ -14,7 +14,7 @@ auteurs:
   - "Michaël Launay"
 langue: fr
 date_creation: 2026-11-13
-date_modification: 2026-11-19
+date_modification: 2026-11-20
 confidentialite: privee
 publication: []
 rag: false
@@ -29,7 +29,7 @@ Index régénéré par `make index` — ne pas éditer à la main. Vue graphique
 
 - [[KR _Analyse]] — Index des documents d'analyse de Kunereti : analyse, glossaire métier et 51 scénarios.
 - [[KR Analyse]] — Analyse de Kunereti selon la phase d'analyse de la méthode 2TUP : acteurs, six cas d'utilisation, liste des 51 scénarios concrets, points que leur écriture a fait apparaître et apports des documents historiques de KuneAgi et de Nova-Ideo.
-- [[KR Glossaire métier]] — Glossaire métier de Kunereti : communauté, membre, contribution, idée, proposition, amendement, scrutin, jeton, agent et les autres termes du domaine.
+- [[KR Glossaire métier]] — Glossaire métier de Kunereti : communauté, membre, contribution, idée, proposition, amendement, scrutin, bulletin, mention, jeton, avis, agent et les autres termes du domaine.
 - [[KR Scénario 01 Fonder une communauté]] — Scénario de fondation d'une communauté Kunereti : dépôt de communauté, clé racine, charte, miroirs et QR code d'invitation.
 - [[KR Scénario 02 Rejoindre une communauté]] — Scénario d'entrée dans une communauté Kunereti : scan du QR code, vérification de la clé racine, création des clés et dépôt de la candidature.
 - [[KR Scénario 03 Admettre un candidat]] — Scénario d'admission d'un candidat : tirage au sort vérifiable des vérificateurs, vérification d'identité hors dépôt, attestations signées et passage à l'état de membre.

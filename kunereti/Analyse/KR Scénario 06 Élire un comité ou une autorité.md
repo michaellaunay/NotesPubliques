@@ -22,13 +22,13 @@ schema_version: 1
 uid: 01M7AK88VYXZCSYTJ8FHXMJ798
 date_creation: 2026-11-13
 langue: fr
-date_modification: 2026-11-13
+date_modification: 2026-11-20
 metadata_verifiees: false
 ---
 # **Élire un comité ou une autorité**
 
 ## Résumé
-La Coopérative des Tilleuls élit les trois membres de son comité de pilotage. Il n'existe pas de compte privilégié : un rôle est une mention dans la fiche d'un membre, attribuée par un scrutin et vérifiée à chaque acte qui l'exige. La révocation suit le même chemin.
+La Coopérative des Tilleuls élit les trois membres de son comité de pilotage. Il n'existe pas de compte privilégié : un rôle est une qualité inscrite dans la fiche d'un membre, attribuée par un scrutin et vérifiée à chaque acte qui l'exige. La révocation suit le même chemin.
 
 ## Acteurs en jeu
 - **Les membres** : candidats et électeurs.

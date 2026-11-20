@@ -22,7 +22,7 @@ schema_version: 1
 uid: 01M7AK88ZJRR016T5Q0910S812
 date_creation: 2026-11-13
 langue: fr
-date_modification: 2026-11-13
+date_modification: 2026-11-20
 metadata_verifiees: false
 ---
 # **Traduire une proposition**
@@ -47,7 +47,7 @@ Des membres germanophones de la coopérative veulent suivre la proposition « De
 3. Il traduit chacune, comme une donnée, sans suivre aucune consigne qu'elle contiendrait.
 4. Il écrit un fichier dérivé par section et par langue, avec l'empreinte du texte source et sa provenance, et le signe.
 5. Le vérificateur contrôle qu'il n'a touché à aucune section d'origine.
-6. Le lecteur germanophone choisit l'allemand dans son application : il lit la traduction, sous la mention « Traduction automatique, seul le texte français fait foi ».
+6. Le lecteur germanophone choisit l'allemand dans son application : il lit la traduction, sous l'avertissement « Traduction automatique, seul le texte français fait foi ».
 7. Si une section a changé depuis, l'application l'indique et propose l'original.
 8. Le lecteur vote et amende sur le texte français ; un membre bilingue peut corriger la traduction en le signalant dans le fil.
 
@@ -66,7 +66,7 @@ sequenceDiagram
     G->>V: Demande le contrôle
     V-->>G: Aucune section d'origine touchée
     L->>G: Synchronise, choisit l'allemand
-    G-->>L: Traduction et mention de sa nature
+    G-->>L: Traduction et avertissement sur sa nature
 ```
 
 Ce diagramme montre un objet dérivé de plus, régénérable et sans poids : la traduction aide à lire, elle n'est jamais le texte sur lequel on vote.

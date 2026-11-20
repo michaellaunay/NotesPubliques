@@ -24,7 +24,7 @@ schema_version: 1
 uid: 01M7AK8G1JW85N21V6DZH8QJDQ
 date_creation: 2026-11-13
 langue: fr
-date_modification: 2026-11-13
+date_modification: 2026-11-20
 metadata_verifiees: false
 ---
 # Remarque générale
@@ -133,7 +133,7 @@ Le parcours nominal d'une proposition enchaîne les scénarios 8 (contribution),
 
 ### 6. **Élire un comité ou une autorité**
 - **Acteur** : Les membres de la communauté
-- **Scénario** : La Coopérative des Tilleuls élit les trois membres de son comité de pilotage. Il n'existe pas de compte privilégié : un rôle est une mention dans la fiche d'un membre, attribuée par un scrutin et vérifiée à chaque acte qui l'exige. La révocation suit le même chemin.
+- **Scénario** : La Coopérative des Tilleuls élit les trois membres de son comité de pilotage. Il n'existe pas de compte privilégié : un rôle est une qualité inscrite dans la fiche d'un membre, attribuée par un scrutin et vérifiée à chaque acte qui l'exige. La révocation suit le même chemin.
 - **Fiche** : [[KR Scénario 06 Élire un comité ou une autorité]]
 
 ### 7. **Relier deux communautés**
